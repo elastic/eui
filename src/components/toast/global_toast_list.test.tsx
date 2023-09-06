@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { act } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
-import { render } from '../../test/rtl';
+import { render, findByTestSubject, queryByTestSubject } from '../../test/rtl';
 
 import {
   EuiGlobalToastList,
@@ -193,16 +193,14 @@ describe('EuiGlobalToastList', () => {
         const dismissToastSpy = jest.fn();
         const dismissAllToastsSpy = jest.fn();
         const TOAST_LIFE_TIME_MS = 10;
-        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
 
         const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT;
 
-        const component = mount(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
               id: String(idx),
               'data-test-subj': String(idx),
-              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE,
             }))}
             toastLifeTimeMs={TOAST_LIFE_TIME_MS}
             dismissToast={dismissToastSpy}
@@ -211,28 +209,26 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        const dismissAllToastsButton = findTestSubject(
-          component,
+        const dismissAllToastsButton = queryByTestSubject(
+          container,
           'euiClearAllToastsButton'
         );
 
-        expect(dismissAllToastsButton.exists()).toEqual(false);
+        expect(dismissAllToastsButton).not.toBeInTheDocument();
       });
 
-      test('is displayed when the number of toasts to be displayed equals the internal default threshold value', () => {
+      test('is displayed when the number of toasts to be displayed equals the internal default threshold value', async () => {
         const dismissToastSpy = jest.fn();
         const dismissAllToastsSpy = jest.fn();
         const TOAST_LIFE_TIME_MS = 10;
-        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
 
         const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT;
 
-        const component = mount(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
               id: String(idx),
               'data-test-subj': String(idx),
-              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE,
             }))}
             toastLifeTimeMs={TOAST_LIFE_TIME_MS}
             dismissToast={dismissToastSpy}
@@ -240,33 +236,29 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        const dismissAllToastsButton = findTestSubject(
-          component,
+        const dismissAllToastsButton = await findByTestSubject(
+          container,
           'euiClearAllToastsButton'
         );
 
-        expect(dismissAllToastsButton.exists()).toEqual(true);
-
-        dismissAllToastsButton.simulate('click');
+        fireEvent.click(dismissAllToastsButton);
 
         expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
         expect(dismissAllToastsSpy).toHaveBeenCalled();
       });
 
-      test('is visible when the number of toasts to be displayed exceeds the threshold value set with the showClearAllButtonAt prop', () => {
+      test('is visible when the number of toasts to be displayed exceeds the threshold value set with the showClearAllButtonAt prop', async () => {
         const dismissToastSpy = jest.fn();
         const dismissAllToastsSpy = jest.fn();
         const TOAST_LIFE_TIME_MS = 10;
-        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
 
         const TOAST_COUNT = 5;
 
-        const component = mount(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
               id: String(idx),
               'data-test-subj': String(idx),
-              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE,
             }))}
             toastLifeTimeMs={TOAST_LIFE_TIME_MS}
             dismissToast={dismissToastSpy}
@@ -275,14 +267,12 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        const dismissAllToastsButton = findTestSubject(
-          component,
+        const dismissAllToastsButton = await findByTestSubject(
+          container,
           'euiClearAllToastsButton'
         );
 
-        expect(dismissAllToastsButton.exists()).toEqual(true);
-
-        dismissAllToastsButton.simulate('click');
+        fireEvent.click(dismissAllToastsButton);
 
         expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
         expect(dismissAllToastsSpy).toHaveBeenCalled();
