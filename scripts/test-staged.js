@@ -1,7 +1,9 @@
 const { execSync } = require('child_process');
 
 // find names of staged files
-const stagedFiles = execSync('git diff --cached --name-only --diff-filter=ACMR')
+const stagedFiles = execSync(
+  'git diff main...HEAD --name-only --diff-filter=ACMR'
+)
   .toString()
   .split(/[\r\n]+/g);
 
