@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 
 import { EuiInlineEditText } from '../../../../src';
 
 export default () => {
   const [inlineEditValue, setInlineEditValue] = useState('Hello World!');
 
-  const inlineEditOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inlineEditOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInlineEditValue(e.target.value);
   };
 

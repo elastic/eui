@@ -164,7 +164,7 @@ export const InlineEditExample = {
       playground: inlineEditTitleConfig,
     },
     {
-      title: 'Controlling inline edit text and title values',
+      title: 'Controlled values',
       text: (
         <>
           <p>
