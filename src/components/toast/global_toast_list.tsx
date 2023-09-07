@@ -61,7 +61,6 @@ export interface EuiGlobalToastListProps extends CommonProps {
   showClearAllButtonAt?: number;
   /**
    * Optional callback that fires when a user clicks the "Clear all" button.
-   * Ignored if `showClearAll` is not `true`.
    */
   onClearAllToasts?: () => void;
 }
@@ -306,7 +305,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   });
 
   if (showClearAllButtonAt && toasts.length >= showClearAllButtonAt) {
-    const dismissAllToastImmediately = () => {
+    const dismissAllToasts = () => {
       toasts.forEach((toast) => dismissToastProp(toast));
       onClearAllToasts?.();
     };
@@ -328,7 +327,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
             <EuiButton
               fill
               color="text"
-              onClick={dismissAllToastImmediately}
+              onClick={dismissAllToasts}
               css={[styles.euiGlobalToastListDismissButton]}
               aria-label={clearAllToastsButtonAriaLabel}
               data-test-subj="euiClearAllToastsButton"

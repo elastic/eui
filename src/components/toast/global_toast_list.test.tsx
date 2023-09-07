@@ -10,7 +10,7 @@ import React from 'react';
 import { act, fireEvent } from '@testing-library/react';
 import { mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
-import { render, findByTestSubject, queryByTestSubject } from '../../test/rtl';
+import { render } from '../../test/rtl';
 
 import {
   EuiGlobalToastList,
@@ -188,94 +188,98 @@ describe('EuiGlobalToastList', () => {
       });
     });
 
-    describe('dismissAllToasts Button', () => {
+    describe('clear all toasts button', () => {
+      const createMockToasts = (toastCount: number) =>
+        Array.from(new Array(toastCount)).map((_, idx) => ({
+          id: String(idx),
+          'data-test-subj': String(idx),
+        }));
+
+      const sharedProps = {
+        toastLifeTimeMs: 10,
+        dismissToast: jest.fn(),
+        toasts: createMockToasts(CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT),
+      };
+
+      afterEach(() => {
+        sharedProps.dismissToast.mockClear();
+      });
+
       test('is not visible when the showClearAllButtonAt prop is set to 0', () => {
-        const dismissToastSpy = jest.fn();
         const dismissAllToastsSpy = jest.fn();
-        const TOAST_LIFE_TIME_MS = 10;
 
-        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT;
-
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiGlobalToastList
-            toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
-              id: String(idx),
-              'data-test-subj': String(idx),
-            }))}
-            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
-            dismissToast={dismissToastSpy}
+            {...sharedProps}
             onClearAllToasts={dismissAllToastsSpy}
             showClearAllButtonAt={0}
           />
         );
 
-        const dismissAllToastsButton = queryByTestSubject(
-          container,
-          'euiClearAllToastsButton'
-        );
-
-        expect(dismissAllToastsButton).not.toBeInTheDocument();
+        expect(
+          queryByTestSubject('euiClearAllToastsButton')
+        ).not.toBeInTheDocument();
       });
 
-      test('is displayed when the number of toasts to be displayed equals the internal default threshold value', async () => {
-        const dismissToastSpy = jest.fn();
-        const dismissAllToastsSpy = jest.fn();
-        const TOAST_LIFE_TIME_MS = 10;
+      it('is not visible when the number of toasts to be displayed is below the set toast dismiss threshold', () => {
+        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT - 1;
 
-        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT;
-
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiGlobalToastList
-            toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
-              id: String(idx),
-              'data-test-subj': String(idx),
-            }))}
-            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
-            dismissToast={dismissToastSpy}
+            {...sharedProps}
+            toasts={createMockToasts(TOAST_COUNT)}
+          />
+        );
+
+        expect(
+          queryByTestSubject('euiClearAllToastsButton')
+        ).not.toBeInTheDocument();
+      });
+
+      test('is displayed when the number of toasts to be displayed equals the internal default threshold value', () => {
+        const dismissAllToastsSpy = jest.fn();
+
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            {...sharedProps}
             onClearAllToasts={dismissAllToastsSpy}
           />
         );
 
-        const dismissAllToastsButton = await findByTestSubject(
-          container,
-          'euiClearAllToastsButton'
-        );
-
-        fireEvent.click(dismissAllToastsButton);
-
-        expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
-        expect(dismissAllToastsSpy).toHaveBeenCalled();
+        expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
       });
 
-      test('is visible when the number of toasts to be displayed exceeds the threshold value set with the showClearAllButtonAt prop', async () => {
-        const dismissToastSpy = jest.fn();
-        const dismissAllToastsSpy = jest.fn();
-        const TOAST_LIFE_TIME_MS = 10;
-
+      test('is visible when the number of toasts to be displayed exceeds the threshold value set with the showClearAllButtonAt prop', () => {
         const TOAST_COUNT = 5;
 
-        const { container } = render(
+        const { getByTestSubject } = render(
           <EuiGlobalToastList
-            toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
-              id: String(idx),
-              'data-test-subj': String(idx),
-            }))}
-            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
-            dismissToast={dismissToastSpy}
-            onClearAllToasts={dismissAllToastsSpy}
+            {...sharedProps}
+            toasts={createMockToasts(TOAST_COUNT)}
             showClearAllButtonAt={TOAST_COUNT - 1}
           />
         );
 
-        const dismissAllToastsButton = await findByTestSubject(
-          container,
-          'euiClearAllToastsButton'
+        expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
+      });
+
+      test('fires the optional onClearAllToasts callback if provided when the clear toast button is clicked', () => {
+        const onClearAllToastsSpy = jest.fn();
+
+        const TOAST_COUNT = 5;
+
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            {...sharedProps}
+            toasts={createMockToasts(TOAST_COUNT)}
+            onClearAllToasts={onClearAllToastsSpy}
+          />
         );
 
-        fireEvent.click(dismissAllToastsButton);
+        fireEvent.click(getByTestSubject('euiClearAllToastsButton'));
 
-        expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
-        expect(dismissAllToastsSpy).toHaveBeenCalled();
+        expect(onClearAllToastsSpy).toHaveBeenCalledTimes(1);
+        expect(sharedProps.dismissToast).toHaveBeenCalledTimes(TOAST_COUNT);
       });
     });
   });
