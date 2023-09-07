@@ -69,17 +69,20 @@ post_comment_to_gh()
 
 publish_to_bucket()
 {
-  copy_options="-m cp -r -a public-read -z js,css,html"
+  copy_options=(
+    -m # enable multithreading
+    cp
+    -r # copy files recursively
+    -a public-read # set ACL to allow read by everyone
+    -z js,css,html # enable gzip encoding for these extensions
+    -h \"Cache-Control: public, max-age=${max_age}, must-revalidate\" # set caching policy
+  )
 
   echo "Copying ${PWD}/docs/* to ${full_bucket_path}"
-  gsutil ${copy_options} "${PWD}/docs/*" "${full_bucket_path}"
+  gsutil "${copy_options[@]}" "${PWD}/docs/*" "${full_bucket_path}"
 
   echo "Copying ${PWD}/storybook-static/* to ${full_bucket_path}storybook/"
-  gsutil ${copy_options} "${PWD}/storybook-static/*" "${full_bucket_path}storybook/"
-
-  # https://cloud.google.com/storage/docs/gsutil/commands/setmeta
-  gsutil -m setmeta -h "Cache-Control:public, max-age=${max_age}, must-revalidate" \
-    "${full_bucket_path}**/*"
+  gsutil "${copy_options[@]}" "${PWD}/storybook-static/*" "${full_bucket_path}storybook/"
 }
 
 if [[ "$1" != "nodocker" ]]; then
