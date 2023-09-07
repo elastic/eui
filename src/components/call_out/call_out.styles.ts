@@ -31,9 +31,6 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
         ${logicalCSS('margin-top', euiTheme.size.s)}
       }
     `,
-    euiCallOut__title_endSpace: css`
-      padding-inline-end: ${euiTheme.size.l};
-    `,
   };
 };
 
@@ -46,6 +43,9 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
         '0 !important'
         // @ts-ignore In case it's nested inside EuiText
       )}
+    `,
+    euiCallOutHeader_endSpace: css`
+      padding-inline-end: ${euiTheme.size.l};
     `,
     primary: css`
       color: ${euiTheme.colors.primaryText};

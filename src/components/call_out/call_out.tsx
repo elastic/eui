@@ -37,11 +37,7 @@ export type EuiCallOutProps = CommonProps &
     color?: Color;
     size?: Size;
     heading?: Heading;
-    onClose?: (
-      event?:
-        | React.KeyboardEvent<HTMLDivElement>
-        | React.MouseEvent<HTMLButtonElement>
-    ) => void;
+    onClose?: () => void;
     isDismissible?: boolean;
   };
 
@@ -65,12 +61,12 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const styles = euiCallOutStyles(theme);
     const cssStyles = [styles.euiCallOut];
     const cssCloseIconStyle = [styles.euiCallOut__closeIcon];
-    const cssTitleEndStyle = [styles.euiCallOut__title_endSpace];
 
     const cssIconStyle = [styles.euiCallOut__icon];
     const cssDescriptionStyle = [styles.euiCallOut__description];
 
     const headerStyles = euiCallOutHeadingStyles(theme);
+    const cssHeaderEndStyle = [headerStyles.euiCallOutHeader_endSpace];
     const cssHeaderStyles = [
       headerStyles.euiCallOutHeader,
       headerStyles[color],
@@ -111,7 +107,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const header = title ? (
       <EuiTitle
         size={size === 's' ? 'xxs' : 'xs'}
-        css={[cssHeaderStyles, isDismissible && cssTitleEndStyle]}
+        css={[cssHeaderStyles, isDismissible && cssHeaderEndStyle]}
       >
         <H className="euiCallOutHeader__title">
           {headerIcon}

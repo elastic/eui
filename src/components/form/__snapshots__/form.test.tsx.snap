@@ -41,24 +41,10 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
       />
     </button>
     <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger-euiCallOutHeader_endSpace-header"
     >
       Please address the highlighted errors.
     </p>
-    <button
-      class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
-      type="button"
-    >
-      <span
-        class="emotion-euiButtonDisplayContent"
-      >
-        <span
-          class="eui-textTruncate"
-        >
-          Dismiss
-        </span>
-      </span>
-    </button>
   </div>
 </div>
 `;
@@ -88,7 +74,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
       />
     </button>
     <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger-euiCallOutHeader_endSpace-header"
     >
       Please address the highlighted errors.
     </p>
@@ -111,20 +97,6 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
           </span>
         </li>
       </ul>
-      <button
-        class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
-        type="button"
-      >
-        <span
-          class="emotion-euiButtonDisplayContent"
-        >
-          <span
-            class="eui-textTruncate"
-          >
-            Dismiss
-          </span>
-        </span>
-      </button>
     </div>
   </div>
 </div>
@@ -155,7 +127,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
       />
     </button>
     <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger-euiCallOutHeader_endSpace-header"
     >
       Please address the highlighted errors.
     </p>
@@ -171,20 +143,6 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
           </span>
         </li>
       </ul>
-      <button
-        class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
-        type="button"
-      >
-        <span
-          class="emotion-euiButtonDisplayContent"
-        >
-          <span
-            class="eui-textTruncate"
-          >
-            Dismiss
-          </span>
-        </span>
-      </button>
     </div>
   </div>
 </div>
