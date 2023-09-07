@@ -78,30 +78,30 @@ publish_to_bucket()
 }
 
 if [[ "$1" != "nodocker" ]]; then
-  # ./scripts/deploy/build_docs
+  ./scripts/deploy/build_docs
 
   # Get the latest tag on main, which will determine whether we deploy to the root `eui.elastic.co` bucket
   # NOTE: specifying the main branch means we don't override prod with backport or prerelease tags.
   CURRENT_RELEASE=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
-  # echo "Current release: ${CURRENT_RELEASE}"
+  echo "Current release: ${CURRENT_RELEASE}"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
-  # echo "Deploying to bucket using ${GCE_IMAGE} Docker image"
-  # docker run \
-  #   -i --rm \
-  #   --env GCE_ACCOUNT \
-  #   --env GIT_BRANCH \
-  #   --env GPROJECT \
-  #   --env GIT_PULL_REQUEST_ID \
-  #   --env GIT_TAG \
-  #   --env CURRENT_RELEASE="${CURRENT_RELEASE}" \
-  #   --env HOME=/tmp \
-  #   --user="$(id -u):$(id -g)" \
-  #   --volume "${PWD}":/app:ro \
-  #   --workdir /app \
-  #   "${GCE_IMAGE}" \
-  #   /app/scripts/deploy/deploy_docs nodocker "$@"
-  # unset GCE_ACCOUNT
+  echo "Deploying to bucket using ${GCE_IMAGE} Docker image"
+  docker run \
+    -i --rm \
+    --env GCE_ACCOUNT \
+    --env GIT_BRANCH \
+    --env GPROJECT \
+    --env GIT_PULL_REQUEST_ID \
+    --env GIT_TAG \
+    --env CURRENT_RELEASE="${CURRENT_RELEASE}" \
+    --env HOME=/tmp \
+    --user="$(id -u):$(id -g)" \
+    --volume "${PWD}":/app:ro \
+    --workdir /app \
+    "${GCE_IMAGE}" \
+    /app/scripts/deploy/deploy_docs nodocker "$@"
+  unset GCE_ACCOUNT
 
   # If the branch is not a pull request, Buildkite passes "false"
   # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_PULL_REQUEST
