@@ -64,3 +64,4 @@ Our wiki docs contain instructions and guidelines on multiple areas of EUI usage
 [license]: LICENSE.txt
 [licensing-faq]: https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me
 [docs]: https://elastic.github.io/eui/
+
