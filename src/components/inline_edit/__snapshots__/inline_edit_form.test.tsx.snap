@@ -31,7 +31,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
                 class="euiFieldText euiFieldText--fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />
@@ -122,7 +121,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
                 class="euiFieldText euiFieldText--fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />
@@ -217,7 +215,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
                 class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
                 data-test-subj="customInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />
@@ -306,7 +303,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
                 class="euiFieldText euiFieldText--fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />
@@ -396,7 +392,6 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
                 class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />
@@ -493,7 +488,6 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
                 class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth euiFieldText-isLoading"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />
@@ -695,7 +689,6 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
                 class="euiFieldText euiFieldText--fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
-                placeholder=""
                 type="text"
                 value="Hello World!"
               />

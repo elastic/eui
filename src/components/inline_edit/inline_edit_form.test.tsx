@@ -585,20 +585,28 @@ describe('EuiInlineEditForm', () => {
     });
 
     it('calls controlled onCancel when changes are cancelled', () => {
-      const { getByTestSubject } = render(
+      const { rerender, getByTestSubject } = render(
         <EuiInlineEditForm
           {...controlledInlineEditFormProps}
           startWithEditOpen={true}
           onSave={onSave}
         />
       );
-
+      // Update controlled `value`
+      rerender(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+          onSave={onSave}
+          value="Updated value"
+        />
+      );
       fireEvent.click(getByTestSubject('euiInlineEditModeCancelButton'));
       expect(onCancel).toHaveBeenCalledWith('Hello World!');
       expect(onSave).not.toHaveBeenCalled();
     });
 
-    it('calls onSave with the correct value with the passed value changes', () => {
+    it('calls onSave with the correct value if the passed value changes', () => {
       const { getByTestSubject, rerender } = render(
         <EuiInlineEditForm
           {...controlledInlineEditFormProps}
@@ -606,9 +614,6 @@ describe('EuiInlineEditForm', () => {
           onSave={onSave}
         />
       );
-
-      fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-      expect(onSave).toHaveBeenCalledWith('Hello World!');
 
       waitFor(() => {
         rerender(
