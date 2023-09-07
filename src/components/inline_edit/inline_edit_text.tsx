@@ -57,6 +57,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
       className={classes}
       css={cssStyles}
       readModeProps={readModeProps}
+      isReadOnly={isReadOnly}
       sizes={sizes}
       {...rest}
     >

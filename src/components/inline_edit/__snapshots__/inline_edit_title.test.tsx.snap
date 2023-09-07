@@ -9,8 +9,9 @@ exports[`EuiInlineEditTitle isReadOnly 1`] = `
   <button
     aria-describedby="inlineEdit_generated-id"
     aria-level="1"
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
+    disabled=""
     role="heading"
     title="Hello World!"
     type="button"
@@ -28,18 +29,12 @@ exports[`EuiInlineEditTitle isReadOnly 1`] = `
           Hello World!
         </h1>
       </span>
-      <span
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
     </span>
   </button>
   <span
     hidden=""
     id="inlineEdit_generated-id"
-  >
-    Click to edit this text inline.
-  </span>
+  />
 </div>
 `;
 

@@ -73,6 +73,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
       css={cssStyles}
       className={classes}
       readModeProps={readModeProps}
+      isReadOnly={isReadOnly}
       sizes={sizes}
       {...rest}
     >
