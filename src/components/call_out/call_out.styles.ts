@@ -41,9 +41,12 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCallOutHeader: css`
       font-weight: ${euiTheme.font.weight.medium};
-      margin-block-end: 0 !important;
+      ${logicalCSS(
+        'margin-bottom',
+        '0 !important'
+        // @ts-ignore In case it's nested inside EuiText
+      )}
     `,
-
     primary: css`
       color: ${euiTheme.colors.primaryText};
     `,
