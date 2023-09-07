@@ -53,7 +53,9 @@ post_comment_to_gh()
     done
 
     printf '\nAdding comment to GitHub Pull Request: %i\n' "${GIT_PULL_REQUEST_ID}"
-    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/"
+    comment="Preview staging links for this PR:
+- Docs site: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/
+- Storybook: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook"
 
     curl \
       --silent \
