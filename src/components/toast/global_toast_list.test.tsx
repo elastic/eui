@@ -237,7 +237,6 @@ describe('EuiGlobalToastList', () => {
         const { getByTestSubject } = render(
           <EuiGlobalToastList {...sharedProps} />
         );
-        );
 
         expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
       });
