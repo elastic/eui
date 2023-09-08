@@ -603,6 +603,7 @@ describe('EuiInlineEditForm', () => {
       );
       fireEvent.click(getByTestSubject('euiInlineEditModeCancelButton'));
       expect(onCancel).toHaveBeenCalledWith('Hello World!');
+      expect(onCancel).not.toHaveBeenCalledWith('Updated value');
       expect(onSave).not.toHaveBeenCalled();
     });
 
@@ -627,6 +628,7 @@ describe('EuiInlineEditForm', () => {
 
         fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
         expect(onSave).toHaveBeenCalledWith('This is a new value');
+        expect(onSave).not.toHaveBeenCalledWith('Hello World!');
       });
     });
   });

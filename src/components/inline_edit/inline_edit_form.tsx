@@ -278,7 +278,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             isInvalid={isInvalid}
             isLoading={isLoading}
             data-test-subj="euiInlineEditModeInput"
-            placeholder={placeholder || undefined}
+            placeholder={placeholder || undefined} // Opt not to render the prop entirely if an empty string is passed
             {...editModeProps?.inputProps}
             inputRef={setEditModeRefs}
             onChange={(e) => {
