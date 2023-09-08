@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
@@ -35,10 +37,13 @@ const dragAndDropCloneSource = require('!!raw-loader!./drag_and_drop_clone');
 import DragAndDropComplex from './drag_and_drop_complex';
 const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex');
 
+import DragAndDropInPopover from './in_popover';
+const dragAndDropInPopoverSource = require('!!raw-loader!./in_popover');
+
 export const DragAndDropExample = {
   title: 'Drag and drop',
   intro: (
-    <React.Fragment>
+    <>
       <EuiText>
         <p>
           An extension of{' '}
@@ -87,7 +92,7 @@ export const DragAndDropExample = {
           mind, keep your users&apos; working context in mind.
         </p>
       </EuiCallOut>
-    </React.Fragment>
+    </>
   ),
   sections: [
     {
@@ -99,7 +104,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             <strong>EuiDraggable</strong> makes very few assumptions about what
             content it contains. To give affordance to draggable elements and to
@@ -123,9 +128,9 @@ export const DragAndDropExample = {
             functional separation (see later examples).
           </p>
           <p>
-            <strong>EuiDragDropContext</strong> handles all eventing but makes
-            no assumptions about the result of a drop event. As such, the
-            following event handlers are available:
+            <strong>EuiDragDropContext</strong> handles all events but makes no
+            assumptions about the result of a drop event. As such, the following
+            event handlers are available:
           </p>
           <ul>
             <li>
@@ -158,7 +163,7 @@ export const DragAndDropExample = {
               <EuiCode>move</EuiCode>: move an item to a differnt droppable area
             </li>
           </ul>
-        </React.Fragment>
+        </>
       ),
       props: { EuiDragDropContext, EuiDraggable, EuiDroppable },
       demo: <DragAndDropBare />,
@@ -172,7 +177,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             The simplest case, demonstrating a single{' '}
             <strong>EuiDroppable</strong> with <EuiCode>reorder</EuiCode>{' '}
@@ -186,7 +191,7 @@ export const DragAndDropExample = {
             data that can be used to alter appearance or behavior (e.g.,{' '}
             <EuiCode>isDragging</EuiCode>).
           </p>
-        </React.Fragment>
+        </>
       ),
       props: { EuiDragDropContext, EuiDraggable, EuiDroppable },
       demo: <DragAndDrop />,
@@ -200,7 +205,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             By default the entire element surface can initiate a drag. To
             specify an element within as the handle and create a containing
@@ -229,7 +234,7 @@ export const DragAndDropExample = {
               </>
             }
           />
-        </React.Fragment>
+        </>
       ),
       demo: <DragAndDropCustomHandle />,
     },
@@ -242,7 +247,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             <strong>EuiDraggable</strong> can contain interactive elements such
             as buttons and form fields. Interactive elements require{' '}
@@ -252,7 +257,7 @@ export const DragAndDropExample = {
             functionality and accessibility, while enabling click, keypress,
             etc., events on the interactive child elements.
           </p>
-        </React.Fragment>
+        </>
       ),
       demo: <DragAndDropDisableBlocking />,
     },
@@ -265,7 +270,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             By default, all <strong>EuiDroppable</strong> elements are of the
             same type and will accept <strong>EuiDraggable</strong> elements
@@ -275,7 +280,7 @@ export const DragAndDropExample = {
             The EUI <EuiCode>move</EuiCode> method is demonstrated in this
             example.
           </p>
-        </React.Fragment>
+        </>
       ),
       demo: <DragAndDropMoveLists />,
     },
@@ -288,7 +293,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             Setting the <EuiCode>type</EuiCode> prop on an{' '}
             <strong>EuiDroppable</strong> element will ensure that it will only
@@ -300,7 +305,7 @@ export const DragAndDropExample = {
             elements have a visual change that indicates they can accept the
             actively moving/focused <strong>EuiDraggable</strong> element.
           </p>
-        </React.Fragment>
+        </>
       ),
       demo: <DragAndDropTypes />,
     },
@@ -313,7 +318,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             For cases where collections of <strong>EuiDraggable</strong>{' '}
             elements are static or can be used in multiple places set{' '}
@@ -333,12 +338,12 @@ export const DragAndDropExample = {
             items. This API is likely to change, but currently provides the
             visual changes with drop-to-remove interactions.
           </p>
-        </React.Fragment>
+        </>
       ),
       demo: <DragAndDropClone />,
     },
     {
-      title: 'We have fun',
+      title: 'Kitchen sink',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -346,16 +351,52 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             <strong>EuiDraggables</strong> in <strong>EuiDroppables</strong>,{' '}
             <strong>EuiDroppables</strong> in <strong>EuiDraggables</strong>,
             custom drag handles, horizontal movement, vertical movement,
             flexbox, panel inception, you name it.
           </p>
-        </React.Fragment>
+        </>
       ),
       demo: <DragAndDropComplex />,
+    },
+    {
+      title: 'Using drag and drop in popovers',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: dragAndDropInPopoverSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiDraggables</strong> use fixed positioning to render and
+            animate the item being dragged. This positioning logic does not work
+            as expected when used inside of containers that have their own{' '}
+            <EuiLink
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context"
+              target="_blank"
+            >
+              stacking context
+            </EuiLink>
+            .
+          </p>
+          <p>
+            This behavior particularly affects{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>
+            . If using drag and drop UX within a popover, you{' '}
+            <strong>must</strong> include the{' '}
+            <EuiCode>{'<EuiPopover hasDragDrop>'}</EuiCode> prop for items to
+            properly render while being dragged.
+          </p>
+        </>
+      ),
+      demo: <DragAndDropInPopover />,
     },
   ],
 };

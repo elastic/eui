@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
 import {
   EuiCode,
+  EuiLink,
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
@@ -57,6 +58,13 @@ const descriptionListResponsiveColumnSource = require('!!raw-loader!./descriptio
 const descriptionListResponsiveColumnSnippet = `<EuiDescriptionList
   type="responsiveColumn"
   listItems={favoriteVideoGames}
+/>`;
+
+import DescriptionListColumnWidths from './column_widths';
+const descriptionListColumnWidthsSource = require('!!raw-loader!./column_widths');
+const descriptionListColumnWidthsSnippet = `<EuiDescriptionList
+  type="column"
+  columnWidths={[1, 3]}
 />`;
 
 import DescriptionListStyling from './description_list_styling';
@@ -181,13 +189,11 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            Using the prop <EuiCode>type</EuiCode> set to{' '}
-            <EuiCode>column</EuiCode> description lists can be presented in an
-            inline, column format.
-          </p>
-        </Fragment>
+        <p>
+          Using the prop <EuiCode>type</EuiCode> set to{' '}
+          <EuiCode>column</EuiCode> description lists can be presented in an
+          inline, column format.
+        </p>
       ),
       snippet: descriptionListColumnSnippet,
       demo: <DescriptionListColumn />,
@@ -200,16 +206,52 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            To return to the typical row format on smaller screens set{' '}
-            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
-            following list will only show the column format on larger screens.
-          </p>
-        </Fragment>
+        <p>
+          To return to the typical row format on smaller screens set{' '}
+          <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
+          following list will only show the column format on larger screens.
+        </p>
       ),
       snippet: descriptionListResponsiveColumnSnippet,
       demo: <DescriptionListResponsiveColumn />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: descriptionListColumnWidthsSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            The optional <EuiCode>columnWidths</EuiCode> prop allows customizing
+            specific column widths (e.g.{' '}
+            <EuiCode>{"['100px', '200px']"}</EuiCode>). The first array value
+            applies to the title column, and the second applies to the
+            description column.
+          </p>
+          <p>
+            Passing numbers instead of CSS width strings will use a ratio of
+            widths. For example, <EuiCode>[1, 3]</EuiCode> will render a
+            description column 3x the width of the title column. In other words,
+            titles will have a width of 25% descriptions will have a width of
+            75%.
+          </p>
+          <p>
+            For advanced usage, column width strings also accept{' '}
+            <EuiLink
+              href="https://css-tricks.com/snippets/css/complete-guide-grid/#aa-special-units-functions"
+              target="_blank"
+            >
+              CSS grid special units, sizing, keywords, and sizing functions
+            </EuiLink>
+            .
+          </p>
+        </>
+      ),
+      snippet: descriptionListColumnWidthsSnippet,
+      demo: <DescriptionListColumnWidths />,
     },
     {
       title: 'Inline',
@@ -239,13 +281,27 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <p>
-          Using the <EuiCode>align</EuiCode> and <EuiCode>compressed</EuiCode>{' '}
-          props you can further tailor the look of a description list. This
-          works with column and inline types. You can also adjust the{' '}
-          <EuiCode>gutterSize</EuiCode> prop to increase and decrease vertical
-          spacing between <EuiCode>EuiDescriptionList</EuiCode> elements.
-        </p>
+        <>
+          <h4>Alignment & Compression</h4>
+          <p>
+            Utilize the <EuiCode>align</EuiCode> and
+            <EuiCode>compressed</EuiCode> props to refine the presentation of
+            your description list. These are compatible with both column and
+            inline types.
+          </p>
+          <h4>Vertical spacing</h4>
+          <p>
+            Modify the <EuiCode>rowGutterSize</EuiCode> prop to control the
+            vertical spacing between <EuiCode>EuiDescriptionList</EuiCode>{' '}
+            elements. This will not affect inline list types.
+          </p>
+          <h4>Horizontal spacing</h4>
+          <p>
+            Adjust the spacing between the title and description with the{' '}
+            <EuiCode>columnGutterSize</EuiCode> prop. This will not affect
+            inline or row types.
+          </p>
+        </>
       ),
       snippet: descriptionListStylingSnippet,
       demo: <DescriptionListStyling />,

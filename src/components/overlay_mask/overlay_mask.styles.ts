@@ -29,7 +29,6 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   belowHeader: css`
     z-index: ${euiTheme.levels.maskBelowHeader};
-    /* TODO: use size variable when EuiHeader is converted */
-    ${logicalCSS('top', `${euiTheme.base * 3}px`)}
+    ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
   `,
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/react';
 
 import {
   EuiAccordion,
@@ -17,6 +18,7 @@ import {
   EuiButtonIcon,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
+import { euiCanAnimate } from '../../../../src/global_styling';
 
 const repeatableForm = (
   <EuiForm component="form">
@@ -68,13 +70,33 @@ const buttonContent = (
     </EuiText>
   </div>
 );
+// Custom trigger button CSS
+const buttonCss = css`
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
+// Custom CSS to make the extra action only appear on hover or focus
+// Useful if there's multiple accordions in a row to reduce visual overwhelm
 const extraAction = (
   <EuiButtonIcon
+    aria-label="Delete"
     iconType="cross"
     color="danger"
-    className="euiAccordionForm__extraAction"
-    aria-label="Delete"
+    css={({ euiTheme }) => css`
+      opacity: 0;
+
+      &:focus,
+      .euiAccordion:hover & {
+        opacity: 1;
+      }
+
+      ${euiCanAnimate} {
+        transition: opacity ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
+      }
+    `}
   />
 );
 
@@ -89,12 +111,12 @@ export default () => {
   });
 
   return (
-    <div>
+    <>
       <EuiAccordion
         id={formAccordionId__1}
         element="fieldset"
-        className="euiAccordionForm"
-        buttonClassName="euiAccordionForm__button"
+        borders="horizontal"
+        buttonProps={{ paddingSize: 'm', css: buttonCss }}
         buttonContent={buttonContent}
         extraAction={extraAction}
         paddingSize="l"
@@ -105,14 +127,14 @@ export default () => {
       <EuiAccordion
         id={formAccordionId__2}
         element="fieldset"
-        className="euiAccordionForm"
-        buttonClassName="euiAccordionForm__button"
+        borders="horizontal"
+        buttonProps={{ paddingSize: 'm', css: buttonCss }}
         buttonContent={buttonContent}
         extraAction={extraAction}
         paddingSize="l"
       >
         {repeatableForm}
       </EuiAccordion>
-    </div>
+    </>
   );
 };

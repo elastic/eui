@@ -111,6 +111,7 @@ export const iconTypes = [
   'globe',
   'grab',
   'grabHorizontal',
+  'grabOmnidirectional',
   'grid',
   'heart',
   'heatmap',
@@ -253,6 +254,10 @@ export const iconTypes = [
   'timeRefresh',
   'timeslider',
   'training',
+  'transitionLeftIn',
+  'transitionLeftOut',
+  'transitionTopIn',
+  'transitionTopOut',
   'trash',
   'unfold',
   'unlink',
@@ -292,7 +297,7 @@ export default () => (
       {'<EuiIcon type="warning" />'}
     </EuiCodeBlock>
     <EuiSpacer />
-    <EuiFlexGrid direction="column" columns={3}>
+    <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
           <EuiCopy

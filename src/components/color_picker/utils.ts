@@ -7,7 +7,7 @@
  */
 
 import chroma, { ColorSpaces } from 'chroma-js';
-import { ColorStop } from './color_stops';
+import type { PaletteColorStop } from './color_palette_picker';
 
 export const getEventPosition = (
   location: { x: number; y: number },
@@ -91,17 +91,17 @@ export const getChromaColor = (input?: string | null, allowOpacity = false) => {
 
 // Given an array of objects with key value pairs stop/color returns a css linear-gradient
 // Or given an array of hex colors returns a css linear-gradient
-export const getLinearGradient = (palette: string[] | ColorStop[]) => {
+export const getLinearGradient = (palette: string[] | PaletteColorStop[]) => {
   const lastColorStopArrayPosition = palette.length - 1;
 
   let linearGradient;
 
-  const paletteHasStops = palette.some((item: string | ColorStop) => {
+  const paletteHasStops = palette.some((item: string | PaletteColorStop) => {
     return typeof item === 'object';
   });
 
   if (paletteHasStops) {
-    const paletteColorStop = palette as ColorStop[];
+    const paletteColorStop = palette as PaletteColorStop[];
 
     linearGradient = `linear-gradient(to right, ${paletteColorStop[0].color} 0%,`;
 
@@ -134,16 +134,18 @@ export const getLinearGradient = (palette: string[] | ColorStop[]) => {
 
 // Given an array of objects with key value pairs stop/color or an array of hex colors
 // returns an array of objects with key value pairs color/width
-export const getFixedLinearGradient = (palette: string[] | ColorStop[]) => {
-  const paletteHasStops = palette.some((item: string | ColorStop) => {
+export const getFixedLinearGradient = (
+  palette: string[] | PaletteColorStop[]
+) => {
+  const paletteHasStops = palette.some((item: string | PaletteColorStop) => {
     return typeof item === 'object';
   });
 
   if (paletteHasStops) {
-    const paletteColorStop = palette as ColorStop[];
+    const paletteColorStop = palette as PaletteColorStop[];
 
     const fixedLinearGradientWithStops = paletteColorStop.map(
-      (colorStop: ColorStop, index: number) => {
+      (colorStop: PaletteColorStop, index: number) => {
         const lastColorStopArrayPosition = palette.length - 1;
 
         const lastColorStopDecimal =

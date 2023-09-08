@@ -41,7 +41,7 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  renderSideNavBadge = ({ isBeta, isNew }) => {
+  renderSideNavBadge = ({ isBeta, isNew, isDeprecated }) => {
     if (isBeta) {
       return (
         <EuiBadge color="warning" className="guideSideNav__itemBadge">
@@ -56,13 +56,20 @@ export class GuidePageChrome extends Component {
         </EuiBadge>
       );
     }
+    if (isDeprecated) {
+      return (
+        <EuiBadge color="danger" className="guideSideNav__itemBadge">
+          Deprecated
+        </EuiBadge>
+      );
+    }
     return undefined;
   };
 
   scrollNavSectionIntoView = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const sideNav = document.querySelector('.guideSideNav__content');
       const isMobile = sideNav?.querySelector('.euiSideNav__mobileToggle');
 
@@ -98,44 +105,46 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, isBeta, isNew, sections }) => {
-      const id = slugify(title);
+    return subSectionsWithTitles.map(
+      ({ title, isBeta, isNew, isDeprecated, sections }) => {
+        const id = slugify(title);
 
-      const subSectionHref = `${href}/${id}`;
-      const subSectionHashIdHref = `${href}#${id}`;
+        const subSectionHref = `${href}/${id}`;
+        const subSectionHashIdHref = `${href}#${id}`;
 
-      const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
-      const subItems = sections
-        ? this.renderSubSections(sectionHref, sections, searchTerm)
-        : undefined;
+        const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
+        const subItems = sections
+          ? this.renderSubSections(sectionHref, sections, searchTerm)
+          : undefined;
 
-      const isCurrentlyOpenSubSection =
-        window.location.hash.includes(subSectionHref);
+        const isCurrentlyOpenSubSection =
+          window.location.hash.includes(subSectionHref);
 
-      let name = title;
-      if (searchTerm) {
-        name = (
-          <EuiHighlight
-            className="guideSideNav__item--inSearch"
-            search={searchTerm}
-          >
-            {title}
-          </EuiHighlight>
-        );
+        let name = title;
+        if (searchTerm) {
+          name = (
+            <EuiHighlight
+              className="guideSideNav__item--inSearch"
+              search={searchTerm}
+            >
+              {title}
+            </EuiHighlight>
+          );
+        }
+
+        return {
+          id: sectionHref,
+          name: isCurrentlyOpenSubSection ? <strong>{name}</strong> : name,
+          href: sectionHref,
+          className: isCurrentlyOpenSubSection
+            ? 'guideSideNav__item--openSubTitle'
+            : '',
+          items: subItems,
+          forceOpen: !!searchTerm || isCurrentlyOpenSubSection,
+          icon: this.renderSideNavBadge({ isBeta, isNew, isDeprecated }),
+        };
       }
-
-      return {
-        id: sectionHref,
-        name: isCurrentlyOpenSubSection ? <strong>{name}</strong> : name,
-        href: sectionHref,
-        className: isCurrentlyOpenSubSection
-          ? 'guideSideNav__item--openSubTitle'
-          : '',
-        items: subItems,
-        forceOpen: !!searchTerm || isCurrentlyOpenSubSection,
-        icon: this.renderSideNavBadge({ isBeta, isNew }),
-      };
-    });
+    );
   };
 
   renderSideNav = (sideNav) => {
@@ -161,7 +170,7 @@ export class GuidePageChrome extends Component {
       });
 
       const items = matchingItems.map((item) => {
-        const { name, path, sections, isBeta, isNew } = item;
+        const { name, path, sections, isBeta, isNew, isDeprecated } = item;
 
         const href = `#/${path}`;
 
@@ -185,7 +194,7 @@ export class GuidePageChrome extends Component {
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
-          icon: this.renderSideNavBadge({ isBeta, isNew }),
+          icon: this.renderSideNavBadge({ isBeta, isNew, isDeprecated }),
         };
       });
 

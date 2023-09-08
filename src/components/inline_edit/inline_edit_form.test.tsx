@@ -524,4 +524,112 @@ describe('EuiInlineEditForm', () => {
       });
     });
   });
+
+  describe('inline edit as a controlled component', () => {
+    const onSave = jest.fn();
+    const onChange = jest.fn();
+    const onCancel = jest.fn();
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    const controlledInlineEditFormProps: EuiInlineEditFormProps = {
+      ...requiredProps,
+      value: 'Hello World!',
+      onChange: onChange,
+      onCancel: onCancel,
+      inputAriaLabel: 'Edit inline',
+      sizes: MEDIUM_SIZE_FORM,
+      children: (readModeValue) => readModeValue,
+    };
+
+    it('renders the passed value in read mode', () => {
+      const { getByTestSubject, getByText } = render(
+        <EuiInlineEditForm {...controlledInlineEditFormProps} />
+      );
+
+      expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+      expect(getByText('Hello World!')).toBeTruthy();
+    });
+
+    it('renders the passed value in edit mode', () => {
+      const { getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+        />
+      );
+
+      expect(getByTestSubject('euiInlineEditModeInput')).toHaveValue(
+        'Hello World!'
+      );
+    });
+
+    it('calls controlled onChange when edit mode value changes', () => {
+      const { getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+        />
+      );
+
+      const mockChangeEvent = { target: { value: 'changed' } };
+      fireEvent.change(
+        getByTestSubject('euiInlineEditModeInput'),
+        mockChangeEvent
+      );
+      waitFor(() => {
+        expect(onChange).toHaveBeenCalledWith(mockChangeEvent);
+      });
+    });
+
+    it('calls controlled onCancel when changes are cancelled', () => {
+      const { rerender, getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+          onSave={onSave}
+        />
+      );
+      // Update controlled `value`
+      rerender(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+          onSave={onSave}
+          value="Updated value"
+        />
+      );
+      fireEvent.click(getByTestSubject('euiInlineEditModeCancelButton'));
+      expect(onCancel).toHaveBeenCalledWith('Hello World!');
+      expect(onCancel).not.toHaveBeenCalledWith('Updated value');
+      expect(onSave).not.toHaveBeenCalled();
+    });
+
+    it('calls onSave with the correct value if the passed value changes', () => {
+      const { getByTestSubject, rerender } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+          onSave={onSave}
+        />
+      );
+
+      waitFor(() => {
+        rerender(
+          <EuiInlineEditForm
+            {...controlledInlineEditFormProps}
+            value="This is a new value"
+            startWithEditOpen={true}
+            onSave={onSave}
+          />
+        );
+
+        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        expect(onSave).toHaveBeenCalledWith('This is a new value');
+        expect(onSave).not.toHaveBeenCalledWith('Hello World!');
+      });
+    });
+  });
 });

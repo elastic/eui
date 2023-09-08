@@ -404,8 +404,8 @@ export const MultipleFixedHeaders: Story = {
       <EuiHeader position="fixed">
         <EuiHeaderSection>
           <EuiCollapsibleNavBeta {...args}>
-            This story tests that EuiCollapsibleNav's fixed header detection &
-            offsetting works as expected
+            This story tests that EuiCollapsibleNav automatically adjusts its
+            position & height for multiple fixed headers
           </EuiCollapsibleNavBeta>
           Second header
         </EuiHeaderSection>
@@ -446,6 +446,34 @@ export const FlyoutInFixedHeaders: Story = {
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
+    );
+  },
+};
+
+export const CollapsedStateInLocalStorage: Story = {
+  render: () => {
+    const key = 'EuiCollapsibleNav__isCollapsed';
+    const initialIsCollapsed = window.localStorage.getItem(key) === 'true';
+    const onCollapseToggle = (isCollapsed: boolean) =>
+      window.localStorage.setItem(key, String(isCollapsed));
+
+    return (
+      <>
+        <EuiHeader position="fixed">
+          <EuiHeaderSection>
+            <EuiCollapsibleNavBeta
+              initialIsCollapsed={initialIsCollapsed}
+              onCollapseToggle={onCollapseToggle}
+            />
+          </EuiHeaderSection>
+        </EuiHeader>
+        <EuiPageTemplate>
+          <EuiPageTemplate.Section>
+            Toggle the collapsed state and refresh the page. The collapsed state
+            should have been saved/remembered
+          </EuiPageTemplate.Section>
+        </EuiPageTemplate>
+      </>
     );
   },
 };

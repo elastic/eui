@@ -76,6 +76,47 @@ describe('EuiAccordion', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      describe('paddingSize', () => {
+        (['s', 'm', 'l'] as const).forEach((paddingSize) => {
+          it(paddingSize, () => {
+            const { container, getByTestSubject } = render(
+              <EuiAccordion
+                id={getId()}
+                buttonProps={{ paddingSize, 'data-test-subj': 'button' }}
+              />
+            );
+            expect(container.firstChild).toMatchSnapshot();
+            expect(getByTestSubject('button').className).toContain(paddingSize);
+          });
+        });
+      });
+
+      describe('arrow padding affordance', () => {
+        it('removes the padding next to the side the arrow is on', () => {
+          const { getByTestSubject } = render(
+            <EuiAccordion
+              id={getId()}
+              buttonProps={{ paddingSize: 'm', 'data-test-subj': 'button' }}
+              arrowDisplay="right"
+            />
+          );
+          expect(getByTestSubject('button').className).toContain('arrowRight');
+        });
+
+        it('does not remove any padding if no arrow is displayed', () => {
+          const { getByTestSubject } = render(
+            <EuiAccordion
+              id={getId()}
+              buttonProps={{ paddingSize: 'm', 'data-test-subj': 'button' }}
+              arrowDisplay="none"
+            />
+          );
+          const buttonClass = getByTestSubject('button').className;
+          expect(buttonClass).not.toContain('arrowRight');
+          expect(buttonClass).not.toContain('arrowLeft');
+        });
+      });
     });
 
     describe('buttonElement', () => {

@@ -160,19 +160,37 @@ describe('EuiListGroupItem', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
+      test('is rendered with showToolTip', () => {
+        const { getByTestSubject } = render(
+          <EuiListGroupItem
+            label="Label"
+            showToolTip
+            extraAction={{
+              iconType: 'empty',
+              alwaysShow: true,
+              'aria-label': 'label',
+              'data-test-subj': 'extraAction',
+            }}
+          />
+        );
+
+        expect(getByTestSubject('extraAction')).toBeInTheDocument();
+      });
+
       test('can be disabled', () => {
-        const { container } = render(
+        const { getByTestSubject } = render(
           <EuiListGroupItem
             label="Label"
             extraAction={{
               iconType: 'empty',
               isDisabled: true,
               'aria-label': 'label',
+              'data-test-subj': 'extraAction',
             }}
           />
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(getByTestSubject('extraAction')).toBeDisabled();
       });
     });
 

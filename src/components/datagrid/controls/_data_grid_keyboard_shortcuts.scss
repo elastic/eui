@@ -6,12 +6,6 @@
   overflow-block: auto;
 
   .euiDescriptionList {
-    .euiDescriptionList__title {
-      width: 25%;
-    }
-
-    .euiDescriptionList__description {
-      width: 75%;
-    }
+    row-gap: 0; // Row spacing handled by default EuiText dd/dt styles
   }
 }

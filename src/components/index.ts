@@ -168,6 +168,8 @@ export * from './text';
 
 export * from './text_diff';
 
+export * from './text_truncate';
+
 export * from './timeline';
 
 export * from './title';

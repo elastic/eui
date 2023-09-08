@@ -1,3 +1,62 @@
+## [`88.2.0`](https://github.com/elastic/eui/tree/v88.2.0)
+
+- Added a new `EuiTextTruncate` component, which provides custom truncation options beyond native CSS ([#7116](https://github.com/elastic/eui/pull/7116))
+- Fixed-positioned `EuiHeader`s now set a global CSS `--euiFixedHeadersOffset` variable, which updates dynamically based on the number of fixed headers on the page. ([#7144](https://github.com/elastic/eui/pull/7144))
+- `EuiFlyout`s now dynamically set their position, height, and mask based on the number of fixed headers on the page. ([#7144](https://github.com/elastic/eui/pull/7144))
+- Sticky-positioned `EuiPageSidebar`s now dynamically set their position and height based on the number of fixed headers on the page. This can still be overridden via the `sticky.offset` prop if needed. ([#7144](https://github.com/elastic/eui/pull/7144))
+- `EuiPageTemplate` now dynamically offsets content from any fixed headers on the page. This can still be overridden via the `offset` prop if needed. ([#7144](https://github.com/elastic/eui/pull/7144))
+- Updated `EuiAccordion` with a new `borders` prop ([#7154](https://github.com/elastic/eui/pull/7154))
+- Updated `EuiAccordion` with a new `buttonProps.paddingSize` prop ([#7154](https://github.com/elastic/eui/pull/7154))
+
+**Deprecations**
+
+- Deprecated the Sass `euiHeaderAffordForFixed` mixin. Use the new global CSS `var(--euiFixedHeadersOffset)` variable instead. ([#7144](https://github.com/elastic/eui/pull/7144))
+
+**CSS-in-JS conversions**
+
+- Except for generic CSS utilities, EUI is moving away from providing global `classNames` that are component-specific. As part of this effort, we have removed the following `EuiAccordion`-specific classes: ([#7154](https://github.com/elastic/eui/pull/7154))
+  - Removed `.euiAccordionForm` styles. Use the `borders="horizontal"` prop instead
+  - Removed `.euiAccordionForm__button` styles. Use the `buttonProps={{ paddingSize: 'm' }}` prop instead
+  - Removed `.euiAccordionForm__extraAction` styles. Convert this to your own custom CSS if necessary.
+  - Removed `.euiAccordionForm__title` styles. Convert this to your own custom CSS if necessary.
+
+## [`88.1.0`](https://github.com/elastic/eui/tree/v88.1.0)
+
+- Added `font.defaultUnits` theme token. EUI component font sizes default to `rem` units - this token allows consumers to configure this to `px` or `em` ([#7133](https://github.com/elastic/eui/pull/7133))
+- Updated `EuiDescriptionList` with new `columnWidths` prop ([#7146](https://github.com/elastic/eui/pull/7146))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s keyboard shortcuts popover display ([#7146](https://github.com/elastic/eui/pull/7146))
+
+**CSS-in-JS conversions**
+
+- Renamed `useEuiFontSize()`'s `measurement` option to `unit` for clarity ([#7133](https://github.com/elastic/eui/pull/7133))
+
+## [`88.0.0`](https://github.com/elastic/eui/tree/v88.0.0)
+
+- Updated `EuiDescriptionList` with a new `columnGutterSize` prop ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**Deprecations**
+
+- Deprecated `EuiSuggest`. We recommend using `EuiSelectable` or `EuiComboBox` instead ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiControlBar`. We recommend using `EuiBottomBar` instead ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiColorStops`. We recommend copying the component to your application if necessary ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiNotificationEvent`. We recommend copying the component to your application if necessary ([#7122](https://github.com/elastic/eui/pull/7122))
+
+**Breaking changes**
+
+- Renamed `EuiDescriptionList`'s `gutterSize` prop to `rowGutterSize` ([#7062](https://github.com/elastic/eui/pull/7062))
+- `EuiDescriptionList`'s `rowGutterSize` prop now defaults to a size of `s` (was previously `m`) ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**Accessibility**
+
+- Fixed the dark mode colors of inline `EuiDescriptionListTitle`s to meet WCAG color contrast requirements ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiKeyPadMenuItem` to Emotion; Removed `$euiKeyPadMenuSize` and `$euiKeyPadMenuMarginSize` ([#7118](https://github.com/elastic/eui/pull/7118))
+
 ## [`87.2.0`](https://github.com/elastic/eui/tree/v87.2.0)
 
 - `EuiResizableButton` is now available as a generic top-level export ([#7087](https://github.com/elastic/eui/pull/7087))

@@ -9,7 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import { ExclusiveUnion, keysOf } from '../../common';
-import { ColorStop } from '../color_stops';
+import type { PaletteColorStop } from '../color_palette_picker';
 import {
   EuiColorPaletteDisplayFixed,
   EuiColorPaletteDisplayFixedProps,
@@ -31,9 +31,9 @@ export type EuiColorPaletteDisplaySize = keyof typeof sizeToClassNameMap;
 
 export interface EuiColorPaletteDisplayShared {
   /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
    */
-  palette: string[] | ColorStop[];
+  palette: string[] | PaletteColorStop[];
 }
 
 interface DisplayGradient extends EuiColorPaletteDisplayGradientProps {
