@@ -55,6 +55,9 @@ const suggestItemPropsKeys = [
   'descriptionDisplay',
 ];
 
+/**
+ * @deprecated
+ */
 export type EuiSuggestionProps = CommonProps & _EuiSuggestItemPropsBase;
 
 type _EuiSuggestProps = CommonProps &
@@ -117,6 +120,9 @@ type _EuiSuggestProps = CommonProps &
     isPreFiltered?: boolean;
   };
 
+/**
+ * @deprecated
+ */
 export type EuiSuggestProps = _EuiSuggestProps &
   ExclusiveUnion<
     {
@@ -129,6 +135,13 @@ export type EuiSuggestProps = _EuiSuggestProps &
     }
   >;
 
+/**
+ * @deprecated - EuiSuggest is scheduled for deprecation due to low internal usage and high
+ * overlap with other existing EUI components. We recommend using EuiSelectable instead,
+ * or copying this component into your own application for usage if necessary.
+ *
+ * The component will be permanently removed in October 2023.
+ */
 export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   onItemClick,
   onBlur,

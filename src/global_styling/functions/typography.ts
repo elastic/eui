@@ -8,7 +8,7 @@
 
 import {
   _EuiThemeFontScale,
-  _EuiThemeFontSizeMeasurement,
+  _EuiThemeFontUnit,
   _EuiThemeFontWeights,
 } from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
@@ -16,9 +16,9 @@ import { logicalCSS } from './logicals';
 
 export interface _FontScaleOptions {
   /**
-   * The returned string measurement
+   * The font-size or line-height unit to return
    */
-  measurement?: _EuiThemeFontSizeMeasurement;
+  unit?: _EuiThemeFontUnit;
   /**
    * An additional custom scale multiplier to use against the current scale
    * This parameter can be used (e.g. by EuiText sizes) to get sizes of text smaller than the default
@@ -38,9 +38,9 @@ export interface _FontScaleOptions {
 export function euiFontSizeFromScale(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  { measurement = 'rem', customScale }: _FontScaleOptions = {}
+  { unit = font.defaultUnits, customScale }: _FontScaleOptions = {}
 ) {
-  if (measurement === 'em') {
+  if (unit === 'em') {
     return `${font.scale[scale]}em`;
   }
 
@@ -48,7 +48,7 @@ export function euiFontSizeFromScale(
   if (customScale) numerator *= font.scale[customScale];
   const denominator = base * font.scale[font.body.scale];
 
-  return measurement === 'px'
+  return unit === 'px'
     ? `${numerator}px`
     : `${(numerator / denominator).toFixed(4)}rem`;
 }
@@ -68,7 +68,7 @@ export function euiFontSizeFromScale(
 export function euiLineHeightFromBaseline(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  { measurement = 'rem', customScale }: _FontScaleOptions = {}
+  { unit = font.defaultUnits, customScale }: _FontScaleOptions = {}
 ) {
   const { baseline, lineHeightMultiplier } = font;
   let numerator = base * font.scale[scale];
@@ -78,7 +78,7 @@ export function euiLineHeightFromBaseline(
   const _lineHeightMultiplier =
     numerator <= base ? lineHeightMultiplier : lineHeightMultiplier * 0.833;
 
-  if (measurement === 'em') {
+  if (unit === 'em') {
     // Even though the line-height via `em` cannot be determined against the pixel baseline grid;
     // we will assume that typically larger scale font-sizes should have a shorter line-height;
     return _lineHeightMultiplier.toFixed(4).toString();
@@ -87,7 +87,7 @@ export function euiLineHeightFromBaseline(
   const pixelValue =
     Math.floor(Math.round(numerator * _lineHeightMultiplier) / baseline) *
     baseline;
-  return measurement === 'px'
+  return unit === 'px'
     ? `${pixelValue}px`
     : `${(pixelValue / denominator).toFixed(4)}rem`;
 }

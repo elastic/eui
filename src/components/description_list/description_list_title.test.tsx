@@ -12,7 +12,7 @@ import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
 import { EuiDescriptionListTitle } from './description_list_title';
-import { TYPES } from './description_list_types';
+import { CHILD_TYPES } from './description_list_types';
 import {
   EuiDescriptionListContext,
   contextDefaults,
@@ -33,7 +33,7 @@ describe('EuiDescriptionListTitle', () => {
 
   describe('EuiDescriptionListTitle prop variations', () => {
     describe('type', () => {
-      TYPES.forEach((type) => {
+      CHILD_TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
           const { container } = render(
             <EuiDescriptionListContext.Provider

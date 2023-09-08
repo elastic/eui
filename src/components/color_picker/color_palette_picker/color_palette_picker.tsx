@@ -12,10 +12,13 @@ import { EuiSuperSelect } from '../../form';
 
 import { CommonProps } from '../../common';
 
-import { ColorStop } from '../color_stops';
-
 import { EuiSuperSelectProps } from '../../form/super_select';
 import { EuiColorPaletteDisplay } from '../color_palette_display';
+
+export interface PaletteColorStop {
+  stop: number;
+  color: string;
+}
 
 export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
@@ -31,9 +34,9 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
    */
   type: 'text';
   /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
    */
-  palette?: string[] | ColorStop[];
+  palette?: string[] | PaletteColorStop[];
 }
 
 export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
@@ -50,9 +53,9 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
    */
   type: 'fixed';
   /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
    */
-  palette: string[] | ColorStop[];
+  palette: string[] | PaletteColorStop[];
 }
 
 export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
@@ -69,9 +72,9 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
    */
   type: 'gradient';
   /**
-   * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
    */
-  palette: string[] | ColorStop[];
+  palette: string[] | PaletteColorStop[];
 }
 
 export type EuiColorPalettePickerPaletteProps =

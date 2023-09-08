@@ -18,7 +18,7 @@ export const descriptionListConfig = () => {
     {
       title: 'TIE Fighter',
       description:
-        'The sequel to XWING, join the dark side and fly for the Emporer.',
+        'The sequel to XWING, join the dark side and fly for the Emperor.',
     },
   ]`;
   propsToUse.listItems = {

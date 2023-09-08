@@ -7,4 +7,3 @@
  */
 
 export { EuiColorStops } from './color_stops';
-export type { ColorStop } from './color_stop_thumb';

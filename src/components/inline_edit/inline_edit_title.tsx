@@ -37,14 +37,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   className,
   size = 'm',
   heading,
-  defaultValue,
-  placeholder,
-  inputAriaLabel,
-  startWithEditOpen,
   readModeProps: _readModeProps,
-  editModeProps,
-  isLoading,
-  isInvalid,
   isReadOnly,
   ...rest
 }) => {
@@ -75,25 +68,14 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
         };
   }, [_readModeProps, isReadOnly, heading]);
 
-  const formProps = {
-    sizes,
-    defaultValue,
-    placeholder,
-    inputAriaLabel,
-    startWithEditOpen,
-    readModeProps,
-    editModeProps,
-    isLoading,
-    isInvalid,
-    isReadOnly,
-  };
-
   return (
     <EuiInlineEditForm
       css={cssStyles}
       className={classes}
+      readModeProps={readModeProps}
+      isReadOnly={isReadOnly}
+      sizes={sizes}
       {...rest}
-      {...formProps}
     >
       {(titleReadModeValue) => (
         <EuiTitle size={size} className="eui-textTruncate">

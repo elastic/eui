@@ -1,8 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiColorPicker,
-  EuiColorStops,
   EuiButton,
   EuiPopover,
   EuiFormRow,
@@ -15,13 +14,11 @@ import {
 
 import {
   useColorPickerState,
-  useColorStopsState,
   useGeneratedHtmlId,
 } from '../../../../src/services';
 
 export default () => {
   const [color, setColor] = useColorPickerState('#FFF');
-  const [colorStops, setColorStops] = useColorStopsState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
@@ -44,16 +41,6 @@ export default () => {
 
   const colorPicker = <EuiColorPicker color={color} onChange={setColor} />;
 
-  const stops = (
-    <EuiColorStops
-      label="Color stops"
-      onChange={setColorStops}
-      colorStops={colorStops}
-      min={0}
-      max={100}
-    />
-  );
-
   const button = (
     <EuiButton iconType="arrowDown" iconSide="right" onClick={togglePopover}>
       Open popover
@@ -71,15 +58,13 @@ export default () => {
 
         <EuiModalBody>
           <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
-          <EuiSpacer />
-          <EuiFormRow label="Color stops">{stops}</EuiFormRow>
         </EuiModalBody>
       </EuiModal>
     );
   }
 
   return (
-    <Fragment>
+    <>
       <EuiFormRow
         label="Color picker"
         helpText="This color picker is inside of a form row"
@@ -88,13 +73,6 @@ export default () => {
       </EuiFormRow>
 
       <EuiSpacer />
-
-      <EuiFormRow
-        label="Color stops"
-        helpText="This color stops component is inside of a form row"
-      >
-        {stops}
-      </EuiFormRow>
 
       <EuiFormRow label="Unruly focus management">
         <EuiPopover
@@ -105,8 +83,6 @@ export default () => {
         >
           <div style={{ width: '300px' }}>
             <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
-            <EuiSpacer />
-            <EuiFormRow label="Color stops">{stops}</EuiFormRow>
           </div>
         </EuiPopover>
       </EuiFormRow>
@@ -116,6 +92,6 @@ export default () => {
       <EuiButton onClick={showModal}>Show modal</EuiButton>
 
       {modal}
-    </Fragment>
+    </>
   );
 };

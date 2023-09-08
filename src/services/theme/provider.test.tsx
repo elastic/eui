@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { FunctionComponent, useContext, useEffect } from 'react';
 import { render } from '@testing-library/react'; // Note - don't use the EUI custom RTL `render`, as it auto-wraps an `EuiProvider`
 import { css } from '@emotion/react';
 
 import { EuiProvider } from '../../components/provider';
+import { EuiNestedThemeContext } from './context';
 import { EuiThemeProvider } from './provider';
 
 describe('EuiThemeProvider', () => {
@@ -134,6 +135,84 @@ describe('EuiThemeProvider', () => {
 
       expect(container).toMatchSnapshot();
       expect(container.querySelector('.hello.world')).toBeTruthy();
+    });
+  });
+
+  describe('CSS variables', () => {
+    const MockEuiComponent: FunctionComponent<{ global?: boolean }> = ({
+      global,
+    }) => {
+      const {
+        globalCSSVariables,
+        setGlobalCSSVariables,
+        setNearestThemeCSSVariables,
+      } = useContext(EuiNestedThemeContext);
+
+      useEffect(() => {
+        if (global) {
+          setGlobalCSSVariables({ '--hello': 'global-world' });
+        } else {
+          setNearestThemeCSSVariables({ '--hello': 'world' });
+        }
+      }, [global, setGlobalCSSVariables, setNearestThemeCSSVariables]);
+
+      // Our current version of jsdom doesn't yet support :root (currently on v11,
+      // need to be on at least v20), so we'll mock something to assert on in the interim
+      return <>{JSON.stringify(globalCSSVariables)}</>;
+    };
+
+    const getThemeProvider = (container: HTMLElement) =>
+      container.querySelector('.euiThemeProvider')!;
+    const getThemeClassName = (container: HTMLElement) =>
+      getThemeProvider(container).className;
+
+    it('allows child components to set non-global theme CSS variables', () => {
+      const { container } = render(
+        <EuiProvider>
+          <EuiThemeProvider>
+            <MockEuiComponent />
+          </EuiThemeProvider>
+        </EuiProvider>
+      );
+      expect(getThemeClassName(container)).toContain('euiCSSVariables');
+      expect(container.firstChild).toHaveStyleRule('--hello', 'world');
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('sets global CSS variables when the nearest theme provider is the top-level one', () => {
+      const { container } = render(
+        <EuiProvider>
+          <MockEuiComponent />
+        </EuiProvider>
+      );
+      expect(container.textContent).toContain('{"--hello":"world"}');
+    });
+
+    it('allows child components to set global CSS variables from any nested theme provider', () => {
+      const { container } = render(
+        <EuiProvider>
+          <EuiThemeProvider>
+            <MockEuiComponent global={true} />
+          </EuiThemeProvider>
+        </EuiProvider>
+      );
+      expect(getThemeClassName(container)).not.toContain('euiCSSVariables');
+      expect(container.textContent).toContain('{"--hello":"global-world"}');
+    });
+
+    it('can set both global and nearest theme variables without conflicting', () => {
+      const { container } = render(
+        <EuiProvider>
+          <MockEuiComponent />
+          <EuiThemeProvider>
+            <MockEuiComponent />
+            <MockEuiComponent global={true} />
+          </EuiThemeProvider>
+        </EuiProvider>
+      );
+      expect(getThemeClassName(container)).toContain('euiCSSVariables');
+      expect(getThemeProvider(container)).toHaveStyleRule('--hello', 'world');
+      expect(container.textContent).toContain('{"--hello":"global-world"}');
     });
   });
 });

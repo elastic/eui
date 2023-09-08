@@ -15,6 +15,27 @@ import {
   logicalTextAlignCSS,
 } from '../../global_styling';
 
+export const euiAccordionStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiAccordion: css``,
+    // Borders
+    borders: {
+      // Prevent border repeats
+      borders: css`
+        & + [class*='euiAccordion-borders'] {
+          ${logicalCSS('border-top', 'none')}
+        }
+      `,
+      horizontal: css`
+        border-block: ${euiTheme.border.thin};
+      `,
+      all: css`
+        border: ${euiTheme.border.thin};
+      `,
+    },
+  };
+};
+
 export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
@@ -33,7 +54,6 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
       }
     `,
-
     // Triggering button needs separate `disabled` key because the element that renders may not support `:disabled`;
     // Hover pseudo selector for specificity
     disabled: css`
@@ -43,6 +63,23 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.disabledText};
         text-decoration: none;
       }
+    `,
+    // Optional padding sizes
+    s: css`
+      padding: ${euiTheme.size.s};
+    `,
+    m: css`
+      padding: ${euiTheme.size.base};
+    `,
+    l: css`
+      padding: ${euiTheme.size.l};
+    `,
+    // Remove padding from the accordion button on the side that the arrow is on
+    arrowLeft: css`
+      ${logicalCSS('padding-left', 0)}
+    `,
+    arrowRight: css`
+      ${logicalCSS('padding-left', 0)}
     `,
   };
 };

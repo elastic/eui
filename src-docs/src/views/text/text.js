@@ -169,7 +169,7 @@ export default () => (
         <dd>The opening music alone evokes such strong memories.</dd>
         <dt>TIE Fighter</dt>
         <dd>
-          The sequel to XWING, join the dark side and fly for the Emporer.
+          The sequel to XWING, join the dark side and fly for the Emperor.
         </dd>
         <dt>Quake 2</dt>
         <dd>The game that made me drop out of college.</dd>

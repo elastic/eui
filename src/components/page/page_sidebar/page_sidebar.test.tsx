@@ -66,14 +66,15 @@ describe('EuiPageSidebar', () => {
       const component = mount(
         <EuiPageSidebar sticky data-test-subj="sidebar" />
       );
+      const expectedStyles = {
+        insetBlockStart: 'var(--euiFixedHeadersOffset, 0)',
+        maxBlockSize: 'calc(100vh - var(--euiFixedHeadersOffset, 0))',
+        minInlineSize: 248,
+      };
 
       expect(
         component.find('[data-test-subj="sidebar"]').last().prop('style')
-      ).toEqual({
-        insetBlockStart: 0,
-        maxBlockSize: 'calc(100vh - 0px)',
-        minInlineSize: 248,
-      });
+      ).toEqual(expectedStyles);
 
       component.setProps({ style: { color: 'red' } });
       component.update();
@@ -82,9 +83,7 @@ describe('EuiPageSidebar', () => {
         component.find('[data-test-subj="sidebar"]').last().prop('style')
       ).toEqual({
         color: 'red',
-        insetBlockStart: 0,
-        maxBlockSize: 'calc(100vh - 0px)',
-        minInlineSize: 248,
+        ...expectedStyles,
       });
     });
   });
