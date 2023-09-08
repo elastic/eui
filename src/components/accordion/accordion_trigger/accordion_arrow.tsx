@@ -21,7 +21,7 @@ type _EuiAccordionArrowProps = Partial<EuiButtonIconPropsForButton> &
   };
 
 export const EuiAccordionArrow: FunctionComponent<_EuiAccordionArrowProps> = ({
-  arrowDisplay,
+  arrowDisplay = 'left',
   arrowProps,
   isOpen,
   ...rest
@@ -33,8 +33,8 @@ export const EuiAccordionArrow: FunctionComponent<_EuiAccordionArrowProps> = ({
   const styles = euiAccordionArrowStyles(euiTheme);
   const cssStyles = [
     styles.euiAccordion__arrow,
-    isOpen && styles.isOpen,
-    arrowDisplay === 'right' && styles.right,
+    styles[arrowDisplay],
+    isOpen ? styles.isOpen : styles.isClosed,
     arrowProps?.css,
   ];
 

@@ -54,7 +54,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-euiCollapsibleNavAccordion__arrow"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
       tabindex="0"
       type="button"
     >
