@@ -206,12 +206,9 @@ describe('EuiGlobalToastList', () => {
       });
 
       test('is not visible when the showClearAllButtonAt prop is set to 0', () => {
-        const dismissAllToastsSpy = jest.fn();
-
         const { queryByTestSubject } = render(
           <EuiGlobalToastList
             {...sharedProps}
-            onClearAllToasts={dismissAllToastsSpy}
             showClearAllButtonAt={0}
           />
         );
@@ -237,13 +234,9 @@ describe('EuiGlobalToastList', () => {
       });
 
       test('is displayed when the number of toasts to be displayed equals the internal default threshold value', () => {
-        const dismissAllToastsSpy = jest.fn();
-
         const { getByTestSubject } = render(
-          <EuiGlobalToastList
-            {...sharedProps}
-            onClearAllToasts={dismissAllToastsSpy}
-          />
+          <EuiGlobalToastList {...sharedProps} />
+        );
         );
 
         expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
