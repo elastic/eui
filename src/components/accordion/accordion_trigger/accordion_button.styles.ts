@@ -58,7 +58,7 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-left', 0)}
     `,
     arrowRight: css`
-      ${logicalCSS('padding-left', 0)}
+      ${logicalCSS('padding-right', 0)}
     `,
   };
 };
