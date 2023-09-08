@@ -23,11 +23,15 @@ import { PropertySort } from '../../services';
 import { Pagination as PaginationBarType } from './pagination_bar';
 import { isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
-import { EuiSearchBar, Query } from '../search_bar';
+import {
+  EuiSearchBar,
+  EuiSearchBarProps,
+  Query,
+  SchemaType,
+} from '../search_bar/search_bar';
+import { EuiSearchBox } from '../search_bar/search_box';
 import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
-import { EuiSearchBarProps } from '../search_bar/search_bar';
-import { SchemaType } from '../search_bar/search_box';
 import {
   EuiTablePaginationProps,
   euiTablePaginationDefaults,

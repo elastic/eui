@@ -9,13 +9,8 @@
 import React, { Component } from 'react';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
 import { EuiInputPopover } from '../popover';
-import { EuiSearchBarProps } from './search_bar';
 
-export interface SchemaType {
-  strict?: boolean;
-  fields?: any;
-  flags?: string[];
-}
+import { EuiSearchBarProps } from './search_bar';
 
 export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   query: string;
