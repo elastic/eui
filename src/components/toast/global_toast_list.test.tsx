@@ -207,10 +207,7 @@ describe('EuiGlobalToastList', () => {
 
       test('is not visible when the showClearAllButtonAt prop is set to 0', () => {
         const { queryByTestSubject } = render(
-          <EuiGlobalToastList
-            {...sharedProps}
-            showClearAllButtonAt={0}
-          />
+          <EuiGlobalToastList {...sharedProps} showClearAllButtonAt={0} />
         );
 
         expect(
