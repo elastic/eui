@@ -551,10 +551,13 @@ export class EuiInMemoryTable<T> extends Component<
     let searchBar: ReactNode;
 
     if (searchPlainText) {
+      const _searchBoxProps = (search as EuiSearchBarProps)?.box || {}; // Work around | boolean type
+      const { schema, ...searchBoxProps } = _searchBoxProps; // Destructure `schema` so it doesn't get rendered to DOM
+
       searchBar = (
         <EuiSearchBox
           query="" // Unused, passed to satisfy Typescript
-          {...(search as EuiSearchBarProps)?.box}
+          {...searchBoxProps}
           onSearch={this.onPlainTextSearch}
         />
       );
@@ -692,6 +695,7 @@ export class EuiInMemoryTable<T> extends Component<
       tableLayout,
       items: _unuseditems,
       search,
+      searchPlainText,
       onTableChange,
       executeQueryOptions,
       allowNeutralSort,
