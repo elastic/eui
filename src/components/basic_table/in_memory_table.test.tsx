@@ -1437,4 +1437,33 @@ describe('EuiInMemoryTable', () => {
       expect(tableContent.at(2).text()).toBe('baz');
     });
   });
+
+  describe('plain text search', () => {
+    it('allows searching for any text with special characters in it', () => {
+      const specialCharacterSearch = '!@#$%^&*(){}+=-_hello:world"`<>?/👋~.,;|';
+      const items = [
+        { title: specialCharacterSearch },
+        { title: 'no special characters' },
+      ];
+      const columns = [{ field: 'title', name: 'Title' }];
+
+      const { getByTestSubject, container } = render(
+        <EuiInMemoryTable
+          items={items}
+          searchPlainText
+          search={{ box: { incremental: true, 'data-test-subj': 'searchbox' } }}
+          columns={columns}
+        />
+      );
+      fireEvent.keyUp(getByTestSubject('searchbox'), {
+        target: { value: specialCharacterSearch },
+      });
+
+      const tableContent = container.querySelectorAll(
+        '.euiTableRowCell .euiTableCellContent'
+      );
+      expect(tableContent).toHaveLength(1); // only 1 match
+      expect(tableContent[0]).toHaveTextContent(specialCharacterSearch);
+    });
+  });
 });

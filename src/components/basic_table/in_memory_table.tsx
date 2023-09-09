@@ -81,6 +81,15 @@ type InMemoryTableProps<T> = Omit<
    */
   search?: Search;
   /**
+   * If passed as true, search ignores all filters and EQL syntax, and anything
+   * typed into the table search bar is treated as plain text.
+   *
+   * This functionality allows users to search for strings with special characters
+   * such as quotes, parentheses, and colons, which are normally otherwise
+   * reserved for EQL syntax.
+   */
+  searchPlainText?: boolean;
+  /**
    * Configures #Pagination
    */
   pagination?: undefined;
@@ -525,9 +534,31 @@ export class EuiInMemoryTable<T> extends Component<
     }));
   };
 
+  // Alternative to onQueryChange - allows consumers to specify they want the
+  // search bar to ignore EQL syntax and only use the searchbar for plain text
+  onPlainTextSearch = (searchValue: string) => {
+    const escapedQueryText = searchValue.replaceAll('"', '\\"');
+    const finalQuery = `"${escapedQueryText}"`;
+    this.setState({
+      query: EuiSearchBar.Query.parse(finalQuery),
+    });
+  };
+
   renderSearchBar() {
-    const { search } = this.props;
-    if (search) {
+    const { search, searchPlainText } = this.props;
+    if (!search) return;
+
+    let searchBar: ReactNode;
+
+    if (searchPlainText) {
+      searchBar = (
+        <EuiSearchBox
+          query="" // Unused, passed to satisfy Typescript
+          {...(search as EuiSearchBarProps)?.box}
+          onSearch={this.onPlainTextSearch}
+        />
+      );
+    } else {
       let searchBarProps: Omit<EuiSearchBarProps, 'onChange'> = {};
 
       if (isEuiSearchBarProps(search)) {
@@ -542,13 +573,17 @@ export class EuiInMemoryTable<T> extends Component<
         }
       }
 
-      return (
-        <>
-          <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
-          <EuiSpacer size="l" />
-        </>
+      searchBar = (
+        <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
       );
     }
+
+    return (
+      <>
+        {searchBar}
+        <EuiSpacer size="l" />
+      </>
+    );
   }
 
   resolveSearchSchema(): SchemaType {
