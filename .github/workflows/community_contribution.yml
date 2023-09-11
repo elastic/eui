@@ -7,7 +7,7 @@ jobs:
   community-pr-message:
     env:
       USER_LOGIN: ${{ github.event.pull_request.user.login }}
-      RESPONSE_CODE: "" # https://github.com/github/vscode-github-actions/issues/47
+      IS_ORG_MEMBER: "" # https://github.com/github/vscode-github-actions/issues/47
     runs-on: ubuntu-latest
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     permissions:
@@ -17,7 +17,6 @@ jobs:
       - name: "Check for org membership"
         # https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user
         # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#example-of-writing-an-environment-variable-to-github_env
-        # TODO: Add a token for checking org membership
         run: |
           DATA=$(
             curl -L -i -w "%{http_code}" \
@@ -27,11 +26,11 @@ jobs:
             https://api.github.com/orgs/elastic/members/"$USER_LOGIN"
           )
 
-          RESPONSE_CODE=$(echo "$DATA" | awk '/([0-9]{3})$/{print}')
-          echo "$RESPONSE_CODE" >> "$GITHUB_ENV"
+          HTTP_CODE=$(echo "$DATA" | awk '/([0-9]{3})$/{print}')
+          echo "IS_ORG_MEMBER=$HTTP_CODE" >> "$GITHUB_ENV"
       - name: "Add comment to community pull requests"
         uses: actions/github-script@v6
-        if: ${{ env.RESPONSE_CODE != '204' }}
+        if: ${{ env.IS_ORG_MEMBER != '204' }}
         with:
           script: |
             github.rest.issues.createComment({
