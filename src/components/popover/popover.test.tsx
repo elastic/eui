@@ -12,7 +12,9 @@ import { act } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
-import { EuiFocusTrap } from '../';
+
+import { keys } from '../../services';
+import { EuiFocusTrap } from '../focus_trap';
 
 import {
   EuiPopover,
@@ -20,8 +22,6 @@ import {
   getPopoverAlignFromAnchorPosition,
   PopoverAnchorPosition,
 } from './popover';
-
-import { keys } from '../../services';
 
 const actAdvanceTimersByTime = (time: number) =>
   act(() => jest.advanceTimersByTime(time));
