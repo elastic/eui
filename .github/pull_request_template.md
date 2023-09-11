@@ -2,6 +2,8 @@
 
 Provide a detailed summary of your PR. Explain how you arrived at your solution. If it includes changes to UI elements include a screenshot or gif.
 
+If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://learning-notes.mistermicheels.com/processes-techniques/small-commits-pull-requests/) wiki guide.
+
 ## QA
 
 Remove or strikethrough items that do not apply to your PR.
