@@ -71,11 +71,11 @@ publish_to_bucket()
 {
   copy_options=(
     -m # enable multithreading
+    -h \"Cache-Control: public, max-age=${max_age}, must-revalidate\" # set caching policy
     cp
     -r # copy files recursively
     -a public-read # set ACL to allow read by everyone
     -z js,css,html # enable gzip encoding for these extensions
-    -h \"Cache-Control: public, max-age=${max_age}, must-revalidate\" # set caching policy
   )
 
   echo "Copying ${PWD}/docs/* to ${full_bucket_path}"
