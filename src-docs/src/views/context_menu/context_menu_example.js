@@ -131,7 +131,6 @@ export const ContextMenuExample = {
           </p>
           <EuiCallOut
             iconType="accessibility"
-            color="warning"
             title="The selected context menu item should have an aria-current attribute"
           >
             <p>
