@@ -1,3 +1,31 @@
+## [`88.3.0`](https://github.com/elastic/eui/tree/v88.3.0)
+
+- `EuiGlobalToastList` now shows a "Clear all" button by default once above a certain number of toasts (defaults to 3). This threshold is configurable with the `showClearAllButtonAt` prop ([#7111](https://github.com/elastic/eui/pull/7111))
+- Added an optional `onClearAllToasts` callback to `EuiGlobalToastList` ([#7111](https://github.com/elastic/eui/pull/7111))
+**Dependency updates* ([#7126](https://github.com/elastic/eui/pull/7126))
+ ([#7126](https://github.com/elastic/eui/pull/7126))
+- Updated `@types/lodash` to v4.14.198 ([#7126](https://github.com/elastic/eui/pull/7126))
+- Added the `value`, `onChange`, and `onCancel` props that allow `EuiInlineEdit` to be used as a controlled component ([#7157](https://github.com/elastic/eui/pull/7157))
+- Added `grabOmnidirectional`, `transitionLeftIn`, `transitionLeftOut`, `transitionTopIn`, and `transitionTopOut` icon glyphs. ([#7168](https://github.com/elastic/eui/pull/7168))
+
+**Bug fixes**
+
+- Fixed `EuiInlineEdit` components to correctly spread `...rest` attributes to the parent wrapper ([#7157](https://github.com/elastic/eui/pull/7157))
+- Fixed `EuiListGroupItem` to correctly render the `extraAction` button when `showToolTip` is also passed ([#7159](https://github.com/elastic/eui/pull/7159))
+
+**Dependency updates**
+
+- Updated `@hello-pangea/dnd` to v16.3.0 ([#7125](https://github.com/elastic/eui/pull/7125))
+
+**Accessibility**
+
+- `EuiAccordion` now correctly respects reduced motion settings ([#7161](https://github.com/elastic/eui/pull/7161))
+- `EuiAccordion` now shows a focus outline to keyboard users around its revealed children on open ([#7161](https://github.com/elastic/eui/pull/7161))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSplitPanel` to Emotion ([#7172](https://github.com/elastic/eui/pull/7172))
+
 ## [`88.2.0`](https://github.com/elastic/eui/tree/v88.2.0)
 
 - Added a new `EuiTextTruncate` component, which provides custom truncation options beyond native CSS ([#7116](https://github.com/elastic/eui/pull/7116))
