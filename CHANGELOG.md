@@ -2,9 +2,6 @@
 
 - `EuiGlobalToastList` now shows a "Clear all" button by default once above a certain number of toasts (defaults to 3). This threshold is configurable with the `showClearAllButtonAt` prop ([#7111](https://github.com/elastic/eui/pull/7111))
 - Added an optional `onClearAllToasts` callback to `EuiGlobalToastList` ([#7111](https://github.com/elastic/eui/pull/7111))
-**Dependency updates* ([#7126](https://github.com/elastic/eui/pull/7126))
- ([#7126](https://github.com/elastic/eui/pull/7126))
-- Updated `@types/lodash` to v4.14.198 ([#7126](https://github.com/elastic/eui/pull/7126))
 - Added the `value`, `onChange`, and `onCancel` props that allow `EuiInlineEdit` to be used as a controlled component ([#7157](https://github.com/elastic/eui/pull/7157))
 - Added `grabOmnidirectional`, `transitionLeftIn`, `transitionLeftOut`, `transitionTopIn`, and `transitionTopOut` icon glyphs. ([#7168](https://github.com/elastic/eui/pull/7168))
 
@@ -16,6 +13,7 @@
 **Dependency updates**
 
 - Updated `@hello-pangea/dnd` to v16.3.0 ([#7125](https://github.com/elastic/eui/pull/7125))
+- Updated `@types/lodash` to v4.14.198 ([#7126](https://github.com/elastic/eui/pull/7126))
 
 **Accessibility**
 
