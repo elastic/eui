@@ -298,24 +298,35 @@ export const HeaderExample = {
         <>
           <p>
             Most consumers need a header that does not scroll away with the page
-            contents. You can apply this display by applying the property{' '}
-            <EuiCode language="ts">{'position="fixed"'}</EuiCode>. This will
-            also add a class of <EuiCode>.euiBody--headerIsFixed</EuiCode> to
-            the window body.
+            contents. You can set this display by applying the property{' '}
+            <EuiCode language="ts">{'position="fixed"'}</EuiCode>. Multiple
+            fixed headers will automatically stack underneath one another. No
+            manual positioning is required.
           </p>
           <p>
-            You will then need to apply your own padding to this body class to
-            afford for the header height. EUI supplies a helper mixin that also
-            accounts for this height in flyouts and the collapsible nav. Simply
-            add{' '}
-            <EuiCode language="sass">@include euiHeaderAffordForFixed;</EuiCode>{' '}
-            anywhere in your SASS.
+            If you're using{' '}
+            <Link to="/templates/page-template">
+              <strong>EuiPageTemplate</strong>
+            </Link>
+            , a padding top will be automatically set based on the number of
+            fixed headers on the page.{' '}
+            <Link to="/layout/flyout">
+              <strong>EuiFlyouts</strong>
+            </Link>{' '}
+            will also automatically account for and sit below fixed headers.
+          </p>
+          <p>
+            If you're using your own custom layout, or have custom UI that needs
+            to sit below your fixed header(s), EUI provides a global CSS{' '}
+            <EuiCode language="css">var(--euiFixedHeadersOffset)</EuiCode>{' '}
+            variable. You can use this variable anywhere, or even override it,
+            to correctly offset any and all fixed header heights.
           </p>
         </>
       ),
       snippet: [
         '<EuiHeader position="fixed" />',
-        '@include euiHeaderAffordForFixed;',
+        'body { padding-block-start: var(--euiFixedHeadersOffset, 0) }',
       ],
       demo: <HeaderPosition />,
       demoPanelProps: {
@@ -446,17 +457,12 @@ export const HeaderExample = {
       text: (
         <p>
           Stacking multiple headers provides a great way to separate global
-          navigation concerns. However, the{' '}
-          <EuiCode language="ts">{'position="fixed"'}</EuiCode> option will not
-          be aware of the number of headers. If you do need fixed{' '}
-          <strong>and</strong> stacked headers, you will need to apply the SASS
-          helper mixin and pass in the correct height to afford for.
+          navigation concerns.
         </p>
       ),
       snippet: [
         `<EuiHeader theme="dark" position="fixed" />
 <EuiHeader position="fixed" />`,
-        '@include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);',
       ],
       demo: <HeaderStacked />,
       demoPanelProps: {

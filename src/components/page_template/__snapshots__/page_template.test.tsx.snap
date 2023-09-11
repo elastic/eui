@@ -3,7 +3,7 @@
 exports[`EuiPageTemplate _EuiPageInnerProps is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <div
     class="customClassName emotion-euiPageInner-left"
@@ -15,7 +15,7 @@ exports[`EuiPageTemplate _EuiPageInnerProps is rendered 1`] = `
 exports[`EuiPageTemplate _EuiPageInnerProps renders as panelled 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <div
     class="emotion-euiPageInner-panelled"
@@ -27,7 +27,7 @@ exports[`EuiPageTemplate _EuiPageInnerProps renders as panelled 1`] = `
 exports[`EuiPageTemplate _EuiPageOuterProps is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-column-grow"
-  style="min-block-size: 460px; padding-block-start: 0;"
+  style="min-block-size: 460px; padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -39,7 +39,7 @@ exports[`EuiPageTemplate _EuiPageOuterProps is rendered 1`] = `
 exports[`EuiPageTemplate bottomBorder is rendered as extended 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -51,7 +51,7 @@ exports[`EuiPageTemplate bottomBorder is rendered as extended 1`] = `
 exports[`EuiPageTemplate bottomBorder is rendered as true 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -65,7 +65,7 @@ exports[`EuiPageTemplate children detects sidebars and does not place them in th
   aria-label="aria-label"
   class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
   data-test-subj="test subject string"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <div
     class="emotion-euiPageSidebar-l"
@@ -87,7 +87,7 @@ exports[`EuiPageTemplate children renders all other types within the main EuiPag
   aria-label="aria-label"
   class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
   data-test-subj="test subject string"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -128,7 +128,7 @@ exports[`EuiPageTemplate is rendered 1`] = `
   aria-label="aria-label"
   class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
   data-test-subj="test subject string"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -140,7 +140,7 @@ exports[`EuiPageTemplate is rendered 1`] = `
 exports[`EuiPageTemplate minHeight is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(40vh, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(40vh, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -164,7 +164,7 @@ exports[`EuiPageTemplate offset is rendered 1`] = `
 exports[`EuiPageTemplate paddingSize l is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -176,7 +176,7 @@ exports[`EuiPageTemplate paddingSize l is rendered 1`] = `
 exports[`EuiPageTemplate paddingSize m is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -188,7 +188,7 @@ exports[`EuiPageTemplate paddingSize m is rendered 1`] = `
 exports[`EuiPageTemplate paddingSize none is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -200,7 +200,7 @@ exports[`EuiPageTemplate paddingSize none is rendered 1`] = `
 exports[`EuiPageTemplate paddingSize s is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -212,7 +212,7 @@ exports[`EuiPageTemplate paddingSize s is rendered 1`] = `
 exports[`EuiPageTemplate paddingSize xl is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -224,7 +224,7 @@ exports[`EuiPageTemplate paddingSize xl is rendered 1`] = `
 exports[`EuiPageTemplate paddingSize xs is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -236,7 +236,7 @@ exports[`EuiPageTemplate paddingSize xs is rendered 1`] = `
 exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -248,7 +248,7 @@ exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
 exports[`EuiPageTemplate restrict width can be set to a custom value and measurement 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"
@@ -260,7 +260,7 @@ exports[`EuiPageTemplate restrict width can be set to a custom value and measure
 exports[`EuiPageTemplate restrict width can be set to a default 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
 >
   <main
     class="emotion-euiPageInner"

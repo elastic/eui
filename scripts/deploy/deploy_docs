@@ -38,10 +38,23 @@ post_comment_to_gh()
   if [[ -z "${GITHUB_TOKEN}" ]]; then
     echo "Warning: GITHUB_TOKEN is not set; cannot publish PR docs preview URL to Github."
   else
+    set +x
+
+    echo 'Deleting previous staging PR link comments'
+    kibanamachine_comment_ids=$( \
+      curl -s -L "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments" \
+      | jq -c '.[] | select(.user.login == "kibanamachine") | .id' \
+    )
+    for comment_id in ${kibanamachine_comment_ids[@]}; do
+      curl -L \
+        -X DELETE \
+        -H "Authorization: token ${GITHUB_TOKEN}" \
+        "https://api.github.com/repos/elastic/eui/issues/comments/${comment_id}"
+    done
+
     printf '\nAdding comment to GitHub Pull Request: %i\n' "${GIT_PULL_REQUEST_ID}"
     comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/"
 
-    set +x
     curl \
       --silent \
       --location \

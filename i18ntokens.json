@@ -5,14 +5,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 408,
+        "line": 439,
         "column": 16,
-        "index": 12163
+        "index": 13187
       },
       "end": {
-        "line": 408,
+        "line": 439,
         "column": 76,
-        "index": 12223
+        "index": 13247
       }
     },
     "filepath": "src/components/accordion/accordion.tsx"
@@ -437,14 +437,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 180,
+        "line": 152,
         "column": 27,
-        "index": 5788
+        "index": 5056
       },
       "end": {
-        "line": 183,
+        "line": 155,
         "column": 3,
-        "index": 5858
+        "index": 5126
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"

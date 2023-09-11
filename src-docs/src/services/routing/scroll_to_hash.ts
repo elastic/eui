@@ -18,8 +18,8 @@ export const useScrollToHash = () => {
   // Scroll back to top of page when going to a completely separate page
   useEffect(() => {
     // For some annoying reason, the docs side nav using scrollIntoView() causes
-    // the window to scroll as well, so we need to wrap this in a rAF to supersede it
-    requestAnimationFrame(() => window.scrollTo(0, 0));
+    // the window to scroll as well, so we need to wrap this in a timeout to supersede it
+    setTimeout(() => window.scrollTo(0, 0), 1);
   }, [location.pathname]);
 
   useEffect(() => {

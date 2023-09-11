@@ -1086,12 +1086,12 @@ Array [
 exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeaders headers exist on the page 1`] = `
 <body
   class="euiBody--headerIsFixed euiBody--hasFlyout"
-  data-fixed-headers="1"
 >
   <div>
     <div
       class="euiHeader emotion-euiHeader-fixed-default"
       data-fixed-header="true"
+      style="inset-block-start: 0px;"
     />
     <div>
       <div
