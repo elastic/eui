@@ -123,13 +123,19 @@ Tips:
     * `export TEST_BROWSER_HEADLESS=1` (runs screenshot updates in headless mode to match CI)
     * `yarn node scripts/functional_test_runner --config=... -u --headless` (`-u` or `--updateBaseline` is what updates the screenshots)
 
-#### Security/OSQuery Cypress (`x-pack/plugins/{security_solution|osquery}/cypress/`)
+#### Security Cypress tests (`x-pack/test/security_solution_cypress/`)
 
-Follow [Security's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) or [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+Follow [Security's Cypress README](https://github.com/elastic/kibana/tree/main/x-pack/test/security_solution_cypress/cypress#running-the-tests) to run individual tests in headed Cypress.
 
-> Note: OSQuery's Cypress tests appear to have copied Security's Cypress setup and should generally function similarly.
+> Note: Kibana's Cypress tests landscape is changing very quickly as of late and many other teams (e.g. Fleet, Observability) are starting to add Cypress tests directly to `x-pack/test/`.
 
-#### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability|ux}/e2e`)
+#### OSQuery Cypress tests (`x-pack/plugins/osquery/cypress/`)
+
+Follow [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in headed Cypress.
+
+> Note that this README may be slightly out of date, if `yarn cypress:open-as-ci` doesn't work, try `yarn cypress:open` instead.
+
+#### @elastic/synthetics tests (`x-pack/plugins/{synthetics|observability|ux}/e2e`)
 
 Follow [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
 

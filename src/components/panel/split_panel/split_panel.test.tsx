@@ -8,11 +8,14 @@
 
 import React from 'react';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
 import { EuiSplitPanel } from './split_panel';
 
 describe('EuiSplitPanel', () => {
+  shouldRenderCustomStyles(<EuiSplitPanel.Outer />);
+
   test('is rendered', () => {
     const { container } = render(<EuiSplitPanel.Outer {...requiredProps} />);
 
@@ -20,6 +23,8 @@ describe('EuiSplitPanel', () => {
   });
 
   describe('inner children', () => {
+    shouldRenderCustomStyles(<EuiSplitPanel.Inner />);
+
     test('are rendered', () => {
       const { container } = render(
         <EuiSplitPanel.Outer>

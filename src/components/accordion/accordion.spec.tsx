@@ -84,7 +84,7 @@ describe('EuiAccordion', () => {
           </EuiPanel>
         </EuiAccordion>
       );
-      cy.get('.euiAccordion__iconButton').should('not.exist');
+      cy.get('.euiAccordion__arrow').should('not.exist');
     });
 
     it('manages focus when panel is clicked', () => {
