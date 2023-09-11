@@ -13,6 +13,7 @@ Changes that do not impact consumers or end-users may use the `skip-changelog` l
 
 - Documentation-only changes (e.g. changes to `wiki/` or `src-docs/`)
 - Infra/dev-only changes (e.g. changes to `.github/` or `scripts/`)
+- Test-only changes (e.g. changes to `*.test.tsx`, `*.spec.tsx`, or `*.stories.tsx` files)
 - `dev-dependency` upgrades in package.json
 
 ## How to write a changelog
