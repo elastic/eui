@@ -21,6 +21,6 @@ Remove or strikethrough items that do not apply to your PR.
     - [ ] Added or updated **[jest](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/unit-testing.md) and [cypress](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/cypress-testing.md) tests**
 - Release checklist
     - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately.
-    - [ ] If applicable, added the **breaking change** issue label
+    - [ ] If applicable, added the **breaking change** issue label (and filled out the breaking change checklist)
 - Designer checklist
     - [ ] Updated the **[Figma](https://www.figma.com/community/file/964536385682658129)** library counterpart
