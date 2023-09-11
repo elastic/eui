@@ -121,6 +121,9 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
             onChangeItemsPerPage?.(itemsPerPageOption);
           }}
           data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
+          aria-current={
+            itemsPerPageOption === itemsPerPage ? 'true' : undefined
+          }
         >
           {itemsPerPageOption === 0 ? (
             <EuiI18n

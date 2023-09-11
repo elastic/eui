@@ -77,6 +77,7 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
           {(shortPageString: string) => (
             <EuiButtonEmpty
               aria-label={totalPages ? longPageString : shortPageString}
+              aria-current={isActive ? 'true' : undefined}
               {...(props as EuiButtonEmptyProps)}
             >
               {pageNumber}
