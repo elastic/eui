@@ -12,7 +12,7 @@ import { get, set } from 'lodash';
 
 import { render } from '../rtl';
 import { cloneElementWithCss } from '../../services';
-import { keysOf } from '../../components';
+import { keysOf } from '../../components/common';
 
 export const customStyles = {
   className: 'hello',
