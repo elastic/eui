@@ -37,10 +37,13 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * This font reset sets all our base font/typography related properties
    * that are needed to override browser-specific element settings.
    */
+  const fontBodyScale = font.scale[font.body.scale];
   const fontReset = `
     font-family: ${font.family};
-    font-size: ${`${font.scale[font.body.scale] * base}px`};
-    line-height: ${base / (font.scale[font.body.scale] * base)};
+    font-size: ${
+      font.defaultUnits === 'px' ? fontBodyScale * base : fontBodyScale
+    }${font.defaultUnits};
+    line-height: ${base / (fontBodyScale * base)};
     font-weight: ${font.weight[font.body.weight]};
   `;
 
