@@ -53,7 +53,9 @@ post_comment_to_gh()
     done
 
     printf '\nAdding comment to GitHub Pull Request: %i\n' "${GIT_PULL_REQUEST_ID}"
-    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/"
+    comment="Preview staging links for this PR:
+- Docs site: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/
+- Storybook: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook"
 
     curl \
       --silent \
@@ -67,14 +69,20 @@ post_comment_to_gh()
 
 publish_to_bucket()
 {
+  copy_options=(
+    -m # enable multithreading
+    -h "Cache-Control: public, max-age=${max_age}, must-revalidate" # set caching policy
+    cp
+    -r # copy files recursively
+    -a public-read # set ACL to allow read by everyone
+    -z js,css,html # enable gzip encoding for these extensions
+  )
+
   echo "Copying ${PWD}/docs/* to ${full_bucket_path}"
-  gsutil -m \
-    -h "Cache-Control:public, max-age=${max_age}, must-revalidate" \
-    cp \
-    -r \
-    -a public-read \
-    -z js,css,html \
-    "${PWD}/docs/*" "${full_bucket_path}"
+  gsutil "${copy_options[@]}" "${PWD}/docs/*" "${full_bucket_path}"
+
+  echo "Copying ${PWD}/storybook-static/* to ${full_bucket_path}storybook/"
+  gsutil "${copy_options[@]}" "${PWD}/storybook-static/*" "${full_bucket_path}storybook/"
 }
 
 if [[ "$1" != "nodocker" ]]; then
