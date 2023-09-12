@@ -40,7 +40,10 @@ import '../dist/eui_theme_light.css';
 const preview: Preview = {
   decorators: [
     (Story, context) => (
-      <EuiProvider colorMode={context.globals.colorMode}>
+      <EuiProvider
+        colorMode={context.globals.colorMode}
+        {...(context.componentId === 'euiprovider' && context.args)}
+      >
         <div
           css={[
             writingModeStyles.writingMode,
