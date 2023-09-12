@@ -3,6 +3,8 @@ name: Auto-respond to issues with comments based on labels
 on:
   issues:
     types: [labeled]
+  pull_request_target:
+    types: [labeled]
 
 permissions:
   contents: read
