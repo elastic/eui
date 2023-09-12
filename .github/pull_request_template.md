@@ -2,7 +2,7 @@
 
 Provide a detailed summary of your PR. Explain how you arrived at your solution. If it includes changes to UI elements include a screenshot or gif.
 
-If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://learning-notes.mistermicheels.com/processes-techniques/small-commits-pull-requests/) wiki guide.
+If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui#how-to-ensure-the-timely-review-of-pull-requests) wiki guide.
 
 ## QA
 
