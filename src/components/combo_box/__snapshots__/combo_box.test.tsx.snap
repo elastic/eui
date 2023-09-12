@@ -33,7 +33,7 @@ exports[`EuiComboBox is rendered 1`] = `
             value=""
           />
           <div
-            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: 'Inter',BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-weight: 400; letter-spacing: normal; text-transform: none;"
+            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 0.875rem; font-family: 'Inter',BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-weight: 400; letter-spacing: normal; text-transform: none;"
           />
         </div>
       </div>
