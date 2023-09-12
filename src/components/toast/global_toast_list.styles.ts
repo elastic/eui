@@ -80,6 +80,10 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
+    euiGlobalToastListDismissButton: css`
+      position: sticky;
+      ${logicalCSS('bottom', '0%')}
+    `,
   };
 };
 
@@ -98,6 +102,7 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     // Base
     euiGlobalToastListItem: css`
+      flex-shrink: 0;
       ${logicalCSS('margin-bottom', euiTheme.size.base)}
       animation: ${euiTheme.animation.normal} ${euiShowToast}
         ${euiTheme.animation.resistance};
