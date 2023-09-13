@@ -352,7 +352,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
           anchorClassName={anchorClasses}
           anchorProps={anchorPropsAndCss}
         >
-          {itemContent}
+          <>
+            {itemContent}
+            {extraActionNode}
+          </>
         </EuiToolTip>
       </li>
     );

@@ -31,6 +31,16 @@ const performanceSource = require('!!raw-loader!./performance');
 
 export const TextTruncateExample = {
   title: 'Text truncation',
+  isBeta: true,
+  intro: (
+    <EuiCallOut iconType="beta" title="Beta development" color="warning">
+      <strong>EuiTextTruncate</strong> is a beta component that is still
+      undergoing performance investigations. We would particularly caution
+      against repeated usage (over 10 usages per page) with long text (over 100
+      characters) until we've improved{' '}
+      <Link to="#performance">performance</Link>.
+    </EuiCallOut>
+  ),
   sections: [
     {
       source: [

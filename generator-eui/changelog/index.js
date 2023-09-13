@@ -53,6 +53,12 @@ module.exports = class extends Generator {
         type: 'confirm',
         default: false,
       },
+      {
+        message: 'Does your PR contain dependency updates?',
+        name: 'dependencyUpdates',
+        type: 'confirm',
+        default: false,
+      },
     ];
 
     return this.prompt(prompts).then((answers) => {

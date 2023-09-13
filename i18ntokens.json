@@ -1,21 +1,21 @@
 [
   {
-    "token": "euiAccordion.isLoading",
+    "token": "euiAccordionChildrenLoading.message",
     "defString": "Loading",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 408,
-        "column": 16,
-        "index": 12163
+        "line": 39,
+        "column": 12,
+        "index": 1176
       },
       "end": {
-        "line": 408,
-        "column": 76,
-        "index": 12223
+        "line": 42,
+        "column": 14,
+        "index": 1289
       }
     },
-    "filepath": "src/components/accordion/accordion.tsx"
+    "filepath": "src/components/accordion/accordion_children/accordion_children_loading.tsx"
   },
   {
     "token": "euiBasicTable.noItemsMessage",
@@ -437,14 +437,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 180,
+        "line": 152,
         "column": 27,
-        "index": 5788
+        "index": 5056
       },
       "end": {
-        "line": 183,
+        "line": 155,
         "column": 3,
-        "index": 5858
+        "index": 5126
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
@@ -5063,14 +5063,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 147,
+        "line": 172,
         "column": 37,
-        "index": 4607
+        "index": 5274
       },
       "end": {
-        "line": 150,
+        "line": 175,
         "column": 3,
-        "index": 4683
+        "index": 5350
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5081,14 +5081,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 151,
+        "line": 176,
         "column": 39,
-        "index": 4724
+        "index": 5391
       },
       "end": {
-        "line": 154,
+        "line": 179,
         "column": 3,
-        "index": 4804
+        "index": 5471
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5099,14 +5099,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 261,
+        "line": 300,
         "column": 10,
-        "index": 8414
+        "index": 9596
       },
       "end": {
-        "line": 264,
+        "line": 303,
         "column": 12,
-        "index": 8593
+        "index": 9775
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5117,14 +5117,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 352,
+        "line": 391,
         "column": 10,
-        "index": 11487
+        "index": 12623
       },
       "end": {
-        "line": 355,
+        "line": 394,
         "column": 12,
-        "index": 11628
+        "index": 12764
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -7036,6 +7036,42 @@
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
+  },
+  {
+    "token": "euiGlobalToastList.clearAllToastsButtonAriaLabel",
+    "defString": "Clear all toast notifications",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 314,
+        "column": 6,
+        "index": 10360
+      },
+      "end": {
+        "line": 321,
+        "column": 7,
+        "index": 10629
+      }
+    },
+    "filepath": "src/components/toast/global_toast_list.tsx"
+  },
+  {
+    "token": "euiGlobalToastList.clearAllToastsButtonDisplayText",
+    "defString": "Clear all",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 314,
+        "column": 6,
+        "index": 10360
+      },
+      "end": {
+        "line": 321,
+        "column": 7,
+        "index": 10629
+      }
+    },
+    "filepath": "src/components/toast/global_toast_list.tsx"
   },
   {
     "token": "euiToast.dismissToast",

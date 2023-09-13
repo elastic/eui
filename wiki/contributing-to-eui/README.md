@@ -15,10 +15,11 @@ EUI is built primarily by employees of Elastic. We try to do this in the open as
 To help the maintainers of EUI better respond to your pull requests please try to adhere to the following:
 
 1. Follow the guidelines outlined in this wiki folder, from [development](./developing) to [documentation](./documenting) to [testing](./testing).
-2. Include screenshots and a summary of your changes in the PR description
-3. Fill out the checklist, using ~strikethroughs~ to mark any items that are not applicable
-4. Make sure your changes are documented on the demo site and include liberal code comments
-5. Treat each other professionally and assume best intent in each others work and suggestions
+2. Prefer [atomic commits and small pull requests](https://learning-notes.mistermicheels.com/processes-techniques/small-commits-pull-requests/). Try to limit each commit and each PR to one concern/one issue only. PRs will be significantly easier to QA and review this way.
+3. Include screenshots and a summary of your changes in the PR description
+4. Fill out the checklist, using ~strikethroughs~ to mark any items that are not applicable
+5. Make sure your changes are documented on the demo site and include code comments for unintuitive changes
+6. Treat each other professionally and assume best intent in each others work and suggestions
 
 Generally you can expect feedback and a review of your pull request from our team within a week. Contributors should limit themselves to three or less active PRs at any one time, which helps us focus review time towards PRs that are close to a merge event. Sometimes it is unclear who has the next step in getting a pull request over the line and the review can lag as a result. If this is the case, feel free to leave a new comment and ask for guidance.
 

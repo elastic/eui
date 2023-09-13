@@ -10,18 +10,28 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, euiYScroll } from '../../global_styling';
 import { euiShadowFlat } from '../../themes';
+import { euiHeaderVariables } from '../header/header.styles';
 
 export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  // At least for serverless, EuiCollapsibleNav is only going to be used with 1
+  // fixed header. For those scenarios, we can prevent a minor layout jump on
+  // page load by setting the CSS var fallback to the height of a single header
+  const defaultHeaderHeight = euiHeaderVariables(euiThemeContext).height;
+  const fixedHeaderOffset = `var(--euiFixedHeadersOffset, ${defaultHeaderHeight})`;
+
   return {
     euiCollapsibleNavBeta: css`
+      /* Fixed header affordance */
+      ${logicalCSS('top', fixedHeaderOffset)}
+
+      /* Allow the nav to scroll, in case consumers don't use EuiFlyoutBody/EuiFyoutFooter */
+      ${euiYScroll(euiThemeContext, { height: 'inherit' })}
+
       /* This extra padding is needed for EuiPopovers to have enough
          space to render with the right anchorPosition */
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
-
-      /* Allow the nav to scroll, in case consumers don't use EuiFlyoutBody/EuiFyoutFooter */
-      ${euiYScroll(euiThemeContext)}
 
       /* In case things get really dire responsively, ensure the footer doesn't overtake the body */
       .euiFlyoutBody {

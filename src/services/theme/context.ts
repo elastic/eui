@@ -34,4 +34,6 @@ export const EuiNestedThemeContext = createContext<EuiThemeNested>({
   hasDifferentColorFromGlobalTheme: false,
   bodyColor: '',
   colorClassName: '',
+  setGlobalCSSVariables: () => {},
+  setNearestThemeCSSVariables: () => {},
 });

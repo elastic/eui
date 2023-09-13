@@ -1,22 +1,5 @@
 @import '../../../../src/global_styling/mixins/helpers';
 
-@include euiHeaderAffordForFixed;
-
-.guideBody {
-  // Override euiHeaderAffordForFixed mixin since the page template handles this now
-  padding-top: 0 !important; // stylelint-disable-line declaration-no-important
-}
-
-.euiBody--headerIsFixed--double {
-  @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
-
-  .euiHeader:not([data-fixed-header]) {
-    // Force headers below the fullscreen.
-    // This shouldn't be necessary in consuming applications because headers should always be at the top of the page
-    z-index: 0;
-  }
-}
-
 .guideSideNav {
   @include euiSideNavEmbellish;
 }
