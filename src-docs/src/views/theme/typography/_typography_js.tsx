@@ -300,8 +300,8 @@ export const FontScaleValuesJS = () => {
       >
         <p>
           Relative font units respect configured browser default font sizes,
-          which some users may set to larger than than the 16px default due to
-          visual impairment.{' '}
+          which some users may set to larger than than the 16px default due to,
+          e.g. visual impairment, monitor size, or personal preference.{' '}
           <EuiLink
             href="https://usability.yale.edu/web-accessibility/articles/zoom-resizing-text"
             target="_blank"
