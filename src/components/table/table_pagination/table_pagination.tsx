@@ -142,13 +142,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
           )}
         </EuiContextMenuItem>
       )),
-    [
-      itemsPerPageOptions,
-      itemsPerPage,
-      onChangeItemsPerPage,
-      closePopover,
-      setActiveProps,
-    ]
+    [itemsPerPageOptions, onChangeItemsPerPage, closePopover, setActiveProps]
   );
 
   const itemsPerPagePopover = (
