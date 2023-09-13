@@ -26,7 +26,7 @@ exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations type co
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations type inline is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-inline-normal-s"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-inline-normal"
 />
 `;
 
