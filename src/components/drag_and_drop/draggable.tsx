@@ -8,7 +8,6 @@
 
 import React, {
   CSSProperties,
-  Fragment,
   FunctionComponent,
   ReactElement,
   cloneElement,
@@ -102,7 +101,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
             ? (children(provided, snapshot, rubric) as ReactElement)
             : children;
         return (
-          <Fragment>
+          <>
             <div
               {...provided.draggableProps}
               {...(!customDragHandle ? provided.dragHandleProps : {})}
@@ -138,7 +137,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                 {DraggableElement}
               </div>
             )}
-          </Fragment>
+          </>
         );
       }}
     </Draggable>
