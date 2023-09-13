@@ -84,6 +84,12 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
     setIsPopoverOpen(false);
   }, []);
 
+  const setActiveProps = (itemsPerPageOption: number) => {
+    return itemsPerPageOption === itemsPerPage
+      ? { icon: 'check', 'aria-current': 'true' as const }
+      : { icon: 'empty', 'aria-current': undefined };
+  };
+
   const button = (
     <EuiButtonEmpty
       size="xs"
@@ -114,16 +120,13 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
     () =>
       itemsPerPageOptions.map((itemsPerPageOption) => (
         <EuiContextMenuItem
+          {...setActiveProps(itemsPerPageOption)}
           key={itemsPerPageOption}
-          icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
           onClick={() => {
             closePopover();
             onChangeItemsPerPage?.(itemsPerPageOption);
           }}
           data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
-          aria-current={
-            itemsPerPageOption === itemsPerPage ? 'true' : undefined
-          }
         >
           {itemsPerPageOption === 0 ? (
             <EuiI18n
