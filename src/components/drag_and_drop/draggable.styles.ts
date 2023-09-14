@@ -16,6 +16,14 @@ export const euiDraggableStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiDraggable: css`
+      &:focus {
+        outline: none;
+
+        & > .euiDraggable__item {
+          outline: auto;
+        }
+      }
+
       /* !importants in this file override inline styles on JS-inserted HTML elements */
       /* stylelint-disable declaration-no-important */
     `,

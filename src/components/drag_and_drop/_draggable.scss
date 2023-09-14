@@ -1,6 +1,0 @@
-.euiDraggable {
-  &:focus > .euiDraggable__item,
-  &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
-    @include euiFocusRing;
-  }
-}
