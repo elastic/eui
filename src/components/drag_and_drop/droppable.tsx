@@ -17,6 +17,7 @@ import classNames from 'classnames';
 
 import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
+import { EuiPanel } from '../panel';
 
 import { EuiDragDropContextContext } from './drag_drop_context';
 import { euiDroppableStyles } from './droppable.styles';
@@ -86,6 +87,15 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
       {(provided, snapshot) => {
         const { isDraggingOver } = snapshot;
 
+        const PanelOrDiv = withPanel ? EuiPanel : 'div';
+        const panelOrDivProps = withPanel
+          ? {
+              panelRef: provided.innerRef,
+              hasShadow: true,
+              paddingSize: 'none' as const,
+            }
+          : { ref: provided.innerRef };
+
         const cssStyles = [
           styles.euiDroppable,
           isDraggingType === type && !dropIsDisabled && styles.isDragging,
@@ -96,20 +106,19 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
 
         const classes = classNames(
           'euiDroppable',
-          {
-            'euiDroppable--isDisabled': dropIsDisabled,
-            'euiDroppable--withPanel': withPanel,
-          },
+          { 'euiDroppable--isDisabled': dropIsDisabled },
           className
         );
+
         const DroppableElement =
           typeof children === 'function'
             ? children(provided, snapshot)
             : children;
+
         return (
-          <div
+          <PanelOrDiv
             {...provided.droppableProps}
-            ref={provided.innerRef}
+            {...panelOrDivProps}
             style={style}
             data-test-subj={dataTestSubj}
             className={classes}
@@ -125,7 +134,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
             <div className="euiDroppable__placeholder" hidden={cloneDraggables}>
               {provided.placeholder}
             </div>
-          </div>
+          </PanelOrDiv>
         );
       }}
     </Droppable>
