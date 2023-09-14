@@ -86,11 +86,11 @@ export const EuiDataGridToolbar = ({
       fullScreenControl,
     });
 
-    if ('leftControls' in customToolbar || 'rightControls' in customToolbar) {
+    if (customToolbar.left || customToolbar.right) {
       return (
         <EuiDataGridToolbarContainer
-          leftControls={customToolbar.leftControls}
-          rightControls={customToolbar.rightControls}
+          left={customToolbar.left}
+          right={customToolbar.right}
         />
       );
     }
@@ -100,7 +100,7 @@ export const EuiDataGridToolbar = ({
 
   return (
     <EuiDataGridToolbarContainer
-      leftControls={
+      left={
         hasRoomForGridControls ? (
           <>
             {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
@@ -110,7 +110,7 @@ export const EuiDataGridToolbar = ({
           </>
         ) : null
       }
-      rightControls={
+      right={
         <>
           {renderAdditionalControls(toolbarVisibility, 'right')}
           {keyboardShortcutsControl}
@@ -124,25 +124,21 @@ export const EuiDataGridToolbar = ({
 
 /**
  * Toolbar container component
- * @param leftControls
- * @param rightControls
+ * @param left
+ * @param right
  * @constructor
  */
 const EuiDataGridToolbarContainer = ({
-  leftControls,
-  rightControls,
+  left,
+  right,
 }: {
-  leftControls?: ReactNode;
-  rightControls?: ReactNode;
+  left?: ReactNode;
+  right?: ReactNode;
 }) => {
   return (
     <div className="euiDataGrid__controls" data-test-subj="dataGridControls">
-      {leftControls && (
-        <div className="euiDataGrid__leftControls">{leftControls}</div>
-      )}
-      {rightControls && (
-        <div className="euiDataGrid__rightControls">{rightControls}</div>
-      )}
+      {left && <div className="euiDataGrid__leftControls">{left}</div>}
+      {right && <div className="euiDataGrid__rightControls">{right}</div>}
     </div>
   );
 };

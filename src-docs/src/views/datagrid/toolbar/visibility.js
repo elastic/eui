@@ -46,6 +46,7 @@ const DataGrid = () => {
   const [showDisplaySelector, setShowDisplaySelector] = useState(true);
   const [allowDensity, setAllowDensity] = useState(true);
   const [allowRowHeight, setAllowRowHeight] = useState(true);
+  const [allowResetButton, setAllowResetButton] = useState(true);
   const [showColumnSelector, setShowColumnSelector] = useState(true);
   const [allowHideColumns, setAllowHideColumns] = useState(true);
   const [allowOrderingColumns, setAllowOrderingColumns] = useState(true);
@@ -75,6 +76,9 @@ const DataGrid = () => {
   };
   const onAllowRowHeightChange = (optionId) => {
     setAllowRowHeight(optionId === 'true');
+  };
+  const onAllowResetButtonChange = (optionId) => {
+    setAllowResetButton(optionId === 'true');
   };
 
   const onShowKeyboardShortcutsChange = (optionId) => {
@@ -234,6 +238,12 @@ const DataGrid = () => {
                       onChange: onAllowRowHeightChange,
                     })}
                   </li>
+                  <li>
+                    {createItem('Show reset button', {
+                      idSelected: allowResetButton.toString(),
+                      onChange: onAllowResetButtonChange,
+                    })}
+                  </li>
                 </ul>
               )}
 
@@ -266,6 +276,7 @@ const DataGrid = () => {
         showFullScreenSelector={showFullScreenSelector}
         allowDensity={allowDensity}
         allowRowHeight={allowRowHeight}
+        allowResetButton={allowResetButton}
         allowHideColumns={allowHideColumns}
         allowOrderingColumns={allowOrderingColumns}
       />

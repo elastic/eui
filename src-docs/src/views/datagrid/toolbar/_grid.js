@@ -52,6 +52,7 @@ const DataGridStyle = ({
   showFullScreenSelector,
   allowDensity,
   allowRowHeight,
+  allowResetButton,
   allowHideColumns,
   allowOrderingColumns,
 }) => {
@@ -98,13 +99,15 @@ const DataGridStyle = ({
   const toggleDisplaySelector = useMemo(() => {
     if (
       showDisplaySelector === true &&
-      (allowDensity === false || allowRowHeight === false)
+      (allowDensity === false ||
+        allowRowHeight === false ||
+        allowResetButton === false)
     ) {
-      return { allowDensity, allowRowHeight };
+      return { allowDensity, allowRowHeight, allowResetButton };
     } else {
       return showDisplaySelector;
     }
-  }, [showDisplaySelector, allowDensity, allowRowHeight]);
+  }, [showDisplaySelector, allowDensity, allowRowHeight, allowResetButton]);
 
   const toolbarVisibilityOptions = {
     showColumnSelector: toggleColumnSelector,

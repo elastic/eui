@@ -89,8 +89,28 @@ export default () => {
 
   const [exampleSettingValue, setExampleSettingValue] = useState<number>(10);
 
-  // Custom toolbar body renderer
+  // Some additional custom settings to show in Display popover
+  const additionalDisplaySettings = (
+    <EuiFormRow label="Example additional setting" display="columnCompressed">
+      <EuiRange
+        compressed
+        fullWidth
+        showInput
+        min={1}
+        max={100}
+        step={1}
+        value={exampleSettingValue}
+        data-test-subj="exampleAdditionalSetting"
+        onChange={(event) => {
+          setExampleSettingValue(Number(event.currentTarget.value));
+        }}
+      />
+    </EuiFormRow>
+  );
+
+  // Custom toolbar renderer
   const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
+    hasRoomForGridControls,
     columnControl,
     columnSortingControl,
     displayControl,
@@ -98,14 +118,16 @@ export default () => {
     keyboardShortcutsControl,
   }) => {
     return {
-      leftControls: 'Always look at the left side of grid!',
-      rightControls: (
+      left: hasRoomForGridControls
+        ? 'Always look at the left side of grid!'
+        : null,
+      right: (
         <>
-          {fullScreenControl}
-          {keyboardShortcutsControl}
-          {displayControl}
           {columnControl}
           {columnSortingControl}
+          {displayControl}
+          {keyboardShortcutsControl}
+          {fullScreenControl}
         </>
       ),
     };
@@ -133,26 +155,7 @@ export default () => {
         gridStyle={{ border: 'none', header: 'underline' }}
         toolbarVisibility={{
           showDisplaySelector: {
-            additionalDisplaySettings: (
-              <EuiFormRow
-                label="Example additional setting"
-                display="columnCompressed"
-              >
-                <EuiRange
-                  compressed
-                  fullWidth
-                  showInput
-                  min={1}
-                  max={100}
-                  step={1}
-                  value={exampleSettingValue}
-                  data-test-subj="exampleAdditionalSetting"
-                  onChange={(event) => {
-                    setExampleSettingValue(Number(event.currentTarget.value));
-                  }}
-                />
-              </EuiFormRow>
-            ),
+            additionalDisplaySettings,
           },
         }}
       />

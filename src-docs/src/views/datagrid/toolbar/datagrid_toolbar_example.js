@@ -189,7 +189,7 @@ export const DataGridToolbarExample = {
       demo: <DataGridControls />,
     },
     {
-      title: 'Custom toolbar controls placement',
+      title: 'Custom toolbar layout',
       source: [
         {
           type: GuideSectionTypes.TSX,
@@ -200,10 +200,13 @@ export const DataGridToolbarExample = {
         <>
           <p>
             For advanced use cases, the <EuiCode>renderCustomToolbar</EuiCode>{' '}
-            prop may be used to take complete control over the placement of the
-            toolbar controls or the whole toolbar element. This may be useful
-            where custom layout (e.g., all buttons on the right side) are
-            required.
+            prop for <EuiCode>EuiDataGrid</EuiCode> may be used to take complete
+            control over the placement of the toolbar controls (by returning{' '}
+            <EuiCode>left</EuiCode> and <EuiCode>right</EuiCode>) or the whole
+            toolbar element (by returning <EuiCode>replaceWith</EuiCode>). This
+            may be useful where custom layout (e.g., all buttons on the right
+            side) are required. The default individual controls will be
+            available as function parameters.
           </p>
         </>
       ),

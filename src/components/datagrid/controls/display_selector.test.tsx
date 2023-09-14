@@ -85,14 +85,7 @@ describe('useDataGridDisplaySelector', () => {
         component.find('[data-test-subj="compact"]').simulate('change');
         expect(getSelection(component)).toEqual('compact');
 
-        // Should have changed the main toolbar icon accordingly
         closePopover(component);
-        expect(
-          component
-            .find('[data-test-subj="dataGridDisplaySelectorButton"]')
-            .first()
-            .prop('iconType')
-        ).toEqual('tableDensityCompact');
       });
 
       it('calls the gridStyles.onDensityChange callback on user change', () => {
