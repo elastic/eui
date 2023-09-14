@@ -153,6 +153,7 @@ export default () => {
         gridStyle={{ border: 'none', header: 'underline' }}
         toolbarVisibility={{
           showDisplaySelector: {
+            allowResetButton: false,
             additionalDisplaySettings,
           },
         }}
