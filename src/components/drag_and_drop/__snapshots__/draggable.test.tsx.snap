@@ -9,7 +9,7 @@ exports[`[React 17] EuiDraggable renders 1`] = `
 >
   <div
     aria-describedby="rfd-hidden-text-0-hidden-text-0"
-    class="euiDraggable"
+    class="euiDraggable emotion-euiDraggable-none"
     data-rfd-drag-handle-context-id="0"
     data-rfd-drag-handle-draggable-id="testDraggable"
     data-rfd-draggable-context-id="0"
@@ -20,7 +20,7 @@ exports[`[React 17] EuiDraggable renders 1`] = `
     tabindex="0"
   >
     <div
-      class="euiDraggable__item"
+      class="euiDraggable__item emotion-euiDraggable__item"
     >
       Hello
     </div>
