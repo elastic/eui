@@ -15,17 +15,15 @@ import React, {
 } from 'react';
 import { Draggable, DraggableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
+
+import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
+
 import { EuiDroppableContext } from './droppable';
+import { euiDraggableStyles } from './draggable.styles';
 
-const spacingToClassNameMap = {
-  none: null,
-  s: 'euiDraggable--s',
-  m: 'euiDraggable--m',
-  l: 'euiDraggable--l',
-};
-
-export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
+const SPACINGS = ['none', 's', 'm', 'l'] as const;
+export type EuiDraggableSpacing = (typeof SPACINGS)[number];
 
 export interface EuiDraggableProps
   extends CommonProps,
@@ -71,6 +69,9 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
 }) => {
   const { cloneItems } = useContext(EuiDroppableContext);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiDraggableStyles(euiTheme);
+
   return (
     <Draggable
       draggableId={draggableId}
@@ -79,6 +80,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
       {...rest}
     >
       {(provided, snapshot, rubric) => {
+        const cssStyles = [styles.euiDraggable, styles.spacing[spacing]];
+
         const classes = classNames(
           'euiDraggable',
           {
@@ -87,7 +90,6 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
             'euiDraggable--isDragging': snapshot.isDragging,
             'euiDraggable--withoutDropAnimation': isRemovable,
           },
-          spacingToClassNameMap[spacing],
           className
         );
         const childClasses = classNames('euiDraggable__item', {
@@ -108,6 +110,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
               className={classes}
+              css={cssStyles}
               style={{ ...style, ...provided.draggableProps.style }}
               // We use [role="group"] instead of [role="button"] when we expect a nested
               // interactive element. Screen readers will cue users that this is a container

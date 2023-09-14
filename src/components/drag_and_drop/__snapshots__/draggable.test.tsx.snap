@@ -40,7 +40,7 @@ exports[`[React 18] EuiDraggable renders 1`] = `
 >
   <div
     aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-    class="euiDraggable"
+    class="euiDraggable emotion-euiDraggable-none"
     data-rfd-drag-handle-context-id=":r0:"
     data-rfd-drag-handle-draggable-id="testDraggable"
     data-rfd-draggable-context-id=":r0:"

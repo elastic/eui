@@ -33,9 +33,3 @@
     }
   }
 }
-
-@each $size, $spacing in $euiDragAndDropSpacing {
-  .euiDraggable--#{$size} {
-    padding: $spacing;
-  }
-}
