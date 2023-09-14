@@ -43,3 +43,10 @@ export const euiDraggableStyles = (euiThemeContext: UseEuiTheme) => {
     },
   };
 };
+
+export const euiDraggableItemStyles = {
+  euiDraggable__item: css``,
+  disabled: css`
+    cursor: not-allowed;
+  `,
+};

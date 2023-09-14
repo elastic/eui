@@ -10,17 +10,16 @@ import React, {
   CSSProperties,
   FunctionComponent,
   ReactElement,
-  cloneElement,
   useContext,
 } from 'react';
 import { Draggable, DraggableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, cloneElementWithCss } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiDroppableContext } from './droppable';
-import { euiDraggableStyles } from './draggable.styles';
+import { euiDraggableStyles, euiDraggableItemStyles } from './draggable.styles';
 
 const SPACINGS = ['none', 's', 'm', 'l'] as const;
 export type EuiDraggableSpacing = (typeof SPACINGS)[number];
@@ -133,11 +132,15 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                   : provided.dragHandleProps?.tabIndex
               }
             >
-              {cloneElement(DraggableElement, {
+              {cloneElementWithCss(DraggableElement, {
                 className: classNames(
                   DraggableElement.props.className,
                   childClasses
                 ),
+                css: [
+                  euiDraggableItemStyles.euiDraggable__item,
+                  isDragDisabled && euiDraggableItemStyles.disabled,
+                ],
               })}
             </div>
             {cloneItems && isDragging && (

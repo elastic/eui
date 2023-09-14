@@ -51,7 +51,7 @@ exports[`[React 18] EuiDraggable renders 1`] = `
     tabindex="0"
   >
     <div
-      class="euiDraggable__item"
+      class="euiDraggable__item emotion-euiDraggable__item"
     >
       Hello
     </div>

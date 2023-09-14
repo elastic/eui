@@ -3,18 +3,4 @@
   &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
     @include euiFocusRing;
   }
-
-  .euiDraggable__item {
-    &.euiDraggable__item--isDisabled {
-      cursor: not-allowed;
-    }
-
-    &.euiDraggable__item--isDragging {
-      // TODO: Resolve below
-      // Commenting this out for now,
-      // I'm thinking about adding an optional prop to auto-add these styles versus always having them
-      // @include euiBottomShadow;
-      // @include euiFocusRing;
-    }
-  }
 }
