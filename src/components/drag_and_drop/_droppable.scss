@@ -1,11 +1,3 @@
-.euiDroppable {
-  .euiDroppable__placeholder {
-    &.euiDroppable__placeholder--isHidden {
-      // Overriding inline styles on JS-inserted HTML elements
-      display: none !important; // stylelint-disable-line declaration-no-important
-    }
-  }
-}
 
 @include euiPanel($selector: '.euiDroppable--withPanel');
 

@@ -102,9 +102,6 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
           },
           className
         );
-        const placeholderClasses = classNames('euiDroppable__placeholder', {
-          'euiDroppable__placeholder--isHidden': cloneDraggables,
-        });
         const DroppableElement =
           typeof children === 'function'
             ? children(provided, snapshot)
@@ -125,7 +122,9 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
             >
               {DroppableElement}
             </EuiDroppableContext.Provider>
-            <div className={placeholderClasses}>{provided.placeholder}</div>
+            <div className="euiDroppable__placeholder" hidden={cloneDraggables}>
+              {provided.placeholder}
+            </div>
           </div>
         );
       }}
