@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../../components';
-import { EuiCode } from '../../../../../src';
+import { EuiCode, EuiDataGridCustomToolbarProps } from '../../../../../src';
 
 import DataGridToolbarVisibility from './visibility';
 const dataGridToolbarVisibilitySource = require('!!raw-loader!./_grid');
 
 import DataGridControls from './additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./additional_controls');
+
+import DataGridCustomToolbar from './datagrid_custom_toolbar';
+const dataGridCustomToolbarSource = require('!!raw-loader!./datagrid_custom_toolbar');
 
 import ToolbarPropsTable from './_props';
 
@@ -184,6 +187,29 @@ export const DataGridToolbarExample = {
         EuiDataGridToolBarAdditionalControlsLeftOptions,
       },
       demo: <DataGridControls />,
+    },
+    {
+      title: 'Custom toolbar controls placement',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: dataGridCustomToolbarSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            For advanced use cases, the <EuiCode>renderCustomToolbar</EuiCode>{' '}
+            prop may be used to take complete control over the placement of the
+            toolbar controls or the whole toolbar element. This may be useful
+            where custom layout (e.g., all buttons on the right side) are
+            required.
+          </p>
+        </>
+      ),
+      demo: <DataGridCustomToolbar />,
+      props: { EuiDataGridCustomToolbarProps },
+      // TODO: add a snippet
     },
     {
       title: 'Toolbar props',

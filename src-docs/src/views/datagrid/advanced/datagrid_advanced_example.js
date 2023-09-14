@@ -8,7 +8,6 @@ import {
   EuiCallOut,
   EuiTitle,
   EuiLink,
-  EuiDataGridCustomToolbarProps,
 } from '../../../../../src/components';
 
 import {
@@ -37,9 +36,7 @@ dataGridRef.current.closeCellPopover();
 `;
 
 import CustomRenderer from './custom_renderer';
-import CustomToolbarRenderer from './custom_toolbar';
 const customRendererSource = require('!!raw-loader!./custom_renderer');
-const customToolbarSource = require('!!raw-loader!./custom_toolbar');
 const customRendererSnippet = `const CustomGridBody = ({ visibleColumns, visibleRowData, Cell }) => {
   const visibleRows = raw_data.slice(
     visibleRowData.startRow,
@@ -255,27 +252,6 @@ export const DataGridAdvancedExample = {
       demo: <CustomRenderer />,
       snippet: customRendererSnippet,
       props: { EuiDataGridCustomBodyProps },
-    },
-    {
-      title: 'Custom toolbar renderer',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: customToolbarSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            For advanced use cases, the <EuiCode>renderCustomToolbar</EuiCode>{' '}
-            prop may be used to take complete control over rendering the
-            toolbar. This may be useful where custom row layouts (e.g., all
-            button on the right side) are required.
-          </p>
-        </>
-      ),
-      demo: <CustomToolbarRenderer />,
-      props: { EuiDataGridCustomToolbarProps },
     },
   ],
 };

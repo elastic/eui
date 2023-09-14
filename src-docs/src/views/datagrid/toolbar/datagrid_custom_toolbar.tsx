@@ -4,17 +4,16 @@ import { faker } from '@faker-js/faker';
 import {
   EuiDataGrid,
   EuiDataGridColumnCellActionProps,
-  EuiButtonIcon,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridColumnSortingConfig,
-  EuiPopover,
-  EuiDataGridCustomToolbarProps,
+  EuiDataGridToolbarProps,
   EuiFormRow,
   EuiRange,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
+
 for (let i = 1; i < 100; i++) {
   raw_data.push({
     name: `${faker.name.lastName()}, ${faker.name.firstName()}`,
@@ -87,61 +86,29 @@ export default () => {
   const onSort = useCallback<EuiDataGridSorting['onSort']>((sortingColumns) => {
     setSortingColumns(sortingColumns);
   }, []);
-  const [isDisplaySelectorOpen, setIsDisplaySelectorOpen] = useState(false);
+
+  const [exampleSettingValue, setExampleSettingValue] = useState<number>(10);
 
   // Custom toolbar body renderer
-  const RenderCustomToolbar = ({
-    fullScreenSelector,
-    keyboardShortcuts,
-    rowHeightsControls,
-    densityControls,
-    columnSelector,
-    columnSorting,
-  }: EuiDataGridCustomToolbarProps) => {
-    return (
-      <div className="euiDataGrid__controls" data-test-subj="dataGridControls">
-        <div className="euiDataGrid__leftControls">
-          Always look at the left side of grid!
-        </div>
-        <div className="euiDataGrid__rightControls">
-          {fullScreenSelector}
-          {keyboardShortcuts}
-          <EuiPopover
-            button={
-              <EuiButtonIcon
-                iconType="controlsHorizontal"
-                aria-label="Custom grid controls"
-                onClick={() => setIsDisplaySelectorOpen(true)}
-              />
-            }
-            isOpen={isDisplaySelectorOpen}
-            data-test-subj="dataGridDisplaySelectorPopover"
-            closePopover={() => setIsDisplaySelectorOpen(false)}
-            anchorPosition="downRight"
-            panelPaddingSize="s"
-            panelClassName="euiDataGrid__displayPopoverPanel"
-          >
-            {rowHeightsControls}
-            {densityControls}
-
-            <EuiFormRow label="Random Sample Size" display="columnCompressed">
-              <EuiRange
-                compressed
-                fullWidth
-                showInput
-                min={1}
-                max={100}
-                step={1}
-                value={10}
-                data-test-subj="randomSampleSize"
-              />
-            </EuiFormRow>
-          </EuiPopover>
-          {columnSorting}
-          {columnSelector}
-        </div>
-      </div>
-    );
+  const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
+    columnControl,
+    columnSortingControl,
+    displayControl,
+    fullScreenControl,
+    keyboardShortcutsControl,
+  }) => {
+    return {
+      leftControls: 'Always look at the left side of grid!',
+      rightControls: (
+        <>
+          {fullScreenControl}
+          {keyboardShortcutsControl}
+          {displayControl}
+          {columnControl}
+          {columnSortingControl}
+        </>
+      ),
+    };
   };
 
   return (
@@ -161,9 +128,33 @@ export default () => {
         renderCellValue={({ rowIndex, columnId }) =>
           raw_data[rowIndex][columnId]
         }
-        renderCustomToolbar={RenderCustomToolbar}
+        renderCustomToolbar={renderCustomToolbar}
         height={undefined}
         gridStyle={{ border: 'none', header: 'underline' }}
+        toolbarVisibility={{
+          showDisplaySelector: {
+            additionalDisplaySettings: (
+              <EuiFormRow
+                label="Example additional setting"
+                display="columnCompressed"
+              >
+                <EuiRange
+                  compressed
+                  fullWidth
+                  showInput
+                  min={1}
+                  max={100}
+                  step={1}
+                  value={exampleSettingValue}
+                  data-test-subj="exampleAdditionalSetting"
+                  onChange={(event) => {
+                    setExampleSettingValue(Number(event.currentTarget.value));
+                  }}
+                />
+              </EuiFormRow>
+            ),
+          },
+        }}
       />
     </>
   );
