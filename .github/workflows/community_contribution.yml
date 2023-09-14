@@ -12,7 +12,7 @@ jobs:
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     permissions:
       issues: write
-      pull-requests: read
+      pull-requests: write
     steps:
       - name: "Check for org membership"
         # https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user
