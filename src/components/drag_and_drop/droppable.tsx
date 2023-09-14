@@ -106,7 +106,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
 
         const classes = classNames(
           'euiDroppable',
-          { 'euiDroppable--isDisabled': dropIsDisabled },
+          { 'euiDroppable-isDisabled': dropIsDisabled },
           className
         );
 
