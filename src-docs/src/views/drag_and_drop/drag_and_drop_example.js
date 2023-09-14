@@ -392,7 +392,7 @@ export const DragAndDropExample = {
             . If using drag and drop UX within a popover, you{' '}
             <strong>must</strong> include the{' '}
             <EuiCode>{'<EuiPopover hasDragDrop>'}</EuiCode> prop for items to
-            propertly render while being dragged.
+            properly render while being dragged.
           </p>
         </>
       ),

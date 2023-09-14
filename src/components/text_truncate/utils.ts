@@ -61,7 +61,7 @@ abstract class _TruncationUtils {
   checkIfTruncationIsNeeded = () => {
     this.setTextToCheck(this.fullText);
 
-    if (this.availableWidth > this.textWidth) {
+    if (this.availableWidth >= this.textWidth) {
       return false;
     }
   };

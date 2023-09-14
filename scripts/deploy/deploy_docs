@@ -38,10 +38,25 @@ post_comment_to_gh()
   if [[ -z "${GITHUB_TOKEN}" ]]; then
     echo "Warning: GITHUB_TOKEN is not set; cannot publish PR docs preview URL to Github."
   else
-    printf '\nAdding comment to GitHub Pull Request: %i\n' "${GIT_PULL_REQUEST_ID}"
-    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/"
-
     set +x
+
+    echo 'Deleting previous staging PR link comments'
+    kibanamachine_comment_ids=$( \
+      curl -s -L "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments" \
+      | jq -c '.[] | select(.user.login == "kibanamachine") | .id' \
+    )
+    for comment_id in ${kibanamachine_comment_ids[@]}; do
+      curl -L \
+        -X DELETE \
+        -H "Authorization: token ${GITHUB_TOKEN}" \
+        "https://api.github.com/repos/elastic/eui/issues/comments/${comment_id}"
+    done
+
+    printf '\nAdding comment to GitHub Pull Request: %i\n' "${GIT_PULL_REQUEST_ID}"
+    comment="Preview staging links for this PR:
+- Docs site: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/
+- Storybook: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook"
+
     curl \
       --silent \
       --location \
@@ -54,14 +69,20 @@ post_comment_to_gh()
 
 publish_to_bucket()
 {
+  copy_options=(
+    -m # enable multithreading
+    -h "Cache-Control: public, max-age=${max_age}, must-revalidate" # set caching policy
+    cp
+    -r # copy files recursively
+    -a public-read # set ACL to allow read by everyone
+    -z js,css,html # enable gzip encoding for these extensions
+  )
+
   echo "Copying ${PWD}/docs/* to ${full_bucket_path}"
-  gsutil -m \
-    -h "Cache-Control:public, max-age=${max_age}, must-revalidate" \
-    cp \
-    -r \
-    -a public-read \
-    -z js,css,html \
-    "${PWD}/docs/*" "${full_bucket_path}"
+  gsutil "${copy_options[@]}" "${PWD}/docs/*" "${full_bucket_path}"
+
+  echo "Copying ${PWD}/storybook-static/* to ${full_bucket_path}storybook/"
+  gsutil "${copy_options[@]}" "${PWD}/storybook-static/*" "${full_bucket_path}storybook/"
 }
 
 if [[ "$1" != "nodocker" ]]; then

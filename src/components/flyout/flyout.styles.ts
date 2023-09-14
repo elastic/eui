@@ -98,9 +98,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiFlyout: css`
       position: fixed;
-      ${logicalCSS('top', 0)}
       ${logicalCSS('bottom', 0)}
-      ${logicalCSS('height', '100%')}
+      ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
+      ${logicalCSS('height', 'inherit')}
       z-index: ${euiTheme.levels.flyout};
       background: ${euiTheme.colors.emptyShade};
       display: flex;

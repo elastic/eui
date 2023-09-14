@@ -1,12 +1,20 @@
 # Changelogs
 
+All upcoming changelogs should go into the [upcoming_changelogs/](../../../upcoming_changelogs/_template.md) directory. Our release script automatically handles collating these files into our main [CHANGELOG.md](../../../CHANGELOG.md) on new EUI versions.
+
 ## When to write a changelog
 
-Any updates to the `src/` folder require a new [upcoming changelog](../../../upcoming_changelogs/_template.md) file. Our release script handles collating upcoming changelog files into our main [CHANGELOG.md](../../../CHANGELOG.md) on new EUI versions.
+- Any updates to the `src/` folder should include a changelog
+- `dependency` upgrades in package.json should contain a changelog
 
 ## When to skip a changelog
 
-Changes that do not impact consumers or end-users (e.g. documentation-only changes to `wiki/` or `src-docs/`) or infra/dev-only changes (e.g. changes to `.github/` or `scripts/`) do not require a changelog entry. You may use the `skip-changelog` label on your PR to bypass CI checks.
+Changes that do not impact consumers or end-users may use the `skip-changelog` label on PRs to bypass CI checks. Examples of these types of changes:
+
+- Documentation-only changes (e.g. changes to `wiki/` or `src-docs/`)
+- Infra/dev-only changes (e.g. changes to `.github/` or `scripts/`)
+- Test-only changes (e.g. changes to `*.test.tsx`, `*.spec.tsx`, or `*.stories.tsx` files)
+- `dev-dependency` upgrades in package.json
 
 ## How to write a changelog
 
