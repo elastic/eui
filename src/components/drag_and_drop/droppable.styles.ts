@@ -8,13 +8,32 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
+import { euiCanAnimate } from '../../global_styling';
 
 export const euiDroppableStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const droppableColor = euiTheme.colors.success;
+
   return {
-    euiDroppable: css``,
+    euiDroppable: css`
+      ${euiCanAnimate} {
+        transition: background-color ${euiTheme.animation.slow} ease;
+      }
+    `,
+    isDragging: css`
+      background-color: ${transparentize(droppableColor, 0.1)};
+    `,
+    isDraggingOver: css`
+      background-color: ${transparentize(droppableColor, 0.25)};
+    `,
+    grow: css`
+      flex-grow: 1;
+    `,
+    noGrow: css`
+      flex-grow: 0;
+    `,
     spacing: sharedSpacingPadding(euiThemeContext),
   };
 };

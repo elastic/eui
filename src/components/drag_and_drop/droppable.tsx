@@ -84,17 +84,21 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
       {...rest}
     >
       {(provided, snapshot) => {
-        const cssStyles = [styles.euiDroppable, styles.spacing[spacing]];
+        const { isDraggingOver } = snapshot;
+
+        const cssStyles = [
+          styles.euiDroppable,
+          isDraggingType === type && !dropIsDisabled && styles.isDragging,
+          isDraggingOver && styles.isDraggingOver,
+          grow ? styles.grow : styles.noGrow,
+          styles.spacing[spacing],
+        ];
 
         const classes = classNames(
           'euiDroppable',
           {
             'euiDroppable--isDisabled': dropIsDisabled,
-            'euiDroppable--isDraggingOver': snapshot.isDraggingOver,
-            'euiDroppable--isDraggingType': isDraggingType === type,
             'euiDroppable--withPanel': withPanel,
-            'euiDroppable--grow': grow,
-            'euiDroppable--noGrow': !grow,
           },
           className
         );
