@@ -1,19 +1,4 @@
 .euiDraggable {
-  &.euiDraggable--isDragging {
-    // Overriding inline styles on JS-inserted HTML elements
-    z-index: $euiZLevel9 !important; // stylelint-disable-line declaration-no-important
-  }
-
-  &.euiDraggable--hasClone:not(.euiDraggable--isDragging) {
-    // Overriding inline styles on JS-inserted HTML elements
-    transform: none !important; // stylelint-disable-line declaration-no-important
-  }
-
-  &.euiDraggable--withoutDropAnimation {
-    // Overriding inline styles on JS-inserted HTML elements
-    transition-duration: .001s !important; // stylelint-disable-line declaration-no-important
-  }
-
   &:focus > .euiDraggable__item,
   &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
     @include euiFocusRing;

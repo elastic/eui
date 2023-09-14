@@ -15,7 +15,20 @@ export const euiDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
-    euiDraggable: css``,
+    euiDraggable: css`
+      /* !importants in this file override inline styles on JS-inserted HTML elements */
+      /* stylelint-disable declaration-no-important */
+    `,
+    isDragging: css`
+      z-index: ${euiTheme.levels.toast} !important;
+    `,
+    hasClone: css`
+      transform: none !important;
+    `,
+    isRemovable: css`
+      /* Removes the drop animation */
+      transition-duration: 0.001s !important;
+    `,
     spacing: {
       none: css``,
       s: css`

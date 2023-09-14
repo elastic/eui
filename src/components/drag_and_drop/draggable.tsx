@@ -80,23 +80,28 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
       {...rest}
     >
       {(provided, snapshot, rubric) => {
-        const cssStyles = [styles.euiDraggable, styles.spacing[spacing]];
+        const { isDragging, isDropAnimating } = snapshot;
+
+        const cssStyles = [
+          styles.euiDraggable,
+          cloneItems && !isDragging && styles.hasClone,
+          isDragging && styles.isDragging,
+          isRemovable && styles.isRemovable,
+          styles.spacing[spacing],
+        ];
 
         const classes = classNames(
           'euiDraggable',
           {
-            'euiDraggable--hasClone': cloneItems,
             'euiDraggable--hasCustomDragHandle': customDragHandle,
-            'euiDraggable--isDragging': snapshot.isDragging,
-            'euiDraggable--withoutDropAnimation': isRemovable,
           },
           className
         );
         const childClasses = classNames('euiDraggable__item', {
           'euiDraggable__item--hasCustomDragHandle': customDragHandle,
           'euiDraggable__item--isDisabled': isDragDisabled,
-          'euiDraggable__item--isDragging': snapshot.isDragging,
-          'euiDraggable__item--isDropAnimating': snapshot.isDropAnimating,
+          'euiDraggable__item--isDragging': isDragging,
+          'euiDraggable__item--isDropAnimating': isDropAnimating,
         });
         const DraggableElement: ReactElement =
           typeof children === 'function'
@@ -135,7 +140,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                 ),
               })}
             </div>
-            {cloneItems && snapshot.isDragging && (
+            {cloneItems && isDragging && (
               <div className={classNames(classes, 'euiDraggable--clone')}>
                 {DraggableElement}
               </div>
