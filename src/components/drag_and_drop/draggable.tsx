@@ -18,11 +18,8 @@ import classNames from 'classnames';
 import { useEuiTheme, cloneElementWithCss } from '../../services';
 import { CommonProps } from '../common';
 
-import { EuiDroppableContext } from './droppable';
+import { EuiDroppableContext, SPACINGS } from './droppable';
 import { euiDraggableStyles, euiDraggableItemStyles } from './draggable.styles';
-
-const SPACINGS = ['none', 's', 'm', 'l'] as const;
-export type EuiDraggableSpacing = (typeof SPACINGS)[number];
 
 export interface EuiDraggableProps
   extends CommonProps,
@@ -48,7 +45,7 @@ export interface EuiDraggableProps
   /**
    * Adds padding to the draggable item
    */
-  spacing?: EuiDraggableSpacing;
+  spacing?: (typeof SPACINGS)[number];
   style?: CSSProperties;
 }
 

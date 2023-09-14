@@ -14,17 +14,14 @@ import React, {
 } from 'react';
 import { Droppable, DroppableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
+
+import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
+
 import { EuiDragDropContextContext } from './drag_drop_context';
+import { euiDroppableStyles } from './droppable.styles';
 
-const spacingToClassNameMap = {
-  none: null,
-  s: 'euiDroppable--s',
-  m: 'euiDroppable--m',
-  l: 'euiDroppable--l',
-};
-
-export type EuiDroppableSpacing = keyof typeof spacingToClassNameMap;
+export const SPACINGS = ['none', 's', 'm', 'l'] as const;
 
 export interface EuiDroppableProps
   extends CommonProps,
@@ -42,7 +39,7 @@ export interface EuiDroppableProps
   /**
    * Adds padding to the droppable area
    */
-  spacing?: EuiDroppableSpacing;
+  spacing?: (typeof SPACINGS)[number];
   /**
    * Adds an EuiPanel style to the droppable area
    */
@@ -74,6 +71,10 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
 }) => {
   const { isDraggingType } = useContext(EuiDragDropContextContext);
   const dropIsDisabled: boolean = cloneDraggables ? true : isDropDisabled;
+
+  const euiTheme = useEuiTheme();
+  const styles = euiDroppableStyles(euiTheme);
+
   return (
     <Droppable
       isDropDisabled={dropIsDisabled}
@@ -83,6 +84,8 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
       {...rest}
     >
       {(provided, snapshot) => {
+        const cssStyles = [styles.euiDroppable, styles.spacing[spacing]];
+
         const classes = classNames(
           'euiDroppable',
           {
@@ -93,7 +96,6 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
             'euiDroppable--grow': grow,
             'euiDroppable--noGrow': !grow,
           },
-          spacingToClassNameMap[spacing],
           className
         );
         const placeholderClasses = classNames('euiDroppable__placeholder', {
@@ -110,6 +112,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
             style={style}
             data-test-subj={dataTestSubj}
             className={classes}
+            css={cssStyles}
           >
             <EuiDroppableContext.Provider
               value={{

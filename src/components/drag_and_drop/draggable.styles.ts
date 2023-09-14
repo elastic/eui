@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { mathWithUnits } from '../../global_styling';
+import { sharedSpacingPadding } from './droppable.styles';
 
 export const euiDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -37,18 +37,7 @@ export const euiDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       /* Removes the drop animation */
       transition-duration: 0.001s !important;
     `,
-    spacing: {
-      none: css``,
-      s: css`
-        padding: ${euiTheme.size.xxs};
-      `,
-      m: css`
-        padding: ${mathWithUnits(euiTheme.size.m, (x) => x / 2)};
-      `,
-      l: css`
-        padding: ${euiTheme.size.m};
-      `,
-    },
+    spacing: sharedSpacingPadding(euiThemeContext),
   };
 };
 

@@ -2,14 +2,14 @@
 
 exports[`[React 17] EuiDraggable renders 1`] = `
 <div
-  class="euiDroppable euiDroppable--noGrow"
+  class="euiDroppable euiDroppable--noGrow emotion-euiDroppable"
   data-rfd-droppable-context-id="0"
   data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div
     aria-describedby="rfd-hidden-text-0-hidden-text-0"
-    class="euiDraggable emotion-euiDraggable-none"
+    class="euiDraggable emotion-euiDraggable"
     data-rfd-drag-handle-context-id="0"
     data-rfd-drag-handle-draggable-id="testDraggable"
     data-rfd-draggable-context-id="0"
@@ -33,14 +33,14 @@ exports[`[React 17] EuiDraggable renders 1`] = `
 
 exports[`[React 18] EuiDraggable renders 1`] = `
 <div
-  class="euiDroppable euiDroppable--noGrow"
+  class="euiDroppable euiDroppable--noGrow emotion-euiDroppable"
   data-rfd-droppable-context-id=":r0:"
   data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div
     aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-    class="euiDraggable emotion-euiDraggable-none"
+    class="euiDraggable emotion-euiDraggable"
     data-rfd-drag-handle-context-id=":r0:"
     data-rfd-drag-handle-draggable-id="testDraggable"
     data-rfd-draggable-context-id=":r0:"
