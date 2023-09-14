@@ -86,16 +86,16 @@ export const EuiDataGridToolbar = ({
       fullScreenControl,
     });
 
-    if (customToolbar.left || customToolbar.right) {
-      return (
-        <EuiDataGridToolbarContainer
-          left={customToolbar.left}
-          right={customToolbar.right}
-        />
-      );
+    if (isValidElement(customToolbar)) {
+      return customToolbar;
     }
 
-    return customToolbar.replaceWith ?? null;
+    return (
+      <EuiDataGridToolbarContainer
+        left={customToolbar.left}
+        right={customToolbar.right}
+      />
+    );
   }
 
   return (

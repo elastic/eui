@@ -118,15 +118,13 @@ export default () => {
     keyboardShortcutsControl,
   }) => {
     return {
-      left: hasRoomForGridControls
-        ? 'Always look at the left side of grid!'
-        : null,
+      left: hasRoomForGridControls ? 'Custom left side' : null,
       right: (
         <>
           {columnControl}
           {columnSortingControl}
-          {displayControl}
           {keyboardShortcutsControl}
+          {displayControl}
           {fullScreenControl}
         </>
       ),

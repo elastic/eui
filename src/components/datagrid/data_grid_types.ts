@@ -50,29 +50,30 @@ export interface EuiDataGridToolbarProps {
   displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  renderCustomToolbar?: (props: EuiDataGridCustomToolbarProps) => {
-    // to replace only controls inside the toolbar, use `left` and `right`
-    left?: ReactNode;
-    right?: ReactNode;
-    // to return a completely custom toolbar, use `replaceWith`
-    replaceWith?: ReactElement;
-  };
+  renderCustomToolbar?: (props: EuiDataGridCustomToolbarOptions) =>
+    | {
+        // to replace only controls inside the toolbar, use `left` and `right`
+        left?: ReactNode;
+        right?: ReactNode;
+      }
+    | ReactElement; // to replace the whole toolbar
 }
 
 /**
  * Props which are available for a custom toolbar rendering
  */
-export type EuiDataGridCustomToolbarProps = Pick<
-  EuiDataGridToolbarProps,
-  'gridWidth' | 'minSizeForControls' | 'toolbarVisibility' | 'isFullScreen'
-> & {
+export interface EuiDataGridCustomToolbarOptions {
+  gridWidth: EuiDataGridToolbarProps['gridWidth'];
+  toolbarVisibility: EuiDataGridToolbarProps['toolbarVisibility'];
+  isFullScreen: EuiDataGridToolbarProps['isFullScreen'];
+  minSizeForControls: number;
   hasRoomForGridControls: boolean;
   fullScreenControl: ReactNode;
   keyboardShortcutsControl: ReactNode;
   displayControl: ReactNode;
   columnControl: ReactNode;
   columnSortingControl: ReactNode;
-};
+}
 
 export interface EuiDataGridPaginationRendererProps
   extends EuiDataGridPaginationProps {
@@ -311,7 +312,7 @@ export type CommonGridProps = CommonProps &
      *
      * Behind the scenes, this function is treated as a React component,
      * allowing hooks, context, and other React concepts to be used.
-     * It receives #EuiDataGridCustomToolbarProps as its only argument.
+     * It receives #EuiDataGridCustomToolbarOptions as its only argument.
      */
     renderCustomToolbar?: EuiDataGridToolbarProps['renderCustomToolbar'];
     /**
