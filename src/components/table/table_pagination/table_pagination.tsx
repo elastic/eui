@@ -114,11 +114,11 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
     () =>
       itemsPerPageOptions.map((itemsPerPageOption) => (
         <EuiContextMenuItem
+          key={itemsPerPageOption}
           icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
           aria-current={
             itemsPerPageOption === itemsPerPage ? 'true' : undefined
           }
-          key={itemsPerPageOption}
           onClick={() => {
             closePopover();
             onChangeItemsPerPage?.(itemsPerPageOption);
