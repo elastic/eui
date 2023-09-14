@@ -15,21 +15,23 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
 import {
   getSecureRelForTarget,
   useEuiTheme,
   cloneElementWithCss,
 } from '../../services';
+import { useGeneratedHtmlId } from '../../services/accessibility';
+import { validateHref } from '../../services/security/href_validator';
+
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
 import { EuiIconProps } from '../icon';
-import { EuiCardSelect, EuiCardSelectProps } from './card_select';
-import { useGeneratedHtmlId } from '../../services/accessibility';
-import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiSpacer } from '../spacer';
+
+import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 import {
   euiCardBetaBadgeStyles,
   euiCardStyles,
