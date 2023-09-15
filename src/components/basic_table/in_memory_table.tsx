@@ -81,14 +81,17 @@ type InMemoryTableProps<T> = Omit<
    */
   search?: Search;
   /**
-   * If passed as true, search ignores all filters and EQL syntax, and anything
-   * typed into the table search bar is treated as plain text.
+   * By default, tables use `eql` format for search which allows using advanced filters.
    *
-   * This functionality allows users to search for strings with special characters
-   * such as quotes, parentheses, and colons, which are normally otherwise
-   * reserved for EQL syntax.
+   * However, certain special characters (such as quotes, parentheses, and colons)
+   * are reserved for EQL syntax and will error if used.
+   * If your table does not require filter search and instead requires searching for certain
+   * symbols, use a plain `text` search format instead (note that filters will be ignored
+   * in this format).
+   *
+   * @default "eql"
    */
-  searchPlainText?: boolean;
+  searchFormat?: 'eql' | 'text';
   /**
    * Configures #Pagination
    */
@@ -298,6 +301,7 @@ export class EuiInMemoryTable<T> extends Component<
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
+    searchFormat: 'eql',
   };
   tableRef: React.RefObject<EuiBasicTable>;
 
@@ -545,12 +549,12 @@ export class EuiInMemoryTable<T> extends Component<
   };
 
   renderSearchBar() {
-    const { search, searchPlainText } = this.props;
+    const { search, searchFormat } = this.props;
     if (!search) return;
 
     let searchBar: ReactNode;
 
-    if (searchPlainText) {
+    if (searchFormat === 'text') {
       const _searchBoxProps = (search as EuiSearchBarProps)?.box || {}; // Work around | boolean type
       const { schema, ...searchBoxProps } = _searchBoxProps; // Destructure `schema` so it doesn't get rendered to DOM
 
@@ -695,7 +699,7 @@ export class EuiInMemoryTable<T> extends Component<
       tableLayout,
       items: _unuseditems,
       search,
-      searchPlainText,
+      searchFormat,
       onTableChange,
       executeQueryOptions,
       allowNeutralSort,

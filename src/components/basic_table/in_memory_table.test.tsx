@@ -1438,7 +1438,7 @@ describe('EuiInMemoryTable', () => {
     });
   });
 
-  describe('plain text search', () => {
+  describe('text search format', () => {
     it('allows searching for any text with special characters in it', () => {
       const specialCharacterSearch = '!@#$%^&*(){}+=-_hello:world"`<>?/👋~.,;|';
       const items = [
@@ -1450,7 +1450,7 @@ describe('EuiInMemoryTable', () => {
       const { getByTestSubject, container } = render(
         <EuiInMemoryTable
           items={items}
-          searchPlainText
+          searchFormat="text"
           search={{ box: { incremental: true, 'data-test-subj': 'searchbox' } }}
           columns={columns}
         />

@@ -114,7 +114,7 @@ export default () => {
   const [incremental, setIncremental] = useState(false);
   const [filters, setFilters] = useState(false);
   const [contentBetween, setContentBetween] = useState(false);
-  const [searchPlainText, setSearchPlainText] = useState(false);
+  const [textSearchFormat, setTextSearchFormat] = useState(false);
 
   const search: EuiSearchBarProps = {
     box: {
@@ -162,17 +162,17 @@ export default () => {
         />
         <EuiSwitch
           label="Plain text search"
-          checked={searchPlainText}
-          onChange={() => setSearchPlainText(!searchPlainText)}
+          checked={textSearchFormat}
+          onChange={() => setTextSearchFormat(!textSearchFormat)}
         />
       </EuiFlexGroup>
       <EuiSpacer size="l" />
       <EuiInMemoryTable
         tableCaption="Demo of EuiInMemoryTable with search"
-        items={searchPlainText ? usersWithSpecialCharacters : users}
+        items={textSearchFormat ? usersWithSpecialCharacters : users}
         columns={columns}
         search={search}
-        searchPlainText={searchPlainText}
+        searchFormat={textSearchFormat ? 'text' : 'eql'}
         pagination={true}
         sorting={true}
         childrenBetween={
