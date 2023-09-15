@@ -10,7 +10,7 @@ import React from 'react';
 import { render, act } from '@testing-library/react';
 import { renderHook } from '../../test/rtl';
 
-import { EuiProvider } from '../../components';
+import { EuiProvider } from '../../components/provider';
 
 import { setEuiDevProviderWarning } from './warning';
 import {
