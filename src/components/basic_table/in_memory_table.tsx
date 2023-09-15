@@ -541,7 +541,7 @@ export class EuiInMemoryTable<T> extends Component<
   // Alternative to onQueryChange - allows consumers to specify they want the
   // search bar to ignore EQL syntax and only use the searchbar for plain text
   onPlainTextSearch = (searchValue: string) => {
-    const escapedQueryText = searchValue.replaceAll('"', '\\"');
+    const escapedQueryText = searchValue.replace(/["\\]/g, '\\$&');
     const finalQuery = `"${escapedQueryText}"`;
     this.setState({
       query: EuiSearchBar.Query.parse(finalQuery),

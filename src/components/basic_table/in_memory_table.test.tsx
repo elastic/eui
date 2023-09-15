@@ -1440,7 +1440,8 @@ describe('EuiInMemoryTable', () => {
 
   describe('text search format', () => {
     it('allows searching for any text with special characters in it', () => {
-      const specialCharacterSearch = '!@#$%^&*(){}+=-_hello:world"`<>?/👋~.,;|';
+      const specialCharacterSearch =
+        '!@#$%^&*(){}+=-_hello:world"`<>?/👋~.,;|\\';
       const items = [
         { title: specialCharacterSearch },
         { title: 'no special characters' },
