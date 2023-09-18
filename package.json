@@ -127,7 +127,7 @@
     "@emotion/eslint-plugin": "^11.11.0",
     "@emotion/jest": "^11.11.0",
     "@emotion/react": "^11.11.0",
-    "@faker-js/faker": "^7.6.0",
+    "@faker-js/faker": "^8.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@storybook/addon-essentials": "^7.3.1",
     "@storybook/addon-interactions": "^7.3.1",
