@@ -54,7 +54,7 @@ describe('EuiOverlayMask', () => {
       </EuiOverlayMask>
     );
     expect(getClassName()).toMatchInlineSnapshot(
-      `"euiOverlayMask css-1sm7f9p-euiOverlayMask-belowHeader world"`
+      `"euiOverlayMask css-1j0pa91-euiOverlayMask-belowHeader world"`
     );
   });
 

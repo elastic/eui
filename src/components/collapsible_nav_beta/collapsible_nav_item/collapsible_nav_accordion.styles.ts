@@ -114,7 +114,7 @@ export const euiCollapsibleNavAccordionStyles = (
         }
       }
 
-      &.euiAccordion__iconButton-isOpen > .euiIcon {
+      &.euiAccordion__arrow[aria-expanded='true'] > .euiIcon {
         color: ${sharedStyles.color};
         transform: rotate(-90deg);
       }

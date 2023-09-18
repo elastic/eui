@@ -235,6 +235,7 @@ exports[`EuiTablePagination renders 1`] = `
           >
             <div>
               <button
+                aria-current="true"
                 class="euiContextMenuItem"
                 data-test-subj="tablePagination-10-rows"
                 type="button"

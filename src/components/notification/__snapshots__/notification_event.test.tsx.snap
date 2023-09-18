@@ -506,10 +506,10 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </p>
       </div>
       <div
-        class="euiAccordion euiNotificationEventMessages__accordion"
+        class="euiAccordion euiNotificationEventMessages__accordion emotion-euiAccordion"
       >
         <div
-          class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+          class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
         >
           <button
             aria-controls="euiNotificationEventMessagesAccordion_generated-id"
@@ -528,32 +528,32 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </div>
         <div
           aria-labelledby="generated-id"
-          class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+          class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
           id="euiNotificationEventMessagesAccordion_generated-id"
+          inert=""
           role="region"
+          style="block-size: 0;"
           tabindex="-1"
         >
-          <div>
+          <div
+            class="euiAccordion__children emotion-euiAccordion__children"
+          >
             <div
-              class="euiAccordion__children emotion-euiAccordion__children"
+              class="euiNotificationEventMessages__accordionContent"
             >
               <div
-                class="euiNotificationEventMessages__accordionContent"
+                class="euiText emotion-euiText-s-euiTextColor-subdued"
               >
-                <div
-                  class="euiText emotion-euiText-s-euiTextColor-subdued"
-                >
-                  <p>
-                    message 2
-                  </p>
-                </div>
-                <div
-                  class="euiText emotion-euiText-s-euiTextColor-subdued"
-                >
-                  <p>
-                    message 3
-                  </p>
-                </div>
+                <p>
+                  message 2
+                </p>
+              </div>
+              <div
+                class="euiText emotion-euiText-s-euiTextColor-subdued"
+              >
+                <p>
+                  message 3
+                </p>
               </div>
             </div>
           </div>

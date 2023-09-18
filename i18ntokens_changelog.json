@@ -1,5 +1,29 @@
 [
   {
+    "version": "88.3.0",
+    "changes": [
+      {
+        "token": "euiAccordion.isLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiAccordionChildrenLoading.message",
+        "changeType": "added",
+        "value": "Loading"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonAriaLabel",
+        "changeType": "added",
+        "value": "Clear all toast notifications"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonDisplayText",
+        "changeType": "added",
+        "value": "Clear all"
+      }
+    ]
+  },
+  {
     "version": "87.2.0",
     "changes": [
       {

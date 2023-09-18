@@ -30,14 +30,7 @@ export type EuiInlineEditTextProps = EuiInlineEditCommonProps & {
 export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   className,
   size = 'm',
-  defaultValue,
-  placeholder,
-  inputAriaLabel,
-  startWithEditOpen,
   readModeProps: _readModeProps,
-  editModeProps,
-  isLoading,
-  isInvalid,
   isReadOnly,
   ...rest
 }) => {
@@ -59,25 +52,14 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
     };
   }, [_readModeProps, isReadOnly]);
 
-  const formProps = {
-    sizes,
-    defaultValue,
-    placeholder,
-    inputAriaLabel,
-    startWithEditOpen,
-    readModeProps,
-    editModeProps,
-    isLoading,
-    isInvalid,
-    isReadOnly,
-  };
-
   return (
     <EuiInlineEditForm
       className={classes}
       css={cssStyles}
+      readModeProps={readModeProps}
+      isReadOnly={isReadOnly}
+      sizes={sizes}
       {...rest}
-      {...formProps}
     >
       {(textReadModeValue) => (
         <EuiText size={size} className="eui-textTruncate">
