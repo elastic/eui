@@ -8,25 +8,18 @@
 
 import React, {
   CSSProperties,
-  Fragment,
   FunctionComponent,
   ReactElement,
-  cloneElement,
   useContext,
 } from 'react';
 import { Draggable, DraggableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
+
+import { useEuiTheme, cloneElementWithCss } from '../../services';
 import { CommonProps } from '../common';
-import { EuiDroppableContext } from './droppable';
 
-const spacingToClassNameMap = {
-  none: null,
-  s: 'euiDraggable--s',
-  m: 'euiDraggable--m',
-  l: 'euiDraggable--l',
-};
-
-export type EuiDraggableSpacing = keyof typeof spacingToClassNameMap;
+import { EuiDroppableContext, SPACINGS } from './droppable';
+import { euiDraggableStyles, euiDraggableItemStyles } from './draggable.styles';
 
 export interface EuiDraggableProps
   extends CommonProps,
@@ -52,7 +45,7 @@ export interface EuiDraggableProps
   /**
    * Adds padding to the draggable item
    */
-  spacing?: EuiDraggableSpacing;
+  spacing?: (typeof SPACINGS)[number];
   style?: CSSProperties;
 }
 
@@ -72,6 +65,9 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
 }) => {
   const { cloneItems } = useContext(EuiDroppableContext);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiDraggableStyles(euiTheme);
+
   return (
     <Draggable
       draggableId={draggableId}
@@ -80,35 +76,33 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
       {...rest}
     >
       {(provided, snapshot, rubric) => {
-        const classes = classNames(
-          'euiDraggable',
-          {
-            'euiDraggable--hasClone': cloneItems,
-            'euiDraggable--hasCustomDragHandle': customDragHandle,
-            'euiDraggable--isDragging': snapshot.isDragging,
-            'euiDraggable--withoutDropAnimation': isRemovable,
-          },
-          spacingToClassNameMap[spacing],
-          className
-        );
+        const { isDragging } = snapshot;
+
+        const cssStyles = [
+          styles.euiDraggable,
+          cloneItems && !isDragging && styles.hasClone,
+          isDragging && styles.isDragging,
+          isRemovable && styles.isRemovable,
+          styles.spacing[spacing],
+        ];
+
+        const classes = classNames('euiDraggable', className);
         const childClasses = classNames('euiDraggable__item', {
-          'euiDraggable__item--hasCustomDragHandle': customDragHandle,
-          'euiDraggable__item--isDisabled': isDragDisabled,
-          'euiDraggable__item--isDragging': snapshot.isDragging,
-          'euiDraggable__item--isDropAnimating': snapshot.isDropAnimating,
+          'euiDraggable__item-isDisabled': isDragDisabled,
         });
         const DraggableElement: ReactElement =
           typeof children === 'function'
             ? (children(provided, snapshot, rubric) as ReactElement)
             : children;
         return (
-          <Fragment>
+          <>
             <div
               {...provided.draggableProps}
               {...(!customDragHandle ? provided.dragHandleProps : {})}
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
               className={classes}
+              css={cssStyles}
               style={{ ...style, ...provided.draggableProps.style }}
               // We use [role="group"] instead of [role="button"] when we expect a nested
               // interactive element. Screen readers will cue users that this is a container
@@ -126,19 +120,26 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
                   : provided.dragHandleProps?.tabIndex
               }
             >
-              {cloneElement(DraggableElement, {
+              {cloneElementWithCss(DraggableElement, {
                 className: classNames(
                   DraggableElement.props.className,
                   childClasses
                 ),
+                css: [
+                  euiDraggableItemStyles.euiDraggable__item,
+                  isDragDisabled && euiDraggableItemStyles.disabled,
+                ],
               })}
             </div>
-            {cloneItems && snapshot.isDragging && (
-              <div className={classNames(classes, 'euiDraggable--clone')}>
+            {cloneItems && isDragging && (
+              <div
+                className={classNames(classes, 'euiDraggable--clone')}
+                css={cssStyles}
+              >
                 {DraggableElement}
               </div>
             )}
-          </Fragment>
+          </>
         );
       }}
     </Draggable>

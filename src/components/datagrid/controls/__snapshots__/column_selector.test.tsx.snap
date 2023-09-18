@@ -80,20 +80,20 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
         class="euiDataGrid__controlScroll"
       >
         <div
-          class="euiDroppable euiDroppable--noGrow"
+          class="euiDroppable emotion-euiDroppable-noGrow"
           data-rfd-droppable-context-id="0"
           data-rfd-droppable-id="columnOrder"
           data-test-subj="droppable"
         >
           <div
-            class="euiDraggable euiDraggable--hasCustomDragHandle"
+            class="euiDraggable emotion-euiDraggable"
             data-rfd-draggable-context-id="0"
             data-rfd-draggable-id="columnA"
             data-test-subj="draggable"
             role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
+              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
               data-test-subj="dataGridColumnSelectorColumnItem-columnA"
             >
               <div
@@ -163,14 +163,14 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
             </div>
           </div>
           <div
-            class="euiDraggable euiDraggable--hasCustomDragHandle"
+            class="euiDraggable emotion-euiDraggable"
             data-rfd-draggable-context-id="0"
             data-rfd-draggable-id="columnB"
             data-test-subj="draggable"
             role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
+              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
               data-test-subj="dataGridColumnSelectorColumnItem-columnB"
             >
               <div
@@ -375,20 +375,20 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
         class="euiDataGrid__controlScroll"
       >
         <div
-          class="euiDroppable euiDroppable--noGrow"
+          class="euiDroppable emotion-euiDroppable-noGrow"
           data-rfd-droppable-context-id=":r0:"
           data-rfd-droppable-id="columnOrder"
           data-test-subj="droppable"
         >
           <div
-            class="euiDraggable euiDraggable--hasCustomDragHandle"
+            class="euiDraggable emotion-euiDraggable"
             data-rfd-draggable-context-id=":r0:"
             data-rfd-draggable-id="columnA"
             data-test-subj="draggable"
             role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
+              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
               data-test-subj="dataGridColumnSelectorColumnItem-columnA"
             >
               <div
@@ -458,14 +458,14 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
             </div>
           </div>
           <div
-            class="euiDraggable euiDraggable--hasCustomDragHandle"
+            class="euiDraggable emotion-euiDraggable"
             data-rfd-draggable-context-id=":r0:"
             data-rfd-draggable-id="columnB"
             data-test-subj="draggable"
             role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
+              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
               data-test-subj="dataGridColumnSelectorColumnItem-columnB"
             >
               <div
