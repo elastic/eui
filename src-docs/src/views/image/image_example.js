@@ -38,6 +38,15 @@ const imageZoomSnippet = `<EuiImage
 />
 `;
 
+import ImageZoomOnHover from './image_zoom_on_hover';
+const imageZoomOnHoverSource = require('!!raw-loader!./image_zoom_on_hover');
+const imageZoomOnHoverSnippet = `<EuiImage
+  allowFullScreenOnHover
+  alt={alt}
+  src={src}
+/>
+`;
+
 import ImageSvg from './image_svg';
 const imageSvgSource = require('!!raw-loader!./image_svg');
 const imageSvgSnippet = `<EuiImage
@@ -125,6 +134,23 @@ export const ImageExample = {
       ),
       demo: <ImageZoom />,
       snippet: imageZoomSnippet,
+    },
+    {
+      title: 'Hover an image for a fullscreen version',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: imageZoomOnHoverSource,
+        },
+      ],
+      text: (
+        <p>
+          Apply the <EuiCode>allowFullScreenOnHover</EuiCode> prop to make the image
+          Hover-able and show a fullscreen version.
+        </p>
+      ),
+      demo: <ImageZoomOnHover  />,
+      snippet: imageZoomOnHoverSnippet,
     },
     {
       title: 'Images can be sized',

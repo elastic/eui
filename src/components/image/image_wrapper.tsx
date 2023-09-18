@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../services';
@@ -31,6 +31,8 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   fullScreenIconColor,
   isFullWidth,
   onFullScreen,
+  allowFullScreenOnHover,
+  setIsHovered,
 }) => {
   const openFullScreen = () => {
     setIsFullScreen(true);
@@ -49,12 +51,27 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     styles.euiImageWrapper,
     float && styles[float],
     margin && styles[margin],
-    allowFullScreen && styles.allowFullScreen,
+    (allowFullScreen || allowFullScreenOnHover) && styles.allowFullScreen,
     isFullWidth && styles.fullWidth,
     wrapperProps?.css,
   ];
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
+
+  const onMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, [setIsHovered]);
+
+  const onMouseLeave = useCallback(() => {
+    setIsHovered(false);
+  }, [setIsHovered]);
+
+  const hoverProps = allowFullScreenOnHover
+    ? {
+        onMouseEnter,
+        onMouseLeave,
+      }
+    : {};
 
   return (
     <figure
@@ -63,7 +80,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
       className={classes}
       css={cssFigureStyles}
     >
-      {allowFullScreen ? (
+      {allowFullScreen || allowFullScreenOnHover ? (
         <>
           <EuiImageButton
             hasAlt={!!alt}
@@ -72,6 +89,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
             data-test-subj="activateFullScreenButton"
             isFullWidth={isFullWidth}
             fullScreenIconColor={fullScreenIconColor}
+            {...hoverProps}
           >
             {children}
           </EuiImageButton>

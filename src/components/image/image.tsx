@@ -17,6 +17,7 @@ import { EuiImageFullScreenWrapper } from './image_fullscreen_wrapper';
 import type { EuiImageProps, EuiImageSize } from './image_types';
 
 import { SIZES } from './image_types';
+import { EuiPopover } from '../popover';
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
@@ -33,9 +34,11 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   float,
   margin,
   onFullScreen,
+  allowFullScreenOnHover,
   ...rest
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const isNamedSize =
     typeof size === 'string' && SIZES.includes(size as EuiImageSize);
@@ -79,6 +82,8 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     float,
     margin,
     onFullScreen,
+    allowFullScreenOnHover,
+    setIsHovered,
   };
 
   const commonImgProps = {
@@ -87,17 +92,20 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     ...rest,
   };
 
+  const buttonNode = (
+    <EuiImageWrapper {...commonWrapperProps}>
+      <img
+        alt={alt}
+        css={cssStyles}
+        style={imageStyleWithCustomSize}
+        {...commonImgProps}
+      />
+    </EuiImageWrapper>
+  );
+
   return (
     <>
-      <EuiImageWrapper {...commonWrapperProps}>
-        <img
-          alt={alt}
-          css={cssStyles}
-          style={imageStyleWithCustomSize}
-          {...commonImgProps}
-        />
-      </EuiImageWrapper>
-
+      {!allowFullScreenOnHover && buttonNode}
       {allowFullScreen && isFullScreen && (
         <EuiImageFullScreenWrapper {...commonWrapperProps}>
           <img
@@ -107,6 +115,22 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
             {...commonImgProps}
           />
         </EuiImageFullScreenWrapper>
+      )}
+
+      {allowFullScreenOnHover && (
+        <EuiPopover
+          data-test-subj="imagePopver"
+          isOpen={isHovered}
+          button={buttonNode}
+          closePopover={() => setIsHovered(false)}
+        >
+          <img
+            alt={alt}
+            css={cssIsFullScreenStyles}
+            style={style}
+            {...commonImgProps}
+          />
+        </EuiPopover>
       )}
     </>
   );

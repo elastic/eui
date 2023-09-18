@@ -88,6 +88,12 @@ export type EuiImageProps = CommonProps &
      * Props to add to the wrapping figure element
      */
     wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
+
+    /**
+     * When set to `true` will show a preview of the image when hovered.
+     */
+
+    allowFullScreenOnHover?: boolean;
   };
 
 export type EuiImageWrapperProps = PropsWithChildren &
@@ -105,6 +111,8 @@ export type EuiImageWrapperProps = PropsWithChildren &
   > & {
     isFullWidth: boolean;
     setIsFullScreen: (isFullScreen: boolean) => void;
+    setIsHovered: (isFullScreen: boolean) => void;
+    allowFullScreenOnHover?: boolean;
   };
 
 export type EuiImageButtonProps = PropsWithChildren &
@@ -114,6 +122,8 @@ export type EuiImageButtonProps = PropsWithChildren &
     onKeyDown?: (e: React.KeyboardEvent) => void;
     isFullWidth: boolean;
     isFullScreen?: boolean;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
   };
 
 export type EuiImageCaptionProps = Pick<EuiImageProps, 'caption'> & {
