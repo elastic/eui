@@ -1,13 +1,15 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - agents:
-      provider: "gcp"
   - command: .buildkite/scripts/pipeline_test.sh
+    agents:
+      provider: "gcp"
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
   - command: .buildkite/scripts/pipeline_test.sh
+    agents:
+      provider: "gcp"
     env:
       TEST_TYPE: 'unit'
     if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
