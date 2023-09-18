@@ -145,8 +145,8 @@ export const ImageExample = {
       ],
       text: (
         <p>
-          Apply the <EuiCode>allowFullScreenOnHover</EuiCode> prop to make the image
-          Hover-able and show a fullscreen version.
+          Apply the <EuiCode>allowFullScreenOnHover</EuiCode> prop to make the image Hover-able and show a fullscreen
+          version.
         </p>
       ),
       demo: <ImageZoomOnHover />,
