@@ -37,6 +37,97 @@ describe('EuiComboBox', () => {
     });
   });
 
+  describe('truncation', () => {
+    const sharedProps = {
+      style: { width: 200 },
+      options: [
+        { label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+      ],
+    };
+
+    it('defaults to end truncation', () => {
+      cy.realMount(<EuiComboBox {...sharedProps} />);
+      cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('[data-test-subj="truncatedText"]').should(
+        'have.text',
+        'Lorem ipsum dolor sit a…'
+      );
+    });
+
+    it('allows customizing truncationProps', () => {
+      cy.realMount(
+        <EuiComboBox
+          {...sharedProps}
+          truncationProps={{ truncation: 'middle' }}
+        />
+      );
+      cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('[data-test-subj="truncatedText"]').should(
+        'have.text',
+        'Lorem ipsum …piscing elit.'
+      );
+    });
+
+    it('allows individual option truncationProps to override parent truncationProps', () => {
+      cy.realMount(
+        <EuiComboBox
+          {...sharedProps}
+          truncationProps={{ truncation: 'middle' }}
+          options={[
+            {
+              ...sharedProps.options[0],
+              truncationProps: { truncation: 'start', truncationOffset: 5 },
+            },
+          ]}
+        />
+      );
+      cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('[data-test-subj="truncatedText"]').should(
+        'have.text',
+        'Lorem…tur adipiscing elit.'
+      );
+    });
+
+    describe('when searching', () => {
+      it('uses start & end truncation position', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('sit');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          '…sum dolor sit amet, co…'
+        );
+      });
+
+      it('does not truncate the start when the found search is near the start', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('ipsum');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lorem ipsum dolor sit a…'
+        );
+      });
+
+      it('does not truncate the end when the found search is near the end', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('eli');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          '…nsectetur adipiscing elit.'
+        );
+      });
+
+      it('marks the full available text if the search input is longer than the truncated text', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('Lorem ipsum dolor sit amet');
+        cy.get('.euiMark').should('have.text', '…rem ipsum dolor sit am…');
+      });
+    });
+  });
+
   describe('Backspace to delete last pill', () => {
     const options = [
       { label: 'Item 1' },
