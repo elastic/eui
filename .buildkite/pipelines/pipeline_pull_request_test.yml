@@ -3,7 +3,11 @@
 steps:
   - agents:
       provider: "gcp"
-    command: .buildkite/scripts/pipeline_test.sh
+  - command: .buildkite/scripts/pipeline_test.sh
+    env:
+      TEST_TYPE: 'lint'
     if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
-    artifact_paths:
-      - "cypress/screenshots/**/*.png"
+  - command: .buildkite/scripts/pipeline_test.sh
+    env:
+      TEST_TYPE: 'unit'
+    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
