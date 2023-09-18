@@ -149,7 +149,7 @@ export const ImageExample = {
           Hover-able and show a fullscreen version.
         </p>
       ),
-      demo: <ImageZoomOnHover  />,
+      demo: <ImageZoomOnHover />,
       snippet: imageZoomOnHoverSnippet,
     },
     {

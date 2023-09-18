@@ -37,7 +37,7 @@ export default () => (
         src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Wikimedia_browser_share_pie_chart.png"
         fullScreenIconColor="dark"
         size={300}
-        style={{padding: '20px 30px', background: 'white'}}
+        style={ {padding: '20px 30px', background: 'white'} }
       />
     </EuiFlexItem>
   </EuiFlexGroup>
