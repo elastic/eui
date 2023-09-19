@@ -14,7 +14,9 @@ import {
   EuiSideNavProps,
   EuiSideNavHeadingProps,
 } from './side_nav';
+
 import { EuiIcon } from '../icon';
+import { EuiText } from '../text';
 
 const meta: Meta<EuiSideNavProps> = {
   title: 'EuiSideNav',
@@ -44,44 +46,134 @@ export const Playground: Story = {
     heading: 'Elastic',
     headingProps: _sharedHeadingProps,
     isOpenOnMobile: false,
-    truncate: false,
-  },
-  render: ({ ...args }) => <StatefulSideNav {...args} />,
-};
-
-export const SideNavHeader: Story = {
-  args: {
-    ...componentDefaults,
     items: [
       {
-        name: 'Root item',
-        id: 'rootItem',
+        name: 'Kibana',
+        id: 'kibana',
+        icon: <EuiIcon type="logoKibana" />,
         items: [
           {
-            name: 'Child item',
-            id: 'childItem',
-            onClick: () => {},
+            name: 'Has nested children',
+            id: 'normal_children',
+            items: [
+              {
+                name: 'Child 1',
+                id: 'child_1',
+                items: [
+                  {
+                    name: 'Selected item',
+                    id: 'selected_item',
+                    onClick: () => {},
+                    isSelected: true,
+                    items: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Has forceOpen: true',
+            id: 'force_open',
+            forceOpen: true,
+            items: [
+              {
+                name: 'Child 3',
+                id: 'child_3',
+              },
+            ],
+          },
+          {
+            name: 'Children only without link',
+            id: 'children_only',
+            onClick: undefined,
+            items: [
+              {
+                name: 'Child 4',
+                id: 'child_4',
+              },
+            ],
           },
         ],
       },
     ],
+  },
+  render: ({ ...args }) => (
+    <EuiSideNav
+      {...args}
+      css={{ width: '200px' }} // Required to view text truncation
+    />
+  ),
+};
+
+export const MobileSideNav: Story = {
+  args: {
+    ...componentDefaults,
+    heading: 'Elastic',
+    headingProps: _sharedHeadingProps,
+    isOpenOnMobile: true,
+    truncate: true,
+  },
+  argTypes: {
+    // This story demos the side nav on smaller screens; removing other props to prevent confusion
+    'aria-label': { table: { disable: true } },
+    heading: { table: { disable: true } },
+    headingProps: { table: { disable: true } },
+    toggleOpenOnMobile: { table: { disable: true } },
+    isOpenOnMobile: { table: { disable: true } },
+    items: { table: { disable: true } },
+    renderItem: { table: { disable: true } },
+    truncate: { table: { disable: true } },
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+  render: ({ ...args }) => <StatefulSideNav {...args} />,
+};
+
+export const RenderItem: Story = {
+  args: {
+    ...componentDefaults,
+    items: [
+      {
+        name: 'Kibana',
+        id: 'kibana',
+        renderItem: ({ children }) => (
+          <EuiText color="subdued">{children}</EuiText>
+        ),
+      },
+      {
+        name: 'Observability',
+        id: 'observability',
+      },
+      {
+        name: 'Security',
+        id: 'security',
+      },
+    ],
+    renderItem: ({ children }) => <EuiText color="accent">{children}</EuiText>,
     heading: 'Navigation header',
     headingProps: _sharedHeadingProps,
   },
   argTypes: {
-    // This story demos the header props; removing other props to prevent confusion
+    // This story demos the renderItem prop; removing other props to prevent confusion
+    'aria-label': { table: { disable: true } },
+    heading: { table: { disable: true } },
+    headingProps: { table: { disable: true } },
     toggleOpenOnMobile: { table: { disable: true } },
     isOpenOnMobile: { table: { disable: true } },
     mobileBreakpoints: { table: { disable: true } },
-    items: { table: { disable: true } },
-    renderItem: { table: { disable: true } },
+    mobileTitle: { table: { disable: true } },
     truncate: { table: { disable: true } },
   },
   render: ({ ...args }) => <EuiSideNav {...args} />,
 };
 
 const StatefulSideNav = (props: Partial<EuiSideNavProps>) => {
-  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(
+    props.isOpenOnMobile
+  );
   const [selectedItemName, setSelectedItem] = useState('Time stuff');
 
   const toggleOpenOnMobile = () => {
