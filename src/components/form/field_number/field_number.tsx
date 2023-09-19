@@ -12,6 +12,7 @@ import React, {
   FunctionComponent,
   useState,
   useCallback,
+  useMemo,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
@@ -121,13 +122,29 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
 
   // Unfortunately, the native number input handles `step` validity incredibly unintuitively
   // so if we're passed a valid step, we should attempt to manually handle validity
-  const hasValidStep = typeof step === 'number';
+  const hasValidStep = useMemo(() => {
+    const hasNumericalStep = typeof step === 'number';
+
+    // If the component initializes with a value that don't match the step
+    // the entire component will always be invalid on every change - we should
+    // not check step validity in that case
+    const initialValue = Number(value || rest.defaultValue);
+    if (hasNumericalStep && initialValue) {
+      if (_checkStepValidity(step, initialValue)) {
+        console.warn(
+          'Disabling step validity checking. The passed `step` value does not match the initial component value.'
+        );
+        return false;
+      }
+    }
+    return hasNumericalStep;
+  }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [isStepInvalid, setIsStepInvalid] = useState(false);
   const checkStepValidity = useCallback(
     (value: number) => {
       if (hasValidStep) {
-        setIsStepInvalid(_checkStepValidity(step, value));
+        setIsStepInvalid(_checkStepValidity(step as number, value));
       }
     },
     [step, hasValidStep]

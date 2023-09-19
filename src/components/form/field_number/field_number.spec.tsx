@@ -88,5 +88,42 @@ describe('EuiFieldNumber', () => {
       cy.realType('{backspace}3');
       checkIsValid();
     });
+
+    describe('invalid step/values on mount', () => {
+      beforeEach(() => {
+        cy.window().then((win) => {
+          cy.wrap(cy.spy(win.console, 'warn')).as('spyConsoleWarn');
+        });
+      });
+
+      it('warns and does not validate step if an invalid step/value combo is passed', () => {
+        cy.mount(<EuiFieldNumber step={10} value={5} />);
+        checkIsValid();
+        cy.get('@spyConsoleWarn').should(
+          'be.calledOnceWith',
+          'Disabling step validity checking. The passed `step` value does not match the initial component value.'
+        );
+      });
+
+      it('warns and does not validate step if an invalid step/defaultValue combo is passed', () => {
+        cy.mount(<EuiFieldNumber step={3} defaultValue={4} />);
+        checkIsValid();
+
+        // Default browser behavior: browsers will automatically adjust the valid internal `step` value
+        cy.get('input').click().type('{backspace}2');
+        checkIsInvalid();
+        checkHasInvalidMessage(
+          'Please enter a valid value. The two nearest valid values are 1 and 4.'
+        );
+        cy.get('input').click().type('{backspace}7');
+        checkIsValid();
+
+        // Console warn should only have been called once on mount
+        cy.get('@spyConsoleWarn').should(
+          'be.calledOnceWith',
+          'Disabling step validity checking. The passed `step` value does not match the initial component value.'
+        );
+      });
+    });
   });
 });
