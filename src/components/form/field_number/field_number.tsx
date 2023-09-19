@@ -94,7 +94,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     max,
     step = 'any',
     value,
-    isInvalid,
+    isInvalid: isInvalidFromProps,
     fullWidth = defaultFullWidth,
     isLoading = false,
     compressed = false,
@@ -113,14 +113,10 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   // will set :invalid state automatically, but we need to also set
   // `aria-invalid` as well as display an icon. We also want to *not* set this on
   // EuiValidatableControl, in order to not override custom validity messages
-  const [isNativelyInvalid, setIsNativelyInvalid] = useState<
-    true | undefined
-  >();
+  const [isNativelyInvalid, setIsNativelyInvalid] = useState(false);
 
   const checkNativeValidity = useCallback((inputEl: HTMLInputElement) => {
-    // Prefer `undefined` over `false` so that the `aria-invalid` prop unsets completely
-    const isInvalid = !inputEl.validity.valid || undefined;
-    setIsNativelyInvalid(isInvalid);
+    setIsNativelyInvalid(!inputEl.validity.valid);
   }, []);
 
   // Unfortunately, the native number input handles `step` validity incredibly unintuitively
@@ -137,10 +133,16 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     [step, hasValidStep]
   );
 
+  const isInvalid = !!(
+    isInvalidFromProps ||
+    isStepInvalid ||
+    isNativelyInvalid
+  );
+
   const numIconsClass = controlOnly
     ? false
     : getFormControlClassNameForIconCount({
-        isInvalid: isInvalid || isStepInvalid || isNativelyInvalid,
+        isInvalid,
         isLoading,
       });
 
@@ -153,7 +155,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   });
 
   const control = (
-    <EuiValidatableControl isInvalid={isInvalid || isStepInvalid}>
+    <EuiValidatableControl isInvalid={isInvalidFromProps || isStepInvalid}>
       <input
         type="number"
         id={id}
@@ -166,7 +168,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         readOnly={readOnly}
         className={classes}
         ref={inputRef}
-        aria-invalid={isInvalid || isStepInvalid || isNativelyInvalid}
+        aria-invalid={isInvalid || undefined} // Unset the prop completely if valid
         onChange={(e) => {
           onChange?.(e);
           checkStepValidity(Number(e.currentTarget.value));
@@ -196,7 +198,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
-      isInvalid={isInvalid || isStepInvalid || isNativelyInvalid}
+      isInvalid={isInvalid}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}
