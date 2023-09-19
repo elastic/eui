@@ -32,31 +32,34 @@ describe('EuiDataGridToolbar', () => {
     const component = shallow(<EuiDataGridToolbar {...requiredProps} />);
 
     expect(component).toMatchInlineSnapshot(`
-      <EuiDataGridToolbarContainer
-        left={
-          <React.Fragment>
-            <div>
-              mock column selector
-            </div>
-            <div>
-              mock column sorting
-            </div>
-          </React.Fragment>
-        }
-        right={
-          <React.Fragment>
-            <div>
-              mock keyboard shortcuts
-            </div>
-            <div>
-              mock style selector
-            </div>
-            <div>
-              mock fullscreen selector
-            </div>
-          </React.Fragment>
-        }
-      />
+      <div
+        className="euiDataGrid__controls"
+        data-test-subj="dataGridControls"
+      >
+        <div
+          className="euiDataGrid__leftControls"
+        >
+          <div>
+            mock column selector
+          </div>
+          <div>
+            mock column sorting
+          </div>
+        </div>
+        <div
+          className="euiDataGrid__rightControls"
+        >
+          <div>
+            mock keyboard shortcuts
+          </div>
+          <div>
+            mock style selector
+          </div>
+          <div>
+            mock fullscreen selector
+          </div>
+        </div>
+      </div>
     `);
   });
 
@@ -66,22 +69,27 @@ describe('EuiDataGridToolbar', () => {
     );
 
     expect(component).toMatchInlineSnapshot(`
-      <EuiDataGridToolbarContainer
-        left={<React.Fragment />}
-        right={
-          <React.Fragment>
-            <EuiScreenReaderOnly
-              showOnFocus={true}
-            >
-              <span>
-                <div>
-                  mock keyboard shortcuts
-                </div>
-              </span>
-            </EuiScreenReaderOnly>
-          </React.Fragment>
-        }
-      />
+      <div
+        className="euiDataGrid__controls"
+        data-test-subj="dataGridControls"
+      >
+        <div
+          className="euiDataGrid__leftControls"
+        />
+        <div
+          className="euiDataGrid__rightControls"
+        >
+          <EuiScreenReaderOnly
+            showOnFocus={true}
+          >
+            <span>
+              <div>
+                mock keyboard shortcuts
+              </div>
+            </span>
+          </EuiScreenReaderOnly>
+        </div>
+      </div>
     `);
   });
 
@@ -103,25 +111,28 @@ describe('EuiDataGridToolbar', () => {
     );
 
     expect(component).toMatchInlineSnapshot(`
-      <EuiDataGridToolbarContainer
-        left={
-          <React.Fragment>
-            <div>
-              hello
-            </div>
-          </React.Fragment>
-        }
-        right={
-          <React.Fragment>
-            <div>
-              world
-            </div>
-            <div>
-              mock keyboard shortcuts
-            </div>
-          </React.Fragment>
-        }
-      />
+      <div
+        className="euiDataGrid__controls"
+        data-test-subj="dataGridControls"
+      >
+        <div
+          className="euiDataGrid__leftControls"
+        >
+          <div>
+            hello
+          </div>
+        </div>
+        <div
+          className="euiDataGrid__rightControls"
+        >
+          <div>
+            world
+          </div>
+          <div>
+            mock keyboard shortcuts
+          </div>
+        </div>
+      </div>
     `);
   });
 });

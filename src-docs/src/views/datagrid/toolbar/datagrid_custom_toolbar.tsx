@@ -10,6 +10,8 @@ import {
   EuiDataGridToolbarProps,
   EuiFormRow,
   EuiRange,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -117,18 +119,28 @@ export default () => {
     fullScreenControl,
     keyboardShortcutsControl,
   }) => {
-    return {
-      left: hasRoomForGridControls ? 'Custom left side' : null,
-      right: (
-        <>
-          {columnControl}
-          {columnSortingControl}
-          {keyboardShortcutsControl}
-          {displayControl}
-          {fullScreenControl}
-        </>
-      ),
-    };
+    return (
+      <EuiFlexGroup
+        responsive={false}
+        gutterSize="s"
+        justifyContent="spaceBetween"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          {hasRoomForGridControls && `Custom left side`}
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+            <EuiFlexItem grow={false}>{columnControl}</EuiFlexItem>
+            <EuiFlexItem grow={false}>{columnSortingControl}</EuiFlexItem>
+            <EuiFlexItem grow={false}>{keyboardShortcutsControl}</EuiFlexItem>
+            <EuiFlexItem grow={false}>{displayControl}</EuiFlexItem>
+            <EuiFlexItem grow={false}>{fullScreenControl}</EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
   };
 
   return (

@@ -201,14 +201,12 @@ export const DataGridToolbarExample = {
       text: (
         <>
           <p>
-            For advanced use cases, the <EuiCode>renderCustomToolbar</EuiCode>{' '}
+            For advanced use cases, the <EuiCode>renderCustomToolbar</EuiCode>
             prop for <EuiCode>EuiDataGrid</EuiCode> may be used to take complete
-            control over the placement of the toolbar controls (by returning{' '}
-            <EuiCode>left</EuiCode> and <EuiCode>right</EuiCode>) or the whole
-            toolbar element (by returning a react element). This may be useful
-            where custom layout (e.g., all buttons on the right side) are
-            required. The default individual controls will be available as
-            function parameters.
+            control over the whole toolbar element (by returning a react
+            element). This may be useful where a custom layout (e.g., all
+            buttons on the right side) is required. The default individual
+            controls will be available as function parameters.
           </p>
         </>
       ),

@@ -47,13 +47,7 @@ export interface EuiDataGridToolbarProps {
   displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  renderCustomToolbar?: (props: EuiDataGridCustomToolbarProps) =>
-    | {
-        // to replace only controls inside the toolbar, use `left` and `right`
-        left?: ReactNode;
-        right?: ReactNode;
-      }
-    | ReactElement; // to replace the whole toolbar
+  renderCustomToolbar?: (props: EuiDataGridCustomToolbarProps) => ReactElement;
 }
 
 /**

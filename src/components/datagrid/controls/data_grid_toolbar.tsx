@@ -73,7 +73,7 @@ export const EuiDataGridToolbar = ({
     : null;
 
   if (renderCustomToolbar) {
-    const customToolbar = renderCustomToolbar({
+    return renderCustomToolbar({
       hasRoomForGridControls,
       columnControl,
       columnSortingControl,
@@ -81,60 +81,24 @@ export const EuiDataGridToolbar = ({
       displayControl,
       fullScreenControl,
     });
-
-    if (isValidElement(customToolbar)) {
-      return customToolbar;
-    }
-
-    return (
-      <EuiDataGridToolbarContainer
-        left={customToolbar.left}
-        right={customToolbar.right}
-      />
-    );
   }
 
   return (
-    <EuiDataGridToolbarContainer
-      left={
-        hasRoomForGridControls ? (
-          <>
-            {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
-            {columnControl}
-            {columnSortingControl}
-            {renderAdditionalControls(toolbarVisibility, 'left.append')}
-          </>
-        ) : null
-      }
-      right={
-        <>
-          {renderAdditionalControls(toolbarVisibility, 'right')}
-          {keyboardShortcutsControl}
-          {displayControl}
-          {fullScreenControl}
-        </>
-      }
-    />
-  );
-};
-
-/**
- * Toolbar container component
- * @param left
- * @param right
- * @constructor
- */
-const EuiDataGridToolbarContainer = ({
-  left,
-  right,
-}: {
-  left?: ReactNode;
-  right?: ReactNode;
-}) => {
-  return (
     <div className="euiDataGrid__controls" data-test-subj="dataGridControls">
-      {left && <div className="euiDataGrid__leftControls">{left}</div>}
-      {right && <div className="euiDataGrid__rightControls">{right}</div>}
+      {hasRoomForGridControls && (
+        <div className="euiDataGrid__leftControls">
+          {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
+          {columnControl}
+          {columnSortingControl}
+          {renderAdditionalControls(toolbarVisibility, 'left.append')}
+        </div>
+      )}
+      <div className="euiDataGrid__rightControls">
+        {renderAdditionalControls(toolbarVisibility, 'right')}
+        {keyboardShortcutsControl}
+        {displayControl}
+        {fullScreenControl}
+      </div>
     </div>
   );
 };
