@@ -106,7 +106,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const header = title ? (
       <EuiTitle
         size={size === 's' ? 'xxs' : 'xs'}
-        css={[cssHeaderStyles, isDismissible && cssHeaderEndStyle]}
+        css={[cssHeaderStyles, onClose && cssHeaderEndStyle]}
       >
         <H className="euiCallOutHeader__title">
           {headerIcon}
