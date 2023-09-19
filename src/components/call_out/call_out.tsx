@@ -79,7 +79,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className
     );
 
-    const closeIcon = isDismissible ? (
+    const closeIcon = onClose ? (
       <EuiI18n token="euiCallOut.closeCallOut" default="Close callout">
         {(closeCallOut: string) => (
           <EuiButtonIcon
