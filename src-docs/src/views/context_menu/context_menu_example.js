@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiContextMenu,
   EuiContextMenuItem,
@@ -122,11 +123,24 @@ export const ContextMenuExample = {
         },
       ],
       text: (
-        <p>
-          Use <strong>EuiContextMenuPanel</strong> for simple, non-nested
-          context menus. The below pagination example has no nesting and no
-          title.
-        </p>
+        <>
+          <p>
+            Use <strong>EuiContextMenuPanel</strong> for simple, non-nested
+            context menus. The below pagination example has no nesting and no
+            title.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            title="The selected context menu item should have an aria-current attribute"
+          >
+            <p>
+              <strong>aria-current</strong> tells screen readers which item is
+              selected. Add an <EuiCode>aria-current="true"</EuiCode> attribute
+              to <EuiCode>EuiContextMenuItem</EuiCode> when a context menu item
+              is clicked or receives a keypress.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       snippet: singlePanelSnippet,
       demo: <SinglePanel />,

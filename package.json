@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "88.2.0",
+  "version": "88.3.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -64,8 +64,8 @@
     "test-staged"
   ],
   "dependencies": {
-    "@hello-pangea/dnd": "^16.2.0",
-    "@types/lodash": "^4.14.194",
+    "@hello-pangea/dnd": "^16.3.0",
+    "@types/lodash": "^4.14.198",
     "@types/numeral": "^2.0.2",
     "@types/react-input-autosize": "^2.2.1",
     "@types/react-window": "^1.8.5",
