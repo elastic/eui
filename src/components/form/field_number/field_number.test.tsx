@@ -13,17 +13,6 @@ import { requiredProps } from '../../../test/required_props';
 import { EuiForm } from '../form';
 import { EuiFieldNumber } from './field_number';
 
-jest.mock('../form_control_layout', () => {
-  const formControlLayout = jest.requireActual('../form_control_layout');
-  return {
-    ...formControlLayout,
-    EuiFormControlLayout: 'eui-form-control-layout',
-  };
-});
-jest.mock('../validatable_control', () => ({
-  EuiValidatableControl: 'eui-validatable-control',
-}));
-
 describe('EuiFieldNumber', () => {
   test('is rendered', () => {
     const { container } = render(

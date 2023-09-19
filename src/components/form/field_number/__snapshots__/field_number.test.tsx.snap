@@ -1,14 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiFieldNumber is rendered 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="false"
-  icon="warning"
-  inputid="1"
-  isloading="false"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="warning"
+        />
+      </span>
+    </div>
     <input
       aria-label="aria-label"
       class="euiFieldNumber testClass1 testClass2 emotion-euiTestCss euiFieldNumber--withIcon"
@@ -21,47 +32,42 @@ exports[`EuiFieldNumber is rendered 1`] = `
       type="number"
       value="1"
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldNumber props controlOnly is rendered 1`] = `
-<eui-validatable-control>
-  <input
-    class="euiFieldNumber"
-    step="any"
-    type="number"
-    value=""
-  />
-</eui-validatable-control>
+<input
+  class="euiFieldNumber"
+  step="any"
+  type="number"
+  value=""
+/>
 `;
 
 exports[`EuiFieldNumber props fullWidth is rendered 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="true"
-  isloading="false"
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
 >
-  <eui-validatable-control>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
     <input
       class="euiFieldNumber euiFieldNumber--fullWidth"
       step="any"
       type="number"
       value=""
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldNumber props isInvalid is rendered from a prop 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="false"
-  isinvalid="true"
-  isloading="false"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control
-    isinvalid="true"
+  <div
+    class="euiFormControlLayout__childrenWrapper"
   >
     <input
       aria-invalid="true"
@@ -70,35 +76,51 @@ exports[`EuiFieldNumber props isInvalid is rendered from a prop 1`] = `
       type="number"
       value=""
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+    >
+      <span
+        color="danger"
+        data-euiicon-type="warning"
+      />
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldNumber props isLoading is rendered 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="false"
-  isloading="true"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
     <input
       class="euiFieldNumber euiFormControlLayout--1icons euiFieldNumber-isLoading"
       step="any"
       type="number"
       value=""
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+    >
+      <span
+        aria-label="Loading"
+        class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+        role="progressbar"
+      />
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldNumber props readOnly is rendered 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="false"
-  isloading="false"
-  readonly="true"
+<div
+  class="euiFormControlLayout euiFormControlLayout--readOnly"
 >
-  <eui-validatable-control>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
     <input
       class="euiFieldNumber"
       readonly=""
@@ -106,40 +128,40 @@ exports[`EuiFieldNumber props readOnly is rendered 1`] = `
       type="number"
       value=""
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldNumber props value no initial value 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="false"
-  isloading="false"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
     <input
       class="euiFieldNumber"
       step="any"
       type="number"
       value=""
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldNumber props value value is number 1`] = `
-<eui-form-control-layout
-  compressed="false"
-  fullwidth="false"
-  isloading="false"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
     <input
       class="euiFieldNumber"
       step="any"
       type="number"
       value="0"
     />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  </div>
+</div>
 `;
