@@ -32,6 +32,8 @@ appendIconComponentCache(iconCache);
 import { EuiProvider } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
 
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+
 // Import light theme for components still using Sass styling
 // TODO: Remove this import and the `yarn compile-scss &&` command
 // once all EUI components are converted to Emotion
@@ -92,6 +94,9 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+    },
+    viewport: {
+      viewports: MINIMAL_VIEWPORTS,
     },
   },
   // Due to CommonProps, these props appear on almost every Story, but generally
