@@ -38,7 +38,6 @@ export type EuiCallOutProps = CommonProps &
     size?: Size;
     heading?: Heading;
     onClose?: () => void;
-    isDismissible?: boolean;
   };
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
