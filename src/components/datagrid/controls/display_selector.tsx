@@ -192,20 +192,24 @@ export const useDataGridDisplaySelector = (
   const [showResetButton, setShowResetButton] = useState(false);
 
   useUpdateEffect(() => {
-    const hasUserChanges = Object.keys(userGridStyles).length > 0;
-    if (hasUserChanges) setShowResetButton(true);
+    if (allowResetButton) {
+      const hasUserChanges = Object.keys(userGridStyles).length > 0;
+      if (hasUserChanges) setShowResetButton(true);
+    }
 
     const { onChange, ...currentGridStyles } = gridStyles;
     initialStyles?.onChange?.(currentGridStyles);
-  }, [userGridStyles]);
+  }, [userGridStyles, allowResetButton]);
 
   useUpdateEffect(() => {
-    const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
-    if (hasUserChanges) setShowResetButton(true);
+    if (allowResetButton) {
+      const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
+      if (hasUserChanges) setShowResetButton(true);
+    }
 
     const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
     initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
-  }, [userRowHeightsOptions]);
+  }, [userRowHeightsOptions, allowResetButton]);
 
   // Allow resetting to initial developer-specified configurations
   const resetToInitialState = useCallback(() => {
@@ -360,7 +364,7 @@ export const useDataGridDisplaySelector = (
           </EuiI18n>
         )}
         {additionalDisplaySettings}
-        {allowResetButton && showResetButton && (
+        {showResetButton && (
           <EuiPopoverFooter>
             <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
               <EuiFlexItem grow={false}>
