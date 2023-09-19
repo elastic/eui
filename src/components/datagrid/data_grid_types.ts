@@ -880,7 +880,7 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
    */
   allowResetButton?: boolean;
   /**
-   * If passed a React node it will append the additional option to the bottom of the display settings popover
+   * Allows appending additional content to the bottom of the display settings popover
    */
   additionalDisplaySettings?: ReactNode;
 }
