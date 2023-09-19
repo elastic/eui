@@ -13,3 +13,9 @@ steps:
     env:
       TEST_TYPE: 'unit'
     if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+  - command: .buildkite/scripts/pipeline_test.sh
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'cypress:18'
+    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
