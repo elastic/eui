@@ -37,9 +37,6 @@ import { EuiPopoverProps } from '../popover';
 // use this to omit the react-specific class component methods
 export type ImperativeGridApi = Omit<Grid, keyof Component>;
 
-/**
- * Data Grid Toolbar Props
- */
 export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
