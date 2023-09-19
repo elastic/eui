@@ -55,6 +55,13 @@ describe('EuiFieldNumber', () => {
   });
 
   describe('isStepInvalid', () => {
+    const checkHasInvalidMessage = (message: string) => {
+      cy.get('input[type="number"]').should(($el) => {
+        const inputEl = $el[0] as HTMLInputElement;
+        expect(inputEl.validationMessage).to.equal(message);
+      });
+    };
+
     it('does not show invalid state on decimal values by default', () => {
       cy.mount(<EuiFieldNumber />);
       checkIsValid();
@@ -68,6 +75,9 @@ describe('EuiFieldNumber', () => {
       cy.get('input').click().type('1.5');
       cy.get('body').click('bottomRight');
       checkIsInvalid();
+      checkHasInvalidMessage(
+        'Please enter a valid value. The two nearest valid values are 1 and 2.'
+      );
     });
 
     it('restores valid state when step is corrected', () => {

@@ -21,6 +21,7 @@ import { CommonProps } from '../../common';
 
 export interface HTMLConstraintValidityElement extends Element {
   setCustomValidity: (error: string) => void;
+  validationMessage: string | undefined;
 }
 
 export interface ReactElementWithRef extends ReactElement {
@@ -38,13 +39,23 @@ function isMutableRef(
  * we can render the validated `<input>` as its direct child.
  */
 export interface EuiValidatableControlProps {
-  isInvalid?: boolean;
   children: ReactElementWithRef;
+  /**
+   * Determines whether to set both native browser `:invalid` state
+   * and an `aria-invalid` attribute
+   */
+  isInvalid?: boolean;
+  /**
+   * Allows setting a custom `:invalid` validation message on the input.
+   * If passed 'browser', will attempt to display the current native browser
+   * validation message instead
+   */
+  invalidMessage?: string | 'browser';
 }
 
 export const EuiValidatableControl: FunctionComponent<
   CommonProps & EuiValidatableControlProps
-> = ({ isInvalid, children }) => {
+> = ({ isInvalid, invalidMessage, children }) => {
   // Note that this must be state and not a ref to cause a rerender/set invalid state on initial mount
   const [control, setControl] = useState<HTMLConstraintValidityElement | null>(
     null
@@ -67,7 +78,7 @@ export const EuiValidatableControl: FunctionComponent<
     [childRef]
   );
 
-  useSetControlValidity({ controlEl: control, isInvalid });
+  useSetControlValidity({ controlEl: control, isInvalid, invalidMessage });
 
   return cloneElement(child, {
     ref: replacedRef,
@@ -80,10 +91,12 @@ export const EuiValidatableControl: FunctionComponent<
  * we *cannot* control where the validated `<input>` is rendered (e.g., ReactDatePicker)
  * and instead need to access the input via a ref and pass the element in directly
  */
-export interface UseEuiValidatableControlProps {
-  isInvalid?: boolean;
+export type UseEuiValidatableControlProps = Pick<
+  EuiValidatableControlProps,
+  'isInvalid' | 'invalidMessage'
+> & {
   controlEl: HTMLInputElement | HTMLConstraintValidityElement | null;
-}
+};
 
 export const useEuiValidatableControl = ({
   isInvalid,
@@ -104,10 +117,12 @@ export const useEuiValidatableControl = ({
 
 /**
  * Internal `setCustomValidity` helper
+ * (exported for testing only)
  */
-const useSetControlValidity = ({
+export const useSetControlValidity = ({
   controlEl,
   isInvalid,
+  invalidMessage,
 }: UseEuiValidatableControlProps) => {
   useEffect(() => {
     if (
@@ -118,9 +133,14 @@ const useSetControlValidity = ({
     }
 
     if (isInvalid) {
-      controlEl.setCustomValidity('Invalid');
+      const customValidityMessage =
+        invalidMessage === 'browser'
+          ? controlEl.validationMessage
+          : invalidMessage;
+
+      controlEl.setCustomValidity(customValidityMessage || 'Invalid');
     } else {
       controlEl.setCustomValidity('');
     }
-  }, [isInvalid, controlEl]);
+  }, [isInvalid, invalidMessage, controlEl]);
 };

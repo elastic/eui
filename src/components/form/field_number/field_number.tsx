@@ -112,7 +112,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   // Attempt to determine additional invalid state. The native number input
   // will set :invalid state automatically, but we need to also set
   // `aria-invalid` as well as display an icon. We also want to *not* set this on
-  // EuiValidatableControl, in order to not override custom validity messages
+  // EuiValidatableControl, otherwise native invalidity never gets cleared
   const [isNativelyInvalid, setIsNativelyInvalid] = useState(false);
 
   const checkNativeValidity = useCallback((inputEl: HTMLInputElement) => {
@@ -155,7 +155,13 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   });
 
   const control = (
-    <EuiValidatableControl isInvalid={isInvalidFromProps || isStepInvalid}>
+    <EuiValidatableControl
+      // Already handles native validity and should not be passed `isNativelyInvalid`
+      isInvalid={isInvalidFromProps || isStepInvalid}
+      invalidMessage={
+        isStepInvalid || isNativelyInvalid ? 'browser' : undefined
+      }
+    >
       <input
         type="number"
         id={id}

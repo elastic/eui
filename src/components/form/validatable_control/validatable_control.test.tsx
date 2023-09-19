@@ -13,6 +13,7 @@ import { renderHook } from '../../../test/rtl';
 import {
   EuiValidatableControl,
   useEuiValidatableControl,
+  useSetControlValidity,
 } from './validatable_control';
 
 describe('EuiValidatableControl', () => {
@@ -204,5 +205,63 @@ describe('useEuiValidatableControl', () => {
 
     rerender({ isInvalid: false, controlEl });
     expect(controlEl.getAttribute('aria-invalid')).toEqual('false');
+  });
+});
+
+describe('useSetControlValidity', () => {
+  const controlEl = document.createElement('input');
+
+  it('does nothing if controlEl cannot set custom validity', () => {
+    const { result } = renderHook(useSetControlValidity, {
+      initialProps: { isInvalid: true, controlEl: null },
+    });
+    expect(result.current).toBeUndefined();
+  });
+
+  it('clears invalid state when isInvalid is false', () => {
+    renderHook(useSetControlValidity, {
+      initialProps: { isInvalid: false, controlEl },
+    });
+    expect(controlEl.checkValidity()).toEqual(true);
+    expect(controlEl.validity.customError).toEqual(false);
+    expect(controlEl.validationMessage).toEqual('');
+  });
+
+  describe('invalid messages', () => {
+    it('Defaults to showing a basic `Invalid` message', () => {
+      renderHook(useSetControlValidity, {
+        initialProps: { isInvalid: true, controlEl },
+      });
+      expect(controlEl.validationMessage).toEqual('Invalid');
+    });
+
+    it('allows setting a custom validity message', () => {
+      const controlEl = document.createElement('input');
+      renderHook(useSetControlValidity, {
+        initialProps: {
+          isInvalid: true,
+          invalidMessage: 'Some custom validation message here',
+          controlEl,
+        },
+      });
+      expect(controlEl.validationMessage).toEqual(
+        'Some custom validation message here'
+      );
+    });
+
+    it('allows detecting the message from the browser validation message', () => {
+      const controlEl = document.createElement('input');
+      // Messages are by browsers, jsdom doesn't render them, so we're mocking it here
+      controlEl.setCustomValidity('Some mock browser error');
+
+      renderHook(useSetControlValidity, {
+        initialProps: {
+          isInvalid: true,
+          invalidMessage: 'browser',
+          controlEl,
+        },
+      });
+      expect(controlEl.validationMessage).toEqual('Some mock browser error');
+    });
   });
 });
