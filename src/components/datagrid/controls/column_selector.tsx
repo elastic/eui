@@ -7,7 +7,6 @@
  */
 
 import React, {
-  Fragment,
   useState,
   useMemo,
   useCallback,
@@ -15,6 +14,7 @@ import React, {
   ChangeEvent,
 } from 'react';
 import classNames from 'classnames';
+
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiButtonEmpty } from '../../button';
@@ -197,7 +197,7 @@ export const useDataGridColumnSelector = (
                 droppableId="columnOrder"
                 isDropDisabled={!isDragEnabled}
               >
-                <Fragment>
+                <>
                   {filteredColumns.map((id, index) => (
                     <EuiDraggable
                       key={id}
@@ -209,10 +209,13 @@ export const useDataGridColumnSelector = (
                     >
                       {(provided, state) => (
                         <div
-                          className={`euiDataGridColumnSelector__item ${
-                            state.isDragging &&
-                            'euiDataGridColumnSelector__item-isDragging'
-                          }`}
+                          className={classNames(
+                            'euiDataGridColumnSelector__item',
+                            {
+                              'euiDataGridColumnSelector__item-isDragging':
+                                state.isDragging,
+                            }
+                          )}
                           data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
                         >
                           <EuiFlexGroup
@@ -272,7 +275,7 @@ export const useDataGridColumnSelector = (
                       )}
                     </EuiDraggable>
                   ))}
-                </Fragment>
+                </>
               </EuiDroppable>
             </EuiDragDropContext>
           </div>

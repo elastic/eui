@@ -7,84 +7,90 @@
  */
 
 import React from 'react';
-import { render, screen } from '../../test/rtl';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
-import { describeByReactVersion } from '../../test/internal';
-import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
+import {
+  shouldRenderCustomStyles,
+  describeByReactVersion,
+} from '../../test/internal';
+
+import { EuiDragDropContext, EuiDroppable } from './';
+import { EuiDraggable } from './draggable';
 
 describeByReactVersion('EuiDraggable', () => {
-  it('renders', () => {
-    const handler = jest.fn();
+  const TestContextWrapper = ({ children }: { children: any }) => (
+    <EuiDragDropContext onDragEnd={() => {}}>
+      <EuiDroppable droppableId="testDroppable">{children}</EuiDroppable>
+    </EuiDragDropContext>
+  );
 
+  shouldRenderCustomStyles(
+    <EuiDraggable draggableId="testDraggable" index={0}>
+      {() => <div>Hello</div>}
+    </EuiDraggable>,
+    { wrapper: TestContextWrapper }
+  );
+
+  it('renders', () => {
     const { container } = render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable draggableId="testDraggable" index={0}>
-            {() => <div>Hello</div>}
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>
+      <TestContextWrapper>
+        <EuiDraggable draggableId="testDraggable" index={0} {...requiredProps}>
+          {() => <div>Hello</div>}
+        </EuiDraggable>
+      </TestContextWrapper>
     );
 
-    expect(screen.getByTestSubject('draggable')).toBeVisible();
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders with render prop children', () => {
-    const handler = jest.fn();
-
-    render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable draggableId="testDraggable" index={0}>
-            {() => <div>Hello</div>}
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>
+    const { getByTestSubject } = render(
+      <TestContextWrapper>
+        <EuiDraggable draggableId="testDraggable" index={0}>
+          {() => <div>Hello</div>}
+        </EuiDraggable>
+      </TestContextWrapper>
     );
 
-    expect(screen.getByText('Hello')).toBeVisible();
+    expect(getByTestSubject('draggable')).toHaveTextContent('Hello');
   });
 
   it('renders with react element children', () => {
-    const handler = jest.fn();
-
-    render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable draggableId="testDraggable" index={0}>
-            <div>Hello</div>
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>
+    const { getByTestSubject } = render(
+      <TestContextWrapper>
+        <EuiDraggable draggableId="testDraggable" index={0}>
+          <div>Hello</div>
+        </EuiDraggable>
+      </TestContextWrapper>
     );
 
-    expect(screen.getByText('Hello')).toBeVisible();
+    expect(getByTestSubject('draggable')).toHaveTextContent('Hello');
   });
 
   it('should render with role="group" and no tabIndex when hasInteractiveChildren is true', () => {
-    const handler = jest.fn();
+    const Test = ({
+      hasInteractiveChildren,
+    }: {
+      hasInteractiveChildren: boolean;
+    }) => (
+      <TestContextWrapper>
+        <EuiDraggable
+          hasInteractiveChildren={hasInteractiveChildren}
+          draggableId="testDraggable"
+          index={0}
+        >
+          <div>Hello</div>
+        </EuiDraggable>
+      </TestContextWrapper>
+    );
 
-    const doRender = (hasInteractiveChildren: boolean) =>
-      render(
-        <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-          <EuiDroppable droppableId="testDroppable">
-            <EuiDraggable
-              hasInteractiveChildren={hasInteractiveChildren}
-              draggableId="testDraggable"
-              index={0}
-            >
-              <div>Hello</div>
-            </EuiDraggable>
-          </EuiDroppable>
-        </EuiDragDropContext>
-      );
+    const { queryByRole, rerender } = render(
+      <Test hasInteractiveChildren={false} />
+    );
+    expect(queryByRole('group')).toBeNull();
 
-    doRender(false);
-    expect(screen.queryByRole('group')).toBeNull();
-
-    doRender(true);
-    expect(screen.getByRole('group')).toBeVisible();
-    expect(screen.getByRole('group')).not.toHaveAttribute('tabindex', 0);
+    rerender(<Test hasInteractiveChildren={true} />);
+    expect(queryByRole('group')).toBeVisible();
+    expect(queryByRole('group')).not.toHaveAttribute('tabindex', 0);
   });
 });

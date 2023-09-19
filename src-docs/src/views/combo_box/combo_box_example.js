@@ -9,6 +9,7 @@ import {
   EuiCode,
   EuiComboBox,
   EuiText,
+  EuiTextTruncate,
   EuiCallOut,
 } from '../../../../src/components';
 
@@ -80,6 +81,21 @@ const renderOptionSnippet = `<EuiComboBox
   onChange={onChange}
   onCreateOption={onCreateOption}
   renderOption={renderOption}
+/>`;
+
+import Truncation from './truncation';
+const truncationSource = require('!!raw-loader!./truncation');
+const truncationSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
+  placeholder="Select or create options"
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  truncationProps={{
+    truncation: 'start',
+    truncationOffset: 5,
+  }}
 />`;
 
 import Groups from './groups';
@@ -444,6 +460,31 @@ export const ComboBoxExample = {
           code: renderOptionSource,
         },
       ],
+    },
+    {
+      title: 'Truncation',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: truncationSource,
+        },
+      ],
+      text: (
+        <p>
+          By default, <strong>EuiComboBox</strong> truncates long option text at
+          the end of the string. You can use <EuiCode>truncationProps</EuiCode>{' '}
+          and almost any prop that{' '}
+          <Link to="/utilities/text-truncate">
+            <strong>EuiTextTruncate</strong>
+          </Link>{' '}
+          accepts to configure this behavior. This can be configured at the{' '}
+          <strong>EuiComboBox</strong> level, as well as by each individual
+          option.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption, EuiTextTruncate },
+      snippet: truncationSnippet,
+      demo: <Truncation />,
     },
     {
       title: 'Groups',

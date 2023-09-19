@@ -815,14 +815,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 83,
+        "line": 86,
         "column": 8,
-        "index": 2072
+        "index": 2289
       },
       "end": {
-        "line": 87,
+        "line": 90,
         "column": 9,
-        "index": 2239
+        "index": 2456
       }
     },
     "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
@@ -833,14 +833,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 341,
+        "line": 408,
         "column": 12,
-        "index": 10114
+        "index": 12031
       },
       "end": {
-        "line": 344,
+        "line": 411,
         "column": 14,
-        "index": 10237
+        "index": 12154
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -851,14 +851,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 354,
+        "line": 421,
         "column": 16,
-        "index": 10676
+        "index": 12593
       },
       "end": {
-        "line": 358,
+        "line": 425,
         "column": 18,
-        "index": 10907
+        "index": 12824
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -869,14 +869,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 373,
+        "line": 440,
         "column": 16,
-        "index": 11336
+        "index": 13253
       },
       "end": {
-        "line": 379,
+        "line": 446,
         "column": 18,
-        "index": 11609
+        "index": 13526
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -887,14 +887,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 408,
+        "line": 475,
         "column": 20,
-        "index": 12600
+        "index": 14517
       },
       "end": {
-        "line": 414,
+        "line": 481,
         "column": 22,
-        "index": 12898
+        "index": 14815
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -905,14 +905,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 425,
+        "line": 492,
         "column": 12,
-        "index": 13102
+        "index": 15019
       },
       "end": {
-        "line": 429,
+        "line": 496,
         "column": 14,
-        "index": 13323
+        "index": 15240
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -923,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 436,
+        "line": 503,
         "column": 10,
-        "index": 13442
+        "index": 15359
       },
       "end": {
-        "line": 439,
+        "line": 506,
         "column": 12,
-        "index": 13582
+        "index": 15499
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -941,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 445,
+        "line": 512,
         "column": 10,
-        "index": 13695
+        "index": 15612
       },
       "end": {
-        "line": 448,
+        "line": 515,
         "column": 12,
-        "index": 13838
+        "index": 15755
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -959,14 +959,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 972,
+        "line": 984,
         "column": 10,
-        "index": 27948
+        "index": 28518
       },
       "end": {
-        "line": 975,
+        "line": 987,
         "column": 11,
-        "index": 28073
+        "index": 28643
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -1303,12 +1303,12 @@
       "start": {
         "line": 120,
         "column": 30,
-        "index": 3633
+        "index": 3622
       },
       "end": {
         "line": 123,
         "column": 3,
-        "index": 3711
+        "index": 3700
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1321,12 +1321,12 @@
       "start": {
         "line": 126,
         "column": 4,
-        "index": 3739
+        "index": 3728
       },
       "end": {
         "line": 126,
         "column": 66,
-        "index": 3801
+        "index": 3790
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1339,12 +1339,12 @@
       "start": {
         "line": 131,
         "column": 6,
-        "index": 3869
+        "index": 3858
       },
       "end": {
         "line": 135,
         "column": 8,
-        "index": 4038
+        "index": 4027
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1357,12 +1357,12 @@
       "start": {
         "line": 139,
         "column": 6,
-        "index": 4112
+        "index": 4101
       },
       "end": {
         "line": 143,
         "column": 8,
-        "index": 4280
+        "index": 4269
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1375,12 +1375,12 @@
       "start": {
         "line": 172,
         "column": 14,
-        "index": 5066
+        "index": 5055
       },
       "end": {
         "line": 178,
         "column": 15,
-        "index": 5290
+        "index": 5279
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1393,12 +1393,12 @@
       "start": {
         "line": 172,
         "column": 14,
-        "index": 5066
+        "index": 5055
       },
       "end": {
         "line": 178,
         "column": 15,
-        "index": 5290
+        "index": 5279
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1409,14 +1409,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 297,
         "column": 18,
-        "index": 10539
+        "index": 10615
       },
       "end": {
-        "line": 297,
+        "line": 300,
         "column": 20,
-        "index": 10663
+        "index": 10739
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1427,14 +1427,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 307,
+        "line": 310,
         "column": 18,
-        "index": 11023
+        "index": 11099
       },
       "end": {
-        "line": 310,
+        "line": 313,
         "column": 20,
-        "index": 11145
+        "index": 11221
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1445,14 +1445,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 22,
+        "line": 24,
         "column": 2,
-        "index": 982
+        "index": 1020
       },
       "end": {
-        "line": 22,
+        "line": 24,
         "column": 76,
-        "index": 1056
+        "index": 1094
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1463,14 +1463,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 25,
+        "line": 27,
         "column": 2,
-        "index": 1100
+        "index": 1138
       },
       "end": {
-        "line": 25,
+        "line": 27,
         "column": 77,
-        "index": 1175
+        "index": 1213
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1481,14 +1481,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 66,
+        "line": 68,
         "column": 30,
-        "index": 2139
+        "index": 2177
       },
       "end": {
-        "line": 69,
+        "line": 71,
         "column": 3,
-        "index": 2225
+        "index": 2263
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1499,14 +1499,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 87,
+        "line": 89,
         "column": 14,
-        "index": 2635
+        "index": 2684
       },
       "end": {
-        "line": 91,
+        "line": 93,
         "column": 15,
-        "index": 2824
+        "index": 2873
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1517,14 +1517,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 103,
+        "line": 105,
         "column": 14,
-        "index": 3216
+        "index": 3265
       },
       "end": {
-        "line": 107,
+        "line": 109,
         "column": 15,
-        "index": 3406
+        "index": 3455
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1535,14 +1535,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 159,
+        "line": 161,
         "column": 14,
-        "index": 5311
+        "index": 5360
       },
       "end": {
-        "line": 163,
+        "line": 165,
         "column": 15,
-        "index": 5497
+        "index": 5546
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -6120,6 +6120,60 @@
     "filepath": "src/components/resizable_container/resizable_panel.tsx"
   },
   {
+    "token": "euiSearchBox.placeholder",
+    "defString": "Search...",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 49,
+        "column": 29,
+        "index": 1421
+      },
+      "end": {
+        "line": 52,
+        "column": 3,
+        "index": 1484
+      }
+    },
+    "filepath": "src/components/search_bar/search_box.tsx"
+  },
+  {
+    "token": "euiSearchBox.incrementalAriaLabel",
+    "defString": "This is a search bar. As you type, the results lower in the page will automatically filter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 53,
+        "column": 31,
+        "index": 1517
+      },
+      "end": {
+        "line": 56,
+        "column": 3,
+        "index": 1671
+      }
+    },
+    "filepath": "src/components/search_bar/search_box.tsx"
+  },
+  {
+    "token": "euiSearchBox.ariaLabel",
+    "defString": "This is a search bar. After typing your query, hit enter to filter the results lower in the page.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 57,
+        "column": 25,
+        "index": 1698
+      },
+      "end": {
+        "line": 60,
+        "column": 3,
+        "index": 1847
+      }
+    },
+    "filepath": "src/components/search_bar/search_box.tsx"
+  },
+  {
     "token": "euiSelectableListItem.checkedOption",
     "defString": "Checked option.",
     "highlighting": "string",
@@ -7007,14 +7061,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 126,
+        "line": 129,
         "column": 12,
-        "index": 3723
+        "index": 3829
       },
       "end": {
-        "line": 129,
+        "line": 132,
         "column": 14,
-        "index": 3854
+        "index": 3960
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
@@ -7025,14 +7079,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 131,
+        "line": 134,
         "column": 12,
-        "index": 3883
+        "index": 3989
       },
       "end": {
-        "line": 135,
+        "line": 138,
         "column": 14,
-        "index": 4067
+        "index": 4173
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
