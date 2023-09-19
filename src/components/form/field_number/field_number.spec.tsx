@@ -14,16 +14,16 @@ import React from 'react';
 import { EuiFieldNumber } from './field_number';
 
 describe('EuiFieldNumber', () => {
-  describe('isNativelyInvalid', () => {
-    const checkIsValid = () => {
-      cy.get('[aria-invalid="true"]').should('not.exist');
-      cy.get('.euiFormControlLayoutIcons').should('not.exist');
-    };
-    const checkIsInvalid = () => {
-      cy.get('[aria-invalid="true"]').should('exist');
-      cy.get('.euiFormControlLayoutIcons').should('exist');
-    };
+  const checkIsValid = () => {
+    cy.get('[aria-invalid="true"]').should('not.exist');
+    cy.get('.euiFormControlLayoutIcons').should('not.exist');
+  };
+  const checkIsInvalid = () => {
+    cy.get('[aria-invalid="true"]').should('exist');
+    cy.get('.euiFormControlLayoutIcons').should('exist');
+  };
 
+  describe('isNativelyInvalid', () => {
     it('when the value is not a valid number', () => {
       cy.mount(<EuiFieldNumber />);
       checkIsValid();
@@ -45,13 +45,6 @@ describe('EuiFieldNumber', () => {
       checkIsInvalid();
     });
 
-    it('sets invalid state when the value is not a valid step', () => {
-      cy.mount(<EuiFieldNumber step={3} />);
-      checkIsValid();
-      cy.get('input').click().type('2');
-      checkIsInvalid();
-    });
-
     it('shows invalid state on blur', () => {
       cy.mount(<EuiFieldNumber max={1} value={2} />);
       checkIsValid();
@@ -59,11 +52,30 @@ describe('EuiFieldNumber', () => {
       cy.get('body').click('bottomRight');
       checkIsInvalid();
     });
+  });
 
+  describe('isStepInvalid', () => {
     it('does not show invalid state on decimal values by default', () => {
       cy.mount(<EuiFieldNumber />);
       checkIsValid();
       cy.get('input').click().type('1.5');
+      checkIsValid();
+    });
+
+    it('shows invalid state on user input', () => {
+      cy.mount(<EuiFieldNumber step={1} />);
+      checkIsValid();
+      cy.get('input').click().type('1.5');
+      cy.get('body').click('bottomRight');
+      checkIsInvalid();
+    });
+
+    it('restores valid state when step is corrected', () => {
+      cy.mount(<EuiFieldNumber step={3} />);
+      checkIsValid();
+      cy.get('input').click().type('2');
+      checkIsInvalid();
+      cy.realType('{backspace}3');
       checkIsValid();
     });
   });
