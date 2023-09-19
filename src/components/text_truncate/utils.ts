@@ -116,10 +116,31 @@ abstract class _TruncationUtils {
     leadingText += this.ellipsis;
     this.setTextToCheck(combinedText());
 
-    while (this.textWidth > this.availableWidth) {
-      truncatedText = removeFirstCharacter(truncatedText);
+    // let i = 0;
+    // while (this.textWidth > this.availableWidth) {
+    //   truncatedText = removeFirstCharacter(truncatedText);
+    //   this.setTextToCheck(combinedText());
+    //   i++;
+    // }
+    // console.log('char by char', i, combinedText());
+    // return combinedText();
+
+    let j = 0;
+    let removedText = '';
+    while (this.textWidth > this.availableWidth && truncatedText.length > 1) {
+      j++;
+      [removedText, truncatedText] = splitText(truncatedText).inHalf();
       this.setTextToCheck(combinedText());
+
+      while (this.textWidth < this.availableWidth && removedText.length > 1) {
+        let textToAdd = removedText;
+        [removedText, textToAdd] = splitText(removedText).inHalf();
+        truncatedText = addText(textToAdd).atStartOf(truncatedText);
+        this.setTextToCheck(combinedText());
+        j++;
+      }
     }
+    console.log('binary', j, combinedText());
 
     return combinedText();
   };
@@ -143,97 +164,210 @@ abstract class _TruncationUtils {
     trailingText = this.ellipsis + trailingText;
     this.setTextToCheck(combinedText());
 
-    while (this.textWidth > this.availableWidth) {
-      truncatedText = removeLastCharacter(truncatedText);
+    // let i = 0;
+    // while (this.textWidth > this.availableWidth) {
+    //   truncatedText = removeLastCharacter(truncatedText);
+    //   this.setTextToCheck(combinedText());
+    //   i++;
+    // }
+    // console.log('char by char', i, combinedText());
+    // return combinedText();
+
+    // let j = 0;
+    let removedText = '';
+    while (this.textWidth > this.availableWidth && truncatedText.length > 1) {
+      // j++;
+      [truncatedText, removedText] = splitText(truncatedText).inHalf();
       this.setTextToCheck(combinedText());
+
+      while (this.textWidth < this.availableWidth && removedText.length > 1) {
+        let textToAdd = removedText;
+        [textToAdd, removedText] = splitText(removedText).inHalf();
+        truncatedText = addText(textToAdd).atEndOf(truncatedText);
+        this.setTextToCheck(combinedText());
+      }
     }
+    // console.log('binary', j, combinedText());
 
     return combinedText();
   };
 
+  // !! THIS DOESN'T WORK !!
   truncateStartEndAtPosition = (truncationPosition: number) => {
     // If using a non-centered startEnd anchor position, we need to *build*
     // the string from scratch instead of *removing* from the full text string,
     // to make sure we don't go past the beginning or end of the text
-    let truncatedText = '';
-    this.setTextToCheck(truncatedText);
+    const removedText = splitText(this.fullText).at(truncationPosition);
+    const addedText = ['', ''];
 
     // Ellipses are conditional - if the anchor is towards the beginning or end,
     // it's possible they shouldn't render
-    let startingEllipsis = this.ellipsis;
-    let endingEllipsis = this.ellipsis;
+    const halfAvailableWidth = Math.floor(this.availableWidth / 2);
 
-    // Split the text into two at the anchor position
-    let [firstPart, secondPart] = splitText(this.fullText).at(
-      truncationPosition
-    );
+    let startingEllipsis = this.ellipsis;
+    this.setTextToCheck(removedText[0]);
+    if (this.textWidth <= halfAvailableWidth) {
+      addedText[0] = removedText[0];
+      removedText[0] = '';
+      startingEllipsis = '';
+    }
+
+    let endingEllipsis = this.ellipsis;
+    this.setTextToCheck(removedText[1]);
+    if (this.textWidth <= halfAvailableWidth) {
+      addedText[1] = removedText[1];
+      removedText[1] = '';
+      endingEllipsis = '';
+    }
 
     const combinedText = () =>
-      `${startingEllipsis}${truncatedText}${endingEllipsis}`;
+      `${startingEllipsis}${addedText[0]}${addedText[1]}${endingEllipsis}`;
+    this.setTextToCheck(combinedText());
 
-    while (this.textWidth <= this.availableWidth) {
-      if (firstPart.length > 0) {
-        truncatedText = `${getLastCharacter(firstPart)}${truncatedText}`;
-        firstPart = removeLastCharacter(firstPart);
-      } else {
-        startingEllipsis = '';
+    // let i = 0;
+    while (
+      this.textWidth <= this.availableWidth &&
+      (removedText[0].length > 1 || removedText[1].length > 1)
+    ) {
+      // console.log('BEFORE', addedText[0], addedText[1]);
+      if (startingEllipsis) {
+        let textToAdd: string;
+        [removedText[0], textToAdd] = splitText(removedText[0]).inHalf();
+        addedText[0] = addText(textToAdd).atStartOf(addedText[0]);
       }
 
-      if (secondPart.length > 0) {
-        truncatedText = `${truncatedText}${getFirstCharacter(secondPart)}`;
-        secondPart = removeFirstCharacter(secondPart);
-      } else {
-        endingEllipsis = '';
+      if (endingEllipsis) {
+        let textToAdd: string;
+        [textToAdd, removedText[1]] = splitText(removedText[1]).inHalf();
+        addedText[1] = addText(textToAdd).atEndOf(addedText[1]);
       }
+      // console.log('DURING', addedText[0], addedText[1]);
 
       this.setTextToCheck(combinedText());
-    }
+      // i++;
 
-    // Because this logic builds text outwards vs. removing inwards, the final
-    // text width ends up a little larger than the container, and we need to
-    // remove the last added character(s)
-    if (!startingEllipsis) {
-      truncatedText = removeLastCharacter(truncatedText);
-    } else if (!endingEllipsis) {
-      truncatedText = removeFirstCharacter(truncatedText);
-    } else {
-      truncatedText = removeFirstAndLastCharacters(truncatedText);
+      // Remove text now
+      while (
+        this.textWidth > this.availableWidth &&
+        (addedText[0].length > 1 || addedText[1].length > 1)
+      ) {
+        if (startingEllipsis) {
+          [removedText[0], addedText[0]] = splitText(addedText[0]).inHalf();
+          // [removedText[0], addedText[0]] = splitText(addedText[0]).at(1);
+        }
+        if (endingEllipsis) {
+          [addedText[1], removedText[1]] = splitText(addedText[1]).inHalf();
+          // [addedText[1], removedText[1]] = splitText(addedText[1]).at(
+          //   addedText[1].length - 1
+          // );
+        }
+        // console.log('AFTER', addedText[0], addedText[1]);
+
+        this.setTextToCheck(combinedText());
+        // i++;
+      }
     }
+    // console.log('binary', i);
+
+    // while (this.textWidth <= this.availableWidth) {
+    //   if (firstPart.length > 0) {
+    //     truncatedText = `${getLastCharacter(firstPart)}${truncatedText}`;
+    //     firstPart = removeLastCharacter(firstPart);
+    //   } else {
+    //     startingEllipsis = '';
+    //   }
+
+    //   if (secondPart.length > 0) {
+    //     truncatedText = `${truncatedText}${getFirstCharacter(secondPart)}`;
+    //     secondPart = removeFirstCharacter(secondPart);
+    //   } else {
+    //     endingEllipsis = '';
+    //   }
+
+    //   this.setTextToCheck(combinedText());
+    // }
+
+    // // Because this logic builds text outwards vs. removing inwards, the final
+    // // text width ends up a little larger than the container, and we need to
+    // // remove the last added character(s)
+    // if (!startingEllipsis) {
+    //   truncatedText = removeLastCharacter(truncatedText);
+    // } else if (!endingEllipsis) {
+    //   truncatedText = removeFirstCharacter(truncatedText);
+    // } else {
+    //   truncatedText = removeFirstAndLastCharacters(truncatedText);
+    // }
 
     return combinedText();
   };
 
   truncateStartEndAtMiddle = () => {
+    const removedText = ['', ''];
     let truncatedText = this.fullText;
     this.setTextToCheck(truncatedText);
 
     const combinedText = () =>
       `${this.ellipsis}${truncatedText}${this.ellipsis}`;
 
-    while (this.textWidth > this.availableWidth) {
-      truncatedText = removeFirstAndLastCharacters(truncatedText);
+    while (this.textWidth > this.availableWidth && truncatedText.length > 1) {
+      const firstFourth = Math.floor(truncatedText.length / 4);
+      [removedText[0], truncatedText] =
+        splitText(truncatedText).at(firstFourth);
+
+      const lastFourth = truncatedText.length - firstFourth;
+      [truncatedText, removedText[1]] = splitText(truncatedText).at(lastFourth);
+
       this.setTextToCheck(combinedText());
+
+      while (
+        this.textWidth < this.availableWidth &&
+        removedText[0].length > 1 &&
+        removedText[1].length > 1
+      ) {
+        const textToAdd = [...removedText];
+
+        [removedText[0], textToAdd[0]] = splitText(removedText[0]).inHalf();
+        [textToAdd[1], removedText[1]] = splitText(removedText[1]).inHalf();
+
+        truncatedText = `${textToAdd[0]}${truncatedText}${textToAdd[1]}`;
+        this.setTextToCheck(combinedText());
+      }
     }
 
     return combinedText();
   };
 
   truncateMiddle = () => {
-    const middlePosition = Math.floor(this.fullText.length / 2);
-    let [firstHalf, secondHalf] = splitText(this.fullText).at(middlePosition);
-    let trimfirstHalf;
+    const removedText = ['', ''];
+    let [firstHalf, secondHalf] = splitText(this.fullText).inHalf();
 
     const combinedText = () => `${firstHalf}${this.ellipsis}${secondHalf}`;
     this.setTextToCheck(combinedText());
 
-    while (this.textWidth > this.availableWidth) {
-      trimfirstHalf = !trimfirstHalf;
-      if (trimfirstHalf) {
-        firstHalf = removeLastCharacter(firstHalf);
-      } else {
-        secondHalf = removeFirstCharacter(secondHalf);
-      }
+    while (
+      this.textWidth > this.availableWidth &&
+      firstHalf.length > 1 &&
+      secondHalf.length > 1
+    ) {
+      [firstHalf, removedText[0]] = splitText(firstHalf).inHalf();
+      [removedText[1], secondHalf] = splitText(secondHalf).inHalf();
       this.setTextToCheck(combinedText());
+
+      while (
+        this.textWidth < this.availableWidth &&
+        removedText[0].length > 1 &&
+        removedText[1].length > 1
+      ) {
+        const textToAdd = [...removedText];
+
+        [textToAdd[0], removedText[0]] = splitText(removedText[0]).inHalf();
+        firstHalf = addText(textToAdd[0]).atEndOf(firstHalf);
+
+        [removedText[1], textToAdd[1]] = splitText(removedText[1]).inHalf();
+        secondHalf = addText(textToAdd[1]).atStartOf(secondHalf);
+
+        this.setTextToCheck(combinedText());
+      }
     }
 
     return combinedText();
@@ -345,9 +479,15 @@ const removeFirstCharacter = (text: string) => text.substring(1);
 
 const getFirstCharacter = (text: string) => text.substring(0, 1);
 
-const removeFirstAndLastCharacters = (text: string) =>
-  text.substring(1, text.length - 1);
-
 const splitText = (text: string) => ({
   at: (index: number) => [text.substring(0, index), text.substring(index)],
+  inHalf: () => {
+    const middleIndex = Math.floor(text.length / 2);
+    return [text.substring(0, middleIndex), text.substring(middleIndex)];
+  },
+});
+
+const addText = (textToAdd: string) => ({
+  atStartOf: (text: string) => `${textToAdd}${text}`,
+  atEndOf: (text: string) => text + textToAdd,
 });
