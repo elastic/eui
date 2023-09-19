@@ -103,6 +103,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     inputRef,
     readOnly,
     controlOnly,
+    onChange,
     onKeyUp,
     onBlur,
     ...rest
@@ -122,10 +123,24 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     setIsNativelyInvalid(isInvalid);
   }, []);
 
+  // Unfortunately, the native number input handles `step` validity incredibly unintuitively
+  // so if we're passed a valid step, we should attempt to manually handle validity
+  const hasValidStep = typeof step === 'number';
+
+  const [isStepInvalid, setIsStepInvalid] = useState(false);
+  const checkStepValidity = useCallback(
+    (value: number) => {
+      if (hasValidStep) {
+        setIsStepInvalid(_checkStepValidity(step, value));
+      }
+    },
+    [step, hasValidStep]
+  );
+
   const numIconsClass = controlOnly
     ? false
     : getFormControlClassNameForIconCount({
-        isInvalid: isInvalid || isNativelyInvalid,
+        isInvalid: isInvalid || isStepInvalid || isNativelyInvalid,
         isLoading,
       });
 
@@ -138,7 +153,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   });
 
   const control = (
-    <EuiValidatableControl isInvalid={isInvalid}>
+    <EuiValidatableControl isInvalid={isInvalid || isStepInvalid}>
       <input
         type="number"
         id={id}
@@ -151,7 +166,11 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         readOnly={readOnly}
         className={classes}
         ref={inputRef}
-        aria-invalid={isInvalid || isNativelyInvalid}
+        aria-invalid={isInvalid || isStepInvalid || isNativelyInvalid}
+        onChange={(e) => {
+          onChange?.(e);
+          checkStepValidity(Number(e.currentTarget.value));
+        }}
         onKeyUp={(e) => {
           // Note that we can't use `onChange` because browsers don't emit change events
           // for invalid text - see https://github.com/facebook/react/issues/16554
@@ -177,7 +196,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
-      isInvalid={isInvalid || isNativelyInvalid}
+      isInvalid={isInvalid || isStepInvalid || isNativelyInvalid}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}
@@ -187,4 +206,9 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       {control}
     </EuiFormControlLayout>
   );
+};
+
+const _checkStepValidity = (step: number, value: number) => {
+  if (!value) return false;
+  return value % step !== 0;
 };
