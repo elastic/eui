@@ -74,10 +74,6 @@ export const EuiDataGridToolbar = ({
 
   if (renderCustomToolbar) {
     const customToolbar = renderCustomToolbar({
-      gridWidth,
-      minSizeForControls,
-      toolbarVisibility,
-      isFullScreen,
       hasRoomForGridControls,
       columnControl,
       columnSortingControl,

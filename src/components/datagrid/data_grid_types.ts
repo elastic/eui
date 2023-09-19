@@ -60,10 +60,6 @@ export interface EuiDataGridToolbarProps {
  * Props which are available for a custom toolbar rendering
  */
 export interface EuiDataGridCustomToolbarProps {
-  gridWidth: EuiDataGridToolbarProps['gridWidth'];
-  toolbarVisibility: EuiDataGridToolbarProps['toolbarVisibility'];
-  isFullScreen: EuiDataGridToolbarProps['isFullScreen'];
-  minSizeForControls: number;
   hasRoomForGridControls: boolean;
   fullScreenControl: ReactNode;
   keyboardShortcutsControl: ReactNode;
