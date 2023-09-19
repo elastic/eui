@@ -7,21 +7,21 @@ steps:
       provider: "gcp"
     env:
       TEST_TYPE: 'lint'
-    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
   - command: .buildkite/scripts/pipeline_test.sh
     label: ":jest: Unit tests"
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'unit'
-    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    if: build.branch != "main"
   - command: .buildkite/scripts/pipeline_test.sh
     label: ":cypress: Cypress tests on React 16"
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'cypress:16'
-    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    if: build.branch != "main"
     artifact_paths:
       - "cypress/react16/screenshots/**/*.png"
   - command: .buildkite/scripts/pipeline_test.sh
@@ -30,7 +30,7 @@ steps:
       provider: "gcp"
     env:
       TEST_TYPE: 'cypress:17'
-    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    if: build.branch != "main"
     artifact_paths:
       - "cypress/react17/screenshots/**/*.png"
   - command: .buildkite/scripts/pipeline_test.sh
@@ -39,6 +39,6 @@ steps:
       provider: "gcp"
     env:
       TEST_TYPE: 'cypress:18'
-    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    if: build.branch != "main"
     artifact_paths:
       - "cypress/react18/screenshots/**/*.png"
