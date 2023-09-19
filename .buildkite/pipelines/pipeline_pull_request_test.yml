@@ -17,5 +17,23 @@ steps:
     agents:
       provider: "gcp"
     env:
+      TEST_TYPE: 'cypress:16'
+    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    artifact_paths:
+      - "cypress/react16/screenshots/**/*.png"
+  - command: .buildkite/scripts/pipeline_test.sh
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'cypress:17'
+    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    artifact_paths:
+      - "cypress/react17/screenshots/**/*.png"
+  - command: .buildkite/scripts/pipeline_test.sh
+    agents:
+      provider: "gcp"
+    env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    artifact_paths:
+      - "cypress/react18/screenshots/**/*.png"
