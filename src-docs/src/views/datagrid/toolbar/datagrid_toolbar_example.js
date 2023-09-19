@@ -21,7 +21,7 @@ import {
   EuiDataGridToolBarVisibilityDisplaySelectorOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
   EuiDataGridToolbarProps,
-  EuiDataGridCustomToolbarOptions,
+  EuiDataGridCustomToolbarProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 /* eslint-disable local/css-logical-properties */
@@ -215,7 +215,7 @@ export const DataGridToolbarExample = {
       demo: <DataGridCustomToolbar />,
       props: {
         EuiDataGridToolbarProps,
-        EuiDataGridCustomToolbarOptions,
+        EuiDataGridCustomToolbarProps,
       },
       // TODO: add a snippet
     },

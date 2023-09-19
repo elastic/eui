@@ -37,9 +37,6 @@ import { EuiPopoverProps } from '../popover';
 // use this to omit the react-specific class component methods
 export type ImperativeGridApi = Omit<Grid, keyof Component>;
 
-/**
- * Data Grid Toolbar Props
- */
 export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
@@ -50,7 +47,7 @@ export interface EuiDataGridToolbarProps {
   displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  renderCustomToolbar?: (props: EuiDataGridCustomToolbarOptions) =>
+  renderCustomToolbar?: (props: EuiDataGridCustomToolbarProps) =>
     | {
         // to replace only controls inside the toolbar, use `left` and `right`
         left?: ReactNode;
@@ -62,7 +59,7 @@ export interface EuiDataGridToolbarProps {
 /**
  * Props which are available for a custom toolbar rendering
  */
-export interface EuiDataGridCustomToolbarOptions {
+export interface EuiDataGridCustomToolbarProps {
   gridWidth: EuiDataGridToolbarProps['gridWidth'];
   toolbarVisibility: EuiDataGridToolbarProps['toolbarVisibility'];
   isFullScreen: EuiDataGridToolbarProps['isFullScreen'];
@@ -312,7 +309,7 @@ export type CommonGridProps = CommonProps &
      *
      * Behind the scenes, this function is treated as a React component,
      * allowing hooks, context, and other React concepts to be used.
-     * It receives #EuiDataGridCustomToolbarOptions as its only argument.
+     * It receives #EuiDataGridCustomToolbarProps as its only argument.
      */
     renderCustomToolbar?: EuiDataGridToolbarProps['renderCustomToolbar'];
     /**
