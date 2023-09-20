@@ -40,6 +40,9 @@ abstract class _TruncationUtils {
   protected ellipsis: SharedParams['ellipsis'];
   protected availableWidth: SharedParams['availableWidth'];
 
+  public debugPerformance = false;
+  public debugCounter = 0;
+
   constructor({ fullText, ellipsis, availableWidth }: SharedParams) {
     this.fullText = fullText;
     this.ellipsis = ellipsis;
@@ -287,10 +290,18 @@ export class TruncationUtilsWithDOM extends _TruncationUtils {
 
   setTextToCheck = (text: string) => {
     this.span.textContent = text;
+
+    if (this.debugPerformance) {
+      this.debugCounter++;
+    }
   };
 
   cleanup = () => {
     this.container.removeChild(this.span);
+
+    if (this.debugPerformance) {
+      console.debug(`Iterations: ${this.debugCounter}`, this.span.textContent);
+    }
   };
 }
 
@@ -340,6 +351,9 @@ export class TruncationUtilsWithCanvas extends _TruncationUtils {
   };
 
   get textWidth() {
+    if (this.debugPerformance) {
+      this.debugCounter++;
+    }
     return this.context.measureText(this.currentText).width;
   }
 

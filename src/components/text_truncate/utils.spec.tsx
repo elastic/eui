@@ -132,6 +132,90 @@ describe('Truncation utils', () => {
     });
   });
 
+  describe('performance stress testing', () => {
+    const container = document.createElement('div');
+    container.style.font = font;
+
+    before(() => document.body.appendChild(container));
+    after(() => document.body.removeChild(container));
+
+    describe('basic iterations', () => {
+      const utils = new TruncationUtilsWithDOM({ ...sharedProps, container });
+
+      beforeEach(() => {
+        utils.debugPerformance = true;
+        utils.debugCounter = 0;
+      });
+
+      specify('start', () => {
+        utils.truncateStart();
+        expect(utils.debugCounter).to.equal(3);
+
+        utils.truncateStart(3);
+        expect(utils.debugCounter).to.equal(9);
+      });
+
+      specify('end', () => {
+        utils.truncateEnd();
+        expect(utils.debugCounter).to.equal(5);
+
+        utils.truncateEnd(3);
+        expect(utils.debugCounter).to.equal(12);
+      });
+
+      specify('startEnd', () => {
+        utils.truncateStartEndAtMiddle();
+        expect(utils.debugCounter).to.equal(5);
+
+        utils.truncateStartEndAtPosition(25);
+        expect(utils.debugCounter).to.equal(10);
+      });
+
+      specify('middle', () => {
+        utils.truncateMiddle();
+        expect(utils.debugCounter).to.equal(5);
+      });
+    });
+
+    it('maintains the same low number of iterations regardless of full text length', () => {
+      const utils = new TruncationUtilsWithDOM({
+        ...sharedProps,
+        container,
+        fullText: sharedProps.fullText.repeat(100),
+      });
+      utils.debugPerformance = true;
+
+      utils.truncateStart();
+      expect(utils.debugCounter).to.equal(3);
+    });
+
+    it('maintains the low numbers of iterations regardless of available width', () => {
+      const utils = new TruncationUtilsWithDOM({
+        ...sharedProps,
+        container,
+        fullText: sharedProps.fullText.repeat(1000),
+        availableWidth: 1000,
+      });
+      utils.debugPerformance = true;
+
+      utils.truncateMiddle();
+      expect(utils.debugCounter).to.equal(5);
+    });
+
+    it('maintains low number of iterations in canvas as well as DOM', () => {
+      const utils = new TruncationUtilsWithCanvas({
+        ...sharedProps,
+        font,
+        fullText: sharedProps.fullText.repeat(1000),
+        availableWidth: 1000,
+      });
+      utils.debugPerformance = true;
+
+      utils.truncateStartEndAtPosition(1000);
+      expect(utils.debugCounter).to.equal(6);
+    });
+  });
+
   // Test utility for outputting the returned strings from each truncation utility
   // in React. Given the same shared props and fonts, both render methods should
   // arrive at the same truncated strings
