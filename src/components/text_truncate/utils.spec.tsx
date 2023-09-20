@@ -88,6 +88,39 @@ describe('Truncation utils', () => {
       });
     });
 
+    describe('startEnd', () => {
+      describe('with no truncationPosition', () => {
+        it('shows the middle of the text and inserts ellipsis at the start and end of the text', () => {
+          expect(utils.truncateStartEndAtMiddle()).to.equal(
+            '...lor sit amet, consectetur a...'
+          );
+        });
+      });
+
+      describe('with truncationPosition', () => {
+        it('allows moving the anchor point of the displayed text', () => {
+          expect(utils.truncateStartEndAtPosition(20)).to.equal(
+            '...sum dolor sit amet, conse...'
+          );
+          expect(utils.truncateStartEndAtPosition(30)).to.equal(
+            '... sit amet, consectetur adip...'
+          );
+        });
+
+        it('does not display the leading ellipsis if the index is close to the start', () => {
+          expect(utils.truncateStartEndAtPosition(10)).to.equal(
+            'Lorem ipsum dolor sit amet, ...'
+          );
+        });
+
+        it('does not display the trailing ellipsis if the index is close to the end', () => {
+          expect(utils.truncateStartEndAtPosition(40)).to.equal(
+            '...t, consectetur adipiscing elit'
+          );
+        });
+      });
+    });
+
     describe('middle', () => {
       it('inserts ellipsis in the middle of the text', () => {
         expect(utils.truncateMiddle()).to.equal(

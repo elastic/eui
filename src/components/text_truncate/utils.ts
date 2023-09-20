@@ -191,68 +191,43 @@ abstract class _TruncationUtils {
   };
 
   truncateStartEndAtPosition = (truncationPosition: number) => {
-    // If using a non-centered startEnd anchor position, we need to *build*
-    // the string from scratch instead of *removing* from the full text string,
-    // to make sure we don't go past the beginning or end of the text
-    let truncatedText = '';
-    this.setTextToCheck(truncatedText);
-
-    // Ellipses are conditional - if the anchor is towards the beginning or end,
-    // it's possible they shouldn't render
-    let startingEllipsis = this.ellipsis;
-    let endingEllipsis = this.ellipsis;
-
-    // Split the text into two at the anchor position
-    let [firstPart, secondPart] = splitText(this.fullText).at(
-      truncationPosition
+    // Split the text from the anchor position, using the width ratio
+    // to get the starting and ending indices from the position
+    this.setTextWidthRatio();
+    const characterRatio = Math.floor(
+      (this.fullText.length * this.widthRatio) / 2
     );
+    const truncateStart = truncationPosition - characterRatio;
+    const truncateEnd = truncationPosition + characterRatio;
 
-    const combinedText = () => this.ellipsis + truncatedText + this.ellipsis;
-
-    while (this.textWidth <= this.availableWidth) {
-      if (firstPart.length > 0) {
-        truncatedText = getLastCharacter(firstPart) + truncatedText;
-        firstPart = removeLastCharacter(firstPart);
-      } else {
-        startingEllipsis = '';
-      }
-
-      if (secondPart.length > 0) {
-        truncatedText = truncatedText + getFirstCharacter(secondPart);
-        secondPart = removeFirstCharacter(secondPart);
-      } else {
-        endingEllipsis = '';
-      }
-
-      this.setTextToCheck(combinedText());
+    // If either of the approximate start/end truncation indices go beyond the
+    // bounds of the actual text, we can simply use end or start truncation instead
+    if (truncateStart < 0) {
+      return this.truncateEnd();
+    }
+    if (truncateEnd >= this.fullText.length) {
+      return this.truncateStart();
     }
 
-    // Because this logic builds text outwards vs. removing inwards, the final
-    // text width ends up a little larger than the container, and we need to
-    // remove the last added character(s)
-    if (!startingEllipsis) {
-      truncatedText = removeLastCharacter(truncatedText);
-    } else if (!endingEllipsis) {
-      truncatedText = removeFirstCharacter(truncatedText);
-    } else {
-      truncatedText = removeFirstAndLastCharacters(truncatedText);
+    let truncatedText = this.fullText.substring(truncateStart, truncateEnd);
+    const combinedText = () => this.ellipsis + truncatedText + this.ellipsis;
+    this.setTextToCheck(combinedText());
+
+    let alternating;
+    while (this.textWidth > this.availableWidth) {
+      truncatedText = alternating
+        ? removeLastCharacter(truncatedText)
+        : removeFirstCharacter(truncatedText);
+      alternating = !alternating;
+      this.setTextToCheck(combinedText());
     }
 
     return combinedText();
   };
 
   truncateStartEndAtMiddle = () => {
-    let truncatedText = this.fullText;
-    this.setTextToCheck(truncatedText);
-
-    const combinedText = () => this.ellipsis + truncatedText + this.ellipsis;
-
-    while (this.textWidth > this.availableWidth) {
-      truncatedText = removeFirstAndLastCharacters(truncatedText);
-      this.setTextToCheck(combinedText());
-    }
-
-    return combinedText();
+    const middlePosition = Math.floor(this.fullText.length / 2);
+    return this.truncateStartEndAtPosition(middlePosition);
   };
 
   truncateMiddle = () => {
