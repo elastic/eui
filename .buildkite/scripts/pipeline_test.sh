@@ -21,22 +21,22 @@ case $TEST_TYPE in
 
   unit:ts)
     echo "[TASK]: Running .ts unit tests"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit \"**/*.test.ts\"")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit:ts")
     ;;
 
   unit:tsx)
     echo "[TASK]: Running .tsx unit tests"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit \"**/*.test.tsx\"")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit:tsx")
     ;;
 
   cypress:16)
     echo "[TASK]: Running Cypress tests against React 16"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" REACT_VERSION=16 npm run test-cypress")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-cypress:16")
     ;;
 
   cypress:17)
     echo "[TASK]: Running Cypress tests against React 17"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" REACT_VERSION=17 npm run test-cypress")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-cypress:17")
     ;;
 
   cypress:18)
