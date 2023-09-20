@@ -86,7 +86,7 @@ abstract class _TruncationUtils {
 
     if (this.textWidth > this.availableWidth) {
       console.error(
-        `The passed truncationOffset is too large for the available width. Truncating the offset instead.`
+        'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
       );
       return false;
     }
@@ -99,14 +99,14 @@ abstract class _TruncationUtils {
   truncateStart = (truncationOffset?: number) => {
     let truncatedText = this.fullText;
     let leadingText = '';
-    const combinedText = () => `${leadingText}${truncatedText}`;
+    const combinedText = () => leadingText + truncatedText;
 
     if (truncationOffset) {
       [leadingText, truncatedText] = splitText(this.fullText).at(
         truncationOffset
       );
 
-      const widthCheck = `${leadingText}${this.ellipsis}`;
+      const widthCheck = leadingText + this.ellipsis;
       if (this.checkTruncationOffsetWidth(widthCheck) === false) {
         truncatedText = leadingText;
         leadingText = '';
@@ -127,13 +127,13 @@ abstract class _TruncationUtils {
   truncateEnd = (truncationOffset?: number) => {
     let truncatedText = this.fullText;
     let trailingText = '';
-    const combinedText = () => `${truncatedText}${trailingText}`;
+    const combinedText = () => truncatedText + trailingText;
 
     if (truncationOffset) {
       const index = this.fullText.length - truncationOffset;
       [truncatedText, trailingText] = splitText(this.fullText).at(index);
 
-      const widthCheck = `${this.ellipsis}${trailingText}`;
+      const widthCheck = this.ellipsis + trailingText;
       if (this.checkTruncationOffsetWidth(widthCheck) === false) {
         truncatedText = trailingText;
         trailingText = '';
@@ -168,19 +168,18 @@ abstract class _TruncationUtils {
       truncationPosition
     );
 
-    const combinedText = () =>
-      `${startingEllipsis}${truncatedText}${endingEllipsis}`;
+    const combinedText = () => this.ellipsis + truncatedText + this.ellipsis;
 
     while (this.textWidth <= this.availableWidth) {
       if (firstPart.length > 0) {
-        truncatedText = `${getLastCharacter(firstPart)}${truncatedText}`;
+        truncatedText = getLastCharacter(firstPart) + truncatedText;
         firstPart = removeLastCharacter(firstPart);
       } else {
         startingEllipsis = '';
       }
 
       if (secondPart.length > 0) {
-        truncatedText = `${truncatedText}${getFirstCharacter(secondPart)}`;
+        truncatedText = truncatedText + getFirstCharacter(secondPart);
         secondPart = removeFirstCharacter(secondPart);
       } else {
         endingEllipsis = '';
@@ -207,8 +206,7 @@ abstract class _TruncationUtils {
     let truncatedText = this.fullText;
     this.setTextToCheck(truncatedText);
 
-    const combinedText = () =>
-      `${this.ellipsis}${truncatedText}${this.ellipsis}`;
+    const combinedText = () => this.ellipsis + truncatedText + this.ellipsis;
 
     while (this.textWidth > this.availableWidth) {
       truncatedText = removeFirstAndLastCharacters(truncatedText);
@@ -221,14 +219,14 @@ abstract class _TruncationUtils {
   truncateMiddle = () => {
     const middlePosition = Math.floor(this.fullText.length / 2);
     let [firstHalf, secondHalf] = splitText(this.fullText).at(middlePosition);
-    let trimfirstHalf;
 
-    const combinedText = () => `${firstHalf}${this.ellipsis}${secondHalf}`;
+    const combinedText = () => firstHalf + this.ellipsis + secondHalf;
     this.setTextToCheck(combinedText());
 
+    let alternating;
     while (this.textWidth > this.availableWidth) {
-      trimfirstHalf = !trimfirstHalf;
-      if (trimfirstHalf) {
+      alternating = !alternating;
+      if (alternating) {
         firstHalf = removeLastCharacter(firstHalf);
       } else {
         secondHalf = removeFirstCharacter(secondHalf);
