@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { throttle } from 'lodash';
 import { faker } from '@faker-js/faker';
@@ -6,6 +6,7 @@ import { FixedSizeList } from 'react-window';
 
 import {
   EuiFlexGroup,
+  EuiFlexItem,
   EuiPanel,
   EuiText,
   EuiFormRow,
@@ -15,14 +16,18 @@ import {
   EuiTextTruncate,
 } from '../../../../src';
 
-const text = Array.from({ length: 100 }, () => faker.lorem.lines(5));
-
 export default () => {
   // Testing toggles
   const [canvasRendering, setCanvasRendering] = useState(true);
   const measurementRenderAPI = canvasRendering ? 'canvas' : 'dom';
   const [virtualization, setVirtualization] = useState(false);
-  const [throttleMs, setThrottleMs] = useState(100);
+  const [throttleMs, setThrottleMs] = useState(0);
+  const [lineCount, setLineCount] = useState(100);
+
+  // Number of lines of text to render
+  const text = useMemo(() => {
+    return Array.from({ length: lineCount }, () => faker.lorem.lines(5));
+  }, [lineCount]);
 
   // Width resize observer
   const widthRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +42,10 @@ export default () => {
     }, throttleMs);
 
     const resizeObserver = new ResizeObserver(onObserve);
-    resizeObserver.observe(widthRef.current);
+
+    document.fonts.ready.then(() => {
+      resizeObserver.observe(widthRef.current!);
+    });
 
     () => resizeObserver.disconnect();
   }, [throttleMs]);
@@ -63,6 +71,16 @@ export default () => {
             compressed
           />
         </EuiFormRow>
+        <EuiFlexItem css={{ justifyContent: 'flex-end', flexDirection: 'row' }}>
+          <EuiFormRow label="Lines" display="columnCompressed">
+            <EuiFieldNumber
+              value={lineCount}
+              onChange={(e) => setLineCount(Number(e.target.value))}
+              style={{ width: 100 }}
+              compressed
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="m" />
 
