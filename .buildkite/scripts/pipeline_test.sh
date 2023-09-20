@@ -21,12 +21,12 @@ case $TEST_TYPE in
 
   unit:ts)
     echo "[TASK]: Running .ts unit tests"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit src/**/*.test.ts")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit **/*.test.ts")
     ;;
 
   unit:tsx)
     echo "[TASK]: Running .tsx unit tests"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit src/**/*.test.tsx")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit **/*.test.tsx")
     ;;
 
   cypress:16)
