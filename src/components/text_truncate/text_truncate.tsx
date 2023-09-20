@@ -168,6 +168,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       measurementRenderAPI === 'canvas'
         ? new TruncationUtilsWithCanvas(params)
         : new TruncationUtilsWithDOM(params);
+    utils.debugPerformance = true;
 
     if (utils.checkIfTruncationIsNeeded() === false) {
       truncatedText = text;
