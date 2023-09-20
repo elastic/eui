@@ -39,6 +39,12 @@ describe('Truncation utils', () => {
     availableWidth: 200,
     ellipsis: '...',
   };
+  const expectedOutput = {
+    start: '...t, consectetur adipiscing elit',
+    end: 'Lorem ipsum dolor sit amet, ...',
+    startEnd: '...lor sit amet, consectetur a...',
+    middle: 'Lorem ipsum d...adipiscing elit',
+  };
 
   // Note: the truncation type tests are intended to be primarily unit tests and do not
   // emit any rendered output in the UI. The reason why they're tested in Cypress and
@@ -48,9 +54,7 @@ describe('Truncation utils', () => {
 
     describe('start', () => {
       it('inserts ellipsis at the start of the text', () => {
-        expect(utils.truncateStart()).to.equal(
-          '...t, consectetur adipiscing elit'
-        );
+        expect(utils.truncateStart()).to.equal(expectedOutput.start);
       });
 
       describe('truncationOffset', () => {
@@ -70,7 +74,7 @@ describe('Truncation utils', () => {
 
     describe('end', () => {
       it('inserts ellipsis at the end of the text', () => {
-        expect(utils.truncateEnd()).to.equal('Lorem ipsum dolor sit amet, ...');
+        expect(utils.truncateEnd()).to.equal(expectedOutput.end);
       });
 
       describe('truncationOffset', () => {
@@ -92,7 +96,7 @@ describe('Truncation utils', () => {
       describe('with no truncationPosition', () => {
         it('shows the middle of the text and inserts ellipsis at the start and end of the text', () => {
           expect(utils.truncateStartEndAtMiddle()).to.equal(
-            '...lor sit amet, consectetur a...'
+            expectedOutput.startEnd
           );
         });
       });
@@ -109,13 +113,13 @@ describe('Truncation utils', () => {
 
         it('does not display the leading ellipsis if the index is close to the start', () => {
           expect(utils.truncateStartEndAtPosition(10)).to.equal(
-            'Lorem ipsum dolor sit amet, ...'
+            expectedOutput.end
           );
         });
 
         it('does not display the trailing ellipsis if the index is close to the end', () => {
           expect(utils.truncateStartEndAtPosition(40)).to.equal(
-            '...t, consectetur adipiscing elit'
+            expectedOutput.start
           );
         });
       });
@@ -123,9 +127,7 @@ describe('Truncation utils', () => {
 
     describe('middle', () => {
       it('inserts ellipsis in the middle of the text', () => {
-        expect(utils.truncateMiddle()).to.equal(
-          'Lorem ipsum d...adipiscing elit'
-        );
+        expect(utils.truncateMiddle()).to.equal(expectedOutput.middle);
       });
     });
   });
@@ -157,13 +159,10 @@ describe('Truncation utils', () => {
   };
 
   const assertExpectedOutput = () => {
-    cy.get('#start').should('have.text', '...t, consectetur adipiscing elit');
-    cy.get('#end').should('have.text', 'Lorem ipsum dolor sit amet, ...');
-    cy.get('#middle').should('have.text', 'Lorem ipsum d...adipiscing elit');
-    cy.get('#startEnd').should(
-      'have.text',
-      '...lor sit amet, consectetur a...'
-    );
+    cy.get('#start').should('have.text', expectedOutput.start);
+    cy.get('#end').should('have.text', expectedOutput.end);
+    cy.get('#middle').should('have.text', expectedOutput.middle);
+    cy.get('#startEnd').should('have.text', expectedOutput.startEnd);
     cy.get('#startEndAt').should(
       'have.text',
       '...rem ipsum dolor sit amet, ...'
