@@ -215,7 +215,19 @@ export const DataGridToolbarExample = {
         EuiDataGridToolbarProps,
         EuiDataGridCustomToolbarProps,
       },
-      // TODO: add a snippet
+      snippet: `<EuiDataGrid
+  aria-label="Data grid with a custom toolbar and additional content in the display settings popover "
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCustomToolbar={({ displayControl }) => <div>Custom toolbar content {displayControl}</div>}
+  toolbarVisibility={{
+    showDisplaySelector: {
+      allowResetButton: false,
+      additionalDisplaySettings: <div>Custom settings content</div>
+    }
+}}
+/>`,
     },
     {
       title: 'Toolbar props',

@@ -146,7 +146,7 @@ export default () => {
   return (
     <>
       <EuiDataGrid
-        aria-label="Data grid custom body renderer demo"
+        aria-label="Data grid custom toolbar demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         sorting={{ columns: sortingColumns, onSort }}
@@ -160,9 +160,9 @@ export default () => {
         renderCellValue={({ rowIndex, columnId }) =>
           raw_data[rowIndex][columnId]
         }
-        renderCustomToolbar={renderCustomToolbar}
         height={undefined}
         gridStyle={{ border: 'none', header: 'underline' }}
+        renderCustomToolbar={renderCustomToolbar}
         toolbarVisibility={{
           showDisplaySelector: {
             allowResetButton: false,
