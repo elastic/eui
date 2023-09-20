@@ -55,6 +55,37 @@ abstract class _TruncationUtils {
   abstract setTextToCheck: (text: string) => void;
 
   /**
+   * Internal utils for calculating a ratio based on the passed available width
+   * vs the full text width.
+   * This ratio is used to get an initial _approximate_ text string that should
+   * be slightly over the available width, which we can then remove from
+   * character-by-character until the text just fits within the available width.
+   */
+
+  widthRatio: number = 0;
+
+  setTextWidthRatio = (text: string = this.fullText, textToOffset = '') => {
+    // Account for reduced available width due to (e.g.) truncation offset
+    let availableWidth = this.availableWidth;
+    if (textToOffset) {
+      this.setTextToCheck(textToOffset);
+      availableWidth = availableWidth - this.textWidth;
+    }
+
+    this.setTextToCheck(text);
+    this.widthRatio = availableWidth / this.textWidth;
+  };
+
+  getTextFromRatio = (text: string, type: 'start' | 'end') => {
+    const characterRatio = Math.ceil(text.length * this.widthRatio);
+    const index =
+      type === 'start' ? text.length - characterRatio : characterRatio;
+
+    const [end, start] = splitText(text).at(index);
+    return type === 'start' ? start : end;
+  };
+
+  /**
    * Early return checks
    */
 

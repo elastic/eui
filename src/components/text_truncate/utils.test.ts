@@ -59,6 +59,39 @@ describe('TruncationUtilsWithDOM', () => {
     });
   });
 
+  describe('ratio utils', () => {
+    const utils = new TruncationUtilsWithDOM({
+      ...params,
+      availableWidth: 1000,
+    });
+
+    describe('setTextWidthRatio', () => {
+      it('sets the ratio of the available width to the full text width', () => {
+        setSpanWidth(10000);
+        utils.setTextWidthRatio();
+        expect(utils.widthRatio).toEqual(0.1);
+      });
+
+      it('allow measuring passed text and deducting an offset width', () => {
+        // Note: there isn't a super great way to mock a real-world example of this
+        // in Jest because setSpanWidth applies to both the measured text and excluded text
+        setSpanWidth(500);
+        utils.setTextWidthRatio('text to measure', 'some excluded text');
+        expect(utils.widthRatio).toEqual(1);
+      });
+    });
+
+    describe('getTextFromRatio', () => {
+      it('splits the passed text string by the ratio determined by `setTextWidthRatio`', () => {
+        setSpanWidth(3000);
+        utils.setTextWidthRatio(); // 0.33
+        // Should split the strings by the last/first third
+        expect(utils.getTextFromRatio('Lorem ipsum', 'start')).toEqual('psum');
+        expect(utils.getTextFromRatio('dolor sit', 'end')).toEqual('dol');
+      });
+    });
+  });
+
   describe('early return checks', () => {
     const utils = new TruncationUtilsWithDOM(params);
     afterAll(() => utils.cleanup());
