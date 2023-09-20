@@ -40,6 +40,63 @@ describe('Truncation utils', () => {
     ellipsis: '...',
   };
 
+  // Note: the truncation type tests are intended to be primarily unit tests and do not
+  // emit any rendered output in the UI. The reason why they're tested in Cypress and
+  // not Jest is because jsdom does not return meaningful/valid width calculations
+  describe('shared truncation types logic', () => {
+    const utils = new TruncationUtilsWithCanvas({ ...sharedProps, font });
+
+    describe('start', () => {
+      it('inserts ellipsis at the start of the text', () => {
+        expect(utils.truncateStart()).to.equal(
+          '...t, consectetur adipiscing elit'
+        );
+      });
+
+      describe('truncationOffset', () => {
+        it('preserves the specified number of characters at the start of the text', () => {
+          expect(utils.truncateStart(3)).to.equal(
+            'Lor...onsectetur adipiscing elit'
+          );
+        });
+
+        it('truncates the offset if the truncationOffset is too large', () => {
+          expect(utils.truncateStart(30)).to.equal(
+            '...rem ipsum dolor sit amet, co'
+          );
+        });
+      });
+    });
+
+    describe('end', () => {
+      it('inserts ellipsis at the end of the text', () => {
+        expect(utils.truncateEnd()).to.equal('Lorem ipsum dolor sit amet, ...');
+      });
+
+      describe('truncationOffset', () => {
+        it('preserves the specified number of characters at the end of the text', () => {
+          expect(utils.truncateEnd(3)).to.equal(
+            'Lorem ipsum dolor sit ame...lit'
+          );
+        });
+
+        it('truncates the offset if the truncationOffset is too large', () => {
+          expect(utils.truncateEnd(50)).to.equal(
+            ' ipsum dolor sit amet, conse...'
+          );
+        });
+      });
+    });
+
+    describe('middle', () => {
+      it('inserts ellipsis in the middle of the text', () => {
+        expect(utils.truncateMiddle()).to.equal(
+          'Lorem ipsum d...adipiscing elit'
+        );
+      });
+    });
+  });
+
   // Test utility for outputting the returned strings from each truncation utility
   // in React. Given the same shared props and fonts, both render methods should
   // arrive at the same truncated strings

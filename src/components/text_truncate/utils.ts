@@ -144,6 +144,10 @@ abstract class _TruncationUtils {
       }
     }
 
+    // Get text width ratio width accounting for any truncation offset text,
+    // and guesstimate an initial truncated string
+    this.setTextWidthRatio(truncatedText, leadingText);
+    truncatedText = this.getTextFromRatio(truncatedText, 'start');
     leadingText += this.ellipsis;
     this.setTextToCheck(combinedText());
 
@@ -171,6 +175,10 @@ abstract class _TruncationUtils {
       }
     }
 
+    // Get text width ratio width accounting for any truncation offset text,
+    // and guesstimate an initial truncated string
+    this.setTextWidthRatio(truncatedText, trailingText);
+    truncatedText = this.getTextFromRatio(truncatedText, 'end');
     trailingText = this.ellipsis + trailingText;
     this.setTextToCheck(combinedText());
 
@@ -250,6 +258,10 @@ abstract class _TruncationUtils {
   truncateMiddle = () => {
     const middlePosition = Math.floor(this.fullText.length / 2);
     let [firstHalf, secondHalf] = splitText(this.fullText).at(middlePosition);
+
+    this.setTextWidthRatio();
+    firstHalf = this.getTextFromRatio(firstHalf, 'end');
+    secondHalf = this.getTextFromRatio(secondHalf, 'start');
 
     const combinedText = () => firstHalf + this.ellipsis + secondHalf;
     this.setTextToCheck(combinedText());
