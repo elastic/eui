@@ -355,14 +355,7 @@ export class TruncationUtilsWithCanvas extends _TruncationUtils {
 const removeLastCharacter = (text: string) =>
   text.substring(0, text.length - 1);
 
-const getLastCharacter = (text: string) => text.substring(text.length - 1);
-
 const removeFirstCharacter = (text: string) => text.substring(1);
-
-const getFirstCharacter = (text: string) => text.substring(0, 1);
-
-const removeFirstAndLastCharacters = (text: string) =>
-  text.substring(1, text.length - 1);
 
 const splitText = (text: string) => ({
   at: (index: number) => [text.substring(0, index), text.substring(index)],
