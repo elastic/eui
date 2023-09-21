@@ -14,7 +14,11 @@ import {
 } from '../../../themes/amsterdam/global_styling/mixins';
 import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
 import { UseEuiTheme } from '../../../services';
-import { euiCanAnimate, logicalCSS } from '../../../global_styling';
+import {
+  euiCanAnimate,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 
 export const openAnimationTiming = 'slow';
 const translateDistance = 's';
@@ -27,6 +31,13 @@ const translateDistance = 's';
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
+
+  const animationSpeed = euiTheme.animation[openAnimationTiming];
+
+  const opacityTransition = `opacity ${euiTheme.animation.bounce} ${animationSpeed}`;
+  const transformTransition = `transform ${
+    euiTheme.animation.bounce
+  } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
 
   return {
     // Base
@@ -49,12 +60,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isOpen: css`
       opacity: 1;
       pointer-events: auto;
+
       ${euiCanAnimate} {
-        /* 2 */
-        transition: opacity ${euiTheme.animation.bounce}
-            ${euiTheme.animation[openAnimationTiming]},
-          transform ${euiTheme.animation.bounce}
-            calc(${euiTheme.animation[openAnimationTiming]} + 100ms);
+        transition: ${opacityTransition}, ${transformTransition}; /* 2 */
       }
     `,
 
@@ -77,9 +85,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       isOpen: css`
         filter: none; /* Necessary to remove the base shadow */
         ${euiCanAnimate} {
-          /* 2 */
-          transition: opacity ${euiTheme.animation.bounce}
-            ${euiTheme.animation[openAnimationTiming]};
+          transition: ${opacityTransition}; /* 2 */
         }
       `,
       top: css`
@@ -102,6 +108,10 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
            so we disable it and recreate the shadow via box-shadow instead */
         filter: none;
         ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })}
+
+        ${euiCanAnimate} {
+          transition: ${opacityTransition}; /* 2 */
+        }
       `,
       // The offset transforms must be recreated in margins
       top: css`
