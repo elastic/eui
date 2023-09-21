@@ -517,6 +517,7 @@ export class EuiPopover extends Component<Props, State> {
         arrowBuffer: 10,
       },
       returnBoundingBox: this.props.attachToAnchor,
+      allowCrossAxis: !this.props.attachToAnchor,
       buffer: this.props.buffer,
     });
 
