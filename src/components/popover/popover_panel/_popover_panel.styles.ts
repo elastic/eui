@@ -48,8 +48,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       backface-visibility: hidden;
       pointer-events: none;
       opacity: 0; /* 2 */
-      transform: translateY(0) translateX(0) translateZ(0); /* 2 */
-      ${euiShadowMedium(euiThemeContext, { property: 'filter' })}
 
       ${euiCanAnimate} {
         /* 2 */
@@ -60,31 +58,40 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         outline-offset: 0;
       }
     `,
-
-    // Is visible / open
     isOpen: css`
       opacity: 1;
       pointer-events: auto;
     `,
 
-    // Positions
-    top: css`
-      transform: translateY(${translateDistance}) translateZ(0);
-    `,
-    bottom: css`
-      transform: translateY(-${translateDistance}) translateZ(0);
-    `,
-    left: css`
-      transform: translateX(${translateDistance}) translateZ(0);
-    `,
-    right: css`
-      transform: translateX(-${translateDistance}) translateZ(0);
-    `,
+    // Regular popover with an arrow, a transform animation/transition, and a
+    // drop shadow via `filter` (which automatically handles the arrow)
+    hasTransform: {
+      hasTransform: css`
+        transform: translateY(0) translateX(0) translateZ(0); /* 2 */
+        ${euiShadowMedium(euiThemeContext, { property: 'filter' })}
 
-    // Attached version overrides
-    attached: {
-      attached: css`
-        filter: none; /* Necessary to remove the base shadow */
+        ${euiCanAnimate} {
+          transition: ${opacityTransition}, ${transformTransition}; /* 2 */
+        }
+      `,
+      // Positions
+      top: css`
+        transform: translateY(${translateDistance}) translateZ(0);
+      `,
+      bottom: css`
+        transform: translateY(-${translateDistance}) translateZ(0);
+      `,
+      left: css`
+        transform: translateX(${translateDistance}) translateZ(0);
+      `,
+      right: css`
+        transform: translateX(-${translateDistance}) translateZ(0);
+      `,
+    },
+
+    // No arrow, transform, or filters
+    isAttached: {
+      isAttached: css`
         ${euiCanAnimate} {
           transition: ${opacityTransition}; /* 2 */
         }
@@ -103,14 +110,10 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       },
     },
 
-    // Overrides for drag & drop contexts within popovers. This is required because
-    // the fixed positions of drag and drop don't work inside of transformed elements
+    // Has an arrow, but cannot have transform or filter CSS - they create a
+    // stacking context that messes up the drag/drop fixed positioning
     hasDragDrop: {
       hasDragDrop: css`
-        transform: none;
-        /* Filter also causes a stacking context that interferes with the positioned children,
-           so we disable it and recreate the shadow via box-shadow instead */
-        filter: none;
         ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })}
 
         ${euiCanAnimate} {
