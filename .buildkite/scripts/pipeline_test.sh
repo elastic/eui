@@ -24,6 +24,16 @@ case $TEST_TYPE in
     DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit:ts")
     ;;
 
+  unit:tsx:16)
+    echo "[TASK]: Running .tsx unit tests"
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit:tsx:16")
+    ;;
+  
+  unit:tsx:17)
+    echo "[TASK]: Running .tsx unit tests"
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit:tsx:17")
+    ;;
+  
   unit:tsx)
     echo "[TASK]: Running .tsx unit tests"
     DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-unit:tsx")

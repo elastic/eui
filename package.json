@@ -35,6 +35,8 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.js",
     "test-unit:ts": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.js --testMatch **/*.test.ts **/*.test.js",
     "test-unit:tsx": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.js --testMatch **/*.test.tsx",
+    "test-unit:tsx:17": "cross-env NODE_ENV=test REACT_VERSION=17 jest --config ./scripts/jest/config.js --testMatch **/*.test.tsx",
+    "test-unit:tsx:16": "cross-env NODE_ENV=test REACT_VERSION=16 jest --config ./scripts/jest/config.js --testMatch **/*.test.tsx",
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
     "test-cypress": "node ./scripts/cypress",
