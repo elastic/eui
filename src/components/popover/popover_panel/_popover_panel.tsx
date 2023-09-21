@@ -62,7 +62,7 @@ export const EuiPopoverPanel: FunctionComponent<
   if (isAttached) {
     panelCSS = [
       ...panelCSS,
-      isOpen && styles.attached.isOpen,
+      styles.attached.attached,
       position && styles.attached[position],
     ];
   }

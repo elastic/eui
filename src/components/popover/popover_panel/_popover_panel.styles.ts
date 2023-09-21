@@ -51,6 +51,11 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       transform: translateY(0) translateX(0) translateZ(0); /* 2 */
       ${euiShadowMedium(euiThemeContext, { property: 'filter' })}
 
+      ${euiCanAnimate} {
+        /* 2 */
+        transition: ${opacityTransition}, ${transformTransition};
+      }
+
       &:focus {
         outline-offset: 0;
       }
@@ -60,10 +65,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isOpen: css`
       opacity: 1;
       pointer-events: auto;
-
-      ${euiCanAnimate} {
-        transition: ${opacityTransition}, ${transformTransition}; /* 2 */
-      }
     `,
 
     // Positions
@@ -82,7 +83,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Attached version overrides
     attached: {
-      isOpen: css`
+      attached: css`
         filter: none; /* Necessary to remove the base shadow */
         ${euiCanAnimate} {
           transition: ${opacityTransition}; /* 2 */
