@@ -72,9 +72,13 @@ interface EuiExtendedDatePickerProps
   dayClassName?: (date: Moment) => string | null;
 
   /**
-   * Makes the input full width
+   * Renders the input as full width
    */
   fullWidth?: boolean;
+  /**
+   * Renders the input with compressed height and sizing
+   */
+  compressed?: boolean;
 
   /**
    * ref for the ReactDatePicker instance
@@ -147,6 +151,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   adjustDateOnChange = true,
   calendarClassName,
   className,
+  compressed,
   controlOnly,
   customInput,
   dateFormat = euiDatePickerDefaultDateFormat,
@@ -201,6 +206,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     numIconsClass,
     {
       'euiFieldText--fullWidth': fullWidth,
+      'euiFieldText--compressed': compressed,
       'euiFieldText-isLoading': isLoading,
       'euiFieldText--withIcon': !inline && showIcon,
       'euiFieldText--isClearable': !inline && selected && onClear,
@@ -289,6 +295,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
       <EuiFormControlLayout
         icon={optionalIcon}
         fullWidth={fullWidth}
+        compressed={compressed}
         clear={selected && onClear ? { onClick: onClear } : undefined}
         isLoading={isLoading}
         isInvalid={isInvalid}
