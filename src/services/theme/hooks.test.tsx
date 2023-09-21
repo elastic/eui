@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render, act } from '@testing-library/react';
-import { renderHook } from '../../test/rtl';
+import { render } from '@testing-library/react';
+import { renderHook, renderHookAct } from '../../test/rtl';
 
 import { EuiProvider } from '../../components/provider';
 
@@ -94,7 +94,7 @@ describe('useEuiThemeCSSVariables', () => {
     expect(result.current.globalCSSVariables).toBeUndefined();
     expect(result.current.themeCSSVariables).toBeUndefined();
 
-    act(() => {
+    renderHookAct(() => {
       result.current.setNearestThemeCSSVariables({ '--hello': 'world' });
     });
 
