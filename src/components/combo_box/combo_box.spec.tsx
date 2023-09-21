@@ -58,16 +58,13 @@ describe('EuiComboBox', () => {
       ],
     };
 
-    it('defaults to end truncation', () => {
+    it('defaults to CSS truncation', () => {
       cy.realMount(<EuiComboBox {...sharedProps} />);
       cy.get('[data-test-subj="comboBoxInput"]').realClick();
-      cy.get('[data-test-subj="truncatedText"]').should(
-        'have.text',
-        'Lorem ipsum dolor sit a…'
-      );
+      cy.get('.euiTextTruncate').should('not.exist');
     });
 
-    it('allows customizing truncationProps', () => {
+    it('renders EuiTextTruncate when truncationProps are passed', () => {
       cy.realMount(
         <EuiComboBox
           {...sharedProps}
@@ -75,6 +72,7 @@ describe('EuiComboBox', () => {
         />
       );
       cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('.euiTextTruncate').should('exist');
       cy.get('[data-test-subj="truncatedText"]').should(
         'have.text',
         'Lorem ipsum …piscing elit.'
