@@ -50,6 +50,42 @@ describe('EuiComboBox', () => {
     });
   });
 
+  describe('input auto sizing', () => {
+    it('resizes the width of the input based to fit the search text', () => {
+      cy.realMount(<EuiComboBox options={[]} />);
+      cy.get('[data-test-subj="comboBoxSearchInput"]').should(
+        'have.attr',
+        'style',
+        'inline-size: 2px;'
+      );
+
+      cy.get('[data-test-subj="comboBoxSearchInput"]').realClick();
+      cy.realType('lorem ipsum dolor');
+      cy.get('[data-test-subj="comboBoxSearchInput"]').should(
+        'have.attr',
+        'style',
+        'inline-size: 121px;'
+      );
+    });
+
+    it('does not exceed the maximum possible width of the input wrapper', () => {
+      cy.realMount(<EuiComboBox options={[]} />);
+      cy.get('[data-test-subj="comboBoxSearchInput"]').realClick();
+      cy.realType(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit......'
+      );
+
+      cy.get('[data-test-subj="comboBoxSearchInput"]').should(
+        'have.attr',
+        'style',
+        'inline-size: 387px;'
+      );
+      cy.get('[data-test-subj="comboBoxSearchInput"]')
+        .invoke('width')
+        .should('be.eq', 354);
+    });
+  });
+
   describe('truncation', () => {
     const sharedProps = {
       style: { width: 200 },
