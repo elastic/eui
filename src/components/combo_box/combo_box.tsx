@@ -18,7 +18,6 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import AutosizeInput from 'react-input-autosize';
 
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { getElementZIndex } from '../../services/popover';
@@ -255,12 +254,6 @@ export class EuiComboBox<T> extends Component<
         width: comboBoxBounds.width,
       });
     }
-  };
-  autoSizeInputRefInstance: RefInstance<AutosizeInput & HTMLDivElement> = null;
-  autoSizeInputRefCallback: RefCallback<AutosizeInput & HTMLDivElement> = (
-    ref
-  ) => {
-    this.autoSizeInputRefInstance = ref;
   };
 
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
@@ -787,13 +780,6 @@ export class EuiComboBox<T> extends Component<
 
   componentDidMount() {
     this._isMounted = true;
-
-    // TODO: This will need to be called once the actual stylesheet loads.
-    setTimeout(() => {
-      if (this.autoSizeInputRefInstance) {
-        this.autoSizeInputRefInstance.copyInputStyles();
-      }
-    }, 100);
   }
 
   static getDerivedStateFromProps<T>(
@@ -1044,7 +1030,6 @@ export class EuiComboBox<T> extends Component<
         ref={this.comboBoxRefCallback}
       >
         <EuiComboBoxInput
-          autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}
           focusedOptionId={
             this.hasActiveOption()
