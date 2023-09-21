@@ -233,11 +233,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       rootId,
     } = this.props;
-    // Individual truncation settings should override component prop
-    const truncationProps = {
-      ...this.props.truncationProps,
-      ..._truncationProps,
-    };
+
+    const hasTruncationProps = this.props.truncationProps || _truncationProps;
+    const truncationProps = hasTruncationProps
+      ? // Individual truncation settings should override component prop
+        { ...this.props.truncationProps, ..._truncationProps }
+      : undefined;
 
     if (isGroupLabelOption) {
       return (
@@ -307,12 +308,18 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   renderTruncatedOption = (
     text: string,
-    truncationProps: EuiComboBoxOptionsListProps<T>['truncationProps']
+    truncationProps?: EuiComboBoxOptionsListProps<T>['truncationProps']
   ) => {
-    if (!this.props.searchValue) {
+    const searchValue = this.props.searchValue.trim();
+
+    if (!truncationProps && !searchValue) {
+      // Default to CSS text-overflow
+      return text;
+    }
+
+    if (!searchValue) {
       return (
         <EuiTextTruncate
-          truncation="end"
           width={this.optionWidth}
           onResize={this.setOptionWidth}
           {...truncationProps}
@@ -323,7 +330,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       );
     }
 
-    const searchValue = this.props.searchValue.trim();
     const searchPositionStart = this.props.isCaseSensitive
       ? text.indexOf(searchValue)
       : text.toLowerCase().indexOf(searchValue.toLowerCase());

@@ -571,22 +571,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
                 <span
                   class="euiComboBoxOption__content"
                 >
-                  <div
-                    class="emotion-euiTextTruncate"
-                    title="1"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="css-1dore6v-truncatedText"
-                      data-test-subj="truncatedText"
-                    />
-                    <span
-                      class="css-1kxt4rj-fullText"
-                      data-test-subj="fullText"
-                    >
-                      1
-                    </span>
-                  </div>
+                  1
                 </span>
               </span>
             </span>
@@ -613,22 +598,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
                 <span
                   class="euiComboBoxOption__content"
                 >
-                  <div
-                    class="emotion-euiTextTruncate"
-                    title="2"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="css-1dore6v-truncatedText"
-                      data-test-subj="truncatedText"
-                    />
-                    <span
-                      class="css-1kxt4rj-fullText"
-                      data-test-subj="fullText"
-                    >
-                      2
-                    </span>
-                  </div>
+                  2
                 </span>
                 <span
                   class="euiComboBoxOption__append"
@@ -746,22 +716,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Titan"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Titan
-                      </span>
-                    </div>
+                    Titan
                   </span>
                 </span>
               </span>
@@ -788,22 +743,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Enceladus"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Enceladus
-                      </span>
-                    </div>
+                    Enceladus
                   </span>
                 </span>
               </span>
@@ -830,22 +770,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Mimas"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Mimas
-                      </span>
-                    </div>
+                    Mimas
                   </span>
                 </span>
               </span>
@@ -872,22 +797,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Dione"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Dione
-                      </span>
-                    </div>
+                    Dione
                   </span>
                 </span>
               </span>
@@ -914,22 +824,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Iapetus"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Iapetus
-                      </span>
-                    </div>
+                    Iapetus
                   </span>
                 </span>
               </span>
@@ -956,22 +851,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Phoebe"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Phoebe
-                      </span>
-                    </div>
+                    Phoebe
                   </span>
                 </span>
               </span>
@@ -998,22 +878,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Rhea"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Rhea
-                      </span>
-                    </div>
+                    Rhea
                   </span>
                 </span>
               </span>
@@ -1040,22 +905,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                      </span>
-                    </div>
+                    Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                   </span>
                 </span>
               </span>
@@ -1082,22 +932,7 @@ exports[`props options list is rendered 1`] = `
                   <span
                     class="euiComboBoxOption__content"
                   >
-                    <div
-                      class="emotion-euiTextTruncate"
-                      title="Tethys"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="css-1dore6v-truncatedText"
-                        data-test-subj="truncatedText"
-                      />
-                      <span
-                        class="css-1kxt4rj-fullText"
-                        data-test-subj="fullText"
-                      >
-                        Tethys
-                      </span>
-                    </div>
+                    Tethys
                   </span>
                 </span>
               </span>
