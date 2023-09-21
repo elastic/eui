@@ -94,9 +94,12 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       bottom: css`
         ${euiShadow(euiThemeContext, 'm')}
       `,
-      // Satisfies TS
-      left: css``,
-      right: css``,
+      get left() {
+        return this.bottom;
+      },
+      get right() {
+        return this.bottom;
+      },
     },
 
     // Overrides for drag & drop contexts within popovers. This is required because
