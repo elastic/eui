@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
-import { act, renderHook } from '../../test/rtl';
+import { render, act } from '@testing-library/react';
+import { renderHook } from '../../test/rtl';
 
 import { EuiProvider } from '../../components/provider';
 
