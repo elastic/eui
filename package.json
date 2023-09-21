@@ -18,7 +18,6 @@
     "start": "cross-env BABEL_MODULES=false webpack serve --config=src-docs/webpack.config.js",
     "test-docker": "node ./scripts/test-docker.js",
     "test-a11y-docker": "node ./scripts/test-a11y-docker.js",
-    "sync-docs": "node ./scripts/docs-sync.js",
     "build-docs": "cross-env BABEL_MODULES=false cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src-docs/webpack.config.js",
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
