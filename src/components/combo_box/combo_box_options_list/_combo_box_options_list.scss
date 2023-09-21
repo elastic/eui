@@ -10,6 +10,14 @@
   .euiFilterSelectItem__content {
     margin-block: 0 !important; // stylelint-disable-line declaration-no-important
   }
+
+  /* Kibana FTR affordance - without this, Selenium complains about the overlaid
+     text intercepting the button click. Since `title` is always present, and
+     users can't highlight or copy combobox options anyway, we might as well
+     disable clicks on text */
+  .euiTextTruncate {
+    pointer-events: none;
+  }
 }
 
 .euiComboBoxOptionsList__empty {

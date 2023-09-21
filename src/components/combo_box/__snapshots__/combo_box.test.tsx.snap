@@ -547,6 +547,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
           id="generated-id__option-0"
           role="option"
           style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
+          title="1"
           type="button"
         >
           <span
@@ -597,6 +598,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
           id="generated-id__option-1"
           role="option"
           style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
+          title="2"
           type="button"
         >
           <span
@@ -729,6 +731,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-0"
             role="option"
             style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
+            title="Titan"
             type="button"
           >
             <span
@@ -770,6 +773,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-1"
             role="option"
             style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
+            title="Enceladus"
             type="button"
           >
             <span
@@ -811,6 +815,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-2"
             role="option"
             style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
+            title="Mimas"
             type="button"
           >
             <span
@@ -852,6 +857,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-3"
             role="option"
             style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
+            title="Dione"
             type="button"
           >
             <span
@@ -893,6 +899,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-4"
             role="option"
             style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
+            title="Iapetus"
             type="button"
           >
             <span
@@ -934,6 +941,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-5"
             role="option"
             style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
+            title="Phoebe"
             type="button"
           >
             <span
@@ -975,6 +983,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-6"
             role="option"
             style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
+            title="Rhea"
             type="button"
           >
             <span
@@ -1016,6 +1025,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-7"
             role="option"
             style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
+            title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
             type="button"
           >
             <span
@@ -1057,6 +1067,7 @@ exports[`props options list is rendered 1`] = `
             id="generated-id__option-8"
             role="option"
             style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
+            title="Tethys"
             type="button"
           >
             <span

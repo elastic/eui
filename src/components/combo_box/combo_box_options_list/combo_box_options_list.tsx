@@ -275,6 +275,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         checked={checked}
         showIcons={singleSelection ? true : false}
         id={rootId(`_option-${index}`)}
+        title={label}
         {...rest}
       >
         <span className="euiComboBoxOption__contentWrapper">
