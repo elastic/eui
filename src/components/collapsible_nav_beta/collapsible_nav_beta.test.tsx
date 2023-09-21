@@ -9,7 +9,10 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
-import { shouldRenderCustomStyles } from '../../test/internal';
+import {
+  shouldRenderCustomStyles,
+  testOnReactVersion,
+} from '../../test/internal';
 import { requiredProps } from '../../test';
 
 import { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
@@ -70,21 +73,36 @@ describe('EuiCollapsibleNavBeta', () => {
       window.dispatchEvent(new Event('resize'));
     };
 
-    it('collapses from a push flyout to an overlay flyout once the screen is smaller than 3x the flyout width', () => {
-      mockWindowResize(600);
-      const { baseElement } = render(
-        <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
-      );
-      expect(baseElement).toMatchSnapshot();
-    });
+    testOnReactVersion(['18'])(
+      'collapses from a push flyout to an overlay flyout once the screen is smaller than 3x the flyout width',
+      () => {
+        mockWindowResize(600);
+        const { baseElement } = render(
+          <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
+        );
+        expect(baseElement).toMatchSnapshot();
+      }
+    );
 
-    it('makes the overlay flyout full width once the screen is smaller than 1.5x the flyout width', () => {
+    testOnReactVersion(['18'])(
+      'makes the overlay flyout full width once the screen is smaller than 1.5x the flyout width',
+      () => {
+        mockWindowResize(320);
+        const { baseElement } = render(
+          <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
+        );
+        expect(baseElement).toMatchSnapshot();
+      }
+    );
+
+    it('updates the full width overlay flyout on click and keypress', () => {
       mockWindowResize(320);
-      const { baseElement, getByTestSubject } = render(
+      const { baseElement, getByLabelText, getByTestSubject } = render(
         <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
       );
+      expect(getByLabelText('Toggle navigation open')).toBeInTheDocument();
       fireEvent.click(getByTestSubject('euiCollapsibleNavButton'));
-      expect(baseElement).toMatchSnapshot();
+      expect(getByLabelText('Toggle navigation closed')).toBeInTheDocument();
 
       // onClose testing
       expect(
