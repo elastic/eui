@@ -83,7 +83,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover"
-    id="19"
+    id="20"
   >
     <div
       class="euiPopover__anchor css-16vtueo-render"
@@ -102,7 +102,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -139,7 +139,7 @@ exports[`EuiPopover props buffer 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover"
-    id="20"
+    id="21"
   >
     <div
       class="euiPopover__anchor css-16vtueo-render"
@@ -158,7 +158,7 @@ exports[`EuiPopover props buffer 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -193,7 +193,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover"
-    id="21"
+    id="22"
   >
     <div
       class="euiPopover__anchor css-16vtueo-render"
@@ -212,7 +212,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -279,7 +279,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -346,7 +346,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -400,7 +400,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -453,7 +453,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
       <div
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
@@ -499,7 +499,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel test emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel test emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -553,7 +553,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -607,7 +607,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom-euiTestCss"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom-euiTestCss"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -643,7 +643,7 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover"
-    id="22"
+    id="23"
   >
     <div
       class="euiPopover__anchor css-16vtueo-render"
@@ -662,7 +662,7 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
         aria-describedby="generated-id"
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
