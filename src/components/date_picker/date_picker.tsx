@@ -204,12 +204,12 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     'euiDatePicker',
     'euiFieldText',
     numIconsClass,
-    {
+    !inline && {
       'euiFieldText--fullWidth': fullWidth,
-      'euiFieldText--compressed': compressed,
       'euiFieldText-isLoading': isLoading,
-      'euiFieldText--withIcon': !inline && showIcon,
-      'euiFieldText--isClearable': !inline && selected && onClear,
+      'euiFieldText--compressed': compressed,
+      'euiFieldText--withIcon': showIcon,
+      'euiFieldText--isClearable': selected && onClear,
     },
     className
   );
@@ -294,8 +294,8 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     <span className={classes}>
       <EuiFormControlLayout
         icon={optionalIcon}
-        fullWidth={fullWidth}
-        compressed={compressed}
+        fullWidth={!inline && fullWidth}
+        compressed={!inline && compressed}
         clear={selected && onClear ? { onClick: onClear } : undefined}
         isLoading={isLoading}
         isInvalid={isInvalid}
