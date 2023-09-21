@@ -57,14 +57,14 @@ for (let i = 1; i < 5; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        name={`${faker.name.lastName()}, ${faker.name.firstName()}`}
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
       />
     ),
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: faker.address.city(),
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 
