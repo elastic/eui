@@ -482,7 +482,7 @@ export class EuiPopover extends Component<Props, State> {
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition } = this.props as PropsWithDefaults;
+    const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
@@ -507,10 +507,11 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset:
-        !this.props.attachToAnchor && this.props.hasArrow
-          ? 16 + (this.props.offset || 0)
-          : 8 + (this.props.offset || 0),
+      offset: this.props.attachToAnchor
+        ? offset
+        : this.props.hasArrow
+        ? 16 + offset
+        : 8 + offset,
       arrowConfig: {
         arrowWidth: 24,
         arrowBuffer: 10,
