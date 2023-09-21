@@ -21,7 +21,6 @@ import {
 } from '../../../global_styling';
 
 export const openAnimationTiming = 'slow';
-const translateDistance = 's';
 
 /**
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.
@@ -32,6 +31,7 @@ const translateDistance = 's';
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
+  const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
 
   const opacityTransition = `opacity ${euiTheme.animation.bounce} ${animationSpeed}`;
@@ -68,16 +68,16 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Positions
     top: css`
-      transform: translateY(${euiTheme.size[translateDistance]}) translateZ(0);
+      transform: translateY(${translateDistance}) translateZ(0);
     `,
     bottom: css`
-      transform: translateY(-${euiTheme.size[translateDistance]}) translateZ(0);
+      transform: translateY(-${translateDistance}) translateZ(0);
     `,
     left: css`
-      transform: translateX(${euiTheme.size[translateDistance]}) translateZ(0);
+      transform: translateX(${translateDistance}) translateZ(0);
     `,
     right: css`
-      transform: translateX(-${euiTheme.size[translateDistance]}) translateZ(0);
+      transform: translateX(-${translateDistance}) translateZ(0);
     `,
 
     // Attached version overrides
@@ -115,11 +115,11 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       // The offset transforms must be recreated in margins
       top: css`
-        margin-block-start: ${euiTheme.size[translateDistance]};
+        margin-block-start: ${translateDistance};
         /* Existing box-shadow of the popover is sufficient to see the arrow */
       `,
       bottom: css`
-        margin-block-start: -${euiTheme.size[translateDistance]};
+        margin-block-start: -${translateDistance};
 
         .euiPopover__arrow {
           filter: drop-shadow(
@@ -128,7 +128,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       left: css`
-        margin-inline-start: ${euiTheme.size[translateDistance]};
+        margin-inline-start: ${translateDistance};
 
         .euiPopover__arrow {
           filter: drop-shadow(
@@ -137,7 +137,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       right: css`
-        margin-inline-start: -${euiTheme.size[translateDistance]};
+        margin-inline-start: -${translateDistance};
 
         .euiPopover__arrow {
           filter: drop-shadow(
