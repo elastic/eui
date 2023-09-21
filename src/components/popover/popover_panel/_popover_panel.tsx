@@ -46,8 +46,6 @@ export const EuiPopoverPanel: FunctionComponent<
   position,
   ...rest
 }) => {
-  const { paddingSize = DEFAULT_PANEL_PADDING_SIZE } = rest;
-
   const classes = classNames('euiPopover__panel', className);
 
   const euiThemeContext = useEuiTheme();
@@ -78,7 +76,9 @@ export const EuiPopoverPanel: FunctionComponent<
   }, [euiThemeContext, isOpen, position, isAttached, hasDragDrop]);
 
   return (
-    <EuiPopoverPanelContext.Provider value={{ paddingSize }}>
+    <EuiPopoverPanelContext.Provider
+      value={{ paddingSize: rest.paddingSize || DEFAULT_PANEL_PADDING_SIZE }}
+    >
       <EuiPanel
         className={classes}
         css={cssStyles}
