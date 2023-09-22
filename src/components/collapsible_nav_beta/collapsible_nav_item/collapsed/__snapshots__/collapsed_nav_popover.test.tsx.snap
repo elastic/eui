@@ -46,7 +46,7 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-right-euiCollapsedNavPopover__panel"
+        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-hasTransform-right-euiCollapsedNavPopover__panel"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

@@ -461,11 +461,11 @@ exports[`EuiRange props slider should display in popover 1`] = `
         aria-describedby="generated-id"
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-isAttached-bottom"
         data-popover-panel="true"
         data-test-subj="test"
         role="dialog"
-        style="top: 8px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000;"
       >
         <p
           class="emotion-euiScreenReaderOnly"
