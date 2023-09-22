@@ -6,7 +6,6 @@ import { FixedSizeList } from 'react-window';
 
 import {
   EuiFlexGroup,
-  EuiFlexItem,
   EuiPanel,
   EuiText,
   EuiFormRow,
@@ -18,8 +17,6 @@ import {
 
 export default () => {
   // Testing toggles
-  const [canvasRendering, setCanvasRendering] = useState(true);
-  const measurementRenderAPI = canvasRendering ? 'canvas' : 'dom';
   const [virtualization, setVirtualization] = useState(false);
   const [throttleMs, setThrottleMs] = useState(0);
   const [lineCount, setLineCount] = useState(100);
@@ -52,12 +49,15 @@ export default () => {
 
   return (
     <EuiText>
-      <EuiFlexGroup alignItems="center">
-        <EuiSwitch
-          label="Toggle canvas rendering"
-          checked={canvasRendering}
-          onChange={() => setCanvasRendering(!canvasRendering)}
-        />
+      <EuiFlexGroup alignItems="center" gutterSize="xl">
+        <EuiFormRow label="Lines" display="columnCompressed">
+          <EuiFieldNumber
+            value={lineCount}
+            onChange={(e) => setLineCount(Number(e.target.value))}
+            style={{ width: 100 }}
+            compressed
+          />
+        </EuiFormRow>
         <EuiSwitch
           label="Toggle virtualization"
           checked={virtualization}
@@ -71,16 +71,6 @@ export default () => {
             compressed
           />
         </EuiFormRow>
-        <EuiFlexItem css={{ justifyContent: 'flex-end', flexDirection: 'row' }}>
-          <EuiFormRow label="Lines" display="columnCompressed">
-            <EuiFieldNumber
-              value={lineCount}
-              onChange={(e) => setLineCount(Number(e.target.value))}
-              style={{ width: 100 }}
-              compressed
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="m" />
 
@@ -109,7 +99,6 @@ export default () => {
                 text={text[index]}
                 truncation="middle"
                 width={width}
-                measurementRenderAPI={measurementRenderAPI}
               />
             )}
           </FixedSizeList>
@@ -120,7 +109,6 @@ export default () => {
               text={text}
               truncation="middle"
               width={width}
-              measurementRenderAPI={measurementRenderAPI}
             />
           ))
         )}
