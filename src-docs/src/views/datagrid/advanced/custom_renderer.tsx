@@ -24,11 +24,11 @@ import {
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
   raw_data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()}`,
     email: faker.internet.email(),
-    location: `${faker.address.city()}, ${faker.address.country()}`,
+    location: `${faker.location.city()}, ${faker.location.country()}`,
     date: `${faker.date.past()}`,
-    amount: faker.commerce.price(1, 1000, 2, '$'),
+    amount: faker.commerce.price({ min: 1, max: 1000, dec: 2, symbol: '$' }),
   });
 }
 

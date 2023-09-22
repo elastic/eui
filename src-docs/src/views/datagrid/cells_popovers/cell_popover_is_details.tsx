@@ -46,11 +46,11 @@ const columns: EuiDataGridColumn[] = [
 const data: Array<{ [key: string]: ReactNode }> = [];
 for (let i = 1; i < 5; i++) {
   data.push({
-    default: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     datetime: `${faker.date.past()}`,
     json: JSON.stringify([
       {
-        numeric: faker.finance.account(),
+        numeric: faker.finance.accountNumber(),
         currency: faker.finance.amount(),
         date: `${faker.date.past()}`,
       },

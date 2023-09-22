@@ -28,14 +28,14 @@ const users: User[] = [];
 for (let i = 0; i < 20; i++) {
   users.push({
     id: i + 1,
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
-      city: faker.address.city(),
-      country: faker.address.country(),
+      city: faker.location.city(),
+      country: faker.location.country(),
     },
   });
 }
