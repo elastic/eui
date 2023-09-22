@@ -21,6 +21,14 @@ import { EuiText } from '../text';
 const meta: Meta<EuiSideNavProps> = {
   title: 'EuiSideNav',
   component: EuiSideNav,
+  decorators: [
+    (Story) => (
+      <div style={{ width: 200 }}>
+        {/* The side nav is visually easier to see with the width set */}
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -97,12 +105,6 @@ export const Playground: Story = {
       },
     ],
   },
-  render: ({ ...args }) => (
-    <EuiSideNav
-      {...args}
-      css={{ width: '200px' }} // Required to view text truncation
-    />
-  ),
 };
 
 export const MobileSideNav: Story = {
@@ -249,7 +251,6 @@ const StatefulSideNav = (props: Partial<EuiSideNavProps>) => {
       toggleOpenOnMobile={toggleOpenOnMobile}
       isOpenOnMobile={isSideNavOpenOnMobile}
       items={sideNav}
-      css={{ width: '200px' }} // Required to view text truncation
     />
   );
 };
