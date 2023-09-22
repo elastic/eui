@@ -35,6 +35,7 @@ The [`src/test`](../../../src/test) module exports some functions and constants 
 * `shouldRenderCustomStyles` automatically asserts that consumer classNames, Emotion CSS, and custom styles are merged correctly with EUI's styles.
 * RTL:
   * The exports within `test/rtl` (`render`, `screen`, and `within`) provide out-of-the-box `data-test-subj` querying. `render` provides automatic `EuiProvider` wrapping.
+  * _Note:_ Unlike RTL's recommendation to [use `screen` for queries](https://testing-library.com/docs/queries/about/#using-queries), EUI prefers, for consistency, to destructure test queries from the `render()` API.
 * Enzyme:
   * `findTestSubject` helps you find DOM nodes in mounted components.
   * `takeMountedSnapshot` generates a snapshot of a mounted component.

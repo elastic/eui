@@ -1,3 +1,11 @@
+## [`88.4.1`](https://github.com/elastic/eui/tree/v88.4.1)
+
+**Bug fixes**
+
+- Fixed missing `className`s on `EuiTextTruncate` ([#7212](https://github.com/elastic/eui/pull/7212))
+- Fixed `title`s on `EuiComboBox` dropdown options to always be present ([#7212](https://github.com/elastic/eui/pull/7212))
+- Fixed `EuiComboBox` truncation issues when search is an empty space ([#7212](https://github.com/elastic/eui/pull/7212))
+
 ## [`88.4.0`](https://github.com/elastic/eui/tree/v88.4.0)
 
 - Updated `EuiComboBox` to allow configuring text truncation behavior via `truncationProps`. These props can be set on the entire combobox as well as on on individual dropdown options. ([#7028](https://github.com/elastic/eui/pull/7028))
