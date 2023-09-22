@@ -10,7 +10,7 @@ import React from 'react';
 import { act } from '@testing-library/react';
 import { mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../../test';
-import { testByReactVersion } from '../../../test/internal';
+import { testOnReactVersion } from '../../../test/internal';
 
 import { schemaDetectors } from '../utils/data_grid_schema';
 
@@ -74,7 +74,7 @@ describe('useDataGridColumnSorting', () => {
       component.setProps({});
     };
 
-    testByReactVersion(
+    testOnReactVersion(['18'])(
       'renders a toolbar button/popover allowing users to set column sorting',
       () => {
         const component = mount(<MockComponent />);

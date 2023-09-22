@@ -14,6 +14,7 @@ import {
   shouldRenderCustomStyles,
   invokeOnReactVersion,
   describeByReactVersion,
+  testOnReactVersion,
 } from '../../test/internal';
 
 import { EuiDragDropContext } from './drag_drop_context';
@@ -32,7 +33,7 @@ describeByReactVersion('EuiDroppable', () => {
     { wrapper: EuiDragDropContext }
   );
 
-  it('renders', () => {
+  testOnReactVersion(['18'])('renders', () => {
     const { baseElement } = render(
       <EuiDragDropContext {...requiredContextProps}>
         <EuiDroppable droppableId="testDroppable" {...requiredProps}>

@@ -12,6 +12,7 @@ import { requiredProps } from '../../test';
 import {
   shouldRenderCustomStyles,
   describeByReactVersion,
+  testOnReactVersion,
 } from '../../test/internal';
 
 import { EuiDragDropContext, EuiDroppable } from './';
@@ -31,7 +32,7 @@ describeByReactVersion('EuiDraggable', () => {
     { wrapper: TestContextWrapper }
   );
 
-  it('renders', () => {
+  testOnReactVersion(['18'])('renders', () => {
     const { container } = render(
       <TestContextWrapper>
         <EuiDraggable draggableId="testDraggable" index={0} {...requiredProps}>

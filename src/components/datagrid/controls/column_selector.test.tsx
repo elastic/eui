@@ -10,7 +10,7 @@ import React from 'react';
 import { act } from '@testing-library/react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../../test';
-import { testByReactVersion } from '../../../test/internal';
+import { testOnReactVersion } from '../../../test/internal';
 
 import { EuiDataGridToolBarVisibilityOptions } from '../data_grid_types';
 
@@ -77,7 +77,7 @@ describe('useDataGridColumnSelector', () => {
       component.setProps({});
     };
 
-    testByReactVersion(
+    testOnReactVersion(['18'])(
       'renders a toolbar button/popover allowing users to set column visibility and order',
       () => {
         const component = mount(<MockComponent showColumnSelector={true} />);
