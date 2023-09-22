@@ -64,9 +64,6 @@ export class CanvasTextUtils {
   };
 
   get textWidth() {
-    if (this.debugPerformance) {
-      this.debugCounter++;
-    }
     return this.context.measureText(this.currentText).width;
   }
 
@@ -84,9 +81,6 @@ export class TruncationUtils extends CanvasTextUtils {
   protected ellipsis: TruncationParams['ellipsis'];
   protected availableWidth: TruncationParams['availableWidth'];
 
-  public debugPerformance = false;
-  public debugCounter = 0;
-
   constructor({
     fullText,
     ellipsis,
@@ -98,6 +92,20 @@ export class TruncationUtils extends CanvasTextUtils {
     this.fullText = fullText;
     this.ellipsis = ellipsis;
     this.availableWidth = availableWidth;
+  }
+
+  /**
+   * Performance utilities
+   */
+
+  public debugPerformance = false;
+  public debugCounter = 0;
+
+  get textWidth() {
+    if (this.debugPerformance) {
+      this.debugCounter++;
+    }
+    return super.textWidth;
   }
 
   /**

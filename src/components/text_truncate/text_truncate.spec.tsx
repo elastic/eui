@@ -297,7 +297,7 @@ describe('EuiTextTruncate', () => {
             {...props}
             id="text1"
             truncation="startEnd"
-            width={30}
+            width={20}
           />
           <EuiTextTruncate
             {...props}
@@ -336,7 +336,7 @@ describe('EuiTextTruncate', () => {
       getTruncatedText().should('have.text', 'Lorem ipsum dolor sit amet, …');
 
       cy.viewport(100, 50);
-      getTruncatedText().should('have.text', 'Lorem ipsum …');
+      getTruncatedText().should('have.text', 'Lorem ipsum…');
     });
   });
 });

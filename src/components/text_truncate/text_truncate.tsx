@@ -155,7 +155,6 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       container: containerEl,
       availableWidth: width,
     });
-    utils.debugPerformance = true;
 
     if (utils.checkIfTruncationIsNeeded() === false) {
       truncatedText = text;

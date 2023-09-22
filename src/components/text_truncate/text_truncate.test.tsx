@@ -13,17 +13,9 @@ import { requiredProps } from '../../test';
 
 // Util mocks
 const mockEarlyReturn = { checkIfTruncationIsNeeded: () => false };
-const mockCleanup = jest.fn();
-jest.mock('./utils', () => {
-  return {
-    TruncationUtilsWithDOM: jest.fn(() => ({
-      ...mockEarlyReturn,
-      cleanup: mockCleanup,
-    })),
-    TruncationUtilsWithCanvas: jest.fn(() => mockEarlyReturn),
-  };
-});
-import { TruncationUtilsWithCanvas } from './utils';
+jest.mock('./utils', () => ({
+  TruncationUtils: jest.fn(() => mockEarlyReturn),
+}));
 
 import { EuiTextTruncate } from './text_truncate';
 
@@ -58,25 +50,6 @@ describe('EuiTextTruncate', () => {
         <EuiTextTruncate {...props} width={undefined} onResize={onResize} />
       );
       expect(onResize).toHaveBeenCalledWith(0);
-    });
-  });
-
-  describe('render API', () => {
-    it('calls the DOM cleanup method after each render', () => {
-      render(<EuiTextTruncate {...props} measurementRenderAPI="dom" />);
-      expect(mockCleanup).toHaveBeenCalledTimes(1);
-    });
-
-    it('allows switching to canvas rendering via `measurementRenderAPI`', () => {
-      render(
-        <EuiTextTruncate
-          width={100}
-          text="Canvas test"
-          measurementRenderAPI="canvas"
-        />
-      );
-      expect(TruncationUtilsWithCanvas).toHaveBeenCalledTimes(1);
-      expect(mockCleanup).not.toHaveBeenCalled();
     });
   });
 
