@@ -16,8 +16,8 @@ const PAGE_COUNT_KEY = 'paginationGuide_pageCount';
 const raw_data = [];
 
 for (let i = 1; i < 25; i++) {
-  const name = `${faker.name.lastName()}, ${faker.name.firstName()}`;
-  const suffix = faker.name.suffix();
+  const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
+  const suffix = faker.person.suffix();
   raw_data.push({
     name: {
       formatted: `${name} ${suffix}`,
@@ -25,8 +25,8 @@ for (let i = 1; i < 25; i++) {
     },
     location: (
       <span>
-        {`${faker.address.city()}, `}
-        <EuiLink href="https://google.com">{faker.address.country()}</EuiLink>
+        {`${faker.location.city()}, `}
+        <EuiLink href="https://google.com">{faker.location.country()}</EuiLink>
       </span>
     ),
     date: `${faker.date.past()}`,

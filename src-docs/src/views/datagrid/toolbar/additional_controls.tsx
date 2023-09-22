@@ -41,11 +41,11 @@ const data: any[] = [];
 
 for (let i = 1; i < 20; i++) {
   data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: <EuiLink href="http://google.com">{faker.address.city()}</EuiLink>,
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: <EuiLink href="http://google.com">{faker.location.city()}</EuiLink>,
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 

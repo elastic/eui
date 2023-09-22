@@ -14,7 +14,7 @@ const raw_data = [];
 
 for (let i = 1; i < 20; i++) {
   raw_data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     date: `${faker.date.past()}`,
     amount: `$${faker.commerce.price()}`,
     phone: faker.phone.number(),
