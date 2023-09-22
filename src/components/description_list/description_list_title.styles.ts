@@ -66,7 +66,8 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
       compressed: css`
-        ${euiFontSize(euiThemeContext, 'xs')}
+        font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+        line-height: ${euiTheme.font.lineHeightMultiplier};
         ${logicalCSS('padding-vertical', '0')}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,

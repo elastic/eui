@@ -23,11 +23,15 @@ import { PropertySort } from '../../services';
 import { Pagination as PaginationBarType } from './pagination_bar';
 import { isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
-import { EuiSearchBar, Query } from '../search_bar';
+import {
+  EuiSearchBar,
+  EuiSearchBarProps,
+  Query,
+  SchemaType,
+} from '../search_bar/search_bar';
+import { EuiSearchBox } from '../search_bar/search_box';
 import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
-import { EuiSearchBarProps } from '../search_bar/search_bar';
-import { SchemaType } from '../search_bar/search_box';
 import {
   EuiTablePaginationProps,
   euiTablePaginationDefaults,
@@ -76,6 +80,18 @@ type InMemoryTableProps<T> = Omit<
    * Configures #Search.
    */
   search?: Search;
+  /**
+   * By default, tables use `eql` format for search which allows using advanced filters.
+   *
+   * However, certain special characters (such as quotes, parentheses, and colons)
+   * are reserved for EQL syntax and will error if used.
+   * If your table does not require filter search and instead requires searching for certain
+   * symbols, use a plain `text` search format instead (note that filters will be ignored
+   * in this format).
+   *
+   * @default "eql"
+   */
+  searchFormat?: 'eql' | 'text';
   /**
    * Configures #Pagination
    */
@@ -285,6 +301,7 @@ export class EuiInMemoryTable<T> extends Component<
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
+    searchFormat: 'eql',
   };
   tableRef: React.RefObject<EuiBasicTable>;
 
@@ -521,9 +538,34 @@ export class EuiInMemoryTable<T> extends Component<
     }));
   };
 
+  // Alternative to onQueryChange - allows consumers to specify they want the
+  // search bar to ignore EQL syntax and only use the searchbar for plain text
+  onPlainTextSearch = (searchValue: string) => {
+    const escapedQueryText = searchValue.replace(/["\\]/g, '\\$&');
+    const finalQuery = `"${escapedQueryText}"`;
+    this.setState({
+      query: EuiSearchBar.Query.parse(finalQuery),
+    });
+  };
+
   renderSearchBar() {
-    const { search } = this.props;
-    if (search) {
+    const { search, searchFormat } = this.props;
+    if (!search) return;
+
+    let searchBar: ReactNode;
+
+    if (searchFormat === 'text') {
+      const _searchBoxProps = (search as EuiSearchBarProps)?.box || {}; // Work around | boolean type
+      const { schema, ...searchBoxProps } = _searchBoxProps; // Destructure `schema` so it doesn't get rendered to DOM
+
+      searchBar = (
+        <EuiSearchBox
+          query="" // Unused, passed to satisfy Typescript
+          {...searchBoxProps}
+          onSearch={this.onPlainTextSearch}
+        />
+      );
+    } else {
       let searchBarProps: Omit<EuiSearchBarProps, 'onChange'> = {};
 
       if (isEuiSearchBarProps(search)) {
@@ -538,13 +580,17 @@ export class EuiInMemoryTable<T> extends Component<
         }
       }
 
-      return (
-        <>
-          <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
-          <EuiSpacer size="l" />
-        </>
+      searchBar = (
+        <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
       );
     }
+
+    return (
+      <>
+        {searchBar}
+        <EuiSpacer size="l" />
+      </>
+    );
   }
 
   resolveSearchSchema(): SchemaType {
@@ -653,6 +699,7 @@ export class EuiInMemoryTable<T> extends Component<
       tableLayout,
       items: _unuseditems,
       search,
+      searchFormat,
       onTableChange,
       executeQueryOptions,
       allowNeutralSort,

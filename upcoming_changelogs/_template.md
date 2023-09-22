@@ -15,3 +15,7 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiComponent` to Emotion; Removed `$euiComponentSassVariable`
+
+**Dependency updates**
+
+- Updated `dependency` to v10.20.30

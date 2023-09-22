@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { EuiCardProps } from '..';
+
 import {
   euiPaddingSize,
   euiSupportsHas,
@@ -18,6 +18,7 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
+import { EuiCardProps } from './card';
 const paddingKey = 'm';
 const halfPaddingKey = 's';
 

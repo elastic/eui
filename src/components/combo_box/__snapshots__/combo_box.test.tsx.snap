@@ -435,7 +435,11 @@ Array [
             Pre
           </span>
         </span>
-        1
+        <span
+          class="eui-textTruncate"
+        >
+          1
+        </span>
       </span>
       <button
         aria-label="Remove 1 from selection in this group"
@@ -462,7 +466,11 @@ Array [
       <span
         class="euiBadge__text emotion-euiBadge__text"
       >
-        2
+        <span
+          class="eui-textTruncate"
+        >
+          2
+        </span>
         <span
           class="euiComboBoxPill__append"
         >
@@ -504,7 +512,11 @@ exports[`props option.prepend & option.append renders in single selection 1`] = 
       Pre
     </span>
   </span>
-  1
+  <span
+    class="eui-textTruncate"
+  >
+    1
+  </span>
 </span>
 `;
 

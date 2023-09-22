@@ -40,7 +40,6 @@ export const EuiDescriptionListTitle: FunctionComponent<
       conditionalStyles = compressed
         ? [styles.inlineStyles.compressed]
         : [styles.inlineStyles.normal];
-      conditionalStyles.push(styles[rowGutterSize]);
       break;
     case 'row':
       conditionalStyles.push(styles[rowGutterSize]);

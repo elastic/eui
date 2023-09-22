@@ -3,10 +3,11 @@
 exports[`EuiTextTruncate renders 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiTextTruncate-euiTestCss"
+  class="euiTextTruncate testClass1 testClass2 emotion-euiTextTruncate-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
+    class="euiTextTruncate__fullText"
     data-test-subj="fullText"
   >
     Hello world

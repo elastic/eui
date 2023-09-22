@@ -12,10 +12,12 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
 
-import { EuiCard, ALIGNMENTS } from './card';
-
-import { EuiIcon, EuiAvatar, EuiI18n } from '../../components';
+import { EuiIcon } from '../icon';
+import { EuiAvatar } from '../avatar';
+import { EuiI18n } from '../i18n';
 import { COLORS, SIZES } from '../panel/panel';
+
+import { EuiCard, ALIGNMENTS } from './card';
 
 describe('EuiCard', () => {
   test('is rendered', () => {

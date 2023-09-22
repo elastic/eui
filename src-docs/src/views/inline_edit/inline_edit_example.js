@@ -106,7 +106,6 @@ const inlineEditModePropsSnippet = `<EuiInlineEditText
 
 export const InlineEditExample = {
   title: 'Inline edit',
-  isBeta: true,
   intro: (
     <>
       <EuiText>

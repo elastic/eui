@@ -1,3 +1,31 @@
+## [`88.4.1`](https://github.com/elastic/eui/tree/v88.4.1)
+
+**Bug fixes**
+
+- Fixed missing `className`s on `EuiTextTruncate` ([#7212](https://github.com/elastic/eui/pull/7212))
+- Fixed `title`s on `EuiComboBox` dropdown options to always be present ([#7212](https://github.com/elastic/eui/pull/7212))
+- Fixed `EuiComboBox` truncation issues when search is an empty space ([#7212](https://github.com/elastic/eui/pull/7212))
+
+## [`88.4.0`](https://github.com/elastic/eui/tree/v88.4.0)
+
+- Updated `EuiComboBox` to allow configuring text truncation behavior via `truncationProps`. These props can be set on the entire combobox as well as on on individual dropdown options. ([#7028](https://github.com/elastic/eui/pull/7028))
+- Updated `EuiInMemoryTable` with a new `searchFormat` prop (defaults to `eql`). When setting this prop to `text`, the built-in search bar will ignore EQL syntax and allow searching for plain strings with special characters and symbols. ([#7175](https://github.com/elastic/eui/pull/7175))
+
+**Bug fixes**
+
+- `EuiComboBox` now always shows the highlighted search text, even on truncated text ([#7028](https://github.com/elastic/eui/pull/7028))
+- Fixed missing i18n in `EuiSearchBar`'s default placeholder and aria-label text ([#7175](https://github.com/elastic/eui/pull/7175))
+- Fixed the inline compressed styles of `EuiDescriptionListTitle` to use a taller line-height for readability ([#7185](https://github.com/elastic/eui/pull/7185))
+- Fixed `EuiComboBox` to correctly truncate selected items when displayed as pills and plain text ([#7193](https://github.com/elastic/eui/pull/7193))
+
+**Accessibility**
+
+- Added `aria-current` attribute to `EuiTablePagination` ([#7186](https://github.com/elastic/eui/pull/7186))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDroppable` and `EuiDraggable` to Emotion; Removed `$euiDragAndDropSpacing` Sass variables ([#7187](https://github.com/elastic/eui/pull/7187))
+
 ## [`88.3.0`](https://github.com/elastic/eui/tree/v88.3.0)
 
 - `EuiGlobalToastList` now shows a "Clear all" button by default once above a certain number of toasts (defaults to 3). This threshold is configurable with the `showClearAllButtonAt` prop ([#7111](https://github.com/elastic/eui/pull/7111))
