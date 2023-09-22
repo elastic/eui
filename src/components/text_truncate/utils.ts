@@ -8,45 +8,40 @@
 
 import type { ExclusiveUnion } from '../common';
 
-interface SharedParams {
+type TruncationParams = CanvasTextParams & {
   fullText: string;
   ellipsis: string;
   availableWidth: number;
-}
-interface DOMParams extends SharedParams {
-  container: HTMLElement;
-}
-type CanvasParams = SharedParams &
-  ExclusiveUnion<
-    { container: HTMLElement },
-    { font: CanvasTextDrawingStyles['font'] }
-  >;
+};
+type CanvasTextParams = ExclusiveUnion<
+  { container: HTMLElement },
+  { font: CanvasTextDrawingStyles['font'] }
+>;
 
 /**
  * Utilities for truncating types at various positions, as well as
  * determining whether truncation is possible or even necessary.
  */
-abstract class _TruncationUtils {
-  protected fullText: SharedParams['fullText'];
-  protected ellipsis: SharedParams['ellipsis'];
-  protected availableWidth: SharedParams['availableWidth'];
+export class TruncationUtils extends CanvasTextUtils {
+  protected fullText: TruncationParams['fullText'];
+  protected ellipsis: TruncationParams['ellipsis'];
+  protected availableWidth: TruncationParams['availableWidth'];
 
   public debugPerformance = false;
   public debugCounter = 0;
 
-  constructor({ fullText, ellipsis, availableWidth }: SharedParams) {
+  constructor({
+    fullText,
+    ellipsis,
+    availableWidth,
+    ...rest
+  }: TruncationParams) {
+    super(rest);
+
     this.fullText = fullText;
     this.ellipsis = ellipsis;
     this.availableWidth = availableWidth;
   }
-
-  /**
-   * Internal measurement utils which will be overridden depending on the
-   * rendering approach used (e.g. DOM vs Canvas).
-   */
-
-  abstract textWidth: number;
-  abstract setTextToCheck: (text: string) => void;
 
   /**
    * Internal utils for calculating a ratio based on the passed available width
@@ -251,72 +246,23 @@ abstract class _TruncationUtils {
 }
 
 /**
- * Creates a temporary vanilla JS DOM element for manipulating text and
- * determining text width.
- *
- * Requires passing in a container element to which the temporary element
- * will be appended. Any CSS/font styles that need to be accounted for should
- * be automatically inherited from the container.
- *
- * NOTE: The consumer is responsible for calling the `cleanup()` method manually
- * to remove the temporary DOM node once their usage of this utility is complete.
- */
-export class TruncationUtilsWithDOM extends _TruncationUtils {
-  container: DOMParams['container'];
-  span: HTMLSpanElement;
-
-  constructor({ container, ...rest }: DOMParams) {
-    super(rest);
-    this.container = container;
-
-    this.span = document.createElement('span');
-    this.span.style.position = 'absolute'; // Prevent page reflow/repaint for performance
-    this.span.style.whiteSpace = 'nowrap'; // EuiTextTruncate already sets this on the parent, but we'll set it here as well for consumers who use this util standalone
-    this.container.appendChild(this.span);
-  }
-
-  get textWidth() {
-    return this.span.offsetWidth;
-  }
-
-  setTextToCheck = (text: string) => {
-    this.span.textContent = text;
-
-    if (this.debugPerformance) {
-      this.debugCounter++;
-    }
-  };
-
-  cleanup = () => {
-    this.container.removeChild(this.span);
-
-    if (this.debugPerformance) {
-      console.debug(`Iterations: ${this.debugCounter}`, this.span.textContent);
-    }
-  };
-}
-
-/**
- * Creates a temporary Canvas element for manipulating text & determining
- * text width. This method is compatible with charts or other canvas-rendered
- * frameworks, and requires no cleanup method.
+ * Under the hood, a temporary Canvas element is created for manipulating text
+ * & determining text width.
  *
  * To accurately measure text, canvas rendering requires either a container to
  * compute/derive font styles from, or a static font string (useful for usage
  * outside the DOM). Particular care should be applied when fallback fonts are
  * used, as more fallback fonts can lead to less precision.
  *
- * Please note that while canvas is more performant than DOM measurement, there
- * are subpixel to single digit pixel differences between DOM and canvas
- * measurement due to the different rendering engines used.
+ * Please note that while canvas is more significantly more performant than DOM
+ * measurement, there are subpixel to single digit pixel differences between
+ * DOM and canvas measurement due to the different rendering engines used.
  */
-export class TruncationUtilsWithCanvas extends _TruncationUtils {
+export class CanvasTextUtils {
   context: CanvasRenderingContext2D;
   currentText = '';
 
-  constructor({ font, container, ...rest }: CanvasParams) {
-    super(rest);
-
+  constructor({ font, container }: CanvasTextParams) {
     this.context = document.createElement('canvas').getContext('2d')!;
 
     // Set the canvas font to ensure text width calculations are correct
@@ -329,6 +275,9 @@ export class TruncationUtilsWithCanvas extends _TruncationUtils {
 
   computeFontFromElement = (element: HTMLElement) => {
     const computedStyles = window.getComputedStyle(element);
+    // TODO: font-stretch is not included even though it potentially should be
+    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/font#constituent_properties
+    // It appears to be unsupported and/or breaks font computation in canvas
     return [
       'font-style',
       'font-variant',

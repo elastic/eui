@@ -24,7 +24,7 @@ import {
 } from '../observer/resize_observer';
 import type { CommonProps } from '../common';
 
-import { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';
+import { TruncationUtils } from './utils';
 import { euiTextTruncateStyles as styles } from './text_truncate.styles';
 
 const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
@@ -86,16 +86,6 @@ export type EuiTextTruncateProps = Omit<
      */
     onResize?: (width: number) => void;
     /**
-     * By default, EuiTextTruncate will calculate its truncation via DOM manipulation
-     * and measurement, which has the benefit of automatically inheriting font styles.
-     * However, if this approach proves to have a significant performance impact for your
-     * usage, consider using the `canvas` API instead, which is more performant.
-     *
-     * Please note that there are minute pixel to subpixel differences between the
-     * two options due to different rendering engines.
-     */
-    measurementRenderAPI?: 'dom' | 'canvas';
-    /**
      * By default, EuiTextTruncate will render the truncated string directly.
      * You can optionally pass a render prop function to the component, which
      * allows for more flexible text rendering, e.g. adding custom markup
@@ -129,7 +119,6 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   truncationPosition,
   ellipsis = '…',
   containerRef,
-  measurementRenderAPI = 'dom',
   className,
   ...rest
 }) => {
@@ -160,16 +149,12 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     let truncatedText = '';
     if (!containerEl || !width) return truncatedText;
 
-    const params = {
+    const utils = new TruncationUtils({
       fullText: text,
       ellipsis,
       container: containerEl,
       availableWidth: width,
-    };
-    const utils =
-      measurementRenderAPI === 'canvas'
-        ? new TruncationUtilsWithCanvas(params)
-        : new TruncationUtilsWithDOM(params);
+    });
     utils.debugPerformance = true;
 
     if (utils.checkIfTruncationIsNeeded() === false) {
@@ -197,10 +182,6 @@ const EuiTextTruncateWithWidth: FunctionComponent<
           break;
       }
     }
-
-    if (measurementRenderAPI === 'dom') {
-      (utils as TruncationUtilsWithDOM).cleanup();
-    }
     return truncatedText;
   }, [
     width,
@@ -210,7 +191,6 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     truncationPosition,
     ellipsis,
     containerEl,
-    measurementRenderAPI,
   ]);
 
   const isTruncating = truncatedText !== text;
