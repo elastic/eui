@@ -43,9 +43,9 @@ const columns: EuiDataGridColumn[] = [
 const data: Array<{ [key: string]: ReactNode }> = [];
 for (let i = 1; i < 5; i++) {
   data.push({
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    suffix: faker.name.suffix(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    suffix: faker.person.suffix(),
     boolean: `${faker.datatype.boolean()}`,
   });
 }

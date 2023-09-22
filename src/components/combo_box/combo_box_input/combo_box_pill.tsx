@@ -71,7 +71,10 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
         {option.prepend && (
           <span className="euiComboBoxPill__prepend">{option.prepend}</span>
         )}
-        {children}
+        {/* .euiBadge__text normally text truncates, but because we set it to flex to align prepend/append
+          it breaks and we need to restore it manually
+         */}
+        <span className="eui-textTruncate">{children}</span>
         {option.append && (
           <span className="euiComboBoxPill__append">{option.append}</span>
         )}

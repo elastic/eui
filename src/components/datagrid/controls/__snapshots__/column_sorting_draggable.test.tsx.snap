@@ -2,14 +2,14 @@
 
 exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable component of a single column that is currently being sorted 1`] = `
 <div
-  class="euiDraggable euiDraggable--hasCustomDragHandle"
+  class="euiDraggable emotion-euiDraggable"
   data-rfd-draggable-context-id="0"
   data-rfd-draggable-id="columnA"
   data-test-subj="draggable"
   role="group"
 >
   <div
-    class="euiDataGridColumnSorting__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
+    class="euiDataGridColumnSorting__item euiDraggable__item emotion-euiDraggable__item"
   >
     <p
       class="emotion-euiScreenReaderOnly"
@@ -161,14 +161,14 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
 
 exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable component of a single column that is currently being sorted 1`] = `
 <div
-  class="euiDraggable euiDraggable--hasCustomDragHandle"
+  class="euiDraggable emotion-euiDraggable"
   data-rfd-draggable-context-id=":r0:"
   data-rfd-draggable-id="columnA"
   data-test-subj="draggable"
   role="group"
 >
   <div
-    class="euiDataGridColumnSorting__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
+    class="euiDataGridColumnSorting__item euiDraggable__item emotion-euiDraggable__item"
   >
     <p
       class="emotion-euiScreenReaderOnly"

@@ -24,7 +24,6 @@
 
   &--plainText {
     @include euiFont;
-    @include euiTextTruncate;
 
     line-height: $euiSizeL;
     font-size: $euiFontSizeS;

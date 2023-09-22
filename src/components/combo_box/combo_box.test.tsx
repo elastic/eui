@@ -10,6 +10,7 @@ import React, { ReactNode } from 'react';
 import { act, fireEvent } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import {
   requiredProps,
   findTestSubject,
@@ -64,6 +65,22 @@ const options: TitanOption[] = [
 ];
 
 describe('EuiComboBox', () => {
+  shouldRenderCustomStyles(<EuiComboBox />);
+
+  shouldRenderCustomStyles(
+    <EuiComboBox
+      options={[{ label: 'test', truncationProps: { truncation: 'middle' } }]}
+    />,
+    {
+      skip: { parentTest: true },
+      childProps: ['truncationProps', 'options[0]'],
+      renderCallback: async ({ getByTestSubject, findAllByTestSubject }) => {
+        fireEvent.click(getByTestSubject('comboBoxToggleListButton'));
+        await findAllByTestSubject('truncatedText');
+      },
+    }
+  );
+
   test('is rendered', () => {
     const { container } = render(<EuiComboBox {...requiredProps} />);
 

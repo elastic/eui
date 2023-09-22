@@ -25,3 +25,8 @@
 
 - Converted `EuiComponent` to Emotion; Removed `$euiComponentSassVariable`
 <%_ } -%>
+<%_ if (dependencyUpdates) { -%>
+**Dependency updates**
+
+- Updated `dependency` to v10.20.30
+<%_ } -%>

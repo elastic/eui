@@ -14,4 +14,4 @@ docker run \
     --volume "$PWD":/app \
     --workdir /app \
     $NODE_IMG \
-    bash -c 'yarn && npm run build && npm run build-docs'
+    bash -c 'yarn && yarn build && yarn build-docs && yarn build-storybook'

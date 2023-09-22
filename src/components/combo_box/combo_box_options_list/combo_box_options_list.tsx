@@ -21,6 +21,7 @@ import {
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
+import { EuiMark } from '../../mark';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
@@ -31,6 +32,12 @@ import {
   FilterChecked,
 } from '../../filter_group/filter_select_item';
 import { htmlIdGenerator } from '../../../services';
+import { CommonProps } from '../../common';
+import { EuiBadge } from '../../badge';
+import { EuiPopoverPanel } from '../../popover/popover_panel';
+import { EuiTextTruncate } from '../../text_truncate';
+
+import type { _EuiComboBoxProps } from '../combo_box';
 import {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
@@ -39,15 +46,9 @@ import {
   RefInstance,
   UpdatePositionHandler,
 } from '../types';
-import { CommonProps } from '../../common';
-import { EuiBadge } from '../../badge';
-import { EuiPopoverPanel } from '../../popover/popover_panel';
-
-const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps &
   ComponentProps<typeof EuiPopoverPanel> & {
-    'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
     listboxAriaLabel: string;
@@ -98,6 +99,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
     delimiter?: string;
     zIndex?: number;
+    truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
   };
 
 const hitEnterBadge = (
@@ -211,8 +213,16 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
-    const { key, isGroupLabelOption, label, value, prepend, append, ...rest } =
-      option;
+    const {
+      key,
+      isGroupLabelOption,
+      label,
+      value,
+      prepend,
+      append,
+      truncationProps: _truncationProps,
+      ...rest
+    } = option;
     const {
       singleSelection,
       selectedOptions,
@@ -223,6 +233,12 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       rootId,
     } = this.props;
+
+    const hasTruncationProps = this.props.truncationProps || _truncationProps;
+    const truncationProps = hasTruncationProps
+      ? // Individual truncation settings should override component prop
+        { ...this.props.truncationProps, ..._truncationProps }
+      : undefined;
 
     if (isGroupLabelOption) {
       return (
@@ -267,29 +283,86 @@ export class EuiComboBoxOptionsList<T> extends Component<
           {prepend && (
             <span className="euiComboBoxOption__prepend">{prepend}</span>
           )}
-          {renderOption ? (
-            <span className={OPTION_CONTENT_CLASSNAME}>
-              {renderOption(
-                option,
-                searchValue,
-                'euiComboBoxOption__renderOption'
-              )}
-            </span>
-          ) : (
-            <EuiHighlight
-              search={searchValue}
-              strict={this.props.isCaseSensitive}
-              className={OPTION_CONTENT_CLASSNAME}
-            >
-              {label}
-            </EuiHighlight>
-          )}
+          <span className="euiComboBoxOption__content">
+            {renderOption
+              ? renderOption(
+                  option,
+                  searchValue,
+                  'euiComboBoxOption__renderOption'
+                )
+              : this.renderTruncatedOption(label, truncationProps)}
+          </span>
           {append && (
             <span className="euiComboBoxOption__append">{append}</span>
           )}
           {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
         </span>
       </EuiFilterSelectItem>
+    );
+  };
+
+  optionWidth: number | undefined;
+  setOptionWidth = (width: number) => {
+    this.optionWidth = width;
+  };
+
+  renderTruncatedOption = (
+    text: string,
+    truncationProps?: EuiComboBoxOptionsListProps<T>['truncationProps']
+  ) => {
+    const searchValue = this.props.searchValue.trim();
+
+    if (!truncationProps && !searchValue) {
+      // Default to CSS text-overflow
+      return text;
+    }
+
+    if (!searchValue) {
+      return (
+        <EuiTextTruncate
+          width={this.optionWidth}
+          onResize={this.setOptionWidth}
+          {...truncationProps}
+          text={text}
+        >
+          {(text) => text}
+        </EuiTextTruncate>
+      );
+    }
+
+    const searchPositionStart = this.props.isCaseSensitive
+      ? text.indexOf(searchValue)
+      : text.toLowerCase().indexOf(searchValue.toLowerCase());
+    const searchPositionCenter =
+      searchPositionStart + Math.floor(searchValue.length / 2);
+
+    return (
+      <EuiTextTruncate
+        width={this.optionWidth}
+        onResize={this.setOptionWidth}
+        {...truncationProps}
+        // When searching, don't allow overriding the truncation settings
+        truncation="startEnd"
+        truncationPosition={searchPositionCenter}
+        text={text}
+      >
+        {(text) => (
+          <>
+            {text.length >= searchValue.length ? (
+              <EuiHighlight
+                search={searchValue}
+                strict={this.props.isCaseSensitive}
+              >
+                {text}
+              </EuiHighlight>
+            ) : (
+              // If the available truncated text is shorter than the full search string,
+              // just highlight the entire truncated text
+              <EuiMark>{text}</EuiMark>
+            )}
+          </>
+        )}
+      </EuiTextTruncate>
     );
   };
 
@@ -325,6 +398,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       delimiter,
       zIndex,
       style,
+      truncationProps,
       listboxAriaLabel,
       ...rest
     } = this.props;

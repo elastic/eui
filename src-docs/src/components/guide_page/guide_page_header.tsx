@@ -73,14 +73,14 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   function renderCodeSandbox() {
     const label = 'Codesandbox';
     return isMobileSize ? (
-      <CodeSandboxLink key="codesandbox">
+      <CodeSandboxLink type="tsx">
         <EuiButtonEmpty size="s" flush="both" iconType="logoCodesandbox">
           {label}
         </EuiButtonEmpty>
       </CodeSandboxLink>
     ) : (
       <EuiToolTip content="Codesandbox" key="codesandbox">
-        <CodeSandboxLink>
+        <CodeSandboxLink type="tsx">
           <EuiHeaderSectionItemButton aria-label="Codesandbox">
             <EuiIcon type="logoCodesandbox" aria-hidden="true" />
           </EuiHeaderSectionItemButton>

@@ -10,6 +10,7 @@
 
 import React from 'react';
 import type { Preview } from '@storybook/react';
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 /*
  * Preload all EuiIcons - Storybook does not support dynamic icon loading
@@ -92,6 +93,9 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+    },
+    viewport: {
+      viewports: MINIMAL_VIEWPORTS,
     },
   },
   // Due to CommonProps, these props appear on almost every Story, but generally

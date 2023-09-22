@@ -9,7 +9,7 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { renderHook } from '@testing-library/react';
 
-import { EuiProvider } from '../../components';
+import { EuiProvider } from '../../components/provider';
 import { useEuiTheme } from '../../services';
 import { EuiThemeFontScales, EuiThemeFontUnits } from '../variables/typography';
 

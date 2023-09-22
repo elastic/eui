@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "88.1.0",
+  "version": "88.4.1",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -18,7 +18,6 @@
     "start": "cross-env BABEL_MODULES=false webpack serve --config=src-docs/webpack.config.js",
     "test-docker": "node ./scripts/test-docker.js",
     "test-a11y-docker": "node ./scripts/test-a11y-docker.js",
-    "sync-docs": "node ./scripts/docs-sync.js",
     "build-docs": "cross-env BABEL_MODULES=false cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src-docs/webpack.config.js",
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
@@ -60,12 +59,12 @@
     "**/@types/react": "^18",
     "react-focus-lock": "^2.9.5"
   },
-  "pre-commit": [
+  "pre-push": [
     "test-staged"
   ],
   "dependencies": {
-    "@hello-pangea/dnd": "^16.2.0",
-    "@types/lodash": "^4.14.194",
+    "@hello-pangea/dnd": "^16.3.0",
+    "@types/lodash": "^4.14.198",
     "@types/numeral": "^2.0.2",
     "@types/react-input-autosize": "^2.2.1",
     "@types/react-window": "^1.8.5",
@@ -127,7 +126,7 @@
     "@emotion/eslint-plugin": "^11.11.0",
     "@emotion/jest": "^11.11.0",
     "@emotion/react": "^11.11.0",
-    "@faker-js/faker": "^7.6.0",
+    "@faker-js/faker": "^8.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@storybook/addon-essentials": "^7.3.1",
     "@storybook/addon-interactions": "^7.3.1",
@@ -220,7 +219,7 @@
     "postcss-inline-svg": "^4.1.0",
     "postcss-loader": "^7.0.1",
     "postcss-styled-syntax": "^0.4.0",
-    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.4",
     "prettier": "^2.8.8",
     "process": "^0.11.10",
     "prop-types": "^15.6.0",

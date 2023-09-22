@@ -25,13 +25,13 @@ export const euiTextTruncateStyles = {
    * and there'll be no need for the entire component at that point 🙏
    */
   // Makes the truncated text unselectable/un-clickable
-  truncatedText: css`
+  euiTextTruncate__truncatedText: css`
     user-select: none;
     pointer-events: none;
   `,
   // Positions the full text on top of the truncated text (so that clicking targets it)
   // and gives it a color opacity of 0 so that it's not actually visible
-  fullText: css`
+  euiTextTruncate__fullText: css`
     position: absolute;
     inset: 0;
     overflow: hidden;

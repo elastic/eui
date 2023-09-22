@@ -12,7 +12,9 @@ import { act } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
-import { EuiFocusTrap } from '../';
+
+import { keys } from '../../services';
+import { EuiFocusTrap } from '../focus_trap';
 
 import {
   EuiPopover,
@@ -20,8 +22,6 @@ import {
   getPopoverAlignFromAnchorPosition,
   PopoverAnchorPosition,
 } from './popover';
-
-import { keys } from '../../services';
 
 const actAdvanceTimersByTime = (time: number) =>
   act(() => jest.advanceTimersByTime(time));
@@ -319,36 +319,53 @@ describe('EuiPopover', () => {
 
     describe('offset', () => {
       test('with arrow', () => {
-        const component = mount(
-          <div>
-            <EuiPopover
-              id={getId()}
-              button={<button />}
-              closePopover={() => {}}
-              offset={10}
-              isOpen
-            />
-          </div>
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            isOpen
+          />
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '26px',
+        });
       });
 
       test('without arrow', () => {
-        const component = mount(
-          <div>
-            <EuiPopover
-              id={getId()}
-              button={<button />}
-              closePopover={() => {}}
-              offset={10}
-              hasArrow={false}
-              isOpen
-            />
-          </div>
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            hasArrow={false}
+            isOpen
+          />
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '18px',
+        });
+      });
+
+      test('with attachToAnchor', () => {
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            attachToAnchor={true}
+            isOpen
+          />
+        );
+
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '10px',
+        });
       });
     });
 

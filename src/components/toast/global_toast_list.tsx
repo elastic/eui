@@ -22,6 +22,8 @@ import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
 import { euiGlobalToastListStyles } from './global_toast_list.styles';
+import { EuiButton } from '../button';
+import { EuiI18n } from '../i18n';
 
 type ToastSide = 'right' | 'left';
 
@@ -33,6 +35,8 @@ const sideToClassNameMap: { [side in ToastSide]: string } = {
 export const SIDES = keysOf(sideToClassNameMap);
 
 export const TOAST_FADE_OUT_MS = 250;
+
+export const CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT = 3;
 
 export interface Toast extends EuiToastProps {
   id: string;
@@ -48,6 +52,17 @@ export interface EuiGlobalToastListProps extends CommonProps {
    * Determines which side of the browser window the toasts should appear
    */
   side?: ToastSide;
+  /**
+   * At this threshold, a "Clear all" button will display at the bottom of the toast list
+   * that allows users to dismiss all toasts in a single click.
+   *
+   * Defaults to `3`. Set to `0` to disable the button entirely.
+   */
+  showClearAllButtonAt?: number;
+  /**
+   * Optional callback that fires when a user clicks the "Clear all" button.
+   */
+  onClearAllToasts?: () => void;
 }
 
 export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
@@ -55,7 +70,9 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   toasts = [],
   dismissToast: dismissToastProp,
   toastLifeTimeMs,
+  onClearAllToasts,
   side = 'right',
+  showClearAllButtonAt = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT,
   ...rest
 }) => {
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
@@ -143,7 +160,11 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   };
 
   const onScroll = () => {
-    if (listElement.current) {
+    // Given that this method also gets invoked by the synthetic scroll that happens when a new toast gets added,
+    // we want to evaluate if the scroll bottom has been reached only when the user is interacting with the toast,
+    // this way we always retain the scroll position the user has set despite adding in new toasts.
+    // User interaction is determined through the handler registered for mouseEnter and mouseLeave events.
+    if (listElement.current && isUserInteracting.current) {
       isScrolledToBottom.current =
         listElement.current.scrollHeight - listElement.current.scrollTop ===
         listElement.current.clientHeight;
@@ -282,6 +303,42 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       </EuiGlobalToastListItem>
     );
   });
+
+  if (showClearAllButtonAt && toasts.length >= showClearAllButtonAt) {
+    const dismissAllToasts = () => {
+      toasts.forEach((toast) => dismissToastProp(toast));
+      onClearAllToasts?.();
+    };
+
+    renderedToasts.push(
+      <EuiI18n
+        key="euiClearAllToasts"
+        tokens={[
+          'euiGlobalToastList.clearAllToastsButtonAriaLabel',
+          'euiGlobalToastList.clearAllToastsButtonDisplayText',
+        ]}
+        defaults={['Clear all toast notifications', 'Clear all']}
+      >
+        {([
+          clearAllToastsButtonAriaLabel,
+          clearAllToastsButtonDisplayText,
+        ]: string[]) => (
+          <EuiGlobalToastListItem isDismissed={false}>
+            <EuiButton
+              fill
+              color="text"
+              onClick={dismissAllToasts}
+              css={[styles.euiGlobalToastListDismissButton]}
+              aria-label={clearAllToastsButtonAriaLabel}
+              data-test-subj="euiClearAllToastsButton"
+            >
+              {clearAllToastsButtonDisplayText}
+            </EuiButton>
+          </EuiGlobalToastListItem>
+        )}
+      </EuiI18n>
+    );
+  }
 
   const classes = classNames('euiGlobalToastList', className);
 

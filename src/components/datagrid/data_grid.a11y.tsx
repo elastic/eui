@@ -56,9 +56,9 @@ const storeData: any[] = [];
 
 for (let i = 1; i < 11; i++) {
   storeData.push({
-    Name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    Name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     Email: `${faker.internet.email()}`,
-    'User ID': `${faker.datatype.number({ min: 1000000, max: 9999999 })}`,
+    'User ID': `${faker.number.int({ min: 1000000, max: 9999999 })}`,
     'Account balance': faker.finance.amount(),
     'Last purchase': `${faker.date.past()}`,
     'Favorite distro': i % 2 === 0 ? 'Alma' : 'Debian',

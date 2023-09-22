@@ -518,6 +518,58 @@ When creating mixins & utilities for reuse within Emotion CSS, consider the foll
     - If you anticipate your mixin being used in the `style` prop instead of `css` (since React will want an object and camelCased CSS properties)
     - If you want your mixin to be partially composable, so if you think developers will want to obtain a single line/property from your mixin instead of the entire thing (e.g. `euiFontSize.lineHeight`)
 
+## JS vs. CSS component variables
+
+In general, most component-specific style variables can remain JS-only (e.g., [euiStepVariables](https://github.com/elastic/eui/blob/068f0000532e6433383093d3488d7b1c4979c022/src/components/steps/step.styles.ts#L13-L19), [euiFormVariables](https://github.com/elastic/eui/blob/d39c0e988409f90f62af57174590044664b2bfce/src/components/form/form.styles.ts#L19)). These JS variable examples are generally used internally by EUI, and are not public top-level exports.
+
+There are some scenarios, however, where certain component style variables are important enough to be made globally available via a [CSS variable](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+
+An example of this is **EuiHeader**: Fixed header height(s) and the page offset they cause need to be accounted for by multiple other EUI components (e.g. **EuiFlyout**, **EuiPageTemplate**), and potentially by custom consumer layouts. Using a global CSS variable allows **EuiHeader** to dynamically track the number of fixed headers and calculate total height in a single place. Other components can reuse that CSS variable without extra JS logic needed ([#7144](https://github.com/elastic/eui/pull/7144)).
+
+EUI components can set CSS variables in two places: globally, or at the nearest **EuiThemeProvider** wrapper level:
+
+```tsx
+import React, { useEffect } from 'react';
+import { useEuiTheme, useEuiThemeCSSVariables } from '../../services';
+
+const EuiComponent = ({ ...props }) => {
+  const { euiTheme } = useEuiTheme();
+  const {
+    setGlobalCSSVariables,
+    setNearestThemeCSSvariables,
+  } = useEuiThemeCSSVariables();
+
+  useEffect(() => {
+    // Sets the CSS variable at `:root`
+    setGlobalCSSVariables({ '--euiSomeGlobalVariable': euiTheme.color.success });
+
+    // Sets the CSS variable on the nearest parent theme provider wrapper
+    // If the nearest provider is EuiProvider, the variable is set globally on `:root` in any case
+    setNearestThemeCSSVariables({ '--euiSomeThemeVariable': euiTheme.size.m });
+  }, []);
+
+  return <></>;
+}
+```
+
+While a global CSS variable makes sense for **EuiHeader**, for most components, nearest theme variables would likely make more sense. For example, **EuiForm** should respect any custom theme modifications and pass its modified form variables to any children, but not siblings or parent forms that do not have modifications.
+
+```tsx
+// Normal form
+<EuiForm>
+  {/* ... Form controls that inherit global form variables */}
+</EuiForm>
+
+// Form with a custom size scale
+<EuiThemeProvider modify={{ base: 10 }}>
+  <EuiForm>
+    {/* ... Form controls that inherit from the nearest theme variables */}
+  </EuiForm>
+</EuiThemeProvider>
+```
+
+[See our EuiThemeProvider stories](http://localhost:6006/?path=/story/euithemeprovider--css-variables-nearest) to view an example of this behavior in the browser.
+
 ### Naming
 
 When naming your mixins & utilities, consider the following statements:

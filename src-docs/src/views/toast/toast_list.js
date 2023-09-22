@@ -30,7 +30,9 @@ export default () => {
   };
 
   const removeToast = (removedToast) => {
-    setToasts(toasts.filter((toast) => toast.id !== removedToast.id));
+    setToasts((toasts) =>
+      toasts.filter((toast) => toast.id !== removedToast.id)
+    );
   };
 
   removeAllToastsHandler = () => {

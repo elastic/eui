@@ -1,3 +1,79 @@
+## [`88.4.1`](https://github.com/elastic/eui/tree/v88.4.1)
+
+**Bug fixes**
+
+- Fixed missing `className`s on `EuiTextTruncate` ([#7212](https://github.com/elastic/eui/pull/7212))
+- Fixed `title`s on `EuiComboBox` dropdown options to always be present ([#7212](https://github.com/elastic/eui/pull/7212))
+- Fixed `EuiComboBox` truncation issues when search is an empty space ([#7212](https://github.com/elastic/eui/pull/7212))
+
+## [`88.4.0`](https://github.com/elastic/eui/tree/v88.4.0)
+
+- Updated `EuiComboBox` to allow configuring text truncation behavior via `truncationProps`. These props can be set on the entire combobox as well as on on individual dropdown options. ([#7028](https://github.com/elastic/eui/pull/7028))
+- Updated `EuiInMemoryTable` with a new `searchFormat` prop (defaults to `eql`). When setting this prop to `text`, the built-in search bar will ignore EQL syntax and allow searching for plain strings with special characters and symbols. ([#7175](https://github.com/elastic/eui/pull/7175))
+
+**Bug fixes**
+
+- `EuiComboBox` now always shows the highlighted search text, even on truncated text ([#7028](https://github.com/elastic/eui/pull/7028))
+- Fixed missing i18n in `EuiSearchBar`'s default placeholder and aria-label text ([#7175](https://github.com/elastic/eui/pull/7175))
+- Fixed the inline compressed styles of `EuiDescriptionListTitle` to use a taller line-height for readability ([#7185](https://github.com/elastic/eui/pull/7185))
+- Fixed `EuiComboBox` to correctly truncate selected items when displayed as pills and plain text ([#7193](https://github.com/elastic/eui/pull/7193))
+
+**Accessibility**
+
+- Added `aria-current` attribute to `EuiTablePagination` ([#7186](https://github.com/elastic/eui/pull/7186))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDroppable` and `EuiDraggable` to Emotion; Removed `$euiDragAndDropSpacing` Sass variables ([#7187](https://github.com/elastic/eui/pull/7187))
+
+## [`88.3.0`](https://github.com/elastic/eui/tree/v88.3.0)
+
+- `EuiGlobalToastList` now shows a "Clear all" button by default once above a certain number of toasts (defaults to 3). This threshold is configurable with the `showClearAllButtonAt` prop ([#7111](https://github.com/elastic/eui/pull/7111))
+- Added an optional `onClearAllToasts` callback to `EuiGlobalToastList` ([#7111](https://github.com/elastic/eui/pull/7111))
+- Added the `value`, `onChange`, and `onCancel` props that allow `EuiInlineEdit` to be used as a controlled component ([#7157](https://github.com/elastic/eui/pull/7157))
+- Added `grabOmnidirectional`, `transitionLeftIn`, `transitionLeftOut`, `transitionTopIn`, and `transitionTopOut` icon glyphs. ([#7168](https://github.com/elastic/eui/pull/7168))
+
+**Bug fixes**
+
+- Fixed `EuiInlineEdit` components to correctly spread `...rest` attributes to the parent wrapper ([#7157](https://github.com/elastic/eui/pull/7157))
+- Fixed `EuiListGroupItem` to correctly render the `extraAction` button when `showToolTip` is also passed ([#7159](https://github.com/elastic/eui/pull/7159))
+
+**Dependency updates**
+
+- Updated `@hello-pangea/dnd` to v16.3.0 ([#7125](https://github.com/elastic/eui/pull/7125))
+- Updated `@types/lodash` to v4.14.198 ([#7126](https://github.com/elastic/eui/pull/7126))
+
+**Accessibility**
+
+- `EuiAccordion` now correctly respects reduced motion settings ([#7161](https://github.com/elastic/eui/pull/7161))
+- `EuiAccordion` now shows a focus outline to keyboard users around its revealed children on open ([#7161](https://github.com/elastic/eui/pull/7161))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSplitPanel` to Emotion ([#7172](https://github.com/elastic/eui/pull/7172))
+
+## [`88.2.0`](https://github.com/elastic/eui/tree/v88.2.0)
+
+- Added a new `EuiTextTruncate` component, which provides custom truncation options beyond native CSS ([#7116](https://github.com/elastic/eui/pull/7116))
+- Fixed-positioned `EuiHeader`s now set a global CSS `--euiFixedHeadersOffset` variable, which updates dynamically based on the number of fixed headers on the page. ([#7144](https://github.com/elastic/eui/pull/7144))
+- `EuiFlyout`s now dynamically set their position, height, and mask based on the number of fixed headers on the page. ([#7144](https://github.com/elastic/eui/pull/7144))
+- Sticky-positioned `EuiPageSidebar`s now dynamically set their position and height based on the number of fixed headers on the page. This can still be overridden via the `sticky.offset` prop if needed. ([#7144](https://github.com/elastic/eui/pull/7144))
+- `EuiPageTemplate` now dynamically offsets content from any fixed headers on the page. This can still be overridden via the `offset` prop if needed. ([#7144](https://github.com/elastic/eui/pull/7144))
+- Updated `EuiAccordion` with a new `borders` prop ([#7154](https://github.com/elastic/eui/pull/7154))
+- Updated `EuiAccordion` with a new `buttonProps.paddingSize` prop ([#7154](https://github.com/elastic/eui/pull/7154))
+
+**Deprecations**
+
+- Deprecated the Sass `euiHeaderAffordForFixed` mixin. Use the new global CSS `var(--euiFixedHeadersOffset)` variable instead. ([#7144](https://github.com/elastic/eui/pull/7144))
+
+**CSS-in-JS conversions**
+
+- Except for generic CSS utilities, EUI is moving away from providing global `classNames` that are component-specific. As part of this effort, we have removed the following `EuiAccordion`-specific classes: ([#7154](https://github.com/elastic/eui/pull/7154))
+  - Removed `.euiAccordionForm` styles. Use the `borders="horizontal"` prop instead
+  - Removed `.euiAccordionForm__button` styles. Use the `buttonProps={{ paddingSize: 'm' }}` prop instead
+  - Removed `.euiAccordionForm__extraAction` styles. Convert this to your own custom CSS if necessary.
+  - Removed `.euiAccordionForm__title` styles. Convert this to your own custom CSS if necessary.
+
 ## [`88.1.0`](https://github.com/elastic/eui/tree/v88.1.0)
 
 - Added `font.defaultUnits` theme token. EUI component font sizes default to `rem` units - this token allows consumers to configure this to `px` or `em` ([#7133](https://github.com/elastic/eui/pull/7133))
