@@ -164,6 +164,18 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    */
   repositionOnScroll?: boolean;
   /**
+   * By default, popovers will attempt to position themselves along the initial
+   * axis specified. If there is not enough room either vertically or horizontally
+   * however, the popover will attempt to reposition itself along the secondary
+   * cross axis if there is room there instead.
+   *
+   * If you do not not want this repositioning to occur (and it is acceptable for
+   * the popover to appear offscreen), set this to false to disable this behavior.
+   *
+   * @default true
+   */
+  repositionToCrossAxis?: boolean;
+  /**
    * Must be set to true if using `EuiDragDropContext` within a popover,
    * otherwise your nested drag & drop will have incorrect positioning
    */
@@ -281,6 +293,7 @@ export class EuiPopover extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
     ownFocus: true,
+    repositionToCrossAxis: true,
     anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
     hasArrow: true,
@@ -517,7 +530,7 @@ export class EuiPopover extends Component<Props, State> {
         arrowBuffer: 10,
       },
       returnBoundingBox: this.props.attachToAnchor,
-      allowCrossAxis: !this.props.attachToAnchor,
+      allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,
     });
 
@@ -607,6 +620,7 @@ export class EuiPopover extends Component<Props, State> {
       hasArrow,
       arrowChildren,
       repositionOnScroll,
+      repositionToCrossAxis,
       hasDragDrop,
       zIndex,
       attachToAnchor,
