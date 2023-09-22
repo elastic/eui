@@ -23,17 +23,8 @@ type CanvasParams = SharedParams &
   >;
 
 /**
- * This internal shared/base class contains the actual logic for truncating text
- * (as well as a few handy utilities for checking whether truncation is possible
- * or even necessary).
- *
- * How the underlying mechanism works: the full text is rendered, and then
- * characters are removed one by one until the width of the text fits within
- * the specified available width.
- *
- * Side note: The exception to this is the `truncateStartEndAtPosition` method,
- * which works by building up from an empty string / by adding characters
- * instead of removing them.
+ * Utilities for truncating types at various positions, as well as
+ * determining whether truncation is possible or even necessary.
  */
 abstract class _TruncationUtils {
   protected fullText: SharedParams['fullText'];
