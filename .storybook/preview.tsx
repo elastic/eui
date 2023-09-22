@@ -10,6 +10,7 @@
 
 import React from 'react';
 import type { Preview } from '@storybook/react';
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 /*
  * Preload all EuiIcons - Storybook does not support dynamic icon loading
@@ -31,8 +32,6 @@ appendIconComponentCache(iconCache);
  */
 import { EuiProvider } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
-
-import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 // Import light theme for components still using Sass styling
 // TODO: Remove this import and the `yarn compile-scss &&` command

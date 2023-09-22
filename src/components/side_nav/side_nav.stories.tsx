@@ -9,14 +9,14 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiIcon } from '../icon';
+import { EuiText } from '../text';
+
 import {
   EuiSideNav,
   EuiSideNavProps,
   EuiSideNavHeadingProps,
 } from './side_nav';
-
-import { EuiIcon } from '../icon';
-import { EuiText } from '../text';
 
 const meta: Meta<EuiSideNavProps> = {
   title: 'EuiSideNav',
