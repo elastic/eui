@@ -94,6 +94,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
             aria-label={dismissAriaLabel}
             css={cssCloseIconStyle}
             color={color}
+            data-test-subj="euiDismissCalloutButton"
           />
         )}
       </EuiI18n>
