@@ -28,20 +28,8 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
     role="alert"
     tabindex="-1"
   >
-    <button
-      aria-label="Close callout"
-      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="cross"
-      />
-    </button>
     <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger-euiCallOutHeader_endSpace-header"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
@@ -61,25 +49,16 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     role="alert"
     tabindex="-1"
   >
-    <button
-      aria-label="Close callout"
-      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="cross"
-      />
-    </button>
     <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger-euiCallOutHeader_endSpace-header"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
+      class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
+    />
+    <div
+      class="euiText emotion-euiText-s-euiTextColor-default"
     >
       <ul>
         <li
@@ -114,25 +93,16 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     role="alert"
     tabindex="-1"
   >
-    <button
-      aria-label="Close callout"
-      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="cross"
-      />
-    </button>
     <p
-      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger-euiCallOutHeader_endSpace-header"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
+      class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
+    />
+    <div
+      class="euiText emotion-euiText-s-euiTextColor-default"
     >
       <ul>
         <li

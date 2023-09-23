@@ -6,20 +6,8 @@ exports[`EuiCallOut is rendered 1`] = `
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary testClass1 testClass2 emotion-euiPanel-none-m-primary-euiCallOut-euiTestCss"
   data-test-subj="test subject string"
 >
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
   <div
-    class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
+    class="euiText emotion-euiText-s-euiTextColor-default"
   >
     Content
   </div>
@@ -29,254 +17,89 @@ exports[`EuiCallOut is rendered 1`] = `
 exports[`EuiCallOut props color danger is rendered 1`] = `
 <div
   class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger emotion-euiPanel-none-m-danger-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props color primary is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props color success is rendered 1`] = `
 <div
   class="euiPanel euiPanel--success euiPanel--paddingMedium euiCallOut euiCallOut--success emotion-euiPanel-none-m-success-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-success-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props color warning is rendered 1`] = `
 <div
   class="euiPanel euiPanel--warning euiPanel--paddingMedium euiCallOut euiCallOut--warning emotion-euiPanel-none-m-warning-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-warning-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading h1 is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading h2 is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading h3 is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading h4 is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading h5 is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading h6 is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props heading p is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props iconType is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
->
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
-</div>
+/>
 `;
 
 exports[`EuiCallOut props title is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 >
-  <button
-    aria-label="Close callout"
-    class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary-euiCallOut__closeIcon"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="cross"
-    />
-  </button>
   <p
-    class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-primary-euiCallOutHeader_endSpace-header"
+    class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-primary"
   >
     Title
   </p>
   <div
-    class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
+    class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
+  />
+  <div
+    class="euiText emotion-euiText-s-euiTextColor-default"
   >
     Content
   </div>
