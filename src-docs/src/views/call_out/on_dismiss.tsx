@@ -61,11 +61,19 @@ export default () => {
           size={smallSize ? 's' : 'm'}
         >
           {showChildren && (
-            <p>
-              Here’s more some stuff users need to know. But maybe users don't
-              need to know it on every page refresh, so you could remember
-              whether or not to display this callout in local storage.
-            </p>
+            <>
+              <p>
+                Here’s more some stuff users need to know. But maybe users don't
+                need to know it on every page refresh, so you could remember
+                whether or not to display this callout in local storage.
+              </p>
+              {!showTitle && (
+                <p>
+                  This second paragraph is here to demonstrate that only the
+                  first one needs to account for the dismiss button in width.
+                </p>
+              )}
+            </>
           )}
         </EuiCallOut>
       ) : (
