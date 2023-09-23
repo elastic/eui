@@ -37,7 +37,14 @@ export type EuiCallOutProps = CommonProps &
     color?: Color;
     size?: Size;
     heading?: Heading;
-    onClose?: () => void;
+    /**
+     * Passing an `onDismiss` callback will render a cross in the top right hand corner
+     * of the callout.
+     *
+     * This callback fires when users click this button, which allows conditionally
+     * removing the callout or other actions.
+     */
+    onDismiss?: () => void;
   };
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
@@ -50,8 +57,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       children,
       className,
       heading = 'p',
-      onClose,
-      isDismissible = true,
+      onDismiss,
       ...rest
     },
     ref
@@ -79,13 +85,13 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className
     );
 
-    const closeIcon = onClose ? (
-      <EuiI18n token="euiCallOut.closeCallOut" default="Close callout">
-        {(closeCallOut: string) => (
+    const dismissButton = onDismiss ? (
+      <EuiI18n token="euiCallOut.dismissAriaLabel" default="Dismiss callout">
+        {(dismissAriaLabel: string) => (
           <EuiButtonIcon
             iconType="cross"
-            onClick={onClose}
-            aria-label={closeCallOut}
+            onClick={onDismiss}
+            aria-label={dismissAriaLabel}
             css={cssCloseIconStyle}
             color={color}
           />
@@ -136,7 +142,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         grow={false}
         {...rest}
       >
-        {closeIcon}
+        {dismissButton}
         {header}
         {optionalChildren}
       </EuiPanel>
