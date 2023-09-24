@@ -1,7 +1,12 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
+import {
+  EuiDataGrid,
+  EuiAvatar,
+  EuiFormRow,
+  EuiRange,
+} from '../../../../../src/components';
 
 const columns = [
   {
@@ -53,6 +58,7 @@ const DataGridStyle = ({
   allowDensity,
   allowRowHeight,
   allowResetButton,
+  additionalDisplaySettings,
   allowHideColumns,
   allowOrderingColumns,
 }) => {
@@ -101,13 +107,39 @@ const DataGridStyle = ({
       showDisplaySelector === true &&
       (allowDensity === false ||
         allowRowHeight === false ||
-        allowResetButton === false)
+        allowResetButton === false ||
+        additionalDisplaySettings)
     ) {
-      return { allowDensity, allowRowHeight, allowResetButton };
+      const customDisplaySetting = additionalDisplaySettings && (
+        <EuiFormRow label="Random Sample Size" display="columnCompressed">
+          <EuiRange
+            compressed
+            fullWidth
+            showInput
+            min={1}
+            max={100}
+            step={1}
+            value={10}
+            data-test-subj="randomSampleSize"
+          />
+        </EuiFormRow>
+      );
+      return {
+        allowDensity,
+        allowRowHeight,
+        allowResetButton,
+        additionalDisplaySettings: customDisplaySetting,
+      };
     } else {
       return showDisplaySelector;
     }
-  }, [showDisplaySelector, allowDensity, allowRowHeight, allowResetButton]);
+  }, [
+    showDisplaySelector,
+    allowDensity,
+    allowRowHeight,
+    allowResetButton,
+    additionalDisplaySettings,
+  ]);
 
   const toolbarVisibilityOptions = {
     showColumnSelector: toggleColumnSelector,

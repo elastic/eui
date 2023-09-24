@@ -47,6 +47,8 @@ const DataGrid = () => {
   const [allowDensity, setAllowDensity] = useState(true);
   const [allowRowHeight, setAllowRowHeight] = useState(true);
   const [allowResetButton, setAllowResetButton] = useState(true);
+  const [additionalDisplaySettings, setAdditionalDisplaySettings] =
+    useState(false);
   const [showColumnSelector, setShowColumnSelector] = useState(true);
   const [allowHideColumns, setAllowHideColumns] = useState(true);
   const [allowOrderingColumns, setAllowOrderingColumns] = useState(true);
@@ -79,6 +81,9 @@ const DataGrid = () => {
   };
   const onAllowResetButtonChange = (optionId) => {
     setAllowResetButton(optionId === 'true');
+  };
+  const onAdditionalDisplaySettingsChange = (optionId) => {
+    setAdditionalDisplaySettings(optionId === 'true');
   };
 
   const onShowKeyboardShortcutsChange = (optionId) => {
@@ -129,13 +134,27 @@ const DataGrid = () => {
   const toggleDisplaySelector = useMemo(() => {
     if (
       showDisplaySelector === true &&
-      (allowDensity === false || allowRowHeight === false)
+      (allowDensity === false ||
+        allowRowHeight === false ||
+        allowResetButton === false ||
+        additionalDisplaySettings)
     ) {
-      return { allowDensity, allowRowHeight };
+      return {
+        allowDensity,
+        allowRowHeight,
+        allowResetButton,
+        additionalDisplaySettings,
+      };
     } else {
       return showDisplaySelector;
     }
-  }, [showDisplaySelector, allowDensity, allowRowHeight]);
+  }, [
+    showDisplaySelector,
+    allowDensity,
+    allowRowHeight,
+    allowResetButton,
+    additionalDisplaySettings,
+  ]);
 
   const createItem = (name, buttonProps = {}) => {
     return (
@@ -244,6 +263,12 @@ const DataGrid = () => {
                       onChange: onAllowResetButtonChange,
                     })}
                   </li>
+                  <li>
+                    {createItem('Additional display settings', {
+                      idSelected: additionalDisplaySettings.toString(),
+                      onChange: onAdditionalDisplaySettingsChange,
+                    })}
+                  </li>
                 </ul>
               )}
 
@@ -277,6 +302,7 @@ const DataGrid = () => {
         allowDensity={allowDensity}
         allowRowHeight={allowRowHeight}
         allowResetButton={allowResetButton}
+        additionalDisplaySettings={additionalDisplaySettings}
         allowHideColumns={allowHideColumns}
         allowOrderingColumns={allowOrderingColumns}
       />
