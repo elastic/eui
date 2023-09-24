@@ -295,7 +295,7 @@ export type CommonGridProps = CommonProps &
     renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
     /**
      * An optional function called to customize placement of controls in EuiDataGrid's toolbar.
-     * This can be used to add custom buttons, reorder existing ones.
+     * This can be used to add custom buttons or reorder existing ones.
      *
      * Behind the scenes, this function is treated as a React component,
      * allowing hooks, context, and other React concepts to be used.
