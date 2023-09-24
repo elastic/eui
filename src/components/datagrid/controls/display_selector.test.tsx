@@ -84,8 +84,6 @@ describe('useDataGridDisplaySelector', () => {
         expect(getSelection(component)).toEqual('normal');
         component.find('[data-test-subj="compact"]').simulate('change');
         expect(getSelection(component)).toEqual('compact');
-
-        closePopover(component);
       });
 
       it('calls the gridStyles.onDensityChange callback on user change', () => {
@@ -416,6 +414,13 @@ describe('useDataGridDisplaySelector', () => {
           component.find('[data-test-subj="resetDisplaySelector"]').exists()
         ).toBe(true);
 
+        // Should show the reset button again after the popover was reopened
+        closePopover(component);
+        openPopover(component);
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(true);
+
         // Should hide the reset button again after it's been clicked
         component
           .find('button[data-test-subj="resetDisplaySelector"]')
@@ -423,27 +428,6 @@ describe('useDataGridDisplaySelector', () => {
         expect(
           component.find('[data-test-subj="resetDisplaySelector"]').exists()
         ).toBe(false);
-      });
-
-      it('renders the reset button after the user changed from the current settings and reopened popover', () => {
-        const component = mount(<MockComponent gridStyles={startingStyles} />);
-        openPopover(component);
-        expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(false);
-
-        component.find('[data-test-subj="expanded"]').simulate('change');
-        component.find('[data-test-subj="auto"]').simulate('change');
-        expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(true);
-
-        // Should show the reset button again after the popover was reopened
-        closePopover(component);
-        openPopover(component);
-        expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(true);
       });
 
       it('hides the reset button even after changes if allowResetButton is false', () => {
