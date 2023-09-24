@@ -30,6 +30,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     ownFocus={true}
     panelClassName="euiDataGrid__displayPopoverPanel"
     panelPaddingSize="s"
+    repositionToCrossAxis={true}
   >
     <EuiI18n
       defaults={

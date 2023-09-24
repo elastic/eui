@@ -57,6 +57,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
         token="euiDataGridHeaderCell.actionsPopoverScreenReaderText"
       />
     }
+    repositionToCrossAxis={true}
   >
     <EuiListGroup
       data-test-subj="dataGridHeaderCellActionGroup-someColumn"

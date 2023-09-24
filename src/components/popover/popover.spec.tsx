@@ -166,4 +166,44 @@ describe('EuiPopover', () => {
       });
     });
   });
+
+  describe('repositionToCrossAxis', () => {
+    beforeEach(() => {
+      // Set a forced viewport with not enough room to render the popover vertically
+      cy.viewport(500, 50);
+    });
+
+    it('allows the popover to reposition to the cross/secondary axis if there is not enough room on the primary axis', () => {
+      cy.mount(
+        <PopoverComponent anchorPosition="downCenter">Test</PopoverComponent>
+      );
+      cy.get('[data-test-subj="togglePopover"]').click();
+
+      // Assert that the popover rendered horizontally and not vertically
+      cy.get('[data-popover-panel]')
+        .invoke('offset')
+        .then(({ top, left }) => {
+          expect(left).to.be.gt(top);
+        });
+    });
+
+    it('does not reposition to the cross axis if set to false', () => {
+      cy.mount(
+        <PopoverComponent
+          anchorPosition="downCenter"
+          repositionToCrossAxis={false}
+        >
+          Test
+        </PopoverComponent>
+      );
+      cy.get('[data-test-subj="togglePopover"]').click();
+
+      // Assert that the popover vertically and not horizontally
+      cy.get('[data-popover-panel]')
+        .invoke('offset')
+        .then(({ top, left }) => {
+          expect(top).to.be.gt(left);
+        });
+    });
+  });
 });
