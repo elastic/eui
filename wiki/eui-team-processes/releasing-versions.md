@@ -40,7 +40,7 @@ npm whoami # Should return an error about not being logged in
 
 #### eui.elastic.co
 
-In addition to the GitHub pages deployment, Buildkite automatically deploys our docs to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs). The Buildkite job is started when a new tag is pushed to the `main` branch.
+Buildkite automatically deploys our docs to the EUI `Bekitzur` environment. The Buildkite job is started when a new tag is pushed to the `main` branch.
 
 To view the progress of your job or check for errors:
 
@@ -64,7 +64,7 @@ We also update the [release's tag in github](https://github.com/elastic/eui/tags
 
 For information on releasing the eslint plugin checkout the readme in [packages/eslint-plugin/README.md](../../packages/eslint-plugin/README.md)
 
-[docs]: https://elastic.github.io/eui/
+[docs]: https://eui.elastic.co/#/
 
 # Backport process
 
