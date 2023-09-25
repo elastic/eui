@@ -1,3 +1,22 @@
+## [`88.5.0`](https://github.com/elastic/eui/tree/v88.5.0)
+
+- Updated `EuiCallOut` with a new `onDismiss` prop ([#7156](https://github.com/elastic/eui/pull/7156))
+- Added a new `renderCustomToolbar` prop to `EuiDataGrid`, which allows custom rendering of the toolbar. ([#7190](https://github.com/elastic/eui/pull/7190))
+- Added a new `allowResetButton` prop to `toolbarVisibility.showDisplaySelector` of `EuiDataGrid`, which allows hiding the "Reset to default" button from the display settings popover. ([#7190](https://github.com/elastic/eui/pull/7190))
+- Added a new `additionalDisplaySettings` prop to `toolbarVisibility.showDisplaySelector` of `EuiDataGrid`, which allows rendering extra settings inside the display settings popover. ([#7190](https://github.com/elastic/eui/pull/7190))
+- Updated `EuiDataGrid`'s toolbar display settings button icon ([#7190](https://github.com/elastic/eui/pull/7190))
+- Updated `EuiTextTruncate` with significantly improved iteration performance. Removed `measurementRenderAPI` prop, as `EuiTextTruncation` now only uses more performant canvas render API ([#7210](https://github.com/elastic/eui/pull/7210))
+- Updated `EuiPopover` with a new configurable `repositionToCrossAxis` prop ([#7211](https://github.com/elastic/eui/pull/7211))
+- Updated `EuiDatePicker` to support `compressed` input styling ([#7218](https://github.com/elastic/eui/pull/7218))
+- Added `gradient` and `palette` icon glyphs. ([#7220](https://github.com/elastic/eui/pull/7220))
+
+**Bug fixes**
+
+- Fixed `EuiPopover`'s missing animations on popover close ([#7211](https://github.com/elastic/eui/pull/7211))
+- Fixed `EuiInputPopover` anchoring to the wrong side and missing shadows on smaller screens ([#7211](https://github.com/elastic/eui/pull/7211))
+- Fixed `EuiSuperDatePicker` icon spacing on the quick select button ([#7217](https://github.com/elastic/eui/pull/7217))
+- Fixed a missing type in `EuiMarkdownEditor`'s default processing plugins ([#7221](https://github.com/elastic/eui/pull/7221))
+
 ## [`88.4.1`](https://github.com/elastic/eui/tree/v88.4.1)
 
 **Bug fixes**
