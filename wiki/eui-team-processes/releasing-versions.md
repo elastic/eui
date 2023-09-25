@@ -28,9 +28,7 @@ This command ensures that you have the latest `upstream/main` and dependencies, 
 
 After the version is bumped, the release script automatically updates `CHANGELOG.md` with the new release header and collated upcoming changelogs, and then cleans the `upcoming_changelogs/` directory. The updates are committed to git and tagged, then pushed to your `upstream` branch.
 
-The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
-
-<sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
+The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily.
 
 (Optional) log out of your NPM account:
 ```sh
