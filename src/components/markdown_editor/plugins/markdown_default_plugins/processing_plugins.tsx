@@ -52,7 +52,9 @@ export type DefaultEuiMarkdownProcessingPlugins = [
 
 export const getDefaultEuiMarkdownProcessingPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownProcessingPlugins => {
+}: {
+  exclude?: Array<'tooltip'>;
+} = {}): DefaultEuiMarkdownProcessingPlugins => {
   const excludeSet = new Set(exclude);
 
   const plugins: DefaultEuiMarkdownProcessingPlugins = [
