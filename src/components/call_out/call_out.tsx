@@ -89,7 +89,10 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     );
 
     const dismissButton = onDismiss && (
-      <EuiI18n token="euiCallOut.dismissAriaLabel" default="Dismiss callout">
+      <EuiI18n
+        token="euiCallOut.dismissAriaLabel"
+        default="Dismiss this callout"
+      >
         {(dismissAriaLabel: string) => (
           <EuiButtonIcon
             iconType="cross"

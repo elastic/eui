@@ -55,7 +55,7 @@ export default () => {
           iconType="iInCircle"
           title={
             showTitle
-              ? 'You can dismiss this callout by clicking the cross in the top right corner'
+              ? 'You can dismiss this callout by clicking the Close button in the top right corner'
               : ''
           }
           size={smallSize ? 's' : 'm'}
