@@ -95,7 +95,7 @@ describe('EuiCollapsibleNavBeta', () => {
       }
     );
 
-    it('dauptes the overlay controls once the screen is smaller than 1.5x the flyout width', () => {
+    it('updates the overlay controls once the screen is smaller than 1.5x the flyout width', () => {
       mockWindowResize(320);
       const { baseElement, getByLabelText, getByTestSubject } = render(
         <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
