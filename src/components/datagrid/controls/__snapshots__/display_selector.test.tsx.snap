@@ -16,7 +16,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
           className="euiDataGrid__controlBtn"
           color="text"
           data-test-subj="dataGridDisplaySelectorButton"
-          iconType="tableDensityNormal"
+          iconType="controlsHorizontal"
           onClick={[Function]}
           size="xs"
         />

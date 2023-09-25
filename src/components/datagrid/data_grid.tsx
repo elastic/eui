@@ -129,6 +129,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       rowHeightsOptions: _rowHeightsOptions,
       virtualizationOptions,
       renderCustomGridBody,
+      renderCustomToolbar,
       ...rest
     } = props;
 
@@ -400,6 +401,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     displaySelector={displaySelector}
                     columnSelector={columnSelector}
                     columnSorting={columnSorting}
+                    renderCustomToolbar={renderCustomToolbar}
                   />
                 )}
                 {inMemory ? (
