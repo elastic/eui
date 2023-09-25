@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
@@ -58,6 +59,16 @@ describe('EuiCallOut', () => {
           expect(container.firstChild).toMatchSnapshot();
         });
       });
+    });
+
+    test('onDismiss', () => {
+      const onDismiss = jest.fn();
+      const { getByTestSubject } = render(
+        <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
+      );
+
+      fireEvent.click(getByTestSubject('euiDismissCalloutButton'));
+      expect(onDismiss).toHaveBeenCalledTimes(1);
     });
   });
 });
