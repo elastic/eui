@@ -15,6 +15,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
+import classNames from 'classnames';
 
 import { useCombinedRefs } from '../../services';
 import {
@@ -24,7 +25,7 @@ import {
 import type { CommonProps } from '../common';
 
 import { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';
-import { euiTextTruncateStyles } from './text_truncate.styles';
+import { euiTextTruncateStyles as styles } from './text_truncate.styles';
 
 const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
 export type EuiTextTruncationTypes = (typeof TRUNCATION_TYPES)[number];
@@ -129,6 +130,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   ellipsis = '…',
   containerRef,
   measurementRenderAPI = 'dom',
+  className,
   ...rest
 }) => {
   // Note: This needs to be a state and not a ref to trigger a rerender on mount
@@ -214,7 +216,8 @@ const EuiTextTruncateWithWidth: FunctionComponent<
 
   return (
     <div
-      css={euiTextTruncateStyles.euiTextTruncate}
+      className={classNames('euiTextTruncate', className)}
+      css={styles.euiTextTruncate}
       ref={refs}
       title={isTruncating ? text : undefined}
       {...rest}
@@ -222,18 +225,25 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       {isTruncating ? (
         <>
           <span
-            css={euiTextTruncateStyles.truncatedText}
+            className="euiTextTruncate__truncatedText"
+            css={styles.euiTextTruncate__truncatedText}
             aria-hidden
             data-test-subj="truncatedText"
           >
             {children ? children(truncatedText) : truncatedText}
           </span>
-          <span css={euiTextTruncateStyles.fullText} data-test-subj="fullText">
+          <span
+            className="euiTextTruncate__fullText"
+            css={styles.euiTextTruncate__fullText}
+            data-test-subj="fullText"
+          >
             {text}
           </span>
         </>
       ) : (
-        <span data-test-subj="fullText">{text}</span>
+        <span className="euiTextTruncate__fullText" data-test-subj="fullText">
+          {children ? children(text) : text}
+        </span>
       )}
     </div>
   );

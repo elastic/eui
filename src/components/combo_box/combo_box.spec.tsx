@@ -13,6 +13,19 @@
 import React, { useState } from 'react';
 import { EuiComboBox } from './index';
 
+// CI doesn't have access to the Inter font, so we need to manually include it
+// for truncation font calculations to work correctly
+before(() => {
+  const linkElem = document.createElement('link');
+  linkElem.setAttribute('rel', 'stylesheet');
+  linkElem.setAttribute(
+    'href',
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'
+  );
+  document.head.appendChild(linkElem);
+  cy.wait(1000); // Wait a second to give the font time to load/swap in
+});
+
 describe('EuiComboBox', () => {
   describe('Focus management', () => {
     it('keeps focus on the input box when clicking a disabled item', () => {
@@ -34,6 +47,95 @@ describe('EuiComboBox', () => {
       cy.get('span').contains('Item 2').realClick();
 
       cy.focused().should('have.attr', 'data-test-subj', 'comboBoxSearchInput');
+    });
+  });
+
+  describe('truncation', () => {
+    const sharedProps = {
+      style: { width: 200 },
+      options: [
+        { label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+      ],
+    };
+
+    it('defaults to CSS truncation', () => {
+      cy.realMount(<EuiComboBox {...sharedProps} />);
+      cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('.euiTextTruncate').should('not.exist');
+    });
+
+    it('renders EuiTextTruncate when truncationProps are passed', () => {
+      cy.realMount(
+        <EuiComboBox
+          {...sharedProps}
+          truncationProps={{ truncation: 'middle' }}
+        />
+      );
+      cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('.euiTextTruncate').should('exist');
+      cy.get('[data-test-subj="truncatedText"]').should(
+        'have.text',
+        'Lorem ipsum …piscing elit.'
+      );
+    });
+
+    it('allows individual option truncationProps to override parent truncationProps', () => {
+      cy.realMount(
+        <EuiComboBox
+          {...sharedProps}
+          truncationProps={{ truncation: 'middle' }}
+          options={[
+            {
+              ...sharedProps.options[0],
+              truncationProps: { truncation: 'start', truncationOffset: 5 },
+            },
+          ]}
+        />
+      );
+      cy.get('[data-test-subj="comboBoxInput"]').realClick();
+      cy.get('[data-test-subj="truncatedText"]').should(
+        'have.text',
+        'Lorem…tur adipiscing elit.'
+      );
+    });
+
+    describe('when searching', () => {
+      it('uses start & end truncation position', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('sit');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          '…sum dolor sit amet, co…'
+        );
+      });
+
+      it('does not truncate the start when the found search is near the start', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('ipsum');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lorem ipsum dolor sit a…'
+        );
+      });
+
+      it('does not truncate the end when the found search is near the end', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('eli');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          '…nsectetur adipiscing elit.'
+        );
+      });
+
+      it('marks the full available text if the search input is longer than the truncated text', () => {
+        cy.realMount(<EuiComboBox {...sharedProps} />);
+        cy.get('[data-test-subj="comboBoxInput"]').realClick();
+        cy.realType('Lorem ipsum dolor sit amet');
+        cy.get('.euiMark').should('have.text', '…rem ipsum dolor sit am…');
+      });
     });
   });
 

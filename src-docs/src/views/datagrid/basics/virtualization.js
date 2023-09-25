@@ -67,19 +67,21 @@ function RenderCellValue({ rowIndex, columnId }) {
 
   if (data[rowIndex] == null) {
     const email = faker.internet.email();
-    const name = `${faker.name.lastName()}, ${faker.name.firstName()}`;
-    const suffix = faker.name.suffix();
+    const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
+    const suffix = faker.person.suffix();
     data[rowIndex] = {
       name: `${name} ${suffix}`,
       email: <EuiLink href="">{email}</EuiLink>,
       location: (
         <Fragment>
-          {`${faker.address.city()}, `}
-          <EuiLink href="https://google.com">{faker.address.country()}</EuiLink>
+          {`${faker.location.city()}, `}
+          <EuiLink href="https://google.com">
+            {faker.location.country()}
+          </EuiLink>
         </Fragment>
       ),
       date: `${faker.date.past()}`,
-      account: faker.finance.account(),
+      account: faker.finance.accountNumber(),
       amount: faker.commerce.price(),
       phone: faker.phone.number(),
       version: faker.system.semver(),

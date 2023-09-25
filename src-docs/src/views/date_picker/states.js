@@ -22,7 +22,7 @@ export default () => {
   return (
     /* DisplayToggles wrapper for Docs only */
     <div>
-      <DisplayToggles canCompressed={false}>
+      <DisplayToggles>
         <EuiDatePicker
           showTimeSelect
           selected={startDate}

@@ -25,10 +25,8 @@
   clear: both;
 }
 
-.euiQuickSelectPopover__buttonText {
-  // Override specificity from universal and sibling selectors
-  // stylelint-disable-next-line declaration-no-important
-  margin-right: $euiSizeXS !important;
+.euiQuickSelectPopover__buttonContent {
+  gap: $euiSizeXS;
 }
 
 .euiQuickSelectPopover__anchor {

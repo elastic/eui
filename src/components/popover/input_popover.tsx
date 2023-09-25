@@ -128,6 +128,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   return (
     <EuiPopover
       css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
+      repositionToCrossAxis={false}
       ownFocus={false}
       button={
         <EuiResizeObserver onResize={onResize}>

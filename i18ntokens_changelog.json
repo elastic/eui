@@ -1,5 +1,25 @@
 [
   {
+    "version": "88.4.0",
+    "changes": [
+      {
+        "token": "euiSearchBox.placeholder",
+        "changeType": "added",
+        "value": "Search..."
+      },
+      {
+        "token": "euiSearchBox.incrementalAriaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. As you type, the results lower in the page will automatically filter."
+      },
+      {
+        "token": "euiSearchBox.ariaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+      }
+    ]
+  },
+  {
     "version": "88.3.0",
     "changes": [
       {

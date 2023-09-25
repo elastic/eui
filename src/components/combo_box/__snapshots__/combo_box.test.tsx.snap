@@ -435,7 +435,11 @@ Array [
             Pre
           </span>
         </span>
-        1
+        <span
+          class="eui-textTruncate"
+        >
+          1
+        </span>
       </span>
       <button
         aria-label="Remove 1 from selection in this group"
@@ -462,7 +466,11 @@ Array [
       <span
         class="euiBadge__text emotion-euiBadge__text"
       >
-        2
+        <span
+          class="eui-textTruncate"
+        >
+          2
+        </span>
         <span
           class="euiComboBoxPill__append"
         >
@@ -504,13 +512,17 @@ exports[`props option.prepend & option.append renders in single selection 1`] = 
       Pre
     </span>
   </span>
-  1
+  <span
+    class="eui-textTruncate"
+  >
+    1
+  </span>
 </span>
 `;
 
 exports[`props option.prepend & option.append renders in the options dropdown 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+  class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-isAttached-bottom"
   data-popover-open="true"
   data-popover-panel="true"
   data-test-subj="comboBoxOptionsList"
@@ -663,7 +675,7 @@ exports[`props options list is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-isAttached-bottom"
     data-popover-open="true"
     data-popover-panel="true"
     data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
