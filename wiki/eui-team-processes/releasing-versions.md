@@ -28,9 +28,7 @@ This command ensures that you have the latest `upstream/main` and dependencies, 
 
 After the version is bumped, the release script automatically updates `CHANGELOG.md` with the new release header and collated upcoming changelogs, and then cleans the `upcoming_changelogs/` directory. The updates are committed to git and tagged, then pushed to your `upstream` branch.
 
-The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
-
-<sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
+The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily.
 
 (Optional) log out of your NPM account:
 ```sh
@@ -40,7 +38,7 @@ npm whoami # Should return an error about not being logged in
 
 #### eui.elastic.co
 
-In addition to the GitHub pages deployment, Buildkite automatically deploys our docs to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs). The Buildkite job is started when a new tag is pushed to the `main` branch.
+Buildkite automatically deploys our docs to the EUI `Bekitzur` environment. The Buildkite job is started when a new tag is pushed to the `main` branch.
 
 To view the progress of your job or check for errors:
 
@@ -64,7 +62,7 @@ We also update the [release's tag in github](https://github.com/elastic/eui/tags
 
 For information on releasing the eslint plugin checkout the readme in [packages/eslint-plugin/README.md](../../packages/eslint-plugin/README.md)
 
-[docs]: https://elastic.github.io/eui/
+[docs]: https://eui.elastic.co/#/
 
 # Backport process
 
