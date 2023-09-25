@@ -79,7 +79,7 @@ if (args.dry_run) {
 
   if (args.steps.indexOf('tag') > -1) {
     // push the version commit & tag to upstream
-    execSync('git push upstream --tags', execOptions);
+    execSync('git push upstream --follow-tags', execOptions);
   }
 
   if (args.steps.indexOf('publish') > -1) {
