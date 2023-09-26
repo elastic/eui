@@ -145,51 +145,18 @@ describe('EuiCollapsibleNavItem', () => {
       ).toHaveLength(5);
     });
 
-    it('renders group titles', () => {
-      const { container } = render(
+    it('allows rendering totally custom sub items', () => {
+      const { getByTestSubject } = render(
         <EuiCollapsibleNavItem
           title="Item"
           items={[
-            { isGroupTitle: true, title: 'Section' },
-            { title: 'Hello' },
-            { title: 'World' },
-          ]}
-        />
-      );
-
-      expect(container.querySelector('.euiCollapsibleNavItem__groupTitle'))
-        .toMatchInlineSnapshot(`
-        <div
-          class="euiTitle euiCollapsibleNavItem__groupTitle eui-textTruncate emotion-euiTitle-xxxs-euiCollapsibleNavItem__groupTitle"
-        >
-          Section
-        </div>
-      `);
-    });
-
-    it('allows customizing the group title element', () => {
-      const { container } = render(
-        <EuiCollapsibleNavItem
-          title="Item"
-          items={[
-            {
-              isGroupTitle: true,
-              title: 'Group title',
-              titleElement: 'h2',
-            },
+            { renderItem: () => <div data-test-subj="custom" /> },
             { title: 'Link 1', titleElement: 'h3' },
           ]}
         />
       );
 
-      expect(container.querySelector('.euiCollapsibleNavItem__groupTitle'))
-        .toMatchInlineSnapshot(`
-        <h2
-          class="euiTitle euiCollapsibleNavItem__groupTitle eui-textTruncate emotion-euiTitle-xxxs-euiCollapsibleNavItem__groupTitle"
-        >
-          Group title
-        </h2>
-      `);
+      expect(getByTestSubject('custom')).toBeInTheDocument();
     });
   });
 });

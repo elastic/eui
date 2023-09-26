@@ -13,6 +13,7 @@ import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
 import { EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
 import { EuiButton } from '../button';
+import { EuiTitle } from '../title';
 
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 import {
@@ -58,6 +59,22 @@ const OpenCollapsibleNav: FunctionComponent<
   );
 };
 
+const KibanaNavTitle: FunctionComponent<{
+  title: string;
+}> = ({ title }) => (
+  <EuiTitle
+    size="xxxs"
+    className="eui-textTruncate"
+    css={({ euiTheme }) => ({
+      marginTop: euiTheme.size.base,
+      paddingBlock: euiTheme.size.xs,
+      paddingInline: euiTheme.size.s,
+    })}
+  >
+    <div>{title}</div>
+  </EuiTitle>
+);
+
 export const KibanaExample: Story = {
   render: ({ ...args }) => (
     <OpenCollapsibleNav {...args}>
@@ -78,15 +95,15 @@ export const KibanaExample: Story = {
           href="#"
           items={[
             { title: 'Get started', href: '#' },
-            { title: 'Explore', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Explore" /> },
             { title: 'Discover', href: '#' },
             { title: 'Dashboards', href: '#' },
             { title: 'Visualize library', href: '#' },
-            { title: 'Content', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Content" /> },
             { title: 'Indices', href: '#' },
             { title: 'Transforms', href: '#' },
             { title: 'Indexing API', href: '#' },
-            { title: 'Security', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Security" /> },
             { title: 'API keys', href: '#' },
           ]}
         />
@@ -115,7 +132,7 @@ export const KibanaExample: Story = {
             { title: 'Alerts', href: '#' },
             { title: 'Cases', href: '#' },
             { title: 'SLOs', href: '#' },
-            { title: 'Signals', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Signals" /> },
             { title: 'Logs', href: '#' },
             {
               title: 'Tracing',
@@ -126,7 +143,7 @@ export const KibanaExample: Story = {
                 { title: 'Dependencies', href: '#' },
               ],
             },
-            { title: 'Toolbox', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Toolbox" /> },
             { title: 'Visualize library', href: '#' },
             { title: 'Dashboards', href: '#' },
             {
@@ -217,18 +234,20 @@ export const KibanaExample: Story = {
             { title: 'Overview', href: '#' },
             { title: 'Notifications', href: '#' },
             { title: 'Memory usage', href: '#' },
-            { title: 'Anomaly detection', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Anomaly detection" /> },
             { title: 'Jobs', href: '#' },
             { title: 'Anomaly explorer', href: '#' },
             { title: 'Single metric viewer', href: '#' },
             { title: 'Settings', href: '#' },
-            { title: 'Data frame analytics', isGroupTitle: true },
+            {
+              renderItem: () => <KibanaNavTitle title="Data frame analytics" />,
+            },
             { title: 'Jobs', href: '#' },
             { title: 'Results explorer', href: '#' },
             { title: 'Analytics map', href: '#' },
-            { title: 'Model management', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Model management" /> },
             { title: 'Trained models', href: '#' },
-            { title: 'Data visualizer', isGroupTitle: true },
+            { renderItem: () => <KibanaNavTitle title="Data visualizer" /> },
             { title: 'File', href: '#' },
             { title: 'Data view', href: '#' },
           ]}

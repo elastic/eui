@@ -9,11 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import {
-  logicalCSS,
-  logicalShorthandCSS,
-  euiFontSize,
-} from '../../../global_styling';
+import { euiFontSize } from '../../../global_styling';
 import { euiButtonColor } from '../../../themes/amsterdam/global_styling/mixins/button';
 
 /**
@@ -46,18 +42,4 @@ export const euiCollapsibleNavItemTitleStyles = {
   euiCollapsibleNavItem__title: css`
     flex-grow: 1;
   `,
-};
-
-export const euiCollapsibleNavSubItemGroupTitleStyles = ({
-  euiTheme,
-}: UseEuiTheme) => {
-  return {
-    euiCollapsibleNavItem__groupTitle: css`
-      ${logicalCSS('margin-top', euiTheme.size.base)}
-      ${logicalShorthandCSS(
-        'padding',
-        `${euiTheme.size.xs} ${euiTheme.size.s}`
-      )}
-    `,
-  };
 };

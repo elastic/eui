@@ -6,25 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 import { EuiIcon, IconType, EuiIconProps } from '../../icon';
 import { EuiLinkProps } from '../../link';
 import { EuiAccordionProps } from '../../accordion';
-import { EuiTitle } from '../../title';
 
 import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsedNavItem } from './collapsed';
 import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
-import {
-  euiCollapsibleNavItemTitleStyles,
-  euiCollapsibleNavSubItemGroupTitleStyles,
-} from './collapsible_nav_item.styles';
+import { euiCollapsibleNavItemTitleStyles } from './collapsible_nav_item.styles';
 
 export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -37,8 +37,8 @@ export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
     /**
      * When passed, an `EuiAccordion` with nested child item links will be rendered.
      *
-     * Accepts any #EuiCollapsibleNavItem prop, and also accepts an
-     * #EuiCollapsibleNavSubItemGroupTitle
+     * Accepts any #EuiCollapsibleNavItemProps. Or, to render completely custom
+     * subitem content, pass an object with a `renderItem` callback.
      */
     items?: EuiCollapsibleNavSubItemProps[];
     /**
@@ -79,20 +79,13 @@ export type EuiCollapsibleNavItemProps = {
   iconProps?: Partial<EuiIconProps>;
 } & _SharedEuiCollapsibleNavItemProps;
 
-export type EuiCollapsibleNavSubItemGroupTitle = Pick<
-  EuiCollapsibleNavItemProps,
-  'title' | 'titleElement'
-> & {
-  /**
-   * Pass this flag to seperate links by group title headings.
-   * Strongly consider using the `titleElement` prop for accessibility.
-   */
-  isGroupTitle?: boolean;
+export type EuiCollapsibleNavCustomSubItem = {
+  renderItem: () => ReactNode;
 };
 
 export type EuiCollapsibleNavSubItemProps = ExclusiveUnion<
   EuiCollapsibleNavItemProps,
-  EuiCollapsibleNavSubItemGroupTitle
+  EuiCollapsibleNavCustomSubItem
 >;
 
 export type _EuiCollapsibleNavItemDisplayProps = {
@@ -182,31 +175,24 @@ const EuiCollapsibleNavItemTitle: FunctionComponent<
 };
 
 /**
- * Sub-items can either be a group title, to visually separate sections
- * of nav links, or they can simply be more links or accordions
+ * Sub-items can either be a totally custom rendered item,
+ * or they can simply be more links or accordions
  */
 export const EuiCollapsibleNavSubItem: FunctionComponent<
   EuiCollapsibleNavSubItemProps
-> = ({ isGroupTitle, className, ...props }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavSubItemGroupTitleStyles(euiTheme);
+> = ({ renderItem, className, ...props }) => {
   const classes = classNames('euiCollapsibleNavSubItem', className);
 
-  if (isGroupTitle) {
-    const TitleElement = props.titleElement || 'div';
-    return (
-      <EuiTitle
-        size="xxxs"
-        css={styles.euiCollapsibleNavItem__groupTitle}
-        className="euiCollapsibleNavItem__groupTitle eui-textTruncate"
-      >
-        <TitleElement>{props.title}</TitleElement>
-      </EuiTitle>
-    );
+  if (renderItem) {
+    return <>{renderItem()}</>;
   }
 
   return (
-    <EuiCollapsibleNavItemDisplay className={classes} {...props} isSubItem />
+    <EuiCollapsibleNavItemDisplay
+      className={classes}
+      {...(props as EuiCollapsibleNavItemProps)}
+      isSubItem
+    />
   );
 };
 
