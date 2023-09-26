@@ -156,7 +156,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
 /**
  * Internal subcomponent for title display
  */
-const EuiCollapsibleNavItemTitle: FunctionComponent<
+export const EuiCollapsibleNavItemTitle: FunctionComponent<
   Pick<
     EuiCollapsibleNavItemProps,
     'title' | 'titleElement' | 'icon' | 'iconProps'
@@ -208,17 +208,18 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
 type EuiCollapsibleNavSubItemsProps = HTMLAttributes<HTMLDivElement> &
   _EuiCollapsibleNavItemDisplayProps & {
     items: EuiCollapsibleNavSubItemProps[];
+    isGroup?: boolean;
   };
 export const EuiCollapsibleNavSubItems: FunctionComponent<
   EuiCollapsibleNavSubItemsProps
-> = ({ items, isSubItem, className, ...rest }) => {
+> = ({ items, isSubItem, isGroup, className, ...rest }) => {
   const classes = classNames('euiCollapsibleNavItem__items', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavSubItemsStyles(euiTheme);
   const cssStyles = [
     styles.euiCollapsibleNavItem__items,
-    isSubItem ? styles.isSubItem : styles.isTopItem,
+    isGroup ? styles.isGroup : isSubItem ? styles.isSubItem : styles.isTopItem,
   ];
 
   const itemsHaveIcons = useMemo(
