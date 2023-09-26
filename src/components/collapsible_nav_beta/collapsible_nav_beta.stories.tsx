@@ -15,7 +15,10 @@ import { EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
 import { EuiButton } from '../button';
 import { EuiTitle } from '../title';
 
-import { EuiCollapsibleNavItem } from './collapsible_nav_item';
+import {
+  EuiCollapsibleNavItem,
+  EuiCollapsibleNavItemProps,
+} from './collapsible_nav_item';
 import {
   EuiCollapsibleNavBeta,
   EuiCollapsibleNavBetaProps,
@@ -59,21 +62,29 @@ const OpenCollapsibleNav: FunctionComponent<
   );
 };
 
-const KibanaNavTitle: FunctionComponent<{
-  title: string;
-}> = ({ title }) => (
-  <EuiTitle
-    size="xxxs"
-    className="eui-textTruncate"
-    css={({ euiTheme }) => ({
-      marginTop: euiTheme.size.base,
-      paddingBlock: euiTheme.size.xs,
-      paddingInline: euiTheme.size.s,
-    })}
-  >
-    <div>{title}</div>
-  </EuiTitle>
-);
+const renderGroup = (
+  groupTitle: string,
+  groupItems: EuiCollapsibleNavItemProps[]
+) => {
+  return [
+    {
+      renderItem: () => (
+        <EuiTitle
+          size="xxxs"
+          className="eui-textTruncate"
+          css={({ euiTheme }) => ({
+            marginTop: euiTheme.size.base,
+            paddingBlock: euiTheme.size.xs,
+            paddingInline: euiTheme.size.s,
+          })}
+        >
+          <div>{groupTitle}</div>
+        </EuiTitle>
+      ),
+    },
+    ...groupItems,
+  ];
+};
 
 export const KibanaExample: Story = {
   render: ({ ...args }) => (
@@ -95,16 +106,17 @@ export const KibanaExample: Story = {
           href="#"
           items={[
             { title: 'Get started', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Explore" /> },
-            { title: 'Discover', href: '#' },
-            { title: 'Dashboards', href: '#' },
-            { title: 'Visualize library', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Content" /> },
-            { title: 'Indices', href: '#' },
-            { title: 'Transforms', href: '#' },
-            { title: 'Indexing API', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Security" /> },
-            { title: 'API keys', href: '#' },
+            ...renderGroup('Explore', [
+              { title: 'Discover', href: '#' },
+              { title: 'Dashboards', href: '#' },
+              { title: 'Visualize library', href: '#' },
+            ]),
+            ...renderGroup('Content', [
+              { title: 'Indices', href: '#' },
+              { title: 'Transforms', href: '#' },
+              { title: 'Indexing API', href: '#' },
+            ]),
+            ...renderGroup('Security', [{ title: 'API keys', href: '#' }]),
           ]}
         />
         <EuiCollapsibleNavItem
@@ -132,31 +144,33 @@ export const KibanaExample: Story = {
             { title: 'Alerts', href: '#' },
             { title: 'Cases', href: '#' },
             { title: 'SLOs', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Signals" /> },
-            { title: 'Logs', href: '#' },
-            {
-              title: 'Tracing',
-              href: '#',
-              items: [
-                { title: 'Services', href: '#' },
-                { title: 'Traces', href: '#' },
-                { title: 'Dependencies', href: '#' },
-              ],
-            },
-            { renderItem: () => <KibanaNavTitle title="Toolbox" /> },
-            { title: 'Visualize library', href: '#' },
-            { title: 'Dashboards', href: '#' },
-            {
-              title: 'AIOps',
-              href: '#',
-              items: [
-                { title: 'Anomaly detection', href: '#' },
-                { title: 'Spike analysis', href: '#' },
-                { title: 'Change point detection', href: '#' },
-                { title: 'Notifications', href: '#' },
-              ],
-            },
-            { title: 'Add data', href: '#' },
+            ...renderGroup('Signals', [
+              { title: 'Logs', href: '#' },
+              {
+                title: 'Tracing',
+                href: '#',
+                items: [
+                  { title: 'Services', href: '#' },
+                  { title: 'Traces', href: '#' },
+                  { title: 'Dependencies', href: '#' },
+                ],
+              },
+            ]),
+            ...renderGroup('Toolbox', [
+              { title: 'Visualize library', href: '#' },
+              { title: 'Dashboards', href: '#' },
+              {
+                title: 'AIOps',
+                href: '#',
+                items: [
+                  { title: 'Anomaly detection', href: '#' },
+                  { title: 'Spike analysis', href: '#' },
+                  { title: 'Change point detection', href: '#' },
+                  { title: 'Notifications', href: '#' },
+                ],
+              },
+              { title: 'Add data', href: '#' },
+            ]),
           ]}
         />
         <EuiCollapsibleNavItem
@@ -234,22 +248,24 @@ export const KibanaExample: Story = {
             { title: 'Overview', href: '#' },
             { title: 'Notifications', href: '#' },
             { title: 'Memory usage', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Anomaly detection" /> },
-            { title: 'Jobs', href: '#' },
-            { title: 'Anomaly explorer', href: '#' },
-            { title: 'Single metric viewer', href: '#' },
-            { title: 'Settings', href: '#' },
-            {
-              renderItem: () => <KibanaNavTitle title="Data frame analytics" />,
-            },
-            { title: 'Jobs', href: '#' },
-            { title: 'Results explorer', href: '#' },
-            { title: 'Analytics map', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Model management" /> },
-            { title: 'Trained models', href: '#' },
-            { renderItem: () => <KibanaNavTitle title="Data visualizer" /> },
-            { title: 'File', href: '#' },
-            { title: 'Data view', href: '#' },
+            ...renderGroup('Anomaly detection', [
+              { title: 'Jobs', href: '#' },
+              { title: 'Anomaly explorer', href: '#' },
+              { title: 'Single metric viewer', href: '#' },
+              { title: 'Settings', href: '#' },
+            ]),
+            ...renderGroup('Data frame analytics', [
+              { title: 'Jobs', href: '#' },
+              { title: 'Results explorer', href: '#' },
+              { title: 'Analytics map', href: '#' },
+            ]),
+            ...renderGroup('Model management', [
+              { title: 'Trained models', href: '#' },
+            ]),
+            ...renderGroup('Data visualizer', [
+              { title: 'File', href: '#' },
+              { title: 'Data view', href: '#' },
+            ]),
           ]}
         />
       </EuiFlyoutBody>
