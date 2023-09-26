@@ -36,8 +36,9 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
     'side' | 'focusTrapProps' | 'includeFixedHeadersInFocusTrap'
   > & {
     /**
-     * ReactNode(s) to render as navigation flyout content, typically `EuiCollapsibleNavItem`s.
-     * You may also want to use `EuiFlyoutBody` and `EuiFlyoutFooter` for organization.
+     * ReactNode(s) to render as navigation flyout content, typically `EuiCollapsibleNavBeta.Item`s.
+     * You will likely want to use `EuiCollapsibleNavBeta.Body` and `EuiCollapsibleNavBeta.Footer`
+     * for organization.
      */
     children?: ReactNode;
     /**
@@ -76,9 +77,7 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
     'aria-label'?: string;
   };
 
-export const EuiCollapsibleNavBeta: FunctionComponent<
-  EuiCollapsibleNavBetaProps
-> = ({
+const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   id,
   children,
   className,
@@ -211,3 +210,21 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     </EuiCollapsibleNavContext.Provider>
   );
 };
+
+/**
+ * Combined export with subcomponents
+ */
+
+import {
+  EuiCollapsibleNavBody,
+  EuiCollapsibleNavFooter,
+} from './collapsible_nav_body_footer';
+import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
+import { EuiCollapsibleNavItem } from './collapsible_nav_item';
+
+export const EuiCollapsibleNavBeta = Object.assign(_EuiCollapsibleNavBeta, {
+  Body: EuiCollapsibleNavBody,
+  Footer: EuiCollapsibleNavFooter,
+  Group: EuiCollapsibleNavGroup,
+  Item: EuiCollapsibleNavItem,
+});
