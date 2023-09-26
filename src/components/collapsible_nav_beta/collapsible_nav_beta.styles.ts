@@ -12,6 +12,8 @@ import { logicalCSS, euiYScroll } from '../../global_styling';
 import { euiShadowFlat } from '../../themes';
 import { euiHeaderVariables } from '../header/header.styles';
 
+import { euiCollapsibleNavBodyStyles } from './collapsible_nav_body_footer.styles';
+
 export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
@@ -26,22 +28,12 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
       /* Fixed header affordance */
       ${logicalCSS('top', fixedHeaderOffset)}
 
-      /* Allow the nav to scroll, in case consumers don't use EuiFlyoutBody/EuiFyoutFooter */
+      /* Allow the nav to scroll, in case consumers don't use the body or footer components */
       ${euiYScroll(euiThemeContext, { height: 'inherit' })}
 
       /* This extra padding is needed for EuiPopovers to have enough
          space to render with the right anchorPosition */
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
-
-      /* In case things get really dire responsively, ensure the footer doesn't overtake the body */
-      .euiFlyoutBody {
-        ${logicalCSS('min-height', '50%')}
-      }
-
-      .euiFlyoutFooter {
-        background-color: ${euiTheme.colors.emptyShade};
-        ${logicalCSS('border-top', euiTheme.border.thin)}
-      }
     `,
     left: css`
       ${logicalCSS('border-right', euiTheme.border.thin)}
@@ -53,16 +45,7 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiShadowFlat(euiThemeContext)}
     `,
     isPushCollapsed: css`
-      /* Hide the scrollbar for docked mode (while still keeping the nav scrollable) 
-         Otherwise if scrollbars are visible, button icon visibility suffers */
-      &,
-      .euiFlyoutBody__overflow {
-        scrollbar-width: none; /* Firefox */
-
-        &::-webkit-scrollbar {
-          display: none; /* Chrome, Edge, & Safari */
-        }
-      }
+      ${euiCollapsibleNavBodyStyles._isPushCollapsed}
     `,
     isOverlayFullWidth: css`
       /* Override EuiFlyout's max-width */
