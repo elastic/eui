@@ -55,27 +55,20 @@
   /**
    * 1. Force field height to match other field heights.
    * 2. Force input height to expand to fill this element.
-   * 3. Reset appearance on Safari.
-   * 4. Fix react-input-autosize appearance.
-   * 5. Prevent a lot of input from causing the react-input-autosize to overflow the container.
+   * 3. Reset input appearance to mimic text
    */
   .euiComboBox__input {
-    // stylelint-disable-next-line declaration-no-important
-    display: inline-flex !important; /* 1 */
-    height: $euiSizeXL; /* 2 */
-    overflow: hidden; /* 5 */
+    block-size: $euiSizeL; /* 2 */
+    min-inline-size: 2px;
+    max-inline-size: 100%;
+    margin: $euiSizeXS;
 
-    > input {
-      @include euiFont;
-      appearance: none; /* 3 */
-      padding: 0;
-      border: none;
-      background: transparent;
-      font-size: $euiFontSizeS;
-      color: $euiTextColor;
-      margin: $euiSizeXS;
-      line-height: $euiLineHeight; /* 4 */
-    }
+    /* 3 */
+    appearance: none;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: $euiTextColor;
   }
 
   &.euiComboBox-isOpen {

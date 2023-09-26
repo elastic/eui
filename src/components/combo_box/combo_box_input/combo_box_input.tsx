@@ -14,10 +14,10 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import AutosizeInput from 'react-input-autosize';
 
 import { CommonProps } from '../../common';
 import { htmlIdGenerator, keys } from '../../../services';
+import { CanvasTextUtils } from '../../text_truncate';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,
@@ -35,7 +35,6 @@ import {
 } from '../types';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
-  autoSizeInputRef?: RefCallback<AutosizeInput & HTMLInputElement>;
   compressed: boolean;
   focusedOptionId?: string;
   fullWidth?: boolean;
@@ -71,6 +70,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
 }
 
 interface EuiComboBoxInputState {
+  inputWidth: number;
   hasFocus: boolean;
 }
 
@@ -79,7 +79,26 @@ export class EuiComboBoxInput<T> extends Component<
   EuiComboBoxInputState
 > {
   state: EuiComboBoxInputState = {
+    inputWidth: 2,
     hasFocus: false,
+  };
+
+  private widthUtils?: CanvasTextUtils;
+
+  inputRefCallback = (el: HTMLInputElement) => {
+    this.widthUtils = new CanvasTextUtils({ container: el });
+    this.props.inputRef?.(el);
+  };
+
+  updateInputSize = (inputValue: string) => {
+    if (!this.widthUtils) return;
+
+    this.widthUtils.setTextToCheck(inputValue);
+    // Canvas has minute subpixel differences in rendering compared to DOM
+    // We'll buffer the input by ~2px just to ensure sufficient width
+    const inputWidth = Math.ceil(this.widthUtils.textWidth) + 2;
+
+    this.setState({ inputWidth });
   };
 
   updatePosition = () => {
@@ -139,17 +158,10 @@ export class EuiComboBoxInput<T> extends Component<
   }
 
   inputOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { onChange, searchValue } = this.props;
-    if (onChange) {
-      onChange(event.target.value as typeof searchValue);
-    }
-  };
+    const { value } = event.target;
 
-  inputRefCallback = (ref: HTMLInputElement & AutosizeInput) => {
-    const { autoSizeInputRef } = this.props;
-    if (autoSizeInputRef) {
-      autoSizeInputRef(ref);
-    }
+    this.updateInputSize(value);
+    this.props.onChange?.(value);
   };
 
   render() {
@@ -159,7 +171,6 @@ export class EuiComboBoxInput<T> extends Component<
       fullWidth,
       hasSelectedOptions,
       id,
-      inputRef,
       isDisabled,
       isListOpen,
       noIcon,
@@ -327,7 +338,7 @@ export class EuiComboBoxInput<T> extends Component<
         >
           {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
-          <AutosizeInput
+          <input
             aria-activedescendant={focusedOptionId}
             aria-autocomplete="list"
             aria-controls={isListOpen ? rootId('listbox') : ''}
@@ -339,14 +350,13 @@ export class EuiComboBoxInput<T> extends Component<
             data-test-subj="comboBoxSearchInput"
             disabled={isDisabled}
             id={id}
-            inputRef={inputRef}
             onBlur={this.onBlur}
             onChange={this.inputOnChange}
             onFocus={this.onFocus}
             onKeyDown={this.onKeyDown}
             ref={this.inputRefCallback}
             role="combobox"
-            style={{ fontSize: 14 }}
+            style={{ inlineSize: this.state.inputWidth }}
             value={searchValue}
             autoFocus={autoFocus}
           />
