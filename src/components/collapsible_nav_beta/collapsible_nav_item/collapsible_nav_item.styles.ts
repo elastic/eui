@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { euiFontSize } from '../../../global_styling';
+import {
+  logicalCSS,
+  mathWithUnits,
+  euiFontSize,
+} from '../../../global_styling';
 import { euiButtonColor } from '../../../themes/amsterdam/global_styling/mixins/button';
 
 /**
@@ -42,4 +46,33 @@ export const euiCollapsibleNavItemTitleStyles = {
   euiCollapsibleNavItem__title: css`
     flex-grow: 1;
   `,
+};
+
+/**
+ * Sub item groups
+ */
+
+export const euiCollapsibleNavSubItemsStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiCollapsibleNavItem__items: css``,
+    isGroup: css`
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
+      ${logicalCSS('padding-left', euiTheme.size.s)}
+    `,
+    isTopItem: css`
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
+      ${logicalCSS('padding-left', euiTheme.size.xl)}
+    `,
+    isSubItem: css`
+      ${logicalCSS('border-left', euiTheme.border.thin)}
+      ${logicalCSS('margin-left', euiTheme.size.s)}
+        ${logicalCSS(
+        'padding-left',
+        mathWithUnits(
+          [euiTheme.size.s, euiTheme.border.width.thin],
+          (x, y) => x - y
+        )
+      )}
+    `,
+  };
 };

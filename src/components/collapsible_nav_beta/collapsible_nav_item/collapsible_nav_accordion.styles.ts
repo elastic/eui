@@ -8,11 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import {
-  logicalCSS,
-  mathWithUnits,
-  euiCanAnimate,
-} from '../../../global_styling';
+import { logicalCSS, euiCanAnimate } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 import { euiCollapsibleNavItemVariables } from './collapsible_nav_item.styles';
@@ -119,24 +115,5 @@ export const euiCollapsibleNavAccordionStyles = (
         transform: rotate(-90deg);
       }
     `,
-    // Children wrapper
-    children: {
-      euiCollapsibleNavAccordion__children: css``,
-      isTopItem: css`
-        ${logicalCSS('padding-top', euiTheme.size.xs)}
-        ${logicalCSS('padding-left', euiTheme.size.xl)}
-      `,
-      isSubItem: css`
-        ${logicalCSS('border-left', euiTheme.border.thin)}
-        ${logicalCSS('margin-left', euiTheme.size.s)}
-        ${logicalCSS(
-          'padding-left',
-          mathWithUnits(
-            [euiTheme.size.s, euiTheme.border.width.thin],
-            (x, y) => x - y
-          )
-        )}
-      `,
-    },
   };
 };

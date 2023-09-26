@@ -79,7 +79,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
       class="euiAccordion__children emotion-euiAccordion__children"
     >
       <div
-        class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
+        class="euiCollapsibleNavItem__items euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavItem__items-isTopItem"
       >
         <span
           aria-label="aria-label"

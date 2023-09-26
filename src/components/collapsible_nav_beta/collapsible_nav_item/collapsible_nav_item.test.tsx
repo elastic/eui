@@ -141,8 +141,32 @@ describe('EuiCollapsibleNavItem', () => {
       );
 
       expect(
+        container.querySelectorAll('.euiCollapsibleNavItem__items')
+      ).toHaveLength(2);
+      expect(
         container.querySelectorAll('.euiCollapsibleNavSubItem')
       ).toHaveLength(5);
+    });
+
+    describe('when any items have an icon', () => {
+      it('renders all items without icon with an `empty` icon', () => {
+        const { container } = render(
+          <EuiCollapsibleNavItem
+            title="Item"
+            items={[
+              { title: '1', icon: 'home' },
+              { title: '2' },
+              { title: '3' },
+              { title: '4' },
+              { title: '5', icon: 'faceHappy' },
+            ]}
+          />
+        );
+
+        expect(
+          container.querySelectorAll('[data-euiicon-type="empty"]')
+        ).toHaveLength(3);
+      });
     });
 
     it('allows rendering totally custom sub items', () => {

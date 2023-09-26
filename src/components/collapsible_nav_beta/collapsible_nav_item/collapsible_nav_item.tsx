@@ -11,9 +11,11 @@ import React, {
   HTMLAttributes,
   ReactNode,
   useContext,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 import { EuiIcon, IconType, EuiIconProps } from '../../icon';
@@ -24,7 +26,10 @@ import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsedNavItem } from './collapsed';
 import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
-import { euiCollapsibleNavItemTitleStyles } from './collapsible_nav_item.styles';
+import {
+  euiCollapsibleNavItemTitleStyles,
+  euiCollapsibleNavSubItemsStyles,
+} from './collapsible_nav_item.styles';
 
 export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -193,6 +198,50 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
       {...(props as EuiCollapsibleNavItemProps)}
       isSubItem
     />
+  );
+};
+
+/**
+ * Reuseable component for rendering a group of sub items
+ * Used by both `EuiCollapsibleNavGroup` and `EuiCollapsibleNavAccordion`
+ */
+type EuiCollapsibleNavSubItemsProps = HTMLAttributes<HTMLDivElement> &
+  _EuiCollapsibleNavItemDisplayProps & {
+    items: EuiCollapsibleNavSubItemProps[];
+  };
+export const EuiCollapsibleNavSubItems: FunctionComponent<
+  EuiCollapsibleNavSubItemsProps
+> = ({ items, isSubItem, className, ...rest }) => {
+  const classes = classNames('euiCollapsibleNavItem__items', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiCollapsibleNavSubItemsStyles(euiTheme);
+  const cssStyles = [
+    styles.euiCollapsibleNavItem__items,
+    isSubItem ? styles.isSubItem : styles.isTopItem,
+  ];
+
+  const itemsHaveIcons = useMemo(
+    () => items.some((item) => !!item.icon),
+    [items]
+  );
+
+  return (
+    <div className={classes} css={cssStyles} {...rest}>
+      {items.map((item, index) => {
+        // If any of the sub items have an icon, default to an
+        // icon of `empty` so that all text lines up vertically
+        if (!item.renderItem && itemsHaveIcons && !item.icon) {
+          item.icon = 'empty';
+        }
+        return (
+          // This is an intentional circular dependency between the accordion & parent item display.
+          // EuiSideNavItem is purposely recursive to support any amount of nested sub items,
+          // and split up into separate files/components for better dev readability
+          <EuiCollapsibleNavSubItem key={index} {...item} />
+        );
+      })}
+    </div>
   );
 };
 
