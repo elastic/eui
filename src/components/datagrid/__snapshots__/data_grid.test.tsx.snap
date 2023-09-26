@@ -556,7 +556,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     aria-hidden="true"
                     class="euiButtonIcon__icon"
                     color="inherit"
-                    data-euiicon-type="tableDensityNormal"
+                    data-euiicon-type="controlsHorizontal"
                   />
                 </button>
               </span>
@@ -1037,7 +1037,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     aria-hidden="true"
                     class="euiButtonIcon__icon"
                     color="inherit"
-                    data-euiicon-type="tableDensityNormal"
+                    data-euiicon-type="controlsHorizontal"
                   />
                 </button>
               </span>
@@ -1841,7 +1841,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     aria-hidden="true"
                     class="euiButtonIcon__icon"
                     color="inherit"
-                    data-euiicon-type="tableDensityNormal"
+                    data-euiicon-type="controlsHorizontal"
                   />
                 </button>
               </span>
@@ -2321,7 +2321,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     aria-hidden="true"
                     class="euiButtonIcon__icon"
                     color="inherit"
-                    data-euiicon-type="tableDensityNormal"
+                    data-euiicon-type="controlsHorizontal"
                   />
                 </button>
               </span>

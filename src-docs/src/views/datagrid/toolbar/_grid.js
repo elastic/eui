@@ -1,7 +1,12 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
+import {
+  EuiDataGrid,
+  EuiAvatar,
+  EuiFormRow,
+  EuiRange,
+} from '../../../../../src/components';
 
 const columns = [
   {
@@ -32,14 +37,14 @@ for (let i = 1; i < 6; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        name={`${faker.name.lastName()}, ${faker.name.firstName()}`}
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
       />
     ),
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: faker.address.city(),
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 
@@ -52,6 +57,8 @@ const DataGridStyle = ({
   showFullScreenSelector,
   allowDensity,
   allowRowHeight,
+  allowResetButton,
+  additionalDisplaySettings,
   allowHideColumns,
   allowOrderingColumns,
 }) => {
@@ -98,13 +105,41 @@ const DataGridStyle = ({
   const toggleDisplaySelector = useMemo(() => {
     if (
       showDisplaySelector === true &&
-      (allowDensity === false || allowRowHeight === false)
+      (allowDensity === false ||
+        allowRowHeight === false ||
+        allowResetButton === false ||
+        additionalDisplaySettings)
     ) {
-      return { allowDensity, allowRowHeight };
+      const customDisplaySetting = additionalDisplaySettings && (
+        <EuiFormRow label="Random Sample Size" display="columnCompressed">
+          <EuiRange
+            compressed
+            fullWidth
+            showInput
+            min={1}
+            max={100}
+            step={1}
+            value={10}
+            data-test-subj="randomSampleSize"
+          />
+        </EuiFormRow>
+      );
+      return {
+        allowDensity,
+        allowRowHeight,
+        allowResetButton,
+        additionalDisplaySettings: customDisplaySetting,
+      };
     } else {
       return showDisplaySelector;
     }
-  }, [showDisplaySelector, allowDensity, allowRowHeight]);
+  }, [
+    showDisplaySelector,
+    allowDensity,
+    allowRowHeight,
+    allowResetButton,
+    additionalDisplaySettings,
+  ]);
 
   const toolbarVisibilityOptions = {
     showColumnSelector: toggleColumnSelector,

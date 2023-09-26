@@ -3,7 +3,7 @@
 exports[`EuiPopoverPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-euiTestCss"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-hasTransform-euiTestCss"
   data-popover-panel="true"
   data-test-subj="test subject string"
 />
@@ -18,7 +18,7 @@ exports[`EuiPopoverPanel props hasDragDrop is rendered 1`] = `
 
 exports[`EuiPopoverPanel props isAttached is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-isOpen"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-isOpen-hasTransform"
   data-popover-open="true"
   data-popover-panel="true"
 />
@@ -26,7 +26,7 @@ exports[`EuiPopoverPanel props isAttached is rendered 1`] = `
 
 exports[`EuiPopoverPanel props isOpen is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-isOpen"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-isOpen-hasTransform"
   data-popover-open="true"
   data-popover-panel="true"
 />
@@ -34,28 +34,28 @@ exports[`EuiPopoverPanel props isOpen is rendered 1`] = `
 
 exports[`EuiPopoverPanel props position bottom is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-hasTransform"
   data-popover-panel="true"
 />
 `;
 
 exports[`EuiPopoverPanel props position left is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-hasTransform"
   data-popover-panel="true"
 />
 `;
 
 exports[`EuiPopoverPanel props position right is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-hasTransform"
   data-popover-panel="true"
 />
 `;
 
 exports[`EuiPopoverPanel props position top is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-hasTransform"
   data-popover-panel="true"
 />
 `;

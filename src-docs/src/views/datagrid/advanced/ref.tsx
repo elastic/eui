@@ -25,10 +25,10 @@ import {
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
   raw_data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()}`,
     email: faker.internet.email(),
-    location: `${faker.address.city()}, ${faker.address.country()}`,
-    account: faker.finance.account(),
+    location: `${faker.location.city()}, ${faker.location.country()}`,
+    account: faker.finance.accountNumber(),
     date: `${faker.date.past()}`,
   });
 }

@@ -79,7 +79,7 @@ if (args.dry_run) {
 
   if (args.steps.indexOf('tag') > -1) {
     // push the version commit & tag to upstream
-    execSync('git push upstream --tags', execOptions);
+    execSync('git push upstream --follow-tags', execOptions);
   }
 
   if (args.steps.indexOf('publish') > -1) {
@@ -88,11 +88,6 @@ if (args.dry_run) {
 
     // publish new version to npm
     execSync(`npm publish --otp=${otp}`, execOptions);
-  }
-
-  if (args.steps.indexOf('docs') > -1) {
-    // update docs, git commit, git push
-    execSync('npm run sync-docs', execOptions);
   }
 })().catch((e) => console.error(e));
 
@@ -113,9 +108,9 @@ function parseArguments() {
     help: 'Dry run mode; no changes are made',
   });
 
-  const allSteps = ['test', 'build', 'version', 'tag', 'publish', 'docs'];
+  const allSteps = ['test', 'build', 'version', 'tag', 'publish'];
   parser.add_argument('--steps', {
-    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
+    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", and "publish". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
     default: allSteps.join(','),
   });
 

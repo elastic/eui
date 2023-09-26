@@ -29,11 +29,11 @@ const DEMO_ROW = 2;
 const data = [];
 for (let i = 1; i <= 10; i++) {
   data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: faker.address.city(),
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 data[DEMO_ROW].account = 'OVERDUE';

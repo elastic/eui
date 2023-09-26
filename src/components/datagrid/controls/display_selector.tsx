@@ -66,9 +66,6 @@ const convertGridStylesToSelection = (gridStyles: EuiDataGridStyle) => {
   return '';
 };
 
-// Used to correctly format the icon name for the grid density icon
-const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
-
 // Row height options and utilities
 const rowHeightButtonOptions: string[] = ['undefined', 'auto', 'lineCount'];
 const convertRowHeightsOptionsToSelection = (
@@ -107,6 +104,16 @@ export const useDataGridDisplaySelector = (
     showDisplaySelector,
     'allowRowHeight'
   );
+
+  const allowResetButton = getNestedObjectOptions(
+    showDisplaySelector,
+    'allowResetButton'
+  );
+
+  const additionalDisplaySettings =
+    typeof showDisplaySelector === 'boolean'
+      ? null
+      : showDisplaySelector?.additionalDisplaySettings ?? null;
 
   // Track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
@@ -185,20 +192,24 @@ export const useDataGridDisplaySelector = (
   const [showResetButton, setShowResetButton] = useState(false);
 
   useUpdateEffect(() => {
-    const hasUserChanges = Object.keys(userGridStyles).length > 0;
-    if (hasUserChanges) setShowResetButton(true);
+    if (allowResetButton) {
+      const hasUserChanges = Object.keys(userGridStyles).length > 0;
+      if (hasUserChanges) setShowResetButton(true);
+    }
 
     const { onChange, ...currentGridStyles } = gridStyles;
     initialStyles?.onChange?.(currentGridStyles);
-  }, [userGridStyles]);
+  }, [userGridStyles, allowResetButton]);
 
   useUpdateEffect(() => {
-    const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
-    if (hasUserChanges) setShowResetButton(true);
+    if (allowResetButton) {
+      const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
+      if (hasUserChanges) setShowResetButton(true);
+    }
 
     const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
     initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
-  }, [userRowHeightsOptions]);
+  }, [userRowHeightsOptions, allowResetButton]);
 
   // Allow resetting to initial developer-specified configurations
   const resetToInitialState = useCallback(() => {
@@ -217,7 +228,9 @@ export const useDataGridDisplaySelector = (
   );
 
   const displaySelector =
-    showDensityControls || showRowHeightControls ? (
+    showDensityControls ||
+    showRowHeightControls ||
+    additionalDisplaySettings ? (
       <EuiPopover
         data-test-subj="dataGridDisplaySelectorPopover"
         isOpen={isOpen}
@@ -229,11 +242,7 @@ export const useDataGridDisplaySelector = (
           <EuiToolTip content={buttonLabel} delay="long">
             <EuiButtonIcon
               size="xs"
-              iconType={
-                gridDensity
-                  ? `tableDensity${capitalizeDensityString(gridDensity)}`
-                  : 'tableDensityNormal'
-              }
+              iconType="controlsHorizontal"
               className="euiDataGrid__controlBtn"
               color="text"
               data-test-subj="dataGridDisplaySelectorButton"
@@ -354,6 +363,7 @@ export const useDataGridDisplaySelector = (
             )}
           </EuiI18n>
         )}
+        {additionalDisplaySettings}
         {showResetButton && (
           <EuiPopoverFooter>
             <EuiFlexGroup justifyContent="flexEnd" responsive={false}>

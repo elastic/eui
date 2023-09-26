@@ -1,5 +1,15 @@
 [
   {
+    "version": "88.5.0",
+    "changes": [
+      {
+        "token": "euiCallOut.dismissAriaLabel",
+        "changeType": "added",
+        "value": "Dismiss this callout"
+      }
+    ]
+  },
+  {
     "version": "88.4.0",
     "changes": [
       {

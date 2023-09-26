@@ -319,36 +319,53 @@ describe('EuiPopover', () => {
 
     describe('offset', () => {
       test('with arrow', () => {
-        const component = mount(
-          <div>
-            <EuiPopover
-              id={getId()}
-              button={<button />}
-              closePopover={() => {}}
-              offset={10}
-              isOpen
-            />
-          </div>
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            isOpen
+          />
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '26px',
+        });
       });
 
       test('without arrow', () => {
-        const component = mount(
-          <div>
-            <EuiPopover
-              id={getId()}
-              button={<button />}
-              closePopover={() => {}}
-              offset={10}
-              hasArrow={false}
-              isOpen
-            />
-          </div>
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            hasArrow={false}
+            isOpen
+          />
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '18px',
+        });
+      });
+
+      test('with attachToAnchor', () => {
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            attachToAnchor={true}
+            isOpen
+          />
+        );
+
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '10px',
+        });
       });
     });
 

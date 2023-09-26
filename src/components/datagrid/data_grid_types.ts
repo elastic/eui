@@ -47,6 +47,19 @@ export interface EuiDataGridToolbarProps {
   displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
+  renderCustomToolbar?: (props: EuiDataGridCustomToolbarProps) => ReactElement;
+}
+
+/**
+ * Props which are available for a custom toolbar rendering
+ */
+export interface EuiDataGridCustomToolbarProps {
+  hasRoomForGridControls: boolean;
+  fullScreenControl: ReactNode;
+  keyboardShortcutsControl: ReactNode;
+  displayControl: ReactNode;
+  columnControl: ReactNode;
+  columnSortingControl: ReactNode;
 }
 
 export interface EuiDataGridPaginationRendererProps
@@ -281,6 +294,15 @@ export type CommonGridProps = CommonProps &
      */
     renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
     /**
+     * An optional function called to customize placement of controls in EuiDataGrid's toolbar.
+     * This can be used to add custom buttons or reorder existing ones.
+     *
+     * Behind the scenes, this function is treated as a React component,
+     * allowing hooks, context, and other React concepts to be used.
+     * It receives #EuiDataGridCustomToolbarProps as its only argument.
+     */
+    renderCustomToolbar?: EuiDataGridToolbarProps['renderCustomToolbar'];
+    /**
      * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
@@ -482,6 +504,7 @@ export interface EuiDataGridCustomBodyProps {
    */
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
 }
+
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     ref?: MutableRefObject<HTMLDivElement> | Ref<HTMLDivElement>;
@@ -846,6 +869,14 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
    * When `false`, removes the ability to change row height display through the UI
    */
   allowRowHeight?: boolean;
+  /**
+   * When `false`, removes the ability to reset styles to default through the UI
+   */
+  allowResetButton?: boolean;
+  /**
+   * Allows appending additional content to the bottom of the display settings popover
+   */
+  additionalDisplaySettings?: ReactNode;
 }
 
 export interface EuiDataGridToolBarVisibilityOptions {
