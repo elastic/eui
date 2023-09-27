@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiSpacer } from '../../spacer';
 import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
 
 import {
@@ -100,10 +101,7 @@ export const EdgeCaseTesting: Story = {
           { ...args, title: 'Link', href: '#', isSelected: true },
           { ...args, title: 'Button', onClick: () => {} },
           { ...args, title: 'Span', href: '#' },
-          {
-            title: 'Section 2',
-            isGroupTitle: true,
-          },
+          { renderItem: () => <EuiSpacer size="m" /> },
           {
             ...args,
             title: 'Test 2',
@@ -125,11 +123,7 @@ export const EdgeCaseTesting: Story = {
               { title: 'grandchild 2', href: '#' },
             ],
           },
-          {
-            title: 'Section 3',
-            titleElement: 'h3',
-            isGroupTitle: true,
-          },
+          { renderItem: () => <EuiSpacer size="m" /> },
           {
             ...args,
             title: 'Nested accordion with grandchildren',

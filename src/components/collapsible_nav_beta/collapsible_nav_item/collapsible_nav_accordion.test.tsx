@@ -53,27 +53,6 @@ describe('EuiCollapsibleNavAccordion', () => {
     );
   });
 
-  describe('when any items have an icon', () => {
-    it('renders all items without icon with an `empty` icon', () => {
-      const { container } = render(
-        <EuiCollapsibleNavAccordion
-          {...props}
-          items={[
-            { title: '1', icon: 'home' },
-            { title: '2' },
-            { title: '3' },
-            { title: '4' },
-            { title: '5', icon: 'faceHappy' },
-          ]}
-        />
-      );
-
-      expect(
-        container.querySelectorAll('[data-euiicon-type="empty"]')
-      ).toHaveLength(3);
-    });
-  });
-
   describe('when the accordion header is a link and the link is clicked', () => {
     it('does not trigger the accordion opening', () => {
       const { getByTestSubject, container } = render(
