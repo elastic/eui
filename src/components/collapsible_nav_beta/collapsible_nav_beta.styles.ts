@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, euiYScroll } from '../../global_styling';
+import { logicalCSS } from '../../global_styling';
 import { euiShadowFlat } from '../../themes';
 import { euiHeaderVariables } from '../header/header.styles';
 
@@ -27,9 +27,6 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
     euiCollapsibleNavBeta: css`
       /* Fixed header affordance */
       ${logicalCSS('top', fixedHeaderOffset)}
-
-      /* Allow the nav to scroll, in case consumers don't use the body or footer components */
-      ${euiYScroll(euiThemeContext, { height: 'inherit' })}
 
       /* This extra padding is needed for EuiPopovers to have enough
          space to render with the right anchorPosition */
