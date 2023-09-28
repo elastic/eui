@@ -1,3 +1,12 @@
+## [`88.5.1`](https://github.com/elastic/eui/tree/v88.5.1)
+
+- Improved the performance of `EuiComboBox` by removing the `react-autosizer-input` dependency ([#7215](https://github.com/elastic/eui/pull/7215))
+
+**Dependency updates**
+
+- Updated `react-element-to-jsx-string` to v5.0.0 ([#7214](https://github.com/elastic/eui/pull/7214))
+- Removed unused `@types/vfile-message` dependency ([#7214](https://github.com/elastic/eui/pull/7214))
+
 ## [`88.5.0`](https://github.com/elastic/eui/tree/v88.5.0)
 
 - Updated `EuiCallOut` with a new `onDismiss` prop ([#7156](https://github.com/elastic/eui/pull/7156))
