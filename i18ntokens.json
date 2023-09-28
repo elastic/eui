@@ -455,14 +455,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 152,
+        "line": 151,
         "column": 27,
-        "index": 5056
+        "index": 5087
       },
       "end": {
-        "line": 155,
+        "line": 154,
         "column": 3,
-        "index": 5126
+        "index": 5157
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
@@ -977,14 +977,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 984,
+        "line": 970,
         "column": 10,
-        "index": 28518
+        "index": 28029
       },
       "end": {
-        "line": 987,
+        "line": 973,
         "column": 11,
-        "index": 28643
+        "index": 28154
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
