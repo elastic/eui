@@ -8,10 +8,7 @@
 
 import React from 'react';
 import { render } from '../../test/rtl';
-import {
-  shouldRenderCustomStyles,
-  testOnReactVersion,
-} from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
 // Util mocks
@@ -41,14 +38,11 @@ describe('EuiTextTruncate', () => {
   });
 
   describe('resize observer', () => {
-    testOnReactVersion(['18'])(
-      'does not render a resize observer if a width is passed',
-      () => {
-        const onResize = jest.fn();
-        render(<EuiTextTruncate {...props} width={100} onResize={onResize} />);
-        expect(onResize).not.toHaveBeenCalled();
-      }
-    );
+    it('does not render a resize observer if a width is passed', () => {
+      const onResize = jest.fn();
+      render(<EuiTextTruncate {...props} width={100} onResize={onResize} />);
+      expect(onResize).not.toHaveBeenCalled();
+    });
 
     it('renders a resize observer when no width is passed', () => {
       const onResize = jest.fn();

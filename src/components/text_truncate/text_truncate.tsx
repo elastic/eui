@@ -96,12 +96,13 @@ export type EuiTextTruncateProps = Omit<
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
   width,
+  onResize,
   ...props
 }) => {
   return width != null ? (
     <EuiTextTruncateWithWidth width={width} {...props} />
   ) : (
-    <EuiTextTruncateWithResizeObserver {...props} />
+    <EuiTextTruncateWithResizeObserver onResize={onResize} {...props} />
   );
 };
 
