@@ -16,8 +16,22 @@ const { argv } = yargs(hideBin(process.argv))
       default: 18,
       choices: [16, 17, 18],
     },
+    testMatch: {
+      type: 'string',
+      description:
+        'Pass in `react` to only test `.tsx` files, or `non-react` for the opposite. Also accepts standard Jest `--testMatch` globs',
+      coerce: (value) => {
+        if (value === 'react') {
+          value = '**/*.test.tsx';
+        } else if (value === 'non-react') {
+          value = '**/*.test.{js,ts}';
+        }
+        return value;
+      },
+    },
   });
 const reactVersion = argv['react-version'];
+const testMatch = argv['testMatch'];
 
 const commandParts = [
   'cross-env', // windows support
@@ -26,8 +40,11 @@ const commandParts = [
   `jest --config ./scripts/jest/config.js`,
   ...argv._, // pass any extra options given to this script
 ];
-const command = commandParts.join(' ');
+if (testMatch) {
+  commandParts.push(`--testMatch '${testMatch}'`); // has to come after any filename patterns
+}
 
+const command = commandParts.join(' ');
 console.log(chalk.white(command));
 try {
   execSync(command, { stdio: 'inherit' });
