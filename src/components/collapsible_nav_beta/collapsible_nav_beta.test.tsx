@@ -9,10 +9,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
-import {
-  shouldRenderCustomStyles,
-  testOnReactVersion,
-} from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
 import { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
@@ -73,36 +70,30 @@ describe('EuiCollapsibleNavBeta', () => {
       window.dispatchEvent(new Event('resize'));
     };
 
-    testOnReactVersion(['18'])(
-      'collapses from a push flyout to an overlay flyout once the screen is smaller than 3x the flyout width',
-      () => {
-        mockWindowResize(600);
-        const { baseElement } = render(
-          <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
-        );
-        expect(baseElement).toMatchSnapshot();
-      }
-    );
-
-    testOnReactVersion(['18'])(
-      'makes the overlay flyout full width once the screen is smaller than 1.5x the flyout width',
-      () => {
-        mockWindowResize(320);
-        const { baseElement } = render(
-          <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
-        );
-        expect(baseElement).toMatchSnapshot();
-      }
-    );
-
-    it('updates the overlay controls once the screen is smaller than 1.5x the flyout width', () => {
-      mockWindowResize(320);
-      const { baseElement, getByLabelText, getByTestSubject } = render(
-        <EuiCollapsibleNavBeta>Nav content</EuiCollapsibleNavBeta>
+    it('collapses from a push flyout to an overlay flyout once the screen is smaller than 3x the flyout width', () => {
+      mockWindowResize(600);
+      const { queryByTestSubject, getByTestSubject } = render(
+        <EuiCollapsibleNavBeta data-test-subj="nav">
+          Nav content
+        </EuiCollapsibleNavBeta>
       );
-      expect(getByLabelText('Toggle navigation open')).toBeInTheDocument();
+      expect(queryByTestSubject('nav')).not.toBeInTheDocument();
       fireEvent.click(getByTestSubject('euiCollapsibleNavButton'));
-      expect(getByLabelText('Toggle navigation closed')).toBeInTheDocument();
+
+      expect(getByTestSubject('nav').className).toContain('overlay');
+      expect(getByTestSubject('nav').className).not.toContain('push');
+    });
+
+    it('makes the overlay flyout full width once the screen is smaller than 1.5x the flyout width', () => {
+      mockWindowResize(320);
+      const { baseElement, getByTestSubject } = render(
+        <EuiCollapsibleNavBeta data-test-subj="nav">
+          Nav content
+        </EuiCollapsibleNavBeta>
+      );
+      fireEvent.click(getByTestSubject('euiCollapsibleNavButton'));
+
+      expect(getByTestSubject('nav').className).toContain('isOverlayFullWidth');
 
       // onClose testing
       expect(
