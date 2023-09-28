@@ -7,18 +7,19 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import {
   render,
   renderHook,
   renderHookAct,
   waitForEuiPopoverOpen,
 } from '../../../test/rtl';
+import { testByReactVersion } from '../../../test/internal';
+
 import { useDataGridKeyboardShortcuts } from './keyboard_shortcuts';
-import { testOnReactVersion } from '../../../test/internal';
-import { fireEvent } from '@testing-library/react';
 
 describe('useDataGridKeyboardShortcuts', () => {
-  testOnReactVersion(['18'])(
+  testByReactVersion(
     'returns a popover containing a list of keyboard shortcuts',
     async () => {
       const { result } = renderHook(() => useDataGridKeyboardShortcuts());
