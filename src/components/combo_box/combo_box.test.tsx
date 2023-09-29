@@ -427,11 +427,9 @@ describe('behavior', () => {
       });
 
       act(() => {
-        const searchInputNode = searchInput.getDOMNode();
-        // React doesn't support `focusout` so we have to manually trigger it
-        searchInputNode.dispatchEvent(
-          new FocusEvent('focusout', { bubbles: true })
-        );
+        // React 16 failed on the previous `searchInputNode.dispatchEvent`
+        //  call that mocked a FocusEvent 'focusout'
+        searchInput.simulate('blur');
       });
 
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
