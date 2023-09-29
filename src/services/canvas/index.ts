@@ -6,10 +6,5 @@
  * Side Public License, v 1.
  */
 
-export type {
-  EuiTextTruncateProps,
-  EuiTextTruncationTypes,
-} from './text_truncate';
-export { EuiTextTruncate } from './text_truncate';
-
-export { TruncationUtils } from './utils';
+export { CanvasTextUtils } from './canvas_text_utils';
+export type { CanvasTextParams } from './canvas_text_utils';

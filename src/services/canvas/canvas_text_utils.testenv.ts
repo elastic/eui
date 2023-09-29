@@ -6,10 +6,15 @@
  * Side Public License, v 1.
  */
 
-export type {
-  EuiTextTruncateProps,
-  EuiTextTruncationTypes,
-} from './text_truncate';
-export { EuiTextTruncate } from './text_truncate';
+export class CanvasTextUtils {
+  constructor(_: any) {}
 
-export { TruncationUtils } from './utils';
+  computeFontFromElement = (_: HTMLElement) => '';
+
+  textWidth = 0;
+
+  currentText = '';
+  setTextToCheck = (text: string) => {
+    this.currentText = text;
+  };
+}

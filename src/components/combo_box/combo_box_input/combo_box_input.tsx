@@ -16,8 +16,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { htmlIdGenerator, keys } from '../../../services';
-import { CanvasTextUtils } from '../../text_truncate';
+import { htmlIdGenerator, keys, CanvasTextUtils } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,

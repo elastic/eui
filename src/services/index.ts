@@ -26,6 +26,7 @@ export {
   useIsWithinMinBreakpoint,
 } from './breakpoint';
 export type { EuiBreakpointSize } from './breakpoint';
+export { CanvasTextUtils, type CanvasTextParams } from './canvas';
 export {
   brighten,
   calculateContrast,

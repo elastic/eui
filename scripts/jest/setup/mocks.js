@@ -15,10 +15,12 @@ jest.mock('./../../../src/components/icon', () => {
   return { EuiIcon };
 });
 
-jest.mock('./../../../src/components/text_truncate', () => {
-  const rest = jest.requireActual('./../../../src/components/text_truncate');
-  const utils = require('./../../../src/components/text_truncate/utils.testenv');
-  return { ...rest, ...utils };
+jest.mock('./../../../src/services/canvas', () => {
+  const rest = jest.requireActual('./../../../src/services/canvas');
+  const {
+    CanvasTextUtils,
+  } = require('./../../../src/services/canvas/canvas_text_utils.testenv');
+  return { ...rest, CanvasTextUtils };
 });
 
 jest.mock('./../../../src/services/accessibility', () => {
