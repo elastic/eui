@@ -10,18 +10,18 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useRef,
-  useCallback,
-  useMemo,
   useState,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme, useUpdateEffect } from '../../../services';
-import { EuiResizeObserver } from '../../observer/resize_observer';
 
 import { EuiAccordionProps } from '../accordion';
 import { EuiAccordionChildrenLoading } from './accordion_children_loading';
 import {
+  euiAccordionAnimationVars,
+  euiAccordionAnimations,
   euiAccordionChildrenStyles,
   euiAccordionChildWrapperStyles,
 } from './accordion_children.styles';
@@ -43,50 +43,80 @@ export const EuiAccordionChildren: FunctionComponent<
   isOpen,
   ...rest
 }) => {
-  /**
-   * Children
-   */
   const classes = classNames('euiAccordion__children', {
     'euiAccordion__children-isLoading': isLoading,
   });
 
   const euiTheme = useEuiTheme();
-  const styles = euiAccordionChildrenStyles(euiTheme);
+  const accordionAnimationDuration =
+    euiTheme.euiTheme.animation[euiAccordionAnimationVars.duration]!;
+
+  /**
+   * Open/close animation
+   */
+  const [animationState, setAnimationState] = useState<
+    'opening' | 'closing' | 'notAnimating'
+  >('notAnimating');
+  const isAnimating = animationState !== 'notAnimating';
+  const timeoutId = useRef<ReturnType<typeof setTimeout> | undefined>();
+
+  useUpdateEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)')?.matches) {
+      return;
+    }
+
+    if (isOpen) {
+      setAnimationState('opening');
+    } else {
+      setAnimationState('closing');
+    }
+
+    // When the animation is complete, remove the transitory state
+    const animationDuration = parseInt(accordionAnimationDuration, 10);
+    timeoutId.current = setTimeout(() => {
+      setAnimationState('notAnimating');
+    }, animationDuration);
+
+    return () => {
+      clearTimeout(timeoutId.current!);
+    };
+  }, [isOpen, accordionAnimationDuration]);
+
+  // For some reason, this extra state produces less ghosting on close
+  const [animationClosed, setAnimationClosed] = useState(!isOpen);
+  useUpdateEffect(() => {
+    setAnimationClosed(!isOpen && !isAnimating);
+  }, [isAnimating, isOpen]);
+
+  /**
+   * Styles
+   */
+
+  const animations = useMemo(() => {
+    return euiAccordionAnimations(euiTheme.euiTheme.animation);
+  }, [euiTheme.euiTheme]);
+
+  const styles = euiAccordionChildrenStyles(euiTheme, animations);
   const cssStyles = [
     styles.euiAccordion__children,
+    isAnimating && styles[animationState],
     isLoading && styles.isLoading,
     paddingSize && paddingSize !== 'none' && styles[paddingSize],
   ];
 
-  /**
-   * Wrapper
-   */
-  const wrapperStyles = euiAccordionChildWrapperStyles(euiTheme);
+  const wrapperStyles = euiAccordionChildWrapperStyles(euiTheme, animations);
   const wrapperCssStyles = [
     wrapperStyles.euiAccordion__childWrapper,
-    isOpen ? wrapperStyles.isOpen : wrapperStyles.isClosed,
+    isAnimating && wrapperStyles[animationState],
+    animationClosed ? wrapperStyles.isClosed : wrapperStyles.isOpen,
   ];
-
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-
-  /**
-   * Update the accordion wrapper height whenever the accordion opens, and also
-   * whenever the child content updates (which will change the height)
-   */
-  const [contentHeight, setContentHeight] = useState(0);
-  const onResize = useCallback(
-    ({ height }: { height: number }) => setContentHeight(Math.round(height)),
-    []
-  );
-  const heightInlineStyle = useMemo(
-    () => ({ blockSize: isOpen ? contentHeight : 0 }),
-    [isOpen, contentHeight]
-  );
 
   /**
    * Focus the children wrapper when the accordion is opened,
    * but not if the accordion is initially open on mount
    */
+
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   useUpdateEffect(() => {
     if (isOpen) wrapperRef.current?.focus();
   }, [isOpen]);
@@ -96,26 +126,19 @@ export const EuiAccordionChildren: FunctionComponent<
       {...rest}
       className="euiAccordion__childWrapper"
       css={wrapperCssStyles}
-      style={heightInlineStyle}
       ref={wrapperRef}
       role="region"
       tabIndex={-1}
       // @ts-expect-error - inert property not yet available in React TS defs. TODO: Remove this once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 is merged
       inert={!isOpen ? '' : undefined} // Can't pass a boolean currently, Jest throws errors
     >
-      <EuiResizeObserver onResize={onResize}>
-        {(resizeRef) => (
-          <div ref={resizeRef} className={classes} css={cssStyles}>
-            {isLoading && isLoadingMessage ? (
-              <EuiAccordionChildrenLoading
-                isLoadingMessage={isLoadingMessage}
-              />
-            ) : (
-              children
-            )}
-          </div>
+      <div className={classes} css={cssStyles}>
+        {isLoading && isLoadingMessage ? (
+          <EuiAccordionChildrenLoading isLoadingMessage={isLoadingMessage} />
+        ) : (
+          children
         )}
-      </EuiResizeObserver>
+      </div>
     </div>
   );
 };
