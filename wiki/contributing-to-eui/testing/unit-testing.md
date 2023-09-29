@@ -25,7 +25,11 @@ contains `{component name}.tsx`.
 
 ## Targeting files to test
 
-You can also add any string to the end of the command to run the tests only on directories that contain that string. For example, `yarn test-unit button` will only update the tests for directories that **contain** `button`.
+You can also add any string to the end of the command to run the tests only on files or directories that contain that string. For example, `yarn test-unit button` will test `accordion/button.test.tsx` and `button/icon.test.tsx`, but not `card.test.tsx`.
+
+`yarn test-unit --testMatch=react / --testMatch=non-react` will test specifically only `.tsx` files vs. non-`.tsx` files. If not specified, both types of tests will run automatically.
+
+`yarn test-unit --react-version=18` will run tests against a specific React version that EUI supports (currently 16-18).
 
 ## Test helpers
 

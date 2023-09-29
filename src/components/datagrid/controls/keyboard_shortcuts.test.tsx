@@ -7,30 +7,35 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import {
   render,
   renderHook,
   renderHookAct,
   waitForEuiPopoverOpen,
 } from '../../../test/rtl';
+import { testByReactVersion } from '../../../test/internal';
+
 import { useDataGridKeyboardShortcuts } from './keyboard_shortcuts';
-import { fireEvent } from '@testing-library/react';
 
 describe('useDataGridKeyboardShortcuts', () => {
-  it('returns a popover containing a list of keyboard shortcuts', async () => {
-    const { result } = renderHook(() => useDataGridKeyboardShortcuts());
-    const { baseElement, getByTestSubject, rerender } = render(
-      <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
-    );
+  testByReactVersion(
+    'returns a popover containing a list of keyboard shortcuts',
+    async () => {
+      const { result } = renderHook(() => useDataGridKeyboardShortcuts());
+      const { baseElement, getByTestSubject, rerender } = render(
+        <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
+      );
 
-    renderHookAct(() => {
-      fireEvent.click(getByTestSubject('dataGridKeyboardShortcutsButton'));
-    });
-    rerender(
-      <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
-    );
-    await waitForEuiPopoverOpen();
+      renderHookAct(() => {
+        fireEvent.click(getByTestSubject('dataGridKeyboardShortcutsButton'));
+      });
+      rerender(
+        <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
+      );
+      await waitForEuiPopoverOpen();
 
-    expect(baseElement).toMatchSnapshot();
-  });
+      expect(baseElement).toMatchSnapshot();
+    }
+  );
 });
