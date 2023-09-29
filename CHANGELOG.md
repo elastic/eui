@@ -1,3 +1,9 @@
+## [`88.5.2`](https://github.com/elastic/eui/tree/v88.5.2)
+
+**Bug fixes**
+
+- Fixed broken `EuiTextTruncate` testenv mocks ([#7234](https://github.com/elastic/eui/pull/7234))
+
 ## [`88.5.1`](https://github.com/elastic/eui/tree/v88.5.1)
 
 - Improved the performance of `EuiComboBox` by removing the `react-autosizer-input` dependency ([#7215](https://github.com/elastic/eui/pull/7215))
