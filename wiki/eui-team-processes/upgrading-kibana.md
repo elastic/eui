@@ -189,13 +189,13 @@ Once CI is passing green, mark your draft PR as "Ready for review".
 
 ### Waiting for approvals/admin merges
 
-* When the PR opens, ping all CODEOWNER teams immediately on Slack to give teams as much heads up as possible, as team sizes and priorities vary. We should generally let teams know an approximate amount of time they'll have before we request an admin merge (e.g. EOD Friday).
+* When the PR opens, ping all CODEOWNER teams immediately on Slack to give teams as much heads up as possible, as team sizes and priorities vary. We should let teams know an approximate amount of time they'll have before we request an admin merge (e.g. EOD Friday).
 * Once all approvals are in and CI is still passing green, smash that merge button :boom:
 * If, by the end of the week, review(s) remain outstanding, we should ask KibanaOps to admin merge the PR without all approvals (provided CI is passing and that that the review(s) are for minor changes we feel confident in, e.g. snapshot updates with an expected diff).
 
 ### FAQ for Kibana teams
 
-#### Q: I've been pinged as a CODEOWNER for a EUI upgrade PR. What should I do?
+#### Q: I've been pinged as a CODEOWNER for an EUI upgrade PR. What should I do?
 
 If you've been pinged, this means that some code belonging to your team has been changed as a result of upstream EUI changes. This can be due to several reasons:
 - A snapshot change due to underlying DOM or CSS/class changes in EUI
@@ -204,7 +204,7 @@ If you've been pinged, this means that some code belonging to your team has been
 
 We ask for a code review of the files owned by your team (not the entire PR) to ensure that it looks reasonable. QA is optional - in general, we rely on tests and feature freeze QA to catch any UI issues that may have slipped past (hopefully few to none).
 
-We do encourage manual QA of your team's app/plugin if the changes are large enough, or if the impacted component/UI is important enough to warrant concern about any regressions or broken behavior. In general, EUI tries to call out any larger or riskier changes at the top of our PR description to help narrow down QA/smoke testing.
+We do encourage manual QA of your team's app/plugin if the changes are large enough, or if the impacted component/UI raises concern about regressions or broken behavior. In general, EUI tries to call out any larger or riskier changes at the top of our PR description to help narrow down QA/smoke testing.
 
 #### Q: I've caught an issue that we think is caused by the EUI upgrade - what do I do?
 
