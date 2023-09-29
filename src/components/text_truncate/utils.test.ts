@@ -6,47 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { CanvasTextUtils, TruncationUtils } from './utils';
-
-let mockCanvasWidth = 0;
-Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-  value: () => ({ measureText: () => ({ width: mockCanvasWidth }), font: '' }),
-});
-
-describe('CanvasTextUtils', () => {
-  describe('font calculations', () => {
-    it('computes the set font if passed a container element', () => {
-      const container = document.createElement('div');
-      container.style.font = '14px Inter';
-
-      const utils = new CanvasTextUtils({ container });
-      expect(utils.context.font).toEqual('14px Inter');
-    });
-
-    it('accepts a static font string', () => {
-      const utils = new CanvasTextUtils({ font: '14px Inter' });
-      expect(utils.context.font).toEqual('14px Inter');
-    });
-  });
-
-  describe('text width utils', () => {
-    const utils = new CanvasTextUtils({ font: '' });
-
-    describe('textWidth', () => {
-      it('returns the measured text width from the canvas', () => {
-        mockCanvasWidth = 200;
-        expect(utils.textWidth).toEqual(200);
-      });
-    });
-
-    describe('setTextToCheck', () => {
-      it('sets the internal currentText variable', () => {
-        utils.setTextToCheck('hello world');
-        expect(utils.currentText).toEqual('hello world');
-      });
-    });
-  });
-});
+import { TruncationUtils } from './utils';
 
 describe('TruncationUtils', () => {
   const params = {
@@ -54,6 +14,11 @@ describe('TruncationUtils', () => {
     ellipsis: '...',
     availableWidth: 200,
     font: '14px Inter',
+  };
+
+  const setMockTextWidth = (width: number) => (utils: TruncationUtils) => {
+    // @ts-ignore - mocked canvas_text_utils.testenv allows setting this value
+    utils.textWidth = width;
   };
 
   // A few utilities log errors - silence them and capture the messages
@@ -69,7 +34,7 @@ describe('TruncationUtils', () => {
 
     describe('setTextWidthRatio', () => {
       it('sets the ratio of the available width to the full text width', () => {
-        mockCanvasWidth = 10000;
+        setMockTextWidth(10000)(utils);
         utils.setTextWidthRatio();
         expect(utils.widthRatio).toEqual(0.1);
       });
@@ -77,7 +42,7 @@ describe('TruncationUtils', () => {
       it('allow measuring passed text and deducting an offset width', () => {
         // Note: there isn't a super great way to mock a real-world example of this
         // in Jest because mockCanvasWidth applies to both the measured text and excluded text
-        mockCanvasWidth = 500;
+        setMockTextWidth(500)(utils);
         utils.setTextWidthRatio('text to measure', 'some excluded text');
         expect(utils.widthRatio).toEqual(1);
       });
@@ -85,7 +50,7 @@ describe('TruncationUtils', () => {
 
     describe('getTextFromRatio', () => {
       it('splits the passed text string by the ratio determined by `setTextWidthRatio`', () => {
-        mockCanvasWidth = 3000;
+        setMockTextWidth(3000)(utils);
         utils.setTextWidthRatio(); // 0.33
         // Should split the strings by the last/first third
         expect(utils.getTextFromRatio('Lorem ipsum', 'start')).toEqual('psum');
@@ -99,36 +64,36 @@ describe('TruncationUtils', () => {
 
     describe('checkIfTruncationIsNeeded', () => {
       it('returns false if truncation is not needed', () => {
-        mockCanvasWidth = 100;
+        setMockTextWidth(100)(utils);
         expect(utils.checkIfTruncationIsNeeded()).toEqual(false);
 
-        mockCanvasWidth = 400;
+        setMockTextWidth(400)(utils);
         expect(utils.checkIfTruncationIsNeeded()).toBeUndefined();
       });
     });
 
     describe('checkSufficientEllipsisWidth', () => {
       it('returns false and errors if the container is not wide enough for the ellipsis', () => {
-        mockCanvasWidth = 201;
+        setMockTextWidth(201)(utils);
         expect(utils.checkSufficientEllipsisWidth('startEnd')).toEqual(false);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           'The truncation ellipsis is larger than the available width. No text can be rendered.'
         );
 
-        mockCanvasWidth = 10;
+        setMockTextWidth(10)(utils);
         expect(utils.checkSufficientEllipsisWidth('start')).toBeUndefined();
       });
     });
 
     describe('checkTruncationOffsetWidth', () => {
       it('returns false and errors if the container is not wide enough for the offset text', () => {
-        mockCanvasWidth = 201;
+        setMockTextWidth(201)(utils);
         expect(utils.checkTruncationOffsetWidth('hello')).toEqual(false);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
         );
 
-        mockCanvasWidth = 200;
+        setMockTextWidth(200)(utils);
         expect(utils.checkTruncationOffsetWidth('world')).toBeUndefined();
       });
     });
