@@ -17,6 +17,7 @@ const argv = yargs(hideBin(process.argv))
     'unknown-options-as-args': true, // collect any extra options to pass on to cypress
   })
   .options({
+    'node-options': { type: 'string', default: '' },
     'skip-css': { type: 'boolean' },
     dev: { type: 'boolean' },
     theme: { type: 'string', default: 'light', choices: ['light', 'dark'] },
@@ -28,6 +29,7 @@ const argv = yargs(hideBin(process.argv))
     },
   }).argv;
 
+const nodeOptions = argv['node-options'];
 const isDev = argv.hasOwnProperty('dev');
 const isA11y = argv.hasOwnProperty('a11y');
 const skipScss = argv.hasOwnProperty('skip-css');
@@ -59,6 +61,7 @@ const cypressCommandParts = [
   'cross-env', // windows support
   `THEME=${theme}`, // pass the theme
   'BABEL_MODULES=false', // let webpack receive ES Module code
+  `NODE_OPTIONS="${nodeOptions}"`,
   'NODE_ENV=cypress_test', // enable code coverage checks
   `REACT_VERSION=${reactVersion}`, // set react version to test
   `cypress ${testParams}`,

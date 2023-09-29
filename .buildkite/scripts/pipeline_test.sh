@@ -13,4 +13,6 @@ docker run \
   docker.elastic.co/eui/ci:5.3 \
   bash -c "/opt/yarn*/bin/yarn \
   && yarn cypress install \
-  && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-ci"
+  && yarn lint \
+  && yarn test-unit --node-options=--max_old_space_size=2048 \
+  && yarn test-cypress --node-options=--max_old_space_size=2048"

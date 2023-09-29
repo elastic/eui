@@ -11,6 +11,7 @@ const { argv } = yargs(hideBin(process.argv))
     'halt-at-non-option': true,
   })
   .options({
+    'node-options': { type: 'string', default: '' },
     'react-version': {
       type: 'number',
       default: 18,
@@ -30,11 +31,13 @@ const { argv } = yargs(hideBin(process.argv))
       },
     },
   });
+const nodeOptions = argv['node-options'];
 const reactVersion = argv['react-version'];
 const testMatch = argv['testMatch'];
 
 const commandParts = [
   'cross-env', // windows support
+  `NODE_OPTIONS="${nodeOptions}"`,
   'NODE_ENV=test',
   `REACT_VERSION=${reactVersion}`,
   `jest --config ./scripts/jest/config.js`,
