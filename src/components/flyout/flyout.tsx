@@ -216,20 +216,18 @@ export const EuiFlyout = forwardRef(
       /**
        * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
        */
-      if (type === 'push') {
-        if (isPushed) {
-          if (side === 'right') {
-            document.body.style.paddingRight = `${dimensions.width}px`;
-          } else if (side === 'left') {
-            document.body.style.paddingLeft = `${dimensions.width}px`;
-          }
+      if (isPushed) {
+        if (side === 'right') {
+          document.body.style.paddingRight = `${dimensions.width}px`;
+        } else if (side === 'left') {
+          document.body.style.paddingLeft = `${dimensions.width}px`;
         }
       }
 
       return () => {
         document.body.classList.remove('euiBody--hasFlyout');
 
-        if (type === 'push') {
+        if (isPushed) {
           if (side === 'right') {
             document.body.style.paddingRight = '';
           } else if (side === 'left') {
@@ -237,7 +235,7 @@ export const EuiFlyout = forwardRef(
           }
         }
       };
-    }, [type, side, dimensions, isPushed]);
+    }, [side, dimensions, isPushed]);
 
     /**
      * ESC key closes flyout (always?)
@@ -268,8 +266,8 @@ export const EuiFlyout = forwardRef(
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
       maxWidth === false && styles.noMaxWidth,
-      styles[type],
-      type === 'push' && styles.pushSide[side],
+      isPushed ? styles.push.push : styles.overlay,
+      isPushed && styles.push[side],
       styles[side],
     ];
 
