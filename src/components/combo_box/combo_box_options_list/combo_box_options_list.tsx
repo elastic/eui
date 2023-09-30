@@ -87,7 +87,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   width: number;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   delimiter?: string;
-  zIndex?: number;
   truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
 };
 
@@ -355,8 +354,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       singleSelection,
       width,
       delimiter,
-      zIndex,
-      style,
       truncationProps,
       listboxAriaLabel,
       ...rest

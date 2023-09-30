@@ -11,6 +11,9 @@
 /// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
+
+import { EuiFlyout, EuiPopover, EuiButton } from '../index';
+
 import { EuiComboBox } from './index';
 
 // CI doesn't have access to the Inter font, so we need to manually include it
@@ -274,6 +277,33 @@ describe('EuiComboBox', () => {
 
       cy.realPress('Backspace');
       cy.get('[data-test-subj=comboBoxOptionsList]').should('have.length', 1);
+    });
+  });
+
+  describe('z-index regression testing', () => {
+    it('displays the dropdown list above any inherited z-indices from parents', () => {
+      cy.mount(
+        <EuiFlyout onClose={() => {}} size="s">
+          <EuiPopover
+            isOpen={true}
+            anchorPosition="rightDown"
+            closePopover={() => {}}
+            button={<EuiButton>Toggle popover</EuiButton>}
+          >
+            <EuiComboBox options={[{ label: 'Test' }]} />
+          </EuiPopover>
+        </EuiFlyout>
+      );
+      cy.wait(500); // Let the flyout finish animating in
+      cy.get('[data-test-subj=comboBoxSearchInput]').click();
+
+      cy.get('[data-test-subj="comboBoxOptionsList"]')
+        .parents('[data-popover-panel]')
+        .should('have.css', 'z-index', '5000');
+
+      // Should be able to click the first option without an error
+      // about the popover or flyout blocking the click
+      cy.get('[role=option]').click('top');
     });
   });
 });

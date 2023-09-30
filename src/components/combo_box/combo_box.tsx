@@ -20,7 +20,6 @@ import React, {
 import classNames from 'classnames';
 
 import { htmlIdGenerator, keys } from '../../services';
-import { getElementZIndex } from '../../services/popover';
 import { CommonProps } from '../common';
 import { EuiInputPopover } from '../popover';
 import { EuiI18n } from '../i18n';
@@ -192,7 +191,6 @@ interface EuiComboBoxState<T> {
   hasFocus: boolean;
   isListOpen: boolean;
   listElement?: RefInstance<HTMLDivElement>;
-  listZIndex: number | undefined;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
   width: number;
@@ -222,7 +220,6 @@ export class EuiComboBox<T> extends Component<
     hasFocus: false,
     isListOpen: false,
     listElement: null,
-    listZIndex: undefined,
     matchingOptions: getMatchingOptions<T>({
       options: this.props.options,
       selectedOptions: this.props.selectedOptions,
@@ -260,14 +257,6 @@ export class EuiComboBox<T> extends Component<
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
-    if (this.comboBoxRefInstance) {
-      // find the zIndex of the combobox relative to the page body
-      // and use that to depth-position the list box
-      // adds an extra `100` to provide some defense around neighboring elements' positioning
-      const listZIndex =
-        getElementZIndex(this.comboBoxRefInstance, document.body) + 100;
-      this.setState({ listZIndex });
-    }
     this.listRefInstance = ref;
   };
 
@@ -301,10 +290,7 @@ export class EuiComboBox<T> extends Component<
     }
 
     this.clearActiveOption();
-    this.setState({
-      listZIndex: undefined,
-      isListOpen: false,
-    });
+    this.setState({ isListOpen: false });
   };
 
   incrementActiveOptionIndex = (amount: number) => {
@@ -914,7 +900,6 @@ export class EuiComboBox<T> extends Component<
         >
           {(listboxAriaLabel: string) => (
             <EuiComboBoxOptionsList
-              zIndex={this.state.listZIndex}
               activeOptionIndex={this.state.activeOptionIndex}
               areAllOptionsSelected={this.areAllOptionsSelected()}
               customOptionText={customOptionText}
