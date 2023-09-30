@@ -131,6 +131,11 @@ interface _EuiFlyoutProps {
    * @default l
    */
   pushMinBreakpoint?: EuiBreakpointSize;
+  /**
+   * Enables a slide in animation on push flyouts
+   * @default false
+   */
+  pushAnimation?: boolean;
   style?: CSSProperties;
   /**
    * Object of props passed to EuiFocusTrap.
@@ -181,6 +186,7 @@ export const EuiFlyout = forwardRef(
       type = 'overlay',
       outsideClickCloses,
       pushMinBreakpoint = 'l',
+      pushAnimation = false,
       focusTrapProps: _focusTrapProps = {},
       includeFixedHeadersInFocusTrap = true,
       'aria-describedby': _ariaDescribedBy,
@@ -268,6 +274,7 @@ export const EuiFlyout = forwardRef(
       maxWidth === false && styles.noMaxWidth,
       isPushed ? styles.push.push : styles.overlay,
       isPushed && styles.push[side],
+      isPushed && !pushAnimation && styles.push.noAnimation,
       styles[side],
     ];
 
