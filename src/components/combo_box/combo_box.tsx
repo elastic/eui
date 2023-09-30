@@ -19,7 +19,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { htmlIdGenerator, keys } from '../../services';
 import { getElementZIndex } from '../../services/popover';
 import { CommonProps } from '../common';
 import { EuiInputPopover } from '../popover';
@@ -41,11 +41,9 @@ import {
 } from './combo_box_input/combo_box_input';
 import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_options_list';
 import {
-  UpdatePositionHandler,
   OptionHandler,
   RefInstance,
   EuiComboBoxOptionOption,
-  EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
 } from './types';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
@@ -194,7 +192,6 @@ interface EuiComboBoxState<T> {
   hasFocus: boolean;
   isListOpen: boolean;
   listElement?: RefInstance<HTMLDivElement>;
-  listPosition: EuiComboBoxOptionsListPosition;
   listZIndex: number | undefined;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
@@ -225,7 +222,6 @@ export class EuiComboBox<T> extends Component<
     hasFocus: false,
     isListOpen: false,
     listElement: null,
-    listPosition: 'bottom',
     listZIndex: undefined,
     matchingOptions: getMatchingOptions<T>({
       options: this.props.options,
@@ -308,59 +304,6 @@ export class EuiComboBox<T> extends Component<
     this.setState({
       listZIndex: undefined,
       isListOpen: false,
-    });
-  };
-
-  updatePosition: UpdatePositionHandler = (
-    listElement = this.state.listElement
-  ) => {
-    if (!this._isMounted) {
-      return;
-    }
-
-    if (!this.state.isListOpen) {
-      return;
-    }
-
-    if (!listElement) {
-      return;
-    }
-
-    // it's possible that updateListPosition is called when listElement is becoming visible, but isn't yet
-    const listElementBounds = listElement.getBoundingClientRect();
-    if (listElementBounds.width === 0 || listElementBounds.height === 0) {
-      return;
-    }
-
-    if (!this.comboBoxRefInstance) {
-      return;
-    }
-
-    const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
-
-    const { position, top } = findPopoverPosition({
-      allowCrossAxis: false,
-      anchor: this.comboBoxRefInstance,
-      popover: listElement,
-      position: 'bottom',
-    }) as { position: 'bottom'; top: number };
-
-    if (this.listRefInstance) {
-      this.listRefInstance.style.top = `${top}px`;
-      // listElement doesn't have its width set until after updating the position
-      // which means the popover service won't know about the correct width
-      // however, we already know where to position the element
-      this.listRefInstance.style.left = `${
-        comboBoxBounds.left + window.pageXOffset
-      }px`;
-      this.listRefInstance.style.width = `${comboBoxBounds.width}px`;
-    }
-
-    // Cache for future calls.
-    this.setState({
-      listElement,
-      listPosition: position,
-      width: comboBoxBounds.width,
     });
   };
 
@@ -927,7 +870,6 @@ export class EuiComboBox<T> extends Component<
       activeOptionIndex,
       hasFocus,
       isListOpen,
-      listPosition,
       searchValue,
       width,
       matchingOptions,
@@ -989,7 +931,6 @@ export class EuiComboBox<T> extends Component<
               onScroll={this.onOptionListScroll}
               optionRef={this.optionRefCallback}
               options={options}
-              position={listPosition}
               singleSelection={singleSelection}
               renderOption={renderOption}
               rootId={this.rootId}
@@ -997,7 +938,6 @@ export class EuiComboBox<T> extends Component<
               scrollToIndex={activeOptionIndex}
               searchValue={searchValue}
               selectedOptions={selectedOptions}
-              updatePosition={this.updatePosition}
               width={width}
               delimiter={delimiter}
               getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
@@ -1063,7 +1003,6 @@ export class EuiComboBox<T> extends Component<
               selectedOptions={selectedOptions}
               singleSelection={singleSelection}
               toggleButtonRef={this.toggleButtonRefCallback}
-              updatePosition={this.updatePosition}
               value={value}
               append={singleSelection ? append : undefined}
               prepend={singleSelection ? prepend : undefined}

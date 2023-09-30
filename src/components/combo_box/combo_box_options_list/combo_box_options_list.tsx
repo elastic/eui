@@ -34,11 +34,9 @@ import { EuiTextTruncate } from '../../text_truncate';
 import type { _EuiComboBoxProps } from '../combo_box';
 import {
   EuiComboBoxOptionOption,
-  EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
   RefInstance,
-  UpdatePositionHandler,
 } from '../types';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps & {
@@ -76,7 +74,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
    * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
    */
   options: Array<EuiComboBoxOptionOption<T>>;
-  position?: EuiComboBoxOptionsListPosition;
   renderOption?: (
     option: EuiComboBoxOptionOption<T>,
     searchValue: string,
@@ -87,7 +84,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   scrollToIndex?: number;
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-  updatePosition: UpdatePositionHandler;
   width: number;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   delimiter?: string;
@@ -117,22 +113,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     isCaseSensitive: false,
   };
 
-  updatePosition = () => {
-    // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
-    requestAnimationFrame(() => {
-      this.props.updatePosition(this.listRefInstance);
-    });
-  };
-
   componentDidMount() {
-    // Wait a frame, otherwise moving focus from one combo box to another will result in the class
-    // being removed from the body.
-    requestAnimationFrame(() => {
-      document.body.classList.add('euiBody-hasPortalContent');
-    });
-    this.updatePosition();
-    window.addEventListener('resize', this.updatePosition);
-
     // Firefox will trigger a scroll event in many common situations when the options list div is appended
     // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
     setTimeout(() => {
@@ -144,17 +125,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
   }
 
   componentDidUpdate(prevProps: EuiComboBoxOptionsListProps<T>) {
-    const { options, selectedOptions, searchValue } = prevProps;
-
-    // We don't compare matchingOptions because that will result in a loop.
-    if (
-      searchValue !== this.props.searchValue ||
-      options !== this.props.options ||
-      selectedOptions !== this.props.selectedOptions
-    ) {
-      this.updatePosition();
-    }
-
     if (
       this.listRef &&
       typeof this.props.activeOptionIndex !== 'undefined' &&
@@ -165,8 +135,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasPortalContent');
-    window.removeEventListener('resize', this.updatePosition);
     window.removeEventListener('scroll', this.closeListOnScroll, {
       capture: true,
     });
@@ -378,7 +346,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       onScroll,
       optionRef,
       options,
-      position = 'bottom',
       renderOption,
       rootId,
       rowHeight,
@@ -386,7 +353,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       selectedOptions,
       singleSelection,
-      updatePosition,
       width,
       delimiter,
       zIndex,
@@ -539,7 +505,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         itemData={matchingOptions}
         ref={this.setListRef}
         innerRef={this.setListBoxRef}
-        width={width}
+        width={width} // TODO: Inherit width from EuiInputPopover instead of EuiComboBox
       >
         {this.ListRow}
       </FixedSizeList>
