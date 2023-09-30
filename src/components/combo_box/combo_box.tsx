@@ -22,7 +22,7 @@ import classNames from 'classnames';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { getElementZIndex } from '../../services/popover';
 import { CommonProps } from '../common';
-import { EuiPortal } from '../portal';
+import { EuiInputPopover } from '../popover';
 import { EuiI18n } from '../i18n';
 import { EuiFormControlLayoutProps } from '../form';
 import { EuiFilterSelectItemClass } from '../filter_group/filter_select_item';
@@ -966,50 +966,46 @@ export class EuiComboBox<T> extends Component<
         : undefined;
 
       optionsList = (
-        <EuiPortal>
-          <EuiI18n
-            token="euiComboBox.listboxAriaLabel"
-            default="Choose from the following options"
-          >
-            {(listboxAriaLabel: string) => (
-              <EuiComboBoxOptionsList
-                zIndex={this.state.listZIndex}
-                activeOptionIndex={this.state.activeOptionIndex}
-                areAllOptionsSelected={this.areAllOptionsSelected()}
-                customOptionText={customOptionText}
-                data-test-subj={optionsListDataTestSubj}
-                fullWidth={fullWidth}
-                isCaseSensitive={isCaseSensitive}
-                isLoading={isLoading}
-                listRef={this.listRefCallback}
-                matchingOptions={matchingOptions}
-                onCloseList={this.closeList}
-                onCreateOption={onCreateOption}
-                onOptionClick={this.onOptionClick}
-                onOptionEnterKey={this.onOptionEnterKey}
-                onScroll={this.onOptionListScroll}
-                optionRef={this.optionRefCallback}
-                options={options}
-                position={listPosition}
-                singleSelection={singleSelection}
-                renderOption={renderOption}
-                rootId={this.rootId}
-                rowHeight={rowHeight}
-                scrollToIndex={activeOptionIndex}
-                searchValue={searchValue}
-                selectedOptions={selectedOptions}
-                updatePosition={this.updatePosition}
-                width={width}
-                delimiter={delimiter}
-                getSelectedOptionForSearchValue={
-                  getSelectedOptionForSearchValue
-                }
-                listboxAriaLabel={listboxAriaLabel}
-                truncationProps={truncationProps}
-              />
-            )}
-          </EuiI18n>
-        </EuiPortal>
+        <EuiI18n
+          token="euiComboBox.listboxAriaLabel"
+          default="Choose from the following options"
+        >
+          {(listboxAriaLabel: string) => (
+            <EuiComboBoxOptionsList
+              zIndex={this.state.listZIndex}
+              activeOptionIndex={this.state.activeOptionIndex}
+              areAllOptionsSelected={this.areAllOptionsSelected()}
+              customOptionText={customOptionText}
+              data-test-subj={optionsListDataTestSubj}
+              fullWidth={fullWidth}
+              isCaseSensitive={isCaseSensitive}
+              isLoading={isLoading}
+              listRef={this.listRefCallback}
+              matchingOptions={matchingOptions}
+              onCloseList={this.closeList}
+              onCreateOption={onCreateOption}
+              onOptionClick={this.onOptionClick}
+              onOptionEnterKey={this.onOptionEnterKey}
+              onScroll={this.onOptionListScroll}
+              optionRef={this.optionRefCallback}
+              options={options}
+              position={listPosition}
+              singleSelection={singleSelection}
+              renderOption={renderOption}
+              rootId={this.rootId}
+              rowHeight={rowHeight}
+              scrollToIndex={activeOptionIndex}
+              searchValue={searchValue}
+              selectedOptions={selectedOptions}
+              updatePosition={this.updatePosition}
+              width={width}
+              delimiter={delimiter}
+              getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
+              listboxAriaLabel={listboxAriaLabel}
+              truncationProps={truncationProps}
+            />
+          )}
+        </EuiI18n>
       );
     }
 
@@ -1029,46 +1025,58 @@ export class EuiComboBox<T> extends Component<
         onBlur={this.onContainerBlur}
         ref={this.comboBoxRefCallback}
       >
-        <EuiComboBoxInput
-          compressed={compressed}
-          focusedOptionId={
-            this.hasActiveOption()
-              ? this.rootId(`_option-${this.state.activeOptionIndex}`)
-              : undefined
-          }
+        <EuiInputPopover
+          isOpen={isListOpen}
+          closePopover={this.closeList}
           fullWidth={fullWidth}
-          hasSelectedOptions={selectedOptions.length > 0}
-          id={inputId}
-          inputRef={this.searchInputRefCallback}
-          isDisabled={isDisabled}
-          isListOpen={isListOpen}
-          noIcon={!!noSuggestions}
-          onChange={this.onSearchChange}
-          onClear={
-            isClearable && !isDisabled ? this.clearSelectedOptions : undefined
+          panelPaddingSize="none"
+          disableFocusTrap={true}
+          input={
+            <EuiComboBoxInput
+              compressed={compressed}
+              focusedOptionId={
+                this.hasActiveOption()
+                  ? this.rootId(`_option-${this.state.activeOptionIndex}`)
+                  : undefined
+              }
+              fullWidth={fullWidth}
+              hasSelectedOptions={selectedOptions.length > 0}
+              id={inputId}
+              inputRef={this.searchInputRefCallback}
+              isDisabled={isDisabled}
+              isListOpen={isListOpen}
+              noIcon={!!noSuggestions}
+              onChange={this.onSearchChange}
+              onClear={
+                isClearable && !isDisabled
+                  ? this.clearSelectedOptions
+                  : undefined
+              }
+              onClick={this.onComboBoxClick}
+              onCloseListClick={this.onCloseListClick}
+              onFocus={this.onComboBoxFocus}
+              onOpenListClick={this.onOpenListClick}
+              onRemoveOption={this.onRemoveOption}
+              placeholder={placeholder}
+              rootId={this.rootId}
+              searchValue={searchValue}
+              selectedOptions={selectedOptions}
+              singleSelection={singleSelection}
+              toggleButtonRef={this.toggleButtonRefCallback}
+              updatePosition={this.updatePosition}
+              value={value}
+              append={singleSelection ? append : undefined}
+              prepend={singleSelection ? prepend : undefined}
+              isLoading={isLoading}
+              isInvalid={markAsInvalid}
+              autoFocus={autoFocus}
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledby}
+            />
           }
-          onClick={this.onComboBoxClick}
-          onCloseListClick={this.onCloseListClick}
-          onFocus={this.onComboBoxFocus}
-          onOpenListClick={this.onOpenListClick}
-          onRemoveOption={this.onRemoveOption}
-          placeholder={placeholder}
-          rootId={this.rootId}
-          searchValue={searchValue}
-          selectedOptions={selectedOptions}
-          singleSelection={singleSelection}
-          toggleButtonRef={this.toggleButtonRefCallback}
-          updatePosition={this.updatePosition}
-          value={value}
-          append={singleSelection ? append : undefined}
-          prepend={singleSelection ? prepend : undefined}
-          isLoading={isLoading}
-          isInvalid={markAsInvalid}
-          autoFocus={autoFocus}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledby}
-        />
-        {optionsList}
+        >
+          {optionsList}
+        </EuiInputPopover>
       </div>
     );
   }
