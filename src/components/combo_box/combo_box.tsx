@@ -229,7 +229,6 @@ export class EuiComboBox<T> extends Component<
     searchValue: initialSearchValue,
   };
 
-  _isMounted = false;
   rootId = htmlIdGenerator();
 
   // Refs
@@ -247,14 +246,6 @@ export class EuiComboBox<T> extends Component<
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.listRefInstance = ref;
-  };
-
-  toggleButtonRefInstance: RefInstance<HTMLButtonElement | HTMLSpanElement> =
-    null;
-  toggleButtonRefCallback: RefCallback<HTMLButtonElement | HTMLSpanElement> = (
-    ref
-  ) => {
-    this.toggleButtonRefInstance = ref;
   };
 
   optionsRefInstances: Array<RefInstance<EuiFilterSelectItemClass>> = [];
@@ -668,10 +659,6 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onCloseListClick = () => {
-    this.closeList();
-  };
-
   onSearchChange: NonNullable<EuiComboBoxInputProps<T>['onChange']> = (
     searchValue
   ) => {
@@ -689,10 +676,6 @@ export class EuiComboBox<T> extends Component<
       this.setCustomOptions(false);
     }
   };
-
-  componentDidMount() {
-    this._isMounted = true;
-  }
 
   static getDerivedStateFromProps<T>(
     nextProps: _EuiComboBoxProps<T>,
@@ -793,10 +776,6 @@ export class EuiComboBox<T> extends Component<
         sortMatchesBy,
       })
     );
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   render() {
@@ -960,7 +939,7 @@ export class EuiComboBox<T> extends Component<
                   : undefined
               }
               onClick={this.onComboBoxClick}
-              onCloseListClick={this.onCloseListClick}
+              onCloseListClick={this.closeList}
               onFocus={this.onComboBoxFocus}
               onOpenListClick={this.onOpenListClick}
               onRemoveOption={this.onRemoveOption}
@@ -969,7 +948,6 @@ export class EuiComboBox<T> extends Component<
               searchValue={searchValue}
               selectedOptions={selectedOptions}
               singleSelection={singleSelection}
-              toggleButtonRef={this.toggleButtonRefCallback}
               value={value}
               append={singleSelection ? append : undefined}
               prepend={singleSelection ? prepend : undefined}
