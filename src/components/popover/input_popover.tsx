@@ -66,10 +66,19 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   panelRef: _panelRef,
   ...props
 }) => {
-  const euiThemeContext = useEuiTheme();
+  const classes = classnames('euiInputPopover', className);
+  const euiTheme = useEuiTheme();
+  const form = euiFormVariables(euiTheme);
+
+  /**
+   * Ref setup
+   */
+
+  const popoverClassRef = useRef<EuiPopover>(null);
+  // The inputEl state ensures that width is correctly tracked on initial load
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
+  // The panelEl state ensures that width is correctly set every time the popover opens
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
-  const popoverClassRef = useRef<EuiPopover | null>(null);
 
   const inputRef = useCombinedRefs([setInputEl, _inputRef]);
   const panelRef = useCombinedRefs([setPanelEl, _panelRef]);
@@ -130,9 +139,6 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     },
     [disableFocusTrap, closePopover, panelPropsOnKeyDown]
   );
-
-  const classes = classnames('euiInputPopover', className);
-  const form = euiFormVariables(euiThemeContext);
 
   return (
     <EuiPopover
