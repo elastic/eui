@@ -68,6 +68,26 @@ describe('EuiComboBox', () => {
       );
     });
 
+    it('correctly resets the input size when the search value is cleared', () => {
+      cy.realMount(<EuiComboBox options={[{ label: 'Test 1 2 3' }]} />);
+      cy.get('[data-test-subj="comboBoxSearchInput"]').realClick();
+
+      cy.realType('Test 1 2 3');
+      cy.get('[data-test-subj="comboBoxSearchInput"]').should(
+        'have.attr',
+        'style',
+        'inline-size: 67px;'
+      );
+
+      cy.realPress('{downarrow}');
+      cy.realPress('Enter');
+      cy.get('[data-test-subj="comboBoxSearchInput"]').should(
+        'have.attr',
+        'style',
+        'inline-size: 2px;'
+      );
+    });
+
     it('does not exceed the maximum possible width of the input wrapper', () => {
       cy.realMount(<EuiComboBox options={[]} />);
       cy.get('[data-test-subj="comboBoxSearchInput"]').realClick();

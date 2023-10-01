@@ -8,7 +8,6 @@
 
 import React, {
   Component,
-  ChangeEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
   RefCallback,
@@ -44,9 +43,9 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   isListOpen: boolean;
   noIcon: boolean;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  onChange?: (searchValue: string) => void;
+  onChange: (searchValue: string) => void;
   onClear?: () => void;
-  onClick?: () => void;
+  onClick: () => void;
   onCloseListClick: () => void;
   onFocus: FocusEventHandler<HTMLInputElement>;
   onOpenListClick: () => void;
@@ -147,21 +146,14 @@ export class EuiComboBoxInput<T> extends Component<
   };
 
   componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
-    const { searchValue } = prevProps;
+    if (prevProps.searchValue !== this.props.searchValue) {
+      this.updateInputSize(this.props.searchValue);
 
-    // We need to update the position of everything if the user enters enough input to change
-    // the size of the input.
-    if (searchValue !== this.props.searchValue) {
+      // We need to update the position of everything if the user enters enough input to change
+      // the size of the input.
       this.updatePosition();
     }
   }
-
-  inputOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { value } = event.target;
-
-    this.updateInputSize(value);
-    this.props.onChange?.(value);
-  };
 
   render() {
     const {
@@ -173,6 +165,7 @@ export class EuiComboBoxInput<T> extends Component<
       isDisabled,
       isListOpen,
       noIcon,
+      onChange,
       onClear,
       onClick,
       onCloseListClick,
@@ -350,7 +343,7 @@ export class EuiComboBoxInput<T> extends Component<
             disabled={isDisabled}
             id={id}
             onBlur={this.onBlur}
-            onChange={this.inputOnChange}
+            onChange={(event) => onChange(event.target.value)}
             onFocus={this.onFocus}
             onKeyDown={this.onKeyDown}
             ref={this.inputRefCallback}
