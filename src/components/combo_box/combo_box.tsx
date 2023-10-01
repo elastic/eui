@@ -282,13 +282,7 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  closeList = (event?: Event) => {
-    if (event && event.target === this.searchInputRefInstance) {
-      // really long search values / custom entries triggers a scroll event on the input
-      // which the EuiComboBoxOptionsList passes through here
-      return;
-    }
-
+  closeList = () => {
     this.clearActiveOption();
     this.setState({ isListOpen: false });
   };
@@ -956,6 +950,7 @@ export class EuiComboBox<T> extends Component<
           fullWidth={fullWidth}
           panelPaddingSize="none"
           disableFocusTrap={true}
+          closeOnScroll={true}
           input={
             <EuiComboBoxInput
               compressed={compressed}
