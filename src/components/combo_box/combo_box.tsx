@@ -24,7 +24,6 @@ import { CommonProps } from '../common';
 import { EuiInputPopover } from '../popover';
 import { EuiI18n } from '../i18n';
 import { EuiFormControlLayoutProps } from '../form';
-import { EuiFilterSelectItemClass } from '../filter_group/filter_select_item';
 import type { EuiTextTruncateProps } from '../text_truncate';
 
 import {
@@ -246,14 +245,6 @@ export class EuiComboBox<T> extends Component<
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.listRefInstance = ref;
-  };
-
-  optionsRefInstances: Array<RefInstance<EuiFilterSelectItemClass>> = [];
-  optionRefCallback: EuiComboBoxOptionsListProps<T>['optionRef'] = (
-    index,
-    ref
-  ) => {
-    this.optionsRefInstances[index] = ref;
   };
 
   openList = () => {
@@ -687,72 +678,6 @@ export class EuiComboBox<T> extends Component<
     return stateUpdate;
   }
 
-  updateMatchingOptionsIfDifferent = (
-    newMatchingOptions: Array<EuiComboBoxOptionOption<T>>
-  ) => {
-    const { matchingOptions, activeOptionIndex } = this.state;
-    const { singleSelection, selectedOptions } = this.props;
-
-    let areOptionsDifferent = false;
-
-    if (matchingOptions.length !== newMatchingOptions.length) {
-      areOptionsDifferent = true;
-    } else {
-      for (let i = 0; i < matchingOptions.length; i++) {
-        if (matchingOptions[i].label !== newMatchingOptions[i].label) {
-          areOptionsDifferent = true;
-          break;
-        }
-      }
-    }
-
-    if (areOptionsDifferent) {
-      this.optionsRefInstances = [];
-      let nextActiveOptionIndex = activeOptionIndex;
-      // ensure that the currently selected single option is active if it is in the matchingOptions
-      if (Boolean(singleSelection) && selectedOptions.length === 1) {
-        if (newMatchingOptions.includes(selectedOptions[0])) {
-          nextActiveOptionIndex = newMatchingOptions.indexOf(
-            selectedOptions[0]
-          );
-        }
-      }
-
-      this.setState({
-        matchingOptions: newMatchingOptions,
-        activeOptionIndex: nextActiveOptionIndex,
-      });
-
-      if (!newMatchingOptions.length) {
-        // Prevent endless setState -> componentWillUpdate -> setState loop.
-        if (this.hasActiveOption()) {
-          this.clearActiveOption();
-        }
-      }
-    }
-  };
-
-  componentDidUpdate() {
-    const { options, selectedOptions, singleSelection, sortMatchesBy } =
-      this.props;
-    const { searchValue } = this.state;
-
-    // React 16.3 has a bug (fixed in 16.4) where getDerivedStateFromProps
-    // isn't called after a state change, and we track `searchValue` in state
-    // instead we need to react to a change in searchValue here
-    this.updateMatchingOptionsIfDifferent(
-      getMatchingOptions({
-        options,
-        selectedOptions,
-        searchValue,
-        isCaseSensitive: this.props.isCaseSensitive,
-        isPreFiltered: this.props.async,
-        showPrevSelected: Boolean(singleSelection),
-        sortMatchesBy,
-      })
-    );
-  }
-
   render() {
     const {
       'data-test-subj': dataTestSubj,
@@ -850,7 +775,6 @@ export class EuiComboBox<T> extends Component<
               onOptionClick={this.onOptionClick}
               onOptionEnterKey={this.onOptionEnterKey}
               onScroll={this.onOptionListScroll}
-              optionRef={this.optionRefCallback}
               options={options}
               singleSelection={singleSelection}
               renderOption={renderOption}

@@ -24,7 +24,6 @@ import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import {
   EuiFilterSelectItem,
-  EuiFilterSelectItemClass,
   FilterChecked,
 } from '../../filter_group/filter_select_item';
 import { htmlIdGenerator } from '../../../services';
@@ -38,7 +37,6 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  RefInstance,
 } from '../types';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps & {
@@ -68,10 +66,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   onOptionClick?: OptionHandler<T>;
   onOptionEnterKey?: OptionHandler<T>;
   onScroll?: ListProps['onScroll'];
-  optionRef: (
-    index: number,
-    node: RefInstance<EuiFilterSelectItemClass>
-  ) => void;
   /**
    * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
    */
@@ -161,7 +155,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       singleSelection,
       selectedOptions,
       onOptionClick,
-      optionRef,
       activeOptionIndex,
       renderOption,
       searchValue,
@@ -205,7 +198,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
             onOptionClick(option);
           }
         }}
-        ref={optionRef.bind(this, index)}
         isFocused={optionIsFocused}
         checked={checked}
         showIcons={singleSelection ? true : false}
@@ -317,7 +309,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       onOptionClick,
       onOptionEnterKey,
       onScroll,
-      optionRef,
       options,
       renderOption,
       rootId,
