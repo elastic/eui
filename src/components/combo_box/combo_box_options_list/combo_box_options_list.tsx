@@ -10,6 +10,7 @@ import React, { Component, ContextType, ReactNode, RefCallback } from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,
+  FixedSizeListProps,
   ListProps,
   ListChildComponentProps,
 } from 'react-window';
@@ -102,9 +103,7 @@ const hitEnterBadge = (
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
 > {
-  listRefInstance: RefInstance<HTMLDivElement> = null;
   listRef: FixedSizeList | null = null;
-  listBoxRef: HTMLUListElement | null = null;
 
   static contextType = EuiInputPopoverWidthContext;
   declare context: ContextType<typeof EuiInputPopoverWidthContext>;
@@ -125,24 +124,25 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
   }
 
-  listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
-    this.props.listRef(ref);
-    this.listRefInstance = ref;
-  };
-
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
   };
 
-  setListBoxRef = (ref: HTMLUListElement | null) => {
-    this.listBoxRef = ref;
-
-    if (ref) {
-      ref.setAttribute('aria-label', this.props.listboxAriaLabel);
-      ref.setAttribute('id', this.props.rootId('listbox'));
-      ref.setAttribute('role', 'listbox');
-      ref.setAttribute('tabIndex', '0');
-    }
+  ListInnerElement: FixedSizeListProps['innerElementType'] = ({
+    children,
+    ...rest
+  }) => {
+    return (
+      <div
+        {...rest}
+        aria-label={this.props.listboxAriaLabel}
+        id={this.props.rootId('listbox')}
+        role="listbox"
+        tabIndex="0"
+      >
+        {children}
+      </div>
+    );
   };
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
@@ -468,13 +468,14 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     const optionsList = (
       <FixedSizeList
+        className="euiComboBoxOptionsList__virtualization"
         height={boundedHeight}
         onScroll={onScroll}
         itemCount={matchingOptions.length}
         itemSize={rowHeight}
         itemData={matchingOptions}
         ref={this.setListRef}
-        innerRef={this.setListBoxRef}
+        innerElementType={this.ListInnerElement}
         width={this.context}
       >
         {this.ListRow}
@@ -485,7 +486,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       <div
         className="euiComboBoxOptionsList"
         data-test-subj={classNames('comboBoxOptionsList', dataTestSubj)}
-        ref={this.listRefCallback}
+        ref={listRef}
         {...rest}
       >
         {emptyState || optionsList}

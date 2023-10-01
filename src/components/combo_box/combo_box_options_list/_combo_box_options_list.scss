@@ -7,7 +7,7 @@
   max-height: 200px; // Also used/set in the JS file
   overflow: hidden;
 
-  > div { // Targets the element for FixedSizeList that doesn't have a selector
+  &__virtualization {
     @include euiScrollBar;
   }
 

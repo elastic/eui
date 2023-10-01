@@ -190,7 +190,6 @@ interface EuiComboBoxState<T> {
   activeOptionIndex: number;
   hasFocus: boolean;
   isListOpen: boolean;
-  listElement?: RefInstance<HTMLDivElement>;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
 }
@@ -218,7 +217,6 @@ export class EuiComboBox<T> extends Component<
     activeOptionIndex: -1,
     hasFocus: false,
     isListOpen: false,
-    listElement: null,
     matchingOptions: getMatchingOptions<T>({
       options: this.props.options,
       selectedOptions: this.props.selectedOptions,
