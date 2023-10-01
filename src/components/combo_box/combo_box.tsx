@@ -240,7 +240,7 @@ export class EuiComboBox<T> extends Component<
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
   searchInputRefCallback: RefCallback<HTMLInputElement> = (ref) => {
     this.searchInputRefInstance = ref;
-    if (this.props.inputRef) this.props.inputRef(ref);
+    this.props.inputRef?.(ref);
   };
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
@@ -429,12 +429,8 @@ export class EuiComboBox<T> extends Component<
   };
 
   onComboBoxFocus: FocusEventHandler<HTMLInputElement> = (event) => {
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-
+    this.props.onFocus?.(event);
     this.openList();
-
     this.setState({ hasFocus: true });
   };
 
@@ -464,11 +460,8 @@ export class EuiComboBox<T> extends Component<
       this.comboBoxRefInstance.contains(relatedTarget);
 
     if (!focusedInOptionsList && !focusedInInput) {
+      this.props.onBlur?.(event);
       this.closeList();
-
-      if (this.props.onBlur) {
-        this.props.onBlur(event);
-      }
       this.setState({ hasFocus: false });
 
       // If the user tabs away or changes focus to another element, take whatever input they've
@@ -540,9 +533,7 @@ export class EuiComboBox<T> extends Component<
         break;
 
       default:
-        if (this.props.onKeyDown) {
-          this.props.onKeyDown(event);
-        }
+        this.props.onKeyDown?.(event);
     }
   };
 
@@ -572,17 +563,13 @@ export class EuiComboBox<T> extends Component<
       ? [addedOption]
       : selectedOptions.concat(addedOption);
 
-    if (onChange) {
-      onChange(changeOptions);
-    }
+    onChange?.(changeOptions);
 
     this.clearSearchValue();
     this.clearActiveOption();
 
     if (!isContainerBlur) {
-      if (this.searchInputRefInstance) {
-        this.searchInputRefInstance.focus();
-      }
+      this.searchInputRefInstance?.focus();
     }
 
     if (singleSelection) {
@@ -596,24 +583,17 @@ export class EuiComboBox<T> extends Component<
 
   onRemoveOption: OptionHandler<T> = (removedOption) => {
     const { onChange, selectedOptions } = this.props;
-    if (onChange) {
-      onChange(selectedOptions.filter((option) => option !== removedOption));
-    }
+    onChange?.(selectedOptions.filter((option) => option !== removedOption));
 
     this.clearActiveOption();
   };
 
   clearSelectedOptions = () => {
-    const { onChange } = this.props;
-    if (onChange) {
-      onChange([]);
-    }
+    this.props.onChange?.([]);
 
     // Clicking the clear button will also cause it to disappear. This would result in focus
     // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
 
     if (!this.state.isListOpen) {
       this.openList();
@@ -622,9 +602,7 @@ export class EuiComboBox<T> extends Component<
 
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
 
     // If the user does this from a state in which an option has focus, then we need to reset it or clear it.
     if (
@@ -645,18 +623,15 @@ export class EuiComboBox<T> extends Component<
   };
 
   onOpenListClick = () => {
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
+
     if (!this.state.isListOpen) {
       this.openList();
     }
   };
 
   onOptionListScroll = () => {
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
   };
 
   onSearchChange: NonNullable<EuiComboBoxInputProps<T>['onChange']> = (
