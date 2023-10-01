@@ -14,21 +14,18 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
+import { css } from '@emotion/react';
 import classnames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
 
-import { CommonProps } from '../common';
-import { EuiFocusTrap } from '../focus_trap';
-import { EuiPopover, EuiPopoverProps } from './popover';
-import { EuiResizeObserver } from '../observer/resize_observer';
-import {
-  cascadingMenuKeys,
-  useCombinedRefs,
-  useEuiTheme,
-} from '../../services';
-import { euiFormVariables } from '../form/form.styles';
-import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
+import { keys, useCombinedRefs, useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { EuiResizeObserver } from '../observer/resize_observer';
+import { EuiFocusTrap } from '../focus_trap';
+import { euiFormVariables } from '../form/form.styles';
+
+import { EuiPopover, EuiPopoverProps } from './popover';
 
 export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef' | 'anchorPosition'> {
@@ -104,7 +101,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   }, [setPanelWidth]);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
-    if (panelEl && event.key === cascadingMenuKeys.TAB) {
+    if (panelEl && event.key === keys.TAB) {
       const tabbableItems = tabbable(panelEl).filter((el: FocusableElement) => {
         return (
           Array.from(el.attributes)
