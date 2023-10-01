@@ -34,7 +34,7 @@ before(() => {
 });
 
 describe('EuiComboBox', () => {
-  describe('Focus management', () => {
+  describe('focus management', () => {
     it('keeps focus on the input box when clicking a disabled item', () => {
       cy.realMount(
         <EuiComboBox
@@ -110,6 +110,37 @@ describe('EuiComboBox', () => {
       cy.get('[data-test-subj="comboBoxSearchInput"]')
         .invoke('width')
         .should('be.eq', 354);
+    });
+  });
+
+  describe('inputPopoverProps', () => {
+    it('allows setting a minimum popover width', () => {
+      cy.mount(
+        <EuiComboBox
+          options={[{ label: 'Test' }]}
+          selectedOptions={[]}
+          onChange={() => {}}
+          data-test-subj="combobox"
+          inputPopoverProps={{
+            panelMinWidth: 300,
+            anchorPosition: 'downCenter',
+          }}
+          style={{ margin: '0 auto' }}
+        />
+      );
+      cy.get('[data-test-subj="comboBoxInput"]').click();
+
+      cy.get('[data-popover-panel]')
+        .should('have.css', 'inline-size', '400px')
+        .should('have.css', 'left', '50px');
+
+      cy.get('[data-test-subj="combobox"]').then(
+        ($el) => ($el[0].style.width = '200px')
+      );
+
+      cy.get('[data-popover-panel]')
+        .should('have.css', 'inline-size', '300px')
+        .should('have.css', 'left', '100px');
     });
   });
 
@@ -201,7 +232,6 @@ describe('EuiComboBox', () => {
       });
     });
   });
-
   describe('selection', () => {
     const defaultOptions: Array<EuiComboBoxOptionOption<{}>> = [
       { label: 'Item 1' },

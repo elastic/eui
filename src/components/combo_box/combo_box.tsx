@@ -21,7 +21,7 @@ import classNames from 'classnames';
 
 import { htmlIdGenerator, keys } from '../../services';
 import { CommonProps } from '../common';
-import { EuiInputPopover } from '../popover';
+import { EuiInputPopover, EuiInputPopoverProps } from '../popover';
 import { EuiI18n } from '../i18n';
 import { EuiFormControlLayoutProps } from '../form';
 import type { EuiTextTruncateProps } from '../text_truncate';
@@ -162,6 +162,13 @@ export interface _EuiComboBoxProps<T>
    * text will always take precedence.
    */
   truncationProps?: Partial<Omit<EuiTextTruncateProps, 'text' | 'children'>>;
+  /**
+   * Allows customizing the underlying EuiInputPopover component
+   * (except for props that control state).
+   */
+  inputPopoverProps?: Partial<
+    Omit<EuiInputPopoverProps, 'input' | 'isOpen' | 'closePopover'>
+  >;
 }
 
 /**
@@ -710,6 +717,7 @@ export class EuiComboBox<T> extends Component<
       append,
       autoFocus,
       truncationProps,
+      inputPopoverProps,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       ...rest
@@ -810,12 +818,13 @@ export class EuiComboBox<T> extends Component<
         ref={this.comboBoxRefCallback}
       >
         <EuiInputPopover
-          isOpen={isListOpen}
-          closePopover={this.closeList}
           fullWidth={fullWidth}
           panelPaddingSize="none"
           disableFocusTrap={true}
           closeOnScroll={true}
+          {...inputPopoverProps}
+          isOpen={isListOpen}
+          closePopover={this.closeList}
           input={
             <EuiComboBoxInput
               compressed={compressed}
