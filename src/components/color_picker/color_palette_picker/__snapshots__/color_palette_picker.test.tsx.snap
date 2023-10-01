@@ -7,37 +7,35 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value=""
-      />
+    <input
+      type="hidden"
+      value=""
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
+        <button
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          type="button"
+        />
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-            data-test-subj="test subject string"
-            type="button"
-          />
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          <span
+            class="euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
-              />
-            </span>
-          </div>
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -52,39 +50,37 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value="custom"
-      />
+    <input
+      type="hidden"
+      value="custom"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
+        <button
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          type="button"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-            data-test-subj="test subject string"
-            type="button"
-          >
-            Plain text as a custom option
-          </button>
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          Plain text as a custom option
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
-              />
-            </span>
-          </div>
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -99,67 +95,65 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value="paletteFixed"
-      />
+    <input
+      type="hidden"
+      value="paletteFixed"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
+        <button
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          type="button"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-            data-test-subj="test subject string"
-            type="button"
+          <span
+            class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
           >
             <span
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              class="emotion-euiScreenReaderOnly"
             >
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                Palette 1
-              </span>
-              <span
-                aria-hidden="true"
-                class="euiColorPaletteDisplayFixed__bleedArea"
-              >
-                <span
-                  style="background-color: rgb(31, 176, 178); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(255, 219, 109); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(238, 145, 145); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(255, 255, 255); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(136, 128, 148); width: 20%;"
-                />
-              </span>
+              Palette 1
             </span>
-          </button>
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-          >
             <span
-              class="euiFormControlLayoutCustomIcon"
+              aria-hidden="true"
+              class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
+                style="background-color: rgb(31, 176, 178); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(255, 219, 109); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(238, 145, 145); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(255, 255, 255); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(136, 128, 148); width: 20%;"
               />
             </span>
-          </div>
+          </span>
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -174,47 +168,45 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value="paletteLinear"
-      />
+    <input
+      type="hidden"
+      value="paletteLinear"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
+        <button
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          type="button"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-            data-test-subj="test subject string"
-            type="button"
+          <span
+            class="emotion-euiScreenReaderOnly"
           >
-            <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              Linear Gradient
-            </span>
+            Linear Gradient
+          </span>
+          <span
+            aria-hidden="true"
+            class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+          />
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
             <span
               aria-hidden="true"
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
-          </button>
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-          >
-            <span
-              class="euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
-              />
-            </span>
-          </div>
+          </span>
         </div>
       </div>
     </div>
@@ -229,47 +221,45 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value="paletteLinearStops"
-      />
+    <input
+      type="hidden"
+      value="paletteLinearStops"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
+        <button
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          type="button"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-            data-test-subj="test subject string"
-            type="button"
+          <span
+            class="emotion-euiScreenReaderOnly"
           >
-            <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              Linear Gradient with stops
-            </span>
+            Linear Gradient with stops
+          </span>
+          <span
+            aria-hidden="true"
+            class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+          />
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
             <span
               aria-hidden="true"
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
             />
-          </button>
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-          >
-            <span
-              class="euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
-              />
-            </span>
-          </div>
+          </span>
         </div>
       </div>
     </div>
@@ -284,39 +274,37 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value="paletteFixed"
-      />
+    <input
+      type="hidden"
+      value="paletteFixed"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
+        <button
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          type="button"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-            data-test-subj="test subject string"
-            type="button"
-          >
-            Palette 1
-          </button>
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          Palette 1
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
-              />
-            </span>
-          </div>
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -331,66 +319,64 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <input
-        type="hidden"
-        value="paletteFixed"
-      />
+    <input
+      type="hidden"
+      value="paletteFixed"
+    />
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
+        <button
+          aria-haspopup="listbox"
+          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
+          data-test-subj="colorPalettePicker"
+          type="button"
         >
-          <button
-            aria-haspopup="listbox"
-            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-            data-test-subj="colorPalettePicker"
-            type="button"
+          <span
+            class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
           >
             <span
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              class="emotion-euiScreenReaderOnly"
             >
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                Palette 1
-              </span>
-              <span
-                aria-hidden="true"
-                class="euiColorPaletteDisplayFixed__bleedArea"
-              >
-                <span
-                  style="background-color: rgb(31, 176, 178); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(255, 219, 109); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(238, 145, 145); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(255, 255, 255); width: 20%;"
-                />
-                <span
-                  style="background-color: rgb(136, 128, 148); width: 20%;"
-                />
-              </span>
+              Palette 1
             </span>
-          </button>
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-          >
             <span
-              class="euiFormControlLayoutCustomIcon"
+              aria-hidden="true"
+              class="euiColorPaletteDisplayFixed__bleedArea"
             >
               <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="arrowDown"
+                style="background-color: rgb(31, 176, 178); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(255, 219, 109); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(238, 145, 145); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(255, 255, 255); width: 20%;"
+              />
+              <span
+                style="background-color: rgb(136, 128, 148); width: 20%;"
               />
             </span>
-          </div>
+          </span>
+        </button>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
         </div>
       </div>
     </div>
