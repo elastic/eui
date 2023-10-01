@@ -9,6 +9,7 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  KeyboardEvent,
   useState,
   useEffect,
   useCallback,
@@ -17,7 +18,7 @@ import React, {
 } from 'react';
 import { css } from '@emotion/react';
 import classnames from 'classnames';
-import { tabbable, FocusableElement } from 'tabbable';
+import { tabbable } from 'tabbable';
 
 import { logicalCSS } from '../../global_styling';
 import { keys, useCombinedRefs, useEuiTheme } from '../../services';
@@ -54,6 +55,7 @@ export type EuiInputPopoverProps = CommonProps &
 export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
+  closePopover,
   disableFocusTrap = false,
   focusTrapProps,
   input,
@@ -98,24 +100,34 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     }
   }, [inputWidth, panelEl]);
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (panelEl && event.key === keys.TAB) {
-      const tabbableItems = tabbable(panelEl).filter((el: FocusableElement) => {
-        return (
-          Array.from(el.attributes)
-            .map((el) => el.name)
-            .indexOf('data-focus-guard') < 0
-        );
-      });
-      if (
-        disableFocusTrap ||
-        (tabbableItems.length &&
-          tabbableItems[tabbableItems.length - 1] === document.activeElement)
-      ) {
-        props.closePopover();
+  /**
+   * Popover tab to close logic
+   */
+
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (!panelEl) return;
+
+      if (event.key === keys.TAB) {
+        if (disableFocusTrap) {
+          closePopover();
+        } else {
+          const tabbableItems = tabbable(panelEl).filter(
+            (el) => !el.hasAttribute('data-focus-guard')
+          );
+          if (!tabbableItems.length) return;
+
+          const tabbingFromLastItemInPopover =
+            document.activeElement === tabbableItems[tabbableItems.length - 1];
+
+          if (tabbingFromLastItemInPopover) {
+            closePopover();
+          }
+        }
       }
-    }
-  };
+    },
+    [panelEl, disableFocusTrap, closePopover]
+  );
 
   const classes = classnames('euiInputPopover', className);
   const form = euiFormVariables(euiThemeContext);
@@ -130,6 +142,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       panelRef={panelRef}
       className={classes}
       ref={popoverClassRef}
+      closePopover={closePopover}
       {...props}
     >
       <EuiFocusTrap

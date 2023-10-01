@@ -10,10 +10,11 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React from 'react';
+import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 
 import { EuiFieldText, EuiTextArea } from '../../components';
-import { EuiInputPopover } from './input_popover';
+
+import { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
 
 describe('EuiPopover', () => {
   // The viewport width matters for position assertions, so ensure it's explicitly defined
@@ -117,6 +118,86 @@ describe('EuiPopover', () => {
       cy.get('[data-popover-panel]')
         .should('have.css', 'inline-size', '250px')
         .should('have.css', 'left', '50px');
+    });
+  });
+
+  describe('focus/tab management', () => {
+    const StatefulInputPopover: FunctionComponent<
+      PropsWithChildren & Partial<EuiInputPopoverProps>
+    > = ({ children, ...rest }) => {
+      const [isOpen, setIsOpen] = useState(true);
+
+      return (
+        <EuiInputPopover
+          {...rest}
+          isOpen={isOpen}
+          closePopover={() => setIsOpen(false)}
+          input={<EuiFieldText data-test-subj="input" autoFocus />}
+        >
+          {children}
+        </EuiInputPopover>
+      );
+    };
+
+    describe('with focus trap enabled', () => {
+      it('auto focuses popover content', () => {
+        cy.mount(
+          <StatefulInputPopover>
+            <button data-test-subj="popover">Focusable popover content</button>
+          </StatefulInputPopover>
+        );
+
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'popover');
+        cy.get('[data-popover-panel]').should('exist');
+      });
+
+      it('automatically closes the popover when users tab off the last item in the popover', () => {
+        cy.mount(
+          <StatefulInputPopover>
+            <button data-test-subj="one">one</button>
+            <button data-test-subj="two">two</button>
+          </StatefulInputPopover>
+        );
+
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'one');
+        cy.realPress('Tab');
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'two');
+        cy.realPress('Tab');
+
+        cy.get('[data-popover-panel]').should('not.exist');
+      });
+    });
+
+    describe('with focus trap disabled', () => {
+      it('does not auto focus popover content', () => {
+        cy.mount(
+          <StatefulInputPopover disableFocusTrap={true}>
+            <button data-test-subj="popover">Focusable popover content</button>
+          </StatefulInputPopover>
+        );
+        cy.wait(100); // wait a tick to prevent false positives
+
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'input');
+        cy.get('[data-popover-panel]').should('exist');
+      });
+
+      // Not sure how much sense this behavior makes, but this logic was
+      // apparently added to EuiInputPopover with EuiDualRange in mind
+      it('automatically closes the popover when users tab from anywhere in the popover', () => {
+        cy.mount(
+          <>
+            <StatefulInputPopover disableFocusTrap={true}>
+              <button data-test-subj="one">one</button>
+              <button data-test-subj="two">two</button>
+            </StatefulInputPopover>
+          </>
+        );
+
+        cy.get('[data-test-subj="one"]').click();
+        cy.realPress('Tab');
+
+        cy.get('[data-popover-panel]').should('not.exist');
+      });
     });
   });
 });
