@@ -193,7 +193,6 @@ interface EuiComboBoxState<T> {
   listElement?: RefInstance<HTMLDivElement>;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
-  width: number;
 }
 
 const initialSearchValue = '';
@@ -230,7 +229,6 @@ export class EuiComboBox<T> extends Component<
       sortMatchesBy: this.props.sortMatchesBy,
     }),
     searchValue: initialSearchValue,
-    width: 0,
   };
 
   _isMounted = false;
@@ -240,13 +238,6 @@ export class EuiComboBox<T> extends Component<
   comboBoxRefInstance: RefInstance<HTMLDivElement> = null;
   comboBoxRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.comboBoxRefInstance = ref;
-
-    if (this.comboBoxRefInstance) {
-      const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
-      this.setState({
-        width: comboBoxBounds.width,
-      });
-    }
   };
 
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
@@ -851,7 +842,6 @@ export class EuiComboBox<T> extends Component<
       hasFocus,
       isListOpen,
       searchValue,
-      width,
       matchingOptions,
     } = this.state;
 
@@ -917,7 +907,6 @@ export class EuiComboBox<T> extends Component<
               scrollToIndex={activeOptionIndex}
               searchValue={searchValue}
               selectedOptions={selectedOptions}
-              width={width}
               delimiter={delimiter}
               getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
               listboxAriaLabel={listboxAriaLabel}

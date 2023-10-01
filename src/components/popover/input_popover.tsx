@@ -15,6 +15,7 @@ import React, {
   useCallback,
   useMemo,
   useRef,
+  createContext,
 } from 'react';
 import { css } from '@emotion/react';
 import classnames from 'classnames';
@@ -55,6 +56,9 @@ export interface _EuiInputPopoverProps
 export type EuiInputPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   _EuiInputPopoverProps;
+
+// Used by child components that want to know the parent popover width
+export const EuiInputPopoverWidthContext = createContext<number>(0);
 
 export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
@@ -202,7 +206,9 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
         disabled={disableFocusTrap}
         {...focusTrapProps}
       >
-        {children}
+        <EuiInputPopoverWidthContext.Provider value={panelWidth}>
+          {children}
+        </EuiInputPopoverWidthContext.Provider>
       </EuiFocusTrap>
     </EuiPopover>
   );

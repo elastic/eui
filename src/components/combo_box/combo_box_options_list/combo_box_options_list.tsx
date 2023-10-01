@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode, RefCallback } from 'react';
+import React, { Component, ContextType, ReactNode, RefCallback } from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,
@@ -30,6 +30,7 @@ import { htmlIdGenerator } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge';
 import { EuiTextTruncate } from '../../text_truncate';
+import { EuiInputPopoverWidthContext } from '../../popover/input_popover';
 
 import type { _EuiComboBoxProps } from '../combo_box';
 import {
@@ -84,7 +85,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   scrollToIndex?: number;
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-  width: number;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   delimiter?: string;
   truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
@@ -105,6 +105,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRef: FixedSizeList | null = null;
   listBoxRef: HTMLUListElement | null = null;
+
+  static contextType = EuiInputPopoverWidthContext;
+  declare context: ContextType<typeof EuiInputPopoverWidthContext>;
 
   static defaultProps = {
     'data-test-subj': '',
@@ -323,7 +326,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       selectedOptions,
       singleSelection,
-      width,
       delimiter,
       truncationProps,
       listboxAriaLabel,
@@ -473,7 +475,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         itemData={matchingOptions}
         ref={this.setListRef}
         innerRef={this.setListBoxRef}
-        width={width} // TODO: Inherit width from EuiInputPopover instead of EuiComboBox
+        width={this.context}
       >
         {this.ListRow}
       </FixedSizeList>
