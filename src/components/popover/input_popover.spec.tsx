@@ -61,25 +61,62 @@ describe('EuiPopover', () => {
     cy.get('[data-popover-panel]').should('have.css', 'left', '200px');
   });
 
-  it('correctly repositions the popover on input resize', () => {
-    cy.mount(
-      <div className="eui-textCenter">
-        <EuiInputPopover
-          {...props}
-          display="inline-block"
-          input={
-            <EuiTextArea rows={1} resize="horizontal" style={{ width: 150 }} />
-          }
-        >
-          Popover content
-        </EuiInputPopover>
-      </div>
-    );
-    cy.get('[data-popover-panel]').should('have.css', 'left', '175px');
-    cy.wait(100); // Wait a tick, otherwise Cypress returns a false positive
+  describe('on input resize', () => {
+    const initialWidth = 250;
+    const resizeProps = {
+      ...props,
+      display: 'inline-block',
+      input: (
+        <EuiTextArea
+          rows={1}
+          resize="horizontal"
+          style={{ width: initialWidth }}
+        />
+      ),
+    };
+    const resizeInput = (width: number) => {
+      // Cypress doesn't seem to have a way to mimic manual dragging/resizing, so we'll do it programmatically
+      cy.get('textarea').then(($el) => ($el[0].style.width = `${width}px`));
+    };
 
-    // Cypress doesn't seem to have a way to mimic manual dragging/resizing, so we'll do it programmatically
-    cy.get('textarea').then(($el) => ($el[0].style.width = '500px'));
-    cy.get('[data-popover-panel]').should('have.css', 'left', '50px');
+    it('repositions and resizes the popover to match the input', () => {
+      cy.mount(
+        <div className="eui-textCenter">
+          <EuiInputPopover {...resizeProps}>Popover content</EuiInputPopover>
+        </div>
+      );
+      cy.get('[data-popover-panel]')
+        .should('have.css', 'inline-size', '250px')
+        .should('have.css', 'left', '125px');
+
+      resizeInput(150);
+
+      cy.get('[data-popover-panel]')
+        .should('have.css', 'inline-size', '150px')
+        .should('have.css', 'left', '175px');
+    });
+
+    it('repositions the popover even when the popover width does not change', () => {
+      cy.mount(
+        <div className="eui-textCenter">
+          <EuiInputPopover
+            {...resizeProps}
+            panelMinWidth={initialWidth}
+            anchorPosition="downRight"
+          >
+            Popover content
+          </EuiInputPopover>
+        </div>
+      );
+      cy.get('[data-popover-panel]')
+        .should('have.css', 'inline-size', '250px')
+        .should('have.css', 'left', '125px');
+
+      resizeInput(100);
+
+      cy.get('[data-popover-panel]')
+        .should('have.css', 'inline-size', '250px')
+        .should('have.css', 'left', '50px');
+    });
   });
 });

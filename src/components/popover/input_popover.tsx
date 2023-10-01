@@ -12,6 +12,7 @@ import React, {
   useState,
   useEffect,
   useCallback,
+  useMemo,
   useRef,
 } from 'react';
 import { css } from '@emotion/react';
@@ -21,7 +22,7 @@ import { tabbable, FocusableElement } from 'tabbable';
 import { logicalCSS } from '../../global_styling';
 import { keys, useCombinedRefs, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
-import { EuiResizeObserver } from '../observer/resize_observer';
+import { useResizeObserver } from '../observer/resize_observer';
 import { EuiFocusTrap } from '../focus_trap';
 import { euiFormVariables } from '../form/form.styles';
 
@@ -65,40 +66,37 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 }) => {
   const euiThemeContext = useEuiTheme();
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
-  const [inputElWidth, setInputElWidth] = useState<number>();
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
   const popoverClassRef = useRef<EuiPopover | null>(null);
 
   const inputRef = useCombinedRefs([setInputEl, _inputRef]);
   const panelRef = useCombinedRefs([setPanelEl, _panelRef]);
 
-  const setPanelWidth = useCallback(
-    (width?: number) => {
-      if (panelEl && (!!inputElWidth || !!width)) {
-        const newWidth = !!width ? width : inputElWidth;
-        const widthToSet =
-          newWidth && newWidth > panelMinWidth ? newWidth : panelMinWidth;
+  /**
+   * Sizing/width logic
+   */
 
-        panelEl.style.width = `${widthToSet}px`;
-        onPanelResize?.(widthToSet);
-      }
-    },
-    [panelEl, inputElWidth, onPanelResize, panelMinWidth]
-  );
-  const onResize = useCallback(() => {
-    if (inputEl) {
-      const width = inputEl.getBoundingClientRect().width;
-      setInputElWidth(width);
-      setPanelWidth(width);
+  const inputWidth = useResizeObserver(inputEl, 'width').width;
+
+  const panelWidth = useMemo(() => {
+    return inputWidth < panelMinWidth ? panelMinWidth : inputWidth;
+  }, [panelMinWidth, inputWidth]);
+
+  useEffect(() => {
+    if (panelEl) {
+      // We have to modify the popover panel DOM node directly instead of using
+      // `panelStyle`, as there's some weird positioning bugs on resize otherwise
+      panelEl.style.inlineSize = `${panelWidth}px`;
+    }
+  }, [panelEl, panelWidth]);
+
+  useEffect(() => {
+    // This fires on all input width changes regardless of minimum size, because on
+    // right/center anchored popovers, the input width affects the position of the popover
+    if (panelEl) {
       popoverClassRef.current?.positionPopoverFluid();
     }
-  }, [inputEl, setPanelWidth]);
-  useEffect(() => {
-    onResize();
-  }, [onResize]);
-  useEffect(() => {
-    setPanelWidth();
-  }, [setPanelWidth]);
+  }, [inputWidth, panelEl]);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (panelEl && event.key === keys.TAB) {
@@ -127,11 +125,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
       repositionToCrossAxis={false}
       ownFocus={false}
-      button={
-        <EuiResizeObserver onResize={onResize}>
-          {(resizeRef) => <div ref={resizeRef}>{input}</div>}
-        </EuiResizeObserver>
-      }
+      button={input}
       buttonRef={inputRef}
       panelRef={panelRef}
       className={classes}
