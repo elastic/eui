@@ -426,11 +426,7 @@ describe('behavior', () => {
         searchInput.simulate('focus');
       });
 
-      act(() => {
-        // React 16 failed on the previous `searchInputNode.dispatchEvent`
-        //  call that mocked a FocusEvent 'focusout'
-        searchInput.simulate('blur');
-      });
+      searchInput.simulate('blur');
 
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
