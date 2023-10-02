@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { COLORS } from '../panel';
 import { EuiSplitPanel, _EuiSplitPanelInnerProps } from './split_panel';
@@ -17,7 +18,7 @@ const meta: Meta<_EuiSplitPanelInnerProps> = {
   component: EuiSplitPanel.Inner,
   argTypes: {
     color: { control: 'select', options: COLORS },
-    panelRef: { control: false },
+    ...disableStorybookControls<_EuiSplitPanelInnerProps>(['panelRef']),
   },
 };
 

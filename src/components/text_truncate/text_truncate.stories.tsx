@@ -9,7 +9,10 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import { hideStorybookControls } from '../../../.storybook/utils';
+import {
+  hideStorybookControls,
+  disableStorybookControls,
+} from '../../../.storybook/utils';
 
 import { EuiHighlight, EuiMark } from '../../components';
 
@@ -70,9 +73,7 @@ export const ResizeObserver: Story = {
     ...componentDefaults,
     onResize: console.log,
   },
-  argTypes: {
-    width: { control: false },
-  },
+  argTypes: disableStorybookControls<EuiTextTruncateProps>(['width']),
 };
 
 export const StartEndAnchorForSearch: Story = {
