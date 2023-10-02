@@ -1,3 +1,9 @@
+## [`88.5.3`](https://github.com/elastic/eui/tree/v88.5.3)
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` search input width not resetting correctly on selection ([#7240](https://github.com/elastic/eui/pull/7240))
+
 ## [`88.5.2`](https://github.com/elastic/eui/tree/v88.5.2)
 
 **Bug fixes**
