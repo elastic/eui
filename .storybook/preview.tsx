@@ -38,6 +38,11 @@ import { writingModeStyles } from './writing_mode.styles';
 // once all EUI components are converted to Emotion
 import '../dist/eui_theme_light.css';
 
+/**
+ * Prop controls
+ */
+
+import type { CommonProps } from '../src/components/common';
 import { hideStorybookControls } from './utils';
 
 const preview: Preview = {
@@ -104,7 +109,11 @@ const preview: Preview = {
   // aren't super useful to test - let's disable them by default and (if needed)
   // individual stories can re-enable them, e.g. by passing
   // `argTypes: { 'data-test-subj': { table: { disable: false } } }`
-  argTypes: hideStorybookControls(['css', 'className', 'data-test-subj']),
+  argTypes: hideStorybookControls<CommonProps>([
+    'css',
+    'className',
+    'data-test-subj',
+  ]),
 };
 
 export default preview;

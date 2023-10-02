@@ -10,7 +10,9 @@
  * Completely hide props from Storybook's controls panel.
  * Should be passed or spread to `argTypes`
  */
-export const hideStorybookControls = (propNames: string[]) => {
+export const hideStorybookControls = <Props>(
+  propNames: Array<keyof Props>
+): Record<keyof Props, typeof HIDE_CONTROL> | {} => {
   return propNames.reduce(
     (obj, name) => ({ ...obj, [name]: HIDE_CONTROL }),
     {}
@@ -24,7 +26,9 @@ const HIDE_CONTROL = { table: { disable: true } };
  *
  * Should be passed or spread to `argTypes`
  */
-export const disableStorybookControls = (propNames: string[]) => {
+export const disableStorybookControls = <Props>(
+  propNames: Array<keyof Props>
+): Record<keyof Props, typeof DISABLE_CONTROL> | {} => {
   return propNames.reduce(
     (obj, name) => ({ ...obj, [name]: DISABLE_CONTROL }),
     {}
