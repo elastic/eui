@@ -17,6 +17,12 @@ import { EuiSideNav, EuiSideNavProps } from './side_nav';
 const meta: Meta<EuiSideNavProps> = {
   title: 'EuiSideNav',
   component: EuiSideNav,
+  args: {
+    // Component defaults
+    mobileBreakpoints: ['xs', 's'],
+    items: [],
+    isOpenOnMobile: false,
+  },
   decorators: [
     (Story) => (
       <div style={{ width: 200 }}>
@@ -29,14 +35,6 @@ const meta: Meta<EuiSideNavProps> = {
 
 export default meta;
 type Story = StoryObj<EuiSideNavProps>;
-
-const componentDefaults: EuiSideNavProps = {
-  mobileBreakpoints: ['xs', 's'],
-  items: [],
-  // mobileTitle does not have defaults; they are being set here as they are shared between examples
-  mobileTitle: 'Mobile navigation header',
-  isOpenOnMobile: false,
-};
 
 const sharedSideNavItems = [
   {
@@ -84,16 +82,15 @@ const sharedSideNavItems = [
 
 export const Playground: Story = {
   args: {
-    ...componentDefaults,
     heading: 'Elastic',
     headingProps: { element: 'h1', screenReaderOnly: false },
     items: sharedSideNavItems,
+    mobileTitle: 'Mobile navigation header',
   },
 };
 
 export const MobileSideNav: Story = {
   args: {
-    ...componentDefaults,
     isOpenOnMobile: true,
     items: sharedSideNavItems,
     mobileTitle: 'Toggle isOpenOnMobile in the controls panel',
@@ -116,7 +113,6 @@ export const MobileSideNav: Story = {
 
 export const RenderItem: Story = {
   args: {
-    ...componentDefaults,
     renderItem: ({ children }) => <EuiText color="accent">{children}</EuiText>,
     items: [
       {

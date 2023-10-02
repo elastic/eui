@@ -40,26 +40,24 @@ import { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
 const meta: Meta<EuiHeaderAlertProps> = {
   title: 'EuiHeaderAlert',
   component: EuiHeaderAlert,
+  args: {
+    // Not default props, set for demo purposes
+    title: '7.0 release notes',
+    date: 'January 1st 1970',
+    text: 'Stay up-to-date on the latest and greatest features.',
+    action: (
+      <EuiLink href="#" target="_blank">
+        Check out the docs
+      </EuiLink>
+    ),
+    badge: <EuiBadge color="hollow">7.0</EuiBadge>,
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiHeaderAlertProps>;
 
-const defaultProps = {
-  title: '7.0 release notes',
-  date: 'January 1st 1970',
-  text: 'Stay up-to-date on the latest and greatest features.',
-  action: (
-    <EuiLink href="#" target="_blank">
-      Check out the docs
-    </EuiLink>
-  ),
-  badge: <EuiBadge color="hollow">7.0</EuiBadge>,
-};
-
-export const Playground: Story = {
-  args: defaultProps,
-};
+export const Playground: Story = {};
 
 /**
  * Flyout example
@@ -121,7 +119,6 @@ const Flyout = (props: EuiHeaderAlertProps) => {
 };
 export const FlyoutExample: Story = {
   render: ({ ...args }) => <Flyout {...args} />,
-  args: defaultProps,
 };
 
 /**
@@ -182,5 +179,4 @@ const Popover = (props: any) => {
 };
 export const PopoverExample: Story = {
   render: ({ ...args }) => <Popover {...args} />,
-  args: defaultProps,
 };
