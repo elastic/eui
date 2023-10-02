@@ -21,25 +21,24 @@ import { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
 const meta: Meta<EuiEmptyPromptProps> = {
   title: 'EuiEmptyPrompt',
   component: EuiEmptyPrompt,
+  args: {
+    // Component defaults
+    titleSize: 'm',
+    paddingSize: 'l',
+    color: 'plain', // Default is actually 'transparent', but for the purposes of easier testing in Storybook we'll set it to plain
+    layout: 'vertical',
+    hasBorder: false,
+    hasShadow: false,
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiEmptyPromptProps>;
 
-const componentDefaults: EuiEmptyPromptProps = {
-  titleSize: 'm',
-  paddingSize: 'l',
-  color: 'plain', // The component default is actually 'transparent', but for the purposes of easier testing in Storybook we'll set it to plain
-  layout: 'vertical',
-};
-
 export const Playground: Story = {
   args: {
-    ...componentDefaults,
     title: <h2>Start adding cases</h2>,
     iconType: 'logoSecurity',
-    hasBorder: false,
-    hasShadow: false,
     body: 'Add a new case or change your filter settings.', // Should be wrapped in a `<p>` in production usage, but using a string makes this easier to edit in Storybook controls
     actions: [
       <EuiButton color="primary" fill>
@@ -67,7 +66,6 @@ export const PageTemplate: Story = {
     </EuiPageTemplate>
   ),
   args: {
-    ...componentDefaults,
     title: <h2>Create your first visualization</h2>,
     layout: 'horizontal',
     icon: <EuiImage size="fullWidth" src={illustration} alt="" />,

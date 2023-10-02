@@ -20,23 +20,22 @@ import { EuiPage, EuiPageProps } from './page';
 const meta: Meta<EuiPageProps> = {
   title: 'EuiPage',
   component: EuiPage,
+  argTypes: {
+    restrictWidth: { control: 'boolean' },
+  },
+  args: {
+    // Component defaults
+    paddingSize: 'none',
+    grow: true,
+    direction: 'row',
+    restrictWidth: false,
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiPageProps>;
 
-const componentDefaults: EuiPageProps = {
-  paddingSize: 'none',
-  grow: true,
-  direction: 'row',
-  restrictWidth: false,
-};
-
 export const Playground: Story = {
-  args: componentDefaults,
-  argTypes: {
-    restrictWidth: { control: 'boolean' },
-  },
   render: ({ ...args }) => (
     <EuiFlexGroup
       direction="column"
@@ -53,7 +52,6 @@ export const Playground: Story = {
 
 export const RestrictWidth: Story = {
   args: {
-    ...componentDefaults,
     restrictWidth: '80vw',
   },
   // This story displays the restrictWidth functionality; removing other props to prevent confusion

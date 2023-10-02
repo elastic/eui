@@ -34,6 +34,7 @@ const meta: Meta<EuiCollapsibleNavBetaProps> = {
     },
   },
   args: {
+    // Component defaults
     side: 'left',
     initialIsCollapsed: false,
     width: 248,

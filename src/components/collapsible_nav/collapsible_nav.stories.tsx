@@ -15,6 +15,13 @@ import { EuiCollapsibleNav, EuiCollapsibleNavProps } from './collapsible_nav';
 const meta: Meta<EuiCollapsibleNavProps> = {
   title: 'EuiCollapsibleNav',
   component: EuiCollapsibleNav,
+  args: {
+    // Component defaults
+    isDocked: false,
+    dockedBreakpoint: 'l',
+    showButtonIfDocked: false,
+    size: 320,
+  },
   // TODO: Improve props inherited from EuiFlyout, ideally through
   // a DRY import from `flyout.stories.tsx` once that's created
 };
@@ -43,9 +50,5 @@ export const Playground: Story = {
   args: {
     children: 'Collapsible nav content',
     isOpen: true,
-    isDocked: false,
-    dockedBreakpoint: 'l',
-    showButtonIfDocked: false,
-    size: 240,
   },
 };

@@ -19,6 +19,12 @@ const meta: Meta<EuiKeyPadMenuItemProps> = {
   argTypes: {
     checkable: { options: [undefined, 'multi', 'single'] },
   },
+  args: {
+    label: 'Hello world', // String makes prop easier to change/toggle
+    // Component defaults
+    isDisabled: false,
+    isSelected: false,
+  },
 };
 
 export default meta;
@@ -27,9 +33,5 @@ type Story = StoryObj<EuiKeyPadMenuItemProps>;
 export const Playground: Story = {
   args: {
     children: <EuiIcon type="faceHappy" size="l" />,
-    // Make these props easier to change/toggle
-    label: 'Hello world',
-    isDisabled: false,
-    isSelected: false,
   },
 };

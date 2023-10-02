@@ -25,16 +25,16 @@ const meta: Meta<EuiTextTruncateProps> = {
     truncationOffset: { if: { arg: 'truncation', neq: 'startEnd' } }, // Should also not show on `middle`, but Storybook doesn't currently support multiple if conditions :(
     truncationPosition: { if: { arg: 'truncation', eq: 'startEnd' } },
   },
+  args: {
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    // Component defaults
+    truncation: 'end',
+    ellipsis: '…',
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiTextTruncateProps>;
-
-const componentDefaults = {
-  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-  truncation: 'end',
-  ellipsis: '…',
-} as const;
 
 export const Playground: Story = {
   render: (props) => (
@@ -43,7 +43,6 @@ export const Playground: Story = {
     </div>
   ),
   args: {
-    ...componentDefaults,
     width: 200,
   },
 };
@@ -70,7 +69,6 @@ export const ResizeObserver: Story = {
     </>
   ),
   args: {
-    ...componentDefaults,
     onResize: console.log,
   },
   argTypes: disableStorybookControls<EuiTextTruncateProps>(['width']),
@@ -118,7 +116,6 @@ export const StartEndAnchorForSearch: Story = {
     );
   },
   args: {
-    ...componentDefaults,
     width: 200,
     truncation: 'startEnd',
     truncationPosition: 30,

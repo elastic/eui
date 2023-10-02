@@ -20,6 +20,16 @@ const meta: Meta<EuiButtonEmptyProps> = {
     },
     iconType: { control: 'text' },
   },
+  args: {
+    // Component defaults
+    color: 'primary',
+    size: 'm',
+    iconSize: 'm',
+    iconSide: 'left',
+    isDisabled: false,
+    isLoading: false,
+    isSelected: false,
+  },
 };
 
 export default meta;
@@ -28,12 +38,5 @@ type Story = StoryObj<EuiButtonEmptyProps>;
 export const Playground: Story = {
   args: {
     children: 'Tertiary action',
-    color: 'primary',
-    size: 'm',
-    iconSize: 'm',
-    iconSide: 'left',
-    isDisabled: false,
-    isLoading: false,
-    isSelected: false,
   },
 };
