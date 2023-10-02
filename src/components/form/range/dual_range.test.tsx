@@ -204,9 +204,7 @@ describe('EuiDualRange', () => {
 
         expect(screen.getAllByRole('spinbutton')).toHaveLength(2);
 
-        fireEvent.focusIn(
-          screen.getByRole('spinbutton', { name: 'Min value' })
-        );
+        fireEvent.focus(screen.getByRole('spinbutton', { name: 'Min value' }));
 
         expect(screen.getByRole('dialog')).toBeDefined();
         expect(screen.getAllByRole('slider')).toHaveLength(2);

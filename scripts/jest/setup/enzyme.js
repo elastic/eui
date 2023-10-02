@@ -11,8 +11,10 @@ if (process.env.REACT_VERSION === '18') {
   // is not configured to support act()" errors for now
   // TODO: Remove when enzyme tests are replaced with RTL
   global.IS_REACT_ACT_ENVIRONMENT = true;
-} else {
+} else if (process.env.REACT_VERSION === '17') {
   Adapter = require('@wojtekmaj/enzyme-adapter-react-17');
+} else {
+  Adapter = require('enzyme-adapter-react-16');
 }
 
 configure({ adapter: new Adapter() });
