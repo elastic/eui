@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiPanel } from '../panel';
 import { EuiResizableContainer } from './resizable_container';
@@ -55,12 +56,12 @@ export const ProductionUsage: Story = {
     direction: 'horizontal',
     internalPosition: 'middle',
   },
-  argTypes: {
-    // Not testable via `EuiResizableContainer`, so hide these props from the controls
-    externalPosition: { table: { disable: true } },
-    isVisible: { table: { disable: true } },
-    isCollapsed: { table: { disable: true } },
-  },
+  // Not testable via `EuiResizableContainer`, so hide these props from the controls
+  argTypes: hideStorybookControls<EuiResizableCollapseButtonProps>([
+    'externalPosition',
+    'isVisible',
+    'isCollapsed',
+  ]),
   render: ({ direction, internalPosition }) => (
     <EuiResizableContainer direction={direction} css={{ blockSize: 500 }}>
       {(EuiResizablePanel, EuiResizableButton) => (

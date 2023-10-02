@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiText } from '../text';
 
@@ -97,15 +98,15 @@ export const MobileSideNav: Story = {
     items: sharedSideNavItems,
     mobileTitle: 'Toggle isOpenOnMobile in the controls panel',
   },
-  argTypes: {
-    // This story demos the side nav on smaller screens; removing other props to streamline controls
-    'aria-label': { table: { disable: true } },
-    heading: { table: { disable: true } },
-    headingProps: { table: { disable: true } },
-    items: { table: { disable: true } },
-    renderItem: { table: { disable: true } },
-    truncate: { table: { disable: true } },
-  },
+  // This story demos the side nav on smaller screens; removing other props to streamline controls
+  argTypes: hideStorybookControls<EuiSideNavProps>([
+    'aria-label',
+    'heading',
+    'headingProps',
+    'items',
+    'renderItem',
+    'truncate',
+  ]),
   parameters: {
     viewport: {
       defaultViewport: 'mobile1',
@@ -135,15 +136,15 @@ export const RenderItem: Story = {
       },
     ],
   },
-  argTypes: {
-    // This story demos the renderItem prop; removing other props to streamline controls
-    'aria-label': { table: { disable: true } },
-    heading: { table: { disable: true } },
-    headingProps: { table: { disable: true } },
-    toggleOpenOnMobile: { table: { disable: true } },
-    isOpenOnMobile: { table: { disable: true } },
-    mobileBreakpoints: { table: { disable: true } },
-    mobileTitle: { table: { disable: true } },
-    truncate: { table: { disable: true } },
-  },
+  // This story demos the renderItem prop; removing other props to streamline controls
+  argTypes: hideStorybookControls<EuiSideNavProps>([
+    'aria-label',
+    'heading',
+    'headingProps',
+    'toggleOpenOnMobile',
+    'isOpenOnMobile',
+    'mobileBreakpoints',
+    'mobileTitle',
+    'truncate',
+  ]),
 };

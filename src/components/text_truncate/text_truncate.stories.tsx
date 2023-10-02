@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
+import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiHighlight, EuiMark } from '../../components';
 
@@ -121,13 +122,13 @@ export const StartEndAnchorForSearch: Story = {
     truncation: 'startEnd',
     truncationPosition: 30,
   },
-  argTypes: {
+  argTypes: hideStorybookControls<EuiTextTruncateProps>([
     // Disable uncontrollable props
-    truncation: { table: { disable: true } },
-    truncationPosition: { table: { disable: true } },
+    'truncation',
+    'truncationPosition',
     // Disable props that aren't useful for this this demo
-    truncationOffset: { table: { disable: true } },
-    children: { table: { disable: true } },
-    onResize: { table: { disable: true } },
-  },
+    'truncationOffset',
+    'children',
+    'onResize',
+  ]),
 };

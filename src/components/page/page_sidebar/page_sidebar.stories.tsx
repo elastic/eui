@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../../.storybook/utils';
 
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection } from '../page_section';
@@ -63,12 +64,12 @@ export const StickyOffset: Story = {
     ...componentDefaults,
     sticky: { offset: 50 },
   },
-  argTypes: {
-    // This story demos the sticky functionality; removing other props to prevent confusion
-    minWidth: { table: { disable: true } },
-    paddingSize: { table: { disable: true } },
-    responsive: { table: { disable: true } },
-  },
+  // This story demos the sticky functionality; removing other props to prevent confusion
+  argTypes: hideStorybookControls<EuiPageSidebarProps>([
+    'minWidth',
+    'paddingSize',
+    'responsive',
+  ]),
   render: ({ ...args }) => (
     <EuiPage
       css={{
