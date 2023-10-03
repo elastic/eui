@@ -36,7 +36,7 @@ const testIcon = (props: PropsOf<typeof EuiIcon>) => async () => {
   });
   await waitFor(() => {
     const icon = document.querySelector(`[data-icon-type=${props.type}]`);
-    expect(icon).toHaveAttribute('data-is-loaded');
+    expect(icon).toHaveAttribute('data-is-loaded', 'true');
     expect(icon).toMatchSnapshot();
   });
 };
@@ -144,7 +144,7 @@ describe('EuiIcon', () => {
   describe('appendIconComponentCache', () => {
     it('does nothing if not called', () => {
       const { container } = render(<EuiIcon type="videoPlayer" />);
-      expect(container.firstChild).toHaveAttribute('data-is-loading');
+      expect(container.firstChild).toHaveAttribute('data-is-loading', 'true');
     });
 
     it('preloads the specified icon into the cache', () => {
@@ -160,7 +160,7 @@ describe('EuiIcon', () => {
         videoPlayer: EuiIconVideoPlayer,
       });
       const { container } = render(<EuiIcon type="accessibility" />);
-      expect(container.firstChild).toHaveAttribute('data-is-loading');
+      expect(container.firstChild).toHaveAttribute('data-is-loading', 'true');
     });
   });
 });
