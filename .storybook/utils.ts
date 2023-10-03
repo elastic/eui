@@ -7,6 +7,10 @@
  */
 
 /**
+ * argTypes configurations
+ */
+
+/**
  * Completely hide props from Storybook's controls panel.
  * Should be passed or spread to `argTypes`
  */
@@ -35,3 +39,26 @@ export const disableStorybookControls = <Props>(
   );
 };
 const DISABLE_CONTROL = { control: false };
+
+/**
+ * parameters configurations
+ */
+
+/**
+ * Will hide all props/controls. Pass to `parameters`
+ *
+ * TODO: Figure out some way to not show Storybook's "setup" text?
+ */
+export const hideAllStorybookControls = {
+  controls: { exclude: /.*/g },
+};
+
+/**
+ * Will hide the control/addon panel entirely for a specific story.
+ * Should be passed or spread to to `parameters`.
+ *
+ * Note that users can choose to re-show the panel in the UI
+ */
+export const hidePanel = {
+  options: { showPanel: false },
+};

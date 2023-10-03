@@ -8,6 +8,10 @@
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import {
+  hideStorybookControls,
+  hideAllStorybookControls,
+} from '../../../.storybook/utils';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
@@ -507,6 +511,5 @@ export const FlyoutOverlay: Story = {
       </EuiHeader>
     );
   },
-  // Hide all parameters
-  parameters: { controls: { exclude: /.*/g } },
+  parameters: hideAllStorybookControls,
 };

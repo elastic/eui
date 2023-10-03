@@ -93,6 +93,7 @@ const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: { disable: true }, // Use colorMode instead
+    options: { showPanel: true }, // default to showing the controls panel
     controls: {
       expanded: true,
       sort: 'requiredFirst',
