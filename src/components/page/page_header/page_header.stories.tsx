@@ -24,21 +24,20 @@ const meta: Meta<EuiPageHeaderProps> = {
     breadcrumbProps: { control: 'object' },
     tabsProps: { control: 'object' },
   },
+  args: {
+    // Component defaults
+    paddingSize: 'none',
+    responsive: true,
+    restrictWidth: false,
+    alignItems: undefined,
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiPageHeaderProps>;
 
-const componentDefaults: EuiPageHeaderProps = {
-  paddingSize: 'none',
-  responsive: true,
-  restrictWidth: false,
-  alignItems: undefined,
-};
-
 export const Playground: Story = {
   args: {
-    ...componentDefaults,
     pageTitle: 'Page title',
     iconType: 'logoKibana',
     description: 'Example of a description.',

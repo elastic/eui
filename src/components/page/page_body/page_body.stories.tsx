@@ -9,28 +9,31 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { BORDER_RADII, EuiPanelProps } from '../../panel/panel';
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPage } from '../page';
 
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 
-const meta: Meta<EuiPageBodyProps> = {
+const meta: Meta<EuiPageBodyProps & Pick<EuiPanelProps, 'borderRadius'>> = {
   title: 'EuiPageBody',
   component: EuiPageBody,
+  argTypes: {
+    borderRadius: { control: 'radio', options: BORDER_RADII },
+  },
+  args: {
+    // Component defaults
+    restrictWidth: false,
+    paddingSize: 'none',
+    borderRadius: 'none',
+    component: 'main', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to main
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiPageBodyProps>;
 
-const componentDefaults: EuiPageBodyProps = {
-  panelled: true,
-  restrictWidth: false,
-  paddingSize: 'm', // The component default is actually 'none', but for nicer visuals in Storybook we'll set it to 'm'
-  component: 'main', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to main
-};
-
 export const Playground: Story = {
-  args: componentDefaults,
   render: ({ ...args }) => (
     <EuiPage>
       <EuiPageBody {...args}>
@@ -43,4 +46,8 @@ export const Playground: Story = {
       </EuiPageBody>
     </EuiPage>
   ),
+  args: {
+    panelled: true,
+    paddingSize: 'm',
+  },
 };

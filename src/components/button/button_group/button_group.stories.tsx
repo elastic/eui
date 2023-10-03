@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import {
   EuiButtonGroup,
@@ -19,11 +20,6 @@ const meta: Meta<EuiButtonGroupProps> = {
   title: 'EuiButtonGroup',
   // @ts-ignore This still works for Storybook controls, even though Typescript complains
   component: EuiButtonGroup,
-  parameters: {
-    controls: {
-      exclude: ['data-test-subj'],
-    },
-  },
   argTypes: {
     type: {
       options: ['single', 'multi'],
@@ -43,6 +39,15 @@ const meta: Meta<EuiButtonGroupProps> = {
     buttonSize: {
       control: 'select',
     },
+  },
+  args: {
+    // Component defaults
+    type: 'single',
+    buttonSize: 's',
+    color: 'text',
+    isDisabled: false,
+    isFullWidth: false,
+    isIconOnly: false,
   },
 };
 
@@ -76,6 +81,17 @@ const EuiButtonGroupSingle = (props: any) => {
   );
 };
 
+export const SingleSelection: Story = {
+  render: ({ ...args }) => <EuiButtonGroupSingle {...args} />,
+  args: {
+    legend: 'EuiButtonGroup - single selection',
+    options,
+    type: 'single',
+    idSelected: 'button1',
+  },
+  argTypes: disableStorybookControls(['type']),
+};
+
 const EuiButtonGroupMulti = (props: any) => {
   const [idToSelectedMap, setIdToSelectedMap] = useState<
     Record<string, boolean>
@@ -100,24 +116,13 @@ const EuiButtonGroupMulti = (props: any) => {
   );
 };
 
-export const Playground: Story = {
-  render: ({ ...args }) => {
-    if (args.type === 'multi') {
-      return <EuiButtonGroupMulti {...args} />;
-    } else {
-      return <EuiButtonGroupSingle {...args} />;
-    }
-  },
+export const MultiSelection: Story = {
+  render: ({ ...args }) => <EuiButtonGroupMulti {...args} />,
   args: {
-    legend: 'EuiButtonGroup demo',
-    type: 'single',
+    legend: 'EuiButtonGroup - multiple selections',
     options,
-    idSelected: 'button1',
+    type: 'multi',
     idToSelectedMap: { button1: true },
-    buttonSize: 's',
-    color: 'text',
-    isDisabled: false,
-    isFullWidth: false,
-    isIconOnly: false,
-  } as any,
+  },
+  argTypes: disableStorybookControls(['type']),
 };
