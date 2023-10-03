@@ -31,17 +31,14 @@ jest.mock('./icon', () => {
 beforeEach(() => clearIconComponentCache());
 
 const testIcon = (props: PropsOf<typeof EuiIcon>) => async () => {
-  let container: HTMLElement;
-  const onIconLoad = () => {
-    expect(container.firstChild).toMatchSnapshot();
-  };
   act(() => {
-    ({ container } = render(<EuiIcon {...props} onIconLoad={onIconLoad} />));
+    render(<EuiIcon {...props} />);
   });
   await waitFor(() => {
-    expect(container.firstChild).not.toHaveAttribute('data-is-loading');
+    const icon = document.querySelector(`[data-icon-type=${props.type}]`);
+    expect(icon).toHaveAttribute('data-is-loaded');
+    expect(icon).toMatchSnapshot();
   });
-  expect.assertions(3);
 };
 
 describe('EuiIcon', () => {
@@ -57,6 +54,17 @@ describe('EuiIcon', () => {
   });
 
   describe('props', () => {
+    test('onIconLoad', async () => {
+      const onIconLoad = jest.fn();
+
+      render(<EuiIcon type="search" onIconLoad={onIconLoad} />);
+      expect(onIconLoad).toHaveBeenCalledTimes(0);
+
+      await waitFor(() => {
+        expect(onIconLoad).toHaveBeenCalledTimes(1);
+      });
+    });
+
     describe('other props', () => {
       test(
         'are passed through to the icon',
