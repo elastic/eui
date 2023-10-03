@@ -18,7 +18,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useGeneratedHtmlId, throttle } from '../../services';
+import {
+  useEuiTheme,
+  useEuiThemeCSSVariables,
+  useGeneratedHtmlId,
+  throttle,
+} from '../../services';
 
 import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
@@ -88,6 +93,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   focusTrapProps: _focusTrapProps,
   ...rest
 }) => {
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
   const euiTheme = useEuiTheme();
   const headerHeight = euiHeaderVariables(euiTheme).height;
 
@@ -138,8 +144,16 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   const width = useMemo(() => {
     if (isOverlayFullWidth) return '100%';
     if (isPush && isCollapsed) return headerHeight;
-    return _width;
+    return `${_width}px`;
   }, [_width, isOverlayFullWidth, isPush, isCollapsed, headerHeight]);
+
+  // Other UI elements may need to account for the nav width -
+  // set a global CSS variable that they can use
+  useEffect(() => {
+    setGlobalCSSVariables({
+      '--euiCollapsibleNavOffset': isOverlay ? '0' : width,
+    });
+  }, [width, isOverlay, setGlobalCSSVariables]);
 
   /**
    * Prop setup
