@@ -11,6 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
+import { EuiBottomBar } from '../bottom_bar';
 import { EuiFlyout } from '../flyout';
 import { EuiButton } from '../button';
 import { EuiTitle } from '../title';
@@ -467,6 +468,24 @@ export const FlyoutInFixedHeaders: Story = {
       </EuiHeader>
     );
   },
+};
+
+export const GlobalCSSVariable: Story = {
+  render: ({ ...args }) => (
+    <>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta {...args}>
+            This story tests the global `--euiCollapsibleNavOffset` CSS variable
+          </EuiCollapsibleNavBeta>
+        </EuiHeaderSection>
+      </EuiHeader>
+      <EuiBottomBar left="var(--euiCollapsibleNavOffset, 0)">
+        This text should be visible at all times and the bar position should
+        update dynamically based on the nav width (including on mobile)
+      </EuiBottomBar>
+    </>
+  ),
 };
 
 export const CollapsedStateInLocalStorage: Story = {

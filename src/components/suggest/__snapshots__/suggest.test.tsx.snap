@@ -10,49 +10,47 @@ exports[`EuiSuggest is rendered 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -68,54 +66,52 @@ exports[`EuiSuggest props append 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
-          <span
-            class="euiFormControlLayout__append"
-          >
-            Appended
-          </span>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
+        <span
+          class="euiFormControlLayout__append"
         >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
+          Appended
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -131,49 +127,47 @@ exports[`EuiSuggest props isVirtualized 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -189,49 +183,47 @@ exports[`EuiSuggest props maxHeight 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -247,49 +239,47 @@ exports[`EuiSuggest props options common 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -305,49 +295,47 @@ exports[`EuiSuggest props options standard 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -363,71 +351,69 @@ exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the searc
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--compressed"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-invalid="true"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFormControlLayout--2icons euiFieldSearch--compressed euiFieldSearch-isClearable euiFieldSearch-isInvalid euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              id="testId"
-              name="testName"
-              placeholder="Start typing"
-              type="search"
-              value="Controlled value"
-            />
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-            >
-              <button
-                aria-label="Clear input"
-                class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
-                data-test-subj="clearSearchButton"
-                type="button"
-              >
-                <span
-                  class="euiFormControlLayoutClearButton__icon"
-                  data-euiicon-type="cross"
-                />
-              </button>
-              <span
-                color="danger"
-                data-euiicon-type="warning"
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
               />
-            </div>
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-invalid="true"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFormControlLayout--2icons euiFieldSearch--compressed euiFieldSearch-isClearable euiFieldSearch-isInvalid euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            id="testId"
+            name="testName"
+            placeholder="Start typing"
+            type="search"
+            value="Controlled value"
+          />
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          >
+            <button
+              aria-label="Clear input"
+              class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+              data-test-subj="clearSearchButton"
+              type="button"
+            >
+              <span
+                class="euiFormControlLayoutClearButton__icon"
+                data-euiicon-type="cross"
+              />
+            </button>
+            <span
+              color="danger"
+              data-euiicon-type="warning"
+            />
           </div>
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -443,58 +429,56 @@ exports[`EuiSuggest props status status: loading is rendered 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-            >
-              <span
-                aria-label="Loading"
-                class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
-                role="progressbar"
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
               />
-            </div>
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          >
+            <span
+              aria-label="Loading"
+              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+              role="progressbar"
+            />
           </div>
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: loading.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: loading.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -510,58 +494,56 @@ exports[`EuiSuggest props status status: saved is rendered 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
             <span
-              class="euiSuggestInput__statusIcon"
-              color="success"
-              data-euiicon-type="checkInCircleFilled"
-            />
-          </span>
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          State: saved.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
+          <span
+            class="euiSuggestInput__statusIcon"
+            color="success"
+            data-euiicon-type="checkInCircleFilled"
+          />
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: saved.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -577,49 +559,47 @@ exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -635,58 +615,56 @@ exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
             <span
-              class="euiSuggestInput__statusIcon"
-              color="accent"
-              data-euiicon-type="dot"
-            />
-          </span>
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          State: unsaved.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
+          <span
+            class="euiSuggestInput__statusIcon"
+            color="accent"
+            data-euiicon-type="dot"
+          />
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unsaved.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -702,58 +680,56 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is r
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-            >
-              <span
-                aria-label="Loading"
-                class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
-                role="progressbar"
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
               />
-            </div>
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          >
+            <span
+              aria-label="Loading"
+              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+              role="progressbar"
+            />
           </div>
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: loading.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: loading.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -769,58 +745,56 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is ren
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
             <span
-              class="euiSuggestInput__statusIcon"
-              color="success"
-              data-euiicon-type="checkInCircleFilled"
-            />
-          </span>
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          State: saved.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
+          <span
+            class="euiSuggestInput__statusIcon"
+            color="success"
+            data-euiicon-type="checkInCircleFilled"
+          />
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: saved.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -836,49 +810,47 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
-        >
-          State: unchanged.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unchanged.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -894,58 +866,56 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is r
     <div
       class="euiPopover__anchor css-zih94u-render"
     >
-      <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+      >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          class="euiFormControlLayout__childrenWrapper"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <input
-              aria-activedescendant=""
-              aria-describedby="generated-id_instructions"
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
-              data-test-subj="test subject string"
-              placeholder="Filter options"
-              type="search"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
           >
             <span
-              class="euiSuggestInput__statusIcon"
-              color="accent"
-              data-euiicon-type="dot"
-            />
-          </span>
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
+          </div>
+          <input
+            aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            placeholder="Filter options"
+            type="search"
+            value=""
+          />
         </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id_instructions"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          State: unsaved.
-           
-          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-        </p>
+          <span
+            class="euiSuggestInput__statusIcon"
+            color="accent"
+            data-euiicon-type="dot"
+          />
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+        State: unsaved.
+         
+        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
