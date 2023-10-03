@@ -12,4 +12,7 @@ export type {
 } from './text_truncate';
 export { EuiTextTruncate } from './text_truncate';
 
+export type { EuiTextBlockTruncateProps } from './text_block_truncate';
+export { EuiTextBlockTruncate } from './text_block_truncate';
+
 export { TruncationUtils } from './utils';
