@@ -20,9 +20,13 @@ import React, {
 import classNames from 'classnames';
 
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { getElementZIndex } from '../../services/popover';
+import { CommonProps } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiI18n } from '../i18n';
-import { EuiComboBoxOptionsList } from './combo_box_options_list';
+import { EuiFormControlLayoutProps } from '../form';
+import { EuiFilterSelectItemClass } from '../filter_group/filter_select_item';
+import type { EuiTextTruncateProps } from '../text_truncate';
 
 import {
   getMatchingOptions,
@@ -44,11 +48,7 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
 } from './types';
-import { EuiFilterSelectItemClass } from '../filter_group/filter_select_item';
-import AutosizeInput from 'react-input-autosize';
-import { CommonProps } from '../common';
-import { EuiFormControlLayoutProps } from '../form';
-import { getElementZIndex } from '../../services/popover';
+import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -156,6 +156,16 @@ export interface _EuiComboBoxProps<T>
    * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-labelledby'?: string;
+  /**
+   * By default, EuiComboBox will truncate option labels at the end of
+   * the string. You can use pass in a custom truncation configuration that
+   * accepts any prop that [EuiTextTruncate](/#/utilities/text-truncate) prop
+   * except for `text` and `children`.
+   *
+   * Note: when searching, custom truncation props are ignored. The highlighted search
+   * text will always take precedence.
+   */
+  truncationProps?: Partial<Omit<EuiTextTruncateProps, 'text' | 'children'>>;
 }
 
 /**
@@ -244,12 +254,6 @@ export class EuiComboBox<T> extends Component<
         width: comboBoxBounds.width,
       });
     }
-  };
-  autoSizeInputRefInstance: RefInstance<AutosizeInput & HTMLDivElement> = null;
-  autoSizeInputRefCallback: RefCallback<AutosizeInput & HTMLDivElement> = (
-    ref
-  ) => {
-    this.autoSizeInputRefInstance = ref;
   };
 
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
@@ -776,13 +780,6 @@ export class EuiComboBox<T> extends Component<
 
   componentDidMount() {
     this._isMounted = true;
-
-    // TODO: This will need to be called once the actual stylesheet loads.
-    setTimeout(() => {
-      if (this.autoSizeInputRefInstance) {
-        this.autoSizeInputRefInstance.copyInputStyles();
-      }
-    }, 100);
   }
 
   static getDerivedStateFromProps<T>(
@@ -921,6 +918,7 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      truncationProps,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       ...rest
@@ -1007,6 +1005,7 @@ export class EuiComboBox<T> extends Component<
                   getSelectedOptionForSearchValue
                 }
                 listboxAriaLabel={listboxAriaLabel}
+                truncationProps={truncationProps}
               />
             )}
           </EuiI18n>
@@ -1031,7 +1030,6 @@ export class EuiComboBox<T> extends Component<
         ref={this.comboBoxRefCallback}
       >
         <EuiComboBoxInput
-          autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}
           focusedOptionId={
             this.hasActiveOption()

@@ -5,6 +5,7 @@
 3. [Resolving errors](#resolving-errors)
     * [Snafus requiring backports](#snafu)
 4. [Merging the PR](#merging-the-pr)
+    * [FAQ for Kibana teams](#faq-for-kibana-teams)
 
 ## Getting started
 
@@ -123,13 +124,19 @@ Tips:
     * `export TEST_BROWSER_HEADLESS=1` (runs screenshot updates in headless mode to match CI)
     * `yarn node scripts/functional_test_runner --config=... -u --headless` (`-u` or `--updateBaseline` is what updates the screenshots)
 
-#### Security/OSQuery Cypress (`x-pack/plugins/{security_solution|osquery}/cypress/`)
+#### Security Cypress tests (`x-pack/test/security_solution_cypress/`)
 
-Follow [Security's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) or [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+Follow [Security's Cypress README](https://github.com/elastic/kibana/tree/main/x-pack/test/security_solution_cypress/cypress#running-the-tests) to run individual tests in headed Cypress.
 
-> Note: OSQuery's Cypress tests appear to have copied Security's Cypress setup and should generally function similarly.
+> Note: Kibana's Cypress tests landscape is changing very quickly as of late and many other teams (e.g. Fleet, Observability) are starting to add Cypress tests directly to `x-pack/test/`.
 
-#### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability|ux}/e2e`)
+#### OSQuery Cypress tests (`x-pack/plugins/osquery/cypress/`)
+
+Follow [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in headed Cypress.
+
+> Note that this README may be slightly out of date, if `yarn cypress:open-as-ci` doesn't work, try `yarn cypress:open` instead.
+
+#### @elastic/synthetics tests (`x-pack/plugins/{synthetics|observability|ux}/e2e`)
 
 Follow [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
 
@@ -173,7 +180,7 @@ Once CI is passing green, mark your draft PR as "Ready for review".
 ### Leaving comments
 
 * Mention/ping any teams that are waiting on features to be available.
-* Upgrades that result in significant changes to tests and/or snapshots will often require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering code styles typical of the plugin.
+* Upgrades that result in significant changes to tests and/or snapshots will often require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering to code styles typical of the plugin.
 
 ### Keeping your PR up to date
 
@@ -182,6 +189,33 @@ Once CI is passing green, mark your draft PR as "Ready for review".
 
 ### Waiting for approvals/admin merges
 
-* Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews containing non-snapshot code changes on Slack, letting them know that the review is for an EUI upgrade PR.
+* When the PR opens, ping all CODEOWNER teams immediately on Slack to give teams as much heads up as possible, as team sizes and priorities vary. We should let teams know an approximate amount of time they'll have before we request an admin merge (e.g. EOD Friday).
 * Once all approvals are in and CI is still passing green, smash that merge button :boom:
-* If, after several days and nudges, review(s) remain outstanding, we should ask KibanaOps to admin merge the PR without all approvals (provided that the review(s) are for minor changes we feel confident in, e.g. snapshot updates with an expected diff).
+* If, by the end of the week, review(s) remain outstanding, we should ask KibanaOps to admin merge the PR without all approvals (provided CI is passing and that that the review(s) are for minor changes we feel confident in, e.g. snapshot updates with an expected diff).
+
+### FAQ for Kibana teams
+
+#### Q: I've been pinged as a CODEOWNER for an EUI upgrade PR. What should I do?
+
+If you've been pinged, this means that some code belonging to your team has been changed as a result of upstream EUI changes. This can be due to several reasons:
+- A snapshot change due to underlying DOM or CSS/class changes in EUI
+- A breaking change that required your code to be updated in order to continue functioning as before
+- A (typically) minor cleanup change that EUI noticed in your code
+
+We ask for a code review of the files owned by your team (not the entire PR) to ensure that it looks reasonable. QA is optional - in general, we rely on tests and feature freeze QA to catch any UI issues that may have slipped past (hopefully few to none).
+
+We do encourage manual QA of your team's app/plugin if the changes are large enough, or if the impacted component/UI raises concern about regressions or broken behavior. In general, EUI tries to call out any larger or riskier changes at the top of our PR description to help narrow down QA/smoke testing.
+
+#### Q: I've caught an issue that we think is caused by the EUI upgrade - what do I do?
+
+If the issue only occurs on the upgrade PR branch and not in Kibana main, please feel free to alert us in a GitHub comment and we'll look into resolving it ASAP.
+
+If you've caught an issue post-merge that you think is the a result of an EUI upgrade, we're always more than happy to investigate and find a resolution - please feel free to reach out to us in the EUI Slack channel.
+
+EUI tries (when humanly possible) not to merge in larger or riskier PRs close to feature freeze dates, to avoid issues shipping into production releases.
+
+#### Q: Why are requested review turnaround times so short?
+
+EUI upgrade PRs have shorter (~weekly) turnarounds, which is an challenging necessity for our team. We own upgrades that touch many teams' files (usually snapshots), and holding up PRs can at times block certain teams from needed features, or end up causing a pile-up of massive changelogs later.
+
+If you can't review in time, that's fine, just let us know. We're always happy to investigate issues post-merge if necessary.

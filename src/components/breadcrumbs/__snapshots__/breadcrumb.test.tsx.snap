@@ -42,7 +42,7 @@ exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with p
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

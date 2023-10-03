@@ -11,7 +11,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
-  logicalShorthandCSS,
+  mathWithUnits,
   euiFontSize,
 } from '../../../global_styling';
 import { euiButtonColor } from '../../../themes/amsterdam/global_styling/mixins/button';
@@ -48,15 +48,30 @@ export const euiCollapsibleNavItemTitleStyles = {
   `,
 };
 
-export const euiCollapsibleNavSubItemGroupTitleStyles = ({
-  euiTheme,
-}: UseEuiTheme) => {
+/**
+ * Sub item groups
+ */
+
+export const euiCollapsibleNavSubItemsStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    euiCollapsibleNavItem__groupTitle: css`
-      ${logicalCSS('margin-top', euiTheme.size.base)}
-      ${logicalShorthandCSS(
-        'padding',
-        `${euiTheme.size.xs} ${euiTheme.size.s}`
+    euiCollapsibleNavItem__items: css``,
+    isGroup: css`
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
+      ${logicalCSS('padding-left', euiTheme.size.s)}
+    `,
+    isTopItem: css`
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
+      ${logicalCSS('padding-left', euiTheme.size.xl)}
+    `,
+    isSubItem: css`
+      ${logicalCSS('border-left', euiTheme.border.thin)}
+      ${logicalCSS('margin-left', euiTheme.size.s)}
+        ${logicalCSS(
+        'padding-left',
+        mathWithUnits(
+          [euiTheme.size.s, euiTheme.border.width.thin],
+          (x, y) => x - y
+        )
       )}
     `,
   };

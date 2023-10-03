@@ -12,16 +12,43 @@ import { UseEuiTheme } from '../../services';
 
 export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    euiCallOut: css``,
+    euiCallOut: css`
+      position: relative;
+    `,
+    hasDismissButton: {
+      // Ensure that only the top-most (first-child) title or child text
+      // has a padding-right on it (to account for the dismiss button)
+      hasDimissButton: css`
+        & > :first-child:is(.euiTitle),
+        & > :first-child:is(.euiText) > :first-child {
+          ${logicalCSS('padding-right', euiTheme.size.base)}
+        }
+      `,
+      // Ensure the callout always has enough height for the button
+      s: css`
+        ${logicalCSS('min-height', euiTheme.size.xl)}
+      `,
+      m: css`
+        ${logicalCSS('min-height', euiTheme.size.xxl)}
+      `,
+    },
+    dismissButton: {
+      euiCallOut__dismissButton: css`
+        position: absolute;
+      `,
+      s: css`
+        ${logicalCSS('top', euiTheme.size.xs)}
+        ${logicalCSS('right', euiTheme.size.xs)}
+      `,
+      m: css`
+        ${logicalCSS('top', euiTheme.size.s)}
+        ${logicalCSS('right', euiTheme.size.s)}
+      `,
+    },
     euiCallOut__icon: css`
       position: relative;
       ${logicalCSS('top', '-1px')}
       ${logicalCSS('margin-right', euiTheme.size.s)}
-    `,
-    euiCallOut__description: css`
-      :not(:only-child) {
-        ${logicalCSS('margin-top', euiTheme.size.s)}
-      }
     `,
   };
 };
@@ -36,7 +63,6 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
         // In case it's nested inside EuiText
       )}
     `,
-
     primary: css`
       color: ${euiTheme.colors.primaryText};
     `,

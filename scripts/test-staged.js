@@ -1,11 +1,6 @@
 const { execSync } = require('child_process');
 
-// find names of staged files
-const stagedFiles = execSync('git diff --cached --name-only --diff-filter=ACMR')
-  .toString()
-  .split(/[\r\n]+/g);
-
-// execute tests related to the staged files
-execSync(`yarn test-unit --findRelatedTests ${stagedFiles.join(' ')}`, {
+// https://jestjs.io/docs/cli#--changedsince
+execSync(`yarn test-unit --changedSince main`, {
   stdio: 'inherit',
 });

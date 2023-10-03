@@ -7,140 +7,91 @@
  */
 
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
 import { resetServerContext } from '@hello-pangea/dnd';
-
-import { findTestSubject, requiredProps } from '../../test';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
 import {
+  shouldRenderCustomStyles,
   invokeOnReactVersion,
   describeByReactVersion,
 } from '../../test/internal';
 
-import { EuiDragDropContext, EuiDroppable } from './';
-import { EuiDroppableContext } from './droppable';
-
-function snapshotDragDropContext(component: ReactWrapper) {
-  // Get the Portal's sibling and return its html
-  const renderedHtml = component.html();
-  const container = document.createElement('div');
-  container.innerHTML = renderedHtml;
-  return container.firstChild;
-}
+import { EuiDragDropContext } from './drag_drop_context';
+import { EuiDroppable, EuiDroppableContext } from './droppable';
 
 describeByReactVersion('EuiDroppable', () => {
+  const requiredContextProps = { onDragEnd: () => {} };
+
   afterEach(() => {
     // Resetting DND server context is only required in older versions of React
     invokeOnReactVersion(['16', '17'], resetServerContext);
   });
 
-  test('is rendered', () => {
-    const handler = jest.fn();
-    jest.mock('react', () => {
-      const react = jest.requireActual('react');
-      return {
-        ...react,
-        useLayoutEffect: react.useEffect,
-      };
-    });
-    const component = mount(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">{() => <div />}</EuiDroppable>
-      </EuiDragDropContext>
-    );
+  shouldRenderCustomStyles(
+    <EuiDroppable droppableId="id">{() => <div />}</EuiDroppable>,
+    { wrapper: EuiDragDropContext }
+  );
 
-    expect(snapshotDragDropContext(component)).toMatchSnapshot();
-  });
-
-  test('can be given ReactElement children', () => {
-    const handler = jest.fn();
-    jest.mock('react', () => {
-      const react = jest.requireActual('react');
-      return {
-        ...react,
-        useLayoutEffect: react.useEffect,
-      };
-    });
-    const component = mount(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <div />
+  it('renders', () => {
+    const { baseElement } = render(
+      <EuiDragDropContext {...requiredContextProps}>
+        <EuiDroppable droppableId="testDroppable" {...requiredProps}>
+          {() => <div />}
         </EuiDroppable>
       </EuiDragDropContext>
     );
 
-    expect(snapshotDragDropContext(component)).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
-  test('can be given multiple ReactElement children', () => {
-    const handler = jest.fn();
-    jest.mock('react', () => {
-      const react = jest.requireActual('react');
-      return {
-        ...react,
-        useLayoutEffect: react.useEffect,
-      };
-    });
-
-    const component = mount(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+  it('can be given ReactElement children', () => {
+    const { getByTestSubject } = render(
+      <EuiDragDropContext {...requiredContextProps}>
         <EuiDroppable droppableId="testDroppable">
-          <div />
-          <div />
-          <div />
+          <div data-test-subj="reactChildren" />
         </EuiDroppable>
       </EuiDragDropContext>
     );
 
-    expect(snapshotDragDropContext(component)).toMatchSnapshot();
+    expect(getByTestSubject('reactChildren')).toBeInTheDocument();
   });
 
-  describe('custom behavior', () => {
-    describe('cloneDraggables', () => {
-      jest.mock('react', () => {
-        const react = jest.requireActual('react');
-        return {
-          ...react,
-          useLayoutEffect: react.useEffect,
-        };
-      });
+  it('can be given multiple ReactElement children', () => {
+    const { getByTestSubject } = render(
+      <EuiDragDropContext {...requiredContextProps}>
+        <EuiDroppable droppableId="testDroppable">
+          <div data-test-subj="A" />
+          <div data-test-subj="B" />
+          <div data-test-subj="C" />
+        </EuiDroppable>
+      </EuiDragDropContext>
+    );
 
-      test('sets `cloneItems` on proprietary context', () => {
-        const handler = jest.fn();
-        const component = mount(
-          <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-            <EuiDroppable droppableId="testDroppable" cloneDraggables={true}>
-              <EuiDroppableContext.Consumer>
-                {({ cloneItems }) => (
-                  <div data-test-subj="child">
-                    {cloneItems ? 'true' : 'false'}
-                  </div>
-                )}
-              </EuiDroppableContext.Consumer>
-            </EuiDroppable>
-          </EuiDragDropContext>
-        );
+    expect(getByTestSubject('A')).toBeInTheDocument();
+    expect(getByTestSubject('B')).toBeInTheDocument();
+    expect(getByTestSubject('C')).toBeInTheDocument();
+  });
 
-        expect(findTestSubject(component, 'child').text()).toBe('true');
-      });
+  describe('cloneDraggables', () => {
+    it('sets `cloneItems` and `isDropDisabled` on proprietary context', () => {
+      const { container, getByTestSubject } = render(
+        <EuiDragDropContext {...requiredContextProps}>
+          <EuiDroppable droppableId="testDroppable" cloneDraggables={true}>
+            <EuiDroppableContext.Consumer>
+              {({ cloneItems }) => (
+                <div data-test-subj="child">
+                  {cloneItems ? 'true' : 'false'}
+                </div>
+              )}
+            </EuiDroppableContext.Consumer>
+          </EuiDroppable>
+        </EuiDragDropContext>
+      );
 
-      test('sets `isDropDisabled`', () => {
-        const handler = jest.fn();
-        const component = mount(
-          <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-            <EuiDroppable droppableId="testDroppable" cloneDraggables={true}>
-              <EuiDroppableContext.Consumer>
-                {({ cloneItems }) => (
-                  <div data-test-subj="child">
-                    {cloneItems ? 'true' : 'false'}
-                  </div>
-                )}
-              </EuiDroppableContext.Consumer>
-            </EuiDroppable>
-          </EuiDragDropContext>
-        );
-
-        expect(component.find('.euiDroppable--isDisabled').length).toBe(1);
-      });
+      expect(getByTestSubject('child')).toHaveTextContent('true');
+      expect(
+        container.querySelector('.euiDroppable-isDisabled')
+      ).toBeInTheDocument();
     });
   });
 });

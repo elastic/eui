@@ -28,12 +28,14 @@ const users: User[] = [];
 for (let i = 0; i < 10; i++) {
   users.push({
     id: i + 1,
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
-    jobTitle: faker.name.jobTitle(),
-    address: `${faker.address.streetAddress()} ${faker.address.cityName()} ${faker.address.stateAbbr()} ${faker.address.zipCode()}`,
+    jobTitle: faker.person.jobTitle(),
+    address: `${faker.location.streetAddress()} ${faker.location.city()} ${faker.location.state(
+      { abbreviated: true }
+    )} ${faker.location.zipCode()}`,
   });
 }
 

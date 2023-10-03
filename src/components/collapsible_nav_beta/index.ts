@@ -17,6 +17,5 @@ export { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
 export type {
   EuiCollapsibleNavItemProps,
   EuiCollapsibleNavSubItemProps,
-  EuiCollapsibleNavSubItemGroupTitle,
 } from './collapsible_nav_item';
 export { EuiCollapsibleNavItem } from './collapsible_nav_item';

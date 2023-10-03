@@ -15,6 +15,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
+import classNames from 'classnames';
 
 import { useCombinedRefs } from '../../services';
 import {
@@ -23,8 +24,8 @@ import {
 } from '../observer/resize_observer';
 import type { CommonProps } from '../common';
 
-import { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';
-import { euiTextTruncateStyles } from './text_truncate.styles';
+import { TruncationUtils } from './utils';
+import { euiTextTruncateStyles as styles } from './text_truncate.styles';
 
 const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
 export type EuiTextTruncationTypes = (typeof TRUNCATION_TYPES)[number];
@@ -85,16 +86,6 @@ export type EuiTextTruncateProps = Omit<
      */
     onResize?: (width: number) => void;
     /**
-     * By default, EuiTextTruncate will calculate its truncation via DOM manipulation
-     * and measurement, which has the benefit of automatically inheriting font styles.
-     * However, if this approach proves to have a significant performance impact for your
-     * usage, consider using the `canvas` API instead, which is more performant.
-     *
-     * Please note that there are minute pixel to subpixel differences between the
-     * two options due to different rendering engines.
-     */
-    measurementRenderAPI?: 'dom' | 'canvas';
-    /**
      * By default, EuiTextTruncate will render the truncated string directly.
      * You can optionally pass a render prop function to the component, which
      * allows for more flexible text rendering, e.g. adding custom markup
@@ -105,12 +96,13 @@ export type EuiTextTruncateProps = Omit<
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
   width,
+  onResize,
   ...props
 }) => {
   return width != null ? (
     <EuiTextTruncateWithWidth width={width} {...props} />
   ) : (
-    <EuiTextTruncateWithResizeObserver {...props} />
+    <EuiTextTruncateWithResizeObserver onResize={onResize} {...props} />
   );
 };
 
@@ -128,7 +120,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   truncationPosition,
   ellipsis = '…',
   containerRef,
-  measurementRenderAPI = 'dom',
+  className,
   ...rest
 }) => {
   // Note: This needs to be a state and not a ref to trigger a rerender on mount
@@ -158,16 +150,12 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     let truncatedText = '';
     if (!containerEl || !width) return truncatedText;
 
-    const params = {
+    const utils = new TruncationUtils({
       fullText: text,
       ellipsis,
       container: containerEl,
       availableWidth: width,
-    };
-    const utils =
-      measurementRenderAPI === 'canvas'
-        ? new TruncationUtilsWithCanvas(params)
-        : new TruncationUtilsWithDOM(params);
+    });
 
     if (utils.checkIfTruncationIsNeeded() === false) {
       truncatedText = text;
@@ -194,10 +182,6 @@ const EuiTextTruncateWithWidth: FunctionComponent<
           break;
       }
     }
-
-    if (measurementRenderAPI === 'dom') {
-      (utils as TruncationUtilsWithDOM).cleanup();
-    }
     return truncatedText;
   }, [
     width,
@@ -207,14 +191,14 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     truncationPosition,
     ellipsis,
     containerEl,
-    measurementRenderAPI,
   ]);
 
   const isTruncating = truncatedText !== text;
 
   return (
     <div
-      css={euiTextTruncateStyles.euiTextTruncate}
+      className={classNames('euiTextTruncate', className)}
+      css={styles.euiTextTruncate}
       ref={refs}
       title={isTruncating ? text : undefined}
       {...rest}
@@ -222,18 +206,25 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       {isTruncating ? (
         <>
           <span
-            css={euiTextTruncateStyles.truncatedText}
+            className="euiTextTruncate__truncatedText"
+            css={styles.euiTextTruncate__truncatedText}
             aria-hidden
             data-test-subj="truncatedText"
           >
             {children ? children(truncatedText) : truncatedText}
           </span>
-          <span css={euiTextTruncateStyles.fullText} data-test-subj="fullText">
+          <span
+            className="euiTextTruncate__fullText"
+            css={styles.euiTextTruncate__fullText}
+            data-test-subj="fullText"
+          >
             {text}
           </span>
         </>
       ) : (
-        <span data-test-subj="fullText">{text}</span>
+        <span className="euiTextTruncate__fullText" data-test-subj="fullText">
+          {children ? children(text) : text}
+        </span>
       )}
     </div>
   );

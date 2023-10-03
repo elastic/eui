@@ -16,26 +16,19 @@ exports[`EuiComboBox is rendered 1`] = `
         data-test-subj="comboBoxInput"
         tabindex="-1"
       >
-        <div
+        <input
+          aria-autocomplete="list"
+          aria-controls=""
+          aria-expanded="false"
+          aria-invalid="false"
+          aria-label="aria-label"
           class="euiComboBox__input"
-          style="font-size: 14px; display: inline-block;"
-        >
-          <input
-            aria-autocomplete="list"
-            aria-controls=""
-            aria-expanded="false"
-            aria-invalid="false"
-            aria-label="aria-label"
-            data-test-subj="comboBoxSearchInput"
-            id="generated-id__eui-combobox-id"
-            role="combobox"
-            style="box-sizing: content-box; width: 2px;"
-            value=""
-          />
-          <div
-            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 0.875rem; font-family: 'Inter',BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-weight: 400; letter-spacing: normal; text-transform: none;"
-          />
-        </div>
+          data-test-subj="comboBoxSearchInput"
+          id="generated-id__eui-combobox-id"
+          role="combobox"
+          style="inline-size: 2px;"
+          value=""
+        />
       </div>
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
@@ -67,7 +60,6 @@ exports[`props aria-label attribute is rendered 1`] = `
 >
   <EuiComboBoxInput
     aria-label="Test label"
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={false}
@@ -102,7 +94,6 @@ exports[`props aria-labelledby attribute is rendered 1`] = `
 >
   <EuiComboBoxInput
     aria-labelledby="test-heading-id"
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={false}
@@ -136,7 +127,6 @@ exports[`props autoFocus is rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -179,7 +169,6 @@ exports[`props custom ID is rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -222,7 +211,6 @@ exports[`props delimiter is rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -265,7 +253,6 @@ exports[`props full width is rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={true}
     hasSelectedOptions={true}
@@ -305,7 +292,6 @@ exports[`props isClearable=false disallows user from clearing input when no opti
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={false}
@@ -338,7 +324,6 @@ exports[`props isClearable=false disallows user from clearing input when options
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -380,7 +365,6 @@ exports[`props isDisabled is rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -435,7 +419,11 @@ Array [
             Pre
           </span>
         </span>
-        1
+        <span
+          class="eui-textTruncate"
+        >
+          1
+        </span>
       </span>
       <button
         aria-label="Remove 1 from selection in this group"
@@ -462,7 +450,11 @@ Array [
       <span
         class="euiBadge__text emotion-euiBadge__text"
       >
-        2
+        <span
+          class="eui-textTruncate"
+        >
+          2
+        </span>
         <span
           class="euiComboBoxPill__append"
         >
@@ -504,13 +496,17 @@ exports[`props option.prepend & option.append renders in single selection 1`] = 
       Pre
     </span>
   </span>
-  1
+  <span
+    class="eui-textTruncate"
+  >
+    1
+  </span>
 </span>
 `;
 
 exports[`props option.prepend & option.append renders in the options dropdown 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+  class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-isAttached-bottom"
   data-popover-open="true"
   data-popover-panel="true"
   data-test-subj="comboBoxOptionsList"
@@ -623,25 +619,18 @@ exports[`props options list is rendered 1`] = `
         data-test-subj="comboBoxInput"
         tabindex="-1"
       >
-        <div
+        <input
+          aria-autocomplete="list"
+          aria-controls="generated-id_listbox"
+          aria-expanded="true"
+          aria-invalid="false"
           class="euiComboBox__input"
-          style="font-size: 14px; display: inline-block;"
-        >
-          <input
-            aria-autocomplete="list"
-            aria-controls="generated-id_listbox"
-            aria-expanded="true"
-            aria-invalid="false"
-            data-test-subj="comboBoxSearchInput"
-            id="generated-id__eui-combobox-id"
-            role="combobox"
-            style="box-sizing: content-box; width: 2px;"
-            value=""
-          />
-          <div
-            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
-          />
-        </div>
+          data-test-subj="comboBoxSearchInput"
+          id="generated-id__eui-combobox-id"
+          role="combobox"
+          style="inline-size: 2px;"
+          value=""
+        />
       </div>
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
@@ -663,7 +652,7 @@ exports[`props options list is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-isAttached-bottom"
     data-popover-open="true"
     data-popover-panel="true"
     data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
@@ -940,7 +929,6 @@ exports[`props selectedOptions are rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -983,7 +971,6 @@ exports[`props singleSelection is rendered 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
@@ -1024,7 +1011,6 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
 >
   <EuiComboBoxInput
     append="String"
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={false}
@@ -1067,7 +1053,6 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   onKeyDown={[Function]}
 >
   <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}

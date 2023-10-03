@@ -31,6 +31,15 @@ const performanceSource = require('!!raw-loader!./performance');
 
 export const TextTruncateExample = {
   title: 'Text truncation',
+  isBeta: true,
+  intro: (
+    <EuiCallOut iconType="beta" title="Beta development" color="warning">
+      <strong>EuiTextTruncate</strong> is a beta component that is still
+      undergoing <Link to="#performance">performance investigation</Link>. We
+      would particularly caution in high-usage scenarios (e.g. over 500 usages
+      per page).
+    </EuiCallOut>
+  ),
   sections: [
     {
       source: [
@@ -224,7 +233,7 @@ export const TextTruncateExample = {
       text: (
         <>
           <p>
-            <strong>EuiTextTruncate</strong> uses an extra DOM element under the
+            <strong>EuiTextTruncate</strong> uses a canvas element under the
             hood to manipulate text and calculate whether the text width fits
             within the available width. Additionally, by default, the component
             will include its own resize observer in order to react to width
@@ -232,9 +241,9 @@ export const TextTruncateExample = {
           </p>
           <p>
             These functionalities can cause performance issues if the component
-            is rendered many times per page, and we would strongly recommend
-            using caution when doing so. Several escape hatches are available
-            for performance improvements:
+            is rendered over hundreds of times per page, and we would strongly
+            recommend using caution when doing so. Several escape hatches are
+            available for performance improvements:
           </p>
           <ol
             css={({ euiTheme }) =>
@@ -249,18 +258,16 @@ export const TextTruncateExample = {
               Pass a <EuiCode>width</EuiCode> prop to skip initializing a resize
               observer for each component instance. For text within a container
               of the same width, we would strongly recommend applying a single
-              resize observer to the parent container and passing down that
-              width to all child <strong>EuiTextTruncate</strong>s.
+              resize observer to the parent container and passing that width to
+              all child <strong>EuiTextTruncate</strong>s. Additionally, you may
+              want to consider{' '}
+              <EuiLink href="https://lodash.com/docs/#throttle" target="_blank">
+                throttling
+              </EuiLink>{' '}
+              any resize observers or width-based logic.
             </li>
             <li>
-              Use the <EuiCode>measurementRenderAPI="canvas"</EuiCode> prop to
-              utilize the Canvas API for text measurement. While this can be
-              significantly more performant at higher iterations, please do note
-              that there are minute pixel to subpixel differences in this
-              rendering method.
-            </li>
-            <li>
-              Strongly consider using{' '}
+              Use{' '}
               <EuiLink
                 href="https://github.com/bvaughn/react-window"
                 target="_blank"
@@ -268,18 +275,13 @@ export const TextTruncateExample = {
                 virtualization
               </EuiLink>{' '}
               to reduce the number of rendered elements visible at any given
-              time, or{' '}
-              <EuiLink href="https://lodash.com/docs/#throttle" target="_blank">
-                throttling
-              </EuiLink>{' '}
-              any resize observers or width-based logic.
+              time. For over hundreds of instances, this will generally be the
+              most effective solution for performance or rerender issues.
             </li>
             <li>
               If necessary, consider pulling out the underlying{' '}
-              <EuiCode>TruncationUtilsForDOM</EuiCode> and{' '}
-              <EuiCode>TruncationUtilsForCanvas</EuiCode> truncation utils and
-              re-using the same canvas context or DOM node, as opposed to
-              repeatedly creating new ones.
+              <EuiCode>TruncationUtils</EuiCode> and re-using the same canvas
+              context, as opposed to repeatedly creating new ones.
             </li>
           </ol>
         </>
@@ -290,7 +292,6 @@ export const TextTruncateExample = {
       snippet: `<EuiTextTruncate
   text="Hello world"
   width={width}
-  measurementRenderAPI="canvas"
 />`,
     },
   ],

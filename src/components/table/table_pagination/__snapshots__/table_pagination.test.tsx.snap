@@ -209,7 +209,7 @@ exports[`EuiTablePagination renders 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-hasTransform"
         data-autofocus="true"
         data-popover-panel="true"
         role="dialog"
@@ -235,6 +235,7 @@ exports[`EuiTablePagination renders 1`] = `
           >
             <div>
               <button
+                aria-current="true"
                 class="euiContextMenuItem"
                 data-test-subj="tablePagination-10-rows"
                 type="button"

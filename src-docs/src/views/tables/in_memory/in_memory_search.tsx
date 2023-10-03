@@ -11,7 +11,6 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiFlexGroup,
-  EuiFlexItem,
   EuiCallOut,
   EuiCode,
 } from '../../../../../src/components';
@@ -27,16 +26,23 @@ type User = {
 };
 
 const users: User[] = [];
+const usersWithSpecialCharacters: User[] = [];
 
 for (let i = 0; i < 20; i++) {
-  users.push({
+  const userData = {
     id: i + 1,
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
-    location: faker.address.country(),
+    location: faker.location.country(),
+  };
+  users.push(userData);
+  usersWithSpecialCharacters.push({
+    ...userData,
+    firstName: `${userData.firstName} "${faker.string.symbol(10)}"`,
+    lastName: `${userData.lastName} ${faker.internet.emoji()}`,
   });
 }
 
@@ -108,6 +114,7 @@ export default () => {
   const [incremental, setIncremental] = useState(false);
   const [filters, setFilters] = useState(false);
   const [contentBetween, setContentBetween] = useState(false);
+  const [textSearchFormat, setTextSearchFormat] = useState(false);
 
   const search: EuiSearchBarProps = {
     box: {
@@ -138,34 +145,34 @@ export default () => {
   return (
     <>
       <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="Incremental"
-            checked={incremental}
-            onChange={() => setIncremental(!incremental)}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="With Filters"
-            checked={filters}
-            onChange={() => setFilters(!filters)}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="Content between"
-            checked={contentBetween}
-            onChange={() => setContentBetween(!contentBetween)}
-          />
-        </EuiFlexItem>
+        <EuiSwitch
+          label="Incremental"
+          checked={incremental}
+          onChange={() => setIncremental(!incremental)}
+        />
+        <EuiSwitch
+          label="With Filters"
+          checked={filters}
+          onChange={() => setFilters(!filters)}
+        />
+        <EuiSwitch
+          label="Content between"
+          checked={contentBetween}
+          onChange={() => setContentBetween(!contentBetween)}
+        />
+        <EuiSwitch
+          label="Plain text search"
+          checked={textSearchFormat}
+          onChange={() => setTextSearchFormat(!textSearchFormat)}
+        />
       </EuiFlexGroup>
       <EuiSpacer size="l" />
       <EuiInMemoryTable
         tableCaption="Demo of EuiInMemoryTable with search"
-        items={users}
+        items={textSearchFormat ? usersWithSpecialCharacters : users}
         columns={columns}
         search={search}
+        searchFormat={textSearchFormat ? 'text' : 'eql'}
         pagination={true}
         sorting={true}
         childrenBetween={

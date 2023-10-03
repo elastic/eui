@@ -17,8 +17,8 @@ const data = [];
 
 for (let i = 0; i < 10; i++) {
   data.push([
-    <span>{faker.name.firstName()}</span>,
-    <span>{faker.name.firstName()}</span>,
+    <span>{faker.person.firstName()}</span>,
+    <span>{faker.person.firstName()}</span>,
 
     <span>
       <EuiLink href="#/tabular-content/data-grid-cells-popovers#focus">

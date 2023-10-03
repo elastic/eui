@@ -6,26 +6,19 @@
  * Side Public License, v 1.
  */
 
-import { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';
+import { TruncationUtils } from './utils';
 
-const sharedParams = {
-  fullText: 'Lorem ipsum dolor sit amet',
-  ellipsis: '...',
-  availableWidth: 200,
-};
-
-describe('TruncationUtilsWithDOM', () => {
+describe('TruncationUtils', () => {
   const params = {
-    ...sharedParams,
-    container: document.createElement('div'),
+    fullText: 'Lorem ipsum dolor sit amet',
+    ellipsis: '...',
+    availableWidth: 200,
+    font: '14px Inter',
   };
 
-  // JSDOM doesn't have box model widths, so we need to mock it
-  const setSpanWidth = (width: number) => {
-    Object.defineProperty(HTMLSpanElement.prototype, 'offsetWidth', {
-      configurable: true,
-      value: width,
-    });
+  const setMockTextWidth = (width: number) => (utils: TruncationUtils) => {
+    // @ts-ignore - mocked canvas_text_utils.testenv allows setting this value
+    utils.textWidth = width;
   };
 
   // A few utilities log errors - silence them and capture the messages
@@ -33,221 +26,80 @@ describe('TruncationUtilsWithDOM', () => {
   beforeEach(() => consoleErrorSpy.mockClear());
   afterAll(() => consoleErrorSpy.mockRestore());
 
-  describe('DOM utils', () => {
-    const utils = new TruncationUtilsWithDOM(params);
+  describe('ratio utils', () => {
+    const utils = new TruncationUtils({
+      ...params,
+      availableWidth: 1000,
+    });
 
-    describe('textWidth', () => {
-      it('returns the offsetWidth of the internal span element', () => {
-        setSpanWidth(500);
-        expect(utils.textWidth).toEqual(500);
+    describe('setTextWidthRatio', () => {
+      it('sets the ratio of the available width to the full text width', () => {
+        setMockTextWidth(10000)(utils);
+        utils.setTextWidthRatio();
+        expect(utils.widthRatio).toEqual(0.1);
+      });
+
+      it('allow measuring passed text and deducting an offset width', () => {
+        // Note: there isn't a super great way to mock a real-world example of this
+        // in Jest because mockCanvasWidth applies to both the measured text and excluded text
+        setMockTextWidth(500)(utils);
+        utils.setTextWidthRatio('text to measure', 'some excluded text');
+        expect(utils.widthRatio).toEqual(1);
       });
     });
 
-    describe('setTextToCheck', () => {
-      it('sets the text content of the internal span element', () => {
-        utils.setTextToCheck('hello world');
-        expect(utils.span.textContent).toEqual('hello world');
-      });
-    });
-
-    describe('cleanup', () => {
-      it('removes the internal span element from the DOM', () => {
-        expect(params.container.contains(utils.span)).toBeTruthy();
-        utils.cleanup();
-        expect(params.container.contains(utils.span)).toBeFalsy();
+    describe('getTextFromRatio', () => {
+      it('splits the passed text string by the ratio determined by `setTextWidthRatio`', () => {
+        setMockTextWidth(3000)(utils);
+        utils.setTextWidthRatio(); // 0.33
+        // Should split the strings by the last/first third
+        expect(utils.getTextFromRatio('Lorem ipsum', 'start')).toEqual('psum');
+        expect(utils.getTextFromRatio('dolor sit', 'end')).toEqual('dol');
       });
     });
   });
 
   describe('early return checks', () => {
-    const utils = new TruncationUtilsWithDOM(params);
-    afterAll(() => utils.cleanup());
+    const utils = new TruncationUtils(params);
 
     describe('checkIfTruncationIsNeeded', () => {
       it('returns false if truncation is not needed', () => {
-        setSpanWidth(100);
+        setMockTextWidth(100)(utils);
         expect(utils.checkIfTruncationIsNeeded()).toEqual(false);
 
-        setSpanWidth(400);
+        setMockTextWidth(400)(utils);
         expect(utils.checkIfTruncationIsNeeded()).toBeUndefined();
       });
     });
 
     describe('checkSufficientEllipsisWidth', () => {
       it('returns false and errors if the container is not wide enough for the ellipsis', () => {
-        setSpanWidth(201);
+        setMockTextWidth(201)(utils);
         expect(utils.checkSufficientEllipsisWidth('startEnd')).toEqual(false);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           'The truncation ellipsis is larger than the available width. No text can be rendered.'
         );
 
-        setSpanWidth(10);
+        setMockTextWidth(10)(utils);
         expect(utils.checkSufficientEllipsisWidth('start')).toBeUndefined();
       });
     });
 
     describe('checkTruncationOffsetWidth', () => {
       it('returns false and errors if the container is not wide enough for the offset text', () => {
-        setSpanWidth(201);
+        setMockTextWidth(201)(utils);
         expect(utils.checkTruncationOffsetWidth('hello')).toEqual(false);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
         );
 
-        setSpanWidth(200);
+        setMockTextWidth(200)(utils);
         expect(utils.checkTruncationOffsetWidth('world')).toBeUndefined();
       });
     });
   });
 
-  describe('truncation types', () => {
-    // Again, JSDOM doesn't have the concept of widths, so this is a bit
-    // of a mockery, but it at least gives us some confidence in our substring logic
-    let mockSpanWidth: number;
-    beforeEach(() => {
-      mockSpanWidth = params.availableWidth + 5; // 5 while loop iterations
-    });
-
-    // Simulate the width going down with each removed character
-    let mockTextWidth: jest.SpyInstance;
-    beforeAll(() => {
-      mockTextWidth = jest
-        .spyOn(TruncationUtilsWithDOM.prototype, 'textWidth', 'get')
-        .mockImplementation(() => mockSpanWidth--);
-    });
-    const utils = new TruncationUtilsWithDOM(params);
-
-    afterAll(() => {
-      utils.cleanup();
-      mockTextWidth.mockRestore();
-    });
-
-    describe('start', () => {
-      it('inserts ellipsis at the start of the text', () => {
-        expect(utils.truncateStart()).toEqual('... ipsum dolor sit amet');
-      });
-
-      describe('truncationOffset', () => {
-        it('preserves the specified number of characters at the start of the text', () => {
-          mockTextWidth.mockImplementationOnce(() => 30); // Mocks the `checkTruncationOffsetWidth` check
-          expect(utils.truncateStart(3)).toEqual('Lor...sum dolor sit amet');
-        });
-
-        it('truncates the offset if the truncationOffset is too large', () => {
-          mockTextWidth.mockImplementationOnce(() => 201);
-          expect(utils.truncateStart(20)).toEqual('... ipsum dolor si');
-          expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        });
-      });
-    });
-
-    describe('end', () => {
-      it('inserts ellipsis at the end of the text', () => {
-        expect(utils.truncateEnd()).toEqual('Lorem ipsum dolor sit...');
-      });
-
-      describe('truncationOffset', () => {
-        it('preserves the specified number of characters at the end of the text', () => {
-          mockTextWidth.mockImplementationOnce(() => 30); // Mocks the `checkTruncationOffsetWidth` check
-          expect(utils.truncateEnd(3)).toEqual('Lorem ipsum dolor ...met');
-        });
-
-        it('truncates the offset if the truncationOffset is too large', () => {
-          mockTextWidth.mockImplementationOnce(() => 201);
-          expect(utils.truncateEnd(18)).toEqual('sum dolor sit...');
-          expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        });
-      });
-    });
-
-    describe('startEnd', () => {
-      describe('with no truncationPosition', () => {
-        it('inserts ellipsis at the start and end of the text', () => {
-          expect(utils.truncateStartEndAtMiddle()).toEqual(
-            '... ipsum dolor sit...'
-          );
-        });
-      });
-
-      describe('with truncationPosition', () => {
-        // Because this approach builds up text instead of removing, we need to re-mock widths
-        beforeEach(() => {
-          mockSpanWidth = params.availableWidth - 8;
-          mockTextWidth.mockImplementation(() => mockSpanWidth++);
-        });
-        afterAll(() => {
-          mockTextWidth.mockImplementation(() => mockSpanWidth--); // restore mock
-        });
-
-        it('allows moving the anchor point of the displayed text', () => {
-          expect(utils.truncateStartEndAtPosition(10)).toEqual(
-            '...rem ipsum dolor ...'
-          );
-        });
-
-        it('does not display the leading ellipsis if the index is close to the start', () => {
-          expect(utils.truncateStartEndAtPosition(2)).toEqual('Lorem ipsu...');
-        });
-
-        it('does not display the trailing ellipsis if the index is close to the end', () => {
-          expect(utils.truncateStartEndAtPosition(20)).toEqual(
-            '...dolor sit amet'
-          );
-        });
-      });
-    });
-
-    describe('middle', () => {
-      it('inserts ellipsis in the middle of the text', () => {
-        expect(utils.truncateMiddle()).toEqual('Lorem ipsu...or sit amet');
-      });
-    });
-  });
-});
-
-describe('TruncationUtilsWithCanvas', () => {
-  // Jest absolutely does not have canvas so I honestly have no idea why I'm even doing this
-  // Except that like a Pavlovian dog conditioned for treats, so I am conditioned
-  // for that sweet sweet green 100% code coverage
-  Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-    value: () => ({ measureText: () => ({ width: 200 }), font: '' }),
-  });
-
-  describe('font calculations', () => {
-    it('computes the set font if passed a container element', () => {
-      const container = document.createElement('div');
-      container.style.font = '14px Inter';
-
-      const utils = new TruncationUtilsWithCanvas({
-        ...sharedParams,
-        container,
-      });
-      expect(utils.context.font).toEqual('14px Inter');
-    });
-
-    it('accepts a static font string', () => {
-      const utils = new TruncationUtilsWithCanvas({
-        ...sharedParams,
-        font: '14px Inter',
-      });
-      expect(utils.context.font).toEqual('14px Inter');
-    });
-  });
-
-  describe('canvas utils', () => {
-    const utils = new TruncationUtilsWithCanvas({ ...sharedParams, font: '' });
-
-    describe('textWidth', () => {
-      it('returns the measured text width from the canvas', () => {
-        expect(utils.textWidth).toEqual(200);
-      });
-    });
-
-    describe('setTextToCheck', () => {
-      it('sets the internal currentText variable', () => {
-        utils.setTextToCheck('hello world');
-        expect(utils.currentText).toEqual('hello world');
-      });
-    });
-  });
+  // As JSDOM has no concept of widths, we can't meaningfully test the
+  // truncation type methods in Jest - see `utils.spec.tsx` instead,
+  // and use `yarn combine-test-coverage` to see final code coverage
 });
