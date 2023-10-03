@@ -34,11 +34,14 @@ const testIcon = (props: PropsOf<typeof EuiIcon>) => async () => {
   act(() => {
     render(<EuiIcon {...props} />);
   });
-  await waitFor(() => {
-    const icon = document.querySelector(`[data-icon-type=${props.type}]`);
-    expect(icon).toHaveAttribute('data-is-loaded', 'true');
-    expect(icon).toMatchSnapshot();
-  });
+  await waitFor(
+    () => {
+      const icon = document.querySelector(`[data-icon-type=${props.type}]`);
+      expect(icon).toHaveAttribute('data-is-loaded', 'true');
+      expect(icon).toMatchSnapshot();
+    },
+    { timeout: 3000 } // CI will sometimes time out if the icon doesn't load fast enough
+  );
 };
 
 describe('EuiIcon', () => {
