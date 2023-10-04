@@ -38,6 +38,13 @@ import { writingModeStyles } from './writing_mode.styles';
 // once all EUI components are converted to Emotion
 import '../dist/eui_theme_light.css';
 
+/**
+ * Prop controls
+ */
+
+import type { CommonProps } from '../src/components/common';
+import { hideStorybookControls } from './utils';
+
 const preview: Preview = {
   decorators: [
     (Story, context) => (
@@ -89,6 +96,7 @@ const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: { disable: true }, // Use colorMode instead
+    options: { showPanel: true }, // default to showing the controls panel
     controls: {
       expanded: true,
       sort: 'requiredFirst',
@@ -103,12 +111,13 @@ const preview: Preview = {
   },
   // Due to CommonProps, these props appear on almost every Story, but generally
   // aren't super useful to test - let's disable them by default and (if needed)
-  // individual stories can re-enable them
-  argTypes: {
-    css: { table: { disable: true } },
-    className: { table: { disable: true } },
-    'data-test-subj': { table: { disable: true } },
-  },
+  // individual stories can re-enable them, e.g. by passing
+  // `argTypes: { 'data-test-subj': { table: { disable: false } } }`
+  argTypes: hideStorybookControls<CommonProps>([
+    'css',
+    'className',
+    'data-test-subj',
+  ]),
 };
 
 export default preview;

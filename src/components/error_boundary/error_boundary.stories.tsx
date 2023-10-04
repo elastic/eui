@@ -11,31 +11,26 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiErrorBoundary, EuiErrorBoundaryProps } from './error_boundary';
 
-const ErrorContent = () => {
-  throw new Error(
-    "I'm here to kick butt and chew bubblegum.\n\nAnd I'm all out of gum."
-  );
-};
-
 const meta: Meta<EuiErrorBoundaryProps> = {
   title: 'EuiErrorBoundary',
-  component: () => (
-    <EuiErrorBoundary>
-      <ErrorContent />
-    </EuiErrorBoundary>
-  ),
+  component: EuiErrorBoundary,
   parameters: {
     layout: 'fullscreen',
-  },
-  argTypes: {
-    onError: {
-      description:
-        'TODO: extract prop descriptions, defaults, and types from Typescript ',
-    },
   },
 };
 
 export default meta;
 type Story = StoryObj<EuiErrorBoundaryProps>;
 
-export const Default: Story = {};
+const ErrorContent = () => {
+  throw new Error(
+    "I'm here to kick butt and chew bubblegum.\n\nAnd I'm all out of gum."
+  );
+};
+
+export const Playground: Story = {
+  args: {
+    children: <ErrorContent />,
+    onError: console.log,
+  },
+};

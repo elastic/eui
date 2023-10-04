@@ -19,6 +19,12 @@ import {
 const meta: Meta<EuiResizableButtonProps> = {
   title: 'EuiResizableButton',
   component: EuiResizableButton,
+  args: {
+    // Component defaults
+    alignIndicator: 'center',
+    disabled: false,
+    isHorizontal: false,
+  },
 };
 
 export default meta;
@@ -30,9 +36,4 @@ export const Playground: Story = {
       <EuiResizableButton {...args} />
     </EuiPanel>
   ),
-  args: {
-    isHorizontal: true,
-    alignIndicator: 'center',
-    disabled: false,
-  },
 };

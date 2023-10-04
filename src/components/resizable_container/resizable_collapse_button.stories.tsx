@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiPanel } from '../panel';
 import { EuiResizableContainer } from './resizable_container';
@@ -19,19 +20,20 @@ import {
 const meta: Meta<EuiResizableCollapseButtonProps> = {
   title: 'EuiResizableCollapseButton',
   component: EuiResizableCollapseButton,
+  args: {
+    isVisible: true,
+    // Component defaults
+    direction: 'horizontal',
+    externalPosition: 'before',
+    internalPosition: 'middle',
+    isCollapsed: false,
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiResizableCollapseButtonProps>;
 
 export const Playground: Story = {
-  args: {
-    direction: 'horizontal',
-    externalPosition: 'before',
-    internalPosition: 'middle',
-    isVisible: true,
-    isCollapsed: false,
-  },
   render: ({ isCollapsed, direction, ...args }) => (
     <EuiPanel
       paddingSize="none"
@@ -51,16 +53,12 @@ export const Playground: Story = {
 };
 
 export const ProductionUsage: Story = {
-  args: {
-    direction: 'horizontal',
-    internalPosition: 'middle',
-  },
-  argTypes: {
-    // Not testable via `EuiResizableContainer`, so hide these props from the controls
-    externalPosition: { table: { disable: true } },
-    isVisible: { table: { disable: true } },
-    isCollapsed: { table: { disable: true } },
-  },
+  // Not testable via `EuiResizableContainer`, so hide these props from the controls
+  argTypes: hideStorybookControls<EuiResizableCollapseButtonProps>([
+    'externalPosition',
+    'isVisible',
+    'isCollapsed',
+  ]),
   render: ({ direction, internalPosition }) => (
     <EuiResizableContainer direction={direction} css={{ blockSize: 500 }}>
       {(EuiResizablePanel, EuiResizableButton) => (

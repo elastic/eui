@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiFlexGroup } from '../flex';
 import { EuiSkeletonText } from '../skeleton';
@@ -19,23 +20,22 @@ import { EuiPage, EuiPageProps } from './page';
 const meta: Meta<EuiPageProps> = {
   title: 'EuiPage',
   component: EuiPage,
+  argTypes: {
+    restrictWidth: { control: 'boolean' },
+  },
+  args: {
+    // Component defaults
+    paddingSize: 'none',
+    grow: true,
+    direction: 'row',
+    restrictWidth: false,
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiPageProps>;
 
-const componentDefaults: EuiPageProps = {
-  paddingSize: 'none',
-  grow: true,
-  direction: 'row',
-  restrictWidth: false,
-};
-
 export const Playground: Story = {
-  args: componentDefaults,
-  argTypes: {
-    restrictWidth: { control: 'boolean' },
-  },
   render: ({ ...args }) => (
     <EuiFlexGroup
       direction="column"
@@ -52,15 +52,14 @@ export const Playground: Story = {
 
 export const RestrictWidth: Story = {
   args: {
-    ...componentDefaults,
     restrictWidth: '80vw',
   },
-  argTypes: {
-    // This story displays the restrictWidth functionality; removing other props to prevent confusion
-    grow: { table: { disable: true } },
-    direction: { table: { disable: true } },
-    paddingSize: { table: { disable: true } },
-  },
+  // This story displays the restrictWidth functionality; removing other props to prevent confusion
+  argTypes: hideStorybookControls<EuiPageProps>([
+    'grow',
+    'direction',
+    'paddingSize',
+  ]),
   render: ({ ...args }) => <EuiPage {...args}>{_pageContent}</EuiPage>,
 };
 

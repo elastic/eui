@@ -26,17 +26,17 @@ import { EuiHeader, EuiHeaderProps } from './header';
 const meta: Meta<EuiHeaderProps> = {
   title: 'EuiHeader',
   component: EuiHeader,
+  args: {
+    // Component defaults
+    position: 'static',
+    theme: 'default',
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiHeaderProps>;
 
-export const Playground: Story = {
-  args: {
-    position: 'static',
-    theme: 'default',
-  },
-};
+export const Playground: Story = {};
 
 export const Sections: Story = {
   args: {
