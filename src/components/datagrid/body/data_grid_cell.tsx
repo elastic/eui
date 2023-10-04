@@ -35,6 +35,7 @@ import {
   EuiDataGridCellValueElementProps,
   EuiDataGridCellValueProps,
   EuiDataGridCellPopoverElementProps,
+  EuiDataGridRowHeightOption,
 } from '../data_grid_types';
 import {
   EuiDataGridCellActions,
@@ -51,30 +52,27 @@ const EuiDataGridCellContent: FunctionComponent<
     isControlColumn: boolean;
     isFocused: boolean;
     ariaRowIndex: number;
+    rowHeight?: EuiDataGridRowHeightOption;
+    cellHeightType: string;
   }
 > = memo(
   ({
     renderCellValue,
     column,
     setCellContentsRef,
-    rowHeightsOptions,
     rowIndex,
     colIndex,
     ariaRowIndex,
+    rowHeight,
     rowHeightUtils,
     isControlColumn,
     isFocused,
+    cellHeightType,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
-
-    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
-      rowIndex,
-      rowHeightsOptions
-    );
-    const cellHeightType = rowHeightUtils?.getHeightType(rowHeightOption);
 
     const classes = classNames(
       `euiDataGridRowCell__${cellHeightType}Height`,
@@ -101,7 +99,7 @@ const EuiDataGridCellContent: FunctionComponent<
       </div>
     );
     if (cellHeightType === 'lineCount' && !isControlColumn) {
-      const lines = rowHeightUtils!.getLineCount(rowHeightOption)!;
+      const lines = rowHeightUtils!.getLineCount(rowHeight)!;
       cellContent = (
         <EuiTextBlockTruncate lines={lines} cloneElement>
           {cellContent}
@@ -678,24 +676,25 @@ export class EuiDataGridCell extends Component<
       rowHeightsOptions
     );
 
-    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
+    const rowHeight = rowHeightUtils?.getRowHeightOption(
       rowIndex,
       rowHeightsOptions
     );
     const cellHeightType =
-      rowHeightUtils?.getHeightType(rowHeightOption) || 'default';
+      rowHeightUtils?.getHeightType(rowHeight) || 'default';
 
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
       column,
       columnType,
+      cellHeightType,
       isExpandable,
       isExpanded: popoverIsOpen,
       isDetails: false,
       isFocused: this.state.isFocused,
       setCellContentsRef: this.setCellContentsRef,
-      rowHeightsOptions,
+      rowHeight,
       rowHeightUtils,
       isControlColumn: cellClasses.includes(
         'euiDataGridRowCell--controlColumn'
