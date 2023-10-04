@@ -17,6 +17,7 @@ import React, {
   KeyboardEvent,
   memo,
   MutableRefObject,
+  ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { tabbable } from 'tabbable';
@@ -48,18 +49,21 @@ const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    setPopoverAnchorRef: MutableRefObject<HTMLDivElement | null>;
     isExpanded: boolean;
     isControlColumn: boolean;
     isFocused: boolean;
     ariaRowIndex: number;
     rowHeight?: EuiDataGridRowHeightOption;
     cellHeightType: string;
+    cellActions?: ReactNode;
   }
 > = memo(
   ({
     renderCellValue,
     column,
     setCellContentsRef,
+    setPopoverAnchorRef,
     rowIndex,
     colIndex,
     ariaRowIndex,
@@ -68,11 +72,15 @@ const EuiDataGridCellContent: FunctionComponent<
     isControlColumn,
     isFocused,
     cellHeightType,
+    cellActions,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
+
+    // TODO: Clean up expand/content by height shenanigans
+    const wrapperClasses = classNames();
 
     const classes = classNames(
       `euiDataGridRowCell__${cellHeightType}Height`,
@@ -125,10 +133,11 @@ const EuiDataGridCellContent: FunctionComponent<
     );
 
     return (
-      <>
+      <div ref={setPopoverAnchorRef} className={wrapperClasses}>
         {cellContent}
         {screenReaderText}
-      </>
+        {cellActions}
+      </div>
     );
   }
 );
@@ -671,11 +680,6 @@ export class EuiDataGridCell extends Component<
       }
     };
 
-    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
-      rowIndex,
-      rowHeightsOptions
-    );
-
     const rowHeight = rowHeightUtils?.getRowHeightOption(
       rowIndex,
       rowHeightsOptions
@@ -694,6 +698,7 @@ export class EuiDataGridCell extends Component<
       isDetails: false,
       isFocused: this.state.isFocused,
       setCellContentsRef: this.setCellContentsRef,
+      setPopoverAnchorRef: this.popoverAnchorRef,
       rowHeight,
       rowHeightUtils,
       isControlColumn: cellClasses.includes(
@@ -701,11 +706,6 @@ export class EuiDataGridCell extends Component<
       ),
       ariaRowIndex,
     };
-
-    const anchorClass = 'euiDataGridRowCell__expandFlex';
-    const expandClass = isDefinedHeight
-      ? 'euiDataGridRowCell__contentByHeight'
-      : 'euiDataGridRowCell__expandContent';
 
     let innerContent = (
       <EuiFocusTrap
@@ -716,36 +716,32 @@ export class EuiDataGridCell extends Component<
         }}
         clickOutsideDisables={true}
       >
-        <div className={anchorClass} ref={this.popoverAnchorRef}>
-          <div className={expandClass}>
-            <EuiDataGridCellContent {...cellContentProps} />
-          </div>
-        </div>
+        <EuiDataGridCellContent {...cellContentProps} />
       </EuiFocusTrap>
     );
 
     if (isExpandable) {
       innerContent = (
-        <div className={anchorClass} ref={this.popoverAnchorRef}>
-          <div className={expandClass}>
-            <EuiDataGridCellContent {...cellContentProps} />
-          </div>
-          {showCellActions && (
-            <EuiDataGridCellActions
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-              column={column}
-              cellHeightType={cellHeightType}
-              onExpandClick={() => {
-                if (popoverIsOpen) {
-                  closeCellPopover();
-                } else {
-                  openCellPopover({ rowIndex: visibleRowIndex, colIndex });
-                }
-              }}
-            />
-          )}
-        </div>
+        <EuiDataGridCellContent
+          {...cellContentProps}
+          cellActions={
+            showCellActions && (
+              <EuiDataGridCellActions
+                rowIndex={rowIndex}
+                colIndex={colIndex}
+                column={column}
+                cellHeightType={cellHeightType}
+                onExpandClick={() => {
+                  if (popoverIsOpen) {
+                    closeCellPopover();
+                  } else {
+                    openCellPopover({ rowIndex: visibleRowIndex, colIndex });
+                  }
+                }}
+              />
+            )
+          }
+        />
       );
     }
 
