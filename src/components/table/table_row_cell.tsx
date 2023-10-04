@@ -8,7 +8,6 @@
 
 import React, {
   CSSProperties,
-  Fragment,
   FunctionComponent,
   ReactElement,
   ReactNode,
@@ -16,8 +15,8 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
+import { CommonProps } from '../common';
 import {
   HorizontalAlignment,
   LEFT_ALIGNMENT,
@@ -239,14 +238,14 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
         {/* Content depending on mobile render existing */}
         {mobileOptions.render ? (
-          <Fragment>
+          <>
             <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
               {modifyChildren(mobileOptions.render)}
             </div>
             <div className={`${contentClasses} ${hideForMobileClasses}`}>
               {childrenNode}
             </div>
-          </Fragment>
+          </>
         ) : (
           <div className={contentClasses}>{childrenNode}</div>
         )}
