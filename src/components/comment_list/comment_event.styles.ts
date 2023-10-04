@@ -8,20 +8,47 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, euiBackgroundColor } from '../../global_styling';
 
-export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiCommentEvent: css`
-    overflow: hidden;
-  `,
-  // types
-  regular: css`
-    border: ${euiTheme.border.thin};
-    border-radius: ${euiTheme.border.radius.medium};
-  `,
-  update: css``,
-  custom: css``,
-});
+export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiCommentEvent: css`
+      overflow: hidden;
+    `,
+    // types
+    regular: css`
+      border: ${euiTheme.border.thin};
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+    update: css``,
+    custom: css``,
+    // variants
+    border: {
+      warning: css`
+        border: 1px solid ${euiBackgroundColor(euiThemeContext, 'warning')};
+      `,
+      accent: css`
+        border: 1px solid ${euiBackgroundColor(euiThemeContext, 'accent')};
+      `,
+      primary: css`
+        border: 1px solid ${euiBackgroundColor(euiThemeContext, 'primary')};
+      `,
+      success: css`
+        border: 1px solid ${euiBackgroundColor(euiThemeContext, 'success')};
+      `,
+      danger: css`
+        border: 1px solid ${euiBackgroundColor(euiThemeContext, 'danger')};
+      `,
+      subdued: css`
+        border: ${euiTheme.border.thin};
+      `,
+      transparent: css``,
+      plain: css``,
+    },
+  };
+};
 
 export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__header: css``,
@@ -34,6 +61,7 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   // variants
   hasEventColor: css`
     padding: 0;
+    ${logicalCSS('border-bottom', 'none')}
   `,
   // Children
   euiCommentEvent__headerMain: css`

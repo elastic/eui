@@ -9,6 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+import { useEuiBackgroundColorCSS } from '../../global_styling';
 import classNames from 'classnames';
 import { IconType } from '../icon';
 import { EuiPanel, EuiPanelProps } from '../panel';
@@ -90,13 +91,20 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const euiTheme = useEuiTheme();
 
   const styles = euiCommentEventStyles(euiTheme);
-  const cssStyles = [styles.euiCommentEvent, styles[type]];
+  const cssStyles = [
+    styles.euiCommentEvent,
+    styles[type],
+    eventColor && styles.border[eventColor],
+  ];
 
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
+  const eventBackgroundColors = useEuiBackgroundColorCSS();
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
-    eventColor && headerStyles.hasEventColor,
     isTypeRegular && headerStyles.regular,
+    eventColor &&
+      eventBackgroundColors[eventColor] &&
+      headerStyles.hasEventColor,
   ];
 
   const bodyStyles = euiCommentEventBodyStyles(euiTheme);
