@@ -138,6 +138,15 @@
   }
 }
 
+.euiDataGridRowCell__numericalHeight {
+  // Without this rule, popover anchors content that overflows off the page
+  [data-euiportal],
+  .euiPopover,
+  .euiPopover__anchor {
+    height: 100%;
+  }
+}
+
 // Cell actions
 .euiDataGridRowCell__actions {
   display: flex;

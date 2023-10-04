@@ -94,7 +94,18 @@ const EuiDataGridCellContent: FunctionComponent<
 
     let cellContent = (
       <div
-        ref={setCellContentsRef}
+        ref={(el) => {
+          setCellContentsRef(el);
+          setPopoverAnchorRef.current =
+            cellHeightType === 'default'
+              ? // Default height cells need the popover to be anchored on the wrapper,
+                // in order for the popover to centered on the full cell width (as content
+                // width is affected by the width of cell actions)
+                (el?.parentElement as HTMLDivElement)
+              : // Numerical height cells need the popover anchor to be below the wrapper
+                // class, in order to set height: 100% on the portalled popover div wrappers
+                el;
+        }}
         data-datagrid-cellcontent
         className={classes}
       >
@@ -135,7 +146,7 @@ const EuiDataGridCellContent: FunctionComponent<
     );
 
     return (
-      <div ref={setPopoverAnchorRef} className={wrapperClasses}>
+      <div className={wrapperClasses}>
         {cellContent}
         {screenReaderText}
         {cellActions}

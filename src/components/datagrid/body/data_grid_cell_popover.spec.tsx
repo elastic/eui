@@ -130,4 +130,77 @@ describe('EuiDataGridCellPopover', () => {
 
     cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
   });
+
+  describe('popover anchor/positioning', () => {
+    const props = {
+      ...baseProps,
+      rowCount: 1,
+      renderCellValue: ({ columnId }) => {
+        if (columnId === 'A') {
+          return 'short text';
+        } else {
+          return 'Very long text that should get cut off because it is so long';
+        }
+      },
+    };
+
+    const openCellPopover = (id: string) => {
+      cy.get(
+        `[data-gridcell-row-index="0"][data-gridcell-column-id="${id}"]`
+      ).realClick();
+      cy.realPress('Enter');
+    };
+
+    it('default row height', () => {
+      cy.realMount(<EuiDataGrid {...props} />);
+
+      openCellPopover('B');
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'left', '24.5px')
+        .should('have.css', 'top', '104px');
+    });
+
+    it('lineCount row height', () => {
+      cy.realMount(
+        <EuiDataGrid
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
+        />
+      );
+      openCellPopover('B');
+
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'left', '24.5px')
+        .should('have.css', 'top', '127px');
+    });
+
+    it('numerical row height', () => {
+      cy.realMount(
+        <EuiDataGrid {...props} rowHeightsOptions={{ defaultHeight: 40 }} />
+      );
+      openCellPopover('B');
+
+      // Should not be anchored to the bottom of the overflowing text
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'left', '24.5px')
+        .should('have.css', 'top', '106px');
+    });
+
+    it('auto row height', () => {
+      cy.realMount(
+        <EuiDataGrid {...props} rowHeightsOptions={{ defaultHeight: 'auto' }} />
+      );
+
+      openCellPopover('B');
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'left', '24.5px')
+        .should('have.css', 'top', '151px');
+
+      // The shorter cell content should not have the same top position
+      openCellPopover('A');
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'left', '19px')
+        .should('have.css', 'top', '103px');
+    });
+  });
 });
