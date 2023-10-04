@@ -2,7 +2,7 @@
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
 # >=12.0 required (for cypress). v18 is LTS.
-FROM --platform=linux/amd64 node:18.17.1-slim
+FROM --platform=linux/amd64 node:20.8.0-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -31,24 +31,15 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /src/*.deb
 
-# Uncomment to skip the chromium download when installing puppeteer. If you do,
-# you'll need to launch puppeteer with:
-# browser.launch({executablePath: 'google-chrome-unstable'})
-# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-
-# Install puppeteer & cypress so they are available in the container.
-RUN yarn add puppeteer
+# Install cypress so it's available in the container.
 RUN yarn global add cypress
 
-# Add puppeteer user (pptruser).
-RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
-    && mkdir -p /home/pptruser/Downloads \
+# Add directories for Cypress and update permissions.
+RUN mkdir -p /home/node/Downloads \
     && mkdir -p /cypress/screenshots \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /node_modules \
-    && chown -R pptruser:pptruser /cypress
+    && chown -R node:node /cypress
 
 # Run user as non privileged.
-USER pptruser
+USER node
 
 CMD ["google-chrome-stable"]
