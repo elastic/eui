@@ -709,7 +709,25 @@ export class EuiDataGridCell extends Component<
       ariaRowIndex,
     };
 
-    let innerContent = (
+    const cellActions = showCellActions && (
+      <EuiDataGridCellActions
+        rowIndex={rowIndex}
+        colIndex={colIndex}
+        column={column}
+        cellHeightType={cellHeightType}
+        onExpandClick={() => {
+          if (popoverIsOpen) {
+            closeCellPopover();
+          } else {
+            openCellPopover({ rowIndex: visibleRowIndex, colIndex });
+          }
+        }}
+      />
+    );
+
+    const cellContent = isExpandable ? (
+      <EuiDataGridCellContent {...cellContentProps} cellActions={cellActions} />
+    ) : (
       <EuiFocusTrap
         disabled={!this.state.isEntered}
         autoFocus={true}
@@ -722,32 +740,7 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (isExpandable) {
-      innerContent = (
-        <EuiDataGridCellContent
-          {...cellContentProps}
-          cellActions={
-            showCellActions && (
-              <EuiDataGridCellActions
-                rowIndex={rowIndex}
-                colIndex={colIndex}
-                column={column}
-                cellHeightType={cellHeightType}
-                onExpandClick={() => {
-                  if (popoverIsOpen) {
-                    closeCellPopover();
-                  } else {
-                    openCellPopover({ rowIndex: visibleRowIndex, colIndex });
-                  }
-                }}
-              />
-            )
-          }
-        />
-      );
-    }
-
-    const content = (
+    const cell = (
       <div
         role="gridcell"
         aria-rowindex={ariaRowIndex}
@@ -772,13 +765,13 @@ export class EuiDataGridCell extends Component<
         }}
         onBlur={this.onBlur}
       >
-        {innerContent}
+        {cellContent}
       </div>
     );
 
     return rowManager && !IS_JEST_ENVIRONMENT
       ? createPortal(
-          content,
+          cell,
           rowManager.getRow({
             rowIndex,
             visibleRowIndex,
@@ -786,6 +779,6 @@ export class EuiDataGridCell extends Component<
             height: style!.height as number, // comes in as an integer from react-window
           })
         )
-      : content;
+      : cell;
   }
 }
