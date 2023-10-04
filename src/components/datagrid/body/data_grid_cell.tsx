@@ -678,6 +678,13 @@ export class EuiDataGridCell extends Component<
       rowHeightsOptions
     );
 
+    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+    const cellHeightType =
+      rowHeightUtils?.getHeightType(rowHeightOption) || 'default';
+
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
@@ -729,6 +736,7 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
+              cellHeightType={cellHeightType}
               onExpandClick={() => {
                 if (popoverIsOpen) {
                   closeCellPopover();

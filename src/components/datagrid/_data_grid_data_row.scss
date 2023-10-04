@@ -141,18 +141,18 @@
 }
 
 // Cell actions
-.euiDataGridRowCell__expandActions {
+.euiDataGridRowCell__actions {
   display: flex;
 }
-@include euiDataGridRowCellActions($definedHeight: false) {
+.euiDataGridRowCell__actions--flex {
   flex-grow: 0;
 }
-@include euiDataGridRowCellActions($definedHeight: true) {
-  background-color: $euiColorEmptyShade;
+.euiDataGridRowCell__actions--overlay {
   position: absolute;
   right: 0;
   top: 0;
   padding: $euiDataGridCellPaddingM 0;
+  background-color: $euiColorEmptyShade;
 }
 
 .euiDataGridRowCell__actionButtonIcon {
@@ -171,20 +171,20 @@
 // Row stripes
 @include euiDataGridStyles(stripes) {
   .euiDataGridRow--striped {
-    @include euiDataGridRowCellActions($definedHeight: true) {
+    &,
+    .euiDataGridRowCell__actions--overlay {
       background-color: $euiColorLightestShade;
     }
-    background-color: $euiColorLightestShade;
   }
 }
 
 // Row highlights
 @include euiDataGridStyles(rowHoverHighlight) {
   .euiDataGridRow:hover {
-    @include euiDataGridRowCellActions($definedHeight: true) {
+    &,
+    .euiDataGridRowCell__actions--overlay {
       background-color: $euiColorHighlight;
     }
-    background-color: $euiColorHighlight;
   }
 }
 
@@ -230,10 +230,11 @@
 
 // Compressed density grids - height tweaks
 @include euiDataGridStyles(fontSizeSmall, paddingSmall) {
-  @include euiDataGridRowCellActions($definedHeight: true) {
+  .euiDataGridRowCell__actions--overlay {
     padding: ($euiDataGridCellPaddingS / 2) 0;
   }
-  @include euiDataGridRowCellActions($definedHeight: false) {
+
+  .euiDataGridRowCell__actions--flex {
     transform: translateY(1px);
   }
 }

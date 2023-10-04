@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import { EuiDataGridColumnCellAction } from '../data_grid_types';
 import {
@@ -24,6 +25,7 @@ describe('EuiDataGridCellActions', () => {
     onExpandClick: jest.fn(),
     rowIndex: 0,
     colIndex: 0,
+    cellHeightType: 'default',
   };
 
   it('renders an expand button', () => {
@@ -31,7 +33,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandActions"
+        className="euiDataGridRowCell__actions euiDataGridRowCell__actions--flex"
       >
         <EuiI18n
           default="Click or hit enter to interact with cell content"
@@ -88,7 +90,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandActions"
+        className="euiDataGridRowCell__actions euiDataGridRowCell__actions--flex"
       >
         <MockAction
           Component={[Function]}
@@ -107,6 +109,17 @@ describe('EuiDataGridCellActions', () => {
         </EuiI18n>
       </div>
     `);
+  });
+
+  it('renders with overlay positioning for non default height cells', () => {
+    const { container } = render(
+      <EuiDataGridCellActions {...requiredProps} cellHeightType="auto" />
+    );
+
+    // TODO: Switch to `.toHaveStyle({ position: 'absolute' })` once on Emotion
+    expect(container.firstChild).toHaveClass(
+      'euiDataGridRowCell__actions--overlay'
+    );
   });
 
   describe('visible cell actions limit', () => {
