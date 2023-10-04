@@ -139,15 +139,34 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('type=push', () => {
-      test('is rendered', () => {
-        const component = mount(
-          <EuiFlyout onClose={() => {}} type="push" pushMinBreakpoint="xs" />
+    describe('push flyouts', () => {
+      it('renders', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            type="push"
+            pushMinBreakpoint="xs"
+          />
         );
 
-        expect(
-          takeMountedSnapshot(component, { hasArrayOutput: true })
-        ).toMatchSnapshot();
+        expect(getByTestSubject('flyout')).toMatchSnapshot();
+      });
+
+      it('can render with animations', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            type="push"
+            pushMinBreakpoint="xs"
+            pushAnimation={true}
+          />
+        );
+
+        expect(getByTestSubject('flyout').className).not.toContain(
+          'noAnimation'
+        );
       });
     });
 

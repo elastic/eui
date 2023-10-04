@@ -158,19 +158,21 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     overlay: css`
       ${euiShadowXLarge(euiThemeContext)}
     `,
-    push: css`
-      clip-path: none;
-      /* Don't animate on loading a docked nav */
-      animation-duration: 0s !important; /* stylelint-disable-line declaration-no-important */
-      /* Make sure the header shadows are above */
-      z-index: ${Number(euiTheme.levels.flyout) - 1};
-    `,
-    pushSide: {
+    push: {
+      push: css`
+        clip-path: none;
+        /* Make sure the header shadows are above */
+        z-index: ${Number(euiTheme.levels.flyout) - 1};
+      `,
       right: css`
         ${logicalCSS('border-left', euiTheme.border.thick)}
       `,
       left: css`
         ${logicalCSS('border-right', euiTheme.border.thick)}
+      `,
+      noAnimation: css`
+        /* Don't animate on loading a docked nav */
+        animation-duration: 0s !important; /* stylelint-disable-line declaration-no-important */
       `,
     },
 
