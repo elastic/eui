@@ -38,14 +38,14 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * that are needed to override browser-specific element settings.
    */
   const fontBodyScale = font.scale[font.body.scale];
-  const fontReset = `
-    font-family: ${font.family};
-    font-size: ${
+  const fontReset = {
+    fontFamily: font.family,
+    fontSize: `${
       font.defaultUnits === 'px' ? fontBodyScale * base : fontBodyScale
-    }${font.defaultUnits};
-    line-height: ${base / (fontBodyScale * base)};
-    font-weight: ${font.weight[font.body.weight]};
-  `;
+    }${font.defaultUnits}`,
+    lineHeight: base / (fontBodyScale * base),
+    fontWeight: font.weight[font.body.weight],
+  };
 
   /**
    * Final styles
@@ -73,7 +73,10 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     input,
     textarea,
     select {
-      ${fontReset}
+      ${{
+        ...fontReset,
+        fontSize: '1rem', // Inherit from html root
+      }}
     }
 
     // Chrome has opinionated select:disabled opacity styles that need to be overridden
