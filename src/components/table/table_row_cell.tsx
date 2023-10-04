@@ -13,6 +13,7 @@ import React, {
   ReactElement,
   ReactNode,
   TdHTMLAttributes,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -176,30 +177,33 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
 
-  function modifyChildren(children: ReactNode) {
-    let modifiedChildren = children;
+  const modifyChildren = useCallback(
+    (children: ReactNode) => {
+      let modifiedChildren = children;
 
-    if (textOnly === true) {
-      modifiedChildren = <span className={childClasses}>{children}</span>;
-    } else if (React.isValidElement(children)) {
-      modifiedChildren = React.Children.map(
-        children,
-        (child: ReactElement<CommonProps>) =>
-          React.cloneElement(child, {
-            className: classNames(child.props.className, childClasses),
-          })
-      );
-    }
-    if (isObject(truncateText) && truncateText.lines) {
-      modifiedChildren = (
-        <EuiTextBlockTruncate lines={truncateText.lines} cloneElement>
-          {modifiedChildren}
-        </EuiTextBlockTruncate>
-      );
-    }
+      if (textOnly === true) {
+        modifiedChildren = <span className={childClasses}>{children}</span>;
+      } else if (React.isValidElement(children)) {
+        modifiedChildren = React.Children.map(
+          children,
+          (child: ReactElement<CommonProps>) =>
+            React.cloneElement(child, {
+              className: classNames(child.props.className, childClasses),
+            })
+        );
+      }
+      if (isObject(truncateText) && truncateText.lines) {
+        modifiedChildren = (
+          <EuiTextBlockTruncate lines={truncateText.lines} cloneElement>
+            {modifiedChildren}
+          </EuiTextBlockTruncate>
+        );
+      }
 
-    return modifiedChildren;
-  }
+      return modifiedChildren;
+    },
+    [childClasses, textOnly, truncateText]
+  );
 
   const childrenNode = modifyChildren(children);
 
