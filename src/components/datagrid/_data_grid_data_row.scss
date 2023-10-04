@@ -128,6 +128,10 @@
     flex-grow: 1;
   }
 
+  .euiDataGridRowCell__actions {
+    flex-grow: 0;
+  }
+
   .euiDataGridRowCell--controlColumn & {
     height: 100%;
     align-items: center;
@@ -137,16 +141,14 @@
 // Cell actions
 .euiDataGridRowCell__actions {
   display: flex;
-}
-.euiDataGridRowCell__actions--flex {
-  flex-grow: 0;
-}
-.euiDataGridRowCell__actions--overlay {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: $euiDataGridCellPaddingM 0;
-  background-color: $euiColorEmptyShade;
+
+  &--overlay {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: $euiDataGridCellPaddingM 0;
+    background-color: $euiColorEmptyShade;
+  }
 }
 
 .euiDataGridRowCell__actionButtonIcon {
@@ -228,7 +230,7 @@
     padding: ($euiDataGridCellPaddingS / 2) 0;
   }
 
-  .euiDataGridRowCell__actions--flex {
+  .euiDataGridRowCell__defaultHeight .euiDataGridRowCell__actions {
     transform: translateY(1px);
   }
 }

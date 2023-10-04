@@ -95,7 +95,6 @@ export const EuiDataGridCellActions = ({
   }, [column, colIndex, rowIndex]);
 
   const classes = classNames('euiDataGridRowCell__actions', {
-    'euiDataGridRowCell__actions--flex': cellHeightType === 'default',
     'euiDataGridRowCell__actions--overlay': cellHeightType !== 'default',
   });
 

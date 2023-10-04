@@ -33,7 +33,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__actions euiDataGridRowCell__actions--flex"
+        className="euiDataGridRowCell__actions"
       >
         <EuiI18n
           default="Click or hit enter to interact with cell content"
@@ -90,7 +90,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__actions euiDataGridRowCell__actions--flex"
+        className="euiDataGridRowCell__actions"
       >
         <MockAction
           Component={[Function]}
