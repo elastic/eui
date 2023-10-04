@@ -19,6 +19,7 @@ const config = {
     '<rootDir>/scripts/babel',
     '<rootDir>/scripts/tests',
     '<rootDir>/scripts/eslint-plugin',
+    '<rootDir>/.storybook',
   ],
   collectCoverageFrom: [
     'src/{components,services,global_styling}/**/*.{ts,tsx,js,jsx}',

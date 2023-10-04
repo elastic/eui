@@ -1,3 +1,7 @@
+## [`88.5.4`](https://github.com/elastic/eui/tree/v88.5.4)
+
+- This release contains internal changes to a beta component needed by Kibana.
+
 ## [`88.5.3`](https://github.com/elastic/eui/tree/v88.5.3)
 
 **Bug fixes**

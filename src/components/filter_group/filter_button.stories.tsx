@@ -9,20 +9,26 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { BUTTON_COLORS } from '../../themes/amsterdam/global_styling/mixins';
+
 import { EuiFilterGroup } from './filter_group';
 import { EuiFilterButton, EuiFilterButtonProps } from './filter_button';
 
 const meta: Meta<EuiFilterButtonProps> = {
   title: 'EuiFilterButton',
   component: EuiFilterButton as any,
-};
-
-const defaultProps = {
-  hasActiveFilters: true,
-  numFilters: 5,
-  iconType: 'arrowDown',
-  iconSide: 'right' as const,
-  isDisabled: false,
+  argTypes: {
+    color: { control: 'select', options: BUTTON_COLORS },
+  },
+  args: {
+    // Component defaults
+    iconSide: 'right',
+    color: 'text',
+    badgeColor: 'accent',
+    grow: true,
+    isSelected: false,
+    isDisabled: false,
+  },
 };
 
 export default meta;
@@ -34,7 +40,11 @@ export const Playground: Story = {
       <EuiFilterButton {...args}>Filter</EuiFilterButton>
     </EuiFilterGroup>
   ),
-  args: defaultProps,
+  args: {
+    hasActiveFilters: true,
+    numFilters: 5,
+    iconType: 'arrowDown',
+  },
 };
 
 export const MultipleButtons: Story = {
@@ -45,7 +55,11 @@ export const MultipleButtons: Story = {
       <EuiFilterButton {...args}>Filter three</EuiFilterButton>
     </EuiFilterGroup>
   ),
-  args: defaultProps,
+  args: {
+    hasActiveFilters: true,
+    numFilters: 5,
+    iconType: 'arrowDown',
+  },
 };
 
 export const FullWidthAndGrow: Story = {
@@ -78,5 +92,4 @@ export const FullWidthAndGrow: Story = {
       </EuiFilterButton>
     </EuiFilterGroup>
   ),
-  args: { isDisabled: false },
 };

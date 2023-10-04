@@ -15,6 +15,11 @@ import { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
 const meta: Meta<EuiHeaderLogoProps> = {
   title: 'EuiHeaderLogo',
   component: EuiHeaderLogo,
+  args: {
+    // Not default props, set for demo purposes
+    iconType: 'logoElastic',
+    children: 'Elastic',
+  },
 };
 
 export default meta;
@@ -28,10 +33,6 @@ export const Playground: Story = {
       </EuiHeaderSectionItem>
     </EuiHeader>
   ),
-  args: {
-    iconType: 'logoElastic',
-    iconTitle: 'Elastic',
-  },
 };
 
 export const WithText: Story = {
@@ -42,8 +43,4 @@ export const WithText: Story = {
       </EuiHeaderSectionItem>
     </EuiHeader>
   ),
-  args: {
-    iconType: 'logoElastic',
-    children: 'Elastic',
-  },
 };

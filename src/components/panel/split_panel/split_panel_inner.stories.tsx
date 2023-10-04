@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { COLORS } from '../panel';
 import { EuiSplitPanel, _EuiSplitPanelInnerProps } from './split_panel';
@@ -17,7 +18,13 @@ const meta: Meta<_EuiSplitPanelInnerProps> = {
   component: EuiSplitPanel.Inner,
   argTypes: {
     color: { control: 'select', options: COLORS },
-    panelRef: { control: false },
+    ...disableStorybookControls<_EuiSplitPanelInnerProps>(['panelRef']),
+  },
+  args: {
+    // Component defaults
+    color: 'transparent',
+    paddingSize: 'm',
+    grow: true,
   },
 };
 
@@ -25,12 +32,6 @@ export default meta;
 type Story = StoryObj<_EuiSplitPanelInnerProps>;
 
 export const SplitPanelInner: Story = {
-  args: {
-    // Default props
-    color: 'transparent',
-    paddingSize: 'm',
-    grow: true,
-  },
   render: ({ ...args }) => (
     <EuiSplitPanel.Outer css={{ blockSize: '100vh' }}>
       <EuiSplitPanel.Inner {...args}>Top panel</EuiSplitPanel.Inner>

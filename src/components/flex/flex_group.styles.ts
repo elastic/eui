@@ -40,7 +40,7 @@ export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
         gap: ${euiTheme.size.s};
       `,
       m: css`
-        gap: ${euiTheme.size.m};
+        gap: ${euiTheme.size.base};
       `,
       l: css`
         gap: ${euiTheme.size.l};
