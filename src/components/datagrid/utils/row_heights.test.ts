@@ -184,34 +184,22 @@ describe('RowHeightUtils', () => {
         });
       });
     });
+  });
 
-    describe('getStylesForCell (returns inline CSS styles based on height config)', () => {
-      describe('auto height', () => {
-        it('returns empty styles object', () => {
-          expect(
-            rowHeightUtils.getStylesForCell({ defaultHeight: 'auto' }, 0)
-          ).toEqual({});
-        });
-      });
-
-      describe('lineCount height', () => {
-        it('returns line-clamp CSS', () => {
-          expect(
-            rowHeightUtils.getStylesForCell(
-              { defaultHeight: { lineCount: 5 } },
-              0
-            )
-          ).toEqual(expect.objectContaining({ WebkitLineClamp: 5 }));
-        });
-      });
-
-      describe('numeric heights', () => {
-        it('returns default CSS', () => {
-          expect(
-            rowHeightUtils.getStylesForCell({ defaultHeight: 34 }, 0)
-          ).toEqual({ height: '100%', overflow: 'hidden' });
-        });
-      });
+  describe('getHeightType', () => {
+    it('returns a string enum based on rowHeightsOptions', () => {
+      expect(rowHeightUtils.getHeightType(undefined)).toEqual('default');
+      expect(rowHeightUtils.getHeightType('auto')).toEqual('auto');
+      expect(rowHeightUtils.getHeightType({ lineCount: 3 })).toEqual(
+        'lineCount'
+      );
+      expect(rowHeightUtils.getHeightType({ lineCount: 0 })).toEqual(
+        'lineCount'
+      );
+      expect(rowHeightUtils.getHeightType({ height: 100 })).toEqual(
+        'numerical'
+      );
+      expect(rowHeightUtils.getHeightType(100)).toEqual('numerical');
     });
   });
 
