@@ -134,25 +134,21 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__expandFlex"
+        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
       >
         <div
-          class="euiDataGridRowCell__expandContent"
+          class="euiDataGridRowCell__content eui-textTruncate"
+          data-datagrid-cellcontent="true"
         >
-          <div
-            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
-            data-datagrid-cellcontent="true"
-          >
-            hello
-          </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            columnA, column 1, row 1
-          </p>
+          hello
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          hidden=""
+        >
+          - 
+          columnA, column 1, row 1
+        </p>
       </div>
     </div>
     <div
@@ -168,25 +164,21 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__expandFlex"
+        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
       >
         <div
-          class="euiDataGridRowCell__expandContent"
+          class="euiDataGridRowCell__content eui-textTruncate"
+          data-datagrid-cellcontent="true"
         >
-          <div
-            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
-            data-datagrid-cellcontent="true"
-          >
-            world
-          </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            columnB, column 2, row 1
-          </p>
+          world
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          hidden=""
+        >
+          - 
+          columnB, column 2, row 1
+        </p>
       </div>
     </div>
   </div>
@@ -206,25 +198,21 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__expandFlex"
+        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
       >
         <div
-          class="euiDataGridRowCell__expandContent"
+          class="euiDataGridRowCell__content eui-textTruncate"
+          data-datagrid-cellcontent="true"
         >
-          <div
-            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
-            data-datagrid-cellcontent="true"
-          >
-            lorem
-          </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            columnA, column 1, row 2
-          </p>
+          lorem
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          hidden=""
+        >
+          - 
+          columnA, column 1, row 2
+        </p>
       </div>
     </div>
     <div
@@ -240,25 +228,21 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__expandFlex"
+        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
       >
         <div
-          class="euiDataGridRowCell__expandContent"
+          class="euiDataGridRowCell__content eui-textTruncate"
+          data-datagrid-cellcontent="true"
         >
-          <div
-            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
-            data-datagrid-cellcontent="true"
-          >
-            ipsum
-          </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            columnB, column 2, row 2
-          </p>
+          ipsum
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          hidden=""
+        >
+          - 
+          columnB, column 2, row 2
+        </p>
       </div>
     </div>
   </div>
