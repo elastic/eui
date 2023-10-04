@@ -69,21 +69,26 @@ const EuiDataGridCellContent: FunctionComponent<
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
+    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+    const cellHeightType = rowHeightUtils?.getHeightType(rowHeightOption);
+
+    const classes = classNames(
+      `euiDataGridRowCell__${cellHeightType}Height`,
+      {
+        'eui-textBreakWord': cellHeightType !== 'default',
+        'euiDataGridRowCell__truncate': cellHeightType === 'default', // TODO: Convert to .eui-textTruncate
+      }
+    );
+
     return (
       <>
         <div
           ref={setCellContentsRef}
           data-datagrid-cellcontent
-          className={
-            isDefinedHeight
-              ? 'euiDataGridRowCell__definedHeight'
-              : 'euiDataGridRowCell__truncate'
-          }
-          style={
-            isDefinedHeight
-              ? rowHeightUtils?.getStylesForCell(rowHeightsOptions!, rowIndex)
-              : {}
-          }
+          className={classes}
         >
           <CellElement
             isDetails={false}
