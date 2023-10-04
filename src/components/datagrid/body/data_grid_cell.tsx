@@ -24,6 +24,7 @@ import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
 import { EuiI18n } from '../../i18n';
+import { EuiTextBlockTruncate } from '../../text_truncate';
 import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
 import { DataGridFocusContext } from '../utils/focus';
 import { RowHeightVirtualizationUtils } from '../utils/row_heights';
@@ -83,36 +84,52 @@ const EuiDataGridCellContent: FunctionComponent<
       }
     );
 
+    let cellContent = (
+      <div
+        ref={setCellContentsRef}
+        data-datagrid-cellcontent
+        className={classes}
+      >
+        <CellElement
+          isDetails={false}
+          data-test-subj="cell-content"
+          rowIndex={rowIndex}
+          colIndex={colIndex}
+          schema={column?.schema || rest.columnType}
+          {...rest}
+        />
+      </div>
+    );
+    if (cellHeightType === 'lineCount' && !isControlColumn) {
+      const lines = rowHeightUtils!.getLineCount(rowHeightOption)!;
+      cellContent = (
+        <EuiTextBlockTruncate lines={lines} cloneElement>
+          {cellContent}
+        </EuiTextBlockTruncate>
+      );
+    }
+
+    const screenReaderText = (
+      <EuiScreenReaderOnly>
+        <p hidden={!isFocused}>
+          {'- '}
+          <EuiI18n
+            token="euiDataGridCell.position"
+            default="{columnId}, column {col}, row {row}"
+            values={{
+              columnId: column?.displayAsText || rest.columnId,
+              col: colIndex + 1,
+              row: ariaRowIndex,
+            }}
+          />
+        </p>
+      </EuiScreenReaderOnly>
+    );
+
     return (
       <>
-        <div
-          ref={setCellContentsRef}
-          data-datagrid-cellcontent
-          className={classes}
-        >
-          <CellElement
-            isDetails={false}
-            data-test-subj="cell-content"
-            rowIndex={rowIndex}
-            colIndex={colIndex}
-            schema={column?.schema || rest.columnType}
-            {...rest}
-          />
-        </div>
-        <EuiScreenReaderOnly>
-          <p hidden={!isFocused}>
-            {'- '}
-            <EuiI18n
-              token="euiDataGridCell.position"
-              default="{columnId}, column {col}, row {row}"
-              values={{
-                columnId: column?.displayAsText || rest.columnId,
-                col: colIndex + 1,
-                row: ariaRowIndex,
-              }}
-            />
-          </p>
-        </EuiScreenReaderOnly>
+        {cellContent}
+        {screenReaderText}
       </>
     );
   }
