@@ -20,7 +20,10 @@ import {
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
-import { GuideSection } from '../guide_section/guide_section';
+import {
+  GuideSection,
+  GuideSectionProps,
+} from '../guide_section/guide_section';
 
 export type GuideTabbedPageProps = PropsWithChildren &
   CommonProps & {
@@ -126,11 +129,20 @@ export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
           />
         );
       } else {
-        const PageComponent = page.page;
+        let rendered: ReactNode;
+
+        if (page.page) {
+          const PageComponent = page.page;
+          rendered = <PageComponent showSass={showSass} />;
+        } else {
+          rendered = page.sections.map((sectionProps: GuideSectionProps) => (
+            <GuideSection {...sectionProps} />
+          ));
+        }
 
         return (
           <Route key={pathname} path={`${match.path}/${id}`}>
-            <PageComponent showSass={showSass} />
+            {rendered}
           </Route>
         );
       }
