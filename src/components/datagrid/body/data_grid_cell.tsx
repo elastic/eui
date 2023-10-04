@@ -47,7 +47,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
     isExpanded: boolean;
-    isDefinedHeight: boolean;
+    isControlColumn: boolean;
     isFocused: boolean;
     ariaRowIndex: number;
   }
@@ -61,7 +61,7 @@ const EuiDataGridCellContent: FunctionComponent<
     colIndex,
     ariaRowIndex,
     rowHeightUtils,
-    isDefinedHeight,
+    isControlColumn,
     isFocused,
     ...rest
   }) => {
@@ -77,9 +77,9 @@ const EuiDataGridCellContent: FunctionComponent<
 
     const classes = classNames(
       `euiDataGridRowCell__${cellHeightType}Height`,
-      {
+      !isControlColumn && {
         'eui-textBreakWord': cellHeightType !== 'default',
-        'euiDataGridRowCell__truncate': cellHeightType === 'default', // TODO: Convert to .eui-textTruncate
+        'eui-textTruncate': cellHeightType === 'default',
       }
     );
 
@@ -673,7 +673,9 @@ export class EuiDataGridCell extends Component<
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions,
       rowHeightUtils,
-      isDefinedHeight,
+      isControlColumn: cellClasses.includes(
+        'euiDataGridRowCell--controlColumn'
+      ),
       ariaRowIndex,
     };
 

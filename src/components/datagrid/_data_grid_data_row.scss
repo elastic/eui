@@ -101,18 +101,6 @@
     height: 100%;
     overflow: hidden;
   }
-
-  // We only truncate if the cell is not a control column.
-  &:not(.euiDataGridRowCell--controlColumn) {
-    .euiDataGridRowCell__content,
-    .euiDataGridRowCell__truncate,
-    &.euiDataGridRowCell__truncate,
-    .euiDataGridRowCell__expandContent {
-      @include euiTextTruncate;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-  }
 }
 
 .euiDataGridRowCell__popover {
@@ -144,6 +132,8 @@
 
 .euiDataGridRowCell__expandContent {
   flex-grow: 1;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .euiDataGridRowCell__contentByHeight {
