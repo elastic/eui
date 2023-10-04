@@ -42,9 +42,12 @@ interface EuiTableRowCellSharedPropsShape {
    */
   textOnly?: boolean;
   /**
-   * Don't allow line breaks within cells
+   * Indicates whether this column should truncate overflowing text content.
+   * - Set to `true` to enable single-line truncation.
+   * - To enable multi-line truncation, use a configuration object with `lines`
+   * set to a number of lines to truncate to.
    */
-  truncateText?: boolean;
+  truncateText?: boolean | { lines: number };
   width?: CSSProperties['width'];
 }
 
