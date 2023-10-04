@@ -24,6 +24,8 @@ import {
   CENTER_ALIGNMENT,
   useIsWithinBreakpoints,
 } from '../../services';
+import { isObject } from '../../services/predicate';
+import { EuiTextBlockTruncate } from '../text_truncate';
 
 import { resolveWidthAsStyle } from './utils';
 
@@ -141,7 +143,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
     'euiTableCellContent--showOnHover': showOnHover,
-    'euiTableCellContent--truncateText': truncateText,
+    'euiTableCellContent--truncateText': truncateText === true,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
     'euiTableCellContent--overflowingContent': textOnly !== true,
@@ -186,6 +188,13 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           React.cloneElement(child, {
             className: classNames(child.props.className, childClasses),
           })
+      );
+    }
+    if (isObject(truncateText) && truncateText.lines) {
+      modifiedChildren = (
+        <EuiTextBlockTruncate lines={truncateText.lines} cloneElement>
+          {modifiedChildren}
+        </EuiTextBlockTruncate>
       );
     }
 
