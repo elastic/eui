@@ -1,9 +1,72 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - agents:
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":typescript: Linting"
+    agents:
       provider: "gcp"
-    command: .buildkite/scripts/pipeline_test.sh
-    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    env:
+      TEST_TYPE: 'lint'
+    if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":jest: TS unit tests"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'unit:ts'
+    if: build.branch != "main"
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":jest: TSX unit tests on React 16"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'unit:tsx:16'
+    if: build.branch != "main"
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":jest: TSX unit tests on React 17"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'unit:tsx:17'
+    if: build.branch != "main"
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":jest: TSX unit tests on React 18"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'unit:tsx'
+    if: build.branch != "main"
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":cypress: Cypress tests on React 16"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'cypress:16'
+    if: build.branch != "main"
+    artifact_paths:
+      - "cypress/screenshots/**/*.png"
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":cypress: Cypress tests on React 17"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'cypress:17'
+    if: build.branch != "main"
+    artifact_paths:
+      - "cypress/screenshots/**/*.png"
+  
+  - command: .buildkite/scripts/pipeline_test.sh
+    label: ":cypress: Cypress tests on React 18"
+    agents:
+      provider: "gcp"
+    env:
+      TEST_TYPE: 'cypress:18'
+    if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
