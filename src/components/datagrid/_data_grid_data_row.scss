@@ -46,7 +46,7 @@
      *
      * TODO: Remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=258539 is resolved
      */
-    .euiDataGridRowCell__expandContent {
+    .euiDataGridRowCell__defaultHeight .euiDataGridRowCell__content {
       animation-name: euiDataGridCellActionsSafariWorkaround;
       animation-duration: 1000ms; // I don't know why the duration matters or why it being longer works more consistently 🥲
       animation-delay: $euiAnimSpeedNormal + $euiAnimSpeedExtraFast; // Wait for above animation to finish
@@ -95,11 +95,6 @@
   &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
-
-  .euiDataGridRowCell__numericalHeight {
-    height: 100%;
-    overflow: hidden;
-  }
 }
 
 .euiDataGridRowCell__popover {
@@ -118,26 +113,25 @@
   @include euiBottomShadow; // TODO: Convert to euiShadowMedium() in Emotion
 }
 
-.euiDataGridRowCell__expandFlex {
-  position: relative; // for positioning expand button
-  display: flex;
-  align-items: baseline;
+.euiDataGridRowCell__contentWrapper {
+  position: relative; // Needed for .euiDataGridRowCell__actions--overlay
   height: 100%;
-
-  .euiDataGridRowCell--controlColumn & {
-    align-items: center;
-  }
-}
-
-.euiDataGridRowCell__expandContent {
-  flex-grow: 1;
-  max-width: 100%;
   overflow: hidden;
 }
 
-.euiDataGridRowCell__contentByHeight {
-  flex-grow: 1;
-  height: 100%;
+.euiDataGridRowCell__defaultHeight {
+  display: flex;
+  align-items: baseline;
+  max-width: 100%;
+
+  .euiDataGridRowCell__content {
+    flex-grow: 1;
+  }
+
+  .euiDataGridRowCell--controlColumn & {
+    height: 100%;
+    align-items: center;
+  }
 }
 
 // Cell actions

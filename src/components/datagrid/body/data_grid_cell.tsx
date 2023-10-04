@@ -79,11 +79,13 @@ const EuiDataGridCellContent: FunctionComponent<
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
-    // TODO: Clean up expand/content by height shenanigans
-    const wrapperClasses = classNames();
+    const wrapperClasses = classNames(
+      'euiDataGridRowCell__contentWrapper',
+      `euiDataGridRowCell__${cellHeightType}Height`
+    );
 
     const classes = classNames(
-      `euiDataGridRowCell__${cellHeightType}Height`,
+      'euiDataGridRowCell__content',
       !isControlColumn && {
         'eui-textBreakWord': cellHeightType !== 'default',
         'eui-textTruncate': cellHeightType === 'default',

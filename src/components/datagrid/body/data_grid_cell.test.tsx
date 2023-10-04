@@ -727,19 +727,9 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__expandContent').exists()
+        component.find('.euiDataGridRowCell__defaultHeight').exists()
       ).toBe(true);
-      expect(
-        component.find('.euiDataGridRowCell__contentByHeight').exists()
-      ).not.toBe(true);
-
-      expect(component.find('.euiDataGridRowCell__defaultHeight').render())
-        .toMatchInlineSnapshot(`
-        <div
-          class="euiDataGridRowCell__defaultHeight eui-textTruncate"
-          data-datagrid-cellcontent="true"
-        />
-      `);
+      expect(component.find('.eui-textTruncate').exists()).toBe(true);
     });
 
     test('auto', () => {
@@ -750,20 +740,10 @@ describe('EuiDataGridCell', () => {
         />
       );
 
-      expect(
-        component.find('.euiDataGridRowCell__expandContent').exists()
-      ).not.toBe(true);
-      expect(
-        component.find('.euiDataGridRowCell__contentByHeight').exists()
-      ).toBe(true);
-
-      expect(component.find('.euiDataGridRowCell__autoHeight').render())
-        .toMatchInlineSnapshot(`
-        <div
-          class="euiDataGridRowCell__autoHeight eui-textBreakWord"
-          data-datagrid-cellcontent="true"
-        />
-      `);
+      expect(component.find('.euiDataGridRowCell__autoHeight').exists()).toBe(
+        true
+      );
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
     });
 
     test('numerical', () => {
@@ -774,13 +754,10 @@ describe('EuiDataGridCell', () => {
         />
       );
 
-      expect(component.find('.euiDataGridRowCell__numericalHeight').render())
-        .toMatchInlineSnapshot(`
-        <div
-          class="euiDataGridRowCell__numericalHeight eui-textBreakWord"
-          data-datagrid-cellcontent="true"
-        />
-      `);
+      expect(
+        component.find('.euiDataGridRowCell__numericalHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
     });
 
     test('lineCount', () => {
@@ -791,13 +768,11 @@ describe('EuiDataGridCell', () => {
         />
       );
 
-      expect(component.find('div.euiDataGridRowCell__lineCountHeight').render())
-        .toMatchInlineSnapshot(`
-        <div
-          class="euiDataGridRowCell__lineCountHeight eui-textBreakWord euiTextBlockTruncate emotion-euiTextBlockTruncate"
-          data-datagrid-cellcontent="true"
-        />
-      `);
+      expect(
+        component.find('.euiDataGridRowCell__lineCountHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
     });
   });
 });
