@@ -55,7 +55,7 @@ exports[`EuiDataGridCell renders 1`] = `
       class="euiDataGridRowCell__expandContent"
     >
       <div
-        class="euiDataGridRowCell__truncate"
+        class="euiDataGridRowCell__defaultHeight eui-textTruncate"
         data-datagrid-cellcontent="true"
       >
         <div>

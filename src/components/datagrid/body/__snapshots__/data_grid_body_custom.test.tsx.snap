@@ -140,7 +140,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           class="euiDataGridRowCell__expandContent"
         >
           <div
-            class="euiDataGridRowCell__truncate"
+            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
             data-datagrid-cellcontent="true"
           >
             hello
@@ -174,7 +174,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           class="euiDataGridRowCell__expandContent"
         >
           <div
-            class="euiDataGridRowCell__truncate"
+            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
             data-datagrid-cellcontent="true"
           >
             world
@@ -212,7 +212,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           class="euiDataGridRowCell__expandContent"
         >
           <div
-            class="euiDataGridRowCell__truncate"
+            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
             data-datagrid-cellcontent="true"
           >
             lorem
@@ -246,7 +246,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           class="euiDataGridRowCell__expandContent"
         >
           <div
-            class="euiDataGridRowCell__truncate"
+            class="euiDataGridRowCell__defaultHeight eui-textTruncate"
             data-datagrid-cellcontent="true"
           >
             ipsum

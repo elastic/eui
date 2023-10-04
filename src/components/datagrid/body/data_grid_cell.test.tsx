@@ -718,19 +718,86 @@ describe('EuiDataGridCell', () => {
     });
   });
 
-  it('renders certain classes/styles if rowHeightOptions is passed', () => {
-    const component = mount(
-      <EuiDataGridCell
-        {...requiredProps}
-        rowHeightsOptions={{
-          defaultHeight: 20,
-          rowHeights: { 0: 10 },
-        }}
-      />
-    );
+  describe('renders certain classes/styles based on rowHeightOptions', () => {
+    const props = { ...requiredProps, renderCellValue: () => null };
 
-    expect(
-      component.find('.euiDataGridRowCell__contentByHeight').exists()
-    ).toBe(true);
+    test('default', () => {
+      const component = mount(
+        <EuiDataGridCell {...props} rowHeightsOptions={undefined} />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__expandContent').exists()
+      ).toBe(true);
+      expect(
+        component.find('.euiDataGridRowCell__contentByHeight').exists()
+      ).not.toBe(true);
+
+      expect(component.find('.euiDataGridRowCell__defaultHeight').render())
+        .toMatchInlineSnapshot(`
+        <div
+          class="euiDataGridRowCell__defaultHeight eui-textTruncate"
+          data-datagrid-cellcontent="true"
+        />
+      `);
+    });
+
+    test('auto', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: 'auto' }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__expandContent').exists()
+      ).not.toBe(true);
+      expect(
+        component.find('.euiDataGridRowCell__contentByHeight').exists()
+      ).toBe(true);
+
+      expect(component.find('.euiDataGridRowCell__autoHeight').render())
+        .toMatchInlineSnapshot(`
+        <div
+          class="euiDataGridRowCell__autoHeight eui-textBreakWord"
+          data-datagrid-cellcontent="true"
+        />
+      `);
+    });
+
+    test('numerical', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { height: 3 } }}
+        />
+      );
+
+      expect(component.find('.euiDataGridRowCell__numericalHeight').render())
+        .toMatchInlineSnapshot(`
+        <div
+          class="euiDataGridRowCell__numericalHeight eui-textBreakWord"
+          data-datagrid-cellcontent="true"
+        />
+      `);
+    });
+
+    test('lineCount', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+        />
+      );
+
+      expect(component.find('div.euiDataGridRowCell__lineCountHeight').render())
+        .toMatchInlineSnapshot(`
+        <div
+          class="euiDataGridRowCell__lineCountHeight eui-textBreakWord euiTextBlockTruncate emotion-euiTextBlockTruncate"
+          data-datagrid-cellcontent="true"
+        />
+      `);
+    });
   });
 });
