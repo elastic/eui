@@ -51,7 +51,7 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
 
 exports[`EuiCommentEvent props eventColor is rendered 1`] = `
 <div
-  class="euiCommentEvent emotion-euiCommentEvent-custom-danger"
+  class="euiCommentEvent emotion-euiCommentEvent-custom"
   data-type="custom"
 />
 `;
