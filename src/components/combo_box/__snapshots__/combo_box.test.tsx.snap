@@ -96,13 +96,6 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                   style="inline-size: 2px;"
                   value=""
                 />
-                <span
-                  aria-live="polite"
-                  class="emotion-euiScreenReaderOnly"
-                  id="generated-id_removeOptionMessage"
-                >
-                  Combo box. Selected. Combo box input.  Type some text or, to display a list of choices, press Down Arrow. To exit the list of choices, press Escape.
-                </span>
               </div>
               <div
                 class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"

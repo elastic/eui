@@ -9,7 +9,10 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render, showEuiComboBoxOptions } from '../../test/rtl';
-import { shouldRenderCustomStyles } from '../../test/internal';
+import {
+  shouldRenderCustomStyles,
+  testOnReactVersion,
+} from '../../test/internal';
 import { requiredProps } from '../../test';
 
 import { keys } from '../../services';
@@ -70,17 +73,21 @@ describe('EuiComboBox', () => {
     render(<EuiComboBox {...requiredProps} options={options} />);
   });
 
-  it('renders the options list dropdown', async () => {
-    const { baseElement } = render(
-      <EuiComboBox
-        options={options}
-        data-test-subj="alsoGetsAppliedToOptionsList"
-      />
-    );
-    await showEuiComboBoxOptions();
+  // React 16 for some reason doesn't snapshot the screen reader text
+  testOnReactVersion(['17', '18'])(
+    'renders the options list dropdown',
+    async () => {
+      const { baseElement } = render(
+        <EuiComboBox
+          options={options}
+          data-test-subj="alsoGetsAppliedToOptionsList"
+        />
+      );
+      await showEuiComboBoxOptions();
 
-    expect(baseElement).toMatchSnapshot();
-  });
+      expect(baseElement).toMatchSnapshot();
+    }
+  );
 
   it('renders selectedOptions as pills', () => {
     const { getAllByTestSubject } = render(
