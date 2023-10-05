@@ -11,7 +11,6 @@ import * as keys from './keys';
 export {
   accessibleClickKeys,
   cascadingMenuKeys,
-  comboBoxKeys,
   htmlIdGenerator,
   useGeneratedHtmlId,
 } from './accessibility';
