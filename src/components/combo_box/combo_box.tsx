@@ -481,6 +481,7 @@ export class EuiComboBox<T> extends Component<
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (this.props.isDisabled) return;
+    event.persist(); // TODO: Remove once React 16 support is dropped
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
