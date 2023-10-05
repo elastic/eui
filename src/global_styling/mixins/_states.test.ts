@@ -6,26 +6,26 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { useEuiFocusRing } from './_states';
 
 describe('useEuiFocusRing hook returns a string', () => {
   describe('for each offset:', () => {
     it('inset', () => {
       expect(
-        testCustomHook(() => useEuiFocusRing('inset')).return
+        renderHook(() => useEuiFocusRing('inset')).result.current
       ).toMatchSnapshot();
     });
 
     it('outset', () => {
       expect(
-        testCustomHook(() => useEuiFocusRing('outset')).return
+        renderHook(() => useEuiFocusRing('outset')).result.current
       ).toMatchSnapshot();
     });
 
     it('16px', () => {
       expect(
-        testCustomHook(() => useEuiFocusRing('16px')).return
+        renderHook(() => useEuiFocusRing('16px')).result.current
       ).toMatchSnapshot();
     });
   });
@@ -33,7 +33,7 @@ describe('useEuiFocusRing hook returns a string', () => {
   describe('for any color:', () => {
     it('blue', () => {
       expect(
-        testCustomHook(() => useEuiFocusRing('outset', 'blue')).return
+        renderHook(() => useEuiFocusRing('outset', 'blue')).result.current
       ).toMatchSnapshot();
     });
   });
