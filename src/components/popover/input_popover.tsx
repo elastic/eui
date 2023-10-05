@@ -15,6 +15,7 @@ import React, {
   useCallback,
   useMemo,
   useRef,
+  createContext,
 } from 'react';
 import { css } from '@emotion/react';
 import classnames from 'classnames';
@@ -36,6 +37,10 @@ export interface _EuiInputPopoverProps
    */
   anchorPosition?: 'downLeft' | 'downRight' | 'downCenter';
   disableFocusTrap?: boolean;
+  /**
+   * Allows automatically closing the input popover on page scroll
+   */
+  closeOnScroll?: boolean;
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
   inputRef?: EuiPopoverProps['buttonRef'];
@@ -52,10 +57,14 @@ export type EuiInputPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   _EuiInputPopoverProps;
 
+// Used by child components that want to know the parent popover width
+export const EuiInputPopoverWidthContext = createContext<number>(0);
+
 export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
   closePopover,
+  closeOnScroll = false,
   disableFocusTrap = false,
   focusTrapProps,
   input,
@@ -140,6 +149,44 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     [disableFocusTrap, closePopover, panelPropsOnKeyDown]
   );
 
+  /**
+   * Optional close on scroll behavior
+   */
+
+  useEffect(() => {
+    // When the popover opens, add a scroll listener to the page (& remove it after)
+    if (closeOnScroll && panelEl) {
+      // Close the popover, but only if the scroll event occurs outside the input or the popover itself
+      const closePopoverOnScroll = (event: Event) => {
+        if (!panelEl || !inputEl || !event.target) return;
+        const scrollTarget = event.target as Node;
+
+        if (
+          panelEl.contains(scrollTarget) === false &&
+          inputEl.contains(scrollTarget) === false
+        ) {
+          closePopover();
+        }
+      };
+
+      // Firefox will trigger a scroll event in many common situations when the options list div is appended
+      // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
+      const timeoutId = setTimeout(() => {
+        window.addEventListener('scroll', closePopoverOnScroll, {
+          passive: true, // for better performance as we won't call preventDefault
+          capture: true, // scroll events don't bubble, they must be captured instead
+        });
+      }, 500);
+
+      return () => {
+        window.removeEventListener('scroll', closePopoverOnScroll, {
+          capture: true,
+        });
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [closeOnScroll, closePopover, panelEl, inputEl]);
+
   return (
     <EuiPopover
       css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
@@ -159,7 +206,9 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
         disabled={disableFocusTrap}
         {...focusTrapProps}
       >
-        {children}
+        <EuiInputPopoverWidthContext.Provider value={panelWidth}>
+          {children}
+        </EuiInputPopoverWidthContext.Provider>
       </EuiFocusTrap>
     </EuiPopover>
   );
