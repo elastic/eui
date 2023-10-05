@@ -18,8 +18,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useGeneratedHtmlId, throttle } from '../../services';
-import { mathWithUnits, logicalStyle } from '../../global_styling';
+import {
+  useEuiTheme,
+  useEuiThemeCSSVariables,
+  useGeneratedHtmlId,
+  throttle,
+} from '../../services';
 
 import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
@@ -37,14 +41,20 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
     'side' | 'focusTrapProps' | 'includeFixedHeadersInFocusTrap'
   > & {
     /**
-     * ReactNode(s) to render as navigation flyout content, typically `EuiCollapsibleNavItem`s.
-     * You may also want to use `EuiFlyoutBody` and `EuiFlyoutFooter` for organization.
+     * ReactNode(s) to render as navigation flyout content, typically `EuiCollapsibleNavBeta.Item`s.
+     * You will likely want to use `EuiCollapsibleNavBeta.Body` and `EuiCollapsibleNavBeta.Footer`
+     * for organization.
      */
     children?: ReactNode;
     /**
      * Whether the navigation flyout should default to initially collapsed or expanded
      */
     initialIsCollapsed?: boolean;
+    /**
+     * Optional callback that fires when the user toggles the nav between
+     * collapsed and uncollapsed states
+     */
+    onCollapseToggle?: (isCollapsed: boolean) => void;
     /**
      * Defaults to 248px wide. The navigation width determines behavior at
      * various responsive breakpoints.
@@ -72,19 +82,18 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
     'aria-label'?: string;
   };
 
-export const EuiCollapsibleNavBeta: FunctionComponent<
-  EuiCollapsibleNavBetaProps
-> = ({
+const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   id,
   children,
   className,
-  style,
   initialIsCollapsed = false,
+  onCollapseToggle,
   width: _width = 248,
   side = 'left',
   focusTrapProps: _focusTrapProps,
   ...rest
 }) => {
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
   const euiTheme = useEuiTheme();
   const headerHeight = euiHeaderVariables(euiTheme).height;
 
@@ -93,8 +102,12 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
    */
   const [isCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
   const toggleCollapsed = useCallback(
-    () => setIsCollapsed((isCollapsed) => !isCollapsed),
-    []
+    () =>
+      setIsCollapsed((isCollapsed) => {
+        onCollapseToggle?.(!isCollapsed);
+        return !isCollapsed;
+      }),
+    [onCollapseToggle]
   );
   const onClose = useCallback(() => setIsCollapsed(true), []);
 
@@ -131,34 +144,16 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   const width = useMemo(() => {
     if (isOverlayFullWidth) return '100%';
     if (isPush && isCollapsed) return headerHeight;
-    return _width;
+    return `${_width}px`;
   }, [_width, isOverlayFullWidth, isPush, isCollapsed, headerHeight]);
 
-  /**
-   * Header affordance
-   */
-  const [fixedHeadersCount, setFixedHeadersCount] = useState<number | false>(
-    false
-  );
+  // Other UI elements may need to account for the nav width -
+  // set a global CSS variable that they can use
   useEffect(() => {
-    setFixedHeadersCount(
-      document.querySelectorAll('.euiHeader[data-fixed-header]').length
-    );
-  }, []);
-
-  const stylesWithHeaderOffset = useMemo(() => {
-    if (!fixedHeadersCount) return style;
-
-    const headersOffset = mathWithUnits(
-      headerHeight,
-      (x) => x * fixedHeadersCount
-    );
-    return {
-      ...style,
-      ...logicalStyle('top', headersOffset),
-      ...logicalStyle('height', `calc(100% - ${headersOffset})`),
-    };
-  }, [fixedHeadersCount, style, headerHeight]);
+    setGlobalCSSVariables({
+      '--euiCollapsibleNavOffset': isOverlay ? '0' : width,
+    });
+  }, [width, isOverlay, setGlobalCSSVariables]);
 
   /**
    * Prop setup
@@ -195,15 +190,13 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     isOverlayFullWidth && styles.isOverlayFullWidth,
   ];
 
-  // Wait for any fixed headers to be queried before rendering (prevents position jumping)
-  const flyout = fixedHeadersCount !== false && (
+  const flyout = (
     <EuiFlyout
       aria-label={defaultAriaLabel}
       {...rest} // EuiCollapsibleNav is significantly less permissive than EuiFlyout
       id={flyoutID}
       css={cssStyles}
       className={classes}
-      style={stylesWithHeaderOffset}
       size={width}
       side={side}
       focusTrapProps={focusTrapProps}
@@ -231,3 +224,21 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     </EuiCollapsibleNavContext.Provider>
   );
 };
+
+/**
+ * Combined export with subcomponents
+ */
+
+import {
+  EuiCollapsibleNavBody,
+  EuiCollapsibleNavFooter,
+} from './collapsible_nav_body_footer';
+import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
+import { EuiCollapsibleNavItem } from './collapsible_nav_item';
+
+export const EuiCollapsibleNavBeta = Object.assign(_EuiCollapsibleNavBeta, {
+  Body: EuiCollapsibleNavBody,
+  Footer: EuiCollapsibleNavFooter,
+  Group: EuiCollapsibleNavGroup,
+  Item: EuiCollapsibleNavItem,
+});

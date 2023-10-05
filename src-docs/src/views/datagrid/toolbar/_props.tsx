@@ -13,6 +13,8 @@ const gridSnippets = {
   showDisplaySelector: `showDisplaySelector: {
   allowDensity: false;
   allowRowHeight: false;
+  allowResetButton: false;
+  additionalDisplaySettings: <EuiButtonEmpty size="xs" />;
 }`,
   showSortSelector: 'showSortSelector: false',
   showFullScreenSelector: 'showFullScreenSelector: false',

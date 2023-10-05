@@ -11,7 +11,6 @@ import React, {
   ReactNode,
   MouseEvent,
   useCallback,
-  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -19,10 +18,10 @@ import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 import { EuiAccordion } from '../../accordion';
 
 import {
-  EuiCollapsibleNavSubItem,
+  EuiCollapsibleNavSubItems,
+  EuiCollapsibleNavSubItemProps,
   _SharedEuiCollapsibleNavItemProps,
   _EuiCollapsibleNavItemDisplayProps,
-  EuiCollapsibleNavItemProps,
 } from './collapsible_nav_item';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import { euiCollapsibleNavAccordionStyles } from './collapsible_nav_accordion.styles';
@@ -33,10 +32,7 @@ type EuiCollapsibleNavAccordionProps = Omit<
 > &
   _EuiCollapsibleNavItemDisplayProps & {
     buttonContent: ReactNode;
-    // On the main `EuiCollapsibleNavItem` component, this uses `EuiCollapsibleNavSubItemProps`
-    // to allow for section headings, but by the time `items` reaches this component, we
-    // know for sure it's an actual accordion item and not a section heading
-    items: EuiCollapsibleNavItemProps[];
+    items: EuiCollapsibleNavSubItemProps[];
   };
 
 /**
@@ -73,9 +69,6 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
     accordionProps?.css,
   ];
 
-  /**
-   * Title / accordion trigger
-   */
   const isTitleInteractive = !!(href || linkProps?.onClick);
 
   // Stop propagation on the title so that the accordion toggle doesn't occur on click
@@ -86,36 +79,6 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
       linkProps?.onClick?.(e);
     },
     [linkProps?.onClick] // eslint-disable-line react-hooks/exhaustive-deps
-  );
-
-  /**
-   * Child items
-   */
-  // If any of the sub items have an icon, default to an
-  // icon of `empty` so that all text lines up vertically
-  const itemsHaveIcons = useMemo(
-    () => items.some((item) => !!item.icon),
-    [items]
-  );
-  const icon = itemsHaveIcons ? 'empty' : undefined;
-
-  const childrenCssStyles = [
-    styles.children.euiCollapsibleNavAccordion__children,
-    isSubItem ? styles.children.isSubItem : styles.children.isTopItem,
-  ];
-
-  const children = (
-    <div
-      css={childrenCssStyles}
-      className="euiCollapsibleNavAccordion__children"
-    >
-      {items.map((item, index) => (
-        // This is an intentional circular dependency between the accordion & parent item display.
-        // EuiSideNavItem is purposely recursive to support any amount of nested sub items,
-        // and split up into separate files/components for better dev readability
-        <EuiCollapsibleNavSubItem key={index} icon={icon} {...item} />
-      ))}
-    </div>
   );
 
   return (
@@ -149,7 +112,11 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
         ],
       }}
     >
-      {children}
+      <EuiCollapsibleNavSubItems
+        items={items}
+        isSubItem={isSubItem}
+        className="euiCollapsibleNavAccordion__children"
+      />
     </EuiAccordion>
   );
 };

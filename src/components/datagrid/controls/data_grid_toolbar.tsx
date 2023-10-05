@@ -30,56 +30,74 @@ export const EuiDataGridToolbar = ({
   displaySelector,
   columnSelector,
   columnSorting,
+  renderCustomToolbar,
 }: EuiDataGridToolbarProps) => {
   // Enables/disables grid controls based on available width
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
 
+  const columnControl = checkOrDefaultToolBarDisplayOptions(
+    toolbarVisibility,
+    'showColumnSelector'
+  )
+    ? columnSelector
+    : null;
+  const columnSortingControl = checkOrDefaultToolBarDisplayOptions(
+    toolbarVisibility,
+    'showSortSelector'
+  )
+    ? columnSorting
+    : null;
+  const keyboardShortcutsControl = checkOrDefaultToolBarDisplayOptions(
+    toolbarVisibility,
+    'showKeyboardShortcuts'
+  ) ? (
+    keyboardShortcuts
+  ) : (
+    <EuiScreenReaderOnly showOnFocus>
+      <span>{keyboardShortcuts}</span>
+    </EuiScreenReaderOnly>
+  );
+  const displayControl = checkOrDefaultToolBarDisplayOptions(
+    toolbarVisibility,
+    'showDisplaySelector'
+  )
+    ? displaySelector
+    : null;
+  const fullScreenControl = checkOrDefaultToolBarDisplayOptions(
+    toolbarVisibility,
+    'showFullScreenSelector'
+  )
+    ? fullScreenSelector
+    : null;
+
+  if (renderCustomToolbar) {
+    return renderCustomToolbar({
+      hasRoomForGridControls,
+      columnControl,
+      columnSortingControl,
+      keyboardShortcutsControl,
+      displayControl,
+      fullScreenControl,
+    });
+  }
+
   return (
     <div className="euiDataGrid__controls" data-test-subj="dataGridControls">
       {hasRoomForGridControls && (
         <div className="euiDataGrid__leftControls">
           {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
-            'showColumnSelector'
-          )
-            ? columnSelector
-            : null}
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
-            'showSortSelector'
-          )
-            ? columnSorting
-            : null}
+          {columnControl}
+          {columnSortingControl}
           {renderAdditionalControls(toolbarVisibility, 'left.append')}
         </div>
       )}
       <div className="euiDataGrid__rightControls">
         {renderAdditionalControls(toolbarVisibility, 'right')}
-        {checkOrDefaultToolBarDisplayOptions(
-          toolbarVisibility,
-          'showKeyboardShortcuts'
-        ) ? (
-          keyboardShortcuts
-        ) : (
-          <EuiScreenReaderOnly showOnFocus>
-            <span>{keyboardShortcuts}</span>
-          </EuiScreenReaderOnly>
-        )}
-        {checkOrDefaultToolBarDisplayOptions(
-          toolbarVisibility,
-          'showDisplaySelector'
-        )
-          ? displaySelector
-          : null}
-        {checkOrDefaultToolBarDisplayOptions(
-          toolbarVisibility,
-          'showFullScreenSelector'
-        )
-          ? fullScreenSelector
-          : null}
+        {keyboardShortcutsControl}
+        {displayControl}
+        {fullScreenControl}
       </div>
     </div>
   );

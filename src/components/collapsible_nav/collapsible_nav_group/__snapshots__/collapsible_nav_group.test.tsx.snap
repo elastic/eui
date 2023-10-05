@@ -199,11 +199,11 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isCollapsible-none-euiTestCss"
+  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavGroup-isCollapsible-none-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <button
       aria-controls="id"
@@ -237,7 +237,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
       aria-controls="id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"
       type="button"
     >
@@ -251,26 +251,26 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="id"
+    inert=""
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
-    <div>
-      <div
-        class="euiAccordion__children emotion-euiAccordion__children"
-      />
-    </div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    />
   </div>
 </div>
 `;
 
 exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-isCollapsible-none"
+  class="euiAccordion euiCollapsibleNavGroup emotion-euiAccordion-euiCollapsibleNavGroup-isCollapsible-none"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <button
       aria-controls="id"
@@ -302,7 +302,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
       aria-controls="id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"
       type="button"
     >
@@ -316,16 +316,16 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="id"
+    inert=""
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
-    <div>
-      <div
-        class="euiAccordion__children emotion-euiAccordion__children"
-      />
-    </div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    />
   </div>
 </div>
 `;

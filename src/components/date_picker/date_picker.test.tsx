@@ -21,6 +21,12 @@ describe('EuiDatePicker', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('compressed', () => {
+    const { container } = render(<EuiDatePicker compressed />);
+    // TODO: Should probably be a visual snapshot test
+    expect(container.innerHTML).toContain('--compressed');
+  });
+
   // TODO: These tests/snapshots don't really do anything in Jest without
   // the corresponding popover opening. Should be switched to an E2E test instead
   describe.skip('popoverPlacement', () => {

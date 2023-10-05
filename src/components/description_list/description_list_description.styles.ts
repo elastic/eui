@@ -7,43 +7,19 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiFontSize,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
-  logicalTextAlignCSS,
-  logicalCSS,
-} from '../../global_styling';
+import { euiFontSize, logicalTextAlignCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListDescriptionStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme } = euiThemeContext;
-
-  const columnDisplay = `
-    ${logicalCSS('width', '50%')}
-    ${logicalCSS('padding-left', euiTheme.size.s)}
-  `;
-
   return {
     euiDescriptionList__description: css``,
 
     // Types
     row: css``,
-    column: css`
-      ${columnDisplay}
-    `,
-    responsiveColumn: css`
-      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        ${logicalCSS('width', '100%')}
-        padding: 0;
-      }
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        ${columnDisplay}
-      }
-    `,
+    column: css``,
     inline: css`
       display: inline;
     `,
@@ -74,18 +50,6 @@ export const euiDescriptionListDescriptionStyles = (
     // Column types should align description text to the left when EuiDecriptionList is centered
     left: css`
       ${logicalTextAlignCSS('left')}
-    `,
-
-    // Gutter
-    s: css`
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', euiTheme.size.s)}
-      }
-    `,
-    m: css`
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', euiTheme.size.base)}
-      }
     `,
   };
 };

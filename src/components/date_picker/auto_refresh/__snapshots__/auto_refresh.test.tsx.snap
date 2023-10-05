@@ -7,44 +7,42 @@ exports[`EuiAutoRefresh is rendered 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <div
-        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+    <div
+      class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+    >
+      <button
+        class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+        type="button"
       >
-        <button
-          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-          type="button"
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
-          </span>
-        </button>
-        <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="aria-label"
-            class="euiFieldText euiFieldText--inGroup"
-            data-test-subj="test subject string"
-            readonly=""
-            type="text"
-            value="Off"
+            color="inherit"
+            data-euiicon-type="timeRefresh"
           />
-        </div>
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            <strong>
+              <small>
+                Auto refresh
+              </small>
+            </strong>
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="aria-label"
+          class="euiFieldText euiFieldText--inGroup"
+          data-test-subj="test subject string"
+          readonly=""
+          type="text"
+          value="Off"
+        />
       </div>
     </div>
   </div>
@@ -58,43 +56,41 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <div
-        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+    <div
+      class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+    >
+      <button
+        class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+        type="button"
       >
-        <button
-          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-          type="button"
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
-          </span>
-        </button>
-        <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="Auto refresh"
-            class="euiFieldText euiFieldText--inGroup"
-            readonly=""
-            type="text"
-            value="1 second"
+            color="inherit"
+            data-euiicon-type="timeRefresh"
           />
-        </div>
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            <strong>
+              <small>
+                Auto refresh
+              </small>
+            </strong>
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="Auto refresh"
+          class="euiFieldText euiFieldText--inGroup"
+          readonly=""
+          type="text"
+          value="1 second"
+        />
       </div>
     </div>
   </div>
@@ -108,43 +104,41 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
-      <div
-        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+    <div
+      class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+    >
+      <button
+        class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+        type="button"
       >
-        <button
-          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-          type="button"
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
-          </span>
-        </button>
-        <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="Auto refresh"
-            class="euiFieldText euiFieldText--inGroup"
-            readonly=""
-            type="text"
-            value="2 seconds"
+            color="inherit"
+            data-euiicon-type="timeRefresh"
           />
-        </div>
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            <strong>
+              <small>
+                Auto refresh
+              </small>
+            </strong>
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="Auto refresh"
+          class="euiFieldText euiFieldText--inGroup"
+          readonly=""
+          type="text"
+          value="2 seconds"
+        />
       </div>
     </div>
   </div>

@@ -49,12 +49,23 @@
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled
+// and tweak any components that account for fixed headers
 .euiDataGrid__restrictBody {
   height: 100vh;
   overflow: hidden;
 
-  .euiHeader {
-    z-index: $euiZHeaderBelowDataGrid;
+  .euiHeader[data-fixed-header] {
+    // !important needed to override header inline styles
+    z-index: $euiZHeaderBelowDataGrid !important; // stylelint-disable-line declaration-no-important
+  }
+
+  .euiOverlayMask[data-relative-to-header='below'] {
+    top: 0;
+  }
+
+  .euiFlyout {
+    top: 0;
+    height: 100%;
   }
 }
 

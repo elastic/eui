@@ -16,7 +16,7 @@ import {
   within,
 } from '@testing-library/react';
 
-import { EuiProvider } from '../../components';
+import { EuiProvider } from '../../components/provider';
 
 import * as dataTestSubjQueries from './data_test_subj_queries';
 

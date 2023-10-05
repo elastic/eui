@@ -43,6 +43,14 @@ const meta: Meta<EuiCollapsibleNavGroupProps> = {
     isDisabled: { if: { arg: 'isCollapsible' } },
     element: { if: { arg: 'isCollapsible' } },
   },
+  args: {
+    iconType: 'logoElastic',
+    // Component defaults
+    iconSize: 'l',
+    titleSize: 'xxs',
+    titleElement: 'h3',
+    background: 'none',
+  },
 };
 
 export default meta;
@@ -51,12 +59,7 @@ type Story = StoryObj<EuiCollapsibleNavGroupProps>;
 export const Accordion: Story = {
   args: {
     children: 'This is an accordion group with a title',
-    background: 'none',
     title: 'Nav group - accordion',
-    iconType: 'logoElastic',
-    iconSize: 'l',
-    titleElement: 'h3',
-    titleSize: 'xxs',
     initialIsOpen: true,
     isCollapsible: true,
   },
@@ -65,12 +68,6 @@ export const Accordion: Story = {
 export const NonAccordion: StoryObj<EuiCollapsibleNavGroupProps> = {
   args: {
     children: 'This is a group with a title',
-    background: 'none',
-    title: 'Nav group - non-accordion',
-    iconType: 'logoElastic',
-    iconSize: 'l',
-    titleElement: 'h3',
-    titleSize: 'xxs',
     isCollapsible: false,
   },
 };
@@ -78,6 +75,5 @@ export const NonAccordion: StoryObj<EuiCollapsibleNavGroupProps> = {
 export const NoTitle: Story = {
   args: {
     children: 'This is a group without a title',
-    background: 'none',
   },
 };

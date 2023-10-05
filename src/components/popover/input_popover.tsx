@@ -9,26 +9,26 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  KeyboardEvent,
   useState,
   useEffect,
   useCallback,
+  useMemo,
   useRef,
+  createContext,
 } from 'react';
-import classnames from 'classnames';
-import { tabbable, FocusableElement } from 'tabbable';
-
-import { CommonProps } from '../common';
-import { EuiFocusTrap } from '../focus_trap';
-import { EuiPopover, EuiPopoverProps } from './popover';
-import { EuiResizeObserver } from '../observer/resize_observer';
-import {
-  cascadingMenuKeys,
-  useCombinedRefs,
-  useEuiTheme,
-} from '../../services';
-import { euiFormVariables } from '../form/form.styles';
 import { css } from '@emotion/react';
+import classnames from 'classnames';
+import { tabbable } from 'tabbable';
+
 import { logicalCSS } from '../../global_styling';
+import { keys, useCombinedRefs, useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { useResizeObserver } from '../observer/resize_observer';
+import { EuiFocusTrap } from '../focus_trap';
+import { euiFormVariables } from '../form/form.styles';
+
+import { EuiPopover, EuiPopoverProps } from './popover';
 
 export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef' | 'anchorPosition'> {
@@ -37,6 +37,10 @@ export interface _EuiInputPopoverProps
    */
   anchorPosition?: 'downLeft' | 'downRight' | 'downCenter';
   disableFocusTrap?: boolean;
+  /**
+   * Allows automatically closing the input popover on page scroll
+   */
+  closeOnScroll?: boolean;
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
   inputRef?: EuiPopoverProps['buttonRef'];
@@ -53,9 +57,14 @@ export type EuiInputPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   _EuiInputPopoverProps;
 
+// Used by child components that want to know the parent popover width
+export const EuiInputPopoverWidthContext = createContext<number>(0);
+
 export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
+  closePopover,
+  closeOnScroll = false,
   disableFocusTrap = false,
   focusTrapProps,
   input,
@@ -66,86 +75,140 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   panelRef: _panelRef,
   ...props
 }) => {
-  const euiThemeContext = useEuiTheme();
+  const classes = classnames('euiInputPopover', className);
+  const euiTheme = useEuiTheme();
+  const form = euiFormVariables(euiTheme);
+
+  /**
+   * Ref setup
+   */
+
+  const popoverClassRef = useRef<EuiPopover>(null);
+  // The inputEl state ensures that width is correctly tracked on initial load
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
-  const [inputElWidth, setInputElWidth] = useState<number>();
+  // The panelEl state ensures that width is correctly set every time the popover opens
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
-  const popoverClassRef = useRef<EuiPopover | null>(null);
 
   const inputRef = useCombinedRefs([setInputEl, _inputRef]);
   const panelRef = useCombinedRefs([setPanelEl, _panelRef]);
 
-  const setPanelWidth = useCallback(
-    (width?: number) => {
-      if (panelEl && (!!inputElWidth || !!width)) {
-        const newWidth = !!width ? width : inputElWidth;
-        const widthToSet =
-          newWidth && newWidth > panelMinWidth ? newWidth : panelMinWidth;
+  /**
+   * Sizing/width logic
+   */
 
-        panelEl.style.width = `${widthToSet}px`;
-        onPanelResize?.(widthToSet);
-      }
-    },
-    [panelEl, inputElWidth, onPanelResize, panelMinWidth]
-  );
-  const onResize = useCallback(() => {
-    if (inputEl) {
-      const width = inputEl.getBoundingClientRect().width;
-      setInputElWidth(width);
-      setPanelWidth(width);
+  const inputWidth = useResizeObserver(inputEl, 'width').width;
+
+  const panelWidth = useMemo(() => {
+    return inputWidth < panelMinWidth ? panelMinWidth : inputWidth;
+  }, [panelMinWidth, inputWidth]);
+
+  useEffect(() => {
+    if (panelEl) {
+      // We have to modify the popover panel DOM node directly instead of using
+      // `panelStyle`, as there's some weird positioning bugs on resize otherwise
+      panelEl.style.inlineSize = `${panelWidth}px`;
+    }
+  }, [panelEl, panelWidth]);
+
+  useEffect(() => {
+    // This fires on all input width changes regardless of minimum size, because on
+    // right/center anchored popovers, the input width affects the position of the popover
+    if (panelEl) {
       popoverClassRef.current?.positionPopoverFluid();
     }
-  }, [inputEl, setPanelWidth]);
-  useEffect(() => {
-    onResize();
-  }, [onResize]);
-  useEffect(() => {
-    setPanelWidth();
-  }, [setPanelWidth]);
+  }, [inputWidth, panelEl]);
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (panelEl && event.key === cascadingMenuKeys.TAB) {
-      const tabbableItems = tabbable(panelEl).filter((el: FocusableElement) => {
-        return (
-          Array.from(el.attributes)
-            .map((el) => el.name)
-            .indexOf('data-focus-guard') < 0
-        );
-      });
-      if (
-        disableFocusTrap ||
-        (tabbableItems.length &&
-          tabbableItems[tabbableItems.length - 1] === document.activeElement)
-      ) {
-        props.closePopover();
+  /**
+   * Popover tab to close logic
+   */
+
+  const panelPropsOnKeyDown = props.panelProps?.onKeyDown;
+
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      panelPropsOnKeyDown?.(event);
+
+      if (event.key === keys.TAB) {
+        if (disableFocusTrap) {
+          closePopover();
+        } else {
+          const tabbableItems = tabbable(event.currentTarget).filter(
+            (el) => !el.hasAttribute('data-focus-guard')
+          );
+          if (!tabbableItems.length) return;
+
+          const tabbingFromLastItemInPopover =
+            document.activeElement === tabbableItems[tabbableItems.length - 1];
+
+          if (tabbingFromLastItemInPopover) {
+            closePopover();
+          }
+        }
       }
-    }
-  };
+    },
+    [disableFocusTrap, closePopover, panelPropsOnKeyDown]
+  );
 
-  const classes = classnames('euiInputPopover', className);
-  const form = euiFormVariables(euiThemeContext);
+  /**
+   * Optional close on scroll behavior
+   */
+
+  useEffect(() => {
+    // When the popover opens, add a scroll listener to the page (& remove it after)
+    if (closeOnScroll && panelEl) {
+      // Close the popover, but only if the scroll event occurs outside the input or the popover itself
+      const closePopoverOnScroll = (event: Event) => {
+        if (!panelEl || !inputEl || !event.target) return;
+        const scrollTarget = event.target as Node;
+
+        if (
+          panelEl.contains(scrollTarget) === false &&
+          inputEl.contains(scrollTarget) === false
+        ) {
+          closePopover();
+        }
+      };
+
+      // Firefox will trigger a scroll event in many common situations when the options list div is appended
+      // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
+      const timeoutId = setTimeout(() => {
+        window.addEventListener('scroll', closePopoverOnScroll, {
+          passive: true, // for better performance as we won't call preventDefault
+          capture: true, // scroll events don't bubble, they must be captured instead
+        });
+      }, 500);
+
+      return () => {
+        window.removeEventListener('scroll', closePopoverOnScroll, {
+          capture: true,
+        });
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [closeOnScroll, closePopover, panelEl, inputEl]);
 
   return (
     <EuiPopover
       css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
+      repositionToCrossAxis={false}
       ownFocus={false}
-      button={
-        <EuiResizeObserver onResize={onResize}>
-          {(resizeRef) => <div ref={resizeRef}>{input}</div>}
-        </EuiResizeObserver>
-      }
+      button={input}
       buttonRef={inputRef}
       panelRef={panelRef}
       className={classes}
       ref={popoverClassRef}
+      closePopover={closePopover}
       {...props}
+      panelProps={{ ...props.panelProps, onKeyDown }}
     >
       <EuiFocusTrap
         clickOutsideDisables={true}
         disabled={disableFocusTrap}
         {...focusTrapProps}
       >
-        <div onKeyDown={onKeyDown}>{children}</div>
+        <EuiInputPopoverWidthContext.Provider value={panelWidth}>
+          {children}
+        </EuiInputPopoverWidthContext.Provider>
       </EuiFocusTrap>
     </EuiPopover>
   );

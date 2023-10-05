@@ -8,16 +8,14 @@
 
 import React, {
   Component,
-  ChangeEventHandler,
   FocusEventHandler,
   KeyboardEventHandler,
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import AutosizeInput from 'react-input-autosize';
 
 import { CommonProps } from '../../common';
-import { htmlIdGenerator, keys } from '../../../services';
+import { htmlIdGenerator, keys, CanvasTextUtils } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,
@@ -31,11 +29,9 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  UpdatePositionHandler,
 } from '../types';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
-  autoSizeInputRef?: RefCallback<AutosizeInput & HTMLInputElement>;
   compressed: boolean;
   focusedOptionId?: string;
   fullWidth?: boolean;
@@ -46,9 +42,9 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   isListOpen: boolean;
   noIcon: boolean;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  onChange?: (searchValue: string) => void;
+  onChange: (searchValue: string) => void;
   onClear?: () => void;
-  onClick?: () => void;
+  onClick: () => void;
   onCloseListClick: () => void;
   onFocus: FocusEventHandler<HTMLInputElement>;
   onOpenListClick: () => void;
@@ -59,7 +55,6 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
-  updatePosition: UpdatePositionHandler;
   value?: string;
   prepend?: EuiFormControlLayoutProps['prepend'];
   append?: EuiFormControlLayoutProps['append'];
@@ -71,6 +66,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
 }
 
 interface EuiComboBoxInputState {
+  inputWidth: number;
   hasFocus: boolean;
 }
 
@@ -79,15 +75,33 @@ export class EuiComboBoxInput<T> extends Component<
   EuiComboBoxInputState
 > {
   state: EuiComboBoxInputState = {
+    inputWidth: 2,
     hasFocus: false,
   };
 
-  updatePosition = () => {
-    // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
-    requestAnimationFrame(() => {
-      this.props.updatePosition();
-    });
+  private widthUtils?: CanvasTextUtils;
+
+  inputRefCallback = (el: HTMLInputElement) => {
+    this.widthUtils = new CanvasTextUtils({ container: el });
+    this.props.inputRef?.(el);
   };
+
+  updateInputSize = (inputValue: string) => {
+    if (!this.widthUtils) return;
+
+    this.widthUtils.setTextToCheck(inputValue);
+    // Canvas has minute subpixel differences in rendering compared to DOM
+    // We'll buffer the input by ~2px just to ensure sufficient width
+    const inputWidth = Math.ceil(this.widthUtils.textWidth) + 2;
+
+    this.setState({ inputWidth });
+  };
+
+  componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
+    if (prevProps.searchValue !== this.props.searchValue) {
+      this.updateInputSize(this.props.searchValue);
+    }
+  }
 
   onFocus: FocusEventHandler<HTMLInputElement> = (event) => {
     this.props.onFocus(event);
@@ -128,30 +142,6 @@ export class EuiComboBoxInput<T> extends Component<
     }
   };
 
-  componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
-    const { searchValue } = prevProps;
-
-    // We need to update the position of everything if the user enters enough input to change
-    // the size of the input.
-    if (searchValue !== this.props.searchValue) {
-      this.updatePosition();
-    }
-  }
-
-  inputOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { onChange, searchValue } = this.props;
-    if (onChange) {
-      onChange(event.target.value as typeof searchValue);
-    }
-  };
-
-  inputRefCallback = (ref: HTMLInputElement & AutosizeInput) => {
-    const { autoSizeInputRef } = this.props;
-    if (autoSizeInputRef) {
-      autoSizeInputRef(ref);
-    }
-  };
-
   render() {
     const {
       compressed,
@@ -159,10 +149,10 @@ export class EuiComboBoxInput<T> extends Component<
       fullWidth,
       hasSelectedOptions,
       id,
-      inputRef,
       isDisabled,
       isListOpen,
       noIcon,
+      onChange,
       onClear,
       onClick,
       onCloseListClick,
@@ -173,7 +163,6 @@ export class EuiComboBoxInput<T> extends Component<
       searchValue,
       selectedOptions,
       singleSelection: singleSelectionProp,
-      toggleButtonRef,
       value,
       prepend,
       append,
@@ -193,8 +182,16 @@ export class EuiComboBoxInput<T> extends Component<
 
     const pills = selectedOptions
       ? selectedOptions.map((option) => {
-          const { key, label, color, onClick, append, prepend, ...rest } =
-            option;
+          const {
+            key,
+            label,
+            color,
+            onClick,
+            append,
+            prepend,
+            truncationProps,
+            ...rest
+          } = option;
           const pillOnClose =
             isDisabled || singleSelection || onClick
               ? undefined
@@ -278,7 +275,6 @@ export class EuiComboBoxInput<T> extends Component<
         'data-test-subj': 'comboBoxToggleListButton',
         disabled: isDisabled,
         onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
-        ref: toggleButtonRef,
         side: 'right',
         tabIndex: -1,
         type: 'arrowDown',
@@ -319,7 +315,7 @@ export class EuiComboBoxInput<T> extends Component<
         >
           {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
-          <AutosizeInput
+          <input
             aria-activedescendant={focusedOptionId}
             aria-autocomplete="list"
             aria-controls={isListOpen ? rootId('listbox') : ''}
@@ -331,14 +327,13 @@ export class EuiComboBoxInput<T> extends Component<
             data-test-subj="comboBoxSearchInput"
             disabled={isDisabled}
             id={id}
-            inputRef={inputRef}
             onBlur={this.onBlur}
-            onChange={this.inputOnChange}
+            onChange={(event) => onChange(event.target.value)}
             onFocus={this.onFocus}
             onKeyDown={this.onKeyDown}
             ref={this.inputRefCallback}
             role="combobox"
-            style={{ fontSize: 14 }}
+            style={{ inlineSize: this.state.inputWidth }}
             value={searchValue}
             autoFocus={autoFocus}
           />

@@ -408,26 +408,13 @@ export const AccordionExample = {
       text: (
         <>
           <p>
-            Since accordions are unstyled by default, EUI also provides a few
-            classes you can add to parts of the EuiAccordion to give it more
-            style, like when using with forms.
+            Accordions are unstyled by default, but{' '}
+            <strong>EuiAccordion</strong> supports several props around padding
+            sizes and borders, as well as letting you pass in your own custom
+            CSS styles. See the snippet tab below for a quick preview of said
+            props, and the and the demo code tab below for custom hover and
+            focus CSS overrides.
           </p>
-          <ul>
-            <li>
-              <EuiCode>.euiAccordionForm</EuiCode>: Applied to the{' '}
-              <EuiCode>className</EuiCode>, adds top and bottom borders
-            </li>
-            <li>
-              <EuiCode>.euiAccordionForm__button</EuiCode>: Applied to the{' '}
-              <EuiCode>buttonClassName</EuiCode>, adds extra padding to the
-              button for better spacing
-            </li>
-            <li>
-              <EuiCode>.euiAccordionForm__extraAction</EuiCode>: Applied to the
-              button passed to <EuiCode>extraAction</EuiCode>, will visually
-              hide it until hover or focus
-            </li>
-          </ul>
           <p>
             We also recommend creating a fieldset/legend combination for better
             accessibility and DOM structure by passing{' '}
@@ -441,18 +428,13 @@ export const AccordionExample = {
       ),
       demo: <AccordionForm />,
       snippet: `<EuiAccordion
-  id={accordionId4}
-  className="euiAccordionForm"
+  id={accordionId}
   element="fieldset"
-  buttonClassName="euiAccordionForm__button"
+  paddingSize="l"
+  borders="horizontal"
+  buttonProps={{ paddingSize: 'm' }}
   buttonContent={buttonContent}
-  extraAction={<EuiButtonIcon
-    iconType="cross"
-    color="danger"
-    className="euiAccordionForm__extraAction"
-    aria-label="Delete"
-  />}
-  paddingSize="l">
+>
   <!-- Content to show when expanded -->
 </EuiAccordion>`,
     },

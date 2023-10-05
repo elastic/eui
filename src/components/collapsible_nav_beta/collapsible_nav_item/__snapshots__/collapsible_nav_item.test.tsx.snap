@@ -25,11 +25,11 @@ exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collaps
 exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <div
       aria-controls="generated-id"
@@ -54,7 +54,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight-euiCollapsibleNavAccordion__arrow"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
       tabindex="0"
       type="button"
     >
@@ -68,30 +68,30 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
+    inert=""
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
-    <div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    >
       <div
-        class="euiAccordion__children emotion-euiAccordion__children"
+        class="euiCollapsibleNavItem__items euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavItem__items-isTopItem"
       >
-        <div
-          class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
+        <span
+          aria-label="aria-label"
+          class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
+          data-test-subj="test subject string"
         >
           <span
-            aria-label="aria-label"
-            class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
-            data-test-subj="test subject string"
+            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
           >
-            <span
-              class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
-            >
-              Sub-item
-            </span>
+            Sub-item
           </span>
-        </div>
+        </span>
       </div>
     </div>
   </div>

@@ -346,34 +346,32 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
   <div
     class="euiPopover__anchor css-zih94u-render"
   >
-    <div>
+    <div
+      class="euiFormControlLayout"
+    >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
+        <input
+          aria-label="aria-label"
+          class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons euiFieldNumber-isLoading"
+          data-test-subj="test subject string"
+          id="id"
+          max="100"
+          min="0"
+          name="name"
+          step="1"
+          type="number"
+          value="8"
+        />
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
         >
-          <input
-            aria-label="aria-label"
-            class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons euiFieldNumber-isLoading"
-            data-test-subj="test subject string"
-            id="id"
-            max="100"
-            min="0"
-            name="name"
-            step="1"
-            type="number"
-            value="8"
+          <span
+            aria-label="Loading"
+            class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+            role="progressbar"
           />
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-          >
-            <span
-              aria-label="Loading"
-              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
-              role="progressbar"
-            />
-          </div>
         </div>
       </div>
     </div>
@@ -421,26 +419,24 @@ exports[`EuiRange props slider should display in popover 1`] = `
       <div
         class="euiPopover__anchor css-zih94u-render"
       >
-        <div>
+        <div
+          class="euiFormControlLayout"
+        >
           <div
-            class="euiFormControlLayout"
+            class="euiFormControlLayout__childrenWrapper"
           >
-            <div
-              class="euiFormControlLayout__childrenWrapper"
-            >
-              <input
-                aria-label="aria-label"
-                class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
-                data-test-subj="test subject string"
-                id="id"
-                max="100"
-                min="0"
-                name="name"
-                step="1"
-                type="number"
-                value="8"
-              />
-            </div>
+            <input
+              aria-label="aria-label"
+              class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+              data-test-subj="test subject string"
+              id="id"
+              max="100"
+              min="0"
+              name="name"
+              step="1"
+              type="number"
+              value="8"
+            />
           </div>
         </div>
       </div>
@@ -461,11 +457,11 @@ exports[`EuiRange props slider should display in popover 1`] = `
         aria-describedby="generated-id"
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-isAttached-bottom"
         data-popover-panel="true"
         data-test-subj="test"
         role="dialog"
-        style="top: 8px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
         <p
           class="emotion-euiScreenReaderOnly"
@@ -482,28 +478,26 @@ exports[`EuiRange props slider should display in popover 1`] = `
           <div
             data-focus-lock-disabled="disabled"
           >
-            <div>
+            <div
+              class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
+            >
               <div
-                class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
+                aria-hidden="true"
+                class="euiRangeTrack emotion-euiRangeTrack"
               >
-                <div
+                <input
                   aria-hidden="true"
-                  class="euiRangeTrack emotion-euiRangeTrack"
-                >
-                  <input
-                    aria-hidden="true"
-                    aria-label="aria-label"
-                    class="euiRangeSlider emotion-euiRangeSlider"
-                    data-test-subj="test subject string"
-                    max="100"
-                    min="0"
-                    name="name"
-                    step="1"
-                    tabindex="-1"
-                    type="range"
-                    value="8"
-                  />
-                </div>
+                  aria-label="aria-label"
+                  class="euiRangeSlider emotion-euiRangeSlider"
+                  data-test-subj="test subject string"
+                  max="100"
+                  min="0"
+                  name="name"
+                  step="1"
+                  tabindex="-1"
+                  type="range"
+                  value="8"
+                />
               </div>
             </div>
           </div>

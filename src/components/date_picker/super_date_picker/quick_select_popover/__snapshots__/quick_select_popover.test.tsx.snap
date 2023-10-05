@@ -439,10 +439,10 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
           <span
             data-euiicon-type="calendar"

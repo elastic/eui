@@ -19,10 +19,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
-import { EuiPortal } from '../portal';
+import { htmlIdGenerator, keys } from '../../services';
+import { CommonProps } from '../common';
+import { EuiInputPopover, EuiInputPopoverProps } from '../popover';
 import { EuiI18n } from '../i18n';
-import { EuiComboBoxOptionsList } from './combo_box_options_list';
+import { EuiFormControlLayoutProps } from '../form';
+import type { EuiTextTruncateProps } from '../text_truncate';
 
 import {
   getMatchingOptions,
@@ -37,18 +39,12 @@ import {
 } from './combo_box_input/combo_box_input';
 import { EuiComboBoxOptionsListProps } from './combo_box_options_list/combo_box_options_list';
 import {
-  UpdatePositionHandler,
   OptionHandler,
   RefInstance,
   EuiComboBoxOptionOption,
-  EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
 } from './types';
-import { EuiFilterSelectItemClass } from '../filter_group/filter_select_item';
-import AutosizeInput from 'react-input-autosize';
-import { CommonProps } from '../common';
-import { EuiFormControlLayoutProps } from '../form';
-import { getElementZIndex } from '../../services/popover';
+import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -156,6 +152,23 @@ export interface _EuiComboBoxProps<T>
    * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-labelledby'?: string;
+  /**
+   * By default, EuiComboBox will truncate option labels at the end of
+   * the string. You can use pass in a custom truncation configuration that
+   * accepts any prop that [EuiTextTruncate](/#/utilities/text-truncate) prop
+   * except for `text` and `children`.
+   *
+   * Note: when searching, custom truncation props are ignored. The highlighted search
+   * text will always take precedence.
+   */
+  truncationProps?: Partial<Omit<EuiTextTruncateProps, 'text' | 'children'>>;
+  /**
+   * Allows customizing the underlying EuiInputPopover component
+   * (except for props that control state).
+   */
+  inputPopoverProps?: Partial<
+    Omit<EuiInputPopoverProps, 'input' | 'isOpen' | 'closePopover'>
+  >;
 }
 
 /**
@@ -183,12 +196,8 @@ interface EuiComboBoxState<T> {
   activeOptionIndex: number;
   hasFocus: boolean;
   isListOpen: boolean;
-  listElement?: RefInstance<HTMLDivElement>;
-  listPosition: EuiComboBoxOptionsListPosition;
-  listZIndex: number | undefined;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
-  width: number;
 }
 
 const initialSearchValue = '';
@@ -214,9 +223,6 @@ export class EuiComboBox<T> extends Component<
     activeOptionIndex: -1,
     hasFocus: false,
     isListOpen: false,
-    listElement: null,
-    listPosition: 'bottom',
-    listZIndex: undefined,
     matchingOptions: getMatchingOptions<T>({
       options: this.props.options,
       selectedOptions: this.props.selectedOptions,
@@ -227,64 +233,25 @@ export class EuiComboBox<T> extends Component<
       sortMatchesBy: this.props.sortMatchesBy,
     }),
     searchValue: initialSearchValue,
-    width: 0,
   };
 
-  _isMounted = false;
   rootId = htmlIdGenerator();
 
   // Refs
   comboBoxRefInstance: RefInstance<HTMLDivElement> = null;
   comboBoxRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.comboBoxRefInstance = ref;
-
-    if (this.comboBoxRefInstance) {
-      const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
-      this.setState({
-        width: comboBoxBounds.width,
-      });
-    }
-  };
-  autoSizeInputRefInstance: RefInstance<AutosizeInput & HTMLDivElement> = null;
-  autoSizeInputRefCallback: RefCallback<AutosizeInput & HTMLDivElement> = (
-    ref
-  ) => {
-    this.autoSizeInputRefInstance = ref;
   };
 
   searchInputRefInstance: RefInstance<HTMLInputElement> = null;
   searchInputRefCallback: RefCallback<HTMLInputElement> = (ref) => {
     this.searchInputRefInstance = ref;
-    if (this.props.inputRef) this.props.inputRef(ref);
+    this.props.inputRef?.(ref);
   };
 
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
-    if (this.comboBoxRefInstance) {
-      // find the zIndex of the combobox relative to the page body
-      // and use that to depth-position the list box
-      // adds an extra `100` to provide some defense around neighboring elements' positioning
-      const listZIndex =
-        getElementZIndex(this.comboBoxRefInstance, document.body) + 100;
-      this.setState({ listZIndex });
-    }
     this.listRefInstance = ref;
-  };
-
-  toggleButtonRefInstance: RefInstance<HTMLButtonElement | HTMLSpanElement> =
-    null;
-  toggleButtonRefCallback: RefCallback<HTMLButtonElement | HTMLSpanElement> = (
-    ref
-  ) => {
-    this.toggleButtonRefInstance = ref;
-  };
-
-  optionsRefInstances: Array<RefInstance<EuiFilterSelectItemClass>> = [];
-  optionRefCallback: EuiComboBoxOptionsListProps<T>['optionRef'] = (
-    index,
-    ref
-  ) => {
-    this.optionsRefInstances[index] = ref;
   };
 
   openList = () => {
@@ -293,71 +260,9 @@ export class EuiComboBox<T> extends Component<
     });
   };
 
-  closeList = (event?: Event) => {
-    if (event && event.target === this.searchInputRefInstance) {
-      // really long search values / custom entries triggers a scroll event on the input
-      // which the EuiComboBoxOptionsList passes through here
-      return;
-    }
-
+  closeList = () => {
     this.clearActiveOption();
-    this.setState({
-      listZIndex: undefined,
-      isListOpen: false,
-    });
-  };
-
-  updatePosition: UpdatePositionHandler = (
-    listElement = this.state.listElement
-  ) => {
-    if (!this._isMounted) {
-      return;
-    }
-
-    if (!this.state.isListOpen) {
-      return;
-    }
-
-    if (!listElement) {
-      return;
-    }
-
-    // it's possible that updateListPosition is called when listElement is becoming visible, but isn't yet
-    const listElementBounds = listElement.getBoundingClientRect();
-    if (listElementBounds.width === 0 || listElementBounds.height === 0) {
-      return;
-    }
-
-    if (!this.comboBoxRefInstance) {
-      return;
-    }
-
-    const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
-
-    const { position, top } = findPopoverPosition({
-      allowCrossAxis: false,
-      anchor: this.comboBoxRefInstance,
-      popover: listElement,
-      position: 'bottom',
-    }) as { position: 'bottom'; top: number };
-
-    if (this.listRefInstance) {
-      this.listRefInstance.style.top = `${top}px`;
-      // listElement doesn't have its width set until after updating the position
-      // which means the popover service won't know about the correct width
-      // however, we already know where to position the element
-      this.listRefInstance.style.left = `${
-        comboBoxBounds.left + window.pageXOffset
-      }px`;
-      this.listRefInstance.style.width = `${comboBoxBounds.width}px`;
-    }
-
-    // Cache for future calls.
-    this.setState({
-      listElement,
-      listPosition: position,
-      width: comboBoxBounds.width,
-    });
+    this.setState({ isListOpen: false });
   };
 
   incrementActiveOptionIndex = (amount: number) => {
@@ -522,12 +427,8 @@ export class EuiComboBox<T> extends Component<
   };
 
   onComboBoxFocus: FocusEventHandler<HTMLInputElement> = (event) => {
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-
+    this.props.onFocus?.(event);
     this.openList();
-
     this.setState({ hasFocus: true });
   };
 
@@ -557,11 +458,8 @@ export class EuiComboBox<T> extends Component<
       this.comboBoxRefInstance.contains(relatedTarget);
 
     if (!focusedInOptionsList && !focusedInInput) {
+      this.props.onBlur?.(event);
       this.closeList();
-
-      if (this.props.onBlur) {
-        this.props.onBlur(event);
-      }
       this.setState({ hasFocus: false });
 
       // If the user tabs away or changes focus to another element, take whatever input they've
@@ -583,6 +481,7 @@ export class EuiComboBox<T> extends Component<
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (this.props.isDisabled) return;
+    event.persist(); // TODO: Remove once React 16 support is dropped
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
@@ -633,9 +532,7 @@ export class EuiComboBox<T> extends Component<
         break;
 
       default:
-        if (this.props.onKeyDown) {
-          this.props.onKeyDown(event);
-        }
+        this.props.onKeyDown?.(event);
     }
   };
 
@@ -665,17 +562,13 @@ export class EuiComboBox<T> extends Component<
       ? [addedOption]
       : selectedOptions.concat(addedOption);
 
-    if (onChange) {
-      onChange(changeOptions);
-    }
+    onChange?.(changeOptions);
 
     this.clearSearchValue();
     this.clearActiveOption();
 
     if (!isContainerBlur) {
-      if (this.searchInputRefInstance) {
-        this.searchInputRefInstance.focus();
-      }
+      this.searchInputRefInstance?.focus();
     }
 
     if (singleSelection) {
@@ -689,24 +582,17 @@ export class EuiComboBox<T> extends Component<
 
   onRemoveOption: OptionHandler<T> = (removedOption) => {
     const { onChange, selectedOptions } = this.props;
-    if (onChange) {
-      onChange(selectedOptions.filter((option) => option !== removedOption));
-    }
+    onChange?.(selectedOptions.filter((option) => option !== removedOption));
 
     this.clearActiveOption();
   };
 
   clearSelectedOptions = () => {
-    const { onChange } = this.props;
-    if (onChange) {
-      onChange([]);
-    }
+    this.props.onChange?.([]);
 
     // Clicking the clear button will also cause it to disappear. This would result in focus
     // shifting unexpectedly to the body element so we set it to the input which is more reasonable,
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
 
     if (!this.state.isListOpen) {
       this.openList();
@@ -715,9 +601,7 @@ export class EuiComboBox<T> extends Component<
 
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
 
     // If the user does this from a state in which an option has focus, then we need to reset it or clear it.
     if (
@@ -738,22 +622,15 @@ export class EuiComboBox<T> extends Component<
   };
 
   onOpenListClick = () => {
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
+    this.searchInputRefInstance?.focus();
+
     if (!this.state.isListOpen) {
       this.openList();
     }
   };
 
   onOptionListScroll = () => {
-    if (this.searchInputRefInstance) {
-      this.searchInputRefInstance.focus();
-    }
-  };
-
-  onCloseListClick = () => {
-    this.closeList();
+    this.searchInputRefInstance?.focus();
   };
 
   onSearchChange: NonNullable<EuiComboBoxInputProps<T>['onChange']> = (
@@ -773,17 +650,6 @@ export class EuiComboBox<T> extends Component<
       this.setCustomOptions(false);
     }
   };
-
-  componentDidMount() {
-    this._isMounted = true;
-
-    // TODO: This will need to be called once the actual stylesheet loads.
-    setTimeout(() => {
-      if (this.autoSizeInputRefInstance) {
-        this.autoSizeInputRefInstance.copyInputStyles();
-      }
-    }, 100);
-  }
 
   static getDerivedStateFromProps<T>(
     nextProps: _EuiComboBoxProps<T>,
@@ -820,76 +686,6 @@ export class EuiComboBox<T> extends Component<
     return stateUpdate;
   }
 
-  updateMatchingOptionsIfDifferent = (
-    newMatchingOptions: Array<EuiComboBoxOptionOption<T>>
-  ) => {
-    const { matchingOptions, activeOptionIndex } = this.state;
-    const { singleSelection, selectedOptions } = this.props;
-
-    let areOptionsDifferent = false;
-
-    if (matchingOptions.length !== newMatchingOptions.length) {
-      areOptionsDifferent = true;
-    } else {
-      for (let i = 0; i < matchingOptions.length; i++) {
-        if (matchingOptions[i].label !== newMatchingOptions[i].label) {
-          areOptionsDifferent = true;
-          break;
-        }
-      }
-    }
-
-    if (areOptionsDifferent) {
-      this.optionsRefInstances = [];
-      let nextActiveOptionIndex = activeOptionIndex;
-      // ensure that the currently selected single option is active if it is in the matchingOptions
-      if (Boolean(singleSelection) && selectedOptions.length === 1) {
-        if (newMatchingOptions.includes(selectedOptions[0])) {
-          nextActiveOptionIndex = newMatchingOptions.indexOf(
-            selectedOptions[0]
-          );
-        }
-      }
-
-      this.setState({
-        matchingOptions: newMatchingOptions,
-        activeOptionIndex: nextActiveOptionIndex,
-      });
-
-      if (!newMatchingOptions.length) {
-        // Prevent endless setState -> componentWillUpdate -> setState loop.
-        if (this.hasActiveOption()) {
-          this.clearActiveOption();
-        }
-      }
-    }
-  };
-
-  componentDidUpdate() {
-    const { options, selectedOptions, singleSelection, sortMatchesBy } =
-      this.props;
-    const { searchValue } = this.state;
-
-    // React 16.3 has a bug (fixed in 16.4) where getDerivedStateFromProps
-    // isn't called after a state change, and we track `searchValue` in state
-    // instead we need to react to a change in searchValue here
-    this.updateMatchingOptionsIfDifferent(
-      getMatchingOptions({
-        options,
-        selectedOptions,
-        searchValue,
-        isCaseSensitive: this.props.isCaseSensitive,
-        isPreFiltered: this.props.async,
-        showPrevSelected: Boolean(singleSelection),
-        sortMatchesBy,
-      })
-    );
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
     const {
       'data-test-subj': dataTestSubj,
@@ -921,6 +717,8 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      truncationProps,
+      inputPopoverProps,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       ...rest
@@ -929,9 +727,7 @@ export class EuiComboBox<T> extends Component<
       activeOptionIndex,
       hasFocus,
       isListOpen,
-      listPosition,
       searchValue,
-      width,
       matchingOptions,
     } = this.state;
 
@@ -968,49 +764,41 @@ export class EuiComboBox<T> extends Component<
         : undefined;
 
       optionsList = (
-        <EuiPortal>
-          <EuiI18n
-            token="euiComboBox.listboxAriaLabel"
-            default="Choose from the following options"
-          >
-            {(listboxAriaLabel: string) => (
-              <EuiComboBoxOptionsList
-                zIndex={this.state.listZIndex}
-                activeOptionIndex={this.state.activeOptionIndex}
-                areAllOptionsSelected={this.areAllOptionsSelected()}
-                customOptionText={customOptionText}
-                data-test-subj={optionsListDataTestSubj}
-                fullWidth={fullWidth}
-                isCaseSensitive={isCaseSensitive}
-                isLoading={isLoading}
-                listRef={this.listRefCallback}
-                matchingOptions={matchingOptions}
-                onCloseList={this.closeList}
-                onCreateOption={onCreateOption}
-                onOptionClick={this.onOptionClick}
-                onOptionEnterKey={this.onOptionEnterKey}
-                onScroll={this.onOptionListScroll}
-                optionRef={this.optionRefCallback}
-                options={options}
-                position={listPosition}
-                singleSelection={singleSelection}
-                renderOption={renderOption}
-                rootId={this.rootId}
-                rowHeight={rowHeight}
-                scrollToIndex={activeOptionIndex}
-                searchValue={searchValue}
-                selectedOptions={selectedOptions}
-                updatePosition={this.updatePosition}
-                width={width}
-                delimiter={delimiter}
-                getSelectedOptionForSearchValue={
-                  getSelectedOptionForSearchValue
-                }
-                listboxAriaLabel={listboxAriaLabel}
-              />
-            )}
-          </EuiI18n>
-        </EuiPortal>
+        <EuiI18n
+          token="euiComboBox.listboxAriaLabel"
+          default="Choose from the following options"
+        >
+          {(listboxAriaLabel: string) => (
+            <EuiComboBoxOptionsList
+              activeOptionIndex={this.state.activeOptionIndex}
+              areAllOptionsSelected={this.areAllOptionsSelected()}
+              customOptionText={customOptionText}
+              data-test-subj={optionsListDataTestSubj}
+              fullWidth={fullWidth}
+              isCaseSensitive={isCaseSensitive}
+              isLoading={isLoading}
+              listRef={this.listRefCallback}
+              matchingOptions={matchingOptions}
+              onCloseList={this.closeList}
+              onCreateOption={onCreateOption}
+              onOptionClick={this.onOptionClick}
+              onOptionEnterKey={this.onOptionEnterKey}
+              onScroll={this.onOptionListScroll}
+              options={options}
+              singleSelection={singleSelection}
+              renderOption={renderOption}
+              rootId={this.rootId}
+              rowHeight={rowHeight}
+              scrollToIndex={activeOptionIndex}
+              searchValue={searchValue}
+              selectedOptions={selectedOptions}
+              delimiter={delimiter}
+              getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
+              listboxAriaLabel={listboxAriaLabel}
+              truncationProps={truncationProps}
+            />
+          )}
+        </EuiI18n>
       );
     }
 
@@ -1030,47 +818,58 @@ export class EuiComboBox<T> extends Component<
         onBlur={this.onContainerBlur}
         ref={this.comboBoxRefCallback}
       >
-        <EuiComboBoxInput
-          autoSizeInputRef={this.autoSizeInputRefCallback}
-          compressed={compressed}
-          focusedOptionId={
-            this.hasActiveOption()
-              ? this.rootId(`_option-${this.state.activeOptionIndex}`)
-              : undefined
-          }
+        <EuiInputPopover
           fullWidth={fullWidth}
-          hasSelectedOptions={selectedOptions.length > 0}
-          id={inputId}
-          inputRef={this.searchInputRefCallback}
-          isDisabled={isDisabled}
-          isListOpen={isListOpen}
-          noIcon={!!noSuggestions}
-          onChange={this.onSearchChange}
-          onClear={
-            isClearable && !isDisabled ? this.clearSelectedOptions : undefined
+          panelPaddingSize="none"
+          disableFocusTrap={true}
+          closeOnScroll={true}
+          {...inputPopoverProps}
+          isOpen={isListOpen}
+          closePopover={this.closeList}
+          input={
+            <EuiComboBoxInput
+              compressed={compressed}
+              focusedOptionId={
+                this.hasActiveOption()
+                  ? this.rootId(`_option-${this.state.activeOptionIndex}`)
+                  : undefined
+              }
+              fullWidth={fullWidth}
+              hasSelectedOptions={selectedOptions.length > 0}
+              id={inputId}
+              inputRef={this.searchInputRefCallback}
+              isDisabled={isDisabled}
+              isListOpen={isListOpen}
+              noIcon={!!noSuggestions}
+              onChange={this.onSearchChange}
+              onClear={
+                isClearable && !isDisabled
+                  ? this.clearSelectedOptions
+                  : undefined
+              }
+              onClick={this.onComboBoxClick}
+              onCloseListClick={this.closeList}
+              onFocus={this.onComboBoxFocus}
+              onOpenListClick={this.onOpenListClick}
+              onRemoveOption={this.onRemoveOption}
+              placeholder={placeholder}
+              rootId={this.rootId}
+              searchValue={searchValue}
+              selectedOptions={selectedOptions}
+              singleSelection={singleSelection}
+              value={value}
+              append={singleSelection ? append : undefined}
+              prepend={singleSelection ? prepend : undefined}
+              isLoading={isLoading}
+              isInvalid={markAsInvalid}
+              autoFocus={autoFocus}
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledby}
+            />
           }
-          onClick={this.onComboBoxClick}
-          onCloseListClick={this.onCloseListClick}
-          onFocus={this.onComboBoxFocus}
-          onOpenListClick={this.onOpenListClick}
-          onRemoveOption={this.onRemoveOption}
-          placeholder={placeholder}
-          rootId={this.rootId}
-          searchValue={searchValue}
-          selectedOptions={selectedOptions}
-          singleSelection={singleSelection}
-          toggleButtonRef={this.toggleButtonRefCallback}
-          updatePosition={this.updatePosition}
-          value={value}
-          append={singleSelection ? append : undefined}
-          prepend={singleSelection ? prepend : undefined}
-          isLoading={isLoading}
-          isInvalid={markAsInvalid}
-          autoFocus={autoFocus}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledby}
-        />
-        {optionsList}
+        >
+          {optionsList}
+        </EuiInputPopover>
       </div>
     );
   }

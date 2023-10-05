@@ -57,10 +57,6 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       position: fixed;
       ${logicalCSS('top', 0)}
       ${logicalCSS('horizontal', 0)}
-
-      & + [data-fixed-header] {
-        ${logicalCSS('top', height)}
-      }
     `,
     // Theme
     default: css`

@@ -17,6 +17,11 @@ import { EuiHeaderLinks, EuiHeaderLinksProps } from './header_links';
 const meta: Meta<EuiHeaderLinksProps> = {
   title: 'EuiHeaderLinks',
   component: EuiHeaderLinks,
+  args: {
+    // Component defaults
+    gutterSize: 's',
+    popoverBreakpoints: ['xs', 's'],
+  },
 };
 
 export default meta;
@@ -36,8 +41,4 @@ export const Playground: Story = {
       </EuiHeaderSection>
     </EuiHeader>
   ),
-  args: {
-    gutterSize: 's',
-    popoverBreakpoints: ['xs', 's'],
-  },
 };

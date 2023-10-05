@@ -84,15 +84,6 @@ describe('useDataGridDisplaySelector', () => {
         expect(getSelection(component)).toEqual('normal');
         component.find('[data-test-subj="compact"]').simulate('change');
         expect(getSelection(component)).toEqual('compact');
-
-        // Should have changed the main toolbar icon accordingly
-        closePopover(component);
-        expect(
-          component
-            .find('[data-test-subj="dataGridDisplaySelectorButton"]')
-            .first()
-            .prop('iconType')
-        ).toEqual('tableDensityCompact');
       });
 
       it('calls the gridStyles.onDensityChange callback on user change', () => {
@@ -409,26 +400,86 @@ describe('useDataGridDisplaySelector', () => {
       });
     });
 
-    it('renders a reset button only when the user changes from the current settings', () => {
-      const component = mount(<MockComponent gridStyles={startingStyles} />);
-      openPopover(component);
-      expect(
-        component.find('[data-test-subj="resetDisplaySelector"]').exists()
-      ).toBe(false);
+    describe('reset button', () => {
+      it('renders a reset button only when the user changes from the current settings', () => {
+        const component = mount(<MockComponent gridStyles={startingStyles} />);
+        openPopover(component);
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(false);
 
-      component.find('[data-test-subj="expanded"]').simulate('change');
-      component.find('[data-test-subj="auto"]').simulate('change');
-      expect(
-        component.find('[data-test-subj="resetDisplaySelector"]').exists()
-      ).toBe(true);
+        component.find('[data-test-subj="expanded"]').simulate('change');
+        component.find('[data-test-subj="auto"]').simulate('change');
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(true);
 
-      // Should hide the reset button again after it's been clicked
-      component
-        .find('button[data-test-subj="resetDisplaySelector"]')
-        .simulate('click');
-      expect(
-        component.find('[data-test-subj="resetDisplaySelector"]').exists()
-      ).toBe(false);
+        // Should show the reset button again after the popover was reopened
+        closePopover(component);
+        openPopover(component);
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(true);
+
+        // Should hide the reset button again after it's been clicked
+        component
+          .find('button[data-test-subj="resetDisplaySelector"]')
+          .simulate('click');
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(false);
+      });
+
+      it('hides the reset button even after changes if allowResetButton is false', () => {
+        const component = mount(
+          <MockComponent
+            showDisplaySelector={{
+              allowResetButton: false,
+            }}
+            gridStyles={startingStyles}
+          />
+        );
+        openPopover(component);
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(false);
+
+        component.find('[data-test-subj="expanded"]').simulate('change');
+        component.find('[data-test-subj="auto"]').simulate('change');
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(false);
+
+        // Should hide the reset button again after the popover was reopened
+        closePopover(component);
+        openPopover(component);
+        expect(
+          component.find('[data-test-subj="resetDisplaySelector"]').exists()
+        ).toBe(false);
+      });
+    });
+
+    describe('additionalDisplaySettings', () => {
+      it('renders custom content if additionalDisplaySettings is defined', () => {
+        const component = mount(
+          <MockComponent
+            showDisplaySelector={{
+              additionalDisplaySettings: (
+                <div data-test-subj="test-custom">Custom content</div>
+              ),
+            }}
+          />
+        );
+        openPopover(component);
+        expect(component.find('[data-test-subj="test-custom"]'))
+          .toMatchInlineSnapshot(`
+          <div
+            data-test-subj="test-custom"
+          >
+            Custom content
+          </div>
+        `);
+      });
     });
   });
 

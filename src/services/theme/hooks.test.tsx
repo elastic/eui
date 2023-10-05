@@ -8,7 +8,9 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import { renderHook } from '../../test/rtl';
+import { renderHook, renderHookAct } from '../../test/rtl';
+
+import { EuiProvider } from '../../components/provider';
 
 import { setEuiDevProviderWarning } from './warning';
 import {
@@ -16,6 +18,7 @@ import {
   UseEuiTheme,
   withEuiTheme,
   RenderWithEuiTheme,
+  useEuiThemeCSSVariables,
 } from './hooks';
 
 describe('useEuiTheme', () => {
@@ -80,5 +83,23 @@ describe('RenderWithEuiTheme', () => {
     expect(container.firstChild!.textContent).toEqual(
       'euiTheme,colorMode,modifications'
     );
+  });
+});
+
+describe('useEuiThemeCSSVariables', () => {
+  it('returns CSS variable related state setters/getters', () => {
+    const { result } = renderHook(useEuiThemeCSSVariables, {
+      wrapper: EuiProvider,
+    });
+    expect(result.current.globalCSSVariables).toBeUndefined();
+    expect(result.current.themeCSSVariables).toBeUndefined();
+
+    renderHookAct(() => {
+      result.current.setNearestThemeCSSVariables({ '--hello': 'world' });
+    });
+
+    // In this case, the nearest theme is the global one, so it should set both
+    expect(result.current.globalCSSVariables).toEqual({ '--hello': 'world' });
+    expect(result.current.themeCSSVariables).toEqual({ '--hello': 'world' });
   });
 });

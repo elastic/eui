@@ -8,17 +8,23 @@
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import {
+  hideStorybookControls,
+  hideAllStorybookControls,
+} from '../../../.storybook/utils';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
-import { EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
+import { EuiBottomBar } from '../bottom_bar';
+import { EuiFlyout } from '../flyout';
 import { EuiButton } from '../button';
+import { EuiTitle } from '../title';
 
-import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 import {
   EuiCollapsibleNavBeta,
   EuiCollapsibleNavBetaProps,
-} from './collapsible_nav_beta';
+  EuiCollapsibleNavItemProps,
+} from './';
 
 const meta: Meta<EuiCollapsibleNavBetaProps> = {
   title: 'EuiCollapsibleNavBeta',
@@ -33,6 +39,7 @@ const meta: Meta<EuiCollapsibleNavBetaProps> = {
     },
   },
   args: {
+    // Component defaults
     side: 'left',
     initialIsCollapsed: false,
     width: 248,
@@ -58,12 +65,41 @@ const OpenCollapsibleNav: FunctionComponent<
   );
 };
 
+const renderGroup = (
+  groupTitle: string,
+  groupItems: EuiCollapsibleNavItemProps[]
+) => {
+  return [
+    {
+      renderItem: () => (
+        <EuiTitle
+          size="xxxs"
+          className="eui-textTruncate"
+          css={({ euiTheme }) => ({
+            marginTop: euiTheme.size.base,
+            paddingBlock: euiTheme.size.xs,
+            paddingInline: euiTheme.size.s,
+          })}
+        >
+          <div>{groupTitle}</div>
+        </EuiTitle>
+      ),
+    },
+    ...groupItems,
+  ];
+};
+
 export const KibanaExample: Story = {
   render: ({ ...args }) => (
     <OpenCollapsibleNav {...args}>
-      <EuiFlyoutBody scrollableTabIndex={-1}>
-        <EuiCollapsibleNavItem title="Home" icon="home" isSelected href="#" />
-        <EuiCollapsibleNavItem
+      <EuiCollapsibleNavBeta.Body>
+        <EuiCollapsibleNavBeta.Item
+          title="Home"
+          icon="home"
+          isSelected
+          href="#"
+        />
+        <EuiCollapsibleNavBeta.Item
           title="Recent"
           icon="clock"
           items={[
@@ -72,25 +108,26 @@ export const KibanaExample: Story = {
             { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Elasticsearch"
           icon="logoElasticsearch"
           href="#"
           items={[
             { title: 'Get started', href: '#' },
-            { title: 'Explore', isGroupTitle: true },
-            { title: 'Discover', href: '#' },
-            { title: 'Dashboards', href: '#' },
-            { title: 'Visualize library', href: '#' },
-            { title: 'Content', isGroupTitle: true },
-            { title: 'Indices', href: '#' },
-            { title: 'Transforms', href: '#' },
-            { title: 'Indexing API', href: '#' },
-            { title: 'Security', isGroupTitle: true },
-            { title: 'API keys', href: '#' },
+            ...renderGroup('Explore', [
+              { title: 'Discover', href: '#' },
+              { title: 'Dashboards', href: '#' },
+              { title: 'Visualize library', href: '#' },
+            ]),
+            ...renderGroup('Content', [
+              { title: 'Indices', href: '#' },
+              { title: 'Transforms', href: '#' },
+              { title: 'Indexing API', href: '#' },
+            ]),
+            ...renderGroup('Security', [{ title: 'API keys', href: '#' }]),
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Enterprise Search"
           icon="logoEnterpriseSearch"
           href="#"
@@ -106,7 +143,7 @@ export const KibanaExample: Story = {
             { title: 'Search experiences', href: '#' },
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Observability"
           icon="logoObservability"
           href="#"
@@ -115,34 +152,36 @@ export const KibanaExample: Story = {
             { title: 'Alerts', href: '#' },
             { title: 'Cases', href: '#' },
             { title: 'SLOs', href: '#' },
-            { title: 'Signals', isGroupTitle: true },
-            { title: 'Logs', href: '#' },
-            {
-              title: 'Tracing',
-              href: '#',
-              items: [
-                { title: 'Services', href: '#' },
-                { title: 'Traces', href: '#' },
-                { title: 'Dependencies', href: '#' },
-              ],
-            },
-            { title: 'Toolbox', isGroupTitle: true },
-            { title: 'Visualize library', href: '#' },
-            { title: 'Dashboards', href: '#' },
-            {
-              title: 'AIOps',
-              href: '#',
-              items: [
-                { title: 'Anomaly detection', href: '#' },
-                { title: 'Spike analysis', href: '#' },
-                { title: 'Change point detection', href: '#' },
-                { title: 'Notifications', href: '#' },
-              ],
-            },
-            { title: 'Add data', href: '#' },
+            ...renderGroup('Signals', [
+              { title: 'Logs', href: '#' },
+              {
+                title: 'Tracing',
+                href: '#',
+                items: [
+                  { title: 'Services', href: '#' },
+                  { title: 'Traces', href: '#' },
+                  { title: 'Dependencies', href: '#' },
+                ],
+              },
+            ]),
+            ...renderGroup('Toolbox', [
+              { title: 'Visualize library', href: '#' },
+              { title: 'Dashboards', href: '#' },
+              {
+                title: 'AIOps',
+                href: '#',
+                items: [
+                  { title: 'Anomaly detection', href: '#' },
+                  { title: 'Spike analysis', href: '#' },
+                  { title: 'Change point detection', href: '#' },
+                  { title: 'Notifications', href: '#' },
+                ],
+              },
+              { title: 'Add data', href: '#' },
+            ]),
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Security"
           icon="logoSecurity"
           href="#"
@@ -199,7 +238,7 @@ export const KibanaExample: Story = {
             },
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Analytics"
           icon="stats"
           href="#"
@@ -209,7 +248,7 @@ export const KibanaExample: Story = {
             { title: 'Visualize library', href: '#' },
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Machine learning"
           icon="indexMapping"
           href="#"
@@ -217,25 +256,29 @@ export const KibanaExample: Story = {
             { title: 'Overview', href: '#' },
             { title: 'Notifications', href: '#' },
             { title: 'Memory usage', href: '#' },
-            { title: 'Anomaly detection', isGroupTitle: true },
-            { title: 'Jobs', href: '#' },
-            { title: 'Anomaly explorer', href: '#' },
-            { title: 'Single metric viewer', href: '#' },
-            { title: 'Settings', href: '#' },
-            { title: 'Data frame analytics', isGroupTitle: true },
-            { title: 'Jobs', href: '#' },
-            { title: 'Results explorer', href: '#' },
-            { title: 'Analytics map', href: '#' },
-            { title: 'Model management', isGroupTitle: true },
-            { title: 'Trained models', href: '#' },
-            { title: 'Data visualizer', isGroupTitle: true },
-            { title: 'File', href: '#' },
-            { title: 'Data view', href: '#' },
+            ...renderGroup('Anomaly detection', [
+              { title: 'Jobs', href: '#' },
+              { title: 'Anomaly explorer', href: '#' },
+              { title: 'Single metric viewer', href: '#' },
+              { title: 'Settings', href: '#' },
+            ]),
+            ...renderGroup('Data frame analytics', [
+              { title: 'Jobs', href: '#' },
+              { title: 'Results explorer', href: '#' },
+              { title: 'Analytics map', href: '#' },
+            ]),
+            ...renderGroup('Model management', [
+              { title: 'Trained models', href: '#' },
+            ]),
+            ...renderGroup('Data visualizer', [
+              { title: 'File', href: '#' },
+              { title: 'Data view', href: '#' },
+            ]),
           ]}
         />
-      </EuiFlyoutBody>
-      <EuiFlyoutFooter>
-        <EuiCollapsibleNavItem
+      </EuiCollapsibleNavBeta.Body>
+      <EuiCollapsibleNavBeta.Footer>
+        <EuiCollapsibleNavBeta.Item
           title="Developer tools"
           icon="editorCodeBlock"
           href="#"
@@ -246,7 +289,7 @@ export const KibanaExample: Story = {
             { title: 'Painless lab', href: '#' },
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Management"
           icon="gear"
           items={[
@@ -257,7 +300,7 @@ export const KibanaExample: Story = {
             { title: 'Stack management', href: '#' },
           ]}
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Project settings"
           icon="gear"
           items={[
@@ -279,7 +322,7 @@ export const KibanaExample: Story = {
             },
           ]}
         />
-      </EuiFlyoutFooter>
+      </EuiCollapsibleNavBeta.Footer>
     </OpenCollapsibleNav>
   ),
 };
@@ -288,28 +331,10 @@ export const KibanaExample: Story = {
 export const SecurityExample: Story = {
   render: ({ ...args }) => (
     <OpenCollapsibleNav {...args}>
-      <EuiFlyoutBody scrollableTabIndex={-1}>
-        <EuiCollapsibleNavItem
-          title="Recent"
-          icon="clock"
-          items={[
-            { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
-            { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
-            { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavItem
-          isSelected
+      <EuiCollapsibleNavBeta.Body>
+        <EuiCollapsibleNavBeta.Group
           title="Security"
           icon="logoSecurity"
-          href="#"
-          // Workaround to always display this section as open and remove the accordion toggle
-          // Rather than baking in a top-level prop to support this behavior, this is likely
-          // the path we'd recommend to Security instead if their use-case isn't standard
-          accordionProps={{
-            forceState: 'open',
-            arrowProps: { css: { display: 'none' } },
-          }}
           items={[
             { title: 'Get started', href: '#' },
             { title: 'Dashboards', href: '#' },
@@ -363,14 +388,14 @@ export const SecurityExample: Story = {
             },
           ]}
         />
-      </EuiFlyoutBody>
-      <EuiFlyoutFooter>
-        <EuiCollapsibleNavItem
+      </EuiCollapsibleNavBeta.Body>
+      <EuiCollapsibleNavBeta.Footer>
+        <EuiCollapsibleNavBeta.Item
           title="Developer tools"
           icon="editorCodeBlock"
           href="#"
         />
-        <EuiCollapsibleNavItem
+        <EuiCollapsibleNavBeta.Item
           title="Project settings"
           icon="gear"
           items={[
@@ -392,26 +417,62 @@ export const SecurityExample: Story = {
             },
           ]}
         />
-      </EuiFlyoutFooter>
+      </EuiCollapsibleNavBeta.Footer>
     </OpenCollapsibleNav>
   ),
 };
 
-export const MultipleFixedHeaders: Story = {
-  render: ({ ...args }) => (
+export const CollapsedStateInLocalStorage: Story = {
+  render: () => {
+    const key = 'EuiCollapsibleNav__isCollapsed';
+    const initialIsCollapsed = window.localStorage.getItem(key) === 'true';
+    const onCollapseToggle = (isCollapsed: boolean) =>
+      window.localStorage.setItem(key, String(isCollapsed));
+
+    return (
+      <>
+        <EuiHeader position="fixed">
+          <EuiHeaderSection>
+            <EuiCollapsibleNavBeta
+              initialIsCollapsed={initialIsCollapsed}
+              onCollapseToggle={onCollapseToggle}
+            />
+          </EuiHeaderSection>
+        </EuiHeader>
+        <EuiPageTemplate>
+          <EuiPageTemplate.Section>
+            Toggle the collapsed state and refresh the page. The collapsed state
+            should have been saved/remembered
+          </EuiPageTemplate.Section>
+        </EuiPageTemplate>
+      </>
+    );
+  },
+  argTypes: hideStorybookControls(['aria-label', 'side', 'width']),
+};
+
+export const GlobalCSSVariable: Story = {
+  render: ({ side, ...args }) => (
     <>
-      <EuiHeader position="fixed">First header</EuiHeader>
       <EuiHeader position="fixed">
-        <EuiHeaderSection>
-          <EuiCollapsibleNavBeta {...args}>
-            This story tests that EuiCollapsibleNav's fixed header detection &
-            offsetting works as expected
+        <EuiHeaderSection side={side}>
+          <EuiCollapsibleNavBeta {...args} side={side}>
+            This story tests the global `--euiCollapsibleNavOffset` CSS variable
           </EuiCollapsibleNavBeta>
-          Second header
         </EuiHeaderSection>
       </EuiHeader>
+      {/* In production, would just be `left="var(--euiCollapsibleNavOffset, 0)"` if the nav isn't changing sides */}
+      <EuiBottomBar {...{ [side!]: 'var(--euiCollapsibleNavOffset, 0)' }}>
+        This text should be visible at all times and the bar position should
+        update dynamically based on the nav width (including on mobile)
+      </EuiBottomBar>
     </>
   ),
+  argTypes: hideStorybookControls([
+    'aria-label',
+    'initialIsCollapsed',
+    'onCollapseToggle',
+  ]),
 };
 
 const MockConsumerFlyout: FunctionComponent = () => {
@@ -419,26 +480,28 @@ const MockConsumerFlyout: FunctionComponent = () => {
   return (
     <>
       <EuiButton size="s" onClick={() => setFlyoutOpen(!flyoutIsOpen)}>
-        Toggle a flyout
+        Toggle flyout
       </EuiButton>
       {flyoutIsOpen && (
         <EuiFlyout onClose={() => setFlyoutOpen(false)}>
-          <EuiFlyoutBody>
-            Some other mock consumer flyout that <strong>should</strong> overlap
-            EuiCollapsibleNav
-          </EuiFlyoutBody>
+          <EuiCollapsibleNavBeta.Body>
+            This flyout's mask should overlay / sit on top of the collapsible
+            nav, on both desktop and mobile
+          </EuiCollapsibleNavBeta.Body>
         </EuiFlyout>
       )}
     </>
   );
 };
 
-export const FlyoutInFixedHeaders: Story = {
-  render: ({ ...args }) => {
+export const FlyoutOverlay: Story = {
+  render: (_) => {
     return (
       <EuiHeader position="fixed">
         <EuiHeaderSection>
-          <EuiCollapsibleNavBeta {...args}>Nav content</EuiCollapsibleNavBeta>
+          <EuiCollapsibleNavBeta>
+            Click the "Toggle flyout" button in the top right hand corner
+          </EuiCollapsibleNavBeta>
         </EuiHeaderSection>
         <EuiHeaderSection>
           <EuiHeaderSectionItem>
@@ -448,4 +511,5 @@ export const FlyoutInFixedHeaders: Story = {
       </EuiHeader>
     );
   },
+  parameters: hideAllStorybookControls,
 };

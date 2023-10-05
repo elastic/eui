@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../../.storybook/utils';
 
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection } from '../page_section';
@@ -21,23 +22,22 @@ const meta: Meta<EuiPageSidebarProps> = {
   parameters: {
     layout: 'fullscreen',
   },
+  argTypes: {
+    sticky: { control: 'boolean' },
+  },
+  args: {
+    // Component defaults
+    paddingSize: 'm', // The component default is actually 'none', but for nicer visuals in Storybook we'll set it to 'm'
+    sticky: false,
+    minWidth: 248,
+    responsive: ['xs', 's'],
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiPageSidebarProps>;
 
-const componentDefaults: EuiPageSidebarProps = {
-  paddingSize: 'm', // The component default is actually 'none', but for nicer visuals in Storybook we'll set it to 'm'
-  sticky: false,
-  minWidth: 248,
-  responsive: ['xs', 's'],
-};
-
 export const Playground: Story = {
-  args: componentDefaults,
-  argTypes: {
-    sticky: { control: 'boolean' },
-  },
   render: ({ ...args }) => (
     <EuiPage
       css={({ euiTheme }) => ({
@@ -60,14 +60,18 @@ export const Playground: Story = {
 
 export const StickyOffset: Story = {
   args: {
-    ...componentDefaults,
     sticky: { offset: 50 },
   },
   argTypes: {
+    sticky: {
+      control: 'object',
+    },
     // This story demos the sticky functionality; removing other props to prevent confusion
-    minWidth: { table: { disable: true } },
-    paddingSize: { table: { disable: true } },
-    responsive: { table: { disable: true } },
+    ...hideStorybookControls<EuiPageSidebarProps>([
+      'minWidth',
+      'paddingSize',
+      'responsive',
+    ]),
   },
   render: ({ ...args }) => (
     <EuiPage

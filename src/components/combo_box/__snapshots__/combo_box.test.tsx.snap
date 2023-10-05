@@ -1,1109 +1,437 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiComboBox is rendered 1`] = `
+exports[`EuiComboBox renders 1`] = `
 <div
   class="euiComboBox testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiPopover__anchor css-zih94u-render"
     >
       <div
-        class="euiComboBox__inputWrap euiFormControlLayout--1icons"
-        data-test-subj="comboBoxInput"
-        tabindex="-1"
+        class="euiFormControlLayout"
       >
         <div
-          class="euiComboBox__input"
-          style="font-size: 14px; display: inline-block;"
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <input
-            aria-autocomplete="list"
-            aria-controls=""
-            aria-expanded="false"
-            aria-invalid="false"
-            aria-label="aria-label"
-            data-test-subj="comboBoxSearchInput"
-            id="generated-id__eui-combobox-id"
-            role="combobox"
-            style="box-sizing: content-box; width: 2px;"
-            value=""
+          <div
+            class="euiComboBox__inputWrap euiFormControlLayout--1icons"
+            data-test-subj="comboBoxInput"
+            tabindex="-1"
+          >
+            <input
+              aria-autocomplete="list"
+              aria-controls=""
+              aria-expanded="false"
+              aria-invalid="false"
+              aria-label="aria-label"
+              class="euiComboBox__input"
+              data-test-subj="comboBoxSearchInput"
+              id="generated-id__eui-combobox-id"
+              role="combobox"
+              style="inline-size: 2px;"
+              value=""
+            />
+          </div>
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          >
+            <button
+              aria-label="Open list of options"
+              class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+              data-test-subj="comboBoxToggleListButton"
+              tabindex="-1"
+              type="button"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="arrowDown"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiComboBox renders the options list dropdown 1`] = `
+<body>
+  <div>
+    <div
+      class="euiComboBox euiComboBox-isOpen"
+      data-test-subj="alsoGetsAppliedToOptionsList"
+    >
+      <div
+        class="euiPopover euiPopover-isOpen euiInputPopover emotion-euiPopover-EuiInputPopover"
+      >
+        <div
+          class="euiPopover__anchor css-zih94u-render"
+        >
+          <div
+            class="euiFormControlLayout"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <div
+                class="euiComboBox__inputWrap euiFormControlLayout--1icons"
+                data-test-subj="comboBoxInput"
+                tabindex="-1"
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="generated-id_listbox"
+                  aria-expanded="true"
+                  aria-invalid="false"
+                  class="euiComboBox__input"
+                  data-test-subj="comboBoxSearchInput"
+                  id="generated-id__eui-combobox-id"
+                  role="combobox"
+                  style="inline-size: 2px;"
+                  value=""
+                />
+                <span
+                  aria-live="polite"
+                  class="emotion-euiScreenReaderOnly"
+                  id="generated-id_removeOptionMessage"
+                >
+                  Combo box. Selected. Combo box input.  Type some text or, to display a list of choices, press Down Arrow. To exit the list of choices, press Escape.
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              >
+                <button
+                  aria-label="Close list of options"
+                  class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+                  data-test-subj="comboBoxToggleListButton"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="arrowDown"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <div
+        aria-live="assertive"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-isAttached-bottom"
+        data-popover-open="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: 0px; left: -22px; z-index: 2000; inline-size: 0px;"
+      >
+        <div>
+          <div
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="-1"
           />
           <div
-            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: 'Inter',BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-weight: 400; letter-spacing: normal; text-transform: none;"
-          />
-        </div>
-      </div>
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <button
-          aria-label="Open list of options"
-          class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
-          data-test-subj="comboBoxToggleListButton"
-          tabindex="-1"
-          type="button"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`props aria-label attribute is rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    aria-label="Test label"
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={false}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={Array []}
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value=""
-  />
-</div>
-`;
-
-exports[`props aria-labelledby attribute is rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    aria-labelledby="test-heading-id"
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={false}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={Array []}
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value=""
-  />
-</div>
-`;
-
-exports[`props autoFocus is rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-        Object {
-          "label": "Dione",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas, Dione"
-  />
-</div>
-`;
-
-exports[`props custom ID is rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="test-id-1"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-        Object {
-          "label": "Iapetus",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas, Iapetus"
-  />
-</div>
-`;
-
-exports[`props delimiter is rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-        Object {
-          "label": "Dione",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas, Dione"
-  />
-</div>
-`;
-
-exports[`props full width is rendered 1`] = `
-<div
-  className="euiComboBox euiComboBox--fullWidth"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={true}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas"
-  />
-</div>
-`;
-
-exports[`props isClearable=false disallows user from clearing input when no options are selected 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={false}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={Array []}
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value=""
-  />
-</div>
-`;
-
-exports[`props isClearable=false disallows user from clearing input when options are selected 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-        Object {
-          "label": "Iapetus",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas, Iapetus"
-  />
-</div>
-`;
-
-exports[`props isDisabled is rendered 1`] = `
-<div
-  className="euiComboBox euiComboBox-isDisabled"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isDisabled={true}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas"
-  />
-</div>
-`;
-
-exports[`props option.prepend & option.append renders in pills 1`] = `
-Array [
-  <span
-    class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
-    data-test-subj="euiComboBoxPill"
-    title="1"
-  >
-    <span
-      class="euiBadge__content emotion-euiBadge__content"
-    >
-      <span
-        class="euiBadge__text emotion-euiBadge__text"
-      >
-        <span
-          class="euiComboBoxPill__prepend"
-        >
-          <span
-            data-test-subj="prepend"
+            data-focus-lock-disabled="disabled"
           >
-            Pre
-          </span>
-        </span>
-        1
-      </span>
-      <button
-        aria-label="Remove 1 from selection in this group"
-        class="euiBadge__iconButton emotion-euiBadge__iconButton-right"
-        title="Remove 1 from selection in this group"
-        type="button"
-      >
-        <span
-          class="euiBadge__icon emotion-euiBadge__icon-right"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
-    </span>
-  </span>,
-  <span
-    class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
-    data-test-subj="euiComboBoxPill"
-    title="2"
-  >
-    <span
-      class="euiBadge__content emotion-euiBadge__content"
-    >
-      <span
-        class="euiBadge__text emotion-euiBadge__text"
-      >
-        2
-        <span
-          class="euiComboBoxPill__append"
-        >
-          <span
-            data-test-subj="append"
-          >
-            Post
-          </span>
-        </span>
-      </span>
-      <button
-        aria-label="Remove 2 from selection in this group"
-        class="euiBadge__iconButton emotion-euiBadge__iconButton-right"
-        title="Remove 2 from selection in this group"
-        type="button"
-      >
-        <span
-          class="euiBadge__icon emotion-euiBadge__icon-right"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
-    </span>
-  </span>,
-]
-`;
-
-exports[`props option.prepend & option.append renders in single selection 1`] = `
-<span
-  class="euiComboBoxPill euiComboBoxPill--plainText"
-  data-test-subj="euiComboBoxPill"
->
-  <span
-    class="euiComboBoxPill__prepend"
-  >
-    <span
-      data-test-subj="prepend"
-    >
-      Pre
-    </span>
-  </span>
-  1
-</span>
-`;
-
-exports[`props option.prepend & option.append renders in the options dropdown 1`] = `
-<div
-  class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
-  data-popover-open="true"
-  data-popover-panel="true"
-  data-test-subj="comboBoxOptionsList"
-  style="z-index: 100;"
->
-  <div
-    class="euiComboBoxOptionsList__rowWrap"
-  >
-    <div
-      style="position: relative; height: 60px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
-    >
-      <div
-        aria-label="Choose from the following options"
-        id="generated-id_listbox"
-        role="listbox"
-        style="height: 58px; width: 100%;"
-        tabindex="0"
-      >
-        <button
-          aria-selected="false"
-          class="euiFilterSelectItem emotion-euiFilterSelectItem"
-          id="generated-id__option-0"
-          role="option"
-          style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
-          title="1"
-          type="button"
-        >
-          <span
-            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-          >
-            <span
-              class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+            <div
+              class="euiComboBoxOptionsList"
+              data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
             >
-              <span
-                class="euiComboBoxOption__contentWrapper"
+              <div
+                class="euiComboBoxOptionsList__virtualization"
+                style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
               >
-                <span
-                  class="euiComboBoxOption__prepend"
+                <div
+                  aria-label="Choose from the following options"
+                  id="generated-id_listbox"
+                  role="listbox"
+                  style="height: 290px; width: 100%;"
+                  tabindex="0"
                 >
-                  <span
-                    data-test-subj="prepend"
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    data-test-subj="titanOption"
+                    id="generated-id__option-0"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
+                    title="Titan"
+                    type="button"
                   >
-                    Pre
-                  </span>
-                </span>
-                <span
-                  class="euiComboBoxOption__content"
-                >
-                  1
-                </span>
-              </span>
-            </span>
-          </span>
-        </button>
-        <button
-          aria-selected="false"
-          class="euiFilterSelectItem emotion-euiFilterSelectItem"
-          id="generated-id__option-1"
-          role="option"
-          style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
-          title="2"
-          type="button"
-        >
-          <span
-            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-          >
-            <span
-              class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-            >
-              <span
-                class="euiComboBoxOption__contentWrapper"
-              >
-                <span
-                  class="euiComboBoxOption__content"
-                >
-                  2
-                </span>
-                <span
-                  class="euiComboBoxOption__append"
-                >
-                  <span
-                    data-test-subj="append"
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Titan
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-1"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
+                    title="Enceladus"
+                    type="button"
                   >
-                    Post
-                  </span>
-                </span>
-              </span>
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`props options list is rendered 1`] = `
-<div
-  class="euiComboBox euiComboBox-isOpen"
-  data-test-subj="alsoGetsAppliedToOptionsList"
->
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <div
-        class="euiComboBox__inputWrap euiFormControlLayout--1icons"
-        data-test-subj="comboBoxInput"
-        tabindex="-1"
-      >
-        <div
-          class="euiComboBox__input"
-          style="font-size: 14px; display: inline-block;"
-        >
-          <input
-            aria-autocomplete="list"
-            aria-controls="generated-id_listbox"
-            aria-expanded="true"
-            aria-invalid="false"
-            data-test-subj="comboBoxSearchInput"
-            id="generated-id__eui-combobox-id"
-            role="combobox"
-            style="box-sizing: content-box; width: 2px;"
-            value=""
-          />
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Enceladus
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-2"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
+                    title="Mimas"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Mimas
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-3"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
+                    title="Dione"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Dione
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-4"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
+                    title="Iapetus"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Iapetus
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-5"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
+                    title="Phoebe"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Phoebe
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-6"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
+                    title="Rhea"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Rhea
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-7"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
+                    title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    aria-selected="false"
+                    class="euiFilterSelectItem emotion-euiFilterSelectItem"
+                    id="generated-id__option-8"
+                    role="option"
+                    style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
+                    title="Tethys"
+                    type="button"
+                  >
+                    <span
+                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                    >
+                      <span
+                        class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+                      >
+                        <span
+                          class="euiComboBoxOption__contentWrapper"
+                        >
+                          <span
+                            class="euiComboBoxOption__content"
+                          >
+                            Tethys
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div
-            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="-1"
           />
         </div>
       </div>
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <button
-          aria-label="Close list of options"
-          class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
-          data-test-subj="comboBoxToggleListButton"
-          tabindex="-1"
-          type="button"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </button>
-      </div>
     </div>
-  </div>
-  <div
-    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
-    data-popover-open="true"
-    data-popover-panel="true"
-    data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
-    style="z-index: 100;"
-  >
     <div
-      class="euiComboBoxOptionsList__rowWrap"
-    >
-      <div
-        style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
-      >
-        <div
-          aria-label="Choose from the following options"
-          id="generated-id_listbox"
-          role="listbox"
-          style="height: 290px; width: 100%;"
-          tabindex="0"
-        >
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            data-test-subj="titanOption"
-            id="generated-id__option-0"
-            role="option"
-            style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
-            title="Titan"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Titan
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-1"
-            role="option"
-            style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
-            title="Enceladus"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Enceladus
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-2"
-            role="option"
-            style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
-            title="Mimas"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Mimas
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-3"
-            role="option"
-            style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
-            title="Dione"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Dione
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-4"
-            role="option"
-            style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
-            title="Iapetus"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Iapetus
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-5"
-            role="option"
-            style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
-            title="Phoebe"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Phoebe
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-6"
-            role="option"
-            style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
-            title="Rhea"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Rhea
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-7"
-            role="option"
-            style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
-            title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-8"
-            role="option"
-            style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
-            title="Tethys"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    Tethys
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
   </div>
-</div>
-`;
-
-exports[`props selectedOptions are rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-        Object {
-          "label": "Iapetus",
-        },
-      ]
-    }
-    singleSelection={false}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas, Iapetus"
-  />
-</div>
-`;
-
-exports[`props singleSelection is rendered 1`] = `
-<div
-  className="euiComboBox"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={false}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-      ]
-    }
-    singleSelection={true}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas"
-  />
-</div>
-`;
-
-exports[`props singleSelection prepend and append is rendered 1`] = `
-<div
-  className="euiComboBox euiComboBox--prepended euiComboBox--appended euiComboBox-isOpen"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    append="String"
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={false}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={true}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    prepend="String"
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={Array []}
-    singleSelection={true}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value=""
-  />
-  <EuiPortal>
-    <EuiI18n
-      default="Choose from the following options"
-      token="euiComboBox.listboxAriaLabel"
-    >
-      <Component />
-    </EuiI18n>
-  </EuiPortal>
-</div>
-`;
-
-exports[`props singleSelection selects existing option when opened 1`] = `
-<div
-  className="euiComboBox euiComboBox-isOpen"
-  onBlur={[Function]}
-  onKeyDown={[Function]}
->
-  <EuiComboBoxInput
-    autoSizeInputRef={[Function]}
-    compressed={false}
-    fullWidth={false}
-    hasSelectedOptions={true}
-    id="generated-id__eui-combobox-id"
-    inputRef={[Function]}
-    isInvalid={false}
-    isListOpen={true}
-    noIcon={false}
-    onChange={[Function]}
-    onClear={[Function]}
-    onClick={[Function]}
-    onCloseListClick={[Function]}
-    onFocus={[Function]}
-    onOpenListClick={[Function]}
-    onRemoveOption={[Function]}
-    rootId={[Function]}
-    searchValue=""
-    selectedOptions={
-      Array [
-        Object {
-          "label": "Mimas",
-        },
-      ]
-    }
-    singleSelection={true}
-    toggleButtonRef={[Function]}
-    updatePosition={[Function]}
-    value="Mimas"
-  />
-  <EuiPortal>
-    <EuiI18n
-      default="Choose from the following options"
-      token="euiComboBox.listboxAriaLabel"
-    >
-      <Component />
-    </EuiI18n>
-  </EuiPortal>
-</div>
+</body>
 `;

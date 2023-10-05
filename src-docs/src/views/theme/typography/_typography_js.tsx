@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../../../../src/services';
+import { useEuiTheme, EuiThemeProvider } from '../../../../../src/services';
 import {
   EuiBasicTable,
   EuiButtonGroup,
@@ -9,6 +9,9 @@ import {
   EuiDescribedFormGroup,
   EuiPanel,
   EuiSpacer,
+  EuiText,
+  EuiCallOut,
+  EuiLink,
 } from '../../../../../src/components';
 
 import {
@@ -16,8 +19,8 @@ import {
   useEuiFontSize,
   EuiThemeFontWeights,
   EuiThemeFontScales,
-  EuiThemeFontSizeMeasurements,
-  _EuiThemeFontSizeMeasurement,
+  EuiThemeFontUnits,
+  _EuiThemeFontUnit,
 } from '../../../../../src/global_styling';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
@@ -103,6 +106,26 @@ export const FontJS = () => {
         }
         snippet={'font-feature-settings: ${euiTheme.font.featureSettings};'}
         snippetLanguage="emotion"
+      />
+
+      <ThemeExample
+        title={<code>euiTheme.font.defaultUnits</code>}
+        description={getDescription(baseProps.defaultUnits)}
+        example={
+          <EuiThemeProvider modify={{ font: { defaultUnits: 'px' } }}>
+            <EuiText>
+              My font size and line height is set using <EuiCode>px</EuiCode>{' '}
+              and not <EuiCode>rem</EuiCode>
+            </EuiText>
+          </EuiThemeProvider>
+        }
+        snippet={`<EuiProvider modify={{ font: { defaultUnits: 'px' } }}>
+  <EuiText>
+    <p>Hello world</p>
+  </EuiText>
+</EuiProvider>
+`}
+        snippetLanguage="jsx"
       />
     </>
   );
@@ -229,27 +252,25 @@ export const FontScaleValuesJS = () => {
   const euiThemeContext = useEuiTheme();
   const scaleKeys = EuiThemeFontScales;
 
-  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
+  const unitButtons = EuiThemeFontUnits.map((m) => {
     return {
       id: m,
       label: m,
     };
   });
 
-  const [measurementSelected, setMeasurementSelected] = useState(
-    measurementButtons[0].id
-  );
+  const [unitSelected, setUnitSelected] = useState(unitButtons[0].id);
 
   return (
     <>
       <EuiPanel color="accent">
         <EuiDescribedFormGroup
           fullWidth
-          title={<h3>Value measurements</h3>}
+          title={<h3>Font units</h3>}
           description={
             <p>
-              The font sizing function also supports the three main measurements
-              for font-size, <EuiCode>rem | px | em</EuiCode>, with{' '}
+              The font sizing function also supports three main units for font
+              size and line height: <EuiCode>rem | px | em</EuiCode>, with{' '}
               <EuiCode>rem</EuiCode> being default for all EUI components.
             </p>
           }
@@ -257,38 +278,53 @@ export const FontScaleValuesJS = () => {
           <EuiSpacer />
           <EuiButtonGroup
             buttonSize="m"
-            legend="Value measurement to show in table"
-            options={measurementButtons}
-            idSelected={measurementSelected}
-            onChange={(id) =>
-              setMeasurementSelected(id as _EuiThemeFontSizeMeasurement)
-            }
+            legend="Value unit to show in table"
+            options={unitButtons}
+            idSelected={unitSelected}
+            onChange={(id) => setUnitSelected(id as _EuiThemeFontUnit)}
             color="accent"
             isFullWidth
           />
         </EuiDescribedFormGroup>
       </EuiPanel>
+      <EuiSpacer size="m" />
+      <EuiCallOut
+        iconType="accessibility"
+        title={
+          <>
+            We strongly recommend using relative (<EuiCode>rem</EuiCode> or{' '}
+            <EuiCode>em</EuiCode>) units instead of <EuiCode>px</EuiCode> when
+            possible{' '}
+          </>
+        }
+      >
+        <p>
+          Relative font units respect configured browser default font sizes,
+          which some users may set to larger than than the 16px default due to,
+          e.g. visual impairment, monitor size, or personal preference.{' '}
+          <EuiLink
+            href="https://usability.yale.edu/web-accessibility/articles/zoom-resizing-text"
+            target="_blank"
+          >
+            Read more on accessible text resizing.
+          </EuiLink>
+        </p>
+      </EuiCallOut>
       <EuiSpacer />
       <EuiBasicTable<FontScaleDetails>
         tableLayout="auto"
         items={scaleKeys.map((scale, index) => {
+          const { fontSize, lineHeight } = euiFontSize(euiThemeContext, scale, {
+            unit: unitSelected,
+          });
+
           return {
             id: scale,
             value: `useEuiFontSize('${scale}'${
-              measurementSelected !== 'rem'
-                ? `,\n  { measurement: '${measurementSelected}' }\n`
-                : ''
+              unitSelected !== 'rem' ? `, { unit: '${unitSelected}' }` : ''
             })`,
-            size: `${
-              euiFontSize(euiThemeContext, scale, {
-                measurement: measurementSelected,
-              }).fontSize
-            }`,
-            lineHeight: `${
-              euiFontSize(euiThemeContext, scale, {
-                measurement: measurementSelected,
-              }).lineHeight
-            }`,
+            size: String(fontSize),
+            lineHeight: String(lineHeight),
             index,
           };
         })}
@@ -302,7 +338,7 @@ export const FontScaleValuesJS = () => {
               <div
                 css={css`
                   ${euiFontSize(euiThemeContext, item.id, {
-                    measurement: measurementSelected,
+                    unit: unitSelected,
                   })}
                 `}
               >

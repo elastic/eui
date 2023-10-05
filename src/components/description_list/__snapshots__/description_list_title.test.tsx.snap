@@ -2,50 +2,44 @@
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations align center alignment is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-normal-s"
 />
 `;
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations compressed is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-compressed"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-compressed-s"
 />
 `;
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations text styles reversed text is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-reverse"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-reverse-s"
 />
 `;
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations type column is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-column-m-normal"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-column-normal"
 />
 `;
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations type inline is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-inline-m-normal"
-/>
-`;
-
-exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations type responsiveColumn is rendered 1`] = `
-<dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-responsiveColumn-m-normal"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-inline-normal"
 />
 `;
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations type row is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-normal-s"
 />
 `;
 
 exports[`EuiDescriptionListTitle is rendered 1`] = `
 <dt
   aria-label="aria-label"
-  class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
+  class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-normal-s-euiTestCss"
   data-test-subj="test subject string"
 >
   Content

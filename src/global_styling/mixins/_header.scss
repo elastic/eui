@@ -1,6 +1,8 @@
 @import '../variables/header';
 
 @mixin euiHeaderAffordForFixed($headerHeight: $euiHeaderHeightCompensation) {
+  @warn 'This mixin will shortly be deprecated. Use the CSS variable var(--euiFixedHeadersOffset) instead, which updates dynamically based on the number of fixed headers on the page.';
+
   // The `@at-root #{&}` allows for grouping alongside another specific body class.
   // When not applied inside of another selector, it simply renders with the single class
   @at-root #{&}.euiBody--headerIsFixed {

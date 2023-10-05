@@ -1,5 +1,59 @@
 [
   {
+    "version": "88.5.0",
+    "changes": [
+      {
+        "token": "euiCallOut.dismissAriaLabel",
+        "changeType": "added",
+        "value": "Dismiss this callout"
+      }
+    ]
+  },
+  {
+    "version": "88.4.0",
+    "changes": [
+      {
+        "token": "euiSearchBox.placeholder",
+        "changeType": "added",
+        "value": "Search..."
+      },
+      {
+        "token": "euiSearchBox.incrementalAriaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. As you type, the results lower in the page will automatically filter."
+      },
+      {
+        "token": "euiSearchBox.ariaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+      }
+    ]
+  },
+  {
+    "version": "88.3.0",
+    "changes": [
+      {
+        "token": "euiAccordion.isLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiAccordionChildrenLoading.message",
+        "changeType": "added",
+        "value": "Loading"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonAriaLabel",
+        "changeType": "added",
+        "value": "Clear all toast notifications"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonDisplayText",
+        "changeType": "added",
+        "value": "Clear all"
+      }
+    ]
+  },
+  {
     "version": "87.2.0",
     "changes": [
       {

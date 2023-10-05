@@ -60,6 +60,7 @@ root.render(
                   sections,
                   isBeta,
                   isNew,
+                  isDeprecated,
                   component,
                   from,
                   to,
@@ -88,6 +89,7 @@ root.render(
                                 sections,
                                 isBeta,
                                 isNew,
+                                isDeprecated,
                               }}
                             >
                               {({ theme }) => (

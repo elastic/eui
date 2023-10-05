@@ -1813,7 +1813,7 @@ describe('EuiDataGrid', () => {
       let popover = openColumnSelector(component);
       expect(
         popover
-          .find('.euiDataGridColumnSelector__item')
+          .find('div.euiDataGridColumnSelector__item')
           .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSelector(component);
@@ -1831,7 +1831,7 @@ describe('EuiDataGrid', () => {
       popover = openColumnSelector(component);
       expect(
         popover
-          .find('.euiDataGridColumnSelector__item')
+          .find('div.euiDataGridColumnSelector__item')
           .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSelector(component);

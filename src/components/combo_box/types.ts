@@ -9,6 +9,8 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
 
+import type { _EuiComboBoxProps } from './combo_box';
+
 // note similarity to `Option` in `components/selectable/types.tsx`
 export interface EuiComboBoxOptionOption<
   T = string | number | string[] | undefined
@@ -21,16 +23,12 @@ export interface EuiComboBoxOptionOption<
   value?: T;
   prepend?: ReactNode;
   append?: ReactNode;
+  truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
 }
 
-export type UpdatePositionHandler = (
-  listElement?: RefInstance<HTMLDivElement>
-) => void;
 export type OptionHandler<T> = (option: EuiComboBoxOptionOption<T>) => void;
 
 export type RefInstance<T> = T | null;
-
-export type EuiComboBoxOptionsListPosition = 'top' | 'bottom';
 
 export interface EuiComboBoxSingleSelectionShape {
   asPlainText?: boolean;

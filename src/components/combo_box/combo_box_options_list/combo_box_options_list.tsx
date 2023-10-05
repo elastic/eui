@@ -6,99 +6,84 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Component,
-  ComponentProps,
-  ReactNode,
-  RefCallback,
-} from 'react';
+import React, { Component, ContextType, ReactNode, RefCallback } from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,
+  FixedSizeListProps,
   ListProps,
   ListChildComponentProps,
 } from 'react-window';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
+import { EuiMark } from '../../mark';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import {
   EuiFilterSelectItem,
-  EuiFilterSelectItemClass,
   FilterChecked,
 } from '../../filter_group/filter_select_item';
 import { htmlIdGenerator } from '../../../services';
-import {
-  EuiComboBoxOptionOption,
-  EuiComboBoxOptionsListPosition,
-  EuiComboBoxSingleSelectionShape,
-  OptionHandler,
-  RefInstance,
-  UpdatePositionHandler,
-} from '../types';
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge';
-import { EuiPopoverPanel } from '../../popover/popover_panel';
+import { EuiTextTruncate } from '../../text_truncate';
+import { EuiInputPopoverWidthContext } from '../../popover/input_popover';
 
-const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
+import type { _EuiComboBoxProps } from '../combo_box';
+import {
+  EuiComboBoxOptionOption,
+  EuiComboBoxSingleSelectionShape,
+  OptionHandler,
+} from '../types';
 
-export type EuiComboBoxOptionsListProps<T> = CommonProps &
-  ComponentProps<typeof EuiPopoverPanel> & {
-    'data-test-subj': string;
-    activeOptionIndex?: number;
-    areAllOptionsSelected?: boolean;
-    listboxAriaLabel: string;
-    /**
-     * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
-     * It won't show if there's no onCreateOption.
-     */
-    customOptionText?: string;
-    fullWidth?: boolean;
-    getSelectedOptionForSearchValue?: (params: {
-      isCaseSensitive?: boolean;
-      searchValue: string;
-      selectedOptions: any[];
-    }) => EuiComboBoxOptionOption<T> | undefined;
+export type EuiComboBoxOptionsListProps<T> = CommonProps & {
+  activeOptionIndex?: number;
+  areAllOptionsSelected?: boolean;
+  listboxAriaLabel: string;
+  /**
+   * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
+   * It won't show if there's no onCreateOption.
+   */
+  customOptionText?: string;
+  fullWidth?: boolean;
+  getSelectedOptionForSearchValue?: (params: {
     isCaseSensitive?: boolean;
-    isLoading?: boolean;
-    listRef: RefCallback<HTMLDivElement>;
-    matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-    onCloseList: (event: Event) => void;
-    onCreateOption?: (
-      searchValue: string,
-      options: Array<EuiComboBoxOptionOption<T>>
-    ) => boolean | void;
-    onOptionClick?: OptionHandler<T>;
-    onOptionEnterKey?: OptionHandler<T>;
-    onScroll?: ListProps['onScroll'];
-    optionRef: (
-      index: number,
-      node: RefInstance<EuiFilterSelectItemClass>
-    ) => void;
-    /**
-     * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
-     */
-    options: Array<EuiComboBoxOptionOption<T>>;
-    position?: EuiComboBoxOptionsListPosition;
-    renderOption?: (
-      option: EuiComboBoxOptionOption<T>,
-      searchValue: string,
-      OPTION_CONTENT_CLASSNAME: string
-    ) => ReactNode;
-    rootId: ReturnType<typeof htmlIdGenerator>;
-    rowHeight: number;
-    scrollToIndex?: number;
     searchValue: string;
-    selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-    updatePosition: UpdatePositionHandler;
-    width: number;
-    singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
-    delimiter?: string;
-    zIndex?: number;
-  };
+    selectedOptions: any[];
+  }) => EuiComboBoxOptionOption<T> | undefined;
+  isCaseSensitive?: boolean;
+  isLoading?: boolean;
+  listRef: RefCallback<HTMLDivElement>;
+  matchingOptions: Array<EuiComboBoxOptionOption<T>>;
+  onCloseList: (event: Event) => void;
+  onCreateOption?: (
+    searchValue: string,
+    options: Array<EuiComboBoxOptionOption<T>>
+  ) => boolean | void;
+  onOptionClick?: OptionHandler<T>;
+  onOptionEnterKey?: OptionHandler<T>;
+  onScroll?: ListProps['onScroll'];
+  /**
+   * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
+   */
+  options: Array<EuiComboBoxOptionOption<T>>;
+  renderOption?: (
+    option: EuiComboBoxOptionOption<T>,
+    searchValue: string,
+    OPTION_CONTENT_CLASSNAME: string
+  ) => ReactNode;
+  rootId: ReturnType<typeof htmlIdGenerator>;
+  rowHeight: number;
+  scrollToIndex?: number;
+  searchValue: string;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+  singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
+  delimiter?: string;
+  truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
+};
 
 const hitEnterBadge = (
   <EuiBadge
@@ -112,9 +97,10 @@ const hitEnterBadge = (
 export class EuiComboBoxOptionsList<T> extends Component<
   EuiComboBoxOptionsListProps<T>
 > {
-  listRefInstance: RefInstance<HTMLDivElement> = null;
   listRef: FixedSizeList | null = null;
-  listBoxRef: HTMLUListElement | null = null;
+
+  static contextType = EuiInputPopoverWidthContext;
+  declare context: ContextType<typeof EuiInputPopoverWidthContext>;
 
   static defaultProps = {
     'data-test-subj': '',
@@ -122,44 +108,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     isCaseSensitive: false,
   };
 
-  updatePosition = () => {
-    // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
-    requestAnimationFrame(() => {
-      this.props.updatePosition(this.listRefInstance);
-    });
-  };
-
-  componentDidMount() {
-    // Wait a frame, otherwise moving focus from one combo box to another will result in the class
-    // being removed from the body.
-    requestAnimationFrame(() => {
-      document.body.classList.add('euiBody-hasPortalContent');
-    });
-    this.updatePosition();
-    window.addEventListener('resize', this.updatePosition);
-
-    // Firefox will trigger a scroll event in many common situations when the options list div is appended
-    // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
-    setTimeout(() => {
-      window.addEventListener('scroll', this.closeListOnScroll, {
-        passive: true, // for better performance as we won't call preventDefault
-        capture: true, // scroll events don't bubble, they must be captured instead
-      });
-    }, 500);
-  }
-
   componentDidUpdate(prevProps: EuiComboBoxOptionsListProps<T>) {
-    const { options, selectedOptions, searchValue } = prevProps;
-
-    // We don't compare matchingOptions because that will result in a loop.
-    if (
-      searchValue !== this.props.searchValue ||
-      options !== this.props.options ||
-      selectedOptions !== this.props.selectedOptions
-    ) {
-      this.updatePosition();
-    }
-
     if (
       this.listRef &&
       typeof this.props.activeOptionIndex !== 'undefined' &&
@@ -169,60 +118,54 @@ export class EuiComboBoxOptionsList<T> extends Component<
     }
   }
 
-  componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasPortalContent');
-    window.removeEventListener('resize', this.updatePosition);
-    window.removeEventListener('scroll', this.closeListOnScroll, {
-      capture: true,
-    });
-  }
-
-  closeListOnScroll = (event: Event) => {
-    // Close the list when a scroll event happens, but not if the scroll happened in the options list.
-    // This mirrors Firefox's approach of auto-closing `select` elements onscroll.
-    if (
-      this.listRefInstance &&
-      event.target &&
-      this.listRefInstance.contains(event.target as Node) === false
-    ) {
-      this.props.onCloseList(event);
-    }
-  };
-
-  listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
-    this.props.listRef(ref);
-    this.listRefInstance = ref;
-  };
-
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
   };
 
-  setListBoxRef = (ref: HTMLUListElement | null) => {
-    this.listBoxRef = ref;
-
-    if (ref) {
-      ref.setAttribute('aria-label', this.props.listboxAriaLabel);
-      ref.setAttribute('id', this.props.rootId('listbox'));
-      ref.setAttribute('role', 'listbox');
-      ref.setAttribute('tabIndex', '0');
-    }
+  ListInnerElement: FixedSizeListProps['innerElementType'] = ({
+    children,
+    ...rest
+  }) => {
+    return (
+      <div
+        {...rest}
+        aria-label={this.props.listboxAriaLabel}
+        id={this.props.rootId('listbox')}
+        role="listbox"
+        tabIndex="0"
+      >
+        {children}
+      </div>
+    );
   };
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
-    const { key, isGroupLabelOption, label, value, prepend, append, ...rest } =
-      option;
+    const {
+      key,
+      isGroupLabelOption,
+      label,
+      value,
+      prepend,
+      append,
+      truncationProps: _truncationProps,
+      ...rest
+    } = option;
     const {
       singleSelection,
       selectedOptions,
       onOptionClick,
-      optionRef,
       activeOptionIndex,
       renderOption,
       searchValue,
       rootId,
     } = this.props;
+
+    const hasTruncationProps = this.props.truncationProps || _truncationProps;
+    const truncationProps = hasTruncationProps
+      ? // Individual truncation settings should override component prop
+        { ...this.props.truncationProps, ..._truncationProps }
+      : undefined;
 
     if (isGroupLabelOption) {
       return (
@@ -255,7 +198,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
             onOptionClick(option);
           }
         }}
-        ref={optionRef.bind(this, index)}
         isFocused={optionIsFocused}
         checked={checked}
         showIcons={singleSelection ? true : false}
@@ -267,29 +209,86 @@ export class EuiComboBoxOptionsList<T> extends Component<
           {prepend && (
             <span className="euiComboBoxOption__prepend">{prepend}</span>
           )}
-          {renderOption ? (
-            <span className={OPTION_CONTENT_CLASSNAME}>
-              {renderOption(
-                option,
-                searchValue,
-                'euiComboBoxOption__renderOption'
-              )}
-            </span>
-          ) : (
-            <EuiHighlight
-              search={searchValue}
-              strict={this.props.isCaseSensitive}
-              className={OPTION_CONTENT_CLASSNAME}
-            >
-              {label}
-            </EuiHighlight>
-          )}
+          <span className="euiComboBoxOption__content">
+            {renderOption
+              ? renderOption(
+                  option,
+                  searchValue,
+                  'euiComboBoxOption__renderOption'
+                )
+              : this.renderTruncatedOption(label, truncationProps)}
+          </span>
           {append && (
             <span className="euiComboBoxOption__append">{append}</span>
           )}
           {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
         </span>
       </EuiFilterSelectItem>
+    );
+  };
+
+  optionWidth: number | undefined;
+  setOptionWidth = (width: number) => {
+    this.optionWidth = width;
+  };
+
+  renderTruncatedOption = (
+    text: string,
+    truncationProps?: EuiComboBoxOptionsListProps<T>['truncationProps']
+  ) => {
+    const searchValue = this.props.searchValue.trim();
+
+    if (!truncationProps && !searchValue) {
+      // Default to CSS text-overflow
+      return text;
+    }
+
+    if (!searchValue) {
+      return (
+        <EuiTextTruncate
+          width={this.optionWidth}
+          onResize={this.setOptionWidth}
+          {...truncationProps}
+          text={text}
+        >
+          {(text) => text}
+        </EuiTextTruncate>
+      );
+    }
+
+    const searchPositionStart = this.props.isCaseSensitive
+      ? text.indexOf(searchValue)
+      : text.toLowerCase().indexOf(searchValue.toLowerCase());
+    const searchPositionCenter =
+      searchPositionStart + Math.floor(searchValue.length / 2);
+
+    return (
+      <EuiTextTruncate
+        width={this.optionWidth}
+        onResize={this.setOptionWidth}
+        {...truncationProps}
+        // When searching, don't allow overriding the truncation settings
+        truncation="startEnd"
+        truncationPosition={searchPositionCenter}
+        text={text}
+      >
+        {(text) => (
+          <>
+            {text.length >= searchValue.length ? (
+              <EuiHighlight
+                search={searchValue}
+                strict={this.props.isCaseSensitive}
+              >
+                {text}
+              </EuiHighlight>
+            ) : (
+              // If the available truncated text is shorter than the full search string,
+              // just highlight the entire truncated text
+              <EuiMark>{text}</EuiMark>
+            )}
+          </>
+        )}
+      </EuiTextTruncate>
     );
   };
 
@@ -310,9 +309,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       onOptionClick,
       onOptionEnterKey,
       onScroll,
-      optionRef,
       options,
-      position = 'bottom',
       renderOption,
       rootId,
       rowHeight,
@@ -320,11 +317,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       selectedOptions,
       singleSelection,
-      updatePosition,
-      width,
       delimiter,
-      zIndex,
-      style,
+      truncationProps,
       listboxAriaLabel,
       ...rest
     } = this.props;
@@ -460,47 +454,34 @@ export class EuiComboBoxOptionsList<T> extends Component<
       matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
 
-    // bounded by max-height of euiComboBoxOptionsList__rowWrap
+    // bounded by max-height of .euiComboBoxOptionsList
     const boundedHeight = height > 200 ? 200 : height;
 
     const optionsList = (
       <FixedSizeList
+        className="euiComboBoxOptionsList__virtualization"
         height={boundedHeight}
         onScroll={onScroll}
         itemCount={matchingOptions.length}
         itemSize={rowHeight}
         itemData={matchingOptions}
         ref={this.setListRef}
-        innerRef={this.setListBoxRef}
-        width={width}
+        innerElementType={this.ListInnerElement}
+        width={this.context}
       >
         {this.ListRow}
       </FixedSizeList>
     );
 
-    /**
-     * Reusing the EuiPopover__panel classes to help with consistency/maintenance.
-     * But this should really be converted to user the popover component.
-     */
-    const classes = classNames('euiComboBoxOptionsList');
-
     return (
-      <EuiPopoverPanel
-        paddingSize="none"
-        hasShadow={false}
-        className={classes}
-        panelRef={this.listRefCallback}
+      <div
+        className="euiComboBoxOptionsList"
         data-test-subj={classNames('comboBoxOptionsList', dataTestSubj)}
-        style={{ ...style, zIndex: zIndex }}
-        isOpen
-        isAttached
-        position={position}
+        ref={listRef}
         {...rest}
       >
-        <div className="euiComboBoxOptionsList__rowWrap">
-          {emptyState || optionsList}
-        </div>
-      </EuiPopoverPanel>
+        {emptyState || optionsList}
+      </div>
     );
   }
 }

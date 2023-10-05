@@ -1,26 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[React 17] EuiDraggable renders 1`] = `
+exports[`[React 16] EuiDraggable renders 1`] = `
 <div
-  class="euiDroppable euiDroppable--noGrow"
-  data-rfd-droppable-context-id="0"
+  class="euiDroppable emotion-euiDroppable-noGrow"
+  data-rfd-droppable-context-id="2"
   data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div
-    aria-describedby="rfd-hidden-text-0-hidden-text-0"
-    class="euiDraggable"
-    data-rfd-drag-handle-context-id="0"
+    aria-describedby="rfd-hidden-text-2-hidden-text-6"
+    class="euiDraggable testClass1 testClass2 emotion-euiDraggable-euiTestCss"
+    data-rfd-drag-handle-context-id="2"
     data-rfd-drag-handle-draggable-id="testDraggable"
-    data-rfd-draggable-context-id="0"
+    data-rfd-draggable-context-id="2"
     data-rfd-draggable-id="testDraggable"
-    data-test-subj="draggable"
+    data-test-subj="test subject string"
     draggable="false"
     role="button"
     tabindex="0"
   >
     <div
-      class="euiDraggable__item"
+      class="euiDraggable__item emotion-euiDraggable__item"
+    >
+      Hello
+    </div>
+  </div>
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;
+
+exports[`[React 17] EuiDraggable renders 1`] = `
+<div
+  class="euiDroppable emotion-euiDroppable-noGrow"
+  data-rfd-droppable-context-id="2"
+  data-rfd-droppable-id="testDroppable"
+  data-test-subj="droppable"
+>
+  <div
+    aria-describedby="rfd-hidden-text-2-hidden-text-6"
+    class="euiDraggable testClass1 testClass2 emotion-euiDraggable-euiTestCss"
+    data-rfd-drag-handle-context-id="2"
+    data-rfd-drag-handle-draggable-id="testDraggable"
+    data-rfd-draggable-context-id="2"
+    data-rfd-draggable-id="testDraggable"
+    data-test-subj="test subject string"
+    draggable="false"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="euiDraggable__item emotion-euiDraggable__item"
     >
       Hello
     </div>
@@ -33,25 +64,25 @@ exports[`[React 17] EuiDraggable renders 1`] = `
 
 exports[`[React 18] EuiDraggable renders 1`] = `
 <div
-  class="euiDroppable euiDroppable--noGrow"
-  data-rfd-droppable-context-id=":r0:"
+  class="euiDroppable emotion-euiDroppable-noGrow"
+  data-rfd-droppable-context-id=":r8:"
   data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div
-    aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-    class="euiDraggable"
-    data-rfd-drag-handle-context-id=":r0:"
+    aria-describedby="rfd-hidden-text-:r8:-hidden-text-:r9:"
+    class="euiDraggable testClass1 testClass2 emotion-euiDraggable-euiTestCss"
+    data-rfd-drag-handle-context-id=":r8:"
     data-rfd-drag-handle-draggable-id="testDraggable"
-    data-rfd-draggable-context-id=":r0:"
+    data-rfd-draggable-context-id=":r8:"
     data-rfd-draggable-id="testDraggable"
-    data-test-subj="draggable"
+    data-test-subj="test subject string"
     draggable="false"
     role="button"
     tabindex="0"
   >
     <div
-      class="euiDraggable__item"
+      class="euiDraggable__item emotion-euiDraggable__item"
     >
       Hello
     </div>

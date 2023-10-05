@@ -3526,6 +3526,43 @@ exports[`EuiIcon props type grabHorizontal is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type grabOmnidirectional is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="grabOmnidirectional"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M6 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type gradient is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="gradient"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2Zm4 0h1v12H5V2Zm3 12V2h2v12H8Zm3 0h3V2h-3v12Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type graphApp is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -4580,7 +4617,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
-    <linearGradient
+    <lineargradient
       id="logo_apache_generated-id_a"
       x1="21.902%"
       x2="141.879%"
@@ -4599,8 +4636,8 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="83.83%"
         stop-color="#E97826"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_apache_generated-id_b"
       x1="-217.651%"
       x2="74.743%"
@@ -4623,8 +4660,8 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="100%"
         stop-color="#E97826"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_apache_generated-id_c"
       x1="-80.044%"
       x2="146.24%"
@@ -4647,8 +4684,8 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="100%"
         stop-color="#E97826"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_apache_generated-id_d"
       x1="-18.316%"
       x2="165.002%"
@@ -4671,8 +4708,8 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="94.87%"
         stop-color="#CD2032"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_apache_generated-id_e"
       x1="-109.701%"
       x2="64.617%"
@@ -4695,8 +4732,8 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="100%"
         stop-color="#E97826"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_apache_generated-id_f"
       x1="-34.88%"
       x2="110.599%"
@@ -4719,8 +4756,8 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="100%"
         stop-color="#E97826"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_apache_generated-id_g"
       x1="-13.673%"
       x2="117.858%"
@@ -4743,7 +4780,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
         offset="94.87%"
         stop-color="#CD2032"
       />
-    </linearGradient>
+    </lineargradient>
   </defs>
   <g
     fill="none"
@@ -5107,7 +5144,7 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
     fill="#24265D"
   />
   <defs>
-    <linearGradient
+    <lineargradient
       gradientUnits="userSpaceOnUse"
       id="logo_dropwizard_generated-id_a"
       x1="33.473"
@@ -5130,8 +5167,8 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
         offset="1"
         stop-color="#252761"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       gradientUnits="userSpaceOnUse"
       id="logo_dropwizard_generated-id_b"
       x1="21.028"
@@ -5154,7 +5191,7 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
         offset="1"
         stop-color="#252761"
       />
-    </linearGradient>
+    </lineargradient>
   </defs>
 </svg>
 `;
@@ -5343,8 +5380,8 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
   role="img"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
 >
   <defs>
     <path
@@ -5385,7 +5422,7 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
         id="logo_gcp_generated-id_b"
       >
         <use
-          href="#logo_gcp_generated-id_a"
+          xlink:href="#logo_gcp_generated-id_a"
         />
       </mask>
       <path
@@ -5647,8 +5684,8 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
   role="img"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
 >
   <defs>
     <path
@@ -5680,7 +5717,7 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
         id="logo_google_g_generated-id_b"
       >
         <use
-          href="#logo_google_g_generated-id_a"
+          xlink:href="#logo_google_g_generated-id_a"
         />
       </mask>
       <path
@@ -5698,7 +5735,7 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
         id="logo_google_g_generated-id_d"
       >
         <use
-          href="#logo_google_g_generated-id_c"
+          xlink:href="#logo_google_g_generated-id_c"
         />
       </mask>
       <path
@@ -5716,7 +5753,7 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
         id="logo_google_g_generated-id_f"
       >
         <use
-          href="#logo_google_g_generated-id_e"
+          xlink:href="#logo_google_g_generated-id_e"
         />
       </mask>
       <path
@@ -5734,7 +5771,7 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
         id="logo_google_g_generated-id_h"
       >
         <use
-          href="#logo_google_g_generated-id_g"
+          xlink:href="#logo_google_g_generated-id_g"
         />
       </mask>
       <path
@@ -5824,14 +5861,14 @@ exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
     />
   </g>
   <defs>
-    <clipPath
+    <clippath
       id="logo_haproxy_generated-id_a"
     >
       <path
         d="M0 0h32v32H0V0Z"
         fill="#fff"
       />
-    </clipPath>
+    </clippath>
   </defs>
 </svg>
 `;
@@ -5849,7 +5886,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
-    <linearGradient
+    <lineargradient
       id="logo_ibm_generated-id_a"
       x1="8.005%"
       x2="53.33%"
@@ -5870,8 +5907,8 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
         offset="100%"
         stop-color="#21A2EF"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_ibm_generated-id_b"
       x1="19.496%"
       x2="71.309%"
@@ -5887,8 +5924,8 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
         stop-color="#6EAFF1"
         stop-opacity="0"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_ibm_generated-id_c"
       x1="21.909%"
       x2="21.909%"
@@ -5913,8 +5950,8 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
         stop-color="#5CCFE5"
         stop-opacity="0"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_ibm_generated-id_d"
       x1="96.205%"
       x2="-1.172%"
@@ -5939,8 +5976,8 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
         stop-color="#5CCFE5"
         stop-opacity="0"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_ibm_generated-id_e"
       x1="9.408%"
       x2="80.589%"
@@ -5955,7 +5992,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
         offset="100%"
         stop-color="#21A1EF"
       />
-    </linearGradient>
+    </lineargradient>
   </defs>
   <g
     fill="none"
@@ -6176,7 +6213,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
-    <radialGradient
+    <radialgradient
       cx="41.406%"
       cy="42.708%"
       fx="41.406%"
@@ -6192,8 +6229,8 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
         offset="100%"
         stop-color="#C83737"
       />
-    </radialGradient>
-    <radialGradient
+    </radialgradient>
+    <radialgradient
       cx="44.271%"
       cy="42.708%"
       fx="44.271%"
@@ -6209,8 +6246,8 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
         offset="100%"
         stop-color="#C83737"
       />
-    </radialGradient>
-    <linearGradient
+    </radialgradient>
+    <lineargradient
       id="logo_memcached_generated-id_a"
       x1="50%"
       x2="50%"
@@ -6225,8 +6262,8 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
         offset="100%"
         stop-color="#80716D"
       />
-    </linearGradient>
-    <linearGradient
+    </lineargradient>
+    <lineargradient
       id="logo_memcached_generated-id_b"
       x1="88.778%"
       x2="30.149%"
@@ -6241,7 +6278,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
         offset="100%"
         stop-color="#2EA19E"
       />
-    </linearGradient>
+    </lineargradient>
   </defs>
   <g
     fill="none"
@@ -6493,8 +6530,8 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
   role="img"
   viewBox="0 0 32 32"
   width="32"
-  xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
 >
   <defs>
     <path
@@ -6509,7 +6546,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
       d="M0 17.43h30.987V0H0z"
       id="logo_php_generated-id_f"
     />
-    <radialGradient
+    <radialgradient
       cx="30.02%"
       cy="82.422%"
       fx="30.02%"
@@ -6534,7 +6571,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
         offset="100%"
         stop-color="#484C89"
       />
-    </radialGradient>
+    </radialgradient>
   </defs>
   <g
     fill="none"
@@ -6549,7 +6586,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
         id="logo_php_generated-id_c"
       >
         <use
-          href="#logo_php_generated-id_a"
+          xlink:href="#logo_php_generated-id_a"
         />
       </mask>
       <g
@@ -6567,7 +6604,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
       id="logo_php_generated-id_e"
     >
       <use
-        href="#logo_php_generated-id_d"
+        xlink:href="#logo_php_generated-id_d"
       />
     </mask>
     <g
@@ -6584,7 +6621,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
       id="logo_php_generated-id_g"
     >
       <use
-        href="#logo_php_generated-id_f"
+        xlink:href="#logo_php_generated-id_f"
       />
     </mask>
     <g
@@ -7821,6 +7858,27 @@ exports[`EuiIcon props type pagesSelect is rendered 1`] = `
   <path
     d="M3 1a1 1 0 0 1 1-1h8a1 1 0 0 1 .707.293l2 2A1 1 0 0 1 15 3v5a4.995 4.995 0 0 0-1-.584V4h-2a1 1 0 0 1-1-1V1H4v12h3.1c.07.348.177.682.316 1H4a1 1 0 0 1-1-1V1zm5 14H2V2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h7a5.029 5.029 0 0 1-1-1zm8-3a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-1.646-1.354a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 2.146-2.147a.5.5 0 0 1 .708 0z"
     fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type palette is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="palette"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M4 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm2 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM5 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm4-2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm2 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+  />
+  <path
+    d="M8 1a7 7 0 0 0 0 14h2a2 2 0 1 0 0-4 1 1 0 1 1 0-2h3.98C14.515 9 15 8.583 15 8a7 7 0 0 0-7-7ZM2 8a6 6 0 0 1 12-.005.035.035 0 0 1-.02.005H10a2 2 0 1 0 0 4 1 1 0 1 1 0 2H8a6 6 0 0 1-6-6Z"
   />
 </svg>
 `;
@@ -10457,6 +10515,94 @@ exports[`EuiIcon props type training is rendered 1`] = `
 >
   <path
     d="M10.386 9.836a2.5 2.5 0 1 1 3.611.667C15.212 11.173 16 12.46 16 14v1.5a.5.5 0 1 1-1 0V14c0-1.724-1.276-3-3-3-.91 0-1.298-.02-1.805-.122-1.25-.254-2.333-1-3.585-2.566a.5.5 0 1 1 .78-.624c.9 1.124 1.653 1.74 2.434 2.043.155.052.345.083.562.105Zm1.785.128c.083.01.167.021.251.034L12.5 10a1.5 1.5 0 1 0-.33-.036ZM9.78 11.97a.5.5 0 0 1 .5.5c0 .076-.047.226-.05.231-.179.38-.23.774-.23 1.302v1.5a.5.5 0 1 1-1 0v-1.5c0-.657.072-1.186.307-1.696a.5.5 0 0 1 .473-.337ZM5.958 5.772a.5.5 0 0 1-.78.625L3.11 3.812a.5.5 0 1 1 .78-.624l2.068 2.584ZM1 11h5.5a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5V.5A.5.5 0 0 1 .5 0h12a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0V1H1v10Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type transitionLeftIn is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="transitionLeftIn"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M10.146 5.854a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L11.293 8H7.5a.5.5 0 0 1 0-1h3.793l-1.147-1.146Z"
+  />
+  <path
+    d="M2 0h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2Zm2.707 1H5v1.293l-4 4V4.707L4.707 1ZM6 14V1h7a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6Zm-1-1.293V14H3.707L5 12.707Zm0-3v1.586L2.293 14H2a1 1 0 0 1-.838-.454L5 9.707Zm0-3v1.586l-4 4v-1.586l4-4Zm0-3v1.586l-4 4V7.707l4-4ZM3.293 1H2a1 1 0 0 0-1 1v1.293L3.293 1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type transitionLeftOut is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="transitionLeftOut"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9.854 5.854a.5.5 0 0 0-.708-.708l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L8.707 8H12.5a.5.5 0 0 0 0-1H8.707l1.147-1.146Z"
+  />
+  <path
+    d="M2 0h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2Zm2.707 1H5v1.293l-4 4V4.707L4.707 1ZM6 14V1h7a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6Zm-1-1.293V14H3.707L5 12.707Zm0-3v1.586L2.293 14H2a1 1 0 0 1-.838-.454L5 9.707Zm0-3v1.586l-4 4v-1.586l4-4Zm0-3v1.586l-4 4V7.707l4-4ZM3.293 1H2a1 1 0 0 0-1 1v1.293L3.293 1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type transitionTopIn is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="transitionTopIn"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9.146 10.146a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7 11.293V7.5a.5.5 0 0 1 1 0v3.793l1.146-1.147Z"
+  />
+  <path
+    d="M15 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2Zm-1 2.707V5h-1.293l-4-4h1.586L14 4.707ZM1 6h13v7a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6Zm1.293-1H1V3.707L2.293 5Zm3 0H3.707L1 2.293V2a1 1 0 0 1 .455-.838L5.293 5Zm3 0H6.707l-4-4h1.586l4 4Zm3 0H9.707l-4-4h1.586l4 4ZM14 3.293V2a1 1 0 0 0-1-1h-1.293L14 3.293Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type transitionTopOut is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="transitionTopOut"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9.146 9.854a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7 8.707V12.5a.5.5 0 0 0 1 0V8.707l1.146 1.147Z"
+  />
+  <path
+    d="M15 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2Zm-1 2.707V5h-1.293l-4-4h1.586L14 4.707ZM1 6h13v7a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6Zm1.293-1H1V3.707L2.293 5Zm3 0H3.707L1 2.293V2a1 1 0 0 1 .455-.838L5.293 5Zm3 0H6.707l-4-4h1.586l4 4Zm3 0H9.707l-4-4h1.586l4 4ZM14 3.293V2a1 1 0 0 0-1-1h-1.293L14 3.293Z"
+    fill-rule="evenodd"
   />
 </svg>
 `;

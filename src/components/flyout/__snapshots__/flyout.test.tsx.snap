@@ -758,6 +758,27 @@ Array [
 ]
 `;
 
+exports[`EuiFlyout props push flyouts renders 1`] = `
+<div
+  class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-push-right-noAnimation-right"
+  data-test-subj="flyout"
+>
+  <button
+    aria-label="Close this dialog"
+    class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
+    data-test-subj="euiFlyoutCloseButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="cross"
+    />
+  </button>
+</div>
+`;
+
 exports[`EuiFlyout props sides left is rendered 1`] = `
 Array [
   <div>
@@ -1047,51 +1068,15 @@ Array [
 ]
 `;
 
-exports[`EuiFlyout props type=push is rendered 1`] = `
-Array [
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-push-right-right"
-    >
-      <button
-        aria-label="Close this dialog"
-        class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
-        data-test-subj="euiFlyoutCloseButton"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
-    </div>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />,
-]
-`;
-
 exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeaders headers exist on the page 1`] = `
 <body
   class="euiBody--headerIsFixed euiBody--hasFlyout"
-  data-fixed-headers="1"
 >
   <div>
     <div
       class="euiHeader emotion-euiHeader-fixed-default"
       data-fixed-header="true"
+      style="inset-block-start: 0px;"
     />
     <div>
       <div

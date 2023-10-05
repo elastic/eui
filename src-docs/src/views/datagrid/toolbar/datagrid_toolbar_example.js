@@ -9,6 +9,9 @@ const dataGridToolbarVisibilitySource = require('!!raw-loader!./_grid');
 import DataGridControls from './additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./additional_controls');
 
+import DataGridCustomToolbar from './render_custom_toolbar';
+const dataGridCustomToolbarSource = require('!!raw-loader!./render_custom_toolbar');
+
 import ToolbarPropsTable from './_props';
 
 import {
@@ -17,6 +20,7 @@ import {
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
   EuiDataGridToolBarVisibilityDisplaySelectorOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
+  EuiDataGridCustomToolbarProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 /* eslint-disable local/css-logical-properties */
@@ -184,6 +188,55 @@ export const DataGridToolbarExample = {
         EuiDataGridToolBarAdditionalControlsLeftOptions,
       },
       demo: <DataGridControls />,
+    },
+    {
+      title: 'Completely custom toolbar rendering',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: dataGridCustomToolbarSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            If more customized control over the toolbar is required than{' '}
+            <EuiCode>toolbarVisibility</EuiCode> or{' '}
+            <EuiCode>additionalControls</EuiCode> allows, you can use the{' '}
+            <EuiCode>renderCustomToolbar</EuiCode> prop to pass a component. The
+            default datagrid controls are passed back as parameters for optional
+            usage.
+          </p>
+          <p>
+            <EuiCode>renderCustomToolbar</EuiCode> should only be used when a
+            very custom layout (e.g. moving default buttons between sides,
+            interspering custom controls between default controls, custom
+            responsive behavior, etc.) is required. We would caution you to keep
+            consistency in mind also when customizing the toolbar: if using
+            multiple datagrid instances across your app, users will typically
+            want to reach for the same controls for each grid. Changing the
+            available controls inconsistently across your app may result in user
+            frustration.
+          </p>
+        </>
+      ),
+      demo: <DataGridCustomToolbar />,
+      props: {
+        EuiDataGridCustomToolbarProps,
+      },
+      snippet: `<EuiDataGrid
+  aria-label="Data grid with a custom toolbar and additional content in the display settings popover "
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCustomToolbar={({ displayControl }) => <div>Custom toolbar content {displayControl}</div>}
+  toolbarVisibility={{
+    showDisplaySelector: {
+      allowResetButton: false,
+      additionalDisplaySettings: <div>Custom settings content</div>
+    }
+  }}
+/>`,
     },
     {
       title: 'Toolbar props',

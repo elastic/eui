@@ -227,6 +227,8 @@ import { TabsExample } from './views/tabs/tabs_example';
 
 import { TextDiffExample } from './views/text_diff/text_diff_example';
 
+import { TextTruncateExample } from './views/text_truncate/text_truncate_example';
+
 import { TextExample } from './views/text/text_example';
 
 import { TimelineExample } from './views/timeline/timeline_example';
@@ -296,8 +298,16 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, sections, isBeta, isNew, playground, guidelines, ...rest } =
-    example;
+  const {
+    title,
+    sections,
+    isBeta,
+    isNew,
+    isDeprecated,
+    playground,
+    guidelines,
+    ...rest
+  } = example;
   const filteredSections = sections.filter((section) => section !== undefined);
 
   filteredSections.forEach((section) => {
@@ -327,6 +337,7 @@ const createExample = (example, customTitle) => {
         title={title}
         isBeta={isBeta}
         isNew={isNew}
+        isDeprecated={isDeprecated}
         playground={playgroundComponent}
         guidelines={guidelines}
         {...rest}
@@ -342,11 +353,19 @@ const createExample = (example, customTitle) => {
     sections: filteredSections,
     isBeta,
     isNew,
+    isDeprecated,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-const createTabbedPage = ({ title, pages, isBeta, isNew, ...rest }) => {
+const createTabbedPage = ({
+  title,
+  pages,
+  isBeta,
+  isNew,
+  isDeprecated,
+  ...rest
+}) => {
   const component = () => (
     <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
@@ -365,6 +384,7 @@ const createTabbedPage = ({ title, pages, isBeta, isNew, ...rest }) => {
     sections: pagesSections,
     isBeta,
     isNew,
+    isDeprecated,
   };
 };
 
@@ -630,30 +650,33 @@ const navigation = [
   {
     name: 'Utilities',
     items: [
-      AccessibilityExample,
-      AutoSizerExample,
-      BeaconExample,
-      ColorPaletteExample,
-      CopyExample,
-      UtilityClassesExample,
-      DelayRenderExample,
-      ErrorBoundaryExample,
-      FocusTrapExample,
-      HighlightAndMarkExample,
-      HtmlIdGeneratorExample,
-      InnerTextExample,
-      I18nExample,
-      MutationObserverExample,
-      OutsideClickDetectorExample,
-      OverlayMaskExample,
-      PortalExample,
-      PrettyDurationExample,
-      ProviderExample,
-      ResizeObserverExample,
-      ScrollExample,
-      TextDiffExample,
-      WindowEventExample,
-    ].map((example) => createExample(example)),
+      ...[
+        AccessibilityExample,
+        AutoSizerExample,
+        BeaconExample,
+        ColorPaletteExample,
+        CopyExample,
+        UtilityClassesExample,
+        DelayRenderExample,
+        ErrorBoundaryExample,
+        FocusTrapExample,
+        HighlightAndMarkExample,
+        HtmlIdGeneratorExample,
+        InnerTextExample,
+        I18nExample,
+        MutationObserverExample,
+        OutsideClickDetectorExample,
+        OverlayMaskExample,
+        PortalExample,
+        PrettyDurationExample,
+        ProviderExample,
+        ResizeObserverExample,
+        ScrollExample,
+        TextDiffExample,
+      ].map((example) => createExample(example)),
+      createTabbedPage(TextTruncateExample),
+      createExample(WindowEventExample),
+    ],
   },
   {
     name: 'Package',

@@ -70,36 +70,6 @@ exports[`EuiListGroupItem props color text is rendered 1`] = `
 </li>
 `;
 
-exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
-<li
-  class="euiListGroupItem emotion-euiListGroupItem-m"
->
-  <span
-    class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
-  >
-    <span
-      class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-      title="Label"
-    >
-      Label
-    </span>
-  </span>
-  <button
-    aria-label="label"
-    class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiListGroupItemExtraAction-hoverStyles"
-    disabled=""
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="euiButtonIcon__icon"
-      color="inherit"
-      data-euiicon-type="empty"
-    />
-  </button>
-</li>
-`;
-
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
   class="euiListGroupItem emotion-euiListGroupItem-m"

@@ -13,6 +13,16 @@ import { EuiButtonIcon, EuiButtonIconProps } from './button_icon';
 const meta: Meta<EuiButtonIconProps> = {
   title: 'EuiButtonIcon',
   component: EuiButtonIcon,
+  args: {
+    // Component defaults
+    color: 'primary',
+    display: 'empty',
+    size: 'xs',
+    iconSize: 'm',
+    isDisabled: false,
+    isLoading: false,
+    isSelected: false,
+  },
 };
 
 export default meta;
@@ -21,12 +31,5 @@ type Story = StoryObj<EuiButtonIconProps>;
 export const Playground: Story = {
   args: {
     iconType: 'faceHappy',
-    color: 'primary',
-    display: 'empty',
-    size: 'xs',
-    iconSize: 'm',
-    isDisabled: false,
-    isLoading: false,
-    isSelected: false,
   },
 };

@@ -11,20 +11,14 @@ import {
   euiFontSize,
   euiTextBreakWord,
   logicalTextAlignCSS,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
   logicalCSS,
 } from '../../global_styling';
-import { tint, UseEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
-  const columnDisplay = `
-  ${logicalCSS('width', '50%')}
-    ${logicalCSS('padding-right', euiTheme.size.s)}
-  `;
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()}
@@ -32,27 +26,18 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Types
     row: css``,
-    column: css`
-      ${columnDisplay}
-    `,
-    responsiveColumn: css`
-      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        ${logicalCSS('width', '100%')}
-        padding: 0;
-      }
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        ${columnDisplay}
-      }
-    `,
+    column: css``,
     inline: css`
       display: inline;
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.medium};
       background-color: ${colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.5)
+        ? euiTheme.colors.lightShade
         : euiTheme.colors.lightestShade};
       ${logicalCSS('margin-vertical', '0')}
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
+
+       ${colorMode === 'DARK' && `color: ${euiTheme.colors.title};`}
 
       /* Make sure the first <dt> doesn't get a margin */
       &:first-of-type {
@@ -81,7 +66,8 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
       compressed: css`
-        ${euiFontSize(euiThemeContext, 'xs')}
+        font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+        line-height: ${euiTheme.font.lineHeightMultiplier};
         ${logicalCSS('padding-vertical', '0')}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,

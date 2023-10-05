@@ -36,6 +36,9 @@ import { EuiNotificationEventReadIcon } from './notification_event_read_icon';
 
 export type EuiNotificationHeadingLevel = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
+/**
+ * @deprecated
+ */
 export type EuiNotificationEventProps = Omit<
   EuiNotificationEventMetaProps,
   'onOpenContextMenu' | 'onRead' | 'eventName' | 'id'
@@ -96,6 +99,12 @@ export type EuiNotificationEventProps = Omit<
     >;
   };
 
+/**
+ * @deprecated - EuiNotificationEvent is scheduled for deprecation due to low internal usage and high
+ * maintenance requirements. If necessary, we recommend copying this component into your own application.
+ *
+ * The component will be permanently removed in December 2023.
+ */
 export const EuiNotificationEvent: FunctionComponent<
   EuiNotificationEventProps
 > = ({
