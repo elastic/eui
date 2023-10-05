@@ -6,5 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { cascadingMenuKeys } from './cascading_menu_keys';
 export { htmlIdGenerator, useGeneratedHtmlId } from './html_id_generator';

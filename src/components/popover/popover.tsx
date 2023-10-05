@@ -23,7 +23,7 @@ import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 
 import {
-  cascadingMenuKeys,
+  keys,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
@@ -383,7 +383,7 @@ export class EuiPopover extends Component<Props, State> {
   };
 
   onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === cascadingMenuKeys.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       this.onEscapeKey(event as unknown as Event);
     }
   };

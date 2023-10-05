@@ -8,11 +8,7 @@
 
 // Export all keys under a `keys` named variable
 import * as keys from './keys';
-export {
-  cascadingMenuKeys,
-  htmlIdGenerator,
-  useGeneratedHtmlId,
-} from './accessibility';
+export { htmlIdGenerator, useGeneratedHtmlId } from './accessibility';
 export { CENTER_ALIGNMENT, LEFT_ALIGNMENT, RIGHT_ALIGNMENT } from './alignment';
 export type { HorizontalAlignment } from './alignment';
 export {
