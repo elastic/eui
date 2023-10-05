@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { useEuiTheme } from '../../services';
 
 import { POSITIONS, COLORS } from './progress';
@@ -15,9 +15,9 @@ import { euiProgressStyles } from './progress.styles';
 describe('euiProgressStyles', () => {
   describe('native progress CSS', () => {
     const isNative = true;
-    const emotionReturn = testCustomHook(() =>
+    const emotionReturn = renderHook(() =>
       euiProgressStyles(useEuiTheme(), isNative)
-    ).return as any;
+    ).result.current;
 
     describe('positions', () => {
       POSITIONS.forEach((position) => {
@@ -38,9 +38,9 @@ describe('euiProgressStyles', () => {
 
   describe('indeterminate div CSS', () => {
     const isNative = false;
-    const emotionReturn = testCustomHook(() =>
+    const emotionReturn = renderHook(() =>
       euiProgressStyles(useEuiTheme(), isNative)
-    ).return as any;
+    ).result.current;
 
     describe('positions', () => {
       POSITIONS.forEach((position) => {
