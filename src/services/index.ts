@@ -9,7 +9,6 @@
 // Export all keys under a `keys` named variable
 import * as keys from './keys';
 export {
-  accessibleClickKeys,
   cascadingMenuKeys,
   htmlIdGenerator,
   useGeneratedHtmlId,
