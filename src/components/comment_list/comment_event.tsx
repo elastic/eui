@@ -88,13 +88,15 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     type = 'custom';
   }
 
+  const showEventBorders = isTypeRegular && eventColor;
+
   const euiTheme = useEuiTheme();
 
   const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [
     styles.euiCommentEvent,
     styles[type],
-    eventColor && styles.border[eventColor],
+    showEventBorders && styles.border[eventColor],
   ];
 
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
@@ -102,6 +104,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
     isTypeRegular && headerStyles.regular,
+    showEventBorders && headerStyles.border[eventColor],
     eventColor &&
       eventBackgroundColors[eventColor] &&
       headerStyles.hasEventColor,
@@ -130,7 +133,10 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
           className="euiCommentEvent__header"
           css={cssHeaderStyles}
         >
-          <EuiPanel {...(panelProps as EuiPanelProps)}>
+          <EuiPanel
+            borderRadius={isTypeRegular ? 'none' : 'm'}
+            {...(panelProps as EuiPanelProps)}
+          >
             <div
               className="euiCommentEvent__headerMain"
               css={headerStyles.euiCommentEvent__headerMain}
