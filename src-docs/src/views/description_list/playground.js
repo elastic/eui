@@ -28,10 +28,10 @@ export const descriptionListConfig = () => {
 
   return {
     config: {
-      componentName: 'EuiSuggest',
+      componentName: 'EuiDescriptionList',
       props: propsToUse,
       scope: {
-        EuiSuggest: EuiDescriptionList,
+        EuiDescriptionList: EuiDescriptionList,
       },
       imports: {
         '@elastic/eui': {
