@@ -261,13 +261,18 @@ export const EuiFlyout = forwardRef(
     /**
      * Set inline styles
      */
-    let newStyle = style;
-    if (typeof maxWidth !== 'boolean') {
-      newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
-    }
-    if (!isEuiFlyoutSizeNamed(size)) {
-      newStyle = { ...newStyle, ...logicalStyle('width', size) };
-    }
+    const inlineStyles = useMemo(() => {
+      const widthStyle =
+        !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
+      const maxWidthStyle =
+        typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
+
+      return {
+        ...style,
+        ...widthStyle,
+        ...maxWidthStyle,
+      };
+    }, [style, maxWidth, size]);
 
     const euiTheme = useEuiTheme();
     const styles = euiFlyoutStyles(euiTheme);
@@ -429,7 +434,7 @@ export const EuiFlyout = forwardRef(
         <Element
           className={classes}
           css={cssStyles}
-          style={newStyle}
+          style={inlineStyles}
           ref={setRef}
           {...(rest as ComponentPropsWithRef<T>)}
           role={!isPushed ? 'dialog' : rest.role}
