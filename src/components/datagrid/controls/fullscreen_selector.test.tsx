@@ -7,9 +7,8 @@
  */
 
 import React from 'react';
-import { act } from '@testing-library/react';
-import { shallow } from 'enzyme';
-import { renderHook, renderHookAct } from '../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import { render, renderHook, renderHookAct } from '../../../test/rtl';
 import { keys } from '../../../services';
 
 import { useDataGridFullScreenSelector } from './fullscreen_selector';
@@ -26,89 +25,24 @@ describe('useDataGridFullScreenSelector', () => {
   });
 
   describe('fullScreenSelector', () => {
-    it('renders a button that toggles entering fullscreen', () => {
-      const {
-        return: { fullScreenSelector },
-      } = testCustomHook(() => useDataGridFullScreenSelector());
-      const component = shallow(<div>{fullScreenSelector}</div>);
+    it('renders a button that toggles entering and exiting fullscreen', () => {
+      const { result } = renderHook(() => useDataGridFullScreenSelector());
+      const { container, getByTestSubject, rerender } = render(
+        <>{result.current.fullScreenSelector}</>
+      );
+      expect(
+        container.querySelector('[data-euiicon-type="fullScreen"]')
+      ).toBeInTheDocument();
 
-      expect(component).toMatchInlineSnapshot(`
-        <div>
-          <EuiToolTip
-            content="Enter fullscreen"
-            delay="long"
-            display="inlineBlock"
-            position="top"
-          >
-            <EuiButtonIcon
-              aria-label="Enter fullscreen"
-              className="euiDataGrid__controlBtn"
-              color="text"
-              data-test-subj="dataGridFullScreenButton"
-              iconType="fullScreen"
-              onClick={[Function]}
-              size="xs"
-            />
-          </EuiToolTip>
-        </div>
-      `);
-    });
-
-    it('renders a button that toggles exiting fullscreen', () => {
-      const {
-        return: { setIsFullScreen },
-        getUpdatedState,
-      } = testCustomHook<ReturnedValues>(() => useDataGridFullScreenSelector());
-      act(() => setIsFullScreen(true));
-
-      const { fullScreenSelector } = getUpdatedState();
-      const component = shallow(<div>{fullScreenSelector}</div>);
-
-      expect(component).toMatchInlineSnapshot(`
-        <div>
-          <EuiToolTip
-            content={
-              <React.Fragment>
-                Exit fullscreen
-                 (
-                <kbd>
-                  esc
-                </kbd>
-                )
-              </React.Fragment>
-            }
-            delay="long"
-            display="inlineBlock"
-            position="top"
-          >
-            <EuiButtonIcon
-              aria-label="Exit fullscreen"
-              className="euiDataGrid__controlBtn euiDataGrid__controlBtn--active"
-              color="text"
-              data-test-subj="dataGridFullScreenButton"
-              iconType="fullScreenExit"
-              onClick={[Function]}
-              size="xs"
-            />
-          </EuiToolTip>
-        </div>
-      `);
-    });
-
-    it('toggles fullscreen mode on button click', () => {
-      const {
-        return: { fullScreenSelector, isFullScreen },
-        getUpdatedState,
-      } = testCustomHook(() => useDataGridFullScreenSelector());
-      expect(isFullScreen).toEqual(false);
-      const component = shallow(<div>{fullScreenSelector}</div>);
-
-      act(() => {
-        component
-          .find('[data-test-subj="dataGridFullScreenButton"]')
-          .simulate('click');
+      renderHookAct(() => {
+        fireEvent.click(getByTestSubject('dataGridFullScreenButton'));
       });
-      expect(getUpdatedState().isFullScreen).toEqual(true);
+      expect(result.current.isFullScreen).toEqual(true);
+      rerender(<>{result.current.fullScreenSelector}</>);
+
+      expect(
+        container.querySelector('[data-euiicon-type="fullScreenExit"]')
+      ).toBeInTheDocument();
     });
   });
 
