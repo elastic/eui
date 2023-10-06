@@ -290,8 +290,9 @@ export const EuiFlyout = forwardRef(
 
     const classes = classnames('euiFlyout', className);
 
-    let closeButton;
-    if (onClose && !hideCloseButton) {
+    const closeButton = useMemo(() => {
+      if (hideCloseButton || !onClose) return null;
+
       const closeButtonClasses = classnames(
         'euiFlyout__closeButton',
         closeButtonProps?.className
@@ -306,7 +307,7 @@ export const EuiFlyout = forwardRef(
         closeButtonProps?.css,
       ];
 
-      closeButton = (
+      return (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
@@ -326,7 +327,14 @@ export const EuiFlyout = forwardRef(
           )}
         </EuiI18n>
       );
-    }
+    }, [
+      onClose,
+      hideCloseButton,
+      closeButtonPosition,
+      closeButtonProps,
+      side,
+      euiTheme,
+    ]);
 
     /*
      * If not disabled, automatically add fixed EuiHeaders as shards
