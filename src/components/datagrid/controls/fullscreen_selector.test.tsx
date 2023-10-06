@@ -113,45 +113,45 @@ describe('useDataGridFullScreenSelector', () => {
   });
 
   describe('handleGridKeyDown', () => {
-    it('exits fullscreen mode when the Escape key is pressed', () => {
-      const {
-        return: { setIsFullScreen },
-        getUpdatedState,
-      } = testCustomHook<ReturnedValues>(() => useDataGridFullScreenSelector());
-      act(() => setIsFullScreen(true));
-      const { handleGridKeyDown } = getUpdatedState();
+    const preventDefault = jest.fn();
+    const keyDownEvent = {
+      preventDefault,
+    } as unknown as React.KeyboardEvent<HTMLDivElement>;
 
-      const preventDefault = jest.fn();
-      act(() => handleGridKeyDown({ key: keys.ESCAPE, preventDefault } as any));
+    beforeEach(() => preventDefault.mockReset());
+
+    it('exits fullscreen mode when the Escape key is pressed', () => {
+      const { result } = renderHook(() => useDataGridFullScreenSelector());
+      renderHookAct(() => result.current.setIsFullScreen(true));
+
+      renderHookAct(() =>
+        result.current.handleGridKeyDown({ ...keyDownEvent, key: keys.ESCAPE })
+      );
 
       expect(preventDefault).toHaveBeenCalled();
-      expect(getUpdatedState().isFullScreen).toEqual(false);
+      expect(result.current.isFullScreen).toEqual(false);
     });
 
     it('does nothing if fullscreen is not open', () => {
-      const {
-        return: { handleGridKeyDown },
-        getUpdatedState,
-      } = testCustomHook<ReturnedValues>(() => useDataGridFullScreenSelector());
+      const { result } = renderHook(() => useDataGridFullScreenSelector());
 
-      const preventDefault = jest.fn();
-      act(() => handleGridKeyDown({ key: keys.ESCAPE, preventDefault } as any));
+      renderHookAct(() =>
+        result.current.handleGridKeyDown({ ...keyDownEvent, key: keys.ESCAPE })
+      );
 
       expect(preventDefault).not.toHaveBeenCalled();
-      expect(getUpdatedState().isFullScreen).toEqual(false);
+      expect(result.current.isFullScreen).toEqual(false);
     });
 
-    it('does nothing if other keys are pressed or fullscreen is not open', () => {
-      const {
-        return: { handleGridKeyDown },
-        getUpdatedState,
-      } = testCustomHook<ReturnedValues>(() => useDataGridFullScreenSelector());
+    it('does nothing if other keys are pressed', () => {
+      const { result } = renderHook(() => useDataGridFullScreenSelector());
 
-      const preventDefault = jest.fn();
-      act(() => handleGridKeyDown({ key: keys.ENTER, preventDefault } as any));
+      renderHookAct(() =>
+        result.current.handleGridKeyDown({ ...keyDownEvent, key: keys.ENTER })
+      );
 
       expect(preventDefault).not.toHaveBeenCalled();
-      expect(getUpdatedState().isFullScreen).toEqual(false);
+      expect(result.current.isFullScreen).toEqual(false);
     });
   });
 

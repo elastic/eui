@@ -237,11 +237,9 @@ describe('EuiDataGridHeaderCell', () => {
 
     describe('keyboard arrow navigation', () => {
       const {
-        return: {
-          panelRef,
-          panelProps: { onKeyDown },
-        },
-      } = testCustomHook(usePopoverArrowNavigation);
+        panelRef,
+        panelProps: { onKeyDown },
+      } = renderHook(usePopoverArrowNavigation).result.current;
 
       const mockPanel = document.createElement('div');
       mockPanel.setAttribute('tabindex', '-1');
@@ -253,18 +251,19 @@ describe('EuiDataGridHeaderCell', () => {
       panelRef(mockPanel);
 
       const preventDefault = jest.fn();
+      const keyDownEvent = { preventDefault } as unknown as React.KeyboardEvent;
       beforeEach(() => jest.clearAllMocks());
 
       describe('early returns', () => {
         it('does nothing if the up/down arrow keys are not pressed', () => {
-          onKeyDown({ key: 'Tab', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'Tab' });
           expect(preventDefault).not.toHaveBeenCalled();
         });
 
         it('does nothing if the popover contains no tabbable elements', () => {
           const emptyDiv = document.createElement('div');
           panelRef(emptyDiv);
-          onKeyDown({ key: 'ArrowDown', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
           expect(preventDefault).not.toHaveBeenCalled();
 
           panelRef(mockPanel); // Reset for other tests
@@ -275,7 +274,7 @@ describe('EuiDataGridHeaderCell', () => {
         beforeEach(() => mockPanel.focus());
 
         it('focuses the first action when the arrow down key is pressed', () => {
-          onKeyDown({ key: 'ArrowDown', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
           expect(preventDefault).toHaveBeenCalled();
           expect(
             document.activeElement?.getAttribute('data-test-subj')
@@ -283,7 +282,7 @@ describe('EuiDataGridHeaderCell', () => {
         });
 
         it('focuses the last action when the arrow up key is pressed', () => {
-          onKeyDown({ key: 'ArrowUp', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
           expect(preventDefault).toHaveBeenCalled();
           expect(
             document.activeElement?.getAttribute('data-test-subj')
@@ -298,19 +297,19 @@ describe('EuiDataGridHeaderCell', () => {
           );
 
           it('moves focus to the the next action', () => {
-            onKeyDown({ key: 'ArrowDown', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('second');
 
-            onKeyDown({ key: 'ArrowDown', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('last');
           });
 
           it('loops focus back to the first action when pressing down on the last action', () => {
-            onKeyDown({ key: 'ArrowDown', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('first');
@@ -323,19 +322,19 @@ describe('EuiDataGridHeaderCell', () => {
           );
 
           it('moves focus to the previous action', () => {
-            onKeyDown({ key: 'ArrowUp', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('second');
 
-            onKeyDown({ key: 'ArrowUp', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('first');
           });
 
           it('loops focus back to the last action when pressing up on the first action', () => {
-            onKeyDown({ key: 'ArrowUp', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('last');
