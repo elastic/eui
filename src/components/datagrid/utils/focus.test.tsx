@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { renderHook, renderHookAct } from '../../../test/rtl';
+import { render, renderHook, renderHookAct } from '../../../test/rtl';
 import { keys } from '../../../services';
 import {
   DataGridFocusContext,
@@ -614,7 +613,7 @@ describe('useHeaderFocusWorkaround', () => {
   it('moves focus down from the header to the first data row if the header becomes uninteractive', () => {
     const focusedCell = [2, -1];
     const setFocusedCell = jest.fn();
-    mount(
+    render(
       <DataGridFocusContext.Provider
         value={{ focusedCell, setFocusedCell } as any}
       >
@@ -627,7 +626,7 @@ describe('useHeaderFocusWorkaround', () => {
   it('does nothing if the focus was not on the header when the header became uninteractive', () => {
     const focusedCell = [2, 0];
     const setFocusedCell = jest.fn();
-    mount(
+    render(
       <DataGridFocusContext.Provider
         value={{ focusedCell, setFocusedCell } as any}
       >

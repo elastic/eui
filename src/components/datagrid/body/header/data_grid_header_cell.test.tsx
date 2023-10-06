@@ -7,8 +7,13 @@
  */
 
 import React, { ReactNode } from 'react';
-import { mount, shallow } from 'enzyme';
-import { render, renderHook } from '../../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  renderHook,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../../../test/rtl';
 
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
@@ -37,8 +42,8 @@ describe('EuiDataGridHeaderCell', () => {
   };
 
   it('renders', () => {
-    const component = shallow(<EuiDataGridHeaderCell {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiDataGridHeaderCell {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('sorting', () => {
@@ -197,60 +202,63 @@ describe('EuiDataGridHeaderCell', () => {
 
   describe('resizing', () => {
     it('renders a resizer', () => {
-      const component = shallow(<EuiDataGridHeaderCell {...requiredProps} />);
-      expect(component.find('EuiDataGridColumnResizer')).toHaveLength(1);
+      const { getByTestSubject } = render(
+        <EuiDataGridHeaderCell {...requiredProps} />
+      );
+      expect(getByTestSubject('dataGridColumnResizer')).toBeInTheDocument();
     });
 
     it('does not render a resizer if isResizable is false', () => {
-      const component = shallow(
+      const { queryByTestSubject } = render(
         <EuiDataGridHeaderCell
           {...requiredProps}
           column={{ id: 'test', isResizable: false }}
         />
       );
-      expect(component.find('EuiDataGridColumnResizer')).toHaveLength(0);
+      expect(
+        queryByTestSubject('dataGridColumnResizer')
+      ).not.toBeInTheDocument();
     });
 
     it('does not render a resizer if a column width cannot be found', () => {
-      const component = shallow(
+      const { queryByTestSubject } = render(
         <EuiDataGridHeaderCell
           {...requiredProps}
           columnWidths={{}}
           defaultColumnWidth={undefined}
         />
       );
-      expect(component.find('EuiDataGridColumnResizer')).toHaveLength(0);
+      expect(
+        queryByTestSubject('dataGridColumnResizer')
+      ).not.toBeInTheDocument();
     });
   });
 
   describe('popover', () => {
     it('does not render a popover if there are no column actions', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDataGridHeaderCell
           {...requiredProps}
           column={{ id: 'test', actions: false }}
         />
       );
-      expect(component.find('EuiPopover')).toHaveLength(0);
+      expect(container.querySelector('.euiPopover')).not.toBeInTheDocument();
     });
 
-    it('handles popover open', () => {
-      const component = mount(
+    it('handles popover open and close', () => {
+      const { container } = render(
         <DataGridFocusContext.Provider value={mockFocusContext}>
           <EuiDataGridHeaderCell {...requiredProps} />
         </DataGridFocusContext.Provider>
       );
-      component.find('.euiDataGridHeaderCell__button').simulate('click');
+      const toggle = container.querySelector('.euiDataGridHeaderCell__button')!;
 
-      expect(component.find('EuiPopover').prop('isOpen')).toEqual(true);
+      fireEvent.click(toggle);
+      waitForEuiPopoverOpen();
       expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, -1]);
-    });
 
-    it('handles popover close', () => {
-      const component = shallow(<EuiDataGridHeaderCell {...requiredProps} />);
-      (component.find('EuiPopover').prop('closePopover') as Function)();
-
-      expect(component.find('EuiPopover').prop('isOpen')).toEqual(false);
+      fireEvent.click(toggle);
+      waitForEuiPopoverClose();
     });
 
     describe('keyboard arrow navigation', () => {
