@@ -10,6 +10,7 @@ import React, {
   useEffect,
   useRef,
   useMemo,
+  useCallback,
   useState,
   forwardRef,
   ComponentPropsWithRef,
@@ -247,12 +248,15 @@ export const EuiFlyout = forwardRef(
     /**
      * ESC key closes flyout (always?)
      */
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (!isPushed && event.key === keys.ESCAPE) {
-        event.preventDefault();
-        onClose(event);
-      }
-    };
+    const onKeyDown = useCallback(
+      (event: KeyboardEvent) => {
+        if (!isPushed && event.key === keys.ESCAPE) {
+          event.preventDefault();
+          onClose(event);
+        }
+      },
+      [onClose, isPushed]
+    );
 
     /**
      * Set inline styles
@@ -397,19 +401,22 @@ export const EuiFlyout = forwardRef(
      * or if `outsideClickCloses={true}` to close on clicks that target
      * (both mousedown and mouseup) the overlay mask.
      */
-    const onClickOutside = (event: MouseEvent | TouchEvent) => {
-      // Do not close the flyout for any external click
-      if (outsideClickCloses === false) return undefined;
-      if (hasOverlayMask) {
-        // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
-        if (event.target === maskRef.current) return onClose(event);
-      } else {
-        // No overlay mask is present, so any outside clicks should close the flyout
-        if (outsideClickCloses === true) return onClose(event);
-      }
-      // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
-      return undefined;
-    };
+    const onClickOutside = useCallback(
+      (event: MouseEvent | TouchEvent) => {
+        // Do not close the flyout for any external click
+        if (outsideClickCloses === false) return undefined;
+        if (hasOverlayMask) {
+          // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
+          if (event.target === maskRef.current) return onClose(event);
+        } else {
+          // No overlay mask is present, so any outside clicks should close the flyout
+          if (outsideClickCloses === true) return onClose(event);
+        }
+        // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
+        return undefined;
+      },
+      [onClose, hasOverlayMask, outsideClickCloses]
+    );
 
     let flyout = (
       <EuiFocusTrap
