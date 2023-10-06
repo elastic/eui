@@ -32,12 +32,10 @@ RUN apt-get update \
     && rm -rf /src/*.deb
 
 # Install cypress so it's available in the container.
-RUN yarn global add cypress
+# RUN yarn global add cypress
 
 # Add directories for Cypress and update permissions.
-RUN mkdir -p /home/node/Downloads \
-    && mkdir -p /cypress/screenshots \
-    && chown -R node:node /cypress
+RUN mkdir -p /cypress/screenshots && chown -R node:node /cypress
 
 # Run user as non privileged.
 USER node
