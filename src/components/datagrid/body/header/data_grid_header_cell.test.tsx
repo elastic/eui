@@ -8,8 +8,7 @@
 
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { testCustomHook } from '../../../../test/internal';
-import { render } from '../../../../test/rtl';
+import { render, renderHook } from '../../../../test/rtl';
 
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
@@ -139,28 +138,31 @@ describe('EuiDataGridHeaderCell', () => {
 
     describe('when multiple columns are being sorted', () => {
       it('does not render aria-sort, but renders sorting screen reader text text with a full list of sorted columns', () => {
-        const {
-          return: { ariaSort, sortingScreenReaderText },
-          getUpdatedState,
-          updateHookArgs,
-        } = testCustomHook(useSortingUtils, {
-          id: 'A',
-          sorting: {
-            columns: [
-              { id: 'A', direction: 'asc' },
-              { id: 'B', direction: 'desc' },
-            ],
+        const { result, rerender } = renderHook(useSortingUtils, {
+          initialProps: {
+            ...mockSortingArgs,
+            id: 'A',
+            sorting: {
+              onSort,
+              columns: [
+                { id: 'A', direction: 'asc' },
+                { id: 'B', direction: 'desc' },
+              ],
+            },
           },
         });
 
-        expect(ariaSort).toEqual(undefined);
-        expect(getRenderedText(sortingScreenReaderText)).toMatchInlineSnapshot(
-          '"Sorted by A, ascending, then sorted by B, descending."'
+        expect(result.current.ariaSort).toEqual(undefined);
+        expect(getRenderedText(result.current.sortingScreenReaderText)).toEqual(
+          'Sorted by A, ascending, then sorted by B, descending.'
         );
 
         // Branch coverage
-        updateHookArgs({
+        rerender({
+          ...mockSortingArgs,
+          id: 'B',
           sorting: {
+            onSort,
             columns: [
               { id: 'B', direction: 'desc' },
               { id: 'C', direction: 'asc' },
@@ -168,10 +170,8 @@ describe('EuiDataGridHeaderCell', () => {
             ],
           },
         });
-        expect(
-          getRenderedText(getUpdatedState().sortingScreenReaderText)
-        ).toMatchInlineSnapshot(
-          '"Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending."'
+        expect(getRenderedText(result.current.sortingScreenReaderText)).toEqual(
+          'Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending.'
         );
       });
     });

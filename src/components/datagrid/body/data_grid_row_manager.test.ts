@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react/pure'; // Pure is important here to preserve state between tests
 
 import { useRowManager } from './data_grid_row_manager';
 
@@ -108,37 +108,34 @@ describe('row manager', () => {
   });
 
   describe('rowClasses', () => {
-    const rowClasses = {
-      0: 'hello',
-    };
-    let row0: HTMLDivElement;
-    let row1: HTMLDivElement;
+    const mockArgs = { innerGridRef: mockGridRef };
     const mockRowArgs = { visibleRowIndex: 99, top: '15px', height: 30 };
 
-    const { return: rowManager, updateHookArgs } =
-      testCustomHook<EuiDataGridRowManager>(useRowManager, {
-        innerGridRef: mockGridRef,
-        rowClasses,
-      });
+    const initialRowClasses = { 0: 'hello' };
 
-    beforeAll(() => {
-      row0 = rowManager.getRow({ ...mockRowArgs, rowIndex: 0 });
-      row1 = rowManager.getRow({ ...mockRowArgs, rowIndex: 1 });
+    const { result, rerender } = renderHook(useRowManager, {
+      initialProps: { ...mockArgs, rowClasses: initialRowClasses },
     });
 
+    const getRow = (rowIndex: number) =>
+      result.current.getRow({ ...mockRowArgs, rowIndex });
+
     it('creates rows with the passed gridStyle.rowClasses', () => {
-      expect(row0.classList.contains('hello')).toBe(true);
+      expect(getRow(0).classList.contains('hello')).toBe(true);
     });
 
     it('updates row classes dynamically when gridStyle.rowClasses updates', () => {
-      updateHookArgs({ rowClasses: { 0: 'world' } });
+      rerender({ ...mockArgs, rowClasses: { 0: 'world' } });
+      const row0 = getRow(0);
 
       expect(row0.classList.contains('hello')).toBe(false);
       expect(row0.classList.contains('world')).toBe(true);
     });
 
     it('adds/removes row classes correctly when gridStyle.rowClasses updates', () => {
-      updateHookArgs({ rowClasses: { 1: 'test' } });
+      rerender({ ...mockArgs, rowClasses: { 1: 'test' } });
+      const row0 = getRow(0);
+      const row1 = getRow(1);
 
       expect(row0.classList.contains('hello')).toBe(false);
       expect(row0.classList.contains('world')).toBe(false);

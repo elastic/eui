@@ -27,30 +27,20 @@ describe('useFocus', () => {
   };
 
   describe('onFocusUpdate', () => {
-    const onFocus = jest.fn();
-    const {
-      return: { onFocusUpdate, setFocusedCell },
-    } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
-
-    let cleanupFn: Function;
-
     it("adds a cell's onFocus callback to the internal cellsUpdateFocus map,", () => {
-      cleanupFn = onFocusUpdate([0, 0], onFocus);
-      // Note: there's no great way to assert this since cellsUpdateFocus is internal,
-      // so this is a separate test mostly just to document the intention/behavior
-    });
+      const onFocus = jest.fn();
+      const { result } = renderHook(() => useFocus(mockArgs));
+      const cleanupFn = result.current.onFocusUpdate([0, 0], onFocus);
 
-    it("calls the cell's onFocus callback with true when the cell becomes focused", () => {
-      act(() => setFocusedCell([0, 0]));
+      // the mapped onFocus is called with true when the cell becomes focused
+      renderHookAct(() => result.current.setFocusedCell([0, 0]));
       expect(onFocus).toHaveBeenCalledWith(true);
-    });
 
-    it("calls the previous cell's onFocus callback with false when another cell becomes focused", () => {
-      act(() => setFocusedCell([1, 1]));
+      // the mapped onFocus is called with false when another cell becomes focused
+      renderHookAct(() => result.current.setFocusedCell([1, 1]));
       expect(onFocus).toHaveBeenCalledWith(false);
-    });
 
-    it('removes the cell from the internal cellsUpdateFocus map as a cleanup function', () => {
+      // the returned function removes the cell from the internal cellsUpdateFocus map
       cleanupFn();
       // Note: there's no great way to assert this since cellsUpdateFocus is internal,
       // so this is mostly here to document behavior and for line coverage
@@ -58,21 +48,21 @@ describe('useFocus', () => {
   });
 
   describe('focusedCell / setFocusedCell', () => {
-    const {
-      return: { focusedCell, setFocusedCell },
-      getUpdatedState,
-    } = testCustomHook(() => useFocus(mockArgs));
-
     it('gets and sets the focusedCell state', () => {
-      expect(focusedCell).toEqual(undefined);
-      act(() => setFocusedCell([2, 2]));
-      expect(getUpdatedState().focusedCell).toEqual([2, 2]);
+      const { result } = renderHook(() => useFocus(mockArgs));
+      expect(result.current.focusedCell).toEqual(undefined);
+
+      renderHookAct(() => result.current.setFocusedCell([2, 2]));
+      expect(result.current.focusedCell).toEqual([2, 2]);
     });
 
     it('does not update if setFocusedCell is called with the same cell X/Y coordinates', () => {
-      const focusedCellInMemory = getUpdatedState().focusedCell;
-      act(() => getUpdatedState().setFocusedCell([2, 2]));
-      expect(getUpdatedState().focusedCell).toBe(focusedCellInMemory); // Would fail if the exact same array wasn't returned
+      const { result } = renderHook(() => useFocus(mockArgs));
+      renderHookAct(() => result.current.setFocusedCell([2, 2]));
+
+      const focusedCellInMemory = result.current.focusedCell;
+      renderHookAct(() => result.current.setFocusedCell([2, 2]));
+      expect(result.current.focusedCell).toBe(focusedCellInMemory); // Would fail if the exact same array wasn't returned
     });
   });
 
