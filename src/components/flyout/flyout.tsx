@@ -9,6 +9,7 @@
 import React, {
   useEffect,
   useRef,
+  useMemo,
   useState,
   forwardRef,
   ComponentPropsWithRef,
@@ -187,7 +188,7 @@ export const EuiFlyout = forwardRef(
       outsideClickCloses,
       pushMinBreakpoint = 'l',
       pushAnimation = false,
-      focusTrapProps: _focusTrapProps = {},
+      focusTrapProps: _focusTrapProps,
       includeFixedHeadersInFocusTrap = true,
       'aria-describedby': _ariaDescribedBy,
       ...rest
@@ -345,10 +346,13 @@ export const EuiFlyout = forwardRef(
       }
     }, [includeFixedHeadersInFocusTrap, resizeRef]);
 
-    const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
-      ..._focusTrapProps,
-      shards: [...fixedHeaders, ...(_focusTrapProps.shards || [])],
-    };
+    const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
+      () => ({
+        ..._focusTrapProps,
+        shards: [...fixedHeaders, ...(_focusTrapProps?.shards || [])],
+      }),
+      [fixedHeaders, _focusTrapProps]
+    );
 
     /*
      * Provide meaningful screen reader instructions/details
