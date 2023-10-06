@@ -21,7 +21,7 @@ import {
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiPageContent_Deprecated as EuiPageContent,
+  EuiPageSection,
   EuiFormRow,
   EuiRange,
   EuiPage,
@@ -196,7 +196,7 @@ class Sizes extends Component {
     return (
       <>
         <EuiPage>
-          <EuiPageContent
+          <EuiPageSection
             role={null}
             horizontalPosition="center"
             style={{
@@ -249,7 +249,7 @@ class Sizes extends Component {
                 tickFormat={(d) => Number(d).toFixed(2)}
               />
             </Chart>
-          </EuiPageContent>
+          </EuiPageSection>
         </EuiPage>
 
         <EuiSpacer />
