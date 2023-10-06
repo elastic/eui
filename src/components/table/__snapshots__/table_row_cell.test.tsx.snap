@@ -112,7 +112,21 @@ exports[`truncateText defaults to false 1`] = `
 </td>
 `;
 
-exports[`truncateText is rendered when specified 1`] = `
+exports[`truncateText renders lines configuration 1`] = `
+<td
+  class="euiTableRowCell euiTableRowCell--middle"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text euiTextBlockTruncate emotion-euiTextBlockTruncate"
+    />
+  </div>
+</td>
+`;
+
+exports[`truncateText renders true 1`] = `
 <td
   class="euiTableRowCell euiTableRowCell--middle"
 >
