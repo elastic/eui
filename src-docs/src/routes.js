@@ -215,8 +215,6 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
-import { SuggestExample } from './views/suggest/suggest_example';
-
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
@@ -609,7 +607,6 @@ const navigation = [
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
-      SuggestExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },
