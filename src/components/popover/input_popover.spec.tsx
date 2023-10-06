@@ -200,4 +200,56 @@ describe('EuiPopover', () => {
       });
     });
   });
+
+  describe('closeOnScroll', () => {
+    const ScrollAllTheThings = () => {
+      const [isOpen, setIsOpen] = useState(true);
+
+      return (
+        <div style={{ height: '150vh', margin: 10 }}>
+          <EuiInputPopover
+            closeOnScroll={true}
+            isOpen={isOpen}
+            closePopover={() => setIsOpen(false)}
+            input={
+              <EuiTextArea
+                data-test-subj="inputWithScroll"
+                onClick={() => setIsOpen(true)}
+                rows={1}
+                defaultValue={`hello\nworld`}
+              />
+            }
+          >
+            <div
+              style={{ height: 100, overflow: 'auto' }}
+              data-test-subj="popoverWithScroll"
+            >
+              <div style={{ height: 400 }}>Popover content</div>
+            </div>
+          </EuiInputPopover>
+        </div>
+      );
+    };
+
+    it('closes the popover when the user scrolls outside of the component', () => {
+      cy.mount(<ScrollAllTheThings />);
+      cy.wait(500); // Wait for the setTimeout in the useEffect
+
+      // Scrolling the input or popover should not close the popover
+      cy.get('[data-test-subj="inputWithScroll"]').scrollTo('bottom');
+      cy.get('[data-popover-panel]').should('exist');
+
+      cy.get('[data-test-subj="popoverWithScroll"]').scrollTo('bottom');
+      cy.wait(500); // Wait a tick for false positives
+      cy.get('[data-popover-panel]').should('exist');
+
+      // Scrolling anywhere else should close the popover
+      cy.scrollTo('bottom');
+      cy.get('[data-popover-panel]').should('not.exist');
+
+      // Popover should be able to re-opened after close
+      cy.get('[data-test-subj="inputWithScroll"]').click();
+      cy.get('[data-popover-panel]').should('exist');
+    });
+  });
 });

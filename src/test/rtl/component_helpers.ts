@@ -7,7 +7,8 @@
  */
 
 import '@testing-library/jest-dom';
-import { waitFor } from '@testing-library/react';
+import { waitFor, fireEvent } from '@testing-library/react';
+import { screen } from './custom_render';
 
 /**
  * Ensure the EuiPopover being tested is open/closed before continuing
@@ -43,3 +44,14 @@ export const waitForEuiToolTipHidden = async () =>
     const tooltip = document.querySelector('.euiToolTipPopover');
     expect(tooltip).toBeNull();
   });
+
+/**
+ * Doot doo
+ */
+export const showEuiComboBoxOptions = async () => {
+  fireEvent.click(screen.getByTestSubject('comboBoxToggleListButton'));
+  await waitForEuiPopoverOpen();
+  await waitFor(() => {
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+  });
+};

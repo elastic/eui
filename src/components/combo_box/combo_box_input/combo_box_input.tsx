@@ -29,7 +29,6 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
-  UpdatePositionHandler,
 } from '../types';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
@@ -56,7 +55,6 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
-  updatePosition: UpdatePositionHandler;
   value?: string;
   prepend?: EuiFormControlLayoutProps['prepend'];
   append?: EuiFormControlLayoutProps['append'];
@@ -99,12 +97,11 @@ export class EuiComboBoxInput<T> extends Component<
     this.setState({ inputWidth });
   };
 
-  updatePosition = () => {
-    // Wait a beat for the DOM to update, since we depend on DOM elements' bounds.
-    requestAnimationFrame(() => {
-      this.props.updatePosition();
-    });
-  };
+  componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
+    if (prevProps.searchValue !== this.props.searchValue) {
+      this.updateInputSize(this.props.searchValue);
+    }
+  }
 
   onFocus: FocusEventHandler<HTMLInputElement> = (event) => {
     this.props.onFocus(event);
@@ -145,16 +142,6 @@ export class EuiComboBoxInput<T> extends Component<
     }
   };
 
-  componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
-    if (prevProps.searchValue !== this.props.searchValue) {
-      this.updateInputSize(this.props.searchValue);
-
-      // We need to update the position of everything if the user enters enough input to change
-      // the size of the input.
-      this.updatePosition();
-    }
-  }
-
   render() {
     const {
       compressed,
@@ -176,7 +163,6 @@ export class EuiComboBoxInput<T> extends Component<
       searchValue,
       selectedOptions,
       singleSelection: singleSelectionProp,
-      toggleButtonRef,
       value,
       prepend,
       append,
@@ -289,7 +275,6 @@ export class EuiComboBoxInput<T> extends Component<
         'data-test-subj': 'comboBoxToggleListButton',
         disabled: isDisabled,
         onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
-        ref: toggleButtonRef,
         side: 'right',
         tabIndex: -1,
         type: 'arrowDown',
