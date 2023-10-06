@@ -10,7 +10,6 @@
 @import 'form/index';
 @import 'markdown_editor/index';
 @import 'notification/index';
-@import 'page/index'; // Page needs to come after Panel for cascade specificity
 @import 'tree_view/index';
 @import 'side_nav/index';
 @import 'search_bar/index';
