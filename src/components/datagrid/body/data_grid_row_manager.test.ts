@@ -6,18 +6,17 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../../test/internal';
+import { renderHook } from '@testing-library/react';
 
-import { EuiDataGridRowManager } from '../data_grid_types';
 import { useRowManager } from './data_grid_row_manager';
 
 describe('row manager', () => {
   const mockGridRef = { current: document.createElement('div') } as any;
 
   describe('getRow', () => {
-    const { return: rowManager } = testCustomHook<EuiDataGridRowManager>(() =>
+    const rowManager = renderHook(() =>
       useRowManager({ innerGridRef: mockGridRef })
-    );
+    ).result.current;
 
     describe('when the row DOM element does not already exist', () => {
       beforeAll(() => {

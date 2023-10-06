@@ -9,7 +9,7 @@
 import React from 'react';
 import { act } from '@testing-library/react';
 import { shallow, mount, ShallowWrapper, ReactWrapper } from 'enzyme';
-import { testCustomHook } from '../../../test/internal';
+import { renderHook } from '../../../test/rtl';
 
 import {
   EuiDataGridToolBarVisibilityOptions,
@@ -486,11 +486,9 @@ describe('useDataGridDisplaySelector', () => {
   describe('gridStyles', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
-      const {
-        return: [, gridStyles],
-      } = testCustomHook(() =>
+      const [, gridStyles] = renderHook(() =>
         useDataGridDisplaySelector(true, initialStyles, {})
-      );
+      ).result.current;
 
       expect(gridStyles).toMatchInlineSnapshot(`
         Object {

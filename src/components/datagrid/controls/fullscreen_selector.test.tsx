@@ -9,23 +9,19 @@
 import React from 'react';
 import { act } from '@testing-library/react';
 import { shallow } from 'enzyme';
+import { renderHook } from '../../../test/rtl';
 import { keys } from '../../../services';
-import { testCustomHook } from '../../../test/internal';
+
 import { useDataGridFullScreenSelector } from './fullscreen_selector';
 
 describe('useDataGridFullScreenSelector', () => {
-  type ReturnedValues = ReturnType<typeof useDataGridFullScreenSelector>;
-
   describe('isFullScreen state', () => {
     test('setFullScreen toggles isFullScreen', () => {
-      const {
-        return: { isFullScreen, setIsFullScreen },
-        getUpdatedState,
-      } = testCustomHook(() => useDataGridFullScreenSelector());
+      const { result } = renderHook(() => useDataGridFullScreenSelector());
 
-      expect(isFullScreen).toEqual(false);
-      act(() => setIsFullScreen(true));
-      expect(getUpdatedState().isFullScreen).toEqual(true);
+      expect(result.current.isFullScreen).toEqual(false);
+      act(() => result.current.setIsFullScreen(true));
+      expect(result.current.isFullScreen).toEqual(true);
     });
   });
 
@@ -161,9 +157,10 @@ describe('useDataGridFullScreenSelector', () => {
 
   describe('body classes', () => {
     it('adds and removes a fullscreen class to the document body when fullscreen opens/closes', () => {
-      const {
-        return: { setIsFullScreen },
-      } = testCustomHook(() => useDataGridFullScreenSelector());
+      const { setIsFullScreen } = renderHook(() =>
+        useDataGridFullScreenSelector()
+      ).result.current;
+
       act(() => setIsFullScreen(true));
       expect(
         document.body.classList.contains('euiDataGrid__restrictBody')
