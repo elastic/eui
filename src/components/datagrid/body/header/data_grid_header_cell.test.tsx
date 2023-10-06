@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { mount, shallow } from 'enzyme';
 import { render, renderHook } from '../../../../test/rtl';
 
@@ -42,6 +42,7 @@ describe('EuiDataGridHeaderCell', () => {
   });
 
   describe('sorting', () => {
+    const onSort = () => {};
     const columnId = 'test';
     const mockSortingArgs = {
       sorting: undefined,
@@ -49,64 +50,77 @@ describe('EuiDataGridHeaderCell', () => {
       showColumnActions: true,
     };
 
-    const getRenderedText = (text: React.ReactElement) =>
-      render(<p>{text}</p>).container.textContent;
+    const getRender = (node: ReactNode) => render(<>{node}</>).container;
 
     describe('if the current column is being sorted', () => {
       it('renders an ascending sort arrow', () => {
-        const {
-          return: { sortingArrow },
-        } = testCustomHook(useSortingUtils, {
-          ...mockSortingArgs,
-          sorting: { columns: [{ id: columnId, direction: 'asc' }] },
-        });
+        const { sortingArrow } = renderHook(() =>
+          useSortingUtils({
+            ...mockSortingArgs,
+            sorting: {
+              onSort,
+              columns: [{ id: columnId, direction: 'asc' }],
+            },
+          })
+        ).result.current;
 
-        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
-          'sortUp'
-        );
+        expect(
+          getRender(sortingArrow).querySelector('[data-euiicon-type="sortUp"]')
+        ).toBeInTheDocument();
       });
 
       it('renders a descending sort arrow', () => {
-        const {
-          return: { sortingArrow },
-        } = testCustomHook(useSortingUtils, {
-          ...mockSortingArgs,
-          sorting: { columns: [{ id: columnId, direction: 'desc' }] },
-        });
+        const { sortingArrow } = renderHook(() =>
+          useSortingUtils({
+            ...mockSortingArgs,
+            sorting: {
+              onSort,
+              columns: [{ id: columnId, direction: 'desc' }],
+            },
+          })
+        ).result.current;
 
-        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
-          'sortDown'
-        );
+        expect(
+          getRender(sortingArrow).querySelector(
+            '[data-euiicon-type="sortDown"]'
+          )
+        ).toBeInTheDocument();
       });
 
       describe('when only the current column is being sorted', () => {
         describe('when the header cell has no actions', () => {
           it('renders aria-sort but not sortingScreenReaderText', () => {
-            const {
-              return: { ariaSort, sortingScreenReaderText },
-            } = testCustomHook(useSortingUtils, {
-              ...mockSortingArgs,
-              sorting: { columns: [{ id: columnId, direction: 'asc' }] },
-              showColumnActions: false,
-            });
+            const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+              useSortingUtils({
+                ...mockSortingArgs,
+                sorting: {
+                  onSort,
+                  columns: [{ id: columnId, direction: 'asc' }],
+                },
+                showColumnActions: false,
+              })
+            ).result.current;
 
             expect(ariaSort).toEqual('ascending');
-            expect(getRenderedText(sortingScreenReaderText)).toEqual('');
+            expect(getRender(sortingScreenReaderText)).toHaveTextContent('');
           });
         });
 
         describe('when the header cell has actions', () => {
           it('renders aria-sort and sortingScreenReaderText', () => {
-            const {
-              return: { ariaSort, sortingScreenReaderText },
-            } = testCustomHook(useSortingUtils, {
-              ...mockSortingArgs,
-              sorting: { columns: [{ id: columnId, direction: 'desc' }] },
-              showColumnActions: true,
-            });
+            const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+              useSortingUtils({
+                ...mockSortingArgs,
+                sorting: {
+                  onSort,
+                  columns: [{ id: columnId, direction: 'desc' }],
+                },
+                showColumnActions: true,
+              })
+            ).result.current;
 
             expect(ariaSort).toEqual('descending');
-            expect(getRenderedText(sortingScreenReaderText)).toEqual(
+            expect(getRender(sortingScreenReaderText)).toHaveTextContent(
               'Sorted descending.'
             );
           });
@@ -116,23 +130,23 @@ describe('EuiDataGridHeaderCell', () => {
 
     describe('if the current column is not being sorted', () => {
       it('does not render an arrow even if other columns are sorted', () => {
-        const {
-          return: { sortingArrow },
-        } = testCustomHook(useSortingUtils, {
-          ...mockSortingArgs,
-          sorting: { columns: [{ id: 'other', direction: 'desc' }] },
-        });
+        const { sortingArrow } = renderHook(() =>
+          useSortingUtils({
+            ...mockSortingArgs,
+            sorting: { onSort, columns: [{ id: 'other', direction: 'desc' }] },
+          })
+        ).result.current;
 
         expect(sortingArrow).toBeNull();
       });
 
       it('does not render aria-sort or screen reader sorting text', () => {
-        const {
-          return: { ariaSort, sortingScreenReaderText },
-        } = testCustomHook(useSortingUtils, mockSortingArgs);
+        const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+          useSortingUtils(mockSortingArgs)
+        ).result.current;
 
         expect(ariaSort).toEqual(undefined);
-        expect(getRenderedText(sortingScreenReaderText)).toEqual('');
+        expect(getRender(sortingScreenReaderText)).toHaveTextContent('');
       });
     });
 
@@ -153,7 +167,9 @@ describe('EuiDataGridHeaderCell', () => {
         });
 
         expect(result.current.ariaSort).toEqual(undefined);
-        expect(getRenderedText(result.current.sortingScreenReaderText)).toEqual(
+        expect(
+          getRender(result.current.sortingScreenReaderText)
+        ).toHaveTextContent(
           'Sorted by A, ascending, then sorted by B, descending.'
         );
 
@@ -170,7 +186,9 @@ describe('EuiDataGridHeaderCell', () => {
             ],
           },
         });
-        expect(getRenderedText(result.current.sortingScreenReaderText)).toEqual(
+        expect(
+          getRender(result.current.sortingScreenReaderText)
+        ).toHaveTextContent(
           'Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending.'
         );
       });
