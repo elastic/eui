@@ -19,7 +19,7 @@ import { tabbable, FocusableElement } from 'tabbable';
 import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeys } from '../../services';
+import { keys } from '../../services';
 import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
@@ -164,7 +164,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         document.activeElement === this.backButton ||
         document.activeElement === this.panel)
     ) {
-      if (event.key === cascadingMenuKeys.ARROW_LEFT) {
+      if (event.key === keys.ARROW_LEFT) {
         if (showPreviousPanel) {
           event.preventDefault();
           event.stopPropagation();
@@ -179,7 +179,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     if (items?.length) {
       switch (event.key) {
-        case cascadingMenuKeys.TAB:
+        case keys.TAB:
           requestAnimationFrame(() => {
             // NOTE: document.activeElement is stale if not wrapped in requestAnimationFrame
             const focusedItemIndex = this.state.menuItems.indexOf(
@@ -197,7 +197,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           });
           break;
 
-        case cascadingMenuKeys.ARROW_UP:
+        case keys.ARROW_UP:
           event.preventDefault();
           this.focusMenuItem('up');
 
@@ -206,7 +206,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           }
           break;
 
-        case cascadingMenuKeys.ARROW_DOWN:
+        case keys.ARROW_DOWN:
           event.preventDefault();
           this.focusMenuItem('down');
 
@@ -215,7 +215,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           }
           break;
 
-        case cascadingMenuKeys.ARROW_RIGHT:
+        case keys.ARROW_RIGHT:
           if (this.props.showNextPanel) {
             event.preventDefault();
             this.props.showNextPanel(

@@ -6,7 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { accessibleClickKeys } from './accessible_click_keys';
-export { cascadingMenuKeys } from './cascading_menu_keys';
-export { comboBoxKeys } from './combo_box_keys';
 export { htmlIdGenerator, useGeneratedHtmlId } from './html_id_generator';
