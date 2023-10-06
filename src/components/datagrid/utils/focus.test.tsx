@@ -7,9 +7,8 @@
  */
 
 import React from 'react';
-import { act } from '@testing-library/react';
 import { mount } from 'enzyme';
-import { renderHook } from '../../../test/rtl';
+import { renderHook, renderHookAct } from '../../../test/rtl';
 import { keys } from '../../../services';
 import {
   DataGridFocusContext,
@@ -84,7 +83,7 @@ describe('useFocus', () => {
           useFocus({ ...mockArgs, headerIsInteractive: true })
         );
 
-        act(() => result.current.focusFirstVisibleInteractiveCell());
+        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
         expect(result.current.focusedCell).toEqual([0, -1]);
       });
     });
@@ -103,7 +102,7 @@ describe('useFocus', () => {
           })
         );
 
-        act(() => result.current.focusFirstVisibleInteractiveCell());
+        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
         expect(result.current.focusedCell).toEqual([1, 10]);
       });
 
@@ -115,7 +114,7 @@ describe('useFocus', () => {
           })
         );
 
-        act(() => result.current.focusFirstVisibleInteractiveCell());
+        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
         expect(result.current.focusedCell).toEqual(undefined);
       });
     });
@@ -142,7 +141,7 @@ describe('useFocus', () => {
         it('focuses into the first visible cell of the grid when the grid is directly tabbed to', () => {
           const { result } = renderHook(() => useFocus(mockArgs));
 
-          act(() =>
+          renderHookAct(() =>
             result.current.focusProps.onKeyUp!({
               key: keys.TAB,
               target: mockGrid,
@@ -155,7 +154,7 @@ describe('useFocus', () => {
         it('does nothing if not a tab keyup, or if the event was not on the grid itself', () => {
           const { result } = renderHook(() => useFocus(mockArgs));
 
-          act(() =>
+          renderHookAct(() =>
             result.current.focusProps.onKeyUp!({
               key: keys.ARROW_DOWN,
               target: mockGrid,
@@ -164,7 +163,7 @@ describe('useFocus', () => {
           );
           expect(result.current.focusedCell).toEqual(undefined);
 
-          act(() =>
+          renderHookAct(() =>
             result.current.focusProps.onKeyUp!({
               key: keys.TAB,
               target: someChild,
@@ -180,7 +179,7 @@ describe('useFocus', () => {
       it('renders the grid with tabindex -1 (because the child cell will already have a tabindex 0)', () => {
         const { result } = renderHook(() => useFocus(mockArgs));
 
-        act(() => result.current.setIsFocusedCellInView(true));
+        renderHookAct(() => result.current.setIsFocusedCellInView(true));
         expect(result.current.focusProps).toEqual({
           tabIndex: -1,
         });

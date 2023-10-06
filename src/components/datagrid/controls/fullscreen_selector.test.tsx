@@ -9,7 +9,7 @@
 import React from 'react';
 import { act } from '@testing-library/react';
 import { shallow } from 'enzyme';
-import { renderHook } from '../../../test/rtl';
+import { renderHook, renderHookAct } from '../../../test/rtl';
 import { keys } from '../../../services';
 
 import { useDataGridFullScreenSelector } from './fullscreen_selector';
@@ -20,7 +20,7 @@ describe('useDataGridFullScreenSelector', () => {
       const { result } = renderHook(() => useDataGridFullScreenSelector());
 
       expect(result.current.isFullScreen).toEqual(false);
-      act(() => result.current.setIsFullScreen(true));
+      renderHookAct(() => result.current.setIsFullScreen(true));
       expect(result.current.isFullScreen).toEqual(true);
     });
   });
@@ -161,12 +161,12 @@ describe('useDataGridFullScreenSelector', () => {
         useDataGridFullScreenSelector()
       ).result.current;
 
-      act(() => setIsFullScreen(true));
+      renderHookAct(() => setIsFullScreen(true));
       expect(
         document.body.classList.contains('euiDataGrid__restrictBody')
       ).toBe(true);
 
-      act(() => setIsFullScreen(false));
+      renderHookAct(() => setIsFullScreen(false));
       expect(
         document.body.classList.contains('euiDataGrid__restrictBody')
       ).toBe(false);
