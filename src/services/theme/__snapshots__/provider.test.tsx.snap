@@ -2,7 +2,7 @@
 
 exports[`EuiThemeProvider CSS variables allows child components to set non-global theme CSS variables 1`] = `
 <span
-  class="euiThemeProvider emotion-euiCSSVariables-euiColorMode-"
+  class="euiThemeProvider emotion-euiCSSVariables-euiColorMode-LIGHT"
 />
 `;
 

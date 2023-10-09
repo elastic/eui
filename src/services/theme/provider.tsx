@@ -159,7 +159,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
         ? false
         : bodyColor !== theme.colors.text,
       colorClassName: css`
-        label: euiColorMode-${_colorMode};
+        label: euiColorMode-${_colorMode || colorMode};
         color: ${theme.colors.text};
       `,
       setGlobalCSSVariables: isGlobalTheme
@@ -176,6 +176,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
     isGlobalTheme,
     bodyColor,
     _colorMode,
+    colorMode,
     setGlobalCSSVariables,
     globalCSSVariables,
     setThemeCSSVariables,
