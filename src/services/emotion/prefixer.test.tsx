@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 import { EuiProvider } from '../../components/provider';
@@ -32,9 +32,16 @@ describe('euiStylisPrefixer', () => {
   );
 
   const getStyleCss = (label: string) => {
-    return Array.from(
+    const styleEl = Array.from(
       document.querySelectorAll('style[data-emotion]')
     ).find((el) => el?.textContent?.includes(label)) as HTMLStyleElement;
+    if (!styleEl) return;
+
+    // Make output styles a little easier to read
+    return styleEl
+      .textContent!.replace('{', ' {\n')
+      .replace(/;/g, ';\n')
+      .replace(/:/g, ': ');
   };
 
   describe('does prefix', () => {
@@ -42,6 +49,45 @@ describe('euiStylisPrefixer', () => {
   });
 
   describe('does not prefix', () => {
+    test('animation CSS', () => {
+      const testAnimation = keyframes`
+        from { opacity: 0; }
+        to { opacity: 1; }
+      `;
+      render(
+        <div
+          css={css`
+            label: no-animation-prefixes;
+            animation: ${testAnimation};
+            animation-name: test;
+            animation-delay: 1s;
+            animation-direction: reverse;
+            animation-duration: 50ms;
+            animation-fill-mode: both;
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+            animation-timing-function: ease-in-out;
+          `}
+        />,
+        { wrapper }
+      );
+
+      expect(getStyleCss('no-animation-prefixes')).toMatchInlineSnapshot(`
+        ".test-1aw2200-no-animation-prefixes {
+        animation: animation-1flhruc;
+        animation-name: test;
+        animation-delay: 1s;
+        animation-direction: reverse;
+        animation-duration: 50ms;
+        animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-play-state: paused;
+        animation-timing-function: ease-in-out;
+        }"
+      `);
+      expect(getStyleCss('@keyframes')).toBeTruthy();
+      expect(getStyleCss('@-webkit-keyframes')).toBeFalsy();
+    });
     test('misc selectors', () => {
       render(
         <div
@@ -69,6 +115,7 @@ describe('euiStylisPrefixer', () => {
           <div
             css={css`
               label: test-default-cache;
+              animation: something;
               ::placeholder {
                 color: red;
               }
@@ -77,6 +124,11 @@ describe('euiStylisPrefixer', () => {
         </EuiProvider>
       );
 
+      expect(getStyleCss('test-default-cache')).toMatchInlineSnapshot(`
+        ".css-a8wwb0-test-default-cache {
+        -webkit-animation: something;
+        animation: something;
+      `);
       expect(getStyleCss('::-moz-placeholder')).toBeTruthy();
     });
   });

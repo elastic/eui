@@ -8,14 +8,11 @@
 
 import {
   charat,
-  copy,
   DECLARATION,
   hash,
   indexof,
-  KEYFRAMES,
   MOZ,
   replace,
-  serialize,
   strlen,
   WEBKIT,
   type Element,
@@ -32,14 +29,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     // color-adjust
     case 5103:
       return WEBKIT + 'print-' + value + value;
-    // animation, animation-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function)
-    case 5737:
-    case 4201:
-    case 3177:
-    case 3433:
-    case 1641:
-    case 4457:
-    case 2921:
     // text-decoration, filter, clip-path, backface-visibility, column, box-decoration-break
     case 5572:
     case 6356:
@@ -299,14 +288,5 @@ export const euiStylisPrefixer = (element: Element) => {
         case DECLARATION:
           element.return = prefix(element.value, element.length);
           break;
-        case KEYFRAMES:
-          return serialize(
-            [
-              copy(element, {
-                value: replace(element.value, '@', '@' + WEBKIT),
-              }),
-            ],
-            callback
-          );
       }
 };
