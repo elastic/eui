@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 
 import { EuiThemeFontScales, EuiThemeFontUnits } from '../variables/typography';
 import {
@@ -23,7 +23,7 @@ describe('euiFontSize', () => {
         EuiThemeFontScales.forEach((size) => {
           test(size, () => {
             expect(
-              testCustomHook(() => useEuiFontSize(size, { unit })).return
+              renderHook(() => useEuiFontSize(size, { unit })).result.current
             ).toMatchSnapshot();
           });
         });
@@ -33,13 +33,16 @@ describe('euiFontSize', () => {
 
   it('handles the optional customScale property by multiplying it against the passed scale', () => {
     expect(
-      testCustomHook(() => useEuiFontSize('m', { customScale: 'xs' })).return
+      renderHook(() => useEuiFontSize('m', { customScale: 'xs' })).result
+        .current
     ).toMatchSnapshot({}, 'm scale with xs customScale');
     expect(
-      testCustomHook(() => useEuiFontSize('l', { customScale: 'xxs' })).return
+      renderHook(() => useEuiFontSize('l', { customScale: 'xxs' })).result
+        .current
     ).toMatchSnapshot({}, 'l scale with xxs customScale');
     expect(
-      testCustomHook(() => useEuiFontSize('s', { customScale: 'xl' })).return
+      renderHook(() => useEuiFontSize('s', { customScale: 'xl' })).result
+        .current
     ).toMatchSnapshot({}, 's scale with xl customScale');
   });
 });
@@ -62,6 +65,8 @@ describe('euiTextTruncate', () => {
 
 describe('euiNumberFormat', () => {
   it('returns a string of CSS text', () => {
-    expect(testCustomHook(() => useEuiNumberFormat()).return).toMatchSnapshot();
+    expect(
+      renderHook(() => useEuiNumberFormat()).result.current
+    ).toMatchSnapshot();
   });
 });

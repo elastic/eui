@@ -7,14 +7,13 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import { testCustomHook } from '../../../test/internal';
+import { render, renderHook } from '../../../test/rtl';
 
 import { useI18nTimeOptions, RenderI18nTimeOptions } from './time_options';
 
 describe('useI18nTimeOptions', () => {
   it('returns a series of time options constants/arrays/objects with i18n strings', () => {
-    const { return: timeOptions } = testCustomHook(useI18nTimeOptions);
+    const timeOptions = renderHook(useI18nTimeOptions).result.current;
 
     expect(timeOptions).toMatchInlineSnapshot(`
       Object {
@@ -188,16 +187,12 @@ describe('useI18nTimeOptions', () => {
 
 describe('RenderI18nTimeOptions', () => {
   it('is a render function that passes the underlying children timeOptions as an arg', () => {
-    const component = shallow(
+    const { container } = render(
       <RenderI18nTimeOptions>
         {({ timeUnitsOptions }) => <>{timeUnitsOptions[0].text}</>}
       </RenderI18nTimeOptions>
     );
 
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        Seconds
-      </Fragment>
-    `);
+    expect(container.firstChild).toMatchInlineSnapshot(`Seconds`);
   });
 });

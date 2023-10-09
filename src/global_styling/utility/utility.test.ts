@@ -6,20 +6,18 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { useEuiTheme } from '../../services';
 import { globalStyles } from './utility';
 
 describe('global utility styles', () => {
-  const useTestHook = () => {
-    const euiTheme = useEuiTheme();
-    return globalStyles(euiTheme);
-  };
-
   it('generates static global styles', () => {
-    const rawStyles = (testCustomHook(useTestHook) as any).return.styles;
+    const { result } = renderHook(() => {
+      const euiTheme = useEuiTheme();
+      return globalStyles(euiTheme);
+    });
     // Make Emotion's minification a little less annoying to read
-    const globalStyles = rawStyles.replace(/}\.eui-/g, '}\n.eui-');
-    expect(globalStyles).toMatchSnapshot();
+    const styles = result.current.styles.replace(/}\.eui-/g, '}\n.eui-');
+    expect(styles).toMatchSnapshot();
   });
 });

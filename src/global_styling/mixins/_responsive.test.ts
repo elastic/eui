@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { EuiThemeBreakpoints, _EuiThemeBreakpoint } from '../variables';
 import {
   useEuiBreakpoint,
@@ -35,12 +35,12 @@ describe('useEuiBreakpoint', () => {
       'returns a media query for two element breakpoint combinations (%s and %s)',
       (minSize, maxSize) => {
         expect(
-          testCustomHook(() =>
+          renderHook(() =>
             useEuiBreakpoint([
               minSize as _EuiThemeBreakpoint,
               maxSize as _EuiThemeBreakpoint,
             ])
-          ).return
+          ).result.current
         ).toMatchSnapshot();
       }
     );
@@ -50,7 +50,7 @@ describe('useEuiBreakpoint', () => {
     EuiThemeBreakpoints.forEach((size) => {
       test(`(${size})`, () => {
         expect(
-          testCustomHook(() => useEuiBreakpoint([size])).return
+          renderHook(() => useEuiBreakpoint([size])).result.current
         ).toMatchSnapshot();
       });
     });
@@ -59,7 +59,7 @@ describe('useEuiBreakpoint', () => {
   describe('breakpoint size arrays with more than 2 sizes', () => {
     it('should use the first and last items in the array', () => {
       expect(
-        testCustomHook(() => useEuiBreakpoint(['s', 'm', 'l'])).return
+        renderHook(() => useEuiBreakpoint(['s', 'm', 'l'])).result.current
       ).toMatchInlineSnapshot(
         '"@media only screen and (min-width: 575px) and (max-width: 1199px)"'
       );
@@ -67,7 +67,7 @@ describe('useEuiBreakpoint', () => {
 
     it('handles sorting the array if sizes are passed in the wrong order', () => {
       expect(
-        testCustomHook(() => useEuiBreakpoint(['l', 's', 'm'])).return
+        renderHook(() => useEuiBreakpoint(['l', 's', 'm'])).result.current
       ).toMatchInlineSnapshot(
         '"@media only screen and (min-width: 575px) and (max-width: 1199px)"'
       );
@@ -76,13 +76,13 @@ describe('useEuiBreakpoint', () => {
 
   it('does not generate a min-width if the min size is xs', () => {
     expect(
-      testCustomHook(() => useEuiBreakpoint(['xs', 'm'])).return
+      renderHook(() => useEuiBreakpoint(['xs', 'm'])).result.current
     ).toMatchInlineSnapshot('"@media only screen and (max-width: 991px)"');
   });
 
   it('skips generating a max-width if the max size is xl', () => {
     expect(
-      testCustomHook(() => useEuiBreakpoint(['m', 'xl'])).return
+      renderHook(() => useEuiBreakpoint(['m', 'xl'])).result.current
     ).toMatchInlineSnapshot('"@media only screen and (min-width: 768px)"');
   });
 
@@ -91,15 +91,15 @@ describe('useEuiBreakpoint', () => {
 
     test('if at least one input is not passed', () => {
       // @ts-expect-error Source has 0 element(s) but target requires 1
-      expect(testCustomHook(() => useEuiBreakpoint([])).return).toEqual(
+      expect(renderHook(() => useEuiBreakpoint([])).result.current).toEqual(
         fallbackOutput
       );
     });
 
     test('if a breakpoint key without a corresponding value is passed', () => {
-      expect(testCustomHook(() => useEuiBreakpoint(['asdf'])).return).toEqual(
-        fallbackOutput
-      );
+      expect(
+        renderHook(() => useEuiBreakpoint(['asdf'])).result.current
+      ).toEqual(fallbackOutput);
     });
   });
 });
@@ -109,7 +109,7 @@ describe('euiMinBreakpoint', () => {
     EuiThemeBreakpoints.slice(1).forEach((size) => {
       it(`(${size})`, () => {
         expect(
-          testCustomHook(() => useEuiMinBreakpoint(size)).return
+          renderHook(() => useEuiMinBreakpoint(size)).result.current
         ).toMatchSnapshot();
       });
     });
@@ -122,14 +122,14 @@ describe('euiMinBreakpoint', () => {
     it('warns if using min-width on a breakpoint that equals 0px', () => {
       // This functionally does nothing, hence the warning
       expect(
-        testCustomHook(() => useEuiMinBreakpoint('xs')).return
+        renderHook(() => useEuiMinBreakpoint('xs')).result.current
       ).toMatchInlineSnapshot('"@media only screen"');
       expect(warnSpy).toHaveBeenCalledWith('Invalid min breakpoint size: xs');
     });
 
     it('warns if an invalid size is passed', () => {
       expect(
-        testCustomHook(() => useEuiMinBreakpoint('asdf')).return
+        renderHook(() => useEuiMinBreakpoint('asdf')).result.current
       ).toMatchInlineSnapshot('"@media only screen"');
       expect(warnSpy).toHaveBeenCalledWith('Invalid min breakpoint size: asdf');
     });
@@ -141,7 +141,7 @@ describe('euiMaxBreakpoint', () => {
     EuiThemeBreakpoints.slice(1).forEach((size) => {
       it(`(${size})`, () => {
         expect(
-          testCustomHook(() => useEuiMaxBreakpoint(size)).return
+          renderHook(() => useEuiMaxBreakpoint(size)).result.current
         ).toMatchSnapshot();
       });
     });
@@ -154,14 +154,14 @@ describe('euiMaxBreakpoint', () => {
     it('warns if using max-width on a breakpoint that equals 0px', () => {
       // This functionally does nothing, hence the warning
       expect(
-        testCustomHook(() => useEuiMaxBreakpoint('xs')).return
+        renderHook(() => useEuiMaxBreakpoint('xs')).result.current
       ).toMatchInlineSnapshot('"@media only screen"');
       expect(warnSpy).toHaveBeenCalledWith('Invalid max breakpoint size: xs');
     });
 
     it('warns if an invalid size is passed', () => {
       expect(
-        testCustomHook(() => useEuiMaxBreakpoint('asdf')).return
+        renderHook(() => useEuiMaxBreakpoint('asdf')).result.current
       ).toMatchInlineSnapshot('"@media only screen"');
       expect(warnSpy).toHaveBeenCalledWith('Invalid max breakpoint size: asdf');
     });

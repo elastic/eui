@@ -6,10 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { testCustomHook } from '../../../../test/internal';
-import { render } from '../../../../test/rtl';
+import React, { ReactNode } from 'react';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  renderHook,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../../../test/rtl';
 
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
@@ -38,11 +42,12 @@ describe('EuiDataGridHeaderCell', () => {
   };
 
   it('renders', () => {
-    const component = shallow(<EuiDataGridHeaderCell {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiDataGridHeaderCell {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('sorting', () => {
+    const onSort = () => {};
     const columnId = 'test';
     const mockSortingArgs = {
       sorting: undefined,
@@ -50,64 +55,77 @@ describe('EuiDataGridHeaderCell', () => {
       showColumnActions: true,
     };
 
-    const getRenderedText = (text: React.ReactElement) =>
-      render(<p>{text}</p>).container.textContent;
+    const getRender = (node: ReactNode) => render(<>{node}</>).container;
 
     describe('if the current column is being sorted', () => {
       it('renders an ascending sort arrow', () => {
-        const {
-          return: { sortingArrow },
-        } = testCustomHook(useSortingUtils, {
-          ...mockSortingArgs,
-          sorting: { columns: [{ id: columnId, direction: 'asc' }] },
-        });
+        const { sortingArrow } = renderHook(() =>
+          useSortingUtils({
+            ...mockSortingArgs,
+            sorting: {
+              onSort,
+              columns: [{ id: columnId, direction: 'asc' }],
+            },
+          })
+        ).result.current;
 
-        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
-          'sortUp'
-        );
+        expect(
+          getRender(sortingArrow).querySelector('[data-euiicon-type="sortUp"]')
+        ).toBeInTheDocument();
       });
 
       it('renders a descending sort arrow', () => {
-        const {
-          return: { sortingArrow },
-        } = testCustomHook(useSortingUtils, {
-          ...mockSortingArgs,
-          sorting: { columns: [{ id: columnId, direction: 'desc' }] },
-        });
+        const { sortingArrow } = renderHook(() =>
+          useSortingUtils({
+            ...mockSortingArgs,
+            sorting: {
+              onSort,
+              columns: [{ id: columnId, direction: 'desc' }],
+            },
+          })
+        ).result.current;
 
-        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
-          'sortDown'
-        );
+        expect(
+          getRender(sortingArrow).querySelector(
+            '[data-euiicon-type="sortDown"]'
+          )
+        ).toBeInTheDocument();
       });
 
       describe('when only the current column is being sorted', () => {
         describe('when the header cell has no actions', () => {
           it('renders aria-sort but not sortingScreenReaderText', () => {
-            const {
-              return: { ariaSort, sortingScreenReaderText },
-            } = testCustomHook(useSortingUtils, {
-              ...mockSortingArgs,
-              sorting: { columns: [{ id: columnId, direction: 'asc' }] },
-              showColumnActions: false,
-            });
+            const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+              useSortingUtils({
+                ...mockSortingArgs,
+                sorting: {
+                  onSort,
+                  columns: [{ id: columnId, direction: 'asc' }],
+                },
+                showColumnActions: false,
+              })
+            ).result.current;
 
             expect(ariaSort).toEqual('ascending');
-            expect(getRenderedText(sortingScreenReaderText)).toEqual('');
+            expect(getRender(sortingScreenReaderText)).toHaveTextContent('');
           });
         });
 
         describe('when the header cell has actions', () => {
           it('renders aria-sort and sortingScreenReaderText', () => {
-            const {
-              return: { ariaSort, sortingScreenReaderText },
-            } = testCustomHook(useSortingUtils, {
-              ...mockSortingArgs,
-              sorting: { columns: [{ id: columnId, direction: 'desc' }] },
-              showColumnActions: true,
-            });
+            const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+              useSortingUtils({
+                ...mockSortingArgs,
+                sorting: {
+                  onSort,
+                  columns: [{ id: columnId, direction: 'desc' }],
+                },
+                showColumnActions: true,
+              })
+            ).result.current;
 
             expect(ariaSort).toEqual('descending');
-            expect(getRenderedText(sortingScreenReaderText)).toEqual(
+            expect(getRender(sortingScreenReaderText)).toHaveTextContent(
               'Sorted descending.'
             );
           });
@@ -117,50 +135,55 @@ describe('EuiDataGridHeaderCell', () => {
 
     describe('if the current column is not being sorted', () => {
       it('does not render an arrow even if other columns are sorted', () => {
-        const {
-          return: { sortingArrow },
-        } = testCustomHook(useSortingUtils, {
-          ...mockSortingArgs,
-          sorting: { columns: [{ id: 'other', direction: 'desc' }] },
-        });
+        const { sortingArrow } = renderHook(() =>
+          useSortingUtils({
+            ...mockSortingArgs,
+            sorting: { onSort, columns: [{ id: 'other', direction: 'desc' }] },
+          })
+        ).result.current;
 
         expect(sortingArrow).toBeNull();
       });
 
       it('does not render aria-sort or screen reader sorting text', () => {
-        const {
-          return: { ariaSort, sortingScreenReaderText },
-        } = testCustomHook(useSortingUtils, mockSortingArgs);
+        const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+          useSortingUtils(mockSortingArgs)
+        ).result.current;
 
         expect(ariaSort).toEqual(undefined);
-        expect(getRenderedText(sortingScreenReaderText)).toEqual('');
+        expect(getRender(sortingScreenReaderText)).toHaveTextContent('');
       });
     });
 
     describe('when multiple columns are being sorted', () => {
       it('does not render aria-sort, but renders sorting screen reader text text with a full list of sorted columns', () => {
-        const {
-          return: { ariaSort, sortingScreenReaderText },
-          getUpdatedState,
-          updateHookArgs,
-        } = testCustomHook(useSortingUtils, {
-          id: 'A',
-          sorting: {
-            columns: [
-              { id: 'A', direction: 'asc' },
-              { id: 'B', direction: 'desc' },
-            ],
+        const { result, rerender } = renderHook(useSortingUtils, {
+          initialProps: {
+            ...mockSortingArgs,
+            id: 'A',
+            sorting: {
+              onSort,
+              columns: [
+                { id: 'A', direction: 'asc' },
+                { id: 'B', direction: 'desc' },
+              ],
+            },
           },
         });
 
-        expect(ariaSort).toEqual(undefined);
-        expect(getRenderedText(sortingScreenReaderText)).toMatchInlineSnapshot(
-          '"Sorted by A, ascending, then sorted by B, descending."'
+        expect(result.current.ariaSort).toEqual(undefined);
+        expect(
+          getRender(result.current.sortingScreenReaderText)
+        ).toHaveTextContent(
+          'Sorted by A, ascending, then sorted by B, descending.'
         );
 
         // Branch coverage
-        updateHookArgs({
+        rerender({
+          ...mockSortingArgs,
+          id: 'B',
           sorting: {
+            onSort,
             columns: [
               { id: 'B', direction: 'desc' },
               { id: 'C', direction: 'asc' },
@@ -169,9 +192,9 @@ describe('EuiDataGridHeaderCell', () => {
           },
         });
         expect(
-          getRenderedText(getUpdatedState().sortingScreenReaderText)
-        ).toMatchInlineSnapshot(
-          '"Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending."'
+          getRender(result.current.sortingScreenReaderText)
+        ).toHaveTextContent(
+          'Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending.'
         );
       });
     });
@@ -179,69 +202,70 @@ describe('EuiDataGridHeaderCell', () => {
 
   describe('resizing', () => {
     it('renders a resizer', () => {
-      const component = shallow(<EuiDataGridHeaderCell {...requiredProps} />);
-      expect(component.find('EuiDataGridColumnResizer')).toHaveLength(1);
+      const { getByTestSubject } = render(
+        <EuiDataGridHeaderCell {...requiredProps} />
+      );
+      expect(getByTestSubject('dataGridColumnResizer')).toBeInTheDocument();
     });
 
     it('does not render a resizer if isResizable is false', () => {
-      const component = shallow(
+      const { queryByTestSubject } = render(
         <EuiDataGridHeaderCell
           {...requiredProps}
           column={{ id: 'test', isResizable: false }}
         />
       );
-      expect(component.find('EuiDataGridColumnResizer')).toHaveLength(0);
+      expect(
+        queryByTestSubject('dataGridColumnResizer')
+      ).not.toBeInTheDocument();
     });
 
     it('does not render a resizer if a column width cannot be found', () => {
-      const component = shallow(
+      const { queryByTestSubject } = render(
         <EuiDataGridHeaderCell
           {...requiredProps}
           columnWidths={{}}
           defaultColumnWidth={undefined}
         />
       );
-      expect(component.find('EuiDataGridColumnResizer')).toHaveLength(0);
+      expect(
+        queryByTestSubject('dataGridColumnResizer')
+      ).not.toBeInTheDocument();
     });
   });
 
   describe('popover', () => {
     it('does not render a popover if there are no column actions', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDataGridHeaderCell
           {...requiredProps}
           column={{ id: 'test', actions: false }}
         />
       );
-      expect(component.find('EuiPopover')).toHaveLength(0);
+      expect(container.querySelector('.euiPopover')).not.toBeInTheDocument();
     });
 
-    it('handles popover open', () => {
-      const component = mount(
+    it('handles popover open and close', () => {
+      const { container } = render(
         <DataGridFocusContext.Provider value={mockFocusContext}>
           <EuiDataGridHeaderCell {...requiredProps} />
         </DataGridFocusContext.Provider>
       );
-      component.find('.euiDataGridHeaderCell__button').simulate('click');
+      const toggle = container.querySelector('.euiDataGridHeaderCell__button')!;
 
-      expect(component.find('EuiPopover').prop('isOpen')).toEqual(true);
+      fireEvent.click(toggle);
+      waitForEuiPopoverOpen();
       expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, -1]);
-    });
 
-    it('handles popover close', () => {
-      const component = shallow(<EuiDataGridHeaderCell {...requiredProps} />);
-      (component.find('EuiPopover').prop('closePopover') as Function)();
-
-      expect(component.find('EuiPopover').prop('isOpen')).toEqual(false);
+      fireEvent.click(toggle);
+      waitForEuiPopoverClose();
     });
 
     describe('keyboard arrow navigation', () => {
       const {
-        return: {
-          panelRef,
-          panelProps: { onKeyDown },
-        },
-      } = testCustomHook(usePopoverArrowNavigation);
+        panelRef,
+        panelProps: { onKeyDown },
+      } = renderHook(usePopoverArrowNavigation).result.current;
 
       const mockPanel = document.createElement('div');
       mockPanel.setAttribute('tabindex', '-1');
@@ -253,18 +277,19 @@ describe('EuiDataGridHeaderCell', () => {
       panelRef(mockPanel);
 
       const preventDefault = jest.fn();
+      const keyDownEvent = { preventDefault } as unknown as React.KeyboardEvent;
       beforeEach(() => jest.clearAllMocks());
 
       describe('early returns', () => {
         it('does nothing if the up/down arrow keys are not pressed', () => {
-          onKeyDown({ key: 'Tab', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'Tab' });
           expect(preventDefault).not.toHaveBeenCalled();
         });
 
         it('does nothing if the popover contains no tabbable elements', () => {
           const emptyDiv = document.createElement('div');
           panelRef(emptyDiv);
-          onKeyDown({ key: 'ArrowDown', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
           expect(preventDefault).not.toHaveBeenCalled();
 
           panelRef(mockPanel); // Reset for other tests
@@ -275,7 +300,7 @@ describe('EuiDataGridHeaderCell', () => {
         beforeEach(() => mockPanel.focus());
 
         it('focuses the first action when the arrow down key is pressed', () => {
-          onKeyDown({ key: 'ArrowDown', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
           expect(preventDefault).toHaveBeenCalled();
           expect(
             document.activeElement?.getAttribute('data-test-subj')
@@ -283,7 +308,7 @@ describe('EuiDataGridHeaderCell', () => {
         });
 
         it('focuses the last action when the arrow up key is pressed', () => {
-          onKeyDown({ key: 'ArrowUp', preventDefault });
+          onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
           expect(preventDefault).toHaveBeenCalled();
           expect(
             document.activeElement?.getAttribute('data-test-subj')
@@ -298,19 +323,19 @@ describe('EuiDataGridHeaderCell', () => {
           );
 
           it('moves focus to the the next action', () => {
-            onKeyDown({ key: 'ArrowDown', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('second');
 
-            onKeyDown({ key: 'ArrowDown', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('last');
           });
 
           it('loops focus back to the first action when pressing down on the last action', () => {
-            onKeyDown({ key: 'ArrowDown', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('first');
@@ -323,19 +348,19 @@ describe('EuiDataGridHeaderCell', () => {
           );
 
           it('moves focus to the previous action', () => {
-            onKeyDown({ key: 'ArrowUp', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('second');
 
-            onKeyDown({ key: 'ArrowUp', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('first');
           });
 
           it('loops focus back to the last action when pressing up on the first action', () => {
-            onKeyDown({ key: 'ArrowUp', preventDefault });
+            onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
             ).toEqual('last');

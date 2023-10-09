@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { useEuiTheme } from '../../services';
 
 import { TEXT_SIZES } from '../text/text';
@@ -15,9 +15,9 @@ import { euiMarkdownFormatStyles } from './markdown_format.styles';
 describe('euiMarkdownFormat text sizes', () => {
   TEXT_SIZES.forEach((size) => {
     test(size, () => {
-      const emotionReturn = testCustomHook(() =>
+      const emotionReturn = renderHook(() =>
         euiMarkdownFormatStyles(useEuiTheme())
-      ).return as any;
+      ).result.current;
       expect(emotionReturn[size].styles).toMatchSnapshot();
     });
   });
