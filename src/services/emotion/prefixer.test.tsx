@@ -9,6 +9,7 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
 import { css, keyframes } from '@emotion/react';
+import { cache as defaultEmotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
 import { EuiProvider } from '../../components/provider';
@@ -501,7 +502,7 @@ describe('euiStylisPrefixer', () => {
   describe('default Emotion cache', () => {
     it('prefixes extra CSS that the EUI plugin does not', () => {
       render(
-        <EuiProvider>
+        <EuiProvider cache={defaultEmotionCache}>
           <div
             css={css`
               label: test-default-cache;

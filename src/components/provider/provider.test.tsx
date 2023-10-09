@@ -66,13 +66,21 @@ describe('EuiProvider', () => {
       ) as HTMLStyleElement;
     };
 
-    it('uses a default cache from Emotion when configured without a cache', () => {
-      render(<EuiProvider />);
+    it('uses a default fallback cache with EUI prefixing when one is not passed', () => {
+      render(
+        <EuiProvider>
+          <div css={{ label: 'test-no-cache', display: 'flex' }} />
+        </EuiProvider>
+      );
 
       expect(emotionCache.key).toEqual('css');
       expect(getStyleByCss('html').dataset.emotion).toEqual('css-global');
       expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
         'css-global'
+      );
+      // The below CSS would have prefixes if the default `@emotion/css` cache were used
+      expect(getStyleByCss('test-no-cache').textContent).toMatchInlineSnapshot(
+        `".css-1b3dqg7-test-no-cache{display:flex;}"`
       );
     });
 

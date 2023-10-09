@@ -7,13 +7,8 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { cache as fallbackCache, EmotionCache } from '@emotion/css';
+import type { EmotionCache } from '@emotion/css';
 
-import {
-  EuiGlobalStyles,
-  EuiGlobalStylesProps,
-} from '../../global_styling/reset/global_styles';
-import { EuiUtilityClasses } from '../../global_styling/utility/utility';
 import {
   EuiThemeProvider,
   EuiThemeProviderProps,
@@ -21,7 +16,15 @@ import {
   CurrentEuiBreakpointProvider,
 } from '../../services';
 import { emitEuiProviderWarning } from '../../services/theme/warning';
+import { cache as fallbackCache } from '../../services/emotion/css';
+
+import {
+  EuiGlobalStyles,
+  EuiGlobalStylesProps,
+} from '../../global_styling/reset/global_styles';
+import { EuiUtilityClasses } from '../../global_styling/utility/utility';
 import { EuiThemeAmsterdam } from '../../themes';
+
 import { EuiCacheProvider } from './cache';
 import { EuiProviderNestedCheck, useIsNestedEuiProvider } from './nested';
 import {

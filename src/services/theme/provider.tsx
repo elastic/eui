@@ -16,13 +16,12 @@ import React, {
   PropsWithChildren,
   HTMLAttributes,
 } from 'react';
-import classNames from 'classnames';
-import { css } from '@emotion/css';
 import { Global, type CSSObject } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
 
 import type { CommonProps } from '../../components/common';
 import { cloneElementWithCss } from '../emotion';
+import { css, cx } from '../emotion/css';
 
 import {
   EuiSystemContext,
@@ -191,7 +190,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
     const { cloneElement, className, ...rest } = wrapperProps || {};
     const props = {
       ...rest,
-      className: classNames(className, nestedThemeContext.colorClassName),
+      className: cx(className, nestedThemeContext.colorClassName),
     };
     // Condition avoids rendering an empty Emotion selector if no
     // theme-specific CSS variables have been set by child components
@@ -202,14 +201,11 @@ export const EuiThemeProvider = <T extends {} = {}>({
     if (cloneElement) {
       return cloneElementWithCss(children, {
         ...props,
-        className: classNames(children.props.className, props.className),
+        className: cx(children.props.className, props.className),
       });
     } else {
       return (
-        <span
-          {...props}
-          className={classNames('euiThemeProvider', props.className)}
-        >
+        <span {...props} className={cx('euiThemeProvider', props.className)}>
           {children}
         </span>
       );
