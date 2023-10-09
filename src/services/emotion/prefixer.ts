@@ -60,11 +60,15 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 6135:
     case 4599:
     case 4855:
-    // background-clip
-    case 4215:
     // print-color-adjust - https://caniuse.com/css-color-adjust - Chrome
     case 2282:
       return WEBKIT + value + value;
+
+    // background-clip - https://caniuse.com/background-clip-text - Chrome, only for `text` value
+    case 4215:
+      if (~indexof(value, 'text')) {
+        return WEBKIT + value + value;
+      }
 
     /**
      * Intrinsic/extrinsic sizing value prefixes

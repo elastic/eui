@@ -166,6 +166,27 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('background-clip text', () => {
+      render(
+        <div
+          css={css`
+            label: background-clip;
+            /* should not prefix */
+            background-clip: content-box;
+            /* should prefix */
+            background-clip: text;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('background-clip')).toMatchInlineSnapshot(`
+        ".test-9vijyk-background-clip {
+        background-clip: content-box;
+        -webkit-background-clip: text;
+        background-clip: text;
+        }"
+      `);
+    });
 
     test('print-color-adjust', () => {
       render(
