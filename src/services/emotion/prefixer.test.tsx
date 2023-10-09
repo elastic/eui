@@ -167,6 +167,28 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('writing mode CSS', () => {
+      render(
+        <div
+          css={css`
+            label: no-writing-mode-prefixes;
+            writing-mode: vertical-lr;
+            writing-mode: vertical-rl;
+            writing-mode: horizontal-tb;
+          `}
+        />,
+        { wrapper }
+      );
+
+      expect(getStyleCss('no-writing-mode-prefixes')).toMatchInlineSnapshot(`
+        ".test-1d4iba8-no-writing-mode-prefixes {
+        writing-mode: vertical-lr;
+        writing-mode: vertical-rl;
+        writing-mode: horizontal-tb;
+        }"
+      `);
+    });
+
     test('misc selectors', () => {
       render(
         <div
@@ -199,6 +221,7 @@ describe('euiStylisPrefixer', () => {
               transform: translateY(-1px);
               transition: transform 2s linear;
               position: sticky;
+              writing-mode: vertical-rl;
               ::placeholder {
                 color: red;
               }
@@ -223,6 +246,9 @@ describe('euiStylisPrefixer', () => {
         transition: transform 2s linear;
         position: -webkit-sticky;
         position: sticky;
+        -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+        writing-mode: vertical-rl;
       `);
       expect(getStyleCss('::-moz-placeholder')).toBeTruthy();
     });

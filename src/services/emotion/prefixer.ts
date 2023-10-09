@@ -138,39 +138,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
               : value;
         }
       break;
-    // writing-mode
-    case 5936:
-      switch (charat(value, length + 11)) {
-        // vertical-l(r)
-        case 114:
-          return (
-            WEBKIT +
-            value +
-            MS +
-            replace(value, /[svh]\w+-[tblr]{2}/, 'tb') +
-            value
-          );
-        // vertical-r(l)
-        case 108:
-          return (
-            WEBKIT +
-            value +
-            MS +
-            replace(value, /[svh]\w+-[tblr]{2}/, 'tb-rl') +
-            value
-          );
-        // horizontal(-)tb
-        case 45:
-          return (
-            WEBKIT +
-            value +
-            MS +
-            replace(value, /[svh]\w+-[tblr]{2}/, 'lr') +
-            value
-          );
-      }
-
-      return WEBKIT + value + MS + value + value;
   }
 
   return value;
