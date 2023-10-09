@@ -219,6 +219,28 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('misc text effect CSS', () => {
+      render(
+        <div
+          css={css`
+            label: no-misc-text-effect-prefixes;
+            appearance: none;
+            hyphens: auto;
+            cursor: grab;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('no-misc-text-effect-prefixes'))
+        .toMatchInlineSnapshot(`
+        ".test-29xaas-no-misc-text-effect-prefixes {
+        appearance: none;
+        hyphens: auto;
+        cursor: grab;
+        }"
+      `);
+    });
+
     test('misc selectors', () => {
       render(
         <div
@@ -253,6 +275,8 @@ describe('euiStylisPrefixer', () => {
               position: sticky;
               writing-mode: vertical-rl;
               column-count: 2;
+              cursor: grab;
+
               ::placeholder {
                 color: red;
               }
@@ -262,7 +286,7 @@ describe('euiStylisPrefixer', () => {
       );
 
       expect(getStyleCss('test-default-cache')).toMatchInlineSnapshot(`
-        ".css-a8wwb0-test-default-cache {
+        ".css-1ayq16r-test-default-cache {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -282,6 +306,9 @@ describe('euiStylisPrefixer', () => {
         writing-mode: vertical-rl;
         -webkit-column-count: 2;
         column-count: 2;
+        cursor: -webkit-grab;
+        cursor: grab;
+        }"
       `);
       expect(getStyleCss('::-moz-placeholder')).toBeTruthy();
     });

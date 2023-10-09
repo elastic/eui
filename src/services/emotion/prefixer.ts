@@ -61,25 +61,10 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     // background-clip
     case 4215:
       return WEBKIT + value + value;
-    // appearance, user-select, hyphens, text-size-adjust
-    case 5349:
+    // user-select, text-size-adjust
     case 4246:
-    case 6968:
     case 2756:
       return WEBKIT + value + MOZ + value + MS + value + value;
-    // cursor
-    case 6187:
-      return (
-        replace(
-          replace(
-            replace(value, /(zoom-|grab)/, WEBKIT + '$1'),
-            /(image-set)/,
-            WEBKIT + '$1'
-          ),
-          value,
-          ''
-        ) + value
-      );
     // background, background-image
     case 5495:
     case 3959:
