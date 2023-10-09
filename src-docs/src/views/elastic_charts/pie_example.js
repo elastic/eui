@@ -217,7 +217,7 @@ const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIG
       {
         groupByRollup: d => d.category,
         shape: {
-          fillColor: d => euiChartTheme.theme.colors.vizColors[d.sortIndex],
+          fillColor: (key, sortIndex) => euiChartTheme.theme.colors.vizColors[sortIndex],
         },
       },
     ]}

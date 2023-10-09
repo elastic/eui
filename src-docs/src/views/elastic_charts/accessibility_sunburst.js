@@ -61,7 +61,7 @@ export default () => {
             {
               groupByRollup: ({ fruit }) => fruit,
               shape: {
-                fillColor: ({ sortIndex }) =>
+                fillColor: (key, sortIndex) =>
                   vizColors[sortIndex % vizColors.length],
               },
             },
