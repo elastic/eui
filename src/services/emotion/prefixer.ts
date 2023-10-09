@@ -67,20 +67,12 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 5621:
     case 3829:
       return WEBKIT + value + value;
-    // appearance, user-select, transform, hyphens, text-size-adjust
+    // appearance, user-select, hyphens, text-size-adjust
     case 5349:
     case 4246:
-    case 4810:
     case 6968:
     case 2756:
       return WEBKIT + value + MOZ + value + MS + value + value;
-    // transition
-    case 4554:
-      return (
-        WEBKIT +
-        replace(value, /([^-])(transform)/g, '$1' + WEBKIT + '$2') +
-        value
-      );
     // cursor
     case 6187:
       return (
