@@ -47,13 +47,11 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
      */
     // user-select - https://caniuse.com/mdn-css_properties_user-select - needed by Safari
     case 4246:
+    // text-decoration - https://caniuse.com/text-decoration - iOS Safari is the main one that needs this
+    case 5572:
     // text-size-adjust - https://caniuse.com/text-size-adjust - iOS Safari
     case 2756:
-    // color-adjust
-    case 5103:
-      return WEBKIT + 'print-' + value + value;
-    // text-decoration, box-decoration-break
-    case 5572:
+    // box-decoration-break - https://caniuse.com/css-boxdecorationbreak - Chrome & Safari
     case 3005:
     // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
     case 6391:
@@ -64,6 +62,8 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 4855:
     // background-clip
     case 4215:
+    // print-color-adjust - https://caniuse.com/css-color-adjust - Chrome
+    case 2282:
       return WEBKIT + value + value;
 
     /**

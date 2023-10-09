@@ -63,6 +63,32 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('text-decoration', () => {
+      render(
+        <div
+          css={css`
+            label: text-decoration;
+            text-decoration: line-through dashed blue;
+            text-decoration-line: underline overline;
+            text-decoration-style: wavy;
+            text-decoration-color: red;
+            text-decoration-skip: objects;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('text-decoration')).toMatchInlineSnapshot(`
+        ".test-5idn3j-text-decoration {
+        -webkit-text-decoration: line-through dashed blue;
+        text-decoration: line-through dashed blue;
+        text-decoration-line: underline overline;
+        text-decoration-style: wavy;
+        text-decoration-color: red;
+        text-decoration-skip: objects;
+        }"
+      `);
+    });
+
     test('text-size-adjust', () => {
       render(
         <div
@@ -76,6 +102,43 @@ describe('euiStylisPrefixer', () => {
         ".test-15dfadm {
         -webkit-text-size-adjust: 80%;
         text-size-adjust: 80%;
+        }"
+      `);
+    });
+
+    test('box-decoration-break', () => {
+      render(
+        <div
+          css={css`
+            label: box-decoration-break;
+            box-decoration-break: slice;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('box-decoration-break')).toMatchInlineSnapshot(`
+        ".test-m64wfr-box-decoration-break {
+        -webkit-box-decoration-break: slice;
+        box-decoration-break: slice;
+        }"
+      `);
+    });
+
+
+    test('print-color-adjust', () => {
+      render(
+        <div
+          css={css`
+            label: print-color-adjust;
+            print-color-adjust: economy;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('print-color-adjust')).toMatchInlineSnapshot(`
+        ".test-cx4oo-print-color-adjust {
+        -webkit-print-color-adjust: economy;
+        print-color-adjust: economy;
         }"
       `);
     });
