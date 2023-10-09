@@ -53,7 +53,7 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 2756:
     // box-decoration-break - https://caniuse.com/css-boxdecorationbreak - Chrome & Safari
     case 3005:
-    // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
+    // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite - Chrome
     case 6391:
     case 5879:
     case 5623:

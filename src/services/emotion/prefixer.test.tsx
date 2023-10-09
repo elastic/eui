@@ -124,6 +124,48 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    describe('mask CSS', () => {
+      render(
+        <div
+          css={css`
+            label: mask-css;
+            mask: url(mask.svg);
+            mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
+            mask-clip: border-box;
+            mask-origin: padding-box;
+            mask-composite: subtract;
+            mask-mode: alpha;
+            mask-position: center;
+            mask-repeat: repeat-x;
+            mask-size: contain;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('mask-css')).toMatchInlineSnapshot(`
+        ".test-16l1rpr-mask-css {
+        -webkit-mask: url(mask.svg);
+        mask: url(mask.svg);
+        -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
+        mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
+        -webkit-mask-clip: border-box;
+        mask-clip: border-box;
+        -webkit-mask-origin: padding-box;
+        mask-origin: padding-box;
+        -webkit-mask-composite: subtract;
+        mask-composite: subtract;
+        -webkit-mask-mode: alpha;
+        mask-mode: alpha;
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-repeat: repeat-x;
+        mask-repeat: repeat-x;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        }"
+      `);
+    });
+
 
     test('print-color-adjust', () => {
       render(
