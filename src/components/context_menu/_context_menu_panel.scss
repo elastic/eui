@@ -10,21 +10,25 @@
   &.euiContextMenuPanel-txInLeft {
     pointer-events: none;
     animation: euiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
+    animation-fill-mode: forwards;
   }
 
   &.euiContextMenuPanel-txOutLeft {
     pointer-events: none;
     animation: euiContextMenuPanelTxOutLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
+    animation-fill-mode: forwards;
   }
 
   &.euiContextMenuPanel-txInRight {
     pointer-events: none;
     animation: euiContextMenuPanelTxInRight $euiAnimSpeedNormal $euiAnimSlightResistance;
+    animation-fill-mode: forwards;
   }
 
   &.euiContextMenuPanel-txOutRight {
     pointer-events: none;
     animation: euiContextMenuPanelTxOutRight $euiAnimSpeedNormal $euiAnimSlightResistance;
+    animation-fill-mode: forwards;
   }
 }
 
