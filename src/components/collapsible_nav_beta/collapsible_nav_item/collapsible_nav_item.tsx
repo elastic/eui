@@ -115,6 +115,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   icon,
   iconProps,
   items,
+  accordionProps, // Ensure this isn't spread to non-accordions
   children, // Ensure children isn't spread
   ...props
 }) => {
@@ -133,6 +134,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
       <EuiCollapsibleNavAccordion
         buttonContent={headerContent}
         items={items}
+        accordionProps={accordionProps}
         {...props}
         isSubItem={isSubItem}
       />
