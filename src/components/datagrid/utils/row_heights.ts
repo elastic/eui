@@ -7,7 +7,6 @@
  */
 
 import {
-  CSSProperties,
   MutableRefObject,
   useCallback,
   useContext,
@@ -107,31 +106,21 @@ export class RowHeightUtils {
     };
   }
 
-  getStylesForCell = (
-    rowHeightsOptions: EuiDataGridRowHeightsOptions,
-    rowIndex: number
-  ): CSSProperties => {
-    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+  /**
+   * Height types
+   */
 
-    if (height === AUTO_HEIGHT) {
-      return {};
+  getHeightType = (option?: EuiDataGridRowHeightOption) => {
+    if (option == null) {
+      return 'default';
     }
-
-    const lineCount = this.getLineCount(height);
-    if (lineCount) {
-      return {
-        WebkitLineClamp: lineCount,
-        display: '-webkit-box',
-        WebkitBoxOrient: 'vertical',
-        height: '100%',
-        overflow: 'hidden',
-      };
+    if (option === AUTO_HEIGHT) {
+      return 'auto';
     }
-
-    return {
-      height: '100%',
-      overflow: 'hidden',
-    };
+    if (this.getLineCount(option) != null) {
+      return 'lineCount';
+    }
+    return 'numerical';
   };
 
   /**
