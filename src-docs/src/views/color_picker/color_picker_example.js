@@ -9,8 +9,6 @@ import {
   EuiColorPaletteDisplay,
   EuiColorPalettePicker,
   EuiText,
-  EuiCallOut,
-  EuiLink,
 } from '../../../../src/components';
 import {
   EuiColorPalettePickerPaletteTextProps,
@@ -326,32 +324,6 @@ export const ColorPickerExample = {
       },
       snippet: colorPaletteDisplaySnippet,
       demo: <ColorPaletteDisplay />,
-    },
-    {
-      title: 'Color stops',
-      isDeprecated: true,
-      text: (
-        <EuiCallOut
-          color="danger"
-          iconType="warning"
-          title="EuiColorStops has been scheduled for deprecation"
-        >
-          <p>
-            <strong>EuiColorStops</strong> is being deprecated due to low usage
-            and high maintenance requirements.
-          </p>
-          <p>
-            If necessary, we recommend{' '}
-            <EuiLink
-              href="https://github.com/elastic/eui/tree/main/src/components/color_picker/color_stops"
-              target="_blank"
-            >
-              copying the component to your application
-            </EuiLink>
-            . The component will be permanently removed in October 2023.
-          </p>
-        </EuiCallOut>
-      ),
     },
     {
       title: 'Format selection',
