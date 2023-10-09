@@ -96,21 +96,41 @@ export const ProviderExample = {
             {'<EuiProvider globalStyles={false} utilityClasses={false} />'}
           </EuiCodeBlock>
 
-          <h3 id="cache-location">
-            @emotion/cache and style injection location
-          </h3>
+          <h3 id="cache-customization">@emotion/cache customization</h3>
           <p>
-            In the case that your app has its own static stylesheet,{' '}
-            <EuiCode>@emotion</EuiCode> styles may not be injected into the
-            correct location in the <EuiCode>{'<head>'}</EuiCode>, causing
-            unintentional overrides or unapplied styles.{' '}
-            <EuiLink href="https://emotion.sh/docs/@emotion/cache" external>
-              The <strong>@emotion/cache</strong> library
+            The{' '}
+            <EuiLink
+              href="https://emotion.sh/docs/@emotion/cache"
+              target="_blank"
+            >
+              <strong>@emotion/cache</strong> library
             </EuiLink>{' '}
-            provides configuration options that help with specifying the
-            injection location. We recommend using <EuiCode>{'<meta>'}</EuiCode>{' '}
-            tags to achieve this.
+            provides extra configuration options for EUI's CSS-in-JS behavior:
           </p>
+          <ul>
+            <li>
+              <strong>Browser prefixing</strong>: By default, EUI uses CSS
+              browser prefixes based on our{' '}
+              <EuiLink
+                href="https://www.elastic.co/support/matrix#matrix_browsers"
+                target="_blank"
+              >
+                supported browsers matrix
+              </EuiLink>{' '}
+              (latest evergreen only). Should you need to customize this, you
+              can pass in your own prefix plugin via the{' '}
+              <EuiCode>stylisPlugins</EuiCode> option.
+              <EuiSpacer size="s" />
+            </li>
+            <li>
+              <strong>Injection location</strong>: In the case that your app has
+              its own static stylesheet, Emotion's styles may not be injected
+              into the correct location in the <EuiCode>{'<head>'}</EuiCode>,
+              causing unintentional overrides or unapplied styles. You can use
+              the <EuiCode>container</EuiCode> option and{' '}
+              <EuiCode>{'<meta>'}</EuiCode> tags to achieve this.
+            </li>
+          </ul>
 
           <GlobalStyles />
 

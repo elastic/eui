@@ -7,3 +7,4 @@
  */
 
 export * from './clone_element';
+export * from './prefixer';

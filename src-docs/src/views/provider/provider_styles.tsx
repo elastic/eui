@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCodeBlock, EuiSpacer, useEuiTheme } from '../../../../src';
+import { EuiCodeBlock, useEuiTheme } from '../../../../src';
 
 export default () => {
   const { colorMode } = useEuiTheme();
@@ -22,18 +22,17 @@ export default () => {
 </html>`}
       </EuiCodeBlock>
 
-      <EuiSpacer size="s" />
-
       <EuiCodeBlock language="jsx" fontSize="m" isCopyable>
         {`// App.js
-import { EuiProvider } from '@elastic/eui'
+import { EuiProvider, euiStylisPrefixer } from '@elastic/eui'
 import createCache from '@emotion/cache';
 
 const euiCache = createCache({
   key: 'eui',
+  stylisPlugins: [euiStylisPrefixer],
   container: document.querySelector('meta[name="eui-style-insert"]'),
 });
-cache.compat = true;
+euiCache.compat = true;
 
 <EuiProvider${colorMode === 'DARK' ? ' colorMode="dark"' : ''} cache={euiCache}>
   {/* Content */}
