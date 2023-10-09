@@ -1,5 +1,62 @@
 [
   {
+    "version": "89.0.0",
+    "changes": [
+      {
+        "token": "euiColorStopThumb.buttonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.buttonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.stopLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.stopErrorMessage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.removeLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStops.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "88.5.0",
     "changes": [
       {

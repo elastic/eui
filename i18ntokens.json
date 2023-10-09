@@ -648,132 +648,6 @@
     "filepath": "src/components/color_picker/color_picker.tsx"
   },
   {
-    "token": "euiColorStopThumb.buttonAriaLabel",
-    "defString": "Press the Enter key to modify this stop. Press Escape to focus the group",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 289,
-        "column": 8,
-        "index": 7845
-      },
-      "end": {
-        "line": 298,
-        "column": 9,
-        "index": 8162
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
-  },
-  {
-    "token": "euiColorStopThumb.buttonTitle",
-    "defString": "Click to edit, drag to reposition",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 289,
-        "column": 8,
-        "index": 7845
-      },
-      "end": {
-        "line": 298,
-        "column": 9,
-        "index": 8162
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
-  },
-  {
-    "token": "euiColorStopThumb.screenReaderAnnouncement",
-    "defString": "A popup with a color stop edit form opened.\n            Tab forward to cycle through form controls or press\n            escape to close this popup.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 340,
-        "column": 12,
-        "index": 9548
-      },
-      "end": {
-        "line": 345,
-        "column": 14,
-        "index": 9808
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
-  },
-  {
-    "token": "euiColorStopThumb.stopLabel",
-    "defString": "Stop value",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 350,
-        "column": 12,
-        "index": 9948
-      },
-      "end": {
-        "line": 356,
-        "column": 13,
-        "index": 10177
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
-  },
-  {
-    "token": "euiColorStopThumb.stopErrorMessage",
-    "defString": "Value is out of range",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 350,
-        "column": 12,
-        "index": 9948
-      },
-      "end": {
-        "line": 356,
-        "column": 13,
-        "index": 10177
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
-  },
-  {
-    "token": "euiColorStopThumb.removeLabel",
-    "defString": "Remove this stop",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 382,
-        "column": 16,
-        "index": 11269
-      },
-      "end": {
-        "line": 385,
-        "column": 17,
-        "index": 11396
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stop_thumb.tsx"
-  },
-  {
-    "token": "euiColorStops.screenReaderAnnouncement",
-    "defString": "{label}: {readOnly} {disabled} Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 543,
-        "column": 10,
-        "index": 16200
-      },
-      "end": {
-        "line": 551,
-        "column": 12,
-        "index": 16680
-      }
-    },
-    "filepath": "src/components/color_picker/color_stops/color_stops.tsx"
-  },
-  {
     "token": "euiHue.label",
     "defString": "Select the HSV color mode 'hue' value",
     "highlighting": "string",
@@ -851,14 +725,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 415,
+        "line": 335,
         "column": 12,
-        "index": 12237
+        "index": 9466
       },
       "end": {
-        "line": 418,
+        "line": 338,
         "column": 14,
-        "index": 12360
+        "index": 9589
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -869,14 +743,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 428,
+        "line": 348,
         "column": 16,
-        "index": 12799
+        "index": 10028
       },
       "end": {
-        "line": 432,
+        "line": 352,
         "column": 18,
-        "index": 13030
+        "index": 10259
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -887,14 +761,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 447,
+        "line": 367,
         "column": 16,
-        "index": 13459
+        "index": 10688
       },
       "end": {
-        "line": 453,
+        "line": 373,
         "column": 18,
-        "index": 13732
+        "index": 10961
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -905,14 +779,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 482,
+        "line": 402,
         "column": 20,
-        "index": 14723
+        "index": 11952
       },
       "end": {
-        "line": 488,
+        "line": 408,
         "column": 22,
-        "index": 15021
+        "index": 12250
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -923,14 +797,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 499,
+        "line": 419,
         "column": 12,
-        "index": 15225
+        "index": 12454
       },
       "end": {
-        "line": 503,
+        "line": 423,
         "column": 14,
-        "index": 15446
+        "index": 12675
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -941,14 +815,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 510,
+        "line": 430,
         "column": 10,
-        "index": 15565
+        "index": 12794
       },
       "end": {
-        "line": 513,
+        "line": 433,
         "column": 12,
-        "index": 15705
+        "index": 12934
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -959,14 +833,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 519,
+        "line": 439,
         "column": 10,
-        "index": 15818
+        "index": 13047
       },
       "end": {
-        "line": 522,
+        "line": 442,
         "column": 12,
-        "index": 15961
+        "index": 13190
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -977,14 +851,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 970,
-        "column": 10,
-        "index": 28029
+        "line": 767,
+        "column": 8,
+        "index": 22243
       },
       "end": {
-        "line": 973,
-        "column": 11,
-        "index": 28154
+        "line": 770,
+        "column": 9,
+        "index": 22362
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -4703,14 +4577,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 295,
+        "line": 311,
         "column": 8,
-        "index": 9503
+        "index": 9875
       },
       "end": {
-        "line": 295,
+        "line": 311,
         "column": 78,
-        "index": 9573
+        "index": 9945
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4721,14 +4595,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 359,
+        "line": 385,
         "column": 12,
-        "index": 11856
+        "index": 12431
       },
       "end": {
-        "line": 362,
+        "line": 388,
         "column": 14,
-        "index": 12065
+        "index": 12640
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4739,14 +4613,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 364,
+        "line": 390,
         "column": 12,
-        "index": 12094
+        "index": 12669
       },
       "end": {
-        "line": 367,
+        "line": 393,
         "column": 14,
-        "index": 12266
+        "index": 12841
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4757,14 +4631,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 370,
+        "line": 396,
         "column": 12,
-        "index": 12337
+        "index": 12912
       },
       "end": {
-        "line": 373,
+        "line": 399,
         "column": 14,
-        "index": 12524
+        "index": 13099
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -6055,12 +5929,12 @@
       "start": {
         "line": 687,
         "column": 16,
-        "index": 20276
+        "index": 20250
       },
       "end": {
         "line": 690,
         "column": 18,
-        "index": 20470
+        "index": 20444
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -6892,114 +6766,6 @@
       }
     },
     "filepath": "src/components/steps/step_strings.tsx"
-  },
-  {
-    "token": "euiSuggest.stateSavedTooltip",
-    "defString": "Saved.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 210,
-        "column": 39,
-        "index": 5033
-      },
-      "end": {
-        "line": 213,
-        "column": 3,
-        "index": 5167
-      }
-    },
-    "filepath": "src/components/suggest/suggest.tsx"
-  },
-  {
-    "token": "euiSuggest.stateUnsavedTooltip",
-    "defString": "Changes have not been saved.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 210,
-        "column": 39,
-        "index": 5033
-      },
-      "end": {
-        "line": 213,
-        "column": 3,
-        "index": 5167
-      }
-    },
-    "filepath": "src/components/suggest/suggest.tsx"
-  },
-  {
-    "token": "euiSuggest.stateLoading",
-    "defString": "State: loading.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 67,
-        "index": 5883
-      },
-      "end": {
-        "line": 244,
-        "column": 3,
-        "index": 6124
-      }
-    },
-    "filepath": "src/components/suggest/suggest.tsx"
-  },
-  {
-    "token": "euiSuggest.stateSaved",
-    "defString": "State: saved.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 67,
-        "index": 5883
-      },
-      "end": {
-        "line": 244,
-        "column": 3,
-        "index": 6124
-      }
-    },
-    "filepath": "src/components/suggest/suggest.tsx"
-  },
-  {
-    "token": "euiSuggest.stateUnsaved",
-    "defString": "State: unsaved.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 67,
-        "index": 5883
-      },
-      "end": {
-        "line": 244,
-        "column": 3,
-        "index": 6124
-      }
-    },
-    "filepath": "src/components/suggest/suggest.tsx"
-  },
-  {
-    "token": "euiSuggest.stateUnchanged",
-    "defString": "State: unchanged.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 236,
-        "column": 67,
-        "index": 5883
-      },
-      "end": {
-        "line": 244,
-        "column": 3,
-        "index": 6124
-      }
-    },
-    "filepath": "src/components/suggest/suggest.tsx"
   },
   {
     "token": "euiTableSortMobile.sorting",
