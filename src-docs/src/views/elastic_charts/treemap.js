@@ -68,14 +68,15 @@ export default () => {
                 {
                   groupByRollup: (d) => d.vizType,
                   shape: {
-                    fillColor: (d) => groupedPalette[d.sortIndex * 3],
+                    fillColor: (key, sortIndex) =>
+                      groupedPalette[sortIndex * 3],
                   },
                 },
                 {
                   groupByRollup: (d) => d.issueType,
                   shape: {
-                    fillColor: (d) =>
-                      groupedPalette[d.parent.sortIndex * 3 + d.sortIndex + 1],
+                    fillColor: (key, sortIndex, { parent }) =>
+                      groupedPalette[parent.sortIndex * 3 + sortIndex + 1],
                   },
                 },
               ]}
@@ -101,7 +102,8 @@ export default () => {
                 {
                   groupByRollup: (d) => d.vizType,
                   shape: {
-                    fillColor: (d) => groupedPalette[d.sortIndex * 3],
+                    fillColor: (key, sortIndex) =>
+                      groupedPalette[sortIndex * 3],
                   },
                   fillLabel: {
                     valueFormatter: () => '',
@@ -111,8 +113,8 @@ export default () => {
                 {
                   groupByRollup: (d) => d.issueType,
                   shape: {
-                    fillColor: (d) =>
-                      groupedPalette[d.parent.sortIndex * 3 + d.sortIndex],
+                    fillColor: (key, sortIndex, { parent }) =>
+                      groupedPalette[parent.sortIndex * 3 + sortIndex],
                   },
                 },
               ]}
