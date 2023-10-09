@@ -189,6 +189,36 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('columns CSS', () => {
+      render(
+        <div
+          css={css`
+            label: no-columns-prefixes;
+            columns: 3;
+            column-count: 5;
+            column-fill: balance;
+            column-gap: 10px;
+            column-width: 20px;
+            column-span: all;
+            column-rule: blue dotted 2px;
+          `}
+        />,
+        { wrapper }
+      );
+
+      expect(getStyleCss('no-columns-prefixes')).toMatchInlineSnapshot(`
+        ".test-1eossg4-no-columns-prefixes {
+        columns: 3;
+        column-count: 5;
+        column-fill: balance;
+        column-gap: 10px;
+        column-width: 20px;
+        column-span: all;
+        column-rule: blue dotted 2px;
+        }"
+      `);
+    });
+
     test('misc selectors', () => {
       render(
         <div
@@ -222,6 +252,7 @@ describe('euiStylisPrefixer', () => {
               transition: transform 2s linear;
               position: sticky;
               writing-mode: vertical-rl;
+              column-count: 2;
               ::placeholder {
                 color: red;
               }
@@ -249,6 +280,8 @@ describe('euiStylisPrefixer', () => {
         -webkit-writing-mode: vertical-rl;
         -ms-writing-mode: tb-rl;
         writing-mode: vertical-rl;
+        -webkit-column-count: 2;
+        column-count: 2;
       `);
       expect(getStyleCss('::-moz-placeholder')).toBeTruthy();
     });
