@@ -149,6 +149,24 @@ describe('euiStylisPrefixer', () => {
       expect(getStyleCss('@-webkit-keyframes')).toBeFalsy();
     });
 
+    test('position sticky', () => {
+      render(
+        <div
+          css={css`
+            label: no-position-sticky-prefix;
+            position: sticky;
+          `}
+        />,
+        { wrapper }
+      );
+
+      expect(getStyleCss('no-position-sticky-prefix')).toMatchInlineSnapshot(`
+        ".test-11x1k54-no-position-sticky-prefix {
+        position: sticky;
+        }"
+      `);
+    });
+
     test('misc selectors', () => {
       render(
         <div
@@ -180,6 +198,7 @@ describe('euiStylisPrefixer', () => {
               animation: something;
               transform: translateY(-1px);
               transition: transform 2s linear;
+              position: sticky;
               ::placeholder {
                 color: red;
               }
@@ -202,6 +221,8 @@ describe('euiStylisPrefixer', () => {
         transform: translateY(-1px);
         -webkit-transition: -webkit-transform 2s linear;
         transition: transform 2s linear;
+        position: -webkit-sticky;
+        position: sticky;
       `);
       expect(getStyleCss('::-moz-placeholder')).toBeTruthy();
     });

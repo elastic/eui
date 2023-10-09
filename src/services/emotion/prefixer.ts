@@ -138,10 +138,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
               : value;
         }
       break;
-    // position: sticky
-    case 4949:
-      // (s)ticky?
-      if (charat(value, length + 1) !== 115) break;
     // writing-mode
     case 5936:
       switch (charat(value, length + 11)) {
