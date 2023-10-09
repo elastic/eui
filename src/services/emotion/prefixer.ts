@@ -74,65 +74,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 6968:
     case 2756:
       return WEBKIT + value + MOZ + value + MS + value + value;
-    // flex, flex-direction
-    case 6828:
-    case 4268:
-      return WEBKIT + value + MS + value + value;
-    // order
-    case 6165:
-      return WEBKIT + value + MS + 'flex-' + value + value;
-    // align-items
-    case 5187:
-      return (
-        WEBKIT +
-        value +
-        replace(
-          value,
-          /(\w+).+(:[^]+)/,
-          WEBKIT + 'box-$1$2' + MS + 'flex-$1$2'
-        ) +
-        value
-      );
-    // align-self
-    case 5443:
-      return (
-        WEBKIT +
-        value +
-        MS +
-        'flex-item-' +
-        replace(value, /flex-|-self/, '') +
-        value
-      );
-    // align-content
-    case 4675:
-      return (
-        WEBKIT +
-        value +
-        MS +
-        'flex-line-pack' +
-        replace(value, /align-content|flex-|-self/, '') +
-        value
-      );
-    // flex-shrink
-    case 5548:
-      return WEBKIT + value + MS + replace(value, 'shrink', 'negative') + value;
-    // flex-basis
-    case 5292:
-      return (
-        WEBKIT + value + MS + replace(value, 'basis', 'preferred-size') + value
-      );
-    // flex-grow
-    case 6060:
-      return (
-        WEBKIT +
-        'box-' +
-        replace(value, '-grow', '') +
-        WEBKIT +
-        value +
-        MS +
-        replace(value, 'grow', 'positive') +
-        value
-      );
     // transition
     case 4554:
       return (
@@ -157,22 +98,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 5495:
     case 3959:
       return replace(value, /(image-set\([^]*)/, WEBKIT + '$1' + '$`$1');
-    // justify-content
-    case 4968:
-      return (
-        replace(
-          replace(
-            value,
-            /(.+:)(flex-)?(.*)/,
-            WEBKIT + 'box-pack:$3' + MS + 'flex-pack:$3'
-          ),
-          /s.+-b[^;]+/,
-          'justify'
-        ) +
-        WEBKIT +
-        value +
-        value
-      );
     // (margin|padding)-inline-(start|end)
     case 4095:
     case 3583:
@@ -225,34 +150,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 4949:
       // (s)ticky?
       if (charat(value, length + 1) !== 115) break;
-    // display: (flex|inline-flex)
-    case 6444:
-      switch (
-        charat(value, strlen(value) - 3 - (~indexof(value, '!important') && 10))
-      ) {
-        // stic(k)y
-        case 107:
-          return replace(value, ':', ':' + WEBKIT) + value;
-        // (inline-)?fl(e)x
-        case 101:
-          return (
-            replace(
-              value,
-              /(.+:)([^;!]+)(;|!.+)?/,
-              '$1' +
-                WEBKIT +
-                (charat(value, 14) === 45 ? 'inline-' : '') +
-                'box$3' +
-                '$1' +
-                WEBKIT +
-                '$2$3' +
-                '$1' +
-                MS +
-                '$2box$3'
-            ) + value
-          );
-      }
-      break;
     // writing-mode
     case 5936:
       switch (charat(value, length + 11)) {

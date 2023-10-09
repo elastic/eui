@@ -49,6 +49,46 @@ describe('euiStylisPrefixer', () => {
   });
 
   describe('does not prefix', () => {
+    test('flex CSS', () => {
+      render(
+        <div
+          css={css`
+            label: no-flex-prefixes;
+            display: flex;
+            display: inline-flex;
+            align-items: center;
+            align-content: center;
+            align-self: center;
+            justify-content: center;
+            flex-shrink: 0;
+            flex-grow: 0;
+            flex-basis: 100%;
+            flex: 1;
+            flex-direction: column;
+            order: 2;
+          `}
+        />,
+        { wrapper }
+      );
+
+      expect(getStyleCss('no-flex-prefixes')).toMatchInlineSnapshot(`
+        ".test-1467bft-no-flex-prefixes {
+        display: flex;
+        display: inline-flex;
+        align-items: center;
+        align-content: center;
+        align-self: center;
+        justify-content: center;
+        flex-shrink: 0;
+        flex-grow: 0;
+        flex-basis: 100%;
+        flex: 1;
+        flex-direction: column;
+        order: 2;
+        }"
+      `);
+    });
+
     test('animation CSS', () => {
       const testAnimation = keyframes`
         from { opacity: 0; }
@@ -115,6 +155,7 @@ describe('euiStylisPrefixer', () => {
           <div
             css={css`
               label: test-default-cache;
+              display: flex;
               animation: something;
               ::placeholder {
                 color: red;
@@ -126,6 +167,10 @@ describe('euiStylisPrefixer', () => {
 
       expect(getStyleCss('test-default-cache')).toMatchInlineSnapshot(`
         ".css-a8wwb0-test-default-cache {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
         -webkit-animation: something;
         animation: something;
       `);
