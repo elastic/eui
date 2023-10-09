@@ -49,7 +49,7 @@ exports[`EuiButtonIcon props color danger is rendered 1`] = `
 exports[`EuiButtonIcon props color ghost is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiColorMode-dark-colorClassName"
+  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiColorMode-dark"
   type="button"
 >
   <span

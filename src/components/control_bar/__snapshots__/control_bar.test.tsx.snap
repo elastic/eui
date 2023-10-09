@@ -49,7 +49,7 @@ exports[`EuiControlBar is rendered 1`] = `
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiColorMode-dark-colorClassName"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiColorMode-dark"
         data-test-subj="dts"
         type="button"
       >

@@ -1179,7 +1179,7 @@ exports[`EuiPageTemplate_Deprecated with bottomBar is rendered 1`] = `
     </div>
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2

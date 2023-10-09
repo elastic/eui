@@ -15,11 +15,11 @@ exports[`EuiPortal renders portals with a different theme provider from the glob
 <body>
   <div>
     <span
-      class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
+      class="euiThemeProvider emotion-euiColorMode-inverse"
     />
   </div>
   <div
-    class="emotion-euiColorMode-inverse-colorClassName"
+    class="emotion-euiColorMode-inverse"
     data-euiportal="true"
   >
     Content
