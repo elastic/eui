@@ -1,5 +1,11 @@
-/* eslint-disable no-fallthrough */
-/* eslint-disable eqeqeq */
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import {
   charat,
   combine,
@@ -16,11 +22,16 @@ import {
   serialize,
   strlen,
   WEBKIT,
+  type Element,
 } from 'stylis';
 
-// this is a copy of stylis@4.0.13 prefixer, the latter version introduced grid prefixing which we don't want
+// This is a heavily modified version of Emotion's default `prefixer` plugin
+// (mostly removing unnecessary prefixes), which is in turn a modified version
+// of stylis's default prefixer.
+// @see https://github.com/emotion-js/emotion/blob/main/packages/cache/src/prefixer.js
+/* eslint-disable prefer-template */
 
-function prefix(value, length) {
+const prefix = (value: Element['value'], length: Element['length']): string => {
   switch (hash(value, length)) {
     // color-adjust
     case 5103:
@@ -277,9 +288,15 @@ function prefix(value, length) {
   }
 
   return value;
-}
+};
 
-export let prefixer = (element, index, children, callback) => {
+/**
+ * This is a stylis plugin which handles auto-prefixing CSS output by Emotion.
+ *
+ * *Please note*: EUI/Elastic targets latest evergreen browsers for support only.
+ * @see https://www.elastic.co/support/matrix#matrix_browsers
+ */
+export const euiStylisPrefixer = (element: Element) => {
   if (element.length > -1)
     if (!element.return)
       switch (element.type) {
