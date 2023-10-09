@@ -24,6 +24,22 @@ import {
 // @see https://github.com/emotion-js/emotion/blob/main/packages/cache/src/prefixer.js
 /* eslint-disable prefer-template */
 
+/**
+ * This is a stylis plugin which handles auto-prefixing CSS output by Emotion.
+ *
+ * *Please note*: EUI/Elastic targets latest evergreen browsers for support only.
+ * @see https://www.elastic.co/support/matrix#matrix_browsers
+ */
+export const euiStylisPrefixer = (element: Element) => {
+  if (element.length > -1)
+    if (!element.return)
+      switch (element.type) {
+        case DECLARATION:
+          element.return = prefix(element.value, element.length);
+          break;
+      }
+};
+
 const prefix = (value: Element['value'], length: Element['length']): string => {
   switch (hash(value, length)) {
     // color-adjust
@@ -273,20 +289,4 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
   }
 
   return value;
-};
-
-/**
- * This is a stylis plugin which handles auto-prefixing CSS output by Emotion.
- *
- * *Please note*: EUI/Elastic targets latest evergreen browsers for support only.
- * @see https://www.elastic.co/support/matrix#matrix_browsers
- */
-export const euiStylisPrefixer = (element: Element) => {
-  if (element.length > -1)
-    if (!element.return)
-      switch (element.type) {
-        case DECLARATION:
-          element.return = prefix(element.value, element.length);
-          break;
-      }
 };
