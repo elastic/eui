@@ -152,8 +152,6 @@ export * from './stat';
 
 export * from './steps';
 
-export * from './suggest';
-
 export * from './table';
 
 export * from './token';
