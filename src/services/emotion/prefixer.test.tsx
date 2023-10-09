@@ -189,6 +189,26 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('inline logical properties CSS', () => {
+      render(
+        <div
+          css={css`
+            label: no-logical-properties-prefixes;
+            padding-inline-start: 1rem;
+            margin-inline-end: 2em;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('no-logical-properties-prefixes'))
+        .toMatchInlineSnapshot(`
+        ".test-11697m3-no-logical-properties-prefixes {
+        padding-inline-start: 1rem;
+        margin-inline-end: 2em;
+        }"
+      `);
+    });
+
     test('columns CSS', () => {
       render(
         <div
@@ -299,6 +319,8 @@ describe('euiStylisPrefixer', () => {
             css={css`
               label: test-default-cache;
               display: flex;
+              padding-inline-start: 1rem;
+              margin-inline-end: 2em;
               animation: something;
               transform: translateY(-1px);
               transition: transform 2s linear;
@@ -322,6 +344,10 @@ describe('euiStylisPrefixer', () => {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        -webkit-padding-start: 1rem;
+        padding-inline-start: 1rem;
+        -webkit-margin-end: 2em;
+        margin-inline-end: 2em;
         -webkit-animation: something;
         animation: something;
         -webkit-transform: translateY(-1px);

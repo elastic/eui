@@ -62,12 +62,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 4246:
     case 2756:
       return WEBKIT + value + MOZ + value + MS + value + value;
-    // (margin|padding)-inline-(start|end)
-    case 4095:
-    case 3583:
-    case 4068:
-    case 2532:
-      return replace(value, /(.+)-inline(.+)/, WEBKIT + '$1$2') + value;
     // (min|max)?(width|height|inline-size|block-size)
     case 8116:
     case 7059:
