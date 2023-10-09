@@ -45,11 +45,8 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     // color-adjust
     case 5103:
       return WEBKIT + 'print-' + value + value;
-    // text-decoration, filter, clip-path, backface-visibility, box-decoration-break
+    // text-decoration, box-decoration-break
     case 5572:
-    case 6356:
-    case 5844:
-    case 3191:
     case 3005:
     // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite,
     case 6391:
@@ -65,10 +62,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 4246:
     case 2756:
       return WEBKIT + value + MOZ + value + MS + value + value;
-    // background, background-image
-    case 5495:
-    case 3959:
-      return replace(value, /(image-set\([^]*)/, WEBKIT + '$1' + '$`$1');
     // (margin|padding)-inline-(start|end)
     case 4095:
     case 3583:

@@ -241,6 +241,36 @@ describe('euiStylisPrefixer', () => {
       `);
     });
 
+    test('misc filter/effect/image CSS', () => {
+      render(
+        <div
+          css={css`
+            label: no-filter-prefixes;
+            filter: grayscale(1);
+            clip-path: url(#foo);
+            backface-visibility: visible;
+            background: image-set(
+              linear-gradient(blue, white) 1x,
+              linear-gradient(blue, green) 2x
+            );
+          `}
+        />,
+        { wrapper }
+      );
+
+      expect(getStyleCss('no-filter-prefixes')).toMatchInlineSnapshot(`
+        ".test-8ziglt-no-filter-prefixes {
+        filter: grayscale(1);
+        clip-path: url(#foo);
+        backface-visibility: visible;
+        background: image-set(
+                      linear-gradient(blue, white) 1x,
+                      linear-gradient(blue, green) 2x
+                    );
+        }"
+      `);
+    });
+
     test('misc selectors', () => {
       render(
         <div
@@ -275,6 +305,7 @@ describe('euiStylisPrefixer', () => {
               position: sticky;
               writing-mode: vertical-rl;
               column-count: 2;
+              filter: blur(5px);
               cursor: grab;
 
               ::placeholder {
@@ -306,6 +337,8 @@ describe('euiStylisPrefixer', () => {
         writing-mode: vertical-rl;
         -webkit-column-count: 2;
         column-count: 2;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
         cursor: -webkit-grab;
         cursor: grab;
         }"
