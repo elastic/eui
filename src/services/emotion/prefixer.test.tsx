@@ -45,6 +45,41 @@ describe('euiStylisPrefixer', () => {
   };
 
   describe('does prefix', () => {
+    test('user-select', () => {
+      render(
+        <div
+          css={css`
+            label: user-select;
+            user-select: none;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('user-select')).toMatchInlineSnapshot(`
+        ".test-8c1x7t-user-select {
+        -webkit-user-select: none;
+        user-select: none;
+        }"
+      `);
+    });
+
+    test('text-size-adjust', () => {
+      render(
+        <div
+          css={css`
+            text-size-adjust: 80%;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('text-size-adjust')).toMatchInlineSnapshot(`
+        ".test-15dfadm {
+        -webkit-text-size-adjust: 80%;
+        text-size-adjust: 80%;
+        }"
+      `);
+    });
+
     test('max-content, min-content, fit-content, and stretch sizing values', () => {
       render(
         <div

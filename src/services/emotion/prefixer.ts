@@ -42,6 +42,13 @@ export const euiStylisPrefixer = (element: Element) => {
 
 const prefix = (value: Element['value'], length: Element['length']): string => {
   switch (hash(value, length)) {
+    /**
+     * `-webkit` prefixes
+     */
+    // user-select - https://caniuse.com/mdn-css_properties_user-select - needed by Safari
+    case 4246:
+    // text-size-adjust - https://caniuse.com/text-size-adjust - iOS Safari
+    case 2756:
     // color-adjust
     case 5103:
       return WEBKIT + 'print-' + value + value;
@@ -58,10 +65,6 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     // background-clip
     case 4215:
       return WEBKIT + value + value;
-    // user-select, text-size-adjust
-    case 4246:
-    case 2756:
-      return WEBKIT + value + MOZ + value + MS + value + value;
 
     /**
      * Intrinsic/extrinsic sizing value prefixes
