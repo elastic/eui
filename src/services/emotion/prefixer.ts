@@ -62,6 +62,11 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
     case 4246:
     case 2756:
       return WEBKIT + value + MOZ + value + MS + value + value;
+
+    /**
+     * Intrinsic/extrinsic sizing value prefixes
+     * `stretch` alternatives needed by Chrome & Firefox - https://caniuse.com/intrinsic-width
+     */
     // (min|max)?(width|height|inline-size|block-size)
     case 8116:
     case 7059:
@@ -78,14 +83,10 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
       // stretch, max-content, min-content, fill-available
       if (strlen(value) - 1 - length > 6)
         switch (charat(value, length + 1)) {
-          // (m)ax-content, (m)in-content
-          case 109:
-            // -
-            if (charat(value, length + 4) !== 45) break;
-          // (f)ill-available, (f)it-content
+          // (f)ill-available
           case 102:
-            return (
-              replace(
+            if (~indexof(value, 'fill-available')) {
+              return replace(
                 value,
                 /(.+:)(.+)-([^]+)/,
                 '$1' +
@@ -93,15 +94,17 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
                   '$2-$3' +
                   '$1' +
                   MOZ +
-                  (charat(value, length + 3) == 108 ? '$3' : '$2-$3')
-              ) + value
-            );
+                  (charat(value, length + 3) === 108 ? '$3' : '$2-$3')
+              );
+            }
           // (s)tretch
           case 115:
-            return ~indexof(value, 'stretch')
-              ? prefix(replace(value, 'stretch', 'fill-available'), length) +
-                  value
-              : value;
+            if (~indexof(value, 'stretch')) {
+              return (
+                prefix(replace(value, 'stretch', 'fill-available'), length) +
+                value
+              );
+            }
         }
       break;
   }

@@ -45,7 +45,33 @@ describe('euiStylisPrefixer', () => {
   };
 
   describe('does prefix', () => {
-    // TODO
+    test('max-content, min-content, fit-content, and stretch sizing values', () => {
+      render(
+        <div
+          /* eslint-disable local/css-logical-properties */
+          css={css`
+            label: intrinsic-extrensic-sizing;
+            /* should not prefix */
+            height: max-content;
+            width: min-content;
+            max-inline-size: fit-content;
+            /* should prefix */
+            min-block-size: stretch;
+          `}
+        />,
+        { wrapper }
+      );
+      expect(getStyleCss('intrinsic-extrensic-sizing')).toMatchInlineSnapshot(`
+        ".test-tsfq3u-intrinsic-extrensic-sizing {
+        height: max-content;
+        width: min-content;
+        max-inline-size: fit-content;
+        min-block-size: -webkit-fill-available;
+        min-block-size: -moz-available;
+        min-block-size: stretch;
+        }"
+      `);
+    });
   });
 
   describe('does not prefix', () => {
@@ -327,6 +353,7 @@ describe('euiStylisPrefixer', () => {
               position: sticky;
               writing-mode: vertical-rl;
               column-count: 2;
+              block-size: max-content;
               filter: blur(5px);
               cursor: grab;
 
@@ -339,7 +366,7 @@ describe('euiStylisPrefixer', () => {
       );
 
       expect(getStyleCss('test-default-cache')).toMatchInlineSnapshot(`
-        ".css-1ayq16r-test-default-cache {
+        ".css-tfft1m-test-default-cache {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -363,6 +390,9 @@ describe('euiStylisPrefixer', () => {
         writing-mode: vertical-rl;
         -webkit-column-count: 2;
         column-count: 2;
+        block-size: -webkit-max-content;
+        block-size: -moz-max-content;
+        block-size: max-content;
         -webkit-filter: blur(5px);
         filter: blur(5px);
         cursor: -webkit-grab;
