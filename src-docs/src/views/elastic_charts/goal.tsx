@@ -22,8 +22,6 @@ export const GoalChart = () => {
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
 
-  const euiGoalConfig = euiChartTheme.euiGoalConfig;
-
   const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
   const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
   const bands = [-10, 0, 15, 25, 40];
@@ -55,7 +53,7 @@ export const GoalChart = () => {
             ariaLabelledBy={id}
             ariaDescription="This goal chart has a target of 22."
             ariaUseDefaultSummary={false}
-            theme={euiChartTheme}
+            theme={euiChartTheme.theme}
           />
           <Goal
             id="goalId"
@@ -72,7 +70,6 @@ export const GoalChart = () => {
             labelMinor="Celsius"
             centralMajor="12"
             centralMinor=""
-            config={{ euiGoalConfig }} // TODO
             angleStart={Math.PI}
             angleEnd={0}
             bandLabels={bandLabels}

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Chart,
-  CurveType,
   BarSeries,
   AreaSeries,
   Settings,
@@ -82,7 +81,6 @@ export default () => {
           }}
           stackAccessors={['yes']}
           data={SAMPLE_SMALL_DATA}
-          curve={CurveType.CURVE_MONOTONE_X}
         />
         <AreaSeries
           key={2}
@@ -92,7 +90,6 @@ export default () => {
           areaSeriesStyle={{
             area: {
               opacity: 0.05,
-              shape: 'circle',
               texture: {
                 opacity: 1,
                 shape: 'circle',

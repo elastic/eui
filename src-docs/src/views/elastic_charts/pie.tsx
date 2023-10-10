@@ -54,6 +54,10 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
 
+  const themeOverrides = {
+    partition: { emptySizeRatio: 0.4 },
+  };
+
   return (
     <div>
       <EuiFlexGrid columns={2}>
@@ -63,7 +67,10 @@ export default () => {
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
-            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleOne} />
+            <Settings
+              theme={[themeOverrides, euiChartTheme.theme]}
+              ariaLabelledBy={exampleOne}
+            />
             <Partition
               id="pieByPR"
               data={STATUS_DATA}
@@ -104,7 +111,6 @@ export default () => {
                   },
                 },
               ]}
-              emptySizeRatio={0.4}
               clockwiseSectors={false}
             />
           </Chart>
