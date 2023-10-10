@@ -121,7 +121,7 @@ export const ProviderExample = {
             <EuiCode>utility</EuiCode> properties on the{' '}
             <EuiCode>cache</EuiCode> prop to further define where specific
             styles should be inserted. See{' '}
-            <EuiLink href="#/utilities/provider#euiprovider-props">
+            <Link to="#euiprovider-props">
               the props documentation
             </EuiLink>{' '}
             for details.
