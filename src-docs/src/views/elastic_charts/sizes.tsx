@@ -60,24 +60,6 @@ class Sizes extends Component {
     this.changePropsBasedOnWidth(100);
   };
 
-  onStackedChange = (e) => {
-    this.setState({
-      stacked: e.target.checked,
-    });
-  };
-
-  onMultiChange = (multiObject) => {
-    this.setState({
-      ...multiObject,
-    });
-  };
-
-  onChartTypeChange = (optionId) => {
-    this.setState({
-      toggleIdSelected: optionId,
-    });
-  };
-
   onWidthChartsChange = (e) => {
     this.setState({
       width: e.target.value,
@@ -259,7 +241,9 @@ class Sizes extends Component {
           className="euiGuide__chartsPageCrosshairSection"
         >
           <EuiFlexItem>
-            <MultiChartCard onChange={this.onMultiChange} />
+            <MultiChartCard
+              onChange={(multiObject) => this.setState({ ...multiObject })}
+            />
           </EuiFlexItem>
           <EuiFlexItem>
             <ChartCard

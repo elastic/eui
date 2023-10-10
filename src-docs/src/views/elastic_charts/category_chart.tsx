@@ -41,11 +41,6 @@ export default () => {
   const [formatted, setFormatted] = useState(false);
   const [chartType, setChartType] = useState<ChartType>('BarSeries');
   const [valueLabels, setValueLabels] = useState(false);
-  const onMultiChange = (multiObject) => {
-    const { multi, stacked } = multiObject;
-    setMulti(multi);
-    setStacked(stacked);
-  };
 
   const onRotatedChange = (e) => {
     setRotated(e.target.checked);
@@ -282,7 +277,12 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <MultiChartCard onChange={onMultiChange} />
+          <MultiChartCard
+            onChange={({ multi, stacked }) => {
+              setMulti(multi);
+              setStacked(stacked);
+            }}
+          />
         </EuiFlexItem>
 
         <EuiFlexItem>

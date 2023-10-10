@@ -47,12 +47,6 @@ export default () => {
   const [stacked, setStacked] = useState(false);
   const [chartType, setChartType] = useState<ChartType | 'Mixed'>('BarSeries');
 
-  const onMultiChange = (multiObject) => {
-    const { multi, stacked } = multiObject;
-    setMulti(multi);
-    setStacked(stacked);
-  };
-
   const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
@@ -127,7 +121,12 @@ export default () => {
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <MultiChartCard onChange={onMultiChange} />
+          <MultiChartCard
+            onChange={({ multi, stacked }) => {
+              setMulti(multi);
+              setStacked(stacked);
+            }}
+          />
         </EuiFlexItem>
 
         <EuiFlexItem>
