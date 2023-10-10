@@ -46,26 +46,20 @@ const paletteData = {
   euiPaletteGray,
 };
 
-const paletteNames = Object.keys(paletteData);
+const palettes = Object.entries(paletteData).map(([paletteName, palette]) => {
+  return {
+    value: paletteName,
+    title: paletteName,
+    palette:
+      palette === euiPaletteColorBlind
+        ? euiPaletteColorBlind({ sortBy: 'natural' })
+        : palette(10),
+    type: 'fixed' as const,
+  };
+});
 
 export default () => {
   const { colorMode } = useEuiTheme();
-
-  const palettes = paletteNames.map((paletteName, index) => {
-    const options =
-      index > 0
-        ? 10
-        : {
-            sortBy: 'natural',
-          };
-
-    return {
-      value: paletteName,
-      title: paletteName,
-      palette: paletteData[paletteNames[index]](options),
-      type: 'fixed',
-    };
-  });
 
   const [barPalette, setBarPalette] = useState('euiPaletteColorBlind');
 
@@ -84,14 +78,12 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const barPaletteIndex = paletteNames.findIndex((item) => item === barPalette);
-
   const customTheme =
-    barPaletteIndex > 0
+    barPalette !== 'euiPaletteColorBlind'
       ? [
           {
             colors: {
-              vizColors: paletteData[paletteNames[barPaletteIndex]](5),
+              vizColors: paletteData[barPalette as keyof typeof paletteData](5),
             },
           },
           theme,
