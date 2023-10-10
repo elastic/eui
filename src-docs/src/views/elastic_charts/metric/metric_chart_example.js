@@ -465,9 +465,11 @@ export const MetricChartExample = {
     {
       title: 'No Data',
       text: (
-        <p>
-          Various situations could lead to an uncertain state. We designed two{' '}
-          <strong>empty states</strong> that should cover most of those cases:
+        <>
+          <p>
+            Various situations could lead to an uncertain state. We designed two{' '}
+            <strong>empty states</strong> that should cover most of those cases:
+          </p>
           <ul>
             <li>
               When an applied filter makes the metric uncomputable (missing
@@ -483,7 +485,7 @@ export const MetricChartExample = {
               component won&apos;t be rendered, and an empty box is rendered.
             </li>
           </ul>
-        </p>
+        </>
       ),
       demo: <NoData />,
     },
