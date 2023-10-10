@@ -27,6 +27,7 @@ import {
   ChartTypeCard,
   MultiChartCard,
   CHART_COMPONENTS,
+  type ChartType,
   ChartCard,
 } from './shared';
 
@@ -38,7 +39,7 @@ export default () => {
   const [rotated, setRotated] = useState(true);
   const [ordered, setOrdered] = useState(true);
   const [formatted, setFormatted] = useState(false);
-  const [chartType, setChartType] = useState('BarSeries');
+  const [chartType, setChartType] = useState<ChartType>('BarSeries');
   const [valueLabels, setValueLabels] = useState(false);
   const onMultiChange = (multiObject) => {
     const { multi, stacked } = multiObject;
@@ -56,10 +57,6 @@ export default () => {
 
   const onFormatChange = (e) => {
     setFormatted(e.target.checked);
-  };
-
-  const onChartTypeChange = (chartType) => {
-    setChartType(chartType);
   };
 
   const onValueLabelsChange = (e) => {
@@ -277,9 +274,9 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <ChartTypeCard
+          <ChartTypeCard<{ mixed: false }>
             type="Although we recommend only bar charts, categorical"
-            onChange={onChartTypeChange}
+            onChange={(chartType) => setChartType(chartType)}
             disabled
           />
         </EuiFlexItem>

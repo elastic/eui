@@ -35,6 +35,7 @@ import { TIME_DATA, TIME_DATA_2 } from './data';
 import {
   ChartTypeCard,
   CHART_COMPONENTS,
+  type ChartType,
   MultiChartCard,
   ChartCard,
 } from './shared';
@@ -44,7 +45,7 @@ export default () => {
 
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
-  const [chartType, setChartType] = useState('BarSeries');
+  const [chartType, setChartType] = useState<ChartType | 'Mixed'>('BarSeries');
 
   const onMultiChange = (multiObject) => {
     const { multi, stacked } = multiObject;
@@ -52,21 +53,15 @@ export default () => {
     setStacked(stacked);
   };
 
-  const onChartTypeChange = (chartType) => {
-    setChartType(chartType);
-  };
-
   const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  let ChartType = CHART_COMPONENTS[chartType];
-  let ChartType2 = CHART_COMPONENTS[chartType];
-  if (chartType === 'Mixed') {
-    ChartType = BarSeries;
-    ChartType2 = LineSeries;
-  }
+  const ChartType =
+    chartType === 'Mixed' ? BarSeries : CHART_COMPONENTS[chartType];
+  const ChartType2 =
+    chartType === 'Mixed' ? LineSeries : CHART_COMPONENTS[chartType];
 
   const isBadChart = chartType === 'LineSeries' && stacked;
 
@@ -124,9 +119,9 @@ export default () => {
 
       <EuiFlexGrid columns={3}>
         <EuiFlexItem>
-          <ChartTypeCard
+          <ChartTypeCard<{ mixed: true }>
             type="Time series"
-            onChange={onChartTypeChange}
+            onChange={(chartType) => setChartType(chartType)}
             mixed={multi ? 'enabled' : 'disabled'}
           />
         </EuiFlexItem>

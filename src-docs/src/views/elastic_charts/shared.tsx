@@ -67,12 +67,15 @@ export const ChartCard: FunctionComponent<
   );
 };
 
-export const ChartTypeCard: FunctionComponent<{
+type ChartTypeCardProps<Mixed> = {
   type: string;
+  mixed?: 'enabled' | 'disabled';
+  onChange: [Mixed] extends [{ mixed: true }]
+    ? (chartType: ChartType | 'Mixed') => void
+    : (chartType: ChartType) => void;
   disabled?: boolean;
-  mixed?: boolean | 'enabled' | 'disabled';
-  onChange: (chartType: ChartType) => void;
-}> = (props) => {
+};
+export const ChartTypeCard = <Mixed,>(props: ChartTypeCardProps<Mixed>) => {
   const idPrefix = 'chartType';
 
   const toggleButtonsIcons: EuiRadioGroupOption[] = [
