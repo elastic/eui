@@ -43,7 +43,7 @@ export const ElasticChartsThemingExample = {
       title: 'Theming via EUI',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: themingSource,
         },
       ],

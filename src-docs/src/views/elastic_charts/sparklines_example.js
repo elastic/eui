@@ -30,7 +30,7 @@ export const ElasticChartsSparklinesExample = {
       title: 'Sparklines',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: sparklinesSource,
         },
       ],
