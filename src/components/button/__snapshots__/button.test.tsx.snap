@@ -43,7 +43,7 @@ exports[`EuiButton props color danger is rendered 1`] = `
 
 exports[`EuiButton props color ghost is rendered 1`] = `
 <button
-  class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-text-euiColorMode-dark-colorClassName"
+  class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-text-euiColorMode-dark"
   type="button"
 >
   <span

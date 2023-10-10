@@ -2,7 +2,7 @@
 
 exports[`EuiThemeProvider CSS variables allows child components to set non-global theme CSS variables 1`] = `
 <span
-  class="euiThemeProvider emotion-euiCSSVariables-euiColorMode--colorClassName"
+  class="euiThemeProvider emotion-euiCSSVariables-euiColorMode-LIGHT"
 />
 `;
 
@@ -11,7 +11,7 @@ exports[`EuiThemeProvider nested EuiThemeProviders allows avoiding the extra spa
   Top-level provider
    
   <div
-    class="world hello emotion-euiColorMode-dark-colorClassName"
+    class="world hello emotion-euiColorMode-dark"
   >
     clone provider color onto div
   </div>
@@ -23,7 +23,7 @@ exports[`EuiThemeProvider nested EuiThemeProviders allows customizing the span w
   Top-level provider
    
   <span
-    class="euiThemeProvider test css-1mg4zk6-customCss-euiColorMode-dark-colorClassName"
+    class="euiThemeProvider test css-1q6x6jl-customCss-euiColorMode-dark"
     data-test-subj="nested"
   >
     Nested
@@ -36,15 +36,15 @@ exports[`EuiThemeProvider nested EuiThemeProviders renders with a span wrapper t
   Top-level provider
    
   <span
-    class="euiThemeProvider emotion-euiColorMode-dark-colorClassName"
+    class="euiThemeProvider emotion-euiColorMode-dark"
   >
     Nested
     <span
-      class="euiThemeProvider emotion-euiColorMode-light-colorClassName"
+      class="euiThemeProvider emotion-euiColorMode-light"
     >
       Double nested
       <span
-        class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
+        class="euiThemeProvider emotion-euiColorMode-inverse"
       >
         Triple nested
       </span>

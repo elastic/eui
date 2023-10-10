@@ -4,7 +4,7 @@ exports[`_EuiPageBottomBar is rendered 1`] = `
 <div>
   <section
     aria-label="aria-label"
-    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky-bar-euiTestCss-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky-bar-euiTestCss-euiColorMode-dark"
     data-test-subj="test subject string"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
@@ -34,7 +34,7 @@ exports[`_EuiPageBottomBar paddingSize l is rendered 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -63,7 +63,7 @@ exports[`_EuiPageBottomBar paddingSize m is rendered 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -92,7 +92,7 @@ exports[`_EuiPageBottomBar paddingSize none is rendered 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -121,7 +121,7 @@ exports[`_EuiPageBottomBar paddingSize s is rendered 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -150,7 +150,7 @@ exports[`_EuiPageBottomBar paddingSize xl is rendered 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -179,7 +179,7 @@ exports[`_EuiPageBottomBar paddingSize xs is rendered 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -208,7 +208,7 @@ exports[`_EuiPageBottomBar restrict width can be set to a custom number 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -238,7 +238,7 @@ exports[`_EuiPageBottomBar restrict width can be set to a custom value and measu
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2
@@ -268,7 +268,7 @@ exports[`_EuiPageBottomBar restrict width can be set to a default 1`] = `
 <div>
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark-colorClassName"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar-euiColorMode-dark"
     style="left: 0px; right: 0px; bottom: 0px;"
   >
     <h2

@@ -150,6 +150,7 @@
     "@types/react-dom": "^18.2.6",
     "@types/react-is": "^17.0.3",
     "@types/react-router-dom": "^5.3.3",
+    "@types/stylis": "^4.2.1",
     "@types/testing-library__jest-dom": "^5.14.3",
     "@types/url-parse": "^1.4.8",
     "@types/uuid": "^8.3.0",

@@ -169,12 +169,13 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import createCache from '@emotion/cache';
-import { EuiProvider } from '@elastic/eui';
+import { EuiProvider, euiStylisPrefixer } from '@elastic/eui';
 
 import { Demo } from './demo';
 
 const cache = createCache({
   key: 'codesandbox',
+  stylisPlugins: [euiStylisPrefixer],
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
 cache.compat = true;
