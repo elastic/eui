@@ -41,7 +41,7 @@ export default () => {
     '150': spectrum[3],
     '250': spectrum[4],
   };
-  const bandFillColor = (x) => colorMap[x];
+  const bandFillColor = (x: number) => colorMap[x];
   return (
     <>
       <EuiTitle size="xs" className="eui-textCenter">

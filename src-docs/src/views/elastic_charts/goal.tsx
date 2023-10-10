@@ -41,7 +41,7 @@ export const GoalChart = () => {
     return acc;
   }, {});
 
-  const bandFillColor = (x) => colorMapTheme[x];
+  const bandFillColor = (x: number) => colorMapTheme[x];
   return (
     <EuiFlexGrid direction={isDesktop ? 'row' : 'column'} columns={2}>
       <EuiFlexItem>

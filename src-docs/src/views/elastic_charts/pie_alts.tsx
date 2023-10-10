@@ -53,7 +53,7 @@ export default () => {
   );
   if (formatted) {
     color = [
-      euiPaletteForTemperature()[0],
+      euiPaletteForTemperature(0)[0],
       euiPaletteGray(5)[isDarkTheme ? 4 : 0],
     ];
   }
@@ -77,15 +77,15 @@ export default () => {
 
       data = orderBy(DATASET, 'issueType', 'desc');
       const sortedData = sortBy(data, [
-        ({ vizType }) => totals[vizType],
+        ({ vizType }: (typeof DATASET)[0]) => totals[vizType],
       ]).reverse();
       data = sortedData;
     }
   }
 
-  const tickFormat = (tick) => {
+  const tickFormat = (tick: string) => {
     if (formatted) {
-      return `${Number(tick * 100).toFixed(0)}%`;
+      return `${(Number(tick) * 100).toFixed(0)}%`;
     } else if (!grouped && String(tick).length > 1) {
       return String(tick).substring(0, String(tick).length - 3);
     } else {

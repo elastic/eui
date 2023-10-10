@@ -9,6 +9,7 @@ import {
   niceTimeFormatByDay,
   LineAnnotation,
   BarSeries,
+  type PointerValue,
 } from '@elastic/charts';
 
 import {
@@ -60,7 +61,7 @@ class Sizes extends Component {
     this.changePropsBasedOnWidth(100);
   };
 
-  changePropsBasedOnWidth = (width) => {
+  changePropsBasedOnWidth = (width: number) => {
     const data1 = TIME_DATA.slice();
     const data2 = TIME_DATA_2.slice();
     let tooltipProps;
@@ -77,7 +78,7 @@ class Sizes extends Component {
     }
 
     if (width < this.mediumSize) {
-      const headerFormatter = (tooltipData) => {
+      const headerFormatter = (tooltipData: PointerValue) => {
         return `${formatDate(
           tooltipData.value,
           dateFormatAliases.shortDateTime

@@ -76,7 +76,7 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const updateCorrectChart = (numCharts, chartType) => {
+  const updateCorrectChart = (numCharts: number, chartType: string) => {
     switch (chartType) {
       case 'Categorical':
         createCategoryChart(numCharts);
@@ -100,7 +100,7 @@ export default () => {
     }
   };
 
-  const createCategoryChart = (numCharts) => {
+  const createCategoryChart = (numCharts: number) => {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map((item) => {
       item.g = `Categorical ${item.g.toUpperCase()}`;
@@ -114,7 +114,7 @@ export default () => {
     setChartType('LineSeries');
   };
 
-  const createQuantityChart = (numCharts) => {
+  const createQuantityChart = (numCharts: number) => {
     const vizColors = euiPalettePositive(numCharts);
 
     // convert series labels to percentages
@@ -138,7 +138,7 @@ export default () => {
     setChartType('BarSeries');
   };
 
-  const createTrendChart = (numCharts) => {
+  const createTrendChart = (numCharts: number) => {
     const vizColors = euiPaletteForStatus(numCharts);
 
     // convert series labels to better/worse
@@ -173,7 +173,7 @@ export default () => {
     setChartType('BarSeries');
   };
 
-  const createHighlightChart = (numCharts) => {
+  const createHighlightChart = (numCharts: number) => {
     const vizColors = euiPaletteGray(numCharts);
     vizColors[vizColors.length - 1] = highlightColor;
 
@@ -250,7 +250,7 @@ export default () => {
         return item;
       });
 
-      const isOdd = index % 2;
+      const isOdd = index % 2 === 0;
 
       const chart = (
         <ChartType

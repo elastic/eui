@@ -83,10 +83,9 @@ export default () => {
   const [showLegend, setShowLegend] = useState(false);
   const [showValues, setShowValues] = useState(true);
 
-  const onSliceOrderChange = (optionId) => {
-    const sliceOrderLabel = sliceOrderRadios.find(
-      ({ id }) => id === optionId
-    ).label;
+  const onSliceOrderChange = (optionId: string) => {
+    const sliceOrderLabel = sliceOrderRadios.find(({ id }) => id === optionId)!
+      .label!;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
       setSliceOrderConfigText('clockwiseSectors={false}');

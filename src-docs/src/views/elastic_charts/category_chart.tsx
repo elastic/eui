@@ -154,7 +154,8 @@ const customTheme = {
   />
 </Chart>`;
 
-  const removeEmptyLines = (string) => string.replace(/(^[ \t]*\n)/gm, '');
+  const removeEmptyLines = (string: string) =>
+    string.replace(/(^[ \t]*\n)/gm, '');
 
   const textToCopy = valueLabels
     ? `${chartVariablesForValueLabels}
