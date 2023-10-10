@@ -59,7 +59,7 @@ export default () => {
     ...theme,
     barSeriesStyle: {
       displayValue: {
-        ...theme.barSeriesStyle.displayValue,
+        ...theme.barSeriesStyle?.displayValue,
         offsetX: rotated ? 4 : 0,
         offsetY: rotated ? 0 : -4,
         ...(multi && stacked
@@ -67,15 +67,15 @@ export default () => {
               alignment: {
                 vertical: 'middle',
                 horizontal: 'center',
-              },
+              } as const,
             }
           : {
               alignment: rotated
                 ? {
-                    vertical: 'middle',
+                    vertical: 'middle' as const,
                   }
                 : {
-                    horizontal: 'center',
+                    horizontal: 'center' as const,
                   },
             }),
       },

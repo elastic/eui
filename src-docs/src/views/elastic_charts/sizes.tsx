@@ -3,8 +3,11 @@ import moment from 'moment';
 import {
   Chart,
   Settings,
+  type SettingsProps,
   Tooltip,
+  type TooltipProps,
   Axis,
+  type AxisProps,
   timeFormatter,
   niceTimeFormatByDay,
   LineAnnotation,
@@ -34,14 +37,33 @@ import {
   formatDate,
   dateFormatAliases,
   withEuiTheme,
+  type WithEuiThemeProps,
 } from '../../../../src/services';
 
 import { MultiChartCard, ChartCard } from './shared';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 
-class Sizes extends Component {
-  constructor(props) {
+type State = {
+  multi: boolean;
+  stacked: boolean;
+  width: number;
+  data1: typeof TIME_DATA;
+  data2: typeof TIME_DATA_2;
+  tooltipProps?: TooltipProps;
+  legendPosition?: SettingsProps['legendPosition'];
+  xAxisTitle?: AxisProps['title'];
+  xAxisFormatter?: AxisProps['tickFormat'];
+  xAxisStyle?: AxisProps['style'];
+  yAxisStyle?: AxisProps['style'];
+  changeDescription?: string;
+};
+class Sizes extends Component<WithEuiThemeProps, State> {
+  smallSize: number;
+  mediumSize: number;
+  xsmallSize: number;
+
+  constructor(props: WithEuiThemeProps) {
     super(props);
 
     this.mediumSize = 50;
@@ -65,7 +87,7 @@ class Sizes extends Component {
     const data1 = TIME_DATA.slice();
     const data2 = TIME_DATA_2.slice();
     let tooltipProps;
-    let legendPosition = 'right';
+    let legendPosition: SettingsProps['legendPosition'] = 'right';
     const xAxisFormatter = timeFormatter(niceTimeFormatByDay(1));
     let xAxisTitle = `${formatDate(data1[0][0], dateFormatAliases.date)}`;
     let xAxisStyle;

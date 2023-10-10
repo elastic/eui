@@ -34,12 +34,12 @@ export default () => {
     spectrum = colorPalette([spectrum[4], euiPaletteGray(5)[4]], 5).reverse();
   }
 
-  const colorMap = {
-    '0': spectrum[0],
-    '100': spectrum[1],
-    '125': spectrum[2],
-    '150': spectrum[3],
-    '250': spectrum[4],
+  const colorMap: Record<number, string> = {
+    0: spectrum[0],
+    100: spectrum[1],
+    125: spectrum[2],
+    150: spectrum[3],
+    250: spectrum[4],
   };
   const bandFillColor = (x: number) => colorMap[x];
   return (

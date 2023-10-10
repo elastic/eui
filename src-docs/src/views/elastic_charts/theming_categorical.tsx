@@ -21,7 +21,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import { CHART_COMPONENTS, ChartCard } from './shared';
+import { CHART_COMPONENTS, type ChartType, ChartCard } from './shared';
 import {
   euiPaletteColorBlind,
   euiPalettePositive,
@@ -29,6 +29,7 @@ import {
   euiPaletteGray,
   useEuiTheme,
 } from '../../../../src/services';
+import type { EuiPalette } from '../../../../src/services/color/eui_palettes';
 
 export default () => {
   const { colorMode } = useEuiTheme();
@@ -60,12 +61,14 @@ export default () => {
     colorTypeRadios[0].id
   );
   const [colorType, setColorType] = useState(colorTypeRadios[0].label);
-  const [numCharts, setNumCharts] = useState('3');
-  const [data, setData] = useState([]);
+  const [numCharts, setNumCharts] = useState(3);
+  const [data, setData] = useState<Array<{ x: number; y: number; g: string }>>(
+    []
+  );
   const [dataString, setDataString] = useState('[{x: 1, y: 5.5, g: 0}]');
-  const [vizColors, setVizColors] = useState();
-  const [vizColorsString, setVizColorsString] = useState();
-  const [chartType, setChartType] = useState('LineSeries');
+  const [vizColors, setVizColors] = useState<EuiPalette | undefined>();
+  const [vizColorsString, setVizColorsString] = useState('');
+  const [chartType, setChartType] = useState<ChartType>('LineSeries');
 
   useEffect(() => {
     createCategoryChart(3);
@@ -110,7 +113,7 @@ export default () => {
     setData(data);
     setDataString("[{x: 1, y: 5.5, g: 'Categorical 1'}]");
     setVizColors(undefined);
-    setVizColorsString(undefined);
+    setVizColorsString('');
     setChartType('LineSeries');
   };
 

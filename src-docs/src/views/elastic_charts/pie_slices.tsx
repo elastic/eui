@@ -66,7 +66,10 @@ export default () => {
   const [sliceOrderIdSelected, setSliceOrderIdSelected] = useState(
     sliceOrderRadios[0].id
   );
-  const [sliceOrderConfig, setSliceOrderConfig] = useState({
+  const [sliceOrderConfig, setSliceOrderConfig] = useState<{
+    clockwiseSectors?: boolean;
+    specialFirstInnermostSector?: boolean;
+  }>({
     clockwiseSectors: false,
   });
   const [sliceOrderConfigText, setSliceOrderConfigText] = useState(
@@ -77,7 +80,7 @@ export default () => {
     pieTypeRadios[0].id
   );
 
-  const [numSlices, setNumSlices] = useState('3');
+  const [numSlices, setNumSlices] = useState(3);
 
   const [grouped, setGrouped] = useState(true);
   const [showLegend, setShowLegend] = useState(false);
@@ -133,7 +136,7 @@ export default () => {
 
   const themeOverrides = {
     partition: {
-      emptySizeRatio: pieTypeIdSelected.includes('Donut') && 0.4,
+      emptySizeRatio: pieTypeIdSelected.includes('Donut') ? 0.4 : undefined,
     },
   };
 

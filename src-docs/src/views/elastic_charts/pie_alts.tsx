@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import orderBy from 'lodash/orderBy';
@@ -95,7 +95,7 @@ export default () => {
 
   let isMisleadingChart = false;
   let isBadChart = false;
-  let description =
+  let description: ReactNode =
     'This chart is a good alternative to the standard multi-tier pie (or sunburst) chart. It clearly represents the actual values while maintaining visual comparison.';
   let title = 'Good alternative';
 
@@ -139,7 +139,7 @@ export default () => {
             <BarSeries
               id="rain"
               name="Rain"
-              data={data}
+              data={data as typeof DAYS_OF_RAIN}
               xAccessor="season"
               yAccessors={['days']}
               splitSeriesAccessors={['precipitation']}
@@ -177,7 +177,7 @@ export default () => {
             <BarSeries
               id="issues"
               name="Issues"
-              data={data}
+              data={data as typeof GITHUB_DATASET}
               xAccessor="vizType"
               yAccessors={['count']}
               splitSeriesAccessors={['issueType']}

@@ -28,7 +28,7 @@ export const GoalChart = () => {
   const bands = [-10, 0, 15, 25, 40];
 
   const spectrum = euiPalettePositive(5);
-  const opacityMapHex = {
+  const opacityMapHex: Record<number, string> = {
     '-10': spectrum[0],
     '0': spectrum[1],
     '15': spectrum[2],
@@ -39,7 +39,7 @@ export const GoalChart = () => {
   const colorMapTheme = bands.reduce((acc, band) => {
     acc[band] = opacityMapHex[band];
     return acc;
-  }, {});
+  }, {} as Record<number, string>);
 
   const bandFillColor = (x: number) => colorMapTheme[x];
   return (
