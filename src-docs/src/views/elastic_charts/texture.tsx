@@ -112,7 +112,7 @@ export default () => {
         />
         <Axis
           hide
-          position={Position.left}
+          position={Position.Left}
           tickFormat={(d) => Number(d).toFixed(2)}
         />
       </Chart>

@@ -70,7 +70,9 @@ export const GoalChart = () => {
             labelMinor="Celsius"
             centralMajor="12"
             centralMinor=""
-            config={{ ...euiGoalConfig, angleStart: Math.PI, angleEnd: 0 }}
+            config={{ euiGoalConfig }} // TODO
+            angleStart={Math.PI}
+            angleEnd={0}
             bandLabels={bandLabels}
           />
         </Chart>

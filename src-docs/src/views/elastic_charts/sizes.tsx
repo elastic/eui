@@ -184,7 +184,7 @@ class Sizes extends Component {
     if (width < this.xsmallSize) {
       annotation = (
         <LineAnnotation
-          annotationId="anno_"
+          id="anno_"
           domainType="yDomain"
           dataValues={[{ dataValue: 22, details: 'Threshold' }]}
           marker={'22'}

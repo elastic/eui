@@ -216,7 +216,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
           yAccessors={['count']}
           splitSeriesAccessors={multi ? ['issueType'] : undefined}
           stackAccessors={stacked ? ['issueType'] : undefined}
-          displayValueSettings={valueLabels && displayValueSettings}
+          displayValueSettings={valueLabels ? displayValueSettings : undefined}
         />
         <Axis
           id="bottom-axis"

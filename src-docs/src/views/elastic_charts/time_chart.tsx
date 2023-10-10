@@ -110,7 +110,7 @@ export default () => {
           position="bottom"
           tickFormat={timeFormatter(niceTimeFormatByDay(1))}
           gridLine={{ visible: chartType !== 'BarSeries' }}
-          tickPadding={0}
+          style={{ tickLabel: { padding: 0 } }}
         />
         <Axis
           id="left-axis"

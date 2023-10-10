@@ -328,7 +328,7 @@ export default () => {
             theme={customTheme}
             showLegend={showLegend}
             legendPosition="right"
-            showLegendDisplayValue={false}
+            showLegendExtra={false}
           />
           {charts}
           <Axis
@@ -425,7 +425,7 @@ export default () => {
     theme={${customColorsString}}
     showLegend={${showLegend}}
     legendPosition="right"
-    showLegendDisplayValue={false}
+    showLegendExtra={false}
   />
   <${chartType}
     id="bars"

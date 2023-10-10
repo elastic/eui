@@ -144,7 +144,7 @@ export default () => {
               yAccessors={['days']}
               splitSeriesAccessors={['precipitation']}
               stackAccessors={stacked ? ['precipitation'] : undefined}
-              stackAsPercentage={formatted}
+              stackMode={formatted ? 'percentage' : undefined}
               color={color}
             />
             <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
@@ -182,7 +182,7 @@ export default () => {
               yAccessors={['count']}
               splitSeriesAccessors={['issueType']}
               stackAccessors={stacked ? ['issueType'] : undefined}
-              stackAsPercentage={formatted}
+              stackMode={formatted ? 'percentage' : undefined}
               color={color}
             />
             <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
@@ -279,7 +279,7 @@ export default () => {
     xAccessor="${usesRainData ? 'season' : 'vizType'}"
     yAccessors={[${usesRainData ? "'days'" : "'count'"}]}
     splitSeriesAccessors={[${usesRainData ? "'precipitation'" : "'issueType'"}]}
-    ${formatted ? 'stackAsPercentage={true}' : ''}
+    ${formatted ? 'stackMode="percentage"' : ''}
     ${
       stacked
         ? `stackAccessors={[${
