@@ -49,7 +49,7 @@ export const ExternalBadge = () => {
 export const ChartCard: FunctionComponent<
   PropsWithChildren & {
     title: ReactNode;
-    description: ReactNode;
+    description?: ReactNode;
   }
 > = ({ title, description, children }) => {
   return (
@@ -58,10 +58,14 @@ export const ChartCard: FunctionComponent<
         <span>{title}</span>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiText size="s">
-        <p>{description}</p>
-      </EuiText>
-      <EuiSpacer size="s" />
+      {description && (
+        <>
+          <EuiText size="s">
+            <p>{description}</p>
+          </EuiText>
+          <EuiSpacer size="s" />
+        </>
+      )}
       {children}
     </EuiPanel>
   );

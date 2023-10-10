@@ -213,7 +213,6 @@ export default () => {
 
         <EuiFlexItem>
           <ChartCard
-            textAlign="left"
             title="Bar chart options"
             description="Compare how the following options change the understanding of the data with that of the sunburst or treemap chart."
           >

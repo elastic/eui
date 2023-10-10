@@ -174,6 +174,7 @@ export default () => {
       <EuiFlexGrid columns={3}>
         <EuiFlexItem>
           <ChartCard title="Chart type and labels">
+            <EuiSpacer size="s" />
             <EuiButtonGroup
               color="primary"
               legend="Chart type"
@@ -243,7 +244,6 @@ export default () => {
         <EuiFlexItem>
           <ChartCard
             title="Slice order"
-            titleSize="xxs"
             description={
               <>
                 Partition supports the specialized slice order with{' '}
