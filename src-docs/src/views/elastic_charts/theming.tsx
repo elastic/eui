@@ -119,11 +119,11 @@ export default () => {
           yAccessors={['y']}
           color={['black']}
         />
-        <Axis id="bottom-axis" position="bottom" showGridLines />
+        <Axis id="bottom-axis" position="bottom" gridLine={{ visible: true }} />
         <Axis
           id="left-axis"
           position="left"
-          showGridLines
+          gridLine={{ visible: true }}
           tickFormat={(d) => Number(d).toFixed(2)}
         />
       </Chart>

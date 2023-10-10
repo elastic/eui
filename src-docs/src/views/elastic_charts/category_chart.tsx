@@ -169,7 +169,7 @@ const customTheme = {
   <Axis
     id="bottom-axis"
     position={${rotated ? '"left"' : '"bottom"'}}
-    showGridLines={false}
+    gridLine={{ visible: false }}
   />
   <Axis
     id="left-axis"
@@ -221,7 +221,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
         <Axis
           id="bottom-axis"
           position={rotated ? 'left' : 'bottom'}
-          showGridLines={false}
+          gridLine={{ visible: false }}
         />
         <Axis
           id="left-axis"

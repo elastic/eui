@@ -334,12 +334,12 @@ export default () => {
           <Axis
             id="bottom-axis"
             position="bottom"
-            showGridLines={chartType !== 'BarSeries'}
+            gridLine={{ visible: chartType !== 'BarSeries' }}
           />
           <Axis
             id="left-axis"
             position="left"
-            showGridLines
+            gridLine={{ visible: true }}
             tickFormat={(d) => Number(d).toFixed(2)}
           />
         </Chart>
@@ -439,12 +439,12 @@ export default () => {
   <Axis
     id="bottom-axis"
     position="bottom"
-    ${chartType !== 'BarSeries' ? 'showGridLines' : ''}
+    gridLine={{ visible: ${chartType !== 'BarSeries'} }}
   />
   <Axis
     id="left-axis"
     position="left"
-    showGridLines
+    gridLine={{ visible: true }}
     tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}

@@ -109,13 +109,13 @@ export default () => {
           id="bottom-axis"
           position="bottom"
           tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-          showGridLines={chartType !== 'BarSeries'}
+          gridLine={{ visible: chartType !== 'BarSeries' }}
           tickPadding={0}
         />
         <Axis
           id="left-axis"
           position="left"
-          showGridLines
+          gridLine={{ visible: true }}
           tickFormat={(d) => Number(d).toFixed(2)}
         />
       </Chart>
@@ -180,12 +180,12 @@ export default () => {
     id="bottom-axis"
     position="bottom"
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    ${chartType !== 'BarSeries' ? 'showGridLines' : ''}
+    gridLine={{ visible: ${chartType !== 'BarSeries'} }}
   />
   <Axis
     id="left-axis"
     position="left"
-    showGridLines
+    gridLine={{ visible: true }}
     tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}

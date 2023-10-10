@@ -239,7 +239,7 @@ class Sizes extends Component {
                 tickFormat={xAxisFormatter}
                 id="bottom-axis"
                 position="bottom"
-                showGridLines={false}
+                gridLine={{ visible: false }}
                 style={xAxisStyle}
               />
               <Axis
@@ -347,7 +347,7 @@ class Sizes extends Component {
     position="bottom"
     title={'${xAxisTitle}'}
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    showGridLines={false}
+    gridLine={{ visible: false }}
     style={${JSON.stringify(xAxisStyle)}}
   />
   <Axis

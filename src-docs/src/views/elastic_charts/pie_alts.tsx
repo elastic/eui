@@ -152,7 +152,7 @@ export default () => {
               id="left-axis"
               position={rotated ? 'bottom' : 'left'}
               tickFormat={tickFormat}
-              showGridLines
+              gridLine={{ visible: true }}
             />
           </Chart>
         </>
@@ -190,7 +190,7 @@ export default () => {
               id="left-axis"
               position={rotated ? 'bottom' : 'left'}
               tickFormat={tickFormat}
-              showGridLines
+              gridLine={{ visible: true }}
             />
           </Chart>
         </>
@@ -299,7 +299,7 @@ export default () => {
   />
   <Axis
     id="left-axis"
-    showGridLines
+    gridLine={{ visible: true }}
     position={${rotated ? "'bottom'" : "'left'"}}
     ${
       formatted
