@@ -15,6 +15,7 @@ import {
 import { euiPaletteColorBlind, useEuiTheme } from '../../../../src/services';
 
 import { GITHUB_DATASET_MOD } from './data';
+type DataType = (typeof GITHUB_DATASET_MOD)[0];
 
 export default () => {
   const { colorMode } = useEuiTheme();
@@ -59,21 +60,20 @@ export default () => {
               valueAccessor={(d) => d.count}
               layers={[
                 {
-                  groupByRollup: (d) => d.total,
+                  groupByRollup: (d: DataType) => d.total,
                   shape: {
                     fillColor: euiChartTheme.theme.partition.sectorLineStroke,
                   },
-                  hideInLegend: true,
                 },
                 {
-                  groupByRollup: (d) => d.vizType,
+                  groupByRollup: (d: DataType) => d.vizType,
                   shape: {
                     fillColor: (key, sortIndex) =>
                       groupedPalette[sortIndex * 3],
                   },
                 },
                 {
-                  groupByRollup: (d) => d.issueType,
+                  groupByRollup: (d: DataType) => d.issueType,
                   shape: {
                     fillColor: (key, sortIndex, { parent }) =>
                       groupedPalette[parent.sortIndex * 3 + sortIndex + 1],
@@ -100,7 +100,7 @@ export default () => {
               topGroove={0}
               layers={[
                 {
-                  groupByRollup: (d) => d.vizType,
+                  groupByRollup: (d: DataType) => d.vizType,
                   shape: {
                     fillColor: (key, sortIndex) =>
                       groupedPalette[sortIndex * 3],
@@ -111,7 +111,7 @@ export default () => {
                   },
                 },
                 {
-                  groupByRollup: (d) => d.issueType,
+                  groupByRollup: (d: DataType) => d.issueType,
                   shape: {
                     fillColor: (key, sortIndex, { parent }) =>
                       groupedPalette[parent.sortIndex * 3 + sortIndex],

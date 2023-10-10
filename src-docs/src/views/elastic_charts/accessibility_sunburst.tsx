@@ -21,7 +21,8 @@ export default () => {
     : EUI_CHARTS_THEME_LIGHT;
   const { vizColors } = euiChartTheme.theme.colors;
 
-  const data = [
+  type Data = { fruit: string; count: number };
+  const data: Data[] = [
     { fruit: 'Apple', count: 100 },
     { fruit: 'Banana', count: 50 },
     { fruit: 'Tomato', count: 25 },
@@ -59,7 +60,7 @@ export default () => {
           valueAccessor={({ count }) => count}
           layers={[
             {
-              groupByRollup: ({ fruit }) => fruit,
+              groupByRollup: ({ fruit }: Data) => fruit,
               shape: {
                 fillColor: (key, sortIndex) =>
                   vizColors[sortIndex % vizColors.length],
