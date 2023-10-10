@@ -80,8 +80,8 @@ export default () => {
                 {
                   groupByRollup: (d: (typeof STATUS_DATA)[0]) => d.status,
                   shape: {
-                    fillColor: (key, sortIndex) =>
-                      euiChartTheme.theme.colors.vizColors[sortIndex],
+                    fillColor: (_, sortIndex) =>
+                      euiChartTheme.theme.colors!.vizColors![sortIndex],
                   },
                 },
               ]}
@@ -106,8 +106,8 @@ export default () => {
                 {
                   groupByRollup: (d: (typeof LANGUAGE_DATA)[0]) => d.language,
                   shape: {
-                    fillColor: (key, sortIndex) =>
-                      euiChartTheme.theme.colors.vizColors[sortIndex],
+                    fillColor: (_, sortIndex) =>
+                      euiChartTheme.theme.colors!.vizColors![sortIndex],
                   },
                 },
               ]}

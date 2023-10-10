@@ -19,7 +19,7 @@ export default () => {
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
-  const { vizColors } = euiChartTheme.theme.colors;
+  const { vizColors } = euiChartTheme.theme.colors!;
 
   type Data = { fruit: string; count: number };
   const data: Data[] = [
@@ -63,8 +63,8 @@ export default () => {
             {
               groupByRollup: ({ fruit }: Data) => fruit,
               shape: {
-                fillColor: (key, sortIndex) =>
-                  vizColors[sortIndex % vizColors.length],
+                fillColor: (_, sortIndex) =>
+                  vizColors![sortIndex % vizColors!.length],
               },
             },
           ]}

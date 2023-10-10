@@ -167,8 +167,8 @@ export default () => {
               {
                 groupByRollup: (d: (typeof BROWSER_DATA_2019)[0]) => d.browser,
                 shape: {
-                  fillColor: (key, sortIndex) =>
-                    euiChartTheme.theme.colors.vizColors[sortIndex],
+                  fillColor: (_, sortIndex) =>
+                    euiChartTheme.theme.colors!.vizColors![sortIndex],
                 },
               },
             ]}

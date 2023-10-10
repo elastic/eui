@@ -62,7 +62,7 @@ export default () => {
                 {
                   groupByRollup: (d: DataType) => d.total,
                   shape: {
-                    fillColor: euiChartTheme.theme.partition.sectorLineStroke,
+                    fillColor: euiChartTheme.theme.partition!.sectorLineStroke!,
                   },
                 },
                 {
