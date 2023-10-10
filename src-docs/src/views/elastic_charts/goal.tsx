@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import {
   htmlIdGenerator,
+  useEuiTheme,
   useIsWithinBreakpoints,
   euiPalettePositive,
 } from '../../../../src/services';
 import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
-import { ThemeContext } from '../../components';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -15,9 +15,10 @@ import {
 } from '../../../../src/themes/charts/themes';
 
 export const GoalChart = () => {
+  const { colorMode } = useEuiTheme();
   const id = htmlIdGenerator('goal')();
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+
+  const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
