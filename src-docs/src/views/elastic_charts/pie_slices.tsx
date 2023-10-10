@@ -83,10 +83,6 @@ export default () => {
   const [showLegend, setShowLegend] = useState(false);
   const [showValues, setShowValues] = useState(true);
 
-  const onNumChartsChange = (e) => {
-    setNumSlices(e.target.value);
-  };
-
   const onSliceOrderChange = (optionId) => {
     const sliceOrderLabel = sliceOrderRadios.find(
       ({ id }) => id === optionId
@@ -104,10 +100,6 @@ export default () => {
       console.warn("Couldn't find the right slice order type");
     }
     setSliceOrderIdSelected(optionId);
-  };
-
-  const onGroupChange = (e) => {
-    setGrouped(e.target.checked);
   };
 
   const isBadChart = numSlices > 5 && !grouped;
@@ -187,9 +179,7 @@ export default () => {
               legend="Chart type"
               options={pieTypeRadios}
               idSelected={pieTypeIdSelected}
-              onChange={(id) => {
-                setPieTypeIdSelected(id);
-              }}
+              onChange={(id) => setPieTypeIdSelected(id)}
               buttonSize="compressed"
               isFullWidth
             />
@@ -231,7 +221,7 @@ export default () => {
                 max={10}
                 showTicks
                 value={numSlices}
-                onChange={onNumChartsChange}
+                onChange={(e) => setNumSlices(Number(e.currentTarget.value))}
                 levels={[
                   { min: 1, max: 5.5, color: 'success' },
                   { min: 5.5, max: 10, color: 'danger' },
@@ -244,7 +234,7 @@ export default () => {
               <EuiSwitch
                 label="Group 'Other' slices"
                 checked={numSlices <= 5 ? false : grouped}
-                onChange={onGroupChange}
+                onChange={(e) => setGrouped(e.target.checked)}
                 disabled={numSlices <= 5}
               />
             </EuiFormRow>

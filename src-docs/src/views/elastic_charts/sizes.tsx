@@ -60,14 +60,6 @@ class Sizes extends Component {
     this.changePropsBasedOnWidth(100);
   };
 
-  onWidthChartsChange = (e) => {
-    this.setState({
-      width: e.target.value,
-    });
-
-    this.changePropsBasedOnWidth(e.target.value);
-  };
-
   changePropsBasedOnWidth = (width) => {
     const data1 = TIME_DATA.slice();
     const data2 = TIME_DATA_2.slice();
@@ -255,7 +247,11 @@ class Sizes extends Component {
                   min={20}
                   max={100}
                   value={width}
-                  onChange={this.onWidthChartsChange}
+                  onChange={(e) => {
+                    const width = Number(e.currentTarget.value);
+                    this.setState({ width });
+                    this.changePropsBasedOnWidth(width);
+                  }}
                   aria-label="Width of panel"
                 />
               </EuiFormRow>

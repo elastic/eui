@@ -42,22 +42,6 @@ export default () => {
   const [chartType, setChartType] = useState<ChartType>('BarSeries');
   const [valueLabels, setValueLabels] = useState(false);
 
-  const onRotatedChange = (e) => {
-    setRotated(e.target.checked);
-  };
-
-  const onOrderedChange = (e) => {
-    setOrdered(e.target.checked);
-  };
-
-  const onFormatChange = (e) => {
-    setFormatted(e.target.checked);
-  };
-
-  const onValueLabelsChange = (e) => {
-    setValueLabels(e.target.checked);
-  };
-
   const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
@@ -242,13 +226,13 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
-              onChange={onOrderedChange}
+              onChange={(e) => setOrdered(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Rotate 90deg"
               checked={rotated}
-              onChange={onRotatedChange}
+              onChange={(e) => setRotated(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -263,7 +247,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
             <EuiSwitch
               label="Simulate thousands formatting"
               checked={formatted}
-              onChange={onFormatChange}
+              onChange={(e) => setFormatted(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -294,7 +278,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
             <EuiSwitch
               label="Show value labels"
               checked={valueLabels}
-              onChange={onValueLabelsChange}
+              onChange={(e) => setValueLabels(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>

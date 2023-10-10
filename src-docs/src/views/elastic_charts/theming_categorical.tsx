@@ -76,27 +76,6 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const onNumChartsChange = (e) => {
-    updateCorrectChart(Number(e.target.value), colorType);
-    setNumCharts(e.target.value);
-  };
-
-  const onColorTypeChange = (optionId) => {
-    const colorType = colorTypeRadios.find(({ id }) => id === optionId).label;
-    updateCorrectChart(Number(numCharts), colorType);
-    setColorType(colorType);
-    setColorTypeIdSelected(optionId);
-  };
-
-  const onGroupChange = (e) => {
-    const colorType = e.target.checked
-      ? 'Grouped'
-      : colorTypeRadios.find(({ id }) => id === colorTypeIdSelected).label;
-    updateCorrectChart(Number(numCharts), colorType);
-    setGrouped(e.target.checked);
-    setColorType(colorType);
-  };
-
   const updateCorrectChart = (numCharts, chartType) => {
     switch (chartType) {
       case 'Categorical':
@@ -357,7 +336,14 @@ export default () => {
               compressed
               options={colorTypeRadios}
               idSelected={grouped ? colorTypeRadios[0].id : colorTypeIdSelected}
-              onChange={onColorTypeChange}
+              onChange={(optionId) => {
+                const colorType = colorTypeRadios.find(
+                  ({ id }) => id === optionId
+                )!.label;
+                updateCorrectChart(Number(numCharts), colorType);
+                setColorType(colorType);
+                setColorTypeIdSelected(optionId);
+              }}
               disabled={grouped}
             />
           </ChartCard>
@@ -381,7 +367,11 @@ export default () => {
                 showTicks
                 value={grouped ? '2' : numCharts}
                 disabled={grouped}
-                onChange={onNumChartsChange}
+                onChange={(e) => {
+                  const numCharts = Number(e.currentTarget.value);
+                  updateCorrectChart(numCharts, colorType);
+                  setNumCharts(numCharts);
+                }}
                 levels={[
                   { min: 1, max: 5.5, color: 'success' },
                   { min: 5.5, max: 10, color: 'danger' },
@@ -401,7 +391,17 @@ export default () => {
             <EuiSwitch
               label="Show grouped"
               checked={grouped}
-              onChange={onGroupChange}
+              onChange={(e) => {
+                const colorType = e.target.checked
+                  ? 'Grouped'
+                  : colorTypeRadios.find(
+                      ({ id }) => id === colorTypeIdSelected
+                    )!.label;
+
+                updateCorrectChart(Number(numCharts), colorType);
+                setGrouped(e.target.checked);
+                setColorType(colorType);
+              }}
             />
           </ChartCard>
         </EuiFlexItem>
