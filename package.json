@@ -6,7 +6,7 @@
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "18.17.1",
+  "docker_image": "18.18.0",
   "engines": {
     "node": "16.x || 18.x || >=20.0"
   },
@@ -32,7 +32,6 @@
     "test": "yarn lint && yarn test-unit",
     "test-ci": "yarn test && yarn test-cypress",
     "test-unit": "node ./scripts/test-unit",
-    "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
     "test-cypress": "node ./scripts/test-cypress",
     "test-cypress-dev": "yarn test-cypress --dev",
