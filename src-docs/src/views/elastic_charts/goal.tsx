@@ -58,6 +58,8 @@ export const GoalChart = () => {
             theme={euiChartTheme}
           />
           <Goal
+            id="goalId"
+            subtype="goal"
             base={-10}
             target={22}
             actual={12}

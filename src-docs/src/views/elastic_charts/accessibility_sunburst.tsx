@@ -55,6 +55,7 @@ export default () => {
           ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
         />
         <Partition
+          id="partitionId"
           data={data}
           layout={PartitionLayout.sunburst}
           valueAccessor={({ count }) => count}

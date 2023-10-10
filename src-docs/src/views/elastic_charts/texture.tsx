@@ -111,6 +111,7 @@ export default () => {
           data={SAMPLE_SMALL_DATA_2}
         />
         <Axis
+          id="yAxis"
           hide
           position={Position.Left}
           tickFormat={(d) => Number(d).toFixed(2)}
