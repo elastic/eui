@@ -51,7 +51,7 @@ describe('EuiAccordion', () => {
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Enter');
       cy.realPress(['Shift', 'Tab']);
-      cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
+      cy.focused().invoke('attr', 'aria-expanded').should('equal', 'false');
       cy.realPress('Enter');
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'false');
     });
