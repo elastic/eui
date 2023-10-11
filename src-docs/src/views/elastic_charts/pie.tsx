@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
+import {
+  Chart,
+  Partition,
+  Settings,
+  PartitionLayout,
+  PartialTheme,
+} from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -54,7 +60,7 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
 
-  const themeOverrides = {
+  const themeOverrides: PartialTheme = {
     partition: { emptySizeRatio: 0.4 },
   };
 

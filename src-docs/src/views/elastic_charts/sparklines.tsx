@@ -92,11 +92,8 @@ export default () => {
             >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
-                <Settings
-                  theme={theme}
-                  showLegend={false}
-                  externalPointerEvents={{ tooltip: { visible: false } }}
-                />
+                <Settings theme={theme} showLegend={false} />
+                <Tooltip type="none" />
                 <LineSeries
                   id="increase"
                   data={TIME_DATA_SMALL}
@@ -130,11 +127,8 @@ export default () => {
             >
               <EuiSpacer size="s" />
               <Chart size={{ height: 16 }}>
-                <Settings
-                  theme={theme}
-                  showLegend={false}
-                  externalPointerEvents={{ tooltip: { visible: false } }}
-                />
+                <Settings theme={theme} showLegend={false} />
+                <Tooltip type="none" />
                 <LineSeries
                   id="major"
                   data={TIME_DATA_MAJOR}
@@ -160,11 +154,8 @@ export default () => {
             >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
-                <Settings
-                  theme={theme}
-                  showLegend={false}
-                  externalPointerEvents={{ tooltip: { visible: false } }}
-                />
+                <Settings theme={theme} showLegend={false} />
+                <Tooltip type="none" />
                 <AreaSeries
                   id="subtle"
                   data={TIME_DATA_SMALL_REVERSE}

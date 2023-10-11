@@ -61,9 +61,7 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
               <EuiCode language="js">Settings.showLegend = false</EuiCode>
             </li>
             <li>
-              <EuiCode language="js">
-                Settings.externalPointerEvents.tooltip.visible = false
-              </EuiCode>
+              <EuiCode language="js">Tooltip.type = &quot;none&quot;</EuiCode>
             </li>
           </ul>
         </>
