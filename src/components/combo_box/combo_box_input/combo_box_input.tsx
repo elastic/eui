@@ -175,9 +175,7 @@ export class EuiComboBoxInput<T> extends Component<
 
     const singleSelection = Boolean(singleSelectionProp);
     const asPlainText =
-      (singleSelectionProp &&
-        typeof singleSelectionProp === 'object' &&
-        singleSelectionProp.asPlainText) ||
+      (singleSelectionProp as EuiComboBoxSingleSelectionShape).asPlainText ??
       false;
 
     const pills = selectedOptions

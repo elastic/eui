@@ -457,6 +457,8 @@ export class EuiComboBox<T> extends Component<
       this.comboBoxRefInstance &&
       this.comboBoxRefInstance.contains(relatedTarget);
 
+    const singleSelection = Boolean(this.props.singleSelection);
+
     if (!focusedInOptionsList && !focusedInInput) {
       this.props.onBlur?.(event);
       this.closeList();
@@ -467,7 +469,7 @@ export class EuiComboBox<T> extends Component<
       if (!this.hasActiveOption()) {
         this.setCustomOptions(true);
       }
-    } else if (focusedInOptionsList) {
+    } else if (focusedInOptionsList && !singleSelection) {
       // https://github.com/elastic/eui/issues/5179
       // need to restore focus to the input box when clicking non-interactive elements
 
@@ -567,7 +569,7 @@ export class EuiComboBox<T> extends Component<
     this.clearSearchValue();
     this.clearActiveOption();
 
-    if (!isContainerBlur) {
+    if (!isContainerBlur && !singleSelection) {
       this.searchInputRefInstance?.focus();
     }
 
