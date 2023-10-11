@@ -29,10 +29,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /src/*.deb
 
-# Add puppeteer user (pptruser).
+# Add directory for Cypress to write screenshots
 RUN mkdir -p /cypress/screenshots && chown -R node:node /cypress
 
-# Run user as non privileged.
+# Run as non-privileged node user for improved security
+# See https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
 USER node
 
 CMD ["google-chrome-stable"]
