@@ -29,24 +29,6 @@ export default defineConfig({
         },
       });
 
-      on('after:spec', (spec, results) => {
-        // See https://docs.cypress.io/guides/guides/screenshots-and-videos#Delete-videos-for-specs-without-failing-or-retried-tests
-        if (results && results.video) {
-          // Search the returned Results object for failed attempts
-          // See https://docs.cypress.io/guides/guides/module-api#Results
-          const failures = results.tests.some((test) => {
-            test.attempts.some((attempt) => {
-              attempt.state === 'failed';
-            });
-          });
-
-          if (!failures) {
-            // Delete the video if there are no failed attempts
-            fs.unlinkSync(results.video);
-          }
-        }
-      });
-
       return config;
     },
     specPattern: ['./src/**/*.spec.tsx', './src/**/*.a11y.tsx'], // scripts/cypress.js splits this using the CLI --spec argument
