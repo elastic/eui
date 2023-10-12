@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
+import {
+  Chart,
+  Partition,
+  Settings,
+  PartitionLayout,
+  PartialTheme,
+} from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -13,6 +19,32 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 import { htmlIdGenerator, useEuiTheme } from '../../../../src/services';
+
+const STATUS_DATA = [
+  {
+    status: 'Open',
+    count: 25,
+  },
+  {
+    status: 'Closed',
+    count: 319,
+  },
+];
+
+const LANGUAGE_DATA = [
+  {
+    language: 'JavaScript',
+    percent: 51.4,
+  },
+  {
+    language: 'TypeScript',
+    percent: 39.6,
+  },
+  {
+    language: 'CSS',
+    percent: 8.7,
+  },
+];
 
 export default () => {
   const { colorMode } = useEuiTheme();
@@ -28,6 +60,10 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
 
+  const themeOverrides: PartialTheme = {
+    partition: { emptySizeRatio: 0.4 },
+  };
+
   return (
     <div>
       <EuiFlexGrid columns={2}>
@@ -37,27 +73,21 @@ export default () => {
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
-            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleOne} />
+            <Settings
+              theme={[themeOverrides, euiChartTheme.theme]}
+              ariaLabelledBy={exampleOne}
+            />
             <Partition
               id="pieByPR"
-              data={[
-                {
-                  status: 'Open',
-                  count: 25,
-                },
-                {
-                  status: 'Closed',
-                  count: 319,
-                },
-              ]}
+              data={STATUS_DATA}
               layout={PartitionLayout.sunburst}
               valueAccessor={(d) => d.count}
               layers={[
                 {
-                  groupByRollup: (d) => d.status,
+                  groupByRollup: (d: (typeof STATUS_DATA)[0]) => d.status,
                   shape: {
-                    fillColor: (key, sortIndex) =>
-                      euiChartTheme.theme.colors.vizColors[sortIndex],
+                    fillColor: (_, sortIndex) =>
+                      euiChartTheme.theme.colors!.vizColors![sortIndex],
                   },
                 },
               ]}
@@ -74,33 +104,19 @@ export default () => {
             <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleTwo} />
             <Partition
               id="donutByLanguage"
-              data={[
-                {
-                  language: 'JavaScript',
-                  percent: 51.4,
-                },
-                {
-                  language: 'TypeScript',
-                  percent: 39.6,
-                },
-                {
-                  language: 'CSS',
-                  percent: 8.7,
-                },
-              ]}
+              data={LANGUAGE_DATA}
               layout={PartitionLayout.sunburst}
               valueAccessor={(d) => Number(d.percent)}
               valueFormatter={() => ''}
               layers={[
                 {
-                  groupByRollup: (d) => d.language,
+                  groupByRollup: (d: (typeof LANGUAGE_DATA)[0]) => d.language,
                   shape: {
-                    fillColor: (key, sortIndex) =>
-                      euiChartTheme.theme.colors.vizColors[sortIndex],
+                    fillColor: (_, sortIndex) =>
+                      euiChartTheme.theme.colors!.vizColors![sortIndex],
                   },
                 },
               ]}
-              emptySizeRatio={0.4}
               clockwiseSectors={false}
             />
           </Chart>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import orderBy from 'lodash/orderBy';
@@ -53,7 +53,7 @@ export default () => {
   );
   if (formatted) {
     color = [
-      euiPaletteForTemperature()[0],
+      euiPaletteForTemperature(0)[0],
       euiPaletteGray(5)[isDarkTheme ? 4 : 0],
     ];
   }
@@ -77,15 +77,15 @@ export default () => {
 
       data = orderBy(DATASET, 'issueType', 'desc');
       const sortedData = sortBy(data, [
-        ({ vizType }) => totals[vizType],
+        ({ vizType }: (typeof DATASET)[0]) => totals[vizType],
       ]).reverse();
       data = sortedData;
     }
   }
 
-  const tickFormat = (tick) => {
+  const tickFormat = (tick: string) => {
     if (formatted) {
-      return `${Number(tick * 100).toFixed(0)}%`;
+      return `${(Number(tick) * 100).toFixed(0)}%`;
     } else if (!grouped && String(tick).length > 1) {
       return String(tick).substring(0, String(tick).length - 3);
     } else {
@@ -95,7 +95,7 @@ export default () => {
 
   let isMisleadingChart = false;
   let isBadChart = false;
-  let description =
+  let description: ReactNode =
     'This chart is a good alternative to the standard multi-tier pie (or sunburst) chart. It clearly represents the actual values while maintaining visual comparison.';
   let title = 'Good alternative';
 
@@ -139,12 +139,12 @@ export default () => {
             <BarSeries
               id="rain"
               name="Rain"
-              data={data}
+              data={data as typeof DAYS_OF_RAIN}
               xAccessor="season"
               yAccessors={['days']}
               splitSeriesAccessors={['precipitation']}
               stackAccessors={stacked ? ['precipitation'] : undefined}
-              stackAsPercentage={formatted}
+              stackMode={formatted ? 'percentage' : undefined}
               color={color}
             />
             <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
@@ -152,7 +152,7 @@ export default () => {
               id="left-axis"
               position={rotated ? 'bottom' : 'left'}
               tickFormat={tickFormat}
-              showGridLines
+              gridLine={{ visible: true }}
             />
           </Chart>
         </>
@@ -177,12 +177,12 @@ export default () => {
             <BarSeries
               id="issues"
               name="Issues"
-              data={data}
+              data={data as typeof GITHUB_DATASET}
               xAccessor="vizType"
               yAccessors={['count']}
               splitSeriesAccessors={['issueType']}
               stackAccessors={stacked ? ['issueType'] : undefined}
-              stackAsPercentage={formatted}
+              stackMode={formatted ? 'percentage' : undefined}
               color={color}
             />
             <Axis id="bottom-axis" position={rotated ? 'left' : 'bottom'} />
@@ -190,7 +190,7 @@ export default () => {
               id="left-axis"
               position={rotated ? 'bottom' : 'left'}
               tickFormat={tickFormat}
-              showGridLines
+              gridLine={{ visible: true }}
             />
           </Chart>
         </>
@@ -213,7 +213,6 @@ export default () => {
 
         <EuiFlexItem>
           <ChartCard
-            textAlign="left"
             title="Bar chart options"
             description="Compare how the following options change the understanding of the data with that of the sunburst or treemap chart."
           >
@@ -279,7 +278,7 @@ export default () => {
     xAccessor="${usesRainData ? 'season' : 'vizType'}"
     yAccessors={[${usesRainData ? "'days'" : "'count'"}]}
     splitSeriesAccessors={[${usesRainData ? "'precipitation'" : "'issueType'"}]}
-    ${formatted ? 'stackAsPercentage={true}' : ''}
+    ${formatted ? 'stackMode="percentage"' : ''}
     ${
       stacked
         ? `stackAccessors={[${
@@ -299,7 +298,7 @@ export default () => {
   />
   <Axis
     id="left-axis"
-    showGridLines
+    gridLine={{ visible: true }}
     position={${rotated ? "'bottom'" : "'left'"}}
     ${
       formatted

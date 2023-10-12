@@ -66,7 +66,10 @@ export default () => {
   const [sliceOrderIdSelected, setSliceOrderIdSelected] = useState(
     sliceOrderRadios[0].id
   );
-  const [sliceOrderConfig, setSliceOrderConfig] = useState({
+  const [sliceOrderConfig, setSliceOrderConfig] = useState<{
+    clockwiseSectors?: boolean;
+    specialFirstInnermostSector?: boolean;
+  }>({
     clockwiseSectors: false,
   });
   const [sliceOrderConfigText, setSliceOrderConfigText] = useState(
@@ -77,20 +80,15 @@ export default () => {
     pieTypeRadios[0].id
   );
 
-  const [numSlices, setNumSlices] = useState('3');
+  const [numSlices, setNumSlices] = useState(3);
 
   const [grouped, setGrouped] = useState(true);
   const [showLegend, setShowLegend] = useState(false);
   const [showValues, setShowValues] = useState(true);
 
-  const onNumChartsChange = (e) => {
-    setNumSlices(e.target.value);
-  };
-
-  const onSliceOrderChange = (optionId) => {
-    const sliceOrderLabel = sliceOrderRadios.find(
-      ({ id }) => id === optionId
-    ).label;
+  const onSliceOrderChange = (optionId: string) => {
+    const sliceOrderLabel = sliceOrderRadios.find(({ id }) => id === optionId)!
+      .label!;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
       setSliceOrderConfigText('clockwiseSectors={false}');
@@ -104,10 +102,6 @@ export default () => {
       console.warn("Couldn't find the right slice order type");
     }
     setSliceOrderIdSelected(optionId);
-  };
-
-  const onGroupChange = (e) => {
-    setGrouped(e.target.checked);
   };
 
   const isBadChart = numSlices > 5 && !grouped;
@@ -142,7 +136,7 @@ export default () => {
 
   const themeOverrides = {
     partition: {
-      emptySizeRatio: pieTypeIdSelected.includes('Donut') && 0.4,
+      emptySizeRatio: pieTypeIdSelected.includes('Donut') ? 0.4 : undefined,
     },
   };
 
@@ -165,10 +159,10 @@ export default () => {
             valueGetter={showValues ? 'percent' : undefined}
             layers={[
               {
-                groupByRollup: (d) => d.browser,
+                groupByRollup: (d: (typeof BROWSER_DATA_2019)[0]) => d.browser,
                 shape: {
-                  fillColor: (key, sortIndex) =>
-                    euiChartTheme.theme.colors.vizColors[sortIndex],
+                  fillColor: (_, sortIndex) =>
+                    euiChartTheme.theme.colors!.vizColors![sortIndex],
                 },
               },
             ]}
@@ -182,14 +176,13 @@ export default () => {
       <EuiFlexGrid columns={3}>
         <EuiFlexItem>
           <ChartCard title="Chart type and labels">
+            <EuiSpacer size="s" />
             <EuiButtonGroup
               color="primary"
               legend="Chart type"
               options={pieTypeRadios}
               idSelected={pieTypeIdSelected}
-              onChange={(id) => {
-                setPieTypeIdSelected(id);
-              }}
+              onChange={(id) => setPieTypeIdSelected(id)}
               buttonSize="compressed"
               isFullWidth
             />
@@ -231,7 +224,7 @@ export default () => {
                 max={10}
                 showTicks
                 value={numSlices}
-                onChange={onNumChartsChange}
+                onChange={(e) => setNumSlices(Number(e.currentTarget.value))}
                 levels={[
                   { min: 1, max: 5.5, color: 'success' },
                   { min: 5.5, max: 10, color: 'danger' },
@@ -244,7 +237,7 @@ export default () => {
               <EuiSwitch
                 label="Group 'Other' slices"
                 checked={numSlices <= 5 ? false : grouped}
-                onChange={onGroupChange}
+                onChange={(e) => setGrouped(e.target.checked)}
                 disabled={numSlices <= 5}
               />
             </EuiFormRow>
@@ -253,7 +246,6 @@ export default () => {
         <EuiFlexItem>
           <ChartCard
             title="Slice order"
-            titleSize="xxs"
             description={
               <>
                 Partition supports the specialized slice order with{' '}

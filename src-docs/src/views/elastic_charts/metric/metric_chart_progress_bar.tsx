@@ -33,7 +33,6 @@ export default () => {
           paddingSize="none"
           style={{ overflow: 'hidden', width: '200px' }}
         >
-          {/* @ts-ignore @elastic/charts typings are not yet compatible with React 18 */}
           <Chart size={[200, 200]}>
             <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
             <Metric
@@ -65,7 +64,6 @@ export default () => {
           paddingSize="none"
           style={{ overflow: 'hidden', width: '200px' }}
         >
-          {/* @ts-ignore @elastic/charts typings are not yet compatible with React 18 */}
           <Chart size={[200, 200]}>
             <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
             <Metric

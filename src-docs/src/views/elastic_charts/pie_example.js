@@ -146,7 +146,7 @@ export const ElasticChartsPieExample = {
       title: 'Pie and donut charts',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: pieSource,
         },
       ],
@@ -270,7 +270,7 @@ const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIG
       title: 'Sunbursts and treemaps',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: treemapsSource,
         },
       ],

@@ -3,12 +3,16 @@ import moment from 'moment';
 import {
   Chart,
   Settings,
+  type SettingsProps,
   Tooltip,
+  type TooltipProps,
   Axis,
+  type AxisProps,
   timeFormatter,
   niceTimeFormatByDay,
   LineAnnotation,
   BarSeries,
+  type PointerValue,
 } from '@elastic/charts';
 
 import {
@@ -33,14 +37,33 @@ import {
   formatDate,
   dateFormatAliases,
   withEuiTheme,
+  type WithEuiThemeProps,
 } from '../../../../src/services';
 
 import { MultiChartCard, ChartCard } from './shared';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 
-class Sizes extends Component {
-  constructor(props) {
+type State = {
+  multi: boolean;
+  stacked: boolean;
+  width: number;
+  data1: typeof TIME_DATA;
+  data2: typeof TIME_DATA_2;
+  tooltipProps?: TooltipProps;
+  legendPosition?: SettingsProps['legendPosition'];
+  xAxisTitle?: AxisProps['title'];
+  xAxisFormatter?: AxisProps['tickFormat'];
+  xAxisStyle?: AxisProps['style'];
+  yAxisStyle?: AxisProps['style'];
+  changeDescription?: string;
+};
+class Sizes extends Component<WithEuiThemeProps, State> {
+  smallSize: number;
+  mediumSize: number;
+  xsmallSize: number;
+
+  constructor(props: WithEuiThemeProps) {
     super(props);
 
     this.mediumSize = 50;
@@ -60,37 +83,11 @@ class Sizes extends Component {
     this.changePropsBasedOnWidth(100);
   };
 
-  onStackedChange = (e) => {
-    this.setState({
-      stacked: e.target.checked,
-    });
-  };
-
-  onMultiChange = (multiObject) => {
-    this.setState({
-      ...multiObject,
-    });
-  };
-
-  onChartTypeChange = (optionId) => {
-    this.setState({
-      toggleIdSelected: optionId,
-    });
-  };
-
-  onWidthChartsChange = (e) => {
-    this.setState({
-      width: e.target.value,
-    });
-
-    this.changePropsBasedOnWidth(e.target.value);
-  };
-
-  changePropsBasedOnWidth = (width) => {
+  changePropsBasedOnWidth = (width: number) => {
     const data1 = TIME_DATA.slice();
     const data2 = TIME_DATA_2.slice();
     let tooltipProps;
-    let legendPosition = 'right';
+    let legendPosition: SettingsProps['legendPosition'] = 'right';
     const xAxisFormatter = timeFormatter(niceTimeFormatByDay(1));
     let xAxisTitle = `${formatDate(data1[0][0], dateFormatAliases.date)}`;
     let xAxisStyle;
@@ -103,7 +100,7 @@ class Sizes extends Component {
     }
 
     if (width < this.mediumSize) {
-      const headerFormatter = (tooltipData) => {
+      const headerFormatter = (tooltipData: PointerValue) => {
         return `${formatDate(
           tooltipData.value,
           dateFormatAliases.shortDateTime
@@ -184,7 +181,7 @@ class Sizes extends Component {
     if (width < this.xsmallSize) {
       annotation = (
         <LineAnnotation
-          annotationId="anno_"
+          id="anno_"
           domainType="yDomain"
           dataValues={[{ dataValue: 22, details: 'Threshold' }]}
           marker={'22'}
@@ -239,7 +236,7 @@ class Sizes extends Component {
                 tickFormat={xAxisFormatter}
                 id="bottom-axis"
                 position="bottom"
-                showGridLines={false}
+                gridLine={{ visible: false }}
                 style={xAxisStyle}
               />
               <Axis
@@ -259,7 +256,9 @@ class Sizes extends Component {
           className="euiGuide__chartsPageCrosshairSection"
         >
           <EuiFlexItem>
-            <MultiChartCard onChange={this.onMultiChange} />
+            <MultiChartCard
+              onChange={(multiObject) => this.setState({ ...multiObject })}
+            />
           </EuiFlexItem>
           <EuiFlexItem>
             <ChartCard
@@ -271,7 +270,11 @@ class Sizes extends Component {
                   min={20}
                   max={100}
                   value={width}
-                  onChange={this.onWidthChartsChange}
+                  onChange={(e) => {
+                    const width = Number(e.currentTarget.value);
+                    this.setState({ width });
+                    this.changePropsBasedOnWidth(width);
+                  }}
                   aria-label="Width of panel"
                 />
               </EuiFormRow>
@@ -347,7 +350,7 @@ class Sizes extends Component {
     position="bottom"
     title={'${xAxisTitle}'}
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    showGridLines={false}
+    gridLine={{ visible: false }}
     style={${JSON.stringify(xAxisStyle)}}
   />
   <Axis
