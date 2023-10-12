@@ -1,5 +1,4 @@
 import { defineConfig } from 'cypress';
-import fs from 'fs';
 import webpackConfig from './cypress/webpack.config';
 
 export default defineConfig({
