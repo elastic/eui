@@ -47,4 +47,4 @@ Any violations should be confirmed using the [axe browser plugin](https://deque.
 
 ## Testing environment
 
-This testing suite can be run on your local machine or in a Docker container. The EUI has a plan to run these tests in a scheduled Buildkite job using the CI Docker container.
+This testing suite can be run on your local machine or in a Docker container. The EUI team has a plan to run these tests in a scheduled Buildkite job using the CI Docker container.

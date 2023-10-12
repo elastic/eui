@@ -250,6 +250,7 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "4.10.0",
     "yargs": "^17.2.1",
     "yeoman-generator": "^4.12.0",
     "yo": "^4.3.1"
