@@ -10,7 +10,7 @@ DOCKER_OPTIONS=(
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
-  docker.elastic.co/eui/ci:5.4
+  docker.elastic.co/eui/ci:5.5
 )
 
 case $TEST_TYPE in
