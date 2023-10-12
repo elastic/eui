@@ -2,7 +2,7 @@
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
 # >=12.0 required (for cypress). v18 is LTS.
-FROM --platform=linux/amd64 node:18.18.0-slim
+FROM --platform=linux/amd64 node:18.18.1-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -29,8 +29,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /src/*.deb
 
-# Add directory for Cypress to write screenshots
-RUN mkdir -p /cypress/screenshots && chown -R node:node /cypress
+# Add node user to audio and video groups to enable Cypress video
+# See https://wiki.debian.org/SystemGroups
+# Add directory for Cypress to write screenshots and videos
+RUN usermod -a -G audio,video node \
+    && mkdir -p /cypress/screenshots \
+    && mkdir -p /cypress/videos \
+    && chown -R node:node /cypress
 
 # Run as non-privileged node user for improved security
 # See https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
