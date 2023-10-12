@@ -10,7 +10,7 @@ If there isn't an associated feature request or bug report in EUI's backlog yet,
 
 EUI is built primarily by and for employees of Elastic. We align our features and roadmap with the needs of our products internally.
 
-That being said, open source is part of our DNA at Elastic, so we keep EUI open and do accept commmunity contributions from outside of Elastic. These contributions are tyipcally reviewed and merged on a best-effort basis and must generally align with the overall objectives of this project.
+While EUI's primary customer is Kibana and other Elastic products, open source is a part of our DNA at Elastic, and commmunity contributions from outside of Elastic are welcome. These contributions are typically reviewed and merged on a best-effort basis and must generally align with the overall objectives of this project.
 
 In general, once on Github, any issue can be worked on by the community. If you find an issue that is not assigned, assume that you are welcome to work on it and can submit a pull request. We recommend that you leave us a comment indicating your intent before starting work to avoid potential conflict. We do not, as a policy, assign issues to community members and we usually reserve larger projects or ones that are core to our roadmap or design to be done internally.
 
