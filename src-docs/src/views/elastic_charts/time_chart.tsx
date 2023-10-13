@@ -35,6 +35,7 @@ import { TIME_DATA, TIME_DATA_2 } from './data';
 import {
   ChartTypeCard,
   CHART_COMPONENTS,
+  type ChartType,
   MultiChartCard,
   ChartCard,
 } from './shared';
@@ -44,29 +45,17 @@ export default () => {
 
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
-  const [chartType, setChartType] = useState('BarSeries');
-
-  const onMultiChange = (multiObject) => {
-    const { multi, stacked } = multiObject;
-    setMulti(multi);
-    setStacked(stacked);
-  };
-
-  const onChartTypeChange = (chartType) => {
-    setChartType(chartType);
-  };
+  const [chartType, setChartType] = useState<ChartType | 'Mixed'>('BarSeries');
 
   const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  let ChartType = CHART_COMPONENTS[chartType];
-  let ChartType2 = CHART_COMPONENTS[chartType];
-  if (chartType === 'Mixed') {
-    ChartType = BarSeries;
-    ChartType2 = LineSeries;
-  }
+  const ChartType =
+    chartType === 'Mixed' ? BarSeries : CHART_COMPONENTS[chartType];
+  const ChartType2 =
+    chartType === 'Mixed' ? LineSeries : CHART_COMPONENTS[chartType];
 
   const isBadChart = chartType === 'LineSeries' && stacked;
 
@@ -109,13 +98,13 @@ export default () => {
           id="bottom-axis"
           position="bottom"
           tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-          showGridLines={chartType !== 'BarSeries'}
-          tickPadding={0}
+          gridLine={{ visible: chartType !== 'BarSeries' }}
+          style={{ tickLine: { padding: 0 } }}
         />
         <Axis
           id="left-axis"
           position="left"
-          showGridLines
+          gridLine={{ visible: true }}
           tickFormat={(d) => Number(d).toFixed(2)}
         />
       </Chart>
@@ -124,15 +113,20 @@ export default () => {
 
       <EuiFlexGrid columns={3}>
         <EuiFlexItem>
-          <ChartTypeCard
+          <ChartTypeCard<{ mixed: true }>
             type="Time series"
-            onChange={onChartTypeChange}
+            onChange={(chartType) => setChartType(chartType)}
             mixed={multi ? 'enabled' : 'disabled'}
           />
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <MultiChartCard onChange={onMultiChange} />
+          <MultiChartCard
+            onChange={({ multi, stacked }) => {
+              setMulti(multi);
+              setStacked(stacked);
+            }}
+          />
         </EuiFlexItem>
 
         <EuiFlexItem>
@@ -180,12 +174,12 @@ export default () => {
     id="bottom-axis"
     position="bottom"
     tickFormat={timeFormatter(niceTimeFormatByDay(1))}
-    ${chartType !== 'BarSeries' ? 'showGridLines' : ''}
+    gridLine={{ visible: ${chartType !== 'BarSeries'} }}
   />
   <Axis
     id="left-axis"
     position="left"
-    showGridLines
+    gridLine={{ visible: true }}
     tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}

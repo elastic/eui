@@ -19,9 +19,10 @@ export default () => {
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
-  const { vizColors } = euiChartTheme.theme.colors;
+  const { vizColors } = euiChartTheme.theme.colors!;
 
-  const data = [
+  type Data = { fruit: string; count: number };
+  const data: Data[] = [
     { fruit: 'Apple', count: 100 },
     { fruit: 'Banana', count: 50 },
     { fruit: 'Tomato', count: 25 },
@@ -54,15 +55,16 @@ export default () => {
           ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
         />
         <Partition
+          id="partitionId"
           data={data}
           layout={PartitionLayout.sunburst}
           valueAccessor={({ count }) => count}
           layers={[
             {
-              groupByRollup: ({ fruit }) => fruit,
+              groupByRollup: ({ fruit }: Data) => fruit,
               shape: {
-                fillColor: (key, sortIndex) =>
-                  vizColors[sortIndex % vizColors.length],
+                fillColor: (_, sortIndex) =>
+                  vizColors![sortIndex % vizColors!.length],
               },
             },
           ]}

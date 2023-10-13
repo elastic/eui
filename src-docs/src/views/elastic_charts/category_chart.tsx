@@ -27,6 +27,7 @@ import {
   ChartTypeCard,
   MultiChartCard,
   CHART_COMPONENTS,
+  type ChartType,
   ChartCard,
 } from './shared';
 
@@ -38,33 +39,8 @@ export default () => {
   const [rotated, setRotated] = useState(true);
   const [ordered, setOrdered] = useState(true);
   const [formatted, setFormatted] = useState(false);
-  const [chartType, setChartType] = useState('BarSeries');
+  const [chartType, setChartType] = useState<ChartType>('BarSeries');
   const [valueLabels, setValueLabels] = useState(false);
-  const onMultiChange = (multiObject) => {
-    const { multi, stacked } = multiObject;
-    setMulti(multi);
-    setStacked(stacked);
-  };
-
-  const onRotatedChange = (e) => {
-    setRotated(e.target.checked);
-  };
-
-  const onOrderedChange = (e) => {
-    setOrdered(e.target.checked);
-  };
-
-  const onFormatChange = (e) => {
-    setFormatted(e.target.checked);
-  };
-
-  const onChartTypeChange = (chartType) => {
-    setChartType(chartType);
-  };
-
-  const onValueLabelsChange = (e) => {
-    setValueLabels(e.target.checked);
-  };
 
   const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
@@ -83,7 +59,7 @@ export default () => {
     ...theme,
     barSeriesStyle: {
       displayValue: {
-        ...theme.barSeriesStyle.displayValue,
+        ...theme.barSeriesStyle?.displayValue,
         offsetX: rotated ? 4 : 0,
         offsetY: rotated ? 0 : -4,
         ...(multi && stacked
@@ -91,15 +67,15 @@ export default () => {
               alignment: {
                 vertical: 'middle',
                 horizontal: 'center',
-              },
+              } as const,
             }
           : {
               alignment: rotated
                 ? {
-                    vertical: 'middle',
+                    vertical: 'middle' as const,
                   }
                 : {
-                    horizontal: 'center',
+                    horizontal: 'center' as const,
                   },
             }),
       },
@@ -169,7 +145,7 @@ const customTheme = {
   <Axis
     id="bottom-axis"
     position={${rotated ? '"left"' : '"bottom"'}}
-    showGridLines={false}
+    gridLine={{ visible: false }}
   />
   <Axis
     id="left-axis"
@@ -178,7 +154,8 @@ const customTheme = {
   />
 </Chart>`;
 
-  const removeEmptyLines = (string) => string.replace(/(^[ \t]*\n)/gm, '');
+  const removeEmptyLines = (string: string) =>
+    string.replace(/(^[ \t]*\n)/gm, '');
 
   const textToCopy = valueLabels
     ? `${chartVariablesForValueLabels}
@@ -216,12 +193,12 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
           yAccessors={['count']}
           splitSeriesAccessors={multi ? ['issueType'] : undefined}
           stackAccessors={stacked ? ['issueType'] : undefined}
-          displayValueSettings={valueLabels && displayValueSettings}
+          displayValueSettings={valueLabels ? displayValueSettings : undefined}
         />
         <Axis
           id="bottom-axis"
           position={rotated ? 'left' : 'bottom'}
-          showGridLines={false}
+          gridLine={{ visible: false }}
         />
         <Axis
           id="left-axis"
@@ -250,13 +227,13 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
-              onChange={onOrderedChange}
+              onChange={(e) => setOrdered(e.target.checked)}
             />
             <EuiSpacer size="s" />
             <EuiSwitch
               label="Rotate 90deg"
               checked={rotated}
-              onChange={onRotatedChange}
+              onChange={(e) => setRotated(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -271,21 +248,26 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
             <EuiSwitch
               label="Simulate thousands formatting"
               checked={formatted}
-              onChange={onFormatChange}
+              onChange={(e) => setFormatted(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <ChartTypeCard
+          <ChartTypeCard<{ mixed: false }>
             type="Although we recommend only bar charts, categorical"
-            onChange={onChartTypeChange}
+            onChange={(chartType) => setChartType(chartType)}
             disabled
           />
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <MultiChartCard onChange={onMultiChange} />
+          <MultiChartCard
+            onChange={({ multi, stacked }) => {
+              setMulti(multi);
+              setStacked(stacked);
+            }}
+          />
         </EuiFlexItem>
 
         <EuiFlexItem>
@@ -297,7 +279,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
             <EuiSwitch
               label="Show value labels"
               checked={valueLabels}
-              onChange={onValueLabelsChange}
+              onChange={(e) => setValueLabels(e.target.checked)}
             />
           </ChartCard>
         </EuiFlexItem>

@@ -21,7 +21,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import { CHART_COMPONENTS, ChartCard } from './shared';
+import { CHART_COMPONENTS, type ChartType, ChartCard } from './shared';
 import {
   euiPaletteColorBlind,
   euiPalettePositive,
@@ -29,6 +29,7 @@ import {
   euiPaletteGray,
   useEuiTheme,
 } from '../../../../src/services';
+import type { EuiPalette } from '../../../../src/services/color/eui_palettes';
 
 export default () => {
   const { colorMode } = useEuiTheme();
@@ -60,12 +61,14 @@ export default () => {
     colorTypeRadios[0].id
   );
   const [colorType, setColorType] = useState(colorTypeRadios[0].label);
-  const [numCharts, setNumCharts] = useState('3');
-  const [data, setData] = useState([]);
+  const [numCharts, setNumCharts] = useState(3);
+  const [data, setData] = useState<Array<{ x: number; y: number; g: string }>>(
+    []
+  );
   const [dataString, setDataString] = useState('[{x: 1, y: 5.5, g: 0}]');
-  const [vizColors, setVizColors] = useState();
-  const [vizColorsString, setVizColorsString] = useState();
-  const [chartType, setChartType] = useState('LineSeries');
+  const [vizColors, setVizColors] = useState<EuiPalette | undefined>();
+  const [vizColorsString, setVizColorsString] = useState('');
+  const [chartType, setChartType] = useState<ChartType>('LineSeries');
 
   useEffect(() => {
     createCategoryChart(3);
@@ -76,28 +79,7 @@ export default () => {
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
 
-  const onNumChartsChange = (e) => {
-    updateCorrectChart(Number(e.target.value), colorType);
-    setNumCharts(e.target.value);
-  };
-
-  const onColorTypeChange = (optionId) => {
-    const colorType = colorTypeRadios.find(({ id }) => id === optionId).label;
-    updateCorrectChart(Number(numCharts), colorType);
-    setColorType(colorType);
-    setColorTypeIdSelected(optionId);
-  };
-
-  const onGroupChange = (e) => {
-    const colorType = e.target.checked
-      ? 'Grouped'
-      : colorTypeRadios.find(({ id }) => id === colorTypeIdSelected).label;
-    updateCorrectChart(Number(numCharts), colorType);
-    setGrouped(e.target.checked);
-    setColorType(colorType);
-  };
-
-  const updateCorrectChart = (numCharts, chartType) => {
+  const updateCorrectChart = (numCharts: number, chartType: string) => {
     switch (chartType) {
       case 'Categorical':
         createCategoryChart(numCharts);
@@ -121,7 +103,7 @@ export default () => {
     }
   };
 
-  const createCategoryChart = (numCharts) => {
+  const createCategoryChart = (numCharts: number) => {
     const dg = new DataGenerator();
     const data = dg.generateGroupedSeries(20, numCharts).map((item) => {
       item.g = `Categorical ${item.g.toUpperCase()}`;
@@ -131,11 +113,11 @@ export default () => {
     setData(data);
     setDataString("[{x: 1, y: 5.5, g: 'Categorical 1'}]");
     setVizColors(undefined);
-    setVizColorsString(undefined);
+    setVizColorsString('');
     setChartType('LineSeries');
   };
 
-  const createQuantityChart = (numCharts) => {
+  const createQuantityChart = (numCharts: number) => {
     const vizColors = euiPalettePositive(numCharts);
 
     // convert series labels to percentages
@@ -159,7 +141,7 @@ export default () => {
     setChartType('BarSeries');
   };
 
-  const createTrendChart = (numCharts) => {
+  const createTrendChart = (numCharts: number) => {
     const vizColors = euiPaletteForStatus(numCharts);
 
     // convert series labels to better/worse
@@ -194,7 +176,7 @@ export default () => {
     setChartType('BarSeries');
   };
 
-  const createHighlightChart = (numCharts) => {
+  const createHighlightChart = (numCharts: number) => {
     const vizColors = euiPaletteGray(numCharts);
     vizColors[vizColors.length - 1] = highlightColor;
 
@@ -271,7 +253,7 @@ export default () => {
         return item;
       });
 
-      const isOdd = index % 2;
+      const isOdd = index % 2 === 0;
 
       const chart = (
         <ChartType
@@ -328,18 +310,18 @@ export default () => {
             theme={customTheme}
             showLegend={showLegend}
             legendPosition="right"
-            showLegendDisplayValue={false}
+            showLegendExtra={false}
           />
           {charts}
           <Axis
             id="bottom-axis"
             position="bottom"
-            showGridLines={chartType !== 'BarSeries'}
+            gridLine={{ visible: chartType !== 'BarSeries' }}
           />
           <Axis
             id="left-axis"
             position="left"
-            showGridLines
+            gridLine={{ visible: true }}
             tickFormat={(d) => Number(d).toFixed(2)}
           />
         </Chart>
@@ -357,7 +339,14 @@ export default () => {
               compressed
               options={colorTypeRadios}
               idSelected={grouped ? colorTypeRadios[0].id : colorTypeIdSelected}
-              onChange={onColorTypeChange}
+              onChange={(optionId) => {
+                const colorType = colorTypeRadios.find(
+                  ({ id }) => id === optionId
+                )!.label;
+                updateCorrectChart(Number(numCharts), colorType);
+                setColorType(colorType);
+                setColorTypeIdSelected(optionId);
+              }}
               disabled={grouped}
             />
           </ChartCard>
@@ -381,7 +370,11 @@ export default () => {
                 showTicks
                 value={grouped ? '2' : numCharts}
                 disabled={grouped}
-                onChange={onNumChartsChange}
+                onChange={(e) => {
+                  const numCharts = Number(e.currentTarget.value);
+                  updateCorrectChart(numCharts, colorType);
+                  setNumCharts(numCharts);
+                }}
                 levels={[
                   { min: 1, max: 5.5, color: 'success' },
                   { min: 5.5, max: 10, color: 'danger' },
@@ -401,7 +394,17 @@ export default () => {
             <EuiSwitch
               label="Show grouped"
               checked={grouped}
-              onChange={onGroupChange}
+              onChange={(e) => {
+                const colorType = e.target.checked
+                  ? 'Grouped'
+                  : colorTypeRadios.find(
+                      ({ id }) => id === colorTypeIdSelected
+                    )!.label;
+
+                updateCorrectChart(Number(numCharts), colorType);
+                setGrouped(e.target.checked);
+                setColorType(colorType);
+              }}
             />
           </ChartCard>
         </EuiFlexItem>
@@ -425,7 +428,7 @@ export default () => {
     theme={${customColorsString}}
     showLegend={${showLegend}}
     legendPosition="right"
-    showLegendDisplayValue={false}
+    showLegendExtra={false}
   />
   <${chartType}
     id="bars"
@@ -439,12 +442,12 @@ export default () => {
   <Axis
     id="bottom-axis"
     position="bottom"
-    ${chartType !== 'BarSeries' ? 'showGridLines' : ''}
+    gridLine={{ visible: ${chartType !== 'BarSeries'} }}
   />
   <Axis
     id="left-axis"
     position="left"
-    showGridLines
+    gridLine={{ visible: true }}
     tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}

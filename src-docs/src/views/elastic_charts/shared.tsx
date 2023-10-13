@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from 'react';
 import {
   EuiBadge,
   EuiRadioGroup,
+  type EuiRadioGroupOption,
   EuiSpacer,
   EuiSwitch,
   EuiPanel,
@@ -10,18 +15,19 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
-import euiPackage from '../../../../package';
+import euiPackage from '../../../../package.json';
 
 const { devDependencies } = euiPackage;
 
 export const chartsVersion =
-  devDependencies['@elastic/charts'].match(/\d+\.\d+\.\d+/)[0];
+  devDependencies['@elastic/charts'].match(/\d+\.\d+\.\d+/)![0];
 
 export const CHART_COMPONENTS = {
   BarSeries: BarSeries,
   LineSeries: LineSeries,
   AreaSeries: AreaSeries,
 };
+export type ChartType = keyof typeof CHART_COMPONENTS;
 
 export const ExternalBadge = () => {
   return (
@@ -40,26 +46,43 @@ export const ExternalBadge = () => {
   );
 };
 
-export const ChartCard = ({ title, description, children }) => {
+export const ChartCard: FunctionComponent<
+  PropsWithChildren & {
+    title: ReactNode;
+    description?: ReactNode;
+  }
+> = ({ title, description, children }) => {
   return (
     <EuiPanel>
       <EuiTitle size="s">
         <span>{title}</span>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiText size="s">
-        <p>{description}</p>
-      </EuiText>
-      <EuiSpacer size="s" />
+      {description && (
+        <>
+          <EuiText size="s">
+            <p>{description}</p>
+          </EuiText>
+          <EuiSpacer size="s" />
+        </>
+      )}
       {children}
     </EuiPanel>
   );
 };
 
-export const ChartTypeCard = (props) => {
+type ChartTypeCardProps<Mixed> = {
+  type: string;
+  mixed?: 'enabled' | 'disabled';
+  onChange: [Mixed] extends [{ mixed: true }]
+    ? (chartType: ChartType | 'Mixed') => void
+    : (chartType: ChartType) => void;
+  disabled?: boolean;
+};
+export const ChartTypeCard = <Mixed,>(props: ChartTypeCardProps<Mixed>) => {
   const idPrefix = 'chartType';
 
-  const toggleButtonsIcons = [
+  const toggleButtonsIcons: EuiRadioGroupOption[] = [
     {
       id: `${idPrefix}0`,
       label: 'BarSeries',
@@ -76,12 +99,11 @@ export const ChartTypeCard = (props) => {
 
   const [toggleIdSelected, setToggleIdSelectd] = useState(`${idPrefix}0`);
 
-  const onChartTypeChange = (optionId) => {
+  const onChartTypeChange = (optionId: string) => {
     setToggleIdSelectd(optionId);
 
-    const chartType = toggleButtonsIcons.find(
-      ({ id }) => id === optionId
-    ).label;
+    const chartType = toggleButtonsIcons.find(({ id }) => id === optionId)!
+      .label as ChartType;
     props.onChange(chartType);
   };
 
@@ -109,58 +131,42 @@ export const ChartTypeCard = (props) => {
   );
 };
 
-ChartTypeCard.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  mixed: PropTypes.oneOf(['enabled', 'disabled', true, false]),
-  disabled: PropTypes.bool,
-};
-
-export const MultiChartCard = (props) => {
+export const MultiChartCard: FunctionComponent<{
+  onChange: ({ multi, stacked }: { multi: boolean; stacked: boolean }) => void;
+}> = ({ onChange }) => {
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
 
-  const onMultiChange = (e) => {
-    const isStacked = e.target.checked ? stacked : false;
-
-    setMulti(e.target.checked);
-    setStacked(isStacked);
-
-    props.onChange({
-      multi: e.target.checked,
-      stacked,
-    });
-  };
-
-  const onStackedChange = (e) => {
-    setStacked(e.target.checked);
-
-    props.onChange({ multi: multi, stacked: e.target.checked });
-  };
   return (
     <ChartCard
-      textAlign="left"
       title="Single vs multiple series"
       description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts."
     >
       <EuiSwitch
         label="Show multi-series"
         checked={multi}
-        onChange={onMultiChange}
+        onChange={(e) => {
+          const isStacked = e.target.checked ? stacked : false;
+
+          setMulti(e.target.checked);
+          setStacked(isStacked);
+
+          onChange({
+            multi: e.target.checked,
+            stacked,
+          });
+        }}
       />
       <EuiSpacer size="s" />
       <EuiSwitch
         label="Stacked"
         checked={stacked}
-        onChange={onStackedChange}
+        onChange={(e) => {
+          setStacked(e.target.checked);
+          onChange({ multi: multi, stacked: e.target.checked });
+        }}
         disabled={!multi}
       />
     </ChartCard>
   );
-};
-
-MultiChartCard.propTypes = {
-  /**
-   * Returns (multi:boolean, stacked:boolean)
-   */
-  onChange: PropTypes.func.isRequired,
 };
