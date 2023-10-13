@@ -47,7 +47,7 @@ export default defineConfig({
       return config;
     },
     specPattern: ['./src/**/*.spec.tsx', './src/**/*.a11y.tsx'], // scripts/cypress.js splits this using the CLI --spec argument
-    video: false,
+    video: true,
     videoCompression: 32, // more time to process, but a smaller file to upload as an artifact
   },
 });

@@ -60,7 +60,7 @@ describe('EuiModal', () => {
   describe('Basic functionality', () => {
     it('renders with required props', () => {
       cy.mount(<Modal />);
-      cy.get('div.euiModal').should('not.exist');
+      cy.get('div.euiModal').should('exist');
 
       cy.get('button.euiButton').click();
       cy.get('div.euiModal').should('exist');
