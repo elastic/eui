@@ -10,7 +10,7 @@ DOCKER_OPTIONS=(
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
-  docker.elastic.co/eui/ci:5.3
+  docker.elastic.co/eui/ci:5.5
 )
 
 case $TEST_TYPE in
@@ -41,17 +41,17 @@ case $TEST_TYPE in
 
   cypress:16)
     echo "[TASK]: Running Cypress tests against React 16"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn test-cypress --node-options=--max_old_space_size=2048 --react-version=16")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && yarn test-cypress --node-options=--max_old_space_size=2048 --react-version=16")
     ;;
 
   cypress:17)
     echo "[TASK]: Running Cypress tests against React 17"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn test-cypress --node-options=--max_old_space_size=2048 --react-version=17")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && yarn test-cypress --node-options=--max_old_space_size=2048 --react-version=17")
     ;;
 
   cypress:18)
     echo "[TASK]: Running Cypress tests against React 18"
-    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn test-cypress --node-options=--max_old_space_size=2048")
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && yarn test-cypress --node-options=--max_old_space_size=2048")
     ;;
 
   *)
