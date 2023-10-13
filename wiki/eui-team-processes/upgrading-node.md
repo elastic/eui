@@ -12,7 +12,7 @@ There are two parts to upgrading Node:
 
 Find and replace all instances of the old Node version in EUI (e.g., `16.18.1`). This primarily affects:
 
-- Local: primarily just the `.nvmrc` file
+- Local: Update the `.nvmrc` file, and then update `"@types/node"` in package.json
 - CI: primarily involves the `.ci` folder, `scripts/docker-ci`/`scripts/deploy`, and `package.json`, and any other Docker-related Node settings
 
 ### Updating the Docker image version
