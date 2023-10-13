@@ -22,7 +22,6 @@ const tokens: EuiTokenMapType[] = [
   'tokenCompletionSuggester',
   'tokenConstant',
   'tokenDate',
-  'tokenDenseVector',
   'tokenElement',
   'tokenEnum',
   'tokenEnumMember',
@@ -66,6 +65,8 @@ const tokens: EuiTokenMapType[] = [
   'tokenText',
   'tokenTokenCount',
   'tokenVariable',
+  'tokenVectorDense',
+  'tokenVectorSparse',
 ];
 
 export default () => (

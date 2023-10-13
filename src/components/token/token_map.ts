@@ -18,7 +18,6 @@ export type EuiTokenMapType =
   | 'tokenCompletionSuggester'
   | 'tokenConstant'
   | 'tokenDate'
-  | 'tokenDenseVector'
   | 'tokenElement'
   | 'tokenEnum'
   | 'tokenEnumMember'
@@ -61,7 +60,10 @@ export type EuiTokenMapType =
   | 'tokenTag'
   | 'tokenText'
   | 'tokenTokenCount'
-  | 'tokenVariable';
+  | 'tokenVariable'
+  | 'tokenVectorDense'
+  | 'tokenDenseVector' // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
+  | 'tokenVectorSparse';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -107,10 +109,6 @@ export const TOKEN_MAP: {
   tokenDate: {
     shape: 'square',
     color: 'euiColorVis6',
-  },
-  tokenDenseVector: {
-    shape: 'square',
-    color: 'euiColorVis2',
   },
   tokenElement: {
     shape: 'square',
@@ -283,5 +281,17 @@ export const TOKEN_MAP: {
   tokenVariable: {
     shape: 'circle',
     color: 'euiColorVis7',
+  },
+  tokenVectorDense: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenDenseVector: {
+    shape: 'square',
+    color: 'euiColorVis5',
+  },
+  tokenVectorSparse: {
+    shape: 'square',
+    color: 'euiColorVis1',
   },
 };
