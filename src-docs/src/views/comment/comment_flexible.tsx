@@ -140,15 +140,17 @@ export default () => {
             color="primary"
           />
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSelect
-            prepend="eventColor"
-            options={colors}
-            value={color}
-            onChange={(e) => onChangeSize(e)}
-            compressed
-          />
-        </EuiFlexItem>
+        {toggleIdSelected !== 'custom' ? (
+          <EuiFlexItem grow={false}>
+            <EuiSelect
+              prepend="eventColor"
+              options={colors}
+              value={color}
+              onChange={(e) => onChangeSize(e)}
+              compressed
+            />
+          </EuiFlexItem>
+        ) : undefined}
         <EuiFlexItem>
           {toggleIdSelected === 'regular' && color === 'subdued' ? (
             <span>
