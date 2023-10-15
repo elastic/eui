@@ -45,7 +45,7 @@ const _generateEventBorderColor = (
     case 'warning':
       return `1px solid ${tintOrShade(
         euiTheme.colors.warning,
-        0.5,
+        0.4,
         colorMode
       )}`;
     case 'subdued':
@@ -101,7 +101,7 @@ export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     euiCommentEvent__header: css``,
     // types
     regular: css`
-      background: ${euiTheme.colors.lightestShade};
+      /* background: salmon; */
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
       padding: ${euiTheme.size.s};
     `,

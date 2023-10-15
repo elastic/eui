@@ -54,7 +54,10 @@ export interface EuiCommentEventProps extends CommonProps {
   /**
    * Background color for the comment's header.
    */
-  eventColor?: EuiPanelProps['color'];
+  // eventColor?: EuiPanelProps['color'];
+  eventColor?: Exclude<EuiPanelProps['color'], 'plain'>;
+  // eventColor?: Partial<Omit<EuiPanelProps['color'], 'plain'>>;
+  // eventColor?: EuiPanelProps['color'];
 }
 
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
@@ -99,6 +102,10 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     showEventBorders && styles.border[eventColor],
   ];
 
+  if (isTypeRegular && !eventColor) {
+    eventColor = 'subdued';
+  }
+
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
   const eventBackgroundColors = useEuiBackgroundColorCSS();
   const cssHeaderStyles = [
@@ -120,7 +127,8 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   // The 'plain' color creates a shadow and adds a border radius that we don't want.
   // So for these cases we use the transparent color instead.
-  const finalEventColor = eventColor === 'plain' ? 'transparent' : eventColor;
+  // const finalEventColor = eventColor === 'plain' ? 'transparent' : eventColor;
+  const finalEventColor = eventColor;
 
   const panelProps = finalEventColor
     ? { color: finalEventColor, paddingSize: 's' }

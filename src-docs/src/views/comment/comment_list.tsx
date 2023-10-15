@@ -71,6 +71,13 @@ const comments: EuiCommentProps[] = [
     timestamp: 'on Jan 3, 2020',
   },
   {
+    username: 'juanab',
+    timelineAvatarAriaLabel: 'Juana Barros',
+    actions: copyAction,
+    event: 'pushed incident X0Z235',
+    timestamp: 'on Jan 3, 2020',
+  },
+  {
     username: 'pancho1',
     timelineAvatarAriaLabel: 'Pancho Pérez',
     event: 'edited case',
@@ -88,12 +95,12 @@ const comments: EuiCommentProps[] = [
     eventIconAriaLabel: 'tag',
   },
   {
-    username: 'elohar',
-    timelineAvatarAriaLabel: 'Elohar Jackson',
-    event: 'added a comment',
-    timestamp: 'on Jan 14, 2020',
-    children: longBody,
+    username: 'Assistant',
+    timelineAvatarAriaLabel: 'Assistant',
+    timestamp: 'on Jan 14, 2020, 1:39:04 PM',
+    children: <p>An error ocurred sending your message.</p>,
     actions: copyAction,
+    eventColor: 'danger',
   },
 ];
 
