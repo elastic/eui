@@ -15,6 +15,8 @@ import {
   EuiCode,
 } from '../../../../src/components/';
 
+import { EuiCommentEventProps } from '../../../../src/components/comment_list/comment_event';
+
 const body = (
   <EuiText size="s">
     <p>
@@ -95,20 +97,19 @@ const toggleButtons = [
   },
 ];
 
-const colors = [
-  { value: 'subdued', text: 'subdued' },
-  {
-    value: 'transparent',
-    text: 'transparent',
-  },
-  { value: 'danger', text: 'danger' },
-  { value: 'warning', text: 'warning' },
-  { value: 'accent', text: 'accent' },
-  { value: 'primary', text: 'primary' },
-  { value: 'success', text: 'success' },
-];
-
 export default () => {
+  const colors: Array<{
+    value: EuiCommentEventProps['eventColor'];
+    text: string;
+  }> = [
+    { value: 'subdued', text: 'subdued' },
+    { value: 'transparent', text: 'transparent' },
+    { value: 'danger', text: 'danger' },
+    { value: 'warning', text: 'warning' },
+    { value: 'accent', text: 'accent' },
+    { value: 'primary', text: 'primary' },
+    { value: 'success', text: 'success' },
+  ];
   const [toggleIdSelected, setToggleIdSelected] = useState('regular');
   const [color, setColor] = useState(colors[0].value);
   const [comment, setComment] = useState(commentsData[0]);
@@ -123,8 +124,8 @@ export default () => {
     setComment(commentsData[selectedCommentIndex]);
   };
 
-  const onChangeSize = (e) => {
-    setColor(e.target.value);
+  const onChangeSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setColor(e.target.value as EuiCommentEventProps['eventColor']);
   };
 
   return (
@@ -152,17 +153,18 @@ export default () => {
           </EuiFlexItem>
         ) : undefined}
         <EuiFlexItem>
-          {toggleIdSelected === 'regular' && color === 'subdued' ? (
+          {toggleIdSelected === 'regular' && color === 'subdued' && (
             <span>
               subdued is the default <EuiCode>eventColor</EuiCode> for regular{' '}
               <strong>EuiComment</strong>
             </span>
-          ) : toggleIdSelected === 'update' && color === 'transparent' ? (
+          )}
+          {toggleIdSelected === 'update' && color === 'transparent' && (
             <span>
               transparent is the default <EuiCode>eventColor</EuiCode> for
               update <strong>EuiComment</strong>
             </span>
-          ) : undefined}
+          )}
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer />

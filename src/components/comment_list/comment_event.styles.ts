@@ -89,7 +89,6 @@ export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
         border: ${_generateEventBorderColor(euiThemeContext, 'subdued')};
       `,
       transparent: css``,
-      plain: css``,
     },
   };
 };
@@ -101,7 +100,6 @@ export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     euiCommentEvent__header: css``,
     // types
     regular: css`
-      /* background: salmon; */
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
       padding: ${euiTheme.size.s};
     `,
@@ -147,7 +145,6 @@ export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
         )}
       `,
       transparent: css``,
-      plain: css``,
     },
     // Children
     euiCommentEvent__headerMain: css`
