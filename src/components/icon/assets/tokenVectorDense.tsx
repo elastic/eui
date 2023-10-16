@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconTokenDenseVector = ({
+const EuiIconTokenVectorDense = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,9 @@ const EuiIconTokenDenseVector = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4.154 12V4h2.713v1.14H5.658v5.72h1.21V12H4.153Zm7.692-8v8H9.133v-1.14h1.209V5.14h-1.21V4h2.714Z" />
+    <path d="M2 2.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H3v10h1.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5v-11Z" />
+    <path d="M6 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm0 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-1 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm4-7a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm1 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm2-5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm1 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-1 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
+    <path d="M13.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V3h-1.5a.5.5 0 0 1 0-1h2Z" />
   </svg>
 );
-export const icon = EuiIconTokenDenseVector;
+export const icon = EuiIconTokenVectorDense;

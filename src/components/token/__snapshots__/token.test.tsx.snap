@@ -256,7 +256,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenDate is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenDenseVector is rendered 1`] = `
 <span
-  class="euiToken emotion-euiToken-square-light-s-euiColorVis2"
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis5"
 >
   <span
     data-euiicon-type="tokenDenseVector"
@@ -690,6 +690,26 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenVariable is rendered 1`
 >
   <span
     data-euiicon-type="tokenVariable"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenVectorDense is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis5"
+>
+  <span
+    data-euiicon-type="tokenVectorDense"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenVectorSparse is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis1"
+>
+  <span
+    data-euiicon-type="tokenVectorSparse"
   />
 </span>
 `;
