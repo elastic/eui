@@ -1,0 +1,29 @@
+FROM node:18.18.2-slim as base
+
+COPY package*.json /
+
+RUN yarn
+
+RUN mkdir -p /cypress/screenshots \
+  && mkdir -p /cypress/videos
+
+FROM node:18.18.2-slim
+
+WORKDIR /app
+
+RUN apt-get update \
+  && apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb \
+  --no-install-recommends \
+  && apt-get upgrade -y \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY --from=base /node_modules /node_modules
+COPY --from=base cypress/ /cypress/
+
+RUN usermod -a -G audio,video node \
+  && chown -R node:node /cypress
+
+# Run as non-privileged node user for improved security
+# See https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
+USER node
