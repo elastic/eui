@@ -923,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 38,
+        "line": 41,
         "column": 4,
-        "index": 1346
+        "index": 1427
       },
       "end": {
-        "line": 42,
+        "line": 45,
         "column": 5,
-        "index": 1501
+        "index": 1582
       }
     },
     "filepath": "src/components/datagrid/body/data_grid_cell_actions.tsx"
@@ -941,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 100,
-        "column": 12,
-        "index": 2981
+        "line": 135,
+        "column": 10,
+        "index": 4290
       },
       "end": {
-        "line": 108,
-        "column": 14,
-        "index": 3288
+        "line": 143,
+        "column": 12,
+        "index": 4581
       }
     },
     "filepath": "src/components/datagrid/body/data_grid_cell.tsx"
