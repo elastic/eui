@@ -15,7 +15,6 @@ const _generateEventBorderColor = (
   { euiTheme, colorMode }: UseEuiTheme,
   color: EuiCommentEventProps['eventColor']
 ) => {
-  //const ratio = colorMode === 'LIGHT' ? 0.6 : 0.6;
   const ratio = 0.6;
   switch (color) {
     case 'accent':
