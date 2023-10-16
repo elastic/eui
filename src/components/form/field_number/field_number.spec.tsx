@@ -89,11 +89,18 @@ describe('EuiFieldNumber', () => {
         );
       };
       cy.mount(<ControlledEuiFieldNumber />);
-
       checkIsValid();
+
+      // Controlled value changes should work as expected
       cy.get('#setToInvalidValue').click();
       checkIsInvalid();
       cy.get('#setToValidValue').click();
+      checkIsValid();
+
+      // (regression test) User input changes should still work as expected w/ onChange
+      cy.get('input').clear().type('-2');
+      checkIsInvalid();
+      cy.get('input').clear().type('2');
       checkIsValid();
     });
   });
