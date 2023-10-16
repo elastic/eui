@@ -11,11 +11,14 @@ import React, {
   Ref,
   FunctionComponent,
   useState,
+  useEffect,
   useCallback,
+  useRef,
 } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
+import { useCombinedRefs } from '../../../services';
+import { CommonProps } from '../../common';
 import { IconType } from '../../icon';
 
 import { EuiValidatableControl } from '../validatable_control';
@@ -108,6 +111,9 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     ...rest
   } = props;
 
+  const _inputRef = useRef<HTMLInputElement | null>(null);
+  const combinedRefs = useCombinedRefs([_inputRef, inputRef]);
+
   // Attempt to determine additional invalid state. The native number input
   // will set :invalid state automatically, but we need to also set
   // `aria-invalid` as well as display an icon. We also want to *not* set this on
@@ -121,6 +127,14 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     const isInvalid = !inputEl.validity.valid || undefined;
     setIsNativelyInvalid(isInvalid);
   }, []);
+
+  // Ensure controlled `value/onChange` fields are checked for native validity
+  useEffect(() => {
+    const isControlledValue = value != null;
+    if (isControlledValue && _inputRef.current) {
+      checkNativeValidity(_inputRef.current);
+    }
+  }, [value, checkNativeValidity]);
 
   const numIconsClass = controlOnly
     ? false
@@ -150,7 +164,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         placeholder={placeholder}
         readOnly={readOnly}
         className={classes}
-        ref={inputRef}
+        ref={combinedRefs}
         aria-invalid={isInvalid || isNativelyInvalid}
         onKeyUp={(e) => {
           // Note that we can't use `onChange` because browsers don't emit change events
