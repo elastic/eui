@@ -10,7 +10,8 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../../cypress/support" />
 
-import React from 'react';
+import React, { useState } from 'react';
+
 import { EuiFieldNumber } from './field_number';
 
 describe('EuiFieldNumber', () => {
@@ -64,6 +65,35 @@ describe('EuiFieldNumber', () => {
       cy.mount(<EuiFieldNumber />);
       checkIsValid();
       cy.get('input').click().type('1.5');
+      checkIsValid();
+    });
+
+    it('checks/updates invalid state for controlled components', () => {
+      const ControlledEuiFieldNumber = () => {
+        const [value, setValue] = useState('0');
+        return (
+          <>
+            <EuiFieldNumber
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              min={0}
+              max={5}
+            />
+            <button id="setToInvalidValue" onClick={() => setValue('10')}>
+              Set to invalid value
+            </button>
+            <button id="setToValidValue" onClick={() => setValue('3')}>
+              Set to valid value
+            </button>
+          </>
+        );
+      };
+      cy.mount(<ControlledEuiFieldNumber />);
+
+      checkIsValid();
+      cy.get('#setToInvalidValue').click();
+      checkIsInvalid();
+      cy.get('#setToValidValue').click();
       checkIsValid();
     });
   });
