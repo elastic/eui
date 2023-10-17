@@ -5,7 +5,7 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSuggest,
+  EuiSearchBar,
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
   OnRefreshChangeProps,
@@ -13,13 +13,6 @@ import {
   OnTimeChangeProps,
   EuiOutsideClickDetector,
 } from '../../../../src';
-
-const sampleItems = [
-  {
-    type: { iconType: 'kqlField', color: 'tint4' },
-    label: 'Field sample',
-  },
-];
 
 export default () => {
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
@@ -82,15 +75,18 @@ export default () => {
             onOutsideClick={() => setShowQuickSelectOnly(false)}
             isDisabled={!showQuickSelectOnly}
           >
-            <EuiSuggest
-              onFocus={() => setShowQuickSelectOnly(true)}
-              onBlur={() => setShowQuickSelectOnly(false)}
-              prepend={
-                <EuiButtonIcon aria-label="Saved searches" iconType="save" />
-              }
-              append={<EuiButtonEmpty>KQL</EuiButtonEmpty>}
-              aria-label="Filter using KQL"
-              suggestions={sampleItems}
+            <EuiSearchBar
+              box={{
+                onClick: () => setShowQuickSelectOnly(true),
+                onFocus: () => setShowQuickSelectOnly(true),
+                onBlur: () => setShowQuickSelectOnly(false),
+                prepend: (
+                  <EuiButtonIcon aria-label="Saved searches" iconType="save" />
+                ),
+                append: <EuiButtonEmpty>KQL</EuiButtonEmpty>,
+                'aria-label': 'Filter using KQL',
+                placeholder: 'type:visualization -dashboard',
+              }}
             />
           </EuiOutsideClickDetector>
         </EuiFlexItem>

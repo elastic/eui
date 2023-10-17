@@ -19,22 +19,21 @@ const meta: Meta<EuiPageSectionProps> = {
   argTypes: {
     bottomBorder: { control: 'select', options: [true, false, 'extended'] },
   },
+  args: {
+    // Component defaults
+    restrictWidth: false,
+    color: 'plain', // The component default is actually 'transparent', but for the purposes of easier testing in Storybook we'll set it to plain
+    paddingSize: 'l',
+    alignment: 'top',
+    grow: false,
+    component: 'section', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to section
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiPageSectionProps>;
 
-const componentDefaults: EuiPageSectionProps = {
-  restrictWidth: false,
-  color: 'plain', // The component default is actually 'transparent', but for the purposes of easier testing in Storybook we'll set it to plain
-  paddingSize: 'l',
-  alignment: 'top',
-  grow: false,
-  component: 'section', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to section
-};
-
 export const Playground: Story = {
-  args: componentDefaults,
   render: ({ ...args }) => (
     // Block size demos the grow prop
     <EuiFlexGroup direction="column" css={{ blockSize: '100vh' }}>

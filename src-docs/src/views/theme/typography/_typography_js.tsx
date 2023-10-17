@@ -10,6 +10,8 @@ import {
   EuiPanel,
   EuiSpacer,
   EuiText,
+  EuiCallOut,
+  EuiLink,
 } from '../../../../../src/components';
 
 import {
@@ -285,6 +287,29 @@ export const FontScaleValuesJS = () => {
           />
         </EuiDescribedFormGroup>
       </EuiPanel>
+      <EuiSpacer size="m" />
+      <EuiCallOut
+        iconType="accessibility"
+        title={
+          <>
+            We strongly recommend using relative (<EuiCode>rem</EuiCode> or{' '}
+            <EuiCode>em</EuiCode>) units instead of <EuiCode>px</EuiCode> when
+            possible{' '}
+          </>
+        }
+      >
+        <p>
+          Relative font units respect configured browser default font sizes,
+          which some users may set to larger than than the 16px default due to,
+          e.g. visual impairment, monitor size, or personal preference.{' '}
+          <EuiLink
+            href="https://usability.yale.edu/web-accessibility/articles/zoom-resizing-text"
+            target="_blank"
+          >
+            Read more on accessible text resizing.
+          </EuiLink>
+        </p>
+      </EuiCallOut>
       <EuiSpacer />
       <EuiBasicTable<FontScaleDetails>
         tableLayout="auto"

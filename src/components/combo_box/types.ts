@@ -26,14 +26,9 @@ export interface EuiComboBoxOptionOption<
   truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
 }
 
-export type UpdatePositionHandler = (
-  listElement?: RefInstance<HTMLDivElement>
-) => void;
 export type OptionHandler<T> = (option: EuiComboBoxOptionOption<T>) => void;
 
 export type RefInstance<T> = T | null;
-
-export type EuiComboBoxOptionsListPosition = 'top' | 'bottom';
 
 export interface EuiComboBoxSingleSelectionShape {
   asPlainText?: boolean;

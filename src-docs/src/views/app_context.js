@@ -8,6 +8,7 @@ import { translateUsingPseudoLocale } from '../services';
 import { getLocale } from '../store';
 
 import { EuiContext, EuiProvider } from '../../../src/components';
+import { euiStylisPrefixer } from '../../../src/services';
 import { EUI_THEMES } from '../../../src/themes';
 
 import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
@@ -19,11 +20,13 @@ import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
 const generalEmotionCache = createCache({
   key: 'css',
+  stylisPlugins: [euiStylisPrefixer],
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
 generalEmotionCache.compat = true;
 const utilityCache = createCache({
   key: 'util',
+  stylisPlugins: [euiStylisPrefixer],
   container: document.querySelector('meta[name="emotion-styles-utility"]'),
 });
 

@@ -718,19 +718,61 @@ describe('EuiDataGridCell', () => {
     });
   });
 
-  it('renders certain classes/styles if rowHeightOptions is passed', () => {
-    const component = mount(
-      <EuiDataGridCell
-        {...requiredProps}
-        rowHeightsOptions={{
-          defaultHeight: 20,
-          rowHeights: { 0: 10 },
-        }}
-      />
-    );
+  describe('renders certain classes/styles based on rowHeightOptions', () => {
+    const props = { ...requiredProps, renderCellValue: () => null };
 
-    expect(
-      component.find('.euiDataGridRowCell__contentByHeight').exists()
-    ).toBe(true);
+    test('default', () => {
+      const component = mount(
+        <EuiDataGridCell {...props} rowHeightsOptions={undefined} />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__defaultHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textTruncate').exists()).toBe(true);
+    });
+
+    test('auto', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: 'auto' }}
+        />
+      );
+
+      expect(component.find('.euiDataGridRowCell__autoHeight').exists()).toBe(
+        true
+      );
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+    });
+
+    test('numerical', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { height: 3 } }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__numericalHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+    });
+
+    test('lineCount', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__lineCountHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+    });
   });
 });

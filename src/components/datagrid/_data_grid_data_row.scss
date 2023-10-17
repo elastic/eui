@@ -38,22 +38,6 @@
       animation-delay: $euiAnimSpeedNormal;
       animation-fill-mode: forwards;
     }
-    /*
-     * For some incredibly bizarre reason, Safari doesn't correctly update the flex
-     * width of the content (when rows are an undefined height/single flex row),
-     * which causes the action icons to overlap & makes the content less readable.
-     * This workaround "animation" forces a rerender of the flex content width
-     *
-     * TODO: Remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=258539 is resolved
-     */
-    .euiDataGridRowCell__expandContent {
-      animation-name: euiDataGridCellActionsSafariWorkaround;
-      animation-duration: 1000ms; // I don't know why the duration matters or why it being longer works more consistently 🥲
-      animation-delay: $euiAnimSpeedNormal + $euiAnimSpeedExtraFast; // Wait for above animation to finish
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-      animation-timing-function: linear;
-    }
   }
 
   // On focus, directly show action buttons (without animation)
@@ -95,23 +79,6 @@
   &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
-
-  .euiDataGridRowCell__definedHeight {
-    @include euiTextBreakWord;
-    flex-grow: 1;
-  }
-
-  // We only truncate if the cell is not a control column.
-  &:not(.euiDataGridRowCell--controlColumn) {
-    .euiDataGridRowCell__content,
-    .euiDataGridRowCell__truncate,
-    &.euiDataGridRowCell__truncate,
-    .euiDataGridRowCell__expandContent {
-      @include euiTextTruncate;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-  }
 }
 
 .euiDataGridRowCell__popover {
@@ -130,39 +97,51 @@
   @include euiBottomShadow; // TODO: Convert to euiShadowMedium() in Emotion
 }
 
-.euiDataGridRowCell__expandFlex {
-  position: relative; // for positioning expand button
+.euiDataGridRowCell__contentWrapper {
+  position: relative; // Needed for .euiDataGridRowCell__actions--overlay
+  height: 100%;
+  overflow: hidden;
+}
+
+.euiDataGridRowCell__defaultHeight {
   display: flex;
   align-items: baseline;
-  height: 100%;
+  max-width: 100%;
+
+  .euiDataGridRowCell__content {
+    flex-grow: 1;
+  }
+
+  .euiDataGridRowCell__actions {
+    flex-grow: 0;
+  }
 
   .euiDataGridRowCell--controlColumn & {
+    height: 100%;
     align-items: center;
   }
 }
 
-.euiDataGridRowCell__expandContent {
-  flex-grow: 1;
-}
-
-.euiDataGridRowCell__contentByHeight {
-  flex-grow: 1;
-  height: 100%;
+.euiDataGridRowCell__numericalHeight {
+  // Without this rule, popover anchors content that overflows off the page
+  [data-euiportal],
+  .euiPopover,
+  .euiPopover__anchor {
+    height: 100%;
+  }
 }
 
 // Cell actions
-.euiDataGridRowCell__expandActions {
+.euiDataGridRowCell__actions {
   display: flex;
-}
-@include euiDataGridRowCellActions($definedHeight: false) {
-  flex-grow: 0;
-}
-@include euiDataGridRowCellActions($definedHeight: true) {
-  background-color: $euiColorEmptyShade;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: $euiDataGridCellPaddingM 0;
+
+  &--overlay {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: $euiDataGridCellPaddingM 0;
+    background-color: $euiColorEmptyShade;
+  }
 }
 
 .euiDataGridRowCell__actionButtonIcon {
@@ -181,20 +160,20 @@
 // Row stripes
 @include euiDataGridStyles(stripes) {
   .euiDataGridRow--striped {
-    @include euiDataGridRowCellActions($definedHeight: true) {
+    &,
+    .euiDataGridRowCell__actions--overlay {
       background-color: $euiColorLightestShade;
     }
-    background-color: $euiColorLightestShade;
   }
 }
 
 // Row highlights
 @include euiDataGridStyles(rowHoverHighlight) {
   .euiDataGridRow:hover {
-    @include euiDataGridRowCellActions($definedHeight: true) {
+    &,
+    .euiDataGridRowCell__actions--overlay {
       background-color: $euiColorHighlight;
     }
-    background-color: $euiColorHighlight;
   }
 }
 
@@ -240,10 +219,11 @@
 
 // Compressed density grids - height tweaks
 @include euiDataGridStyles(fontSizeSmall, paddingSmall) {
-  @include euiDataGridRowCellActions($definedHeight: true) {
+  .euiDataGridRowCell__actions--overlay {
     padding: ($euiDataGridCellPaddingS / 2) 0;
   }
-  @include euiDataGridRowCellActions($definedHeight: false) {
+
+  .euiDataGridRowCell__defaultHeight .euiDataGridRowCell__actions {
     transform: translateY(1px);
   }
 }
@@ -257,16 +237,5 @@
   to {
     margin-left: $euiDataGridCellPaddingM;
     width: $euiSizeM;
-  }
-}
-@keyframes euiDataGridCellActionsSafariWorkaround {
-  from {
-    width: 100%;
-    flex-basis: 100%;
-  }
-
-  to {
-    width: auto;
-    flex-basis: auto;
   }
 }

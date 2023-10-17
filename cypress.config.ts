@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import { unlinkSync } from 'fs';
 import webpackConfig from './cypress/webpack.config';
 
 export default defineConfig({
@@ -28,9 +29,25 @@ export default defineConfig({
         },
       });
 
+      on(
+        'after:spec',
+        (spec: Cypress.Spec, results: CypressCommandLine.RunResult) => {
+          if (config.video) {
+            if (results.stats.failures !== 0) {
+              console.log(
+                `[FAILURE]: Recording video for ${results.spec.name}.`
+              );
+            } else {
+              unlinkSync(results.video!);
+            }
+          }
+        }
+      );
+
       return config;
     },
     specPattern: ['./src/**/*.spec.tsx', './src/**/*.a11y.tsx'], // scripts/cypress.js splits this using the CLI --spec argument
     video: false,
+    videoCompression: 32, // more time to process, but a smaller file to upload as an artifact
   },
 });

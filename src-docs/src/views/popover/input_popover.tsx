@@ -21,6 +21,7 @@ export default () => {
       <EuiInputPopover
         isOpen={isPopoverOpen}
         closePopover={() => setIsPopoverOpen(false)}
+        closeOnScroll={true}
         input={
           <EuiFieldText
             onFocus={() => setIsPopoverOpen(true)}

@@ -7,10 +7,13 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { act, waitFor } from '@testing-library/react';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import cheerio from 'cheerio';
+
+import { PropsOf } from '../common';
+
 import {
   EuiIcon,
   SIZES,
@@ -19,7 +22,6 @@ import {
   clearIconComponentCache,
   appendIconComponentCache,
 } from './icon';
-import { PropsOf } from '../common';
 import { icon as EuiIconVideoPlayer } from './assets/videoPlayer';
 
 jest.mock('./icon', () => {
@@ -28,50 +30,21 @@ jest.mock('./icon', () => {
 
 beforeEach(() => clearIconComponentCache());
 
-const prettyHtml = cheerio.load('');
-
-function testIcon(props: PropsOf<typeof EuiIcon>) {
-  return () => {
-    expect.assertions(1);
-    return new Promise<void>((resolve) => {
-      const onIconLoad = () => {
-        component.update();
-        expect(prettyHtml(component.html())).toMatchSnapshot();
-        resolve();
-      };
-      const component = mount(<EuiIcon {...props} onIconLoad={onIconLoad} />);
-    });
-  };
-}
+const testIcon = (props: PropsOf<typeof EuiIcon>) => async () => {
+  act(() => {
+    render(<EuiIcon {...props} />);
+  });
+  await waitFor(
+    () => {
+      const icon = document.querySelector(`[data-icon-type=${props.type}]`);
+      expect(icon).toHaveAttribute('data-is-loaded', 'true');
+      expect(icon).toMatchSnapshot();
+    },
+    { timeout: 3000 } // CI will sometimes time out if the icon doesn't load fast enough
+  );
+};
 
 describe('EuiIcon', () => {
-  let consoleErrorOverride: jest.SpyInstance;
-  beforeAll(() => {
-    // Ignore EuiIcon update not wrapped in act() warnings as they are triggered
-    // directly from the component componentDidUpdate() and loadIconComponent()
-    // TODO: Refactor EuiIcon to not cause this issue and think of a simpler
-    //  implementation based on modern JS bundlers features instead of
-    //  the EuiIcon caching layer.
-    const originalConsoleError: typeof console.error = console.error;
-    consoleErrorOverride = jest
-      .spyOn(console, 'error')
-      .mockImplementation((message, ...args) => {
-        if (
-          message?.startsWith(
-            'Warning: An update to %s inside a test was not wrapped in act(...).'
-          )
-        ) {
-          return;
-        }
-
-        originalConsoleError(message, ...args);
-      });
-  });
-
-  afterAll(() => {
-    consoleErrorOverride.mockRestore();
-  });
-
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
 
   shouldRenderCustomStyles(<EuiIcon type="customImg" />);
@@ -84,6 +57,17 @@ describe('EuiIcon', () => {
   });
 
   describe('props', () => {
+    test('onIconLoad', async () => {
+      const onIconLoad = jest.fn();
+
+      render(<EuiIcon type="search" onIconLoad={onIconLoad} />);
+      expect(onIconLoad).toHaveBeenCalledTimes(0);
+
+      await waitFor(() => {
+        expect(onIconLoad).toHaveBeenCalledTimes(1);
+      });
+    });
+
     describe('other props', () => {
       test(
         'are passed through to the icon',
@@ -156,31 +140,30 @@ describe('EuiIcon', () => {
         </span>
       );
     };
-    const component = mount(<EuiIcon type={CustomIcon} />);
-    expect(prettyHtml(component.html())).toMatchSnapshot();
+    const { container } = render(<EuiIcon type={CustomIcon} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('appendIconComponentCache', () => {
     it('does nothing if not called', () => {
-      const component = mount(<EuiIcon type="videoPlayer" />);
-      expect(component.find('svg').prop('data-is-loading')).toEqual(true);
+      const { container } = render(<EuiIcon type="videoPlayer" />);
+      expect(container.firstChild).toHaveAttribute('data-is-loading', 'true');
     });
 
     it('preloads the specified icon into the cache', () => {
       appendIconComponentCache({
         videoPlayer: EuiIconVideoPlayer,
       });
-      const component = mount(<EuiIcon type="videoPlayer" />);
-      // Should not have either data-is-loading attr set to true, because it was pre-loaded
-      expect(component.find('svg').prop('data-is-loading')).not.toEqual(true);
+      const { container } = render(<EuiIcon type="videoPlayer" />);
+      expect(container.firstChild).not.toHaveAttribute('data-is-loading');
     });
 
     it('does not impact non-loaded icons', () => {
       appendIconComponentCache({
         videoPlayer: EuiIconVideoPlayer,
       });
-      const component = mount(<EuiIcon type="accessibility" />);
-      expect(component.find('svg').prop('data-is-loading')).toEqual(true);
+      const { container } = render(<EuiIcon type="accessibility" />);
+      expect(container.firstChild).toHaveAttribute('data-is-loading', 'true');
     });
   });
 });

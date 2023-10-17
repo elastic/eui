@@ -7,5 +7,4 @@
  */
 
 export * from './render_custom_styles';
-export * from './test_custom_hook';
 export * from './react_version';

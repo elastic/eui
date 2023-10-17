@@ -6,15 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { useCellLocationCheck, useSortPageCheck } from './ref';
 
 // see ref.spec.tsx for E2E useImperativeGridRef tests
 
 describe('useCellLocationCheck', () => {
-  const {
-    return: { checkCellExists },
-  } = testCustomHook(() => useCellLocationCheck(10, 5));
+  const { checkCellExists } = renderHook(() => useCellLocationCheck(10, 5))
+    .result.current;
 
   it("throws an error if the passed rowIndex is higher than the grid's rowCount", () => {
     expect(() => {
@@ -45,9 +44,9 @@ describe('useSortPageCheck', () => {
     const sortedRowMap: number[] = [];
 
     it('returns the passed rowIndex as-is', () => {
-      const {
-        return: { findVisibleRowIndex },
-      } = testCustomHook(() => useSortPageCheck(pagination, sortedRowMap));
+      const { findVisibleRowIndex } = renderHook(() =>
+        useSortPageCheck(pagination, sortedRowMap)
+      ).result.current;
 
       expect(findVisibleRowIndex(5)).toEqual(5);
     });
@@ -57,11 +56,11 @@ describe('useSortPageCheck', () => {
     const pagination = undefined;
     const sortedRowMap = [3, 4, 1, 2, 0];
 
-    it('returns the visibleRowIndex of the passed rowIndex (which is the index of the sortedRowMap)', () => {
-      const {
-        return: { findVisibleRowIndex },
-      } = testCustomHook(() => useSortPageCheck(pagination, sortedRowMap));
+    const { findVisibleRowIndex } = renderHook(() =>
+      useSortPageCheck(pagination, sortedRowMap)
+    ).result.current;
 
+    it('returns the visibleRowIndex of the passed rowIndex (which is the index of the sortedRowMap)', () => {
       expect(findVisibleRowIndex(0)).toEqual(4);
       expect(findVisibleRowIndex(1)).toEqual(2);
       expect(findVisibleRowIndex(2)).toEqual(3);
@@ -80,13 +79,13 @@ describe('useSortPageCheck', () => {
     };
     const sortedRowMap: number[] = [];
 
+    const { findVisibleRowIndex } = renderHook(() =>
+      useSortPageCheck(pagination, sortedRowMap)
+    ).result.current;
+
     beforeEach(() => jest.clearAllMocks());
 
     it('calculates what page the row should be on, paginates to that page, and returns the index of the row on that page', () => {
-      const {
-        return: { findVisibleRowIndex },
-      } = testCustomHook(() => useSortPageCheck(pagination, sortedRowMap));
-
       expect(findVisibleRowIndex(20)).toEqual(0); // First item on 2nd page
       expect(pagination.onChangePage).toHaveBeenLastCalledWith(1);
 
@@ -95,10 +94,6 @@ describe('useSortPageCheck', () => {
     });
 
     it('does not paginate if the user is already on the correct page', () => {
-      const {
-        return: { findVisibleRowIndex },
-      } = testCustomHook(() => useSortPageCheck(pagination, sortedRowMap));
-
       expect(findVisibleRowIndex(5)).toEqual(5);
       expect(pagination.onChangePage).not.toHaveBeenCalled();
     });

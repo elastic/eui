@@ -215,8 +215,6 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
-import { SuggestExample } from './views/suggest/suggest_example';
-
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
@@ -609,7 +607,6 @@ const navigation = [
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
-      SuggestExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },
@@ -650,31 +647,33 @@ const navigation = [
   {
     name: 'Utilities',
     items: [
-      AccessibilityExample,
-      AutoSizerExample,
-      BeaconExample,
-      ColorPaletteExample,
-      CopyExample,
-      UtilityClassesExample,
-      DelayRenderExample,
-      ErrorBoundaryExample,
-      FocusTrapExample,
-      HighlightAndMarkExample,
-      HtmlIdGeneratorExample,
-      InnerTextExample,
-      I18nExample,
-      MutationObserverExample,
-      OutsideClickDetectorExample,
-      OverlayMaskExample,
-      PortalExample,
-      PrettyDurationExample,
-      ProviderExample,
-      ResizeObserverExample,
-      ScrollExample,
-      TextDiffExample,
-      TextTruncateExample,
-      WindowEventExample,
-    ].map((example) => createExample(example)),
+      ...[
+        AccessibilityExample,
+        AutoSizerExample,
+        BeaconExample,
+        ColorPaletteExample,
+        CopyExample,
+        UtilityClassesExample,
+        DelayRenderExample,
+        ErrorBoundaryExample,
+        FocusTrapExample,
+        HighlightAndMarkExample,
+        HtmlIdGeneratorExample,
+        InnerTextExample,
+        I18nExample,
+        MutationObserverExample,
+        OutsideClickDetectorExample,
+        OverlayMaskExample,
+        PortalExample,
+        PrettyDurationExample,
+        ProviderExample,
+        ResizeObserverExample,
+        ScrollExample,
+        TextDiffExample,
+      ].map((example) => createExample(example)),
+      createTabbedPage(TextTruncateExample),
+      createExample(WindowEventExample),
+    ],
   },
   {
     name: 'Package',

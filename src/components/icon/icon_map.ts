@@ -444,7 +444,6 @@ export const typeToPathMap = {
   tokenCompletionSuggester: 'tokenCompletionSuggester',
   tokenConstant: 'tokenConstant',
   tokenDate: 'tokenDate',
-  tokenDenseVector: 'tokenDenseVector',
   tokenElement: 'tokenElement',
   tokenEnum: 'tokenEnum',
   tokenEnumMember: 'tokenEnumMember',
@@ -488,4 +487,7 @@ export const typeToPathMap = {
   tokenText: 'tokenText',
   tokenTokenCount: 'tokenTokenCount',
   tokenVariable: 'tokenVariable',
+  tokenVectorDense: 'tokenVectorDense',
+  tokenDenseVector: 'tokenVectorDense', // NOTE: This is an undocumented alias for `tokenVectorDense`, added for legacy compatability
+  tokenVectorSparse: 'tokenVectorSparse',
 };

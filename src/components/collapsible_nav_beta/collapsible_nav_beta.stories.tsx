@@ -8,9 +8,14 @@
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import {
+  hideStorybookControls,
+  hideAllStorybookControls,
+} from '../../../.storybook/utils';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
+import { EuiBottomBar } from '../bottom_bar';
 import { EuiFlyout } from '../flyout';
 import { EuiButton } from '../button';
 import { EuiTitle } from '../title';
@@ -34,6 +39,7 @@ const meta: Meta<EuiCollapsibleNavBetaProps> = {
     },
   },
   args: {
+    // Component defaults
     side: 'left',
     initialIsCollapsed: false,
     width: 248,
@@ -416,59 +422,6 @@ export const SecurityExample: Story = {
   ),
 };
 
-export const MultipleFixedHeaders: Story = {
-  render: ({ ...args }) => (
-    <>
-      <EuiHeader position="fixed">First header</EuiHeader>
-      <EuiHeader position="fixed">
-        <EuiHeaderSection>
-          <EuiCollapsibleNavBeta {...args}>
-            This story tests that EuiCollapsibleNav automatically adjusts its
-            position & height for multiple fixed headers
-          </EuiCollapsibleNavBeta>
-          Second header
-        </EuiHeaderSection>
-      </EuiHeader>
-    </>
-  ),
-};
-
-const MockConsumerFlyout: FunctionComponent = () => {
-  const [flyoutIsOpen, setFlyoutOpen] = useState(false);
-  return (
-    <>
-      <EuiButton size="s" onClick={() => setFlyoutOpen(!flyoutIsOpen)}>
-        Toggle a flyout
-      </EuiButton>
-      {flyoutIsOpen && (
-        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
-          <EuiCollapsibleNavBeta.Body>
-            Some other mock consumer flyout that <strong>should</strong> overlap
-            EuiCollapsibleNav
-          </EuiCollapsibleNavBeta.Body>
-        </EuiFlyout>
-      )}
-    </>
-  );
-};
-
-export const FlyoutInFixedHeaders: Story = {
-  render: ({ ...args }) => {
-    return (
-      <EuiHeader position="fixed">
-        <EuiHeaderSection>
-          <EuiCollapsibleNavBeta {...args}>Nav content</EuiCollapsibleNavBeta>
-        </EuiHeaderSection>
-        <EuiHeaderSection>
-          <EuiHeaderSectionItem>
-            <MockConsumerFlyout />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
-    );
-  },
-};
-
 export const CollapsedStateInLocalStorage: Story = {
   render: () => {
     const key = 'EuiCollapsibleNav__isCollapsed';
@@ -495,4 +448,68 @@ export const CollapsedStateInLocalStorage: Story = {
       </>
     );
   },
+  argTypes: hideStorybookControls(['aria-label', 'side', 'width']),
+};
+
+export const GlobalCSSVariable: Story = {
+  render: ({ side, ...args }) => (
+    <>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection side={side}>
+          <EuiCollapsibleNavBeta {...args} side={side}>
+            This story tests the global `--euiCollapsibleNavOffset` CSS variable
+          </EuiCollapsibleNavBeta>
+        </EuiHeaderSection>
+      </EuiHeader>
+      {/* In production, would just be `left="var(--euiCollapsibleNavOffset, 0)"` if the nav isn't changing sides */}
+      <EuiBottomBar {...{ [side!]: 'var(--euiCollapsibleNavOffset, 0)' }}>
+        This text should be visible at all times and the bar position should
+        update dynamically based on the nav width (including on mobile)
+      </EuiBottomBar>
+    </>
+  ),
+  argTypes: hideStorybookControls([
+    'aria-label',
+    'initialIsCollapsed',
+    'onCollapseToggle',
+  ]),
+};
+
+const MockConsumerFlyout: FunctionComponent = () => {
+  const [flyoutIsOpen, setFlyoutOpen] = useState(false);
+  return (
+    <>
+      <EuiButton size="s" onClick={() => setFlyoutOpen(!flyoutIsOpen)}>
+        Toggle flyout
+      </EuiButton>
+      {flyoutIsOpen && (
+        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
+          <EuiCollapsibleNavBeta.Body>
+            This flyout's mask should overlay / sit on top of the collapsible
+            nav, on both desktop and mobile
+          </EuiCollapsibleNavBeta.Body>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const FlyoutOverlay: Story = {
+  render: (_) => {
+    return (
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta>
+            Click the "Toggle flyout" button in the top right hand corner
+          </EuiCollapsibleNavBeta>
+        </EuiHeaderSection>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>
+            <MockConsumerFlyout />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    );
+  },
+  parameters: hideAllStorybookControls,
 };

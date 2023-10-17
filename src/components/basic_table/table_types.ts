@@ -12,7 +12,10 @@ import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
-import { EuiTableRowCellMobileOptionsShape } from '../table/table_row_cell';
+import {
+  EuiTableRowCellProps,
+  EuiTableRowCellMobileOptionsShape,
+} from '../table/table_row_cell';
 
 export type ItemId<T> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
@@ -68,9 +71,12 @@ export interface EuiTableFieldDataColumnType<T>
    */
   align?: HorizontalAlignment;
   /**
-   * Indicates whether this column should truncate its content when it doesn't fit
+   * Indicates whether this column should truncate overflowing text content.
+   * - Set to `true` to enable single-line truncation.
+   * - To enable multi-line truncation, use a configuration object with `lines`
+   * set to a number of lines to truncate to.
    */
-  truncateText?: boolean;
+  truncateText?: EuiTableRowCellProps['truncateText'];
   mobileOptions?: Omit<EuiTableRowCellMobileOptionsShape, 'render'> & {
     render?: (item: T) => ReactNode;
   };

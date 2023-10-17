@@ -337,8 +337,8 @@ if (!endMoment || !endMoment.isValid()) {
           The following is a demo pattern of how to layout the{' '}
           <strong>EuiSuperDatePicker</strong> alongside Elastic&apos;s KQL
           search bar using{' '}
-          <Link to="/forms/suggest">
-            <strong>EuiSuggest</strong>
+          <Link to="/forms/search-bar">
+            <strong>EuiSearchBar</strong>
           </Link>{' '}
           and shrinking to fit when the search bar is in focus.
         </p>

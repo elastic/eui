@@ -8,15 +8,15 @@
 
 import React, {
   CSSProperties,
-  Fragment,
   FunctionComponent,
   ReactElement,
   ReactNode,
   TdHTMLAttributes,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
+import { CommonProps } from '../common';
 import {
   HorizontalAlignment,
   LEFT_ALIGNMENT,
@@ -24,6 +24,8 @@ import {
   CENTER_ALIGNMENT,
   useIsWithinBreakpoints,
 } from '../../services';
+import { isObject } from '../../services/predicate';
+import { EuiTextBlockTruncate } from '../text_truncate';
 
 import { resolveWidthAsStyle } from './utils';
 
@@ -42,9 +44,12 @@ interface EuiTableRowCellSharedPropsShape {
    */
   textOnly?: boolean;
   /**
-   * Don't allow line breaks within cells
+   * Indicates whether this column should truncate overflowing text content.
+   * - Set to `true` to enable single-line truncation.
+   * - To enable multi-line truncation, use a configuration object with `lines`
+   * set to a number of lines to truncate to.
    */
-  truncateText?: boolean;
+  truncateText?: boolean | { lines: number };
   width?: CSSProperties['width'];
 }
 
@@ -138,7 +143,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
     'euiTableCellContent--showOnHover': showOnHover,
-    'euiTableCellContent--truncateText': truncateText,
+    'euiTableCellContent--truncateText': truncateText === true,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
     'euiTableCellContent--overflowingContent': textOnly !== true,
@@ -171,23 +176,33 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
 
-  function modifyChildren(children: ReactNode) {
-    let modifiedChildren = children;
+  const modifyChildren = useCallback(
+    (children: ReactNode) => {
+      let modifiedChildren = children;
 
-    if (textOnly === true) {
-      modifiedChildren = <span className={childClasses}>{children}</span>;
-    } else if (React.isValidElement(children)) {
-      modifiedChildren = React.Children.map(
-        children,
-        (child: ReactElement<CommonProps>) =>
-          React.cloneElement(child, {
-            className: classNames(child.props.className, childClasses),
-          })
-      );
-    }
+      if (textOnly === true) {
+        modifiedChildren = <span className={childClasses}>{children}</span>;
+      } else if (React.isValidElement(children)) {
+        modifiedChildren = React.Children.map(
+          children,
+          (child: ReactElement<CommonProps>) =>
+            React.cloneElement(child, {
+              className: classNames(child.props.className, childClasses),
+            })
+        );
+      }
+      if (isObject(truncateText) && truncateText.lines) {
+        modifiedChildren = (
+          <EuiTextBlockTruncate lines={truncateText.lines} cloneElement>
+            {modifiedChildren}
+          </EuiTextBlockTruncate>
+        );
+      }
 
-    return modifiedChildren;
-  }
+      return modifiedChildren;
+    },
+    [childClasses, textOnly, truncateText]
+  );
 
   const childrenNode = modifyChildren(children);
 
@@ -223,14 +238,14 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
         {/* Content depending on mobile render existing */}
         {mobileOptions.render ? (
-          <Fragment>
+          <>
             <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
               {modifyChildren(mobileOptions.render)}
             </div>
             <div className={`${contentClasses} ${hideForMobileClasses}`}>
               {childrenNode}
             </div>
-          </Fragment>
+          </>
         ) : (
           <div className={contentClasses}>{childrenNode}</div>
         )}

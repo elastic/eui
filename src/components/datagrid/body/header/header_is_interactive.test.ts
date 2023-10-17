@@ -6,8 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { act } from '@testing-library/react';
-import { testCustomHook } from '../../../../test/internal';
+import { renderHook, act } from '@testing-library/react';
 import { useHeaderIsInteractive } from './header_is_interactive';
 
 describe('useHeaderIsInteractive', () => {
@@ -22,9 +21,9 @@ describe('useHeaderIsInteractive', () => {
   describe('initial headerIsInteractive state', () => {
     it('returns false when there are no interactive children within the header', () => {
       const [mockGridEl] = createMockGrid();
-      const {
-        return: { headerIsInteractive },
-      } = testCustomHook(() => useHeaderIsInteractive(mockGridEl));
+      const { headerIsInteractive } = renderHook(() =>
+        useHeaderIsInteractive(mockGridEl)
+      ).result.current;
 
       expect(headerIsInteractive).toEqual(false);
     });
@@ -33,9 +32,9 @@ describe('useHeaderIsInteractive', () => {
       const [mockGridEl, mockHeaderEl] = createMockGrid();
       mockHeaderEl.appendChild(document.createElement('button')); // Interactive child
 
-      const {
-        return: { headerIsInteractive },
-      } = testCustomHook(() => useHeaderIsInteractive(mockGridEl));
+      const { headerIsInteractive } = renderHook(() =>
+        useHeaderIsInteractive(mockGridEl)
+      ).result.current;
 
       expect(headerIsInteractive).toEqual(true);
     });
@@ -49,15 +48,13 @@ describe('useHeaderIsInteractive', () => {
       mockTarget.setAttribute('data-euigrid-tab-managed', 'true');
       mockHeaderEl.appendChild(mockCell);
 
-      const {
-        return: { headerIsInteractive, handleHeaderMutation },
-        getUpdatedState,
-      } = testCustomHook(() => useHeaderIsInteractive(null));
-      expect(headerIsInteractive).toEqual(false);
+      const { result } = renderHook(() => useHeaderIsInteractive(null));
+      expect(result.current.headerIsInteractive).toEqual(false);
 
-      act(() => handleHeaderMutation([{ target: mockTarget }]));
+      // @ts-ignore matching production types/data isn't necessary for this test
+      act(() => result.current.handleHeaderMutation([{ target: mockTarget }]));
 
-      expect(getUpdatedState().headerIsInteractive).toEqual(true);
+      expect(result.current.headerIsInteractive).toEqual(true);
     });
   });
 });

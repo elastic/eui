@@ -9,6 +9,8 @@
 import React, {
   useEffect,
   useRef,
+  useMemo,
+  useCallback,
   useState,
   forwardRef,
   ComponentPropsWithRef,
@@ -131,6 +133,11 @@ interface _EuiFlyoutProps {
    * @default l
    */
   pushMinBreakpoint?: EuiBreakpointSize;
+  /**
+   * Enables a slide in animation on push flyouts
+   * @default false
+   */
+  pushAnimation?: boolean;
   style?: CSSProperties;
   /**
    * Object of props passed to EuiFocusTrap.
@@ -181,7 +188,8 @@ export const EuiFlyout = forwardRef(
       type = 'overlay',
       outsideClickCloses,
       pushMinBreakpoint = 'l',
-      focusTrapProps: _focusTrapProps = {},
+      pushAnimation = false,
+      focusTrapProps: _focusTrapProps,
       includeFixedHeadersInFocusTrap = true,
       'aria-describedby': _ariaDescribedBy,
       ...rest
@@ -216,20 +224,18 @@ export const EuiFlyout = forwardRef(
       /**
        * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
        */
-      if (type === 'push') {
-        if (isPushed) {
-          if (side === 'right') {
-            document.body.style.paddingRight = `${dimensions.width}px`;
-          } else if (side === 'left') {
-            document.body.style.paddingLeft = `${dimensions.width}px`;
-          }
+      if (isPushed) {
+        if (side === 'right') {
+          document.body.style.paddingRight = `${dimensions.width}px`;
+        } else if (side === 'left') {
+          document.body.style.paddingLeft = `${dimensions.width}px`;
         }
       }
 
       return () => {
         document.body.classList.remove('euiBody--hasFlyout');
 
-        if (type === 'push') {
+        if (isPushed) {
           if (side === 'right') {
             document.body.style.paddingRight = '';
           } else if (side === 'left') {
@@ -237,28 +243,36 @@ export const EuiFlyout = forwardRef(
           }
         }
       };
-    }, [type, side, dimensions, isPushed]);
+    }, [side, dimensions, isPushed]);
 
     /**
      * ESC key closes flyout (always?)
      */
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (!isPushed && event.key === keys.ESCAPE) {
-        event.preventDefault();
-        onClose(event);
-      }
-    };
+    const onKeyDown = useCallback(
+      (event: KeyboardEvent) => {
+        if (!isPushed && event.key === keys.ESCAPE) {
+          event.preventDefault();
+          onClose(event);
+        }
+      },
+      [onClose, isPushed]
+    );
 
     /**
      * Set inline styles
      */
-    let newStyle = style;
-    if (typeof maxWidth !== 'boolean') {
-      newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
-    }
-    if (!isEuiFlyoutSizeNamed(size)) {
-      newStyle = { ...newStyle, ...logicalStyle('width', size) };
-    }
+    const inlineStyles = useMemo(() => {
+      const widthStyle =
+        !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
+      const maxWidthStyle =
+        typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
+
+      return {
+        ...style,
+        ...widthStyle,
+        ...maxWidthStyle,
+      };
+    }, [style, maxWidth, size]);
 
     const euiTheme = useEuiTheme();
     const styles = euiFlyoutStyles(euiTheme);
@@ -268,15 +282,17 @@ export const EuiFlyout = forwardRef(
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
       maxWidth === false && styles.noMaxWidth,
-      styles[type],
-      type === 'push' && styles.pushSide[side],
+      isPushed ? styles.push.push : styles.overlay,
+      isPushed && styles.push[side],
+      isPushed && !pushAnimation && styles.push.noAnimation,
       styles[side],
     ];
 
     const classes = classnames('euiFlyout', className);
 
-    let closeButton;
-    if (onClose && !hideCloseButton) {
+    const closeButton = useMemo(() => {
+      if (hideCloseButton || !onClose) return null;
+
       const closeButtonClasses = classnames(
         'euiFlyout__closeButton',
         closeButtonProps?.className
@@ -291,7 +307,7 @@ export const EuiFlyout = forwardRef(
         closeButtonProps?.css,
       ];
 
-      closeButton = (
+      return (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
@@ -311,7 +327,14 @@ export const EuiFlyout = forwardRef(
           )}
         </EuiI18n>
       );
-    }
+    }, [
+      onClose,
+      hideCloseButton,
+      closeButtonPosition,
+      closeButtonProps,
+      side,
+      euiTheme,
+    ]);
 
     /*
      * If not disabled, automatically add fixed EuiHeaders as shards
@@ -340,10 +363,13 @@ export const EuiFlyout = forwardRef(
       }
     }, [includeFixedHeadersInFocusTrap, resizeRef]);
 
-    const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
-      ..._focusTrapProps,
-      shards: [...fixedHeaders, ...(_focusTrapProps.shards || [])],
-    };
+    const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
+      () => ({
+        ..._focusTrapProps,
+        shards: [...fixedHeaders, ...(_focusTrapProps?.shards || [])],
+      }),
+      [fixedHeaders, _focusTrapProps]
+    );
 
     /*
      * Provide meaningful screen reader instructions/details
@@ -388,19 +414,22 @@ export const EuiFlyout = forwardRef(
      * or if `outsideClickCloses={true}` to close on clicks that target
      * (both mousedown and mouseup) the overlay mask.
      */
-    const onClickOutside = (event: MouseEvent | TouchEvent) => {
-      // Do not close the flyout for any external click
-      if (outsideClickCloses === false) return undefined;
-      if (hasOverlayMask) {
-        // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
-        if (event.target === maskRef.current) return onClose(event);
-      } else {
-        // No overlay mask is present, so any outside clicks should close the flyout
-        if (outsideClickCloses === true) return onClose(event);
-      }
-      // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
-      return undefined;
-    };
+    const onClickOutside = useCallback(
+      (event: MouseEvent | TouchEvent) => {
+        // Do not close the flyout for any external click
+        if (outsideClickCloses === false) return undefined;
+        if (hasOverlayMask) {
+          // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
+          if (event.target === maskRef.current) return onClose(event);
+        } else {
+          // No overlay mask is present, so any outside clicks should close the flyout
+          if (outsideClickCloses === true) return onClose(event);
+        }
+        // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
+        return undefined;
+      },
+      [onClose, hasOverlayMask, outsideClickCloses]
+    );
 
     let flyout = (
       <EuiFocusTrap
@@ -413,7 +442,7 @@ export const EuiFlyout = forwardRef(
         <Element
           className={classes}
           css={cssStyles}
-          style={newStyle}
+          style={inlineStyles}
           ref={setRef}
           {...(rest as ComponentPropsWithRef<T>)}
           role={!isPushed ? 'dialog' : rest.role}

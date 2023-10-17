@@ -209,7 +209,7 @@ export const ElasticChartsAccessibilityExample = {
 </Chart>`,
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: SunburstSource,
         },
       ],
@@ -283,7 +283,7 @@ export const ElasticChartsAccessibilityExample = {
       demo: <TextureMultiSeriesChart />,
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: TextureMultiSeriesChartSource,
         },
       ],
@@ -327,7 +327,7 @@ export const ElasticChartsAccessibilityExample = {
       demo: <AccessibilityBullet />,
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: BulletChartSource,
         },
       ],

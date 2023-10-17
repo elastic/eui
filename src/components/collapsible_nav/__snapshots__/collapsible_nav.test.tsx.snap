@@ -273,7 +273,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
       style="inline-size: 320px;"
     />
@@ -353,7 +353,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNav-push"
       id="id"
       style="inline-size: 320px;"
     />

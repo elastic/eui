@@ -14,17 +14,17 @@ import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
 const meta: Meta<_EuiSplitPanelOuterProps> = {
   title: 'EuiSplitPanel',
   component: EuiSplitPanel.Outer,
+  args: {
+    // Component defaults
+    direction: 'column',
+    responsive: ['xs', 's'],
+  },
 };
 
 export default meta;
 type Story = StoryObj<_EuiSplitPanelOuterProps>;
 
 export const SplitPanelOuter: Story = {
-  args: {
-    // Default props
-    direction: 'column',
-    responsive: ['xs', 's'],
-  },
   render: ({ ...args }) => (
     <EuiSplitPanel.Outer {...args}>
       <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>

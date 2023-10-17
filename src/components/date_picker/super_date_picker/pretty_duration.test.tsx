@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import { testCustomHook } from '../../../test/internal';
+import { render, renderHook } from '../../../test/rtl';
 
 import {
   usePrettyDuration,
@@ -30,9 +29,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-15m';
     const timeTo = 'now';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('quick range 15 minutes custom display');
   });
 
@@ -40,9 +39,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-16m';
     const timeTo = 'now';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('Last 16 minutes');
   });
 
@@ -50,9 +49,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-1M/w';
     const timeTo = 'now';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('Last 1 month rounded to the week');
   });
 
@@ -60,9 +59,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now';
     const timeTo = 'now+16m';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('Next 16 minutes');
   });
 
@@ -70,16 +69,16 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-17m';
     const timeTo = 'now-15m';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('~ 17 minutes ago to ~ 15 minutes ago');
   });
 });
 
 describe('PrettyDuration', () => {
   it('renders the returned string from usePrettyDuration', () => {
-    const component = shallow(
+    const { container } = render(
       <PrettyDuration
         timeFrom="now"
         timeTo="now+15m"
@@ -87,11 +86,7 @@ describe('PrettyDuration', () => {
         dateFormat={dateFormat}
       />
     );
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        Next 15 minutes
-      </Fragment>
-    `);
+    expect(container.firstChild).toMatchInlineSnapshot(`Next 15 minutes`);
   });
 });
 

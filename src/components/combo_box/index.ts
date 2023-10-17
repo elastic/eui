@@ -12,6 +12,5 @@ export * from './combo_box_input';
 export * from './combo_box_options_list';
 export type {
   EuiComboBoxOptionOption,
-  EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
 } from './types';
