@@ -108,6 +108,7 @@ export default () => {
     { value: 'accent', text: 'accent' },
     { value: 'primary', text: 'primary' },
     { value: 'success', text: 'success' },
+    { value: undefined, text: 'undefined' },
   ];
   const [toggleIdSelected, setToggleIdSelected] = useState('regular');
   const [color, setColor] = useState(colors[0].value);
@@ -124,7 +125,12 @@ export default () => {
   };
 
   const onChangeSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setColor(e.target.value as EuiCommentEventProps['eventColor']);
+    const color = e.target.value;
+    setColor(
+      color && color !== 'undefined'
+        ? (color as EuiCommentEventProps['eventColor'])
+        : undefined
+    );
   };
 
   return (
