@@ -1,8 +1,6 @@
-# Derived from the zenato/puppeteer Docker image
-# https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
-
 # >=12.0 required (for cypress). v18 is LTS.
-FROM --platform=linux/amd64 node:18.18.1-slim
+# Image is based on Debian 12 (Bookworm)
+FROM --platform=linux/amd64 node:18.18.2-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
