@@ -1,0 +1,15 @@
+services:
+  base:
+    build:
+      dockerfile: Dockerfile.deps
+    volumes:
+      - /node_modules
+
+  app:
+    build:
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes_from:
+      - "base"
+    depends_on:
+      - "base"
