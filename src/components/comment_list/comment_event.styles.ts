@@ -9,49 +9,35 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, tintOrShade } from '../../services';
 import { logicalCSS } from '../../global_styling';
-import { EuiCommentEventProps } from './comment_event';
 
-const _generateEventBorderColor = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  color: EuiCommentEventProps['eventColor']
-) => {
+export const euiCommentEventBorderColors = ({
+  euiTheme,
+  colorMode,
+}: UseEuiTheme) => {
   const ratio = 0.6;
-  switch (color) {
-    case 'accent':
-      return `1px solid ${tintOrShade(
-        euiTheme.colors.accent,
-        ratio,
-        colorMode
-      )}`;
-    case 'danger':
-      return `1px solid ${tintOrShade(
-        euiTheme.colors.danger,
-        ratio,
-        colorMode
-      )}`;
-    case 'primary':
-      return `1px solid ${tintOrShade(
-        euiTheme.colors.primary,
-        ratio,
-        colorMode
-      )}`;
-    case 'success':
-      return `1px solid ${tintOrShade(
-        euiTheme.colors.success,
-        ratio,
-        colorMode
-      )}`;
-    case 'warning':
-      return `1px solid ${tintOrShade(
-        euiTheme.colors.warning,
-        0.4,
-        colorMode
-      )}`;
-    case 'subdued':
-      return euiTheme.border.thin;
-    default:
-      return;
-  }
+  return {
+    warning: css`
+      border-color: ${tintOrShade(euiTheme.colors.warning, 0.4, colorMode)};
+    `,
+    accent: css`
+      border-color: ${tintOrShade(euiTheme.colors.accent, ratio, colorMode)};
+    `,
+    primary: css`
+      border-color: ${tintOrShade(euiTheme.colors.primary, ratio, colorMode)};
+    `,
+    success: css`
+      border-color: ${tintOrShade(euiTheme.colors.success, ratio, colorMode)};
+    `,
+    danger: css`
+      border-color: ${tintOrShade(euiTheme.colors.danger, ratio, colorMode)};
+    `,
+    subdued: css`
+      border-color: ${euiTheme.border.color};
+    `,
+    transparent: css`
+      border-color: ${euiTheme.border.color};
+    `,
+  };
 };
 
 export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
@@ -60,35 +46,11 @@ export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
     euiCommentEvent: css`
       overflow: hidden;
     `,
-    // types
-    regular: css`
-      border: ${euiTheme.border.thin};
+    border: css`
+      border-width: ${euiTheme.border.width.thin};
+      border-style: solid;
       border-radius: ${euiTheme.border.radius.medium};
     `,
-    update: css``,
-    custom: css``,
-    // variants
-    border: {
-      warning: css`
-        border: ${_generateEventBorderColor(euiThemeContext, 'warning')};
-      `,
-      accent: css`
-        border: ${_generateEventBorderColor(euiThemeContext, 'accent')};
-      `,
-      primary: css`
-        border: ${_generateEventBorderColor(euiThemeContext, 'primary')};
-      `,
-      success: css`
-        border: ${_generateEventBorderColor(euiThemeContext, 'success')};
-      `,
-      danger: css`
-        border: ${_generateEventBorderColor(euiThemeContext, 'danger')};
-      `,
-      subdued: css`
-        border: ${_generateEventBorderColor(euiThemeContext, 'subdued')};
-      `,
-      transparent: css``,
-    },
   };
 };
 
@@ -97,54 +59,16 @@ export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCommentEvent__header: css``,
-    // types
     regular: css`
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
       padding: ${euiTheme.size.s};
     `,
-    // variants
     hasEventColor: css`
       padding: 0;
     `,
-    border: {
-      warning: css`
-        ${logicalCSS(
-          'border-bottom',
-          _generateEventBorderColor(euiThemeContext, 'warning')
-        )}
-      `,
-      accent: css`
-        ${logicalCSS(
-          'border-bottom',
-          _generateEventBorderColor(euiThemeContext, 'accent')
-        )}
-      `,
-      primary: css`
-        ${logicalCSS(
-          'border-bottom',
-          _generateEventBorderColor(euiThemeContext, 'primary')
-        )}
-      `,
-      success: css`
-        ${logicalCSS(
-          'border-bottom',
-          _generateEventBorderColor(euiThemeContext, 'success')
-        )}
-      `,
-      danger: css`
-        ${logicalCSS(
-          'border-bottom',
-          _generateEventBorderColor(euiThemeContext, 'danger')
-        )}
-      `,
-      subdued: css`
-        ${logicalCSS(
-          'border-bottom',
-          _generateEventBorderColor(euiThemeContext, 'subdued')
-        )}
-      `,
-      transparent: css``,
-    },
+    border: css`
+      ${logicalCSS('border-bottom-style', 'solid')}
+      ${logicalCSS('border-bottom-width', euiTheme.border.width.thin)}
+    `,
     // Children
     euiCommentEvent__headerMain: css`
       display: flex;

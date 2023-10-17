@@ -15,6 +15,7 @@ import { IconType } from '../icon';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiAvatar } from '../avatar';
 import {
+  euiCommentEventBorderColors,
   euiCommentEventStyles,
   euiCommentEventHeaderStyles,
   euiCommentEventBodyStyles,
@@ -88,29 +89,28 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     type = 'custom';
   }
 
-  const showEventBorders = isTypeRegular && eventColor;
+  if (isTypeRegular && !eventColor) {
+    eventColor = 'subdued';
+  }
+  const showEventBorders = isTypeRegular;
 
   const euiTheme = useEuiTheme();
+  const borderStyles = euiCommentEventBorderColors(euiTheme);
 
   const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [
     styles.euiCommentEvent,
-    styles[type],
-    showEventBorders &&
-      (eventColor !== undefined ? styles.border[eventColor] : false),
+    showEventBorders && styles.border,
+    showEventBorders && borderStyles[eventColor!],
   ];
-
-  if (isTypeRegular && !eventColor) {
-    eventColor = 'subdued';
-  }
 
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
   const eventBackgroundColors = useEuiBackgroundColorCSS();
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
     isTypeRegular && headerStyles.regular,
-    showEventBorders &&
-      (eventColor !== undefined ? headerStyles.border[eventColor] : false),
+    showEventBorders && headerStyles.border,
+    showEventBorders && borderStyles[eventColor!],
     eventColor &&
       eventBackgroundColors[eventColor] &&
       headerStyles.hasEventColor,
