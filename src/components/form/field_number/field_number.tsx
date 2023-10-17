@@ -107,7 +107,6 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     readOnly,
     controlOnly,
     onKeyUp,
-    onBlur,
     ...rest
   } = props;
 
@@ -128,13 +127,12 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     setIsNativelyInvalid(isInvalid);
   }, []);
 
-  // Ensure controlled `value/onChange` fields are checked for native validity
+  // Re-check validity whenever props that might affect validity are updated
   useEffect(() => {
-    const isControlledValue = value != null;
-    if (isControlledValue && _inputRef.current) {
+    if (_inputRef.current) {
       checkNativeValidity(_inputRef.current);
     }
-  }, [value, checkNativeValidity]);
+  }, [value, min, max, step, checkNativeValidity]);
 
   const numIconsClass = controlOnly
     ? false
@@ -170,11 +168,6 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
           // Note that we can't use `onChange` because browsers don't emit change events
           // for invalid text - see https://github.com/facebook/react/issues/16554
           onKeyUp?.(e);
-          checkNativeValidity(e.currentTarget);
-        }}
-        onBlur={(e) => {
-          // Browsers can also set/determine validity (e.g. when `step` is undefined) on focus blur
-          onBlur?.(e);
           checkNativeValidity(e.currentTarget);
         }}
         {...rest}
