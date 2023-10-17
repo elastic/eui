@@ -2,6 +2,8 @@
 # Image is based on Debian 12 (Bookworm)
 FROM --platform=linux/amd64 node:18.18.2-slim
 
+WORKDIR /app
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # See https://crbug.com/795759
