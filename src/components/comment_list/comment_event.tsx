@@ -6,14 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
-import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
-import { useEuiBackgroundColorCSS } from '../../global_styling';
+import React, { FunctionComponent, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
+
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
 import { IconType } from '../icon';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiAvatar } from '../avatar';
+
 import {
   euiCommentEventBorderColors,
   euiCommentEventStyles,
@@ -71,6 +72,9 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 }) => {
   const classes = classNames('euiCommentEvent', className);
 
+  /**
+   * Branching logic
+   */
   // the username is required so we only check if other elements are define
   const hasEventElements = eventIcon || timestamp || event || actions;
 
@@ -92,8 +96,27 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   if (isTypeRegular && !eventColor) {
     eventColor = 'subdued';
   }
+  if (isTypeUpdate && !eventColor) {
+    eventColor = 'transparent';
+  }
   const showEventBorders = isTypeRegular;
 
+  const panelProps: EuiPanelProps = useMemo(
+    () => ({
+      color: type === 'custom' ? 'transparent' : eventColor,
+      paddingSize: type === 'custom' ? 'none' : 's',
+      borderRadius: type === 'regular' ? 'none' : 'm',
+    }),
+    [type, eventColor]
+  );
+
+  const isFigure = isTypeRegular;
+  const Element = isFigure ? 'figure' : 'div';
+  const HeaderElement = isFigure ? 'figcaption' : 'div';
+
+  /**
+   * Styles
+   */
   const euiTheme = useEuiTheme();
   const borderStyles = euiCommentEventBorderColors(euiTheme);
 
@@ -105,28 +128,14 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   ];
 
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
-  const eventBackgroundColors = useEuiBackgroundColorCSS();
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
-    isTypeRegular && headerStyles.regular,
     showEventBorders && headerStyles.border,
     showEventBorders && borderStyles[eventColor!],
-    eventColor &&
-      eventBackgroundColors[eventColor] &&
-      headerStyles.hasEventColor,
   ];
 
   const bodyStyles = euiCommentEventBodyStyles(euiTheme);
   const cssBodyStyles = [bodyStyles.euiCommentEvent__body, bodyStyles[type]];
-
-  const isFigure = isTypeRegular;
-
-  const Element = isFigure ? 'figure' : 'div';
-  const HeaderElement = isFigure ? 'figcaption' : 'div';
-
-  const panelProps = eventColor
-    ? { color: eventColor, paddingSize: 's' }
-    : { color: 'transparent', paddingSize: 'none' };
 
   return (
     <Element className={classes} css={cssStyles} data-type={type}>
@@ -135,10 +144,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
           className="euiCommentEvent__header"
           css={cssHeaderStyles}
         >
-          <EuiPanel
-            borderRadius={isTypeRegular ? 'none' : 'm'}
-            {...(panelProps as EuiPanelProps)}
-          >
+          <EuiPanel {...panelProps}>
             <div
               className="euiCommentEvent__headerMain"
               css={headerStyles.euiCommentEvent__headerMain}

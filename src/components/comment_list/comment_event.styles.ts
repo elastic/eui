@@ -59,12 +59,6 @@ export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCommentEvent__header: css``,
-    regular: css`
-      padding: ${euiTheme.size.s};
-    `,
-    hasEventColor: css`
-      padding: 0;
-    `,
     border: css`
       ${logicalCSS('border-bottom-style', 'solid')}
       ${logicalCSS('border-bottom-width', euiTheme.border.width.thin)}
