@@ -103,7 +103,7 @@ export default () => {
       aria-label="Copy alert link"
       iconType="link"
       size="xs"
-      color="text"
+      color="danger"
     />,
     <EuiButtonIcon
       key="show-details"
@@ -111,7 +111,7 @@ export default () => {
       aria-label="Show details"
       iconType="popout"
       size="xs"
-      color="text"
+      color="danger"
       onClick={toggleFlyout}
     />,
   ];

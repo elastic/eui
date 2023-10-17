@@ -5,6 +5,7 @@ import {
   EuiComment,
   EuiButtonGroup,
   EuiButtonIcon,
+  EuiButtonIconProps,
   EuiText,
   EuiBadge,
   EuiFlexGroup,
@@ -26,11 +27,11 @@ const body = (
   </EuiText>
 );
 
-const copyAction = (
+const CopyAction = ({ color = 'text' }: Pick<EuiButtonIconProps, 'color'>) => (
   <EuiButtonIcon
     title="Custom action"
     aria-label="Custom action"
-    color="text"
+    color={color}
     iconType="copy"
   />
 );
@@ -42,7 +43,7 @@ const eventWithMultipleTags = (
       <EuiBadge>case</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge>phising</EuiBadge>
+      <EuiBadge>phishing</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge>security</EuiBadge>
@@ -57,7 +58,6 @@ const commentsData: EuiCommentListProps['comments'] = [
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
-    actions: copyAction,
   },
   {
     username: 'luisg',
@@ -66,7 +66,6 @@ const commentsData: EuiCommentListProps['comments'] = [
     timestamp: '22 hours ago',
     eventIcon: 'tag',
     eventIconAriaLabel: 'tag',
-    actions: copyAction,
   },
   {
     username: 'pancho1',
@@ -169,7 +168,21 @@ export default () => {
       </EuiFlexGroup>
       <EuiSpacer />
       <EuiCommentList>
-        <EuiComment {...comment} eventColor={color} />
+        <EuiComment
+          {...comment}
+          eventColor={color}
+          actions={
+            toggleIdSelected !== 'custom' && (
+              <CopyAction
+                color={
+                  color !== 'transparent' && color !== 'subdued'
+                    ? color
+                    : 'text'
+                }
+              />
+            )
+          }
+        />
       </EuiCommentList>
     </>
   );
