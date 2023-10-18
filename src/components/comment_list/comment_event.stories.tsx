@@ -34,17 +34,23 @@ const meta: Meta<EuiCommentEventProps> = {
       control: { type: 'radio' },
       defaultValue: undefined,
     },
+    actions: {
+      control: 'radio',
+      options: ['Example action', 'No actions'],
+      mapping: {
+        'Example action': (
+          <EuiButtonIcon
+            title="Custom action"
+            aria-label="Custom action"
+            color="text"
+            iconType="copy"
+          />
+        ),
+        'No actions': null,
+      },
+    },
   },
 };
-
-const exampleAction = (
-  <EuiButtonIcon
-    title="Custom action"
-    aria-label="Custom action"
-    color="text"
-    iconType="copy"
-  />
-);
 
 export default meta;
 type Story = StoryObj<EuiCommentEventProps>;
@@ -55,7 +61,7 @@ export const Regular: Story = {
     eventIcon: 'faceHappy',
     eventIconAriaLabel: 'Happy face comment icon',
     timestamp: 'on Jan 1, 2020',
-    actions: exampleAction,
+    actions: 'Example action',
     children:
       'Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.',
   },
@@ -67,12 +73,13 @@ export const Update: Story = {
     eventIcon: 'faceHappy',
     eventIconAriaLabel: 'Happy face comment icon',
     timestamp: 'on Jan 1, 2020',
-    actions: exampleAction,
+    actions: 'Example action',
   },
 };
 
 export const Custom: Story = {
   args: {
+    actions: 'No actions',
     children:
       'No header or wrapper should appear if no event, icon, timestamp, or actions are passed',
   },
