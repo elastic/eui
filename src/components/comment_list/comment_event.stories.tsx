@@ -8,7 +8,6 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
 
 import { EuiButtonIcon } from '../button';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
@@ -37,46 +36,37 @@ const meta: Meta<EuiCommentEventProps> = {
   },
 };
 
-const useRenderWithColorAwareAction = (args: EuiCommentEventProps) => {
-  const [{ eventColor }] = useArgs();
-  const buttonColor =
-    eventColor && eventColor !== 'subdued' && eventColor !== 'transparent'
-      ? eventColor
-      : 'text';
-
-  const button = (
-    <EuiButtonIcon
-      title="Custom action"
-      aria-label="Custom action"
-      color={buttonColor}
-      iconType="copy"
-    />
-  );
-  return <EuiCommentEvent {...args} actions={args.actions || button} />;
-};
+const exampleAction = (
+  <EuiButtonIcon
+    title="Custom action"
+    aria-label="Custom action"
+    color="text"
+    iconType="copy"
+  />
+);
 
 export default meta;
 type Story = StoryObj<EuiCommentEventProps>;
 
 export const Regular: Story = {
-  render: useRenderWithColorAwareAction,
   args: {
     event: 'added a comment',
     eventIcon: 'faceHappy',
     eventIconAriaLabel: 'Happy face comment icon',
     timestamp: 'on Jan 1, 2020',
+    actions: exampleAction,
     children:
       'Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun.',
   },
 };
 
 export const Update: Story = {
-  render: useRenderWithColorAwareAction,
   args: {
     event: 'added a comment',
     eventIcon: 'faceHappy',
     eventIconAriaLabel: 'Happy face comment icon',
     timestamp: 'on Jan 1, 2020',
+    actions: exampleAction,
   },
 };
 
