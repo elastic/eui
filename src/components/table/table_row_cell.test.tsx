@@ -78,15 +78,32 @@ describe('textOnly', () => {
 });
 
 describe('truncateText', () => {
-  test('defaults to false', () => {
+  it('defaults to false', () => {
     const { container } = render(<EuiTableRowCell />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('is rendered when specified', () => {
+  it('renders true', () => {
     const { container } = render(<EuiTableRowCell truncateText={true} />);
 
+    expect(
+      container.querySelector('.euiTableCellContent--truncateText')
+    ).toBeInTheDocument();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('renders lines configuration', () => {
+    const { container } = render(
+      <EuiTableRowCell truncateText={{ lines: 2 }} />
+    );
+
+    expect(
+      container.querySelector('.euiTableCellContent--truncateText')
+    ).not.toBeInTheDocument();
+    expect(container.querySelector('.euiTableCellContent__text')).toHaveClass(
+      'euiTextBlockTruncate'
+    );
     expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -50,6 +50,7 @@ steps:
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
+      - "cypress/videos/**/*.mp4"
   
   - command: .buildkite/scripts/pipeline_test.sh
     label: ":cypress: Cypress tests on React 17"
@@ -60,6 +61,7 @@ steps:
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
+      - "cypress/videos/**/*.mp4"
   
   - command: .buildkite/scripts/pipeline_test.sh
     label: ":cypress: Cypress tests on React 18"
@@ -70,3 +72,4 @@ steps:
     if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
+      - "cypress/videos/**/*.mp4"

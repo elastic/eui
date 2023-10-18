@@ -31,7 +31,7 @@ describe('EuiOverlayMask', () => {
     );
 
     expect(baseElement.querySelector('.euiOverlayMask')!.className).toContain(
-      'euiColorMode-inverse-colorClassName'
+      'euiColorMode-inverse'
     );
   });
 

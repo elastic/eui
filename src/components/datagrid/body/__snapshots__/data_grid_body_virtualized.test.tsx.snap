@@ -135,27 +135,23 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__expandFlex"
+        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
       >
         <div
-          class="euiDataGridRowCell__expandContent"
+          class="euiDataGridRowCell__content eui-textTruncate"
+          data-datagrid-cellcontent="true"
         >
-          <div
-            class="euiDataGridRowCell__truncate"
-            data-datagrid-cellcontent="true"
-          >
-            <span>
-              cell content
-            </span>
-          </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            columnA, column 1, row 1
-          </p>
+          <span>
+            cell content
+          </span>
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          hidden=""
+        >
+          - 
+          columnA, column 1, row 1
+        </p>
       </div>
     </div>
     <div
@@ -171,27 +167,23 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__expandFlex"
+        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
       >
         <div
-          class="euiDataGridRowCell__expandContent"
+          class="euiDataGridRowCell__content eui-textTruncate"
+          data-datagrid-cellcontent="true"
         >
-          <div
-            class="euiDataGridRowCell__truncate"
-            data-datagrid-cellcontent="true"
-          >
-            <span>
-              cell content
-            </span>
-          </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            columnB, column 2, row 1
-          </p>
+          <span>
+            cell content
+          </span>
         </div>
+        <p
+          class="emotion-euiScreenReaderOnly"
+          hidden=""
+        >
+          - 
+          columnB, column 2, row 1
+        </p>
       </div>
     </div>
   </div>

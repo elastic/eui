@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 
 import { TITLE_SIZES } from './title';
 import { useEuiTitle } from './title.styles';
@@ -16,7 +16,7 @@ describe('euiTitle mixin', () => {
     TITLE_SIZES.forEach((size) => {
       it(size, () => {
         expect(
-          testCustomHook(() => useEuiTitle(size)).return
+          renderHook(() => useEuiTitle(size)).result.current
         ).toMatchSnapshot();
       });
     });

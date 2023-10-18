@@ -146,7 +146,7 @@ export const ElasticChartsPieExample = {
       title: 'Pie and donut charts',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: pieSource,
         },
       ],
@@ -217,7 +217,7 @@ const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIG
       {
         groupByRollup: d => d.category,
         shape: {
-          fillColor: d => euiChartTheme.theme.colors.vizColors[d.sortIndex],
+          fillColor: (key, sortIndex) => euiChartTheme.theme.colors.vizColors[sortIndex],
         },
       },
     ]}
@@ -270,7 +270,7 @@ const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIG
       title: 'Sunbursts and treemaps',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: treemapsSource,
         },
       ],

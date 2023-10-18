@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import {
   BACKGROUND_COLORS,
   useEuiBackgroundColor,
@@ -18,16 +18,16 @@ describe('useEuiBackgroundColor mixin returns a calculated background version', 
     BACKGROUND_COLORS.forEach((color) => {
       it(color, () => {
         expect(
-          testCustomHook(() => useEuiBackgroundColor(color)).return
+          renderHook(() => useEuiBackgroundColor(color)).result.current
         ).toMatchSnapshot();
       });
 
       describe('as transparent', () => {
         it(color, () => {
           expect(
-            testCustomHook(() =>
+            renderHook(() =>
               useEuiBackgroundColor(color, { method: 'transparent' })
-            ).return
+            ).result.current
           ).toMatchSnapshot();
         });
       });
@@ -36,7 +36,7 @@ describe('useEuiBackgroundColor mixin returns a calculated background version', 
 });
 
 describe('useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties', () => {
-  const colors = testCustomHook(useEuiBackgroundColorCSS).return as any;
+  const colors = renderHook(useEuiBackgroundColorCSS).result.current as any;
 
   describe('for each color:', () => {
     Object.entries(colors).map(([color, cssObj]) => {

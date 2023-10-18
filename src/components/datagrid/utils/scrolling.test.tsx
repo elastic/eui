@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { testCustomHook } from '../../../test/internal';
-import { render } from '../../../test/rtl';
+import { render, renderHook } from '../../../test/rtl';
 import { useScrollCellIntoView, useScrollBars } from './scrolling';
 
 // see scrolling.spec.tsx for E2E useScroll tests
@@ -53,37 +52,35 @@ describe('useScrollCellIntoView', () => {
   });
 
   it('does nothing if the grid references are unavailable', () => {
-    const {
-      return: { scrollCellIntoView },
-    } = testCustomHook(() =>
+    const { scrollCellIntoView } = renderHook(() =>
       useScrollCellIntoView({
         ...args,
         gridRef: { current: null },
         outerGridRef: { current: null },
       })
-    );
+    ).result.current;
+
     scrollCellIntoView({ rowIndex: 0, colIndex: 0 });
     expect(scrollTo).not.toHaveBeenCalled();
   });
 
   it('does nothing if the grid does not scroll', () => {
-    const {
-      return: { scrollCellIntoView },
-    } = testCustomHook(() =>
+    const { scrollCellIntoView } = renderHook(() =>
       useScrollCellIntoView({
         ...args,
         hasGridScrolling: false,
       })
-    );
+    ).result.current;
+
     scrollCellIntoView({ rowIndex: 0, colIndex: 0 });
     expect(scrollTo).not.toHaveBeenCalled();
   });
 
   it('calls scrollToItem if the specified cell is not virtualized', async () => {
     getCell.mockReturnValue(null);
-    const {
-      return: { scrollCellIntoView },
-    } = testCustomHook(() => useScrollCellIntoView(args));
+    const { scrollCellIntoView } = renderHook(() => useScrollCellIntoView(args))
+      .result.current;
+
     await scrollCellIntoView({ rowIndex: 20, colIndex: 5 });
     expect(scrollToItem).toHaveBeenCalledWith({ columnIndex: 5, rowIndex: 20 });
   });
@@ -94,11 +91,10 @@ describe('useScrollCellIntoView', () => {
       parentNode: { offsetTop: 50 },
       offsetLeft: 50,
     });
-    const {
-      return: { scrollCellIntoView },
-    } = testCustomHook(() => useScrollCellIntoView(args));
-    scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
+    const { scrollCellIntoView } = renderHook(() => useScrollCellIntoView(args))
+      .result.current;
 
+    scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
     expect(scrollToItem).not.toHaveBeenCalled();
     expect(scrollTo).not.toHaveBeenCalled();
   });
@@ -116,16 +112,14 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
-      scrollCellIntoView({ rowIndex: 1, colIndex: 5 });
+      ).result.current;
 
+      scrollCellIntoView({ rowIndex: 1, colIndex: 5 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 50, scrollTop: 0 });
     });
   });
@@ -142,16 +136,14 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
-      scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
+      ).result.current;
 
+      scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 0, scrollTop: 0 });
     });
 
@@ -167,16 +159,14 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
-      scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
+      ).result.current;
 
+      scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 50, scrollTop: 0 });
     });
   });
@@ -194,60 +184,56 @@ describe('useScrollCellIntoView', () => {
 
     it('scrolls the grid down if the bottom side of the cell is out of view', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: 5, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 50, scrollLeft: 0 });
     });
 
     it('accounts for the sticky bottom footer if present', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
           hasStickyFooter: true,
           footerRowHeight: 25,
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: 5, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 75, scrollLeft: 0 });
     });
 
     it('makes no vertical adjustments if the cell is a sticky header cell', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: -1, colIndex: 0 });
       expect(scrollTo).not.toHaveBeenCalled();
     });
 
     it('makes no vertical adjustments if the cell is a sticky footer cell', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
           visibleRowCount: 25,
           hasStickyFooter: true,
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: 25, colIndex: 0 });
       expect(scrollTo).not.toHaveBeenCalled();
     });
@@ -265,29 +251,27 @@ describe('useScrollCellIntoView', () => {
 
     it('scrolls the grid up if the top side of the cell is out of view', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 50, scrollLeft: 0 });
     });
 
     it('accounts for the sticky header', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
           headerRowHeight: 30,
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 20, scrollLeft: 0 });
     });
@@ -304,46 +288,42 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
           headerRowHeight: 50,
         })
-      );
-      scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
+      ).result.current;
 
+      scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 50, scrollLeft: 0 });
     });
 
     it('makes no vertical adjustments if the cell is a sticky header cell', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: -1, colIndex: 0 });
       expect(scrollTo).not.toHaveBeenCalled();
     });
 
     it('makes no vertical adjustments if the cell is a sticky footer cell', () => {
       getCell.mockReturnValue(cell);
-      const {
-        return: { scrollCellIntoView },
-      } = testCustomHook(() =>
+      const { scrollCellIntoView } = renderHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
           visibleRowCount: 25,
           hasStickyFooter: true,
         })
-      );
+      ).result.current;
+
       scrollCellIntoView({ rowIndex: 25, colIndex: 0 });
       expect(scrollTo).not.toHaveBeenCalled();
     });
@@ -362,13 +342,11 @@ describe('useScrollBars', () => {
 
   describe('scrollBarHeight', () => {
     it("is derived by the difference between the grid's offsetHeight vs clientHeight", () => {
-      const {
-        return: { scrollBarHeight },
-      } = testCustomHook(() =>
+      const { scrollBarHeight } = renderHook(() =>
         useScrollBars({
           current: { ...mockOuterGrid, clientHeight: 40, offsetHeight: 50 },
         })
-      );
+      ).result.current;
 
       expect(scrollBarHeight).toEqual(10);
     });
@@ -376,13 +354,11 @@ describe('useScrollBars', () => {
 
   describe('scrollBarWidth', () => {
     it('is zero if there is no difference between offsetWidth and clientWidth', () => {
-      const {
-        return: { scrollBarWidth },
-      } = testCustomHook(() =>
+      const { scrollBarWidth } = renderHook(() =>
         useScrollBars({
           current: { ...mockOuterGrid, clientWidth: 40, offsetWidth: 40 },
         })
-      );
+      ).result.current;
 
       expect(scrollBarWidth).toEqual(0);
     });
@@ -390,25 +366,21 @@ describe('useScrollBars', () => {
 
   describe('hasVerticalScroll', () => {
     it("has scrolling overflow if the grid's scrollHeight exceeds its clientHeight", () => {
-      const {
-        return: { hasVerticalScroll },
-      } = testCustomHook(() =>
+      const { hasVerticalScroll } = renderHook(() =>
         useScrollBars({
           current: { ...mockOuterGrid, clientHeight: 50, scrollHeight: 100 },
         })
-      );
+      ).result.current;
 
       expect(hasVerticalScroll).toEqual(true);
     });
 
     it("does not have scrolling overflow if the the grid's scrollHeight is the same as its clientHeight", () => {
-      const {
-        return: { hasVerticalScroll },
-      } = testCustomHook(() =>
+      const { hasVerticalScroll } = renderHook(() =>
         useScrollBars({
           current: { ...mockOuterGrid, clientHeight: 50, scrollHeight: 50 },
         })
-      );
+      ).result.current;
 
       expect(hasVerticalScroll).toEqual(false);
     });
@@ -416,25 +388,21 @@ describe('useScrollBars', () => {
 
   describe('hasHorizontalScroll', () => {
     it("has scrolling overflow if the grid's scrollWidth exceeds its clientWidth", () => {
-      const {
-        return: { hasHorizontalScroll },
-      } = testCustomHook(() =>
+      const { hasHorizontalScroll } = renderHook(() =>
         useScrollBars({
           current: { ...mockOuterGrid, clientWidth: 100, scrollWidth: 200 },
         })
-      );
+      ).result.current;
 
       expect(hasHorizontalScroll).toEqual(true);
     });
 
     it("does not have scrolling overflow if the the grid's scrollWidth is the same as its clientWidth", () => {
-      const {
-        return: { hasHorizontalScroll },
-      } = testCustomHook(() =>
+      const { hasHorizontalScroll } = renderHook(() =>
         useScrollBars({
           current: { ...mockOuterGrid, clientWidth: 200, scrollWidth: 200 },
         })
-      );
+      ).result.current;
 
       expect(hasHorizontalScroll).toEqual(false);
     });
@@ -443,9 +411,7 @@ describe('useScrollBars', () => {
   describe('scrollBorderOverlay', () => {
     describe('if the grid does not scroll', () => {
       it('does not render anything', () => {
-        const {
-          return: { scrollBorderOverlay },
-        } = testCustomHook(() =>
+        const { scrollBorderOverlay } = renderHook(() =>
           useScrollBars({
             current: {
               ...mockOuterGrid,
@@ -455,7 +421,7 @@ describe('useScrollBars', () => {
               scrollWidth: 200,
             },
           })
-        );
+        ).result.current;
 
         expect(scrollBorderOverlay).toEqual(null);
       });
@@ -463,9 +429,7 @@ describe('useScrollBars', () => {
 
     describe('if the grid does not display borders', () => {
       it('does not render anything', () => {
-        const {
-          return: { scrollBorderOverlay },
-        } = testCustomHook(() =>
+        const { scrollBorderOverlay } = renderHook(() =>
           useScrollBars(
             {
               current: {
@@ -476,7 +440,7 @@ describe('useScrollBars', () => {
             },
             'none'
           )
-        );
+        ).result.current;
 
         expect(scrollBorderOverlay).toEqual(null);
       });
@@ -484,9 +448,7 @@ describe('useScrollBars', () => {
 
     describe('if the grid scrolls but has inline scrollbars & no scrollbar width/height', () => {
       it('renders a single overlay with borders for the outermost grid', () => {
-        const {
-          return: { scrollBorderOverlay },
-        } = testCustomHook(() =>
+        const { scrollBorderOverlay } = renderHook(() =>
           useScrollBars({
             current: {
               ...mockOuterGrid,
@@ -498,7 +460,7 @@ describe('useScrollBars', () => {
               scrollWidth: 200,
             },
           })
-        );
+        ).result.current;
         const { container } = render(<>{scrollBorderOverlay}</>);
 
         expect(container.firstChild).toMatchInlineSnapshot(`
@@ -512,9 +474,7 @@ describe('useScrollBars', () => {
 
     describe('if the grid scrolls and has scrollbars that take up width/height', () => {
       it('renders a top border for the bottom scrollbar', () => {
-        const {
-          return: { scrollBorderOverlay },
-        } = testCustomHook(() =>
+        const { scrollBorderOverlay } = renderHook(() =>
           useScrollBars({
             current: {
               ...mockOuterGrid,
@@ -526,7 +486,7 @@ describe('useScrollBars', () => {
               scrollWidth: 100,
             },
           })
-        );
+        ).result.current;
         const { container } = render(<>{scrollBorderOverlay}</>);
 
         expect(container.firstChild).toMatchInlineSnapshot(`
@@ -543,9 +503,7 @@ describe('useScrollBars', () => {
       });
 
       it('renders a left border for the bottom scrollbar', () => {
-        const {
-          return: { scrollBorderOverlay },
-        } = testCustomHook(() =>
+        const { scrollBorderOverlay } = renderHook(() =>
           useScrollBars({
             current: {
               ...mockOuterGrid,
@@ -557,7 +515,7 @@ describe('useScrollBars', () => {
               scrollWidth: 200,
             },
           })
-        );
+        ).result.current;
         const { container } = render(<>{scrollBorderOverlay}</>);
 
         expect(container.firstChild).toMatchInlineSnapshot(`
@@ -577,7 +535,7 @@ describe('useScrollBars', () => {
 
   it('returns falsey values if outerGridRef is not yet instantiated', () => {
     expect(
-      testCustomHook(() => useScrollBars({ current: null })).return
+      renderHook(() => useScrollBars({ current: null })).result.current
     ).toEqual({
       scrollBarHeight: 0,
       scrollBarWidth: 0,

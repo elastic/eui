@@ -32,7 +32,6 @@ export default () => {
         <EuiFlexGroup gutterSize="s" alignItems="center" direction="column">
           <EuiText textAlign="center">No Data</EuiText>
           <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
-            {/* @ts-ignore @elastic/charts typings are not yet compatible with React 18 */}
             <Chart size={[200, 200]}>
               <Settings
                 baseTheme={chartBaseTheme}
@@ -64,7 +63,6 @@ export default () => {
         <EuiFlexGroup gutterSize="s" alignItems="center" direction="column">
           <EuiText textAlign="center">Filtered Out</EuiText>
           <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
-            {/* @ts-ignore @elastic/charts typings are not yet compatible with React 18 */}
             <Chart size={[200, 200]}>
               <Settings
                 theme={euiChartTheme.theme}

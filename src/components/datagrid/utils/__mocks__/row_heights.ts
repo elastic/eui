@@ -24,11 +24,7 @@ export const RowHeightUtils = jest.fn().mockImplementation(() => {
 
   const rowHeightUtilsMock: RowHeightUtilsPublicAPI = {
     cacheStyles: jest.fn(),
-    getStylesForCell: jest.fn(() => ({
-      wordWrap: 'break-word',
-      wordBreak: 'break-word',
-      flexGrow: 1,
-    })),
+    getHeightType: jest.fn(rowHeightUtils.getHeightType),
     isAutoHeight: jest.fn(() => false),
     setRowHeight: jest.fn(),
     pruneHiddenColumnHeights: jest.fn(),
