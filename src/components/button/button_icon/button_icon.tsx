@@ -14,11 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  EuiThemeProvider,
-  getSecureRelForTarget,
-  useEuiTheme,
-} from '../../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -48,9 +44,8 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
-   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
-  color?: _EuiButtonColor | 'ghost';
+  color?: _EuiButtonColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
@@ -142,7 +137,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     );
   }
 
-  const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
+  const color = isDisabled ? 'disabled' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({ display });
   const buttonFocusStyle = useEuiButtonFocusCSS();
 
@@ -159,15 +154,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   ];
 
   const classes = classNames('euiButtonIcon', className);
-
-  if (_color === 'ghost') {
-    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
-    return (
-      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
-        <EuiButtonIcon {...props} color="text" />
-      </EuiThemeProvider>
-    );
-  }
 
   // Add an icon to the button if one exists.
   let buttonIcon;
