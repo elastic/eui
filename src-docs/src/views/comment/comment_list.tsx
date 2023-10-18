@@ -3,10 +3,7 @@ import {
   EuiCommentList,
   EuiCommentProps,
 } from '../../../../src/components/comment_list';
-import {
-  EuiButtonIcon,
-  EuiButtonIconProps,
-} from '../../../../src/components/button';
+import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
@@ -20,11 +17,11 @@ const body = (
   </EuiText>
 );
 
-const CopyAction = ({ color = 'text' }: Pick<EuiButtonIconProps, 'color'>) => (
+const copyAction = (
   <EuiButtonIcon
     title="Custom action"
     aria-label="Custom action"
-    color={color}
+    color="text"
     iconType="copy"
   />
 );
@@ -51,12 +48,12 @@ const comments: EuiCommentProps[] = [
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
-    actions: <CopyAction />,
+    actions: copyAction,
   },
   {
     username: 'juanab',
     timelineAvatarAriaLabel: 'Juana Barros',
-    actions: <CopyAction />,
+    actions: copyAction,
     event: 'pushed incident X0Z235',
     timestamp: 'on Jan 3, 2020',
   },
@@ -71,7 +68,7 @@ const comments: EuiCommentProps[] = [
   {
     username: 'pedror',
     timelineAvatarAriaLabel: 'Pedro Rodriguez',
-    actions: <CopyAction />,
+    actions: copyAction,
     event: complexEvent,
     timestamp: 'on Jan 11, 2020',
     eventIcon: 'tag',
@@ -82,7 +79,7 @@ const comments: EuiCommentProps[] = [
     timelineAvatarAriaLabel: 'Assistant',
     timestamp: 'on Jan 14, 2020, 1:39:04 PM',
     children: <p>An error ocurred sending your message.</p>,
-    actions: <CopyAction color="danger" />,
+    actions: copyAction,
     eventColor: 'danger',
   },
 ];
