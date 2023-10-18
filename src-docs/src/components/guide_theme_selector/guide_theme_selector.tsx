@@ -1,7 +1,10 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 
-import { useIsWithinBreakpoints } from '../../../../src/services';
+import {
+  EuiThemeProvider,
+  useIsWithinBreakpoints,
+} from '../../../../src/services';
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';
@@ -84,16 +87,18 @@ const GuideThemeSelectorComponent: React.FunctionComponent<
   });
 
   const button = (
-    <EuiButton
-      size="s"
-      iconType="arrowDown"
-      iconSide="right"
-      color="ghost"
-      minWidth={0}
-      onClick={onButtonClick}
-    >
-      {isMobileSize ? 'Theme' : currentTheme.text}
-    </EuiButton>
+    <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
+      <EuiButton
+        size="s"
+        iconType="arrowDown"
+        iconSide="right"
+        color="text"
+        minWidth={0}
+        onClick={onButtonClick}
+      >
+        {isMobileSize ? 'Theme' : currentTheme.text}
+      </EuiButton>
+    </EuiThemeProvider>
   );
 
   return (

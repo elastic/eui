@@ -16,7 +16,7 @@ export default () => {
       <EuiSpacer size="xl" />
       <EuiSpacer size="xl" />
       <EuiBottomBar position="sticky" bottom={10}>
-        <EuiText color="ghost" textAlign="center">
+        <EuiText textAlign="center">
           <p>Scroll to see!</p>
         </EuiText>
       </EuiBottomBar>
