@@ -86,21 +86,19 @@ export const EuiButton: FunctionComponent<Props> = ({
   className,
   buttonRef,
   size = 'm',
-  color: _color = 'primary',
+  color = 'primary',
   fill,
   ...rest
 }) => {
-  const buttonIsDisabled = isButtonDisabled({
+  const isDisabled = isButtonDisabled({
     href: rest.href,
     isDisabled: rest.isDisabled || rest.disabled,
     isLoading: rest.isLoading,
   });
 
-  const color = buttonIsDisabled ? 'disabled' : _color;
-
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
-  })[color];
+  })[isDisabled ? 'disabled' : color];
 
   const buttonFocusStyle = useEuiButtonFocusCSS();
 

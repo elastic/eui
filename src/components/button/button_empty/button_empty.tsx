@@ -93,7 +93,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   iconType,
   iconSide = 'left',
   iconSize = 'm',
-  color: _color = 'primary',
+  color = 'primary',
   size = 'm',
   flush,
   isDisabled: _isDisabled,
@@ -115,7 +115,6 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     isLoading,
   });
 
-  const color = isDisabled ? 'disabled' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
   });
@@ -125,7 +124,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   const cssStyles = [
     styles.euiButtonEmpty,
     styles[size],
-    buttonColorStyles[color],
+    buttonColorStyles[isDisabled ? 'disabled' : color],
     flush && styles.flush,
     flush && styles[flush],
     isDisabled && styles.isDisabled,

@@ -104,7 +104,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   className,
   iconType,
   iconSize = 'm',
-  color: _color = 'primary',
+  color = 'primary',
   isDisabled: _isDisabled,
   disabled,
   href,
@@ -135,19 +135,20 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     );
   }
 
-  const color = isDisabled ? 'disabled' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({ display });
   const buttonFocusStyle = useEuiButtonFocusCSS();
+  const emptyHoverStyles =
+    display === 'empty' &&
+    !isDisabled &&
+    _emptyHoverStyles(euiThemeContext, color);
 
   const styles = euiButtonIconStyles(euiThemeContext);
-  const emptyHoverStyles = _emptyHoverStyles(euiThemeContext, color);
-
   const cssStyles = [
     styles.euiButtonIcon,
     styles[size],
-    buttonColorStyles[color],
+    buttonColorStyles[isDisabled ? 'disabled' : color],
     buttonFocusStyle,
-    display === 'empty' && emptyHoverStyles,
+    emptyHoverStyles,
     isDisabled && styles.isDisabled,
   ];
 
