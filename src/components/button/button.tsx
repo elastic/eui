@@ -82,15 +82,14 @@ export type Props = ExclusiveUnion<
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-export const EuiButton: FunctionComponent<Props> = (props) => {
-  const {
-    className,
-    buttonRef,
-    color: _color = 'primary',
-    fill,
-    ...rest
-  } = props;
-
+export const EuiButton: FunctionComponent<Props> = ({
+  className,
+  buttonRef,
+  size = 'm',
+  color: _color = 'primary',
+  fill,
+  ...rest
+}) => {
   const buttonIsDisabled = isButtonDisabled({
     href: rest.href,
     isDisabled: rest.isDisabled || rest.disabled,
@@ -113,15 +112,8 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
       className={classes}
       css={cssStyles}
       ref={buttonRef}
+      size={size}
       {...rest}
     />
   );
-};
-
-EuiButton.displayName = 'EuiButton';
-
-// Use defaultProps for simple pass-through props
-EuiButton.defaultProps = {
-  size: 'm',
-  color: 'primary',
 };

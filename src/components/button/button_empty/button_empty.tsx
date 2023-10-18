@@ -87,32 +87,28 @@ export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForButton
 >;
 
-export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
-  props
-) => {
-  const {
-    children,
-    className,
-    iconType,
-    iconSide = 'left',
-    iconSize = 'm',
-    color: _color = 'primary',
-    size = 'm',
-    flush,
-    isDisabled: _isDisabled,
-    disabled,
-    isLoading,
-    href,
-    target,
-    rel,
-    type = 'button',
-    buttonRef,
-    contentProps,
-    textProps,
-    isSelected,
-    ...rest
-  } = props;
-
+export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
+  children,
+  className,
+  iconType,
+  iconSide = 'left',
+  iconSize = 'm',
+  color: _color = 'primary',
+  size = 'm',
+  flush,
+  isDisabled: _isDisabled,
+  disabled,
+  isLoading,
+  href,
+  target,
+  rel,
+  type = 'button',
+  buttonRef,
+  contentProps,
+  textProps,
+  isSelected,
+  ...rest
+}) => {
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,

@@ -100,26 +100,24 @@ type Props = ExclusiveUnion<
   EuiButtonIconPropsForButton
 >;
 
-export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
-  const {
-    className,
-    iconType,
-    iconSize = 'm',
-    color: _color = 'primary',
-    isDisabled: _isDisabled,
-    disabled,
-    href,
-    type = 'button',
-    display = 'empty',
-    target,
-    rel,
-    size = 'xs',
-    buttonRef,
-    isSelected,
-    isLoading,
-    ...rest
-  } = props;
-
+export const EuiButtonIcon: FunctionComponent<Props> = ({
+  className,
+  iconType,
+  iconSize = 'm',
+  color: _color = 'primary',
+  isDisabled: _isDisabled,
+  disabled,
+  href,
+  type = 'button',
+  display = 'empty',
+  target,
+  rel,
+  size = 'xs',
+  buttonRef,
+  isSelected,
+  isLoading,
+  ...rest
+}) => {
   const euiThemeContext = useEuiTheme();
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
