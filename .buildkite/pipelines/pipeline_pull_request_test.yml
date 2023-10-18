@@ -1,48 +1,48 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":typescript: Linting"
+  - label: ":typescript: Linting"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":jest: TS unit tests"
+  - label: ":jest: TS unit tests"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'unit:ts'
     if: build.branch != "main"
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":jest: TSX unit tests on React 16"
+  - label: ":jest: TSX unit tests on React 16"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'unit:tsx:16'
     if: build.branch != "main"
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":jest: TSX unit tests on React 17"
+  - label: ":jest: TSX unit tests on React 17"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'unit:tsx:17'
     if: build.branch != "main"
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":jest: TSX unit tests on React 18"
+  - label: ":jest: TSX unit tests on React 18"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
       TEST_TYPE: 'unit:tsx'
     if: build.branch != "main"
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":cypress: Cypress tests on React 16"
+  - label: ":cypress: Cypress tests on React 16"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
@@ -52,8 +52,8 @@ steps:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":cypress: Cypress tests on React 17"
+  - label: ":cypress: Cypress tests on React 17"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
@@ -63,8 +63,8 @@ steps:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
   
-  - command: .buildkite/scripts/pipeline_test.sh
-    label: ":cypress: Cypress tests on React 18"
+  - label: ":cypress: Cypress tests on React 18"
+    command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
     env:
