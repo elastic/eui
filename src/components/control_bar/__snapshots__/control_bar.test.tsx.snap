@@ -4,7 +4,7 @@ exports[`EuiControlBar is rendered 1`] = `
 <div>
   <section
     aria-label="aria-label"
-    class="euiControlBar testClass1 testClass2 emotion-euiTestCss euiControlBar--large euiControlBar--fixed"
+    class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--fixed emotion-euiTestCss-euiColorMode-dark"
     data-test-subj="test subject string"
     style="left: 0px; right: 0px;"
   >
@@ -49,7 +49,7 @@ exports[`EuiControlBar is rendered 1`] = `
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text-euiColorMode-dark"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
@@ -145,7 +145,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
@@ -241,7 +241,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
@@ -337,7 +337,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
@@ -432,7 +432,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
       </ol>
     </nav>
     <button
-      class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+      class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
       data-test-subj="dts"
       type="button"
     >
@@ -521,7 +521,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
@@ -617,7 +617,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
@@ -718,7 +718,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
+        class="euiButton euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
         data-test-subj="dts"
         type="button"
       >
