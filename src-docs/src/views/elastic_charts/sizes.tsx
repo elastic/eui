@@ -28,7 +28,7 @@ import {
   EuiPageSection,
   EuiFormRow,
   EuiRange,
-  EuiPage,
+  EuiPanel,
   EuiButton,
   EuiCopy,
 } from '../../../../src/components';
@@ -192,12 +192,13 @@ class Sizes extends Component<WithEuiThemeProps, State> {
 
     return (
       <>
-        <EuiPage>
-          <EuiPageSection
-            role={null}
-            horizontalPosition="center"
+        <EuiPageSection component="div" color="subdued" paddingSize="none">
+          <EuiPanel
+            color="plain"
+            hasShadow
             style={{
-              width: `${width}%`,
+              inlineSize: `${width}%`,
+              marginInline: 'auto',
               overflow: 'hidden',
             }}
           >
@@ -246,8 +247,8 @@ class Sizes extends Component<WithEuiThemeProps, State> {
                 tickFormat={(d) => Number(d).toFixed(2)}
               />
             </Chart>
-          </EuiPageSection>
-        </EuiPage>
+          </EuiPanel>
+        </EuiPageSection>
 
         <EuiSpacer />
 
