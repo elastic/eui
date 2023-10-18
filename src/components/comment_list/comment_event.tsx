@@ -56,7 +56,7 @@ export interface EuiCommentEventProps extends CommonProps {
   /**
    * Background color for the comment's header.
    */
-  eventColor?: Exclude<EuiPanelProps['color'], 'plain'>;
+  eventColor?: EuiPanelProps['color'];
 }
 
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
@@ -106,6 +106,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
       color: type === 'custom' ? 'transparent' : eventColor,
       paddingSize: type === 'custom' ? 'none' : 's',
       borderRadius: type === 'regular' ? 'none' : 'm',
+      hasShadow: false, // `plain` color needs this
     }),
     [type, eventColor]
   );

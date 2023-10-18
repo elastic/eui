@@ -24,6 +24,7 @@ const meta: Meta<EuiCommentEventProps> = {
         undefined,
         'subdued',
         'transparent',
+        'plain',
         'warning',
         'danger',
         'success',

@@ -37,6 +37,9 @@ export const euiCommentEventBorderColors = ({
     transparent: css`
       border-color: ${euiTheme.border.color};
     `,
+    plain: css`
+      border-color: ${euiTheme.border.color};
+    `,
   };
 };
 

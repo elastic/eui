@@ -104,6 +104,7 @@ export default () => {
   }> = [
     { value: 'subdued', text: 'subdued' },
     { value: 'transparent', text: 'transparent' },
+    { value: 'plain', text: 'plain' },
     { value: 'danger', text: 'danger' },
     { value: 'warning', text: 'warning' },
     { value: 'accent', text: 'accent' },
