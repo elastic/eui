@@ -1,0 +1,18 @@
+services:
+  base:
+    image: docker.elastic.co/eui/base:1.0
+    build:
+      dockerfile: ./Dockerfile.deps
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+
+  app:
+    image: docker.elastic.co/eui/ci:5.6
+    build:
+      dockerfile: ./scripts/docker-ci/Dockerfile
+    working_dir: /app
+    volumes_from:
+      - "base"
+    depends_on:
+      - "base"

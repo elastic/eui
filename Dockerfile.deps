@@ -1,0 +1,16 @@
+FROM node:18.18.2-alpine as base
+
+WORKDIR /app
+
+COPY package.json /app/
+COPY yarn.lock /app/
+
+RUN apk --no-cache add yarn && yarn
+
+FROM node:18.18.2-alpine as dependencies
+
+WORKDIR /app
+
+COPY --from=base app/package.json /app/
+COPY --from=base app/yarn.lock /app/
+COPY --from=base app/node_modules /app/node_modules/
