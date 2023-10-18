@@ -7,66 +7,98 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, tintOrShade } from '../../services';
 import { logicalCSS } from '../../global_styling';
 
-export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiCommentEvent: css`
-    overflow: hidden;
-  `,
-  // types
-  regular: css`
-    border: ${euiTheme.border.thin};
-    border-radius: ${euiTheme.border.radius.medium};
-  `,
-  update: css``,
-  custom: css``,
-});
+export const euiCommentEventBorderColors = ({
+  euiTheme,
+  colorMode,
+}: UseEuiTheme) => {
+  const ratio = 0.6;
+  return {
+    warning: css`
+      border-color: ${tintOrShade(euiTheme.colors.warning, 0.4, colorMode)};
+    `,
+    accent: css`
+      border-color: ${tintOrShade(euiTheme.colors.accent, ratio, colorMode)};
+    `,
+    primary: css`
+      border-color: ${tintOrShade(euiTheme.colors.primary, ratio, colorMode)};
+    `,
+    success: css`
+      border-color: ${tintOrShade(euiTheme.colors.success, ratio, colorMode)};
+    `,
+    danger: css`
+      border-color: ${tintOrShade(euiTheme.colors.danger, ratio, colorMode)};
+    `,
+    subdued: css`
+      border-color: ${euiTheme.border.color};
+    `,
+    transparent: css`
+      border-color: ${euiTheme.border.color};
+    `,
+    plain: css`
+      border-color: ${euiTheme.border.color};
+    `,
+  };
+};
 
-export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiCommentEvent__header: css``,
-  // types
-  regular: css`
-    background: ${euiTheme.colors.lightestShade};
-    ${logicalCSS('border-bottom', euiTheme.border.thin)}
-    padding: ${euiTheme.size.s};
-  `,
-  // variants
-  hasEventColor: css`
-    padding: 0;
-  `,
-  // Children
-  euiCommentEvent__headerMain: css`
-    display: flex;
-    flex: 1;
-    gap: ${euiTheme.size.s};
-  `,
-  euiCommentEvent__headerData: css`
-    display: flex;
-    flex: 1;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: ${euiTheme.size.xs};
-  `,
-  euiCommentEvent__headerEventIcon: css`
-    ${logicalCSS('margin-right', euiTheme.size.xs)}
-  `,
-  euiCommentEvent__headerUsername: css`
-    font-weight: ${euiTheme.font.weight.semiBold};
-  `,
-  euiCommentEvent__headerEvent: css`
-    align-items: center;
-    display: inline-flex;
-    /* the header event can have inline badges so we're adding some white-space and flex-wrap properties  */
-    white-space: pre-wrap;
-    flex-wrap: wrap;
-  `,
-  euiCommentEvent__headerActions: css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: ${euiTheme.size.xs};
-  `,
-});
+export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiCommentEvent: css`
+      overflow: hidden;
+    `,
+    border: css`
+      border-width: ${euiTheme.border.width.thin};
+      border-style: solid;
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+  };
+};
+
+export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiCommentEvent__header: css``,
+    border: css`
+      ${logicalCSS('border-bottom-style', 'solid')}
+      ${logicalCSS('border-bottom-width', euiTheme.border.width.thin)}
+    `,
+    // Children
+    euiCommentEvent__headerMain: css`
+      display: flex;
+      flex: 1;
+      gap: ${euiTheme.size.s};
+    `,
+    euiCommentEvent__headerData: css`
+      display: flex;
+      flex: 1;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: ${euiTheme.size.xs};
+    `,
+    euiCommentEvent__headerEventIcon: css`
+      ${logicalCSS('margin-right', euiTheme.size.xs)}
+    `,
+    euiCommentEvent__headerUsername: css`
+      font-weight: ${euiTheme.font.weight.semiBold};
+    `,
+    euiCommentEvent__headerEvent: css`
+      align-items: center;
+      display: inline-flex;
+      /* the header event can have inline badges so we're adding some white-space and flex-wrap properties  */
+      white-space: pre-wrap;
+      flex-wrap: wrap;
+    `,
+    euiCommentEvent__headerActions: css`
+      display: flex;
+      flex-wrap: wrap;
+      gap: ${euiTheme.size.xs};
+    `,
+  };
+};
 
 export const euiCommentEventBodyStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__body: css``,

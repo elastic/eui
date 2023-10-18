@@ -33,7 +33,7 @@ exports[`EuiCommentList is rendered 1`] = `
       class="emotion-euiTimelineItemEvent-center"
     >
       <div
-        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        class="euiCommentEvent emotion-euiCommentEvent"
         data-type="custom"
       />
     </div>
@@ -72,7 +72,7 @@ exports[`EuiCommentList props gutterSize l is rendered 1`] = `
       class="emotion-euiTimelineItemEvent-center"
     >
       <div
-        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        class="euiCommentEvent emotion-euiCommentEvent"
         data-type="custom"
       />
     </div>
@@ -111,7 +111,7 @@ exports[`EuiCommentList props gutterSize m is rendered 1`] = `
       class="emotion-euiTimelineItemEvent-center"
     >
       <div
-        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        class="euiCommentEvent emotion-euiCommentEvent"
         data-type="custom"
       />
     </div>
@@ -150,7 +150,7 @@ exports[`EuiCommentList props gutterSize xl is rendered 1`] = `
       class="emotion-euiTimelineItemEvent-center"
     >
       <div
-        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        class="euiCommentEvent emotion-euiCommentEvent"
         data-type="custom"
       />
     </div>

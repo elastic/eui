@@ -11,7 +11,11 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiCommentListProps,
+  EuiSelect,
+  EuiCode,
 } from '../../../../src/components/';
+
+import { EuiCommentEventProps } from '../../../../src/components/comment_list/comment_event';
 
 const body = (
   <EuiText size="s">
@@ -65,14 +69,6 @@ const commentsData: EuiCommentListProps['comments'] = [
     actions: copyAction,
   },
   {
-    username: 'system',
-    timelineAvatarAriaLabel: 'System',
-    timelineAvatar: 'dot',
-    event: 'pushed a new incident',
-    timestamp: '20 hours ago',
-    eventColor: 'danger',
-  },
-  {
     username: 'pancho1',
     timelineAvatarAriaLabel: 'Pancho Pérez',
     children: (
@@ -96,17 +92,28 @@ const toggleButtons = [
     label: 'Update',
   },
   {
-    id: 'updateDanger',
-    label: 'Update danger',
-  },
-  {
     id: 'custom',
     label: 'Custom',
   },
 ];
 
 export default () => {
+  const colors: Array<{
+    value: EuiCommentEventProps['eventColor'];
+    text: string;
+  }> = [
+    { value: 'subdued', text: 'subdued' },
+    { value: 'transparent', text: 'transparent' },
+    { value: 'plain', text: 'plain' },
+    { value: 'danger', text: 'danger' },
+    { value: 'warning', text: 'warning' },
+    { value: 'accent', text: 'accent' },
+    { value: 'primary', text: 'primary' },
+    { value: 'success', text: 'success' },
+    { value: undefined, text: 'undefined' },
+  ];
   const [toggleIdSelected, setToggleIdSelected] = useState('regular');
+  const [color, setColor] = useState(colors[0].value);
   const [comment, setComment] = useState(commentsData[0]);
 
   const onChangeButtonGroup = (optionId: any) => {
@@ -119,19 +126,57 @@ export default () => {
     setComment(commentsData[selectedCommentIndex]);
   };
 
+  const onChangeSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const color = e.target.value;
+    setColor(
+      color && color !== 'undefined'
+        ? (color as EuiCommentEventProps['eventColor'])
+        : undefined
+    );
+  };
+
   return (
     <>
-      <EuiButtonGroup
-        legend="Pick an example"
-        options={toggleButtons}
-        onChange={onChangeButtonGroup}
-        idSelected={toggleIdSelected}
-        type="single"
-        color="primary"
-      />
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButtonGroup
+            legend="Pick an example"
+            options={toggleButtons}
+            onChange={onChangeButtonGroup}
+            idSelected={toggleIdSelected}
+            type="single"
+            color="primary"
+          />
+        </EuiFlexItem>
+        {toggleIdSelected !== 'custom' ? (
+          <EuiFlexItem grow={false}>
+            <EuiSelect
+              prepend="eventColor"
+              options={colors}
+              value={color}
+              onChange={(e) => onChangeSize(e)}
+              compressed
+            />
+          </EuiFlexItem>
+        ) : undefined}
+        <EuiFlexItem>
+          {toggleIdSelected === 'regular' && color === 'subdued' && (
+            <span>
+              subdued is the default <EuiCode>eventColor</EuiCode> for regular{' '}
+              <strong>EuiComment</strong>
+            </span>
+          )}
+          {toggleIdSelected === 'update' && color === 'transparent' && (
+            <span>
+              transparent is the default <EuiCode>eventColor</EuiCode> for
+              update <strong>EuiComment</strong>
+            </span>
+          )}
+        </EuiFlexItem>
+      </EuiFlexGroup>
       <EuiSpacer />
       <EuiCommentList>
-        <EuiComment {...comment} />
+        <EuiComment {...comment} eventColor={color} />
       </EuiCommentList>
     </>
   );
