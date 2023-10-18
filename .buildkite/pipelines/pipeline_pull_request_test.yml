@@ -1,10 +1,28 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
+  - label: ":docker: Build containers"
+    agents:
+      provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          build:
+            - deps
+            - app
+          image-name:
+            - docker.elastic.co/eui/buildkite/deps:1.0
+            - docker.elastic.co/eui/buildkite/app:1.0
+          image-repository: docker.elastic.co/eui/buildkite
+
+  - wait
+
   - label: ":typescript: Linting"
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
@@ -13,6 +31,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'unit:ts'
     if: build.branch != "main"
@@ -21,6 +42,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'unit:tsx:16'
     if: build.branch != "main"
@@ -29,6 +53,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'unit:tsx:17'
     if: build.branch != "main"
@@ -37,6 +64,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'unit:tsx'
     if: build.branch != "main"
@@ -45,6 +75,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'cypress:16'
     if: build.branch != "main"
@@ -56,6 +89,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+    - docker-compose#4.15.0:
+        run: app
     env:
       TEST_TYPE: 'cypress:17'
     if: build.branch != "main"
@@ -67,6 +103,9 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
+    plugins:
+      - docker-compose#4.15.0:
+          run: app
     env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main"
