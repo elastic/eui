@@ -82,8 +82,8 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
     value,
     isInvalid,
     fullWidth = defaultFullWidth,
-    isLoading,
-    compressed,
+    isLoading = false,
+    compressed = false,
     inputRef: _inputRef,
     prepend,
     append,
@@ -190,10 +190,4 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
       </EuiValidatableControl>
     </EuiFormControlLayout>
   );
-};
-
-EuiFieldPassword.defaultProps = {
-  value: undefined,
-  isLoading: false,
-  compressed: false,
 };
