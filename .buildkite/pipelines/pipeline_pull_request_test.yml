@@ -12,9 +12,7 @@ steps:
           image-name:
             - dependencies
             - application
-          image-repository:
-            - docker.elastic.co/eui/buildkite/deps:1.0
-            - docker.elastic.co/eui/buildkite/app:1.0
+          image-repository: docker.elastic.co/eui/buildkite
 
   - wait
 
