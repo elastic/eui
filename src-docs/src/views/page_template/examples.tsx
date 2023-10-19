@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideSection } from '../../components/guide_section/guide_section';
-import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 import {
   EuiText,
@@ -11,7 +10,6 @@ import {
   EuiPageHeader,
   EuiPageSection,
   EuiPageSidebar,
-  EuiPageTemplate_Deprecated,
 } from '../../../../src';
 
 import { _EuiPageTemplate } from '../../../../src/components/page_template/page_template';
@@ -25,12 +23,6 @@ import BottomBar from './page_template_bottom_bar';
 const BottomBarSource = require('!!raw-loader!./page_template_bottom_bar');
 import Empty from './page_template_empty';
 const EmptySource = require('!!raw-loader!./page_template_empty');
-
-import Deprecated from './deprecated';
-const DeprecatedSource = require('!!raw-loader!./deprecated');
-
-// @ts-ignore Importing JS file
-import { pageTemplateConfig } from './playground';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const pageTemplateExamplesSections = [
@@ -137,21 +129,9 @@ export const PageTemplateInfo = {
   title: 'Page template',
   intro: (
     <>
-      <EuiCallOut
-        iconType="warning"
-        color="warning"
-        title={
-          <>
-            The previous version of <strong>EuiPageTemplate</strong> has been
-            deprecated to <strong>EuiPageTemplate_Deprecated</strong>.{' '}
-            <Link to="#deprecated">More info below.</Link>
-          </>
-        }
-      />
-      <EuiSpacer />
       <EuiText>
         <p>
-          The new <strong>EuiPageTemplate</strong> is a namespaced component for
+          <strong>EuiPageTemplate</strong> is a namespaced component for
           creating the different types of page layout patterns described in
           these docs. It is somewhat opinionated, but still has the ability to
           customize most of the inner components directly on their instance.
@@ -423,44 +403,6 @@ export const PageTemplateExample = () => (
           />
         </>
       }
-    />
-
-    <GuideSection
-      title={pageTemplateExamplesSections[4].title}
-      id={pageTemplateExamplesSections[4].id}
-      text={
-        <>
-          <p>
-            The previous version of <strong>EuiPageTemplate</strong> has been
-            deprecated and renamed to{' '}
-            <strong>EuiPageTemplate_Deprecated</strong>.
-          </p>
-          <p>
-            To continue using the previous version, you can update your import
-            statement to{' '}
-            <EuiCode language="ts">
-              {
-                "import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui'"
-              }
-            </EuiCode>
-            .
-          </p>
-        </>
-      }
-      demo={
-        <div className="guideDemo__highlightLayout guideDemo__highlightLayout--border">
-          <Deprecated />
-        </div>
-      }
-      source={[
-        {
-          type: GuideSectionTypes.JS,
-          code: DeprecatedSource,
-        },
-      ]}
-      demoPanelProps={{ paddingSize: 'none' }}
-      props={{ EuiPageTemplate_Deprecated }}
-      playground={pageTemplateConfig}
     />
   </>
 );

@@ -64,7 +64,13 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
   closePopover,
+  anchorPosition = 'downLeft',
+  attachToAnchor = true,
+  repositionToCrossAxis = false,
+  display = 'block',
+  panelPaddingSize = 's',
   closeOnScroll = false,
+  ownFocus = false,
   disableFocusTrap = false,
   focusTrapProps,
   input,
@@ -189,15 +195,19 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 
   return (
     <EuiPopover
+      className={classes}
       css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
-      repositionToCrossAxis={false}
-      ownFocus={false}
+      display={display}
       button={input}
       buttonRef={inputRef}
       panelRef={panelRef}
-      className={classes}
       ref={popoverClassRef}
       closePopover={closePopover}
+      anchorPosition={anchorPosition}
+      attachToAnchor={attachToAnchor}
+      repositionToCrossAxis={repositionToCrossAxis}
+      panelPaddingSize={panelPaddingSize}
+      ownFocus={ownFocus}
       {...props}
       panelProps={{ ...props.panelProps, onKeyDown }}
     >
@@ -212,11 +222,4 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       </EuiFocusTrap>
     </EuiPopover>
   );
-};
-
-EuiInputPopover.defaultProps = {
-  anchorPosition: 'downLeft',
-  attachToAnchor: true,
-  display: 'block',
-  panelPaddingSize: 's',
 };

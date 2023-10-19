@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
@@ -84,13 +83,4 @@ export const AppContext = ({ children }) => {
       <EuiContext i18n={i18n}>{children}</EuiContext>
     </EuiProvider>
   );
-};
-
-AppContext.propTypes = {
-  children: PropTypes.any,
-  currentRoute: PropTypes.object.isRequired,
-};
-
-AppContext.defaultProps = {
-  currentRoute: {},
 };
