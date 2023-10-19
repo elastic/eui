@@ -9,6 +9,8 @@ import {
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
   EuiIcon,
+  EuiListGroup,
+  EuiListGroupItem,
   EuiPopover,
   EuiToolTip,
 } from '../../../../src/components';
@@ -20,6 +22,7 @@ import logoEUI from '../../images/logo-eui.svg';
 import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
 const pkg = require('../../../../package.json');
+const euiVersions = ['TODO']; // Generate an array of versions with valid deploy URLs that gets updated every time the release script runs
 
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
@@ -40,19 +43,56 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     );
   }, []);
 
-  const version = useMemo(() => {
+  const [isVersionPopoverOpen, setIsVersionPopoverOpen] = useState(false);
+  const versionBadge = useMemo(() => {
     const isLocalDev = window.location.host.includes('803');
-
     return (
       <EuiBadge
-        href="#/package/changelog"
-        aria-label={`Version ${pkg.version}, View changelog`}
+        onClick={() => setIsVersionPopoverOpen((isOpen) => !isOpen)}
+        onClickAriaLabel={`Version ${pkg.version}. Click to switch versions`}
         color={isLocalDev ? 'accent' : 'default'}
       >
         {isLocalDev ? 'Local' : `v${pkg.version}`}
       </EuiBadge>
     );
   }, []);
+  const versionSwitcher = useMemo(() => {
+    return (
+      <EuiPopover
+        isOpen={isVersionPopoverOpen}
+        closePopover={() => setIsVersionPopoverOpen(false)}
+        button={versionBadge}
+        repositionOnScroll
+        panelPaddingSize="xs"
+      >
+        <EuiListGroup
+          flush
+          gutterSize="none"
+          className="eui-yScroll"
+          css={{ maxBlockSize: 200 }}
+        >
+          {euiVersions.map((version: string) => (
+            <EuiListGroupItem
+              size="xs"
+              label={`v${version}`}
+              href={`https://eui.elastic.co/v${version}/`}
+              extraAction={{
+                'aria-label': 'View release',
+                title: 'View release',
+                iconType: 'package',
+                iconSize: 's',
+                // @ts-ignore - this is valid
+                href: `https://github.com/elastic/eui/releases/tag/v${version}`,
+                target: '_blank',
+              }}
+              isActive={version === pkg.version}
+              color={version === pkg.version ? 'primary' : 'text'}
+            />
+          ))}
+        </EuiListGroup>
+      </EuiPopover>
+    );
+  }, [isVersionPopoverOpen, versionBadge]);
 
   const github = useMemo(() => {
     const href = 'https://github.com/elastic/eui';
@@ -147,7 +187,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         position="fixed"
         theme="dark"
         sections={[
-          { items: [logo, version] },
+          { items: [logo, versionSwitcher] },
           { items: rightSideItems },
         ]}
       />
