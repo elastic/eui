@@ -2,7 +2,7 @@
 
 steps:
   - agents:
-      provider: "gcp"
+      image: docker.elastic.co/eui/ci:5.5
     command: .buildkite/scripts/pipeline_deploy_docs.sh
     env:
       GIT_BRANCH: "${BUILDKITE_BRANCH}"
