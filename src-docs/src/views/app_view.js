@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -17,7 +16,7 @@ import {
   EuiScreenReaderLive,
 } from '../../../src/components';
 
-export const AppView = ({ children, currentRoute }) => {
+export const AppView = ({ children, currentRoute = {} }) => {
   const dispatch = useDispatch();
   const toggleLocale = (locale) => dispatch(_toggleLocale(locale));
   const locale = useSelector((state) => getLocale(state));
@@ -64,13 +63,4 @@ export const AppView = ({ children, currentRoute }) => {
       </EuiPageTemplate>
     </LinkWrapper>
   );
-};
-
-AppView.propTypes = {
-  children: PropTypes.any,
-  currentRoute: PropTypes.object.isRequired,
-};
-
-AppView.defaultProps = {
-  currentRoute: {},
 };
