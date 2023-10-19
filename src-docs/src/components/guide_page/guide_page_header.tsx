@@ -70,7 +70,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           itemCount={euiVersions.length}
           itemSize={24}
           height={200}
-          width="100%"
+          width={120}
           innerElementType="ul"
         >
           {({ index, style }) => {
