@@ -82,7 +82,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
                 label={`v${version}`}
                 href={`https://eui.elastic.co/v${version}/`}
                 extraAction={{
-                  'aria-label': 'View release',
+                  'aria-label': `View release notes for ${version}`,
                   title: 'View release',
                   iconType: 'package',
                   iconSize: 's',
