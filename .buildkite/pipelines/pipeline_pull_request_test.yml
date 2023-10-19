@@ -2,27 +2,23 @@
 
 steps:
   - label: ":docker: Build containers"
-    agents:
-      provider: "gcp"
-    plugins:
-      - docker-compose#v4.15.0:
-          build:
-            - deps
-            - app
-          image-name:
-            - dependencies
-            - application
-          image-repository: docker.elastic.co/eui/buildkite
-
-  - wait
+    # TODO: See Jessica David's work for way to build your own Docker image and upload it via shell script, securely.
+    # In your shell script:
+    # Get vault password to log into Docker Hub
+    # Assume we're building in Buildkite and exit 1 if not (maybe)
+    # Build the optimzed image using `docker-compose`
+    # Push the image to Docker Hub
+    #
+    # OR...
+    #
+    # Just change the agents > provider to agents > image and use our specific, already built and optimized image from Docker Hub
+    # docker.elastic.co/eui/composed:1.0 for instance
+    # Now Biff, remember that it'll either be a LOT of duplicated find and replace, OR introduce an environment variable with the Docker image.
 
   - label: ":typescript: Linting"
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
@@ -31,9 +27,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'unit:ts'
     if: build.branch != "main"
@@ -42,9 +35,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'unit:tsx:16'
     if: build.branch != "main"
@@ -53,9 +43,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'unit:tsx:17'
     if: build.branch != "main"
@@ -64,9 +51,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'unit:tsx'
     if: build.branch != "main"
@@ -75,9 +59,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'cypress:16'
     if: build.branch != "main"
@@ -89,9 +70,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-    - docker-compose#4.15.0:
-        run: app
     env:
       TEST_TYPE: 'cypress:17'
     if: build.branch != "main"
@@ -103,9 +81,6 @@ steps:
     command: .buildkite/scripts/pipeline_test.sh
     agents:
       provider: "gcp"
-    plugins:
-      - docker-compose#4.15.0:
-          run: app
     env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main"
