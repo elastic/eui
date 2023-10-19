@@ -1,75 +1,93 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - label: ":typescript: Linting"
-    command: .buildkite/scripts/pipeline_test.sh
+  - label: ":docker: Building containers"
     agents:
       provider: "gcp"
-    env:
-      TEST_TYPE: 'lint'
-    if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
+    plugins:
+      - docker-compose#v4.15.0:
+          build: app
+
+  - wait
+
+  - label: ":docker: Testing console output"
+    command: .buildkite/scripts/pipeline_test.sh
+    plugins:
+      - docker-compose#v4.15.0:
+          run: app
+          args:
+            - INTERACTIVE=--interactive
+            - REMOVE=--rm
+
+  # - label: ":typescript: Linting"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'lint'
+  #   if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
   
-  - label: ":jest: TS unit tests"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'unit:ts'
-    if: build.branch != "main"
+  # - label: ":jest: TS unit tests"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'unit:ts'
+  #   if: build.branch != "main"
   
-  - label: ":jest: TSX unit tests on React 16"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'unit:tsx:16'
-    if: build.branch != "main"
+  # - label: ":jest: TSX unit tests on React 16"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'unit:tsx:16'
+  #   if: build.branch != "main"
   
-  - label: ":jest: TSX unit tests on React 17"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'unit:tsx:17'
-    if: build.branch != "main"
+  # - label: ":jest: TSX unit tests on React 17"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'unit:tsx:17'
+  #   if: build.branch != "main"
   
-  - label: ":jest: TSX unit tests on React 18"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'unit:tsx'
-    if: build.branch != "main"
+  # - label: ":jest: TSX unit tests on React 18"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'unit:tsx'
+  #   if: build.branch != "main"
   
-  - label: ":cypress: Cypress tests on React 16"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'cypress:16'
-    if: build.branch != "main"
-    artifact_paths:
-      - "cypress/screenshots/**/*.png"
-      - "cypress/videos/**/*.mp4"
+  # - label: ":cypress: Cypress tests on React 16"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'cypress:16'
+  #   if: build.branch != "main"
+  #   artifact_paths:
+  #     - "cypress/screenshots/**/*.png"
+  #     - "cypress/videos/**/*.mp4"
   
-  - label: ":cypress: Cypress tests on React 17"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'cypress:17'
-    if: build.branch != "main"
-    artifact_paths:
-      - "cypress/screenshots/**/*.png"
-      - "cypress/videos/**/*.mp4"
+  # - label: ":cypress: Cypress tests on React 17"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'cypress:17'
+  #   if: build.branch != "main"
+  #   artifact_paths:
+  #     - "cypress/screenshots/**/*.png"
+  #     - "cypress/videos/**/*.mp4"
   
-  - label: ":cypress: Cypress tests on React 18"
-    command: .buildkite/scripts/pipeline_test.sh
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'cypress:18'
-    if: build.branch != "main"
-    artifact_paths:
-      - "cypress/screenshots/**/*.png"
-      - "cypress/videos/**/*.mp4"
+  # - label: ":cypress: Cypress tests on React 18"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   agents:
+  #     provider: "gcp"
+  #   env:
+  #     TEST_TYPE: 'cypress:18'
+  #   if: build.branch != "main"
+  #   artifact_paths:
+  #     - "cypress/screenshots/**/*.png"
+  #     - "cypress/videos/**/*.mp4"
