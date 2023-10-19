@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { FixedSizeList } from 'react-window';
 
 import {
   EuiBadge,
@@ -9,7 +10,6 @@ import {
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
   EuiIcon,
-  EuiListGroup,
   EuiListGroupItem,
   EuiPopover,
   EuiToolTip,
@@ -65,31 +65,37 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         repositionOnScroll
         panelPaddingSize="xs"
       >
-        <EuiListGroup
-          flush
-          gutterSize="none"
+        <FixedSizeList
           className="eui-yScroll"
-          css={{ maxBlockSize: 200 }}
+          itemCount={euiVersions.length}
+          itemSize={24}
+          height={200}
+          width="100%"
+          innerElementType="ul"
         >
-          {euiVersions.map((version: string) => (
-            <EuiListGroupItem
-              size="xs"
-              label={`v${version}`}
-              href={`https://eui.elastic.co/v${version}/`}
-              extraAction={{
-                'aria-label': 'View release',
-                title: 'View release',
-                iconType: 'package',
-                iconSize: 's',
-                // @ts-ignore - this is valid
-                href: `https://github.com/elastic/eui/releases/tag/v${version}`,
-                target: '_blank',
-              }}
-              isActive={version === pkg.version}
-              color={version === pkg.version ? 'primary' : 'text'}
-            />
-          ))}
-        </EuiListGroup>
+          {({ index, style }) => {
+            const version = euiVersions[index];
+            return (
+              <EuiListGroupItem
+                style={style}
+                size="xs"
+                label={`v${version}`}
+                href={`https://eui.elastic.co/v${version}/`}
+                extraAction={{
+                  'aria-label': 'View release',
+                  title: 'View release',
+                  iconType: 'package',
+                  iconSize: 's',
+                  // @ts-ignore - this is valid
+                  href: `https://github.com/elastic/eui/releases/tag/v${version}`,
+                  target: '_blank',
+                }}
+                isActive={version === pkg.version}
+                color={version === pkg.version ? 'primary' : 'text'}
+              />
+            );
+          }}
+        </FixedSizeList>
       </EuiPopover>
     );
   }, [isVersionPopoverOpen, versionBadge]);
