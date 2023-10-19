@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import {
   EuiBadge,
@@ -32,15 +32,15 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
-  function renderLogo() {
+  const logo = useMemo(() => {
     return (
       <EuiHeaderLogo iconType={logoEUI} href="#/" aria-label="EUI home">
         Elastic UI
       </EuiHeaderLogo>
     );
-  }
+  }, []);
 
-  function renderVersion() {
+  const version = useMemo(() => {
     const isLocalDev = window.location.host.includes('803');
 
     return (
@@ -52,9 +52,9 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         {isLocalDev ? 'Local' : `v${pkg.version}`}
       </EuiBadge>
     );
-  }
+  }, []);
 
-  function renderGithub() {
+  const github = useMemo(() => {
     const href = 'https://github.com/elastic/eui';
     const label = 'EUI GitHub repo';
     return isMobileSize ? (
@@ -68,9 +68,9 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
     );
-  }
+  }, [isMobileSize]);
 
-  function renderCodeSandbox() {
+  const codesandbox = useMemo(() => {
     const label = 'Codesandbox';
     return isMobileSize ? (
       <CodeSandboxLink type="tsx">
@@ -87,11 +87,11 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         </CodeSandboxLink>
       </EuiToolTip>
     );
-  }
+  }, [isMobileSize]);
 
   const [mobilePopoverIsOpen, setMobilePopoverIsOpen] = useState(false);
 
-  function renderMobileMenu() {
+  const mobileMenu = useMemo(() => {
     const button = (
       <EuiHeaderSectionItemButton
         aria-label="Open EUI options menu"
@@ -113,15 +113,15 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           gutterSize="none"
           responsive={false}
         >
-          <EuiFlexItem>{renderGithub()}</EuiFlexItem>
+          <EuiFlexItem>{github}</EuiFlexItem>
           <EuiFlexItem>
             <GuideFigmaLink />
           </EuiFlexItem>
-          <EuiFlexItem>{renderCodeSandbox()}</EuiFlexItem>
+          <EuiFlexItem>{codesandbox}</EuiFlexItem>
         </EuiFlexGroup>
       </EuiPopover>
     );
-  }
+  }, [mobilePopoverIsOpen, codesandbox, github]);
 
   const rightSideItems = isMobileSize
     ? [
@@ -129,16 +129,16 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           onToggleLocale={onToggleLocale}
           selectedLocale={selectedLocale}
         />,
-        renderMobileMenu(),
+        mobileMenu,
       ]
     : [
         <GuideThemeSelector
           onToggleLocale={onToggleLocale}
           selectedLocale={selectedLocale}
         />,
-        renderGithub(),
+        github,
         <GuideFigmaLink key="figma" />,
-        renderCodeSandbox(),
+        codesandbox,
       ];
 
   return (
@@ -147,7 +147,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         position="fixed"
         theme="dark"
         sections={[
-          { items: [renderLogo(), renderVersion()] },
+          { items: [logo, version] },
           { items: rightSideItems },
         ]}
       />
