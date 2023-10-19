@@ -22,7 +22,7 @@ import logoEUI from '../../images/logo-eui.svg';
 import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
 const pkg = require('../../../../package.json');
-const euiVersions = ['TODO']; // Generate an array of versions with valid deploy URLs that gets updated every time the release script runs
+const { euiVersions } = require('./versions.json');
 
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
