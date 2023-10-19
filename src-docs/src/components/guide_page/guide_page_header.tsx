@@ -21,8 +21,11 @@ import { CodeSandboxLink } from '../../components/codesandbox/link';
 import logoEUI from '../../images/logo-eui.svg';
 import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
-const pkg = require('../../../../package.json');
 const { euiVersions } = require('./versions.json');
+const currentVersion = require('../../../../package.json').version;
+const pronounceVersion = (version: string) => {
+  return `version ${version.replaceAll('.', ' point ')}`; // NVDA pronounciation issue
+};
 
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
@@ -49,10 +52,12 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     return (
       <EuiBadge
         onClick={() => setIsVersionPopoverOpen((isOpen) => !isOpen)}
-        onClickAriaLabel={`Version ${pkg.version}. Click to switch versions`}
+        onClickAriaLabel={`${
+          isLocalDev ? 'Local' : pronounceVersion(currentVersion)
+        }. Click to switch versions`}
         color={isLocalDev ? 'accent' : 'default'}
       >
-        {isLocalDev ? 'Local' : `v${pkg.version}`}
+        {isLocalDev ? 'Local' : `v${currentVersion}`}
       </EuiBadge>
     );
   }, []);
@@ -75,14 +80,16 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         >
           {({ index, style }) => {
             const version = euiVersions[index];
+            const screenReaderVersion = pronounceVersion(version);
             return (
               <EuiListGroupItem
                 style={style}
                 size="xs"
                 label={`v${version}`}
+                aria-label={screenReaderVersion}
                 href={`https://eui.elastic.co/v${version}/`}
                 extraAction={{
-                  'aria-label': `View release notes for ${version}`,
+                  'aria-label': `View release notes for ${screenReaderVersion}`,
                   title: 'View release',
                   iconType: 'package',
                   iconSize: 's',
@@ -90,8 +97,8 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
                   href: `https://github.com/elastic/eui/releases/tag/v${version}`,
                   target: '_blank',
                 }}
-                isActive={version === pkg.version}
-                color={version === pkg.version ? 'primary' : 'text'}
+                isActive={version === currentVersion}
+                color={version === currentVersion ? 'primary' : 'text'}
               />
             );
           }}
