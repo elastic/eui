@@ -30,7 +30,7 @@ export const useRowManager = ({
         rowElement.dataset.gridRowIndex = String(rowIndex); // Row index from data, not affected by sorting/pagination
         rowElement.classList.add('euiDataGridRow');
         if (rowClasses?.[rowIndex]) {
-          rowElement.classList.add(rowClasses[rowIndex]);
+          rowElement.classList.add(...rowClasses[rowIndex].split(' '));
         }
         rowElement.style.position = 'absolute';
         rowElement.style.left = '0';

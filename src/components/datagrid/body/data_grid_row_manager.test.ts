@@ -150,6 +150,12 @@ describe('row manager', () => {
       expect(row0.classList.contains('world')).toBe(true);
     });
 
+    it('allows passing multiple classes', () => {
+      rerender({ ...mockArgs, rowClasses: { 0: 'hello world' } });
+      expect(getRow(0).classList.contains('hello')).toBe(true);
+      expect(getRow(0).classList.contains('world')).toBe(true);
+    });
+
     it('adds/removes row classes correctly when gridStyle.rowClasses updates', () => {
       rerender({ ...mockArgs, rowClasses: { 1: 'test' } });
       const row0 = getRow(0);
