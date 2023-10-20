@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { useRef, useCallback, useEffect, RefObject } from 'react';
+import { useRef, useCallback, RefObject } from 'react';
+import { useUpdateEffect } from '../../../services';
+
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
 
 export const useRowManager = ({
@@ -76,13 +78,17 @@ export const useRowManager = ({
   );
 
   // Update row classes dynamically whenever a new prop is passed in
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (rowClasses) {
       rowIdToElements.current.forEach((rowElement, rowIndex) => {
+        const euiClasses = Array.from(rowElement.classList)
+          .filter((className) => className.startsWith('euiDataGridRow'))
+          .join(' ');
+
         if (rowClasses[rowIndex]) {
-          rowElement.classList.value = `euiDataGridRow ${rowClasses[rowIndex]}`;
+          rowElement.classList.value = `${euiClasses} ${rowClasses[rowIndex]}`;
         } else {
-          rowElement.classList.value = 'euiDataGridRow'; // Clear any added classes
+          rowElement.classList.value = euiClasses; // Clear any added classes
         }
       });
     }

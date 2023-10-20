@@ -159,5 +159,13 @@ describe('row manager', () => {
       expect(row0.classList.contains('world')).toBe(false);
       expect(row1.classList.contains('test')).toBe(true);
     });
+
+    it('correctly preserves EUI classes when adding/removing classes dynamically', () => {
+      rerender({ ...mockArgs, rowClasses: undefined });
+
+      expect(getRow(0).classList.value).toEqual(
+        'euiDataGridRow euiDataGridRow--striped'
+      );
+    });
   });
 });
