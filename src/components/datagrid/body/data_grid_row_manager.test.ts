@@ -97,6 +97,24 @@ describe('row manager', () => {
           />
         `);
       });
+
+      it("updates the row's visible row index and striping on sort", () => {
+        const row = rowManager.getRow({
+          rowIndex: 0,
+          visibleRowIndex: 3,
+          top: '100px',
+          height: 200,
+        });
+        expect(row).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGridRow euiDataGridRow--striped"
+            data-grid-row-index="0"
+            data-grid-visible-row-index="3"
+            role="row"
+            style="position: absolute; left: 0px; right: 0px; top: 100px; height: 200px;"
+          />
+        `);
+      });
     });
 
     describe("when the row's child cells are all removed", () => {
