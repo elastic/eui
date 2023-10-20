@@ -51,8 +51,8 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
     };
   }
 
-  copy = () => {
-    const isCopied = copyToClipboard(this.props.textToCopy);
+  copy = async () => {
+    const isCopied = await copyToClipboard(this.props.textToCopy);
     if (isCopied) {
       this.setState({
         tooltipText: this.props.afterMessage,
