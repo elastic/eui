@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { useRef, useCallback, useEffect, RefObject } from 'react';
+import { useRef, useCallback, RefObject } from 'react';
+import { useUpdateEffect } from '../../../services';
+
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
 
 export const useRowManager = ({
@@ -25,14 +27,11 @@ export const useRowManager = ({
       if (rowElement == null) {
         rowElement = document.createElement('div');
         rowElement.setAttribute('role', 'row');
-        rowElement.dataset.gridRowIndex = String(rowIndex); // Row index from data, affected by sorting/pagination
-        rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex); // Affected by sorting/pagination
+        rowElement.dataset.gridRowIndex = String(rowIndex); // Row index from data, not affected by sorting/pagination
         rowElement.classList.add('euiDataGridRow');
         if (rowClasses?.[rowIndex]) {
-          rowElement.classList.add(rowClasses[rowIndex]);
+          rowElement.classList.add(...rowClasses[rowIndex].split(' '));
         }
-        const isOddRow = visibleRowIndex % 2 !== 0;
-        if (isOddRow) rowElement.classList.add('euiDataGridRow--striped');
         rowElement.style.position = 'absolute';
         rowElement.style.left = '0';
         rowElement.style.right = '0';
@@ -58,6 +57,17 @@ export const useRowManager = ({
         observer.observe(rowElement, { childList: true });
       }
 
+      // Ensure the row's visible row index & striping update correctly on sort & pagination
+      if (rowElement.dataset.gridVisibleRowIndex !== String(visibleRowIndex)) {
+        rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex);
+        const isOddRow = visibleRowIndex % 2 !== 0;
+        if (isOddRow) {
+          rowElement.classList.add('euiDataGridRow--striped');
+        } else {
+          rowElement.classList.remove('euiDataGridRow--striped');
+        }
+      }
+
       // Ensure that the row's dimensions are always correct by having each cell update position styles
       rowElement.style.top = top;
       rowElement.style.height = `${height}px`;
@@ -68,13 +78,17 @@ export const useRowManager = ({
   );
 
   // Update row classes dynamically whenever a new prop is passed in
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (rowClasses) {
       rowIdToElements.current.forEach((rowElement, rowIndex) => {
+        const euiClasses = Array.from(rowElement.classList)
+          .filter((className) => className.startsWith('euiDataGridRow'))
+          .join(' ');
+
         if (rowClasses[rowIndex]) {
-          rowElement.classList.value = `euiDataGridRow ${rowClasses[rowIndex]}`;
+          rowElement.classList.value = `${euiClasses} ${rowClasses[rowIndex]}`;
         } else {
-          rowElement.classList.value = 'euiDataGridRow'; // Clear any added classes
+          rowElement.classList.value = euiClasses; // Clear any added classes
         }
       });
     }

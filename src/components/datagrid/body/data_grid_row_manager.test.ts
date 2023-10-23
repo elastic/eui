@@ -97,6 +97,24 @@ describe('row manager', () => {
           />
         `);
       });
+
+      it("updates the row's visible row index and striping on sort", () => {
+        const row = rowManager.getRow({
+          rowIndex: 0,
+          visibleRowIndex: 3,
+          top: '100px',
+          height: 200,
+        });
+        expect(row).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGridRow euiDataGridRow--striped"
+            data-grid-row-index="0"
+            data-grid-visible-row-index="3"
+            role="row"
+            style="position: absolute; left: 0px; right: 0px; top: 100px; height: 200px;"
+          />
+        `);
+      });
     });
 
     describe("when the row's child cells are all removed", () => {
@@ -132,6 +150,12 @@ describe('row manager', () => {
       expect(row0.classList.contains('world')).toBe(true);
     });
 
+    it('allows passing multiple classes', () => {
+      rerender({ ...mockArgs, rowClasses: { 0: 'hello world' } });
+      expect(getRow(0).classList.contains('hello')).toBe(true);
+      expect(getRow(0).classList.contains('world')).toBe(true);
+    });
+
     it('adds/removes row classes correctly when gridStyle.rowClasses updates', () => {
       rerender({ ...mockArgs, rowClasses: { 1: 'test' } });
       const row0 = getRow(0);
@@ -140,6 +164,14 @@ describe('row manager', () => {
       expect(row0.classList.contains('hello')).toBe(false);
       expect(row0.classList.contains('world')).toBe(false);
       expect(row1.classList.contains('test')).toBe(true);
+    });
+
+    it('correctly preserves EUI classes when adding/removing classes dynamically', () => {
+      rerender({ ...mockArgs, rowClasses: undefined });
+
+      expect(getRow(0).classList.value).toEqual(
+        'euiDataGridRow euiDataGridRow--striped'
+      );
     });
   });
 });
