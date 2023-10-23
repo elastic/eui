@@ -108,6 +108,11 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     return inputWidth < panelMinWidth ? panelMinWidth : inputWidth;
   }, [panelMinWidth, inputWidth]);
 
+  // Resize callback
+  useEffect(() => {
+    onPanelResize?.(panelWidth);
+  }, [panelWidth, onPanelResize]);
+
   useEffect(() => {
     if (panelEl) {
       // We have to modify the popover panel DOM node directly instead of using

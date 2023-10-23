@@ -119,6 +119,17 @@ describe('EuiPopover', () => {
         .should('have.css', 'inline-size', '250px')
         .should('have.css', 'left', '50px');
     });
+
+    it('calls `onPanelResize`', () => {
+      const onPanelResize = cy.stub().as('onPanelResize');
+      cy.realMount(
+        <EuiInputPopover {...resizeProps} onPanelResize={onPanelResize} />
+      );
+      cy.get('@onPanelResize').should('have.been.calledWith', 250);
+
+      resizeInput(200);
+      cy.get('@onPanelResize').should('have.been.calledWith', 200);
+    });
   });
 
   describe('focus/tab management', () => {
