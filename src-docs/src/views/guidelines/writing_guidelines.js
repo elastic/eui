@@ -7,6 +7,7 @@ import { GuideRule, GuideRuleExample, GuideSection } from '../../components';
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiCallOut,
   EuiCard,
   EuiCheckbox,
   EuiFieldNumber,
@@ -132,70 +133,116 @@ export const WritingGuidelines = () => {
         <EuiTitle>
           <h2 id="capitalization">Capitalization</h2>
         </EuiTitle>
+        <EuiText>
+          <p>
+            In sentence case, only the first word and proper names are capped.
+            In title case, the first letter of each word, except for articles,
+            conjuctions, and prepositions, is capitalized.
+          </p>
+        </EuiText>
 
-        <GuideRule
-          heading="Sentence case for almost all text"
-          description="This includes buttons, menus, and titles. In sentence case, only the
-    first word and proper names are capped."
-        >
+        <GuideRule heading="Sentence case for UI elements">
           <GuideRuleExample
             type="do"
-            text="Sentence case makes titles easier to read."
+            text="Use sentence case in buttons, menus, titles, and tabs."
+            minHeight={200}
           >
-            <EuiTitle size="xs">
-              <span>Create index patterns</span>
-            </EuiTitle>
+            <EuiButton fill>Check for new data</EuiButton>
           </GuideRuleExample>
-
           <GuideRuleExample
-            type="dont"
-            text="Title case can feel more cluttered."
+            type="do"
+            text="Use sentence case for modal and page elements."
+            minHeight={200}
           >
-            <EuiTitle size="xs">
-              <span>Create Index Patterns</span>
-            </EuiTitle>
+            <EuiPanel style={{ transform: 'scale(.75)' }}>
+              <EuiTitle size="m">
+                <span>Search session complete</span>
+              </EuiTitle>
+              <EuiSpacer />
+              <EuiText>
+                <p>Save your session and return to it later.</p>
+              </EuiText>
+              <EuiSpacer />
+              <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+                <EuiButtonEmpty>Manage sessions</EuiButtonEmpty>
+                <EuiButton fill size="s">
+                  Save session
+                </EuiButton>
+              </EuiFlexGroup>
+            </EuiPanel>
           </GuideRuleExample>
         </GuideRule>
 
-        <GuideRule heading="" description="">
+        <GuideRule heading="Sentence case for feature names">
           <GuideRuleExample
             type="do"
-            text="Sentence case is friendlier in button labels."
-          >
-            <EuiButton fill color="text">
-              Set up index pattern
-            </EuiButton>
-          </GuideRuleExample>
-          <GuideRuleExample type="dont" text="Title case looks too formal.">
-            <EuiButton fill color="text">
-              Set Up Index Pattern
-            </EuiButton>
-          </GuideRuleExample>
-        </GuideRule>
-
-        <GuideRule
-          heading="Title case for feature titles"
-          description="Titles and tabs for specific features should capitalize all words in the name of the feature."
-        >
-          <GuideRuleExample
-            type="do"
-            text="Title case in tabs and titles for names of features."
+            minHeight={200}
+            text="Data streams, index templates, and enrich polices are features and use sentence case."
           >
             <EuiTabs display="condensed">
-              <EuiTab>Inventory</EuiTab>
-              <EuiTab isSelected>Metrics Explorer</EuiTab>
+              <EuiTab>Data streams</EuiTab>
+              <EuiTab>Index templates</EuiTab>
+              <EuiTab isSelected>Enrich policies</EuiTab>
             </EuiTabs>
           </GuideRuleExample>
           <GuideRuleExample
-            type="dont"
-            text="Features are proper names, not sentences."
+            type="do"
+            text="Maintenance windows is a feature and uses sentence case."
+            minHeight={200}
           >
-            <EuiTabs display="condensed">
-              <EuiTab>Inventory</EuiTab>
-              <EuiTab isSelected>Metrics explorer</EuiTab>
-            </EuiTabs>
+            <EuiPanel style={{ transform: 'scale(.75)' }}>
+              <EuiTitle size="m">
+                <span>Maintenance windows</span>
+              </EuiTitle>
+              <EuiSpacer />
+              <EuiText>
+                <p>
+                  Suppress rule notifications for scheduled periods of time.
+                </p>
+              </EuiText>
+              <EuiSpacer />
+            </EuiPanel>
           </GuideRuleExample>
         </GuideRule>
+
+        <GuideRule heading="Title case for products, solutions, and apps">
+          <GuideRuleExample
+            type="do"
+            text="Product and solution names are always capitalized."
+            minHeight={200}
+          >
+            <EuiTitle size="xs">
+              <span>Elastic APM</span>
+            </EuiTitle>
+          </GuideRuleExample>
+          <GuideRuleExample
+            type="do"
+            text="App names are also capitalized, as seen in Dashboard app in this example.  When referring to building a dashboard, the term is capitalized.  In another example, the Machine Learning app is upper case, but the machine learning feature is lower case."
+            minHeight={200}
+          >
+            <EuiCallOut size="m" title="Building a dashboard?" iconType="gear">
+              <p>
+                Create content directly from our Dashboard app using our new
+                integrated workflow.{' '}
+                <EuiLink
+                  href="https://brand.elastic.co/302f66895/p/072ccc-naming-guide"
+                  external
+                >
+                  Learn more
+                </EuiLink>
+              </p>
+            </EuiCallOut>
+          </GuideRuleExample>
+        </GuideRule>
+        <p>
+          For more information, view the{' '}
+          <EuiLink
+            href="https://brand.elastic.co/302f66895/p/072ccc-naming-guide"
+            external
+          >
+            Elastic name guidelines.
+          </EuiLink>
+        </p>
 
         <EuiHorizontalRule />
 
