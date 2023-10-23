@@ -424,7 +424,6 @@ export default () => {
         }}
         onColumnResize={onColumnResize.current}
         ref={gridRef}
-        gridStyle={{ stripes: true }}
       />
     </DataContext.Provider>
   );
