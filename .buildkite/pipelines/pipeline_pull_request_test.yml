@@ -81,3 +81,6 @@ steps:
     env:
       TEST_TYPE: 'cypress:a11y'
     if: build.branch != "main"
+    artifact_paths:
+      - "cypress/screenshots/**/*.png"
+      - "cypress/videos/**/*.mp4"
