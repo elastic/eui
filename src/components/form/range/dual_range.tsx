@@ -280,7 +280,7 @@ export class EuiDualRangeClass extends Component<
         }
         lower = this._handleKeyDown(lower, event);
     }
-    if (lower >= this.upperValue || lower < this.props.min) return;
+    if (lower >= Number(this.upperValue) || lower < this.props.min) return;
     this._handleOnChange(lower, this.upperValue, event);
   };
 
@@ -298,7 +298,7 @@ export class EuiDualRangeClass extends Component<
         }
         upper = this._handleKeyDown(upper, event);
     }
-    if (upper <= this.lowerValue || upper > this.props.max) return;
+    if (upper <= Number(this.lowerValue) || upper > this.props.max) return;
     this._handleOnChange(this.lowerValue, upper, event);
   };
 
@@ -312,8 +312,8 @@ export class EuiDualRangeClass extends Component<
         lower = this._handleKeyDown(lower, event);
         upper = this._handleKeyDown(upper, event);
     }
-    if (lower >= this.upperValue || lower < this.props.min) return;
-    if (upper <= this.lowerValue || upper > this.props.max) return;
+    if (lower >= Number(this.upperValue) || lower < this.props.min) return;
+    if (upper <= Number(this.lowerValue) || upper > this.props.max) return;
     this._handleOnChange(lower, upper, event);
   };
 
@@ -377,7 +377,7 @@ export class EuiDualRangeClass extends Component<
     });
   };
 
-  onResize = (width?: number) => {
+  onResize = (width: number) => {
     this.setState({
       rangeWidth: width,
     });
