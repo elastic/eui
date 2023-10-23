@@ -398,9 +398,11 @@ export class EuiDualRangeClass extends Component<
   };
 
   onResize = (width: number) => {
-    this.setState({
-      rangeWidth: width,
-    });
+    if (this.rangeSliderRef) {
+      this.setState({
+        rangeWidth: this.rangeSliderRef.clientWidth,
+      });
+    }
     this.props.inputPopoverProps?.onPanelResize?.(width);
   };
 
