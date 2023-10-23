@@ -205,10 +205,7 @@ export const WritingGuidelines = () => {
           </GuideRuleExample>
         </GuideRule>
 
-        <GuideRule
-          heading="Title case for products, solutions, and apps"
-          description=" "
-        >
+        <GuideRule heading="Title case for products, solutions, and apps">
           <GuideRuleExample
             type="do"
             text="Product and solution names are always capitalized."
