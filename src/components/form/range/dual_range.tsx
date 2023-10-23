@@ -65,14 +65,36 @@ export class EuiDualRangeClass extends Component<
     isVisible: true, // used to trigger a rerender if initial element width is 0
   };
 
+  get isInPopover() {
+    return this.props.showInput === 'inputWithPopover';
+  }
   preventPopoverClose = false;
+
   rangeSliderRef: HTMLInputElement | null = null;
   handleRangeSliderRefUpdate = (ref: HTMLInputElement | null) => {
     this.rangeSliderRef = ref;
-    this.setState({
-      rangeSliderRefAvailable: !!ref,
-      rangeWidth: !!ref ? ref.clientWidth : null,
-    });
+    if (ref) {
+      if (this.isInPopover) {
+        // Wait a tick for popover rendering to settle
+        requestAnimationFrame(() => {
+          this.setState({
+            rangeSliderRefAvailable: true,
+            rangeWidth: ref.clientWidth,
+          });
+        });
+      } else {
+        // If not in a popover, no need to wait
+        this.setState({
+          rangeSliderRefAvailable: true,
+          rangeWidth: ref.clientWidth,
+        });
+      }
+    } else {
+      this.setState({
+        rangeSliderRefAvailable: false,
+        rangeWidth: 0,
+      });
+    }
   };
   private leftPosition = 0;
   private dragAcc = 0;
@@ -319,9 +341,7 @@ export class EuiDualRangeClass extends Component<
 
   calculateThumbPositionStyle = (value: number, width?: number) => {
     const trackWidth =
-      this.props.showInput === 'inputWithPopover' && !!width
-        ? width
-        : this.rangeSliderRef!.clientWidth;
+      this.isInPopover && !!width ? width : this.state.rangeWidth;
 
     const position = calculateThumbPosition(
       value,
@@ -462,7 +482,7 @@ export class EuiDualRangeClass extends Component<
 
     const { id } = this.state;
 
-    const showInputOnly = showInput === 'inputWithPopover';
+    const showInputOnly = this.isInPopover;
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
     const rangeStyles = euiRangeStyles(theme);

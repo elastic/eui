@@ -191,6 +191,11 @@ describe('EuiDualRange', () => {
       });
 
       it('renders inputs with popover slider when showInput="inputWithPopover"', () => {
+        // Mock requestAnimationFrame to run immediately
+        jest
+          .spyOn(window, 'requestAnimationFrame')
+          .mockImplementation((cb: Function) => cb());
+
         render(
           <EuiDualRange
             {...props}
@@ -209,6 +214,8 @@ describe('EuiDualRange', () => {
         expect(screen.getByRole('dialog')).toBeDefined();
         expect(screen.getAllByRole('slider')).toHaveLength(2);
         expect(screen.getByTestSubject('test')).toBeInTheDocument();
+
+        jest.restoreAllMocks();
       });
     });
 
