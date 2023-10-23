@@ -141,7 +141,7 @@ export const WritingGuidelines = () => {
           </p>
         </EuiText>
 
-        <GuideRule heading="Sentence case for UI elements" description=" ">
+        <GuideRule heading="Sentence case for UI elements">
           <GuideRuleExample
             type="do"
             text="Use sentence case in buttons, menus, titles, and tabs."
