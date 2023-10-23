@@ -31,14 +31,13 @@ import type {
 import { euiRangeTrackStyles } from './range_track.styles';
 
 export interface EuiRangeTrackProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'>,
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     _SharedRangesValues,
     _SharedRangeDataStructures,
     Pick<_SharedRangeVisualConfiguration, 'showTicks' | 'showRange'>,
     Pick<_SharedRangeInputProps, 'compressed' | 'disabled'> {
   trackWidth: number;
   onChange?: MouseEventHandler<HTMLButtonElement>;
-  children?: ReactNode | ((trackWidth: number) => React.ReactNode);
 }
 
 export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
@@ -136,7 +135,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
           trackWidth={trackWidth}
         />
       )}
-      {typeof children === 'function' ? children(trackWidth) : children}
+      {children}
     </div>
   );
 };
