@@ -11,6 +11,7 @@ const {
   collateChangelogFiles,
   updateChangelog,
 } = require('./update-changelog');
+const updateDocsVersionSwitcher = require('./update-versions-log');
 
 const TYPE_MAJOR = 0;
 const TYPE_MINOR = 1;
@@ -72,6 +73,9 @@ if (args.dry_run) {
 
     // Update CHANGELOG.md
     updateChangelog(changelog, versionTarget);
+
+    // Update version switcher data
+    updateDocsVersionSwitcher(versionTarget);
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);

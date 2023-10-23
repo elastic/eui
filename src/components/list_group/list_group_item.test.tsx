@@ -15,14 +15,7 @@ import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
 describe('EuiListGroupItem', () => {
-  shouldRenderCustomStyles(<EuiListGroupItem label="Label" />, {
-    skip: { style: true },
-  });
-  // the styles end up on the inner child
-  shouldRenderCustomStyles(<EuiListGroupItem label="Label" />, {
-    targetSelector: '.euiListGroupItem__text',
-    skip: { className: true, css: true },
-  });
+  shouldRenderCustomStyles(<EuiListGroupItem label="Label" />);
   shouldRenderCustomStyles(
     <EuiListGroupItem
       label="Label"

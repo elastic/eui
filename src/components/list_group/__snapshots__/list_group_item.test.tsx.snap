@@ -339,10 +339,10 @@ exports[`EuiListGroupItem props size xs is rendered 1`] = `
 exports[`EuiListGroupItem props style is rendered 1`] = `
 <li
   class="euiListGroupItem emotion-euiListGroupItem-m"
+  style="color: red;"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
-    style="color: red;"
   >
     <span
       class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"

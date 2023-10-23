@@ -161,6 +161,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   rel,
   className,
   css: customCss,
+  style,
   iconType,
   icon,
   iconProps,
@@ -343,7 +344,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     };
 
     itemContent = (
-      <li className={classes} css={cssStyles}>
+      <li className={classes} css={cssStyles} style={style}>
         <EuiToolTip
           content={toolTipText ?? label}
           position="right"
@@ -361,7 +362,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   } else {
     itemContent = (
-      <li className={classes} css={cssStyles}>
+      <li className={classes} css={cssStyles} style={style}>
         {itemContent}
         {extraActionNode}
       </li>
