@@ -173,7 +173,7 @@ export const WritingGuidelines = () => {
           </GuideRuleExample>
         </GuideRule>
 
-        <GuideRule heading="Sentence case for feature names" description=" ">
+        <GuideRule heading="Sentence case for feature names">
           <GuideRuleExample
             type="do"
             minHeight={200}
