@@ -136,7 +136,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -373,7 +373,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -515,7 +515,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -656,7 +656,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel goes-on-popover-panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel goes-on-popover-panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
