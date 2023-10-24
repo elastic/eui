@@ -1,9 +1,3 @@
-.euiContextMenu {
-  .euiContextMenu__content {
-    padding: $euiSizeS;
-  }
-}
-
 /**
   * 1. When there are multiple ContextMenuPanels, the ContextMenu will absolutely
   *    position them. ContextMenuPanel will break the layout of a Popover if it's
