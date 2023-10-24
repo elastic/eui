@@ -10,20 +10,23 @@ import React, {
   cloneElement,
   Component,
   HTMLAttributes,
+  PropsWithChildren,
   ReactElement,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
 
+import { withEuiTheme, WithEuiThemeProps, keys } from '../../services';
 import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { keys } from '../../services';
+
 import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
+import { euiContextMenuPanelStyles } from './context_menu_panel.styles';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -39,7 +42,7 @@ const titleSizeToClassNameMap = {
 
 export const SIZES = keysOf(titleSizeToClassNameMap);
 
-export interface EuiContextMenuPanelProps {
+export interface EuiContextMenuPanelProps extends PropsWithChildren {
   initialFocusedItemIndex?: number;
   items?: ReactElement[];
   onClose?: NoArgCallback<void>;
@@ -87,7 +90,10 @@ interface State {
   tookInitialFocus: boolean;
 }
 
-export class EuiContextMenuPanel extends Component<Props, State> {
+export class EuiContextMenuPanelClass extends Component<
+  WithEuiThemeProps & Props,
+  State
+> {
   static defaultProps: Partial<Props> = {
     items: [],
   };
@@ -97,7 +103,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   private panel?: HTMLElement | null = null;
   private initialPopoverParent?: HTMLElement | null = null;
 
-  constructor(props: Props) {
+  constructor(props: WithEuiThemeProps & Props) {
     super(props);
 
     this.state = {
@@ -405,6 +411,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
   render() {
     const {
+      theme,
       children,
       className,
       onClose,
@@ -472,6 +479,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         : undefined
     );
 
+    const styles = euiContextMenuPanelStyles(theme);
+    const cssStyles = [styles.euiContextMenuPanel];
+
     const content =
       items && items.length
         ? items.map((MenuItem) => {
@@ -488,6 +498,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     return (
       <div
         ref={this.panelRef}
+        css={cssStyles}
         className={classes}
         onKeyDown={this.onKeyDown}
         tabIndex={-1}
@@ -503,3 +514,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     );
   }
 }
+
+export const EuiContextMenuPanel = withEuiTheme<EuiContextMenuPanelProps>(
+  EuiContextMenuPanelClass
+);
