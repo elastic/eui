@@ -1,9 +1,4 @@
 .euiContextMenu {
-  position: relative;
-  overflow: hidden;
-  transition: height $euiAnimSpeedFast $euiAnimSlightResistance;
-  border-radius: $euiBorderRadius;
-
   .euiContextMenu__content {
     padding: $euiSizeS;
   }
