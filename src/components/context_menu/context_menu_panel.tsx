@@ -40,30 +40,30 @@ export type EuiContextMenuPanelShowPanelCallback = (
 
 export const SIZES = ['s', 'm'] as const;
 
-export interface EuiContextMenuPanelProps extends PropsWithChildren {
-  initialFocusedItemIndex?: number;
-  items?: ReactElement[];
-  onClose?: NoArgCallback<void>;
-  onHeightChange?: EuiContextMenuPanelHeightChangeHandler;
-  onTransitionComplete?: NoArgCallback<void>;
-  onUseKeyboardToNavigate?: NoArgCallback<void>;
-  showNextPanel?: EuiContextMenuPanelShowPanelCallback;
-  showPreviousPanel?: NoArgCallback<void>;
-  title?: ReactNode;
-  transitionDirection?: EuiContextMenuPanelTransitionDirection;
-  transitionType?: EuiContextMenuPanelTransitionType;
-  /**
-   * Alters the size of the items and the title
-   */
-  size?: (typeof SIZES)[number];
-}
-
-type Props = CommonProps &
+export type EuiContextMenuPanelProps = PropsWithChildren &
+  CommonProps &
   Omit<
     HTMLAttributes<HTMLDivElement>,
     'onKeyDown' | 'tabIndex' | 'onAnimationEnd' | 'title'
-  > &
-  EuiContextMenuPanelProps;
+  > & {
+    initialFocusedItemIndex?: number;
+    items?: ReactElement[];
+    onClose?: NoArgCallback<void>;
+    onHeightChange?: EuiContextMenuPanelHeightChangeHandler;
+    onTransitionComplete?: NoArgCallback<void>;
+    onUseKeyboardToNavigate?: NoArgCallback<void>;
+    showNextPanel?: EuiContextMenuPanelShowPanelCallback;
+    showPreviousPanel?: NoArgCallback<void>;
+    title?: ReactNode;
+    transitionDirection?: EuiContextMenuPanelTransitionDirection;
+    transitionType?: EuiContextMenuPanelTransitionType;
+    /**
+     * Alters the size of the items and the title
+     */
+    size?: (typeof SIZES)[number];
+  };
+
+type Props = EuiContextMenuPanelProps;
 
 interface State {
   prevProps: {
