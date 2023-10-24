@@ -10,7 +10,6 @@ import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   HTMLAttributes,
-  cloneElement,
   FunctionComponent,
   ReactElement,
   ReactNode,
@@ -18,7 +17,11 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, getSecureRelForTarget } from '../../services';
+import {
+  useEuiTheme,
+  getSecureRelForTarget,
+  cloneElementWithCss,
+} from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
@@ -97,42 +100,12 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   size = 'm',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
 
-  let iconInstance;
-  if (icon) {
-    switch (typeof icon) {
-      case 'string':
-        iconInstance = (
-          <EuiIcon
-            type={icon}
-            size="m"
-            className="euiContextMenu__icon"
-            color="inherit" // forces the icon to inherit its parent color
-          />
-        );
-        break;
-
-      default:
-        // Assume it's already an instance of an icon.
-        iconInstance = cloneElement(icon as ReactElement, {
-          className: 'euiContextMenu__icon',
-        });
-    }
-  }
-
-  let arrow;
-
-  if (hasPanel) {
-    arrow = (
-      <EuiIcon type="arrowRight" size="m" className="euiContextMenu__arrow" />
-    );
-  }
-
   const classes = classNames('euiContextMenuItem', className);
+
+  const euiTheme = useEuiTheme();
   const styles = euiContextMenuItemStyles(euiTheme);
   const cssStyles = [
     styles.euiContextMenuItem,
@@ -141,10 +114,42 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     disabled && styles.disabled,
   ];
 
+  const iconInstance =
+    icon &&
+    (typeof icon === 'string' ? (
+      <EuiIcon
+        type={icon}
+        size="m"
+        className="euiContextMenu__icon"
+        css={styles.euiContextMenu__icon}
+        color="inherit" // forces the icon to inherit its parent color
+      />
+    ) : (
+      // Assume it's already an instance of an icon.
+      cloneElementWithCss(icon as ReactElement, {
+        css: styles.euiContextMenu__icon,
+      })
+    ));
+
+  const arrow = hasPanel && (
+    <EuiIcon
+      type="arrowRight"
+      size="m"
+      className="euiContextMenu__arrow"
+      css={styles.euiContextMenuItem__arrow}
+    />
+  );
+
+  const textStyles = [
+    styles.text.euiContextMenuItem__text,
+    size === 's' && styles.text.s,
+  ];
   const buttonContent = (
     <>
       {iconInstance}
-      <span className="euiContextMenuItem__text">{children}</span>
+      <span className="euiContextMenuItem__text" css={textStyles}>
+        {children}
+      </span>
       {arrow}
     </>
   );

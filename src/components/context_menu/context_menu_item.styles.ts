@@ -13,6 +13,7 @@ import {
   logicalCSS,
   logicalTextAlignCSS,
   mathWithUnits,
+  euiFontSize,
 } from '../../global_styling';
 
 export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
@@ -60,5 +61,21 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         padding-block: ${mathWithUnits(euiTheme.size.s, (x) => x * 0.75)};
       `,
     },
+    // Children
+    euiContextMenu__icon: css`
+      flex-shrink: 0;
+    `,
+    text: {
+      euiContextMenuItem__text: css`
+        flex-grow: 1;
+        overflow: hidden; /* allows for text truncation */
+      `,
+      s: css`
+        ${euiFontSize(euiThemeContext, 's')}
+      `,
+    },
+    euiContextMenuItem__arrow: css`
+      align-self: flex-end;
+    `,
   };
 };
