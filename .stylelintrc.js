@@ -8,6 +8,7 @@ module.exports = {
     // Enforce camelCase naming
     'selector-class-pattern': camelCaseRegex,
     'keyframes-name-pattern': camelCaseRegex,
+    'custom-property-pattern': camelCaseRegex,
 
     // Opinionated rules
     'declaration-no-important': true,
