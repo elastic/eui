@@ -383,11 +383,16 @@ export class EuiContextMenuClass extends Component<
       onClose = () => window.requestAnimationFrame(this.showPreviousPanel);
     }
 
+    const cssStyles = {
+      position: 'absolute' as const,
+      label: 'euiContextMenu__panel',
+    };
+
     return (
       <EuiContextMenuPanel
         key={panelId}
         size={this.props.size}
-        className="euiContextMenu__panel"
+        css={cssStyles}
         onHeightChange={
           transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined
         }
