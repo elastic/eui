@@ -9,7 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
+import { logicalCSS } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
 
 import { euiContextMenuVariables } from './context_menu.styles';
@@ -74,28 +74,15 @@ export const euiContextMenuPanelStyles = (euiThemeContext: UseEuiTheme) => {
         animation-name: ${animations.outRight};
       `,
     },
-  };
-};
-
-export const euiContextMenuPanelTitleStyles = (
-  euiThemeContext: UseEuiTheme
-) => {
-  const { euiTheme } = euiThemeContext;
-  const { padding } = euiContextMenuVariables(euiThemeContext);
-  return {
-    euiContextMenuPanelTitle: css`
+    // Children
+    euiContextMenuPanel__title: css`
       ${euiTitle(euiThemeContext, 'xxs')}
-      ${logicalCSS('width', '100%')}
-      ${logicalTextAlignCSS('left')}
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      outline-offset: -${euiTheme.focus.width};
 
-      &:enabled:hover,
       &:enabled:focus {
-        text-decoration: underline;
+        /* Override the default focus background on EUiContextMenuItems */
+        background-color: unset;
       }
     `,
-    // Sizes
-    ...padding,
   };
 };

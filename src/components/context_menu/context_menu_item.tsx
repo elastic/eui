@@ -9,6 +9,7 @@
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  HTMLAttributes,
   cloneElement,
   FunctionComponent,
   ReactElement,
@@ -135,7 +136,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   const styles = euiContextMenuItemStyles(euiTheme);
   const cssStyles = [
     styles.euiContextMenuItem,
-    styles[size],
+    styles.sizes[size],
     styles.layoutAlign[layoutAlign],
     disabled && styles.disabled,
   ];
@@ -167,7 +168,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
         {buttonContent}
       </a>
     );
-  } else {
+  } else if (href || rest.onClick) {
     button = (
       <button
         disabled={disabled}
@@ -179,6 +180,17 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
       >
         {buttonContent}
       </button>
+    );
+  } else {
+    button = (
+      <div
+        css={cssStyles}
+        className={classes}
+        ref={buttonRef as Ref<HTMLDivElement>}
+        {...(rest as HTMLAttributes<HTMLDivElement>)}
+      >
+        {buttonContent}
+      </div>
     );
   }
 

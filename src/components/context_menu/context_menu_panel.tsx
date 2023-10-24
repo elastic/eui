@@ -19,17 +19,13 @@ import { tabbable, FocusableElement } from 'tabbable';
 
 import { withEuiTheme, WithEuiThemeProps, keys } from '../../services';
 import { CommonProps, NoArgCallback } from '../common';
-import { EuiIcon } from '../icon';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
 import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
-import {
-  euiContextMenuPanelStyles,
-  euiContextMenuPanelTitleStyles,
-} from './context_menu_panel.styles';
+import { euiContextMenuPanelStyles } from './context_menu_panel.styles';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -415,47 +411,6 @@ export class EuiContextMenuPanelClass extends Component<
       size,
       ...rest
     } = this.props;
-    let panelTitle;
-
-    if (title) {
-      const titleClasses = classNames('euiContextMenuPanelTitle');
-      const titleStyles = euiContextMenuPanelTitleStyles(theme);
-      const cssStyles = [
-        titleStyles.euiContextMenuPanelTitle,
-        titleStyles[size || 'm'],
-      ];
-
-      if (Boolean(onClose)) {
-        panelTitle = (
-          <button
-            css={cssStyles}
-            className={titleClasses}
-            type="button"
-            onClick={onClose}
-            ref={(node) => {
-              this.backButton = node;
-            }}
-            data-test-subj="contextMenuPanelTitleButton"
-          >
-            <span className="euiContextMenu__itemLayout">
-              <EuiIcon
-                type="arrowLeft"
-                size="m"
-                className="euiContextMenu__icon"
-              />
-
-              <span className="euiContextMenu__text">{title}</span>
-            </span>
-          </button>
-        );
-      } else {
-        panelTitle = (
-          <div css={cssStyles} className={titleClasses}>
-            <span className="euiContextMenu__itemLayout">{title}</span>
-          </div>
-        );
-      }
-    }
 
     const classes = classNames('euiContextMenuPanel', className);
 
@@ -466,6 +421,23 @@ export class EuiContextMenuPanelClass extends Component<
         transitionType &&
         styles[transitionDirection][transitionType],
     ];
+
+    const panelTitle = title && (
+      <EuiContextMenuItem
+        css={styles.euiContextMenuPanel__title}
+        className="euiContextMenuPanel__title"
+        onClick={onClose}
+        buttonRef={(node: HTMLButtonElement) => {
+          if (onClose) this.backButton = node;
+        }}
+        data-test-subj={
+          onClose ? 'contextMenuPanelTitleButton' : 'contextMenuPanelTitle'
+        }
+        icon={onClose && 'arrowLeft'}
+      >
+        {title}
+      </EuiContextMenuItem>
+    );
 
     const content =
       items && items.length

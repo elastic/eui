@@ -9,13 +9,14 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
-
-import { euiContextMenuVariables } from './context_menu.styles';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  mathWithUnits,
+} from '../../global_styling';
 
 export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { padding } = euiContextMenuVariables(euiThemeContext);
 
   return {
     euiContextMenuItem: css`
@@ -50,7 +51,14 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         align-items: flex-end;
       `,
     },
-    // Sizes
-    ...padding,
+    sizes: {
+      m: css`
+        padding: ${euiTheme.size.m};
+      `,
+      s: css`
+        padding-inline: ${euiTheme.size.s};
+        padding-block: ${mathWithUnits(euiTheme.size.s, (x) => x * 0.75)};
+      `,
+    },
   };
 };
