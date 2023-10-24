@@ -71,6 +71,8 @@ type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Class name passed to the direct parent of the button
+   *
+   * @deprecated Use `className` instead
    */
   anchorClassName?: string;
   /**
@@ -645,10 +647,10 @@ export class EuiPopover extends Component<Props, State> {
       {
         'euiPopover-isOpen': this.state.isOpening,
       },
-      className
+      className,
+      anchorClassName
     );
 
-    const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
     let panel;
@@ -766,7 +768,7 @@ export class EuiPopover extends Component<Props, State> {
     if (ownFocus) {
       return (
         <div css={popoverStyles} className={classes} ref={popoverRef} {...rest}>
-          <div css={{ display }} className={anchorClasses} ref={this.buttonRef}>
+          <div css={{ display }} ref={this.buttonRef}>
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
@@ -782,11 +784,7 @@ export class EuiPopover extends Component<Props, State> {
             onKeyDown={this.onKeyDown}
             {...rest}
           >
-            <div
-              css={{ display }}
-              className={anchorClasses}
-              ref={this.buttonRef}
-            >
+            <div css={{ display }} ref={this.buttonRef}>
               {button instanceof HTMLElement ? null : button}
             </div>
             {panel}
