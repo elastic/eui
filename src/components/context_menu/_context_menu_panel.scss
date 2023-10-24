@@ -1,39 +1,3 @@
-.euiContextMenuPanel {
-  &.euiContextMenuPanel-txInLeft {
-    pointer-events: none;
-    animation: euiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
-    animation-fill-mode: forwards;
-  }
-
-  &.euiContextMenuPanel-txOutLeft {
-    pointer-events: none;
-    animation: euiContextMenuPanelTxOutLeft $euiAnimSpeedNormal $euiAnimSlightResistance;
-    animation-fill-mode: forwards;
-  }
-
-  &.euiContextMenuPanel-txInRight {
-    pointer-events: none;
-    animation: euiContextMenuPanelTxInRight $euiAnimSpeedNormal $euiAnimSlightResistance;
-    animation-fill-mode: forwards;
-  }
-
-  &.euiContextMenuPanel-txOutRight {
-    pointer-events: none;
-    animation: euiContextMenuPanelTxOutRight $euiAnimSpeedNormal $euiAnimSlightResistance;
-    animation-fill-mode: forwards;
-  }
-}
-
-.euiContextMenuPanel--next {
-  transform: translateX($euiContextMenuWidth);
-  visibility: hidden;
-}
-
-.euiContextMenuPanel--previous {
-  transform: translateX(-$euiContextMenuWidth);
-  visibility: hidden;
-}
-
 .euiContextMenuPanelTitle {
   @include euiTitle('xxs');
   padding: $euiSizeM;
@@ -49,45 +13,5 @@
 
   &--small {
     padding: ($euiSizeS * .75) $euiSizeS;
-  }
-}
-
-@keyframes euiContextMenuPanelTxInLeft {
-  0% {
-    transform: translateX($euiContextMenuWidth);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes euiContextMenuPanelTxOutLeft {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-$euiContextMenuWidth);
-  }
-}
-
-@keyframes euiContextMenuPanelTxInRight {
-  0% {
-    transform: translateX(-$euiContextMenuWidth);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes euiContextMenuPanelTxOutRight {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX($euiContextMenuWidth);
   }
 }

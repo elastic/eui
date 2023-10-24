@@ -67,17 +67,6 @@ type Props = CommonProps &
   > &
   EuiContextMenuPanelProps;
 
-const transitionDirectionAndTypeToClassNameMap = {
-  next: {
-    in: 'euiContextMenuPanel-txInLeft',
-    out: 'euiContextMenuPanel-txOutLeft',
-  },
-  previous: {
-    in: 'euiContextMenuPanel-txInRight',
-    out: 'euiContextMenuPanel-txOutRight',
-  },
-};
-
 interface State {
   prevProps: {
     items: Props['items'];
@@ -467,20 +456,15 @@ export class EuiContextMenuPanelClass extends Component<
       }
     }
 
-    const classes = classNames(
-      'euiContextMenuPanel',
-      className,
-      transitionDirection &&
-        transitionType &&
-        transitionDirectionAndTypeToClassNameMap[transitionDirection]
-        ? transitionDirectionAndTypeToClassNameMap[transitionDirection][
-            transitionType
-          ]
-        : undefined
-    );
+    const classes = classNames('euiContextMenuPanel', className);
 
     const styles = euiContextMenuPanelStyles(theme);
-    const cssStyles = [styles.euiContextMenuPanel];
+    const cssStyles = [
+      styles.euiContextMenuPanel,
+      transitionDirection &&
+        transitionType &&
+        styles[transitionDirection][transitionType],
+    ];
 
     const content =
       items && items.length
