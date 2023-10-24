@@ -127,7 +127,10 @@ export const EuiTab: FunctionComponent<Props> = ({
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {prependNode}
-      <span className="euiTab__content" css={cssTabContentStyles}>
+      <span
+        className="euiTab__content eui-textTruncate"
+        css={cssTabContentStyles}
+      >
         {children}
       </span>
       {appendNode}

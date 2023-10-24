@@ -299,7 +299,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
             type="button"
           >
             <span
-              class="euiTab__content emotion-euiTab__content-l"
+              class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
             >
               Tab 1
             </span>
@@ -311,7 +311,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
             type="button"
           >
             <span
-              class="euiTab__content emotion-euiTab__content-l"
+              class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
             >
               Tab 2
             </span>
@@ -588,7 +588,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
           >
             Tab 1
           </span>
@@ -600,7 +600,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
           >
             Tab 2
           </span>
@@ -639,7 +639,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
           >
             Tab 1
           </span>
@@ -651,7 +651,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
           >
             Tab 2
           </span>

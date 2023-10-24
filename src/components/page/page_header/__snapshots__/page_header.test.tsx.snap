@@ -339,7 +339,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
               type="button"
             >
               <span
-                class="euiTab__content emotion-euiTab__content-l"
+                class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
               >
                 Tab 1
               </span>
@@ -351,7 +351,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
               type="button"
             >
               <span
-                class="euiTab__content emotion-euiTab__content-l"
+                class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
               >
                 Tab 2
               </span>
