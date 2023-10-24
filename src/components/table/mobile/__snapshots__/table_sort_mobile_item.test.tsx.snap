@@ -3,21 +3,17 @@
 exports[`EuiTableSortMobileItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiContextMenuItem euiTableSortMobileItem testClass1 testClass2 emotion-euiTestCss"
+  class="euiContextMenuItem euiTableSortMobileItem testClass1 testClass2 emotion-euiContextMenuItem-m-center-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenu__icon"
-      color="inherit"
-      data-euiicon-type="empty"
-    />
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
+    class="euiContextMenu__icon emotion-euiContextMenu__icon"
+    color="inherit"
+    data-euiicon-type="empty"
+  />
+  <span
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+  />
 </button>
 `;
