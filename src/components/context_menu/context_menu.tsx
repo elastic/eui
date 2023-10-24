@@ -16,7 +16,7 @@ import React, {
 import classNames from 'classnames';
 
 import { withEuiTheme, WithEuiThemeProps } from '../../services';
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
 
 import {
@@ -62,15 +62,10 @@ export interface EuiContextMenuPanelDescriptor {
   /**
    * Alters the size of the items and the title
    */
-  size?: keyof typeof sizeToClassNameMap;
+  size?: (typeof SIZES)[number];
 }
 
-const sizeToClassNameMap = {
-  s: 'euiContextMenu--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm'] as const;
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
@@ -87,7 +82,7 @@ export type EuiContextMenuProps = CommonProps &
     /**
      * Alters the size of the items and the title
      */
-    size?: keyof typeof sizeToClassNameMap;
+    size?: (typeof SIZES)[number];
   };
 
 const isItemSeparator = (
@@ -450,11 +445,7 @@ export class EuiContextMenuClass extends Component<
         ? this.state.idToPanelMap[this.state.incomingPanelId!].width
         : undefined;
 
-    const classes = classNames(
-      'euiContextMenu',
-      size && sizeToClassNameMap[size],
-      className
-    );
+    const classes = classNames('euiContextMenu', className);
 
     const styles = euiContextMenuStyles(theme);
     const cssStyles = [styles.euiContextMenu];
