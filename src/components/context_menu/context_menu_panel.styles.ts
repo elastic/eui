@@ -9,7 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, euiCantAnimate } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
 
 import { euiContextMenuVariables } from './context_menu.styles';
@@ -24,6 +24,10 @@ export const euiContextMenuPanelStyles = (euiThemeContext: UseEuiTheme) => {
       animation-fill-mode: forwards;
       animation-duration: ${euiTheme.animation.normal};
       animation-timing-function: ${euiTheme.animation.resistance};
+
+      ${euiCantAnimate} {
+        animation-duration: 0s; /* Run the animation instantly, which triggers onAnimationEnd */
+      }
     `,
     inLeft: keyframes`
       0% { transform: translateX(${panelWidth}); }
