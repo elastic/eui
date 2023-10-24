@@ -1,11 +1,4 @@
 .euiContextMenuItem {
-  display: block;
-  padding: $euiSizeM;
-  width: 100%;
-  text-align: left;
-  color: $euiTextColor;
-  outline-offset: -$euiFocusRingSize;
-
   &:hover,
   &:focus {
     text-decoration: underline;
@@ -26,8 +19,6 @@
   }
 
   &--small {
-    padding: ($euiSizeS * .75) $euiSizeS;
-
     .euiContextMenuItem__text {
       @include euiFontSizeS;
     }

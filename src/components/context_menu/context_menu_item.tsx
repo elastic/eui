@@ -17,12 +17,13 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme, getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 
-import { getSecureRelForTarget } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
+import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
@@ -100,11 +101,12 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   size,
   ...rest
 }) => {
-  let iconInstance;
+  const euiTheme = useEuiTheme();
 
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
 
+  let iconInstance;
   if (icon) {
     switch (typeof icon) {
       case 'string':
@@ -142,6 +144,8 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
       'euiContextMenuItem-isDisabled': disabled,
     }
   );
+  const styles = euiContextMenuItemStyles(euiTheme);
+  const cssStyles = [styles.euiContextMenuItem];
 
   const layoutClasses = classNames(
     'euiContextMenu__itemLayout',
@@ -164,6 +168,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
 
     button = (
       <a
+        css={cssStyles}
         className={classes}
         href={href}
         target={target}
@@ -178,6 +183,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     button = (
       <button
         disabled={disabled}
+        css={cssStyles}
         className={classes}
         type="button"
         ref={buttonRef}
