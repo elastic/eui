@@ -645,7 +645,7 @@ export class EuiPopover extends Component<Props, State> {
     const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
     const styles = euiPopoverStyles();
-    const popoverStyles = [styles.euiPopover, { display }];
+    const popoverStyles = [styles.euiPopover, { display, label: display }];
     const classes = classNames(
       'euiPopover',
       {
@@ -777,9 +777,7 @@ export class EuiPopover extends Component<Props, State> {
           ref={this.popoverRef}
           {...rest}
         >
-          <div css={{ display }}>
-            {button instanceof HTMLElement ? null : button}
-          </div>
+          {button instanceof HTMLElement ? null : button}
           {panel}
         </div>
       );
@@ -793,9 +791,7 @@ export class EuiPopover extends Component<Props, State> {
             onKeyDown={this.onKeyDown}
             {...rest}
           >
-            <div css={{ display }}>
-              {button instanceof HTMLElement ? null : button}
-            </div>
+            {button instanceof HTMLElement ? null : button}
             {panel}
           </div>
         </EuiOutsideClickDetector>
