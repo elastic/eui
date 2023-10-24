@@ -51,8 +51,15 @@ export const EuiPopoverPanel: FunctionComponent<
   const euiThemeContext = useEuiTheme();
   const cssStyles = useMemo(() => {
     const styles = euiPopoverPanelStyles(euiThemeContext);
+    const colorMode = euiThemeContext.colorMode.toLowerCase() as Lowercase<
+      'LIGHT' | 'DARK'
+    >;
 
-    const sharedStyles = [styles.euiPopover__panel, isOpen && styles.isOpen];
+    const sharedStyles = [
+      styles.euiPopover__panel,
+      styles[colorMode],
+      isOpen && styles.isOpen,
+    ];
 
     if (hasDragDrop) {
       return [
