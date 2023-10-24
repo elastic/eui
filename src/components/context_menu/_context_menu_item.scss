@@ -6,9 +6,6 @@
   }
 }
 
-.euiContextMenuItem__inner {
-  display: flex;
-}
 
 .euiContextMenuItem__text {
   flex-grow: 1;
@@ -19,20 +16,6 @@
   align-self: flex-end;
 }
 
-.euiContextMenu__itemLayout {
-  display: flex;
-  align-items: center;
-  gap: $euiSizeS;
-
-  &.euiContextMenu__itemLayout--bottom {
-    align-items: flex-end;
-  }
-
-  &.euiContextMenu__itemLayout--top {
-    align-items: flex-start;
-  }
-
-  .euiContextMenu__icon {
-    flex-shrink: 0;
-  }
+.euiContextMenu__icon {
+  flex-shrink: 0;
 }

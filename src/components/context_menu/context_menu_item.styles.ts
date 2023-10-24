@@ -19,7 +19,8 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiContextMenuItem: css`
-      display: block;
+      display: flex;
+      gap: ${euiTheme.size.s};
       ${logicalCSS('width', '100%')}
       ${logicalTextAlignCSS('left')}
       color: ${euiTheme.colors.text};
@@ -38,6 +39,17 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.disabledText};
       cursor: default;
     `,
+    layoutAlign: {
+      center: css`
+        align-items: center;
+      `,
+      top: css`
+        align-items: flex-start;
+      `,
+      bottom: css`
+        align-items: flex-end;
+      `,
+    },
     // Sizes
     ...padding,
   };

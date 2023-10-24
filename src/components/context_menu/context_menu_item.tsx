@@ -136,20 +136,16 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   const cssStyles = [
     styles.euiContextMenuItem,
     styles[size],
+    styles.layoutAlign[layoutAlign],
     disabled && styles.disabled,
   ];
 
-  const layoutClasses = classNames(
-    'euiContextMenu__itemLayout',
-    layoutAlignToClassNames[layoutAlign]
-  );
-
-  const buttonInner = (
-    <span className={layoutClasses}>
+  const buttonContent = (
+    <>
       {iconInstance}
       <span className="euiContextMenuItem__text">{children}</span>
       {arrow}
-    </span>
+    </>
   );
 
   let button;
@@ -168,7 +164,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
         ref={buttonRef as Ref<HTMLAnchorElement>}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
-        {buttonInner}
+        {buttonContent}
       </a>
     );
   } else {
@@ -181,7 +177,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
         ref={buttonRef}
         {...rest}
       >
-        {buttonInner}
+        {buttonContent}
       </button>
     );
   }
