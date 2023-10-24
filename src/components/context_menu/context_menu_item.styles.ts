@@ -11,8 +11,11 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
 
+import { euiContextMenuVariables } from './context_menu.styles';
+
 export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const { padding } = euiContextMenuVariables(euiThemeContext);
 
   return {
     euiContextMenuItem: css`
@@ -22,5 +25,7 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.text};
       outline-offset: -${euiTheme.focus.width};
     `,
+    // Sizes
+    ...padding,
   };
 };

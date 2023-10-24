@@ -14,6 +14,15 @@ import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
 export const euiContextMenuVariables = ({ euiTheme }: UseEuiTheme) => {
   return {
     panelWidth: mathWithUnits(euiTheme.size.base, (x) => x * 16),
+    padding: {
+      m: css`
+        padding: ${euiTheme.size.m};
+      `,
+      s: css`
+        padding-inline: ${euiTheme.size.s};
+        padding-block: ${mathWithUnits(euiTheme.size.s, (x) => x * 0.75)};
+      `,
+    },
   };
 };
 

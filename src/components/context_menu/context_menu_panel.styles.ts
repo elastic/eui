@@ -9,11 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import {
-  logicalCSS,
-  logicalTextAlignCSS,
-  mathWithUnits,
-} from '../../global_styling';
+import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
 
 import { euiContextMenuVariables } from './context_menu.styles';
@@ -85,6 +81,7 @@ export const euiContextMenuPanelTitleStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const { padding } = euiContextMenuVariables(euiThemeContext);
   return {
     euiContextMenuPanelTitle: css`
       ${euiTitle(euiThemeContext, 'xxs')}
@@ -99,12 +96,6 @@ export const euiContextMenuPanelTitleStyles = (
       }
     `,
     // Sizes
-    m: css`
-      padding: ${euiTheme.size.m};
-    `,
-    s: css`
-      padding-inline: ${euiTheme.size.s};
-      padding-block: ${mathWithUnits(euiTheme.size.s, (x) => x * 0.75)};
-    `,
+    ...padding,
   };
 };

@@ -29,12 +29,7 @@ export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
-const sizeToClassNameMap = {
-  s: 'euiContextMenuItem--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm'] as const;
 
 export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
@@ -64,7 +59,7 @@ export interface EuiContextMenuItemProps extends CommonProps {
   /**
    * Reduce the size to `s` when in need of a more compressed menu
    */
-  size?: keyof typeof sizeToClassNameMap;
+  size?: (typeof SIZES)[number];
 }
 
 type Props = CommonProps &
@@ -98,7 +93,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   href,
   target,
   rel,
-  size,
+  size = 'm',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -136,16 +131,11 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     );
   }
 
-  const classes = classNames(
-    'euiContextMenuItem',
-    size && sizeToClassNameMap[size],
-    className,
-    {
-      'euiContextMenuItem-isDisabled': disabled,
-    }
-  );
+  const classes = classNames('euiContextMenuItem', className, {
+    'euiContextMenuItem-isDisabled': disabled,
+  });
   const styles = euiContextMenuItemStyles(euiTheme);
-  const cssStyles = [styles.euiContextMenuItem];
+  const cssStyles = [styles.euiContextMenuItem, styles[size]];
 
   const layoutClasses = classNames(
     'euiContextMenu__itemLayout',
