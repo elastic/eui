@@ -50,6 +50,7 @@
 .euiContextMenu__itemLayout {
   display: flex;
   align-items: center;
+  gap: $euiSizeS;
 
   &.euiContextMenu__itemLayout--bottom {
     align-items: flex-end;
