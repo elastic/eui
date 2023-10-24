@@ -147,7 +147,10 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Object of props passed to EuiPanel. See #EuiPopoverPanelProps
    */
-  panelProps?: Omit<EuiPopoverPanelProps, 'style' | 'hasShadow' | 'hasBorder'>;
+  panelProps?: Omit<
+    EuiPopoverPanelProps,
+    'style' | 'hasShadow' | 'hasBorder' | 'color'
+  >;
   panelRef?: RefCallback<HTMLElement | null>;
   /**
    * Optional screen reader instructions to announce upon popover open,
