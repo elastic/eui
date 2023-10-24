@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps } from '../../test';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test';
 
 import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
@@ -30,7 +31,9 @@ const items = [
 ];
 
 describe('EuiContextMenuPanel', () => {
-  test('is rendered', () => {
+  shouldRenderCustomStyles(<EuiContextMenuPanel />);
+
+  it('renders', () => {
     const { container } = render(
       <EuiContextMenuPanel {...requiredProps}>Hello</EuiContextMenuPanel>
     );
@@ -39,17 +42,15 @@ describe('EuiContextMenuPanel', () => {
   });
 
   describe('props', () => {
-    describe('title', () => {
-      test('is rendered', () => {
-        const { container } = render(<EuiContextMenuPanel title="Title" />);
+    test('title', () => {
+      const { container } = render(<EuiContextMenuPanel title="Title" />);
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('size', () => {
       SIZES.forEach((size) => {
-        it(`${size} is rendered`, () => {
+        test(size, () => {
           const { container } = render(
             <EuiContextMenuPanel title="Title" size={size} />
           );
@@ -60,30 +61,37 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('onClose', () => {
-      test('renders a button as a title', () => {
-        const { container } = render(
+      it('renders a button and a left arrow', () => {
+        const { container, getByTestSubject } = render(
           <EuiContextMenuPanel title="Title" onClose={() => {}} />
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(
+          getByTestSubject('contextMenuPanelTitleButton').nodeName
+        ).toEqual('BUTTON');
+        expect(
+          container.querySelector('[data-euiicon-type="arrowLeft"]')
+        ).toBeInTheDocument();
       });
 
-      test("isn't called upon instantiation", () => {
-        const onCloseHandler = jest.fn();
+      it('renders a plain div if onClose is not passed', () => {
+        const { getByTestSubject } = render(
+          <EuiContextMenuPanel title="Title" />
+        );
 
-        mount(<EuiContextMenuPanel title="Title" onClose={onCloseHandler} />);
-
-        expect(onCloseHandler).not.toHaveBeenCalled();
+        expect(getByTestSubject('contextMenuPanelTitle').nodeName).toEqual(
+          'DIV'
+        );
       });
 
-      test('is called when the title is clicked', () => {
+      it('is called when the title is clicked', () => {
         const onCloseHandler = jest.fn();
 
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiContextMenuPanel title="Title" onClose={onCloseHandler} />
         );
 
-        component.find('button').simulate('click');
+        fireEvent.click(getByTestSubject('contextMenuPanelTitleButton'));
 
         expect(onCloseHandler).toHaveBeenCalledTimes(1);
       });
@@ -93,71 +101,9 @@ describe('EuiContextMenuPanel', () => {
       it('is called with a height value', () => {
         const onHeightChange = jest.fn();
 
-        mount(<EuiContextMenuPanel onHeightChange={onHeightChange} />);
+        render(<EuiContextMenuPanel onHeightChange={onHeightChange} />);
 
         expect(onHeightChange).toHaveBeenCalledWith(0);
-      });
-    });
-
-    describe('transitionDirection', () => {
-      describe('next', () => {
-        describe('with transitionType', () => {
-          describe('in', () => {
-            test('is rendered', () => {
-              const { container } = render(
-                <EuiContextMenuPanel
-                  transitionDirection="next"
-                  transitionType="in"
-                />
-              );
-
-              expect(container.firstChild).toMatchSnapshot();
-            });
-          });
-
-          describe('out', () => {
-            test('is rendered', () => {
-              const { container } = render(
-                <EuiContextMenuPanel
-                  transitionDirection="next"
-                  transitionType="out"
-                />
-              );
-
-              expect(container.firstChild).toMatchSnapshot();
-            });
-          });
-        });
-      });
-
-      describe('previous', () => {
-        describe('with transitionType', () => {
-          describe('in', () => {
-            test('is rendered', () => {
-              const { container } = render(
-                <EuiContextMenuPanel
-                  transitionDirection="previous"
-                  transitionType="in"
-                />
-              );
-
-              expect(container.firstChild).toMatchSnapshot();
-            });
-          });
-
-          describe('out', () => {
-            test('is rendered', () => {
-              const { container } = render(
-                <EuiContextMenuPanel
-                  transitionDirection="previous"
-                  transitionType="out"
-                />
-              );
-
-              expect(container.firstChild).toMatchSnapshot();
-            });
-          });
-        });
       });
     });
 
@@ -165,28 +111,28 @@ describe('EuiContextMenuPanel', () => {
       it('is called when up arrow is pressed', () => {
         const onUseKeyboardToNavigateHandler = jest.fn();
 
-        const component = mount(
+        const { container } = render(
           <EuiContextMenuPanel
             items={items}
             onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
           />
         );
 
-        component.simulate('keydown', { key: keys.ARROW_UP });
+        fireEvent.keyDown(container.firstChild!, { key: keys.ARROW_UP });
         expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
       });
 
       it('is called when down arrow is pressed', () => {
         const onUseKeyboardToNavigateHandler = jest.fn();
 
-        const component = mount(
+        const { container } = render(
           <EuiContextMenuPanel
             items={items}
             onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
           />
         );
 
-        component.simulate('keydown', { key: keys.ARROW_UP });
+        fireEvent.keyDown(container.firstChild!, { key: keys.ARROW_UP });
         expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
       });
 
@@ -194,7 +140,7 @@ describe('EuiContextMenuPanel', () => {
         it('calls handler if onClose and showPreviousPanel exists', () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
-          const component = mount(
+          const { container } = render(
             <EuiContextMenuPanel
               items={items}
               onClose={() => {}}
@@ -203,21 +149,21 @@ describe('EuiContextMenuPanel', () => {
             />
           );
 
-          component.simulate('keydown', { key: keys.ARROW_LEFT });
+          fireEvent.keyDown(container.firstChild!, { key: keys.ARROW_LEFT });
           expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
         });
 
         it("doesn't call handler if showPreviousPanel doesn't exist", () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
-          const component = mount(
+          const { container } = render(
             <EuiContextMenuPanel
               items={items}
               onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
             />
           );
 
-          component.simulate('keydown', { key: keys.ARROW_LEFT });
+          fireEvent.keyDown(container.firstChild!, { key: keys.ARROW_LEFT });
           expect(onUseKeyboardToNavigateHandler).not.toHaveBeenCalled();
         });
       });
@@ -226,7 +172,7 @@ describe('EuiContextMenuPanel', () => {
         it('calls handler if showNextPanel exists', () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
-          const component = mount(
+          const { container } = render(
             <EuiContextMenuPanel
               items={items}
               showNextPanel={() => {}}
@@ -234,21 +180,21 @@ describe('EuiContextMenuPanel', () => {
             />
           );
 
-          component.simulate('keydown', { key: keys.ARROW_RIGHT });
+          fireEvent.keyDown(container.firstChild!, { key: keys.ARROW_RIGHT });
           expect(onUseKeyboardToNavigateHandler).toHaveBeenCalledTimes(1);
         });
 
         it("doesn't call handler if showNextPanel doesn't exist", () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
-          const component = mount(
+          const { container } = render(
             <EuiContextMenuPanel
               items={items}
               onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
             />
           );
 
-          component.simulate('keydown', { key: keys.ARROW_RIGHT });
+          fireEvent.keyDown(container.firstChild!, { key: keys.ARROW_RIGHT });
           expect(onUseKeyboardToNavigateHandler).not.toHaveBeenCalled();
         });
       });
