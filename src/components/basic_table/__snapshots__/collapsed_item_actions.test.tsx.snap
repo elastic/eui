@@ -2,30 +2,26 @@
 
 exports[`CollapsedItemActions render 1`] = `
 <div
-  class="euiPopover emotion-euiPopover"
+  class="euiPopover emotion-euiPopover-inline-block"
   id="id-actions"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
-    <span
-      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    <button
+      aria-label="All actions"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiCollapsedItemActionsButton"
+      type="button"
     >
-      <button
-        aria-label="All actions"
-        class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-        data-test-subj="euiCollapsedItemActionsButton"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="boxesHorizontal"
-        />
-      </button>
-    </span>
-  </div>
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="boxesHorizontal"
+      />
+    </button>
+  </span>
 </div>
 `;
 

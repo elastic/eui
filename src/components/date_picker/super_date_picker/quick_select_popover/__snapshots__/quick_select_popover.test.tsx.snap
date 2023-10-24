@@ -426,34 +426,30 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
 
 exports[`EuiQuickSelectPopover is rendered 1`] = `
 <div
-  class="euiPopover emotion-euiPopover"
+  class="euiPopover emotion-euiPopover-inline-block"
 >
-  <div
-    class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+  <button
+    aria-label="Date quick select"
+    class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+    data-test-subj="superDatePickerToggleQuickMenuButton"
+    title="Date quick select"
+    type="button"
   >
-    <button
-      aria-label="Date quick select"
-      class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-      data-test-subj="superDatePickerToggleQuickMenuButton"
-      title="Date quick select"
-      type="button"
+    <span
+      class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
-        >
-          <span
-            data-euiicon-type="calendar"
-          />
-        </span>
-        <span
-          color="inherit"
-          data-euiicon-type="arrowDown"
+          data-euiicon-type="calendar"
         />
       </span>
-    </button>
-  </div>
+      <span
+        color="inherit"
+        data-euiicon-type="arrowDown"
+      />
+    </span>
+  </button>
 </div>
 `;
