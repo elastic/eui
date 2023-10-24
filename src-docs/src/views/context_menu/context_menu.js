@@ -43,9 +43,7 @@ export default () => {
         {
           name: 'Handle an onClick',
           icon: 'search',
-          onClick: () => {
-            closePopover();
-          },
+          onClick: closePopover,
         },
         {
           name: 'Go to a link',
@@ -64,17 +62,17 @@ export default () => {
           toolTipTitle: 'Optional tooltip',
           toolTipContent: 'Optional content for a tooltip',
           toolTipPosition: 'right',
-          onClick: () => {
-            closePopover();
-          },
+          onClick: closePopover,
         },
         {
           name: 'Use an app icon',
           icon: 'visualizeApp',
+          onClick: closePopover,
         },
         {
           name: 'Pass an icon as a component to customize it',
           icon: <EuiIcon type="trash" size="m" color="danger" />,
+          onClick: closePopover,
         },
         {
           name: 'Disabled option',
@@ -82,9 +80,7 @@ export default () => {
           toolTipContent: 'For reasons, this item is disabled',
           toolTipPosition: 'right',
           disabled: true,
-          onClick: () => {
-            closePopover();
-          },
+          onClick: closePopover,
         },
       ],
     },
@@ -96,9 +92,7 @@ export default () => {
         {
           name: 'PDF reports',
           icon: 'user',
-          onClick: () => {
-            closePopover();
-          },
+          onClick: closePopover,
         },
         {
           name: 'Embed code',
@@ -108,9 +102,7 @@ export default () => {
         {
           name: 'Permalinks',
           icon: 'user',
-          onClick: () => {
-            closePopover();
-          },
+          onClick: closePopover,
         },
       ],
     },
