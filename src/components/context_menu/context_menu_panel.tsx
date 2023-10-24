@@ -18,7 +18,7 @@ import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
 
 import { withEuiTheme, WithEuiThemeProps, keys } from '../../services';
-import { CommonProps, NoArgCallback, keysOf } from '../common';
+import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -26,7 +26,10 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
-import { euiContextMenuPanelStyles } from './context_menu_panel.styles';
+import {
+  euiContextMenuPanelStyles,
+  euiContextMenuPanelTitleStyles,
+} from './context_menu_panel.styles';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -35,12 +38,7 @@ export type EuiContextMenuPanelShowPanelCallback = (
   currentPanelIndex?: number
 ) => void;
 
-const titleSizeToClassNameMap = {
-  s: 'euiContextMenuPanelTitle--small',
-  m: null,
-};
-
-export const SIZES = keysOf(titleSizeToClassNameMap);
+export const SIZES = ['s', 'm'] as const;
 
 export interface EuiContextMenuPanelProps extends PropsWithChildren {
   initialFocusedItemIndex?: number;
@@ -420,14 +418,17 @@ export class EuiContextMenuPanelClass extends Component<
     let panelTitle;
 
     if (title) {
-      const titleClasses = classNames(
-        'euiContextMenuPanelTitle',
-        size && titleSizeToClassNameMap[size]
-      );
+      const titleClasses = classNames('euiContextMenuPanelTitle');
+      const titleStyles = euiContextMenuPanelTitleStyles(theme);
+      const cssStyles = [
+        titleStyles.euiContextMenuPanelTitle,
+        titleStyles[size || 'm'],
+      ];
 
       if (Boolean(onClose)) {
         panelTitle = (
           <button
+            css={cssStyles}
             className={titleClasses}
             type="button"
             onClick={onClose}
@@ -449,7 +450,7 @@ export class EuiContextMenuPanelClass extends Component<
         );
       } else {
         panelTitle = (
-          <div className={titleClasses}>
+          <div css={cssStyles} className={titleClasses}>
             <span className="euiContextMenu__itemLayout">{title}</span>
           </div>
         );

@@ -9,7 +9,12 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  mathWithUnits,
+} from '../../global_styling';
+import { euiTitle } from '../title/title.styles';
 
 import { euiContextMenuVariables } from './context_menu.styles';
 
@@ -73,5 +78,33 @@ export const euiContextMenuPanelStyles = (euiThemeContext: UseEuiTheme) => {
         animation-name: ${animations.outRight};
       `,
     },
+  };
+};
+
+export const euiContextMenuPanelTitleStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiContextMenuPanelTitle: css`
+      ${euiTitle(euiThemeContext, 'xxs')}
+      ${logicalCSS('width', '100%')}
+      ${logicalTextAlignCSS('left')}
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      outline-offset: -${euiTheme.focus.width};
+
+      &:enabled:hover,
+      &:enabled:focus {
+        text-decoration: underline;
+      }
+    `,
+    // Sizes
+    m: css`
+      padding: ${euiTheme.size.m};
+    `,
+    s: css`
+      padding-inline: ${euiTheme.size.s};
+      padding-block: ${mathWithUnits(euiTheme.size.s, (x) => x * 0.75)};
+    `,
   };
 };
