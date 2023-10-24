@@ -12,7 +12,6 @@ import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
   logicalTextAlignCSS,
-  mathWithUnits,
   euiFontSize,
 } from '../../global_styling';
 
@@ -57,8 +56,7 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         padding: ${euiTheme.size.m};
       `,
       s: css`
-        padding-inline: ${euiTheme.size.s};
-        padding-block: ${mathWithUnits(euiTheme.size.s, (x) => x * 0.75)};
+        padding: ${euiTheme.size.s};
       `,
     },
     // Children
