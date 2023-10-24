@@ -24,6 +24,19 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalTextAlignCSS('left')}
       color: ${euiTheme.colors.text};
       outline-offset: -${euiTheme.focus.width};
+
+      &:enabled:hover,
+      &:enabled:focus {
+        text-decoration: underline;
+      }
+
+      &:enabled:focus {
+        background-color: ${euiTheme.focus.backgroundColor};
+      }
+    `,
+    disabled: css`
+      color: ${euiTheme.colors.disabledText};
+      cursor: default;
     `,
     // Sizes
     ...padding,

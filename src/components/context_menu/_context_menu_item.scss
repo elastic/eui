@@ -1,23 +1,4 @@
 .euiContextMenuItem {
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
-
-  &:focus {
-    background-color: $euiFocusBackgroundColor;
-  }
-
-  &.euiContextMenuItem-isDisabled {
-    color: $euiButtonColorDisabledText;
-    cursor: default;
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
-  }
-
   &--small {
     .euiContextMenuItem__text {
       @include euiFontSizeS;

@@ -131,11 +131,13 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     );
   }
 
-  const classes = classNames('euiContextMenuItem', className, {
-    'euiContextMenuItem-isDisabled': disabled,
-  });
+  const classes = classNames('euiContextMenuItem', className);
   const styles = euiContextMenuItemStyles(euiTheme);
-  const cssStyles = [styles.euiContextMenuItem, styles[size]];
+  const cssStyles = [
+    styles.euiContextMenuItem,
+    styles[size],
+    disabled && styles.disabled,
+  ];
 
   const layoutClasses = classNames(
     'euiContextMenu__itemLayout',
