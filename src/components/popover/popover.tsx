@@ -29,6 +29,7 @@ import {
   performOnFrame,
   htmlIdGenerator,
 } from '../../services';
+import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -600,16 +601,7 @@ export class EuiPopover extends Component<Props, State> {
 
   popoverRef = (node: HTMLDivElement | null) => {
     this.button = node;
-
-    const { popoverRef } = this.props;
-    if (popoverRef) {
-      if (typeof popoverRef === 'function') {
-        popoverRef?.(node);
-      } else {
-        popoverRef.current = node;
-      }
-    }
-    this.props.buttonRef?.(node);
+    setMultipleRefs([this.props.popoverRef, this.props.buttonRef], node);
   };
 
   render() {

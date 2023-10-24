@@ -8,6 +8,8 @@
 
 import { MutableRefObject, Ref, useCallback } from 'react';
 
+type Refs<T> = Array<Ref<T> | MutableRefObject<T | undefined> | undefined>;
+
 /*
  * For use when a component needs to set `ref` objects from multiple sources.
  * For instance, if a component accepts a `ref` prop but also needs its own
@@ -15,20 +17,21 @@ import { MutableRefObject, Ref, useCallback } from 'react';
  * This hook handles setting multiple `ref`s of any available `ref` type
  * in a single callback function.
  */
-export const useCombinedRefs = <T>(
-  refs: Array<Ref<T> | MutableRefObject<T | undefined> | undefined>
-) => {
-  return useCallback(
-    (node: T) =>
-      refs.forEach((ref) => {
-        if (!ref) return;
+export const useCombinedRefs = <T>(refs: Refs<T>) =>
+  useCallback((node: T) => setMultipleRefs(refs, node), [refs]);
 
-        if (typeof ref === 'function') {
-          ref(node);
-        } else {
-          (ref as MutableRefObject<T>).current = node;
-        }
-      }),
-    [refs]
-  );
+/**
+ * Non-hook util for setting multiple refs/ref types.
+ * Useful for non-functional components
+ */
+export const setMultipleRefs = <T>(refs: Refs<T>, node: T) => {
+  refs.forEach((ref) => {
+    if (!ref) return;
+
+    if (typeof ref === 'function') {
+      ref(node);
+    } else {
+      (ref as MutableRefObject<T>).current = node;
+    }
+  });
 };
