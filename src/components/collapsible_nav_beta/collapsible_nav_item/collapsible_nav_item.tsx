@@ -25,6 +25,7 @@ import { EuiAccordionProps } from '../../accordion';
 import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsedNavItem } from './collapsed';
 import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
+import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import {
   euiCollapsibleNavItemTitleStyles,
@@ -148,7 +149,14 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
         />
       );
     } else {
-      return 'TODO';
+      return (
+        <EuiCollapsibleNavGroup
+          header={headerContent}
+          items={items}
+          {...props}
+          isSubItem={isSubItem}
+        />
+      );
     }
   }
 
