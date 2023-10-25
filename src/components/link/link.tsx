@@ -14,9 +14,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import {
+  getSecureRelForTarget,
+  validateHref,
+  useEuiTheme,
+} from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
-import { validateHref } from '../../services/security/href_validator';
 
 import { EuiExternalLinkIcon } from './external_link_icon';
 import { euiLinkStyles } from './link.styles';

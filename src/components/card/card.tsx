@@ -17,12 +17,11 @@ import classNames from 'classnames';
 
 import {
   getSecureRelForTarget,
+  validateHref,
   useEuiTheme,
+  useGeneratedHtmlId,
   cloneElementWithCss,
 } from '../../services';
-import { useGeneratedHtmlId } from '../../services/accessibility';
-import { validateHref } from '../../services/security/href_validator';
-
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';

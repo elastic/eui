@@ -29,10 +29,10 @@ import {
 
 import {
   getSecureRelForTarget,
+  validateHref,
   useEuiTheme,
   cloneElementWithCss,
 } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
 import { EuiExternalLinkIcon } from '../link/external_link_icon';
 
 import {

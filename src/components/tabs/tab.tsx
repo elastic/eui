@@ -16,8 +16,11 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
+import {
+  getSecureRelForTarget,
+  validateHref,
+  useEuiTheme,
+} from '../../services';
 
 import { euiTabStyles, euiTabContentStyles } from './tab.styles';
 import { EuiTabsContext } from './tabs_context';

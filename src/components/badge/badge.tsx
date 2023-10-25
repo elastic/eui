@@ -21,10 +21,10 @@ import {
   useEuiTheme,
   getSecureRelForTarget,
   wcagContrastMin,
+  validateHref,
 } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
-import { validateHref } from '../../services/security/href_validator';
 
 import { getTextColor, getColorContrast, getIsValidColor } from './color_utils';
 import { euiBadgeStyles } from './badge.styles';

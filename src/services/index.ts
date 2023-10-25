@@ -81,7 +81,7 @@ export * from './hooks';
 export { isEvenlyDivisibleBy, isWithinRange } from './number';
 export { Pager } from './paging';
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
-export { getSecureRelForTarget } from './security';
+export { getSecureRelForTarget, validateHref } from './links';
 export {
   Comparators,
   PropertySortType,

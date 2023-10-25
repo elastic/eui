@@ -16,7 +16,11 @@ import React, {
 
 // @ts-ignore module doesn't export `createElement`
 import { createElement } from '@emotion/react';
-import { getSecureRelForTarget, useEuiTheme } from '../../../services';
+import {
+  getSecureRelForTarget,
+  validateHref,
+  useEuiTheme,
+} from '../../../services';
 
 import {
   CommonProps,
@@ -31,7 +35,6 @@ import {
   EuiButtonDisplayContentProps,
   EuiButtonDisplayContentType,
 } from './_button_display_content';
-import { validateHref } from '../../../services/security/href_validator';
 
 const SIZES = ['xs', 's', 'm'] as const;
 export type EuiButtonDisplaySizes = (typeof SIZES)[number];
