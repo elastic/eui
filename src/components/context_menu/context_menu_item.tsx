@@ -9,31 +9,31 @@
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  cloneElement,
-  Component,
+  HTMLAttributes,
+  FunctionComponent,
   ReactElement,
   ReactNode,
   Ref,
 } from 'react';
 import classNames from 'classnames';
 
+import {
+  useEuiTheme,
+  getSecureRelForTarget,
+  cloneElementWithCss,
+} from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiToolTip, ToolTipPositions } from '../tool_tip';
 
-import { getSecureRelForTarget } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
+import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
 export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
 
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
-const sizeToClassNameMap = {
-  s: 'euiContextMenuItem--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm'] as const;
 
 export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
@@ -63,7 +63,7 @@ export interface EuiContextMenuItemProps extends CommonProps {
   /**
    * Reduce the size to `s` when in need of a more compressed menu
    */
-  size?: keyof typeof sizeToClassNameMap;
+  size?: (typeof SIZES)[number];
 }
 
 type Props = CommonProps &
@@ -83,126 +83,134 @@ const layoutAlignToClassNames: {
 
 export const LAYOUT_ALIGN = keysOf(layoutAlignToClassNames);
 
-export class EuiContextMenuItem extends Component<Props> {
-  render() {
-    const {
-      children,
-      className,
-      hasPanel,
-      icon,
-      buttonRef,
-      disabled: _disabled,
-      layoutAlign = 'center',
-      toolTipTitle,
-      toolTipContent,
-      toolTipPosition = 'right',
-      href,
-      target,
-      rel,
-      size,
-      ...rest
-    } = this.props;
-    let iconInstance;
+export const EuiContextMenuItem: FunctionComponent<Props> = ({
+  children,
+  className,
+  hasPanel,
+  icon,
+  buttonRef,
+  disabled: _disabled,
+  layoutAlign = 'center',
+  toolTipTitle,
+  toolTipContent,
+  toolTipPosition = 'right',
+  href,
+  target,
+  rel,
+  size = 'm',
+  ...rest
+}) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
 
-    const isHrefValid = !href || validateHref(href);
-    const disabled = _disabled || !isHrefValid;
+  const classes = classNames('euiContextMenuItem', className);
 
-    if (icon) {
-      switch (typeof icon) {
-        case 'string':
-          iconInstance = (
-            <EuiIcon
-              type={icon}
-              size="m"
-              className="euiContextMenu__icon"
-              color="inherit" // forces the icon to inherit its parent color
-            />
-          );
-          break;
+  const euiTheme = useEuiTheme();
+  const styles = euiContextMenuItemStyles(euiTheme);
+  const cssStyles = [
+    styles.euiContextMenuItem,
+    styles.sizes[size],
+    styles.layoutAlign[layoutAlign],
+    disabled && styles.disabled,
+  ];
 
-        default:
-          // Assume it's already an instance of an icon.
-          iconInstance = cloneElement(icon as ReactElement, {
-            className: 'euiContextMenu__icon',
-          });
-      }
-    }
+  const iconInstance =
+    icon &&
+    (typeof icon === 'string' ? (
+      <EuiIcon
+        type={icon}
+        size="m"
+        className="euiContextMenu__icon"
+        css={styles.euiContextMenu__icon}
+        color="inherit" // forces the icon to inherit its parent color
+      />
+    ) : (
+      // Assume it's already an instance of an icon.
+      cloneElementWithCss(icon as ReactElement, {
+        css: styles.euiContextMenu__icon,
+      })
+    ));
 
-    let arrow;
+  const arrow = hasPanel && (
+    <EuiIcon
+      type="arrowRight"
+      size="m"
+      className="euiContextMenu__arrow"
+      css={styles.euiContextMenuItem__arrow}
+    />
+  );
 
-    if (hasPanel) {
-      arrow = (
-        <EuiIcon type="arrowRight" size="m" className="euiContextMenu__arrow" />
-      );
-    }
-
-    const classes = classNames(
-      'euiContextMenuItem',
-      size && sizeToClassNameMap[size],
-      className,
-      {
-        'euiContextMenuItem-isDisabled': disabled,
-      }
-    );
-
-    const layoutClasses = classNames(
-      'euiContextMenu__itemLayout',
-      layoutAlignToClassNames[layoutAlign]
-    );
-
-    const buttonInner = (
-      <span className={layoutClasses}>
-        {iconInstance}
-        <span className="euiContextMenuItem__text">{children}</span>
-        {arrow}
+  const textStyles = [
+    styles.text.euiContextMenuItem__text,
+    size === 's' && styles.text.s,
+  ];
+  const buttonContent = (
+    <>
+      {iconInstance}
+      <span className="euiContextMenuItem__text" css={textStyles}>
+        {children}
       </span>
+      {arrow}
+    </>
+  );
+
+  let button;
+  // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
+  // this is a button and piggyback off its disabled styles.
+  if (href && !disabled) {
+    const secureRel = getSecureRelForTarget({ href, target, rel });
+
+    button = (
+      <a
+        css={cssStyles}
+        className={classes}
+        href={href}
+        target={target}
+        rel={secureRel}
+        ref={buttonRef as Ref<HTMLAnchorElement>}
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {buttonContent}
+      </a>
     );
-
-    let button;
-    // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
-    // this is a button and piggyback off its disabled styles.
-    if (href && !disabled) {
-      const secureRel = getSecureRelForTarget({ href, target, rel });
-
-      button = (
-        <a
-          className={classes}
-          href={href}
-          target={target}
-          rel={secureRel}
-          ref={buttonRef as Ref<HTMLAnchorElement>}
-          {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          {buttonInner}
-        </a>
-      );
-    } else {
-      button = (
-        <button
-          disabled={disabled}
-          className={classes}
-          type="button"
-          ref={buttonRef}
-          {...rest}
-        >
-          {buttonInner}
-        </button>
-      );
-    }
-
-    if (toolTipContent) {
-      return (
-        <EuiToolTip
-          title={toolTipTitle ? toolTipTitle : null}
-          content={toolTipContent}
-          anchorClassName="eui-displayBlock"
-          position={toolTipPosition}
-        >
-          {button}
-        </EuiToolTip>
-      );
-    } else {
-      return button;
-    }
+  } else if (href || rest.onClick) {
+    button = (
+      <button
+        disabled={disabled}
+        css={cssStyles}
+        className={classes}
+        type="button"
+        ref={buttonRef}
+        {...rest}
+      >
+        {buttonContent}
+      </button>
+    );
+  } else {
+    button = (
+      <div
+        css={cssStyles}
+        className={classes}
+        ref={buttonRef as Ref<HTMLDivElement>}
+        {...(rest as HTMLAttributes<HTMLDivElement>)}
+      >
+        {buttonContent}
+      </div>
+    );
   }
-}
+
+  if (toolTipContent) {
+    return (
+      <EuiToolTip
+        title={toolTipTitle ? toolTipTitle : null}
+        content={toolTipContent}
+        anchorClassName="eui-displayBlock"
+        position={toolTipPosition}
+      >
+        {button}
+      </EuiToolTip>
+    );
+  } else {
+    return button;
+  }
+};

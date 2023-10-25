@@ -165,46 +165,38 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           >
             <button
               aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               id="1"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Custom Display #1
-                </span>
+                Custom Display #1
               </span>
             </button>
             <button
               aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               id="2"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Custom Display #2
-                </span>
+                Custom Display #2
               </span>
             </button>
           </div>
@@ -403,48 +395,40 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           >
             <button
               aria-selected="true"
-              class="euiContextMenuItem euiSuperSelect__item euiContextMenuItem-isDisabled"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-disabled"
               disabled=""
               id="1"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="check"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Option #1
-                </span>
+                Option #1
               </span>
             </button>
             <button
               aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               data-test-subj="option two"
               id="2"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Option #2
-                </span>
+                Option #2
               </span>
             </button>
           </div>
@@ -544,46 +528,38 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           >
             <button
               aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               id="1"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Option #1
-                </span>
+                Option #1
               </span>
             </button>
             <button
               aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               id="2"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Option #2
-                </span>
+                Option #2
               </span>
             </button>
           </div>
@@ -686,46 +662,38 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
           >
             <button
               aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               id="1"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="empty"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Option #1
-                </span>
+                Option #1
               </span>
             </button>
             <button
               aria-selected="true"
-              class="euiContextMenuItem euiSuperSelect__item"
+              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
               id="2"
               role="option"
               type="button"
             >
               <span
-                class="euiContextMenu__itemLayout"
+                class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                color="inherit"
+                data-euiicon-type="check"
+              />
+              <span
+                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
               >
-                <span
-                  class="euiContextMenu__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-                <span
-                  class="euiContextMenuItem__text"
-                >
-                  Option #2
-                </span>
+                Option #2
               </span>
             </button>
           </div>

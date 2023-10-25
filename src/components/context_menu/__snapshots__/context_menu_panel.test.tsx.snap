@@ -1,132 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiContextMenuPanel is rendered 1`] = `
+exports[`EuiContextMenuPanel props size m 1`] = `
+<div
+  class="euiContextMenuPanel emotion-euiContextMenuPanel"
+  tabindex="-1"
+>
+  <div
+    class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+    data-test-subj="contextMenuPanelTitle"
+  >
+    <span
+      class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+    >
+      Title
+    </span>
+  </div>
+  <div />
+</div>
+`;
+
+exports[`EuiContextMenuPanel props size s 1`] = `
+<div
+  class="euiContextMenuPanel emotion-euiContextMenuPanel"
+  tabindex="-1"
+>
+  <div
+    class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+    data-test-subj="contextMenuPanelTitle"
+  >
+    <span
+      class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+    >
+      Title
+    </span>
+  </div>
+  <div />
+</div>
+`;
+
+exports[`EuiContextMenuPanel props title 1`] = `
+<div
+  class="euiContextMenuPanel emotion-euiContextMenuPanel"
+  tabindex="-1"
+>
+  <div
+    class="euiContextMenuItem euiContextMenuPanel__title emotion-euiContextMenuItem-m-center-euiContextMenuPanel__title"
+    data-test-subj="contextMenuPanelTitle"
+  >
+    <span
+      class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+    >
+      Title
+    </span>
+  </div>
+  <div />
+</div>
+`;
+
+exports[`EuiContextMenuPanel renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiContextMenuPanel testClass1 testClass2 emotion-euiTestCss"
+  class="euiContextMenuPanel testClass1 testClass2 emotion-euiContextMenuPanel-euiTestCss"
   data-test-subj="test subject string"
   tabindex="-1"
 >
   <div>
     Hello
   </div>
-</div>
-`;
-
-exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
-<div
-  class="euiContextMenuPanel"
-  tabindex="-1"
->
-  <button
-    class="euiContextMenuPanelTitle"
-    data-test-subj="contextMenuPanelTitleButton"
-    type="button"
-  >
-    <span
-      class="euiContextMenu__itemLayout"
-    >
-      <span
-        class="euiContextMenu__icon"
-        data-euiicon-type="arrowLeft"
-      />
-      <span
-        class="euiContextMenu__text"
-      >
-        Title
-      </span>
-    </span>
-  </button>
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props size m is rendered 1`] = `
-<div
-  class="euiContextMenuPanel"
-  tabindex="-1"
->
-  <div
-    class="euiContextMenuPanelTitle"
-  >
-    <span
-      class="euiContextMenu__itemLayout"
-    >
-      Title
-    </span>
-  </div>
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props size s is rendered 1`] = `
-<div
-  class="euiContextMenuPanel"
-  tabindex="-1"
->
-  <div
-    class="euiContextMenuPanelTitle euiContextMenuPanelTitle--small"
-  >
-    <span
-      class="euiContextMenu__itemLayout"
-    >
-      Title
-    </span>
-  </div>
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props title is rendered 1`] = `
-<div
-  class="euiContextMenuPanel"
-  tabindex="-1"
->
-  <div
-    class="euiContextMenuPanelTitle"
-  >
-    <span
-      class="euiContextMenu__itemLayout"
-    >
-      Title
-    </span>
-  </div>
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props transitionDirection next with transitionType in is rendered 1`] = `
-<div
-  class="euiContextMenuPanel euiContextMenuPanel-txInLeft"
-  tabindex="-1"
->
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props transitionDirection next with transitionType out is rendered 1`] = `
-<div
-  class="euiContextMenuPanel euiContextMenuPanel-txOutLeft"
-  tabindex="-1"
->
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props transitionDirection previous with transitionType in is rendered 1`] = `
-<div
-  class="euiContextMenuPanel euiContextMenuPanel-txInRight"
-  tabindex="-1"
->
-  <div />
-</div>
-`;
-
-exports[`EuiContextMenuPanel props transitionDirection previous with transitionType out is rendered 1`] = `
-<div
-  class="euiContextMenuPanel euiContextMenuPanel-txOutRight"
-  tabindex="-1"
->
-  <div />
 </div>
 `;

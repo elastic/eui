@@ -18,22 +18,28 @@ import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
 
 const items = [
-  <EuiContextMenuItem key="A" data-test-subj="itemA">
+  <EuiContextMenuItem key="A" data-test-subj="itemA" href="#">
     Option A
   </EuiContextMenuItem>,
-  <EuiContextMenuItem key="B" data-test-subj="itemB">
+  <EuiContextMenuItem key="B" data-test-subj="itemB" href="#">
     Option B
   </EuiContextMenuItem>,
-  <EuiContextMenuItem key="C" data-test-subj="itemC">
+  <EuiContextMenuItem key="C" data-test-subj="itemC" href="#">
     Option C
   </EuiContextMenuItem>,
 ];
 
 const children = (
   <>
-    <button data-test-subj="itemA">Item A</button>
-    <button data-test-subj="itemB">Item B</button>
-    <button data-test-subj="itemC">Item C</button>
+    <button data-test-subj="itemA" onClick={() => {}}>
+      Item A
+    </button>
+    <button data-test-subj="itemB" onClick={() => {}}>
+      Item B
+    </button>
+    <button data-test-subj="itemC" onClick={() => {}}>
+      Item C
+    </button>
   </>
 );
 
@@ -41,14 +47,14 @@ describe('EuiContextMenuPanel', () => {
   describe('Focus behavior', () => {
     it('focuses the panel by default', () => {
       cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
-      cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      cy.focused().should('have.class', 'euiContextMenuPanel');
     });
 
     describe('with `children`', () => {
       it('ignores arrow key navigation, which only toggles for `items`', () => {
         cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
         cy.realPress('{downarrow}');
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
       });
     });
 
@@ -64,7 +70,7 @@ describe('EuiContextMenuPanel', () => {
         cy.mount(
           <EuiContextMenuPanel items={items} initialFocusedItemIndex={99} />
         );
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
       });
 
       it('focuses and registers any tabbable child as navigable menu items', () => {
@@ -122,9 +128,9 @@ describe('EuiContextMenuPanel', () => {
           id: 'A',
           title: 'Panel A',
           items: [
-            { name: 'Lorem' },
+            { name: 'Lorem', href: '#' },
             { name: 'Go to Panel B', panel: 'B', 'data-test-subj': 'panelA' },
-            { name: 'Ipsum' },
+            { name: 'Ipsum', href: '#' },
           ],
         },
         {
@@ -132,8 +138,8 @@ describe('EuiContextMenuPanel', () => {
           title: 'Panel B',
           items: [
             { name: 'Go to Panel C', panel: 'C', 'data-test-subj': 'panelB' },
-            { name: 'Lorem' },
-            { name: 'Ipsum' },
+            { name: 'Lorem', href: '#' },
+            { name: 'Ipsum', href: '#' },
           ],
           initialFocusedItemIndex: 0,
         },
@@ -153,7 +159,7 @@ describe('EuiContextMenuPanel', () => {
         cy.realPress('{rightarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'panelB'); // has initialFocusedItemIndex
         cy.realPress('{rightarrow}');
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanelTitle');
+        cy.focused().should('have.class', 'euiContextMenuPanel__title');
       });
 
       it('focuses the correct toggling item when using the left arrow key to navigate to the previous panel', () => {
@@ -198,8 +204,8 @@ describe('EuiContextMenuPanel', () => {
 
       it('reclaims focus from the parent popover panel', () => {
         mountAndOpenPopover();
-        cy.focused().should('not.have.attr', 'class', 'euiPopover__panel');
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('not.have.class', 'euiPopover__panel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
       });
 
       it('does not hijack focus from the EuiPopover if `initialFocus` is set', () => {
@@ -208,7 +214,7 @@ describe('EuiContextMenuPanel', () => {
             <input id="testInitialFocus" />
           </ContextMenuInPopover>
         );
-        cy.focused().should('not.have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('not.class', 'euiContextMenuPanel');
         cy.focused().should('have.attr', 'id', 'testInitialFocus');
       });
 
@@ -234,35 +240,35 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('focuses the panel by default', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
       });
 
       it('down arrow key focuses the first menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, down arrow key focuses the next menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.repeatRealPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
 
       it('up arrow key wraps to last menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.realPress('{uparrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemC');
       });
 
       it('down arrow key wraps to first menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.repeatRealPress('{downarrow}', 4);
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, up arrow key focuses the previous menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.repeatRealPress('{uparrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
@@ -329,6 +335,7 @@ describe('EuiContextMenuPanel', () => {
             items: [
               {
                 name: 'End',
+                href: '#',
                 'data-test-subj': 'itemC',
               },
             ],
@@ -376,19 +383,19 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('tab key focuses the first menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.realPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, tab key focuses the next menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.repeatRealPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
 
       it('shift+tab key focuses the previous menu item', () => {
-        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.class', 'euiContextMenuPanel');
         cy.repeatRealPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
         cy.realPress(['Shift', 'Tab']);

@@ -14,7 +14,9 @@ import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
 describe('EuiTableSortMobileItem', () => {
   test('is rendered', () => {
-    const { container } = render(<EuiTableSortMobileItem {...requiredProps} />);
+    const { container } = render(
+      <EuiTableSortMobileItem {...requiredProps} onSort={() => {}} />
+    );
 
     expect(container.firstChild).toMatchSnapshot();
   });

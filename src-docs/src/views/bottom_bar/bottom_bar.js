@@ -6,10 +6,15 @@ import {
   EuiFlexItem,
   EuiButton,
   EuiButtonEmpty,
+  EuiPopover,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
 } from '../../../../src/components';
 
 export default () => {
   const [showBar, setShowBar] = useState(false);
+  const [showBarPopover, setShowBarPopover] = useState(false);
+  const closePopover = () => setShowBarPopover(false);
 
   const button = (
     <EuiButton color="primary" onClick={() => setShowBar((show) => !show)}>
@@ -25,9 +30,33 @@ export default () => {
           <EuiFlexItem grow={false}>
             <EuiFlexGroup gutterSize="s">
               <EuiFlexItem grow={false}>
-                <EuiButton color="text" size="s" iconType="help">
-                  Help
-                </EuiButton>
+                <EuiPopover
+                  isOpen={showBarPopover}
+                  closePopover={closePopover}
+                  button={
+                    <EuiButton
+                      color="text"
+                      size="s"
+                      iconType="help"
+                      onClick={() => setShowBarPopover(!showBarPopover)}
+                    >
+                      Help
+                    </EuiButton>
+                  }
+                  panelPaddingSize="none"
+                  repositionOnScroll
+                >
+                  <EuiContextMenuPanel
+                    items={[
+                      <EuiContextMenuItem icon="link" onClick={closePopover}>
+                        Link A
+                      </EuiContextMenuItem>,
+                      <EuiContextMenuItem icon="link" onClick={closePopover}>
+                        Link B
+                      </EuiContextMenuItem>,
+                    ]}
+                  />
+                </EuiPopover>
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
                 <EuiButton color="text" size="s" iconType="user">

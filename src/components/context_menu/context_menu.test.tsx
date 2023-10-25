@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { act } from '@testing-library/react';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import { act, fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test';
 
 import { EuiContextMenu, SIZES } from './context_menu';
 
@@ -68,13 +68,15 @@ export const tick = (ms = 0) =>
   act(() => new Promise((resolve) => setTimeout(resolve, ms)));
 
 describe('EuiContextMenu', () => {
-  test('is rendered', () => {
+  shouldRenderCustomStyles(<EuiContextMenu />);
+
+  it('renders', () => {
     const { container } = render(<EuiContextMenu {...requiredProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('panel item can contain JSX', () => {
+  it('renders panels with JSX', () => {
     const { container } = render(
       <EuiContextMenu panels={panels} initialPanelId={3} />
     );
@@ -82,7 +84,7 @@ describe('EuiContextMenu', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('panel item can be a separator line', () => {
+  it('renders isSeparator items', () => {
     const { container } = render(
       <EuiContextMenu
         panels={[
@@ -137,9 +139,9 @@ describe('EuiContextMenu', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
-      it('allows you to click the title button to go back to the previous panel', async () => {
+      it('navigates back to the previous panel when clicking the title button', async () => {
         const onPanelChange = jest.fn();
-        const component = mount(
+        const { container, getByTestSubject } = render(
           <EuiContextMenu
             panels={panels}
             initialPanelId={2}
@@ -149,16 +151,14 @@ describe('EuiContextMenu', () => {
 
         await tick(20);
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
 
         // Navigate to a different panel.
-        component
-          .find('[data-test-subj="contextMenuPanelTitleButton"]')
-          .simulate('click');
+        fireEvent.click(getByTestSubject('contextMenuPanelTitleButton'));
 
         await tick(20);
 
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
         expect(onPanelChange).toHaveBeenCalledWith({
           panelId: 1,
           direction: 'previous',
@@ -168,7 +168,7 @@ describe('EuiContextMenu', () => {
 
     describe('size', () => {
       SIZES.forEach((size) => {
-        it(`${size} is rendered`, () => {
+        test(size, () => {
           const { container } = render(
             <EuiContextMenu panels={panels} initialPanelId={2} size={size} />
           );
