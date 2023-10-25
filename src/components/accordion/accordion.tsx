@@ -149,9 +149,18 @@ export class EuiAccordionClass extends Component<
         }),
         () => {
           this.props.onToggle?.(this.state.isOpen);
+          if (this.state.isOpen) {
+            this.accordionChildrenEl?.focus();
+          }
         }
       );
     }
+  };
+
+  // Used to focus the accordion children on user trigger click only (vs controlled/programmatic open)
+  accordionChildrenEl: HTMLDivElement | null = null;
+  accordionChildrenRef = (node: HTMLDivElement | null) => {
+    this.accordionChildrenEl = node;
   };
 
   generatedId = htmlIdGenerator()();
@@ -222,6 +231,7 @@ export class EuiAccordionClass extends Component<
           isLoading={isLoading}
           isLoadingMessage={isLoadingMessage}
           isOpen={this.isOpen}
+          accordionChildrenRef={this.accordionChildrenRef}
         >
           {children}
         </EuiAccordionChildren>
