@@ -177,7 +177,6 @@ export const KibanaExample: Story = {
                   { title: 'Notifications', href: '#' },
                 ],
               },
-              { title: 'Add data', href: '#' },
             ]),
           ]}
         />
