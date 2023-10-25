@@ -8,12 +8,10 @@
 
 import React, {
   FunctionComponent,
-  useState,
   useMemo,
   useEffect,
   MouseEventHandler,
   HTMLAttributes,
-  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
@@ -33,17 +31,18 @@ import type {
 import { euiRangeTrackStyles } from './range_track.styles';
 
 export interface EuiRangeTrackProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'>,
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
     _SharedRangesValues,
     _SharedRangeDataStructures,
     Pick<_SharedRangeVisualConfiguration, 'showTicks' | 'showRange'>,
     Pick<_SharedRangeInputProps, 'compressed' | 'disabled'> {
+  trackWidth: number;
   onChange?: MouseEventHandler<HTMLButtonElement>;
-  children?: ReactNode | ((trackWidth: number) => React.ReactNode);
 }
 
 export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
   children,
+  trackWidth,
   disabled,
   max,
   min,
@@ -62,8 +61,6 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
   useEffect(() => {
     validateValueIsInStep(max, { min, max, step });
   }, [value, min, max, step]);
-
-  const [trackWidth, setTrackWidth] = useState(0);
 
   const tickSequence: number[] | undefined = useMemo(() => {
     if (showTicks !== true) return;
@@ -113,14 +110,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
   const classes = classNames('euiRangeTrack', className);
 
   return (
-    <div
-      className={classes}
-      css={cssStyles}
-      {...rest}
-      ref={(node: HTMLDivElement | null) => {
-        setTrackWidth(node?.clientWidth ?? 0);
-      }}
-    >
+    <div className={classes} css={cssStyles} {...rest}>
       {levels && !!levels.length && (
         <EuiRangeLevels
           levels={levels}
@@ -145,7 +135,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
           trackWidth={trackWidth}
         />
       )}
-      {typeof children === 'function' ? children(trackWidth) : children}
+      {children}
     </div>
   );
 };
