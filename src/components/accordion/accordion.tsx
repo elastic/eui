@@ -141,7 +141,18 @@ export class EuiAccordionClass extends Component<
   onToggle = () => {
     const { forceState } = this.props;
     if (forceState) {
-      this.props.onToggle?.(forceState === 'open' ? false : true);
+      const nextState = !this.isOpen;
+      this.props.onToggle?.(nextState);
+
+      // If the accordion should theoretically be opened, wait a tick (allows
+      // consumer state to update) and attempt to focus the child content.
+      // NOTE: Even if the accordion does not actually open, this is fine -
+      // the `inert` property on the hidden children will prevent focus
+      if (nextState === true) {
+        requestAnimationFrame(() => {
+          this.accordionChildrenEl?.focus();
+        });
+      }
     } else {
       this.setState(
         (prevState) => ({
@@ -149,6 +160,9 @@ export class EuiAccordionClass extends Component<
         }),
         () => {
           this.props.onToggle?.(this.state.isOpen);
+
+          // If the accordion is open, programmatically move focus
+          // from the accordion trigger to the child content
           if (this.state.isOpen) {
             this.accordionChildrenEl?.focus();
           }

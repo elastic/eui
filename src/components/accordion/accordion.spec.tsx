@@ -74,30 +74,58 @@ describe('EuiAccordion', () => {
       expectChildrenIsFocused();
     });
 
-    it('does not focus the accordion when programmatically toggled via forceState', () => {
-      const ControlledComponent = () => {
-        const [accordionOpen, setAccordionOpen] = useState(false);
-        return (
-          <>
-            <button
-              data-test-subj="toggleForceState"
-              onClick={() => setAccordionOpen(!accordionOpen)}
-            >
-              Control accordion
-            </button>
+    describe('forceState', () => {
+      it('does not focus the accordion when `forceState` prevents the accordion from opening', () => {
+        cy.realMount(<EuiAccordion {...sharedProps} forceState="closed" />);
+
+        cy.contains('Click me to toggle').realClick();
+        cy.focused()
+          .should('not.have.class', 'euiAccordion__childWrapper')
+          .contains('Click me to toggle');
+      });
+
+      it('does not focus the accordion when programmatically toggled from outside the accordion', () => {
+        const ControlledComponent = () => {
+          const [accordionOpen, setAccordionOpen] = useState(false);
+          return (
+            <>
+              <button
+                data-test-subj="toggleForceState"
+                onClick={() => setAccordionOpen(!accordionOpen)}
+              >
+                Control accordion
+              </button>
+              <EuiAccordion
+                {...sharedProps}
+                forceState={accordionOpen ? 'open' : 'closed'}
+              />
+            </>
+          );
+        };
+        cy.realMount(<ControlledComponent />);
+
+        cy.get('[data-test-subj="toggleForceState"]').realClick();
+        cy.focused()
+          .should('not.have.class', 'euiAccordion__childWrapper')
+          .should('have.attr', 'data-test-subj', 'toggleForceState');
+      });
+
+      it('attempts to focus the accordion children when `onToggle` controls `forceState`', () => {
+        const ControlledComponent = () => {
+          const [accordionOpen, setAccordionOpen] = useState(false);
+          return (
             <EuiAccordion
               {...sharedProps}
+              onToggle={(open) => setAccordionOpen(open)}
               forceState={accordionOpen ? 'open' : 'closed'}
             />
-          </>
-        );
-      };
-      cy.realMount(<ControlledComponent />);
+          );
+        };
+        cy.realMount(<ControlledComponent />);
 
-      cy.get('[data-test-subj="toggleForceState"]').realClick();
-      cy.focused()
-        .should('not.have.class', 'euiAccordion__childWrapper')
-        .should('have.attr', 'data-test-subj', 'toggleForceState');
+        cy.contains('Click me to toggle').realClick();
+        expectChildrenIsFocused();
+      });
     });
   });
 });
