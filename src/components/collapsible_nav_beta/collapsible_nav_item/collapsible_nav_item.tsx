@@ -249,7 +249,7 @@ export const EuiCollapsibleNavSubItems: FunctionComponent<
   );
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div role="list" className={classes} css={cssStyles} {...rest}>
       {items.map((item, index) => {
         // If any of the sub items have an icon, default to an
         // icon of `empty` so that all text lines up vertically

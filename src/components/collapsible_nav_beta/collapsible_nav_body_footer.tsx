@@ -46,6 +46,7 @@ export const EuiCollapsibleNavBody: EuiFlyoutBodyProps = ({
     <EuiFlyoutBody
       className={classes}
       css={cssStyles}
+      role="list"
       // Since this is a nav, we can almost guarantee there will be clickable
       // children/links that will enable scrolling. As such, we're optimistically
       // removing the extra tab stop

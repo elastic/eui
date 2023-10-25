@@ -5,6 +5,7 @@ exports[`EuiCollapsibleNavBody renders 1`] = `
   aria-label="aria-label"
   class="euiFlyoutBody euiCollapsibleNav__body testClass1 testClass2 emotion-euiFlyoutBody-euiCollapsibleNav__body-euiTestCss"
   data-test-subj="test subject string"
+  role="list"
 >
   <div
     class="euiFlyoutBody__overflow css-18yrfj9-noBanner"

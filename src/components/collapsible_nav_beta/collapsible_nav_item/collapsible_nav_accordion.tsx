@@ -83,6 +83,7 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
 
   return (
     <EuiAccordion
+      role="group"
       id={groupID}
       className={classes}
       initialIsOpen={isSelected}

@@ -27,6 +27,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
   aria-label="aria-label"
   class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
   data-test-subj="test subject string"
+  role="group"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
@@ -41,6 +42,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
       >
         <span
           class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+          role="listitem"
         >
           <span
             class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
@@ -80,11 +82,13 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
     >
       <div
         class="euiCollapsibleNavItem__items euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavItem__items-isTopItem"
+        role="list"
       >
         <span
           aria-label="aria-label"
           class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
           data-test-subj="test subject string"
+          role="listitem"
         >
           <span
             class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
@@ -105,6 +109,7 @@ exports[`EuiCollapsibleNavItem renders a top level link if items are missing or 
   data-test-subj="test subject string"
   href="#"
   rel="noreferrer"
+  role="listitem"
 >
   <span
     class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
