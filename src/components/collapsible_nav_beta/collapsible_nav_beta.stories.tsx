@@ -348,9 +348,10 @@ export const SecurityExample: Story = {
               href: '#',
               items: [
                 { title: 'Host', href: '#' },
-                { title: 'Users', href: '#' },
+                { title: 'Users', href: '#', isSelected: true },
                 { title: 'Network', href: '#' },
               ],
+              isCollapsible: false,
             },
             { title: 'Assets', href: '#' },
             {
