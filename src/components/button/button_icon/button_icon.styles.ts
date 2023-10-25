@@ -57,7 +57,7 @@ export const euiButtonIconStyles = (euiThemeContext: UseEuiTheme) => {
 
 export const _emptyHoverStyles = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled'
+  color: _EuiButtonColor
 ) => {
   return css`
     &:hover {

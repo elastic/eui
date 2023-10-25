@@ -15,11 +15,7 @@ import {
   PropsForAnchor,
   PropsForButton,
 } from '../../common';
-import {
-  useEuiTheme,
-  EuiThemeProvider,
-  getSecureRelForTarget,
-} from '../../../services';
+import { useEuiTheme, getSecureRelForTarget } from '../../../services';
 
 import {
   EuiButtonDisplayContent,
@@ -50,9 +46,8 @@ export interface CommonEuiButtonEmptyProps
     CommonProps {
   /**
    * Any of the named color palette options.
-   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
-  color?: _EuiButtonColor | 'ghost';
+  color?: _EuiButtonColor;
   size?: EuiButtonEmptySizes;
   /**
    * Ensure the text of the button sits flush to the left, right, or both sides of its container
@@ -92,39 +87,34 @@ export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForButton
 >;
 
-export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
-  props
-) => {
-  const {
-    children,
-    className,
-    iconType,
-    iconSide = 'left',
-    iconSize = 'm',
-    color: _color = 'primary',
-    size = 'm',
-    flush,
-    isDisabled: _isDisabled,
-    disabled,
-    isLoading,
-    href,
-    target,
-    rel,
-    type = 'button',
-    buttonRef,
-    contentProps,
-    textProps,
-    isSelected,
-    ...rest
-  } = props;
-
+export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
+  children,
+  className,
+  iconType,
+  iconSide = 'left',
+  iconSize = 'm',
+  color = 'primary',
+  size = 'm',
+  flush,
+  isDisabled: _isDisabled,
+  disabled,
+  isLoading,
+  href,
+  target,
+  rel,
+  type = 'button',
+  buttonRef,
+  contentProps,
+  textProps,
+  isSelected,
+  ...rest
+}) => {
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
     isLoading,
   });
 
-  const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
   });
@@ -134,20 +124,11 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
   const cssStyles = [
     styles.euiButtonEmpty,
     styles[size],
-    buttonColorStyles[color],
+    buttonColorStyles[isDisabled ? 'disabled' : color],
     flush && styles.flush,
     flush && styles[flush],
     isDisabled && styles.isDisabled,
   ];
-
-  if (_color === 'ghost') {
-    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
-    return (
-      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
-        <EuiButtonEmpty {...props} color="text" />
-      </EuiThemeProvider>
-    );
-  }
 
   const classes = classNames('euiButtonEmpty', className);
 
