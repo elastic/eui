@@ -84,7 +84,7 @@ describe('EuiCollapsibleNavBeta', () => {
       expect(getByTestSubject('nav').className).not.toContain('push');
     });
 
-    it('stores push collapsed/expand and and overlay flyout open/closed states separately', () => {
+    it('stores push collapsed/expand and overlay flyout open/closed states separately', () => {
       mockWindowResize(1200);
       const { queryByTestSubject, getByTestSubject } = render(
         <EuiCollapsibleNavBeta data-test-subj="nav">
