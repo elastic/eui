@@ -397,6 +397,9 @@ export class EuiBasicTable<T = any> extends Component<
     }
   }
 
+  /**
+   * @deprecated Use `selection.selected` instead to declaratively control table selection
+   */
   setSelection(newSelection: T[]) {
     this.changeSelection(newSelection);
   }
