@@ -75,7 +75,6 @@ export const EuiCollapsibleNavLink: FunctionComponent<
 
   return isInteractive ? (
     <EuiLink
-      role="listitem"
       href={href}
       rel={rel}
       {...({ ...rest, ...linkProps } as any)} // EuiLink ExclusiveUnion shenanigans
@@ -85,7 +84,7 @@ export const EuiCollapsibleNavLink: FunctionComponent<
       {children}
     </EuiLink>
   ) : (
-    <span role="listitem" className={classes} css={cssStyles} {...rest}>
+    <span className={classes} css={cssStyles} {...rest}>
       {children}
     </span>
   );

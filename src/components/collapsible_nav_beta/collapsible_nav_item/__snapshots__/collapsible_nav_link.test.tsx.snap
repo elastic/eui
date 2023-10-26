@@ -3,7 +3,6 @@
 exports[`EuiCollapsibleNavLink renders a button if an onClick is passed but not a href 1`] = `
 <button
   class="euiLink euiCollapsibleNavLink emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isNotAccordion-isInteractive"
-  role="listitem"
   type="button"
 >
   Link
@@ -17,7 +16,6 @@ exports[`EuiCollapsibleNavLink renders a link 1`] = `
   data-test-subj="test subject string"
   href="#"
   rel="noopener noreferrer"
-  role="listitem"
   target="_blank"
 >
   Link
@@ -38,7 +36,6 @@ exports[`EuiCollapsibleNavLink renders a link 1`] = `
 exports[`EuiCollapsibleNavLink renders as a static span if \`isInteractive\` is false 1`] = `
 <span
   class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem-isNotAccordion"
-  role="listitem"
 >
   Link
 </span>

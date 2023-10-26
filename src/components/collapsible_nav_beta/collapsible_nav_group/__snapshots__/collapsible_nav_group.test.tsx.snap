@@ -8,7 +8,6 @@ exports[`EuiCollapsibleNavGroup renders 1`] = `
     aria-label="aria-label"
     class="euiCollapsibleNavLink euiCollapsibleNavItem emotion-euiCollapsibleNavLink-isTopItem-isNotAccordion-euiCollapsibleNavGroup__title"
     data-test-subj="test subject string"
-    role="listitem"
   >
     <span
       data-euiicon-type="home"
@@ -21,11 +20,9 @@ exports[`EuiCollapsibleNavGroup renders 1`] = `
   </span>
   <div
     class="euiCollapsibleNavItem__items emotion-euiCollapsibleNavItem__items-isGroup"
-    role="list"
   >
     <span
       class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
-      role="listitem"
     >
       <span
         class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"

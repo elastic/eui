@@ -90,7 +90,6 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
               data-test-subj="A"
               href="#"
               rel="noreferrer"
-              role="listitem"
             >
               <span
                 class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
@@ -103,7 +102,6 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
               data-test-subj="B"
               href="#"
               rel="noreferrer"
-              role="listitem"
             >
               <span
                 class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"

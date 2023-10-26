@@ -64,7 +64,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     : undefined; // Prevents Emotion from generating a selector if no styles need to be applied
 
   return (
-    <div role="group" className={classes} {...cssStyles} {...rest}>
+    <div className={classes} {...cssStyles} {...rest}>
       <EuiCollapsibleNavLink
         href={href}
         {...linkProps}

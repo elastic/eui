@@ -3,21 +3,17 @@
 exports[`EuiCollapsibleNavGroup renders as a sub item 1`] = `
 <div
   class="euiCollapsibleNavGroup"
-  role="group"
 >
   <span
     class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isSubItem"
-    role="listitem"
   >
     Header
   </span>
   <div
     class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isSubItem"
-    role="list"
   >
     <span
       class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
-      role="listitem"
     >
       <span
         class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
@@ -34,21 +30,17 @@ exports[`EuiCollapsibleNavGroup renders as a top level item 1`] = `
   aria-label="aria-label"
   class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isTopItem-euiTestCss"
   data-test-subj="test subject string"
-  role="group"
 >
   <span
     class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
-    role="listitem"
   >
     Header
   </span>
   <div
     class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isTopItem"
-    role="list"
   >
     <span
       class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
-      role="listitem"
     >
       <span
         class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
