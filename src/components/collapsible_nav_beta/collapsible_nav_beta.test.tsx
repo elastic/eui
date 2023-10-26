@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
@@ -84,6 +84,24 @@ describe('EuiCollapsibleNavBeta', () => {
       expect(getByTestSubject('nav').className).not.toContain('push');
     });
 
+    it('stores push collapsed/expand and and overlay flyout open/closed states separately', () => {
+      mockWindowResize(1200);
+      const { queryByTestSubject, getByTestSubject } = render(
+        <EuiCollapsibleNavBeta data-test-subj="nav">
+          Nav content
+        </EuiCollapsibleNavBeta>
+      );
+      expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' });
+
+      // Should be closed on mobile
+      mockWindowResize(600);
+      waitFor(() => expect(queryByTestSubject('nav')).not.toBeInTheDocument());
+
+      // Should still be expanded on desktop
+      mockWindowResize(1200);
+      expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' });
+    });
+
     it('makes the overlay flyout full width once the screen is smaller than 1.5x the flyout width', () => {
       mockWindowResize(320);
       const { baseElement, getByTestSubject } = render(
@@ -100,9 +118,11 @@ describe('EuiCollapsibleNavBeta', () => {
         baseElement.querySelector('[data-euiicon-type="cross"')
       ).toBeInTheDocument();
       fireEvent.keyDown(window, { key: 'Escape' });
-      expect(
-        baseElement.querySelector('[data-euiicon-type="menu"')
-      ).toBeInTheDocument();
+      waitFor(() =>
+        expect(
+          baseElement.querySelector('[data-euiicon-type="menu"')
+        ).toBeInTheDocument()
+      );
     });
 
     it('adjusts breakpoints for custom widths', () => {
