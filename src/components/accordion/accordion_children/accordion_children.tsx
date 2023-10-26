@@ -9,14 +9,14 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
-  useRef,
+  Ref,
   useCallback,
   useMemo,
   useState,
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useUpdateEffect } from '../../../services';
+import { useEuiTheme } from '../../../services';
 import { EuiResizeObserver } from '../../observer/resize_observer';
 
 import { EuiAccordionProps } from '../accordion';
@@ -32,11 +32,13 @@ type _EuiAccordionChildrenProps = HTMLAttributes<HTMLDivElement> &
     'children' | 'paddingSize' | 'isLoading' | 'isLoadingMessage'
   > & {
     isOpen: boolean;
+    accordionChildrenRef: Ref<HTMLDivElement>;
   };
 export const EuiAccordionChildren: FunctionComponent<
   _EuiAccordionChildrenProps
 > = ({
   children,
+  accordionChildrenRef,
   paddingSize,
   isLoading,
   isLoadingMessage,
@@ -67,8 +69,6 @@ export const EuiAccordionChildren: FunctionComponent<
     isOpen ? wrapperStyles.isOpen : wrapperStyles.isClosed,
   ];
 
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-
   /**
    * Update the accordion wrapper height whenever the accordion opens, and also
    * whenever the child content updates (which will change the height)
@@ -83,21 +83,13 @@ export const EuiAccordionChildren: FunctionComponent<
     [isOpen, contentHeight]
   );
 
-  /**
-   * Focus the children wrapper when the accordion is opened,
-   * but not if the accordion is initially open on mount
-   */
-  useUpdateEffect(() => {
-    if (isOpen) wrapperRef.current?.focus();
-  }, [isOpen]);
-
   return (
     <div
       {...rest}
       className="euiAccordion__childWrapper"
       css={wrapperCssStyles}
       style={heightInlineStyle}
-      ref={wrapperRef}
+      ref={accordionChildrenRef}
       role="region"
       tabIndex={-1}
       // @ts-expect-error - inert property not yet available in React TS defs. TODO: Remove this once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 is merged
