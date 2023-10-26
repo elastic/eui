@@ -54,7 +54,12 @@ describe('EuiCollapsibleNavItem', () => {
   it('renders a collapsed button icon when in a collapsed push flyout', () => {
     const { container, getByTestSubject } = render(
       <EuiCollapsibleNavContext.Provider
-        value={{ side: 'left', isPush: true, isCollapsed: true }}
+        value={{
+          isPush: true,
+          isCollapsed: true,
+          isOverlayOpen: false,
+          side: 'left',
+        }}
       >
         <EuiCollapsibleNavItem {...requiredProps} title="Item" />
       </EuiCollapsibleNavContext.Provider>
