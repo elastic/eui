@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
+import { render, screen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -391,24 +391,74 @@ describe('EuiBasicTable', () => {
     expect(container.querySelector('[aria-sort]')).toBeTruthy();
   });
 
-  test('with initial selection', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: basicItems,
-      columns: basicColumns,
-      itemId: 'id',
-      selection: {
-        onSelectionChange: () => {},
-        initialSelected: [basicItems[0]],
-      },
-    };
-    const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+  describe('selection', () => {
+    const getCheckboxAt = (index: number) =>
+      screen.getByTestSubject(`checkboxSelectRow-${index}`) as HTMLInputElement;
 
-    expect(
-      (getByTestSubject('checkboxSelectRow-1') as HTMLInputElement).checked
-    ).toBeTruthy();
-    expect(
-      (getByTestSubject('checkboxSelectRow-2') as HTMLInputElement).checked
-    ).toBeFalsy();
+    test('initialSelected', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: () => {},
+          initialSelected: [basicItems[0]],
+        },
+      };
+      render(<EuiBasicTable {...props} />);
+
+      expect(getCheckboxAt(1).checked).toBeTruthy();
+      expect(getCheckboxAt(2).checked).toBeFalsy();
+    });
+
+    test('selected', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: () => {},
+          selected: [basicItems[1]],
+        },
+      };
+      render(<EuiBasicTable {...props} />);
+
+      expect(getCheckboxAt(1).checked).toBeFalsy();
+      expect(getCheckboxAt(2).checked).toBeTruthy();
+    });
+
+    it('ignores initialSelected if selected is passed', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: () => {},
+          selected: [],
+        },
+      };
+      render(<EuiBasicTable {...props} />);
+
+      expect(getCheckboxAt(1).checked).toBeFalsy();
+      expect(getCheckboxAt(2).checked).toBeFalsy();
+    });
+
+    it("checks for selections that don't exist within `items`", () => {
+      const onSelectionChange = jest.fn();
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: onSelectionChange,
+          selected: [{ id: 'notvalid', name: 'notInItems' }],
+        },
+      };
+      const { container } = render(<EuiBasicTable {...props} />);
+
+      expect(onSelectionChange).toHaveBeenCalledWith([]);
+      expect(container.querySelectorAll('[checked]')).toHaveLength(0);
+    });
   });
 
   test('footers', () => {
