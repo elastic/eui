@@ -212,7 +212,9 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   const hideFlyout = isOverlay && !isOverlayOpen;
 
   return (
-    <EuiCollapsibleNavContext.Provider value={{ isPush, isCollapsed, side }}>
+    <EuiCollapsibleNavContext.Provider
+      value={{ isPush, isCollapsed, isOverlayOpen, side }}
+    >
       <EuiCollapsibleNavButton
         ref={buttonRef}
         onClick={isPush ? toggleCollapsed : toggleOverlayFlyout}
