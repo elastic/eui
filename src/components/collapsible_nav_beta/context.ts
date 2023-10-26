@@ -13,6 +13,7 @@ import { _EuiFlyoutSide } from '../flyout/flyout';
 type _EuiCollapsibleNavContext = {
   isCollapsed: boolean;
   isPush: boolean;
+  isOverlayOpen: boolean;
   side: _EuiFlyoutSide;
 };
 
@@ -20,5 +21,6 @@ export const EuiCollapsibleNavContext =
   createContext<_EuiCollapsibleNavContext>({
     isCollapsed: false,
     isPush: true,
+    isOverlayOpen: false,
     side: 'left',
   });

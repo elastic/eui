@@ -118,6 +118,10 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
    */
   const [isOverlay, setIsOverlay] = useState(false);
   const [isOverlayFullWidth, setIsOverlayFullWidth] = useState(false);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const toggleOverlayFlyout = useCallback(() => {
+    setIsOverlayOpen((isOpen) => !isOpen);
+  }, []);
 
   const flyoutType = isOverlay ? 'overlay' : 'push';
   const isPush = !isOverlay;
@@ -134,12 +138,6 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
     window.addEventListener('resize', onWindowResize);
     return () => window.removeEventListener('resize', onWindowResize);
   }, [_width]);
-
-  // If the nav was previously uncollapsed and shrinks down to the
-  // overlay flyout, default to its hidden/collapsed state
-  useEffect(() => {
-    if (isOverlay) setIsCollapsed(true);
-  }, [isOverlay]);
 
   const width = useMemo(() => {
     if (isOverlayFullWidth) return '100%';
@@ -211,13 +209,15 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
     </EuiFlyout>
   );
 
-  const hideFlyout = isOverlay && isCollapsed;
+  const hideFlyout = isOverlay && !isOverlayOpen;
 
   return (
-    <EuiCollapsibleNavContext.Provider value={{ isPush, isCollapsed, side }}>
+    <EuiCollapsibleNavContext.Provider
+      value={{ isPush, isCollapsed, isOverlayOpen, side }}
+    >
       <EuiCollapsibleNavButton
         ref={buttonRef}
-        onClick={toggleCollapsed}
+        onClick={isPush ? toggleCollapsed : toggleOverlayFlyout}
         aria-controls={flyoutID}
       />
       {!hideFlyout && flyout}

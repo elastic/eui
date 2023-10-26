@@ -24,7 +24,9 @@ export const EuiCollapsibleNavButton = forwardRef<
   HTMLDivElement,
   EuiCollapsibleNavButtonProps
 >(({ className, css, ...rest }, ref) => {
-  const { side, isPush, isCollapsed } = useContext(EuiCollapsibleNavContext);
+  const { side, isPush, isCollapsed, isOverlayOpen } = useContext(
+    EuiCollapsibleNavContext
+  );
 
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
@@ -33,26 +35,36 @@ export const EuiCollapsibleNavButton = forwardRef<
   const buttonStyles = [styles.euiCollapsibleNavButton, css];
   const classes = classNames('euiCollapsibleNavButton', className);
 
+  const toggleExpandLabel = useEuiI18n(
+    'euiCollapsibleNavButton.ariaLabelExpand',
+    'Expand navigation'
+  );
+  const toggleCollapseLabel = useEuiI18n(
+    'euiCollapsibleNavButton.ariaLabelCollapse',
+    'Collapse navigation'
+  );
+  const toggleOpenLabel = useEuiI18n(
+    'euiCollapsibleNavButton.ariaLabelOpen',
+    'Open navigation'
+  );
+  const toggleCloseLabel = useEuiI18n(
+    'euiCollapsibleNavButton.ariaLabelClose',
+    'Close navigation'
+  );
+
+  let ariaLabel: string;
   let iconType: string;
   if (isPush) {
+    ariaLabel = isCollapsed ? toggleExpandLabel : toggleCollapseLabel;
     if (side === 'left') {
       iconType = isCollapsed ? 'menuRight' : 'menuLeft';
     } else {
       iconType = isCollapsed ? 'menuLeft' : 'menuRight';
     }
   } else {
-    iconType = isCollapsed ? 'menu' : 'cross';
+    ariaLabel = isOverlayOpen ? toggleCloseLabel : toggleOpenLabel;
+    iconType = isOverlayOpen ? 'cross' : 'menu';
   }
-
-  const toggleOpenLabel = useEuiI18n(
-    'euiCollapsibleNavButton.ariaLabelOpen',
-    'Toggle navigation open'
-  );
-  const toggleCloselLabel = useEuiI18n(
-    'euiCollapsibleNavButton.ariaLabelClose',
-    'Toggle navigation closed'
-  );
-  const ariaLabel = isCollapsed ? toggleOpenLabel : toggleCloselLabel;
 
   return (
     <div className="euiCollapsibleNavButtonWrapper" css={cssStyles} ref={ref}>
@@ -64,8 +76,8 @@ export const EuiCollapsibleNavButton = forwardRef<
         color="text"
         iconType={iconType}
         aria-label={ariaLabel}
-        aria-pressed={!isCollapsed}
-        aria-expanded={!isCollapsed}
+        aria-pressed={isPush ? !isCollapsed : isOverlayOpen}
+        aria-expanded={isPush ? !isCollapsed : isOverlayOpen}
         {...rest}
       />
     </div>
