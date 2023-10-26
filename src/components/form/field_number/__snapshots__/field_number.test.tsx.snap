@@ -17,7 +17,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
       max="8"
       min="1"
       name="elastic"
-      step="1"
+      step="any"
       type="number"
       value="1"
     />

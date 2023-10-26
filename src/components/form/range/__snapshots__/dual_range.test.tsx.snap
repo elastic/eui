@@ -224,7 +224,8 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+        aria-invalid="true"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons"
         max="100"
         min="1"
         name="undefined-maxValue"
@@ -233,6 +234,14 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
         type="number"
         value="123"
       />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          color="danger"
+          data-euiicon-type="warning"
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -318,8 +327,9 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
+        aria-invalid="true"
         aria-label="Max value"
-        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons"
         max="100"
         min="1"
         name="undefined-maxValue"
@@ -328,6 +338,14 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
         type="number"
         value="8"
       />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          color="danger"
+          data-euiicon-type="warning"
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -344,7 +362,8 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
+        aria-invalid="true"
+        class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput euiFormControlLayout--1icons"
         max="8"
         min="0"
         name="undefined-minValue"
@@ -353,6 +372,14 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
         type="number"
         value="123"
       />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          color="danger"
+          data-euiicon-type="warning"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -413,7 +440,8 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+        aria-invalid="true"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons"
         max="100"
         min="1"
         name="undefined-maxValue"
@@ -422,6 +450,14 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
         type="number"
         value="8"
       />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          color="danger"
+          data-euiicon-type="warning"
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -508,7 +544,8 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+        aria-invalid="true"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons"
         max="100"
         min="1"
         name="undefined-maxValue"
@@ -517,6 +554,14 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
         type="number"
         value="8"
       />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          color="danger"
+          data-euiicon-type="warning"
+        />
+      </div>
     </div>
   </div>
 </div>

@@ -32,7 +32,10 @@ describe('EuiFieldNumber', () => {
         name="elastic"
         min={1}
         max={8}
-        step={1}
+        // TODO: Restore this once we upgrade Jest/jsdom to v15+. Right now passing
+        // a `step` prop always leads to jsdom thinking that validity.valid is false
+        // @see https://github.com/jsdom/jsdom/issues/2288
+        // step={1}
         value={1}
         icon="warning"
         onChange={() => {}}
