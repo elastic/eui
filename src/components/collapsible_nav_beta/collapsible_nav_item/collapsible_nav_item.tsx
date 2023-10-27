@@ -25,6 +25,7 @@ import { EuiAccordionProps } from '../../accordion';
 import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsedNavItem } from './collapsed';
 import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
+import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import {
   euiCollapsibleNavItemTitleStyles,
@@ -40,16 +41,23 @@ export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
      */
     href?: string;
     /**
-     * When passed, an `EuiAccordion` with nested child item links will be rendered.
+     * Will render either an accordion or group of nested child item links.
      *
      * Accepts any #EuiCollapsibleNavItemProps. Or, to render completely custom
      * subitem content, pass an object with a `renderItem` callback.
      */
     items?: EuiCollapsibleNavSubItemProps[];
     /**
-     * If `items` is specified, use this prop to pass any prop that `EuiAccordion`
-     * accepts, including props that control the toggled state of the accordion
-     * (e.g. `initialIsOpen`, `forceState`)
+     * If set to false, will (visually) render an always-open accordion that cannot
+     * be toggled closed. Ignored if `items` is not passed.
+     *
+     * @default true
+     */
+    isCollapsible?: boolean;
+    /**
+     * If `items` is specified, and `isCollapsible` is not set to false, you may
+     * use this prop to pass any prop that `EuiAccordion` accepts, including props
+     * that control the toggled state of the accordion (e.g. `initialIsOpen`, `forceState`)
      */
     accordionProps?: Partial<EuiAccordionProps>;
     /**
@@ -115,6 +123,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   icon,
   iconProps,
   items,
+  isCollapsible = true,
   accordionProps, // Ensure this isn't spread to non-accordions
   children, // Ensure children isn't spread
   ...props
@@ -128,17 +137,27 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
     />
   );
 
-  const isAccordion = items && items.length > 0;
-  if (isAccordion) {
-    return (
-      <EuiCollapsibleNavAccordion
-        buttonContent={headerContent}
-        items={items}
-        accordionProps={accordionProps}
-        {...props}
-        isSubItem={isSubItem}
-      />
-    );
+  if (items && items.length > 0) {
+    if (isCollapsible) {
+      return (
+        <EuiCollapsibleNavAccordion
+          buttonContent={headerContent}
+          items={items}
+          accordionProps={accordionProps}
+          {...props}
+          isSubItem={isSubItem}
+        />
+      );
+    } else {
+      return (
+        <EuiCollapsibleNavGroup
+          header={headerContent}
+          items={items}
+          {...props}
+          isSubItem={isSubItem}
+        />
+      );
+    }
   }
 
   return (
