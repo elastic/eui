@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { EuiCollapsibleNavContext } from '../context';
@@ -65,6 +65,8 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     wrapperProps?.css,
   ];
 
+  const labelledById = useGeneratedHtmlId();
+
   return (
     <div {...wrapperProps} className={classes} css={cssStyles}>
       {isCollapsed && isPush ? (
@@ -72,10 +74,16 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
       ) : (
         <>
           <EuiCollapsibleNavItem
+            id={labelledById}
             {...props}
             css={styles.euiCollapsibleNavGroup__title}
           />
-          <EuiCollapsibleNavSubItems items={items} isGroup />
+          <EuiCollapsibleNavSubItems
+            items={items}
+            isGroup
+            role="group"
+            aria-labelledby={props.id || labelledById}
+          />
         </>
       )}
     </div>
