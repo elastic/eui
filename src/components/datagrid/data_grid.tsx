@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useMemo, useRef, useState, memo } from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
@@ -104,8 +104,8 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 
-export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
-  (props, ref) => {
+export const EuiDataGrid = memo(
+  forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
     const {
       leadingControlColumns = emptyControlColumns,
       trailingControlColumns = emptyControlColumns,
@@ -498,7 +498,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
         </DataGridCellPopoverContext.Provider>
       </DataGridFocusContext.Provider>
     );
-  }
+  })
 );
 
 EuiDataGrid.displayName = 'EuiDataGrid';
