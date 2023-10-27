@@ -73,8 +73,17 @@ export const euiCollapsibleNavAccordionStyles = (
       }
     `,
     isSubItem: css`
-      &.euiAccordion-isOpen {
-        ${logicalCSS('margin-bottom', euiTheme.size.m)}
+      /* Adds extra spacing to the bottom of the accordion while open. Notes:
+         1. This uses a pseudo element instead of margin-bottom on the accordion,
+            because otherwise the height calculations the accordion uses will be off
+            and cause buggy animation behavior
+         2. Setting a margin or padding bottom on .euiAccordion__children does not
+            seem to work correctly and gets collapsed instead of stacking
+       */
+      &.euiAccordion-isOpen .euiAccordion__children::after {
+        content: '';
+        display: block;
+        ${logicalCSS('height', euiTheme.size.m)}
       }
     `,
     // Arrow element
