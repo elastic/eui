@@ -178,6 +178,11 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               key={index}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
+              onClick={
+                typeIsSingle
+                  ? () => onChange(option.id, option.value)
+                  : () => onChange(option.id)
+              }
               isSelected={
                 typeIsSingle
                   ? option.id === idSelected
@@ -186,7 +191,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               color={color}
               size={buttonSize}
               isIconOnly={isIconOnly}
-              onChange={onChange}
             />
           );
         })}

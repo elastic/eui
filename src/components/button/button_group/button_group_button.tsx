@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
@@ -41,7 +41,7 @@ type Props = EuiButtonGroupOptionProps & {
   /**
    * Inherit from EuiButtonGroup
    */
-  onChange: EuiButtonGroupProps['onChange'];
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const EuiButtonGroupButton: FunctionComponent<Props> = ({
@@ -51,7 +51,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   isIconOnly,
   isSelected = false,
   label,
-  onChange,
   size,
   value,
   color: _color = 'primary',
@@ -62,7 +61,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       'data-test-subj': id,
       isSelected,
       type,
-      onClick: () => onChange(id), // TODO
     };
   }
 
