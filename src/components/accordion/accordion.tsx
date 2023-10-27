@@ -34,6 +34,14 @@ export type EuiAccordionProps = CommonProps &
      */
     element?: 'div' | 'fieldset';
     /**
+     * Defaults to the [group role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role).
+     *
+     * If your accordion contains significant enough content to be a document
+     * [landmark role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/region_role#accessibility_concerns), consider using the `region` role instead.
+     * @default group
+     */
+    role?: HTMLAttributes<HTMLElement>['role'];
+    /**
      * Class that will apply to the trigger for the accordion.
      */
     buttonClassName?: string;
@@ -124,6 +132,7 @@ export class EuiAccordionClass extends Component<
     isLoadingMessage: false,
     element: 'div' as const,
     buttonElement: 'button' as const,
+    role: 'group' as const,
   };
 
   state = {
@@ -184,6 +193,7 @@ export class EuiAccordionClass extends Component<
       children,
       className,
       id,
+      role,
       element: Element = 'div',
       buttonElement,
       buttonProps,
@@ -239,6 +249,7 @@ export class EuiAccordionClass extends Component<
         />
 
         <EuiAccordionChildren
+          role={role}
           id={id}
           aria-labelledby={buttonId}
           paddingSize={paddingSize}

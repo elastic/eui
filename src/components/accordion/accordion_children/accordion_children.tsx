@@ -29,7 +29,7 @@ import {
 type _EuiAccordionChildrenProps = HTMLAttributes<HTMLDivElement> &
   Pick<
     EuiAccordionProps,
-    'children' | 'paddingSize' | 'isLoading' | 'isLoadingMessage'
+    'role' | 'children' | 'paddingSize' | 'isLoading' | 'isLoadingMessage'
   > & {
     isOpen: boolean;
     accordionChildrenRef: Ref<HTMLDivElement>;
@@ -37,6 +37,7 @@ type _EuiAccordionChildrenProps = HTMLAttributes<HTMLDivElement> &
 export const EuiAccordionChildren: FunctionComponent<
   _EuiAccordionChildrenProps
 > = ({
+  role,
   children,
   accordionChildrenRef,
   paddingSize,
@@ -90,7 +91,7 @@ export const EuiAccordionChildren: FunctionComponent<
       css={wrapperCssStyles}
       style={heightInlineStyle}
       ref={accordionChildrenRef}
-      role="region"
+      role={role}
       tabIndex={-1}
       // @ts-expect-error - inert property not yet available in React TS defs. TODO: Remove this once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 is merged
       inert={!isOpen ? '' : undefined} // Can't pass a boolean currently, Jest throws errors

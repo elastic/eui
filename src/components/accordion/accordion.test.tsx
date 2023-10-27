@@ -313,7 +313,7 @@ describe('EuiAccordion', () => {
 
     it('moves focus to the content when expanded', () => {
       const component = mount(<EuiAccordion id={getId()} />);
-      const childWrapper = component.find('div[role="region"]').getDOMNode();
+      const childWrapper = component.find('div[role="group"]').getDOMNode();
 
       expect(childWrapper).not.toBeFalsy();
       expect(childWrapper).not.toBe(document.activeElement);
