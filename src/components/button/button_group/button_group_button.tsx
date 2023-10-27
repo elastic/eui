@@ -27,14 +27,6 @@ type Props = EuiButtonGroupOptionProps & {
    */
   isSelected?: boolean;
   /**
-   * Name of the whole group for 'single'.
-   */
-  name?: string;
-  /**
-   * The value of the radio input for 'single'.
-   */
-  value?: string;
-  /**
    * Inherit from EuiButtonGroup
    */
   color: EuiButtonGroupProps['color'];
@@ -59,7 +51,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   isIconOnly,
   isSelected = false,
   label,
-  name,
   onChange,
   size,
   value,

@@ -50,7 +50,6 @@ const requiredSingleProps: EuiButtonGroupProps = {
   legend: 'test',
   onChange: () => {},
   options,
-  name: 'test',
   idSelected: '',
 };
 

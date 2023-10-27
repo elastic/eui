@@ -9,7 +9,7 @@
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 
-import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
+import { useEuiTheme } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 
@@ -85,8 +85,7 @@ export type EuiButtonGroupProps = CommonProps & {
          */
         type?: 'single';
         /**
-         * The `name` attribute for radio inputs;
-         * Defaults to a random string
+         * @deprecated No longer needed. You can safely remove this prop entirely
          */
         name?: string;
         /**
@@ -112,6 +111,9 @@ export type EuiButtonGroupProps = CommonProps & {
          */
         onChange: (id: string) => void;
         idSelected?: never;
+        /**
+         * @deprecated
+         */
         name?: never;
       }
   );
@@ -129,7 +131,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   isFullWidth = false,
   isIconOnly = false,
   legend,
-  name,
+  name, // Prevent prop from being spread
   onChange,
   options = [],
   type = 'single',
@@ -157,7 +159,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   );
 
   const typeIsSingle = type === 'single';
-  const nameIfSingle = useGeneratedHtmlId({ conditionalId: name });
 
   return (
     <fieldset
@@ -175,7 +176,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
           return (
             <EuiButtonGroupButton
               key={index}
-              name={nameIfSingle}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
               isSelected={
