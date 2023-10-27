@@ -211,12 +211,21 @@ export const WritingGuidelines = () => {
         >
           <GuideRuleExample
             type="do"
-            text="Product and solution names are always capitalized."
+            text="Product and solution names are always capitalized. Same goes for feature tiers and subscription levels."
             minHeight={200}
           >
-            <EuiTitle size="xs">
-              <span>Elastic APM</span>
-            </EuiTitle>
+            <EuiText size="xs">
+              <span>
+                <ul>
+                  <li>Welcome to Elastic Observability</li>
+                  <li>Elastic APM</li>
+                  <li>You have chosen Security Essentials.</li>
+                  <li>
+                    This feature is available for Gold subscriptions and higher.
+                  </li>
+                </ul>
+              </span>
+            </EuiText>
           </GuideRuleExample>
           <GuideRuleExample
             type="do"
