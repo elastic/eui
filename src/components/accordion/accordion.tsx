@@ -26,7 +26,7 @@ export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiAccordionPaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiAccordionProps = CommonProps &
-  Omit<HTMLAttributes<HTMLElement>, 'id'> & {
+  Omit<HTMLAttributes<HTMLElement>, 'id' | 'role'> & {
     id: string;
     /**
      * Applied to the entire .euiAccordion wrapper.
