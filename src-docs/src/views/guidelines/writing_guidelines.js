@@ -215,16 +215,14 @@ export const WritingGuidelines = () => {
             minHeight={200}
           >
             <EuiText size="xs">
-              <span>
-                <ul>
-                  <li>Welcome to Elastic Observability</li>
-                  <li>Elastic APM</li>
-                  <li>You have chosen Security Essentials.</li>
-                  <li>
-                    This feature is available for Gold subscriptions and higher.
-                  </li>
-                </ul>
-              </span>
+              <ul>
+                <li>Welcome to Elastic Observability</li>
+                <li>Elastic APM</li>
+                <li>You have chosen Security Essentials.</li>
+                <li>
+                  This feature is available for Gold subscriptions and higher.
+                </li>
+              </ul>
             </EuiText>
           </GuideRuleExample>
           <GuideRuleExample
