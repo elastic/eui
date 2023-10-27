@@ -433,7 +433,7 @@ describe('EuiBasicTable', () => {
         columns: basicColumns,
         itemId: 'id',
         selection: {
-          onSelectionChange: () => {},
+          initialSelected: [basicItems[0]],
           selected: [],
         },
       };
