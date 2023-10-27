@@ -19,7 +19,10 @@ import type {
 import { euiCollapsibleNavLinkStyles } from './collapsible_nav_link.styles';
 
 type EuiCollapsibleNavLinkProps = Omit<EuiLinkProps, 'children'> &
-  Omit<_SharedEuiCollapsibleNavItemProps, 'items' | 'accordionProps'> &
+  Omit<
+    _SharedEuiCollapsibleNavItemProps,
+    'items' | 'isCollapsible' | 'accordionProps'
+  > &
   _EuiCollapsibleNavItemDisplayProps & {
     children: ReactNode;
     isInteractive?: boolean;
