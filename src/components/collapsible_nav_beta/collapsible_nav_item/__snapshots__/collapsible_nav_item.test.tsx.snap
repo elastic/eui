@@ -71,7 +71,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
     inert=""
-    role="region"
+    role="group"
     style="block-size: 0;"
     tabindex="-1"
   >
