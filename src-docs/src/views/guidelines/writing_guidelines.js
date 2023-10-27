@@ -145,14 +145,14 @@ export const WritingGuidelines = () => {
           <GuideRuleExample
             type="do"
             text="Use sentence case in buttons, menus, titles, and tabs."
-            minHeight={200}
+            minHeight={250}
           >
             <EuiButton fill>Check for new data</EuiButton>
           </GuideRuleExample>
           <GuideRuleExample
             type="do"
             text="Use sentence case for modal and page elements."
-            minHeight={200}
+            minHeight={250}
           >
             <EuiPanel style={{ transform: 'scale(.75)' }}>
               <EuiTitle size="m">
