@@ -51,19 +51,11 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   isIconOnly,
   isSelected = false,
   label,
+  value, // Prevent prop from being spread
   size,
-  value,
   color: _color = 'primary',
-  type = 'button',
   ...rest
 }) => {
-  const elementProps = {
-      'data-test-subj': id,
-      isSelected,
-      type,
-    };
-  }
-
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
   const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
@@ -122,7 +114,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         'data-text': innerText,
       }}
       title={innerText}
-      {...elementProps}
+      data-test-subj={id}
+      isSelected={isSelected}
       {...rest}
     >
       {label}
