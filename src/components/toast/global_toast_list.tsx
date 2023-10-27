@@ -9,7 +9,7 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
-  ReactChild,
+  ReactNode,
   useCallback,
   useEffect,
   useRef,
@@ -41,7 +41,7 @@ export const CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT = 3;
 
 export interface Toast extends EuiToastProps {
   id: string;
-  text?: ReactChild;
+  text?: ReactNode;
   toastLifeTimeMs?: number;
 }
 
