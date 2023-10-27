@@ -23,6 +23,12 @@ describe('useEuiFocusRing hook returns a string', () => {
       ).toMatchSnapshot();
     });
 
+    it('center', () => {
+      expect(
+        renderHook(() => useEuiFocusRing('center')).result.current
+      ).toMatchSnapshot();
+    });
+
     it('16px', () => {
       expect(
         renderHook(() => useEuiFocusRing('16px')).result.current

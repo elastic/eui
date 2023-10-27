@@ -8,6 +8,7 @@
 
 import { CSSProperties } from 'react';
 import { useEuiTheme, UseEuiTheme } from '../../services';
+import { mathWithUnits } from '../functions';
 
 export type _EuiFocusRingOffset =
   | 'inset'
@@ -39,7 +40,7 @@ export const euiOutline = (
   } else if (offset === 'outset') {
     outlineOffset = `${outlineWidth}`;
   } else if (offset === 'center') {
-    outlineOffset = `calc(${outlineWidth} / -2);`;
+    outlineOffset = mathWithUnits(outlineWidth, (x) => x / -2);
   }
 
   // This is a separate function from `euiFocusRing` because some EUI components
