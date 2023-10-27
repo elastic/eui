@@ -41,6 +41,15 @@ describe('EuiAccordion', () => {
       });
     });
 
+    test('role', () => {
+      const { queryByRole } = render(
+        <EuiAccordion id="role-region" role="region" />
+      );
+
+      expect(queryByRole('region')).toBeInTheDocument();
+      expect(queryByRole('group')).not.toBeInTheDocument();
+    });
+
     describe('buttonContentClassName', () => {
       it('is rendered', () => {
         const { container } = render(
