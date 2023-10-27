@@ -218,7 +218,7 @@ export const WritingGuidelines = () => {
               <ul>
                 <li>Welcome to Elastic Observability</li>
                 <li>Elastic APM</li>
-                <li>You have chosen Security Essentials.</li>
+                <li>You have chosen Security Analytics Essentials.</li>
                 <li>
                   This feature is available for Gold subscriptions and higher.
                 </li>
