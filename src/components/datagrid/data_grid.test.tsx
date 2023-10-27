@@ -188,7 +188,7 @@ function getColumnSortDirection(
 
   expect(columnSorter.length).toBe(1);
   const activeSort = columnSorter.find(
-    'label[className*="euiButtonGroupButton-isSelected"]'
+    'button[className*="euiButtonGroupButton-isSelected"]'
   );
 
   const sortDirection = (
@@ -276,10 +276,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `label[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    sortButton.find('input').simulate('change', [undefined, direction]);
+    sortButton.simulate('click');
   }
 
   closeColumnSorter(datagrid);
