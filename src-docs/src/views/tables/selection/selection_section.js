@@ -66,8 +66,8 @@ export const section = {
         The following example shows how to configure selection via the{' '}
         <EuiCode>selection</EuiCode> property. For uncontrolled usage, where
         selection changes are determined entirely by the user, you can set items
-        to be selected initially by passing an array of items to an array of
-        items to <EuiCode>selection.initialSelected</EuiCode>. You can also use{' '}
+        to be selected initially by passing an array of items to{' '}
+        <EuiCode>selection.initialSelected</EuiCode>. You can also use{' '}
         <EuiCode>selected.onSelectionChange</EuiCode> to track or respond to the
         items that users select.
       </p>
@@ -75,7 +75,7 @@ export const section = {
         To completely control table selection, use{' '}
         <EuiCode>selection.selected</EuiCode> instead (which requires passing{' '}
         <EuiCode>selected.onSelectionChange</EuiCode>). This can be useful if
-        you want to handle selection in table based on user interaction with
+        you want to handle table selections based on user interaction with
         another part of the UI.
       </p>
     </>
