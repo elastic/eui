@@ -23,10 +23,6 @@ import {
 
 type Props = EuiButtonGroupOptionProps & {
   /**
-   * Element to display based on single or multi
-   */
-  element: 'button' | 'label';
-  /**
    * Styles the selected button to look selected (usually with `fill`)
    */
   isSelected?: boolean;
@@ -68,34 +64,14 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   size,
   value,
   color: _color = 'primary',
-  element: _element = 'button',
   type = 'button',
   ...rest
 }) => {
-  // Force element to be a button if disabled
-  const element = isDisabled ? 'button' : _element;
-
-  let elementProps = {};
-  let singleInput;
-  if (element === 'label') {
-    singleInput = (
-      <input
-        className="euiScreenReaderOnly"
-        name={name}
-        checked={isSelected}
-        disabled={isDisabled}
-        value={value}
-        type="radio"
-        onChange={() => onChange(id, value)}
-        data-test-subj={id}
-      />
-    );
-  } else {
-    elementProps = {
+  const elementProps = {
       'data-test-subj': id,
       isSelected,
       type,
-      onClick: () => onChange(id),
+      onClick: () => onChange(id), // TODO
     };
   }
 
@@ -148,7 +124,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     <EuiButtonDisplay
       css={cssStyles}
       className={buttonClasses}
-      element={element}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       contentProps={{ css: contentStyles }}
@@ -161,7 +136,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       {...elementProps}
       {...rest}
     >
-      {singleInput}
       {label}
     </EuiButtonDisplay>
   );

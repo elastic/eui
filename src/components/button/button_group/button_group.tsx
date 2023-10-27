@@ -178,7 +178,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               name={nameIfSingle}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
-              element={typeIsSingle ? 'label' : 'button'}
               isSelected={
                 typeIsSingle
                   ? option.id === idSelected
