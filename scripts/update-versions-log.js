@@ -37,4 +37,32 @@ const updateDocsVersionSwitcher = (versionToAdd, file = versionsLogFile) => {
   execSync(`git add ${file}`);
 };
 
-module.exports = updateDocsVersionSwitcher;
+/**
+ * Get the current EUI version and increment it based on the
+ * user-input versionTarget (major/minor/patch)
+ */
+const getUpcomingVersion = (versionTarget) => {
+  const pathToPackage = path.resolve(rootDir, 'package.json');
+  const { version } = require(pathToPackage);
+  let [major, minor, patch] = version.split('.').map(Number);
+  switch (versionTarget) {
+    case 'major':
+      major += 1;
+      minor = 0;
+      patch = 0;
+      break;
+    case 'minor':
+      minor += 1;
+      patch = 0;
+      break;
+    case 'patch':
+      patch += 1;
+      break;
+  }
+  return [major, minor, patch].join('.');
+};
+
+module.exports = {
+  getUpcomingVersion,
+  updateDocsVersionSwitcher,
+};
