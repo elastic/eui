@@ -175,7 +175,9 @@ export interface EuiTableSortingType<T> {
 
 export interface EuiTableSelectionType<T> {
   /**
-   * A callback that will be called whenever the item selection changes
+   * A callback that will be called whenever the item selection changes.
+   *
+   * Required if `selected` is passed.
    */
   onSelectionChange?: (selection: T[]) => void;
   /**
@@ -183,8 +185,20 @@ export interface EuiTableSelectionType<T> {
    */
   selectable?: (item: T) => boolean;
   /**
-   * A callback that is called per item to retrieve a message for its selectable state.We display these messages as a tooltip on an unselectable checkbox
+   * A callback that is called per item to retrieve a message for its selectable state.
+   * We display these messages as a tooltip on an unselectable checkbox
    */
   selectableMessage?: (selectable: boolean, item: T) => string;
+  /**
+   * Sets initially selected items. Use for uncontrolled selection behavior (checkbox
+   * will only change from user input, and not from developer control).
+   *
+   * This prop will be ignored if `selected` is passed.
+   */
   initialSelected?: T[];
+  /**
+   * Used for controlled selection behavior, e.g. when you want to programmatically
+   * control which selection checkboxes are checked, and which are not.
+   */
+  selected?: T[];
 }
