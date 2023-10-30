@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { act } from '@testing-library/react';
 import { render, screen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -458,6 +459,34 @@ describe('EuiBasicTable', () => {
 
       expect(onSelectionChange).toHaveBeenCalledWith([]);
       expect(container.querySelectorAll('[checked]')).toHaveLength(0);
+    });
+
+    // TODO: Delete this test once deprecated API is removed
+    test('deprecated setSelection ref API', () => {
+      const props = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: () => {},
+        },
+      };
+
+      let classRef: EuiBasicTable | null;
+      render(
+        <EuiBasicTable
+          {...props}
+          ref={(ref) => {
+            classRef = ref;
+          }}
+        />
+      );
+      expect(getCheckboxAt(1).checked).toBeFalsy();
+
+      act(() => {
+        classRef!.setSelection([basicItems[0]]);
+      });
+      expect(getCheckboxAt(1).checked).toBeTruthy();
     });
   });
 
