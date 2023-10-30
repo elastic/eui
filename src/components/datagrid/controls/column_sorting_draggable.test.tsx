@@ -83,7 +83,9 @@ describe('EuiDataGridColumnSortingDraggable', () => {
       </EuiDragDropContext>
     );
 
-    fireEvent.click(getByTestSubject('columnADesc'));
+    fireEvent.click(
+      getByTestSubject('euiDataGridColumnSorting-sortColumn-columnA-desc')
+    );
 
     expect(onSort).toHaveBeenCalledWith([{ id: 'columnA', direction: 'desc' }]);
   });

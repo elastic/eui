@@ -148,7 +148,8 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
                   <div
                     class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
                   >
-                    <label
+                    <button
+                      aria-pressed="true"
                       class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                       title="Low-High"
@@ -161,19 +162,12 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
                           class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="Low-High"
                         >
-                          <input
-                            checked=""
-                            class="euiScreenReaderOnly"
-                            data-test-subj="columnAAsc"
-                            name="columnA"
-                            type="radio"
-                            value="asc"
-                          />
                           Low-High
                         </span>
                       </span>
-                    </label>
-                    <label
+                    </button>
+                    <button
+                      aria-pressed="false"
                       class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                       title="High-Low"
@@ -186,17 +180,10 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
                           class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="High-Low"
                         >
-                          <input
-                            class="euiScreenReaderOnly"
-                            data-test-subj="columnADesc"
-                            name="columnA"
-                            type="radio"
-                            value="desc"
-                          />
                           High-Low
                         </span>
                       </span>
-                    </label>
+                    </button>
                   </div>
                 </fieldset>
               </div>
@@ -430,7 +417,8 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
                   <div
                     class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
                   >
-                    <label
+                    <button
+                      aria-pressed="true"
                       class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                       title="Low-High"
@@ -443,19 +431,12 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
                           class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="Low-High"
                         >
-                          <input
-                            checked=""
-                            class="euiScreenReaderOnly"
-                            data-test-subj="columnAAsc"
-                            name="columnA"
-                            type="radio"
-                            value="asc"
-                          />
                           Low-High
                         </span>
                       </span>
-                    </label>
-                    <label
+                    </button>
+                    <button
+                      aria-pressed="false"
                       class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                       title="High-Low"
@@ -468,17 +449,10 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
                           class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="High-Low"
                         >
-                          <input
-                            class="euiScreenReaderOnly"
-                            data-test-subj="columnADesc"
-                            name="columnA"
-                            type="radio"
-                            value="desc"
-                          />
                           High-Low
                         </span>
                       </span>
-                    </label>
+                    </button>
                   </div>
                 </fieldset>
               </div>
@@ -712,7 +686,8 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
                   <div
                     class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
                   >
-                    <label
+                    <button
+                      aria-pressed="true"
                       class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                       title="Low-High"
@@ -725,19 +700,12 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
                           class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="Low-High"
                         >
-                          <input
-                            checked=""
-                            class="euiScreenReaderOnly"
-                            data-test-subj="columnAAsc"
-                            name="columnA"
-                            type="radio"
-                            value="asc"
-                          />
                           Low-High
                         </span>
                       </span>
-                    </label>
-                    <label
+                    </button>
+                    <button
+                      aria-pressed="false"
                       class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                       title="High-Low"
@@ -750,17 +718,10 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
                           class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="High-Low"
                         >
-                          <input
-                            class="euiScreenReaderOnly"
-                            data-test-subj="columnADesc"
-                            name="columnA"
-                            type="radio"
-                            value="desc"
-                          />
                           High-Low
                         </span>
                       </span>
-                    </label>
+                    </button>
                   </div>
                 </fieldset>
               </div>

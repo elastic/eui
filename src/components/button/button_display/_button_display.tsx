@@ -43,7 +43,7 @@ export type EuiButtonDisplaySizes = (typeof SIZES)[number];
 export interface EuiButtonDisplayCommonProps
   extends EuiButtonDisplayContentProps,
     CommonProps {
-  element?: 'a' | 'button' | 'span' | 'label';
+  element?: 'a' | 'button' | 'span';
   children?: ReactNode;
   size?: EuiButtonDisplaySizes;
   /**
