@@ -13,7 +13,7 @@ import {
   euiShadowMedium,
 } from '../../../themes/amsterdam/global_styling/mixins';
 import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, tint } from '../../../services';
 import {
   euiCanAnimate,
   logicalCSS,
@@ -26,6 +26,7 @@ export const openAnimationTiming = 'slow';
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.
  * 2. Animation happens on the panel. But don't animate position when using the attached mode like for inputs
  * 3. Make sure the panel stays within the window.
+ * 4. Make the popover lighter on dark mode (too hard to distinguish from plain bgs otherwise), and set a CSS var for the arrow to use
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
@@ -48,6 +49,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       backface-visibility: hidden;
       pointer-events: none;
       opacity: 0; /* 2 */
+      background-color: var(--euiPopoverBackgroundColor); /* 4 */
 
       ${euiCanAnimate} {
         /* 2 */
@@ -61,6 +63,14 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isOpen: css`
       opacity: 1;
       pointer-events: auto;
+    `,
+
+    /* 4 */
+    light: css`
+      --euiPopoverBackgroundColor: ${euiTheme.colors.emptyShade};
+    `,
+    dark: css`
+      --euiPopoverBackgroundColor: ${tint(euiTheme.colors.emptyShade, 0.025)};
     `,
 
     // Regular popover with an arrow, a transform animation/transition, and a
