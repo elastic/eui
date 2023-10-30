@@ -2,10 +2,9 @@ const path = require('path');
 const fs = require('fs');
 const { execSync } = require('child_process');
 
-const versionsLogFile = path.resolve(
-  __dirname,
-  '../src-docs/src/components/guide_page/versions.json'
-);
+const rootDir = path.resolve(__dirname, '..');
+const versionsLogFile =
+  rootDir + '/src-docs/src/components/guide_page/versions.json';
 
 /**
  * Writes to the above `versions.json` file (which is what the docs version switcher
@@ -42,7 +41,7 @@ const updateDocsVersionSwitcher = (versionToAdd, file = versionsLogFile) => {
  * user-input versionTarget (major/minor/patch)
  */
 const getUpcomingVersion = (versionTarget) => {
-  const pathToPackage = path.resolve(rootDir, 'package.json');
+  const pathToPackage = rootDir + '/package.json';
   const { version } = require(pathToPackage);
   let [major, minor, patch] = version.split('.').map(Number);
   switch (versionTarget) {
