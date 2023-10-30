@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { act, fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
@@ -94,11 +94,11 @@ describe('EuiCollapsibleNavBeta', () => {
       expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' });
 
       // Should be closed on mobile
-      mockWindowResize(600);
+      act(() => mockWindowResize(600));
       waitFor(() => expect(queryByTestSubject('nav')).not.toBeInTheDocument());
 
       // Should still be expanded on desktop
-      mockWindowResize(1200);
+      act(() => mockWindowResize(1200));
       expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' });
     });
 

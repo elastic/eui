@@ -75,17 +75,17 @@ describe('EuiAccordion', () => {
     });
 
     describe('forceState', () => {
-      if (!React.version.startsWith('16')) {
-        // React 16 is super flaky for this test and can't find cy.focused() half the time
-        it('does not focus the accordion when `forceState` prevents the accordion from opening', () => {
-          cy.realMount(<EuiAccordion {...sharedProps} forceState="closed" />);
+      it('does not focus the accordion when `forceState` prevents the accordion from opening', () => {
+        cy.realMount(<EuiAccordion {...sharedProps} forceState="closed" />);
 
-          cy.contains('Click me to toggle').realClick();
-          cy.focused()
-            .should('not.have.class', 'euiAccordion__childWrapper')
-            .contains('Click me to toggle');
+        cy.contains('Click me to toggle').realClick();
+        // cy.focused() is flaky here and doesn't always return an element, so use document.activeElement instead
+        cy.then(() => {
+          expect(document.activeElement).not.to.have.class(
+            'euiAccordion__childWrapper'
+          );
         });
-      }
+      });
 
       it('does not focus the accordion when programmatically toggled from outside the accordion', () => {
         const ControlledComponent = () => {
