@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { dateFormat, dateGranularity, Granularity } from './date_format';
-import { Random } from '../../../services';
 import moment from 'moment';
+import { faker } from '@faker-js/faker';
 
-const random = new Random();
+import { dateFormat, dateGranularity, Granularity } from './date_format';
+
 const originalMomentNow = moment.now;
 
-const now = random.moment().utc();
+const now = moment(faker.date.anytime()).utc();
 
 beforeEach(() => {
   moment.now = () => +now;
@@ -175,7 +175,7 @@ describe('date format', () => {
   });
 
   test('parse - week granularity', () => {
-    const weekNumber = random.integer({ min: 0, max: 50 });
+    const weekNumber = faker.number.int({ min: 0, max: 50 });
     const week = moment(now).week(weekNumber).startOf('week');
     let parsed = dateFormat.parse(`Week ${weekNumber}`);
     expect(parsed.utcOffset()).toBe(0);
@@ -294,7 +294,7 @@ describe('date format', () => {
   });
 
   test('parse - year granularity', () => {
-    const year = random.integer({ min: 1970, max: new Date().getFullYear() });
+    const year = faker.number.int({ min: 1970, max: new Date().getFullYear() });
     [
       year.toString(),
       year % 100 < 10 ? `0${year % 100}` : (year % 100).toString(), // YY format (padding with 0s)

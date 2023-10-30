@@ -7,12 +7,11 @@
  */
 
 import moment from 'moment';
+import { faker } from '@faker-js/faker';
+
 import { eq, gt, gte, lt, lte } from './operators';
 import { dateValue } from './date_value';
-import { Random } from '../../../services';
 import { Granularity } from './date_format';
-
-const random = new Random();
 
 type TimeUnits = 'hours' | 'days' | 'weeks' | 'months' | 'years';
 
@@ -49,7 +48,7 @@ describe('operators', () => {
   });
 
   test('eq - number', () => {
-    const num = random.number({ min: -60, max: 60 });
+    const num = faker.number.int({ min: -60, max: 60 });
     expect(eq(num, num)).toBe(true);
     expect(eq(num, num - 1)).toBe(false);
     expect(eq(num, null)).toBe(false);
@@ -72,7 +71,7 @@ describe('operators', () => {
   });
 
   test('eq - date', () => {
-    const date = random.date();
+    const date = faker.date.anytime();
     const momnt = moment(date);
     expect(eq(date, date)).toBe(true);
     expect(eq(date, momnt)).toBe(true);
@@ -91,8 +90,8 @@ describe('operators', () => {
   });
 
   test('eq - date value', () => {
-    const date = random.moment();
-    const granularity = random.oneOf(Object.values(Granularity));
+    const date = moment(faker.date.anytime());
+    const granularity = faker.helpers.arrayElement(Object.values(Granularity));
     const parse = jest.fn();
     const print = jest.fn();
     print.mockReturnValue(date.format());
@@ -107,7 +106,7 @@ describe('operators', () => {
   });
 
   test('gt - number', () => {
-    const num = random.number({ min: -60, max: 60 });
+    const num = faker.number.int({ min: -60, max: 60 });
     expect(gt(num + 1, num)).toBe(true);
     expect(gt(num, num + 1)).toBe(false);
     expect(gt(num, num)).toBe(false);
@@ -118,14 +117,14 @@ describe('operators', () => {
   });
 
   test('gt - date', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     const laterDate = laterMoment(date, 1, 'days');
     expect(gt(laterDate, date)).toBe(true);
     expect(gt(date, date)).toBe(false);
   });
 
   test('gt - date value - day granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12);
 
     const granularity = Granularity.DAY;
@@ -143,7 +142,7 @@ describe('operators', () => {
   });
 
   test('gt - date value - week granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -167,7 +166,7 @@ describe('operators', () => {
   });
 
   test('gt - date value - month granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -196,7 +195,7 @@ describe('operators', () => {
   });
 
   test('gt - date value - year granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -230,7 +229,7 @@ describe('operators', () => {
   });
 
   test('gte - number', () => {
-    const num = random.number({ min: -60, max: 60 });
+    const num = faker.number.int({ min: -60, max: 60 });
     expect(gte(num + 1, num)).toBe(true);
     expect(gte(num, num + 1)).toBe(false);
     expect(gte(num, num)).toBe(true);
@@ -241,14 +240,14 @@ describe('operators', () => {
   });
 
   test('gte - date and date value', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     const laterDate = laterMoment(date, 1, 'days');
     expect(gte(laterDate, date)).toBe(true);
     expect(gte(date, date)).toBe(true);
   });
 
   test('gte - date value - day granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12);
 
     const granularity = Granularity.DAY;
@@ -266,7 +265,7 @@ describe('operators', () => {
   });
 
   test('gte - date value - week granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -290,7 +289,7 @@ describe('operators', () => {
   });
 
   test('gte - date value - month granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -319,7 +318,7 @@ describe('operators', () => {
   });
 
   test('gte - date value - year granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -353,7 +352,7 @@ describe('operators', () => {
   });
 
   test('lt - number', () => {
-    const num = random.number({ min: -60, max: 60 });
+    const num = faker.number.int({ min: -60, max: 60 });
     expect(lt(num, num + 1)).toBe(true);
     expect(lt(num + 1, num)).toBe(false);
     expect(lt(num, num)).toBe(false);
@@ -364,14 +363,14 @@ describe('operators', () => {
   });
 
   test('lt - date', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     const laterDate = laterMoment(date, 1, 'days');
     expect(lt(date, laterDate)).toBe(true);
     expect(lt(date, date)).toBe(false);
   });
 
   test('lt - date value - day granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12);
 
     const granularity = Granularity.DAY;
@@ -389,7 +388,7 @@ describe('operators', () => {
   });
 
   test('lt - date value - week granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -413,7 +412,7 @@ describe('operators', () => {
   });
 
   test('lt - date value - month granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -442,7 +441,7 @@ describe('operators', () => {
   });
 
   test('lt - date value - year granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -476,7 +475,7 @@ describe('operators', () => {
   });
 
   test('lte - number', () => {
-    const num = random.number({ min: -60, max: 60 });
+    const num = faker.number.int({ min: -60, max: 60 });
     expect(lte(num, num + 1)).toBe(true);
     expect(lte(num + 1, num)).toBe(false);
     expect(lte(num, num)).toBe(true);
@@ -487,14 +486,14 @@ describe('operators', () => {
   });
 
   test('lte - date', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     const laterDate = laterMoment(date, 1, 'days');
     expect(lte(date, laterDate)).toBe(true);
     expect(lte(date, date)).toBe(true);
   });
 
   test('lte - date value - day granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12);
 
     const granularity = Granularity.DAY;
@@ -512,7 +511,7 @@ describe('operators', () => {
   });
 
   test('lte - date value - week granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -536,7 +535,7 @@ describe('operators', () => {
   });
 
   test('lte - date value - month granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
@@ -565,7 +564,7 @@ describe('operators', () => {
   });
 
   test('lte - date value - year granularity', () => {
-    const date = random.moment();
+    const date = moment(faker.date.anytime());
     date.hours(12); // noon
     date.date(15); // middle of the month
     date.day(3); // wed - middle of the week
