@@ -7,30 +7,26 @@ exports[`useDataGridKeyboardShortcuts [React 16] returns a popover containing a 
       data-test-subj="hookRoot"
     >
       <div
-        class="euiPopover euiPopover-isOpen emotion-euiPopover"
+        class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
         data-test-subj="dataGridKeyboardShortcutsPopover"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          <button
+            aria-label="Keyboard shortcuts"
+            class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+            data-test-subj="dataGridKeyboardShortcutsButton"
+            type="button"
           >
-            <button
-              aria-label="Keyboard shortcuts"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-              data-test-subj="dataGridKeyboardShortcutsButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="keyboard"
-              />
-            </button>
-          </span>
-        </div>
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="keyboard"
+            />
+          </button>
+        </span>
       </div>
     </div>
   </div>
@@ -49,7 +45,7 @@ exports[`useDataGridKeyboardShortcuts [React 16] returns a popover containing a 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -260,30 +256,26 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
       data-test-subj="hookRoot"
     >
       <div
-        class="euiPopover euiPopover-isOpen emotion-euiPopover"
+        class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
         data-test-subj="dataGridKeyboardShortcutsPopover"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          <button
+            aria-label="Keyboard shortcuts"
+            class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+            data-test-subj="dataGridKeyboardShortcutsButton"
+            type="button"
           >
-            <button
-              aria-label="Keyboard shortcuts"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-              data-test-subj="dataGridKeyboardShortcutsButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="keyboard"
-              />
-            </button>
-          </span>
-        </div>
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="keyboard"
+            />
+          </button>
+        </span>
       </div>
     </div>
   </div>
@@ -302,7 +294,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -514,30 +506,26 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
       data-test-subj="hookRoot"
     >
       <div
-        class="euiPopover euiPopover-isOpen emotion-euiPopover"
+        class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
         data-test-subj="dataGridKeyboardShortcutsPopover"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
-          <span
-            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          <button
+            aria-label="Keyboard shortcuts"
+            class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+            data-test-subj="dataGridKeyboardShortcutsButton"
+            type="button"
           >
-            <button
-              aria-label="Keyboard shortcuts"
-              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-              data-test-subj="dataGridKeyboardShortcutsButton"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="keyboard"
-              />
-            </button>
-          </span>
-        </div>
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="keyboard"
+            />
+          </button>
+        </span>
       </div>
     </div>
   </div>
@@ -556,7 +544,7 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

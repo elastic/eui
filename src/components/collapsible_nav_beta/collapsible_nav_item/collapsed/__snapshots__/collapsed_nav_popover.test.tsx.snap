@@ -4,30 +4,26 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiTestCss"
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-block-euiTestCss"
       data-test-subj="test subject string"
     >
-      <div
-        class="euiPopover__anchor css-zih94u-render"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        <button
+          aria-label="Item"
+          class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+          data-test-subj="euiCollapsedNavButton"
+          type="button"
         >
-          <button
-            aria-label="Item"
-            class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
-            data-test-subj="euiCollapsedNavButton"
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-              class="euiButtonIcon__icon"
-              color="inherit"
-              data-euiicon-type="boxesHorizontal"
-            />
-          </button>
-        </span>
-      </div>
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesHorizontal"
+          />
+        </button>
+      </span>
     </div>
   </div>
   <div
@@ -46,7 +42,7 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-hasTransform-right-euiCollapsedNavPopover__panel"
+        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-right-euiCollapsedNavPopover__panel"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

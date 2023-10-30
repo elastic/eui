@@ -1,3 +1,47 @@
+## [`90.0.0`](https://github.com/elastic/eui/tree/v90.0.0)
+
+- Updated the `eventColor` prop on `EuiCommentEvent` to apply the color to the entire comment header. ([#7288](https://github.com/elastic/eui/pull/7288))
+- Updated `EuiBasicTable` and `EuiInMemoryTable` to support a new controlled selection API: `selection.selected` ([#7321](https://github.com/elastic/eui/pull/7321))
+
+**Bug fixes**
+
+- Fixed controlled `EuiFieldNumbers` not correctly updating native validity state ([#7291](https://github.com/elastic/eui/pull/7291))
+- Fixed `EuiListGroupItem` to pass `style` props to the wrapping `<li>` element alongside `className` and `css`. All other props will be passed to the underlying content. ([#7298](https://github.com/elastic/eui/pull/7298))
+- Fixed `EuiListGroupItem`'s non-transitioned transform on hover/focus ([#7298](https://github.com/elastic/eui/pull/7298))
+- Fixed `EuiDataGrid`s with `gridStyle.stripes` sometimes showing buggy row striping after being sorted ([#7301](https://github.com/elastic/eui/pull/7301))
+- Fixed `EuiDataGrid`'s `gridStyle.rowClasses` API to not conflict with `gridStyle.stripes` if dynamically updated ([#7301](https://github.com/elastic/eui/pull/7301))
+- Fixed `EuiDataGrid`'s `gridStyle.rowClasses` API to support multiple space-separated classes ([#7301](https://github.com/elastic/eui/pull/7301))
+- Fixed `EuiInputPopover` not calling `onPanelResize` callback prop ([#7305](https://github.com/elastic/eui/pull/7305))
+- Fixed `EuiDualRange` incorrectly positioning highlights when rendered with `showInput="inputWithPopover"` ([#7305](https://github.com/elastic/eui/pull/7305))
+- Fixed `EuiTabs` incorrectly wrapping text when it should instead either scroll or truncate ([#7309](https://github.com/elastic/eui/pull/7309))
+- `EuiContextMenu` now renders text colors correctly when used within an `EuiBottomBar` ([#7312](https://github.com/elastic/eui/pull/7312))
+- Fixed the width of `EuiSuperDatePicker`'s Absolute date picker ([#7313](https://github.com/elastic/eui/pull/7313))
+- Fixed `EuiDataGrid` cells visually cutting off overflowing content a little too quickly ([#7320](https://github.com/elastic/eui/pull/7320))
+
+**Deprecations**
+
+- Deprecated `EuiBasicTable` and `EuiInMemoryTable`'s ref `setSelection` API. Use the new `selection.selected` API instead. ([#7321](https://github.com/elastic/eui/pull/7321))
+
+**Breaking changes**
+
+- Removed `EuiPageTemplate_Deprecated`, `EuiPageSideBar_Deprecated`, and `EuiPageContent*_Deprecated` ([#7265](https://github.com/elastic/eui/pull/7265))
+- Removed the `ghost` color option from `EuiButton`, `EuiButtonEmpty`, and `EuiButtonIcon`. Use an `<EuiThemeProvider colorMode="dark">` wrapper and `color="text"` instead. ([#7296](https://github.com/elastic/eui/pull/7296))
+
+**Dependency updates**
+
+- Updated `refactor` to v3.6.0 ([#7127](https://github.com/elastic/eui/pull/7127))
+- Updated `rehype-raw` to v5.1.0 ([#7127](https://github.com/elastic/eui/pull/7127))
+- Updated `vfile` to v4.2.1 ([#7127](https://github.com/elastic/eui/pull/7127))
+
+**Accessibility**
+
+- `EuiContextMenu` now correctly respects reduced motion preferences ([#7312](https://github.com/elastic/eui/pull/7312))
+- `EuiAccordion`s no longer attempt to focus child content when the accordion is externally opened via `forceState`, but will continue to focus expanded content when users click the toggle button. ([#7314](https://github.com/elastic/eui/pull/7314))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiContextMenu`, `EuiContextMenuPanel`, and `EuiContextMenuItem` to Emotion; Removed `$euiContextMenuWidth` ([#7312](https://github.com/elastic/eui/pull/7312))
+
 ## [`89.1.0`](https://github.com/elastic/eui/tree/v89.1.0)
 
 - Added `tokenVectorSparse` token and updated `tokenDenseVector` token (now named `tokenVectorDense`). ([#7282](https://github.com/elastic/eui/pull/7282))

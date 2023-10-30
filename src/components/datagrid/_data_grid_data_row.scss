@@ -124,8 +124,7 @@
 .euiDataGridRowCell__numericalHeight {
   // Without this rule, popover anchors content that overflows off the page
   [data-euiportal],
-  .euiPopover,
-  .euiPopover__anchor {
+  .euiPopover {
     height: 100%;
   }
 }

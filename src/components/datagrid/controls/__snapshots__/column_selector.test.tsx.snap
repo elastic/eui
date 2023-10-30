@@ -2,32 +2,28 @@
 
 exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar button/popover allowing users to set column visibility and order 1`] = `
 <div
-  class="euiPopover emotion-euiPopover"
+  class="euiPopover emotion-euiPopover-inline-block"
   data-test-subj="dataGridColumnSelectorPopover"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
+  <button
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    data-test-subj="dataGridColumnSelectorButton"
+    type="button"
   >
-    <button
-      class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-      data-test-subj="dataGridColumnSelectorButton"
-      type="button"
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        color="inherit"
+        data-euiicon-type="listAdd"
+      />
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
       >
-        <span
-          color="inherit"
-          data-euiicon-type="listAdd"
-        />
-        <span
-          class="eui-textTruncate euiButtonEmpty__text"
-        >
-          Columns
-        </span>
+        Columns
       </span>
-    </button>
-  </div>
+    </span>
+  </button>
 </div>
 `;
 
@@ -36,7 +32,7 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
   aria-describedby="generated-id"
   aria-live="off"
   aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-hasDragDrop-bottom"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
   data-autofocus="true"
   data-popover-panel="true"
   role="dialog"
@@ -297,32 +293,28 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
 
 exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar button/popover allowing users to set column visibility and order 1`] = `
 <div
-  class="euiPopover emotion-euiPopover"
+  class="euiPopover emotion-euiPopover-inline-block"
   data-test-subj="dataGridColumnSelectorPopover"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
+  <button
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    data-test-subj="dataGridColumnSelectorButton"
+    type="button"
   >
-    <button
-      class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-      data-test-subj="dataGridColumnSelectorButton"
-      type="button"
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        color="inherit"
+        data-euiicon-type="listAdd"
+      />
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
       >
-        <span
-          color="inherit"
-          data-euiicon-type="listAdd"
-        />
-        <span
-          class="eui-textTruncate euiButtonEmpty__text"
-        >
-          Columns
-        </span>
+        Columns
       </span>
-    </button>
-  </div>
+    </span>
+  </button>
 </div>
 `;
 
@@ -331,7 +323,7 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
   aria-describedby="generated-id"
   aria-live="off"
   aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-hasDragDrop-bottom"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
   data-autofocus="true"
   data-popover-panel="true"
   role="dialog"
@@ -592,32 +584,28 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
 
 exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar button/popover allowing users to set column visibility and order 1`] = `
 <div
-  class="euiPopover emotion-euiPopover"
+  class="euiPopover emotion-euiPopover-inline-block"
   data-test-subj="dataGridColumnSelectorPopover"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
+  <button
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    data-test-subj="dataGridColumnSelectorButton"
+    type="button"
   >
-    <button
-      class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-      data-test-subj="dataGridColumnSelectorButton"
-      type="button"
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        color="inherit"
+        data-euiicon-type="listAdd"
+      />
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
       >
-        <span
-          color="inherit"
-          data-euiicon-type="listAdd"
-        />
-        <span
-          class="eui-textTruncate euiButtonEmpty__text"
-        >
-          Columns
-        </span>
+        Columns
       </span>
-    </button>
-  </div>
+    </span>
+  </button>
 </div>
 `;
 
@@ -626,7 +614,7 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
   aria-describedby="generated-id"
   aria-live="off"
   aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-hasDragDrop-bottom"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
   data-autofocus="true"
   data-popover-panel="true"
   role="dialog"

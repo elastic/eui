@@ -197,25 +197,21 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
           class="euiMarkdownEditorFooter__actions"
         />
         <div
-          class="euiPopover emotion-euiPopover"
+          class="euiPopover emotion-euiPopover-inline-block"
         >
-          <div
-            class="euiPopover__anchor css-16vtueo-render"
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            title="Syntax help"
+            type="button"
           >
-            <button
-              aria-label="Show markdown help"
-              class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
-              title="Syntax help"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-                class="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="MarkdownLogo"
-              />
-            </button>
-          </div>
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
         </div>
       </div>
       <input

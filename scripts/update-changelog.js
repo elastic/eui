@@ -110,7 +110,7 @@ const collateChangelogFiles = () => {
 /**
  * Write to CHANGELOG.md, delete individual upcoming changelog files, & stage changes
  */
-const updateChangelog = (upcomingChangelog, versionTarget) => {
+const updateChangelog = (upcomingChangelog, version) => {
   if (!upcomingChangelog) {
     throwError('Cannot update CHANGELOG.md - no changes found');
   }
@@ -118,7 +118,6 @@ const updateChangelog = (upcomingChangelog, versionTarget) => {
   const pathToChangelog = path.resolve(rootDir, 'CHANGELOG.md');
   const changelogArchive = fs.readFileSync(pathToChangelog).toString();
 
-  const version = getUpcomingVersion(versionTarget);
   const latestVersionHeading = `## [\`${version}\`](https://github.com/elastic/eui/tree/v${version})`;
 
   if (changelogArchive.startsWith(latestVersionHeading)) {
@@ -132,32 +131,6 @@ const updateChangelog = (upcomingChangelog, versionTarget) => {
   rimraf.sync('upcoming_changelogs/!(_template).md');
 
   execSync('git add CHANGELOG.md upcoming_changelogs/');
-  execSync('git commit -m "Updated changelog." -n');
-};
-
-/**
- * Get the current EUI version and increment it based on the
- * user-input versionTarget (major/minor/patch)
- */
-const getUpcomingVersion = (versionTarget) => {
-  const pathToPackage = path.resolve(rootDir, 'package.json');
-  const { version } = require(pathToPackage);
-  let [major, minor, patch] = version.split('.').map(Number);
-  switch (versionTarget) {
-    case 'major':
-      major += 1;
-      minor = 0;
-      patch = 0;
-      break;
-    case 'minor':
-      minor += 1;
-      patch = 0;
-      break;
-    case 'patch':
-      patch += 1;
-      break;
-  }
-  return [major, minor, patch].join('.');
 };
 
 /**
@@ -182,6 +155,5 @@ const manualChangelog = (release) => {
 module.exports = {
   collateChangelogFiles,
   updateChangelog,
-  getUpcomingVersion,
   manualChangelog,
 };

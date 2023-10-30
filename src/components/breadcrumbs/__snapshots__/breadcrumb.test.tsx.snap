@@ -4,27 +4,23 @@ exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with p
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen emotion-euiPopover"
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
       data-test-subj="popover"
     >
-      <div
-        class="euiPopover__anchor css-16vtueo-render"
+      <button
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+        data-test-subj="popoverToggle"
+        title="Toggles a popover  - Clicking this button will toggle a popover dialog."
+        type="button"
       >
-        <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-          data-test-subj="popoverToggle"
-          title="Toggles a popover  - Clicking this button will toggle a popover dialog."
-          type="button"
+        Toggles a popover
+         
+        <span
+          data-euiicon-type="arrowDown"
         >
-          Toggles a popover
-           
-          <span
-            data-euiicon-type="arrowDown"
-          >
-             - Clicking this button will toggle a popover dialog.
-          </span>
-        </button>
-      </div>
+           - Clicking this button will toggle a popover dialog.
+        </span>
+      </button>
     </div>
   </div>
   <div
@@ -42,7 +38,7 @@ exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with p
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

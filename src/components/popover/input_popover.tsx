@@ -43,7 +43,7 @@ export interface _EuiInputPopoverProps
   closeOnScroll?: boolean;
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
-  inputRef?: EuiPopoverProps['buttonRef'];
+  inputRef?: EuiPopoverProps['popoverRef'];
   onPanelResize?: (width: number) => void;
   /**
    * By default, **EuiInputPopovers** inherit the same width as the passed input element.
@@ -204,7 +204,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
       display={display}
       button={input}
-      buttonRef={inputRef}
+      popoverRef={inputRef}
       panelRef={panelRef}
       ref={popoverClassRef}
       closePopover={closePopover}

@@ -110,7 +110,6 @@ export const EuiQuickSelectPopover: FunctionComponent<
       isOpen={isOpen}
       closePopover={closePopover}
       anchorPosition="downLeft"
-      anchorClassName="euiQuickSelectPopover__anchor"
     >
       <EuiQuickSelectPanels
         {...props}

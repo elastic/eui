@@ -39,12 +39,8 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiFilterButtonDisplay(euiThemeContext)}
       }
       /* Force popover anchors to expand */
-      .euiPopover__anchor {
-        display: block;
-
-        .euiFilterButton {
-          ${logicalCSS('width', '100%')}
-        }
+      .euiPopover > .euiFilterButton {
+        ${logicalCSS('width', '100%')}
       }
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {

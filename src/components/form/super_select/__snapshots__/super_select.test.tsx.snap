@@ -2,41 +2,37 @@
 
 exports[`EuiSuperSelect is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value=""
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
+      <button
+        aria-haspopup="listbox"
+        aria-label="aria-label"
+        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          aria-label="aria-label"
-          class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-          data-test-subj="test subject string"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -45,41 +41,37 @@ exports[`EuiSuperSelect is rendered 1`] = `
 
 exports[`EuiSuperSelect props compressed is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout euiFormControlLayout--compressed"
   >
-    <input
-      type="hidden"
-      value=""
-    />
     <div
-      class="euiFormControlLayout euiFormControlLayout--compressed"
+      class="euiFormControlLayout__childrenWrapper"
     >
+      <button
+        aria-haspopup="listbox"
+        aria-label="aria-label"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          aria-label="aria-label"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed testClass1 testClass2 emotion-euiTestCss"
-          data-test-subj="test subject string"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -88,40 +80,36 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
 
 exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value=""
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
+        data-test-subj="superSelect"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-          data-test-subj="superSelect"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -136,7 +124,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -219,41 +207,37 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 
 exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth"
   >
-    <input
-      type="hidden"
-      value=""
-    />
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout__childrenWrapper"
     >
+      <button
+        aria-haspopup="listbox"
+        aria-label="aria-label"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          aria-label="aria-label"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth testClass1 testClass2 emotion-euiTestCss"
-          data-test-subj="test subject string"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -262,95 +246,87 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 
 exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout euiFormControlLayout--group"
   >
-    <input
-      type="hidden"
-      value=""
-    />
-    <div
-      class="euiFormControlLayout euiFormControlLayout--group"
+    <label
+      class="euiFormLabel euiFormControlLayout__prepend"
     >
-      <label
-        class="euiFormLabel euiFormControlLayout__prepend"
-      >
-        prepend
-      </label>
+      prepend
+    </label>
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <button
+        aria-haspopup="listbox"
+        aria-label="aria-label"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          aria-label="aria-label"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup testClass1 testClass2 emotion-euiTestCss"
-          data-test-subj="test subject string"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
-      <label
-        class="euiFormLabel euiFormControlLayout__append"
-      >
-        append
-      </label>
     </div>
+    <label
+      class="euiFormLabel euiFormControlLayout__append"
+    >
+      append
+    </label>
   </div>
 </div>
 `;
 
 exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value="1"
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value="1"
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
+        data-test-subj="superSelect"
+        type="button"
       >
-        <button
-          aria-haspopup="listbox"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-          data-test-subj="superSelect"
-          type="button"
-        >
-          Option #1
-        </button>
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        Option #1
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -365,7 +341,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -451,40 +427,36 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 
 exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value=""
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
+        data-test-subj="superSelect"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-          data-test-subj="superSelect"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -499,7 +471,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -582,42 +554,38 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 
 exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect goes-on-outermost-wrapper emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect goes-on-outermost-wrapper emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value="2"
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value="2"
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
+        data-test-subj="superSelect"
+        type="button"
       >
-        <button
-          aria-haspopup="listbox"
-          class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-          data-test-subj="superSelect"
-          type="button"
-        >
-          Option #2
-        </button>
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        Option #2
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -632,7 +600,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel goes-on-popover-panel emotion-euiPanel-grow-m-plain-euiPopover__panel-isAttached-bottom"
+      class="euiPanel euiPanel--plain euiPopover__panel goes-on-popover-panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
       data-popover-panel="true"
       role="dialog"
       style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
@@ -716,39 +684,35 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
 
 exports[`EuiSuperSelect props select component is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value=""
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value=""
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        type="button"
+      />
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-haspopup="listbox"
-          class="euiSuperSelectControl euiFormControlLayout--1icons"
-          type="button"
-        />
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -757,41 +721,37 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
 
 exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
+  <input
+    type="hidden"
+    value="2"
+  />
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <input
-      type="hidden"
-      value="2"
-    />
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        type="button"
       >
-        <button
-          aria-haspopup="listbox"
-          class="euiSuperSelectControl euiFormControlLayout--1icons"
-          type="button"
-        >
-          Option #2
-        </button>
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        Option #2
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
       </div>
     </div>
   </div>

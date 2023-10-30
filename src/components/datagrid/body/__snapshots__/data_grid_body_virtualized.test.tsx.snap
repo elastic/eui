@@ -30,31 +30,27 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           style="margin-right: 0px;"
         />
         <div
-          class="euiPopover eui-fullWidth emotion-euiPopover"
+          class="euiPopover eui-fullWidth emotion-euiPopover-block"
         >
-          <div
-            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+          <button
+            aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+            class="euiDataGridHeaderCell__button"
+            data-euigrid-tab-managed="true"
+            tabindex="-1"
           >
-            <button
-              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-              class="euiDataGridHeaderCell__button"
-              data-euigrid-tab-managed="true"
-              tabindex="-1"
+            <div
+              class="euiDataGridHeaderCell__content"
+              title="columnA"
             >
-              <div
-                class="euiDataGridHeaderCell__content"
-                title="columnA"
-              >
-                columnA
-              </div>
-              <span
-                class="euiDataGridHeaderCell__icon"
-                color="text"
-                data-euiicon-type="arrowDown"
-                data-test-subj="dataGridHeaderCellActionButton-columnA"
-              />
-            </button>
-          </div>
+              columnA
+            </div>
+            <span
+              class="euiDataGridHeaderCell__icon"
+              color="text"
+              data-euiicon-type="arrowDown"
+              data-test-subj="dataGridHeaderCellActionButton-columnA"
+            />
+          </button>
         </div>
         <p
           hidden=""
@@ -84,31 +80,27 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           style="margin-right: 0px;"
         />
         <div
-          class="euiPopover eui-fullWidth emotion-euiPopover"
+          class="euiPopover eui-fullWidth emotion-euiPopover-block"
         >
-          <div
-            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+          <button
+            aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+            class="euiDataGridHeaderCell__button"
+            data-euigrid-tab-managed="true"
+            tabindex="-1"
           >
-            <button
-              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-              class="euiDataGridHeaderCell__button"
-              data-euigrid-tab-managed="true"
-              tabindex="-1"
+            <div
+              class="euiDataGridHeaderCell__content"
+              title="columnB"
             >
-              <div
-                class="euiDataGridHeaderCell__content"
-                title="columnB"
-              >
-                columnB
-              </div>
-              <span
-                class="euiDataGridHeaderCell__icon"
-                color="text"
-                data-euiicon-type="arrowDown"
-                data-test-subj="dataGridHeaderCellActionButton-columnB"
-              />
-            </button>
-          </div>
+              columnB
+            </div>
+            <span
+              class="euiDataGridHeaderCell__icon"
+              color="text"
+              data-euiicon-type="arrowDown"
+              data-test-subj="dataGridHeaderCellActionButton-columnB"
+            />
+          </button>
         </div>
         <p
           hidden=""

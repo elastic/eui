@@ -2,30 +2,26 @@
 
 exports[`EuiCollapsedNavItem renders a popover if items exist 1`] = `
 <div
-  class="euiPopover euiCollapsedNavItem testClass1 testClass2 emotion-euiPopover-euiTestCss"
+  class="euiPopover euiCollapsedNavItem testClass1 testClass2 emotion-euiPopover-block-euiTestCss"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-zih94u-render"
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
   >
-    <span
-      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    <button
+      aria-label="Item"
+      class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+      data-test-subj="euiCollapsedNavButton"
+      type="button"
     >
-      <button
-        aria-label="Item"
-        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
-        data-test-subj="euiCollapsedNavButton"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="boxesHorizontal"
-        />
-      </button>
-    </span>
-  </div>
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="boxesHorizontal"
+      />
+    </button>
+  </span>
 </div>
 `;
 

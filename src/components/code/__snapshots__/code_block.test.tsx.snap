@@ -163,22 +163,18 @@ exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
             data-line-number="1"
           />
           <div
-            class="euiPopover euiCodeBlock__lineAnnotation emotion-euiPopover-euiCodeBlockAnnotation"
+            class="euiPopover euiCodeBlock__lineAnnotation emotion-euiPopover-inline-block-euiCodeBlockAnnotation"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <button
+              aria-label="Click to view a code annotation for line 1"
+              class="emotion-euiCodeBlockAnnotation__buttonIcon"
+              data-test-subj="euiCodeBlockAnnotationIcon"
             >
-              <button
-                aria-label="Click to view a code annotation for line 1"
-                class="emotion-euiCodeBlockAnnotation__buttonIcon"
-                data-test-subj="euiCodeBlockAnnotationIcon"
-              >
-                <span
-                  color="ghost"
-                  data-euiicon-type="AnnotationInfoIcon"
-                />
-              </button>
-            </div>
+              <span
+                color="ghost"
+                data-euiicon-type="AnnotationInfoIcon"
+              />
+            </button>
           </div>
         </span>
         <span

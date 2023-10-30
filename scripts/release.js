@@ -11,7 +11,10 @@ const {
   collateChangelogFiles,
   updateChangelog,
 } = require('./update-changelog');
-const updateDocsVersionSwitcher = require('./update-versions-log');
+const {
+  getUpcomingVersion,
+  updateDocsVersionSwitcher,
+} = require('./update-versions-log');
 
 const TYPE_MAJOR = 0;
 const TYPE_MINOR = 1;
@@ -71,11 +74,11 @@ if (args.dry_run) {
     // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
-    // Update CHANGELOG.md
-    updateChangelog(changelog, versionTarget);
-
-    // Update version switcher data
-    updateDocsVersionSwitcher(versionTarget);
+    // Update version switcher data and CHANGELOG.md
+    const upcomingVersion = getUpcomingVersion(versionTarget);
+    updateDocsVersionSwitcher(upcomingVersion);
+    updateChangelog(changelog, upcomingVersion);
+    execSync('git commit -m "Updated changelog" -n');
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);

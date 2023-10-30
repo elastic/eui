@@ -28,7 +28,7 @@ import { euiCollapsibleNavAccordionStyles } from './collapsible_nav_accordion.st
 
 type EuiCollapsibleNavAccordionProps = Omit<
   _SharedEuiCollapsibleNavItemProps,
-  'items'
+  'items' | 'isCollapsible'
 > &
   _EuiCollapsibleNavItemDisplayProps & {
     buttonContent: ReactNode;
