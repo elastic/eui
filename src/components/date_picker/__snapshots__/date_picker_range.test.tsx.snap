@@ -26,21 +26,17 @@ exports[`EuiDatePickerRange is rendered 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -53,21 +49,17 @@ exports[`EuiDatePickerRange is rendered 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
@@ -99,21 +91,17 @@ exports[`EuiDatePickerRange props compressed 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -126,21 +114,17 @@ exports[`EuiDatePickerRange props compressed 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
@@ -172,22 +156,18 @@ exports[`EuiDatePickerRange props disabled 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              disabled=""
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            disabled=""
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -200,22 +180,18 @@ exports[`EuiDatePickerRange props disabled 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              disabled=""
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            disabled=""
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
@@ -247,21 +223,17 @@ exports[`EuiDatePickerRange props fullWidth 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiFieldText--fullWidth euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiFieldText--fullWidth euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -274,21 +246,17 @@ exports[`EuiDatePickerRange props fullWidth 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiFieldText--fullWidth euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiFieldText--fullWidth euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
@@ -1226,22 +1194,18 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-invalid="true"
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-invalid="true"
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -1254,22 +1218,18 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-invalid="true"
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-invalid="true"
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -1309,21 +1269,17 @@ exports[`EuiDatePickerRange props isLoading 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -1336,21 +1292,17 @@ exports[`EuiDatePickerRange props isLoading 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -1391,22 +1343,18 @@ exports[`EuiDatePickerRange props readOnly 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
-              readonly=""
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            readonly=""
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -1419,22 +1367,18 @@ exports[`EuiDatePickerRange props readOnly 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
-              readonly=""
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            readonly=""
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
@@ -1468,21 +1412,17 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__start hello euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start hello euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
       <div
@@ -1495,21 +1435,17 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiDatePickerRange__end world euiFormControlLayoutDelimited__input"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end world euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>

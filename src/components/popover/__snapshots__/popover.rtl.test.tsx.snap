@@ -4,14 +4,10 @@ exports[`EuiPopover snapshot testing renders 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover testClass1 testClass2 emotion-euiPopover-euiTestCss"
+      class="euiPopover testClass1 testClass2 emotion-euiPopover-inline-block-euiTestCss"
       data-test-subj="test subject string"
     >
-      <div
-        class="euiPopover__anchor css-16vtueo-render"
-      >
-        <button />
-      </div>
+      <button />
     </div>
   </div>
 </body>
@@ -21,14 +17,10 @@ exports[`EuiPopover snapshot testing renders with popover contents 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiTestCss"
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-inline-block-euiTestCss"
       data-test-subj="test subject string"
     >
-      <div
-        class="euiPopover__anchor css-16vtueo-render"
-      >
-        <button />
-      </div>
+      <button />
     </div>
   </div>
   <div

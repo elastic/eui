@@ -830,21 +830,17 @@ exports[`EuiDatePicker renders 1`] = `
         </span>
       </div>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover__anchor css-zih94u-render"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="react-datepicker__input-container"
-          >
-            <input
-              aria-label="Press the down key to open a popover containing a calendar."
-              class="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2 emotion-euiTestCss"
-              type="text"
-              value=""
-            />
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2 emotion-euiTestCss"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>

@@ -18,31 +18,27 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     style="margin-right: 0px;"
   />
   <div
-    class="euiPopover eui-fullWidth emotion-euiPopover"
+    class="euiPopover eui-fullWidth emotion-euiPopover-block"
   >
-    <div
-      class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+    <button
+      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+      class="euiDataGridHeaderCell__button"
+      data-euigrid-tab-managed="true"
+      tabindex="-1"
     >
-      <button
-        aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-        class="euiDataGridHeaderCell__button"
-        data-euigrid-tab-managed="true"
-        tabindex="-1"
+      <div
+        class="euiDataGridHeaderCell__content"
+        title="someColumn"
       >
-        <div
-          class="euiDataGridHeaderCell__content"
-          title="someColumn"
-        >
-          someColumn
-        </div>
-        <span
-          class="euiDataGridHeaderCell__icon"
-          color="text"
-          data-euiicon-type="arrowDown"
-          data-test-subj="dataGridHeaderCellActionButton-someColumn"
-        />
-      </button>
-    </div>
+        someColumn
+      </div>
+      <span
+        class="euiDataGridHeaderCell__icon"
+        color="text"
+        data-euiicon-type="arrowDown"
+        data-test-subj="dataGridHeaderCellActionButton-someColumn"
+      />
+    </button>
   </div>
   <p
     hidden=""

@@ -132,7 +132,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         <>
           <EuiPopover
             className="eui-fullWidth"
-            anchorClassName="eui-fullWidth"
+            display="block"
             panelPaddingSize="none"
             offset={7}
             button={

@@ -158,36 +158,32 @@ exports[`SearchBar render - provided query, filters 1`] = `
         </span>
       </button>
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+          type="button"
         >
-          <button
-            class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
-            type="button"
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
           >
             <span
-              class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
+              class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
             >
               <span
-                class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+                class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+                data-text="Tag"
+                title="Tag"
               >
-                <span
-                  class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-                  data-text="Tag"
-                  title="Tag"
-                >
-                  Tag
-                </span>
+                Tag
               </span>
-              <span
-                color="inherit"
-                data-euiicon-type="arrowDown"
-              />
             </span>
-          </button>
-        </div>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </button>
       </div>
     </div>
   </div>

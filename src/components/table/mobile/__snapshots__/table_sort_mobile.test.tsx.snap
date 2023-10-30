@@ -5,31 +5,27 @@ exports[`EuiTableSortMobile is rendered 1`] = `
   class="euiTableSortMobile testClass1 testClass2 emotion-euiTestCss"
 >
   <div
-    class="euiPopover emotion-euiPopover"
+    class="euiPopover emotion-euiPopover-inline-block"
     data-test-subj="test subject string"
   >
-    <div
-      class="euiPopover__anchor css-16vtueo-render"
+    <button
+      class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
+      type="button"
     >
-      <button
-        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
-        type="button"
+      <span
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
-          <span
-            class="eui-textTruncate euiButtonEmpty__text"
-          >
-            Sorting
-          </span>
-          <span
-            color="inherit"
-            data-euiicon-type="arrowDown"
-          />
+          Sorting
         </span>
-      </button>
-    </div>
+        <span
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </span>
+    </button>
   </div>
 </div>
 `;
