@@ -14,11 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import {
-  EuiThemeProvider,
-  getSecureRelForTarget,
-  useEuiTheme,
-} from '../../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -48,9 +44,8 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
-   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
-  color?: _EuiButtonColor | 'ghost';
+  color?: _EuiButtonColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
@@ -105,26 +100,24 @@ type Props = ExclusiveUnion<
   EuiButtonIconPropsForButton
 >;
 
-export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
-  const {
-    className,
-    iconType,
-    iconSize = 'm',
-    color: _color = 'primary',
-    isDisabled: _isDisabled,
-    disabled,
-    href,
-    type = 'button',
-    display = 'empty',
-    target,
-    rel,
-    size = 'xs',
-    buttonRef,
-    isSelected,
-    isLoading,
-    ...rest
-  } = props;
-
+export const EuiButtonIcon: FunctionComponent<Props> = ({
+  className,
+  iconType,
+  iconSize = 'm',
+  color = 'primary',
+  isDisabled: _isDisabled,
+  disabled,
+  href,
+  type = 'button',
+  display = 'empty',
+  target,
+  rel,
+  size = 'xs',
+  buttonRef,
+  isSelected,
+  isLoading,
+  ...rest
+}) => {
   const euiThemeContext = useEuiTheme();
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
@@ -142,32 +135,24 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     );
   }
 
-  const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({ display });
   const buttonFocusStyle = useEuiButtonFocusCSS();
+  const emptyHoverStyles =
+    display === 'empty' &&
+    !isDisabled &&
+    _emptyHoverStyles(euiThemeContext, color);
 
   const styles = euiButtonIconStyles(euiThemeContext);
-  const emptyHoverStyles = _emptyHoverStyles(euiThemeContext, color);
-
   const cssStyles = [
     styles.euiButtonIcon,
     styles[size],
-    buttonColorStyles[color],
+    buttonColorStyles[isDisabled ? 'disabled' : color],
     buttonFocusStyle,
-    display === 'empty' && emptyHoverStyles,
+    emptyHoverStyles,
     isDisabled && styles.isDisabled,
   ];
 
   const classes = classNames('euiButtonIcon', className);
-
-  if (_color === 'ghost') {
-    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
-    return (
-      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
-        <EuiButtonIcon {...props} color="text" />
-      </EuiThemeProvider>
-    );
-  }
 
   // Add an icon to the button if one exists.
   let buttonIcon;

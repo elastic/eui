@@ -148,7 +148,7 @@ export const PageDemo: FunctionComponent<
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButton color="ghost">Share</EuiButton>
+        <EuiButton color="text">Share</EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
   ) : undefined;

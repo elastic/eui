@@ -41,14 +41,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 640,
+        "line": 660,
         "column": 10,
-        "index": 16330
+        "index": 16982
       },
       "end": {
-        "line": 644,
+        "line": 664,
         "column": 12,
-        "index": 16533
+        "index": 17185
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -59,14 +59,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 653,
+        "line": 673,
         "column": 12,
-        "index": 16730
+        "index": 17382
       },
       "end": {
-        "line": 657,
+        "line": 677,
         "column": 14,
-        "index": 17009
+        "index": 17661
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -77,14 +77,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 661,
+        "line": 681,
         "column": 12,
-        "index": 17081
+        "index": 17733
       },
       "end": {
-        "line": 665,
+        "line": 685,
         "column": 14,
-        "index": 17321
+        "index": 17973
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -95,14 +95,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 670,
+        "line": 690,
         "column": 10,
-        "index": 17397
+        "index": 18049
       },
       "end": {
-        "line": 674,
+        "line": 694,
         "column": 12,
-        "index": 17581
+        "index": 18233
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -113,14 +113,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 716,
+        "line": 736,
         "column": 6,
-        "index": 18579
+        "index": 19231
       },
       "end": {
-        "line": 716,
+        "line": 736,
         "column": 77,
-        "index": 18650
+        "index": 19302
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -131,14 +131,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1112,
+        "line": 1132,
         "column": 8,
-        "index": 30437
+        "index": 31089
       },
       "end": {
-        "line": 1112,
+        "line": 1132,
         "column": 79,
-        "index": 30508
+        "index": 31160
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -149,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1333,
+        "line": 1353,
         "column": 8,
-        "index": 36936
+        "index": 37588
       },
       "end": {
-        "line": 1337,
+        "line": 1357,
         "column": 9,
-        "index": 37095
+        "index": 37747
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -455,50 +455,86 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 163,
         "column": 27,
-        "index": 5469
+        "index": 5426
       },
       "end": {
-        "line": 168,
+        "line": 166,
         "column": 3,
-        "index": 5539
+        "index": 5496
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
   },
   {
-    "token": "euiCollapsibleNavButton.ariaLabelOpen",
-    "defString": "Toggle navigation open",
+    "token": "euiCollapsibleNavButton.ariaLabelExpand",
+    "defString": "Expand navigation",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 47,
-        "column": 26,
-        "index": 1716
+        "line": 38,
+        "column": 28,
+        "index": 1478
       },
       "end": {
-        "line": 50,
+        "line": 41,
         "column": 3,
-        "index": 1805
+        "index": 1564
+      }
+    },
+    "filepath": "src/components/collapsible_nav_beta/collapsible_nav_button/collapsible_nav_button.tsx"
+  },
+  {
+    "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+    "defString": "Collapse navigation",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 42,
+        "column": 30,
+        "index": 1596
+      },
+      "end": {
+        "line": 45,
+        "column": 3,
+        "index": 1686
+      }
+    },
+    "filepath": "src/components/collapsible_nav_beta/collapsible_nav_button/collapsible_nav_button.tsx"
+  },
+  {
+    "token": "euiCollapsibleNavButton.ariaLabelOpen",
+    "defString": "Open navigation",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 46,
+        "column": 26,
+        "index": 1714
+      },
+      "end": {
+        "line": 49,
+        "column": 3,
+        "index": 1796
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_button/collapsible_nav_button.tsx"
   },
   {
     "token": "euiCollapsibleNavButton.ariaLabelClose",
-    "defString": "Toggle navigation closed",
+    "defString": "Close navigation",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 51,
-        "column": 28,
-        "index": 1835
+        "line": 50,
+        "column": 27,
+        "index": 1825
       },
       "end": {
-        "line": 54,
+        "line": 53,
         "column": 3,
-        "index": 1927
+        "index": 1909
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_button/collapsible_nav_button.tsx"
@@ -869,14 +905,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 430,
+        "line": 425,
         "column": 6,
-        "index": 10795
+        "index": 10754
       },
       "end": {
-        "line": 433,
+        "line": 428,
         "column": 7,
-        "index": 10899
+        "index": 10858
       }
     },
     "filepath": "src/components/control_bar/control_bar.tsx"
@@ -887,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 468,
+        "line": 473,
         "column": 14,
-        "index": 12132
+        "index": 12376
       },
       "end": {
-        "line": 472,
+        "line": 477,
         "column": 16,
-        "index": 12406
+        "index": 12650
       }
     },
     "filepath": "src/components/control_bar/control_bar.tsx"
@@ -905,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 474,
+        "line": 479,
         "column": 14,
-        "index": 12439
+        "index": 12683
       },
       "end": {
-        "line": 477,
+        "line": 482,
         "column": 16,
-        "index": 12637
+        "index": 12881
       }
     },
     "filepath": "src/components/control_bar/control_bar.tsx"
@@ -4651,12 +4687,12 @@
       "start": {
         "line": 101,
         "column": 49,
-        "index": 2904
+        "index": 2920
       },
       "end": {
         "line": 107,
         "column": 3,
-        "index": 3125
+        "index": 3141
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
@@ -4669,12 +4705,12 @@
       "start": {
         "line": 101,
         "column": 49,
-        "index": 2904
+        "index": 2920
       },
       "end": {
         "line": 107,
         "column": 3,
-        "index": 3125
+        "index": 3141
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
@@ -4811,14 +4847,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 616,
+        "line": 638,
         "column": 6,
-        "index": 18346
+        "index": 18888
       },
       "end": {
-        "line": 619,
+        "line": 641,
         "column": 8,
-        "index": 18581
+        "index": 19123
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
@@ -4829,14 +4865,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 183,
+        "line": 188,
         "column": 6,
-        "index": 4858
+        "index": 4996
       },
       "end": {
-        "line": 186,
+        "line": 191,
         "column": 8,
-        "index": 5035
+        "index": 5173
       }
     },
     "filepath": "src/components/form/range/range.tsx"

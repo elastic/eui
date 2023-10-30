@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavGroup renders as a sub item 1`] = `
+<div
+  class="euiCollapsibleNavGroup"
+>
+  <span
+    class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isSubItem"
+  >
+    Header
+  </span>
+  <div
+    class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isSubItem"
+  >
+    <span
+      class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+    >
+      <span
+        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      >
+        sub item
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup renders as a top level item 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isTopItem-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+  >
+    Header
+  </span>
+  <div
+    class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isTopItem"
+  >
+    <span
+      class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+    >
+      <span
+        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      >
+        sub item
+      </span>
+    </span>
+  </div>
+</div>
+`;

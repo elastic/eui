@@ -27,10 +27,9 @@ import {
   EuiButtonDisplayCommonProps,
   isButtonDisabled,
 } from './button_display/_button_display';
-import { EuiThemeProvider } from '../../services';
 
-export const COLORS = [...BUTTON_COLORS, 'ghost'] as const;
-export type EuiButtonColor = _EuiButtonColor | 'ghost';
+export const COLORS = BUTTON_COLORS;
+export type EuiButtonColor = _EuiButtonColor;
 
 export const SIZES = ['s', 'm'] as const;
 export type EuiButtonSize = (typeof SIZES)[number];
@@ -43,7 +42,6 @@ interface BaseProps {
   fill?: boolean;
   /**
    * Any of the named color palette options.
-   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
   color?: EuiButtonColor;
   /**
@@ -84,55 +82,36 @@ export type Props = ExclusiveUnion<
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-export const EuiButton: FunctionComponent<Props> = (props) => {
-  const {
-    className,
-    buttonRef,
-    color: _color = 'primary',
-    fill,
-    ...rest
-  } = props;
-
-  const buttonIsDisabled = isButtonDisabled({
+export const EuiButton: FunctionComponent<Props> = ({
+  className,
+  buttonRef,
+  size = 'm',
+  color = 'primary',
+  fill,
+  ...rest
+}) => {
+  const isDisabled = isButtonDisabled({
     href: rest.href,
     isDisabled: rest.isDisabled || rest.disabled,
     isLoading: rest.isLoading,
   });
 
-  const color = buttonIsDisabled ? 'disabled' : _color;
-
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
-  })[color === 'ghost' ? 'text' : color];
+  })[isDisabled ? 'disabled' : color];
 
   const buttonFocusStyle = useEuiButtonFocusCSS();
 
   const classes = classNames('euiButton', className);
   const cssStyles = [buttonColorStyles, buttonFocusStyle];
 
-  if (_color === 'ghost') {
-    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
-    return (
-      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
-        <EuiButton {...props} color="text" />
-      </EuiThemeProvider>
-    );
-  }
-
   return (
     <EuiButtonDisplay
       className={classes}
       css={cssStyles}
       ref={buttonRef}
+      size={size}
       {...rest}
     />
   );
-};
-
-EuiButton.displayName = 'EuiButton';
-
-// Use defaultProps for simple pass-through props
-EuiButton.defaultProps = {
-  size: 'm',
-  color: 'primary',
 };

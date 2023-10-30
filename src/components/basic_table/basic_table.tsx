@@ -340,20 +340,28 @@ export class EuiBasicTable<T = any> extends Component<
       return { selection: [] };
     }
 
-    const { itemId } = nextProps;
-    const selection = prevState.selection.filter(
+    const controlledSelection = nextProps.selection.selected;
+    const unfilteredSelection = controlledSelection ?? prevState.selection;
+
+    // Ensure we're not including selections that aren't in the
+    // current `items` array (affected by pagination)
+    const { itemId, items } = nextProps;
+    const selection = unfilteredSelection.filter(
       (selectedItem: T) =>
-        nextProps.items.findIndex(
+        items.findIndex(
           (item: T) =>
             getItemId(item, itemId) === getItemId(selectedItem, itemId)
         ) !== -1
     );
 
-    if (selection.length !== prevState.selection.length) {
-      if (nextProps.selection.onSelectionChange) {
-        nextProps.selection.onSelectionChange(selection);
-      }
+    // If some selected items were filtered out, update state and callback
+    if (selection.length !== unfilteredSelection.length) {
+      nextProps.selection.onSelectionChange?.(selection);
+      return { selection };
+    }
 
+    // Always update selection state from props if controlled
+    if (controlledSelection) {
       return { selection };
     }
 
@@ -385,18 +393,29 @@ export class EuiBasicTable<T = any> extends Component<
     );
   }
 
+  get isSelectionControlled() {
+    return !!this.props.selection?.selected;
+  }
+
   getInitialSelection() {
+    if (this.isSelectionControlled) return;
+
     if (
       this.props.selection &&
       this.props.selection.initialSelected &&
       !this.state.initialSelectionRendered &&
       this.props.items.length > 0
     ) {
-      this.setState({ selection: this.props.selection.initialSelected });
-      this.setState({ initialSelectionRendered: true });
+      this.setState({
+        selection: this.props.selection.initialSelected,
+        initialSelectionRendered: true,
+      });
     }
   }
 
+  /**
+   * @deprecated Use `selection.selected` instead to declaratively control table selection
+   */
   setSelection(newSelection: T[]) {
     this.changeSelection(newSelection);
   }
@@ -415,13 +434,14 @@ export class EuiBasicTable<T = any> extends Component<
     return criteria;
   }
 
-  changeSelection(selection: T[]) {
-    if (!this.props.selection) {
-      return;
-    }
-    this.setState({ selection });
-    if (this.props.selection.onSelectionChange) {
-      this.props.selection.onSelectionChange(selection);
+  changeSelection(changedSelection: T[]) {
+    const { selection } = this.props;
+    if (!selection) return;
+
+    selection.onSelectionChange?.(changedSelection);
+
+    if (!this.isSelectionControlled) {
+      this.setState({ selection: changedSelection });
     }
   }
 

@@ -1,175 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiContextMenuItem is rendered 1`] = `
+exports[`EuiContextMenuItem props disabled 1`] = `
 <button
-  aria-label="aria-label"
-  class="euiContextMenuItem testClass1 testClass2 emotion-euiTestCss"
-  data-test-subj="test subject string"
-  type="button"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    >
-      Hello
-    </span>
-  </span>
-</button>
-`;
-
-exports[`EuiContextMenuItem props disabled is rendered 1`] = `
-<button
-  class="euiContextMenuItem euiContextMenuItem-isDisabled"
+  class="euiContextMenuItem emotion-euiContextMenuItem-m-center-disabled"
   disabled=""
   type="button"
 >
   <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+  />
 </button>
 `;
 
-exports[`EuiContextMenuItem props hasPanel is rendered 1`] = `
-<button
-  class="euiContextMenuItem"
-  type="button"
+exports[`EuiContextMenuItem props icon 1`] = `
+<div
+  class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
 >
   <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
-    <span
-      class="euiContextMenu__arrow"
-      data-euiicon-type="arrowRight"
-    />
-  </span>
-</button>
+    class="euiIcon fa-user emotion-euiContextMenu__icon"
+  />
+  <span
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+  />
+</div>
 `;
 
-exports[`EuiContextMenuItem props href renders a link 1`] = `
+exports[`EuiContextMenuItem props size m 1`] = `
+<div
+  class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
+>
+  <span
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+  />
+</div>
+`;
+
+exports[`EuiContextMenuItem props size s 1`] = `
+<div
+  class="euiContextMenuItem emotion-euiContextMenuItem-s-center"
+>
+  <span
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text-s"
+  />
+</div>
+`;
+
+exports[`EuiContextMenuItem renders 1`] = `
 <a
   aria-label="aria-label"
-  class="euiContextMenuItem testClass1 testClass2 emotion-euiTestCss"
+  class="euiContextMenuItem testClass1 testClass2 emotion-euiContextMenuItem-m-center-euiTestCss"
   data-test-subj="test subject string"
   href="url"
   rel="noreferrer"
 >
   <span
-    class="euiContextMenu__itemLayout"
+    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
   >
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
-</a>
-`;
-
-exports[`EuiContextMenuItem props icon is rendered 1`] = `
-<button
-  class="euiContextMenuItem"
-  type="button"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenu__icon"
-    />
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
-</button>
-`;
-
-exports[`EuiContextMenuItem props onClick renders a button 1`] = `
-<button
-  aria-label="aria-label"
-  class="euiContextMenuItem testClass1 testClass2 emotion-euiTestCss"
-  data-test-subj="test subject string"
-  type="button"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
-</button>
-`;
-
-exports[`EuiContextMenuItem props rel is rendered 1`] = `
-<a
-  aria-label="aria-label"
-  class="euiContextMenuItem testClass1 testClass2 emotion-euiTestCss"
-  data-test-subj="test subject string"
-  href="url"
-  rel="help noreferrer"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
-</a>
-`;
-
-exports[`EuiContextMenuItem props size m is rendered 1`] = `
-<button
-  class="euiContextMenuItem"
-  type="button"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
-</button>
-`;
-
-exports[`EuiContextMenuItem props size s is rendered 1`] = `
-<button
-  class="euiContextMenuItem euiContextMenuItem--small"
-  type="button"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
-  </span>
-</button>
-`;
-
-exports[`EuiContextMenuItem props target is rendered 1`] = `
-<a
-  aria-label="aria-label"
-  class="euiContextMenuItem testClass1 testClass2 emotion-euiTestCss"
-  data-test-subj="test subject string"
-  href="url"
-  rel="noopener noreferrer"
-  target="_blank"
->
-  <span
-    class="euiContextMenu__itemLayout"
-  >
-    <span
-      class="euiContextMenuItem__text"
-    />
+    Hello
   </span>
 </a>
 `;

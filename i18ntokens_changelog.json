@@ -1,5 +1,30 @@
 [
   {
+    "version": "90.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "modified",
+        "value": "Open navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "modified",
+        "value": "Close navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelExpand",
+        "changeType": "added",
+        "value": "Expand navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+        "changeType": "added",
+        "value": "Collapse navigation"
+      }
+    ]
+  },
+  {
     "version": "89.0.0",
     "changes": [
       {

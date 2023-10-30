@@ -88,12 +88,6 @@ describe('EuiButtonEmpty', () => {
           expect(container.firstChild).toMatchSnapshot();
         });
       });
-
-      test('ghost is rendered', () => {
-        const { container } = render(<EuiButtonEmpty color={'ghost'} />);
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
     });
 
     describe('size', () => {

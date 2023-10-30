@@ -6,7 +6,7 @@ exports[`EuiCollapsibleNavButton overlay flyout renders a hamburger icon when co
 >
   <button
     aria-expanded="false"
-    aria-label="Toggle navigation open"
+    aria-label="Open navigation"
     aria-pressed="false"
     class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
@@ -28,7 +28,7 @@ exports[`EuiCollapsibleNavButton overlay flyout renders an X icon when expanded 
 >
   <button
     aria-expanded="true"
-    aria-label="Toggle navigation closed"
+    aria-label="Close navigation"
     aria-pressed="true"
     class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
@@ -50,7 +50,7 @@ exports[`EuiCollapsibleNavButton push flyout left side renders a menu left icon 
 >
   <button
     aria-expanded="true"
-    aria-label="Toggle navigation closed"
+    aria-label="Collapse navigation"
     aria-pressed="true"
     class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
@@ -72,7 +72,7 @@ exports[`EuiCollapsibleNavButton push flyout left side renders a menu right icon
 >
   <button
     aria-expanded="false"
-    aria-label="Toggle navigation open"
+    aria-label="Expand navigation"
     aria-pressed="false"
     class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
@@ -94,7 +94,7 @@ exports[`EuiCollapsibleNavButton push flyout right side renders a menu left icon
 >
   <button
     aria-expanded="false"
-    aria-label="Toggle navigation open"
+    aria-label="Expand navigation"
     aria-pressed="false"
     class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
@@ -116,7 +116,7 @@ exports[`EuiCollapsibleNavButton push flyout right side renders a menu right ico
 >
   <button
     aria-expanded="true"
-    aria-label="Toggle navigation closed"
+    aria-label="Collapse navigation"
     aria-pressed="true"
     class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"

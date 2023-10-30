@@ -7,11 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiBackgroundColor,
-  logicals,
-  logicalSizeCSS,
-} from '../../../global_styling';
+import { logicals, logicalSizeCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const popoverArrowSize = 'm';
@@ -19,8 +15,7 @@ export const popoverArrowSize = 'm';
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  // Match the background color of panels
-  const borderColor = euiBackgroundColor(euiThemeContext, 'plain');
+  const borderColor = 'var(--euiPopoverBackgroundColor)';
   const arrowSize = euiTheme.size[popoverArrowSize];
 
   return {

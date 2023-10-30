@@ -62,9 +62,7 @@ export default () => {
         {
           name: 'Show fullscreen',
           icon: <EuiIcon type="search" size="m" />,
-          onClick: () => {
-            closePopover();
-          },
+          onClick: closePopover,
         },
         {
           isSeparator: true,

@@ -80,14 +80,6 @@ describe('EuiButtonIcon', () => {
           expect(container.firstChild).toMatchSnapshot();
         });
       });
-
-      test('ghost is rendered', () => {
-        const { container } = render(
-          <EuiButtonIcon iconType="user" aria-label="button" color={'ghost'} />
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
     });
 
     describe('display', () => {

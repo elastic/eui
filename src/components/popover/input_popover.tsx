@@ -44,7 +44,7 @@ export interface _EuiInputPopoverProps
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
   inputRef?: EuiPopoverProps['popoverRef'];
-  onPanelResize?: (width?: number) => void;
+  onPanelResize?: (width: number) => void;
   /**
    * By default, **EuiInputPopovers** inherit the same width as the passed input element.
    * However, if the input width is too small, you can pass a minimum panel width
@@ -107,6 +107,11 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   const panelWidth = useMemo(() => {
     return inputWidth < panelMinWidth ? panelMinWidth : inputWidth;
   }, [panelMinWidth, inputWidth]);
+
+  // Resize callback
+  useEffect(() => {
+    onPanelResize?.(panelWidth);
+  }, [panelWidth, onPanelResize]);
 
   useEffect(() => {
     if (panelEl) {

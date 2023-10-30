@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "89.1.0",
+  "version": "90.0.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -79,8 +79,8 @@
     "react-remove-scroll-bar": "^2.3.4",
     "react-virtualized-auto-sizer": "^1.0.20",
     "react-window": "^1.8.9",
-    "refractor": "^3.5.0",
-    "rehype-raw": "^5.0.0",
+    "refractor": "^3.6.0",
+    "rehype-raw": "^5.1.0",
     "rehype-react": "^6.2.1",
     "rehype-stringify": "^8.0.0",
     "remark-breaks": "^2.0.2",
@@ -93,7 +93,7 @@
     "unist-util-visit": "^2.0.3",
     "url-parse": "^1.5.10",
     "uuid": "^8.3.0",
-    "vfile": "^4.2.0"
+    "vfile": "^4.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",

@@ -205,7 +205,7 @@ exports[`EuiTablePagination renders 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-hasTransform"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-hasTransform"
         data-autofocus="true"
         data-popover-panel="true"
         role="dialog"
@@ -225,70 +225,58 @@ exports[`EuiTablePagination renders 1`] = `
         </p>
         <div>
           <div
-            class="euiContextMenuPanel"
+            class="euiContextMenuPanel emotion-euiContextMenuPanel"
             data-test-subj="tablePaginationRowOptions"
             tabindex="-1"
           >
             <div>
               <button
                 aria-current="true"
-                class="euiContextMenuItem"
+                class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
                 data-test-subj="tablePagination-10-rows"
                 type="button"
               >
                 <span
-                  class="euiContextMenu__itemLayout"
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="check"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
                 >
-                  <span
-                    class="euiContextMenu__icon"
-                    color="inherit"
-                    data-euiicon-type="check"
-                  />
-                  <span
-                    class="euiContextMenuItem__text"
-                  >
-                    10 rows
-                  </span>
+                  10 rows
                 </span>
               </button>
               <button
-                class="euiContextMenuItem"
+                class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
                 data-test-subj="tablePagination-25-rows"
                 type="button"
               >
                 <span
-                  class="euiContextMenu__itemLayout"
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
                 >
-                  <span
-                    class="euiContextMenu__icon"
-                    color="inherit"
-                    data-euiicon-type="empty"
-                  />
-                  <span
-                    class="euiContextMenuItem__text"
-                  >
-                    25 rows
-                  </span>
+                  25 rows
                 </span>
               </button>
               <button
-                class="euiContextMenuItem"
+                class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
                 data-test-subj="tablePagination-50-rows"
                 type="button"
               >
                 <span
-                  class="euiContextMenu__itemLayout"
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
                 >
-                  <span
-                    class="euiContextMenu__icon"
-                    color="inherit"
-                    data-euiicon-type="empty"
-                  />
-                  <span
-                    class="euiContextMenuItem__text"
-                  >
-                    50 rows
-                  </span>
+                  50 rows
                 </span>
               </button>
             </div>

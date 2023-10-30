@@ -10,7 +10,8 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../../cypress/support" />
 
-import React from 'react';
+import React, { useState } from 'react';
+
 import { EuiFieldNumber } from './field_number';
 
 describe('EuiFieldNumber', () => {
@@ -52,19 +53,124 @@ describe('EuiFieldNumber', () => {
       checkIsInvalid();
     });
 
-    it('shows invalid state on blur', () => {
-      cy.mount(<EuiFieldNumber max={1} value={2} />);
-      checkIsValid();
-      cy.get('input').click();
-      cy.get('body').click('bottomRight');
-      checkIsInvalid();
-    });
-
     it('does not show invalid state on decimal values by default', () => {
       cy.mount(<EuiFieldNumber />);
       checkIsValid();
       cy.get('input').click().type('1.5');
       checkIsValid();
+    });
+
+    it('checks/updates invalid state for controlled components', () => {
+      const ControlledEuiFieldNumber = () => {
+        const [value, setValue] = useState('0');
+        return (
+          <>
+            <EuiFieldNumber
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              min={0}
+              max={5}
+            />
+            <button id="setToInvalidValue" onClick={() => setValue('10')}>
+              Set to invalid value
+            </button>
+            <button id="setToValidValue" onClick={() => setValue('3')}>
+              Set to valid value
+            </button>
+          </>
+        );
+      };
+      cy.mount(<ControlledEuiFieldNumber />);
+      checkIsValid();
+
+      // Controlled value changes should work as expected
+      cy.get('#setToInvalidValue').click();
+      checkIsInvalid();
+      cy.get('#setToValidValue').click();
+      checkIsValid();
+
+      // (regression test) User input changes should still work as expected w/ onChange
+      cy.get('input').clear().type('-2');
+      checkIsInvalid();
+      cy.get('input').clear().type('2');
+      checkIsValid();
+    });
+
+    describe('checks/updates invalid state when props that would affect validity change', () => {
+      it('min', () => {
+        const UpdatedEuiFieldNumber = () => {
+          const [min, setMin] = useState<number | undefined>();
+          return (
+            <>
+              <EuiFieldNumber min={min} />
+              <button id="setInvalidMin" onClick={() => setMin(100)}>
+                Set invalid min
+              </button>
+              <button id="setValidMin" onClick={() => setMin(0)}>
+                Change valid min
+              </button>
+            </>
+          );
+        };
+        cy.mount(<UpdatedEuiFieldNumber />);
+        cy.get('input').type('1');
+        checkIsValid();
+
+        cy.get('#setInvalidMin').click();
+        checkIsInvalid();
+        cy.get('#setValidMin').click();
+        checkIsValid();
+      });
+
+      it('max', () => {
+        const UpdatedEuiFieldNumber = () => {
+          const [max, setMax] = useState<number | undefined>();
+          return (
+            <>
+              <EuiFieldNumber max={max} />
+              <button id="setInvalidMax" onClick={() => setMax(0)}>
+                Set invalid max
+              </button>
+              <button id="setValidMax" onClick={() => setMax(10)}>
+                Change valid max
+              </button>
+            </>
+          );
+        };
+        cy.mount(<UpdatedEuiFieldNumber />);
+        cy.get('input').type('1');
+        checkIsValid();
+
+        cy.get('#setInvalidMax').click();
+        checkIsInvalid();
+        cy.get('#setValidMax').click();
+        checkIsValid();
+      });
+
+      it('step', () => {
+        const UpdatedEuiFieldNumber = () => {
+          const [step, setStep] = useState<number | undefined>();
+          return (
+            <>
+              <EuiFieldNumber step={step} />
+              <button id="setInvalidStep" onClick={() => setStep(1.5)}>
+                Set invalid step
+              </button>
+              <button id="setValidStep" onClick={() => setStep(1)}>
+                Change valid step
+              </button>
+            </>
+          );
+        };
+        cy.mount(<UpdatedEuiFieldNumber />);
+        cy.get('input').type('1');
+        checkIsValid();
+
+        cy.get('#setInvalidStep').click();
+        checkIsInvalid();
+        cy.get('#setValidStep').click();
+        checkIsValid();
+      });
     });
   });
 });

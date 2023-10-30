@@ -12,7 +12,7 @@ exports[`EuiTabs props expand passes down to EuiTab children 1`] = `
     type="button"
   >
     <span
-      class="euiTab__content emotion-euiTab__content-m"
+      class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
     >
       Tab
     </span>
@@ -32,7 +32,7 @@ exports[`EuiTabs props size l renders and passes down to EuiTab children 1`] = `
     type="button"
   >
     <span
-      class="euiTab__content emotion-euiTab__content-l"
+      class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
     >
       Tab
     </span>
@@ -52,7 +52,7 @@ exports[`EuiTabs props size m renders and passes down to EuiTab children 1`] = `
     type="button"
   >
     <span
-      class="euiTab__content emotion-euiTab__content-m"
+      class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
     >
       Tab
     </span>
@@ -72,7 +72,7 @@ exports[`EuiTabs props size s renders and passes down to EuiTab children 1`] = `
     type="button"
   >
     <span
-      class="euiTab__content emotion-euiTab__content-s"
+      class="euiTab__content eui-textTruncate emotion-euiTab__content-s"
     >
       Tab
     </span>
@@ -92,7 +92,7 @@ exports[`EuiTabs props size xl renders and passes down to EuiTab children 1`] = 
     type="button"
   >
     <span
-      class="euiTab__content emotion-euiTab__content-xl"
+      class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
     >
       Tab
     </span>
