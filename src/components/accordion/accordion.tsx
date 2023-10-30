@@ -26,13 +26,21 @@ export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiAccordionPaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiAccordionProps = CommonProps &
-  Omit<HTMLAttributes<HTMLElement>, 'id'> & {
+  Omit<HTMLAttributes<HTMLElement>, 'id' | 'role'> & {
     id: string;
     /**
      * Applied to the entire .euiAccordion wrapper.
      * When using `fieldset`, it will enforce `buttonElement = legend` as well.
      */
     element?: 'div' | 'fieldset';
+    /**
+     * Defaults to the [group role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role).
+     *
+     * If your accordion contains significant enough content to be a document
+     * [landmark role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/region_role#accessibility_concerns), consider using the `region` role instead.
+     * @default group
+     */
+    role?: HTMLAttributes<HTMLElement>['role'];
     /**
      * Class that will apply to the trigger for the accordion.
      */
@@ -124,6 +132,7 @@ export class EuiAccordionClass extends Component<
     isLoadingMessage: false,
     element: 'div' as const,
     buttonElement: 'button' as const,
+    role: 'group' as const,
   };
 
   state = {
@@ -184,6 +193,7 @@ export class EuiAccordionClass extends Component<
       children,
       className,
       id,
+      role,
       element: Element = 'div',
       buttonElement,
       buttonProps,
@@ -239,6 +249,7 @@ export class EuiAccordionClass extends Component<
         />
 
         <EuiAccordionChildren
+          role={role}
           id={id}
           aria-labelledby={buttonId}
           paddingSize={paddingSize}

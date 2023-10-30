@@ -254,7 +254,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="id"
     inert=""
-    role="region"
+    role="group"
     style="block-size: 0;"
     tabindex="-1"
   >
@@ -319,7 +319,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="id"
     inert=""
-    role="region"
+    role="group"
     style="block-size: 0;"
     tabindex="-1"
   >

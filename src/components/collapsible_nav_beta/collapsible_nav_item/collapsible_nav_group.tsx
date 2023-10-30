@@ -9,7 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 
 import {
   EuiCollapsibleNavSubItems,
@@ -63,10 +63,13 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
       }
     : undefined; // Prevents Emotion from generating a selector if no styles need to be applied
 
+  const labelledById = useGeneratedHtmlId();
+
   return (
     <div className={classes} {...cssStyles} {...rest}>
       <EuiCollapsibleNavLink
         href={href}
+        id={labelledById}
         {...linkProps}
         isSelected={isSelected}
         isSubItem={isSubItem}
@@ -78,6 +81,8 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
         items={items}
         isSubItem={isSubItem}
         className="euiCollapsibleNavGroup__children"
+        role="group"
+        aria-labelledby={linkProps?.id || labelledById}
       />
     </div>
   );

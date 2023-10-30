@@ -516,7 +516,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
           class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
           id="euiNotificationEventMessagesAccordion_generated-id"
           inert=""
-          role="region"
+          role="group"
           style="block-size: 0;"
           tabindex="-1"
         >
