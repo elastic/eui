@@ -1,6 +1,5 @@
 import React, { useState, ReactNode } from 'react';
 import { faker } from '@faker-js/faker';
-import { Random } from '../../../../../src/services';
 
 import {
   EuiInMemoryTable,
@@ -91,8 +90,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
 ];
 
-const random = new Random();
-
 const noItemsFoundMsg = 'No users match search criteria';
 
 export default () => {
@@ -130,7 +127,7 @@ export default () => {
       setMessage(noItemsFoundMsg);
       setError(undefined);
       setUsers(userData);
-    }, random.number({ min: 0, max: 3000 }));
+    }, faker.number.int({ min: 0, max: 3000 }));
   };
 
   const loadUsersWithError = () => {
@@ -143,7 +140,7 @@ export default () => {
       setMessage(noItemsFoundMsg);
       setError('ouch!... again... ');
       setUsers([]);
-    }, random.number({ min: 0, max: 3000 }));
+    }, faker.number.int({ min: 0, max: 3000 }));
   };
 
   const renderToolsLeft = () => {
