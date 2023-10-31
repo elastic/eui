@@ -12,10 +12,11 @@ import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line
 
 import dateMath from '@elastic/datemath';
 
-import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiCode } from '../../../code';
 import { EuiI18n } from '../../../i18n';
+
+import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
 
 // Allow users to paste in and have the datepicker parse multiple common date formats,
@@ -124,7 +125,7 @@ export class EuiAbsoluteTab extends Component<
     const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
 
     return (
-      <div>
+      <>
         <EuiDatePicker
           inline
           showTimeSelect
@@ -152,13 +153,13 @@ export class EuiAbsoluteTab extends Component<
                 isInvalid={isTextInvalid}
                 value={textInputValue}
                 onChange={this.handleTextChange}
-                data-test-subj={'superDatePickerAbsoluteDateInput'}
+                data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
               />
             </EuiFormRow>
           )}
         </EuiI18n>
-      </div>
+      </>
     );
   }
 }
