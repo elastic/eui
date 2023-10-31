@@ -14,8 +14,17 @@ import dateMath from '@elastic/datemath';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
+import { EuiCode } from '../../../code';
 import { EuiI18n } from '../../../i18n';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+
+// Allow users to paste in and have the datepicker parse multiple common date formats,
+// in addition to the configured displayed `dateFormat` prop
+const ALLOWED_USER_DATE_FORMATS = [
+  moment.ISO_8601,
+  moment.RFC_2822,
+  'X', // Unix timestamp in seconds
+];
 
 export interface EuiAbsoluteTabProps {
   dateFormat: string;
@@ -75,10 +84,12 @@ export class EuiAbsoluteTab extends Component<
   };
 
   handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { onChange } = this.props;
+    const { onChange, dateFormat } = this.props;
+    const userInput = event.target.value;
+
     const valueAsMoment = moment(
-      event.target.value,
-      this.props.dateFormat,
+      userInput,
+      [dateFormat, ...ALLOWED_USER_DATE_FORMATS],
       true
     );
     const dateIsValid = valueAsMoment.isValid();
@@ -86,7 +97,9 @@ export class EuiAbsoluteTab extends Component<
       onChange(valueAsMoment.toISOString(), event);
     }
     this.setState({
-      textInputValue: event.target.value,
+      textInputValue: dateIsValid
+        ? valueAsMoment.format(this.props.dateFormat)
+        : userInput,
       isTextInvalid: !dateIsValid,
       valueAsMoment: dateIsValid ? valueAsMoment : null,
     });
@@ -112,8 +125,8 @@ export class EuiAbsoluteTab extends Component<
         />
         <EuiI18n
           token="euiAbsoluteTab.dateFormatError"
-          default="Expected format: {dateFormat}"
-          values={{ dateFormat }}
+          default="Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp"
+          values={{ dateFormat: <EuiCode>{dateFormat}</EuiCode> }}
         >
           {(dateFormatError: string) => (
             <EuiFormRow
