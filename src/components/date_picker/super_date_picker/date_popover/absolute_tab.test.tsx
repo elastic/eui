@@ -43,6 +43,11 @@ describe('EuiAbsoluteTab', () => {
     });
 
     describe('allows several other common date formats, and autoformats them to the `dateFormat` prop', () => {
+      const assertOutput = (input: HTMLInputElement) => {
+        // Exclude hours from assertion, because moment uses local machine timezone
+        expect(input.value).toContain('Jan 1, 1970');
+      };
+
       test('ISO 8601', () => {
         const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
         const input = getByTestSubject('superDatePickerAbsoluteDateInput');
@@ -51,7 +56,7 @@ describe('EuiAbsoluteTab', () => {
           target: { value: '1970-01-01T12:00:00+00:00' },
         });
         expect(input).not.toBeInvalid();
-        expect(input).toHaveValue('Jan 1, 1970 @ 04:00:00.000');
+        assertOutput(input as HTMLInputElement);
       });
 
       test('RFC 2822', () => {
@@ -62,7 +67,7 @@ describe('EuiAbsoluteTab', () => {
           target: { value: 'Thu, 1 Jan 1970 12:00:00 +0000' },
         });
         expect(input).not.toBeInvalid();
-        expect(input).toHaveValue('Jan 1, 1970 @ 04:00:00.000');
+        assertOutput(input as HTMLInputElement);
       });
 
       test('unix timestamp', () => {
@@ -74,7 +79,7 @@ describe('EuiAbsoluteTab', () => {
 
         fireEvent.change(input, { target: { value: '43200' } });
         expect(input).not.toBeInvalid();
-        expect(input).toHaveValue('Jan 1, 1970 @ 04:00:00.000');
+        assertOutput(input as HTMLInputElement);
       });
     });
 
