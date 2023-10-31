@@ -87,22 +87,35 @@ export class EuiAbsoluteTab extends Component<
     const { onChange, dateFormat } = this.props;
     const userInput = event.target.value;
 
-    const valueAsMoment = moment(
-      userInput,
-      [dateFormat, ...ALLOWED_USER_DATE_FORMATS],
-      true
-    );
-    const dateIsValid = valueAsMoment.isValid();
+    const invalidDateState = {
+      textInputValue: userInput,
+      isTextInvalid: true,
+      valueAsMoment: null,
+    };
+    if (!userInput) {
+      return this.setState(invalidDateState);
+    }
+
+    // Attempt to parse with passed `dateFormat`
+    let valueAsMoment = moment(userInput, dateFormat, true);
+    let dateIsValid = valueAsMoment.isValid();
+
+    // If not valid, try a few other other standardized formats
+    if (!dateIsValid) {
+      valueAsMoment = moment(userInput, ALLOWED_USER_DATE_FORMATS, true);
+      dateIsValid = valueAsMoment.isValid();
+    }
+
     if (dateIsValid) {
       onChange(valueAsMoment.toISOString(), event);
+      this.setState({
+        textInputValue: valueAsMoment.format(this.props.dateFormat),
+        isTextInvalid: false,
+        valueAsMoment: valueAsMoment,
+      });
+    } else {
+      this.setState(invalidDateState);
     }
-    this.setState({
-      textInputValue: dateIsValid
-        ? valueAsMoment.format(this.props.dateFormat)
-        : userInput,
-      isTextInvalid: !dateIsValid,
-      valueAsMoment: dateIsValid ? valueAsMoment : null,
-    });
   };
 
   render() {
