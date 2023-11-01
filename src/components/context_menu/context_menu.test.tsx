@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react';
-import { render } from '../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import { render, waitForEuiContextMenuPanelTransition } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
@@ -63,9 +63,6 @@ const panel0 = {
 };
 
 const panels = [panel0, panel1, panel2, panel3];
-
-export const tick = (ms = 0) =>
-  act(() => new Promise((resolve) => setTimeout(resolve, ms)));
 
 describe('EuiContextMenu', () => {
   shouldRenderCustomStyles(<EuiContextMenu />);
@@ -139,26 +136,36 @@ describe('EuiContextMenu', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
+      it('navigates to the next panel', async () => {
+        const onPanelChange = jest.fn();
+        const { getByText } = render(
+          <EuiContextMenu
+            panels={panels}
+            initialPanelId={1}
+            onPanelChange={onPanelChange}
+          />
+        );
+        fireEvent.click(getByText('2a'));
+        await waitForEuiContextMenuPanelTransition();
+
+        expect(onPanelChange).toHaveBeenCalledWith({
+          panelId: 2,
+          direction: 'next',
+        });
+      });
+
       it('navigates back to the previous panel when clicking the title button', async () => {
         const onPanelChange = jest.fn();
-        const { container, getByTestSubject } = render(
+        const { getByTestSubject } = render(
           <EuiContextMenu
             panels={panels}
             initialPanelId={2}
             onPanelChange={onPanelChange}
           />
         );
-
-        await tick(20);
-
-        expect(container.firstChild).toMatchSnapshot();
-
-        // Navigate to a different panel.
         fireEvent.click(getByTestSubject('contextMenuPanelTitleButton'));
+        await waitForEuiContextMenuPanelTransition();
 
-        await tick(20);
-
-        expect(container.firstChild).toMatchSnapshot();
         expect(onPanelChange).toHaveBeenCalledWith({
           panelId: 1,
           direction: 'previous',
