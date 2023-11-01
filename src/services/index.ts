@@ -31,7 +31,6 @@ export {
   desaturate,
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
-  euiPaletteComplimentary,
   euiPaletteComplementary,
   euiPaletteCool,
   euiPaletteForDarkBackground,
