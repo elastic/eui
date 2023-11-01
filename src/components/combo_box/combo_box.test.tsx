@@ -399,6 +399,22 @@ describe('EuiComboBox', () => {
 
       expect(getByRole('combobox')).toBe(inputRefCallback.mock.calls[0][0]);
     });
+
+    test('onSearchChange', () => {
+      const onSearchChange = jest.fn();
+      const { getByTestSubject, queryAllByRole } = render(
+        <EuiComboBox options={options} onSearchChange={onSearchChange} />
+      );
+      const input = getByTestSubject('comboBoxSearchInput');
+
+      fireEvent.change(input, { target: { value: 'no results' } });
+      expect(onSearchChange).toHaveBeenCalledWith('no results', false);
+      expect(queryAllByRole('option')).toHaveLength(0);
+
+      fireEvent.change(input, { target: { value: 'titan' } });
+      expect(onSearchChange).toHaveBeenCalledWith('titan', true);
+      expect(queryAllByRole('option')).toHaveLength(2);
+    });
   });
 
   it('does not show multiple checkmarks with duplicate labels', async () => {
@@ -587,7 +603,6 @@ describe('EuiComboBox', () => {
     });
 
     describe('sortMatchesBy', () => {
-      const onSearchChange = jest.fn();
       const sortMatchesByOptions = [
         { label: 'Something is Disabled' },
         ...options,
@@ -595,11 +610,7 @@ describe('EuiComboBox', () => {
 
       test('"none"', () => {
         const { getByTestSubject, getAllByRole } = render(
-          <EuiComboBox
-            options={sortMatchesByOptions}
-            onSearchChange={onSearchChange}
-            sortMatchesBy="none"
-          />
+          <EuiComboBox options={sortMatchesByOptions} sortMatchesBy="none" />
         );
         fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
           target: { value: 'di' },
@@ -615,7 +626,6 @@ describe('EuiComboBox', () => {
         const { getByTestSubject, getAllByRole } = render(
           <EuiComboBox
             options={sortMatchesByOptions}
-            onSearchChange={onSearchChange}
             sortMatchesBy="startsWith"
           />
         );
