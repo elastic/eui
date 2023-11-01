@@ -77,6 +77,7 @@
    * 1. Force field height to match other field heights.
    * 2. Force input height to expand to fill this element.
    * 3. Reset input appearance to mimic text
+   * 4. Ensure that no input states are visible on the hidden input
    */
   .euiComboBox__input {
     block-size: $euiSizeL; /* 2 */
@@ -85,11 +86,16 @@
     margin: $euiSizeXS;
 
     /* 3 */
-    appearance: none;
-    outline: none;
-    border: none;
     background: transparent;
     color: $euiTextColor;
+
+    /* 4 */
+    // stylelint-disable declaration-no-important
+    appearance: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    // stylelint-enable declaration-no-important
   }
 
   &.euiComboBox-isOpen {
