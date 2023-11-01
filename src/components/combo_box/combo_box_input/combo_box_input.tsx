@@ -312,6 +312,7 @@ export class EuiComboBoxInput<T> extends Component<
       'euiComboBox__inputWrap--compressed': compressed,
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
+      'euiComboBox__inputWrap--plainText': this.asPlainText || showPlaceholder,
       'euiComboBox__inputWrap--inGroup': prepend || append,
     });
 
