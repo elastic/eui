@@ -308,8 +308,8 @@ describe('EuiComboBox', () => {
         ).toBeInTheDocument();
       });
 
-      it('renders as plain text', () => {
-        const { getByTestSubject } = render(
+      it('renders `asPlainText` in the search input, not as a pill', () => {
+        const { queryByTestSubject, getByTestSubject } = render(
           <EuiComboBox
             options={options}
             selectedOptions={[options[2]]}
@@ -317,9 +317,11 @@ describe('EuiComboBox', () => {
           />
         );
 
-        expect(getByTestSubject('euiComboBoxPill').className).toContain(
-          'euiComboBoxPill--plainText'
-        );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+        expect(searchInput).toHaveValue('Mimas');
+        expect(searchInput).toHaveStyle('inline-size: 100%');
+
+        expect(queryByTestSubject('euiComboBoxPill')).not.toBeInTheDocument();
       });
     });
 

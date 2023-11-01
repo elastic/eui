@@ -88,6 +88,7 @@ export class EuiComboBoxInput<T> extends Component<
 
   updateInputSize = (inputValue: string) => {
     if (!this.widthUtils) return;
+    if (this.asPlainText) return;
 
     this.widthUtils.setTextToCheck(inputValue);
     // Canvas has minute subpixel differences in rendering compared to DOM
@@ -142,7 +143,26 @@ export class EuiComboBoxInput<T> extends Component<
     }
   };
 
+  get asPlainText() {
+    const { singleSelection } = this.props;
+    const isSingleSelectionConfig =
+      singleSelection && typeof singleSelection === 'object';
+
+    return !!(isSingleSelectionConfig && singleSelection.asPlainText);
+  }
+
+  get searchValue() {
+    const { searchValue, selectedOptions } = this.props;
+    if (this.asPlainText) {
+      return searchValue || selectedOptions?.[0]?.label || '';
+    } else {
+      return searchValue;
+    }
+  }
+
   renderPills = () => {
+    // Don't render a pill for plain text comboboxes - use the input instead
+    if (this.asPlainText) return null;
     // Don't render the single pill selection while searching
     if (this.props.singleSelection && this.props.searchValue) return null;
 
@@ -330,8 +350,10 @@ export class EuiComboBoxInput<T> extends Component<
             onKeyDown={this.onKeyDown}
             ref={this.inputRefCallback}
             role="combobox"
-            style={{ inlineSize: this.state.inputWidth }}
-            value={searchValue}
+            style={{
+              inlineSize: this.asPlainText ? '100%' : this.state.inputWidth,
+            }}
+            value={this.searchValue}
             autoFocus={autoFocus}
           />
           {removeOptionMessage}
