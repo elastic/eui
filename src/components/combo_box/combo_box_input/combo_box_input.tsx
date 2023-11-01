@@ -123,22 +123,33 @@ export class EuiComboBoxInput<T> extends Component<
   onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     const {
       searchValue,
+      hasSelectedOptions,
       selectedOptions,
       onRemoveOption,
       singleSelection,
       isListOpen,
       onOpenListClick,
+      onChange,
     } = this.props;
 
-    // When backspacing from an empty input, delete the last pill option in the list
     const searchIsEmpty = !searchValue.length;
-    const hasPills = selectedOptions.length;
 
-    if (event.key === keys.BACKSPACE && searchIsEmpty && hasPills) {
-      onRemoveOption(selectedOptions[selectedOptions.length - 1]);
+    if (event.key === keys.BACKSPACE) {
+      // When backspacing in a plain text combobox, change normally and remove the selection
+      if (this.asPlainText) {
+        onChange(event.currentTarget.value);
 
-      if (!!singleSelection && !isListOpen) {
-        onOpenListClick();
+        if (hasSelectedOptions) {
+          onRemoveOption(selectedOptions[selectedOptions.length - 1]);
+        }
+      }
+      // When backspacing from an empty input, delete the last pill option in the list
+      else if (searchIsEmpty && hasSelectedOptions) {
+        onRemoveOption(selectedOptions[selectedOptions.length - 1]);
+
+        if (!!singleSelection && !isListOpen) {
+          onOpenListClick();
+        }
       }
     }
   };

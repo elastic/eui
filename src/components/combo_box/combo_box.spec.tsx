@@ -361,6 +361,28 @@ describe('EuiComboBox', () => {
         cy.get('.euiComboBoxPill').should('have.length', 1);
       });
 
+      it('`asPlainText`: deletes the selection and only a single character', () => {
+        cy.realMount(
+          // @ts-ignore - not totally sure why TS is kicking up a fuss here
+          <StatefulComboBox singleSelection={{ asPlainText: true }} />
+        );
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.get('[data-test-subj=comboBoxSearchInput]').should(
+          'have.value',
+          'Item 1'
+        );
+        cy.get('[data-test-subj="comboBoxClearButton"]').should('exist'); // indicates selection
+
+        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
+        cy.get('[data-test-subj="comboBoxClearButton"]').should('not.exist'); // selection removed
+        cy.get('[data-test-subj=comboBoxSearchInput]').should(
+          'have.value',
+          'Item '
+        );
+      });
+
       it('opens up the selection list again after deleting the active single selection ', () => {
         cy.realMount(<StatefulComboBox singleSelection />);
         cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
