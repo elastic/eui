@@ -142,6 +142,44 @@ export class EuiComboBoxInput<T> extends Component<
     }
   };
 
+  renderPills = () => {
+    // Don't render the single pill selection while searching
+    if (this.props.singleSelection && this.props.searchValue) return null;
+
+    const { selectedOptions, isDisabled, onRemoveOption } = this.props;
+    if (!selectedOptions || !selectedOptions.length) return null;
+
+    return selectedOptions.map((option) => {
+      const {
+        key,
+        label,
+        color,
+        onClick,
+        append,
+        prepend,
+        truncationProps,
+        ...rest
+      } = option;
+      const pillOnClose =
+        isDisabled || this.props.singleSelection || onClick
+          ? undefined
+          : onRemoveOption;
+      return (
+        <EuiComboBoxPill
+          option={option}
+          onClose={pillOnClose}
+          key={key ?? label.toLowerCase()}
+          color={color}
+          onClick={onClick}
+          onClickAriaLabel={onClick ? 'Change' : undefined}
+          {...rest}
+        >
+          {label}
+        </EuiComboBoxPill>
+      );
+    });
+  };
+
   render() {
     const {
       compressed,
@@ -157,12 +195,11 @@ export class EuiComboBoxInput<T> extends Component<
       onClick,
       onCloseListClick,
       onOpenListClick,
-      onRemoveOption,
       placeholder,
       rootId,
       searchValue,
       selectedOptions,
-      singleSelection: singleSelectionProp,
+      singleSelection,
       value,
       prepend,
       append,
@@ -172,46 +209,6 @@ export class EuiComboBoxInput<T> extends Component<
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
     } = this.props;
-
-    const singleSelection = Boolean(singleSelectionProp);
-    const asPlainText =
-      (singleSelectionProp &&
-        typeof singleSelectionProp === 'object' &&
-        singleSelectionProp.asPlainText) ||
-      false;
-
-    const pills = selectedOptions
-      ? selectedOptions.map((option) => {
-          const {
-            key,
-            label,
-            color,
-            onClick,
-            append,
-            prepend,
-            truncationProps,
-            ...rest
-          } = option;
-          const pillOnClose =
-            isDisabled || singleSelection || onClick
-              ? undefined
-              : onRemoveOption;
-          return (
-            <EuiComboBoxPill
-              option={option}
-              onClose={pillOnClose}
-              key={key ?? label.toLowerCase()}
-              color={color}
-              onClick={onClick}
-              onClickAriaLabel={onClick ? 'Change' : undefined}
-              asPlainText={asPlainText}
-              {...rest}
-            >
-              {label}
-            </EuiComboBoxPill>
-          );
-        })
-      : null;
 
     let removeOptionMessage;
     let removeOptionMessageId;
@@ -313,7 +310,7 @@ export class EuiComboBoxInput<T> extends Component<
           onClick={onClick}
           tabIndex={-1} // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
         >
-          {!singleSelection || !searchValue ? pills : null}
+          {this.renderPills()}
           {placeholderMessage}
           <input
             aria-activedescendant={focusedOptionId}
