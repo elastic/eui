@@ -8,7 +8,8 @@
 
 import React, {
   FunctionComponent,
-  ReactChild,
+  HTMLAttributes,
+  ReactNode,
   useCallback,
   useEffect,
   useRef,
@@ -40,7 +41,7 @@ export const CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT = 3;
 
 export interface Toast extends EuiToastProps {
   id: string;
-  text?: ReactChild;
+  text?: ReactNode;
   toastLifeTimeMs?: number;
 }
 
@@ -63,6 +64,16 @@ export interface EuiGlobalToastListProps extends CommonProps {
    * Optional callback that fires when a user clicks the "Clear all" button.
    */
   onClearAllToasts?: () => void;
+  /**
+   * Defaults to the [log role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/log_role).
+   *
+   * The [alert role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role)
+   * can be considered only if *all* toasts in this list will require immediate user attention.
+   * Several alerts at once, and unnecessary alerts, will a create bad screen reader user experience.
+   *
+   * @default log
+   */
+  role?: HTMLAttributes<HTMLElement>['role'];
 }
 
 export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
@@ -345,7 +356,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   return (
     <div
       aria-live="polite"
-      role="region"
+      role="log"
       ref={listElement}
       css={cssStyles}
       className={classes}

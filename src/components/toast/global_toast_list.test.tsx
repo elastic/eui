@@ -271,5 +271,18 @@ describe('EuiGlobalToastList', () => {
         expect(sharedProps.dismissToast).toHaveBeenCalledTimes(TOAST_COUNT);
       });
     });
+
+    test('role', () => {
+      const { queryByRole } = render(
+        <EuiGlobalToastList
+          dismissToast={() => {}}
+          toastLifeTimeMs={5}
+          role="alert"
+        />
+      );
+
+      expect(queryByRole('alert')).toBeInTheDocument();
+      expect(queryByRole('log')).not.toBeInTheDocument();
+    });
   });
 });
