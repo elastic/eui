@@ -50,6 +50,27 @@
         cursor: text;
       }
     }
+
+    &.euiComboBox__inputWrap--noWrap {
+      align-items: center;
+    }
+
+    .euiComboBoxPlainTextSelection {
+      &__prepend,
+      &__append {
+        flex-shrink: 0;
+        margin-inline: $euiSizeXS / 2;
+        display: flex; /* Vertically centers any icons */
+      }
+
+      &__prepend {
+        margin-inline-start: $euiSizeXS;
+      }
+
+      &__append {
+        margin-inline-end: $euiSizeXS;
+      }
+    }
   }
 
   /**

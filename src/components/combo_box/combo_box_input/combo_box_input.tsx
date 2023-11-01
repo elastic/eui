@@ -24,12 +24,13 @@ import {
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
 import { getFormControlClassNameForIconCount } from '../../form/form_control_layout/_num_icons';
 
-import { EuiComboBoxPill } from './combo_box_pill';
 import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
 } from '../types';
+import { EuiComboBoxOptionAppendPrepend } from '../utils';
+import { EuiComboBoxPill } from './combo_box_pill';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
   compressed: boolean;
@@ -343,30 +344,35 @@ export class EuiComboBoxInput<T> extends Component<
         >
           {this.renderPills()}
           {placeholderMessage}
-          <input
-            aria-activedescendant={focusedOptionId}
-            aria-autocomplete="list"
-            aria-controls={isListOpen ? rootId('listbox') : ''}
-            aria-expanded={isListOpen}
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledby}
-            aria-invalid={isInvalid}
-            className="euiComboBox__input"
-            data-test-subj="comboBoxSearchInput"
-            disabled={isDisabled}
-            id={id}
-            onBlur={this.onBlur}
-            onChange={(event) => onChange(event.target.value)}
-            onFocus={this.onFocus}
-            onKeyDown={this.onKeyDown}
-            ref={this.inputRefCallback}
-            role="combobox"
-            style={{
-              inlineSize: this.asPlainText ? '100%' : this.state.inputWidth,
-            }}
-            value={this.searchValue}
-            autoFocus={autoFocus}
-          />
+          <EuiComboBoxOptionAppendPrepend
+            option={this.asPlainText ? selectedOptions?.[0] : undefined}
+            classNamePrefix="euiComboBoxPlainTextSelection"
+          >
+            <input
+              aria-activedescendant={focusedOptionId}
+              aria-autocomplete="list"
+              aria-controls={isListOpen ? rootId('listbox') : ''}
+              aria-expanded={isListOpen}
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledby}
+              aria-invalid={isInvalid}
+              className="euiComboBox__input"
+              data-test-subj="comboBoxSearchInput"
+              disabled={isDisabled}
+              id={id}
+              onBlur={this.onBlur}
+              onChange={(event) => onChange(event.target.value)}
+              onFocus={this.onFocus}
+              onKeyDown={this.onKeyDown}
+              ref={this.inputRefCallback}
+              role="combobox"
+              style={{
+                inlineSize: this.asPlainText ? '100%' : this.state.inputWidth,
+              }}
+              value={this.searchValue}
+              autoFocus={autoFocus}
+            />
+          </EuiComboBoxOptionAppendPrepend>
           {removeOptionMessage}
         </div>
       </EuiFormControlLayout>
