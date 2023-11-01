@@ -232,6 +232,7 @@ describe('EuiComboBox', () => {
       });
     });
   });
+
   describe('selection', () => {
     const defaultOptions: Array<EuiComboBoxOptionOption<{}>> = [
       { label: 'Item 1' },
@@ -308,6 +309,51 @@ describe('EuiComboBox', () => {
           'have.text',
           'Item 1'
         );
+      });
+    });
+
+    describe('single selection', () => {
+      describe('closes the combobox on dropdown selection, and re-opens on input click', () => {
+        it('as pill', () => {
+          cy.mount(<StatefulComboBox singleSelection={true} />);
+          cy.get('[data-test-subj="comboBoxInput"]').click();
+
+          cy.get('[data-test-subj="comboBoxOptionsList"]')
+            .find('button')
+            .first()
+            .click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('not.exist');
+          cy.focused().should(
+            'have.attr',
+            'data-test-subj',
+            'comboBoxSearchInput'
+          );
+
+          cy.get('[data-test-subj="comboBoxInput"]').click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('be.visible');
+        });
+
+        it('as plain text', () => {
+          cy.mount(
+            // @ts-ignore - not totally sure why TS is kicking up a fuss here
+            <StatefulComboBox singleSelection={{ asPlainText: true }} />
+          );
+          cy.get('[data-test-subj="comboBoxSearchInput"]').click();
+
+          cy.get('[data-test-subj="comboBoxOptionsList"]')
+            .find('button')
+            .first()
+            .click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('not.exist');
+          cy.focused().should(
+            'have.attr',
+            'data-test-subj',
+            'comboBoxSearchInput'
+          );
+
+          cy.get('[data-test-subj="comboBoxSearchInput"]').click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('be.visible');
+        });
       });
     });
 
