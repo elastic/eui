@@ -14,6 +14,8 @@ import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
 
+import { EuiComboBoxOptionAppendPrepend } from '../utils';
+
 export interface EuiComboBoxPillProps<T> extends CommonProps {
   children?: string;
   className?: string;
@@ -59,18 +61,15 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
         : {};
 
     const content = (
-      <>
-        {option.prepend && (
-          <span className="euiComboBoxPill__prepend">{option.prepend}</span>
-        )}
+      <EuiComboBoxOptionAppendPrepend
+        option={option}
+        classNamePrefix="euiComboBoxPill"
+      >
         {/* .euiBadge__text normally text truncates, but because we set it to flex to align prepend/append
           it breaks and we need to restore it manually
          */}
         <span className="eui-textTruncate">{children}</span>
-        {option.append && (
-          <span className="euiComboBoxPill__append">{option.append}</span>
-        )}
-      </>
+      </EuiComboBoxOptionAppendPrepend>
     );
 
     if (onClose) {
