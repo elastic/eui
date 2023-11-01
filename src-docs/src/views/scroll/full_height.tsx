@@ -38,13 +38,7 @@ export default () => {
               responsive={false}
             >
               <EuiFlexItem>
-                <EuiPanel
-                  className="eui-yScroll"
-                  color="warning"
-                  tabIndex={0}
-                  role="region"
-                  aria-label="Example 1 for full height region"
-                >
+                <EuiPanel className="eui-yScroll" color="warning" tabIndex={0}>
                   <EuiText size="s">
                     <p>
                       Orbiting this at a distance of roughly ninety-two million
@@ -57,13 +51,7 @@ export default () => {
                 </EuiPanel>
               </EuiFlexItem>
               <EuiFlexItem>
-                <EuiPanel
-                  className="eui-yScroll"
-                  color="warning"
-                  tabIndex={0}
-                  role="region"
-                  aria-label="Example 2 for full height region"
-                >
+                <EuiPanel className="eui-yScroll" color="warning" tabIndex={0}>
                   <EuiText size="s">
                     <p>
                       Orbiting this at a distance of roughly ninety-two million
@@ -83,11 +71,11 @@ export default () => {
     className="eui-fullHeight" responsive={false}>
     <EuiFlexItem>
       <BodyScroll
-        className="eui-yScroll" tabIndex={0} role="region" aria-label=""/>
+        className="eui-yScroll" tabIndex={0} />
     </EuiFlexItem>
     <EuiFlexItem>
       <BodyScroll
-        className="eui-yScroll" tabIndex={0} role="region" aria-label=""/>
+        className="eui-yScroll" tabIndex={0} />
     </EuiFlexItem>
   </EuiFlexGroup>
 </BodyContent>`}
