@@ -15,7 +15,6 @@ import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
 
 export interface EuiComboBoxPillProps<T> extends CommonProps {
-  asPlainText?: boolean;
   children?: string;
   className?: string;
   color?: string;
@@ -39,7 +38,6 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
 
   render() {
     const {
-      asPlainText,
       children,
       className,
       color,
@@ -50,13 +48,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       ...rest
     } = this.props;
 
-    const classes = classNames(
-      'euiComboBoxPill',
-      {
-        'euiComboBoxPill--plainText': asPlainText,
-      },
-      className
-    );
+    const classes = classNames('euiComboBoxPill', className);
 
     const onClickProps =
       onClick && onClickAriaLabel
@@ -105,14 +97,6 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
             </EuiBadge>
           )}
         </EuiI18n>
-      );
-    }
-
-    if (asPlainText) {
-      return (
-        <span className={classes} data-test-subj="euiComboBoxPill" {...rest}>
-          {content}
-        </span>
       );
     }
 
