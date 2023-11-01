@@ -87,7 +87,11 @@
 
     /* 3 */
     background: transparent;
-    color: $euiTextColor;
+    @include euiFormControlText;
+
+    &:disabled {
+      @include euiFormControlDisabledStyle;
+    }
 
     /* 4 */
     // stylelint-disable declaration-no-important
@@ -119,11 +123,6 @@
       // stylelint-disable property-no-vendor-prefix
       @include euiFormControlDisabledStyle;
       -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors
-    }
-
-    .euiComboBoxPlaceholder,
-    .euiComboBoxPill--plainText {
-      @include euiFormControlDisabledTextStyle;
     }
 
     // overrides the `cursor: text;` that displays on hover for combo boxes that allow multiple pills

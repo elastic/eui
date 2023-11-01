@@ -216,6 +216,45 @@ describe('EuiComboBox', () => {
       });
     });
 
+    describe('placeholder', () => {
+      it('renders', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={[]}
+            placeholder="Select something"
+          />
+        );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+
+        expect(searchInput).toHaveAttribute('placeholder', 'Select something');
+        expect(searchInput).toHaveStyle('inline-size: 100%');
+      });
+
+      it('does not render the placeholder if a selection has been made', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={[options[0]]}
+            placeholder="Select something"
+          />
+        );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+        expect(searchInput).not.toHaveAttribute('placeholder');
+      });
+
+      it('does not render the placeholder if a search value exists', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox options={options} placeholder="Select something" />
+        );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+        expect(searchInput).toHaveAttribute('placeholder');
+
+        fireEvent.change(searchInput, { target: { value: 'some search' } });
+        expect(searchInput).not.toHaveAttribute('placeholder');
+      });
+    });
+
     test('isDisabled', () => {
       const { container, queryByTestSubject, queryByTitle } = render(
         <EuiComboBox

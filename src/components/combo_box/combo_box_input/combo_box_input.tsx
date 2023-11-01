@@ -275,18 +275,8 @@ export class EuiComboBoxInput<T> extends Component<
       );
     }
 
-    let placeholderMessage;
-
-    if (
-      placeholder &&
-      selectedOptions &&
-      !selectedOptions.length &&
-      !searchValue
-    ) {
-      placeholderMessage = (
-        <p className="euiComboBoxPlaceholder">{placeholder}</p>
-      );
-    }
+    const showPlaceholder =
+      placeholder && !selectedOptions?.length && !searchValue;
 
     const clickProps: EuiFormControlLayoutIconsProps = {};
     if (!isDisabled && onClear && hasSelectedOptions) {
@@ -344,7 +334,6 @@ export class EuiComboBoxInput<T> extends Component<
           tabIndex={-1} // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
         >
           {this.renderPills()}
-          {placeholderMessage}
           <EuiComboBoxOptionAppendPrepend
             option={this.asPlainText ? selectedOptions?.[0] : undefined}
             classNamePrefix="euiComboBoxPlainTextSelection"
@@ -368,8 +357,12 @@ export class EuiComboBoxInput<T> extends Component<
               ref={this.inputRefCallback}
               role="combobox"
               style={{
-                inlineSize: this.asPlainText ? '100%' : this.state.inputWidth,
+                inlineSize:
+                  this.asPlainText || showPlaceholder
+                    ? '100%'
+                    : this.state.inputWidth,
               }}
+              placeholder={showPlaceholder ? placeholder : undefined}
               value={this.searchValue}
               autoFocus={autoFocus}
               // Force the menu to re-open on every input click - only necessary when plain text
