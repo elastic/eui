@@ -30,7 +30,6 @@ export {
   euiPaletteColorBlindBehindText,
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPaletteComplimentary,
   euiPaletteComplementary,
   euiPaletteNegative,
   euiPalettePositive,
