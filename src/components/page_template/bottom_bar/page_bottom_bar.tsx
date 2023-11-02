@@ -58,8 +58,8 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
         overflow: hidden;
         flex-shrink: 0;
       `}
-      // Using unknown here because of the possible conflict with overriding props and position `sticky`
-      {...(rest as unknown)}
+      // Using object here because of the possible conflict with overriding props and position `sticky`
+      {...(rest as object)}
     >
       {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
       <EuiPageSection paddingSize={paddingSize} restrictWidth={restrictWidth}>
