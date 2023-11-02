@@ -378,7 +378,10 @@ export const EuiMarkdownEditor = forwardRef<
 
     useEffect(() => {
       if (isPreviewing && autoExpandPreview && height !== 'full') {
-        if (previewRef.current!.scrollHeight > currentHeight) {
+        if (
+          currentHeight !== 'full' &&
+          previewRef.current!.scrollHeight > currentHeight
+        ) {
           // scrollHeight does not include the border or margin
           // so we ask for the computed value for those,
           // which is always in pixels because getComputedValue
