@@ -18,22 +18,6 @@
     margin: ($euiSizeXS + 1px) $euiSizeXS 0 0;
   }
 
-  .euiComboBox--compressed &--plainText {
-    margin-top: $euiSizeXS;
-  }
-
-  &--plainText {
-    @include euiFont;
-
-    line-height: $euiSizeL;
-    font-size: $euiFontSizeS;
-    padding: 0;
-    color: $euiTextColor;
-    vertical-align: middle;
-    display: inline-flex;
-    align-items: center;
-  }
-
   &__prepend {
     margin-right: $euiSizeXS;
   }
@@ -43,7 +27,6 @@
   }
 
   /* Fix append/prepend vertical alignment */
-  &--plainText,
   .euiBadge__text {
     display: flex;
     align-items: center;

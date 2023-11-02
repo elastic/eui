@@ -111,114 +111,24 @@ describe('EuiComboBox', () => {
       ];
 
       it('renders in pills', () => {
-        const { getByTestSubject, getAllByTestSubject } = render(
+        const { getByTestSubject } = render(
           <EuiComboBox options={options} selectedOptions={options} />
         );
 
         expect(getByTestSubject('prepend')).toBeInTheDocument();
         expect(getByTestSubject('append')).toBeInTheDocument();
-
-        expect(getAllByTestSubject('euiComboBoxPill')[0])
-          .toMatchInlineSnapshot(`
-          <span
-            class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
-            data-test-subj="euiComboBoxPill"
-            title="1"
-          >
-            <span
-              class="euiBadge__content emotion-euiBadge__content"
-            >
-              <span
-                class="euiBadge__text emotion-euiBadge__text"
-              >
-                <span
-                  class="euiComboBoxPill__prepend"
-                >
-                  <span
-                    data-test-subj="prepend"
-                  >
-                    Pre
-                  </span>
-                </span>
-                <span
-                  class="eui-textTruncate"
-                >
-                  1
-                </span>
-              </span>
-              <button
-                aria-label="Remove 1 from selection in this group"
-                class="euiBadge__iconButton emotion-euiBadge__iconButton-right"
-                title="Remove 1 from selection in this group"
-                type="button"
-              >
-                <span
-                  class="euiBadge__icon emotion-euiBadge__icon-right"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </span>
-          </span>
-        `);
       });
 
       test('renders in the options dropdown', async () => {
-        const { getByTestSubject, getAllByRole } = render(
-          <EuiComboBox options={options} />
-        );
+        const { getByTestSubject } = render(<EuiComboBox options={options} />);
         await showEuiComboBoxOptions();
 
-        const dropdown = getByTestSubject('comboBoxOptionsList');
-        expect(
-          dropdown.querySelector('.euiComboBoxOption__prepend')
-        ).toBeInTheDocument();
-        expect(
-          dropdown.querySelector('.euiComboBoxOption__append')
-        ).toBeInTheDocument();
-
-        expect(getAllByRole('option')[0]).toMatchInlineSnapshot(`
-          <button
-            aria-selected="false"
-            class="euiFilterSelectItem emotion-euiFilterSelectItem"
-            id="generated-id__option-0"
-            role="option"
-            style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
-            title="1"
-            type="button"
-          >
-            <span
-              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-            >
-              <span
-                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
-              >
-                <span
-                  class="euiComboBoxOption__contentWrapper"
-                >
-                  <span
-                    class="euiComboBoxOption__prepend"
-                  >
-                    <span
-                      data-test-subj="prepend"
-                    >
-                      Pre
-                    </span>
-                  </span>
-                  <span
-                    class="euiComboBoxOption__content"
-                  >
-                    1
-                  </span>
-                </span>
-              </span>
-            </span>
-          </button>
-        `);
+        expect(getByTestSubject('prepend')).toBeInTheDocument();
+        expect(getByTestSubject('append')).toBeInTheDocument();
       });
 
       test('renders in single selection', () => {
-        const { getByTestSubject } = render(
+        const { getByTestSubject, queryByTestSubject } = render(
           <EuiComboBox
             options={options}
             selectedOptions={[options[0]]}
@@ -226,27 +136,8 @@ describe('EuiComboBox', () => {
           />
         );
 
-        expect(getByTestSubject('euiComboBoxPill')).toMatchInlineSnapshot(`
-          <span
-            class="euiComboBoxPill euiComboBoxPill--plainText"
-            data-test-subj="euiComboBoxPill"
-          >
-            <span
-              class="euiComboBoxPill__prepend"
-            >
-              <span
-                data-test-subj="prepend"
-              >
-                Pre
-              </span>
-            </span>
-            <span
-              class="eui-textTruncate"
-            >
-              1
-            </span>
-          </span>
-        `);
+        expect(getByTestSubject('prepend')).toBeInTheDocument();
+        expect(queryByTestSubject('append')).not.toBeInTheDocument();
       });
     });
 
@@ -308,8 +199,8 @@ describe('EuiComboBox', () => {
         ).toBeInTheDocument();
       });
 
-      it('renders as plain text', () => {
-        const { getByTestSubject } = render(
+      it('renders `asPlainText` in the search input, not as a pill', () => {
+        const { queryByTestSubject, getByTestSubject } = render(
           <EuiComboBox
             options={options}
             selectedOptions={[options[2]]}
@@ -317,9 +208,50 @@ describe('EuiComboBox', () => {
           />
         );
 
-        expect(getByTestSubject('euiComboBoxPill').className).toContain(
-          'euiComboBoxPill--plainText'
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+        expect(searchInput).toHaveValue('Mimas');
+        expect(searchInput).toHaveStyle('inline-size: 100%');
+
+        expect(queryByTestSubject('euiComboBoxPill')).not.toBeInTheDocument();
+      });
+    });
+
+    describe('placeholder', () => {
+      it('renders', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={[]}
+            placeholder="Select something"
+          />
         );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+
+        expect(searchInput).toHaveAttribute('placeholder', 'Select something');
+        expect(searchInput).toHaveStyle('inline-size: 100%');
+      });
+
+      it('does not render the placeholder if a selection has been made', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox
+            options={options}
+            selectedOptions={[options[0]]}
+            placeholder="Select something"
+          />
+        );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+        expect(searchInput).not.toHaveAttribute('placeholder');
+      });
+
+      it('does not render the placeholder if a search value exists', () => {
+        const { getByTestSubject } = render(
+          <EuiComboBox options={options} placeholder="Select something" />
+        );
+        const searchInput = getByTestSubject('comboBoxSearchInput');
+        expect(searchInput).toHaveAttribute('placeholder');
+
+        fireEvent.change(searchInput, { target: { value: 'some search' } });
+        expect(searchInput).not.toHaveAttribute('placeholder');
       });
     });
 
