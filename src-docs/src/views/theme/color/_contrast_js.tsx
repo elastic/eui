@@ -23,7 +23,7 @@ const textVariants = [...brandTextKeys, ...textColors];
 type ColorSection = {
   color: keyof _EuiThemeColorsMode;
   colorValue?: string;
-  minimumContrast: string | number;
+  minimumContrast: number;
   showTextVariants: boolean;
   matchPanelColor?: boolean;
   hookName?: string;
@@ -88,7 +88,7 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
 type ColorsContrastItem = {
   foreground: string;
   background: string;
-  minimumContrast: string | number;
+  minimumContrast: number;
   styleString?: string;
 };
 

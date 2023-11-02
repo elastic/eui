@@ -57,7 +57,7 @@ import { getContrastRatings } from './_contrast_utilities';
 
 type ColorSection = {
   color: string;
-  minimumContrast: string | number;
+  minimumContrast: number;
   showTextVariants: boolean;
   matchPanelColor?: boolean;
 };
@@ -114,7 +114,7 @@ export const ColorSectionSass: FunctionComponent<ColorSection> = ({
 type ColorsContrastItem = {
   foreground: string;
   background: string;
-  minimumContrast: string | number;
+  minimumContrast: number;
 };
 
 const ColorsContrastItem: FunctionComponent<ColorsContrastItem> = ({
