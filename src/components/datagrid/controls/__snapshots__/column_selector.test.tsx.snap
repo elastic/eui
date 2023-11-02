@@ -51,195 +51,189 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
     You are in a dialog. Press Escape, or tap/click outside the dialog to close.
   </p>
   <div>
-    <div>
+    <div
+      class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+    >
       <div
-        class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+        class="euiFormControlLayout euiFormControlLayout--compressed"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <input
-              aria-label="Search columns"
-              class="euiFieldText euiFieldText--compressed"
-              data-test-subj="dataGridColumnSelectorSearch"
-              placeholder="Search"
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiDataGrid__controlScroll"
-      >
-        <div
-          class="euiDroppable emotion-euiDroppable-noGrow"
-          data-rfd-droppable-context-id="0"
-          data-rfd-droppable-id="columnOrder"
-          data-test-subj="droppable"
-        >
-          <div
-            class="euiDraggable emotion-euiDraggable"
-            data-rfd-draggable-context-id="0"
-            data-rfd-draggable-id="columnA"
-            data-test-subj="draggable"
-            role="group"
-          >
-            <div
-              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
-              data-test-subj="dataGridColumnSelectorColumnItem-columnA"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
-                  >
-                    <button
-                      aria-checked="true"
-                      aria-label="columnA"
-                      class="euiSwitch__button"
-                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
-                      id="generated-id"
-                      name="columnA"
-                      role="switch"
-                      type="button"
-                    >
-                      <span
-                        class="euiSwitch__body"
-                      >
-                        <span
-                          class="euiSwitch__thumb"
-                        />
-                        <span
-                          class="euiSwitch__track"
-                        />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-hidden="true"
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="-1"
-                >
-                  <span
-                    class="euiDataGridColumnSelector__itemLabel"
-                  >
-                    columnA
-                  </span>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-label="Drag handle"
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiDraggable emotion-euiDraggable"
-            data-rfd-draggable-context-id="0"
-            data-rfd-draggable-id="columnB"
-            data-test-subj="draggable"
-            role="group"
-          >
-            <div
-              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
-              data-test-subj="dataGridColumnSelectorColumnItem-columnB"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
-                  >
-                    <button
-                      aria-checked="true"
-                      aria-label="columnB"
-                      class="euiSwitch__button"
-                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
-                      id="generated-id"
-                      name="columnB"
-                      role="switch"
-                      type="button"
-                    >
-                      <span
-                        class="euiSwitch__body"
-                      >
-                        <span
-                          class="euiSwitch__thumb"
-                        />
-                        <span
-                          class="euiSwitch__track"
-                        />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-hidden="true"
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnB"
-                  draggable="false"
-                  role="button"
-                  tabindex="-1"
-                >
-                  <span
-                    class="euiDataGridColumnSelector__itemLabel"
-                  >
-                    columnB
-                  </span>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-label="Drag handle"
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnB"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiDroppable__placeholder"
+          <input
+            aria-label="Search columns"
+            class="euiFieldText euiFieldText--compressed"
+            data-test-subj="dataGridColumnSelectorSearch"
+            placeholder="Search"
+            type="text"
+            value=""
           />
         </div>
       </div>
+    </div>
+    <div
+      class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
+      data-rfd-droppable-context-id="0"
+      data-rfd-droppable-id="columnOrder"
+      data-test-subj="droppable"
+    >
+      <div
+        class="euiDraggable emotion-euiDraggable"
+        data-rfd-draggable-context-id="0"
+        data-rfd-draggable-id="columnA"
+        data-test-subj="draggable"
+        role="group"
+      >
+        <div
+          class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
+          data-test-subj="dataGridColumnSelectorColumnItem-columnA"
+        >
+          <div
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <div
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+            >
+              <div
+                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+              >
+                <button
+                  aria-checked="true"
+                  aria-label="columnA"
+                  class="euiSwitch__button"
+                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
+                  id="generated-id"
+                  name="columnA"
+                  role="switch"
+                  type="button"
+                >
+                  <span
+                    class="euiSwitch__body"
+                  >
+                    <span
+                      class="euiSwitch__thumb"
+                    />
+                    <span
+                      class="euiSwitch__track"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-hidden="true"
+              class="euiFlexItem emotion-euiFlexItem-grow-1"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnA"
+              draggable="false"
+              role="button"
+              tabindex="-1"
+            >
+              <span
+                class="euiDataGridColumnSelector__itemLabel"
+              >
+                columnA
+              </span>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-label="Drag handle"
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnA"
+              draggable="false"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="grab"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDraggable emotion-euiDraggable"
+        data-rfd-draggable-context-id="0"
+        data-rfd-draggable-id="columnB"
+        data-test-subj="draggable"
+        role="group"
+      >
+        <div
+          class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
+          data-test-subj="dataGridColumnSelectorColumnItem-columnB"
+        >
+          <div
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <div
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+            >
+              <div
+                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+              >
+                <button
+                  aria-checked="true"
+                  aria-label="columnB"
+                  class="euiSwitch__button"
+                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
+                  id="generated-id"
+                  name="columnB"
+                  role="switch"
+                  type="button"
+                >
+                  <span
+                    class="euiSwitch__body"
+                  >
+                    <span
+                      class="euiSwitch__thumb"
+                    />
+                    <span
+                      class="euiSwitch__track"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-hidden="true"
+              class="euiFlexItem emotion-euiFlexItem-grow-1"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnB"
+              draggable="false"
+              role="button"
+              tabindex="-1"
+            >
+              <span
+                class="euiDataGridColumnSelector__itemLabel"
+              >
+                columnB
+              </span>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-label="Drag handle"
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnB"
+              draggable="false"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="grab"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDroppable__placeholder"
+      />
     </div>
     <div
       class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
@@ -342,195 +336,189 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
     You are in a dialog. Press Escape, or tap/click outside the dialog to close.
   </p>
   <div>
-    <div>
+    <div
+      class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+    >
       <div
-        class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+        class="euiFormControlLayout euiFormControlLayout--compressed"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <input
-              aria-label="Search columns"
-              class="euiFieldText euiFieldText--compressed"
-              data-test-subj="dataGridColumnSelectorSearch"
-              placeholder="Search"
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiDataGrid__controlScroll"
-      >
-        <div
-          class="euiDroppable emotion-euiDroppable-noGrow"
-          data-rfd-droppable-context-id="0"
-          data-rfd-droppable-id="columnOrder"
-          data-test-subj="droppable"
-        >
-          <div
-            class="euiDraggable emotion-euiDraggable"
-            data-rfd-draggable-context-id="0"
-            data-rfd-draggable-id="columnA"
-            data-test-subj="draggable"
-            role="group"
-          >
-            <div
-              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
-              data-test-subj="dataGridColumnSelectorColumnItem-columnA"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
-                  >
-                    <button
-                      aria-checked="true"
-                      aria-label="columnA"
-                      class="euiSwitch__button"
-                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
-                      id="generated-id"
-                      name="columnA"
-                      role="switch"
-                      type="button"
-                    >
-                      <span
-                        class="euiSwitch__body"
-                      >
-                        <span
-                          class="euiSwitch__thumb"
-                        />
-                        <span
-                          class="euiSwitch__track"
-                        />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-hidden="true"
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="-1"
-                >
-                  <span
-                    class="euiDataGridColumnSelector__itemLabel"
-                  >
-                    columnA
-                  </span>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-label="Drag handle"
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiDraggable emotion-euiDraggable"
-            data-rfd-draggable-context-id="0"
-            data-rfd-draggable-id="columnB"
-            data-test-subj="draggable"
-            role="group"
-          >
-            <div
-              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
-              data-test-subj="dataGridColumnSelectorColumnItem-columnB"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
-                  >
-                    <button
-                      aria-checked="true"
-                      aria-label="columnB"
-                      class="euiSwitch__button"
-                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
-                      id="generated-id"
-                      name="columnB"
-                      role="switch"
-                      type="button"
-                    >
-                      <span
-                        class="euiSwitch__body"
-                      >
-                        <span
-                          class="euiSwitch__thumb"
-                        />
-                        <span
-                          class="euiSwitch__track"
-                        />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-hidden="true"
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnB"
-                  draggable="false"
-                  role="button"
-                  tabindex="-1"
-                >
-                  <span
-                    class="euiDataGridColumnSelector__itemLabel"
-                  >
-                    columnB
-                  </span>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
-                  aria-label="Drag handle"
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rfd-drag-handle-context-id="0"
-                  data-rfd-drag-handle-draggable-id="columnB"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiDroppable__placeholder"
+          <input
+            aria-label="Search columns"
+            class="euiFieldText euiFieldText--compressed"
+            data-test-subj="dataGridColumnSelectorSearch"
+            placeholder="Search"
+            type="text"
+            value=""
           />
         </div>
       </div>
+    </div>
+    <div
+      class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
+      data-rfd-droppable-context-id="0"
+      data-rfd-droppable-id="columnOrder"
+      data-test-subj="droppable"
+    >
+      <div
+        class="euiDraggable emotion-euiDraggable"
+        data-rfd-draggable-context-id="0"
+        data-rfd-draggable-id="columnA"
+        data-test-subj="draggable"
+        role="group"
+      >
+        <div
+          class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
+          data-test-subj="dataGridColumnSelectorColumnItem-columnA"
+        >
+          <div
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <div
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+            >
+              <div
+                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+              >
+                <button
+                  aria-checked="true"
+                  aria-label="columnA"
+                  class="euiSwitch__button"
+                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
+                  id="generated-id"
+                  name="columnA"
+                  role="switch"
+                  type="button"
+                >
+                  <span
+                    class="euiSwitch__body"
+                  >
+                    <span
+                      class="euiSwitch__thumb"
+                    />
+                    <span
+                      class="euiSwitch__track"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-hidden="true"
+              class="euiFlexItem emotion-euiFlexItem-grow-1"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnA"
+              draggable="false"
+              role="button"
+              tabindex="-1"
+            >
+              <span
+                class="euiDataGridColumnSelector__itemLabel"
+              >
+                columnA
+              </span>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-label="Drag handle"
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnA"
+              draggable="false"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="grab"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDraggable emotion-euiDraggable"
+        data-rfd-draggable-context-id="0"
+        data-rfd-draggable-id="columnB"
+        data-test-subj="draggable"
+        role="group"
+      >
+        <div
+          class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
+          data-test-subj="dataGridColumnSelectorColumnItem-columnB"
+        >
+          <div
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <div
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+            >
+              <div
+                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+              >
+                <button
+                  aria-checked="true"
+                  aria-label="columnB"
+                  class="euiSwitch__button"
+                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
+                  id="generated-id"
+                  name="columnB"
+                  role="switch"
+                  type="button"
+                >
+                  <span
+                    class="euiSwitch__body"
+                  >
+                    <span
+                      class="euiSwitch__thumb"
+                    />
+                    <span
+                      class="euiSwitch__track"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-hidden="true"
+              class="euiFlexItem emotion-euiFlexItem-grow-1"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnB"
+              draggable="false"
+              role="button"
+              tabindex="-1"
+            >
+              <span
+                class="euiDataGridColumnSelector__itemLabel"
+              >
+                columnB
+              </span>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-0-hidden-text-0"
+              aria-label="Drag handle"
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+              data-rfd-drag-handle-context-id="0"
+              data-rfd-drag-handle-draggable-id="columnB"
+              draggable="false"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="grab"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDroppable__placeholder"
+      />
     </div>
     <div
       class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
@@ -633,195 +621,189 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
     You are in a dialog. Press Escape, or tap/click outside the dialog to close.
   </p>
   <div>
-    <div>
+    <div
+      class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+    >
       <div
-        class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+        class="euiFormControlLayout euiFormControlLayout--compressed"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <input
-              aria-label="Search columns"
-              class="euiFieldText euiFieldText--compressed"
-              data-test-subj="dataGridColumnSelectorSearch"
-              placeholder="Search"
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiDataGrid__controlScroll"
-      >
-        <div
-          class="euiDroppable emotion-euiDroppable-noGrow"
-          data-rfd-droppable-context-id=":r0:"
-          data-rfd-droppable-id="columnOrder"
-          data-test-subj="droppable"
-        >
-          <div
-            class="euiDraggable emotion-euiDraggable"
-            data-rfd-draggable-context-id=":r0:"
-            data-rfd-draggable-id="columnA"
-            data-test-subj="draggable"
-            role="group"
-          >
-            <div
-              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
-              data-test-subj="dataGridColumnSelectorColumnItem-columnA"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
-                  >
-                    <button
-                      aria-checked="true"
-                      aria-label="columnA"
-                      class="euiSwitch__button"
-                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
-                      id="generated-id"
-                      name="columnA"
-                      role="switch"
-                      type="button"
-                    >
-                      <span
-                        class="euiSwitch__body"
-                      >
-                        <span
-                          class="euiSwitch__thumb"
-                        />
-                        <span
-                          class="euiSwitch__track"
-                        />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-                  aria-hidden="true"
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rfd-drag-handle-context-id=":r0:"
-                  data-rfd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="-1"
-                >
-                  <span
-                    class="euiDataGridColumnSelector__itemLabel"
-                  >
-                    columnA
-                  </span>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-                  aria-label="Drag handle"
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rfd-drag-handle-context-id=":r0:"
-                  data-rfd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiDraggable emotion-euiDraggable"
-            data-rfd-draggable-context-id=":r0:"
-            data-rfd-draggable-id="columnB"
-            data-test-subj="draggable"
-            role="group"
-          >
-            <div
-              class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
-              data-test-subj="dataGridColumnSelectorColumnItem-columnB"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
-                  >
-                    <button
-                      aria-checked="true"
-                      aria-label="columnB"
-                      class="euiSwitch__button"
-                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
-                      id="generated-id"
-                      name="columnB"
-                      role="switch"
-                      type="button"
-                    >
-                      <span
-                        class="euiSwitch__body"
-                      >
-                        <span
-                          class="euiSwitch__thumb"
-                        />
-                        <span
-                          class="euiSwitch__track"
-                        />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-                  aria-hidden="true"
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rfd-drag-handle-context-id=":r0:"
-                  data-rfd-drag-handle-draggable-id="columnB"
-                  draggable="false"
-                  role="button"
-                  tabindex="-1"
-                >
-                  <span
-                    class="euiDataGridColumnSelector__itemLabel"
-                  >
-                    columnB
-                  </span>
-                </div>
-                <div
-                  aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-                  aria-label="Drag handle"
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rfd-drag-handle-context-id=":r0:"
-                  data-rfd-drag-handle-draggable-id="columnB"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiDroppable__placeholder"
+          <input
+            aria-label="Search columns"
+            class="euiFieldText euiFieldText--compressed"
+            data-test-subj="dataGridColumnSelectorSearch"
+            placeholder="Search"
+            type="text"
+            value=""
           />
         </div>
       </div>
+    </div>
+    <div
+      class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
+      data-rfd-droppable-context-id=":r0:"
+      data-rfd-droppable-id="columnOrder"
+      data-test-subj="droppable"
+    >
+      <div
+        class="euiDraggable emotion-euiDraggable"
+        data-rfd-draggable-context-id=":r0:"
+        data-rfd-draggable-id="columnA"
+        data-test-subj="draggable"
+        role="group"
+      >
+        <div
+          class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
+          data-test-subj="dataGridColumnSelectorColumnItem-columnA"
+        >
+          <div
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <div
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+            >
+              <div
+                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+              >
+                <button
+                  aria-checked="true"
+                  aria-label="columnA"
+                  class="euiSwitch__button"
+                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
+                  id="generated-id"
+                  name="columnA"
+                  role="switch"
+                  type="button"
+                >
+                  <span
+                    class="euiSwitch__body"
+                  >
+                    <span
+                      class="euiSwitch__thumb"
+                    />
+                    <span
+                      class="euiSwitch__track"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+              aria-hidden="true"
+              class="euiFlexItem emotion-euiFlexItem-grow-1"
+              data-rfd-drag-handle-context-id=":r0:"
+              data-rfd-drag-handle-draggable-id="columnA"
+              draggable="false"
+              role="button"
+              tabindex="-1"
+            >
+              <span
+                class="euiDataGridColumnSelector__itemLabel"
+              >
+                columnA
+              </span>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+              aria-label="Drag handle"
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+              data-rfd-drag-handle-context-id=":r0:"
+              data-rfd-drag-handle-draggable-id="columnA"
+              draggable="false"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="grab"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDraggable emotion-euiDraggable"
+        data-rfd-draggable-context-id=":r0:"
+        data-rfd-draggable-id="columnB"
+        data-test-subj="draggable"
+        role="group"
+      >
+        <div
+          class="euiDataGridColumnSelector__item euiDraggable__item emotion-euiDraggable__item"
+          data-test-subj="dataGridColumnSelectorColumnItem-columnB"
+        >
+          <div
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <div
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+            >
+              <div
+                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+              >
+                <button
+                  aria-checked="true"
+                  aria-label="columnB"
+                  class="euiSwitch__button"
+                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
+                  id="generated-id"
+                  name="columnB"
+                  role="switch"
+                  type="button"
+                >
+                  <span
+                    class="euiSwitch__body"
+                  >
+                    <span
+                      class="euiSwitch__thumb"
+                    />
+                    <span
+                      class="euiSwitch__track"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+              aria-hidden="true"
+              class="euiFlexItem emotion-euiFlexItem-grow-1"
+              data-rfd-drag-handle-context-id=":r0:"
+              data-rfd-drag-handle-draggable-id="columnB"
+              draggable="false"
+              role="button"
+              tabindex="-1"
+            >
+              <span
+                class="euiDataGridColumnSelector__itemLabel"
+              >
+                columnB
+              </span>
+            </div>
+            <div
+              aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+              aria-label="Drag handle"
+              class="euiFlexItem emotion-euiFlexItem-growZero"
+              data-rfd-drag-handle-context-id=":r0:"
+              data-rfd-drag-handle-draggable-id="columnB"
+              draggable="false"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="grab"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDroppable__placeholder"
+      />
     </div>
     <div
       class="euiPopoverFooter emotion-euiPopoverFooter-s-s"

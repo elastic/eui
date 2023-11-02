@@ -232,6 +232,7 @@ describe('EuiComboBox', () => {
       });
     });
   });
+
   describe('selection', () => {
     const defaultOptions: Array<EuiComboBoxOptionOption<{}>> = [
       { label: 'Item 1' },
@@ -311,6 +312,51 @@ describe('EuiComboBox', () => {
       });
     });
 
+    describe('single selection', () => {
+      describe('closes the combobox on dropdown selection, and re-opens on input click', () => {
+        it('as pill', () => {
+          cy.mount(<StatefulComboBox singleSelection={true} />);
+          cy.get('[data-test-subj="comboBoxInput"]').click();
+
+          cy.get('[data-test-subj="comboBoxOptionsList"]')
+            .find('button')
+            .first()
+            .click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('not.exist');
+          cy.focused().should(
+            'have.attr',
+            'data-test-subj',
+            'comboBoxSearchInput'
+          );
+
+          cy.get('[data-test-subj="comboBoxInput"]').click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('be.visible');
+        });
+
+        it('as plain text', () => {
+          cy.mount(
+            // @ts-ignore - not totally sure why TS is kicking up a fuss here
+            <StatefulComboBox singleSelection={{ asPlainText: true }} />
+          );
+          cy.get('[data-test-subj="comboBoxSearchInput"]').click();
+
+          cy.get('[data-test-subj="comboBoxOptionsList"]')
+            .find('button')
+            .first()
+            .click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('not.exist');
+          cy.focused().should(
+            'have.attr',
+            'data-test-subj',
+            'comboBoxSearchInput'
+          );
+
+          cy.get('[data-test-subj="comboBoxSearchInput"]').click();
+          cy.get('[data-test-subj="comboBoxOptionsList"]').should('be.visible');
+        });
+      });
+    });
+
     describe('backspace to delete last pill', () => {
       it('does not delete the last pill if there is search text', () => {
         cy.realMount(<StatefulComboBox />);
@@ -359,6 +405,28 @@ describe('EuiComboBox', () => {
 
         cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
         cy.get('.euiComboBoxPill').should('have.length', 1);
+      });
+
+      it('`asPlainText`: deletes the selection and only a single character', () => {
+        cy.realMount(
+          // @ts-ignore - not totally sure why TS is kicking up a fuss here
+          <StatefulComboBox singleSelection={{ asPlainText: true }} />
+        );
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.get('[data-test-subj=comboBoxSearchInput]').should(
+          'have.value',
+          'Item 1'
+        );
+        cy.get('[data-test-subj="comboBoxClearButton"]').should('exist'); // indicates selection
+
+        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
+        cy.get('[data-test-subj="comboBoxClearButton"]').should('not.exist'); // selection removed
+        cy.get('[data-test-subj=comboBoxSearchInput]').should(
+          'have.value',
+          'Item '
+        );
       });
 
       it('opens up the selection list again after deleting the active single selection ', () => {

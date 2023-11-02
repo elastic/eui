@@ -41,8 +41,6 @@ export default () => {
         example={
           <div
             tabIndex={0}
-            role="region"
-            aria-label="Example of eui-scrollBar region"
             className="eui-scrollBar"
             style={{
               overflowY: 'auto',
@@ -53,12 +51,7 @@ export default () => {
             <ScrollContent />
           </div>
         }
-        snippet={`<div
-  tabIndex={0}
-  role="region"
-  aria-label=""
-  className="eui-scrollBar"
->
+        snippet={`<div tabIndex={0} className="eui-scrollBar">
   <EuiPanel />
   <EuiPanel />
   <EuiPanel />
@@ -88,8 +81,6 @@ export default () => {
           example={
             <div
               tabIndex={0}
-              role="region"
-              aria-label="Example of useEuiScrollBar region"
               css={css`
                 ${useEuiScrollBar()}
                 ${logicalCSSWithFallback('overflow-y', 'auto')}
@@ -125,12 +116,7 @@ export default () => {
             paddingSize: 'none',
           }}
           example={
-            <div
-              tabIndex={0}
-              role="region"
-              aria-label="Example of euiScrollBar region"
-              className="guideSass__euiScrollBar"
-            >
+            <div tabIndex={0} className="guideSass__euiScrollBar">
               <ScrollContent />
             </div>
           }
