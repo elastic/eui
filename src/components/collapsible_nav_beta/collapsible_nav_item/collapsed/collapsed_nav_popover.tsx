@@ -37,6 +37,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   icon,
   iconProps,
   isSelected,
+  isCollapsible = true,
   // Extracted to avoid spreading to ...rest
   accordionProps,
   ...rest
@@ -75,8 +76,9 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       <EuiCollapsedNavPopoverTitle
         title={title}
         titleElement={titleElement}
-        href={href}
-        linkProps={linkProps}
+        // Only nav groups should have links - accordions should not
+        href={!isCollapsible ? href : undefined}
+        linkProps={!isCollapsible ? linkProps : undefined}
       />
       <div css={styles.euiCollapsedNavPopover__items}>
         {items!.map((item, index) => (

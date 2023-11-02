@@ -25,8 +25,9 @@ describe('EuiCollapsedNavPopover', () => {
   shouldRenderCustomStyles(
     <EuiCollapsedNavPopover
       title="title"
-      href="#"
       items={[{ title: 'subitem' }]}
+      isCollapsible={false}
+      href="#"
     />,
     {
       childProps: ['linkProps'],
@@ -48,6 +49,8 @@ describe('EuiCollapsedNavPopover', () => {
           { title: 'Sub-item A', href: '#', 'data-test-subj': 'A' },
           { title: 'Sub-item B', href: '#', 'data-test-subj': 'B' },
         ]}
+        // Non-collapsible groups allow link titles
+        isCollapsible={false}
       />
     );
     fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
@@ -62,14 +65,16 @@ describe('EuiCollapsedNavPopover', () => {
     await waitForEuiPopoverClose();
   });
 
-  it('renders popver titles without links', async () => {
+  it('renders popover titles without links', async () => {
     const { getByText, getByTestSubject } = render(
       <EuiCollapsedNavPopover
         {...requiredProps}
         title="Popover title"
         titleElement="h3"
         items={[{ title: 'Subitem' }]}
-        linkProps={requiredProps} // Should not spread to non-links
+        // Accordions do not allow link titles (carryover from desktop non-collapsed behavior)
+        href="#"
+        linkProps={requiredProps}
       />
     );
     fireEvent.click(getByTestSubject('euiCollapsedNavButton'));

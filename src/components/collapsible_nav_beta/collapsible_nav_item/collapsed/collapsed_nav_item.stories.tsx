@@ -29,13 +29,14 @@ export const Playground: Story = {
   ),
   args: {
     title: 'Collapsed nav item',
+    icon: 'home',
     href: '#',
     linkProps: { target: '_blank' },
-    icon: 'home',
     items: [
       { title: 'Popover link A', href: '#', linkProps: { target: '_blank' } },
       { title: 'Popover link B', href: '#' },
       { title: 'Popover link C', href: '#' },
     ],
+    isCollapsible: false,
   },
 };

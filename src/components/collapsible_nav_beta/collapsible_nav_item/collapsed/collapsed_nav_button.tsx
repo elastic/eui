@@ -38,6 +38,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
   hideToolTip,
   linkProps,
   // Extracted to avoid spreading to ...rest
+  isCollapsible,
   accordionProps,
   titleElement,
   items,
