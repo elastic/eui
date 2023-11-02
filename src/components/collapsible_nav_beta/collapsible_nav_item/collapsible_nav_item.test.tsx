@@ -15,13 +15,12 @@ import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 
 describe('EuiCollapsibleNavItem', () => {
+  shouldRenderCustomStyles(<EuiCollapsibleNavItem title="Title" href="#" />, {
+    childProps: ['linkProps'],
+  });
   shouldRenderCustomStyles(
-    <EuiCollapsibleNavItem
-      title="Title"
-      href="#"
-      items={[{ title: 'Sub-item' }]}
-    />,
-    { childProps: ['linkProps', 'accordionProps'] }
+    <EuiCollapsibleNavItem title="Title" items={[{ title: 'Sub-item' }]} />,
+    { childProps: ['accordionProps'] }
   );
 
   it('renders a top level accordion if items exist', () => {
@@ -34,6 +33,40 @@ describe('EuiCollapsibleNavItem', () => {
     );
 
     expect(container.firstChild).toHaveClass('euiAccordion');
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('warns if a dev tries to pass a link/href to an accordion', () => {
+    const consoleWarnSpy = jest
+      .spyOn(window.console, 'warn')
+      .mockImplementation(() => {});
+
+    render(
+      <EuiCollapsibleNavItem
+        {...requiredProps}
+        title="Item"
+        items={[{ title: 'Sub-item', ...requiredProps }]}
+        href="#"
+      />
+    );
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      'When rendering a collapsible accordion with `items`, the `href` prop is ignored'
+    );
+
+    consoleWarnSpy.mockRestore();
+  });
+
+  it('renders a top level group if items exist and `isCollapsible` is set to false', () => {
+    const { container } = render(
+      <EuiCollapsibleNavItem
+        {...requiredProps}
+        title="Item"
+        items={[{ title: 'Sub-item', ...requiredProps }]}
+        isCollapsible={false}
+      />
+    );
+
+    expect(container.firstChild).toHaveClass('euiCollapsibleNavGroup');
     expect(container.firstChild).toMatchSnapshot();
   });
 

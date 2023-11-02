@@ -126,9 +126,11 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   titleElement,
   icon,
   iconProps,
+  href, // eslint-disable-line local/href-with-rel
+  linkProps,
   items,
   isCollapsible = true,
-  accordionProps, // Ensure this isn't spread to non-accordions
+  accordionProps,
   children, // Ensure children isn't spread
   ...props
 }) => {
@@ -143,6 +145,11 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
 
   if (items && items.length > 0) {
     if (isCollapsible) {
+      if (href) {
+        console.warn(
+          'When rendering a collapsible accordion with `items`, the `href` prop is ignored'
+        );
+      }
       return (
         <EuiCollapsibleNavAccordion
           buttonContent={headerContent}
@@ -157,6 +164,8 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
         <EuiCollapsibleNavGroup
           header={headerContent}
           items={items}
+          href={href}
+          linkProps={linkProps}
           {...props}
           isSubItem={isSubItem}
         />
@@ -166,12 +175,12 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
 
   return (
     <EuiCollapsibleNavLink
+      href={href}
+      linkProps={linkProps}
       {...(props as EuiLinkProps)} // EuiLink ExclusiveUnion type shenanigans
       isSubItem={isSubItem}
       isNotAccordion
-      isInteractive={
-        !!(props.href || props.onClick || props.linkProps?.onClick)
-      }
+      isInteractive={!!(href || props.onClick || linkProps?.onClick)}
     >
       {headerContent}
     </EuiCollapsibleNavLink>
