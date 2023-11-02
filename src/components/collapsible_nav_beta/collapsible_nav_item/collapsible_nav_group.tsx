@@ -12,21 +12,19 @@ import classNames from 'classnames';
 import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 
 import {
+  type _SharedEuiCollapsibleNavItemProps,
+  type _EuiCollapsibleNavItemDisplayProps,
+  type EuiCollapsibleNavItemProps,
   EuiCollapsibleNavSubItems,
-  EuiCollapsibleNavSubItemProps,
-  _SharedEuiCollapsibleNavItemProps,
-  _EuiCollapsibleNavItemDisplayProps,
 } from './collapsible_nav_item';
 import { euiCollapsibleNavItemVariables } from './collapsible_nav_item.styles';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 
-type EuiCollapsibleNavGroupProps = Omit<
-  _SharedEuiCollapsibleNavItemProps,
-  'items' | 'accordionProps'
-> &
-  _EuiCollapsibleNavItemDisplayProps & {
+type EuiCollapsibleNavGroupProps = _SharedEuiCollapsibleNavItemProps &
+  _EuiCollapsibleNavItemDisplayProps &
+  Pick<EuiCollapsibleNavItemProps, 'href' | 'linkProps'> &
+  Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
     header: ReactNode;
-    items: EuiCollapsibleNavSubItemProps[];
   };
 
 /**
