@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
@@ -29,15 +29,23 @@ describe('EuiAbsoluteTab', () => {
   };
 
   describe('user input', () => {
+    beforeAll(() => jest.useFakeTimers());
+    afterAll(() => jest.useRealTimers());
+
+    const changeInput = (input: HTMLElement, value: string) => {
+      fireEvent.change(input, { target: { value } });
+      act(() => {
+        jest.advanceTimersByTime(1000); // Debounce timer
+      });
+    };
+
     it('parses the passed `dateFormat` prop', () => {
       const { getByTestSubject } = render(
         <EuiAbsoluteTab {...props} dateFormat="MMM Do YY" />
       );
       const input = getByTestSubject('superDatePickerAbsoluteDateInput');
 
-      fireEvent.change(input, {
-        target: { value: 'Jan 31st 01' },
-      });
+      changeInput(input, 'Jan 31st 01');
       expect(input).not.toBeInvalid();
       expect(input).toHaveValue('Jan 31st 01');
     });
@@ -52,9 +60,7 @@ describe('EuiAbsoluteTab', () => {
         const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
         const input = getByTestSubject('superDatePickerAbsoluteDateInput');
 
-        fireEvent.change(input, {
-          target: { value: '1970-01-01T12:00:00+00:00' },
-        });
+        changeInput(input, '1970-01-01T12:00:00+00:00');
         expect(input).not.toBeInvalid();
         assertOutput(input as HTMLInputElement);
       });
@@ -63,9 +69,7 @@ describe('EuiAbsoluteTab', () => {
         const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
         const input = getByTestSubject('superDatePickerAbsoluteDateInput');
 
-        fireEvent.change(input, {
-          target: { value: 'Thu, 1 Jan 1970 12:00:00 +0000' },
-        });
+        changeInput(input, 'Thu, 1 Jan 1970 12:00:00 +0000');
         expect(input).not.toBeInvalid();
         assertOutput(input as HTMLInputElement);
       });
@@ -74,10 +78,10 @@ describe('EuiAbsoluteTab', () => {
         const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
         const input = getByTestSubject('superDatePickerAbsoluteDateInput');
 
-        fireEvent.change(input, { target: { value: Date.now().toString() } });
+        changeInput(input, Date.now().toString());
         expect(input).not.toBeInvalid();
 
-        fireEvent.change(input, { target: { value: '43200' } });
+        changeInput(input, '43200');
         expect(input).not.toBeInvalid();
         assertOutput(input as HTMLInputElement);
       });
@@ -87,15 +91,15 @@ describe('EuiAbsoluteTab', () => {
       const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
       const input = getByTestSubject('superDatePickerAbsoluteDateInput');
 
-      fireEvent.change(input, { target: { value: '01-01-1970' } });
+      changeInput(input, '01-01-1970');
       expect(input).toHaveValue('01-01-1970');
       expect(input).toBeInvalid();
 
-      fireEvent.change(input, { target: { value: 'asdfasdf' } });
+      changeInput(input, 'asdfasdf');
       expect(input).toHaveValue('asdfasdf');
       expect(input).toBeInvalid();
 
-      fireEvent.change(input, { target: { value: '' } });
+      changeInput(input, '');
       expect(input).toHaveValue('');
       expect(input).toBeInvalid();
     });

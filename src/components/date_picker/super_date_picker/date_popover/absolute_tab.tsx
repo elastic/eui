@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEventHandler } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 
 import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
@@ -84,26 +84,37 @@ export class EuiAbsoluteTab extends Component<
     });
   };
 
-  handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  debouncedTypeTimeout: ReturnType<typeof setTimeout> | undefined;
+
+  handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+    this.setState({ textInputValue: event.target.value });
+
+    // Add a debouncer that gives the user some time to finish typing
+    // before attempting to parse the text as a timestamp. Otherwise,
+    // typing a single digit gets parsed as a unix timestamp 😬
+    clearTimeout(this.debouncedTypeTimeout);
+    this.debouncedTypeTimeout = setTimeout(this.parseUserDateInput, 1000); // 1 second debounce
+  };
+
+  parseUserDateInput = () => {
     const { onChange, dateFormat } = this.props;
-    const userInput = event.target.value;
+    const { textInputValue } = this.state;
 
     const invalidDateState = {
-      textInputValue: userInput,
       isTextInvalid: true,
       valueAsMoment: null,
     };
-    if (!userInput) {
+    if (!textInputValue) {
       return this.setState(invalidDateState);
     }
 
     // Attempt to parse with passed `dateFormat`
-    let valueAsMoment = moment(userInput, dateFormat, true);
+    let valueAsMoment = moment(textInputValue, dateFormat, true);
     let dateIsValid = valueAsMoment.isValid();
 
     // If not valid, try a few other other standardized formats
     if (!dateIsValid) {
-      valueAsMoment = moment(userInput, ALLOWED_USER_DATE_FORMATS, true);
+      valueAsMoment = moment(textInputValue, ALLOWED_USER_DATE_FORMATS, true);
       dateIsValid = valueAsMoment.isValid();
     }
 
