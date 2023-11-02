@@ -69,12 +69,12 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
-  handleChange: EuiDatePickerProps['onChange'] = (date, event) => {
+  handleChange: EuiDatePickerProps['onChange'] = (date) => {
     const { onChange } = this.props;
     if (date === null) {
       return;
     }
-    onChange(date.toISOString(), event);
+    onChange(date.toISOString());
 
     const valueAsMoment = moment(date);
     this.setState({
@@ -108,7 +108,7 @@ export class EuiAbsoluteTab extends Component<
     }
 
     if (dateIsValid) {
-      onChange(valueAsMoment.toISOString(), event);
+      onChange(valueAsMoment.toISOString());
       this.setState({
         textInputValue: valueAsMoment.format(this.props.dateFormat),
         isTextInvalid: false,
