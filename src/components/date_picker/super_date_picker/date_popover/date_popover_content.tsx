@@ -27,7 +27,7 @@ import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverContentProps {
   value: string;
-  onChange(date: string | null, event?: React.SyntheticEvent<any>): void;
+  onChange: (date: string) => void;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;

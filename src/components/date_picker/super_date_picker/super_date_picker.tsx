@@ -75,6 +75,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
 
   /**
    * Specifies the formatted used when displaying dates and/or datetimes
+   * @default 'MMM D, YYYY @ HH:mm:ss.SSS'
    */
   dateFormat?: string;
 
@@ -92,6 +93,9 @@ export type EuiSuperDatePickerProps = CommonProps & {
   isDisabled?: boolean | { display: ReactNode };
 
   isLoading?: boolean;
+  /**
+   * @default true
+   */
   isPaused?: boolean;
 
   /**
@@ -99,6 +103,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * - `auto`: fits width to internal content / time string.
    * - `restricted`: static width that fits the longest possible time string.
    * - `full`: expands to 100% of the container.
+   * @default 'restricted'
    */
   width?: 'restricted' | 'full' | 'auto';
 
@@ -139,20 +144,29 @@ export type EuiSuperDatePickerProps = CommonProps & {
 
   /**
    * Refresh interval in milliseconds
+   * @default 1000
    */
   refreshInterval?: Milliseconds;
 
+  /**
+   * @default 'now-15m'
+   */
   start?: ShortDate;
+  /**
+   * @default 'now'
+   */
   end?: ShortDate;
 
   /**
    * Specifies the formatted used when displaying times
+   * @default 'HH:mm'
    */
   timeFormat?: string;
   utcOffset?: number;
 
   /**
    * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
+   * @default true
    */
   showUpdateButton?: boolean | 'iconOnly';
 

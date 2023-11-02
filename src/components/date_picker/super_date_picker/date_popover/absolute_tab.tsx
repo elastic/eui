@@ -6,16 +6,26 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEventHandler } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 
 import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 import dateMath from '@elastic/datemath';
 
-import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
+import { EuiCode } from '../../../code';
 import { EuiI18n } from '../../../i18n';
+
+import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+
+// Allow users to paste in and have the datepicker parse multiple common date formats,
+// in addition to the configured displayed `dateFormat` prop
+const ALLOWED_USER_DATE_FORMATS = [
+  moment.ISO_8601,
+  moment.RFC_2822,
+  'X', // Unix timestamp in seconds
+];
 
 export interface EuiAbsoluteTabProps {
   dateFormat: string;
@@ -59,12 +69,12 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
-  handleChange: EuiDatePickerProps['onChange'] = (date, event) => {
+  handleChange: EuiDatePickerProps['onChange'] = (date) => {
     const { onChange } = this.props;
     if (date === null) {
       return;
     }
-    onChange(date.toISOString(), event);
+    onChange(date.toISOString());
 
     const valueAsMoment = moment(date);
     this.setState({
@@ -74,22 +84,50 @@ export class EuiAbsoluteTab extends Component<
     });
   };
 
-  handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { onChange } = this.props;
-    const valueAsMoment = moment(
-      event.target.value,
-      this.props.dateFormat,
-      true
-    );
-    const dateIsValid = valueAsMoment.isValid();
-    if (dateIsValid) {
-      onChange(valueAsMoment.toISOString(), event);
+  debouncedTypeTimeout: ReturnType<typeof setTimeout> | undefined;
+
+  handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+    this.setState({ textInputValue: event.target.value });
+
+    // Add a debouncer that gives the user some time to finish typing
+    // before attempting to parse the text as a timestamp. Otherwise,
+    // typing a single digit gets parsed as a unix timestamp 😬
+    clearTimeout(this.debouncedTypeTimeout);
+    this.debouncedTypeTimeout = setTimeout(this.parseUserDateInput, 1000); // 1 second debounce
+  };
+
+  parseUserDateInput = () => {
+    const { onChange, dateFormat } = this.props;
+    const { textInputValue } = this.state;
+
+    const invalidDateState = {
+      isTextInvalid: true,
+      valueAsMoment: null,
+    };
+    if (!textInputValue) {
+      return this.setState(invalidDateState);
     }
-    this.setState({
-      textInputValue: event.target.value,
-      isTextInvalid: !dateIsValid,
-      valueAsMoment: dateIsValid ? valueAsMoment : null,
-    });
+
+    // Attempt to parse with passed `dateFormat`
+    let valueAsMoment = moment(textInputValue, dateFormat, true);
+    let dateIsValid = valueAsMoment.isValid();
+
+    // If not valid, try a few other other standardized formats
+    if (!dateIsValid) {
+      valueAsMoment = moment(textInputValue, ALLOWED_USER_DATE_FORMATS, true);
+      dateIsValid = valueAsMoment.isValid();
+    }
+
+    if (dateIsValid) {
+      onChange(valueAsMoment.toISOString());
+      this.setState({
+        textInputValue: valueAsMoment.format(this.props.dateFormat),
+        isTextInvalid: false,
+        valueAsMoment: valueAsMoment,
+      });
+    } else {
+      this.setState(invalidDateState);
+    }
   };
 
   render() {
@@ -98,7 +136,7 @@ export class EuiAbsoluteTab extends Component<
     const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
 
     return (
-      <div>
+      <>
         <EuiDatePicker
           inline
           showTimeSelect
@@ -112,8 +150,8 @@ export class EuiAbsoluteTab extends Component<
         />
         <EuiI18n
           token="euiAbsoluteTab.dateFormatError"
-          default="Expected format: {dateFormat}"
-          values={{ dateFormat }}
+          default="Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp"
+          values={{ dateFormat: <EuiCode>{dateFormat}</EuiCode> }}
         >
           {(dateFormatError: string) => (
             <EuiFormRow
@@ -126,13 +164,13 @@ export class EuiAbsoluteTab extends Component<
                 isInvalid={isTextInvalid}
                 value={textInputValue}
                 onChange={this.handleTextChange}
-                data-test-subj={'superDatePickerAbsoluteDateInput'}
+                data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
               />
             </EuiFormRow>
           )}
         </EuiI18n>
-      </div>
+      </>
     );
   }
 }
