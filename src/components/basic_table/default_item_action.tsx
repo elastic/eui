@@ -24,7 +24,7 @@ import {
   callWithItemIfFunction,
 } from './action_types';
 
-export interface DefaultItemActionProps<T> {
+export interface DefaultItemActionProps<T extends object> {
   action: Action<T>;
   enabled: boolean;
   item: T;

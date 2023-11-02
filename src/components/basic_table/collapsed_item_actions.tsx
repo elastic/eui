@@ -29,7 +29,7 @@ import {
 } from './action_types';
 import { ItemIdResolved } from './table_types';
 
-export interface CollapsedItemActionsProps<T extends {}> {
+export interface CollapsedItemActionsProps<T extends object> {
   actions: Array<Action<T>>;
   item: T;
   itemId: ItemIdResolved;
