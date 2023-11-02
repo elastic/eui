@@ -630,9 +630,9 @@ export class EuiBasicTable<T = any> extends Component<
 
       items.push({
         name: column.name,
-        key: `_data_s_${
+        key: `_data_s_${String(
           (column as EuiTableFieldDataColumnType<T>).field
-        }_${index}`,
+        )}_${index}`,
         onSort: this.resolveColumnOnSort(column),
         isSorted: !!sortDirection,
         isSortAscending: sortDirection
@@ -854,11 +854,11 @@ export class EuiBasicTable<T = any> extends Component<
       }
       headers.push(
         <EuiTableHeaderCell
-          key={`_data_h_${field}_${index}`}
+          key={`_data_h_${String(field)}_${index}`}
           align={columnAlign}
           width={width}
           mobileOptions={mobileOptions}
-          data-test-subj={`tableHeaderCell_${field}_${index}`}
+          data-test-subj={`tableHeaderCell_${String(field)}_${index}`}
           description={description}
           {...sorting}
         >
@@ -897,7 +897,7 @@ export class EuiBasicTable<T = any> extends Component<
       if (footer) {
         footers.push(
           <EuiTableFooterCell
-            key={`footer_${field}_${footers.length - 1}`}
+            key={`footer_${String(field)}_${footers.length - 1}`}
             align={align}
           >
             {footer}
@@ -1219,7 +1219,7 @@ export class EuiBasicTable<T = any> extends Component<
   ) {
     const { field, render, dataType } = column;
 
-    const key = `_data_column_${field}_${itemId}_${columnIndex}`;
+    const key = `_data_column_${String(field)}_${itemId}_${columnIndex}`;
     const contentRenderer = render || this.getRendererForDataType(dataType);
     const value = get(item, field as string);
     const content = contentRenderer(value, item);
