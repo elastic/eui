@@ -112,17 +112,14 @@ export const EdgeCaseTesting: Story = {
             { ...args, title: 'Not a link' },
             {
               ...args,
-              title: 'Nested accordion - span',
+              title: 'Nested accordion',
               items: [{ title: 'grandchild' }, { title: 'grandchild 2' }],
             },
             {
               ...args,
-              title: 'Nested accordion - link',
-              href: '#',
-              items: [
-                { title: 'grandchild', href: '#' },
-                { title: 'grandchild 2', href: '#' },
-              ],
+              title: 'Nested group',
+              isCollapsible: false,
+              items: [{ title: 'grandchild' }, { title: 'grandchild 2' }],
             },
             { renderItem: () => <EuiSpacer size="m" /> },
             {
@@ -150,33 +147,31 @@ export const EdgeCaseTesting: Story = {
         />
         <EuiCollapsibleNavItem
           {...args}
-          title="Accordion with icon and link"
-          href="#"
-          items={[
-            { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
-          ]}
-        />
-        <EuiCollapsibleNavItem
-          {...args}
-          title="Accordion with icon and external link"
-          href="#"
-          linkProps={{ target: '_blank' }} // hmm
-          items={[
-            { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
-          ]}
-        />
-        <EuiCollapsibleNavItem
-          {...args}
           title="Accordion with no items"
-          href="#"
           items={[]}
         />
         <EuiCollapsibleNavItem
           {...args}
-          title="Accordion with no items and no link"
+          title="Accordion with no items and link"
           items={[]}
+          href="#"
+        />
+        <EuiCollapsibleNavItem
+          {...args}
+          title="Accordion with link"
+          items={[{ title: 'Link should be ignored' }]}
+          href="#"
+        />
+        <EuiCollapsibleNavItem
+          {...args}
+          title="Group with no items"
+          items={[]}
+        />
+        <EuiCollapsibleNavItem
+          {...args}
+          title="Group with no items and link"
+          items={[]}
+          href="#"
         />
         <EuiCollapsibleNavItem
           {...args}
