@@ -79,7 +79,7 @@ export default () => {
     // Create the option if it doesn't exist.
     if (
       flattenedOptions.findIndex(
-        (option) => option.value.trim().toLowerCase() === normalizedSearchValue
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
       ) === -1
     ) {
       // Simulate creating this option on the server.

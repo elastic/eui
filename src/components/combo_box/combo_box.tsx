@@ -638,13 +638,14 @@ export class EuiComboBox<T> extends Component<
   ) => {
     const { onSearchChange, delimiter } = this.props;
 
-    if (onSearchChange) {
-      const hasMatchingOptions = this.state.matchingOptions.length > 0;
-      onSearchChange(searchValue, hasMatchingOptions);
-    }
-
     this.setState({ searchValue }, () => {
-      if (searchValue && this.state.isListOpen === false) this.openList();
+      if (searchValue && this.state.isListOpen === false) {
+        this.openList();
+      }
+      if (onSearchChange) {
+        const hasMatchingOptions = this.state.matchingOptions.length > 0;
+        onSearchChange(searchValue, hasMatchingOptions);
+      }
     });
     if (delimiter && searchValue.endsWith(delimiter)) {
       this.setCustomOptions(false);
