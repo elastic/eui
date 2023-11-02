@@ -119,24 +119,32 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
   static contextType = EuiTreeViewContext;
   declare context: ContextType<typeof EuiTreeViewContext>;
 
-  isNested: boolean = !!this.context;
+  isNested: boolean;
 
-  state: EuiTreeViewState = {
-    openItems: this.props.expandByDefault
-      ? this.props.items
-          .map<string>(({ id, children }) =>
-            children ? id : (null as unknown as string)
-          )
-          .filter((x) => x != null)
-      : this.props.items
-          .map<string>(({ id, children, isExpanded }) =>
-            children && isExpanded ? id : (null as unknown as string)
-          )
-          .filter((x) => x != null),
-    activeItem: '',
-    treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
-    expandChildNodes: this.props.expandByDefault || false,
-  };
+  constructor(
+    props: EuiTreeViewProps,
+    context: ContextType<typeof EuiTreeViewContext>
+  ) {
+    super(props, context);
+
+    this.isNested = !!this.context;
+    this.state = {
+      openItems: this.props.expandByDefault
+        ? this.props.items
+            .map<string>(({ id, children }) =>
+              children ? id : (null as unknown as string)
+            )
+            .filter((x) => x != null)
+        : this.props.items
+            .map<string>(({ id, children, isExpanded }) =>
+              children && isExpanded ? id : (null as unknown as string)
+            )
+            .filter((x) => x != null),
+      activeItem: '',
+      treeID: getTreeId(this.props.id, context, this.treeIdGenerator),
+      expandChildNodes: this.props.expandByDefault || false,
+    };
+  }
 
   componentDidUpdate(prevProps: EuiTreeViewProps) {
     if (this.props.id !== prevProps.id) {
