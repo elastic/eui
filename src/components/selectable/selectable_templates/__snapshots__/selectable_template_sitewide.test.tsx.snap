@@ -51,56 +51,6 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with popoverButtonBreakpoints xs 1`] = `
-<div
-  class="euiSelectable euiSelectableTemplateSitewide"
->
-  <div
-    class="euiPopover emotion-euiPopover-block"
-  >
-    <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
-    >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
-      >
-        <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-        >
-          <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="search"
-            />
-          </span>
-        </div>
-        <input
-          aria-activedescendant=""
-          aria-describedby="generated-id_instructions"
-          aria-haspopup="listbox"
-          aria-label="Filter options"
-          autocomplete="off"
-          class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
-          placeholder="Search for anything..."
-          type="search"
-          value=""
-        />
-      </div>
-    </div>
-    <p
-      class="emotion-euiScreenReaderOnly"
-      id="generated-id_instructions"
-    >
-       
-      Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-    </p>
-  </div>
-</div>
-`;
-
 exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
@@ -108,23 +58,15 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
   <div
     class="euiPopover emotion-euiPopover-inline-block"
   >
-    <button>
-      Button
-    </button>
-  </div>
-</div>
-`;
-
-exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popoverButtonBreakpoints m 1`] = `
-<div
-  class="euiSelectable euiSelectableTemplateSitewide"
->
-  <div
-    class="euiPopover emotion-euiPopover-inline-block"
-  >
-    <button>
-      Button
-    </button>
+    <span
+      class="euiSelectableTemplateSitewide__popoverTrigger"
+    >
+      <button
+        data-test-subj="mobilePopoverButton"
+      >
+        Button
+      </button>
+    </span>
   </div>
 </div>
 `;
