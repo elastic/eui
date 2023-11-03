@@ -87,6 +87,7 @@ const convertRowHeightsOptionsToSelection = (
   }
   return rowHeightButtonOptions[0];
 };
+const defaultLineCountValue = 2;
 
 export const useDataGridDisplaySelector = (
   showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
@@ -125,7 +126,7 @@ export const useDataGridDisplaySelector = (
   }, []);
 
   // Row height logic
-  const [lineCount, setLineCount] = useState(2);
+  const [lineCount, setLineCount] = useState(defaultLineCountValue);
   const setRowHeight = useCallback(
     (option: string) => {
       const rowHeightsOptions: EuiDataGridRowHeightsOptions = {
@@ -182,8 +183,10 @@ export const useDataGridDisplaySelector = (
   }, [rowHeightsOptions]);
 
   useEffect(() => {
-    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-    setLineCount(rowHeightsOptions?.defaultHeight?.lineCount || 2);
+    setLineCount(
+      // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
+      rowHeightsOptions?.defaultHeight?.lineCount || defaultLineCountValue
+    );
     // @ts-ignore - same as above
   }, [rowHeightsOptions?.defaultHeight?.lineCount]);
 
