@@ -149,13 +149,15 @@ export const useDataGridDisplaySelector = (
     NonNullable<EuiRangeProps['onChange']>
   >((event) => {
     const newLineCount = Number(event.currentTarget.value);
-    if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
-
     setLineCount(newLineCount);
-    setUserRowHeightsOptions({
-      rowHeights: {}, // Unset all row-specific line counts
-      defaultHeight: { lineCount: newLineCount },
-    });
+
+    // Don't let users set a 0 or negative line count
+    if (newLineCount > 0) {
+      setUserRowHeightsOptions({
+        rowHeights: {}, // Unset all row-specific line counts
+        defaultHeight: { lineCount: newLineCount },
+      });
+    }
   }, []);
 
   // Merge the developer-specified configurations with user overrides
