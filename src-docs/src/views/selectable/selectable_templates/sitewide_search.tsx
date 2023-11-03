@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 
 import {
-  EuiHeader,
-  EuiHeaderSectionItem,
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
@@ -13,7 +11,6 @@ import {
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideOption,
   useEuiTheme,
-  EuiThemeProvider,
 } from '../../../../../src';
 
 export default () => {
@@ -93,61 +90,50 @@ export default () => {
   const { euiTheme } = useEuiTheme();
 
   return (
-    <EuiHeader theme="dark">
-      <EuiHeaderSectionItem>
-        <EuiSelectableTemplateSitewide
-          isLoading={isLoading}
-          onChange={onChange}
-          options={searchValueExists ? searchData : recentsWithIcon}
-          searchProps={{
-            append: '⌘K',
-            onKeyUpCapture: onKeyUpCapture,
-            className: 'customSearchClass',
-            inputRef: setSearchRef,
-          }}
-          listProps={{
-            className: 'customListClass',
-            css: css`
-              .euiSelectableTemplateSitewide__optionMeta--PINK {
-                font-weight: ${euiTheme.font.weight.medium};
-                color: ${euiTheme.colors.accentText};
-              }
-            `,
-          }}
-          popoverProps={{
-            className: 'customPopoverClass',
-          }}
-          popoverButton={
-            <EuiThemeProvider
-              colorMode="dark"
-              wrapperProps={{ cloneElement: true }}
-            >
-              <EuiButton color="text">Mobile toggle</EuiButton>
-            </EuiThemeProvider>
+    <EuiSelectableTemplateSitewide
+      isLoading={isLoading}
+      onChange={onChange}
+      options={searchValueExists ? searchData : recentsWithIcon}
+      searchProps={{
+        append: '⌘K',
+        onKeyUpCapture: onKeyUpCapture,
+        className: 'customSearchClass',
+        inputRef: setSearchRef,
+      }}
+      listProps={{
+        className: 'customListClass',
+        css: css`
+          .euiSelectableTemplateSitewide__optionMeta--PINK {
+            font-weight: ${euiTheme.font.weight.medium};
+            color: ${euiTheme.colors.accentText};
           }
-          popoverButtonBreakpoints={['xl']}
-          popoverFooter={
-            <EuiText color="subdued" size="xs">
-              <EuiFlexGroup
-                alignItems="center"
-                gutterSize="s"
-                responsive={false}
-                wrap
-              >
-                <EuiFlexItem grow={false}>
-                  {searchValueExists && <EuiLink>View more results</EuiLink>}
-                </EuiFlexItem>
-                <EuiFlexItem />
-                <EuiFlexItem grow={false}>Quickly search using</EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiBadge>Command + K</EuiBadge>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiText>
-          }
-        />
-      </EuiHeaderSectionItem>
-    </EuiHeader>
+        `,
+      }}
+      popoverProps={{
+        className: 'customPopoverClass',
+      }}
+      popoverButton={<EuiButton>Mobile toggle</EuiButton>}
+      popoverButtonBreakpoints={['xs', 's']}
+      popoverFooter={
+        <EuiText color="subdued" size="xs">
+          <EuiFlexGroup
+            alignItems="center"
+            gutterSize="s"
+            responsive={false}
+            wrap
+          >
+            <EuiFlexItem grow={false}>
+              {searchValueExists && <EuiLink>View more results</EuiLink>}
+            </EuiFlexItem>
+            <EuiFlexItem />
+            <EuiFlexItem grow={false}>Quickly search using</EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiBadge>Command + K</EuiBadge>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiText>
+      }
+    />
   );
 };
 
