@@ -11,6 +11,7 @@ import React, {
   ReactNode,
   useState,
   useMemo,
+  useCallback,
   CSSProperties,
   ReactElement,
 } from 'react';
@@ -106,9 +107,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     _closePopover && _closePopover();
   };
 
-  const togglePopover = () => {
-    setPopoverIsOpen(!popoverIsOpen);
-  };
+  const togglePopover = useCallback(() => {
+    setPopoverIsOpen((isOpen) => !isOpen);
+  }, []);
 
   // Width applied to the internal div
   const popoverWidth: CSSProperties['width'] = width || 600;
@@ -195,9 +196,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     return popoverButtonBreakpoints.includes(currentBreakpoint);
   }, [currentBreakpoint, popoverButtonBreakpoints]);
 
-  let popoverTrigger: ReactElement;
-  if (popoverButton && canShowPopoverButton) {
-    popoverTrigger = (
+  const popoverTrigger = useMemo(() => {
+    if (!popoverButton || !canShowPopoverButton) return;
+    return (
       <span
         className="euiSelectableTemplateSitewide__popoverTrigger"
         onClick={togglePopover}
@@ -206,7 +207,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         {popoverButton}
       </span>
     );
-  }
+  }, [popoverButton, canShowPopoverButton, togglePopover]);
 
   return (
     <EuiSelectable
