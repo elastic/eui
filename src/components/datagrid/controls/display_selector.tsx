@@ -87,7 +87,7 @@ const convertRowHeightsOptionsToSelection = (
   }
   return rowHeightButtonOptions[0];
 };
-const defaultLineCountValue = 2;
+const defaultLineCountValue = String(2);
 
 export const useDataGridDisplaySelector = (
   showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
@@ -136,7 +136,7 @@ export const useDataGridDisplaySelector = (
       if (option === 'auto') {
         rowHeightsOptions.defaultHeight = 'auto';
       } else if (option === 'lineCount') {
-        rowHeightsOptions.defaultHeight = { lineCount };
+        rowHeightsOptions.defaultHeight = { lineCount: Number(lineCount) };
       } else {
         rowHeightsOptions.defaultHeight = undefined;
       }
@@ -148,8 +148,8 @@ export const useDataGridDisplaySelector = (
   const setLineCountHeight = useCallback<
     NonNullable<EuiRangeProps['onChange']>
   >((event) => {
+    setLineCount(event.currentTarget.value);
     const newLineCount = Number(event.currentTarget.value);
-    setLineCount(newLineCount);
 
     // Don't let users set a 0 or negative line count
     if (newLineCount > 0) {
@@ -358,6 +358,7 @@ export const useDataGridDisplaySelector = (
                       min={1}
                       max={20}
                       step={1}
+                      required
                       value={lineCount}
                       onChange={setLineCountHeight}
                       data-test-subj="lineCountNumber"
