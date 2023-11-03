@@ -29,6 +29,21 @@ describe('EuiAbsoluteTab', () => {
   };
 
   describe('user input', () => {
+    it('displays the enter key help text when the input has been edited and the date has not yet been parsed', () => {
+      const { getByTestSubject, queryByText } = render(
+        <EuiAbsoluteTab {...props} />
+      );
+      const helpText = 'Press the Enter key to parse as a date.';
+      expect(queryByText(helpText)).not.toBeInTheDocument();
+
+      const input = getByTestSubject('superDatePickerAbsoluteDateInput');
+      fireEvent.change(input, { target: { value: 'test' } });
+
+      expect(queryByText(helpText)).toBeInTheDocument();
+    });
+  });
+
+  describe('date parsing', () => {
     const changeInput = (input: HTMLElement, value: string) => {
       fireEvent.change(input, { target: { value } });
       fireEvent.keyDown(input, { key: 'Enter' });

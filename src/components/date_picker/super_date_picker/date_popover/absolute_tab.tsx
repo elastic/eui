@@ -41,6 +41,7 @@ export interface EuiAbsoluteTabProps {
 }
 
 interface EuiAbsoluteTabState {
+  hasUnparsedText: boolean;
   isTextInvalid: boolean;
   textInputValue: string;
   valueAsMoment: Moment | null;
@@ -64,6 +65,7 @@ export class EuiAbsoluteTab extends Component<
       .format(this.props.dateFormat);
 
     this.state = {
+      hasUnparsedText: false,
       isTextInvalid: false,
       textInputValue,
       valueAsMoment,
@@ -81,6 +83,7 @@ export class EuiAbsoluteTab extends Component<
     this.setState({
       valueAsMoment,
       textInputValue: valueAsMoment.format(this.props.dateFormat),
+      hasUnparsedText: false,
       isTextInvalid: false,
     });
   };
@@ -88,6 +91,7 @@ export class EuiAbsoluteTab extends Component<
   handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({
       textInputValue: event.target.value,
+      hasUnparsedText: true,
       isTextInvalid: false,
     });
   };
@@ -120,8 +124,9 @@ export class EuiAbsoluteTab extends Component<
       onChange(valueAsMoment.toISOString());
       this.setState({
         textInputValue: valueAsMoment.format(this.props.dateFormat),
-        isTextInvalid: false,
         valueAsMoment: valueAsMoment,
+        hasUnparsedText: false,
+        isTextInvalid: false,
       });
     } else {
       this.setState(invalidDateState);
@@ -131,7 +136,8 @@ export class EuiAbsoluteTab extends Component<
   render() {
     const { dateFormat, timeFormat, locale, utcOffset, labelPrefix } =
       this.props;
-    const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
+    const { valueAsMoment, isTextInvalid, hasUnparsedText, textInputValue } =
+      this.state;
 
     return (
       <>
@@ -156,6 +162,12 @@ export class EuiAbsoluteTab extends Component<
               className="euiSuperDatePicker__absoluteDateFormRow"
               isInvalid={isTextInvalid}
               error={isTextInvalid ? dateFormatError : undefined}
+              helpText={
+                // TODO: i18n
+                hasUnparsedText
+                  ? 'Press the Enter key to parse as a date'
+                  : undefined
+              }
             >
               <EuiFieldText
                 compressed
