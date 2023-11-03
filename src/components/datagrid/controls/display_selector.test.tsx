@@ -368,19 +368,28 @@ describe('useDataGridDisplaySelector', () => {
           expect(getLineCountNumber(component)).toEqual(3);
         });
 
-        it('does not allow zero or negative line count values', () => {
+        it('updates the input but not the grid display if an invalid number is passed', () => {
+          const onChange = jest.fn();
+
           const component = mount(
             <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
+              rowHeightsOptions={{ defaultHeight: { lineCount: 2 }, onChange }}
             />
           );
           openPopover(component);
 
-          setLineCountNumber(component, 0);
-          expect(getLineCountNumber(component)).toEqual(2);
+          const assertInvalidNumber = (value: number) => {
+            setLineCountNumber(component, value);
 
-          setLineCountNumber(component, -50);
-          expect(getLineCountNumber(component)).toEqual(2);
+            const input = component.find('input[type="number"]').getDOMNode();
+            expect((input as HTMLInputElement).value).toEqual(String(value));
+
+            expect(input).toBeInvalid();
+            expect(onChange).not.toHaveBeenCalled();
+          };
+
+          assertInvalidNumber(0);
+          assertInvalidNumber(-50);
         });
 
         it('correctly resets lineCount to initial developer-passed state', () => {

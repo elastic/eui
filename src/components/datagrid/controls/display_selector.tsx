@@ -87,6 +87,7 @@ const convertRowHeightsOptionsToSelection = (
   }
   return rowHeightButtonOptions[0];
 };
+const defaultLineCountValue = String(2);
 
 export const useDataGridDisplaySelector = (
   showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
@@ -125,7 +126,7 @@ export const useDataGridDisplaySelector = (
   }, []);
 
   // Row height logic
-  const [lineCount, setLineCount] = useState(2);
+  const [lineCountInput, setLineCountInput] = useState(defaultLineCountValue);
   const setRowHeight = useCallback(
     (option: string) => {
       const rowHeightsOptions: EuiDataGridRowHeightsOptions = {
@@ -135,26 +136,28 @@ export const useDataGridDisplaySelector = (
       if (option === 'auto') {
         rowHeightsOptions.defaultHeight = 'auto';
       } else if (option === 'lineCount') {
-        rowHeightsOptions.defaultHeight = { lineCount };
+        rowHeightsOptions.defaultHeight = { lineCount: Number(lineCountInput) };
       } else {
         rowHeightsOptions.defaultHeight = undefined;
       }
 
       setUserRowHeightsOptions(rowHeightsOptions);
     },
-    [lineCount]
+    [lineCountInput]
   );
   const setLineCountHeight = useCallback<
     NonNullable<EuiRangeProps['onChange']>
   >((event) => {
+    setLineCountInput(event.currentTarget.value);
     const newLineCount = Number(event.currentTarget.value);
-    if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
 
-    setLineCount(newLineCount);
-    setUserRowHeightsOptions({
-      rowHeights: {}, // Unset all row-specific line counts
-      defaultHeight: { lineCount: newLineCount },
-    });
+    // Don't let users set a 0 or negative line count
+    if (newLineCount > 0) {
+      setUserRowHeightsOptions({
+        rowHeights: {}, // Unset all row-specific line counts
+        defaultHeight: { lineCount: newLineCount },
+      });
+    }
   }, []);
 
   // Merge the developer-specified configurations with user overrides
@@ -182,8 +185,10 @@ export const useDataGridDisplaySelector = (
   }, [rowHeightsOptions]);
 
   useEffect(() => {
-    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-    setLineCount(rowHeightsOptions?.defaultHeight?.lineCount || 2);
+    setLineCountInput(
+      // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
+      rowHeightsOptions?.defaultHeight?.lineCount || defaultLineCountValue
+    );
     // @ts-ignore - same as above
   }, [rowHeightsOptions?.defaultHeight?.lineCount]);
 
@@ -353,7 +358,8 @@ export const useDataGridDisplaySelector = (
                       min={1}
                       max={20}
                       step={1}
-                      value={lineCount}
+                      required
+                      value={lineCountInput}
                       onChange={setLineCountHeight}
                       data-test-subj="lineCountNumber"
                     />
