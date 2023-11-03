@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEvent, KeyboardEvent } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 
 import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
@@ -52,6 +52,7 @@ export class EuiAbsoluteTab extends Component<
   EuiAbsoluteTabState
 > {
   state: EuiAbsoluteTabState;
+  isParsing = false; // Store outside of state as a ref for faster/unbatched updates
 
   constructor(props: EuiAbsoluteTabProps) {
     super(props);
@@ -89,6 +90,8 @@ export class EuiAbsoluteTab extends Component<
   };
 
   handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (this.isParsing) return;
+
     this.setState({
       textInputValue: event.target.value,
       hasUnparsedText: true,
@@ -96,19 +99,22 @@ export class EuiAbsoluteTab extends Component<
     });
   };
 
-  parseUserDateInput = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== keys.ENTER) return;
-
-    const { onChange, dateFormat } = this.props;
-    const { textInputValue } = this.state;
+  parseUserDateInput = (textInputValue: string) => {
+    this.isParsing = true;
+    const finishParsing = () => {
+      this.isParsing = false;
+    };
 
     const invalidDateState = {
+      textInputValue,
       isTextInvalid: true,
       valueAsMoment: null,
     };
     if (!textInputValue) {
-      return this.setState(invalidDateState);
+      return this.setState(invalidDateState, finishParsing);
     }
+
+    const { onChange, dateFormat } = this.props;
 
     // Attempt to parse with passed `dateFormat`
     let valueAsMoment = moment(textInputValue, dateFormat, true);
@@ -122,14 +128,17 @@ export class EuiAbsoluteTab extends Component<
 
     if (dateIsValid) {
       onChange(valueAsMoment.toISOString());
-      this.setState({
-        textInputValue: valueAsMoment.format(this.props.dateFormat),
-        valueAsMoment: valueAsMoment,
-        hasUnparsedText: false,
-        isTextInvalid: false,
-      });
+      this.setState(
+        {
+          textInputValue: valueAsMoment.format(this.props.dateFormat),
+          valueAsMoment: valueAsMoment,
+          hasUnparsedText: false,
+          isTextInvalid: false,
+        },
+        finishParsing
+      );
     } else {
-      this.setState(invalidDateState);
+      this.setState(invalidDateState, finishParsing);
     }
   };
 
@@ -181,7 +190,14 @@ export class EuiAbsoluteTab extends Component<
                 isInvalid={isTextInvalid}
                 value={textInputValue}
                 onChange={this.handleTextChange}
-                onKeyDown={this.parseUserDateInput}
+                onPaste={(event) => {
+                  this.parseUserDateInput(event.clipboardData.getData('text'));
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === keys.ENTER) {
+                    this.parseUserDateInput(textInputValue);
+                  }
+                }}
                 data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
               />

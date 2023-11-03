@@ -56,6 +56,30 @@ describe('EuiAbsoluteTab', () => {
       fireEvent.keyDown(input, { key: 'Enter' });
       expect(queryByText(formatHelpText)).toHaveClass('euiFormErrorText');
     });
+
+    it('immediately parses pasted text without needing an extra enter keypress', () => {
+      const { getByTestSubject, queryByText } = render(
+        <EuiAbsoluteTab {...props} />
+      );
+      const input = getByTestSubject(
+        'superDatePickerAbsoluteDateInput'
+      ) as HTMLInputElement;
+
+      fireEvent.paste(input, {
+        clipboardData: { getData: () => '1970-01-01' },
+      });
+      expect(input).not.toBeInvalid();
+      expect(input.value).toContain('Jan 1, 1970');
+
+      input.value = '';
+      fireEvent.paste(input, {
+        clipboardData: { getData: () => 'not a date' },
+      });
+      expect(input).toBeInvalid();
+
+      expect(queryByText(/Allowed formats: /)).toBeInTheDocument();
+      expect(queryByText(/Press the Enter key /)).not.toBeInTheDocument();
+    });
   });
 
   describe('date parsing', () => {
