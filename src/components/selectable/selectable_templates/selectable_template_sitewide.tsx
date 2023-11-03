@@ -197,14 +197,15 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
 
   let popoverTrigger: ReactElement;
   if (popoverButton && canShowPopoverButton) {
-    popoverTrigger = React.cloneElement(popoverButton, {
-      ...popoverButton.props,
-      onClick: togglePopover,
-      onKeyDown: (e: KeyboardEvent) => {
-        // Selectable preventsDefault on Enter which kills browser controls for pressing the button
-        e.stopPropagation();
-      },
-    });
+    popoverTrigger = (
+      <span
+        className="euiSelectableTemplateSitewide__popoverTrigger"
+        onClick={togglePopover}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        {popoverButton}
+      </span>
+    );
   }
 
   return (

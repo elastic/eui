@@ -7,9 +7,11 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
-import { render } from '../../../test/rtl';
 
 import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
 import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
@@ -127,6 +129,10 @@ describe('EuiSelectableTemplateSitewide', () => {
       beforeAll(() => (window.innerWidth = 670));
       afterAll(() => 1024); // reset to jsdom's default
 
+      const button = (
+        <button data-test-subj="mobilePopoverButton">Button</button>
+      );
+
       test('is rendered', () => {
         const { container } = render(
           <EuiSelectableTemplateSitewide
@@ -160,6 +166,34 @@ describe('EuiSelectableTemplateSitewide', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+
+      test('toggles the selectable popover for keyboard users', () => {
+        const { getByTestSubject } = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<div>{button}</div>}
+          />
+        );
+        // fireEvent doesn't seem to work: https://github.com/testing-library/user-event/issues/179#issuecomment-1125146667
+        getByTestSubject('mobilePopoverButton').focus();
+        userEvent.keyboard('{enter}');
+        waitForEuiPopoverOpen();
+
+        expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();
+      });
+
+      test('toggles the selectable popover even when a wrapper exists around the button', () => {
+        const { getByTestSubject } = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<>{button}</>}
+          />
+        );
+        fireEvent.click(getByTestSubject('mobilePopoverButton'));
+        waitForEuiPopoverOpen();
+
+        expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();
       });
     });
   });
