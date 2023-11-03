@@ -137,7 +137,7 @@ describe('EuiSelectableTemplateSitewide', () => {
         const { container } = render(
           <EuiSelectableTemplateSitewide
             options={options}
-            popoverButton={<button>Button</button>}
+            popoverButton={button}
           />
         );
 
@@ -145,27 +145,29 @@ describe('EuiSelectableTemplateSitewide', () => {
       });
 
       test('is rendered with popoverButtonBreakpoints m', () => {
-        const { container } = render(
+        const { getByTestSubject } = render(
           <EuiSelectableTemplateSitewide
             options={options}
-            popoverButton={<button>Button</button>}
+            popoverButton={button}
             popoverButtonBreakpoints={['xs', 's', 'm']}
           />
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(getByTestSubject('mobilePopoverButton')).toBeInTheDocument();
       });
 
       test('is not rendered with popoverButtonBreakpoints xs', () => {
-        const { container } = render(
+        const { queryByTestSubject } = render(
           <EuiSelectableTemplateSitewide
             options={options}
-            popoverButton={<button>Button</button>}
+            popoverButton={button}
             popoverButtonBreakpoints={['xs']}
           />
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(
+          queryByTestSubject('mobilePopoverButton')
+        ).not.toBeInTheDocument();
       });
 
       test('toggles the selectable popover for keyboard users', () => {
