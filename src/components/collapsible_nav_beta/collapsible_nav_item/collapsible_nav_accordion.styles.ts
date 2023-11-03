@@ -52,6 +52,9 @@ export const euiCollapsibleNavAccordionStyles = (
             outline: none;
           }
         }
+
+        /* Weird workaround for Safari showing a strange focus ring bump around the arrow */
+        overflow: hidden;
       }
 
       .euiAccordion__buttonContent {
