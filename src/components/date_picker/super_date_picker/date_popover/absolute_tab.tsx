@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component, ChangeEvent, KeyboardEvent } from 'react';
 
 import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 import dateMath from '@elastic/datemath';
 
+import { keys } from '../../../../services';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiCode } from '../../../code';
 import { EuiI18n } from '../../../i18n';
@@ -84,19 +85,16 @@ export class EuiAbsoluteTab extends Component<
     });
   };
 
-  debouncedTypeTimeout: ReturnType<typeof setTimeout> | undefined;
-
   handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ textInputValue: event.target.value });
-
-    // Add a debouncer that gives the user some time to finish typing
-    // before attempting to parse the text as a timestamp. Otherwise,
-    // typing a single digit gets parsed as a unix timestamp 😬
-    clearTimeout(this.debouncedTypeTimeout);
-    this.debouncedTypeTimeout = setTimeout(this.parseUserDateInput, 1000); // 1 second debounce
+    this.setState({
+      textInputValue: event.target.value,
+      isTextInvalid: false,
+    });
   };
 
-  parseUserDateInput = () => {
+  parseUserDateInput = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== keys.ENTER) return;
+
     const { onChange, dateFormat } = this.props;
     const { textInputValue } = this.state;
 
@@ -164,6 +162,7 @@ export class EuiAbsoluteTab extends Component<
                 isInvalid={isTextInvalid}
                 value={textInputValue}
                 onChange={this.handleTextChange}
+                onKeyDown={this.parseUserDateInput}
                 data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
               />

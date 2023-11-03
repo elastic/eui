@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
@@ -29,14 +29,9 @@ describe('EuiAbsoluteTab', () => {
   };
 
   describe('user input', () => {
-    beforeAll(() => jest.useFakeTimers());
-    afterAll(() => jest.useRealTimers());
-
     const changeInput = (input: HTMLElement, value: string) => {
       fireEvent.change(input, { target: { value } });
-      act(() => {
-        jest.advanceTimersByTime(1000); // Debounce timer
-      });
+      fireEvent.keyDown(input, { key: 'Enter' });
     };
 
     it('parses the passed `dateFormat` prop', () => {
