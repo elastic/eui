@@ -18,6 +18,12 @@ jest.mock('../../date_picker', () => ({
 }));
 
 describe('EuiAbsoluteTab', () => {
+  // mock requestAnimationFrame to fire immediately
+  const rafSpy = jest
+    .spyOn(window, 'requestAnimationFrame')
+    .mockImplementation((cb: Function) => cb());
+  afterAll(() => rafSpy.mockRestore());
+
   const props = {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     timeFormat: 'HH:mm',

@@ -101,9 +101,11 @@ export class EuiAbsoluteTab extends Component<
 
   parseUserDateInput = (textInputValue: string) => {
     this.isParsing = true;
-    const finishParsing = () => {
+    // Wait a tick for state to finish updating (whatever gets returned),
+    // and then allow `onChange` user input to continue setting state
+    requestAnimationFrame(() => {
       this.isParsing = false;
-    };
+    });
 
     const invalidDateState = {
       textInputValue,
@@ -111,7 +113,7 @@ export class EuiAbsoluteTab extends Component<
       valueAsMoment: null,
     };
     if (!textInputValue) {
-      return this.setState(invalidDateState, finishParsing);
+      return this.setState(invalidDateState);
     }
 
     const { onChange, dateFormat } = this.props;
@@ -128,17 +130,14 @@ export class EuiAbsoluteTab extends Component<
 
     if (dateIsValid) {
       onChange(valueAsMoment.toISOString());
-      this.setState(
-        {
-          textInputValue: valueAsMoment.format(this.props.dateFormat),
-          valueAsMoment: valueAsMoment,
-          hasUnparsedText: false,
-          isTextInvalid: false,
-        },
-        finishParsing
-      );
+      this.setState({
+        textInputValue: valueAsMoment.format(this.props.dateFormat),
+        valueAsMoment: valueAsMoment,
+        hasUnparsedText: false,
+        isTextInvalid: false,
+      });
     } else {
-      this.setState(invalidDateState, finishParsing);
+      this.setState(invalidDateState);
     }
   };
 
