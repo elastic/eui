@@ -153,19 +153,24 @@ export class EuiAbsoluteTab extends Component<
           utcOffset={utcOffset}
         />
         <EuiI18n
-          token="euiAbsoluteTab.dateFormatError"
-          default="Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp"
+          tokens={[
+            'euiAbsoluteTab.dateFormatHint',
+            'euiAbsoluteTab.dateFormatError',
+          ]}
+          defaults={[
+            'Press the Enter key to parse as a date.',
+            'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
+          ]}
           values={{ dateFormat: <EuiCode>{dateFormat}</EuiCode> }}
         >
-          {(dateFormatError: string) => (
+          {([dateFormatHint, dateFormatError]: string[]) => (
             <EuiFormRow
               className="euiSuperDatePicker__absoluteDateFormRow"
               isInvalid={isTextInvalid}
               error={isTextInvalid ? dateFormatError : undefined}
               helpText={
-                // TODO: i18n
                 hasUnparsedText
-                  ? 'Press the Enter key to parse as a date'
+                  ? dateFormatHint
                   : undefined
               }
             >

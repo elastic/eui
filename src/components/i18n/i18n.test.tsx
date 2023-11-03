@@ -99,7 +99,7 @@ describe('EuiI18n', () => {
     });
 
     describe('render prop with multiple tokens', () => {
-      it('renders render prop result to the dom', () => {
+      it('renders basic strings to the dom', () => {
         const component = mount(
           <EuiI18n
             tokens={['test1', 'test2']}
@@ -107,6 +107,26 @@ describe('EuiI18n', () => {
               'This is the first basic string.',
               'This is the second basic string.',
             ]}
+          >
+            {([one, two]: ReactChild[]) => (
+              <div>
+                {one} {two}
+              </div>
+            )}
+          </EuiI18n>
+        );
+        expect(component).toMatchSnapshot();
+      });
+
+      it('renders strings with placeholders to the dom', () => {
+        const component = mount(
+          <EuiI18n
+            tokens={['test1', 'test2']}
+            defaults={[
+              'This is the first basic string.',
+              'This is the a second string with a {placeholder}.',
+            ]}
+            values={{ placeholder: 'value' }}
           >
             {([one, two]: ReactChild[]) => (
               <div>
