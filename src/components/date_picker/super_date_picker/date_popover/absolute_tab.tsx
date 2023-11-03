@@ -170,7 +170,9 @@ export class EuiAbsoluteTab extends Component<
               error={isTextInvalid ? dateFormatError : undefined}
               helpText={
                 hasUnparsedText
-                  ? dateFormatHint
+                  ? isTextInvalid
+                    ? dateFormatHint
+                    : [dateFormatHint, dateFormatError]
                   : undefined
               }
             >

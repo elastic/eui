@@ -41,6 +41,21 @@ describe('EuiAbsoluteTab', () => {
 
       expect(queryByText(helpText)).toBeInTheDocument();
     });
+
+    it('displays the formats as a hint before parse, but as an error if invalid', () => {
+      const { getByTestSubject, queryByText } = render(
+        <EuiAbsoluteTab {...props} />
+      );
+      const formatHelpText = /Allowed formats: /;
+      expect(queryByText(formatHelpText)).not.toBeInTheDocument();
+
+      const input = getByTestSubject('superDatePickerAbsoluteDateInput');
+      fireEvent.change(input, { target: { value: 'test' } });
+      expect(queryByText(formatHelpText)).toHaveClass('euiFormHelpText');
+
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(queryByText(formatHelpText)).toHaveClass('euiFormErrorText');
+    });
   });
 
   describe('date parsing', () => {
