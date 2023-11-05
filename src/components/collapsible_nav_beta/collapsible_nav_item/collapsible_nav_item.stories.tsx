@@ -152,33 +152,13 @@ export const EdgeCaseTesting: Story = {
         />
         <EuiCollapsibleNavItem
           {...args}
-          title="Accordion with no items and link"
-          items={[]}
-          href="#"
-        />
-        <EuiCollapsibleNavItem
-          {...args}
-          title="Accordion with link"
-          items={[{ title: 'Link should be ignored' }]}
-          href="#"
-        />
-        <EuiCollapsibleNavItem
-          {...args}
           title="Group with no items"
           items={[]}
         />
         <EuiCollapsibleNavItem
           {...args}
-          title="Group with no items and link"
-          items={[]}
-          href="#"
-        />
-        <EuiCollapsibleNavItem
-          {...args}
-          title="Group with icon and external link"
+          title="Group with icon"
           icon="link"
-          href="#"
-          linkProps={{ target: '_blank' }}
           isCollapsible={false}
           items={[
             { ...args, title: 'Link', href: '#' },

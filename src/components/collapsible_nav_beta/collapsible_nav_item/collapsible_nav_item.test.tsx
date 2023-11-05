@@ -36,12 +36,9 @@ describe('EuiCollapsibleNavItem', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('warns if a dev tries to pass a link/href to an accordion', () => {
-    const consoleWarnSpy = jest
-      .spyOn(window.console, 'warn')
-      .mockImplementation(() => {});
-
-    render(
+  it('does not pass the `href` prop to the accordion/group title', () => {
+    const { container } = render(
+      // @ts-expect-error - should warn about `href`
       <EuiCollapsibleNavItem
         {...requiredProps}
         title="Item"
@@ -49,11 +46,8 @@ describe('EuiCollapsibleNavItem', () => {
         href="#"
       />
     );
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
-      'When rendering a collapsible accordion with `items`, the `href` prop is ignored'
-    );
 
-    consoleWarnSpy.mockRestore();
+    expect(container.querySelector('a')).not.toBeInTheDocument();
   });
 
   it('renders a top level group if items exist and `isCollapsible` is set to false', () => {
@@ -67,20 +61,6 @@ describe('EuiCollapsibleNavItem', () => {
     );
 
     expect(container.firstChild).toHaveClass('euiCollapsibleNavGroup');
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('renders a top level link if items are missing or empty', () => {
-    const { container } = render(
-      <EuiCollapsibleNavItem
-        {...requiredProps}
-        title="Item"
-        href="#"
-        items={[]}
-      />
-    );
-
-    expect(container.firstChild).toHaveClass('euiLink');
     expect(container.firstChild).toMatchSnapshot();
   });
 

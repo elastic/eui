@@ -135,19 +135,3 @@ exports[`EuiCollapsibleNavItem renders a top level group if items exist and \`is
   </div>
 </div>
 `;
-
-exports[`EuiCollapsibleNavItem renders a top level link if items are missing or empty 1`] = `
-<a
-  aria-label="aria-label"
-  class="euiLink euiCollapsibleNavLink euiCollapsibleNavItem testClass1 testClass2 emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isNotAccordion-isInteractive-euiTestCss"
-  data-test-subj="test subject string"
-  href="#"
-  rel="noreferrer"
->
-  <span
-    class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
-  >
-    Item
-  </span>
-</a>
-`;
