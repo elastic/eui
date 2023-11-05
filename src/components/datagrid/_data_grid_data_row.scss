@@ -50,28 +50,18 @@
     }
   }
 
-  // Only add the transition effect on hover, so that it is instantaneous on focus
-  // Long delays on hover to mitigate the accordion effect
-  &:hover {
-    .euiDataGridRowCell__actionButtonIcon {
-      animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellActionsSlideIn;
-      animation-iteration-count: 1;
-      animation-delay: $euiAnimSpeedNormal;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  // On focus, directly show action buttons (without animation)
+  // On hover & focus, show cell action buttons
+  &:hover,
   &:focus,
   // Prevent the animation from flickering after cell popover close when focus is restored the expansion button
   &:focus-within,
   // Always make the cell actions visible when the cell popover is open
   &.euiDataGridRowCell--open {
-    .euiDataGridRowCell__actionButtonIcon {
-      animation: none;
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
+    .euiDataGridRowCell__actions {
+      animation-duration: $euiAnimSpeedExtraFast;
+      animation-name: euiDataGridCellActionsSlideIn;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
     }
   }
 
@@ -141,6 +131,8 @@
   border: $euiBorderWidthThin solid $euiColorPrimary;
   border-top-left-radius: $euiBorderRadius / 2;
   border-top-right-radius: $euiBorderRadius / 2;
+  transform: scaleY(0);
+  transform-origin: bottom;
 
   .euiDataGridRowCell--numeric &,
   .euiDataGridRowCell--currency & {
@@ -234,13 +226,6 @@
 }
 
 @keyframes euiDataGridCellActionsSlideIn {
-  from {
-    margin-left: 0;
-    width: 0;
-  }
-
-  to {
-    margin-left: $euiDataGridCellPaddingM;
-    width: $euiSizeM;
-  }
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
 }
