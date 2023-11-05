@@ -10,10 +10,16 @@
   .euiDataGridRowCell__content {
     @include euiFontSizeS;
     padding: $euiDataGridCellPaddingM;
+    height: 100%;
+    overflow: hidden;
+
+    &--autoHeight {
+      height: auto;
+    }
   }
 
   // Hack to allow focus trap to still stretch to full row height on defined heights
-  > * {
+  > [data-focus-lock-disabled] {
     height: 100%;
   }
 
@@ -99,18 +105,11 @@
   @include euiBottomShadow; // TODO: Convert to euiShadowMedium() in Emotion
 }
 
-// TODO
-// .euiDataGridRowCell--controlColumn & {
-//   height: 100%;
-//   align-items: center;
-// }
-
-.euiDataGridRowCell__numericalHeight {
-  // Without this rule, popover anchors content that overflows off the page
-  [data-euiportal],
-  .euiPopover {
-    height: 100%;
-  }
+.euiDataGridRowCell--controlColumn .euiDataGridRowCell__content {
+  max-height: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
 }
 
 // Cell actions
