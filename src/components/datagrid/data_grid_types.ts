@@ -773,9 +773,14 @@ export interface EuiDataGridColumnCellActionProps {
    */
   columnId: string;
   /**
-   * React component representing the action displayed in the cell
+   * React component representing the action displayed in the cell.
+   *
+   * On cell hover/focus, an EuiButtonIcon will be displayed that cannot
+   * have its size or color customized, only its icon.
+   *
+   * On cell expand, an EuiButtonEmpty will be displayed in the cell popover
+   * that can have any sizing, color, or text.
    */
-  // Component: ComponentType<EuiButtonEmptyProps | EuiButtonProps>;
   Component: typeof EuiButtonEmpty | typeof EuiButtonIcon;
   /**
    * Determines whether the cell's action is displayed expanded (in the Popover)

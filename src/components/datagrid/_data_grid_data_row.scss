@@ -63,7 +63,7 @@
 
   // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
   &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
-    .euiDataGridRowCell__actionButtonIcon {
+    .euiDataGridRowCell__actions {
       display: none;
     }
   }
@@ -114,47 +114,60 @@
 
 // Cell actions
 .euiDataGridRowCell__actions {
+  z-index: $euiZDataGridCellPopover;
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  margin-bottom: -$euiBorderWidthThin; // Vertical alignment
   display: flex;
+  gap: $euiSizeXS / 2;
+  padding-inline: $euiSizeXS / 2;
+  background-color: $euiColorPrimary;
+  color: $euiColorEmptyShade;
+  border: $euiBorderWidthThin solid $euiColorPrimary;
+  border-top-left-radius: $euiBorderRadius / 2;
+  border-top-right-radius: $euiBorderRadius / 2;
 
-  &--overlay {
-    position: absolute;
+  .euiDataGridRowCell--numeric &,
+  .euiDataGridRowCell--currency & {
+    left: auto;
     right: 0;
-    top: 0;
-    padding: $euiDataGridCellPaddingM 0;
-    background-color: $euiColorEmptyShade;
   }
 }
 
 .euiDataGridRowCell__actionButtonIcon {
-  height: $euiSizeM;
-  border-radius: $euiBorderRadius / 2;
-  width: 0;
-  overflow: hidden;
-  // Have to take out the generic transition so it is instaneous on focus
-  transition: none;
-  // Disable filled button box-shadows on legacy theme - they're unnecessary when this small in a datagrid
-  box-shadow: none !important; // stylelint-disable-line declaration-no-important
-  // Remove filled button borders on legacy theme - this way we don't need to animate the border
-  border: none;
+  height: $euiSize + $euiSizeXS;
+  width: $euiSize;
+  border-radius: 0;
+
+  /* Force all cell action buttons to match EUI colors */
+  &,
+  svg {
+    // stylelint-disable declaration-no-important
+    background-color: transparent !important;
+    color: currentColor !important;
+    fill: currentColor !important;
+    // stylelint-enable declaration-no-important
+  }
+
+  /* Manually increase the size of the expand cell icon - it's a bit small by default */
+  &.euiDataGridRowCell__expandCell .euiIcon {
+    width: 120%;
+    height: 100%;
+  }
 }
 
 // Row stripes
 @include euiDataGridStyles(stripes) {
   .euiDataGridRow--striped {
-    &,
-    .euiDataGridRowCell__actions--overlay {
-      background-color: $euiColorLightestShade;
-    }
+    background-color: $euiColorLightestShade;
   }
 }
 
 // Row highlights
 @include euiDataGridStyles(rowHoverHighlight) {
   .euiDataGridRow:hover {
-    &,
-    .euiDataGridRowCell__actions--overlay {
-      background-color: $euiColorHighlight;
-    }
+    background-color: $euiColorHighlight;
   }
 }
 
@@ -203,17 +216,6 @@
     .euiDataGridRowCell__content {
       padding: $euiDataGridCellPaddingL;
     }
-  }
-}
-
-// Compressed density grids - height tweaks
-@include euiDataGridStyles(fontSizeSmall, paddingSmall) {
-  .euiDataGridRowCell__actions--overlay {
-    padding: ($euiDataGridCellPaddingS / 2) 0;
-  }
-
-  .euiDataGridRowCell__defaultHeight .euiDataGridRowCell__actions {
-    transform: translateY(1px);
   }
 }
 

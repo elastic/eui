@@ -49,11 +49,11 @@ describe('EuiDataGridCellActions', () => {
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon"
+        className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
         color="primary"
         data-test-subj="euiDataGridCellExpandButton"
         display="fill"
-        iconSize="s"
+        iconSize="m"
         iconType="expandMini"
         onClick={[MockFunction]}
         title="expandButtonTitle"
@@ -74,8 +74,11 @@ describe('EuiDataGridCellActions', () => {
       <EuiButtonIcon
         aria-hidden={true}
         className="euiDataGridRowCell__actionButtonIcon"
+        color="primary"
+        display="fill"
         iconSize="s"
         iconType="eye"
+        size="xs"
       />
     `);
   });
