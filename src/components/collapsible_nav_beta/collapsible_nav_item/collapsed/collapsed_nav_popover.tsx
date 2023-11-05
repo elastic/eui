@@ -10,7 +10,6 @@ import React, { FunctionComponent, useState, useCallback } from 'react';
 
 import { useEuiTheme } from '../../../../services';
 
-import { EuiLink, EuiLinkAnchorProps } from '../../../link';
 import { EuiPopover, EuiPopoverTitle } from '../../../popover';
 
 import {
@@ -19,27 +18,20 @@ import {
 } from '../collapsible_nav_item';
 
 import { EuiCollapsedNavButton } from './collapsed_nav_button';
-import {
-  euiCollapsedNavPopoverStyles,
-  euiCollapsedNavPopoverTitleStyles,
-} from './collapsed_nav_popover.styles';
+import { euiCollapsedNavPopoverStyles } from './collapsed_nav_popover.styles';
 
 export const EuiCollapsedNavPopover: FunctionComponent<
-  EuiCollapsibleNavItemProps & {
-    items: EuiCollapsibleNavItemProps['items'];
-  }
+  Omit<
+    EuiCollapsibleNavItemProps,
+    'isCollapsible' | 'accordionProps' | 'href' | 'linkProps'
+  >
 > = ({
   items,
-  href, // eslint-disable-line local/href-with-rel
-  linkProps,
   title,
-  titleElement,
+  titleElement: TitleElement = 'span',
   icon,
   iconProps,
   isSelected,
-  isCollapsible = true,
-  // Extracted to avoid spreading to ...rest
-  accordionProps,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -68,62 +60,23 @@ export const EuiCollapsedNavPopover: FunctionComponent<
           isSelected={isSelected}
           onClick={togglePopover}
           hideToolTip={isPopoverOpen}
-          // Note: do not pass `linkProps` to buttons that toggle popovers
         />
       }
       {...rest}
     >
-      <EuiCollapsedNavPopoverTitle
-        title={title}
-        titleElement={titleElement}
-        // Only nav groups should have links - accordions should not
-        href={!isCollapsible ? href : undefined}
-        linkProps={!isCollapsible ? linkProps : undefined}
-      />
+      <EuiPopoverTitle>
+        <TitleElement
+          css={styles.euiCollapsedNavPopover__title}
+          className="eui-textTruncate"
+        >
+          {title}
+        </TitleElement>
+      </EuiPopoverTitle>
       <div css={styles.euiCollapsedNavPopover__items}>
         {items!.map((item, index) => (
           <EuiCollapsibleNavSubItem key={index} {...item} />
         ))}
       </div>
     </EuiPopover>
-  );
-};
-
-const EuiCollapsedNavPopoverTitle: FunctionComponent<
-  Pick<
-    EuiCollapsibleNavItemProps,
-    'title' | 'titleElement' | 'href' | 'linkProps'
-  >
-> = ({
-  title,
-  titleElement: TitleElement = 'span',
-  href, // eslint-disable-line local/href-with-rel
-  linkProps,
-}) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsedNavPopoverTitleStyles(euiTheme);
-  const cssStyles = [
-    styles.euiCollapsedNavPopover__title,
-    href ? styles.link : styles.span,
-    href && linkProps?.css,
-  ];
-
-  return (
-    <EuiPopoverTitle>
-      {href ? (
-        <EuiLink
-          href={href}
-          color="text"
-          {...(linkProps as EuiLinkAnchorProps)} // ExclusiveUnion shenanigans :|
-          css={cssStyles}
-        >
-          <TitleElement className="eui-textTruncate">{title}</TitleElement>
-        </EuiLink>
-      ) : (
-        <TitleElement css={cssStyles} className="eui-textTruncate">
-          {title}
-        </TitleElement>
-      )}
-    </EuiPopoverTitle>
   );
 };
