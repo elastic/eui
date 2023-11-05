@@ -54,7 +54,6 @@ const EuiDataGridCellContent: FunctionComponent<
     isFocused: boolean;
     ariaRowIndex: number;
     rowHeight?: EuiDataGridRowHeightOption;
-    cellHeightType: string;
     cellActions?: ReactNode;
   }
 > = memo(
@@ -69,13 +68,15 @@ const EuiDataGridCellContent: FunctionComponent<
     rowHeightUtils,
     isControlColumn,
     isFocused,
-    cellHeightType,
     cellActions,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
+
+    const cellHeightType =
+      rowHeightUtils?.getHeightType(rowHeight) || 'default';
 
     const classes = classNames(
       'euiDataGridRowCell__content',
@@ -711,15 +712,12 @@ export class EuiDataGridCell extends Component<
       rowIndex,
       rowHeightsOptions
     );
-    const cellHeightType =
-      rowHeightUtils?.getHeightType(rowHeight) || 'default';
 
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
       column,
       columnType,
-      cellHeightType,
       isExpandable,
       isExpanded: popoverIsOpen,
       isDetails: false,
@@ -739,7 +737,6 @@ export class EuiDataGridCell extends Component<
           rowIndex={rowIndex}
           colIndex={colIndex}
           column={column}
-          cellHeightType={cellHeightType}
           onExpandClick={() => {
             if (popoverIsOpen) {
               closeCellPopover();

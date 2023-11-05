@@ -8,7 +8,6 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { render } from '../../../test/rtl';
 
 import { EuiDataGridColumnCellAction } from '../data_grid_types';
 import {
@@ -112,17 +111,6 @@ describe('EuiDataGridCellActions', () => {
         </EuiI18n>
       </div>
     `);
-  });
-
-  it('renders with overlay positioning for non default height cells', () => {
-    const { container } = render(
-      <EuiDataGridCellActions {...requiredProps} cellHeightType="auto" />
-    );
-
-    // TODO: Switch to `.toHaveStyle({ position: 'absolute' })` once on Emotion
-    expect(container.firstChild).toHaveClass(
-      'euiDataGridRowCell__actions--overlay'
-    );
   });
 
   describe('visible cell actions limit', () => {
