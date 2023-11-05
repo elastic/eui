@@ -1,6 +1,6 @@
 .euiDataGridHeader {
   display: flex;
-  z-index: 3; // Needs to sit above the content and focused cells
+  z-index: $euiZDataGridCellPopover - 1; // Needs to sit above the content and focused cells
   background: $euiColorEmptyShade;
   position: sticky;
   top: 0;

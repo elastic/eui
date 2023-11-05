@@ -133,7 +133,7 @@
 
 // Cell actions
 .euiDataGridRowCell__actions {
-  z-index: $euiZDataGridCellPopover;
+  z-index: $euiZDataGridCellPopover - 2; // Sit below sticky column headers
   position: absolute;
   left: 0;
   bottom: 100%;
@@ -153,6 +153,12 @@
   .euiDataGridRowCell--currency & {
     left: auto;
     right: 0;
+  }
+
+  // The first row of cell actions need to be visible above the cell headers,
+  // but other cell actions that scroll past the sticky headers should not
+  .euiDataGridRowCell[data-gridcell-visible-row-index='0'] > & {
+    z-index: $euiZDataGridCellPopover - 1;
   }
 }
 
