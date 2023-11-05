@@ -23,6 +23,7 @@ export const DataGridCellPopoverContext =
     openCellPopover: () => {},
     closeCellPopover: () => {},
     setPopoverAnchor: () => {},
+    setPopoverAnchorPosition: () => {},
     setPopoverContent: () => {},
     setCellPopoverProps: () => {},
   });
@@ -39,6 +40,9 @@ export const useCellPopover = (): {
   });
   // Popover anchor & content are passed by individual `EuiDataGridCell`s
   const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
+  const [popoverAnchorPosition, setPopoverAnchorPosition] = useState<
+    'downLeft' | 'downRight'
+  >('downLeft');
   const [popoverContent, setPopoverContent] = useState<ReactNode>();
   // Allow customization of most (not all) popover props by consumers
   const [cellPopoverProps, setCellPopoverProps] = useState<
@@ -74,6 +78,7 @@ export const useCellPopover = (): {
     openCellPopover,
     cellLocation,
     setPopoverAnchor,
+    setPopoverAnchorPosition,
     setPopoverContent,
     setCellPopoverProps,
   };
@@ -99,7 +104,7 @@ export const useCellPopover = (): {
       display="block"
       hasArrow={false}
       panelPaddingSize="s"
-      anchorPosition="downLeft"
+      anchorPosition={popoverAnchorPosition}
       {...cellPopoverProps}
       focusTrapProps={{ onClickOutside }}
       panelProps={{

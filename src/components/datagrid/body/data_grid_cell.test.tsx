@@ -26,6 +26,7 @@ describe('EuiDataGridCell', () => {
     closeCellPopover: jest.fn(),
     openCellPopover: jest.fn(),
     setPopoverAnchor: jest.fn(),
+    setPopoverAnchorPosition: jest.fn(),
     setPopoverContent: jest.fn(),
     setCellPopoverProps: () => {},
   };
@@ -216,6 +217,7 @@ describe('EuiDataGridCell', () => {
     it('resets cell props when the cell is moved (columnId) or sorted (rowIndex)', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mount(<EuiDataGridCell {...requiredProps} />);
+      setState.mockClear();
 
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });

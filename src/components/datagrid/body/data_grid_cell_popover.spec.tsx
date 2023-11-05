@@ -16,12 +16,12 @@ import { EuiDataGrid, EuiDataGridProps } from '../';
 const baseProps: EuiDataGridProps = {
   'aria-label': 'Grid cell popover test',
   height: 300,
-  width: 300,
-  columns: [{ id: 'A' }, { id: 'B' }],
+  width: 400,
+  columns: [{ id: 'A' }, { id: 'B' }, { id: 'C', schema: 'numeric' }],
   rowCount: 2,
   renderCellValue: ({ rowIndex, columnId }) => `${columnId}, ${rowIndex}`,
   columnVisibility: {
-    visibleColumns: ['A', 'B'],
+    visibleColumns: ['A', 'B', 'C'],
     setVisibleColumns: () => {},
   },
 };
@@ -136,10 +136,13 @@ describe('EuiDataGridCellPopover', () => {
       ...baseProps,
       rowCount: 1,
       renderCellValue: ({ columnId }) => {
-        if (columnId === 'A') {
-          return 'short text';
-        } else {
-          return 'Very long text that should get cut off because it is so long';
+        switch (columnId) {
+          case 'A':
+            return 'short text';
+          case 'B':
+            return 'Very long text that should get cut off because it is so long';
+          case 'C':
+            return 'right aligned text';
         }
       },
     };
@@ -167,6 +170,18 @@ describe('EuiDataGridCellPopover', () => {
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '109px')
         .should('have.css', 'top', '73px');
+    });
+
+    it('right aligned popover', () => {
+      cy.realMount(<EuiDataGrid {...props} />);
+
+      openCellPopover('C');
+
+      // Matchers used due to subpixel rendering shenanigans
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'top', '73px')
+        .should('have.css', 'left')
+        .and('match', /^254[.\d]+px$/);
     });
   });
 });

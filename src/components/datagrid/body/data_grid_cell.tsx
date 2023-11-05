@@ -163,6 +163,7 @@ export class EuiDataGridCell extends Component<
     isEntered: false,
     enableInteractions: false,
     disableCellTabIndex: false,
+    cellTextAlign: 'Left',
   };
   unsubscribeCell?: Function;
   focusTimeout: number | undefined;
@@ -428,6 +429,7 @@ export class EuiDataGridCell extends Component<
       this.contentObserver.disconnect();
     }
     this.preventTabbing();
+    this.getCellTextAlign();
   };
 
   onFocus = (e: FocusEvent<HTMLDivElement>) => {
@@ -486,6 +488,29 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  getCellTextAlign = () => {
+    if (this.cellContentsRef) {
+      const { columnType } = this.props;
+      if (!columnType) {
+        // If no schema was set, this is likely a left aligned column
+        this.setState({ cellTextAlign: 'Left' });
+      } else if (columnType === 'numeric' || columnType === 'currency') {
+        // Default EUI schemas that we know set right text align
+        this.setState({ cellTextAlign: 'Right' });
+      } else {
+        // If the consumer is using a custom schema, it may have custom text alignment
+        const textAlign = window
+          .getComputedStyle(this.cellContentsRef)
+          .getPropertyValue('text-align');
+
+        this.setState({
+          cellTextAlign:
+            textAlign === 'right' || textAlign === 'end' ? 'Right' : 'Left',
+        });
+      }
+    }
+  };
+
   isExpandable = () => {
     // A cell must always show an expansion popover if it has cell actions,
     // otherwise keyboard and screen reader users have no way of accessing them
@@ -509,12 +534,17 @@ export class EuiDataGridCell extends Component<
 
   handleCellPopover = () => {
     if (this.isPopoverOpen()) {
-      const { setPopoverAnchor, setPopoverContent, setCellPopoverProps } =
-        this.props.popoverContext;
+      const {
+        setPopoverAnchor,
+        setPopoverAnchorPosition,
+        setPopoverContent,
+        setCellPopoverProps,
+      } = this.props.popoverContext;
 
       // Set popover anchor
       const cellAnchorEl = this.popoverAnchorRef.current!;
       setPopoverAnchor(cellAnchorEl);
+      setPopoverAnchorPosition(`down${this.state.cellTextAlign}`);
 
       // Set popover contents with cell content
       const {
@@ -586,6 +616,7 @@ export class EuiDataGridCell extends Component<
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
+      `euiDataGridRowCell--align${this.state.cellTextAlign}`,
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
         'euiDataGridRowCell--open': popoverIsOpen,

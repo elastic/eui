@@ -39,7 +39,7 @@ exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwardi
 exports[`EuiDataGridCell renders 1`] = `
 <div
   aria-rowindex="1"
-  class="euiDataGridRowCell"
+  class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
   data-gridcell-column-id="someColumn"
   data-gridcell-column-index="0"
   data-gridcell-row-index="0"

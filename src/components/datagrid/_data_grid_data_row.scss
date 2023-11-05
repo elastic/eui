@@ -34,20 +34,21 @@
   &:hover,
   &:focus {
     @include euiDataGridCellFocus;
+  }
 
-    // Tweak outline border radius to account for cell actions
-    &:has(.euiDataGridRowCell__actions) {
-      &:not(.euiDataGridRowCell--numeric, .euiDataGridRowCell--currency) {
-        &::after {
-          border-top-left-radius: 0;
-        }
-      }
+  // Tweak outline border radius to account for left cell actions
+  &--alignLeft:hover,
+  &--alignLeft:focus {
+    &::after {
+      border-top-left-radius: 0;
+    }
+  }
 
-      &:is(.euiDataGridRowCell--numeric, .euiDataGridRowCell--currency) {
-        &::after {
-          border-top-right-radius: 0;
-        }
-      }
+  // Tweak outline border radius to account for right cell actions
+  &--alignRight:hover,
+  &--alignRight:focus {
+    &::after {
+      border-top-right-radius: 0;
     }
   }
 
@@ -135,11 +136,12 @@
 .euiDataGridRowCell__actions + [data-euiportal] > .euiPopover {
   position: absolute;
   bottom: 100%;
-  left: 0;
 
-  .euiDataGridRowCell--numeric &,
-  .euiDataGridRowCell--currency & {
-    left: auto;
+  .euiDataGridRowCell--alignLeft & {
+    left: 0;
+  }
+
+  .euiDataGridRowCell--alignRight & {
     right: 0;
   }
 }
