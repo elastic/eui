@@ -22,7 +22,6 @@ import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 
 type EuiCollapsibleNavGroupProps = _SharedEuiCollapsibleNavItemProps &
   _EuiCollapsibleNavItemDisplayProps &
-  Pick<EuiCollapsibleNavItemProps, 'href' | 'linkProps'> &
   Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
     header: ReactNode;
   };
@@ -40,11 +39,9 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
 > = ({
   className,
   header,
-  href, // eslint-disable-line local/href-with-rel
   items,
   isSubItem,
   isSelected,
-  linkProps,
   children: _children, // Make sure this isn't spread
   ...rest
 }) => {
@@ -66,12 +63,10 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   return (
     <div className={classes} {...cssStyles} {...rest}>
       <EuiCollapsibleNavLink
-        href={href}
         id={labelledById}
-        {...linkProps}
         isSelected={isSelected}
         isSubItem={isSubItem}
-        isInteractive={!!(href || rest.onClick || linkProps?.onClick)}
+        isInteractive={false}
       >
         {header}
       </EuiCollapsibleNavLink>
@@ -80,7 +75,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
         isSubItem={isSubItem}
         className="euiCollapsibleNavGroup__children"
         role="group"
-        aria-labelledby={linkProps?.id || labelledById}
+        aria-labelledby={labelledById}
       />
     </div>
   );

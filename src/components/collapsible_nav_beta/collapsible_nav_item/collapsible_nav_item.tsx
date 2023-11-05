@@ -144,12 +144,10 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   );
 
   if (items && items.length > 0) {
+    if (href) {
+      console.warn('When rendering with `items`, the `href` prop is ignored');
+    }
     if (isCollapsible) {
-      if (href) {
-        console.warn(
-          'When rendering a collapsible accordion with `items`, the `href` prop is ignored'
-        );
-      }
       return (
         <EuiCollapsibleNavAccordion
           buttonContent={headerContent}
@@ -164,8 +162,6 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
         <EuiCollapsibleNavGroup
           header={headerContent}
           items={items}
-          href={href}
-          linkProps={linkProps}
           {...props}
           isSubItem={isSubItem}
         />
