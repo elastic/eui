@@ -87,7 +87,4 @@ export const EdgeCaseTesting: Story = {
       <EuiCollapsibleNavBeta.Group {...args} />
     </CollapsibleNavTemplate>
   ),
-  args: {
-    href: '#',
-  },
 };

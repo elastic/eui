@@ -331,7 +331,6 @@ export const SecurityExample: Story = {
             { title: 'Intelligence', href: '#' },
             {
               title: 'Explore',
-              href: '#',
               items: [
                 { title: 'Host', href: '#' },
                 { title: 'Users', href: '#', isSelected: true },
@@ -342,7 +341,6 @@ export const SecurityExample: Story = {
             { title: 'Assets', href: '#' },
             {
               title: 'Rules',
-              href: '#',
               items: [
                 { title: 'SIEM rules', href: '#' },
                 { title: 'Shared exception list', href: '#' },
@@ -352,7 +350,6 @@ export const SecurityExample: Story = {
             },
             {
               title: 'Machine learning',
-              href: '#',
               items: [
                 { title: 'Overview', href: '#' },
                 { title: 'Notifications', href: '#' },
@@ -364,7 +361,6 @@ export const SecurityExample: Story = {
             },
             {
               title: 'Settings',
-              href: '#',
               items: [
                 { title: 'Endpoints', href: '#' },
                 { title: 'OS query', href: '#' },
