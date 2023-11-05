@@ -31,6 +31,7 @@
     border-right-color: $euiBorderColor;
   }
 
+  &:hover,
   &:focus {
     @include euiDataGridCellFocus;
 
@@ -47,6 +48,20 @@
           border-top-right-radius: 0;
         }
       }
+    }
+  }
+
+  // On hover, color the cell actions more subdued and show a same-colored focus ring
+  // so the cell actions look less weird on datagrids without cell borders
+  &:hover:not(:focus, :focus-within, .euiDataGridRowCell--open) {
+    .euiDataGridRowCell__actions {
+      background-color: $euiBorderColor;
+      border-color: $euiBorderColor;
+      color: $euiColorFullShade;
+    }
+
+    &::after {
+      border-color: $euiBorderColor;
     }
   }
 
