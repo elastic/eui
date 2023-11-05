@@ -21,7 +21,7 @@ const meta: Meta<typeof EuiCollapsedNavItem> = {
 export default meta;
 type Story = StoryObj<typeof EuiCollapsedNavItem>;
 
-export const Playground: Story = {
+export const Link: Story = {
   render: ({ ...args }) => (
     <div className="eui-displayInlineBlock">
       <EuiCollapsedNavItem {...args} />
@@ -32,11 +32,22 @@ export const Playground: Story = {
     icon: 'home',
     href: '#',
     linkProps: { target: '_blank' },
+  },
+};
+
+export const Accordion: Story = {
+  render: ({ ...args }) => (
+    <div className="eui-displayInlineBlock">
+      <EuiCollapsedNavItem {...args} />
+    </div>
+  ),
+  args: {
+    title: 'Collapsed nav item',
+    icon: 'home',
     items: [
       { title: 'Popover link A', href: '#', linkProps: { target: '_blank' } },
       { title: 'Popover link B', href: '#' },
       { title: 'Popover link C', href: '#' },
     ],
-    isCollapsible: false,
   },
 };
