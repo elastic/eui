@@ -105,6 +105,7 @@ export const useCellPopover = (): {
       hasArrow={false}
       panelPaddingSize="s"
       anchorPosition={popoverAnchorPosition}
+      repositionToCrossAxis={false}
       {...cellPopoverProps}
       focusTrapProps={{ onClickOutside }}
       panelProps={{
@@ -116,6 +117,12 @@ export const useCellPopover = (): {
         cellPopoverProps.panelClassName,
         cellPopoverProps.panelProps?.className
       )}
+      panelStyle={{
+        maxInlineSize: `min(75vw, max(${
+          popoverAnchor.parentElement!.offsetWidth
+        }px, 400px))`,
+        maxBlockSize: '50vh',
+      }}
       onKeyDown={(event) => {
         if (event.key === keys.F2 || event.key === keys.ESCAPE) {
           event.preventDefault();

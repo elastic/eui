@@ -114,6 +114,13 @@ describe('useCellPopover', () => {
               "data-test-subj": "euiDataGridExpansionPopover",
             }
           }
+          panelStyle={
+            Object {
+              "maxBlockSize": "50vh",
+              "maxInlineSize": "min(75vw, max(0px, 400px))",
+            }
+          }
+          repositionToCrossAxis={false}
         >
           <div
             data-test-subj="mockPopover"
