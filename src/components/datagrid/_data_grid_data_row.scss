@@ -118,6 +118,12 @@
   // since we don't use the popover arrow in any case for cell popovers
   filter: none;
   @include euiBottomShadow; // TODO: Convert to euiShadowMedium() in Emotion
+
+  // For some reason, the normal popover opacity transition doesn't work for datagrid popovers
+  // so we'll force it via an animation. If we don't, cells constrained by the inline max-width
+  // style that we set will see a flash of unwanted content before repositioning
+  animation-duration: $euiAnimSpeedNormal;
+  animation-name: euiDataGridCellPopover;
 }
 
 .euiDataGridRowCell--controlColumn .euiDataGridRowCell__content {
@@ -250,4 +256,9 @@
 @keyframes euiDataGridCellActionsSlideIn {
   from { transform: scaleY(0); }
   to { transform: scaleY(1); }
+}
+
+@keyframes euiDataGridCellPopover {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
