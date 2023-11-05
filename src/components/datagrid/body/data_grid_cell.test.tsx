@@ -727,7 +727,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__defaultHeight').exists()
+        component.find('.euiDataGridRowCell__content--defaultHeight').exists()
       ).toBe(true);
       expect(component.find('.eui-textTruncate').exists()).toBe(true);
     });
@@ -740,9 +740,9 @@ describe('EuiDataGridCell', () => {
         />
       );
 
-      expect(component.find('.euiDataGridRowCell__autoHeight').exists()).toBe(
-        true
-      );
+      expect(
+        component.find('.euiDataGridRowCell__content--autoHeight').exists()
+      ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
     });
 
@@ -755,7 +755,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__numericalHeight').exists()
+        component.find('.euiDataGridRowCell__content--numericalHeight').exists()
       ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
     });
@@ -769,7 +769,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__lineCountHeight').exists()
+        component.find('.euiDataGridRowCell__content--lineCountHeight').exists()
       ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
       expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);

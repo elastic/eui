@@ -79,13 +79,9 @@ const EuiDataGridCellContent: FunctionComponent<
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
-    const wrapperClasses = classNames(
-      'euiDataGridRowCell__contentWrapper',
-      `euiDataGridRowCell__${cellHeightType}Height`
-    );
-
     const classes = classNames(
       'euiDataGridRowCell__content',
+      `euiDataGridRowCell__content--${cellHeightType}Height`,
       !isControlColumn && {
         'eui-textBreakWord': cellHeightType !== 'default',
         'eui-textTruncate': cellHeightType === 'default',
@@ -96,15 +92,7 @@ const EuiDataGridCellContent: FunctionComponent<
       <div
         ref={(el) => {
           setCellContentsRef(el);
-          setPopoverAnchorRef.current =
-            cellHeightType === 'default'
-              ? // Default height cells need the popover to be anchored on the wrapper,
-                // in order for the popover to centered on the full cell width (as content
-                // width is affected by the width of cell actions)
-                (el?.parentElement as HTMLDivElement)
-              : // Numerical height cells need the popover anchor to be below the wrapper
-                // class, in order to set height: 100% on the portalled popover div wrappers
-                el;
+          setPopoverAnchorRef.current = el;
         }}
         data-datagrid-cellcontent
         className={classes}
@@ -146,11 +134,11 @@ const EuiDataGridCellContent: FunctionComponent<
     );
 
     return (
-      <div className={wrapperClasses}>
+      <>
         {cellContent}
         {screenReaderText}
         {cellActions}
-      </div>
+      </>
     );
   }
 );
