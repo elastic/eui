@@ -32,8 +32,22 @@
   }
 
   &:focus {
-    position: relative;
     @include euiDataGridCellFocus;
+
+    // Tweak outline border radius to account for cell actions
+    &:has(.euiDataGridRowCell__actions) {
+      &:not(.euiDataGridRowCell--numeric, .euiDataGridRowCell--currency) {
+        &::after {
+          border-top-left-radius: 0;
+        }
+      }
+
+      &:is(.euiDataGridRowCell--numeric, .euiDataGridRowCell--currency) {
+        &::after {
+          border-top-right-radius: 0;
+        }
+      }
+    }
   }
 
   // Only add the transition effect on hover, so that it is instantaneous on focus
