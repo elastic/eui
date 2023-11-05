@@ -78,6 +78,20 @@ export const useCellPopover = (): {
     setCellPopoverProps,
   };
 
+  // Override the default EuiPopover `onClickOutside` behavior, since the toggling
+  // popover button isn't actually the DOM node we pass to `button`. Otherwise,
+  // clicking the expansion cell action triggers an outside click
+  const onClickOutside = useCallback(
+    (event: Event) => {
+      if (!popoverAnchor) return;
+      const cellActions = popoverAnchor.previousElementSibling;
+      if (cellActions?.contains(event.target as Node) === false) {
+        closeCellPopover();
+      }
+    },
+    [popoverAnchor, closeCellPopover]
+  );
+
   // Note that this popover is rendered once at the top grid level, rather than one popover per cell
   const cellPopover = popoverIsOpen && popoverAnchor && (
     <EuiWrappingPopover
@@ -85,7 +99,9 @@ export const useCellPopover = (): {
       display="block"
       hasArrow={false}
       panelPaddingSize="s"
+      anchorPosition="downLeft"
       {...cellPopoverProps}
+      focusTrapProps={{ onClickOutside }}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
         ...(cellPopoverProps.panelProps || {}),

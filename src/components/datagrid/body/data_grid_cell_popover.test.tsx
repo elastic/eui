@@ -31,6 +31,9 @@ describe('useCellPopover', () => {
     });
 
     it('does nothing if called again on a popover that is already open', () => {
+      const mockAnchor = document.createElement('div');
+      document.body.appendChild(mockAnchor);
+
       const { result } = renderHook(useCellPopover);
       expect(result.current.cellPopover).toBeFalsy();
 
@@ -39,9 +42,7 @@ describe('useCellPopover', () => {
           rowIndex: 0,
           colIndex: 0,
         });
-        result.current.cellPopoverContext.setPopoverAnchor(
-          document.createElement('div')
-        );
+        result.current.cellPopoverContext.setPopoverAnchor(mockAnchor);
       });
       expect(result.current.cellPopover).not.toBeFalsy();
 
@@ -94,9 +95,15 @@ describe('useCellPopover', () => {
       populateCellPopover(result.current.cellPopoverContext);
       expect(result.current.cellPopover).toMatchInlineSnapshot(`
         <EuiWrappingPopover
+          anchorPosition="downLeft"
           button={<div />}
           closePopover={[Function]}
           display="block"
+          focusTrapProps={
+            Object {
+              "onClickOutside": [Function],
+            }
+          }
           hasArrow={false}
           isOpen={true}
           onKeyDown={[Function]}
