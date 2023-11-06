@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
@@ -18,6 +18,12 @@ jest.mock('../../date_picker', () => ({
 }));
 
 describe('EuiAbsoluteTab', () => {
+  // mock requestAnimationFrame to fire immediately
+  const rafSpy = jest
+    .spyOn(window, 'requestAnimationFrame')
+    .mockImplementation((cb: Function) => cb());
+  afterAll(() => rafSpy.mockRestore());
+
   const props = {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     timeFormat: 'HH:mm',
@@ -29,14 +35,63 @@ describe('EuiAbsoluteTab', () => {
   };
 
   describe('user input', () => {
-    beforeAll(() => jest.useFakeTimers());
-    afterAll(() => jest.useRealTimers());
+    it('displays the enter key help text when the input has been edited and the date has not yet been parsed', () => {
+      const { getByTestSubject, queryByText } = render(
+        <EuiAbsoluteTab {...props} />
+      );
+      const helpText = 'Press the Enter key to parse as a date.';
+      expect(queryByText(helpText)).not.toBeInTheDocument();
 
+      const input = getByTestSubject('superDatePickerAbsoluteDateInput');
+      fireEvent.change(input, { target: { value: 'test' } });
+
+      expect(queryByText(helpText)).toBeInTheDocument();
+    });
+
+    it('displays the formats as a hint before parse, but as an error if invalid', () => {
+      const { getByTestSubject, queryByText } = render(
+        <EuiAbsoluteTab {...props} />
+      );
+      const formatHelpText = /Allowed formats: /;
+      expect(queryByText(formatHelpText)).not.toBeInTheDocument();
+
+      const input = getByTestSubject('superDatePickerAbsoluteDateInput');
+      fireEvent.change(input, { target: { value: 'test' } });
+      expect(queryByText(formatHelpText)).toHaveClass('euiFormHelpText');
+
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(queryByText(formatHelpText)).toHaveClass('euiFormErrorText');
+    });
+
+    it('immediately parses pasted text without needing an extra enter keypress', () => {
+      const { getByTestSubject, queryByText } = render(
+        <EuiAbsoluteTab {...props} />
+      );
+      const input = getByTestSubject(
+        'superDatePickerAbsoluteDateInput'
+      ) as HTMLInputElement;
+
+      fireEvent.paste(input, {
+        clipboardData: { getData: () => '1970-01-01' },
+      });
+      expect(input).not.toBeInvalid();
+      expect(input.value).toContain('Jan 1, 1970');
+
+      input.value = '';
+      fireEvent.paste(input, {
+        clipboardData: { getData: () => 'not a date' },
+      });
+      expect(input).toBeInvalid();
+
+      expect(queryByText(/Allowed formats: /)).toBeInTheDocument();
+      expect(queryByText(/Press the Enter key /)).not.toBeInTheDocument();
+    });
+  });
+
+  describe('date parsing', () => {
     const changeInput = (input: HTMLElement, value: string) => {
       fireEvent.change(input, { target: { value } });
-      act(() => {
-        jest.advanceTimersByTime(1000); // Debounce timer
-      });
+      fireEvent.keyDown(input, { key: 'Enter' });
     };
 
     it('parses the passed `dateFormat` prop', () => {

@@ -12,6 +12,7 @@ import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line
 
 import dateMath from '@elastic/datemath';
 
+import { keys } from '../../../../services';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiCode } from '../../../code';
 import { EuiI18n } from '../../../i18n';
@@ -40,6 +41,7 @@ export interface EuiAbsoluteTabProps {
 }
 
 interface EuiAbsoluteTabState {
+  hasUnparsedText: boolean;
   isTextInvalid: boolean;
   textInputValue: string;
   valueAsMoment: Moment | null;
@@ -50,6 +52,7 @@ export class EuiAbsoluteTab extends Component<
   EuiAbsoluteTabState
 > {
   state: EuiAbsoluteTabState;
+  isParsing = false; // Store outside of state as a ref for faster/unbatched updates
 
   constructor(props: EuiAbsoluteTabProps) {
     super(props);
@@ -63,6 +66,7 @@ export class EuiAbsoluteTab extends Component<
       .format(this.props.dateFormat);
 
     this.state = {
+      hasUnparsedText: false,
       isTextInvalid: false,
       textInputValue,
       valueAsMoment,
@@ -80,33 +84,39 @@ export class EuiAbsoluteTab extends Component<
     this.setState({
       valueAsMoment,
       textInputValue: valueAsMoment.format(this.props.dateFormat),
+      hasUnparsedText: false,
       isTextInvalid: false,
     });
   };
 
-  debouncedTypeTimeout: ReturnType<typeof setTimeout> | undefined;
-
   handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ textInputValue: event.target.value });
+    if (this.isParsing) return;
 
-    // Add a debouncer that gives the user some time to finish typing
-    // before attempting to parse the text as a timestamp. Otherwise,
-    // typing a single digit gets parsed as a unix timestamp 😬
-    clearTimeout(this.debouncedTypeTimeout);
-    this.debouncedTypeTimeout = setTimeout(this.parseUserDateInput, 1000); // 1 second debounce
+    this.setState({
+      textInputValue: event.target.value,
+      hasUnparsedText: true,
+      isTextInvalid: false,
+    });
   };
 
-  parseUserDateInput = () => {
-    const { onChange, dateFormat } = this.props;
-    const { textInputValue } = this.state;
+  parseUserDateInput = (textInputValue: string) => {
+    this.isParsing = true;
+    // Wait a tick for state to finish updating (whatever gets returned),
+    // and then allow `onChange` user input to continue setting state
+    requestAnimationFrame(() => {
+      this.isParsing = false;
+    });
 
     const invalidDateState = {
+      textInputValue,
       isTextInvalid: true,
       valueAsMoment: null,
     };
     if (!textInputValue) {
       return this.setState(invalidDateState);
     }
+
+    const { onChange, dateFormat } = this.props;
 
     // Attempt to parse with passed `dateFormat`
     let valueAsMoment = moment(textInputValue, dateFormat, true);
@@ -122,8 +132,9 @@ export class EuiAbsoluteTab extends Component<
       onChange(valueAsMoment.toISOString());
       this.setState({
         textInputValue: valueAsMoment.format(this.props.dateFormat),
-        isTextInvalid: false,
         valueAsMoment: valueAsMoment,
+        hasUnparsedText: false,
+        isTextInvalid: false,
       });
     } else {
       this.setState(invalidDateState);
@@ -133,7 +144,8 @@ export class EuiAbsoluteTab extends Component<
   render() {
     const { dateFormat, timeFormat, locale, utcOffset, labelPrefix } =
       this.props;
-    const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
+    const { valueAsMoment, isTextInvalid, hasUnparsedText, textInputValue } =
+      this.state;
 
     return (
       <>
@@ -149,21 +161,42 @@ export class EuiAbsoluteTab extends Component<
           utcOffset={utcOffset}
         />
         <EuiI18n
-          token="euiAbsoluteTab.dateFormatError"
-          default="Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp"
+          tokens={[
+            'euiAbsoluteTab.dateFormatHint',
+            'euiAbsoluteTab.dateFormatError',
+          ]}
+          defaults={[
+            'Press the Enter key to parse as a date.',
+            'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
+          ]}
           values={{ dateFormat: <EuiCode>{dateFormat}</EuiCode> }}
         >
-          {(dateFormatError: string) => (
+          {([dateFormatHint, dateFormatError]: string[]) => (
             <EuiFormRow
               className="euiSuperDatePicker__absoluteDateFormRow"
               isInvalid={isTextInvalid}
               error={isTextInvalid ? dateFormatError : undefined}
+              helpText={
+                hasUnparsedText
+                  ? isTextInvalid
+                    ? dateFormatHint
+                    : [dateFormatHint, dateFormatError]
+                  : undefined
+              }
             >
               <EuiFieldText
                 compressed
                 isInvalid={isTextInvalid}
                 value={textInputValue}
                 onChange={this.handleTextChange}
+                onPaste={(event) => {
+                  this.parseUserDateInput(event.clipboardData.getData('text'));
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === keys.ENTER) {
+                    this.parseUserDateInput(textInputValue);
+                  }
+                }}
                 data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
               />
