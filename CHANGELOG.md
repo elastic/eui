@@ -8,7 +8,7 @@
 - Plain text `EuiComboBox`es now behave more like a normal text field/input. Backspacing will no longer delete the entire value, and selected values can now be double clicked and copied. ([#7332](https://github.com/elastic/eui/pull/7332))
 - `EuiDataGrid`'s display settings popover now allows users to clear the "Lines per row" input before typing in a new number ([#7338](https://github.com/elastic/eui/pull/7338))
 - Improved the UX of `EuiSuperDatePicker`'s Absolute tab for users manually typing in timestamps ([#7341](https://github.com/elastic/eui/pull/7341))
-- Updated `Eui18n`s with multiple `tokens` to accept dynamic `values` ([#7341](https://github.com/elastic/eui/pull/7341))
+- Updated `EuiI18n`s with multiple `tokens` to accept dynamic `values` ([#7341](https://github.com/elastic/eui/pull/7341))
 
 **Bug fixes**
 
@@ -68,7 +68,7 @@
 
 **Dependency updates**
 
-- Updated `refactor` to v3.6.0 ([#7127](https://github.com/elastic/eui/pull/7127))
+- Updated `refractor` to v3.6.0 ([#7127](https://github.com/elastic/eui/pull/7127))
 - Updated `rehype-raw` to v5.1.0 ([#7127](https://github.com/elastic/eui/pull/7127))
 - Updated `vfile` to v4.2.1 ([#7127](https://github.com/elastic/eui/pull/7127))
 
