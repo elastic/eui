@@ -118,7 +118,7 @@ const updateChangelog = (upcomingChangelog, version) => {
   const pathToChangelog = path.resolve(rootDir, 'CHANGELOG.md');
   const changelogArchive = fs.readFileSync(pathToChangelog).toString();
 
-  const latestVersionHeading = `## [\`${version}\`](https://github.com/elastic/eui/releases/tag/v${version})`;
+  const latestVersionHeading = `## [\`v${version}\`](https://github.com/elastic/eui/releases/tag/v${version})`;
 
   if (changelogArchive.startsWith(latestVersionHeading)) {
     throwError('Cannot update CHANGELOG.md - already on latest version');
