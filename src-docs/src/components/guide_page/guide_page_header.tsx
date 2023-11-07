@@ -21,6 +21,8 @@ import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
 import { VersionSwitcher } from './version_switcher';
 
+const GITHUB_URL = 'https://github.com/elastic/eui';
+
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
   selectedLocale: string;
@@ -42,24 +44,42 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 
   const environmentBadge = useMemo(() => {
     const isLocal = window.location.host.includes('803');
+    const isPRStaging = window.location.pathname.startsWith('/pr_');
 
     if (isLocal) {
       return <EuiBadge color="accent">Local</EuiBadge>;
     }
-    // TODO: PR staging badge
+    if (isPRStaging) {
+      const prId = window.location.pathname.split('/')[1].split('pr_')[1];
+      return (
+        <EuiBadge
+          color="hollow"
+          iconType="popout"
+          iconSide="right"
+          href={`${GITHUB_URL}/pull/${prId}`}
+          target="_blank"
+        >
+          Staging
+        </EuiBadge>
+      );
+    }
     return <VersionSwitcher />;
   }, []);
 
   const github = useMemo(() => {
-    const href = 'https://github.com/elastic/eui';
     const label = 'EUI GitHub repo';
     return isMobileSize ? (
-      <EuiButtonEmpty size="s" flush="both" iconType="logoGithub" href={href}>
+      <EuiButtonEmpty
+        size="s"
+        flush="both"
+        iconType="logoGithub"
+        href={GITHUB_URL}
+      >
         {label}
       </EuiButtonEmpty>
     ) : (
       <EuiToolTip content="Github">
-        <EuiHeaderSectionItemButton aria-label={label} href={href}>
+        <EuiHeaderSectionItemButton aria-label={label} href={GITHUB_URL}>
           <EuiIcon type="logoGithub" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
