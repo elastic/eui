@@ -10,7 +10,7 @@ import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import {
-  htmlIdGenerator,
+  useGeneratedHtmlId,
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../services';
@@ -186,7 +186,7 @@ export class EuiAccordionClass extends Component<
     this.accordionChildrenEl = node;
   };
 
-  generatedId = htmlIdGenerator()();
+  generatedId = useGeneratedHtmlId();
 
   render() {
     const {

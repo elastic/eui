@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +20,8 @@ const EuiIconLogoPhp = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('logo_php');
+  const useGeneratedId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'logo_php', suffix });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,13 +35,13 @@ const EuiIconLogoPhp = ({
       {title ? <title id={titleId}>{title}</title> : null}
       <defs>
         <path
-          id={generateId('a')}
+          id={useGeneratedId('a')}
           d="M.028 7.854C.028 3.534 6.688.03 14.902.03s14.874 3.503 14.874 7.824c0 4.322-6.66 7.825-14.874 7.825-8.215 0-14.874-3.503-14.874-7.825"
         />
-        <path id={generateId('d')} d="M0 17.43h30.987V0H0z" />
-        <path id={generateId('f')} d="M0 17.43h30.987V0H0z" />
+        <path id={useGeneratedId('d')} d="M0 17.43h30.987V0H0z" />
+        <path id={useGeneratedId('f')} d="M0 17.43h30.987V0H0z" />
         <radialGradient
-          id={generateId('b')}
+          id={useGeneratedId('b')}
           cx="30.02%"
           cy="82.422%"
           r="124.814%"
@@ -60,31 +61,31 @@ const EuiIconLogoPhp = ({
         transform="matrix(1 0 0 -1 .026 25.413)"
       >
         <g transform="translate(.592 .86)">
-          <mask id={generateId('c')} fill="#fff">
-            <use xlinkHref={`#${generateId('a')}`} />
+          <mask id={useGeneratedId('c')} fill="#fff">
+            <use xlinkHref={`#${useGeneratedId('a')}`} />
           </mask>
           <g
-            fill={`url(#${generateId('b')})`}
+            fill={`url(#${useGeneratedId('b')})`}
             fillRule="nonzero"
-            mask={`url(#${generateId('c')})`}
+            mask={`url(#${useGeneratedId('c')})`}
           >
             <path d="M.028 7.854C.028 3.534 6.688.03 14.902.03s14.874 3.503 14.874 7.824c0 4.322-6.66 7.825-14.874 7.825-8.215 0-14.874-3.503-14.874-7.825" />
           </g>
         </g>
-        <mask id={generateId('e')} fill="#fff">
-          <use xlinkHref={`#${generateId('d')}`} />
+        <mask id={useGeneratedId('e')} fill="#fff">
+          <use xlinkHref={`#${useGeneratedId('d')}`} />
         </mask>
-        <g mask={`url(#${generateId('e')})`}>
+        <g mask={`url(#${useGeneratedId('e')})`}>
           <path
             fill="#777BB3"
             fillRule="nonzero"
             d="M15.494 1.472c7.894 0 14.293 3.243 14.293 7.243s-6.4 7.244-14.293 7.244c-7.894 0-14.293-3.243-14.293-7.244 0-4 6.4-7.243 14.293-7.243"
           />
         </g>
-        <mask id={generateId('g')} fill="#fff">
-          <use xlinkHref={`#${generateId('f')}`} />
+        <mask id={useGeneratedId('g')} fill="#fff">
+          <use xlinkHref={`#${useGeneratedId('f')}`} />
         </mask>
-        <g fillRule="nonzero" mask={`url(#${generateId('g')})`}>
+        <g fillRule="nonzero" mask={`url(#${useGeneratedId('g')})`}>
           <path
             fill="#000"
             d="M8.701 7.817c.65 0 1.134.12 1.44.356.304.233.513.638.623 1.202.103.528.064.896-.116 1.095-.183.203-.58.306-1.177.306H8.433l-.575-2.959h.843ZM5.31 4.172a.161.161 0 0 0-.159.193l1.524 7.84c.015.076.082.131.159.131h3.284c1.033 0 1.801-.28 2.284-.833.485-.556.635-1.333.446-2.309a3.686 3.686 0 0 0-.395-1.098 3.676 3.676 0 0 0-.727-.91 3.189 3.189 0 0 0-1.197-.718c-.43-.14-.983-.21-1.643-.21h-1.33l-.38-1.955a.161.161 0 0 0-.158-.13H5.309Z"

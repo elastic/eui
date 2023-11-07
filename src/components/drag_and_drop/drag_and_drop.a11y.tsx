@@ -17,15 +17,13 @@ import { euiDragDropReorder } from './services';
 import { EuiDraggable } from './draggable';
 import { EuiDroppable } from './droppable';
 import { EuiPanel } from '../panel';
-import { htmlIdGenerator } from '../../services';
-
-const makeId = htmlIdGenerator();
+import { useGeneratedHtmlId } from '../../services';
 
 const makeList = (number: number, start = 1) =>
   Array.from({ length: number }, (v, k) => k + start).map((el) => {
     return {
       content: `Item ${el}`,
-      id: makeId(),
+      id: useGeneratedHtmlId(),
     };
   });
 

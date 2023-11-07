@@ -14,7 +14,7 @@ import React, {
 import { EuiI18n } from '../../i18n';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   RenderI18nTimeOptions,
@@ -93,7 +93,7 @@ export class EuiRefreshInterval extends Component<
     this.props.refreshInterval || 0
   );
 
-  generateId = htmlIdGenerator();
+  generateId = useGeneratedHtmlId;
   legendId = this.generateId();
   refreshSelectionId = this.generateId();
 

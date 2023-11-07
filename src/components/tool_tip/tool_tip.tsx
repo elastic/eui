@@ -16,7 +16,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import { findPopoverPosition, useGeneratedHtmlId } from '../../services';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -133,7 +133,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
-    id: this.props.id || htmlIdGenerator()(),
+    id: this.props.id || useGeneratedHtmlId(),
   };
 
   static defaultProps: Partial<EuiToolTipProps> = {

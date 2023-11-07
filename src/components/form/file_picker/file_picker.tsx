@@ -17,7 +17,7 @@ import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
-import { htmlIdGenerator } from '../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../services';
 import { FormContext, FormContextValue } from '../eui_form_context';
 
 const displayToClassNameMap = {
@@ -85,7 +85,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
 
   fileInput: HTMLInputElement | null = null;
 
-  generatedId: string = htmlIdGenerator()();
+  generatedId: string = useGeneratedHtmlId();
 
   handleChange = () => {
     if (!this.fileInput) return;

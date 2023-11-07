@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 import moment from 'moment';
 import dateMath from '@elastic/datemath';
-import { htmlIdGenerator } from '../../../../services';
+import { useGeneratedHtmlId } from '../../../../services';
 import { EuiButton, EuiButtonIcon } from '../../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiSpacer } from '../../../spacer';
@@ -64,7 +64,7 @@ export class EuiQuickSelect extends Component<
     };
   }
 
-  generateId = htmlIdGenerator();
+  generateId = useGeneratedHtmlId;
   timeSelectionId = this.generateId();
   legendId = this.generateId();
 

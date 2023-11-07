@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import {
-  htmlIdGenerator,
+  useGeneratedHtmlId,
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../../services/';
@@ -54,7 +54,7 @@ export class EuiRangeClass extends Component<
   preventPopoverClose: boolean = false;
 
   state = {
-    id: this.props.id || htmlIdGenerator()(),
+    id: this.props.id || useGeneratedHtmlId(),
     isPopoverOpen: false,
     trackWidth: 0,
   };

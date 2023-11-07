@@ -8,14 +8,13 @@ import {
   EuiDroppable,
   euiDragDropReorder,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
-const makeId = htmlIdGenerator();
 const makeList = (number: number, start = 1) =>
   Array.from({ length: number }, (v, k) => k + start).map((el) => {
     return {
       content: `Item ${el}`,
-      id: makeId(),
+      id: useGeneratedHtmlId(),
     };
   });
 

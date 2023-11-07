@@ -13,22 +13,24 @@
 import React from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
 import { EuiPanel } from '../../components/panel';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 
-const baseProps: EuiAccordionProps = {
+const baseProps: Omit<EuiAccordionProps, 'id'> = {
   buttonContent: 'Click me to toggle',
-  id: htmlIdGenerator()(),
   initialIsOpen: false,
 };
 
 const noArrow = { arrowDisplay: 'none' };
-const noArrowProps: EuiAccordionProps = Object.assign(baseProps, noArrow);
+const noArrowProps: Omit<EuiAccordionProps, 'id'> = Object.assign(
+  baseProps,
+  noArrow
+);
 
 describe('EuiAccordion', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations when expanded', () => {
       cy.mount(
-        <EuiAccordion {...noArrowProps}>
+        <EuiAccordion id={useGeneratedHtmlId()} {...noArrowProps}>
           <EuiPanel color="subdued">
             Any content inside of <strong>EuiAccordion</strong> will appear
             here. We will include <a href="#">a link</a> to confirm focus.

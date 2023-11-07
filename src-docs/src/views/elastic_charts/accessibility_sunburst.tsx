@@ -6,11 +6,11 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 import { EuiTitle, EuiSpacer } from '../../../../src/components';
-import { useEuiTheme, htmlIdGenerator } from '../../../../src/services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const { colorMode } = useEuiTheme();
-  const id = htmlIdGenerator()();
+  const id = useGeneratedHtmlId();
 
   /**
    * Setup theme based on current light/dark theme

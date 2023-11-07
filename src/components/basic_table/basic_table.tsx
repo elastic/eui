@@ -60,7 +60,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 
-import { htmlIdGenerator } from '../../services/accessibility';
+import { useGeneratedHtmlId } from '../../services/accessibility';
 import { Action } from './action_types';
 import {
   EuiTableActionsColumnType,
@@ -513,7 +513,7 @@ export class EuiBasicTable<T = any> extends Component<
     }
   }
 
-  tableId = htmlIdGenerator('__table')();
+  tableId = useGeneratedHtmlId({ prefix: '__table' });
 
   render() {
     const {
@@ -704,7 +704,8 @@ export class EuiBasicTable<T = any> extends Component<
     );
   }
 
-  selectAllIdGenerator = htmlIdGenerator('_selection_column-checkbox');
+  selectAllIdGenerator = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: '_selection_column-checkbox', suffix });
 
   renderSelectAll = (isMobile: boolean) => {
     const { items, selection } = this.props;

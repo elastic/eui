@@ -6,36 +6,37 @@ import {
   EuiSideNav,
   EuiButton,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const idGenerator = htmlIdGenerator('focusRegionOnTextChange');
+  const useGeneratedId = () =>
+    useGeneratedHtmlId({ prefix: 'focusRegionOnTextChange' });
 
   const [pageTitle, setPageTitle] = useState('Home');
 
   const sideNav = [
     {
       name: 'Example side nav',
-      id: idGenerator(),
+      id: useGeneratedId(),
       items: [
         {
           name: 'Home',
-          id: idGenerator(),
+          id: useGeneratedId(),
           onClick: () => setPageTitle('Home'),
         },
         {
           name: 'About',
-          id: idGenerator(),
+          id: useGeneratedId(),
           onClick: () => setPageTitle('About'),
         },
         {
           name: 'Docs',
-          id: idGenerator(),
+          id: useGeneratedId(),
           onClick: () => setPageTitle('Docs'),
         },
         {
           name: 'Contact',
-          id: idGenerator(),
+          id: useGeneratedId(),
           onClick: () => setPageTitle('Contact'),
         },
       ],

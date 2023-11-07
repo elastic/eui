@@ -8,7 +8,7 @@
 
 import React, { Component, ReactElement } from 'react';
 
-import { htmlIdGenerator } from '../../services/accessibility';
+import { useGeneratedHtmlId } from '../../services/accessibility';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox } from './search_box';
@@ -143,7 +143,7 @@ type NotifyControllingParent = Pick<State, 'queryText' | 'error'> & {
 
 export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   static Query = Query;
-  hintId = htmlIdGenerator('__hint')();
+  hintId = useGeneratedHtmlId({ prefix: '__hint' });
 
   constructor(props: EuiSearchBarProps) {
     super(props);

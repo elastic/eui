@@ -13,7 +13,7 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
-import { htmlIdGenerator, useEuiTheme } from '../../../../src/services';
+import { useGeneratedHtmlId, useEuiTheme } from '../../../../src/services';
 
 export const SAMPLE_SMALL_DATA = [
   { x: 0, y: 10.934269 },
@@ -41,7 +41,7 @@ export const SAMPLE_SMALL_DATA_2 = [
 ];
 
 export default () => {
-  const id = htmlIdGenerator()();
+  const id = useGeneratedHtmlId();
 
   /**
    * Setup theme based on current light/dark theme

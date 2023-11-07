@@ -9,7 +9,7 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +20,8 @@ const EuiIconIssue = ({
   titleId,
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('issue');
+  const useGeneratedId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'issue', suffix });
   return (
     <svg
       width={16}
@@ -31,7 +32,7 @@ const EuiIconIssue = ({
       {...props}
     >
       {title ? <title id={titleId}>{title}</title> : null}
-      <g clipPath={`url(#${generateId('a')})`} fill="#343741">
+      <g clipPath={`url(#${useGeneratedId('a')})`} fill="#343741">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -39,7 +40,7 @@ const EuiIconIssue = ({
         />
         <path d="M9 8a1 1 0 11-2 0 1 1 0 012 0z" />
       </g>
-      <clipPath id={generateId('a')}>
+      <clipPath id={useGeneratedId('a')}>
         <path d="M0 0h16v16H0z" />
       </clipPath>
     </svg>

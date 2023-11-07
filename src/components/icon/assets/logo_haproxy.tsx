@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +20,8 @@ const EuiIconLogoHaproxy = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('logo_haproxy');
+  const useGeneratedId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'logo_haproxy', suffix });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@ const EuiIconLogoHaproxy = ({
       {...props}
     >
       {title ? <title id={titleId}>{title}</title> : null}
-      <g clipPath={`url(#${generateId('a')})`}>
+      <g clipPath={`url(#${useGeneratedId('a')})`}>
         <path
           stroke="#05486D"
           strokeMiterlimit={10}
@@ -93,7 +94,7 @@ const EuiIconLogoHaproxy = ({
         />
       </g>
       <defs>
-        <clipPath id={generateId('a')}>
+        <clipPath id={useGeneratedId('a')}>
           <path fill="#fff" d="M0 0h32v32H0V0Z" />
         </clipPath>
       </defs>

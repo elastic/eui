@@ -24,7 +24,7 @@ import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
 import { FormContext, FormContextValue } from '../eui_form_context';
 
-import { htmlIdGenerator } from '../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../services';
 
 const displayToClassNameMap = {
   row: null,
@@ -124,7 +124,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
   state: EuiFormRowState = {
     isFocused: false,
-    id: this.props.id || htmlIdGenerator()(),
+    id: this.props.id || useGeneratedHtmlId(),
   };
 
   onFocus = (...args: any[]) => {

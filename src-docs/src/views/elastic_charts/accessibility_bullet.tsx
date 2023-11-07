@@ -2,7 +2,7 @@ import React from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import {
-  htmlIdGenerator,
+  useGeneratedHtmlId,
   euiPalettePositive,
   colorPalette,
   euiPaletteGray,
@@ -15,7 +15,7 @@ import {
 
 export default () => {
   const { colorMode } = useEuiTheme();
-  const id = htmlIdGenerator()();
+  const id = useGeneratedHtmlId();
 
   /**
    * Setup theme based on current light/dark theme

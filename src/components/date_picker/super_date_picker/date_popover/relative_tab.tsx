@@ -8,7 +8,7 @@
 
 import React, { Component, ChangeEventHandler } from 'react';
 import dateMath from '@elastic/datemath';
-import { htmlIdGenerator } from '../../../../services';
+import { useGeneratedHtmlId } from '../../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import {
   EuiForm,
@@ -59,7 +59,7 @@ export class EuiRelativeTab extends Component<
     ...parseRelativeParts(this.props.value),
   };
 
-  relativeDateInputNumberDescriptionId = htmlIdGenerator()();
+  relativeDateInputNumberDescriptionId = useGeneratedHtmlId();
 
   onCountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseInt(event.target.value, 10);

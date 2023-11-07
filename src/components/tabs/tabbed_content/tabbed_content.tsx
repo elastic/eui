@@ -14,7 +14,7 @@ import React, {
   FocusEvent,
 } from 'react';
 
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 
 import { EuiTabs, EuiTabsSizes } from '../tabs';
 import { EuiTab, EuiTabProps } from '../tab';
@@ -74,7 +74,7 @@ export class EuiTabbedContent extends Component<
     autoFocus: 'initial',
   };
 
-  private readonly rootId = htmlIdGenerator()();
+  private readonly rootId = useGeneratedHtmlId();
 
   private readonly tabsRef = createRef<HTMLDivElement>();
 

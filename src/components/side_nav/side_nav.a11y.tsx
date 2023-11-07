@@ -13,7 +13,7 @@
 import React, { useState } from 'react';
 import { EuiSideNav } from './side_nav';
 import { EuiIcon } from '../icon';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 
 describe('EuiSideNav', () => {
   describe('Mobile EuiSideNav', () => {
@@ -25,25 +25,25 @@ describe('EuiSideNav', () => {
       const basicSideNav = [
         {
           name: 'Root item',
-          id: htmlIdGenerator('basicExample')(),
+          id: useGeneratedHtmlId({ prefix: 'basicExample' }),
           items: [
             {
               name: 'Item with onClick',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
             },
             {
               name: 'Item with href',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
               href: '/#/navigation/side-nav',
             },
             {
               name: 'Selected item',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
               isSelected: true,
             },
             {
               name: 'Disabled item',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
               disabled: true,
             },
           ],
@@ -85,25 +85,25 @@ describe('EuiSideNav', () => {
       const basicSideNav = [
         {
           name: 'Root item',
-          id: htmlIdGenerator('basicExample')(),
+          id: useGeneratedHtmlId({ prefix: 'basicExample' }),
           items: [
             {
               name: 'Item with onClick',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
             },
             {
               name: 'Item with href',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
               href: '/#/navigation/side-nav',
             },
             {
               name: 'Selected item',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
               isSelected: true,
             },
             {
               name: 'Disabled item',
-              id: htmlIdGenerator('basicExample')(),
+              id: useGeneratedHtmlId({ prefix: 'basicExample' }),
               disabled: true,
             },
           ],

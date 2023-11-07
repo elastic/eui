@@ -30,7 +30,7 @@ import { ThemeExample } from '../_components/_theme_example';
 import { EuiThemeSize } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
-import { htmlIdGenerator } from '../../../../../src/services/accessibility/html_id_generator.testenv';
+import { useGeneratedHtmlId } from '../../../../../src/services/accessibility/html_id_generator.testenv';
 
 export const BaseJS = () => {
   const { euiTheme } = useEuiTheme();
@@ -277,7 +277,7 @@ export const UtilsJS = () => {
 
       <EuiPanel color="subdued">
         <EuiAccordion
-          id={htmlIdGenerator()()}
+          id={useGeneratedHtmlId()}
           buttonContent={<strong>All supported properties</strong>}
           paddingSize="m"
         >
@@ -293,7 +293,7 @@ export const UtilsJS = () => {
         </EuiAccordion>
         <EuiSpacer size="s" />
         <EuiAccordion
-          id={htmlIdGenerator()()}
+          id={useGeneratedHtmlId()}
           buttonContent={<strong>All supported shorthand properties</strong>}
           paddingSize="m"
         >

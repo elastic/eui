@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { formatDate, htmlIdGenerator } from '../../../../src/services';
+import { formatDate, useGeneratedHtmlId } from '../../../../src/services';
 import {
   EuiCommentList,
   EuiComment,
@@ -114,7 +114,7 @@ I also found something suspicious: [Update.exe](http://my-drive.elastic.co/suspi
 `;
 
 export default () => {
-  const errorElementId = useRef(htmlIdGenerator()());
+  const errorElementId = useRef(useGeneratedHtmlId());
   const [editorValue, setEditorValue] = useState(replyMsg);
   const [comments, setComments] = useState(initialComments);
   const [isLoading, setIsLoading] = useState(false);

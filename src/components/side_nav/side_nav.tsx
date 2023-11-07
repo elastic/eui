@@ -16,7 +16,7 @@ import { EuiSideNavItemType } from './side_nav_types';
 import { EuiButtonEmpty } from '../button';
 import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
+import { EuiBreakpointSize, useGeneratedHtmlId } from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
 
 export type EuiSideNavHeadingProps = Partial<EuiTitleProps> & {
@@ -81,7 +81,8 @@ export type EuiSideNavProps<T = {}> = T &
   };
 
 export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
-  generateId = htmlIdGenerator('euiSideNav');
+  generateId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'euiSideNav', suffix });
 
   static defaultProps = {
     items: [],

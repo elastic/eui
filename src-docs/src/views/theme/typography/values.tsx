@@ -9,7 +9,7 @@ import { GuideSection } from '../../../components/guide_section/guide_section';
 
 import {
   useEuiTheme,
-  htmlIdGenerator,
+  useGeneratedHtmlId,
   throttle,
   EuiText,
   EuiLink,
@@ -173,7 +173,7 @@ export default () => {
               </p>
               <EuiRange
                 fullWidth
-                id={htmlIdGenerator()()}
+                id={useGeneratedHtmlId()}
                 min={300}
                 max={700}
                 step={1}

@@ -27,7 +27,7 @@ import {
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
-  htmlIdGenerator,
+  useGeneratedHtmlId,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -340,7 +340,7 @@ export class EuiPopover extends Component<Props, State> {
   private closingTransitionAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
-  private descriptionId: string = htmlIdGenerator()();
+  private descriptionId: string = useGeneratedHtmlId();
 
   constructor(props: Props) {
     super(props);

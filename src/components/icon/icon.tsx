@@ -22,7 +22,7 @@ import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import {
-  htmlIdGenerator,
+  useGeneratedHtmlId,
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../services';
@@ -107,7 +107,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
   return icon;
 }
 
-const generateId = htmlIdGenerator();
+const generateId = useGeneratedHtmlId;
 
 let iconComponentCache: { [iconType: string]: ComponentType } = {};
 

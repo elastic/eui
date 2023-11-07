@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 import {
   keys,
-  htmlIdGenerator,
+  useGeneratedHtmlId,
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../../services';
@@ -58,7 +58,7 @@ export class EuiDualRangeClass extends Component<
   };
 
   state = {
-    id: this.props.id || htmlIdGenerator()(),
+    id: this.props.id || useGeneratedHtmlId(),
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
     rangeWidth: 0,

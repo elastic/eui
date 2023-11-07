@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +20,8 @@ const EuiIconLogoDropwizard = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('logo_dropwizard');
+  const useGeneratedId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'logo_dropwizard', suffix });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,11 +34,11 @@ const EuiIconLogoDropwizard = ({
     >
       {title ? <title id={titleId}>{title}</title> : null}
       <path
-        fill={`url(#${generateId('a')})`}
+        fill={`url(#${useGeneratedId('a')})`}
         d="M8 29.61s9.55 4.74 16.856-.893c-1.905-5.114-5.25-19.867-7.226-26.383-.422-1.389-.49-1.527-.663-1.909-.964-2.134-1.978 4.142-3.628 10.459C12.749 13.148 8 29.61 8 29.61"
       />
       <path
-        fill={`url(#${generateId('b')})`}
+        fill={`url(#${useGeneratedId('b')})`}
         d="M9.926 28.563s8.17 4.794 14.93.154c-.18-.807-.642-2.103-.955-3.311-1.664-6.416-4.676-17.248-6.144-22.626-1.59-5.822-2.105.986-3.961 8.23-.564 2.204-3.87 17.553-3.87 17.553"
       />
       <path
@@ -54,7 +55,7 @@ const EuiIconLogoDropwizard = ({
       />
       <defs>
         <linearGradient
-          id={generateId('a')}
+          id={useGeneratedId('a')}
           x1={33.473}
           x2={7.751}
           y1={7.674}
@@ -67,7 +68,7 @@ const EuiIconLogoDropwizard = ({
           <stop offset={1} stopColor="#252761" />
         </linearGradient>
         <linearGradient
-          id={generateId('b')}
+          id={useGeneratedId('b')}
           x1={21.028}
           x2={6.017}
           y1={14.928}

@@ -10,7 +10,8 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
+
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +21,8 @@ const EuiIconLogoMemcached = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('logo_memcached');
+  const useGeneratedId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'logo_memcached', suffix });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +35,7 @@ const EuiIconLogoMemcached = ({
       {title ? <title id={titleId}>{title}</title> : null}
       <defs>
         <radialGradient
-          id={generateId('c')}
+          id={useGeneratedId('c')}
           cx="41.406%"
           cy="42.708%"
           r="0%"
@@ -44,7 +46,7 @@ const EuiIconLogoMemcached = ({
           <stop offset="100%" stopColor="#C83737" />
         </radialGradient>
         <radialGradient
-          id={generateId('d')}
+          id={useGeneratedId('d')}
           cx="44.271%"
           cy="42.708%"
           r="0%"
@@ -55,7 +57,7 @@ const EuiIconLogoMemcached = ({
           <stop offset="100%" stopColor="#C83737" />
         </radialGradient>
         <linearGradient
-          id={generateId('a')}
+          id={useGeneratedId('a')}
           x1="50%"
           x2="50%"
           y1="100%"
@@ -65,7 +67,7 @@ const EuiIconLogoMemcached = ({
           <stop offset="100%" stopColor="#80716D" />
         </linearGradient>
         <linearGradient
-          id={generateId('b')}
+          id={useGeneratedId('b')}
           x1="88.778%"
           x2="30.149%"
           y1="98.342%"
@@ -77,19 +79,19 @@ const EuiIconLogoMemcached = ({
       </defs>
       <g fill="none">
         <path
-          fill={`url(#${generateId('a')})`}
+          fill={`url(#${useGeneratedId('a')})`}
           d="M0 21.567V10.352C0 1.294 1.293 0 10.342 0h11.236c9.049 0 10.341 1.294 10.341 10.352v11.215c0 9.059-1.292 10.352-10.341 10.352H10.342C1.292 31.92 0 30.626 0 21.567Z"
         />
         <path
-          fill={`url(#${generateId('b')})`}
+          fill={`url(#${useGeneratedId('b')})`}
           d="M6.889 6.016C5.32 15.96 6.14 25.27 6.14 25.27h4.904c-.466-2.483-2.14-13.824-.748-13.861.746.118 4.156 9.621 4.156 9.621s.751-.093 1.507-.093c.755 0 1.506.093 1.506.093s3.41-9.503 4.157-9.621c1.392.037-.282 11.378-.748 13.86h4.904s.82-9.31-.748-19.253h-4.54c-.865.01-4.153 5.777-4.531 5.777-.378 0-3.666-5.767-4.53-5.777H6.889Z"
         />
         <path
-          fill={`url(#${generateId('c')})`}
+          fill={`url(#${useGeneratedId('c')})`}
           d="M14.993 24.109a1.16 1.16 0 1 1-2.322 0 1.16 1.16 0 0 1 2.322 0Z"
         />
         <path
-          fill={`url(#${generateId('d')})`}
+          fill={`url(#${useGeneratedId('d')})`}
           d="M19.249 24.109a1.16 1.16 0 1 1-2.322 0 1.16 1.16 0 0 1 2.322 0Z"
         />
         <path

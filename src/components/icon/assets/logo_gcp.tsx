@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
@@ -20,7 +20,8 @@ const EuiIconLogoGcp = ({
   titleId,
   ...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => {
-  const generateId = htmlIdGenerator('logo_gcp');
+  const useGeneratedId = (suffix: string) =>
+    useGeneratedHtmlId({ prefix: 'logo_gcp', suffix });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +34,7 @@ const EuiIconLogoGcp = ({
     >
       {title ? <title id={titleId}>{title}</title> : null}
       <defs>
-        <path id={generateId('a')} d="M.085.1h4.549v6.291H.085z" />
+        <path id={useGeneratedId('a')} d="M.085.1h4.549v6.291H.085z" />
       </defs>
       <g fill="none" fillRule="evenodd">
         <path
@@ -57,13 +58,13 @@ const EuiIconLogoGcp = ({
           opacity={0.1}
         />
         <g opacity={0.1} transform="translate(2.994 9.609)">
-          <mask id={generateId('b')} fill="#fff">
-            <use xlinkHref={`#${generateId('a')}`} />
+          <mask id={useGeneratedId('b')} fill="#fff">
+            <use xlinkHref={`#${useGeneratedId('a')}`} />
           </mask>
           <path
             fill="#000"
             d="M.275 1.498 3.15 6.391l1.485-2.527L.275.1c-.263.448-.245.98 0 1.398"
-            mask={`url(#${generateId('b')})`}
+            mask={`url(#${useGeneratedId('b')})`}
           />
         </g>
         <path
