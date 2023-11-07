@@ -11,10 +11,7 @@ import {
 import { GuideSection } from '../../components';
 import { GuideTabbedPage } from '../../components/guide_tabbed_page';
 
-const thisYear = new Date().getUTCFullYear();
-const startingYear = 2017;
-const years = thisYear - startingYear + 1;
-const yearsAsArray = Array.from({ length: years }, (_, i) => thisYear - i);
+import { years } from './changelog_years.json';
 
 const ChangelogPageByYear = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -56,14 +53,14 @@ export const Changelog = {
     <GuideTabbedPage
       title="Changelog"
       // Renders the tabbed content
-      pages={yearsAsArray.map((year) => ({
+      pages={years.map((year) => ({
         title: year.toString(),
         page: ChangelogPageByYear,
       }))}
     />
   ),
   // Renders sidenav links
-  sections: yearsAsArray.map((year) => ({
+  sections: years.map((year) => ({
     id: year,
     title: year.toString(),
     sections: [], // Triggers non-# URLs
