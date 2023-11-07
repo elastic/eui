@@ -46,7 +46,7 @@ At this point, we recommend opening a **draft** PR with your existing commits/ch
 The typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157), and reviewers have begun to expect the consistency. There are two important inclusions:
 
 * Call out changes made to accommodate test failures that might not be apparent from looking at the diff.
-* Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/main/CHANGELOG.md) for the upgrade.
+* Copy-paste the full changelog version range [from the latest changelog file](https://github.com/elastic/eui/blob/main/changelogs) for the upgrade.
 
 Labels to use:
 
