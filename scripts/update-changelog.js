@@ -167,14 +167,15 @@ const updateChangelogYears = (year) => {
  * node -e "require('./scripts/update-changelog').manualChangelog('patch|minor|major')"
  */
 const manualChangelog = (release) => {
-  versionTarget = release || 'patch'; // Unfortunately can't be a = fallback, because the package.json script passes an empty string
-  console.log(
-    chalk.magenta(
-      `Manually updating changelog to next ${versionTarget} version.`
-    )
+  const upcomingVersion = require('./update-versions-log').getUpcomingVersion(
+    release || 'patch'
   );
+  console.log(
+    chalk.magenta(`Manually updating changelog to ${upcomingVersion}`)
+  );
+
   const { changelog } = collateChangelogFiles();
-  updateChangelog(changelog, versionTarget);
+  updateChangelog(changelog, upcomingVersion);
 };
 
 module.exports = {
