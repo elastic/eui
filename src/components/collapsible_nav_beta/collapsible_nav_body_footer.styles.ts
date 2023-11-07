@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, euiYScrollWithShadows } from '../../global_styling';
 
 export const euiCollapsibleNavBodyStyles = {
   // In case things get really dire responsively, ensure the footer doesn't overtake the body
@@ -34,11 +34,13 @@ export const euiCollapsibleNavBodyStyles = {
   `,
 };
 
-export const euiCollapsibleNavFooterStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiCollapsibleNavFooterStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiCollapsibleNav__footer: css`
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('border-top', euiTheme.border.thin)}
+      ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
     `,
   };
 };
