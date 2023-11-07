@@ -1,5 +1,5 @@
 /**
- * This script collates all files in the `upcoming_changelogs/` directory
+ * This script collates all files in the `changelogs/upcoming/` directory
  * into the CHANGELOG.md file under the latest release version
  */
 
@@ -22,7 +22,7 @@ const throwError = (error) => {
  * Convert individual changelog files into a single changelog string
  */
 const collateChangelogFiles = () => {
-  const upcomingChangelogsDir = path.resolve(rootDir, 'upcoming_changelogs');
+  const upcomingChangelogsDir = path.resolve(rootDir, 'changelogs/upcoming');
   const upcomingChangelogFiles = glob.sync('**.md', {
     cwd: upcomingChangelogsDir,
     realpath: true,
@@ -128,9 +128,9 @@ const updateChangelog = (upcomingChangelog, version) => {
   fs.writeFileSync(pathToChangelog, updatedChangelog);
 
   // Delete upcoming changelogs
-  rimraf.sync('upcoming_changelogs/!(_template).md');
+  rimraf.sync('changelogs/upcoming/!(_template).md');
 
-  execSync('git add CHANGELOG.md upcoming_changelogs/');
+  execSync('git add changelogs/');
 };
 
 /**
