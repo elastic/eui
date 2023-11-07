@@ -97,8 +97,11 @@ export const euiCollapsibleNavAccordionStyles = (
     `,
     // Arrow element
     euiCollapsibleNavAccordion__arrow: css`
+      /* Ensure there's no non-clickable deadzones in the accordion trigger wrapper */
+      margin: 0;
+      ${logicalCSS('height', sharedStyles.height)}
       /* Slight visual offset from edge of entire item */
-      ${logicalCSS('margin-right', euiTheme.size.xs)}
+      ${logicalCSS('width', euiTheme.size.xl)}
 
       /* Rotate the arrow icon, not the button itself -
        * otherwise the background rotates and looks a bit silly */
