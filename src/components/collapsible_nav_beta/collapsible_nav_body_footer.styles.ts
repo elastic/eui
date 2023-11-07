@@ -10,26 +10,24 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, euiYScrollWithShadows } from '../../global_styling';
 
+// Hide the scrollbar for docked mode (while still keeping the nav scrollable)
+// Otherwise if scrollbars are visible, button icon visibility suffers.
+export const hideScrollbars = `
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Edge, & Safari */
+  }
+`;
+
 export const euiCollapsibleNavBodyStyles = {
   // In case things get really dire responsively, ensure the footer doesn't overtake the body
   euiCollapsibleNav__body: css`
     ${logicalCSS('min-height', '50%')}
   `,
-  get isPushCollapsed() {
-    return css`
-      .euiFlyoutBody__overflow {
-        ${this._isPushCollapsed}
-      }
-    `;
-  },
-  // CSS is reused by main euiCollapsibleNav styles in case the body component isn't used
-  _isPushCollapsed: `
-    /* Hide the scrollbar for docked mode (while still keeping the nav scrollable)
-       Otherwise if scrollbars are visible, button icon visibility suffers. */
-    scrollbar-width: none; /* Firefox */
-
-    &::-webkit-scrollbar {
-      display: none; /* Chrome, Edge, & Safari */
+  isPushCollapsed: css`
+    .euiFlyoutBody__overflow {
+      ${hideScrollbars}
     }
   `,
 };
@@ -41,6 +39,9 @@ export const euiCollapsibleNavFooterStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('border-top', euiTheme.border.thin)}
       ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
+    `,
+    isPushCollapsed: css`
+      ${hideScrollbars}
     `,
   };
 };
