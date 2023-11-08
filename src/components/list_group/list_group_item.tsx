@@ -285,6 +285,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isClickable && !isDisabled && innerStyles.isClickable,
   ];
 
+  const showExternalLinkIcon = (target === '_blank' && external !== false) || external === true;
+
   const externalLinkIcon = (
     <EuiIcon
       aria-label={useEuiI18n(
@@ -310,7 +312,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
-        {external && externalLinkIcon}
+        {showExternalLinkIcon && externalLinkIcon}
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -326,7 +328,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
-        {external && externalLinkIcon}
+        {showExternalLinkIcon && externalLinkIcon}
       </button>
     );
   } else {

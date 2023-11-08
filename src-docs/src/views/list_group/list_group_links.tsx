@@ -26,10 +26,10 @@ const myContent = [
     iconType: 'copyClipboard',
   },
   {
-    label: 'Fifth link is external',
-    href: '#/display/list-group',
+    label: 'Fifth link will open in new tab',
+    href: 'http://www.elastic.co',
     iconType: 'crosshairs',
-    external: true,
+    target: '_blank'
   },
 ];
 

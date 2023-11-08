@@ -77,8 +77,17 @@ export const ListGroupExample = {
             Display <strong>EuiListGroupItems</strong> as links by providing an{' '}
             <EuiCode>href</EuiCode> value and change their state with the{' '}
             <EuiCode>isActive</EuiCode> and <EuiCode>isDisabled</EuiCode>{' '}
-            properties. You can also specify whether or not a link is external{' '}
-            via the <EuiCode>external</EuiCode> prop.
+            properties.</p>
+          <p>
+            If your link is external or will open in a new tab, you can manually{' '}
+            set the <EuiCode>external</EuiCode> property. However, just like{' '}
+            with the{' '}
+            <Link to="/navigation/link">
+              <strong>EuiLink</strong>
+            </Link>{' '}
+            component, setting{' '}
+            <EuiCode language="tsx">{'target="_blank"'}</EuiCode> defaults to{' '}
+            <EuiCode language="tsx">{'external={true}'}</EuiCode>.
           </p>
           <p>
             As is done in this example, the <strong>EuiListGroup</strong>{' '}
