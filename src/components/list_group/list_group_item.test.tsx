@@ -7,12 +7,16 @@
  */
 
 import React from 'react';
+import { mount } from 'enzyme';
+
 import { fireEvent } from '@testing-library/react';
+import { findTestSubject } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { findByTestSubject, queryByTestSubject, render, waitForEuiToolTipVisible } from '../../test/rtl';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
+import { fa } from '@faker-js/faker';
 
 describe('EuiListGroupItem', () => {
   shouldRenderCustomStyles(<EuiListGroupItem label="Label" />);
@@ -202,6 +206,34 @@ describe('EuiListGroupItem', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('external', () => {
+      test('is rendered', () => {
+        const { container } = render(
+          <EuiListGroupItem label="Label" href="#" external />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      test('target `_blank` renders external icon', () => {
+        const { getByTestSubject } = render(
+          <EuiListGroupItem label="Label" href="#" target="_blank" />
+        );
+        expect(getByTestSubject('externalLinkIcon')).toBeInTheDocument();
+      });
+
+      test('external prop can overwrite default target `_blank` behavior', async () => {
+        const { queryByTestSubject } = render(
+          <EuiListGroupItem
+            label="Label"
+            href="#"
+            target="_blank"
+            external={false}
+          />
+        );
+        expect(queryByTestSubject('externalLinkIcon')).toBeFalsy();
       });
     });
 

@@ -296,6 +296,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       size="s"
       css={innerStyles.externalIcon}
       type="popout"
+      data-test-subj='externalLinkIcon'
     />
   );
 
