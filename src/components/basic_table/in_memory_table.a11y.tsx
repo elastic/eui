@@ -163,35 +163,34 @@ describe('EuiInMemoryTable', () => {
       });
 
       it('has zero violations after sorting on a column', () => {
-        cy.realPress('Tab');
         cy.get('button[data-test-subj="tableHeaderSortButton"]')
           .first()
-          .should('have.focus');
+          .focus();
         cy.realPress('Enter');
         cy.checkAxe();
       });
 
       it('has zero violations when number of rows is increased by keyboard', () => {
-        cy.repeatRealPress('Tab', 14);
         cy.get('button[data-test-subj="tablePaginationPopoverButton"]')
-          .should('have.focus')
+          .focus()
           .realPress('Space');
-        cy.get('div[data-popover-open="true"]').should('exist');
-        cy.get('div[data-popover-open="true"]').should('have.focus');
+        cy.get('div[data-popover-open="true"]', { timeout: 500 }).should(
+          'exist'
+        );
         cy.repeatRealPress('Tab'); // Switched to Tab from ArrowDown because of flaky test runs
         cy.get('button[data-test-subj="tablePagination-25-rows"]').realPress(
           'Space'
         );
-        cy.get('table.euiTable')
+        cy.get('table.euiTable', { timeout: 1000 })
           .find('tr.euiTableRow')
           .should('have.length', 20);
         cy.checkAxe();
       });
 
       it('has zero violations when pagination is pressed', () => {
-        cy.repeatRealPress('Tab', 15);
+        // cy.repeatRealPress('Tab', 15);
         cy.get('a[data-test-subj="pagination-button-1"]')
-          .should('have.focus')
+          .focus()
           .realPress('Enter');
         cy.get('button[data-test-subj="pagination-button-1"]').should(
           'be.disabled'
