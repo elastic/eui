@@ -41,6 +41,7 @@ import {
   euiListGroupItemTooltipStyles,
   euiListGroupItemLabelStyles,
 } from './list_group_item.styles';
+import { useEuiI18n } from '../i18n';
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiListGroupItemSize = (typeof SIZES)[number];
@@ -150,6 +151,12 @@ export type EuiListGroupItemProps = CommonProps &
      * Accepts any props that [EuiToolTip](/#/display/tooltip) accepts.
      */
     toolTipProps?: Partial<EuiToolTipProps>;
+
+    /**
+     * Set to true to show an icon indicating that it is an external link;
+     * Defaults to true if `target="_blank"`
+     */
+    external?: boolean;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -174,6 +181,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   buttonRef,
   toolTipText,
   toolTipProps,
+  external,
   ...rest
 }) => {
   const isClickable = !!(href || onClick);
@@ -183,6 +191,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const euiTheme = useEuiTheme();
 
   const iconStyles = euiListGroupItemIconStyles(euiTheme);
+
   const cssIconStyles = [iconStyles.euiListGroupItem__icon, iconProps?.css];
 
   let iconNode;
@@ -276,6 +285,18 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isClickable && !isDisabled && innerStyles.isClickable,
   ];
 
+  const externalLinkIcon = (
+    <EuiIcon
+      aria-label={useEuiI18n(
+        'euiListGroupItem.external.ariaLabel',
+        'External link'
+      )}
+      size="s"
+      css={innerStyles.externalIcon}
+      type="popout"
+    />
+  );
+
   if (href && !isDisabled) {
     itemContent = (
       <a
@@ -289,6 +310,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
+        {external && externalLinkIcon}
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -304,6 +326,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
+        {external && externalLinkIcon}
       </button>
     );
   } else {
