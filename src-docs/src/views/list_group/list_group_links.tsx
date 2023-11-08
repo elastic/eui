@@ -26,9 +26,10 @@ const myContent = [
     iconType: 'copyClipboard',
   },
   {
-    label: 'Fifth link',
+    label: 'Fifth link is external',
     href: '#/display/list-group',
     iconType: 'crosshairs',
+    external: true,
   },
 ];
 

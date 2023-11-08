@@ -77,7 +77,8 @@ export const ListGroupExample = {
             Display <strong>EuiListGroupItems</strong> as links by providing an{' '}
             <EuiCode>href</EuiCode> value and change their state with the{' '}
             <EuiCode>isActive</EuiCode> and <EuiCode>isDisabled</EuiCode>{' '}
-            properties.
+            properties. You can also specify whether or not a link is external{' '}
+            via the <EuiCode>external</EuiCode> prop.
           </p>
           <p>
             As is done in this example, the <strong>EuiListGroup</strong>{' '}
