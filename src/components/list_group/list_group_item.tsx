@@ -191,7 +191,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const euiTheme = useEuiTheme();
 
   const iconStyles = euiListGroupItemIconStyles(euiTheme);
-
   const cssIconStyles = [iconStyles.euiListGroupItem__icon, iconProps?.css];
 
   let iconNode;
@@ -285,7 +284,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isClickable && !isDisabled && innerStyles.isClickable,
   ];
 
-  const showExternalLinkIcon = (target === '_blank' && external !== false) || external === true;
+  const showExternalLinkIcon =
+    (target === '_blank' && external !== false) || external === true;
 
   const externalLinkIcon = (
     <EuiIcon
@@ -296,7 +296,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       size="s"
       css={innerStyles.externalIcon}
       type="popout"
-      data-test-subj='externalLinkIcon'
+      data-test-subj="externalLinkIcon"
     />
   );
 

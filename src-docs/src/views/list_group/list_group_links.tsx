@@ -29,7 +29,7 @@ const myContent = [
     label: 'Fifth link will open in new tab',
     href: 'http://www.elastic.co',
     iconType: 'crosshairs',
-    target: '_blank'
+    target: '_blank',
   },
 ];
 

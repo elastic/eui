@@ -7,16 +7,13 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
 
 import { fireEvent } from '@testing-library/react';
-import { findTestSubject } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { findByTestSubject, queryByTestSubject, render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
-import { fa } from '@faker-js/faker';
 
 describe('EuiListGroupItem', () => {
   shouldRenderCustomStyles(<EuiListGroupItem label="Label" />);
