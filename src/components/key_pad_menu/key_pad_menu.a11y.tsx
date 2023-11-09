@@ -121,9 +121,11 @@ describe('EuiKeyPadMenu', () => {
 
     it('has zero violations on item click', () => {
       cy.get('a[data-test-subj="cy-keypad-link-2"]').realClick();
-      cy.get('a[data-test-subj="cy-keypad-link-2"]')
-        .invoke('attr', 'aria-current')
-        .should('equal', 'true');
+      cy.get('a[data-test-subj="cy-keypad-link-2"]').should(
+        'have.attr',
+        'aria-current',
+        'true'
+      );
       cy.checkAxe();
     });
 
@@ -133,14 +135,18 @@ describe('EuiKeyPadMenu', () => {
         'have.focus'
       );
       cy.realPress('Space');
-      cy.get('button[data-test-subj="cy-keypad-button-3"]')
-        .invoke('attr', 'aria-pressed')
-        .should('equal', 'true');
+      cy.get('button[data-test-subj="cy-keypad-button-3"]').should(
+        'have.attr',
+        'aria-pressed',
+        'true'
+      );
       cy.checkAxe();
       cy.realPress(['Shift', 'Tab']);
-      cy.get('button[data-test-subj="cy-keypad-button-2"]')
-        .invoke('attr', 'aria-pressed')
-        .should('equal', 'false');
+      cy.get('button[data-test-subj="cy-keypad-button-2"]').should(
+        'have.attr',
+        'aria-pressed',
+        'false'
+      );
       cy.realPress('Space');
       cy.get('button[data-test-subj="cy-keypad-button-2"]')
         .invoke('attr', 'aria-pressed')

@@ -188,7 +188,6 @@ describe('EuiInMemoryTable', () => {
       });
 
       it('has zero violations when pagination is pressed', () => {
-        // cy.repeatRealPress('Tab', 15);
         cy.get('a[data-test-subj="pagination-button-1"]')
           .focus()
           .realPress('Enter');
