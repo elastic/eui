@@ -6,11 +6,14 @@ exports[`EuiCollapsibleNavGroup renders as a sub item 1`] = `
 >
   <span
     class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isSubItem"
+    id="generated-id"
   >
     Header
   </span>
   <div
+    aria-labelledby="generated-id"
     class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isSubItem"
+    role="group"
   >
     <span
       class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
@@ -33,11 +36,14 @@ exports[`EuiCollapsibleNavGroup renders as a top level item 1`] = `
 >
   <span
     class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+    id="generated-id"
   >
     Header
   </span>
   <div
+    aria-labelledby="generated-id"
     class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isTopItem"
+    role="group"
   >
     <span
       class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"

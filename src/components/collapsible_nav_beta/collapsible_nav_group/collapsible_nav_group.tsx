@@ -16,29 +16,24 @@ import { EuiCollapsibleNavContext } from '../context';
 import {
   EuiCollapsibleNavItem,
   EuiCollapsibleNavSubItems,
-  EuiCollapsibleNavSubItemProps,
-  EuiCollapsibleNavItemProps,
+  type EuiCollapsibleNavItemProps,
+  type _SharedEuiCollapsibleNavItemProps,
 } from '../collapsible_nav_item/collapsible_nav_item';
 import { EuiCollapsedNavPopover } from '../collapsible_nav_item/collapsed/collapsed_nav_popover';
 
 import { euiCollapsibleNavGroupStyles } from './collapsible_nav_group.styles';
 
-export type EuiCollapsibleNavGroupProps = Omit<
-  EuiCollapsibleNavItemProps,
-  'items' | 'accordionProps'
-> & {
-  /**
-   * Will render an array of `EuiCollapsibleNavItems`.
-   *
-   * Accepts any #EuiCollapsibleNavItemProps. Or, to render completely custom
-   * subitem content, pass an object with a `renderItem` callback.
-   */
-  items: EuiCollapsibleNavSubItemProps[];
-  /**
-   * Optional props to pass to the wrapping div
-   */
-  wrapperProps?: HTMLAttributes<HTMLDivElement> & CommonProps;
-};
+export type EuiCollapsibleNavGroupProps = _SharedEuiCollapsibleNavItemProps &
+  Pick<
+    EuiCollapsibleNavItemProps,
+    'title' | 'titleElement' | 'icon' | 'iconProps'
+  > &
+  Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
+    /**
+     * Optional props to pass to the wrapping div
+     */
+    wrapperProps?: HTMLAttributes<HTMLDivElement> & CommonProps;
+  };
 
 /**
  * This component should only ever be used as a **top-level component**, and not as a sub-item.

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCollapsedNavPopover renders the title and sub-items within the popover 1`] = `
+exports[`EuiCollapsedNavPopover renders 1`] = `
 <body>
   <div>
     <div
@@ -69,18 +69,11 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
           <div
             class="euiPopoverTitle emotion-euiPopoverTitle-none"
           >
-            <a
-              class="euiLink emotion-euiLink-text-euiCollapsedNavPopover__title-link"
-              data-test-subj="popoverTitle"
-              href="#"
-              rel="noreferrer"
+            <h3
+              class="eui-textTruncate emotion-euiCollapsedNavPopover__title"
             >
-              <span
-                class="eui-textTruncate"
-              >
-                Item
-              </span>
-            </a>
+              Item
+            </h3>
           </div>
           <div
             class="emotion-euiCollapsedNavPopover__items"

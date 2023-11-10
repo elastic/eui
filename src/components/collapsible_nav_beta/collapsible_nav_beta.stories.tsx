@@ -111,7 +111,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Elasticsearch"
           icon="logoElasticsearch"
-          href="#"
           items={[
             { title: 'Get started', href: '#' },
             ...renderGroup('Explore', [
@@ -130,7 +129,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Enterprise Search"
           icon="logoEnterpriseSearch"
-          href="#"
           items={[
             { title: 'ESRE', href: '#' },
             { title: 'Vector search', href: '#' },
@@ -146,7 +144,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Observability"
           icon="logoObservability"
-          href="#"
           items={[
             { title: 'Get started', href: '#' },
             { title: 'Alerts', href: '#' },
@@ -156,7 +153,6 @@ export const KibanaExample: Story = {
               { title: 'Logs', href: '#' },
               {
                 title: 'Tracing',
-                href: '#',
                 items: [
                   { title: 'Services', href: '#' },
                   { title: 'Traces', href: '#' },
@@ -169,7 +165,6 @@ export const KibanaExample: Story = {
               { title: 'Dashboards', href: '#' },
               {
                 title: 'AIOps',
-                href: '#',
                 items: [
                   { title: 'Anomaly detection', href: '#' },
                   { title: 'Spike analysis', href: '#' },
@@ -183,7 +178,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Security"
           icon="logoSecurity"
-          href="#"
           items={[
             { title: 'Get started', href: '#' },
             { title: 'Dashboards', href: '#' },
@@ -194,7 +188,6 @@ export const KibanaExample: Story = {
             { title: 'Intelligence', href: '#' },
             {
               title: 'Explore',
-              href: '#',
               items: [
                 { title: 'Host', href: '#' },
                 { title: 'Users', href: '#' },
@@ -204,7 +197,6 @@ export const KibanaExample: Story = {
             { title: 'Assets', href: '#' },
             {
               title: 'Rules',
-              href: '#',
               items: [
                 { title: 'SIEM rules', href: '#' },
                 { title: 'Shared exception list', href: '#' },
@@ -214,7 +206,6 @@ export const KibanaExample: Story = {
             },
             {
               title: 'Machine learning',
-              href: '#',
               items: [
                 { title: 'Overview', href: '#' },
                 { title: 'Notifications', href: '#' },
@@ -226,7 +217,6 @@ export const KibanaExample: Story = {
             },
             {
               title: 'Settings',
-              href: '#',
               items: [
                 { title: 'Endpoints', href: '#' },
                 { title: 'OS query', href: '#' },
@@ -240,7 +230,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Analytics"
           icon="stats"
-          href="#"
           items={[
             { title: 'Discover', href: '#' },
             { title: 'Dashboard', href: '#' },
@@ -250,7 +239,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Machine learning"
           icon="indexMapping"
-          href="#"
           items={[
             { title: 'Overview', href: '#' },
             { title: 'Notifications', href: '#' },
@@ -280,7 +268,6 @@ export const KibanaExample: Story = {
         <EuiCollapsibleNavBeta.Item
           title="Developer tools"
           icon="editorCodeBlock"
-          href="#"
           items={[
             { title: 'Console', href: '#' },
             { title: 'Search profiler', href: '#' },
@@ -344,7 +331,6 @@ export const SecurityExample: Story = {
             { title: 'Intelligence', href: '#' },
             {
               title: 'Explore',
-              href: '#',
               items: [
                 { title: 'Host', href: '#' },
                 { title: 'Users', href: '#', isSelected: true },
@@ -355,7 +341,6 @@ export const SecurityExample: Story = {
             { title: 'Assets', href: '#' },
             {
               title: 'Rules',
-              href: '#',
               items: [
                 { title: 'SIEM rules', href: '#' },
                 { title: 'Shared exception list', href: '#' },
@@ -365,7 +350,6 @@ export const SecurityExample: Story = {
             },
             {
               title: 'Machine learning',
-              href: '#',
               items: [
                 { title: 'Overview', href: '#' },
                 { title: 'Notifications', href: '#' },
@@ -377,7 +361,6 @@ export const SecurityExample: Story = {
             },
             {
               title: 'Settings',
-              href: '#',
               items: [
                 { title: 'Endpoints', href: '#' },
                 { title: 'OS query', href: '#' },
