@@ -1,3 +1,42 @@
+## [`91.0.0`](https://github.com/elastic/eui/tree/v91.0.0)
+
+- Updated the background color of `EuiPopover`s in dark mode to increase visibility & contrast against other page/panel backgrounds ([#7310](https://github.com/elastic/eui/pull/7310))
+- Memoized `EuiDataGrid` to prevent unneeded re-renders ([#7324](https://github.com/elastic/eui/pull/7324))
+- Added a configurable `role` prop to `EuiAccordion` ([#7326](https://github.com/elastic/eui/pull/7326))
+- Added a configurable `role` prop to `EuiGlobalToastList` ([#7328](https://github.com/elastic/eui/pull/7328))
+- For greater flexibility, `EuiSuperDatePicker` now allows users to paste ISO 8601, RFC 2822, and Unix timestamps in the `Absolute` tab input, in addition to timestamps in the `dateFormat` prop ([#7331](https://github.com/elastic/eui/pull/7331))
+- Plain text `EuiComboBox`es now behave more like a normal text field/input. Backspacing will no longer delete the entire value, and selected values can now be double clicked and copied. ([#7332](https://github.com/elastic/eui/pull/7332))
+- `EuiDataGrid`'s display settings popover now allows users to clear the "Lines per row" input before typing in a new number ([#7338](https://github.com/elastic/eui/pull/7338))
+- Improved the UX of `EuiSuperDatePicker`'s Absolute tab for users manually typing in timestamps ([#7341](https://github.com/elastic/eui/pull/7341))
+- Updated `EuiI18n`s with multiple `tokens` to accept dynamic `values` ([#7341](https://github.com/elastic/eui/pull/7341))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox`'s `onSearchChange` callback to pass the correct `hasMatchingOptions` value ([#7334](https://github.com/elastic/eui/pull/7334))
+- Fixed an `EuiSelectableTemplateSitewide` bug where the `popoverButton` behavior would break if passed a non-DOM React wrapper ([#7339](https://github.com/elastic/eui/pull/7339))
+
+**Deprecations**
+
+- `EuiPopover`: deprecated `anchorClassName`. Use `className` instead ([#7311](https://github.com/elastic/eui/pull/7311))
+- `EuiPopover`: deprecated `buttonRef`. Use `popoverRef` instead ([#7311](https://github.com/elastic/eui/pull/7311))
+- `EuiPopover`: removed extra `.euiPopover__anchor` div wrapper. Target `.euiPopover` instead if necessary ([#7311](https://github.com/elastic/eui/pull/7311))
+- Deprecated `EuiButtonGroup`'s `name` prop. This can safely be removed. ([#7325](https://github.com/elastic/eui/pull/7325))
+
+**Breaking changes**
+
+- Removed deprecated `euiPaletteComplimentary` - use `euiPaletteComplementary` Instead ([#7333](https://github.com/elastic/eui/pull/7333))
+
+**Accessibility**
+
+- Updated `type="single"` `EuiButtonGroup`s to render standard buttons instead of radio buttons under the hood, per recent a11y recommendations ([#7325](https://github.com/elastic/eui/pull/7325))
+- `EuiAccordion` now defaults to a less screenreader-noisy `group` role instead of `region`. If your accordion contains significant enough content to be a document landmark role, you may re-configure it back to `region`. ([#7326](https://github.com/elastic/eui/pull/7326))
+- Reduced screen reader noisiness when sorting `EuiDataGrid` columns via toolbar ([#7327](https://github.com/elastic/eui/pull/7327))
+- `EuiGlobalToastList` now defaults to a `log` role. If your toasts will always require immediate user action, consider (with caution) using the `alert` role instead. ([#7328](https://github.com/elastic/eui/pull/7328))
+
+**CSS-in-JS conversions**
+
+- Updated `$euiFontFamily` and `$euiCodeFontFamily` to match Emotion fonts ([#7332](https://github.com/elastic/eui/pull/7332))
+
 ## [`90.0.0`](https://github.com/elastic/eui/tree/v90.0.0)
 
 - Updated the `eventColor` prop on `EuiCommentEvent` to apply the color to the entire comment header. ([#7288](https://github.com/elastic/eui/pull/7288))
@@ -29,7 +68,7 @@
 
 **Dependency updates**
 
-- Updated `refactor` to v3.6.0 ([#7127](https://github.com/elastic/eui/pull/7127))
+- Updated `refractor` to v3.6.0 ([#7127](https://github.com/elastic/eui/pull/7127))
 - Updated `rehype-raw` to v5.1.0 ([#7127](https://github.com/elastic/eui/pull/7127))
 - Updated `vfile` to v4.2.1 ([#7127](https://github.com/elastic/eui/pull/7127))
 

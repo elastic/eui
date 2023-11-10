@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { FixedSizeList } from 'react-window';
 
 import {
   EuiBadge,
@@ -10,7 +9,6 @@ import {
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
   EuiIcon,
-  EuiListGroupItem,
   EuiPopover,
   EuiToolTip,
 } from '../../../../src/components';
@@ -21,11 +19,9 @@ import { CodeSandboxLink } from '../../components/codesandbox/link';
 import logoEUI from '../../images/logo-eui.svg';
 import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
-const { euiVersions } = require('./versions.json');
-const currentVersion = require('../../../../package.json').version;
-const pronounceVersion = (version: string) => {
-  return `version ${version.replaceAll('.', ' point ')}`; // NVDA pronounciation issue
-};
+import { VersionSwitcher } from './version_switcher';
+
+const GITHUB_URL = 'https://github.com/elastic/eui';
 
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
@@ -46,77 +42,44 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     );
   }, []);
 
-  const [isVersionPopoverOpen, setIsVersionPopoverOpen] = useState(false);
-  const versionBadge = useMemo(() => {
-    const isLocalDev = window.location.host.includes('803');
-    return (
-      <EuiBadge
-        onClick={() => setIsVersionPopoverOpen((isOpen) => !isOpen)}
-        onClickAriaLabel={`${
-          isLocalDev ? 'Local' : pronounceVersion(currentVersion)
-        }. Click to switch versions`}
-        color={isLocalDev ? 'accent' : 'default'}
-      >
-        {isLocalDev ? 'Local' : `v${currentVersion}`}
-      </EuiBadge>
-    );
-  }, []);
-  const versionSwitcher = useMemo(() => {
-    return (
-      <EuiPopover
-        isOpen={isVersionPopoverOpen}
-        closePopover={() => setIsVersionPopoverOpen(false)}
-        button={versionBadge}
-        repositionOnScroll
-        panelPaddingSize="xs"
-      >
-        <FixedSizeList
-          className="eui-yScroll"
-          itemCount={euiVersions.length}
-          itemSize={24}
-          height={200}
-          width={120}
-          innerElementType="ul"
+  const environmentBadge = useMemo(() => {
+    const isLocal = window.location.host.includes('803');
+    const isPRStaging = window.location.pathname.startsWith('/pr_');
+
+    if (isLocal) {
+      return <EuiBadge color="accent">Local</EuiBadge>;
+    }
+    if (isPRStaging) {
+      const prId = window.location.pathname.split('/')[1].split('pr_')[1];
+      return (
+        <EuiBadge
+          color="hollow"
+          iconType="popout"
+          iconSide="right"
+          href={`${GITHUB_URL}/pull/${prId}`}
+          target="_blank"
         >
-          {({ index, style }) => {
-            const version = euiVersions[index];
-            const screenReaderVersion = pronounceVersion(version);
-            return (
-              <EuiListGroupItem
-                style={style}
-                size="xs"
-                label={`v${version}`}
-                aria-label={screenReaderVersion}
-                href={`https://eui.elastic.co/v${version}/`}
-                extraAction={{
-                  'aria-label': `View release notes for ${screenReaderVersion}`,
-                  title: 'View release',
-                  iconType: 'package',
-                  iconSize: 's',
-                  // @ts-ignore - this is valid
-                  href: `https://github.com/elastic/eui/releases/tag/v${version}`,
-                  target: '_blank',
-                }}
-                isActive={version === currentVersion}
-                color={version === currentVersion ? 'primary' : 'text'}
-              />
-            );
-          }}
-        </FixedSizeList>
-      </EuiPopover>
-    );
-  }, [isVersionPopoverOpen, versionBadge]);
+          Staging
+        </EuiBadge>
+      );
+    }
+    return <VersionSwitcher />;
+  }, []);
 
   const github = useMemo(() => {
-    const href = 'https://github.com/elastic/eui';
     const label = 'EUI GitHub repo';
     return isMobileSize ? (
-      <EuiButtonEmpty size="s" flush="both" iconType="logoGithub" href={href}>
+      <EuiButtonEmpty
+        size="s"
+        flush="both"
+        iconType="logoGithub"
+        href={GITHUB_URL}
+      >
         {label}
       </EuiButtonEmpty>
     ) : (
       <EuiToolTip content="Github">
-        <EuiHeaderSectionItemButton aria-label={label} href={href}>
+        <EuiHeaderSectionItemButton aria-label={label} href={GITHUB_URL}>
           <EuiIcon type="logoGithub" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
@@ -200,7 +163,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         position="fixed"
         theme="dark"
         sections={[
-          { items: [logo, versionSwitcher] },
+          { items: [logo, environmentBadge] },
           { items: rightSideItems },
         ]}
       />
