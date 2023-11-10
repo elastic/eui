@@ -25,8 +25,11 @@ import {
 } from './collapsed_nav_button.styles';
 
 export const EuiCollapsedNavButton: FunctionComponent<
-  EuiCollapsibleNavItemProps & {
-    hideToolTip?: boolean;
+  Omit<
+    EuiCollapsibleNavItemProps,
+    'items' | 'isCollapsible' | 'accordionProps'
+  > & {
+    hideToolTip?: boolean; // Used by EuiCollapsedNavPopover to prevent tooltip/popover overlap
   }
 > = ({
   href, // eslint-disable-line local/href-with-rel
@@ -37,10 +40,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
   onClick,
   hideToolTip,
   linkProps,
-  // Extracted to avoid spreading to ...rest
-  accordionProps,
-  titleElement,
-  items,
+  titleElement, // Extracted to avoid spreading to ...rest
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
