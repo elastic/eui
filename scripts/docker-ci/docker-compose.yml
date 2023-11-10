@@ -1,0 +1,17 @@
+services:
+  dependencies:
+    build:
+      dockerfile: ./Dockerfile.deps
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+
+  app:
+    image: container-registry-test.elastic.co/eui/ci
+    build:
+      dockerfile: ./Dockerfile.app
+    working_dir: /app
+    volumes_from:
+      - "dependencies"
+    depends_on:
+      - "dependencies"
