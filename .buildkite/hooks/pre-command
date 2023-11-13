@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$BUILDKITE_AGENT_NAME" =~ ^bk-agent ]]; then
+  echo "Pipeline triggered from outside EUI. Skipping pre_command."
+else
+  source .buildkite/scripts/lifecycle/pre_command.sh
+fi
