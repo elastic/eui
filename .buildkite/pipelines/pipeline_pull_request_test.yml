@@ -89,14 +89,15 @@ steps:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
 
-  - label: ":axe: Cypress accessibility (a11y) tests on React 18"
-    command: .buildkite/scripts/pipeline_test.sh
-    depends_on: "build-test-container"
-    agents:
-      image: "container-registry-test.elastic.co/eui/ci:latest"
-    env:
-      TEST_TYPE: 'cypress:a11y'
-    if: build.branch != "main"
-    artifact_paths:
-      - "cypress/screenshots/**/*.png"
-      - "cypress/videos/**/*.mp4"
+  # TODO: Enable this block after PR #7354 is merged
+  # - label: ":axe: Cypress accessibility (a11y) tests on React 18"
+  #   command: .buildkite/scripts/pipeline_test.sh
+  #   depends_on: "build-test-container"
+  #   agents:
+  #     image: "container-registry-test.elastic.co/eui/ci:latest"
+  #   env:
+  #     TEST_TYPE: 'cypress:a11y'
+  #   if: build.branch != "main"
+  #   artifact_paths:
+  #     - "cypress/screenshots/**/*.png"
+  #     - "cypress/videos/**/*.mp4"

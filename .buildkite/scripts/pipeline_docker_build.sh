@@ -27,21 +27,20 @@ function retry {
 
 DOCKER_MACHINE_STAGING=secret/ci/elastic-eui/docker-machine-staging
 
-echo ":docker: Get Docker Hub credentials & authenticate"
+echo "[DOCKER]: Get registry credentials & login"
 username=$(retry 5 vault read -field=username $DOCKER_MACHINE_STAGING)
 password=$(retry 5 vault read -field=password $DOCKER_MACHINE_STAGING)
 if [[ -z "${username}" ]] || [[ -z "${password}" ]]; then
   echo ":fire: Docker credentials not set." 1>&2
   exit 1
 fi
-docker login -u "${username}" -p "${password}" container-registry-test.elastic.co
+echo "${password}" | docker login -u "${username}" --password-stdin container-registry-test.elastic.co
 
-echo ":docker: Build and push container"
-docker-compose -f ../../scripts/docker-ci/docker-compose.yml build app
+echo "[DOCKER]: Build and push container to registry"
+docker-compose -f ./scripts/docker-ci/docker-compose.yml build app
 docker push container-registry-test.elastic.co/eui/ci:latest
 
-echo ":docker: Log out of Docker Hub"
+echo "[DOCKER]: Log out of registry"
 docker logout
 
-# Unset all the thingz
 unset DOCKER_MACHINE username password
