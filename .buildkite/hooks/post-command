@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$BUILDKITE_AGENT_NAME" =~ ^bk-agent ]]; then
-  echo "Pipeline triggered from outside EUI. Skipping post_command."
-else
   source .buildkite/scripts/lifecycle/post_command.sh
+else
+  echo "Pipeline triggered from outside expected EUI workflow. Skipping post_command."
 fi
