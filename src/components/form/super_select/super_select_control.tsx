@@ -114,12 +114,7 @@ export const EuiSuperSelectControl: <T extends string>(
     className
   );
 
-  // React HTML input can not have both value and defaultValue properties.
-  // https://reactjs.org/docs/uncontrolled-components.html#default-values
-  let selectDefaultValue;
-  if (value == null) {
-    selectDefaultValue = defaultValue || '';
-  }
+  const inputValue = value != null ? value : defaultValue;
 
   let selectedValue;
   if (value) {
@@ -137,8 +132,7 @@ export const EuiSuperSelectControl: <T extends string>(
         type="hidden"
         id={id}
         name={name}
-        defaultValue={selectDefaultValue}
-        value={value}
+        value={inputValue ?? ''}
         readOnly={readOnly}
       />
 
