@@ -7,7 +7,6 @@
  */
 
 import React, {
-  Fragment,
   FunctionComponent,
   ButtonHTMLAttributes,
   ReactNode,
@@ -129,7 +128,7 @@ export const EuiSuperSelectControl: <T = string>(
   const showPlaceholder = !!placeholder && !selectedValue;
 
   return (
-    <Fragment>
+    <>
       <input
         type="hidden"
         id={id}
@@ -167,6 +166,6 @@ export const EuiSuperSelectControl: <T = string>(
           )}
         </button>
       </EuiFormControlLayout>
-    </Fragment>
+    </>
   );
 };
