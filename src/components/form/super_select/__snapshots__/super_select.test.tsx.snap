@@ -1,45 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSuperSelect is rendered 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value=""
-  />
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <button
-        aria-haspopup="listbox"
-        aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
-        data-test-subj="test subject string"
-        type="button"
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiSuperSelect props compressed is rendered 1`] = `
+exports[`EuiSuperSelect props compressed 1`] = `
 <div
   class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
@@ -55,9 +16,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed testClass1 testClass2 emotion-euiTestCss"
-        data-test-subj="test subject string"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
         type="button"
       />
       <div
@@ -78,134 +37,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value=""
-  />
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-        data-test-subj="superSelect"
-        type="button"
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
-    >
-      <div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
-        <div
-          data-focus-lock-disabled="false"
-        >
-          <p
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderDescribeId"
-          >
-            You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
-          </p>
-          <div
-            aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-            aria-label="Select listbox"
-            class="euiSuperSelect__listbox"
-            role="listbox"
-            tabindex="0"
-          >
-            <button
-              aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              id="1"
-              role="option"
-              type="button"
-            >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="empty"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Custom Display #1
-              </span>
-            </button>
-            <button
-              aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              id="2"
-              role="option"
-              type="button"
-            >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="empty"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Custom Display #2
-              </span>
-            </button>
-          </div>
-        </div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
+exports[`EuiSuperSelect props fullWidth 1`] = `
 <div
   class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
@@ -221,9 +53,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth testClass1 testClass2 emotion-euiTestCss"
-        data-test-subj="test subject string"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
         type="button"
       />
       <div
@@ -244,7 +74,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
+exports[`EuiSuperSelect props prepend and append 1`] = `
 <div
   class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
 >
@@ -265,9 +95,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup testClass1 testClass2 emotion-euiTestCss"
-        data-test-subj="test subject string"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup"
         type="button"
       />
       <div
@@ -293,467 +121,138 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
 </div>
 `;
 
-exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value="1"
-  />
-  <div
-    class="euiFormControlLayout"
-  >
+exports[`EuiSuperSelect renders 1`] = `
+<body>
+  <div>
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
     >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-        data-test-subj="superSelect"
-        type="button"
-      >
-        Option #1
-      </button>
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
-    >
-      <div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
-        <div
-          data-focus-lock-disabled="false"
-        >
-          <p
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderDescribeId"
-          >
-            You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
-          </p>
-          <div
-            aria-activedescendant="1"
-            aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-            aria-label="Select listbox"
-            class="euiSuperSelect__listbox"
-            role="listbox"
-            tabindex="0"
-          >
-            <button
-              aria-selected="true"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-disabled"
-              disabled=""
-              id="1"
-              role="option"
-              type="button"
-            >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="check"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Option #1
-              </span>
-            </button>
-            <button
-              aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              data-test-subj="option two"
-              id="2"
-              role="option"
-              type="button"
-            >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="empty"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Option #2
-              </span>
-            </button>
-          </div>
-        </div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value=""
-  />
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-        data-test-subj="superSelect"
-        type="button"
+      <input
+        type="hidden"
+        value=""
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayout"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon"
+        <div
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
+          <button
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button testClass1 testClass2 emotion-euiTestCss"
+            data-test-subj="test subject string"
+            type="button"
           />
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
-    >
-      <div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
-        <div
-          data-focus-lock-disabled="false"
-        >
-          <p
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderDescribeId"
-          >
-            You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
-          </p>
           <div
-            aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-            aria-label="Select listbox"
-            class="euiSuperSelect__listbox"
-            role="listbox"
-            tabindex="0"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
-            <button
-              aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              id="1"
-              role="option"
-              type="button"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="empty"
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="arrowDown"
               />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Option #1
-              </span>
-            </button>
-            <button
-              aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              id="2"
-              role="option"
-              type="button"
-            >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="empty"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Option #2
-              </span>
-            </button>
+            </span>
           </div>
         </div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
       </div>
     </div>
   </div>
   <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect goes-on-outermost-wrapper emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value="2"
-  />
-  <div
-    class="euiFormControlLayout"
+    data-euiportal="true"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
     >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
-        data-test-subj="superSelect"
-        type="button"
-      >
-        Option #2
-      </button>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        aria-live="assertive"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPopover__panel goes-on-popover-panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
-    >
-      <div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
-        <div
-          data-focus-lock-disabled="false"
-        >
-          <p
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderDescribeId"
-          >
-            You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
-          </p>
+        <div>
           <div
-            aria-activedescendant="2"
-            aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-            aria-label="Select listbox"
-            class="euiSuperSelect__listbox"
-            role="listbox"
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
             tabindex="0"
+          />
+          <div
+            data-focus-lock-disabled="false"
           >
-            <button
-              aria-selected="false"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              id="1"
-              role="option"
-              type="button"
+            <p
+              class="emotion-euiScreenReaderOnly"
+              id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="empty"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
-              >
-                Option #1
-              </span>
-            </button>
-            <button
-              aria-selected="true"
-              class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
-              id="2"
-              role="option"
-              type="button"
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
+            </p>
+            <div
+              aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-label="Select listbox"
+              class="euiSuperSelect__listbox"
+              role="listbox"
+              tabindex="0"
             >
-              <span
-                class="euiContextMenu__icon emotion-euiContextMenu__icon"
-                color="inherit"
-                data-euiicon-type="check"
-              />
-              <span
-                class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+              <button
+                aria-selected="false"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
+                id="1"
+                role="option"
+                type="button"
               >
-                Option #2
-              </span>
-            </button>
+                <span
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  Option #1
+                </span>
+              </button>
+              <button
+                aria-selected="false"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
+                id="2"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  Option #2
+                </span>
+              </button>
+            </div>
           </div>
+          <div
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="0"
+          />
         </div>
-        <div
-          data-focus-guard="true"
-          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-          tabindex="0"
-        />
       </div>
     </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiSuperSelect props select component is rendered 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value=""
-  />
-  <div
-    class="euiFormControlLayout"
-  >
     <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons"
-        type="button"
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
   </div>
-</div>
-`;
-
-exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value="2"
-  />
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons"
-        type="button"
-      >
-        Option #2
-      </button>
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+</body>
 `;
