@@ -90,10 +90,13 @@ export type EuiListGroupItemProps = CommonProps &
      * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
      */
     href?: string;
-
-    target?: string;
-
     rel?: string;
+    target?: string;
+    /**
+     * Set to true to show an icon indicating that it is an external link;
+     * Defaults to true if `target="_blank"`
+     */
+    external?: boolean;
 
     /**
      * Adds `EuiIcon` of `EuiIcon.type`
@@ -151,12 +154,6 @@ export type EuiListGroupItemProps = CommonProps &
      * Accepts any props that [EuiToolTip](/#/display/tooltip) accepts.
      */
     toolTipProps?: Partial<EuiToolTipProps>;
-
-    /**
-     * Set to true to show an icon indicating that it is an external link;
-     * Defaults to true if `target="_blank"`
-     */
-    external?: boolean;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -164,8 +161,9 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   isActive = false,
   isDisabled: _isDisabled = false,
   href,
-  target,
   rel,
+  target,
+  external,
   className,
   css: customCss,
   style,
@@ -181,7 +179,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   buttonRef,
   toolTipText,
   toolTipProps,
-  external,
   ...rest
 }) => {
   const isClickable = !!(href || onClick);
