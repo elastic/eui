@@ -6,17 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode, ReactElement } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  ReactNode,
+  ReactElement,
+} from 'react';
+
 import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { EuiI18n } from '../i18n';
+
 import { Action, CustomItemAction } from './action_types';
 import { ItemIdResolved } from './table_types';
 
-export interface CollapsedItemActionsProps<T> {
+export interface CollapsedItemActionsProps<T extends {}> {
   actions: Array<Action<T>>;
   item: T;
   itemId: ItemIdResolved;
@@ -24,143 +32,124 @@ export interface CollapsedItemActionsProps<T> {
   className?: string;
 }
 
-interface CollapsedItemActionsState {
-  popoverOpen: boolean;
-}
-
-function actionIsCustomItemAction<T extends {}>(
+const actionIsCustomItemAction = <T extends {}>(
   action: Action<T>
-): action is CustomItemAction<T> {
-  return action.hasOwnProperty('render');
-}
+): action is CustomItemAction<T> => action.hasOwnProperty('render');
 
-export class CollapsedItemActions<T> extends Component<
-  CollapsedItemActionsProps<T>,
-  CollapsedItemActionsState
-> {
-  state = { popoverOpen: false };
+export const CollapsedItemActions = <T extends {}>({
+  actions,
+  itemId,
+  item,
+  actionEnabled,
+  className,
+}: CollapsedItemActionsProps<T>) => {
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [allDisabled, setAllDisabled] = useState(true);
 
-  togglePopover = () => {
-    this.setState((prevState) => ({ popoverOpen: !prevState.popoverOpen }));
-  };
-
-  closePopover = () => {
-    this.setState({ popoverOpen: false });
-  };
-
-  onClickItem = (onClickAction?: () => void) => {
-    this.closePopover();
+  const onClickItem = useCallback((onClickAction?: () => void) => {
+    setPopoverOpen(false);
     onClickAction?.();
-  };
+  }, []);
 
-  render() {
-    const { actions, itemId, item, actionEnabled, className } = this.props;
+  const controls = useMemo(() => {
+    return actions.reduce<ReactElement[]>((controls, action, index) => {
+      const available = action.available?.(item) ?? true;
+      if (!available) return controls;
 
-    const isOpen = this.state.popoverOpen;
+      const enabled = actionEnabled(action);
+      if (enabled) setAllDisabled(false);
 
-    let allDisabled = true;
-    const controls = actions.reduce<ReactElement[]>(
-      (controls, action, index) => {
-        const key = `action_${itemId}_${index}`;
-        const available = action.available ? action.available(item) : true;
-        if (!available) {
-          return controls;
+      if (actionIsCustomItemAction(action)) {
+        const customAction = action as CustomItemAction<T>;
+        const actionControl = customAction.render(item, enabled);
+        controls.push(
+          // Do not put the `onClick` on the EuiContextMenuItem itself - otherwise
+          // it renders a <button> tag instead of a <div>, and we end up with nested
+          // interactive elements
+          <EuiContextMenuItem
+            key={index}
+            className="euiBasicTable__collapsedCustomAction"
+          >
+            <span onClick={() => onClickItem()}>{actionControl}</span>
+          </EuiContextMenuItem>
+        );
+      } else {
+        const {
+          onClick,
+          name,
+          href,
+          target,
+          'data-test-subj': dataTestSubj,
+        } = action;
+
+        const buttonIcon = action.icon;
+        let icon;
+        if (buttonIcon) {
+          icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
         }
-        const enabled = actionEnabled(action);
-        allDisabled = allDisabled && !enabled;
-        if (actionIsCustomItemAction(action)) {
-          const customAction = action as CustomItemAction<T>;
-          const actionControl = customAction.render(item, enabled);
-          controls.push(
-            // Do not put the `onClick` on the EuiContextMenuItem itself - otherwise
-            // it renders a <button> tag instead of a <div>, and we end up with nested
-            // interactive elements
-            <EuiContextMenuItem
-              key={key}
-              className="euiBasicTable__collapsedCustomAction"
-            >
-              <span onClick={() => this.onClickItem()}>{actionControl}</span>
-            </EuiContextMenuItem>
-          );
-        } else {
-          const {
-            onClick,
-            name,
-            href,
-            target,
-            'data-test-subj': dataTestSubj,
-          } = action;
+        const buttonContent = typeof name === 'function' ? name(item) : name;
 
-          const buttonIcon = action.icon;
-          let icon;
-          if (buttonIcon) {
-            icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
-          }
-          const buttonContent = typeof name === 'function' ? name(item) : name;
+        controls.push(
+          <EuiContextMenuItem
+            key={index}
+            className="euiBasicTable__collapsedAction"
+            disabled={!enabled}
+            href={href}
+            target={target}
+            icon={icon}
+            data-test-subj={dataTestSubj}
+            onClick={() =>
+              onClickItem(onClick ? () => onClick(item) : undefined)
+            }
+          >
+            {buttonContent}
+          </EuiContextMenuItem>
+        );
+      }
+      return controls;
+    }, []);
+  }, [actions, actionEnabled, item, onClickItem]);
 
-          controls.push(
-            <EuiContextMenuItem
-              key={key}
-              className="euiBasicTable__collapsedAction"
-              disabled={!enabled}
-              href={href}
-              target={target}
-              icon={icon}
-              data-test-subj={dataTestSubj}
-              onClick={() =>
-                this.onClickItem(onClick ? () => onClick(item) : undefined)
-              }
-            >
-              {buttonContent}
-            </EuiContextMenuItem>
-          );
-        }
-        return controls;
-      },
-      []
-    );
-
-    const popoverButton = (
-      <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
-        {(allActions: string) => (
-          <EuiButtonIcon
-            className={className}
-            aria-label={allActions}
-            iconType="boxesHorizontal"
-            color="text"
-            isDisabled={allDisabled}
-            onClick={this.togglePopover.bind(this)}
-            data-test-subj="euiCollapsedItemActionsButton"
-          />
-        )}
-      </EuiI18n>
-    );
-
-    const withTooltip = !allDisabled && (
-      <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
-        {(allActions: ReactNode) => (
-          <EuiToolTip content={allActions} delay="long">
-            {popoverButton}
-          </EuiToolTip>
-        )}
-      </EuiI18n>
-    );
-
-    return (
-      <EuiPopover
-        className={className}
-        id={`${itemId}-actions`}
-        isOpen={isOpen}
-        button={withTooltip || popoverButton}
-        closePopover={this.closePopover}
-        panelPaddingSize="none"
-        anchorPosition="leftCenter"
-      >
-        <EuiContextMenuPanel
-          className="euiBasicTable__collapsedActions"
-          items={controls}
+  const popoverButton = (
+    <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
+      {(allActions: string) => (
+        <EuiButtonIcon
+          className={className}
+          aria-label={allActions}
+          iconType="boxesHorizontal"
+          color="text"
+          isDisabled={allDisabled}
+          onClick={() => setPopoverOpen((isOpen) => !isOpen)}
+          data-test-subj="euiCollapsedItemActionsButton"
         />
-      </EuiPopover>
-    );
-  }
-}
+      )}
+    </EuiI18n>
+  );
+
+  const withTooltip = !allDisabled && (
+    <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
+      {(allActions: ReactNode) => (
+        <EuiToolTip content={allActions} delay="long">
+          {popoverButton}
+        </EuiToolTip>
+      )}
+    </EuiI18n>
+  );
+
+  return (
+    <EuiPopover
+      className={className}
+      id={`${itemId}-actions`}
+      isOpen={popoverOpen}
+      button={withTooltip || popoverButton}
+      closePopover={() => setPopoverOpen(false)}
+      panelPaddingSize="none"
+      anchorPosition="leftCenter"
+    >
+      <EuiContextMenuPanel
+        className="euiBasicTable__collapsedActions"
+        items={controls}
+      />
+    </EuiPopover>
+  );
+};

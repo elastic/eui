@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { CustomItemAction as Action } from './action_types';
 
 export interface CustomItemActionProps<T> {
@@ -17,16 +17,11 @@ export interface CustomItemActionProps<T> {
   index?: number;
 }
 
-interface CustomItemActionState {
-  hasFocus: boolean;
-}
-
-export class CustomItemAction<T> extends Component<
-  CustomItemActionProps<T>,
-  CustomItemActionState
-> {
-  render() {
-    const { action, enabled, item, className } = this.props;
-    return <div className={className}>{action.render(item, enabled)}</div>;
-  }
-}
+export const CustomItemAction = <T,>({
+  action,
+  enabled,
+  item,
+  className,
+}: CustomItemActionProps<T>) => (
+  <div className={className}>{action.render(item, enabled)}</div>
+);
