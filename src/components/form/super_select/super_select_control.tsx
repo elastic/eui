@@ -80,7 +80,7 @@ export const EuiSuperSelectControl: <T = string>(
   const { defaultFullWidth } = useFormContext();
   const {
     className,
-    options = [],
+    options,
     id,
     name,
     fullWidth = defaultFullWidth,
@@ -119,7 +119,7 @@ export const EuiSuperSelectControl: <T = string>(
 
   const selectedValue = useMemo(() => {
     if (inputValue != null) {
-      const selectedOption = options.find(
+      const selectedOption = options?.find(
         (option) => option.value === inputValue
       );
       return selectedOption ? selectedOption.inputDisplay : undefined;
