@@ -111,7 +111,10 @@ export class CollapsedItemActions<T> extends Component<
             // Do not put the `onClick` on the EuiContextMenuItem itself - otherwise
             // it renders a <button> tag instead of a <div>, and we end up with nested
             // interactive elements
-            <EuiContextMenuItem key={key}>
+            <EuiContextMenuItem
+              key={key}
+              className="euiBasicTable__collapsedCustomAction"
+            >
               <span onClick={() => this.onClickItem()}>{actionControl}</span>
             </EuiContextMenuItem>
           );
@@ -134,6 +137,7 @@ export class CollapsedItemActions<T> extends Component<
           controls.push(
             <EuiContextMenuItem
               key={key}
+              className="euiBasicTable__collapsedAction"
               disabled={!enabled}
               href={href}
               target={target}
@@ -190,7 +194,10 @@ export class CollapsedItemActions<T> extends Component<
         panelPaddingSize="none"
         anchorPosition="leftCenter"
       >
-        <EuiContextMenuPanel items={controls} />
+        <EuiContextMenuPanel
+          className="euiBasicTable__collapsedActions"
+          items={controls}
+        />
       </EuiPopover>
     );
   }
