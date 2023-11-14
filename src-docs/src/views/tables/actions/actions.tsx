@@ -171,6 +171,11 @@ export default () => {
               );
             },
           },
+          {
+            render: () => {
+              return <EuiLink onClick={() => {}}>Edit</EuiLink>;
+            },
+          },
           ...actions,
         ];
       }
