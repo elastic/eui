@@ -55,10 +55,12 @@ exports[`CollapsedItemActions render with href and _target provided 1`] = `
         >
           default1
         </EuiContextMenuItem>,
-        <EuiContextMenuItem
-          onClick={[Function]}
-        >
-          <div />
+        <EuiContextMenuItem>
+          <span
+            onClick={[Function]}
+          >
+            <div />
+          </span>
         </EuiContextMenuItem>,
         <EuiContextMenuItem
           disabled={false}

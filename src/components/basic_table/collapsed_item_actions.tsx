@@ -81,7 +81,7 @@ export class CollapsedItemActions<T> extends Component<
     }
   }
 
-  onClickItem = (onClickAction: (() => void) | undefined) => {
+  onClickItem = (onClickAction?: () => void) => {
     this.closePopover();
     if (onClickAction) {
       onClickAction();
@@ -107,20 +107,12 @@ export class CollapsedItemActions<T> extends Component<
         if (actionIsCustomItemAction(action)) {
           const customAction = action as CustomItemAction<T>;
           const actionControl = customAction.render(item, enabled);
-          const actionControlOnClick =
-            actionControl && actionControl.props && actionControl.props.onClick;
           controls.push(
-            <EuiContextMenuItem
-              key={key}
-              onClick={() =>
-                this.onClickItem(
-                  actionControlOnClick
-                    ? () => actionControlOnClick(item)
-                    : undefined
-                )
-              }
-            >
-              {actionControl}
+            // Do not put the `onClick` on the EuiContextMenuItem itself - otherwise
+            // it renders a <button> tag instead of a <div>, and we end up with nested
+            // interactive elements
+            <EuiContextMenuItem key={key}>
+              <span onClick={() => this.onClickItem()}>{actionControl}</span>
             </EuiContextMenuItem>
           );
         } else {
