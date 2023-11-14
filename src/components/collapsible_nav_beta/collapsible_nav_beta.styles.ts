@@ -12,7 +12,7 @@ import { logicalCSS } from '../../global_styling';
 import { euiShadowFlat } from '../../themes';
 import { euiHeaderVariables } from '../header/header.styles';
 
-import { euiCollapsibleNavBodyStyles } from './collapsible_nav_body_footer.styles';
+import { hideScrollbars } from './collapsible_nav_body_footer.styles';
 
 export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -42,7 +42,7 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiShadowFlat(euiThemeContext)}
     `,
     isPushCollapsed: css`
-      ${euiCollapsibleNavBodyStyles._isPushCollapsed}
+      ${hideScrollbars}
     `,
     isOverlayFullWidth: css`
       /* Override EuiFlyout's max-width */

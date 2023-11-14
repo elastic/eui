@@ -9,7 +9,7 @@
 const chalk = require('chalk');
 const Generator = require('yeoman-generator');
 
-const CHANGELOG_DIRECTORY = 'upcoming_changelogs';
+const CHANGELOG_DIRECTORY = 'changelogs/upcoming';
 
 module.exports = class extends Generator {
   constructor(args, options) {

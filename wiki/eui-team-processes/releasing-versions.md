@@ -22,11 +22,11 @@ Ensure you are on the `main` branch, and then start the release process by runni
 git checkout main && npm run release
 ```
 
-This command ensures that you have the latest `upstream/main` and dependencies, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `upcoming_changelogs/` and you will be asked to choose what part of the version to bump.
+This command ensures that you have the latest `upstream/main` and dependencies, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `changelogs/upcoming/` and you will be asked to choose what part of the version to bump.
 
 ![bumping a version](https://camo.githubusercontent.com/439b41058aa56f167867c4e118ef5e80c02c962f/68747470733a2f2f642e70722f692f51624b36614a2e676966)
 
-After the version is bumped, the release script automatically updates `CHANGELOG.md` with the new release header and collated upcoming changelogs, and then cleans the `upcoming_changelogs/` directory. The updates are committed to git and tagged, then pushed to your `upstream` branch.
+After the version is bumped, the release script automatically updates the most recent changelog with the new release header and collated upcoming changelogs, and then cleans the upcoming changelog directory. The updates are committed to git and tagged, then pushed to your `upstream` branch.
 
 The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily.
 
@@ -52,10 +52,10 @@ To view the progress of your job or check for errors:
 
 ### Tag the release in GitHub
 
-We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. 
+We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG_ entries. 
 * Click the three dot menu on the right side of the latest tag, then click "Create release" from the flyout menu
 * Type a lowercase "v" and the tag number into the release name field with no spaces
-* Copy the _CHANGELOG.md_ entry into the release description. Do not included the linked version header.
+* Copy the latest year's _CHANGELOG_ entry into the release description. Do not included the linked version header.
 * (TODO: screencast this next time to include a GIF here)
 
 ## `@elastic/eslint-plugin-eui`

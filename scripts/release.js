@@ -74,7 +74,7 @@ if (args.dry_run) {
     // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
-    // Update version switcher data and CHANGELOG.md
+    // Update version switcher data and changelog
     const upcomingVersion = getUpcomingVersion(versionTarget);
     updateDocsVersionSwitcher(upcomingVersion);
     updateChangelog(changelog, upcomingVersion);

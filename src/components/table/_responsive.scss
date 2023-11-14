@@ -99,6 +99,25 @@
         }
       }
 
+      // Custom actions
+      &:not(.euiTableRow-hasActions) .euiTableRowCell--hasActions:last-child {
+        width: 100%;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: $euiBorderWidthThin;
+          background-color: $euiTableActionsBorderColor;
+        }
+
+        .euiTableCellContent {
+          position: relative;
+          top: $euiSizeXS;
+        }
+      }
+
       &.euiTableRow-hasActions.euiTableRow-isExpandable {
         .euiTableRowCell--isExpander {
           top: auto;

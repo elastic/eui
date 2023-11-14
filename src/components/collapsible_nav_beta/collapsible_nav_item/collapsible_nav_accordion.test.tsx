@@ -22,7 +22,6 @@ describe('EuiCollapsibleNavAccordion', () => {
 
   shouldRenderCustomStyles(<EuiCollapsibleNavAccordion {...props} />, {
     childProps: [
-      'linkProps',
       'accordionProps',
       'accordionProps.arrowProps',
       'accordionProps.buttonProps',
@@ -53,26 +52,28 @@ describe('EuiCollapsibleNavAccordion', () => {
     );
   });
 
-  describe('when the accordion header is a link and the link is clicked', () => {
-    it('does not trigger the accordion opening', () => {
-      const { getByTestSubject, container } = render(
-        <EuiCollapsibleNavAccordion
-          {...props}
-          href="#"
-          linkProps={{ 'data-test-subj': 'link' }}
-          accordionProps={{ arrowProps: { 'data-test-subj': 'toggle' } }}
-        />
-      );
+  it('triggers the accordion opening', () => {
+    const { getByTestSubject, container } = render(
+      <EuiCollapsibleNavAccordion
+        {...props}
+        accordionProps={{
+          buttonProps: { 'data-test-subj': 'button' },
+          arrowProps: { 'data-test-subj': 'arrow' },
+        }}
+      />
+    );
+    expect(
+      container.querySelector('.euiAccordion__childWrapper')
+    ).toHaveStyleRule('opacity', '0');
 
-      fireEvent.click(getByTestSubject('link'));
-      expect(
-        container.querySelector('.euiAccordion__childWrapper')
-      ).toHaveStyleRule('opacity', '0');
+    fireEvent.click(getByTestSubject('button'));
+    expect(
+      container.querySelector('.euiAccordion__childWrapper')
+    ).toHaveStyleRule('opacity', '1');
 
-      fireEvent.click(getByTestSubject('toggle'));
-      expect(
-        container.querySelector('.euiAccordion__childWrapper')
-      ).toHaveStyleRule('opacity', '1');
-    });
+    fireEvent.click(getByTestSubject('arrow'));
+    expect(
+      container.querySelector('.euiAccordion__childWrapper')
+    ).toHaveStyleRule('opacity', '0');
   });
 });

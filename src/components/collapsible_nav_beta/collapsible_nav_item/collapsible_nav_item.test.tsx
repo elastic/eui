@@ -15,13 +15,12 @@ import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 
 describe('EuiCollapsibleNavItem', () => {
+  shouldRenderCustomStyles(<EuiCollapsibleNavItem title="Title" href="#" />, {
+    childProps: ['linkProps'],
+  });
   shouldRenderCustomStyles(
-    <EuiCollapsibleNavItem
-      title="Title"
-      href="#"
-      items={[{ title: 'Sub-item' }]}
-    />,
-    { childProps: ['linkProps', 'accordionProps'] }
+    <EuiCollapsibleNavItem title="Title" items={[{ title: 'Sub-item' }]} />,
+    { childProps: ['accordionProps'] }
   );
 
   it('renders a top level accordion if items exist', () => {
@@ -37,17 +36,31 @@ describe('EuiCollapsibleNavItem', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders a top level link if items are missing or empty', () => {
+  it('does not pass the `href` prop to the accordion/group title', () => {
+    const { container } = render(
+      // @ts-expect-error - should warn about `href`
+      <EuiCollapsibleNavItem
+        {...requiredProps}
+        title="Item"
+        items={[{ title: 'Sub-item', ...requiredProps }]}
+        href="#"
+      />
+    );
+
+    expect(container.querySelector('a')).not.toBeInTheDocument();
+  });
+
+  it('renders a top level group if items exist and `isCollapsible` is set to false', () => {
     const { container } = render(
       <EuiCollapsibleNavItem
         {...requiredProps}
         title="Item"
-        href="#"
-        items={[]}
+        items={[{ title: 'Sub-item', ...requiredProps }]}
+        isCollapsible={false}
       />
     );
 
-    expect(container.firstChild).toHaveClass('euiLink');
+    expect(container.firstChild).toHaveClass('euiCollapsibleNavGroup');
     expect(container.firstChild).toMatchSnapshot();
   });
 

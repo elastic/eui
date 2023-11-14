@@ -144,7 +144,6 @@ const euiScaleText = (
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {
@@ -247,11 +246,6 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
          and other stylized elements passed in. */
       a:not([class]) {
         ${euiLinkCSS(euiThemeContext)}
-      }
-
-      img {
-        display: block;
-        ${logicalCSS('max-width', '100%')}
       }
 
       ul {
