@@ -248,11 +248,6 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiLinkCSS(euiThemeContext)}
       }
 
-      img {
-        display: block;
-        ${logicalCSS('max-width', '100%')}
-      }
-
       ul {
         list-style: disc;
       }
