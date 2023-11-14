@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   ButtonHTMLAttributes,
   ReactNode,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -116,13 +117,14 @@ export const EuiSuperSelectControl: <T extends string>(
 
   const inputValue = value != null ? value : defaultValue;
 
-  let selectedValue;
-  if (value) {
-    const selectedOption = options.find((option) => option.value === value);
-    selectedValue = selectedOption
-      ? selectedOption.inputDisplay
-      : selectedValue;
-  }
+  const selectedValue = useMemo(() => {
+    if (inputValue != null) {
+      const selectedOption = options.find(
+        (option) => option.value === inputValue
+      );
+      return selectedOption ? selectedOption.inputDisplay : undefined;
+    }
+  }, [inputValue, options]);
 
   const showPlaceholder = !!placeholder && !selectedValue;
 
