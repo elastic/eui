@@ -189,4 +189,61 @@ describe('EuiSuperSelect', () => {
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
   });
+
+  // No assertions or rendering on these tests - they're here to check that ts/lint passes or fails
+  describe('typing', () => {
+    // Silence expected propTypes errors
+    beforeAll(() => silenceErrors());
+    afterAll(() => restoreErrors());
+
+    it('defaults to string values', () => {
+      <EuiSuperSelect
+        options={[{ value: 'string' }]}
+        valueOfSelected="string"
+      />;
+    });
+
+    it('allows customizing the value type via TS generic', () => {
+      <EuiSuperSelect<number> options={[{ value: 2 }]} valueOfSelected={2} />;
+      // @ts-expect-error should error since it expects a number
+      <EuiSuperSelect<number>
+        options={[{ value: 'should error' }]}
+        valueOfSelected="2"
+      />;
+
+      <EuiSuperSelect<boolean>
+        options={[{ value: true }]}
+        valueOfSelected={true}
+      />;
+      // @ts-expect-error should error since it expects a boolean
+      <EuiSuperSelect<number>
+        options={[{ value: 'should error' }]}
+        valueOfSelected="true"
+      />;
+
+      <EuiSuperSelect<string | boolean | number>
+        options={[{ value: '' }, { value: false }, { value: 0 }]}
+        valueOfSelected={false}
+      />;
+    });
+
+    it('errors on nullish values', () => {
+      // @ts-expect-error - 'null is not assignable to never'
+      <EuiSuperSelect options={[{ value: null }]} />;
+      // @ts-expect-error - 'value is missing'
+      <EuiSuperSelect<boolean> options={[{}]} />;
+      // @ts-expect-error - should not allow the generic to be nullable
+      <EuiSuperSelect<string | undefined> options={[{ value: undefined }]} />;
+      // @ts-expect-error - 'null is not assignable to undefined'
+      <EuiSuperSelect options={[]} valueOfSelected={null} />;
+    });
+  });
 });
+
+const originalConsoleError = console.error;
+const silenceErrors = () => {
+  console.error = () => {};
+};
+const restoreErrors = () => {
+  console.error = originalConsoleError;
+};

@@ -25,7 +25,7 @@ import { getFormControlClassNameForIconCount } from '../form_control_layout/_num
 import { useFormContext } from '../eui_form_context';
 
 export interface EuiSuperSelectOption<T> {
-  value: T;
+  value: NonNullable<T>;
   inputDisplay?: ReactNode;
   dropdownDisplay?: ReactNode;
   disabled?: boolean;
@@ -74,7 +74,7 @@ export interface EuiSuperSelectControlProps<T>
   append?: EuiFormControlLayoutProps['append'];
 }
 
-export const EuiSuperSelectControl: <T extends string>(
+export const EuiSuperSelectControl: <T = string>(
   props: EuiSuperSelectControlProps<T>
 ) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = (props) => {
   const { defaultFullWidth } = useFormContext();
@@ -134,7 +134,7 @@ export const EuiSuperSelectControl: <T extends string>(
         type="hidden"
         id={id}
         name={name}
-        value={inputValue ?? ''}
+        value={String(inputValue ?? '')}
         readOnly={readOnly}
       />
 

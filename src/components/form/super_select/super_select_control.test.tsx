@@ -143,7 +143,7 @@ describe('EuiSuperSelectControl', () => {
 
       test('boolean', () => {
         const { getByTestSubject, container } = render(
-          <EuiSuperSelectControl<any>
+          <EuiSuperSelectControl<boolean>
             data-test-subj="value"
             options={[
               { value: true, inputDisplay: 'True' },

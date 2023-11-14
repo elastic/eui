@@ -31,7 +31,7 @@ enum ShiftDirection {
   FORWARD = 'forward',
 }
 
-export type EuiSuperSelectProps<T extends string> = CommonProps &
+export type EuiSuperSelectProps<T = string> = CommonProps &
   Omit<
     EuiSuperSelectControlProps<T>,
     'onChange' | 'onClick' | 'onFocus' | 'onBlur' | 'options' | 'value'
@@ -44,7 +44,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      */
     options: Array<EuiSuperSelectOption<T>>;
 
-    valueOfSelected?: T;
+    valueOfSelected?: NonNullable<T>;
 
     /**
      * Placeholder to display when the current selected value is empty.
@@ -91,7 +91,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     popoverProps?: Partial<CommonProps & Omit<EuiInputPopoverProps, 'isOpen'>>;
   };
 
-export class EuiSuperSelect<T extends string> extends Component<
+export class EuiSuperSelect<T = string> extends Component<
   EuiSuperSelectProps<T>
 > {
   static defaultProps = {
@@ -320,7 +320,7 @@ export class EuiSuperSelect<T extends string> extends Component<
           layoutAlign={itemLayoutAlign}
           buttonRef={(node) => this.setItemNode(node, index)}
           role="option"
-          id={value}
+          id={String(value)}
           aria-selected={valueOfSelected === value}
           {...optionRest}
         >
@@ -355,7 +355,9 @@ export class EuiSuperSelect<T extends string> extends Component<
               aria-describedby={this.describedById}
               className="euiSuperSelect__listbox"
               role="listbox"
-              aria-activedescendant={valueOfSelected}
+              aria-activedescendant={
+                valueOfSelected != null ? String(valueOfSelected) : undefined
+              }
               tabIndex={0}
             >
               {items}
