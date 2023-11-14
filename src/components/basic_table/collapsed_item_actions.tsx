@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent, ReactNode, ReactElement } from 'react';
+import React, { Component, ReactNode, ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
@@ -22,8 +22,6 @@ export interface CollapsedItemActionsProps<T> {
   itemId: ItemIdResolved;
   actionEnabled: (action: Action<T>) => boolean;
   className?: string;
-  onFocus?: (event: FocusEvent) => void;
-  onBlur?: () => void;
 }
 
 interface CollapsedItemActionsState {
@@ -40,8 +38,6 @@ export class CollapsedItemActions<T> extends Component<
   CollapsedItemActionsProps<T>,
   CollapsedItemActionsState
 > {
-  private popoverDiv: HTMLDivElement | null = null;
-
   state = { popoverOpen: false };
 
   togglePopover = () => {
@@ -52,45 +48,13 @@ export class CollapsedItemActions<T> extends Component<
     this.setState({ popoverOpen: false });
   };
 
-  onPopoverBlur = () => {
-    // you must be asking... WTF? I know... but this timeout is
-    // required to make sure we process the onBlur events after the initial
-    // event cycle. Reference:
-    // https://medium.com/@jessebeach/dealing-with-focus-and-blur-in-a-composite-widget-in-react-90d3c3b49a9b
-    window.requestAnimationFrame(() => {
-      if (
-        !this.popoverDiv!.contains(document.activeElement) &&
-        this.props.onBlur
-      ) {
-        this.props.onBlur();
-      }
-    });
-  };
-
-  registerPopoverDiv = (popoverDiv: HTMLDivElement | null) => {
-    if (!this.popoverDiv) {
-      this.popoverDiv = popoverDiv;
-      this.popoverDiv &&
-        this.popoverDiv.addEventListener('focusout', this.onPopoverBlur);
-    }
-  };
-
-  componentWillUnmount() {
-    if (this.popoverDiv) {
-      this.popoverDiv.removeEventListener('focusout', this.onPopoverBlur);
-    }
-  }
-
   onClickItem = (onClickAction?: () => void) => {
     this.closePopover();
-    if (onClickAction) {
-      onClickAction();
-    }
+    onClickAction?.();
   };
 
   render() {
-    const { actions, itemId, item, actionEnabled, onFocus, className } =
-      this.props;
+    const { actions, itemId, item, actionEnabled, className } = this.props;
 
     const isOpen = this.state.popoverOpen;
 
@@ -166,7 +130,6 @@ export class CollapsedItemActions<T> extends Component<
             color="text"
             isDisabled={allDisabled}
             onClick={this.togglePopover.bind(this)}
-            onFocus={onFocus}
             data-test-subj="euiCollapsedItemActionsButton"
           />
         )}
@@ -186,7 +149,6 @@ export class CollapsedItemActions<T> extends Component<
     return (
       <EuiPopover
         className={className}
-        popoverRef={this.registerPopoverDiv}
         id={`${itemId}-actions`}
         isOpen={isOpen}
         button={withTooltip || popoverButton}

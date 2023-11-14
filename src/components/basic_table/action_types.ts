@@ -72,7 +72,7 @@ export type DefaultItemAction<T> = ExclusiveUnion<
 
 export interface CustomItemAction<T> {
   /**
-   * The function that renders the action. Note that the returned node is expected to have `onFocus` and `onBlur` functions
+   * Allows rendering a totally custom action
    */
   render: (item: T, enabled: boolean) => ReactElement;
   /**
