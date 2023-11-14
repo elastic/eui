@@ -1924,7 +1924,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('1 field sorted');
+      expect(getButtonText()).toEqual('Sort fields1');
 
       // Update sorted columns again
       component.setProps({
@@ -1936,7 +1936,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('2 fields sorted');
+      expect(getButtonText()).toEqual('Sort fields2');
     });
   });
 

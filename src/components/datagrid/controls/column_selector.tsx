@@ -36,6 +36,7 @@ import {
   EuiDataGridToolBarVisibilityOptions,
 } from '../data_grid_types';
 import { getNestedObjectOptions } from './data_grid_toolbar';
+import { DataGridToolbarControl } from './data_grid_toolbar_control';
 
 export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
@@ -144,6 +145,19 @@ export const useDataGridColumnSelector = (
     );
   }
 
+  const orderedVisibleColumns = useMemo(
+    () =>
+      visibleColumns
+        .map<EuiDataGridColumn>(
+          (columnId) =>
+            availableColumns.find(
+              ({ id }) => id === columnId
+            ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
+        )
+        .filter((column) => column != null),
+    [availableColumns, visibleColumns]
+  );
+
   const columnSelector =
     allowColumnHiding || allowColumnReorder ? (
       <EuiPopover
@@ -154,16 +168,16 @@ export const useDataGridColumnSelector = (
         panelPaddingSize="s"
         hasDragDrop
         button={
-          <EuiButtonEmpty
+          <DataGridToolbarControl
+            buttonText={buttonText}
+            badgeCount={orderedVisibleColumns.length}
             size="xs"
-            iconType={allowColumnHiding ? 'listAdd' : 'list'}
+            iconType="tableDensityNormal"
             color="text"
             className={controlBtnClasses}
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}
-          >
-            {buttonText}
-          </EuiButtonEmpty>
+          />
         }
       >
         <div>
@@ -319,18 +333,6 @@ export const useDataGridColumnSelector = (
       </EuiPopover>
     ) : null;
 
-  const orderedVisibleColumns = useMemo(
-    () =>
-      visibleColumns
-        .map<EuiDataGridColumn>(
-          (columnId) =>
-            availableColumns.find(
-              ({ id }) => id === columnId
-            ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
-        )
-        .filter((column) => column != null),
-    [availableColumns, visibleColumns]
-  );
   /**
    * Used for moving columns left/right, available in the headers actions menu
    */

@@ -20,6 +20,7 @@ import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
+import { DataGridToolbarControl } from './data_grid_toolbar_control';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
 import { getDetailsForSchema } from '../utils/data_grid_schema';
 import {
@@ -61,17 +62,6 @@ export const useDataGridColumnSorting = (
   const sortingButtonText = useEuiI18n(
     'euiColumnSorting.button',
     'Sort fields'
-  );
-
-  const sortingButtonTextActive = useEuiI18n(
-    'euiColumnSorting.buttonActive',
-    ({ numberOfSortedFields }) =>
-      `${numberOfSortedFields} field${
-        numberOfSortedFields === 1 ? '' : 's'
-      } sorted`,
-    {
-      numberOfSortedFields: sorting != null ? sorting.columns.length : 0,
-    }
   );
 
   if (sorting == null) return null;
@@ -143,18 +133,16 @@ export const useDataGridColumnSorting = (
       panelPaddingSize="s"
       hasDragDrop
       button={
-        <EuiButtonEmpty
+        <DataGridToolbarControl
+          buttonText={sortingButtonText}
+          badgeCount={sorting.columns.length}
           size="xs"
           iconType="sortable"
           color="text"
           className={controlBtnClasses}
           data-test-subj="dataGridColumnSortingButton"
           onClick={() => setIsOpen(!isOpen)}
-        >
-          {sorting.columns.length > 0
-            ? sortingButtonTextActive
-            : sortingButtonText}
-        </EuiButtonEmpty>
+        />
       }
     >
       {sorting.columns.length > 0 ? (

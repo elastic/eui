@@ -207,7 +207,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('1 column hidden');
+        expect(component.text()).toEqual('1 column hidden1');
 
         findTestSubject(
           component,
@@ -238,7 +238,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('Columns');
+        expect(component.text()).toEqual('Columns2');
       });
     });
   });
