@@ -81,7 +81,6 @@ exports[`euiTextStyles sizes m 1`] = `
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {
@@ -243,7 +242,6 @@ exports[`euiTextStyles sizes relative 1`] = `
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {
@@ -390,7 +388,6 @@ exports[`euiTextStyles sizes s 1`] = `
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {
@@ -537,7 +534,6 @@ exports[`euiTextStyles sizes xs 1`] = `
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {

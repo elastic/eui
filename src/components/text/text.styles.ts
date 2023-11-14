@@ -144,7 +144,6 @@ const euiScaleText = (
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {
