@@ -5112,24 +5112,6 @@
     "filepath": "src/components/link/link.tsx"
   },
   {
-    "token": "euiListGroupItem.external.ariaLabel",
-    "defString": "External link",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 290,
-        "column": 18,
-        "index": 7746
-      },
-      "end": {
-        "line": 293,
-        "column": 7,
-        "index": 7836
-      }
-    },
-    "filepath": "src/components/list_group/list_group_item.tsx"
-  },
-  {
     "token": "euiPinnableListGroup.pinExtraActionLabel",
     "defString": "Pin item",
     "highlighting": "string",
