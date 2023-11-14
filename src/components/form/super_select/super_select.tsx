@@ -309,6 +309,7 @@ export class EuiSuperSelect<T = string> extends Component<
 
     const items = options.map((option, index) => {
       const { value, dropdownDisplay, inputDisplay, ...optionRest } = option;
+      if (value == null) return;
 
       return (
         <EuiContextMenuItem

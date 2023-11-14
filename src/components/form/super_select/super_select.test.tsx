@@ -8,9 +8,10 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps, takeMountedSnapshot } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
-import { render } from '../../../test/rtl';
+import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 
 import { EuiSuperSelect } from './super_select';
 
@@ -39,6 +40,28 @@ describe('EuiSuperSelect', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('does not render options with nullish values', () => {
+    // PropTypes complains about the null, but devs may ignore console errors
+    silenceErrors();
+
+    const { queryByTestSubject, getByRole } = render(
+      <EuiSuperSelect
+        options={[
+          // @ts-expect-error - it's possible consumers won't be using TS
+          { value: null, 'data-test-subj': 'not-rendered' },
+          { value: '', 'data-test-subj': 'rendered' },
+        ]}
+      />
+    );
+    fireEvent.click(getByRole('button'));
+    waitForEuiPopoverOpen();
+
+    expect(queryByTestSubject('not-rendered')).not.toBeInTheDocument();
+    expect(queryByTestSubject('rendered')).toBeInTheDocument();
+
+    restoreErrors();
   });
 
   describe('props', () => {
