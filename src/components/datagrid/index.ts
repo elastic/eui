@@ -11,6 +11,7 @@ export {
   useDataGridColumnSelector,
   useDataGridColumnSorting,
   useDataGridDisplaySelector,
+  EuiDataGridToolbarControl,
 } from './controls';
 
 export * from './data_grid_types';

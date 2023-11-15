@@ -6,19 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement } from 'react';
-import { EuiButtonEmpty, type EuiButtonEmptyProps } from '../../button';
+import React from 'react';
+import classNames from 'classnames';
+import { EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiNotificationBadge } from '../../badge';
 import { useEuiI18n } from '../../i18n';
-
-export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
-  buttonText: string | ReactElement;
-  badgeCount?: number;
-};
+import { EuiDataGridToolbarControlProps } from '../data_grid_types';
 
 export const EuiDataGridToolbarControl = ({
-  buttonText,
+  children,
   badgeCount,
   ...buttonProps
 }: EuiDataGridToolbarControlProps) => {
@@ -28,15 +25,28 @@ export const EuiDataGridToolbarControl = ({
     { count: badgeCount }
   );
 
+  const controlBtnClasses = classNames(
+    'euiDataGrid__controlBtn',
+    {
+      'euiDataGrid__controlBtn--active': buttonProps.isSelected,
+    },
+    buttonProps.className
+  );
+
   return (
-    <EuiButtonEmpty {...buttonProps}>
+    <EuiButtonEmpty
+      size="xs"
+      color="text"
+      {...buttonProps}
+      className={controlBtnClasses}
+    >
       <EuiFlexGroup
         responsive={false}
         direction="row"
         alignItems="center"
         gutterSize="s"
       >
-        <EuiFlexItem grow={false}>{buttonText}</EuiFlexItem>
+        <EuiFlexItem grow={false}>{children}</EuiFlexItem>
         {typeof badgeCount === 'number' && badgeCount > 0 && (
           <EuiFlexItem grow={false}>
             <EuiNotificationBadge

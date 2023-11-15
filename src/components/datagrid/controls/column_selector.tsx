@@ -102,10 +102,6 @@ export const useDataGridColumnSelector = (
 
   const [columnSearchText, setColumnSearchText] = useState('');
 
-  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-    'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
-  });
-
   const filteredColumns = useMemo(
     () =>
       sortedColumns.filter(
@@ -169,15 +165,14 @@ export const useDataGridColumnSelector = (
         hasDragDrop
         button={
           <EuiDataGridToolbarControl
-            buttonText={buttonText}
             badgeCount={orderedVisibleColumns.length}
-            size="xs"
+            isSelected={numberOfHiddenFields > 0}
             iconType="tableDensityNormal"
-            color="text"
-            className={controlBtnClasses}
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}
-          />
+          >
+            {buttonText}
+          </EuiDataGridToolbarControl>
         }
       >
         {allowColumnHiding && (

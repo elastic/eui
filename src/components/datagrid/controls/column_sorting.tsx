@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import classNames from 'classnames';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
 import { EuiButtonEmpty } from '../../button';
@@ -100,10 +99,6 @@ export const useDataGridColumnSorting = (
     }
   };
 
-  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-    'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
-  });
-
   const schemaDetails = (id: string | number) =>
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
@@ -134,15 +129,14 @@ export const useDataGridColumnSorting = (
       hasDragDrop
       button={
         <EuiDataGridToolbarControl
-          buttonText={sortingButtonText}
           badgeCount={sorting.columns.length}
-          size="xs"
+          isSelected={sorting.columns.length > 0}
           iconType="sortable"
-          color="text"
-          className={controlBtnClasses}
           data-test-subj="dataGridColumnSortingButton"
           onClick={() => setIsOpen(!isOpen)}
-        />
+        >
+          {sortingButtonText}
+        </EuiDataGridToolbarControl>
       }
     >
       {sorting.columns.length > 0 ? (

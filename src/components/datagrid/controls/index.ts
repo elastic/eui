@@ -15,3 +15,4 @@ export {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './data_grid_toolbar';
+export { EuiDataGridToolbarControl } from './data_grid_toolbar_control';

@@ -7,7 +7,7 @@ import {
   EuiDataGridSorting,
   EuiDataGridColumnSortingConfig,
   EuiDataGridToolbarProps,
-  EuiButtonEmpty,
+  EuiDataGridToolbarControl,
   EuiFormRow,
   EuiRange,
   EuiFlexGroup,
@@ -59,9 +59,13 @@ const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
     >
       <EuiFlexItem grow={false}>
         {hasRoomForGridControls && (
-          <EuiButtonEmpty size="xs" color="primary">
+          <EuiDataGridToolbarControl
+            iconType="brush"
+            badgeCount={10}
+            onClick={() => {}}
+          >
             Custom left side
-          </EuiButtonEmpty>
+          </EuiDataGridToolbarControl>
         )}
       </EuiFlexItem>
 
