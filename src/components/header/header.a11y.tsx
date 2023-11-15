@@ -404,7 +404,7 @@ describe('EuiHeader', () => {
     });
 
     it('has zero violations when a hidden breadcrumb is expanded', () => {
-      cy.get('button[aria-label="See collapsed breadcrumbs"]').realClick();
+      cy.get('button[title="See collapsed breadcrumbs"]').realClick();
       cy.get('a[data-test-subj="cy-breadcrumb-hidden"]').should('exist');
       cy.checkAxe();
     });

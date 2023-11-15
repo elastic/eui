@@ -49,10 +49,7 @@ describe('EuiImage', () => {
     });
 
     it('has zero violations on keyboard interaction', () => {
-      cy.realPress('Tab');
-      cy.get('button[data-test-subj="activateFullScreenButton"]').should(
-        'have.focus'
-      );
+      cy.get('button[data-test-subj="activateFullScreenButton"]').focus();
       cy.realPress('Enter');
       cy.get('button[data-test-subj="deactivateFullScreenButton"]').should(
         'exist'

@@ -6,14 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React, { FocusEvent } from 'react';
-import { shallow } from 'enzyme';
-import { render } from '../../test/rtl';
+import React from 'react';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../test/rtl';
+
 import { CollapsedItemActions } from './collapsed_item_actions';
-import { Action } from './action_types';
 
 describe('CollapsedItemActions', () => {
-  test('render', () => {
+  it('renders', () => {
     const props = {
       actions: [
         {
@@ -29,9 +33,7 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: '1' },
-      actionEnabled: (_: Action<{ id: string }>) => true,
-      onFocus: (_: FocusEvent) => {},
-      onBlur: () => {},
+      actionEnabled: () => true,
     };
 
     const { container } = render(<CollapsedItemActions {...props} />);
@@ -39,18 +41,14 @@ describe('CollapsedItemActions', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render with href and _target provided', () => {
+  test('default actions', async () => {
     const props = {
       actions: [
         {
           name: 'default1',
           description: 'default 1',
           onClick: () => {},
-        },
-        {
-          name: 'custom1',
-          description: 'custom 1',
-          render: () => <div />,
+          'data-test-subj': 'defaultAction',
         },
         {
           name: 'default2',
@@ -61,14 +59,45 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: 'xyz' },
-      actionEnabled: (_: Action<{ id: string }>) => true,
-      onFocus: (_: FocusEvent) => {},
-      onBlur: () => {},
+      actionEnabled: () => true,
     };
 
-    const component = shallow(<CollapsedItemActions {...props} />);
-    component.setState({ popoverOpen: true });
+    const { getByTestSubject, baseElement } = render(
+      <CollapsedItemActions {...props} />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
+    await waitForEuiPopoverOpen();
 
-    expect(component).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
+
+    fireEvent.click(getByTestSubject('defaultAction'));
+    await waitForEuiPopoverClose();
+  });
+
+  test('custom actions', async () => {
+    const props = {
+      actions: [
+        { render: () => <button data-test-subj="customAction">hello</button> },
+        { render: () => <a href="#">world</a> },
+      ],
+      itemId: 'id',
+      item: { id: 'xyz' },
+      actionEnabled: () => true,
+    };
+
+    const { getByTestSubject, baseElement } = render(
+      <CollapsedItemActions {...props} />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
+    await waitForEuiPopoverOpen();
+
+    expect(
+      baseElement.querySelector('.euiBasicTable__collapsedCustomAction')
+        ?.nodeName
+    ).toEqual('DIV');
+    expect(baseElement).toMatchSnapshot();
+
+    fireEvent.click(getByTestSubject('customAction'));
+    await waitForEuiPopoverClose();
   });
 });

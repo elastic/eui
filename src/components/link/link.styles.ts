@@ -8,11 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import {
-  euiFocusRing,
-  logicalCSS,
-  logicalTextAlignCSS,
-} from '../../global_styling';
+import { euiFocusRing, logicalTextAlignCSS } from '../../global_styling';
 
 const _colorCSS = (color: string) => {
   return `
@@ -87,13 +83,5 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     warning: css(_colorCSS(euiTheme.colors.warningText)),
     ghost: css(_colorCSS(euiTheme.colors.ghost)),
     text: css(_colorCSS(euiTheme.colors.text)),
-
-    // Children
-    euiLink__screenReaderText: css`
-      ${logicalCSS('left', '0px')}
-    `,
-    euiLink__externalIcon: css`
-      ${logicalCSS('margin-left', euiTheme.size.xs)}
-    `,
   };
 };

@@ -80,6 +80,17 @@ export const ListGroupExample = {
             properties.
           </p>
           <p>
+            If your link is external or will open in a new tab, you can manually{' '}
+            set the <EuiCode>external</EuiCode> property. However, just like{' '}
+            with the{' '}
+            <Link to="/navigation/link">
+              <strong>EuiLink</strong>
+            </Link>{' '}
+            component, setting{' '}
+            <EuiCode language="tsx">{'target="_blank"'}</EuiCode> defaults to{' '}
+            <EuiCode language="tsx">{'external={true}'}</EuiCode>.
+          </p>
+          <p>
             As is done in this example, the <strong>EuiListGroup</strong>{' '}
             component can also accept an array of items via the{' '}
             <EuiCode>listItems</EuiCode> property.
