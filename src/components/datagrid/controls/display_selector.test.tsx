@@ -77,12 +77,11 @@ describe('useDataGridDisplaySelector', () => {
         const component = mount(<MockComponent />);
         openPopover(component);
 
-        // Click density 'buttons' (actually hidden radios)
-        component.find('[data-test-subj="expanded"]').simulate('change');
+        component.find('button[data-test-subj="expanded"]').simulate('click');
         expect(getSelection(component)).toEqual('expanded');
-        component.find('[data-test-subj="normal"]').simulate('change');
+        component.find('button[data-test-subj="normal"]').simulate('click');
         expect(getSelection(component)).toEqual('normal');
-        component.find('[data-test-subj="compact"]').simulate('change');
+        component.find('button[data-test-subj="compact"]').simulate('click');
         expect(getSelection(component)).toEqual('compact');
       });
 
@@ -95,7 +94,7 @@ describe('useDataGridDisplaySelector', () => {
         );
 
         openPopover(component);
-        component.find('[data-test-subj="expanded"]').simulate('change');
+        component.find('button[data-test-subj="expanded"]').simulate('click');
 
         expect(onDensityChange).toHaveBeenCalledWith({
           stripes: true,
@@ -168,7 +167,7 @@ describe('useDataGridDisplaySelector', () => {
         openPopover(component);
         expect(getSelection(component)).toEqual('expanded');
 
-        component.find('[data-test-subj="compact"]').simulate('change');
+        component.find('button[data-test-subj="compact"]').simulate('click');
         expect(getSelection(component)).toEqual('compact');
 
         component
@@ -189,7 +188,7 @@ describe('useDataGridDisplaySelector', () => {
         openPopover(component);
         expect(getSelection(component)).toEqual('undefined');
 
-        component.find('[data-test-subj="auto"]').simulate('change');
+        component.find('button[data-test-subj="auto"]').simulate('click');
         expect(getSelection(component)).toEqual('auto');
       });
 
@@ -202,7 +201,7 @@ describe('useDataGridDisplaySelector', () => {
         );
 
         openPopover(component);
-        component.find('[data-test-subj="auto"]').simulate('change');
+        component.find('button[data-test-subj="auto"]').simulate('click');
 
         expect(onRowHeightChange).toHaveBeenCalledWith({
           rowHeights: {},
@@ -287,7 +286,7 @@ describe('useDataGridDisplaySelector', () => {
         openPopover(component);
         expect(getSelection(component)).toEqual('undefined');
 
-        component.find('[data-test-subj="auto"]').simulate('change');
+        component.find('button[data-test-subj="auto"]').simulate('click');
         expect(getSelection(component)).toEqual('auto');
 
         component
@@ -322,7 +321,9 @@ describe('useDataGridDisplaySelector', () => {
             component.find('[data-test-subj="lineCountNumber"]').exists()
           ).toBe(false);
 
-          component.find('[data-test-subj="lineCount"]').simulate('change');
+          component
+            .find('button[data-test-subj="lineCount"]')
+            .simulate('click');
           expect(getSelection(component)).toEqual('lineCount');
 
           expect(
@@ -344,7 +345,9 @@ describe('useDataGridDisplaySelector', () => {
         it('defaults to a lineCount of 2 when no developer settings have been passed', () => {
           const component = mount(<MockComponent />);
           openPopover(component);
-          component.find('[data-test-subj="lineCount"]').simulate('change');
+          component
+            .find('button[data-test-subj="lineCount"]')
+            .simulate('click');
 
           expect(getLineCountNumber(component)).toEqual(2);
         });
@@ -365,19 +368,28 @@ describe('useDataGridDisplaySelector', () => {
           expect(getLineCountNumber(component)).toEqual(3);
         });
 
-        it('does not allow zero or negative line count values', () => {
+        it('updates the input but not the grid display if an invalid number is passed', () => {
+          const onChange = jest.fn();
+
           const component = mount(
             <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
+              rowHeightsOptions={{ defaultHeight: { lineCount: 2 }, onChange }}
             />
           );
           openPopover(component);
 
-          setLineCountNumber(component, 0);
-          expect(getLineCountNumber(component)).toEqual(2);
+          const assertInvalidNumber = (value: number) => {
+            setLineCountNumber(component, value);
 
-          setLineCountNumber(component, -50);
-          expect(getLineCountNumber(component)).toEqual(2);
+            const input = component.find('input[type="number"]').getDOMNode();
+            expect((input as HTMLInputElement).value).toEqual(String(value));
+
+            expect(input).toBeInvalid();
+            expect(onChange).not.toHaveBeenCalled();
+          };
+
+          assertInvalidNumber(0);
+          assertInvalidNumber(-50);
         });
 
         it('correctly resets lineCount to initial developer-passed state', () => {
@@ -408,8 +420,8 @@ describe('useDataGridDisplaySelector', () => {
           component.find('[data-test-subj="resetDisplaySelector"]').exists()
         ).toBe(false);
 
-        component.find('[data-test-subj="expanded"]').simulate('change');
-        component.find('[data-test-subj="auto"]').simulate('change');
+        component.find('button[data-test-subj="expanded"]').simulate('click');
+        component.find('button[data-test-subj="auto"]').simulate('click');
         expect(
           component.find('[data-test-subj="resetDisplaySelector"]').exists()
         ).toBe(true);
@@ -444,8 +456,8 @@ describe('useDataGridDisplaySelector', () => {
           component.find('[data-test-subj="resetDisplaySelector"]').exists()
         ).toBe(false);
 
-        component.find('[data-test-subj="expanded"]').simulate('change');
-        component.find('[data-test-subj="auto"]').simulate('change');
+        component.find('button[data-test-subj="expanded"]').simulate('click');
+        component.find('button[data-test-subj="auto"]').simulate('click');
         expect(
           component.find('[data-test-subj="resetDisplaySelector"]').exists()
         ).toBe(false);

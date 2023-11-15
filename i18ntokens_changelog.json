@@ -1,5 +1,45 @@
 [
   {
+    "version": "91.0.0",
+    "changes": [
+      {
+        "token": "euiAbsoluteTab.dateFormatError",
+        "changeType": "modified",
+        "value": "Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp."
+      },
+      {
+        "token": "euiAbsoluteTab.dateFormatHint",
+        "changeType": "added",
+        "value": "Press the Enter key to parse as a date."
+      }
+    ]
+  },
+  {
+    "version": "90.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "modified",
+        "value": "Open navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "modified",
+        "value": "Close navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelExpand",
+        "changeType": "added",
+        "value": "Expand navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+        "changeType": "added",
+        "value": "Collapse navigation"
+      }
+    ]
+  },
+  {
     "version": "89.0.0",
     "changes": [
       {

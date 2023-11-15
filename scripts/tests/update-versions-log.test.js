@@ -1,4 +1,7 @@
-import updateDocsVersionSwitcher from '../update-versions-log';
+import {
+  updateDocsVersionSwitcher,
+  getUpcomingVersion,
+} from '../update-versions-log';
 
 // Mock files
 jest.mock('fs', () => ({
@@ -60,5 +63,21 @@ describe('updateDocsVersionSwitcher', () => {
     expect(() => updateDocsVersionSwitcher('4.0.0')).toThrow(
       'Invalid JSON data'
     );
+  });
+});
+
+describe('getUpcomingVersion', () => {
+  jest.mock('../../package.json', () => ({
+    version: '1.2.3',
+  }));
+
+  test('patch', () => {
+    expect(getUpcomingVersion('patch')).toEqual('1.2.4');
+  });
+  test('minor', () => {
+    expect(getUpcomingVersion('minor')).toEqual('1.3.0');
+  });
+  test('major', () => {
+    expect(getUpcomingVersion('major')).toEqual('2.0.0');
   });
 });

@@ -79,9 +79,12 @@ describe('EuiAccordion', () => {
         cy.realMount(<EuiAccordion {...sharedProps} forceState="closed" />);
 
         cy.contains('Click me to toggle').realClick();
-        cy.focused()
-          .should('not.have.class', 'euiAccordion__childWrapper')
-          .contains('Click me to toggle');
+        // cy.focused() is flaky here and doesn't always return an element, so use document.activeElement instead
+        cy.then(() => {
+          expect(document.activeElement).not.to.have.class(
+            'euiAccordion__childWrapper'
+          );
+        });
       });
 
       it('does not focus the accordion when programmatically toggled from outside the accordion', () => {

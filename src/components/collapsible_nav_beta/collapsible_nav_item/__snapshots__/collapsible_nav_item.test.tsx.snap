@@ -31,10 +31,12 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
   <div
     class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
-    <div
+    <button
       aria-controls="generated-id"
+      aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
+      type="button"
     >
       <span
         class="euiAccordion__buttonContent"
@@ -49,13 +51,13 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
           </span>
         </span>
       </span>
-    </div>
+    </button>
     <button
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
-      tabindex="0"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -71,7 +73,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
     inert=""
-    role="region"
+    role="group"
     style="block-size: 0;"
     tabindex="-1"
   >
@@ -98,18 +100,38 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
 </div>
 `;
 
-exports[`EuiCollapsibleNavItem renders a top level link if items are missing or empty 1`] = `
-<a
+exports[`EuiCollapsibleNavItem renders a top level group if items exist and \`isCollapsible\` is set to false 1`] = `
+<div
   aria-label="aria-label"
-  class="euiLink euiCollapsibleNavLink euiCollapsibleNavItem testClass1 testClass2 emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isNotAccordion-isInteractive-euiTestCss"
+  class="euiCollapsibleNavGroup euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavGroup-isTopItem-euiTestCss"
   data-test-subj="test subject string"
-  href="#"
-  rel="noreferrer"
 >
   <span
-    class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+    class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+    id="generated-id"
   >
-    Item
+    <span
+      class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+    >
+      Item
+    </span>
   </span>
-</a>
+  <div
+    aria-labelledby="generated-id"
+    class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isTopItem"
+    role="group"
+  >
+    <span
+      aria-label="aria-label"
+      class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
+      data-test-subj="test subject string"
+    >
+      <span
+        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      >
+        Sub-item
+      </span>
+    </span>
+  </div>
+</div>
 `;

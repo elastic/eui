@@ -46,12 +46,36 @@ export const waitForEuiToolTipHidden = async () =>
   });
 
 /**
- * Doot doo
+ * EuiComboBox
  */
+
 export const showEuiComboBoxOptions = async () => {
   fireEvent.click(screen.getByTestSubject('comboBoxToggleListButton'));
   await waitForEuiPopoverOpen();
   await waitFor(() => {
     expect(screen.getByRole('listbox')).toBeInTheDocument();
   });
+};
+
+/**
+ * EuiContextMenu
+ */
+
+export const waitForEuiContextMenuPanelTransition = async () => {
+  // Used document instead of container or screen due to context menus living in portals
+  const getPanels = () => document.querySelectorAll('.euiContextMenuPanel');
+
+  // 2 panels will appear for the transition animation
+  await waitFor(() => {
+    expect(getPanels().length).toEqual(2);
+  });
+
+  // Outgoing panel will be removed on animation end
+  fireEvent.animationEnd(getPanels()[0]);
+  if (getPanels().length > 1) {
+    fireEvent.animationEnd(getPanels()[1]);
+  }
+
+  // Transition/animation is done once we're back to 1 panel
+  expect(getPanels().length).toEqual(1);
 };

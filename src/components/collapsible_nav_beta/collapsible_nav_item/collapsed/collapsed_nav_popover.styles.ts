@@ -15,8 +15,6 @@ import {
   euiYScrollWithShadows,
 } from '../../../../global_styling';
 
-import { euiCollapsibleNavItemVariables } from '../collapsible_nav_item.styles';
-
 export const euiCollapsedNavPopoverStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
@@ -27,6 +25,11 @@ export const euiCollapsedNavPopoverStyles = (euiThemeContext: UseEuiTheme) => {
         mathWithUnits(euiTheme.size.base, (x) => x * 15)
       )}
     `,
+    euiCollapsedNavPopover__title: css`
+      display: block;
+      padding: ${euiTheme.size.m};
+      font-weight: ${euiTheme.font.weight.bold};
+    `,
     euiCollapsedNavPopover__items: css`
       ${euiYScrollWithShadows(euiThemeContext)}
       padding-block: ${euiTheme.size.s};
@@ -36,35 +39,6 @@ export const euiCollapsedNavPopoverStyles = (euiThemeContext: UseEuiTheme) => {
       @media (max-height: ${euiTheme.breakpoint.s}px) {
         ${logicalCSS('max-height', '75vh')}
       }
-    `,
-  };
-};
-
-export const euiCollapsedNavPopoverTitleStyles = (
-  euiThemeContext: UseEuiTheme
-) => {
-  const { euiTheme } = euiThemeContext;
-  const sharedStyles = euiCollapsibleNavItemVariables(euiThemeContext);
-
-  return {
-    euiCollapsedNavPopover__title: css`
-      padding: ${euiTheme.size.m};
-      font-weight: ${euiTheme.font.weight.bold};
-    `,
-    link: css`
-      /* Vertically align the external icon */
-      display: flex;
-      align-items: center;
-
-      /* Horizontally align with other external link icons */
-      [class*='euiLink__externalIcon'] {
-        ${logicalCSS('margin-left', 'auto')}
-        ${logicalCSS('margin-right', euiTheme.size.xxs)}
-        color: ${sharedStyles.rightIconColor};
-      }
-    `,
-    span: css`
-      display: block;
     `,
   };
 };

@@ -25,22 +25,36 @@ export const euiCollapsibleNavAccordionStyles = (
     euiCollapsibleNavAccordion: css`
       .euiAccordion__button {
         overflow: hidden; /* Title text truncation doesn't work otherwise */
-
-        /* unset accordion underline - only show for EuiLinks (which display their own underlines)
-         * so that behavior between link accordions and non-link accordions is consistent */
-        &:hover,
-        &:focus {
-          cursor: default;
-          text-decoration: none;
-        }
       }
 
-      .euiAccordion__triggerWrapper {
+      & > .euiAccordion__triggerWrapper {
         border-radius: ${sharedStyles.borderRadius};
 
         ${euiCanAnimate} {
           transition: background-color ${sharedStyles.animation};
         }
+
+        &:hover,
+        &:focus-within {
+          background-color: ${sharedStyles.backgroundHoverColor};
+
+          .euiAccordion__arrow .euiIcon {
+            color: ${sharedStyles.color};
+          }
+        }
+
+        /* Move the keyboard focus outline to the entire trigger wrapper */
+        &:has(:focus-visible) {
+          outline-style: auto;
+          outline-offset: -${euiTheme.focus.width};
+
+          *:focus {
+            outline: none;
+          }
+        }
+
+        /* Weird workaround for Safari showing a strange focus ring bump around the arrow */
+        overflow: hidden;
       }
 
       .euiAccordion__buttonContent {
@@ -54,47 +68,40 @@ export const euiCollapsibleNavAccordionStyles = (
         ${logicalCSS('width', '100%')}
       }
     `,
-    isTopItem: css`
-      margin: ${sharedStyles.padding};
-
-      & > .euiAccordion__triggerWrapper {
-        &:hover {
-          background-color: ${sharedStyles.backgroundHoverColor};
-        }
-      }
-    `,
     isSelected: css`
       & > .euiAccordion__triggerWrapper {
         background-color: ${sharedStyles.backgroundSelectedColor};
 
-        &:hover {
+        &:hover,
+        &:focus-within {
           background-color: ${sharedStyles.backgroundSelectedColor};
         }
       }
     `,
+    isTopItem: css`
+      margin: ${sharedStyles.padding};
+    `,
     isSubItem: css`
-      &.euiAccordion-isOpen {
-        ${logicalCSS('margin-bottom', euiTheme.size.m)}
+      /* Adds extra spacing to the bottom of the accordion while open. Notes:
+         1. This uses a pseudo element instead of margin-bottom on the accordion,
+            because otherwise the height calculations the accordion uses will be off
+            and cause buggy animation behavior
+         2. Setting a margin or padding bottom on .euiAccordion__children does not
+            seem to work correctly and gets collapsed instead of stacking
+       */
+      &.euiAccordion-isOpen .euiAccordion__children::after {
+        content: '';
+        display: block;
+        ${logicalCSS('height', euiTheme.size.m)}
       }
     `,
     // Arrow element
     euiCollapsibleNavAccordion__arrow: css`
+      /* Ensure there's no non-clickable deadzones in the accordion trigger wrapper */
+      margin: 0;
+      ${logicalCSS('height', sharedStyles.height)}
       /* Slight visual offset from edge of entire item */
-      ${logicalCSS('margin-right', euiTheme.size.xs)}
-
-      /* Give the arrow button its own clearer hover animation to indicate its hitbox */
-      ${euiCanAnimate} {
-        transition: background-color ${sharedStyles.animation};
-      }
-
-      &:hover,
-      &:focus-visible {
-        background-color: ${euiTheme.colors.lightShade};
-
-        & > .euiIcon {
-          color: ${sharedStyles.color};
-        }
-      }
+      ${logicalCSS('width', euiTheme.size.xl)}
 
       /* Rotate the arrow icon, not the button itself -
        * otherwise the background rotates and looks a bit silly */
@@ -113,6 +120,12 @@ export const euiCollapsibleNavAccordionStyles = (
       &.euiAccordion__arrow[aria-expanded='true'] > .euiIcon {
         color: ${sharedStyles.color};
         transform: rotate(-90deg);
+      }
+
+      /* Unset default accordion arrow style */
+      &:hover,
+      &:focus {
+        background-color: transparent;
       }
     `,
   };

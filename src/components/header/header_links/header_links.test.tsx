@@ -45,7 +45,7 @@ describe('EuiHeaderLinks', () => {
             iconType: 'bolt',
             className: 'customButtonClass',
           }}
-          popoverProps={{ anchorClassName: 'customAnchorClass' }}
+          popoverProps={{ 'data-test-subj': 'hello-world' }}
         />
       );
 

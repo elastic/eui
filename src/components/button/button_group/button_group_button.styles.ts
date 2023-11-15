@@ -139,55 +139,29 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-/**
- * Focus utilities - made complex by the two different button styles
- * and the fact that `label`/`input` combos need :focus-within,
- * but `button` does not
- */
-const _outlineSelectors = (outlineCss: string) => {
+export const _compressedButtonFocusColor = (
+  euiThemeContext: UseEuiTheme,
+  color: _EuiButtonColor | 'disabled'
+) => {
+  const { backgroundColor } = euiButtonFillColor(euiThemeContext, color);
+
   return css`
-    &:is(button) {
-      &:focus-visible {
-        ${outlineCss}
-      }
-    }
+    &:focus-visible {
+      ${euiOutline(euiThemeContext, 'center', backgroundColor)}
 
-    &:is(label) {
-      /* Firefox fallback for :has. Delete once FF supports :has */
-      &:focus-within {
-        ${outlineCss}
-      }
-
-      @supports selector(:has(*)) {
-        &:focus-within {
-          outline: none;
-        }
-        /* Once all evergreen browsers support :has, we can remove
-           @supports and the outline: none reset just use this selector */
-        &:has(:focus-visible) {
-          ${outlineCss}
-        }
+      &:is(.euiButtonGroupButton-isSelected) {
+        outline-offset: 0;
       }
     }
   `;
 };
 
-export const _compressedButtonFocusColor = (
-  euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled'
-) => {
-  const { euiTheme } = euiThemeContext;
-  const { backgroundColor } = euiButtonFillColor(euiThemeContext, color);
-
-  return _outlineSelectors(
-    `outline: ${euiTheme.focus.width} solid ${backgroundColor};`
-  );
-};
-
 export const _uncompressedButtonFocus = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  return _outlineSelectors(
-    euiOutline(euiThemeContext, 'inset', euiTheme.colors.fullShade)
-  );
+  return css`
+    &:focus-visible {
+      ${euiOutline(euiThemeContext, 'inset', euiTheme.colors.fullShade)}
+    }
+  `;
 };

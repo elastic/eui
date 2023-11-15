@@ -55,7 +55,7 @@ describe('EuiButtonDisplay', () => {
   });
 
   describe('element', () => {
-    const elements = ['a', 'button', 'span', 'label'] as const;
+    const elements = ['a', 'button', 'span'] as const;
 
     const getButtonElement = (container: HTMLElement) =>
       container.firstChild!.nodeName.toLowerCase();
@@ -74,7 +74,7 @@ describe('EuiButtonDisplay', () => {
 
     it('always renders a `button` element if disabled', () => {
       const { container } = render(
-        <EuiButtonDisplay element="label" isDisabled>
+        <EuiButtonDisplay element="a" isDisabled>
           Content
         </EuiButtonDisplay>
       );

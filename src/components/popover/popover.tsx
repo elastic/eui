@@ -29,6 +29,7 @@ import {
   performOnFrame,
   htmlIdGenerator,
 } from '../../services';
+import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -71,6 +72,8 @@ type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Class name passed to the direct parent of the button
+   *
+   * @deprecated Use `className` instead
    */
   anchorClassName?: string;
   /**
@@ -86,6 +89,9 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    * Triggering element for which to align the popover to
    */
   button: NonNullable<ReactNode>;
+  /**
+   * @deprecated Use `popoverRef` instead
+   */
   buttonRef?: RefCallback<HTMLDivElement>;
   /**
    * Callback to handle hiding of the popover
@@ -147,7 +153,10 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Object of props passed to EuiPanel. See #EuiPopoverPanelProps
    */
-  panelProps?: Omit<EuiPopoverPanelProps, 'style' | 'hasShadow' | 'hasBorder'>;
+  panelProps?: Omit<
+    EuiPopoverPanelProps,
+    'style' | 'hasShadow' | 'hasBorder' | 'color'
+  >;
   panelRef?: RefCallback<HTMLElement | null>;
   /**
    * Optional screen reader instructions to announce upon popover open,
@@ -593,9 +602,9 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
-  buttonRef = (node: HTMLDivElement | null) => {
+  popoverRef = (node: HTMLDivElement | null) => {
     this.button = node;
-    this.props.buttonRef && this.props.buttonRef(node);
+    setMultipleRefs([this.props.popoverRef, this.props.buttonRef], node);
   };
 
   render() {
@@ -639,16 +648,16 @@ export class EuiPopover extends Component<Props, State> {
     const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
     const styles = euiPopoverStyles();
-    const popoverStyles = [styles.euiPopover, { display }];
+    const popoverStyles = [styles.euiPopover, { display, label: display }];
     const classes = classNames(
       'euiPopover',
       {
         'euiPopover-isOpen': this.state.isOpening,
       },
-      className
+      className,
+      anchorClassName
     );
 
-    const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
     let panel;
@@ -765,10 +774,13 @@ export class EuiPopover extends Component<Props, State> {
     // when disabled, so we still need to conditionally check for that ourselves
     if (ownFocus) {
       return (
-        <div css={popoverStyles} className={classes} ref={popoverRef} {...rest}>
-          <div css={{ display }} className={anchorClasses} ref={this.buttonRef}>
-            {button instanceof HTMLElement ? null : button}
-          </div>
+        <div
+          css={popoverStyles}
+          className={classes}
+          ref={this.popoverRef}
+          {...rest}
+        >
+          {button instanceof HTMLElement ? null : button}
           {panel}
         </div>
       );
@@ -778,17 +790,11 @@ export class EuiPopover extends Component<Props, State> {
           <div
             css={popoverStyles}
             className={classes}
-            ref={popoverRef}
+            ref={this.popoverRef}
             onKeyDown={this.onKeyDown}
             {...rest}
           >
-            <div
-              css={{ display }}
-              className={anchorClasses}
-              ref={this.buttonRef}
-            >
-              {button instanceof HTMLElement ? null : button}
-            </div>
+            {button instanceof HTMLElement ? null : button}
             {panel}
           </div>
         </EuiOutsideClickDetector>

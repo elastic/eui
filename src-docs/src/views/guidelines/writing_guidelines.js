@@ -145,14 +145,14 @@ export const WritingGuidelines = () => {
           <GuideRuleExample
             type="do"
             text="Use sentence case in buttons, menus, titles, and tabs."
-            minHeight={200}
+            minHeight={250}
           >
             <EuiButton fill>Check for new data</EuiButton>
           </GuideRuleExample>
           <GuideRuleExample
             type="do"
             text="Use sentence case for modal and page elements."
-            minHeight={200}
+            minHeight={250}
           >
             <EuiPanel style={{ transform: 'scale(.75)' }}>
               <EuiTitle size="m">
@@ -205,15 +205,25 @@ export const WritingGuidelines = () => {
           </GuideRuleExample>
         </GuideRule>
 
-        <GuideRule heading="Title case for products, solutions, and apps">
+        <GuideRule
+          heading="Title case for proper nouns"
+          description="Proper nouns include product names, solutions, apps, feature tiers, and subscription levels. "
+        >
           <GuideRuleExample
             type="do"
-            text="Product and solution names are always capitalized."
+            text="Product and solution names are always capitalized. Same goes for feature tiers and subscription levels."
             minHeight={200}
           >
-            <EuiTitle size="xs">
-              <span>Elastic APM</span>
-            </EuiTitle>
+            <EuiText size="xs">
+              <ul>
+                <li>Welcome to Elastic Observability</li>
+                <li>Elastic APM</li>
+                <li>You have chosen Security Analytics Essentials.</li>
+                <li>
+                  This feature is available for Gold subscriptions and higher.
+                </li>
+              </ul>
+            </EuiText>
           </GuideRuleExample>
           <GuideRuleExample
             type="do"

@@ -12,7 +12,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
       <button
         aria-controls="generated-id_euiCollapsibleNav"
         aria-expanded="true"
-        aria-label="Toggle navigation closed"
+        aria-label="Collapse navigation"
         aria-pressed="true"
         class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
         data-test-subj="euiCollapsibleNavButton"
@@ -65,7 +65,7 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
       <button
         aria-controls="generated-id_euiCollapsibleNav"
         aria-expanded="false"
-        aria-label="Toggle navigation open"
+        aria-label="Expand navigation"
         aria-pressed="false"
         class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
         data-test-subj="euiCollapsibleNavButton"

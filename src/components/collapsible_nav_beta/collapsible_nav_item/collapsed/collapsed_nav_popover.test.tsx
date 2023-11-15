@@ -22,28 +22,13 @@ describe('EuiCollapsedNavPopover', () => {
   shouldRenderCustomStyles(
     <EuiCollapsedNavPopover title="title" items={[{ title: 'subitem' }]} />
   );
-  shouldRenderCustomStyles(
-    <EuiCollapsedNavPopover
-      title="title"
-      href="#"
-      items={[{ title: 'subitem' }]}
-    />,
-    {
-      childProps: ['linkProps'],
-      renderCallback: async ({ getByTestSubject }) => {
-        fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
-        await waitForEuiPopoverOpen();
-      },
-    }
-  );
 
-  it('renders the title and sub-items within the popover', async () => {
-    const { baseElement, getByTestSubject } = render(
+  it('renders', async () => {
+    const { baseElement, getByTestSubject, getByText } = render(
       <EuiCollapsedNavPopover
         {...requiredProps}
         title="Item"
-        href="#"
-        linkProps={{ 'data-test-subj': 'popoverTitle' }}
+        titleElement="h3"
         items={[
           { title: 'Sub-item A', href: '#', 'data-test-subj': 'A' },
           { title: 'Sub-item B', href: '#', 'data-test-subj': 'B' },
@@ -54,33 +39,11 @@ describe('EuiCollapsedNavPopover', () => {
     await waitForEuiPopoverOpen();
 
     expect(baseElement).toMatchSnapshot();
-    expect(getByTestSubject('popoverTitle')).toHaveTextContent('Item');
+    expect(getByText('Item').nodeName).toEqual('H3');
     expect(getByTestSubject('A')).toHaveTextContent('Sub-item A');
     expect(getByTestSubject('B')).toHaveTextContent('Sub-item B');
 
     fireEvent.keyDown(baseElement, { key: 'Escape' });
     await waitForEuiPopoverClose();
-  });
-
-  it('renders popver titles without links', async () => {
-    const { getByText, getByTestSubject } = render(
-      <EuiCollapsedNavPopover
-        {...requiredProps}
-        title="Popover title"
-        titleElement="h3"
-        items={[{ title: 'Subitem' }]}
-        linkProps={requiredProps} // Should not spread to non-links
-      />
-    );
-    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
-    await waitForEuiPopoverOpen();
-
-    expect(getByText('Popover title')).toMatchInlineSnapshot(`
-      <h3
-        class="eui-textTruncate emotion-euiCollapsedNavPopover__title-span"
-      >
-        Popover title
-      </h3>
-    `);
   });
 });

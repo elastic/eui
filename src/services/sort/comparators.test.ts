@@ -7,7 +7,6 @@
  */
 
 import { Comparators } from './comparators';
-import { Random } from '../random';
 import { SortDirection } from './sort_direction';
 
 describe('comparators - default', () => {
@@ -18,8 +17,8 @@ describe('comparators - default', () => {
     expect(Comparators.default(SortDirection.DESC)(5, 10)).toBeGreaterThan(0);
   });
   test('asc/desc when the two values equal', () => {
-    const dir = new Random().oneOf([SortDirection.ASC, SortDirection.DESC]);
-    expect(Comparators.default(dir)(5, 5)).toBe(0);
+    expect(Comparators.default(SortDirection.ASC)(5, 5)).toBe(0);
+    expect(Comparators.default(SortDirection.DESC)(5, 5)).toBe(0);
   });
 });
 

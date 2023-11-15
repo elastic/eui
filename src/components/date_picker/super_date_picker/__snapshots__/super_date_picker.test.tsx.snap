@@ -9,35 +9,31 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -81,35 +77,31 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--compressed euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -150,47 +142,43 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
   class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly"
 >
   <div
-    class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-EuiInputPopover"
+    class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
   >
     <div
-      class="euiPopover__anchor css-zih94u-render"
+      class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
     >
-      <div
-        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+      <button
+        class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+        type="button"
       >
-        <button
-          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-          type="button"
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
-          </span>
-        </button>
-        <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="Auto refresh"
-            class="euiFieldText euiFieldText--inGroup"
-            readonly=""
-            type="text"
-            value="Off"
+            color="inherit"
+            data-euiicon-type="timeRefresh"
           />
-        </div>
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            <strong>
+              <small>
+                Auto refresh
+              </small>
+            </strong>
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="Auto refresh"
+          class="euiFieldText euiFieldText--inGroup"
+          readonly=""
+          type="text"
+          value="Off"
+        />
       </div>
     </div>
   </div>
@@ -203,49 +191,45 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
   data-test-subj="autoRefreshOnly"
 >
   <div
-    class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-EuiInputPopover"
+    class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
   >
     <div
-      class="euiPopover__anchor css-zih94u-render"
+      class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
     >
-      <div
-        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+      <button
+        class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled"
+        disabled=""
+        type="button"
       >
-        <button
-          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled"
-          disabled=""
-          type="button"
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              color="inherit"
-              data-euiicon-type="timeRefresh"
-            />
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <strong>
-                <small>
-                  Auto refresh
-                </small>
-              </strong>
-            </span>
-          </span>
-        </button>
-        <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="Auto refresh"
-            class="euiFieldText euiFieldText--inGroup"
-            disabled=""
-            readonly=""
-            type="text"
-            value="Off"
+            color="inherit"
+            data-euiicon-type="timeRefresh"
           />
-        </div>
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            <strong>
+              <small>
+                Auto refresh
+              </small>
+            </strong>
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <input
+          aria-label="Auto refresh"
+          class="euiFieldText euiFieldText--inGroup"
+          disabled=""
+          readonly=""
+          type="text"
+          value="Off"
+        />
       </div>
     </div>
   </div>
@@ -275,36 +259,32 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     disabled=""
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-disabled-isDisabled"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        disabled=""
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-disabled-isDisabled"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          disabled=""
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -350,35 +330,31 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -415,35 +391,31 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -467,35 +439,31 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -542,35 +510,31 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -614,35 +578,31 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -687,35 +647,31 @@ exports[`EuiSuperDatePicker renders 1`] = `
     class="euiFormControlLayout euiFormControlLayout--group"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Date quick select"
+        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+        title="Date quick select"
+        type="button"
       >
-        <button
-          aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-          data-test-subj="superDatePickerToggleQuickMenuButton"
-          title="Date quick select"
-          type="button"
+        <span
+          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              <span
-                data-euiicon-type="calendar"
-              />
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
+              data-euiicon-type="calendar"
             />
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -763,53 +719,45 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
       class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayoutDelimited"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor euiQuickSelectPopover__anchor css-16vtueo-render"
+        <button
+          aria-label="Date quick select"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+          data-test-subj="superDatePickerToggleQuickMenuButton"
+          title="Date quick select"
+          type="button"
         >
-          <button
-            aria-label="Date quick select"
-            class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
-            data-test-subj="superDatePickerToggleQuickMenuButton"
-            title="Date quick select"
-            type="button"
+          <span
+            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+              class="eui-textTruncate euiButtonEmpty__text"
             >
               <span
-                class="eui-textTruncate euiButtonEmpty__text"
-              >
-                <span
-                  data-euiicon-type="calendar"
-                />
-              </span>
-              <span
-                color="inherit"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="calendar"
               />
             </span>
-          </button>
-        </div>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </button>
       </div>
       <div
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover"
+          class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover-block"
         >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
+          <button
+            class="euiDatePopoverButton euiDatePopoverButton--start euiDatePopoverButton-isSelected"
+            data-test-subj="superDatePickerstartDatePopoverButton"
+            title="~ 15 minutes ago"
           >
-            <button
-              class="euiDatePopoverButton euiDatePopoverButton--start euiDatePopoverButton-isSelected"
-              data-test-subj="superDatePickerstartDatePopoverButton"
-              title="~ 15 minutes ago"
-            >
-              ~ 15 minutes ago
-            </button>
-          </div>
+            ~ 15 minutes ago
+          </button>
         </div>
         <div
           class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
@@ -821,19 +769,15 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           </span>
         </div>
         <div
-          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover"
+          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block"
         >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
+          <button
+            class="euiDatePopoverButton euiDatePopoverButton--end"
+            data-test-subj="superDatePickerendDatePopoverButton"
+            title="now"
           >
-            <button
-              class="euiDatePopoverButton euiDatePopoverButton--end"
-              data-test-subj="superDatePickerendDatePopoverButton"
-              title="now"
-            >
-              now
-            </button>
-          </div>
+            now
+          </button>
         </div>
       </div>
     </div>

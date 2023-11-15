@@ -31,7 +31,6 @@ export {
   desaturate,
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
-  euiPaletteComplimentary,
   euiPaletteComplementary,
   euiPaletteCool,
   euiPaletteForDarkBackground,
@@ -82,7 +81,6 @@ export * from './hooks';
 export { isEvenlyDivisibleBy, isWithinRange } from './number';
 export { Pager } from './paging';
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
-export { Random } from './random';
 export { getSecureRelForTarget } from './security';
 export {
   Comparators,

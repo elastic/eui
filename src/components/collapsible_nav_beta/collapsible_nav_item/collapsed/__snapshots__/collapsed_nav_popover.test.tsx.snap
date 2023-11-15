@@ -1,33 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCollapsedNavPopover renders the title and sub-items within the popover 1`] = `
+exports[`EuiCollapsedNavPopover renders 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiTestCss"
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-block-euiTestCss"
       data-test-subj="test subject string"
     >
-      <div
-        class="euiPopover__anchor css-zih94u-render"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
-        <span
-          class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        <button
+          aria-label="Item"
+          class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+          data-test-subj="euiCollapsedNavButton"
+          type="button"
         >
-          <button
-            aria-label="Item"
-            class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
-            data-test-subj="euiCollapsedNavButton"
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-              class="euiButtonIcon__icon"
-              color="inherit"
-              data-euiicon-type="boxesHorizontal"
-            />
-          </button>
-        </span>
-      </div>
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesHorizontal"
+          />
+        </button>
+      </span>
     </div>
   </div>
   <div
@@ -46,7 +42,7 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-hasTransform-right-euiCollapsedNavPopover__panel"
+        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-right-euiCollapsedNavPopover__panel"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -69,18 +65,11 @@ exports[`EuiCollapsedNavPopover renders the title and sub-items within the popov
           <div
             class="euiPopoverTitle emotion-euiPopoverTitle-none"
           >
-            <a
-              class="euiLink emotion-euiLink-text-euiCollapsedNavPopover__title-link"
-              data-test-subj="popoverTitle"
-              href="#"
-              rel="noreferrer"
+            <h3
+              class="eui-textTruncate emotion-euiCollapsedNavPopover__title"
             >
-              <span
-                class="eui-textTruncate"
-              >
-                Item
-              </span>
-            </a>
+              Item
+            </h3>
           </div>
           <div
             class="emotion-euiCollapsedNavPopover__items"

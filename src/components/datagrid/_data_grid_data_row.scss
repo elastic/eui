@@ -100,7 +100,6 @@
 .euiDataGridRowCell__contentWrapper {
   position: relative; // Needed for .euiDataGridRowCell__actions--overlay
   height: 100%;
-  overflow: hidden;
 }
 
 .euiDataGridRowCell__defaultHeight {
@@ -125,8 +124,7 @@
 .euiDataGridRowCell__numericalHeight {
   // Without this rule, popover anchors content that overflows off the page
   [data-euiportal],
-  .euiPopover,
-  .euiPopover__anchor {
+  .euiPopover {
     height: 100%;
   }
 }

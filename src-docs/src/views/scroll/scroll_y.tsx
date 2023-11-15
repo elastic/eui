@@ -35,20 +35,13 @@ export default () => {
         example={
           <div
             tabIndex={0}
-            role="region"
-            aria-label="Example of eui-yScroll region"
             className="eui-yScrollWithShadows"
             style={{ height: 180 }}
           >
             <ScrollContent />
           </div>
         }
-        snippet={`<div
-  tabIndex={0}
-  role="region"
-  aria-label=""
-  className="eui-yScrollWithShadows"
->
+        snippet={`<div tabIndex={0} className="eui-yScrollWithShadows">
   <EuiPanel />
   <EuiPanel />
   <EuiPanel />
@@ -78,8 +71,6 @@ export default () => {
           example={
             <div
               tabIndex={0}
-              role="region"
-              aria-label="Example of useEuiOverflowScroll(y) region"
               css={css`
                 ${useEuiOverflowScroll('y', true)}
                 ${logicalCSS('height', '180px')}
@@ -114,12 +105,7 @@ export default () => {
             paddingSize: 'none',
           }}
           example={
-            <div
-              tabIndex={0}
-              role="region"
-              aria-label="Example of euiYScrollWithShadows region"
-              className="guideSass__overflowShadowsY"
-            >
+            <div tabIndex={0} className="guideSass__overflowShadowsY">
               <ScrollContent />
             </div>
           }

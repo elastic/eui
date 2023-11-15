@@ -34,7 +34,7 @@ export interface EuiDatePopoverButtonProps {
   isOpen: boolean;
   needsUpdating?: boolean;
   locale?: LocaleSpecifier;
-  onChange: NonNullable<EuiDatePopoverContentProps['onChange']>;
+  onChange: EuiDatePopoverContentProps['onChange'];
   onPopoverClose: EuiPopoverProps['closePopover'];
   onPopoverToggle: MouseEventHandler<HTMLButtonElement>;
   position: 'start' | 'end';

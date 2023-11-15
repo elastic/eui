@@ -8,31 +8,27 @@ exports[`EuiDataGrid pagination renders 1`] = `
     class="euiFlexItem emotion-euiFlexItem-growZero"
   >
     <div
-      class="euiPopover emotion-euiPopover"
+      class="euiPopover emotion-euiPopover-inline-block"
     >
-      <div
-        class="euiPopover__anchor css-16vtueo-render"
+      <button
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+        data-test-subj="tablePaginationPopoverButton"
+        type="button"
       >
-        <button
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-          data-test-subj="tablePaginationPopoverButton"
-          type="button"
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              Rows per page: 6
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
+            Rows per page: 6
           </span>
-        </button>
-      </div>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
     </div>
   </div>
   <div
@@ -476,51 +472,28 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <button
+              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              data-test-subj="dataGridColumnSelectorButton"
+              type="button"
             >
-              <button
-                class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-                data-test-subj="dataGridColumnSelectorButton"
-                type="button"
+              <span
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                  color="inherit"
+                  data-euiicon-type="listAdd"
+                />
+                <span
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  <span
-                    color="inherit"
-                    data-euiicon-type="tableDensityNormal"
-                  />
-                  <span
-                    class="eui-textTruncate euiButtonEmpty__text"
-                  >
-                    <div
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                    >
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        Columns
-                      </div>
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        <span
-                          aria-label="Current count: 2"
-                          class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                          role="marquee"
-                        >
-                          2
-                        </span>
-                      </div>
-                    </div>
-                  </span>
+                  Columns
                 </span>
-              </button>
-            </div>
+              </span>
+            </button>
           </div>
           <button>
             Button
@@ -530,56 +503,48 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridKeyboardShortcutsPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Keyboard shortcuts"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridKeyboardShortcutsButton"
+                type="button"
               >
-                <button
-                  aria-label="Keyboard shortcuts"
-                  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridKeyboardShortcutsButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="keyboard"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="keyboard"
+                />
+              </button>
+            </span>
           </div>
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Display options"
+                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridDisplaySelectorButton"
+                type="button"
               >
-                <button
-                  aria-label="Display options"
-                  class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridDisplaySelectorButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="controlsHorizontal"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="controlsHorizontal"
+                />
+              </button>
+            </span>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -638,31 +603,27 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="A"
-                      >
-                        A
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
-                    </button>
-                  </div>
+                      A
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-A"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -692,31 +653,27 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="B"
-                      >
-                        B
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
-                    </button>
-                  </div>
+                      B
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-B"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -952,51 +909,28 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <button
+              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              data-test-subj="dataGridColumnSelectorButton"
+              type="button"
             >
-              <button
-                class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-                data-test-subj="dataGridColumnSelectorButton"
-                type="button"
+              <span
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                  color="inherit"
+                  data-euiicon-type="listAdd"
+                />
+                <span
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  <span
-                    color="inherit"
-                    data-euiicon-type="tableDensityNormal"
-                  />
-                  <span
-                    class="eui-textTruncate euiButtonEmpty__text"
-                  >
-                    <div
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                    >
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        Columns
-                      </div>
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        <span
-                          aria-label="Current count: 2"
-                          class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                          role="marquee"
-                        >
-                          2
-                        </span>
-                      </div>
-                    </div>
-                  </span>
+                  Columns
                 </span>
-              </button>
-            </div>
+              </span>
+            </button>
           </div>
           <button>
             Button
@@ -1006,56 +940,48 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridKeyboardShortcutsPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Keyboard shortcuts"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridKeyboardShortcutsButton"
+                type="button"
               >
-                <button
-                  aria-label="Keyboard shortcuts"
-                  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridKeyboardShortcutsButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="keyboard"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="keyboard"
+                />
+              </button>
+            </span>
           </div>
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Display options"
+                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridDisplaySelectorButton"
+                type="button"
               >
-                <button
-                  aria-label="Display options"
-                  class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridDisplaySelectorButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="controlsHorizontal"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="controlsHorizontal"
+                />
+              </button>
+            </span>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -1133,31 +1059,27 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="A"
-                      >
-                        A
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
-                    </button>
-                  </div>
+                      A
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-A"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -1187,31 +1109,27 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="B"
-                      >
-                        B
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
-                    </button>
-                  </div>
+                      B
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-B"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -1730,107 +1648,76 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <button
+              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              data-test-subj="dataGridColumnSelectorButton"
+              type="button"
             >
-              <button
-                class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-                data-test-subj="dataGridColumnSelectorButton"
-                type="button"
+              <span
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                  color="inherit"
+                  data-euiicon-type="listAdd"
+                />
+                <span
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  <span
-                    color="inherit"
-                    data-euiicon-type="tableDensityNormal"
-                  />
-                  <span
-                    class="eui-textTruncate euiButtonEmpty__text"
-                  >
-                    <div
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                    >
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        Columns
-                      </div>
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        <span
-                          aria-label="Current count: 2"
-                          class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                          role="marquee"
-                        >
-                          2
-                        </span>
-                      </div>
-                    </div>
-                  </span>
+                  Columns
                 </span>
-              </button>
-            </div>
+              </span>
+            </button>
           </div>
         </div>
         <div
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridKeyboardShortcutsPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Keyboard shortcuts"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridKeyboardShortcutsButton"
+                type="button"
               >
-                <button
-                  aria-label="Keyboard shortcuts"
-                  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridKeyboardShortcutsButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="keyboard"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="keyboard"
+                />
+              </button>
+            </span>
           </div>
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Display options"
+                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridDisplaySelectorButton"
+                type="button"
               >
-                <button
-                  aria-label="Display options"
-                  class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridDisplaySelectorButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="controlsHorizontal"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="controlsHorizontal"
+                />
+              </button>
+            </span>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -1889,31 +1776,27 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="A"
-                      >
-                        Column A
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
-                    </button>
-                  </div>
+                      Column A
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-A"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -1943,33 +1826,29 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="B"
-                      >
-                        <div>
-                          More Elements
-                        </div>
+                      <div>
+                        More Elements
                       </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
-                    </button>
-                  </div>
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-B"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -2205,107 +2084,76 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <button
+              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              data-test-subj="dataGridColumnSelectorButton"
+              type="button"
             >
-              <button
-                class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-                data-test-subj="dataGridColumnSelectorButton"
-                type="button"
+              <span
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                  color="inherit"
+                  data-euiicon-type="listAdd"
+                />
+                <span
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  <span
-                    color="inherit"
-                    data-euiicon-type="tableDensityNormal"
-                  />
-                  <span
-                    class="eui-textTruncate euiButtonEmpty__text"
-                  >
-                    <div
-                      class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                    >
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        Columns
-                      </div>
-                      <div
-                        class="euiFlexItem emotion-euiFlexItem-growZero"
-                      >
-                        <span
-                          aria-label="Current count: 2"
-                          class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                          role="marquee"
-                        >
-                          2
-                        </span>
-                      </div>
-                    </div>
-                  </span>
+                  Columns
                 </span>
-              </button>
-            </div>
+              </span>
+            </button>
           </div>
         </div>
         <div
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridKeyboardShortcutsPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Keyboard shortcuts"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridKeyboardShortcutsButton"
+                type="button"
               >
-                <button
-                  aria-label="Keyboard shortcuts"
-                  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridKeyboardShortcutsButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="keyboard"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="keyboard"
+                />
+              </button>
+            </span>
           </div>
           <div
-            class="euiPopover emotion-euiPopover"
+            class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
-            <div
-              class="euiPopover__anchor css-16vtueo-render"
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              <button
+                aria-label="Display options"
+                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                data-test-subj="dataGridDisplaySelectorButton"
+                type="button"
               >
-                <button
-                  aria-label="Display options"
-                  class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
-                  data-test-subj="dataGridDisplaySelectorButton"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="controlsHorizontal"
-                  />
-                </button>
-              </span>
-            </div>
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="controlsHorizontal"
+                />
+              </button>
+            </span>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -2364,31 +2212,27 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="A"
-                      >
-                        A
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
-                    </button>
-                  </div>
+                      A
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-A"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""
@@ -2418,31 +2262,27 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   style="margin-right: 0px;"
                 />
                 <div
-                  class="euiPopover eui-fullWidth emotion-euiPopover"
+                  class="euiPopover eui-fullWidth emotion-euiPopover-block"
                 >
-                  <div
-                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+                  <button
+                    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+                    class="euiDataGridHeaderCell__button"
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
                   >
-                    <button
-                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                      class="euiDataGridHeaderCell__button"
-                      data-euigrid-tab-managed="true"
-                      tabindex="-1"
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__content"
-                        title="B"
-                      >
-                        B
-                      </div>
-                      <span
-                        class="euiDataGridHeaderCell__icon"
-                        color="text"
-                        data-euiicon-type="arrowDown"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
-                    </button>
-                  </div>
+                      B
+                    </div>
+                    <span
+                      class="euiDataGridHeaderCell__icon"
+                      color="text"
+                      data-euiicon-type="arrowDown"
+                      data-test-subj="dataGridHeaderCellActionButton-B"
+                    />
+                  </button>
                 </div>
                 <p
                   hidden=""

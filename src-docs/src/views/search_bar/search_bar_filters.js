@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { times } from '../../../../src/services/utils';
-import { Random } from '../../../../src/services/random';
+import { faker } from '@faker-js/faker';
 import {
   EuiHealth,
   EuiCallOut,
@@ -16,8 +15,6 @@ import {
   EuiButton,
   EuiPanel,
 } from '../../../../src/components';
-
-const random = new Random();
 
 const tags = [
   { name: 'marketing', color: 'danger' },
@@ -47,20 +44,20 @@ const types = ['dashboard', 'visualization', 'watch'];
 
 const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
 
-const items = times(10, (id) => {
+const items = [...Array(10).keys()].map((id) => {
   return {
     id,
-    status: random.oneOf(['open', 'closed']),
-    type: random.oneOf(types),
-    tag: random.setOf(
+    status: faker.helpers.arrayElement(['open', 'closed']),
+    type: faker.helpers.arrayElement(types),
+    tag: faker.helpers.arrayElements(
       tags.map((tag) => tag.name),
       { min: 0, max: 3 }
     ),
-    active: random.boolean(),
-    owner: random.oneOf(users),
-    followers: random.integer({ min: 0, max: 20 }),
-    comments: random.integer({ min: 0, max: 10 }),
-    stars: random.integer({ min: 0, max: 5 }),
+    active: faker.datatype.boolean(),
+    owner: faker.helpers.arrayElement(users),
+    followers: faker.number.int({ min: 0, max: 20 }),
+    comments: faker.number.int({ min: 0, max: 10 }),
+    stars: faker.number.int({ min: 0, max: 5 }),
   };
 });
 

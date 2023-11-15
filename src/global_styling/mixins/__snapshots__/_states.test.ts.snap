@@ -34,6 +34,23 @@ exports[`useEuiFocusRing hook returns a string for each offset: 16px 1`] = `
   "
 `;
 
+exports[`useEuiFocusRing hook returns a string for each offset: center 1`] = `
+"
+    outline: 2px solid currentColor;
+    outline-offset: -1px;
+
+    // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
+    &:focus-visible {
+      outline-style: auto;
+    }
+
+    // 🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
+    &:not(:focus-visible) {
+      outline: none;
+    }
+  "
+`;
+
 exports[`useEuiFocusRing hook returns a string for each offset: inset 1`] = `
 "
     outline: 2px solid currentColor;

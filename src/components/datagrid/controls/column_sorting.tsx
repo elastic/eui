@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { Fragment, ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
 import { EuiButtonEmpty } from '../../button';
 import {
@@ -146,32 +146,29 @@ export const useDataGridColumnSorting = (
       }
     >
       {sorting.columns.length > 0 ? (
-        <div
-          role="region"
-          aria-live="assertive"
-          className="euiDataGrid__controlScroll"
-        >
-          <EuiDragDropContext onDragEnd={onDragEnd}>
-            <EuiDroppable droppableId="columnSorting">
-              <Fragment>
-                {sorting.columns.map(({ id, direction }, index) => {
-                  return (
-                    <EuiDataGridColumnSortingDraggable
-                      key={id}
-                      id={id}
-                      display={displayValues[id]}
-                      direction={direction}
-                      index={index}
-                      sorting={sorting}
-                      schema={schema}
-                      schemaDetectors={schemaDetectors}
-                    />
-                  );
-                })}
-              </Fragment>
-            </EuiDroppable>
-          </EuiDragDropContext>
-        </div>
+        <EuiDragDropContext onDragEnd={onDragEnd}>
+          <EuiDroppable
+            droppableId="columnSorting"
+            className="euiDataGrid__controlScroll"
+          >
+            <>
+              {sorting.columns.map(({ id, direction }, index) => {
+                return (
+                  <EuiDataGridColumnSortingDraggable
+                    key={id}
+                    id={id}
+                    display={displayValues[id]}
+                    direction={direction}
+                    index={index}
+                    sorting={sorting}
+                    schema={schema}
+                    schemaDetectors={schemaDetectors}
+                  />
+                );
+              })}
+            </>
+          </EuiDroppable>
+        </EuiDragDropContext>
       ) : (
         <EuiText size="s" color="subdued">
           <p role="alert">

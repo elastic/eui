@@ -15,12 +15,14 @@ import { EuiLink, EuiLinkProps } from '../../link';
 import type {
   _SharedEuiCollapsibleNavItemProps,
   _EuiCollapsibleNavItemDisplayProps,
+  EuiCollapsibleNavItemProps,
 } from './collapsible_nav_item';
 import { euiCollapsibleNavLinkStyles } from './collapsible_nav_link.styles';
 
 type EuiCollapsibleNavLinkProps = Omit<EuiLinkProps, 'children'> &
-  Omit<_SharedEuiCollapsibleNavItemProps, 'items' | 'accordionProps'> &
-  _EuiCollapsibleNavItemDisplayProps & {
+  _SharedEuiCollapsibleNavItemProps &
+  _EuiCollapsibleNavItemDisplayProps &
+  Pick<EuiCollapsibleNavItemProps, 'href' | 'linkProps'> & {
     children: ReactNode;
     isInteractive?: boolean;
     isNotAccordion?: boolean;

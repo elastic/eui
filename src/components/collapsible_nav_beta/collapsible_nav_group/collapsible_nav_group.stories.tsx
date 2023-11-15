@@ -32,7 +32,6 @@ const meta: Meta<EuiCollapsibleNavGroupProps> = {
       { title: 'Dashboards', href: '#' },
       {
         title: 'Explore',
-        href: '#',
         items: [
           { title: 'Hello', href: '#' },
           { title: 'World', href: '#' },
@@ -88,7 +87,4 @@ export const EdgeCaseTesting: Story = {
       <EuiCollapsibleNavBeta.Group {...args} />
     </CollapsibleNavTemplate>
   ),
-  args: {
-    href: '#',
-  },
 };

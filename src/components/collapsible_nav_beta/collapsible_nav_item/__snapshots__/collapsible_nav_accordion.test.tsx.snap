@@ -7,10 +7,12 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
   <div
     class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
-    <div
+    <button
       aria-controls="generated-id"
+      aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
+      type="button"
     >
       <span
         class="euiAccordion__buttonContent"
@@ -21,13 +23,13 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
           Accordion header
         </span>
       </span>
-    </div>
+    </button>
     <button
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
-      tabindex="0"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -43,7 +45,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
     inert=""
-    role="region"
+    role="group"
     style="block-size: 0;"
     tabindex="-1"
   >
@@ -77,10 +79,12 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
   <div
     class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
-    <div
+    <button
       aria-controls="generated-id"
+      aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
+      type="button"
     >
       <span
         class="euiAccordion__buttonContent"
@@ -91,13 +95,13 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
           Accordion header
         </span>
       </span>
-    </div>
+    </button>
     <button
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
-      tabindex="0"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -113,7 +117,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
     inert=""
-    role="region"
+    role="group"
     style="block-size: 0;"
     tabindex="-1"
   >

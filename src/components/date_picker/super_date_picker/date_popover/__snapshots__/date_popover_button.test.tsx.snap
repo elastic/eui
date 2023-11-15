@@ -3,18 +3,14 @@
 exports[`EuiSuperUpdateButton renders 1`] = `
 <div>
   <div
-    class="euiPopover testClass1 testClass2 emotion-euiPopover-euiTestCss"
+    class="euiPopover testClass1 testClass2 emotion-euiPopover-block-euiTestCss"
     data-test-subj="test subject string"
   >
-    <div
-      class="euiPopover__anchor css-zih94u-render"
-    >
-      <button
-        class="euiDatePopoverButton euiDatePopoverButton--start"
-        data-test-subj="superDatePickerstartDatePopoverButton"
-        title=""
-      />
-    </div>
+    <button
+      class="euiDatePopoverButton euiDatePopoverButton--start"
+      data-test-subj="superDatePickerstartDatePopoverButton"
+      title=""
+    />
   </div>
 </div>
 `;

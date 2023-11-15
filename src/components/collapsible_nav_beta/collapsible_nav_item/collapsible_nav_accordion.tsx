@@ -6,33 +6,26 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  ReactNode,
-  MouseEvent,
-  useCallback,
-} from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 import { EuiAccordion } from '../../accordion';
 
 import {
+  type _SharedEuiCollapsibleNavItemProps,
+  type _EuiCollapsibleNavItemDisplayProps,
+  type EuiCollapsibleNavItemProps,
   EuiCollapsibleNavSubItems,
-  EuiCollapsibleNavSubItemProps,
-  _SharedEuiCollapsibleNavItemProps,
-  _EuiCollapsibleNavItemDisplayProps,
 } from './collapsible_nav_item';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import { euiCollapsibleNavAccordionStyles } from './collapsible_nav_accordion.styles';
 
-type EuiCollapsibleNavAccordionProps = Omit<
-  _SharedEuiCollapsibleNavItemProps,
-  'items'
-> &
-  _EuiCollapsibleNavItemDisplayProps & {
+type EuiCollapsibleNavAccordionProps = _SharedEuiCollapsibleNavItemProps &
+  _EuiCollapsibleNavItemDisplayProps &
+  Pick<EuiCollapsibleNavItemProps, 'accordionProps'> &
+  Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
     buttonContent: ReactNode;
-    items: EuiCollapsibleNavSubItemProps[];
   };
 
 /**
@@ -48,10 +41,8 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
   id,
   className,
   items,
-  href, // eslint-disable-line local/href-with-rel
   isSubItem,
   isSelected,
-  linkProps,
   accordionProps,
   buttonContent,
   children: _children, // Make sure this isn't spread
@@ -69,32 +60,16 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
     accordionProps?.css,
   ];
 
-  const isTitleInteractive = !!(href || linkProps?.onClick);
-
-  // Stop propagation on the title so that the accordion toggle doesn't occur on click
-  // (should only occur on accordion arrow click for UX consistency)
-  const stopPropagationClick = useCallback(
-    (e: MouseEvent<HTMLAnchorElement> & MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      linkProps?.onClick?.(e);
-    },
-    [linkProps?.onClick] // eslint-disable-line react-hooks/exhaustive-deps
-  );
-
   return (
     <EuiAccordion
       id={groupID}
       className={classes}
       initialIsOpen={isSelected}
-      buttonElement="div"
       buttonContent={
         <EuiCollapsibleNavLink
-          href={href}
-          {...linkProps}
           isSelected={isSelected}
           isSubItem={isSubItem}
-          onClick={stopPropagationClick}
-          isInteractive={isTitleInteractive}
+          isInteractive={false}
         >
           {buttonContent}
         </EuiCollapsibleNavLink>

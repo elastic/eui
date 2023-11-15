@@ -39,29 +39,25 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          title="See collapsed breadcrumbs"
+          type="button"
         >
-          <button
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-            title="See collapsed breadcrumbs"
-            type="button"
+          <span
+            aria-label="See collapsed breadcrumbs"
           >
-            <span
-              aria-label="See collapsed breadcrumbs"
-            >
-              …
-            </span>
-             
-            <span
-              data-euiicon-type="arrowDown"
-            >
-               - Clicking this button will toggle a popover dialog.
-            </span>
-          </button>
-        </div>
+            …
+          </span>
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
       </div>
     </li>
     <li
@@ -144,29 +140,25 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          title="See collapsed breadcrumbs"
+          type="button"
         >
-          <button
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-            title="See collapsed breadcrumbs"
-            type="button"
+          <span
+            aria-label="See collapsed breadcrumbs"
           >
-            <span
-              aria-label="See collapsed breadcrumbs"
-            >
-              …
-            </span>
-             
-            <span
-              data-euiicon-type="arrowDown"
-            >
-               - Clicking this button will toggle a popover dialog.
-            </span>
-          </button>
-        </div>
+            …
+          </span>
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
       </div>
     </li>
     <li
@@ -331,29 +323,25 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          title="See collapsed breadcrumbs"
+          type="button"
         >
-          <button
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-            title="See collapsed breadcrumbs"
-            type="button"
+          <span
+            aria-label="See collapsed breadcrumbs"
           >
-            <span
-              aria-label="See collapsed breadcrumbs"
-            >
-              …
-            </span>
-             
-            <span
-              data-euiicon-type="arrowDown"
-            >
-               - Clicking this button will toggle a popover dialog.
-            </span>
-          </button>
-        </div>
+            …
+          </span>
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
       </div>
     </li>
     <li
@@ -517,29 +505,25 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          title="See collapsed breadcrumbs"
+          type="button"
         >
-          <button
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-            title="See collapsed breadcrumbs"
-            type="button"
+          <span
+            aria-label="See collapsed breadcrumbs"
           >
-            <span
-              aria-label="See collapsed breadcrumbs"
-            >
-              …
-            </span>
-             
-            <span
-              data-euiicon-type="arrowDown"
-            >
-               - Clicking this button will toggle a popover dialog.
-            </span>
-          </button>
-        </div>
+            …
+          </span>
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
       </div>
     </li>
     <li
@@ -621,29 +605,25 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          title="See collapsed breadcrumbs"
+          type="button"
         >
-          <button
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-            title="See collapsed breadcrumbs"
-            type="button"
+          <span
+            aria-label="See collapsed breadcrumbs"
           >
-            <span
-              aria-label="See collapsed breadcrumbs"
-            >
-              …
-            </span>
-             
-            <span
-              data-euiicon-type="arrowDown"
-            >
-               - Clicking this button will toggle a popover dialog.
-            </span>
-          </button>
-        </div>
+            …
+          </span>
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
       </div>
     </li>
     <li
@@ -700,29 +680,25 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       data-test-subj="euiBreadcrumb"
     >
       <div
-        class="euiPopover emotion-euiPopover"
+        class="euiPopover emotion-euiPopover-inline-block"
       >
-        <div
-          class="euiPopover__anchor css-16vtueo-render"
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          title="See collapsed breadcrumbs"
+          type="button"
         >
-          <button
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
-            title="See collapsed breadcrumbs"
-            type="button"
+          <span
+            aria-label="See collapsed breadcrumbs"
           >
-            <span
-              aria-label="See collapsed breadcrumbs"
-            >
-              …
-            </span>
-             
-            <span
-              data-euiicon-type="arrowDown"
-            >
-               - Clicking this button will toggle a popover dialog.
-            </span>
-          </button>
-        </div>
+            …
+          </span>
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
       </div>
     </li>
     <li

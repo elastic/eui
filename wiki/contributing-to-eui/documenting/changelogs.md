@@ -1,6 +1,6 @@
 # Changelogs
 
-All upcoming changelogs should go into the [upcoming_changelogs/](../../../upcoming_changelogs/_template.md) directory. Our release script automatically handles collating these files into our main [CHANGELOG.md](../../../CHANGELOG.md) on new EUI versions.
+All upcoming changelogs should go into the [changelogs/upcoming/](../../../changelogs/upcoming/_template.md) directory. Our release script automatically handles collating these files on new EUI versions.
 
 ## When to write a changelog
 

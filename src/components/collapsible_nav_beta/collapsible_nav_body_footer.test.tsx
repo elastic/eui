@@ -28,7 +28,12 @@ describe('EuiCollapsibleNavBody', () => {
   it('renders with docked styles', () => {
     const { container } = render(
       <EuiCollapsibleNavContext.Provider
-        value={{ side: 'left', isPush: true, isCollapsed: true }}
+        value={{
+          isPush: true,
+          isCollapsed: true,
+          isOverlayOpen: false,
+          side: 'left',
+        }}
       >
         <EuiCollapsibleNavBody {...requiredProps} />
       </EuiCollapsibleNavContext.Provider>

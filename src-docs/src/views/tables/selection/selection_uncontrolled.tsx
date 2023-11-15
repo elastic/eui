@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { faker } from '@faker-js/faker';
-import { formatDate, Comparators } from '../../../../../src/services';
+import { Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -8,11 +8,8 @@ import {
   EuiTableSelectionType,
   EuiTableSortingType,
   Criteria,
-  EuiLink,
   EuiHealth,
   EuiButton,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiSpacer,
 } from '../../../../../src/components';
 
@@ -20,8 +17,6 @@ type User = {
   id: number;
   firstName: string | null | undefined;
   lastName: string;
-  github: string;
-  dateOfBirth: Date;
   online: boolean;
   location: {
     city: string;
@@ -36,8 +31,6 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
-    dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
       city: faker.location.city(),
@@ -84,23 +77,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     },
   },
   {
-    field: 'github',
-    name: 'Github',
-    render: (username: User['github']) => (
-      <EuiLink href="#" target="_blank">
-        {username}
-      </EuiLink>
-    ),
-  },
-  {
-    field: 'dateOfBirth',
-    name: 'Date of Birth',
-    dataType: 'date',
-    render: (dateOfBirth: User['dateOfBirth']) =>
-      formatDate(dateOfBirth, 'dobLong'),
-    sortable: true,
-  },
-  {
     field: 'location',
     name: 'Location',
     truncateText: true,
@@ -132,11 +108,6 @@ export default () => {
   const [selectedItems, setSelectedItems] = useState<User[]>([]);
   const onSelectionChange = (selectedItems: User[]) => {
     setSelectedItems(selectedItems);
-  };
-
-  const tableRef = useRef<EuiBasicTable | null>(null);
-  const selectOnlineUsers = () => {
-    tableRef.current?.setSelection(onlineUsers);
   };
 
   const selection: EuiTableSelectionType<User> = {
@@ -242,18 +213,12 @@ export default () => {
 
   return (
     <>
-      <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
-        <EuiFlexItem grow={false}>
-          <EuiButton onClick={selectOnlineUsers}>Select online users</EuiButton>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem>
-      </EuiFlexGroup>
+      {deleteButton}
 
-      <EuiSpacer size="l" />
+      <EuiSpacer />
 
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with selection"
-        ref={tableRef}
         items={pageOfItems}
         itemId="id"
         columns={columns}

@@ -4,23 +4,19 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiCodeBlockAnnotation-euiTestCss"
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-inline-block-euiCodeBlockAnnotation-euiTestCss"
       data-test-subj="test subject string"
     >
-      <div
-        class="euiPopover__anchor css-16vtueo-render"
+      <button
+        aria-label="Click to view a code annotation for line 10"
+        class="emotion-euiCodeBlockAnnotation__buttonIcon"
+        data-test-subj="euiCodeBlockAnnotationIcon"
       >
-        <button
-          aria-label="Click to view a code annotation for line 10"
-          class="emotion-euiCodeBlockAnnotation__buttonIcon"
-          data-test-subj="euiCodeBlockAnnotationIcon"
-        >
-          <span
-            color="ghost"
-            data-euiicon-type="AnnotationInfoIcon"
-          />
-        </button>
-      </div>
+        <span
+          color="ghost"
+          data-euiicon-type="AnnotationInfoIcon"
+        />
+      </button>
     </div>
   </div>
   <div
@@ -39,7 +35,7 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
         aria-label="aria-label"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

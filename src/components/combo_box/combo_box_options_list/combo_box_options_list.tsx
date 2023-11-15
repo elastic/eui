@@ -38,6 +38,7 @@ import {
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
 } from '../types';
+import { EuiComboBoxOptionAppendPrepend } from '../utils';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   activeOptionIndex?: number;
@@ -206,21 +207,20 @@ export class EuiComboBoxOptionsList<T> extends Component<
         {...rest}
       >
         <span className="euiComboBoxOption__contentWrapper">
-          {prepend && (
-            <span className="euiComboBoxOption__prepend">{prepend}</span>
-          )}
-          <span className="euiComboBoxOption__content">
-            {renderOption
-              ? renderOption(
-                  option,
-                  searchValue,
-                  'euiComboBoxOption__renderOption'
-                )
-              : this.renderTruncatedOption(label, truncationProps)}
-          </span>
-          {append && (
-            <span className="euiComboBoxOption__append">{append}</span>
-          )}
+          <EuiComboBoxOptionAppendPrepend
+            option={option}
+            classNamePrefix="euiComboBoxOption"
+          >
+            <span className="euiComboBoxOption__content">
+              {renderOption
+                ? renderOption(
+                    option,
+                    searchValue,
+                    'euiComboBoxOption__renderOption'
+                  )
+                : this.renderTruncatedOption(label, truncationProps)}
+            </span>
+          </EuiComboBoxOptionAppendPrepend>
           {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
         </span>
       </EuiFilterSelectItem>

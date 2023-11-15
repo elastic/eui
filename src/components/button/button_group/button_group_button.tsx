@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, MouseEventHandler } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
@@ -23,21 +23,9 @@ import {
 
 type Props = EuiButtonGroupOptionProps & {
   /**
-   * Element to display based on single or multi
-   */
-  element: 'button' | 'label';
-  /**
    * Styles the selected button to look selected (usually with `fill`)
    */
   isSelected?: boolean;
-  /**
-   * Name of the whole group for 'single'.
-   */
-  name?: string;
-  /**
-   * The value of the radio input for 'single'.
-   */
-  value?: string;
   /**
    * Inherit from EuiButtonGroup
    */
@@ -53,7 +41,7 @@ type Props = EuiButtonGroupOptionProps & {
   /**
    * Inherit from EuiButtonGroup
    */
-  onChange: EuiButtonGroupProps['onChange'];
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const EuiButtonGroupButton: FunctionComponent<Props> = ({
@@ -63,42 +51,11 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   isIconOnly,
   isSelected = false,
   label,
-  name,
-  onChange,
+  value, // Prevent prop from being spread
   size,
-  value,
   color: _color = 'primary',
-  element: _element = 'button',
-  type = 'button',
   ...rest
 }) => {
-  // Force element to be a button if disabled
-  const element = isDisabled ? 'button' : _element;
-
-  let elementProps = {};
-  let singleInput;
-  if (element === 'label') {
-    singleInput = (
-      <input
-        className="euiScreenReaderOnly"
-        name={name}
-        checked={isSelected}
-        disabled={isDisabled}
-        value={value}
-        type="radio"
-        onChange={() => onChange(id, value)}
-        data-test-subj={id}
-      />
-    );
-  } else {
-    elementProps = {
-      'data-test-subj': id,
-      isSelected,
-      type,
-      onClick: () => onChange(id),
-    };
-  }
-
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
   const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
@@ -148,7 +105,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     <EuiButtonDisplay
       css={cssStyles}
       className={buttonClasses}
-      element={element}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       contentProps={{ css: contentStyles }}
@@ -158,10 +114,10 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         'data-text': innerText,
       }}
       title={innerText}
-      {...elementProps}
+      data-test-subj={id}
+      isSelected={isSelected}
       {...rest}
     >
-      {singleInput}
       {label}
     </EuiButtonDisplay>
   );

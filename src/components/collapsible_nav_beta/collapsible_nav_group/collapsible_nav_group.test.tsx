@@ -44,7 +44,12 @@ describe('EuiCollapsibleNavGroup', () => {
   it('renders as a docked button icon', () => {
     const { container } = render(
       <EuiCollapsibleNavContext.Provider
-        value={{ side: 'left', isCollapsed: true, isPush: true }}
+        value={{
+          isCollapsed: true,
+          isPush: true,
+          isOverlayOpen: false,
+          side: 'left',
+        }}
       >
         <EuiCollapsibleNavGroup {...sharedProps} />
       </EuiCollapsibleNavContext.Provider>
