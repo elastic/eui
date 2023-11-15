@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+
 import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
@@ -202,6 +203,22 @@ describe('EuiListGroupItem', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('external', () => {
+      test('is rendered', () => {
+        const { getByText } = render(
+          <EuiListGroupItem label="Label" href="#" external />
+        );
+        expect(getByText('External link')).toBeInTheDocument();
+      });
+
+      test('target `_blank` renders external icon', () => {
+        const { getByText } = render(
+          <EuiListGroupItem label="Label" href="#" target="_blank" />
+        );
+        expect(getByText('External link')).toBeInTheDocument();
       });
     });
 

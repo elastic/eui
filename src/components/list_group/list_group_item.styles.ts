@@ -163,6 +163,9 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
       }
     `,
+    externalIcon: css`
+      ${logicalCSS('margin-left', euiTheme.size.xs)}
+    `,
   };
 };
 
