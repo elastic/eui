@@ -59,6 +59,11 @@ case $TEST_TYPE in
     DOCKER_OPTIONS+=(bash -c "yarn cypress install && yarn run test-cypress-a11y --node-options=--max_old_space_size=2048")
     ;;
 
+  cypress:a11y)
+    echo "[TASK]: Running Cypress accessibility tests against React 18"
+    DOCKER_OPTIONS+=(bash -c "/opt/yarn*/bin/yarn && yarn cypress install && yarn run test-cypress-a11y --node-options=--max_old_space_size=2048")
+    ;;
+
   *)
     echo "[ERROR]: Unknown task"
     echo "Exit code: 1"

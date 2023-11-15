@@ -35,43 +35,13 @@ import {
 export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
     /**
-     * The nav item link.
-     * If not included, and no `onClick` is specified, the nav item
-     * will render as an non-interactive `<span>`.
-     */
-    href?: string;
-    /**
-     * Will render either an accordion or group of nested child item links.
-     *
-     * Accepts any #EuiCollapsibleNavItemProps. Or, to render completely custom
-     * subitem content, pass an object with a `renderItem` callback.
-     */
-    items?: EuiCollapsibleNavSubItemProps[];
-    /**
-     * If set to false, will (visually) render an always-open accordion that cannot
-     * be toggled closed. Ignored if `items` is not passed.
-     *
-     * @default true
-     */
-    isCollapsible?: boolean;
-    /**
-     * If `items` is specified, and `isCollapsible` is not set to false, you may
-     * use this prop to pass any prop that `EuiAccordion` accepts, including props
-     * that control the toggled state of the accordion (e.g. `initialIsOpen`, `forceState`)
-     */
-    accordionProps?: Partial<EuiAccordionProps>;
-    /**
-     * If a `href` is specified, use this prop to pass any prop that `EuiLink` accepts
-     */
-    linkProps?: Partial<EuiLinkProps>;
-    /**
      * Highlights whether an item is currently selected, e.g.
      * if the user is on the same page as the nav link
      */
     isSelected?: boolean;
   };
 
-export type EuiCollapsibleNavItemProps = {
+export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps & {
   /**
    * Required text to render as the nav item title
    */
@@ -90,7 +60,46 @@ export type EuiCollapsibleNavItemProps = {
    * Optional props to pass to the title icon
    */
   iconProps?: Partial<EuiIconProps>;
-} & _SharedEuiCollapsibleNavItemProps;
+} & ExclusiveUnion<
+    {
+      /**
+       * The nav item link.
+       *
+       * If not included, and no `onClick` is specified, the nav item
+       * will render as an non-interactive `<span>`.
+       *
+       * Should not be used together with `items`, as the title will
+       * trigger the accordion collapse/expand action instead of a link.
+       */
+      href?: string;
+      /**
+       * If a `href` is specified, use this prop to pass any prop that `EuiLink` accepts
+       */
+      linkProps?: Partial<EuiLinkProps>;
+    },
+    {
+      /**
+       * Will render either an accordion or group of nested child item links.
+       *
+       * Accepts any #EuiCollapsibleNavItemProps. Or, to render completely custom
+       * subitem content, pass an object with a `renderItem` callback.
+       */
+      items: EuiCollapsibleNavSubItemProps[];
+      /**
+       * If set to false, will (visually) render an always-open accordion that cannot
+       * be toggled closed. Ignored if `items` is not passed.
+       *
+       * @default true
+       */
+      isCollapsible?: boolean;
+      /**
+       * If `items` is specified, and `isCollapsible` is not set to false, you may
+       * use this prop to pass any prop that `EuiAccordion` accepts, including props
+       * that control the toggled state of the accordion (e.g. `initialIsOpen`, `forceState`)
+       */
+      accordionProps?: Partial<EuiAccordionProps>;
+    }
+  >;
 
 export type EuiCollapsibleNavCustomSubItem = {
   renderItem: () => ReactNode;
@@ -122,9 +131,11 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   titleElement,
   icon,
   iconProps,
+  href, // eslint-disable-line local/href-with-rel
+  linkProps,
   items,
   isCollapsible = true,
-  accordionProps, // Ensure this isn't spread to non-accordions
+  accordionProps,
   children, // Ensure children isn't spread
   ...props
 }) => {
@@ -137,7 +148,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
     />
   );
 
-  if (items && items.length > 0) {
+  if (items) {
     if (isCollapsible) {
       return (
         <EuiCollapsibleNavAccordion
@@ -162,12 +173,12 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
 
   return (
     <EuiCollapsibleNavLink
+      href={href}
+      linkProps={linkProps}
       {...(props as EuiLinkProps)} // EuiLink ExclusiveUnion type shenanigans
       isSubItem={isSubItem}
       isNotAccordion
-      isInteractive={
-        !!(props.href || props.onClick || props.linkProps?.onClick)
-      }
+      isInteractive={!!(href || props.onClick || linkProps?.onClick)}
     >
       {headerContent}
     </EuiCollapsibleNavLink>

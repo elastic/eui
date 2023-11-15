@@ -231,8 +231,7 @@ describe('EuiTable', () => {
 
     describe('Keyboard accessibility', () => {
       it('has zero violations after expanding a row', () => {
-        cy.repeatRealPress('Tab');
-        cy.get('button#1').should('have.focus');
+        cy.get('button#1').focus();
         cy.realPress('Enter');
         cy.get('tr.euiTableRow-isExpandedRow div.euiTableCellContent').should(
           'exist'

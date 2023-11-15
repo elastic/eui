@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCollapsedNavItem renders a popover if items exist 1`] = `
+exports[`EuiCollapsedNavItem renders a popover if items are passed 1`] = `
 <div
   class="euiPopover euiCollapsedNavItem testClass1 testClass2 emotion-euiPopover-block-euiTestCss"
   data-test-subj="test subject string"
@@ -25,7 +25,7 @@ exports[`EuiCollapsedNavItem renders a popover if items exist 1`] = `
 </div>
 `;
 
-exports[`EuiCollapsedNavItem renders an icon button/link if items are missing or empty 1`] = `
+exports[`EuiCollapsedNavItem renders an icon button/link if href is passed 1`] = `
 <span
   aria-label="aria-label"
   class="euiToolTipAnchor euiCollapsedNavItem testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"

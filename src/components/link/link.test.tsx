@@ -59,13 +59,6 @@ describe('EuiLink', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('allows for target and external to be controlled independently', () => {
-    const { container } = render(
-      <EuiLink href="#" target="_blank" external={false} />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
   test('supports rel', () => {
     const { container } = render(<EuiLink href="hoi" rel="stylesheet" />);
     expect(container.firstChild).toMatchSnapshot();

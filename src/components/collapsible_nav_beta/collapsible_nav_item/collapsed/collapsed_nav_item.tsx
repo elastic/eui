@@ -23,14 +23,26 @@ import classNames from 'classnames';
 
 export const EuiCollapsedNavItem: FunctionComponent<
   EuiCollapsibleNavItemProps
-> = ({ items, className, ...props }) => {
+> = ({
+  className,
+  href, // eslint-disable-line local/href-with-rel
+  linkProps,
+  items,
+  // Extracted to avoid spreading to DOM node
+  accordionProps,
+  isCollapsible,
+  ...props
+}) => {
   const classes = classNames('euiCollapsedNavItem', className);
 
-  const hasItems = items && items.length > 0;
-
-  return hasItems ? (
+  return items ? (
     <EuiCollapsedNavPopover items={items} className={classes} {...props} />
   ) : (
-    <EuiCollapsedNavButton className={classes} {...props} />
+    <EuiCollapsedNavButton
+      href={href}
+      linkProps={linkProps}
+      className={classes}
+      {...props}
+    />
   );
 };

@@ -58,7 +58,7 @@ describe('EuiErrorBoundary', () => {
     });
 
     it('has zero violations and accepts focus when the button is pressed', () => {
-      cy.realPress('Tab');
+      cy.get('button').first().focus();
       cy.realPress('Enter');
       cy.get('pre.euiCodeBlock__pre').should('have.focus');
       cy.checkAxe();

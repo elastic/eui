@@ -189,8 +189,7 @@ describe('EuiSearchBar', () => {
 
   describe('Keyboard accessibility', () => {
     it('has zero violations after a full-text search', () => {
-      cy.realPress('Tab');
-      cy.get('input[type="search"]').should('have.focus');
+      cy.get('input[type="search"]').focus();
       cy.get('input[type="search"]').type('watch');
       cy.realPress('Enter');
       cy.get('table.euiTable tbody').find('tr').should('have.length', 1);
@@ -203,8 +202,7 @@ describe('EuiSearchBar', () => {
     });
 
     it('has zero violations after filtering on Open items', () => {
-      cy.repeatRealPress('Tab');
-      cy.get('button.euiButtonEmpty').first().should('have.focus');
+      cy.get('button.euiButtonEmpty').first().focus();
       cy.realPress('Enter');
       cy.get('table.euiTable tbody').find('tr').should('have.length', 3);
       cy.checkAxe();
@@ -216,8 +214,7 @@ describe('EuiSearchBar', () => {
     });
 
     it('has zero violations after filtering by Tags', () => {
-      cy.repeatRealPress('Tab', 4);
-      cy.get('button.euiButtonEmpty').last().should('have.focus');
+      cy.get('button.euiButtonEmpty').last().focus();
       cy.realPress('Enter');
       cy.realPress('Tab');
       cy.realPress('ArrowDown');

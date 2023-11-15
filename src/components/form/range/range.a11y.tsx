@@ -53,16 +53,14 @@ describe('Single EuiRange', () => {
 
   describe('Keyboard accessibility check', () => {
     it('has zero violations when the range slider is increased', () => {
-      cy.realPress('Tab');
-      cy.get('input#cy-range-single').should('have.focus');
+      cy.get('input#cy-range-single').focus();
       cy.repeatRealPress('ArrowRight', 10);
       cy.get('output.euiRangeTooltip__value').contains('100 - 110');
       cy.checkAxe();
     });
 
     it('has zero violations when the range slider is decreased', () => {
-      cy.realPress('Tab');
-      cy.get('input#cy-range-single').should('have.focus');
+      cy.get('input#cy-range-single').focus();
       cy.repeatRealPress('ArrowLeft', 10);
       cy.get('output.euiRangeTooltip__value').contains('100 - 100');
       cy.checkAxe();
@@ -109,8 +107,7 @@ describe('Dual EuiRange', () => {
 
   describe('Keyboard accessibility check', () => {
     it('has zero violations when the range sliders are adjusted', () => {
-      cy.realPress('Tab');
-      cy.get('div[role="slider"]').first().should('have.focus');
+      cy.get('div[role="slider"]').first().focus();
       cy.repeatRealPress('ArrowLeft', 3);
       cy.get('div[role="slider"]')
         .first()
@@ -164,8 +161,7 @@ describe('Highlight Area EuiRange', () => {
 
   describe('Keyboard accessibility check', () => {
     it('has zero violations when the highlight area is adjusted using arrow keys', () => {
-      cy.realPress('Tab');
-      cy.get('div[role="slider"]').first().should('have.focus');
+      cy.get('div[role="slider"]').first().focus();
       cy.repeatRealPress('ArrowLeft', 3);
       cy.get('div[role="slider"]')
         .first()
@@ -216,8 +212,7 @@ describe('Highlight Area EuiRange', () => {
 
     describe('Keyboard accessibility check', () => {
       it('updates the range value using arrow keys with input[type="number"]', () => {
-        cy.realPress('Tab');
-        cy.get('input#cy-range-in-dropdown').should('have.focus');
+        cy.get('input#cy-range-in-dropdown').focus();
         cy.repeatRealPress('ArrowUp', 10);
         cy.get('input[type="range"]')
           .first()

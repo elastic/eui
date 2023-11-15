@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This script is executed automatically by the Buildkite agent before "command" step
+# https://buildkite.com/docs/agent/v3/hooks
+
+if [[ "$BUILDKITE_AGENT_NAME" =~ ^bk-agent ]]; then
+  source .buildkite/scripts/lifecycle/pre_command.sh
+else
+  echo "Pipeline triggered from outside expected EUI workflow. Skipping pre_command."
+fi

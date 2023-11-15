@@ -101,7 +101,7 @@ describe('collateChangelogFiles', () => {
     `);
   });
 
-  it('throws an error when the upcoming_changelogs directory is empty', () => {
+  it('throws an error when the upcoming changelogs directory is empty', () => {
     glob.sync.mockReturnValueOnce([]);
     expect(() => collateChangelogFiles()).toThrowError(
       /No upcoming changelog files/

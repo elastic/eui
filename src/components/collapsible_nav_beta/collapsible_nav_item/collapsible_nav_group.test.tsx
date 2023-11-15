@@ -19,9 +19,7 @@ describe('EuiCollapsibleNavGroup', () => {
     items: [{ title: 'sub item' }],
   };
 
-  shouldRenderCustomStyles(<EuiCollapsibleNavGroup {...props} />, {
-    childProps: ['linkProps'],
-  });
+  shouldRenderCustomStyles(<EuiCollapsibleNavGroup {...props} />);
 
   it('renders as a top level item', () => {
     const { container } = render(
@@ -44,13 +42,5 @@ describe('EuiCollapsibleNavGroup', () => {
     );
     const header = container.querySelector('.euiCollapsibleNavLink');
     expect(header?.className).toContain('isSelected');
-  });
-
-  it('renders interactive headers', () => {
-    const { container } = render(
-      <EuiCollapsibleNavGroup {...props} href="#'" />
-    );
-    const header = container.querySelector('.euiCollapsibleNavLink');
-    expect(header?.nodeName).toEqual('A');
   });
 });

@@ -33,6 +33,7 @@ import {
   cloneElementWithCss,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiExternalLinkIcon } from '../link/external_link_icon';
 
 import {
   euiListGroupItemStyles,
@@ -89,10 +90,13 @@ export type EuiListGroupItemProps = CommonProps &
      * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
      */
     href?: string;
-
-    target?: string;
-
     rel?: string;
+    target?: string;
+    /**
+     * Set to true to show an icon indicating that it is an external link;
+     * Defaults to true if `target="_blank"`
+     */
+    external?: boolean;
 
     /**
      * Adds `EuiIcon` of `EuiIcon.type`
@@ -157,8 +161,9 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   isActive = false,
   isDisabled: _isDisabled = false,
   href,
-  target,
   rel,
+  target,
+  external,
   className,
   css: customCss,
   style,
@@ -289,6 +294,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
+        <EuiExternalLinkIcon external={external} target={target} />
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
