@@ -12,16 +12,16 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiNotificationBadge } from '../../badge';
 import { useEuiI18n } from '../../i18n';
 
-export type DataGridToolbarControlProps = EuiButtonEmptyProps & {
+export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
   buttonText: string | ReactElement;
-  badgeCount: number;
+  badgeCount?: number;
 };
 
-export const DataGridToolbarControl = ({
+export const EuiDataGridToolbarControl = ({
   buttonText,
   badgeCount,
   ...buttonProps
-}: DataGridToolbarControlProps) => {
+}: EuiDataGridToolbarControlProps) => {
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
     'Current count: {count}',
@@ -37,7 +37,7 @@ export const DataGridToolbarControl = ({
         gutterSize="s"
       >
         <EuiFlexItem grow={false}>{buttonText}</EuiFlexItem>
-        {badgeCount > 0 && (
+        {typeof badgeCount === 'number' && badgeCount > 0 && (
           <EuiFlexItem grow={false}>
             <EuiNotificationBadge
               color="subdued"

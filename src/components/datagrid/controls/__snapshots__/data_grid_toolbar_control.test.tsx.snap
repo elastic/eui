@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`euiDataGridToolbarControl renders with a badge 1`] = `
+<div>
+  <button
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    >
+      <span
+        color="inherit"
+        data-euiicon-type="sortable"
+      />
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
+      >
+        <div
+          class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+        >
+          <div
+            class="euiFlexItem emotion-euiFlexItem-growZero"
+          >
+            Test button text
+          </div>
+          <div
+            class="euiFlexItem emotion-euiFlexItem-growZero"
+          >
+            <span
+              aria-label="Current count: 5"
+              class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+              role="marquee"
+            >
+              5
+            </span>
+          </div>
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`euiDataGridToolbarControl renders without a badge 1`] = `
+<div>
+  <button
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    >
+      <span
+        color="inherit"
+        data-euiicon-type="sortable"
+      />
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
+      >
+        <div
+          class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+        >
+          <div
+            class="euiFlexItem emotion-euiFlexItem-growZero"
+          >
+            Test button text
+          </div>
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
+`;

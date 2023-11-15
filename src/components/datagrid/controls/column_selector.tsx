@@ -36,7 +36,7 @@ import {
   EuiDataGridToolBarVisibilityOptions,
 } from '../data_grid_types';
 import { getNestedObjectOptions } from './data_grid_toolbar';
-import { DataGridToolbarControl } from './data_grid_toolbar_control';
+import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
 
 export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
@@ -168,7 +168,7 @@ export const useDataGridColumnSelector = (
         panelPaddingSize="s"
         hasDragDrop
         button={
-          <DataGridToolbarControl
+          <EuiDataGridToolbarControl
             buttonText={buttonText}
             badgeCount={orderedVisibleColumns.length}
             size="xs"
