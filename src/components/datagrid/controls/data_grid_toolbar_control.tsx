@@ -16,21 +16,17 @@ import { EuiDataGridToolbarControlProps } from '../data_grid_types';
 
 export const EuiDataGridToolbarControl = ({
   children,
-  badgeCount,
-  isActive,
+  badgeContent,
   ...buttonProps
 }: EuiDataGridToolbarControlProps) => {
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
     'Current count: {count}',
-    { count: badgeCount }
+    { count: badgeContent }
   );
 
   const controlBtnClasses = classNames(
     'euiDataGrid__controlBtn',
-    {
-      'euiDataGrid__controlBtn--active': isActive,
-    },
     buttonProps.className
   );
 
@@ -48,14 +44,14 @@ export const EuiDataGridToolbarControl = ({
         gutterSize="s"
       >
         <EuiFlexItem grow={false}>{children}</EuiFlexItem>
-        {typeof badgeCount === 'number' && badgeCount > 0 && (
+        {Boolean(badgeContent) && (
           <EuiFlexItem grow={false}>
             <EuiNotificationBadge
               color="subdued"
               aria-label={badgeAriaLabel}
               role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
             >
-              {badgeCount}
+              {badgeContent}
             </EuiNotificationBadge>
           </EuiFlexItem>
         )}

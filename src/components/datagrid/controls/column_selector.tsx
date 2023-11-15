@@ -119,27 +119,9 @@ export const useDataGridColumnSelector = (
     'Drag handle'
   );
 
-  let buttonText = (
+  const buttonText = (
     <EuiI18n token="euiColumnSelector.button" default="Columns" />
   );
-
-  if (numberOfHiddenFields === 1) {
-    buttonText = (
-      <EuiI18n
-        token="euiColumnSelector.buttonActiveSingular"
-        default="{numberOfHiddenFields} column hidden"
-        values={{ numberOfHiddenFields }}
-      />
-    );
-  } else if (numberOfHiddenFields > 1) {
-    buttonText = (
-      <EuiI18n
-        token="euiColumnSelector.buttonActivePlural"
-        default="{numberOfHiddenFields} columns hidden"
-        values={{ numberOfHiddenFields }}
-      />
-    );
-  }
 
   const orderedVisibleColumns = useMemo(
     () =>
@@ -165,8 +147,13 @@ export const useDataGridColumnSelector = (
         hasDragDrop
         button={
           <EuiDataGridToolbarControl
-            badgeCount={orderedVisibleColumns.length}
-            isActive={numberOfHiddenFields > 0}
+            badgeContent={
+              numberOfHiddenFields > 0
+                ? `${orderedVisibleColumns.length}/${
+                    numberOfHiddenFields + orderedVisibleColumns.length
+                  }`
+                : orderedVisibleColumns.length
+            }
             iconType="tableDensityNormal"
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}

@@ -17,7 +17,7 @@ describe('euiDataGridToolbarControl', () => {
 
     const { container } = render(
       <EuiDataGridToolbarControl
-        badgeCount={5}
+        badgeContent={5}
         size="xs"
         iconType="sortable"
         color="text"
@@ -35,7 +35,7 @@ describe('euiDataGridToolbarControl', () => {
 
     const { container } = render(
       <EuiDataGridToolbarControl
-        badgeCount={undefined}
+        badgeContent={undefined}
         size="xs"
         iconType="sortable"
         color="text"

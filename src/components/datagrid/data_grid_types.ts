@@ -63,8 +63,7 @@ export interface EuiDataGridCustomToolbarProps {
 }
 
 export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
-  badgeCount?: number;
-  isActive?: boolean;
+  badgeContent?: number | string;
 };
 
 export interface EuiDataGridPaginationRendererProps

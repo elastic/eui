@@ -61,7 +61,7 @@ const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
         {hasRoomForGridControls && (
           <EuiDataGridToolbarControl
             iconType="brush"
-            badgeCount={10}
+            badgeContent={10}
             onClick={() => {}}
           >
             Custom left side

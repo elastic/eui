@@ -192,7 +192,7 @@ describe('useDataGridColumnSelector', () => {
           />
         );
 
-        expect(component.text()).toEqual('2 columns hidden');
+        expect(component.text()).toEqual('Columns0/2');
       });
 
       it('toggles column visibility on switch interaction', () => {
@@ -207,7 +207,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('1 column hidden1');
+        expect(component.text()).toEqual('Columns1/2');
 
         findTestSubject(
           component,
@@ -230,7 +230,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('2 columns hidden');
+        expect(component.text()).toEqual('Columns0/2');
 
         findTestSubject(
           component,

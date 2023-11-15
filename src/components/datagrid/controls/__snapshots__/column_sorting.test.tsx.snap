@@ -6,7 +6,7 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
   data-test-subj="dataGridColumnSortingPopover"
 >
   <button
-    class="euiButtonEmpty euiDataGrid__controlBtn euiDataGrid__controlBtn--active emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
     data-test-subj="dataGridColumnSortingButton"
     type="button"
   >
@@ -288,7 +288,7 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
   data-test-subj="dataGridColumnSortingPopover"
 >
   <button
-    class="euiButtonEmpty euiDataGrid__controlBtn euiDataGrid__controlBtn--active emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
     data-test-subj="dataGridColumnSortingButton"
     type="button"
   >
@@ -570,7 +570,7 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
   data-test-subj="dataGridColumnSortingPopover"
 >
   <button
-    class="euiButtonEmpty euiDataGrid__controlBtn euiDataGrid__controlBtn--active emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
     data-test-subj="dataGridColumnSortingButton"
     type="button"
   >
