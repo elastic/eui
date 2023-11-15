@@ -53,7 +53,7 @@ describe('EuiDataGridCellPopover', () => {
         '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
       ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -73,7 +73,7 @@ describe('EuiDataGridCellPopover', () => {
         '[data-gridcell-row-index="1"][data-gridcell-column-index="1"]'
       ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -93,12 +93,12 @@ describe('EuiDataGridCellPopover', () => {
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
     ).realClick();
 
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-    ).realClick();
+    ).realClick({ position: 'right' });
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
       'not.exist'
     );
@@ -126,7 +126,7 @@ describe('EuiDataGridCellPopover', () => {
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
     ).realClick();
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
 
     cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
   });
@@ -150,7 +150,7 @@ describe('EuiDataGridCellPopover', () => {
     const openCellPopover = (id: string) => {
       cy.get(
         `[data-gridcell-row-index="0"][data-gridcell-column-id="${id}"]`
-      ).realClick();
+      ).click();
       cy.realPress('Enter');
     };
 
