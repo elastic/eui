@@ -208,29 +208,17 @@ describe('EuiListGroupItem', () => {
 
     describe('external', () => {
       test('is rendered', () => {
-        const { container } = render(
+        const { getByText } = render(
           <EuiListGroupItem label="Label" href="#" external />
         );
-        expect(container.firstChild).toMatchSnapshot();
+        expect(getByText('External link')).toBeInTheDocument();
       });
 
       test('target `_blank` renders external icon', () => {
-        const { getByTestSubject } = render(
+        const { getByText } = render(
           <EuiListGroupItem label="Label" href="#" target="_blank" />
         );
-        expect(getByTestSubject('externalLinkIcon')).toBeInTheDocument();
-      });
-
-      test('external prop can overwrite default target `_blank` behavior', async () => {
-        const { queryByTestSubject } = render(
-          <EuiListGroupItem
-            label="Label"
-            href="#"
-            target="_blank"
-            external={false}
-          />
-        );
-        expect(queryByTestSubject('externalLinkIcon')).toBeFalsy();
+        expect(getByText('External link')).toBeInTheDocument();
       });
     });
 

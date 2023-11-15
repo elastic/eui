@@ -33,6 +33,7 @@ import {
   cloneElementWithCss,
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiExternalLinkIcon } from '../link/external_link_icon';
 
 import {
   euiListGroupItemStyles,
@@ -41,7 +42,6 @@ import {
   euiListGroupItemTooltipStyles,
   euiListGroupItemLabelStyles,
 } from './list_group_item.styles';
-import { useEuiI18n } from '../i18n';
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiListGroupItemSize = (typeof SIZES)[number];
@@ -281,22 +281,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isClickable && !isDisabled && innerStyles.isClickable,
   ];
 
-  const showExternalLinkIcon =
-    (target === '_blank' && external !== false) || external === true;
-
-  const externalLinkIcon = (
-    <EuiIcon
-      aria-label={useEuiI18n(
-        'euiListGroupItem.external.ariaLabel',
-        'External link'
-      )}
-      size="s"
-      css={innerStyles.externalIcon}
-      type="popout"
-      data-test-subj="externalLinkIcon"
-    />
-  );
-
   if (href && !isDisabled) {
     itemContent = (
       <a
@@ -310,7 +294,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
-        {showExternalLinkIcon && externalLinkIcon}
+        <EuiExternalLinkIcon external={external} target={target} />
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -326,7 +310,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
-        {showExternalLinkIcon && externalLinkIcon}
       </button>
     );
   } else {

@@ -70,32 +70,6 @@ exports[`EuiListGroupItem props color text is rendered 1`] = `
 </li>
 `;
 
-exports[`EuiListGroupItem props external is rendered 1`] = `
-<li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
->
-  <a
-    class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
-    href="#"
-    rel="noreferrer"
-  >
-    <span
-      class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
-      title="Label"
-    >
-      Label
-    </span>
-    <span
-      class="css-1b8dhvx-externalIcon"
-      data-euiicon-type="popout"
-      data-test-subj="externalLinkIcon"
-    >
-      External link
-    </span>
-  </a>
-</li>
-`;
-
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
   class="euiListGroupItem emotion-euiListGroupItem-m"
