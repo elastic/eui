@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script is executed automatically by the Buildkite agent after "command" step
+# https://buildkite.com/docs/agent/v3/hooks
+
 if [[ "$BUILDKITE_AGENT_NAME" =~ ^bk-agent ]]; then
   source .buildkite/scripts/lifecycle/post_command.sh
 else
