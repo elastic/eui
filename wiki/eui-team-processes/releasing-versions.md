@@ -48,7 +48,7 @@ To view the progress of your job or check for errors:
 * Click on the build row that matches your release ( e.g. `v87.2.0` )
 * From the build detail view:
   * Click the `Rebuild` button if your job needs to be restarted **or**
-  * Click the `.buildkite/scripts/pipeline_deploy_docs.sh` row to view logs and environment details
+  * Click the `.buildkite/scripts/pipelines/pipeline_deploy_docs.sh` row to view logs and environment details
 
 ### Tag the release in GitHub
 

@@ -3,7 +3,7 @@
 steps:
   - agents:
       provider: "gcp"
-    command: .buildkite/scripts/pipeline_deploy_docs.sh
+    command: .buildkite/scripts/pipelines/pipeline_deploy_docs.sh
     env:
       GIT_BRANCH: "${BUILDKITE_BRANCH}"
       GIT_PULL_REQUEST_ID: "${BUILDKITE_PULL_REQUEST}"
