@@ -3,7 +3,7 @@
 exports[`euiDataGridToolbarControl renders with a badge 1`] = `
 <div>
   <button
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
     type="button"
   >
     <span
@@ -45,7 +45,7 @@ exports[`euiDataGridToolbarControl renders with a badge 1`] = `
 exports[`euiDataGridToolbarControl renders without a badge 1`] = `
 <div>
   <button
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
     type="button"
   >
     <span

@@ -166,7 +166,7 @@ export const useDataGridColumnSelector = (
         button={
           <EuiDataGridToolbarControl
             badgeCount={orderedVisibleColumns.length}
-            isSelected={numberOfHiddenFields > 0}
+            isActive={numberOfHiddenFields > 0}
             iconType="tableDensityNormal"
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}

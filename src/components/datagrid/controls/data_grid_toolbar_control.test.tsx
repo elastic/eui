@@ -17,13 +17,14 @@ describe('euiDataGridToolbarControl', () => {
 
     const { container } = render(
       <EuiDataGridToolbarControl
-        buttonText="Test button text"
         badgeCount={5}
         size="xs"
         iconType="sortable"
         color="text"
         onClick={onClickMock}
-      />
+      >
+        Test button text
+      </EuiDataGridToolbarControl>
     );
 
     expect(container).toMatchSnapshot();
@@ -34,13 +35,14 @@ describe('euiDataGridToolbarControl', () => {
 
     const { container } = render(
       <EuiDataGridToolbarControl
-        buttonText="Test button text"
         badgeCount={undefined}
         size="xs"
         iconType="sortable"
         color="text"
         onClick={onClickMock}
-      />
+      >
+        Test button text
+      </EuiDataGridToolbarControl>
     );
 
     expect(container).toMatchSnapshot();

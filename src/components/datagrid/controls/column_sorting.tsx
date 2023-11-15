@@ -130,7 +130,7 @@ export const useDataGridColumnSorting = (
       button={
         <EuiDataGridToolbarControl
           badgeCount={sorting.columns.length}
-          isSelected={sorting.columns.length > 0}
+          isActive={sorting.columns.length > 0}
           iconType="sortable"
           data-test-subj="dataGridColumnSortingButton"
           onClick={() => setIsOpen(!isOpen)}

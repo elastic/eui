@@ -17,6 +17,7 @@ import { EuiDataGridToolbarControlProps } from '../data_grid_types';
 export const EuiDataGridToolbarControl = ({
   children,
   badgeCount,
+  isActive,
   ...buttonProps
 }: EuiDataGridToolbarControlProps) => {
   const badgeAriaLabel = useEuiI18n(
@@ -28,7 +29,7 @@ export const EuiDataGridToolbarControl = ({
   const controlBtnClasses = classNames(
     'euiDataGrid__controlBtn',
     {
-      'euiDataGrid__controlBtn--active': buttonProps.isSelected,
+      'euiDataGrid__controlBtn--active': isActive,
     },
     buttonProps.className
   );
