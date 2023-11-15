@@ -546,7 +546,26 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
       <span
         class="eui-textTruncate euiButtonEmpty__text"
       >
-        1 field sorted
+        <div
+          class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+        >
+          <div
+            class="euiFlexItem emotion-euiFlexItem-growZero"
+          >
+            Sort fields
+          </div>
+          <div
+            class="euiFlexItem emotion-euiFlexItem-growZero"
+          >
+            <span
+              aria-label="Current count: 1"
+              class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+              role="marquee"
+            >
+              1
+            </span>
+          </div>
+        </div>
       </span>
     </span>
   </button>

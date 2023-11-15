@@ -485,12 +485,31 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="listAdd"
+                  data-euiicon-type="tableDensityNormal"
                 />
                 <span
                   class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  Columns
+                  <div
+                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                  >
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      Columns
+                    </div>
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      <span
+                        aria-label="Current count: 2"
+                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+                        role="marquee"
+                      >
+                        2
+                      </span>
+                    </div>
+                  </div>
                 </span>
               </span>
             </button>
@@ -922,12 +941,31 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="listAdd"
+                  data-euiicon-type="tableDensityNormal"
                 />
                 <span
                   class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  Columns
+                  <div
+                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                  >
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      Columns
+                    </div>
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      <span
+                        aria-label="Current count: 2"
+                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+                        role="marquee"
+                      >
+                        2
+                      </span>
+                    </div>
+                  </div>
                 </span>
               </span>
             </button>
@@ -1661,12 +1699,31 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="listAdd"
+                  data-euiicon-type="tableDensityNormal"
                 />
                 <span
                   class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  Columns
+                  <div
+                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                  >
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      Columns
+                    </div>
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      <span
+                        aria-label="Current count: 2"
+                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+                        role="marquee"
+                      >
+                        2
+                      </span>
+                    </div>
+                  </div>
                 </span>
               </span>
             </button>
@@ -2097,12 +2154,31 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 <span
                   color="inherit"
-                  data-euiicon-type="listAdd"
+                  data-euiicon-type="tableDensityNormal"
                 />
                 <span
                   class="eui-textTruncate euiButtonEmpty__text"
                 >
-                  Columns
+                  <div
+                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+                  >
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      Columns
+                    </div>
+                    <div
+                      class="euiFlexItem emotion-euiFlexItem-growZero"
+                    >
+                      <span
+                        aria-label="Current count: 2"
+                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+                        role="marquee"
+                      >
+                        2
+                      </span>
+                    </div>
+                  </div>
                 </span>
               </span>
             </button>
