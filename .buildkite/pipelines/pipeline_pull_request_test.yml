@@ -74,7 +74,7 @@ steps:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
 
-  - command: .buildkite/scripts/pipeline_test.sh
+  - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":axe: Cypress accessibility (a11y) tests on React 18"
     agents:
       provider: "gcp"
