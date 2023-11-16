@@ -79,8 +79,8 @@
       padding-left: $euiSizeXS;
     }
 
-    .euiDataGridHeaderCell__contentContainer,
     .euiDataGridHeaderCell__content,
+    .euiDataGridHeaderCell__title,
     .euiPopover {
       min-width: 0; // to make sure that title is truncated and all icons are still visible
     }
