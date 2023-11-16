@@ -57,6 +57,11 @@ export const DefaultItemAction = <T extends {}>({
   let button;
   const actionContent =
     typeof action.name === 'function' ? action.name(item) : action.name;
+  const tooltipContent =
+    typeof action.description === 'function'
+      ? action.description(item)
+      : action.description;
+
   const ariaLabelId = useGeneratedHtmlId();
   if (action.type === 'icon') {
     if (!icon) {
@@ -101,8 +106,8 @@ export const DefaultItemAction = <T extends {}>({
     );
   }
 
-  return enabled && action.description ? (
-    <EuiToolTip content={action.description} delay="long">
+  return enabled && tooltipContent ? (
+    <EuiToolTip content={tooltipContent} delay="long">
       {button}
     </EuiToolTip>
   ) : (

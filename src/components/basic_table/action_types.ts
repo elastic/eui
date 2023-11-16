@@ -18,13 +18,13 @@ type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 export interface DefaultItemActionBase<T> {
   /**
-   * The display name of the action (will be the button caption)
+   * The display name of the action (will render as visible text if rendered within a collapsed menu)
    */
   name: ReactNode | ((item: T) => ReactNode);
   /**
-   * Describes the action (will be the button title)
+   * Describes the action (will render as tooltip content)
    */
-  description: string;
+  description: string | ((item: T) => string);
   /**
    * A handler function to execute the action
    */
