@@ -3,7 +3,7 @@
 steps:
   - label: ":docker: Cached container"
     key: "build-test-container"
-    command: ./buildkite/scripts/pipelines/pipeline_docker_build.sh
+    command: .buildkite/scripts/pipelines/pipeline_docker_build.sh
     agents:
       provider: "gcp"
     if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
@@ -12,7 +12,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container" # The depends_on creates an implicit "wait" while the container builds
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main"
@@ -21,7 +21,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'unit:ts'
     if: build.branch != "main"
@@ -30,7 +30,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'unit:tsx:16'
     if: build.branch != "main"
@@ -39,7 +39,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'unit:tsx:17'
     if: build.branch != "main"
@@ -48,7 +48,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'unit:tsx'
     if: build.branch != "main"
@@ -57,7 +57,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'cypress:16'
     if: build.branch != "main"
@@ -69,7 +69,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'cypress:17'
     if: build.branch != "main"
@@ -81,7 +81,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main"
@@ -93,7 +93,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
-      image: "docker-staging/eui/ci:latest"
+      image: "container-registry-test.elastic.co/eui/ci:latest"
     env:
       TEST_TYPE: 'cypress:a11y'
     if: build.branch != "main"
