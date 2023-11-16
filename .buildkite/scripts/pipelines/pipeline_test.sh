@@ -11,7 +11,7 @@ DOCKER_OPTIONS=(
   --volume="$(pwd):/app"
   --workdir=/app
   --platform=linux/amd64
-  "${DOCKER_STAGING_REGISTRY}"eui/ci:latest
+  "${DOCKER_STAGING_REGISTRY}"/eui/ci:latest
 )
 
 case $TEST_TYPE in
