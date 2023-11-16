@@ -13,6 +13,7 @@ steps:
     depends_on: "build-test-container" # The depends_on creates an implicit "wait" while the container builds
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000" # Run as a non-root user
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main"
@@ -22,6 +23,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'unit:ts'
     if: build.branch != "main"
@@ -31,6 +33,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'unit:tsx:16'
     if: build.branch != "main"
@@ -40,6 +43,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'unit:tsx:17'
     if: build.branch != "main"
@@ -49,6 +53,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'unit:tsx'
     if: build.branch != "main"
@@ -58,6 +63,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'cypress:16'
     if: build.branch != "main"
@@ -70,6 +76,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'cypress:17'
     if: build.branch != "main"
@@ -82,6 +89,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'cypress:18'
     if: build.branch != "main"
@@ -94,6 +102,7 @@ steps:
     depends_on: "build-test-container"
     agents:
       image: "container-registry-test.elastic.co/eui/ci:latest"
+      imageUID: "1000"
     env:
       TEST_TYPE: 'cypress:a11y'
     if: build.branch != "main"
