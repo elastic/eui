@@ -35,8 +35,5 @@ export GITHUB_TOKEN
 # ======================================== #
 # Known values
 # ======================================== #
-DOCKER_STAGING_IMAGE=container-registry-test.elastic.co/eui/ci
-export DOCKER_STAGING_IMAGE
-
 GPROJECT=elastic-bekitzur
 export GPROJECT

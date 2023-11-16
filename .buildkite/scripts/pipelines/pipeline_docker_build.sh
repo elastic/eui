@@ -12,7 +12,7 @@ echo "${DOCKER_STAGING_PASSWORD}" | docker login -u "${DOCKER_STAGING_USERNAME}"
 
 echo "[DOCKER]: Build and push container to registry"
 docker-compose -f ./scripts/docker-ci/docker-compose.yml build app
-docker push "${DOCKER_STAGING_IMAGE}":latest
+docker push "${DOCKER_STAGING_REGISTRY}":latest
 
 echo "[DOCKER]: Log out of registry"
 docker logout
