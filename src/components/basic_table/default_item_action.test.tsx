@@ -13,7 +13,7 @@ import {
   waitForEuiToolTipVisible,
   waitForEuiToolTipHidden,
 } from '../../test/rtl';
-import { shallow } from 'enzyme';
+
 import { DefaultItemAction } from './default_item_action';
 import {
   DefaultItemEmptyButtonAction as EmptyButtonAction,
@@ -25,24 +25,7 @@ interface Item {
 }
 
 describe('DefaultItemAction', () => {
-  test('render - default button', () => {
-    const action: EmptyButtonAction<Item> = {
-      name: 'action1',
-      description: 'action 1',
-      onClick: () => {},
-    };
-    const props = {
-      action,
-      enabled: true,
-      item: { id: 'xyz' },
-    };
-
-    const component = shallow(<DefaultItemAction {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render - button', () => {
+  it('renders an EuiButtonEmpty when `type="button"', () => {
     const action: EmptyButtonAction<Item> = {
       name: 'action1',
       description: 'action 1',
@@ -55,30 +38,12 @@ describe('DefaultItemAction', () => {
       item: { id: 'xyz' },
     };
 
-    const component = shallow(<DefaultItemAction {...props} />);
+    const { container } = render(<DefaultItemAction {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - name', () => {
-    const action: EmptyButtonAction<Item> = {
-      name: (item) => <span>{item.id}</span>,
-      description: 'action 1',
-      type: 'button',
-      onClick: () => {},
-    };
-    const props = {
-      action,
-      enabled: true,
-      item: { id: 'xyz' },
-    };
-
-    const component = shallow(<DefaultItemAction {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render - icon', () => {
+  it('renders an EuiButtonIcon when `type="icon"`', () => {
     const action: IconButtonAction<Item> = {
       name: <span>action1</span>,
       description: 'action 1',
@@ -92,9 +57,26 @@ describe('DefaultItemAction', () => {
       item: { id: 'xyz' },
     };
 
-    const component = shallow(<DefaultItemAction {...props} />);
+    const { container } = render(<DefaultItemAction {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders an EuiButtonEmpty if no type is specified', () => {
+    const action: EmptyButtonAction<Item> = {
+      name: 'action1',
+      description: 'action 1',
+      onClick: () => {},
+    };
+    const props = {
+      action,
+      enabled: true,
+      item: { id: 'xyz' },
+    };
+
+    const { container } = render(<DefaultItemAction {...props} />);
+
+    expect(container.querySelector('.euiButtonEmpty')).toBeInTheDocument();
   });
 
   test('props that can be functions', async () => {

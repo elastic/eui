@@ -26,10 +26,7 @@ export interface DefaultItemActionProps<T> {
   className?: string;
 }
 
-// In order to use generics with an arrow function inside a .tsx file, it's necessary to use
-// this `extends` hack and declare the types as shown, instead of declaring the const as a
-// FunctionComponent
-export const DefaultItemAction = <T extends {}>({
+export const DefaultItemAction = <T,>({
   action,
   enabled,
   item,
