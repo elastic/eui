@@ -12,6 +12,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container" # The depends_on creates an implicit "wait" while the container builds
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000" # Run as a non-root user
     env:
@@ -22,6 +23,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -32,6 +34,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -42,6 +45,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -52,6 +56,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -62,6 +67,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -75,6 +81,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -88,6 +95,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
@@ -101,6 +109,7 @@ steps:
     command: .buildkite/scripts/pipelines/pipeline_test.sh
     depends_on: "build-test-container"
     agents:
+      provider: "gcp"
       image: "container-registry-test.elastic.co/eui/ci:latest"
       imageUID: "1000"
     env:
