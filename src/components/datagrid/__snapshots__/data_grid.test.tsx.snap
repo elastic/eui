@@ -613,14 +613,18 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="A"
                     >
-                      A
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="A"
+                      >
+                        A
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                     />
                   </button>
@@ -663,14 +667,18 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="B"
                     >
-                      B
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="B"
+                      >
+                        B
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                     />
                   </button>
@@ -1069,14 +1077,18 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="A"
                     >
-                      A
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="A"
+                      >
+                        A
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                     />
                   </button>
@@ -1119,14 +1131,18 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="B"
                     >
-                      B
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="B"
+                      >
+                        B
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                     />
                   </button>
@@ -1786,14 +1802,18 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="A"
                     >
-                      Column A
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="A"
+                      >
+                        Column A
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                     />
                   </button>
@@ -1836,16 +1856,20 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="B"
                     >
-                      <div>
-                        More Elements
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="B"
+                      >
+                        <div>
+                          More Elements
+                        </div>
                       </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                     />
                   </button>
@@ -2222,14 +2246,18 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="A"
                     >
-                      A
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="A"
+                      >
+                        A
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-A"
                     />
                   </button>
@@ -2272,14 +2300,18 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   >
                     <div
                       class="euiDataGridHeaderCell__content"
-                      title="B"
                     >
-                      B
+                      <div
+                        class="euiDataGridHeaderCell__title"
+                        title="B"
+                      >
+                        B
+                      </div>
                     </div>
                     <span
                       class="euiDataGridHeaderCell__icon"
                       color="text"
-                      data-euiicon-type="arrowDown"
+                      data-euiicon-type="boxesVertical"
                       data-test-subj="dataGridHeaderCellActionButton-B"
                     />
                   </button>

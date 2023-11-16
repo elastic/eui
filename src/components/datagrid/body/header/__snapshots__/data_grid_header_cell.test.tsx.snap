@@ -28,14 +28,18 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     >
       <div
         class="euiDataGridHeaderCell__content"
-        title="someColumn"
       >
-        someColumn
+        <div
+          class="euiDataGridHeaderCell__title"
+          title="someColumn"
+        >
+          someColumn
+        </div>
       </div>
       <span
         class="euiDataGridHeaderCell__icon"
         color="text"
-        data-euiicon-type="arrowDown"
+        data-euiicon-type="boxesVertical"
         data-test-subj="dataGridHeaderCellActionButton-someColumn"
       />
     </button>
