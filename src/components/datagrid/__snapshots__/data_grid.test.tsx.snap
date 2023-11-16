@@ -612,10 +612,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="A"
                       >
                         A
@@ -669,10 +669,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="B"
                       >
                         B
@@ -1082,10 +1082,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="A"
                       >
                         A
@@ -1139,10 +1139,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="B"
                       >
                         B
@@ -1813,10 +1813,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="A"
                       >
                         Column A
@@ -1870,10 +1870,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="B"
                       >
                         <div>
@@ -2263,10 +2263,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="A"
                       >
                         A
@@ -2320,10 +2320,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content"
+                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
                     >
                       <div
-                        class="euiDataGridHeaderCell__title"
+                        class="euiDataGridHeaderCell__innerTruncatedContent"
                         title="B"
                       >
                         B

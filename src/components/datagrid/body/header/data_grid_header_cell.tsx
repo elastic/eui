@@ -95,6 +95,23 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     suffix: 'actions',
   });
 
+  const cellContent = (
+    <div
+      className={classnames(
+        'euiDataGridHeaderCell__content',
+        'euiDataGridHeaderCell__content--withInnerTruncation'
+      )}
+    >
+      <div
+        title={displayAsText || id}
+        className="euiDataGridHeaderCell__innerTruncatedContent"
+      >
+        {display || displayAsText || id}
+      </div>
+      {sortingArrow}
+    </div>
+  );
+
   return (
     <EuiDataGridHeaderCellWrapper
       {...displayHeaderCellProps}
@@ -115,13 +132,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
 
       {!showColumnActions ? (
         <>
-          {sortingArrow}
-          <div
-            className="euiDataGridHeaderCell__content"
-            title={displayAsText || id}
-          >
-            {display || displayAsText || id}
-          </div>
+          {cellContent}
           {sortingScreenReaderText && (
             <EuiScreenReaderOnly>
               <p>{sortingScreenReaderText}</p>
@@ -147,15 +158,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
                 }}
                 aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
               >
-                <div className="euiDataGridHeaderCell__content">
-                  <div
-                    title={displayAsText || id}
-                    className="euiDataGridHeaderCell__title"
-                  >
-                    {display || displayAsText || id}
-                  </div>
-                  {sortingArrow}
-                </div>
+                {cellContent}
                 <div className="euiDataGridHeaderCell__icon">
                   <EuiIcon
                     type="boxesVertical"

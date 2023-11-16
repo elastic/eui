@@ -53,27 +53,33 @@
     }
 
     .euiDataGridHeaderCell__content {
-      display: flex;
-      align-items: center;
+      @include euiTextTruncate;
+      overflow: hidden;
+      white-space: nowrap;
+      text-align: left;
       flex-grow: 1;
       align-self: baseline;
+
+      // this modifier is introduced for backwards compatability of the existing `euiDataGridHeaderCell__content` class
+      &--withInnerTruncation {
+        display: flex;
+        align-items: center;
+      }
     }
 
     &.euiDataGridHeaderCell--numeric,
     &.euiDataGridHeaderCell--currency {
-      .euiDataGridHeaderCell__content {
+      .euiDataGridHeaderCell__content--withInnerTruncation {
         justify-content: flex-end;
       }
     }
 
-    .euiDataGridHeaderCell__title {
+    .euiDataGridHeaderCell__innerTruncatedContent {
       @include euiTextTruncate;
-      overflow: hidden;
-      white-space: nowrap;
     }
 
-    .euiDataGridHeaderCell__content,
-    .euiDataGridHeaderCell__title,
+    .euiDataGridHeaderCell__content--withInnerTruncation,
+    .euiDataGridHeaderCell__innerTruncatedContent,
     .euiPopover {
       min-width: 0; // to make sure that title is truncated and all icons are still visible
     }
