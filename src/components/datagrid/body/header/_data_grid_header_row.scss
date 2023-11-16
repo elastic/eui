@@ -72,17 +72,26 @@
       white-space: nowrap;
     }
 
+    .euiDataGridHeaderCell__content,
+    .euiDataGridHeaderCell__title,
+    .euiPopover {
+      min-width: 0; // to make sure that title is truncated and all icons are still visible
+    }
+
     .euiDataGridHeaderCell__icon {
+      display: none;
       flex-grow: 0;
       flex-basis: auto;
       width: auto;
       padding-left: $euiSizeXS;
     }
 
-    .euiDataGridHeaderCell__content,
-    .euiDataGridHeaderCell__title,
-    .euiPopover {
-      min-width: 0; // to make sure that title is truncated and all icons are still visible
+    &:focus-within,
+    &:hover,
+    .euiDataGridHeaderCell__button--withOpenPopover {
+      .euiDataGridHeaderCell__icon {
+        display: inline-block;
+      }
     }
   }
 }
