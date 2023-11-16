@@ -15,19 +15,19 @@ export default () => {
       disabled: true,
     },
     {
-      value: true,
+      value: 'minor',
       inputDisplay: (
         <EuiHealth color="warning" style={{ lineHeight: 'inherit' }}>
-          True
+          Minor
         </EuiHealth>
       ),
       'data-test-subj': 'option-minor',
     },
     {
-      value: false,
+      value: 'critical',
       inputDisplay: (
         <EuiHealth color="danger" style={{ lineHeight: 'inherit' }}>
-          False
+          Critical
         </EuiHealth>
       ),
       'data-test-subj': 'option-critical',
