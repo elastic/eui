@@ -122,4 +122,64 @@ describe('EuiSuperSelectControl', () => {
       expect(control).toHaveClass('euiSuperSelectControl--fullWidth');
     });
   });
+
+  describe('falsy values', () => {
+    describe('when value is falsy but not null/undefined', () => {
+      test('empty string', () => {
+        const { getByTestSubject, container } = render(
+          <EuiSuperSelectControl
+            data-test-subj="value"
+            options={[
+              { value: '', inputDisplay: 'Empty string' },
+              { value: 'test', inputDisplay: 'Test string' },
+            ]}
+            value={''}
+          />
+        );
+
+        expect(getByTestSubject('value')).toHaveTextContent('Empty string');
+        expect(container.querySelector('input')).toHaveValue('');
+      });
+
+      test('boolean', () => {
+        const { getByTestSubject, container } = render(
+          <EuiSuperSelectControl<boolean>
+            data-test-subj="value"
+            options={[
+              { value: true, inputDisplay: 'True' },
+              { value: false, inputDisplay: 'False' },
+            ]}
+            value={false}
+          />
+        );
+
+        expect(getByTestSubject('value')).toHaveTextContent('False');
+        expect(container.querySelector('input')).toHaveValue('false');
+      });
+    });
+
+    describe('when value is undefined', () => {
+      it('uses defaultValue', () => {
+        const { getByTestSubject, container } = render(
+          <EuiSuperSelectControl
+            data-test-subj="value"
+            options={[{ value: 'test', inputDisplay: 'Test string' }]}
+            defaultValue="test"
+          />
+        );
+
+        expect(getByTestSubject('value')).toHaveTextContent('Test string');
+        expect(container.querySelector('input')).toHaveValue('test');
+      });
+
+      it('renders empty if both value and defaultValue are undefined', () => {
+        const { getByTestSubject, container } = render(
+          <EuiSuperSelectControl data-test-subj="value" />
+        );
+
+        expect(getByTestSubject('value')).toHaveTextContent('');
+        expect(container.querySelector('input')).toHaveValue('');
+      });
+    });
+  });
 });
