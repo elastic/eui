@@ -29,7 +29,7 @@ export interface DefaultItemActionBase<T> {
    * A handler function to execute the action
    */
   onClick?: (item: T) => void;
-  href?: string;
+  href?: string | ((item: T) => string);
   target?: string;
   /**
    * A callback function that determines whether the action is available
@@ -40,7 +40,7 @@ export interface DefaultItemActionBase<T> {
    */
   enabled?: (item: T) => boolean;
   isPrimary?: boolean;
-  'data-test-subj'?: string;
+  'data-test-subj'?: string | ((item: T) => string);
 }
 
 export interface DefaultItemEmptyButtonAction<T>

@@ -55,12 +55,10 @@ export const DefaultItemAction = <T extends {}>({
   }
 
   let button;
-  const actionContent =
-    typeof action.name === 'function' ? action.name(item) : action.name;
-  const tooltipContent =
-    typeof action.description === 'function'
-      ? action.description(item)
-      : action.description;
+  const actionContent = callWithItemIfFunction(item)(action.name);
+  const tooltipContent = callWithItemIfFunction(item)(action.description);
+  const href = callWithItemIfFunction(item)(action.href);
+  const dataTestSubj = callWithItemIfFunction(item)(action['data-test-subj']);
 
   const ariaLabelId = useGeneratedHtmlId();
   if (action.type === 'icon') {
@@ -77,9 +75,9 @@ export const DefaultItemAction = <T extends {}>({
           color={color}
           iconType={icon}
           onClick={onClick}
-          href={action.href}
+          href={href}
           target={action.target}
-          data-test-subj={action['data-test-subj']}
+          data-test-subj={dataTestSubj}
         />
         {/* actionContent (action.name) is a ReactNode and must be rendered to an element and referenced by ID for screen readers */}
         <EuiScreenReaderOnly>
@@ -96,9 +94,9 @@ export const DefaultItemAction = <T extends {}>({
         color={color as EuiButtonEmptyProps['color']}
         iconType={icon}
         onClick={onClick}
-        href={action.href}
+        href={href}
         target={action.target}
-        data-test-subj={action['data-test-subj']}
+        data-test-subj={dataTestSubj}
         flush="right"
       >
         {actionContent}
@@ -114,3 +112,8 @@ export const DefaultItemAction = <T extends {}>({
     button
   );
 };
+
+const callWithItemIfFunction =
+  <T,>(item: T) =>
+  <U,>(prop: U | ((item: T) => U)): U =>
+    typeof prop === 'function' ? (prop as Function)(item) : prop;
