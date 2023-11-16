@@ -79,18 +79,21 @@
     }
 
     .euiDataGridHeaderCell__icon {
-      display: none;
       flex-grow: 0;
       flex-basis: auto;
-      width: auto;
       padding-left: $euiSizeXS;
+      overflow: hidden;
+      width: 0;
+      opacity: 0;
+      transition: width $euiAnimSpeedFast ease-in, opacity $euiAnimSpeedSlow ease-in;
     }
 
     &:focus-within,
     &:hover,
     .euiDataGridHeaderCell__button--withOpenPopover {
       .euiDataGridHeaderCell__icon {
-        display: inline-block;
+        width: $euiSize;
+        opacity: 1;
       }
     }
   }

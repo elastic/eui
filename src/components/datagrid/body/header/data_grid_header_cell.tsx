@@ -156,13 +156,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<
                   </div>
                   {sortingArrow}
                 </div>
-                <EuiIcon
-                  className="euiDataGridHeaderCell__icon"
-                  type="boxesVertical"
-                  size="s"
-                  color="text"
-                  data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-                />
+                <div className="euiDataGridHeaderCell__icon">
+                  <EuiIcon
+                    type="boxesVertical"
+                    size="s"
+                    color="text"
+                    data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                  />
+                </div>
               </button>
             }
             isOpen={isPopoverOpen}
