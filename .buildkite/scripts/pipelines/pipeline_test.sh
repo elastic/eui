@@ -10,7 +10,8 @@ DOCKER_OPTIONS=(
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
-  container-registry-test.elastic.co/eui/ci:latest
+  --platform=linux/amd64
+  "${DOCKER_STAGING_IMAGE}":latest
 )
 
 case $TEST_TYPE in

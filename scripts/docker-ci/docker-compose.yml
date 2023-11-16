@@ -7,7 +7,7 @@ services:
       - '/app/node_modules'
 
   app:
-    image: container-registry-test.elastic.co/eui/ci
+    image: docker-staging/eui/ci
     build:
       dockerfile: ./Dockerfile.app
     working_dir: /app
