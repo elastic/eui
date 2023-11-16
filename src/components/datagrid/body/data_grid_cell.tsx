@@ -430,7 +430,7 @@ export class EuiDataGridCell extends Component<
       this.contentObserver.disconnect();
     }
     this.preventTabbing();
-    this.getCellTextAlign();
+    this.setCellTextAlign();
   };
 
   onFocus = (e: FocusEvent<HTMLDivElement>) => {
@@ -489,7 +489,7 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  getCellTextAlign = () => {
+  setCellTextAlign = () => {
     if (this.cellContentsRef) {
       const { columnType } = this.props;
       if (!columnType) {
