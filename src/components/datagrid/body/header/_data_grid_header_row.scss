@@ -80,7 +80,7 @@
 
     .euiDataGridHeaderCell__icon {
       flex-grow: 0;
-      flex-basis: auto;
+      flex-shrink: 0;
       padding-left: $euiSizeXS;
       overflow: hidden;
       width: 0;
