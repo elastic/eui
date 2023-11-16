@@ -256,9 +256,19 @@ describe('EuiDataGridHeaderCell', () => {
       fireEvent.click(toggle);
       waitForEuiPopoverOpen();
       expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, -1]);
+      expect(
+        container.querySelector(
+          '.euiDataGridHeaderCell__button--withOpenPopover'
+        )
+      ).toBeInTheDocument();
 
       fireEvent.click(toggle);
       waitForEuiPopoverClose();
+      expect(
+        container.querySelector(
+          '.euiDataGridHeaderCell__button--withOpenPopover'
+        )
+      ).not.toBeInTheDocument();
     });
 
     describe('keyboard arrow navigation', () => {
