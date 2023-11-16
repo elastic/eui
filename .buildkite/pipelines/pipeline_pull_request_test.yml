@@ -1,7 +1,7 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - label ":docker: Cached container"
+  - label: ":docker: Cached container"
     key: "build-test-container"
     command: ./buildkite/scripts/pipelines/pipeline_docker_build.sh
     agents:
