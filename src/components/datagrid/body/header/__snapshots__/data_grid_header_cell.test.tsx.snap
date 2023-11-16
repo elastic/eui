@@ -36,12 +36,15 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
           someColumn
         </div>
       </div>
-      <span
+      <div
         class="euiDataGridHeaderCell__icon"
-        color="text"
-        data-euiicon-type="boxesVertical"
-        data-test-subj="dataGridHeaderCellActionButton-someColumn"
-      />
+      >
+        <span
+          color="text"
+          data-euiicon-type="boxesVertical"
+          data-test-subj="dataGridHeaderCellActionButton-someColumn"
+        />
+      </div>
     </button>
   </div>
   <p

@@ -621,12 +621,15 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                         A
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -675,12 +678,15 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                         B
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -1085,12 +1091,15 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                         A
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -1139,12 +1148,15 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                         B
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -1810,12 +1822,15 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                         Column A
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -1866,12 +1881,15 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                         </div>
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -2254,12 +2272,15 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                         A
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-A"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
@@ -2308,12 +2329,15 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                         B
                       </div>
                     </div>
-                    <span
+                    <div
                       class="euiDataGridHeaderCell__icon"
-                      color="text"
-                      data-euiicon-type="boxesVertical"
-                      data-test-subj="dataGridHeaderCellActionButton-B"
-                    />
+                    >
+                      <span
+                        color="text"
+                        data-euiicon-type="boxesVertical"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </div>
                   </button>
                 </div>
                 <p
