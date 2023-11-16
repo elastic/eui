@@ -144,16 +144,18 @@ export const EuiDataGridHeaderCell: FunctionComponent<
                 }}
                 aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
               >
-                {sortingArrow}
-                <div
-                  className="euiDataGridHeaderCell__content"
-                  title={displayAsText || id}
-                >
-                  {display || displayAsText || id}
+                <div className="euiDataGridHeaderCell__content">
+                  <div
+                    title={displayAsText || id}
+                    className="euiDataGridHeaderCell__title"
+                  >
+                    {display || displayAsText || id}
+                  </div>
+                  {sortingArrow}
                 </div>
                 <EuiIcon
                   className="euiDataGridHeaderCell__icon"
-                  type="arrowDown"
+                  type="boxesVertical"
                   size="s"
                   color="text"
                   data-test-subj={`dataGridHeaderCellActionButton-${id}`}

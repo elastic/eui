@@ -38,30 +38,38 @@
     }
 
     .euiDataGridHeaderCell__sortingArrow {
-      margin-right: $euiSizeXS;
+      margin-left: $euiSizeXS;
+      flex-grow: 0;
+      flex-shrink: 0;
     }
 
     .euiDataGridHeaderCell__button {
-      flex: 0 0 auto;
       position: relative;
       align-items: center;
       display: flex;
       width: 100%;
       font-weight: $euiFontWeightBold;
       outline: none;
-
-      .euiDataGridHeaderCell__sortingArrow {
-        flex-grow: 0;
-      }
     }
 
     .euiDataGridHeaderCell__content {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      align-self: baseline;
+    }
+
+    &.euiDataGridHeaderCell--numeric,
+    &.euiDataGridHeaderCell--currency {
+      .euiDataGridHeaderCell__content {
+        justify-content: flex-end;
+      }
+    }
+
+    .euiDataGridHeaderCell__title {
       @include euiTextTruncate;
       overflow: hidden;
       white-space: nowrap;
-      text-align: left;
-      flex-grow: 1;
-      align-self: baseline;
     }
 
     .euiDataGridHeaderCell__icon {
@@ -69,6 +77,12 @@
       flex-basis: auto;
       width: auto;
       padding-left: $euiSizeXS;
+    }
+
+    .euiDataGridHeaderCell__contentContainer,
+    .euiDataGridHeaderCell__content,
+    .euiPopover {
+      min-width: 0; // to make sure that title is truncated and all icons are still visible
     }
   }
 }
