@@ -103,6 +103,7 @@ export const CollapsedItemActions = <T extends {}>({
               onClickItem(onClick ? () => onClick(item) : undefined)
             }
             toolTipContent={toolTipContent}
+            toolTipProps={{ delay: 'long' }}
           >
             {buttonContent}
           </EuiContextMenuItem>
