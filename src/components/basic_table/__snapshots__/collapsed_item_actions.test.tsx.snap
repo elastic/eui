@@ -189,14 +189,15 @@ exports[`CollapsedItemActions default actions 1`] = `
               </button>
               <a
                 class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
-                href="https://www.elastic.co/"
+                data-test-subj="xyz-link"
+                href="#/xyz"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <span
                   class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
                 >
-                  default2
+                  name xyz
                 </span>
               </a>
             </div>

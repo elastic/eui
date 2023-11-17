@@ -75,20 +75,19 @@ export const CollapsedItemActions = <T extends {}>({
           </EuiContextMenuItem>
         );
       } else {
-        const {
-          onClick,
-          name,
-          href,
-          target,
-          'data-test-subj': dataTestSubj,
-        } = action;
-
         const buttonIcon = action.icon;
         let icon;
         if (buttonIcon) {
           icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
         }
-        const buttonContent = typeof name === 'function' ? name(item) : name;
+
+        const buttonContent = callWithItemIfFunction(item)(action.name);
+        const href = callWithItemIfFunction(item)(action.href);
+        const dataTestSubj = callWithItemIfFunction(item)(
+          action['data-test-subj']
+        );
+
+        const { onClick, target } = action;
 
         controls.push(
           <EuiContextMenuItem

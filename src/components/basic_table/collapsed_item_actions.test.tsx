@@ -16,12 +16,14 @@ import {
 
 import { CollapsedItemActions } from './collapsed_item_actions';
 
+type Item = { id: string };
+
 describe('CollapsedItemActions', () => {
   it('renders', () => {
     const props = {
       actions: [
         {
-          name: (item: { id: string }) => `default${item.id}`,
+          name: (item: Item) => `default${item.id}`,
           description: 'default 1',
           onClick: () => {},
         },
@@ -51,10 +53,11 @@ describe('CollapsedItemActions', () => {
           'data-test-subj': 'defaultAction',
         },
         {
-          name: 'default2',
-          description: 'default 2',
-          href: 'https://www.elastic.co/',
+          name: ({ id }: Item) => `name ${id}`,
+          description: ({ id }: Item) => `description ${id}`,
+          href: ({ id }: Item) => `#/${id}`,
           target: '_blank',
+          'data-test-subj': ({ id }: Item) => `${id}-link`,
         },
       ],
       itemId: 'id',
@@ -69,6 +72,9 @@ describe('CollapsedItemActions', () => {
     await waitForEuiPopoverOpen();
 
     expect(baseElement).toMatchSnapshot();
+
+    expect(getByTestSubject('link-xyz')).toHaveAttribute('href', '#/xyz');
+    expect(getByTestSubject('link-xyz')).toHaveTextContent('name xyz');
 
     fireEvent.click(getByTestSubject('defaultAction'));
     await waitForEuiPopoverClose();
