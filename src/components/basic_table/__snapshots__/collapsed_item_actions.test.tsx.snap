@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsedItemActions custom actions 1`] = `
-<body>
+<body
+  class=""
+>
   <div>
     <div
       class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
@@ -176,30 +178,38 @@ exports[`CollapsedItemActions default actions 1`] = `
             tabindex="-1"
           >
             <div>
-              <button
-                class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
-                data-test-subj="defaultAction"
-                type="button"
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                <button
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  data-test-subj="defaultAction"
+                  type="button"
                 >
-                  default1
-                </span>
-              </button>
-              <a
-                class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
-                data-test-subj="xyz-link"
-                href="#/xyz"
-                rel="noopener noreferrer"
-                target="_blank"
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    default1
+                  </span>
+                </button>
+              </span>
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                <a
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  data-test-subj="xyz-link"
+                  href="#/xyz"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  name xyz
-                </span>
-              </a>
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    name xyz
+                  </span>
+                </a>
+              </span>
             </div>
           </div>
         </div>

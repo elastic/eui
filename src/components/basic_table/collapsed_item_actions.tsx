@@ -82,6 +82,7 @@ export const CollapsedItemActions = <T extends {}>({
         }
 
         const buttonContent = callWithItemIfFunction(item)(action.name);
+        const toolTipContent = callWithItemIfFunction(item)(action.description);
         const href = callWithItemIfFunction(item)(action.href);
         const dataTestSubj = callWithItemIfFunction(item)(
           action['data-test-subj']
@@ -101,6 +102,7 @@ export const CollapsedItemActions = <T extends {}>({
             onClick={() =>
               onClickItem(onClick ? () => onClick(item) : undefined)
             }
+            toolTipContent={toolTipContent}
           >
             {buttonContent}
           </EuiContextMenuItem>

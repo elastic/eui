@@ -12,6 +12,7 @@ import {
   render,
   waitForEuiPopoverOpen,
   waitForEuiPopoverClose,
+  waitForEuiToolTipVisible,
 } from '../../test/rtl';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
@@ -65,7 +66,7 @@ describe('CollapsedItemActions', () => {
       actionEnabled: () => true,
     };
 
-    const { getByTestSubject, baseElement } = render(
+    const { getByTestSubject, getByText, baseElement } = render(
       <CollapsedItemActions {...props} />
     );
     fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
@@ -73,8 +74,11 @@ describe('CollapsedItemActions', () => {
 
     expect(baseElement).toMatchSnapshot();
 
-    expect(getByTestSubject('link-xyz')).toHaveAttribute('href', '#/xyz');
-    expect(getByTestSubject('link-xyz')).toHaveTextContent('name xyz');
+    expect(getByTestSubject('xyz-link')).toHaveAttribute('href', '#/xyz');
+    expect(getByTestSubject('xyz-link')).toHaveTextContent('name xyz');
+    fireEvent.mouseEnter(getByTestSubject('xyz-link'));
+    await waitForEuiToolTipVisible();
+    expect(getByText('description xyz')).toBeInTheDocument();
 
     fireEvent.click(getByTestSubject('defaultAction'));
     await waitForEuiPopoverClose();
