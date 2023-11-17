@@ -7,6 +7,7 @@
  */
 
 import React, { ReactElement } from 'react';
+
 import { isString } from '../../services/predicate';
 import {
   EuiButtonEmpty,
@@ -15,9 +16,13 @@ import {
   EuiButtonIconProps,
 } from '../button';
 import { EuiToolTip } from '../tool_tip';
-import { DefaultItemAction as Action } from './action_types';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
+
+import {
+  DefaultItemAction as Action,
+  callWithItemIfFunction,
+} from './action_types';
 
 export interface DefaultItemActionProps<T> {
   action: Action<T>;
@@ -109,8 +114,3 @@ export const DefaultItemAction = <T,>({
     button
   );
 };
-
-const callWithItemIfFunction =
-  <T,>(item: T) =>
-  <U,>(prop: U | ((item: T) => U)): U =>
-    typeof prop === 'function' ? (prop as Function)(item) : prop;

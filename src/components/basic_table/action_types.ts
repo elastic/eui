@@ -88,8 +88,13 @@ export interface CustomItemAction<T> {
 
 export type Action<T> = DefaultItemAction<T> | CustomItemAction<T>;
 
-export const isCustomItemAction = (
-  action: DefaultItemAction<any> | CustomItemAction<any>
-): action is CustomItemAction<any> => {
+export const isCustomItemAction = <T>(
+  action: DefaultItemAction<T> | CustomItemAction<T>
+): action is CustomItemAction<T> => {
   return action.hasOwnProperty('render');
 };
+
+export const callWithItemIfFunction =
+  <T>(item: T) =>
+  <U>(prop: U | ((item: T) => U)): U =>
+    typeof prop === 'function' ? (prop as Function)(item) : prop;
