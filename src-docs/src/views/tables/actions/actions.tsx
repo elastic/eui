@@ -189,6 +189,7 @@ export default () => {
           icon: 'editorLink',
           color: 'primary',
           type: 'icon',
+          enabled: ({ online }) => !!online,
           href: ({ id }) => `${window.location.href}?id=${id}`,
           target: '_self',
           'data-test-subj': 'action-outboundlink',
@@ -218,7 +219,8 @@ export default () => {
           {
             name: 'Edit',
             isPrimary: true,
-            available: ({ online }: { online: boolean }) => !online,
+            available: ({ online }) => !online,
+            enabled: ({ online }) => !!online,
             description: 'Edit this user',
             icon: 'pencil',
             type: 'icon',

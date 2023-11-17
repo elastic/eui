@@ -81,6 +81,9 @@ export const DefaultItemAction = <T,>({
         href={href}
         target={action.target}
         data-test-subj={dataTestSubj}
+        // If action is disabled, the normal tooltip can't show - attempt to
+        // provide some amount of affordance with a browser title tooltip
+        title={!enabled ? tooltipContent : undefined}
       />
     );
     // actionContent (action.name) is a ReactNode and must be rendered
