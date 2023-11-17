@@ -43,7 +43,7 @@ describe('DefaultItemAction', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders an EuiButtonIcon when `type="icon"`', () => {
+  it('renders an EuiButtonIcon with screen reader text when `type="icon"`', () => {
     const action: IconButtonAction<Item> = {
       name: <span>action1</span>,
       description: 'action 1',
@@ -59,7 +59,7 @@ describe('DefaultItemAction', () => {
 
     const { container } = render(<DefaultItemAction {...props} />);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('renders an EuiButtonEmpty if no type is specified', () => {
