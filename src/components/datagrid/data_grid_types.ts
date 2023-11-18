@@ -262,6 +262,7 @@ export type CommonGridProps = CommonProps &
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    renderCellContext?: EuiDataGridCellProps['renderCellContext'];
     /**
      * An optional function that can be used to completely customize the rendering of cell popovers.
      *
@@ -447,6 +448,7 @@ export interface EuiDataGridBodyProps {
   rowCount: number;
   visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
+  renderCellContext?: EuiDataGridCellProps['renderCellContext'];
   renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
@@ -593,6 +595,19 @@ export interface EuiDataGridCellPopoverElementProps
   ) => void;
 }
 
+type RenderCellContext<T extends object> = (args?: unknown) => T;
+
+export type EuiDataGridCellValueElementPropsWithContext =
+  EuiDataGridCellValueElementProps & ReturnType<RenderCellContext<any>>;
+
+export type renderCellValue =
+  | ((props: EuiDataGridCellValueElementProps) => ReactNode)
+  | ComponentClass<EuiDataGridCellValueElementProps>;
+
+export type renderCellValueWithContext =
+  | ((props: EuiDataGridCellValueElementPropsWithContext) => ReactNode)
+  | ComponentClass<EuiDataGridCellValueElementPropsWithContext>;
+
 export interface EuiDataGridCellProps {
   rowIndex: number;
   visibleRowIndex: number;
@@ -605,9 +620,8 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
-  renderCellValue:
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode)
-    | ComponentClass<EuiDataGridCellValueElementProps>;
+  renderCellValue: renderCellValue | renderCellValueWithContext;
+  renderCellContext?: RenderCellContext<any>;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);

@@ -19,6 +19,7 @@ import {
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridColumnSortingConfig,
+  renderCellValue,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -67,6 +68,14 @@ const columns = [
   },
 ];
 
+const checkboxRowCellRender: renderCellValue = ({ rowIndex }) => (
+  <EuiCheckbox
+    id={`select-row-${rowIndex}`}
+    aria-label="Select row"
+    onChange={() => {}}
+  />
+);
+
 const leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [
   {
     id: 'selection',
@@ -78,13 +87,7 @@ const leadingControlColumns: EuiDataGridProps['leadingControlColumns'] = [
         onChange={() => {}}
       />
     ),
-    rowCellRender: ({ rowIndex }) => (
-      <EuiCheckbox
-        id={`select-row-${rowIndex}`}
-        aria-label="Select row"
-        onChange={() => {}}
-      />
-    ),
+    rowCellRender: checkboxRowCellRender,
   },
 ];
 
@@ -103,6 +106,22 @@ const trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [
   },
 ];
 
+const RowCellRender: renderCellValue = ({ setCellProps, rowIndex }) => {
+  setCellProps({ style: { width: '100%', height: 'auto' } });
+
+  const firstName = raw_data[rowIndex].name.split(', ')[1];
+  const isGood = faker.datatype.boolean();
+  return (
+    <>
+      {firstName}&apos;s account has {isGood ? 'no' : ''} outstanding fees.{' '}
+      <EuiIcon
+        type={isGood ? 'checkInCircleFilled' : 'error'}
+        color={isGood ? 'success' : 'danger'}
+      />
+    </>
+  );
+};
+
 // The custom row details is actually a trailing control column cell with
 // a hidden header. This is important for accessibility and markup reasons
 // @see https://fuschia-stretch.glitch.me/ for more
@@ -120,21 +139,7 @@ const rowDetails: EuiDataGridProps['trailingControlColumns'] = [
 
     // When rendering this custom cell, we'll want to override
     // the automatic width/heights calculated by EuiDataGrid
-    rowCellRender: ({ setCellProps, rowIndex }) => {
-      setCellProps({ style: { width: '100%', height: 'auto' } });
-
-      const firstName = raw_data[rowIndex].name.split(', ')[1];
-      const isGood = faker.datatype.boolean();
-      return (
-        <>
-          {firstName}&apos;s account has {isGood ? 'no' : ''} outstanding fees.{' '}
-          <EuiIcon
-            type={isGood ? 'checkInCircleFilled' : 'error'}
-            color={isGood ? 'success' : 'danger'}
-          />
-        </>
-      );
-    },
+    rowCellRender: RowCellRender,
   },
 ];
 
@@ -144,10 +149,10 @@ const footerCellValues: { [key: string]: string } = {
     .toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`,
 };
 
-const RenderFooterCellValue: EuiDataGridProps['renderFooterCellValue'] = ({
-  columnId,
-  setCellProps,
-}) => {
+const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+  raw_data[rowIndex][columnId];
+
+const RenderFooterCellValue: renderCellValue = ({ columnId, setCellProps }) => {
   const value = footerCellValues[columnId];
 
   useEffect(() => {
@@ -298,9 +303,7 @@ export default () => {
           onChangeItemsPerPage: onChangePageSize,
         }}
         rowCount={raw_data.length}
-        renderCellValue={({ rowIndex, columnId }) =>
-          raw_data[rowIndex][columnId]
-        }
+        renderCellValue={renderCellValue}
         renderFooterCellValue={RenderFooterCellValue}
         renderCustomGridBody={RenderCustomGridBody}
         height={autoHeight ? undefined : 400}

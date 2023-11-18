@@ -20,6 +20,7 @@ import {
   EuiDataGridColumnSortingConfig,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
+  renderCellValue,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -32,6 +33,9 @@ for (let i = 1; i < 100; i++) {
     date: `${faker.date.past()}`,
   });
 }
+
+const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+  raw_data[rowIndex][columnId];
 
 export default () => {
   const dataGridRef = useRef<EuiDataGridRefProps | null>(null);
@@ -219,9 +223,7 @@ export default () => {
         sorting={{ columns: sortingColumns, onSort }}
         inMemory={{ level: 'sorting' }}
         rowCount={raw_data.length}
-        renderCellValue={({ rowIndex, columnId }) =>
-          raw_data[rowIndex][columnId]
-        }
+        renderCellValue={renderCellValue}
         pagination={{
           ...pagination,
           onChangePage: onChangePage,

@@ -26,6 +26,7 @@ type CellProps = Pick<
   | 'visibleRowIndex'
   | 'style'
   | 'renderCellValue'
+  | 'renderCellContext'
   | 'renderCellPopover'
   | 'interactiveCellId'
   | 'rowHeightsOptions'
@@ -65,6 +66,7 @@ export const Cell: FunctionComponent<CellProps> = ({
   columnWidths,
   defaultColumnWidth,
   renderCellValue,
+  renderCellContext,
   renderCellPopover,
   interactiveCellId,
   setRowHeight,
@@ -120,6 +122,7 @@ export const Cell: FunctionComponent<CellProps> = ({
     rowManager,
     popoverContext,
     pagination,
+    renderCellContext,
   };
 
   if (isLeadingControlColumn) {

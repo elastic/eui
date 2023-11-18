@@ -18,6 +18,7 @@ import React, {
   memo,
   MutableRefObject,
   ReactNode,
+  useMemo,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { tabbable } from 'tabbable';
@@ -61,6 +62,7 @@ const EuiDataGridCellContent: FunctionComponent<
 > = memo(
   ({
     renderCellValue,
+    renderCellContext,
     column,
     setCellContentsRef,
     setPopoverAnchorRef,
@@ -92,6 +94,19 @@ const EuiDataGridCellContent: FunctionComponent<
       }
     );
 
+    const mergedProps = useMemo(() => {
+      if (renderCellContext) {
+        return {
+          ...rest,
+          ...renderCellContext(),
+        };
+      } else {
+        return {
+          ...rest,
+        };
+      }
+    }, [rest, renderCellContext]);
+
     let cellContent = (
       <div
         ref={(el) => {
@@ -115,7 +130,7 @@ const EuiDataGridCellContent: FunctionComponent<
           rowIndex={rowIndex}
           colIndex={colIndex}
           schema={column?.schema || rest.columnType}
-          {...rest}
+          {...mergedProps}
         />
       </div>
     );
@@ -537,6 +552,7 @@ export class EuiDataGridCell extends Component<
       const {
         renderCellPopover,
         renderCellValue,
+        renderCellContext,
         rowIndex,
         colIndex,
         column,
@@ -552,6 +568,7 @@ export class EuiDataGridCell extends Component<
         colIndex,
         columnId,
         schema: column?.schema || columnType,
+        ...renderCellContext?.(),
       };
       const popoverContent = (
         <PopoverElement
