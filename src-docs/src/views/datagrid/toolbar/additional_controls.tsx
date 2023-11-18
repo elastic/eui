@@ -17,6 +17,7 @@ import {
   EuiContextMenuPanel,
   EuiPopover,
   EuiDataGridPaginationProps,
+  renderCellValue,
 } from '../../../../../src';
 
 const columns = [
@@ -48,6 +49,9 @@ for (let i = 1; i < 20; i++) {
     account: faker.finance.accountNumber(),
   });
 }
+
+const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+  data[rowIndex][columnId];
 
 export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0 });
@@ -126,7 +130,7 @@ export default () => {
           border: 'horizontal',
           header: 'underline',
         }}
-        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        renderCellValue={renderCellValue}
         pagination={{
           ...pagination,
           onChangeItemsPerPage: setPageSize,

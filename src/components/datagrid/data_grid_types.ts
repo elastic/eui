@@ -595,18 +595,23 @@ export interface EuiDataGridCellPopoverElementProps
   ) => void;
 }
 
-type RenderCellContext<T extends object> = (args?: unknown) => T;
+type RenderCellContext<T extends Record<string, any>> = () => T;
 
-export type EuiDataGridCellValueElementPropsWithContext =
-  EuiDataGridCellValueElementProps & ReturnType<RenderCellContext<any>>;
+export type EuiDataGridCellValueElementPropsWithContext<
+  T extends Record<string, any>
+> = EuiDataGridCellValueElementProps & ReturnType<RenderCellContext<T>>;
 
 export type renderCellValue =
   | ((props: EuiDataGridCellValueElementProps) => ReactNode)
   | ComponentClass<EuiDataGridCellValueElementProps>;
 
 export type renderCellValueWithContext =
-  | ((props: EuiDataGridCellValueElementPropsWithContext) => ReactNode)
-  | ComponentClass<EuiDataGridCellValueElementPropsWithContext>;
+  | ((
+      props: EuiDataGridCellValueElementPropsWithContext<Record<string, any>>
+    ) => ReactNode)
+  | ComponentClass<
+      EuiDataGridCellValueElementPropsWithContext<Record<string, any>>
+    >;
 
 export interface EuiDataGridCellProps {
   rowIndex: number;
@@ -621,7 +626,7 @@ export interface EuiDataGridCellProps {
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
   renderCellValue: renderCellValue | renderCellValueWithContext;
-  renderCellContext?: RenderCellContext<any>;
+  renderCellContext?: RenderCellContext<Record<string, any>>;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
