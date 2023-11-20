@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
+
 import { isString } from '../../services/predicate';
 import {
   EuiButtonEmpty,
@@ -15,9 +16,13 @@ import {
   EuiButtonIconProps,
 } from '../button';
 import { EuiToolTip } from '../tool_tip';
-import { DefaultItemAction as Action } from './action_types';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
+
+import {
+  DefaultItemAction as Action,
+  callWithItemIfFunction,
+} from './action_types';
 
 export interface DefaultItemActionProps<T> {
   action: Action<T>;
@@ -26,10 +31,7 @@ export interface DefaultItemActionProps<T> {
   className?: string;
 }
 
-// In order to use generics with an arrow function inside a .tsx file, it's necessary to use
-// this `extends` hack and declare the types as shown, instead of declaring the const as a
-// FunctionComponent
-export const DefaultItemAction = <T extends {}>({
+export const DefaultItemAction = <T,>({
   action,
   enabled,
   item,
@@ -55,32 +57,41 @@ export const DefaultItemAction = <T extends {}>({
   }
 
   let button;
-  const actionContent =
-    typeof action.name === 'function' ? action.name(item) : action.name;
+  const actionContent = callWithItemIfFunction(item)(action.name);
+  const tooltipContent = callWithItemIfFunction(item)(action.description);
+  const href = callWithItemIfFunction(item)(action.href);
+  const dataTestSubj = callWithItemIfFunction(item)(action['data-test-subj']);
+
   const ariaLabelId = useGeneratedHtmlId();
+  let ariaLabelledBy: ReactNode;
+
   if (action.type === 'icon') {
     if (!icon) {
       throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
       icon is provided. Make sure to set the 'icon' property of the action`);
     }
     button = (
-      <>
-        <EuiButtonIcon
-          className={className}
-          aria-labelledby={ariaLabelId}
-          isDisabled={!enabled}
-          color={color}
-          iconType={icon}
-          onClick={onClick}
-          href={action.href}
-          target={action.target}
-          data-test-subj={action['data-test-subj']}
-        />
-        {/* actionContent (action.name) is a ReactNode and must be rendered to an element and referenced by ID for screen readers */}
-        <EuiScreenReaderOnly>
-          <span id={ariaLabelId}>{actionContent}</span>
-        </EuiScreenReaderOnly>
-      </>
+      <EuiButtonIcon
+        className={className}
+        aria-labelledby={ariaLabelId}
+        isDisabled={!enabled}
+        color={color}
+        iconType={icon}
+        onClick={onClick}
+        href={href}
+        target={action.target}
+        data-test-subj={dataTestSubj}
+        // If action is disabled, the normal tooltip can't show - attempt to
+        // provide some amount of affordance with a browser title tooltip
+        title={!enabled ? tooltipContent : undefined}
+      />
+    );
+    // actionContent (action.name) is a ReactNode and must be rendered
+    // to an element and referenced by ID for screen readers
+    ariaLabelledBy = (
+      <EuiScreenReaderOnly>
+        <span id={ariaLabelId}>{actionContent}</span>
+      </EuiScreenReaderOnly>
     );
   } else {
     button = (
@@ -91,9 +102,9 @@ export const DefaultItemAction = <T extends {}>({
         color={color as EuiButtonEmptyProps['color']}
         iconType={icon}
         onClick={onClick}
-        href={action.href}
+        href={href}
         target={action.target}
-        data-test-subj={action['data-test-subj']}
+        data-test-subj={dataTestSubj}
         flush="right"
       >
         {actionContent}
@@ -101,11 +112,19 @@ export const DefaultItemAction = <T extends {}>({
     );
   }
 
-  return enabled && action.description ? (
-    <EuiToolTip content={action.description} delay="long">
-      {button}
-    </EuiToolTip>
+  return enabled ? (
+    <>
+      <EuiToolTip content={tooltipContent} delay="long">
+        {button}
+      </EuiToolTip>
+      {/* SR text has to be rendered outside the tooltip,
+      otherwise EuiToolTip's own aria-labelledby won't properly clone */}
+      {ariaLabelledBy}
+    </>
   ) : (
-    button
+    <>
+      {button}
+      {ariaLabelledBy}
+    </>
   );
 };

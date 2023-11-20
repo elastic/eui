@@ -7,7 +7,13 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForEuiToolTipVisible,
+  waitForEuiToolTipHidden,
+} from '../../test/rtl';
+
 import { DefaultItemAction } from './default_item_action';
 import {
   DefaultItemEmptyButtonAction as EmptyButtonAction,
@@ -19,24 +25,7 @@ interface Item {
 }
 
 describe('DefaultItemAction', () => {
-  test('render - default button', () => {
-    const action: EmptyButtonAction<Item> = {
-      name: 'action1',
-      description: 'action 1',
-      onClick: () => {},
-    };
-    const props = {
-      action,
-      enabled: true,
-      item: { id: 'xyz' },
-    };
-
-    const component = shallow(<DefaultItemAction {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render - button', () => {
+  it('renders an EuiButtonEmpty when `type="button"', () => {
     const action: EmptyButtonAction<Item> = {
       name: 'action1',
       description: 'action 1',
@@ -49,30 +38,12 @@ describe('DefaultItemAction', () => {
       item: { id: 'xyz' },
     };
 
-    const component = shallow(<DefaultItemAction {...props} />);
+    const { container } = render(<DefaultItemAction {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - name', () => {
-    const action: EmptyButtonAction<Item> = {
-      name: (item) => <span>{item.id}</span>,
-      description: 'action 1',
-      type: 'button',
-      onClick: () => {},
-    };
-    const props = {
-      action,
-      enabled: true,
-      item: { id: 'xyz' },
-    };
-
-    const component = shallow(<DefaultItemAction {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render - icon', () => {
+  it('renders an EuiButtonIcon with screen reader text when `type="icon"`', () => {
     const action: IconButtonAction<Item> = {
       name: <span>action1</span>,
       description: 'action 1',
@@ -86,8 +57,69 @@ describe('DefaultItemAction', () => {
       item: { id: 'xyz' },
     };
 
-    const component = shallow(<DefaultItemAction {...props} />);
+    const { container } = render(<DefaultItemAction {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders an EuiButtonEmpty if no type is specified', () => {
+    const action: EmptyButtonAction<Item> = {
+      name: 'action1',
+      description: 'action 1',
+      onClick: () => {},
+    };
+    const props = {
+      action,
+      enabled: true,
+      item: { id: 'xyz' },
+    };
+
+    const { container } = render(<DefaultItemAction {...props} />);
+
+    expect(container.querySelector('.euiButtonEmpty')).toBeInTheDocument();
+  });
+
+  test('props that can be functions', async () => {
+    const action: EmptyButtonAction<Item> = {
+      name: ({ id }) =>
+        id === 'hello' ? <span>Hello</span> : <span>world</span>,
+      description: ({ id }) =>
+        id === 'hello' ? 'hello tooltip' : 'goodbye tooltip',
+      href: ({ id }) => `#/${id}`,
+      'data-test-subj': ({ id }) => `action-${id}`,
+    };
+
+    const { getByTestSubject, getByText } = render(
+      <>
+        <DefaultItemAction
+          action={action}
+          enabled={true}
+          item={{ id: 'hello' }}
+        />
+        <DefaultItemAction
+          action={action}
+          enabled={true}
+          item={{ id: 'world' }}
+        />
+      </>
+    );
+
+    const firstAction = getByTestSubject('action-hello');
+    expect(firstAction).toHaveTextContent('Hello');
+    expect(firstAction).toHaveAttribute('href', '#/hello');
+
+    const secondAction = getByTestSubject('action-world');
+    expect(secondAction).toHaveTextContent('world');
+    expect(secondAction).toHaveAttribute('href', '#/world');
+
+    fireEvent.mouseOver(firstAction);
+    await waitForEuiToolTipVisible();
+    expect(getByText('hello tooltip')).toBeInTheDocument();
+    fireEvent.mouseOut(firstAction);
+    await waitForEuiToolTipHidden();
+
+    fireEvent.mouseOver(secondAction);
+    await waitForEuiToolTipVisible();
+    expect(getByText('goodbye tooltip')).toBeInTheDocument();
   });
 });
