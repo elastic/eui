@@ -33,25 +33,20 @@
 
   &:hover,
   &:focus {
+    --euiDataGridCellOutlineColor: #{$euiColorPrimary};
     @include euiDataGridCellFocus;
   }
 
   // On hover
   &:hover:not(:focus, :focus-within, .euiDataGridRowCell--open) {
+    // Color the actions and focus ring grayscale on hover
+    // (Actions look odd without the ring on grids without cell borders)
+    --euiDataGridCellOutlineColor: #{$euiColorDarkShade};
+
     .euiDataGridRowCell__actions {
       // Delay the actions showing on hover
       // (Note: the focus ring show instantly on hover & the actions show instantly on focus)
       animation-delay: $euiAnimSpeedSlow;
-
-      // Color the actions and focus ring grayscale on hover
-      // (Actions look odd without the ring on grids without cell borders)
-      background-color: $euiColorDarkShade;
-      border-color: $euiColorDarkShade;
-      color: $euiColorEmptyShade;
-    }
-
-    &::after {
-      border-color: $euiColorDarkShade;
     }
   }
 
@@ -143,9 +138,9 @@
   display: flex;
   gap: $euiSizeXS / 2;
   padding-inline: $euiSizeXS / 2;
-  background-color: $euiColorPrimary;
+  background-color: var(--euiDataGridCellOutlineColor);
   color: $euiColorEmptyShade;
-  border: $euiBorderWidthThin solid $euiColorPrimary;
+  border: $euiBorderWidthThin solid var(--euiDataGridCellOutlineColor);
   border-top-left-radius: $euiBorderRadius / 2;
   border-top-right-radius: $euiBorderRadius / 2;
   transform: scaleY(0);
@@ -164,7 +159,7 @@
     top: 100%;
     height: $euiBorderWidthThick;
     width: $euiBorderWidthThick;
-    background-color: red; // TODO - DRY out background-color
+    background-color: var(--euiDataGridCellOutlineColor);
 
     .euiDataGridRowCell--alignLeft & {
       left: -$euiBorderWidthThin;
