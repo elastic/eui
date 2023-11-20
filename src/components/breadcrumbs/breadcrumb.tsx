@@ -162,13 +162,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
       {(ref, innerText) => {
         const title = innerText === '' ? undefined : innerText;
 
-        const sharedProps = {
-          ref,
-          title,
-          'aria-current': ariaCurrent,
-          className: classes,
-          css: cssStyles,
-        };
+        const baseProps = { ref, title, 'aria-current': ariaCurrent };
+        const styleProps = { className: classes, css: cssStyles };
 
         if (isPopoverBreadcrumb) {
           return (
@@ -178,13 +173,14 @@ export const EuiBreadcrumbContent: FunctionComponent<
               closePopover={() => setIsPopoverOpen(false)}
               button={
                 <EuiLink
-                  {...sharedProps}
+                  {...baseProps}
                   color={linkColor}
+                  css={styles.euiBreadcrumb__popoverButton}
                   // Avoid passing href and onClick - should only toggle the popover
                   onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
                   {...rest}
                 >
-                  {text}{' '}
+                  <span {...styleProps}>{text}</span>
                   <EuiIcon
                     type="arrowDown"
                     size="s"
@@ -199,7 +195,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
         } else if (isInteractiveBreadcrumb) {
           return (
             <EuiLink
-              {...sharedProps}
+              {...baseProps}
+              {...styleProps}
               color={linkColor}
               onClick={onClick}
               href={href}
@@ -212,7 +209,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
         } else {
           return (
             <EuiTextColor color={plainTextColor} cloneElement>
-              <span {...sharedProps} {...rest}>
+              <span {...baseProps} {...styleProps} {...rest}>
                 {text}
               </span>
             </EuiTextColor>

@@ -80,6 +80,14 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextTruncate('none')}
     `,
 
+    // Popover styles
+    euiBreadcrumb__popoverButton: css`
+      max-inline-size: 100%;
+      display: inline-flex;
+      align-items: center;
+      gap: ${euiTheme.size.xs};
+    `,
+
     // Types
     page: css`
       &:is(a):focus {
