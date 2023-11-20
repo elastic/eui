@@ -36,22 +36,6 @@
     @include euiDataGridCellFocus;
   }
 
-  // Tweak outline border radius to account for left cell actions
-  &--alignLeft:hover,
-  &--alignLeft:focus {
-    &::after {
-      border-top-left-radius: 0;
-    }
-  }
-
-  // Tweak outline border radius to account for right cell actions
-  &--alignRight:hover,
-  &--alignRight:focus {
-    &::after {
-      border-top-right-radius: 0;
-    }
-  }
-
   // On hover
   &:hover:not(:focus, :focus-within, .euiDataGridRowCell--open) {
     .euiDataGridRowCell__actions {
@@ -171,6 +155,24 @@
   // but other cell actions that scroll past the sticky headers should not
   .euiDataGridRowCell[data-gridcell-visible-row-index='0'] > & {
     z-index: $euiZDataGridCellPopover - 1;
+  }
+
+  // Visual trickery - fill in the gap between the cell outline border-radius & the actions
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    height: $euiBorderWidthThick;
+    width: $euiBorderWidthThick;
+    background-color: red; // TODO - DRY out background-color
+
+    .euiDataGridRowCell--alignLeft & {
+      left: -$euiBorderWidthThin;
+    }
+
+    .euiDataGridRowCell--alignRight & {
+      right: -$euiBorderWidthThin;
+    }
   }
 }
 
