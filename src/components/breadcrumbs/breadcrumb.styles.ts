@@ -87,6 +87,13 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       gap: ${euiTheme.size.xs};
     `,
+    euiBreadcrumb__popoverWrapper: css`
+      /* At small container widths, the popover anchor needs to leave room for the breadcrumb separator,
+         which is weird to get an exact width for because it's transformed at an angle */
+      max-inline-size: calc(
+        100% - ${mathWithUnits(euiTheme.size.base, (x) => x + 1)}
+      );
+    `,
 
     // Types
     page: css`

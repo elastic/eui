@@ -171,6 +171,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
               {...popoverProps}
               isOpen={isPopoverOpen}
               closePopover={() => setIsPopoverOpen(false)}
+              css={!isLastBreadcrumb && styles.euiBreadcrumb__popoverWrapper}
               button={
                 <EuiLink
                   {...baseProps}

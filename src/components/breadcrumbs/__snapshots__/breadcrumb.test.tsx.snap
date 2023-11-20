@@ -4,7 +4,7 @@ exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with p
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper"
       data-test-subj="popover"
     >
       <button
