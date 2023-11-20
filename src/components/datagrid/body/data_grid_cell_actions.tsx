@@ -18,20 +18,17 @@ import { EuiButtonIcon, EuiButtonIconProps } from '../../button/button_icon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
-import classNames from 'classnames';
 
 export const EuiDataGridCellActions = ({
   onExpandClick,
   column,
   rowIndex,
   colIndex,
-  cellHeightType,
 }: {
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
   colIndex: number;
-  cellHeightType: string;
 }) => {
   // Note: The cell expand button/expansion popover is *always* rendered if
   // column.cellActions is present (regardless of column.isExpandable).
@@ -45,11 +42,11 @@ export const EuiDataGridCellActions = ({
     >
       {(expandButtonTitle: string) => (
         <EuiButtonIcon
-          display="fill"
-          className="euiDataGridRowCell__actionButtonIcon"
+          className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
           data-test-subj="euiDataGridCellExpandButton"
+          display="fill"
           color="primary"
-          iconSize="s"
+          iconSize="m"
           iconType="expandMini"
           aria-hidden
           onClick={onExpandClick}
@@ -67,7 +64,11 @@ export const EuiDataGridCellActions = ({
         {...props}
         aria-hidden
         className="euiDataGridRowCell__actionButtonIcon"
+        // Don't allow consumers to override sizes or colors for cell actions on hover/focus
+        size="xs"
         iconSize="s"
+        display="fill"
+        color="primary"
       />
     );
 
@@ -94,11 +95,11 @@ export const EuiDataGridCellActions = ({
     );
   }, [column, colIndex, rowIndex]);
 
-  const classes = classNames('euiDataGridRowCell__actions', {
-    'euiDataGridRowCell__actions--overlay': cellHeightType !== 'default',
-  });
-
-  return <div className={classes}>{[...additionalButtons, expandButton]}</div>;
+  return (
+    <div className="euiDataGridRowCell__actions">
+      {[...additionalButtons, expandButton]}
+    </div>
+  );
 };
 
 export const EuiDataGridCellPopoverActions = ({

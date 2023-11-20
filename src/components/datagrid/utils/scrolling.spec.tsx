@@ -65,7 +65,7 @@ describe('useScroll', () => {
 
     it('handles setFocusedCell being called manually on cells out of view', () => {
       const ref = createRef<EuiDataGridRefProps>();
-      cy.mount(<EuiDataGrid {...baseProps} ref={ref} />);
+      cy.realMount(<EuiDataGrid {...baseProps} ref={ref} />);
 
       // Wait for the grid to finish rendering and pass back the ref
       cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
@@ -80,7 +80,7 @@ describe('useScroll', () => {
   describe('cell popover', () => {
     it('handles openCellPopover being called manually on cells out of view', () => {
       const ref = createRef<EuiDataGridRefProps>();
-      cy.mount(<EuiDataGrid {...baseProps} ref={ref} />);
+      cy.realMount(<EuiDataGrid {...baseProps} ref={ref} />);
 
       // Wait for the grid to finish rendering and pass back the ref
       cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
