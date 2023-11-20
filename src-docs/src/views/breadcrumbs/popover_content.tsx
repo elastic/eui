@@ -33,7 +33,7 @@ export default () => {
       prepend: <EuiAvatar type="space" size="s" name="Michael" />,
     },
     {
-      label: "Dwight's space",
+      label: "Assistant Manager Dwight's space",
       prepend: <EuiAvatar type="space" size="s" name="Dwight" />,
     },
   ]);
@@ -75,10 +75,10 @@ export default () => {
       popoverProps: { panelPaddingSize: 'none' },
     },
     {
-      text: 'My space',
+      text: spaces.find((space) => space.checked === 'on')!.label,
       popoverContent: (
         <EuiSelectable
-          singleSelection
+          singleSelection="always"
           options={spaces}
           onChange={(newOptions) => setSpaces(newOptions)}
           searchable
