@@ -6,9 +6,9 @@
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "18.18.2",
+  "docker_image": "20.9.0",
   "engines": {
-    "node": "16.x || 18.x || >=20.0"
+    "node": "16.x || 18.x || >=20.x"
   },
   "sideEffects": [
     "*.css",

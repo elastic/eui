@@ -1,6 +1,6 @@
 const { execSync } = require('child_process');
 
-execSync('docker pull docker.elastic.co/eui/ci:5.6', {
+execSync('docker pull docker.elastic.co/eui/ci:6.0', {
   stdio: 'inherit',
 });
 /* eslint-disable-next-line no-multi-str */
@@ -9,7 +9,7 @@ execSync(
   -i --rm --cap-add=SYS_ADMIN --volume=$(pwd):/app --workdir=/app --platform=linux/amd64 \
   -e GIT_COMMITTER_NAME=test -e GIT_COMMITTER_EMAIL=test -e HOME=/tmp \
   --user=$(id -u):$(id -g) \
-  docker.elastic.co/eui/ci:5.6 \
+  docker.elastic.co/eui/ci:6.0 \
   bash -c '/opt/yarn*/bin/yarn \
     && yarn cypress install \
     && yarn run test-cypress-a11y \
