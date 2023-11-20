@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
@@ -16,6 +16,18 @@ import { EuiContextMenuItem, SIZES } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
   shouldRenderCustomStyles(<EuiContextMenuItem />);
+
+  shouldRenderCustomStyles(
+    <EuiContextMenuItem toolTipContent="test" data-test-subj="trigger" />,
+    {
+      childProps: ['toolTipProps', 'toolTipProps.anchorProps'],
+      skip: { parentTest: true },
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
+    }
+  );
 
   it('renders', () => {
     const { container } = render(
@@ -120,5 +132,23 @@ describe('EuiContextMenuItem', () => {
         container.querySelector('.euiContextMenu__arrow')
       ).toBeInTheDocument();
     });
+  });
+
+  test('tooltip behavior', async () => {
+    const { getByRole, baseElement } = render(
+      <EuiContextMenuItem
+        toolTipContent="tooltip content"
+        toolTipTitle="overridden"
+        // Should override the deprecated props
+        toolTipProps={{ title: 'Test', position: 'top', delay: 'long' }}
+      >
+        Hello
+      </EuiContextMenuItem>
+    );
+
+    fireEvent.mouseOver(getByRole('button'));
+    await waitForEuiToolTipVisible();
+
+    expect(baseElement).toMatchSnapshot();
   });
 });

@@ -1,86 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DefaultItemAction render - button 1`] = `
-<EuiToolTip
-  content="action 1"
-  delay="long"
-  display="inlineBlock"
-  position="top"
+exports[`DefaultItemAction renders an EuiButtonEmpty when \`type="button" 1`] = `
+<span
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
-  <EuiButtonEmpty
-    color="primary"
-    flush="right"
-    isDisabled={false}
-    onClick={[Function]}
-    size="s"
+  <button
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+    type="button"
   >
-    action1
-  </EuiButtonEmpty>
-</EuiToolTip>
-`;
-
-exports[`DefaultItemAction render - default button 1`] = `
-<EuiToolTip
-  content="action 1"
-  delay="long"
-  display="inlineBlock"
-  position="top"
->
-  <EuiButtonEmpty
-    color="primary"
-    flush="right"
-    isDisabled={false}
-    onClick={[Function]}
-    size="s"
-  >
-    action1
-  </EuiButtonEmpty>
-</EuiToolTip>
-`;
-
-exports[`DefaultItemAction render - icon 1`] = `
-<EuiToolTip
-  content="action 1"
-  delay="long"
-  display="inlineBlock"
-  position="top"
->
-  <EuiButtonIcon
-    aria-labelledby="generated-id"
-    color="primary"
-    iconType="trash"
-    isDisabled={false}
-    onClick={[Function]}
-  />
-  <EuiScreenReaderOnly>
     <span
-      id="generated-id"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
-      <span>
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
+      >
         action1
       </span>
     </span>
-  </EuiScreenReaderOnly>
-</EuiToolTip>
+  </button>
+</span>
 `;
 
-exports[`DefaultItemAction render - name 1`] = `
-<EuiToolTip
-  content="action 1"
-  delay="long"
-  display="inlineBlock"
-  position="top"
->
-  <EuiButtonEmpty
-    color="primary"
-    flush="right"
-    isDisabled={false}
-    onClick={[Function]}
-    size="s"
+exports[`DefaultItemAction renders an EuiButtonIcon with screen reader text when \`type="icon"\` 1`] = `
+<div>
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  >
+    <button
+      aria-labelledby="generated-id"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="trash"
+      />
+    </button>
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
   >
     <span>
-      xyz
+      action1
     </span>
-  </EuiButtonEmpty>
-</EuiToolTip>
+  </span>
+</div>
 `;

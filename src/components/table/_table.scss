@@ -206,20 +206,15 @@
       transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance, filter $euiAnimSpeedNormal $euiAnimSlightResistance;
     }
 
-    .expandedItemActions__completelyHide,
-    .expandedItemActions__completelyHide:disabled,
-    .expandedItemActions__completelyHide:disabled:hover,
-    .expandedItemActions__completelyHide:disabled:focus,
-    .euiTableRow:hover & .expandedItemActions__completelyHide:disabled {
+    .expandedItemActions__completelyHide {
       filter: grayscale(0%);
       opacity: 0;
     }
   }
 
-  &:hover .euiTableCellContent--showOnHover .euiTableCellContent__hoverItem:not(:disabled) {
-    &,
-    &:hover,
-    &:focus {
+  &:hover .euiTableCellContent--showOnHover,
+  .euiTableCellContent--showOnHover:focus-within {
+    .euiTableCellContent__hoverItem {
       opacity: 1;
       filter: grayscale(0%);
     }
