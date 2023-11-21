@@ -476,7 +476,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -488,28 +488,16 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   data-euiicon-type="tableDensityNormal"
                 />
                 <span
-                  class="eui-textTruncate euiButtonEmpty__text"
+                  class="euiDataGridToolbarControl__text eui-textTruncate"
                 >
-                  <div
-                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                  >
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      Columns
-                    </div>
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      <span
-                        aria-label="Active: 2"
-                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                        role="marquee"
-                      >
-                        2
-                      </span>
-                    </div>
-                  </div>
+                  Columns
+                </span>
+                <span
+                  aria-label="- Active: 2"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  role="marquee"
+                >
+                  2
                 </span>
               </span>
             </button>
@@ -552,7 +540,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             >
               <button
                 aria-label="Display options"
-                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
                 type="button"
               >
@@ -570,7 +558,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+              aria-pressed="false"
+              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
@@ -914,7 +903,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -926,28 +915,16 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   data-euiicon-type="tableDensityNormal"
                 />
                 <span
-                  class="eui-textTruncate euiButtonEmpty__text"
+                  class="euiDataGridToolbarControl__text eui-textTruncate"
                 >
-                  <div
-                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                  >
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      Columns
-                    </div>
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      <span
-                        aria-label="Active: 2"
-                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                        role="marquee"
-                      >
-                        2
-                      </span>
-                    </div>
-                  </div>
+                  Columns
+                </span>
+                <span
+                  aria-label="- Active: 2"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  role="marquee"
+                >
+                  2
                 </span>
               </span>
             </button>
@@ -990,7 +967,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             >
               <button
                 aria-label="Display options"
-                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
                 type="button"
               >
@@ -1008,7 +985,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+              aria-pressed="false"
+              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
@@ -1630,7 +1608,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -1642,28 +1620,16 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   data-euiicon-type="tableDensityNormal"
                 />
                 <span
-                  class="eui-textTruncate euiButtonEmpty__text"
+                  class="euiDataGridToolbarControl__text eui-textTruncate"
                 >
-                  <div
-                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                  >
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      Columns
-                    </div>
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      <span
-                        aria-label="Active: 2"
-                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                        role="marquee"
-                      >
-                        2
-                      </span>
-                    </div>
-                  </div>
+                  Columns
+                </span>
+                <span
+                  aria-label="- Active: 2"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  role="marquee"
+                >
+                  2
                 </span>
               </span>
             </button>
@@ -1703,7 +1669,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             >
               <button
                 aria-label="Display options"
-                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
                 type="button"
               >
@@ -1721,7 +1687,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+              aria-pressed="false"
+              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
@@ -2067,7 +2034,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -2079,28 +2046,16 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   data-euiicon-type="tableDensityNormal"
                 />
                 <span
-                  class="eui-textTruncate euiButtonEmpty__text"
+                  class="euiDataGridToolbarControl__text eui-textTruncate"
                 >
-                  <div
-                    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-                  >
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      Columns
-                    </div>
-                    <div
-                      class="euiFlexItem emotion-euiFlexItem-growZero"
-                    >
-                      <span
-                        aria-label="Active: 2"
-                        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-                        role="marquee"
-                      >
-                        2
-                      </span>
-                    </div>
-                  </div>
+                  Columns
+                </span>
+                <span
+                  aria-label="- Active: 2"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  role="marquee"
+                >
+                  2
                 </span>
               </span>
             </button>
@@ -2140,7 +2095,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             >
               <button
                 aria-label="Display options"
-                class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
                 data-test-subj="dataGridDisplaySelectorButton"
                 type="button"
               >
@@ -2158,7 +2113,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiDataGrid__controlBtn emotion-euiButtonIcon-xs-empty-text"
+              aria-pressed="false"
+              class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
