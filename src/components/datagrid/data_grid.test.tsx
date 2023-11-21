@@ -1901,13 +1901,15 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      // Get column sorting button
-      const sortColumn = component.find(
-        'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
-      );
-      const getButtonText = (): string =>
-        sortColumn.find('span[className~="euiButtonEmpty__text"]').text();
-      expect(getButtonText()).toEqual('Sort fields');
+      // Get column sort count
+      const getBadgeText = () => {
+        const button = component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+        );
+        const badge = button.find('span.euiDataGridToolbarControl__badge');
+        return badge.length ? badge.text() : false;
+      };
+      expect(getBadgeText()).toBeFalsy();
 
       // Update sorted columns
       component.setProps({
@@ -1916,7 +1918,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('Sort fields1');
+      expect(getBadgeText()).toEqual('1');
 
       // Update sorted columns again
       component.setProps({
@@ -1928,7 +1930,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('Sort fields2');
+      expect(getBadgeText()).toEqual('2');
     });
   });
 
