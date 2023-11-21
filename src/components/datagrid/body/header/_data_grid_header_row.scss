@@ -17,14 +17,6 @@
   align-items: center;
   display: flex;
 
-  &.euiDataGridHeaderCell--numeric {
-    text-align: right;
-  }
-
-  &.euiDataGridHeaderCell--currency {
-    text-align: right;
-  }
-
   &:focus {
     @include euiDataGridCellFocus;
     border-top: none;
@@ -45,16 +37,10 @@
       width: 100%;
       font-weight: $euiFontWeightBold;
       outline: none;
-
-      .euiDataGridHeaderCell--numeric &,
-      .euiDataGridHeaderCell--currency & {
-        justify-content: flex-end;
-      }
     }
 
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
-      text-align: left;
     }
 
     .euiDataGridHeaderCell__sortingArrow {
@@ -77,6 +63,20 @@
         width: $euiSize;
         opacity: 1;
       }
+    }
+  }
+
+  // Align numeric and currency schemas to the right
+  &.euiDataGridHeaderCell--numeric,
+  &.euiDataGridHeaderCell--currency {
+    justify-content: flex-end; // Accounts for cells disabled actions (no popover)
+
+    .euiDataGridHeaderCell__button {
+      justify-content: flex-end; // Accounts for cells with a popover
+    }
+
+    .euiDataGridHeaderCell__icon {
+      margin-left: 0;
     }
   }
 }
