@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import {
   EuiDataGrid,
   EuiDataGridColumn,
@@ -82,9 +82,8 @@ const renderCellValue: RenderCellValueWithContext = ({
   rowIndex,
   columnId,
   schema,
-  data,
 }) => {
-  let value = data[rowIndex][columnId];
+  let value = storeData[rowIndex][columnId];
 
   if (schema === 'numeric') {
     value = commaSeparateNumbers(value);
@@ -121,10 +120,6 @@ const DataGrid = () => {
     setSortingColumns(sortingColumns);
   };
 
-  const context = useCallback(() => {
-    return { data };
-  }, [data]);
-
   return (
     <EuiDataGrid
       aria-label="Data grid schema example"
@@ -133,7 +128,6 @@ const DataGrid = () => {
       rowCount={data.length}
       inMemory={{ level: 'sorting' }}
       renderCellValue={renderCellValue}
-      renderCellContext={context}
       sorting={{ columns: sortingColumns, onSort: setSorting }}
       schemaDetectors={[
         {
