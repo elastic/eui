@@ -7,47 +7,59 @@
  */
 
 import React from 'react';
-import { render, screen } from '../../../test/rtl';
+import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test';
 
 import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
 
 describe('euiDataGridToolbarControl', () => {
-  it('renders with a badge', () => {
-    const onClickMock = jest.fn();
+  shouldRenderCustomStyles(<EuiDataGridToolbarControl />);
 
+  it('passes props to the underlying EuiButtonEmpty', () => {
     const { container } = render(
       <EuiDataGridToolbarControl
-        badgeContent={5}
         size="xs"
         iconType="sortable"
         color="text"
-        onClick={onClickMock}
+        {...requiredProps}
       >
         Test button text
       </EuiDataGridToolbarControl>
     );
 
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders without a badge', () => {
-    const onClickMock = jest.fn();
-
+  it('renders with a badge', () => {
     const { container } = render(
-      <EuiDataGridToolbarControl
-        badgeContent={undefined}
-        size="xs"
-        iconType="sortable"
-        color="text"
-        onClick={onClickMock}
-      >
+      <EuiDataGridToolbarControl badgeContent={5}>
         Test button text
       </EuiDataGridToolbarControl>
     );
 
-    expect(container).toMatchSnapshot();
-    screen.getByRole('button').click();
+    expect(container.firstChild).toMatchSnapshot();
+    expect(
+      container.querySelector('.euiDataGridToolbarControl__badge')
+    ).toBeInTheDocument();
+  });
 
-    expect(onClickMock).toHaveBeenCalled();
+  it('renders textProps onto the custom text wrapper', () => {
+    const { container } = render(
+      <EuiDataGridToolbarControl textProps={requiredProps}>
+        Test button text
+      </EuiDataGridToolbarControl>
+    );
+
+    expect(container.querySelector('.euiDataGridToolbarControl__text'))
+      .toMatchInlineSnapshot(`
+      <span
+        aria-label="aria-label"
+        class="euiDataGridToolbarControl__text eui-textTruncate testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+      >
+        Test button text
+      </span>
+    `);
   });
 });

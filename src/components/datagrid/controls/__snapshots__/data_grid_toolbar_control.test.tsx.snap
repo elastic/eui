@@ -1,54 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`euiDataGridToolbarControl renders with a badge 1`] = `
-<div>
-  <button
-    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-    type="button"
+exports[`euiDataGridToolbarControl passes props to the underlying EuiButtonEmpty 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiDataGridToolbarControl testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl-euiTestCss"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+      color="inherit"
+      data-euiicon-type="sortable"
+    />
+    <span
+      class="euiDataGridToolbarControl__text eui-textTruncate"
     >
-      <span
-        color="inherit"
-        data-euiicon-type="sortable"
-      />
-      <span
-        class="eui-textTruncate"
-      >
-        Test button text
-      </span>
-      <span
-        aria-label="Active: 5"
-        class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-        role="marquee"
-      >
-        5
-      </span>
+      Test button text
     </span>
-  </button>
-</div>
+  </span>
+</button>
 `;
 
-exports[`euiDataGridToolbarControl renders without a badge 1`] = `
-<div>
-  <button
-    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-    type="button"
+exports[`euiDataGridToolbarControl renders with a badge 1`] = `
+<button
+  class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+      class="euiDataGridToolbarControl__text eui-textTruncate"
     >
-      <span
-        color="inherit"
-        data-euiicon-type="sortable"
-      />
-      <span
-        class="eui-textTruncate"
-      >
-        Test button text
-      </span>
+      Test button text
     </span>
-  </button>
-</div>
+    <span
+      aria-label="Active: 5"
+      class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+      role="marquee"
+    >
+      5
+    </span>
+  </span>
+</button>
 `;
