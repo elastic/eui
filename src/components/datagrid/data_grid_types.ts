@@ -26,7 +26,7 @@ import {
   GridOnItemsRenderedProps,
 } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
-import { EuiButtonEmpty, EuiButtonEmptyProps, EuiButtonIcon } from '../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
 import { RowHeightUtilsType } from './utils/row_heights';
 import { IconType } from '../icon';
@@ -61,10 +61,6 @@ export interface EuiDataGridCustomToolbarProps {
   columnControl: ReactNode;
   columnSortingControl: ReactNode;
 }
-
-export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
-  badgeContent?: number | string;
-};
 
 export interface EuiDataGridPaginationRendererProps
   extends EuiDataGridPaginationProps {

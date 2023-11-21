@@ -6,19 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { EuiButtonEmpty } from '../../button';
+
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { EuiNotificationBadge } from '../../badge';
 import { useEuiI18n } from '../../i18n';
-import { EuiDataGridToolbarControlProps } from '../data_grid_types';
 
-export const EuiDataGridToolbarControl = ({
-  children,
-  badgeContent,
-  textProps,
-  ...buttonProps
-}: EuiDataGridToolbarControlProps) => {
+export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
+  badgeContent?: number | string;
+};
+
+export const EuiDataGridToolbarControl: FunctionComponent<
+  EuiDataGridToolbarControlProps
+> = ({ children, badgeContent, textProps, ...buttonProps }) => {
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
     'Active: {count}',
