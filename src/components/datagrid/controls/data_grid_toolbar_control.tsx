@@ -21,7 +21,7 @@ export const EuiDataGridToolbarControl = ({
 }: EuiDataGridToolbarControlProps) => {
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
-    'Current count: {count}',
+    'Active: {count}',
     { count: badgeContent }
   );
 
