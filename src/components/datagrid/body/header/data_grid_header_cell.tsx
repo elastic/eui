@@ -143,10 +143,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             offset={7}
             button={
               <button
-                className={classnames('euiDataGridHeaderCell__button', {
-                  'euiDataGridHeaderCell__button--withOpenPopover':
-                    isPopoverOpen,
-                })}
+                className="euiDataGridHeaderCell__button"
                 onClick={() => {
                   setFocusedCell([index, -1]);
                   setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);

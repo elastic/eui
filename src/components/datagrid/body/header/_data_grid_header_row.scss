@@ -62,7 +62,7 @@
 
     &:focus-within,
     &:hover,
-    .euiDataGridHeaderCell__button--withOpenPopover {
+    .euiPopover-isOpen {
       .euiDataGridHeaderCell__icon {
         width: $euiSize;
         opacity: 1;
