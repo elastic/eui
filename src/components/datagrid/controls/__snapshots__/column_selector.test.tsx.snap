@@ -6,7 +6,7 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
   data-test-subj="dataGridColumnSelectorPopover"
 >
   <button
-    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
     data-test-subj="dataGridColumnSelectorButton"
     type="button"
   >
@@ -18,28 +18,16 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
         data-euiicon-type="tableDensityNormal"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="euiDataGridToolbarControl__text eui-textTruncate"
       >
-        <div
-          class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-        >
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            Columns
-          </div>
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            <span
-              aria-label="Active: 2"
-              class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-              role="marquee"
-            >
-              2
-            </span>
-          </div>
-        </div>
+        Columns
+      </span>
+      <span
+        aria-label="- Active: 2"
+        class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+        role="marquee"
+      >
+        2
       </span>
     </span>
   </button>
@@ -310,7 +298,7 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
   data-test-subj="dataGridColumnSelectorPopover"
 >
   <button
-    class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+    class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
     data-test-subj="dataGridColumnSelectorButton"
     type="button"
   >
@@ -322,28 +310,16 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
         data-euiicon-type="tableDensityNormal"
       />
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="euiDataGridToolbarControl__text eui-textTruncate"
       >
-        <div
-          class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
-        >
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            Columns
-          </div>
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            <span
-              aria-label="Active: 2"
-              class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
-              role="marquee"
-            >
-              2
-            </span>
-          </div>
-        </div>
+        Columns
+      </span>
+      <span
+        aria-label="- Active: 2"
+        class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+        role="marquee"
+      >
+        2
       </span>
     </span>
   </button>
