@@ -40,12 +40,15 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           >
             columnA
           </div>
-          <span
+          <div
             class="euiDataGridHeaderCell__icon"
-            color="text"
-            data-euiicon-type="arrowDown"
-            data-test-subj="dataGridHeaderCellActionButton-columnA"
-          />
+          >
+            <span
+              color="text"
+              data-euiicon-type="boxesVertical"
+              data-test-subj="dataGridHeaderCellActionButton-columnA"
+            />
+          </div>
         </button>
       </div>
       <p
@@ -90,12 +93,15 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           >
             columnB
           </div>
-          <span
+          <div
             class="euiDataGridHeaderCell__icon"
-            color="text"
-            data-euiicon-type="arrowDown"
-            data-test-subj="dataGridHeaderCellActionButton-columnB"
-          />
+          >
+            <span
+              color="text"
+              data-euiicon-type="boxesVertical"
+              data-test-subj="dataGridHeaderCellActionButton-columnB"
+            />
+          </div>
         </button>
       </div>
       <p

@@ -95,6 +95,18 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     suffix: 'actions',
   });
 
+  const cellContent = (
+    <>
+      <div
+        title={displayAsText || id}
+        className="euiDataGridHeaderCell__content"
+      >
+        {display || displayAsText || id}
+      </div>
+      {sortingArrow}
+    </>
+  );
+
   return (
     <EuiDataGridHeaderCellWrapper
       {...displayHeaderCellProps}
@@ -115,13 +127,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
 
       {!showColumnActions ? (
         <>
-          {sortingArrow}
-          <div
-            className="euiDataGridHeaderCell__content"
-            title={displayAsText || id}
-          >
-            {display || displayAsText || id}
-          </div>
+          {cellContent}
           {sortingScreenReaderText && (
             <EuiScreenReaderOnly>
               <p>{sortingScreenReaderText}</p>
@@ -144,20 +150,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<
                 }}
                 aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
               >
-                {sortingArrow}
-                <div
-                  className="euiDataGridHeaderCell__content"
-                  title={displayAsText || id}
-                >
-                  {display || displayAsText || id}
+                {cellContent}
+                <div className="euiDataGridHeaderCell__icon">
+                  <EuiIcon
+                    type="boxesVertical"
+                    size="s"
+                    color="text"
+                    data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                  />
                 </div>
-                <EuiIcon
-                  className="euiDataGridHeaderCell__icon"
-                  type="arrowDown"
-                  size="s"
-                  color="text"
-                  data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-                />
               </button>
             }
             isOpen={isPopoverOpen}
