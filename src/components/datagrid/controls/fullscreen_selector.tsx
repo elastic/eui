@@ -15,7 +15,7 @@ import React, {
   KeyboardEvent,
   KeyboardEventHandler,
 } from 'react';
-import classNames from 'classnames';
+
 import { keys } from '../../../services';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiButtonIcon } from '../../button';
@@ -38,9 +38,6 @@ export const useDataGridFullScreenSelector = (): {
     ],
     ['Enter fullscreen', 'Exit fullscreen']
   );
-  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-    'euiDataGrid__controlBtn--active': isFullScreen,
-  });
   const fullScreenSelector = useMemo(
     () => (
       <EuiToolTip
@@ -59,14 +56,14 @@ export const useDataGridFullScreenSelector = (): {
           size="xs"
           iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
           color="text"
-          className={controlBtnClasses}
+          aria-pressed={isFullScreen}
           data-test-subj="dataGridFullScreenButton"
           onClick={() => setIsFullScreen(!isFullScreen)}
           aria-label={isFullScreen ? fullScreenButtonActive : fullScreenButton}
         />
       </EuiToolTip>
     ),
-    [isFullScreen, controlBtnClasses, fullScreenButton, fullScreenButtonActive]
+    [isFullScreen, fullScreenButton, fullScreenButtonActive]
   );
 
   const handleGridKeyDown = useCallback(

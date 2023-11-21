@@ -248,7 +248,6 @@ export const useDataGridDisplaySelector = (
             <EuiButtonIcon
               size="xs"
               iconType="controlsHorizontal"
-              className="euiDataGrid__controlBtn"
               color="text"
               data-test-subj="dataGridDisplaySelectorButton"
               onClick={() => setIsOpen(!isOpen)}

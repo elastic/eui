@@ -36,6 +36,7 @@ import {
   EuiDataGridToolBarVisibilityOptions,
 } from '../data_grid_types';
 import { getNestedObjectOptions } from './data_grid_toolbar';
+import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
 
 export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
@@ -101,10 +102,6 @@ export const useDataGridColumnSelector = (
 
   const [columnSearchText, setColumnSearchText] = useState('');
 
-  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-    'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
-  });
-
   const filteredColumns = useMemo(
     () =>
       sortedColumns.filter(
@@ -122,27 +119,22 @@ export const useDataGridColumnSelector = (
     'Drag handle'
   );
 
-  let buttonText = (
+  const buttonText = (
     <EuiI18n token="euiColumnSelector.button" default="Columns" />
   );
 
-  if (numberOfHiddenFields === 1) {
-    buttonText = (
-      <EuiI18n
-        token="euiColumnSelector.buttonActiveSingular"
-        default="{numberOfHiddenFields} column hidden"
-        values={{ numberOfHiddenFields }}
-      />
-    );
-  } else if (numberOfHiddenFields > 1) {
-    buttonText = (
-      <EuiI18n
-        token="euiColumnSelector.buttonActivePlural"
-        default="{numberOfHiddenFields} columns hidden"
-        values={{ numberOfHiddenFields }}
-      />
-    );
-  }
+  const orderedVisibleColumns = useMemo(
+    () =>
+      visibleColumns
+        .map<EuiDataGridColumn>(
+          (columnId) =>
+            availableColumns.find(
+              ({ id }) => id === columnId
+            ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
+        )
+        .filter((column) => column != null),
+    [availableColumns, visibleColumns]
+  );
 
   const columnSelector =
     allowColumnHiding || allowColumnReorder ? (
@@ -154,16 +146,18 @@ export const useDataGridColumnSelector = (
         panelPaddingSize="s"
         hasDragDrop
         button={
-          <EuiButtonEmpty
-            size="xs"
-            iconType={allowColumnHiding ? 'listAdd' : 'list'}
-            color="text"
-            className={controlBtnClasses}
+          <EuiDataGridToolbarControl
+            badgeContent={
+              numberOfHiddenFields > 0
+                ? `${orderedVisibleColumns.length}/${availableColumns.length}`
+                : availableColumns.length
+            }
+            iconType="tableDensityNormal"
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}
           >
             {buttonText}
-          </EuiButtonEmpty>
+          </EuiDataGridToolbarControl>
         }
       >
         {allowColumnHiding && (
@@ -313,18 +307,6 @@ export const useDataGridColumnSelector = (
       </EuiPopover>
     ) : null;
 
-  const orderedVisibleColumns = useMemo(
-    () =>
-      visibleColumns
-        .map<EuiDataGridColumn>(
-          (columnId) =>
-            availableColumns.find(
-              ({ id }) => id === columnId
-            ) as EuiDataGridColumn // cast to avoid `undefined`, it filters those out next
-        )
-        .filter((column) => column != null),
-    [availableColumns, visibleColumns]
-  );
   /**
    * Used for moving columns left/right, available in the headers actions menu
    */

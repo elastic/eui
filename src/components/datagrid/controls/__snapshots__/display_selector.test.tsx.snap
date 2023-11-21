@@ -13,7 +13,6 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
       >
         <EuiButtonIcon
           aria-label="Display options"
-          className="euiDataGrid__controlBtn"
           color="text"
           data-test-subj="dataGridDisplaySelectorButton"
           iconType="controlsHorizontal"
