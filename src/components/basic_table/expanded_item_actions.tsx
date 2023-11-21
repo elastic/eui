@@ -51,7 +51,7 @@ export const ExpandedItemActions = <T extends {}>({
           expandedItemActions__completelyHide: moreThanThree && index < 2,
         });
 
-        if (isCustomItemAction(action)) {
+        if (isCustomItemAction<T>(action)) {
           // custom action has a render function
           tools.push(
             <CustomItemAction
