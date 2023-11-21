@@ -44,12 +44,15 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             >
               columnA
             </div>
-            <span
+            <div
               class="euiDataGridHeaderCell__icon"
-              color="text"
-              data-euiicon-type="arrowDown"
-              data-test-subj="dataGridHeaderCellActionButton-columnA"
-            />
+            >
+              <span
+                color="text"
+                data-euiicon-type="boxesVertical"
+                data-test-subj="dataGridHeaderCellActionButton-columnA"
+              />
+            </div>
           </button>
         </div>
         <p
@@ -94,12 +97,15 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             >
               columnB
             </div>
-            <span
+            <div
               class="euiDataGridHeaderCell__icon"
-              color="text"
-              data-euiicon-type="arrowDown"
-              data-test-subj="dataGridHeaderCellActionButton-columnB"
-            />
+            >
+              <span
+                color="text"
+                data-euiicon-type="boxesVertical"
+                data-test-subj="dataGridHeaderCellActionButton-columnB"
+              />
+            </div>
           </button>
         </div>
         <p
@@ -116,7 +122,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
     </div>
     <div
       aria-rowindex="1"
-      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="0"
@@ -127,28 +133,24 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        data-datagrid-cellcontent="true"
       >
-        <div
-          class="euiDataGridRowCell__content eui-textTruncate"
-          data-datagrid-cellcontent="true"
-        >
-          <span>
-            cell content
-          </span>
-        </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          hidden=""
-        >
-          - 
-          columnA, column 1, row 1
-        </p>
+        <span>
+          cell content
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        hidden=""
+      >
+        - 
+        columnA, column 1, row 1
+      </p>
     </div>
     <div
       aria-rowindex="1"
-      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="0"
@@ -159,24 +161,20 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        data-datagrid-cellcontent="true"
       >
-        <div
-          class="euiDataGridRowCell__content eui-textTruncate"
-          data-datagrid-cellcontent="true"
-        >
-          <span>
-            cell content
-          </span>
-        </div>
-        <p
-          class="emotion-euiScreenReaderOnly"
-          hidden=""
-        >
-          - 
-          columnB, column 2, row 1
-        </p>
+        <span>
+          cell content
+        </span>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        hidden=""
+      >
+        - 
+        columnB, column 2, row 1
+      </p>
     </div>
   </div>
 </div>

@@ -183,13 +183,15 @@ export default () => {
     } else {
       let actions: Array<DefaultItemAction<User>> = [
         {
-          name: 'Elastic.co',
-          description: 'Go to elastic.co',
+          name: 'User profile',
+          description: ({ firstName, lastName }) =>
+            `Visit ${firstName} ${lastName}'s profile`,
           icon: 'editorLink',
           color: 'primary',
           type: 'icon',
-          href: 'https://elastic.co',
-          target: '_blank',
+          enabled: ({ online }) => !!online,
+          href: ({ id }) => `${window.location.href}?id=${id}`,
+          target: '_self',
           'data-test-subj': 'action-outboundlink',
         },
       ];
@@ -205,18 +207,20 @@ export default () => {
           },
           {
             name: (user: User) => (user.id ? 'Delete' : 'Remove'),
-            description: 'Delete this user',
+            description: ({ firstName, lastName }) =>
+              `Delete ${firstName} ${lastName}`,
             icon: 'trash',
             color: 'danger',
             type: 'icon',
             onClick: deleteUser,
             isPrimary: true,
-            'data-test-subj': 'action-delete',
+            'data-test-subj': ({ id }) => `action-delete-${id}`,
           },
           {
             name: 'Edit',
             isPrimary: true,
-            available: ({ online }: { online: boolean }) => !online,
+            available: ({ online }) => !online,
+            enabled: ({ online }) => !!online,
             description: 'Edit this user',
             icon: 'pencil',
             type: 'icon',

@@ -8,7 +8,6 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { render } from '../../../test/rtl';
 
 import { EuiDataGridColumnCellAction } from '../data_grid_types';
 import {
@@ -49,11 +48,11 @@ describe('EuiDataGridCellActions', () => {
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon"
+        className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
         color="primary"
         data-test-subj="euiDataGridCellExpandButton"
         display="fill"
-        iconSize="s"
+        iconSize="m"
         iconType="expandMini"
         onClick={[MockFunction]}
         title="expandButtonTitle"
@@ -74,8 +73,11 @@ describe('EuiDataGridCellActions', () => {
       <EuiButtonIcon
         aria-hidden={true}
         className="euiDataGridRowCell__actionButtonIcon"
+        color="primary"
+        display="fill"
         iconSize="s"
         iconType="eye"
+        size="xs"
       />
     `);
   });
@@ -109,17 +111,6 @@ describe('EuiDataGridCellActions', () => {
         </EuiI18n>
       </div>
     `);
-  });
-
-  it('renders with overlay positioning for non default height cells', () => {
-    const { container } = render(
-      <EuiDataGridCellActions {...requiredProps} cellHeightType="auto" />
-    );
-
-    // TODO: Switch to `.toHaveStyle({ position: 'absolute' })` once on Emotion
-    expect(container.firstChild).toHaveClass(
-      'euiDataGridRowCell__actions--overlay'
-    );
   });
 
   describe('visible cell actions limit', () => {

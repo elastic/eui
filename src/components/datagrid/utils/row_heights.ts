@@ -186,9 +186,7 @@ export class RowHeightUtils {
   ) {
     const rowHeights =
       this.heightsCache.get(rowIndex) || new Map<string, number>();
-    const adaptedHeight = Math.ceil(
-      height + this.styles.paddingTop + this.styles.paddingBottom
-    );
+    const adaptedHeight = Math.ceil(height);
 
     if (rowHeights.get(colId) === adaptedHeight) {
       return false;

@@ -20,19 +20,6 @@ import {
   type EuiComboBoxOptionOption,
 } from './index';
 
-// CI doesn't have access to the Inter font, so we need to manually include it
-// for truncation font calculations to work correctly
-before(() => {
-  const linkElem = document.createElement('link');
-  linkElem.setAttribute('rel', 'stylesheet');
-  linkElem.setAttribute(
-    'href',
-    'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'
-  );
-  document.head.appendChild(linkElem);
-  cy.wait(1000); // Wait a second to give the font time to load/swap in
-});
-
 describe('EuiComboBox', () => {
   describe('focus management', () => {
     it('keeps focus on the input box when clicking a disabled item', () => {

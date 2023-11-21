@@ -32,6 +32,14 @@ export class GuidePageChrome extends Component {
     this.setState({
       isSideNavOpenOnMobile: !this.state.isSideNavOpenOnMobile,
     });
+    // Scroll the mobile nav to the currently open page
+    setTimeout(() => {
+      const sideNav = document.querySelector('.euiSideNav__content');
+      const selectedNavItem = sideNav?.querySelector(
+        '.euiSideNavItemButton-isSelected'
+      ).parentElement;
+      sideNav.scrollTop = selectedNavItem.offsetTop - sideNav.offsetHeight;
+    }, 200);
   };
 
   onSearchChange = (event) => {
@@ -71,14 +79,27 @@ export class GuidePageChrome extends Component {
     // then scroll the selected nav section into view
     setTimeout(() => {
       const sideNav = document.querySelector('.guideSideNav__content');
-      const isMobile = sideNav?.querySelector('.euiSideNav__mobileToggle');
 
-      const selectedButton = sideNav?.querySelector(
+      const selectedNavItem = sideNav?.querySelector(
         '.euiSideNavItemButton-isSelected'
       );
-      selectedButton?.parentElement.scrollIntoView({
-        block: isMobile ? 'start' : 'center',
-      });
+      if (selectedNavItem) {
+        const selectedNavGroup = selectedNavItem.parentElement;
+
+        // Wait a bit for react to blow away and re-create the DOM
+        // then scroll the selected nav section into view
+        setTimeout(() => {
+          // Center the open/selected item on the nav
+          const scrollOffset =
+            selectedNavGroup.offsetTop -
+            sideNav.offsetHeight / 2 +
+            selectedNavGroup.offsetHeight / 2;
+
+          // Don't use `scrollIntoView` or scroll APIs - they cause side effects
+          // on body scrolling for some annoying reason
+          sideNav.scrollTop = scrollOffset;
+        }, 1); // Note: Webkit browsers require this timeout duration, FF doesn't
+      }
     });
   };
 

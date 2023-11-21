@@ -12,16 +12,19 @@ import {
   render,
   waitForEuiPopoverOpen,
   waitForEuiPopoverClose,
+  waitForEuiToolTipVisible,
 } from '../../test/rtl';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
+
+type Item = { id: string };
 
 describe('CollapsedItemActions', () => {
   it('renders', () => {
     const props = {
       actions: [
         {
-          name: (item: { id: string }) => `default${item.id}`,
+          name: (item: Item) => `default${item.id}`,
           description: 'default 1',
           onClick: () => {},
         },
@@ -51,10 +54,11 @@ describe('CollapsedItemActions', () => {
           'data-test-subj': 'defaultAction',
         },
         {
-          name: 'default2',
-          description: 'default 2',
-          href: 'https://www.elastic.co/',
+          name: ({ id }: Item) => `name ${id}`,
+          description: ({ id }: Item) => `description ${id}`,
+          href: ({ id }: Item) => `#/${id}`,
           target: '_blank',
+          'data-test-subj': ({ id }: Item) => `${id}-link`,
         },
       ],
       itemId: 'id',
@@ -62,13 +66,19 @@ describe('CollapsedItemActions', () => {
       actionEnabled: () => true,
     };
 
-    const { getByTestSubject, baseElement } = render(
+    const { getByTestSubject, getByText, baseElement } = render(
       <CollapsedItemActions {...props} />
     );
     fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
     await waitForEuiPopoverOpen();
 
     expect(baseElement).toMatchSnapshot();
+
+    expect(getByTestSubject('xyz-link')).toHaveAttribute('href', '#/xyz');
+    expect(getByTestSubject('xyz-link')).toHaveTextContent('name xyz');
+    fireEvent.mouseEnter(getByTestSubject('xyz-link'));
+    await waitForEuiToolTipVisible();
+    expect(getByText('description xyz')).toBeInTheDocument();
 
     fireEvent.click(getByTestSubject('defaultAction'));
     await waitForEuiPopoverClose();

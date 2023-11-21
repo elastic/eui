@@ -4,17 +4,20 @@ exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with p
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper"
       data-test-subj="popover"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+        class="euiLink emotion-euiLink-subdued-euiBreadcrumb__popoverButton"
         data-test-subj="popoverToggle"
-        title="Toggles a popover  - Clicking this button will toggle a popover dialog."
+        title="Toggles a popover - Clicking this button will toggle a popover dialog."
         type="button"
       >
-        Toggles a popover
-         
+        <span
+          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+        >
+          Toggles a popover
+        </span>
         <span
           data-euiicon-type="arrowDown"
         >

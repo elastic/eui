@@ -39,7 +39,7 @@ exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwardi
 exports[`EuiDataGridCell renders 1`] = `
 <div
   aria-rowindex="1"
-  class="euiDataGridRowCell"
+  class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
   data-gridcell-column-id="someColumn"
   data-gridcell-column-index="0"
   data-gridcell-row-index="0"
@@ -49,34 +49,30 @@ exports[`EuiDataGridCell renders 1`] = `
   tabindex="-1"
 >
   <div
-    class="euiDataGridRowCell__contentWrapper euiDataGridRowCell__defaultHeight"
+    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+    data-datagrid-cellcontent="true"
   >
-    <div
-      class="euiDataGridRowCell__content eui-textTruncate"
-      data-datagrid-cellcontent="true"
-    >
-      <div>
-        <button
-          data-datagrid-interactable="true"
-          tabindex="-1"
-        >
-          hello
-        </button>
-        <button
-          data-datagrid-interactable="true"
-          tabindex="-1"
-        >
-          world
-        </button>
-      </div>
+    <div>
+      <button
+        data-datagrid-interactable="true"
+        tabindex="-1"
+      >
+        hello
+      </button>
+      <button
+        data-datagrid-interactable="true"
+        tabindex="-1"
+      >
+        world
+      </button>
     </div>
-    <p
-      class="emotion-euiScreenReaderOnly"
-      hidden=""
-    >
-      - 
-      someColumn, column 1, row 1
-    </p>
   </div>
+  <p
+    class="emotion-euiScreenReaderOnly"
+    hidden=""
+  >
+    - 
+    someColumn, column 1, row 1
+  </p>
 </div>
 `;
