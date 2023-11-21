@@ -28,7 +28,7 @@ exports[`euiDataGridToolbarControl renders with a badge 1`] = `
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 5"
+              aria-label="Active: 5"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >

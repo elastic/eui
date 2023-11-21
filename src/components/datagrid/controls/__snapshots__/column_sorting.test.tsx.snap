@@ -32,7 +32,7 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 1"
+              aria-label="Active: 1"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >
@@ -314,7 +314,7 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 1"
+              aria-label="Active: 1"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >
@@ -596,7 +596,7 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 1"
+              aria-label="Active: 1"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >

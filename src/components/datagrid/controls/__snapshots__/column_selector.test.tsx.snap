@@ -32,7 +32,7 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 2"
+              aria-label="Active: 2"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >
@@ -336,7 +336,7 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 2"
+              aria-label="Active: 2"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >
@@ -640,7 +640,7 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <span
-              aria-label="Current count: 2"
+              aria-label="Active: 2"
               class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
               role="marquee"
             >

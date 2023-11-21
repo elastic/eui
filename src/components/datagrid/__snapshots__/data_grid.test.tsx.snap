@@ -502,7 +502,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                       class="euiFlexItem emotion-euiFlexItem-growZero"
                     >
                       <span
-                        aria-label="Current count: 2"
+                        aria-label="Active: 2"
                         class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
                         role="marquee"
                       >
@@ -958,7 +958,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                       class="euiFlexItem emotion-euiFlexItem-growZero"
                     >
                       <span
-                        aria-label="Current count: 2"
+                        aria-label="Active: 2"
                         class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
                         role="marquee"
                       >
@@ -1716,7 +1716,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                       class="euiFlexItem emotion-euiFlexItem-growZero"
                     >
                       <span
-                        aria-label="Current count: 2"
+                        aria-label="Active: 2"
                         class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
                         role="marquee"
                       >
@@ -2171,7 +2171,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                       class="euiFlexItem emotion-euiFlexItem-growZero"
                     >
                       <span
-                        aria-label="Current count: 2"
+                        aria-label="Active: 2"
                         class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
                         role="marquee"
                       >
