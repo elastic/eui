@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/react';
 
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { EuiNotificationBadge } from '../../badge';
@@ -19,29 +20,38 @@ export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
 
 export const EuiDataGridToolbarControl: FunctionComponent<
   EuiDataGridToolbarControlProps
-> = ({ children, badgeContent, textProps, ...buttonProps }) => {
+> = ({ children, className, badgeContent, textProps, ...rest }) => {
+  const classes = classNames('euiDataGridToolbarControl', className);
+
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
     'Active: {count}',
     { count: badgeContent }
   );
 
-  const controlBtnClasses = classNames(
-    'euiDataGrid__controlBtn',
-    buttonProps.className
-  );
-
   return (
     <EuiButtonEmpty
+      className={classes}
       size="xs"
       color="text"
       textProps={false}
-      {...buttonProps}
-      className={controlBtnClasses}
+      // Underline actual text, but not the badge
+      css={css`
+        &:focus,
+        &:hover:not(:disabled) {
+          text-decoration: none;
+
+          .euiDataGridToolbarControl__text {
+            text-decoration: underline;
+          }
+        }
+      `}
+      {...rest}
     >
       <span
         {...textProps}
         className={classNames(
+          'euiDataGridToolbarControl__text',
           'eui-textTruncate',
           textProps && textProps.className
         )}
@@ -51,6 +61,10 @@ export const EuiDataGridToolbarControl: FunctionComponent<
 
       {Boolean(badgeContent) && (
         <EuiNotificationBadge
+          className="euiDataGridToolbarControl__badge"
+          css={css`
+            cursor: inherit;
+          `}
           color="subdued"
           aria-label={badgeAriaLabel}
           role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role

@@ -45,7 +45,7 @@ const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
   const mobileStyles =
     !hasRoomForGridControls &&
     css`
-      .euiDataGrid__controlBtn .euiButtonEmpty__text {
+      .euiDataGridToolbarControl__text {
         ${euiScreenReaderOnly()}
       }
     `;
