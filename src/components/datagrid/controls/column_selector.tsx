@@ -149,10 +149,8 @@ export const useDataGridColumnSelector = (
           <EuiDataGridToolbarControl
             badgeContent={
               numberOfHiddenFields > 0
-                ? `${orderedVisibleColumns.length}/${
-                    numberOfHiddenFields + orderedVisibleColumns.length
-                  }`
-                : orderedVisibleColumns.length
+                ? `${orderedVisibleColumns.length}/${availableColumns.length}`
+                : availableColumns.length
             }
             iconType="tableDensityNormal"
             data-test-subj="dataGridColumnSelectorButton"

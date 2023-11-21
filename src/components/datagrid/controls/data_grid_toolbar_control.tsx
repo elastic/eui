@@ -26,7 +26,12 @@ export const EuiDataGridToolbarControl: FunctionComponent<
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
     'Active: {count}',
-    { count: badgeContent }
+    {
+      count:
+        typeof badgeContent === 'string'
+          ? betterScreenReaderSlashes(badgeContent)
+          : badgeContent,
+    }
   );
 
   return (
@@ -66,7 +71,7 @@ export const EuiDataGridToolbarControl: FunctionComponent<
             cursor: inherit;
           `}
           color="subdued"
-          aria-label={badgeAriaLabel}
+          aria-label={`- ${badgeAriaLabel}`} // Punctuation helps add pauses for screen readers
           role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
         >
           {badgeContent}
@@ -75,3 +80,8 @@ export const EuiDataGridToolbarControl: FunctionComponent<
     </EuiButtonEmpty>
   );
 };
+
+// The columns control specifically passes (e.g.) `5/10` when some columns
+// are being hidden. We can make this a bit more legible to SRs with this quick util
+const betterScreenReaderSlashes = (badgeContent: string) =>
+  badgeContent.replaceAll('/', ' out of ');
