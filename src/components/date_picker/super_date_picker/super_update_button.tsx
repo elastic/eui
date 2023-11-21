@@ -185,7 +185,7 @@ export class EuiSuperUpdateButton extends Component<
                 ...restTextProps,
                 className: classNames(
                   'euiScreenReaderOnly',
-                  restTextProps?.className
+                  restTextProps && restTextProps.className
                 ),
               }}
               {...rest}

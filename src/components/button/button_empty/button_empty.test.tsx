@@ -167,5 +167,15 @@ describe('EuiButtonEmpty', () => {
 
       expect(container.firstChild).toMatchSnapshot();
     });
+
+    it('does not render the text wrapper when textProps is set to false', () => {
+      const { container } = render(
+        <EuiButtonEmpty textProps={false}>Content</EuiButtonEmpty>
+      );
+
+      expect(
+        container.querySelector('.euiButtonEmpty__text')
+      ).not.toBeInTheDocument();
+    });
   });
 });
