@@ -9,7 +9,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { EuiButtonEmpty } from '../../button';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiNotificationBadge } from '../../badge';
 import { useEuiI18n } from '../../i18n';
 import { EuiDataGridToolbarControlProps } from '../data_grid_types';
@@ -17,6 +16,7 @@ import { EuiDataGridToolbarControlProps } from '../data_grid_types';
 export const EuiDataGridToolbarControl = ({
   children,
   badgeContent,
+  textProps,
   ...buttonProps
 }: EuiDataGridToolbarControlProps) => {
   const badgeAriaLabel = useEuiI18n(
@@ -34,28 +34,29 @@ export const EuiDataGridToolbarControl = ({
     <EuiButtonEmpty
       size="xs"
       color="text"
+      textProps={false}
       {...buttonProps}
       className={controlBtnClasses}
     >
-      <EuiFlexGroup
-        responsive={false}
-        direction="row"
-        alignItems="center"
-        gutterSize="s"
-      >
-        <EuiFlexItem grow={false}>{children}</EuiFlexItem>
-        {Boolean(badgeContent) && (
-          <EuiFlexItem grow={false}>
-            <EuiNotificationBadge
-              color="subdued"
-              aria-label={badgeAriaLabel}
-              role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
-            >
-              {badgeContent}
-            </EuiNotificationBadge>
-          </EuiFlexItem>
+      <span
+        {...textProps}
+        className={classNames(
+          'eui-textTruncate',
+          textProps && textProps.className
         )}
-      </EuiFlexGroup>
+      >
+        {children}
+      </span>
+
+      {Boolean(badgeContent) && (
+        <EuiNotificationBadge
+          color="subdued"
+          aria-label={badgeAriaLabel}
+          role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
+        >
+          {badgeContent}
+        </EuiNotificationBadge>
+      )}
     </EuiButtonEmpty>
   );
 };
