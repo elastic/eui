@@ -601,11 +601,11 @@ export type EuiDataGridCellValueElementPropsWithContext<
   T extends Record<string, any>
 > = EuiDataGridCellValueElementProps & ReturnType<RenderCellContext<T>>;
 
-export type renderCellValue =
+export type RenderCellValue =
   | ((props: EuiDataGridCellValueElementProps) => ReactNode)
   | ComponentClass<EuiDataGridCellValueElementProps>;
 
-export type renderCellValueWithContext =
+export type RenderCellValueWithContext =
   | ((
       props: EuiDataGridCellValueElementPropsWithContext<Record<string, any>>
     ) => ReactNode)
@@ -625,7 +625,7 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
-  renderCellValue: renderCellValue | renderCellValueWithContext;
+  renderCellValue: RenderCellValue | RenderCellValueWithContext;
   renderCellContext?: RenderCellContext<Record<string, any>>;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>

@@ -14,7 +14,7 @@ import {
   EuiCopy,
   EuiText,
   EuiImage,
-  renderCellValue,
+  RenderCellValue as RenderCellValueType,
 } from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
@@ -164,7 +164,7 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
   );
 };
 
-const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+const renderCellValue: RenderCellValueType = ({ rowIndex, columnId }) =>
   data[rowIndex][columnId];
 
 export default () => {

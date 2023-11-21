@@ -13,7 +13,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   euiScreenReaderOnly,
-  renderCellValue,
+  RenderCellValue,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -79,7 +79,7 @@ const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
   );
 };
 
-const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
   raw_data[rowIndex][columnId];
 
 // Some additional custom settings to show in the Display popover

@@ -5,7 +5,7 @@ import {
   EuiDataGrid,
   EuiDataGridColumnCellAction,
   EuiDataGridColumn,
-  renderCellValue,
+  RenderCellValue as RenderCellValueType,
 } from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
@@ -51,7 +51,7 @@ for (let i = 1; i < 5; i++) {
   });
 }
 
-const RenderCellValue: renderCellValue = ({
+const RenderCellValue: RenderCellValueType = ({
   rowIndex,
   columnId,
   setCellProps,

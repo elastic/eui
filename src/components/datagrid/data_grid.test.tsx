@@ -8,7 +8,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
-import { EuiDataGrid, renderCellValue } from './';
+import { EuiDataGrid, RenderCellValue } from './';
 import { EuiDataGridProps } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
 import { render } from '../../test/rtl';
@@ -386,12 +386,12 @@ function setColumnVisibility(
   closeColumnSelector(datagrid);
 }
 
-const renderCellValueRowAndColumnCount: renderCellValue = ({
+const renderCellValueRowAndColumnCount: RenderCellValue = ({
   rowIndex,
   columnId,
 }) => `${rowIndex}, ${columnId}`;
 
-const RenderCellValueSetCellProps: renderCellValue = ({
+const RenderCellValueSetCellProps: RenderCellValue = ({
   rowIndex,
   columnId,
   setCellProps,
@@ -407,7 +407,7 @@ const RenderCellValueSetCellProps: renderCellValue = ({
   return `${rowIndex}, ${columnId}`;
 };
 
-const renderCellBasedOnColumnId: renderCellValue = ({ columnId }) => {
+const renderCellBasedOnColumnId: RenderCellValue = ({ columnId }) => {
   if (columnId === 'A') {
     return 5.5;
   } else if (columnId === 'B') {
@@ -417,9 +417,9 @@ const renderCellBasedOnColumnId: renderCellValue = ({ columnId }) => {
   }
 };
 
-const renderCellRowAsValue: renderCellValue = ({ rowIndex }) => rowIndex;
+const renderCellRowAsValue: RenderCellValue = ({ rowIndex }) => rowIndex;
 
-const renderCellValueALowBHigh: renderCellValue = ({ rowIndex, columnId }) =>
+const renderCellValueALowBHigh: RenderCellValue = ({ rowIndex, columnId }) =>
   // render A as 0, 1, 0, 1, 0 and B as 9->5
   columnId === 'A' ? rowIndex % 2 : 9 - rowIndex;
 
@@ -878,7 +878,7 @@ describe('EuiDataGrid', () => {
           G: '2019-09-18T12:31:28.234',
           H: '2019-09-18T12:31:28.234+0300',
         };
-        const renderCellValue: renderCellValue = ({ columnId }) =>
+        const renderCellValue: RenderCellValue = ({ columnId }) =>
           values[columnId];
         const component = mount(
           <EuiDataGrid
@@ -915,7 +915,7 @@ describe('EuiDataGrid', () => {
           A: '-5.80',
           B: '127.0.0.1',
         };
-        const renderCellValue: renderCellValue = ({ columnId }) =>
+        const renderCellValue: RenderCellValue = ({ columnId }) =>
           values[columnId];
         const component = mount(
           <EuiDataGrid
@@ -960,7 +960,7 @@ describe('EuiDataGrid', () => {
 
   describe('cell rendering', () => {
     it('supports hooks', () => {
-      const RenderCellValueWithHooks: renderCellValue = ({
+      const RenderCellValueWithHooks: RenderCellValue = ({
         rowIndex,
         columnId,
       }) => {
@@ -1449,7 +1449,7 @@ describe('EuiDataGrid', () => {
         },
       };
 
-      const RenderCellValue: renderCellValue = ({
+      const RenderCellValue: RenderCellValue = ({
         rowIndex,
         columnId,
         setCellProps,
@@ -1557,7 +1557,7 @@ describe('EuiDataGrid', () => {
 
     describe('in-memory sorting', () => {
       it('sorts on initial render', () => {
-        const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+        const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
           // render A 0->4 and B 9->5
           columnId === 'A' ? rowIndex : 9 - rowIndex;
         const component = mount(
@@ -1679,7 +1679,7 @@ describe('EuiDataGrid', () => {
           component.setProps({ sorting: { columns, onSort } });
           component.update();
         });
-        const renderCellValue: renderCellValue = ({ rowIndex }) =>
+        const renderCellValue: RenderCellValue = ({ rowIndex }) =>
           `1.0.${(rowIndex % 3) + rowIndex}`; // computes as 0,2,4,3,5
 
         const component = mount(
@@ -1724,7 +1724,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('uses schema information to sort', () => {
-      const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+      const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
         // render A 0->4 and B 12->8
         columnId === 'A' ? rowIndex : 12 - rowIndex;
       const component = mount(
@@ -2547,7 +2547,7 @@ describe('EuiDataGrid', () => {
       ).toEqual('1, B');
     });
     it.skip('supports arrow navigation through grids with different interactive cells', () => {
-      const renderCellValue: renderCellValue = ({ rowIndex, columnId }) => {
+      const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) => {
         if (columnId === 'A') {
           return `${rowIndex}, A`;
         }
@@ -2634,7 +2634,7 @@ describe('EuiDataGrid', () => {
       expect(focusableCell.getDOMNode()).toBe(document.activeElement);
     });
     it.skip('allows user to enter and exit grid navigation', async () => {
-      const renderCellValue: renderCellValue = ({ rowIndex, columnId }) => (
+      const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) => (
         <>
           <button>{rowIndex}</button>, <button>{columnId}</button>
         </>

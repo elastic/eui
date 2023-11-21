@@ -17,7 +17,7 @@ import {
   EuiContextMenuPanel,
   EuiPopover,
   EuiDataGridPaginationProps,
-  renderCellValue,
+  RenderCellValue,
 } from '../../../../../src';
 
 const columns = [
@@ -50,7 +50,7 @@ for (let i = 1; i < 20; i++) {
   });
 }
 
-const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
   data[rowIndex][columnId];
 
 export default () => {

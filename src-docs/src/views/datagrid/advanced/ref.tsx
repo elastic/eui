@@ -20,7 +20,7 @@ import {
   EuiDataGridColumnSortingConfig,
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
-  renderCellValue,
+  RenderCellValue,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -34,7 +34,7 @@ for (let i = 1; i < 100; i++) {
   });
 }
 
-const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
   raw_data[rowIndex][columnId];
 
 export default () => {

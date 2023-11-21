@@ -19,7 +19,7 @@ import {
   EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridColumnSortingConfig,
-  renderCellValue,
+  RenderCellValue,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -68,7 +68,7 @@ const columns = [
   },
 ];
 
-const checkboxRowCellRender: renderCellValue = ({ rowIndex }) => (
+const checkboxRowCellRender: RenderCellValue = ({ rowIndex }) => (
   <EuiCheckbox
     id={`select-row-${rowIndex}`}
     aria-label="Select row"
@@ -106,7 +106,7 @@ const trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [
   },
 ];
 
-const RowCellRender: renderCellValue = ({ setCellProps, rowIndex }) => {
+const RowCellRender: RenderCellValue = ({ setCellProps, rowIndex }) => {
   setCellProps({ style: { width: '100%', height: 'auto' } });
 
   const firstName = raw_data[rowIndex].name.split(', ')[1];
@@ -149,10 +149,10 @@ const footerCellValues: { [key: string]: string } = {
     .toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`,
 };
 
-const renderCellValue: renderCellValue = ({ rowIndex, columnId }) =>
+const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
   raw_data[rowIndex][columnId];
 
-const RenderFooterCellValue: renderCellValue = ({ columnId, setCellProps }) => {
+const RenderFooterCellValue: RenderCellValue = ({ columnId, setCellProps }) => {
   const value = footerCellValues[columnId];
 
   useEffect(() => {
