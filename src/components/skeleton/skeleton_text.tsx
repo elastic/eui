@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useMemo, memo } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -32,42 +32,48 @@ export type EuiSkeletonTextProps = CommonProps &
     size?: TextSize;
   };
 
-export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = ({
-  isLoading = true,
-  lines = 3,
-  size = 'm',
-  className,
-  contentAriaLabel,
-  announceLoadingStatus,
-  announceLoadedStatus,
-  ariaLiveProps,
-  ariaWrapperProps,
-  children,
-  ...rest
-}) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiSkeletonTextStyles(euiTheme);
-  const lineCssStyles = [styles.euiSkeletonText, styles[size]];
+export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = memo(
+  ({
+    isLoading = true,
+    lines = 3,
+    size = 'm',
+    className,
+    contentAriaLabel,
+    announceLoadingStatus,
+    announceLoadedStatus,
+    ariaLiveProps,
+    ariaWrapperProps,
+    children,
+    ...rest
+  }) => {
+    const euiTheme = useEuiTheme();
 
-  const lineElements = [];
-  for (let i = 0; i < lines; i++) {
-    lineElements.push(<span key={i} css={lineCssStyles} />);
-  }
+    const lineElements = useMemo(() => {
+      const styles = euiSkeletonTextStyles(euiTheme);
+      const lineCssStyles = [styles.euiSkeletonText, styles[size]];
 
-  return (
-    <EuiSkeletonLoading
-      isLoading={isLoading}
-      loadingContent={
-        <span className={classNames('euiSkeletonText', className)} {...rest}>
-          {lineElements}
-        </span>
+      const lineElements = [];
+      for (let i = 0; i < lines; i++) {
+        lineElements.push(<span key={i} css={lineCssStyles} />);
       }
-      loadedContent={children || ''}
-      contentAriaLabel={contentAriaLabel}
-      announceLoadingStatus={announceLoadingStatus}
-      announceLoadedStatus={announceLoadedStatus}
-      ariaLiveProps={ariaLiveProps}
-      {...ariaWrapperProps}
-    />
-  );
-};
+      return lineElements;
+    }, [lines, size, euiTheme]);
+
+    return (
+      <EuiSkeletonLoading
+        isLoading={isLoading}
+        loadingContent={
+          <span className={classNames('euiSkeletonText', className)} {...rest}>
+            {lineElements}
+          </span>
+        }
+        loadedContent={children || ''}
+        contentAriaLabel={contentAriaLabel}
+        announceLoadingStatus={announceLoadingStatus}
+        announceLoadedStatus={announceLoadedStatus}
+        ariaLiveProps={ariaLiveProps}
+        {...ariaWrapperProps}
+      />
+    );
+  }
+);
