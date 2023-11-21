@@ -39,14 +39,10 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             tabindex="-1"
           >
             <div
-              class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+              class="euiDataGridHeaderCell__content"
+              title="columnA"
             >
-              <div
-                class="euiDataGridHeaderCell__innerTruncatedContent"
-                title="columnA"
-              >
-                columnA
-              </div>
+              columnA
             </div>
             <div
               class="euiDataGridHeaderCell__icon"
@@ -96,14 +92,10 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             tabindex="-1"
           >
             <div
-              class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+              class="euiDataGridHeaderCell__content"
+              title="columnB"
             >
-              <div
-                class="euiDataGridHeaderCell__innerTruncatedContent"
-                title="columnB"
-              >
-                columnB
-              </div>
+              columnB
             </div>
             <div
               class="euiDataGridHeaderCell__icon"

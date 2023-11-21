@@ -96,20 +96,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   });
 
   const cellContent = (
-    <div
-      className={classnames(
-        'euiDataGridHeaderCell__content',
-        'euiDataGridHeaderCell__content--withInnerTruncation'
-      )}
-    >
+    <>
       <div
         title={displayAsText || id}
-        className="euiDataGridHeaderCell__innerTruncatedContent"
+        className="euiDataGridHeaderCell__content"
       >
         {display || displayAsText || id}
       </div>
       {sortingArrow}
-    </div>
+    </>
   );
 
   return (

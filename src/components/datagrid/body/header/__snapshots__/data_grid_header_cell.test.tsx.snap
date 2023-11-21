@@ -27,14 +27,10 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+        class="euiDataGridHeaderCell__content"
+        title="someColumn"
       >
-        <div
-          class="euiDataGridHeaderCell__innerTruncatedContent"
-          title="someColumn"
-        >
-          someColumn
-        </div>
+        someColumn
       </div>
       <div
         class="euiDataGridHeaderCell__icon"

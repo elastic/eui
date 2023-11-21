@@ -612,14 +612,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="A"
-                      >
-                        A
-                      </div>
+                      A
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
@@ -669,14 +665,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="B"
-                      >
-                        B
-                      </div>
+                      B
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
@@ -1058,14 +1050,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="A"
-                      >
-                        A
-                      </div>
+                      A
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
@@ -1115,14 +1103,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="B"
-                      >
-                        B
-                      </div>
+                      B
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
@@ -1741,14 +1725,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="A"
-                      >
-                        Column A
-                      </div>
+                      Column A
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
@@ -1798,15 +1778,11 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="B"
-                      >
-                        <div>
-                          More Elements
-                        </div>
+                      <div>
+                        More Elements
                       </div>
                     </div>
                     <div
@@ -2167,14 +2143,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="A"
-                      >
-                        A
-                      </div>
+                      A
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
@@ -2224,14 +2196,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridHeaderCell__content euiDataGridHeaderCell__content--withInnerTruncation"
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <div
-                        class="euiDataGridHeaderCell__innerTruncatedContent"
-                        title="B"
-                      >
-                        B
-                      </div>
+                      B
                     </div>
                     <div
                       class="euiDataGridHeaderCell__icon"
