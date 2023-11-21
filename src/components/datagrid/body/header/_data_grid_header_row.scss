@@ -50,6 +50,10 @@
     .euiDataGridHeaderCell__icon {
       flex: 0 0 auto; // Ensure icon doesn't shrink
       margin-left: auto; // Aligns the icon to the right
+      // Center the icon vertically
+      display: flex;
+      align-items: center;
+      height: $euiSize;
       overflow: hidden;
       width: 0;
       opacity: 0;
