@@ -15,6 +15,7 @@ import React, {
   useRef,
   useCallback,
   useMemo,
+  memo,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import { keys } from '../../../../services';
@@ -35,156 +36,172 @@ import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
-export const EuiDataGridHeaderCell: FunctionComponent<
-  EuiDataGridHeaderCellProps
-> = ({
-  column,
-  index,
-  columns,
-  columnWidths,
-  schema,
-  schemaDetectors,
-  defaultColumnWidth,
-  setColumnWidth,
-  setVisibleColumns,
-  switchColumnPos,
-  headerIsInteractive,
-}) => {
-  const { id, display, displayAsText, displayHeaderCellProps } = column;
-  const width = columnWidths[id] || defaultColumnWidth;
+export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
+  memo(
+    ({
+      column,
+      index,
+      columns,
+      columnWidths,
+      schema,
+      schemaDetectors,
+      defaultColumnWidth,
+      setColumnWidth,
+      setVisibleColumns,
+      switchColumnPos,
+      headerIsInteractive,
+    }) => {
+      const { id, display, displayAsText, displayHeaderCellProps } = column;
+      const width = columnWidths[id] || defaultColumnWidth;
 
-  const columnType = schema[id] ? schema[id].columnType : null;
-  const classes = classnames(
-    { [`euiDataGridHeaderCell--${columnType}`]: columnType },
-    displayHeaderCellProps?.className
-  );
+      const columnType = schema[id] ? schema[id].columnType : null;
+      const classes = classnames(
+        { [`euiDataGridHeaderCell--${columnType}`]: columnType },
+        displayHeaderCellProps?.className
+      );
 
-  const { setFocusedCell, focusFirstVisibleInteractiveCell } =
-    useContext(DataGridFocusContext);
-  const { sorting } = useContext(DataGridSortingContext);
+      const { setFocusedCell, focusFirstVisibleInteractiveCell } =
+        useContext(DataGridFocusContext);
+      const { sorting } = useContext(DataGridSortingContext);
 
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const popoverArrowNavigationProps = usePopoverArrowNavigation();
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      const popoverArrowNavigationProps = usePopoverArrowNavigation();
 
-  const columnActions = getColumnActions({
-    column,
-    columns,
-    schema,
-    schemaDetectors,
-    setVisibleColumns,
-    focusFirstVisibleInteractiveCell,
-    setIsPopoverOpen,
-    sorting,
-    switchColumnPos,
-    setFocusedCell,
-  });
+      const columnActions = useMemo(() => {
+        return getColumnActions({
+          column,
+          columns,
+          schema,
+          schemaDetectors,
+          setVisibleColumns,
+          focusFirstVisibleInteractiveCell,
+          setIsPopoverOpen,
+          sorting,
+          switchColumnPos,
+          setFocusedCell,
+        });
+      }, [
+        column,
+        columns,
+        schema,
+        schemaDetectors,
+        setVisibleColumns,
+        focusFirstVisibleInteractiveCell,
+        setIsPopoverOpen,
+        sorting,
+        switchColumnPos,
+        setFocusedCell,
+      ]);
 
-  const showColumnActions = columnActions && columnActions.length > 0;
+      const showColumnActions = columnActions && columnActions.length > 0;
 
-  const { sortingArrow, ariaSort, sortingScreenReaderText } = useSortingUtils({
-    sorting,
-    id,
-    showColumnActions,
-  });
-  const sortingAriaId = useGeneratedHtmlId({
-    prefix: 'euiDataGridCellHeader',
-    suffix: 'sorting',
-  });
-  const actionsAriaId = useGeneratedHtmlId({
-    prefix: 'euiDataGridCellHeader',
-    suffix: 'actions',
-  });
+      const { sortingArrow, ariaSort, sortingScreenReaderText } =
+        useSortingUtils({
+          sorting,
+          id,
+          showColumnActions,
+        });
+      const sortingAriaId = useGeneratedHtmlId({
+        prefix: 'euiDataGridCellHeader',
+        suffix: 'sorting',
+      });
+      const actionsAriaId = useGeneratedHtmlId({
+        prefix: 'euiDataGridCellHeader',
+        suffix: 'actions',
+      });
 
-  return (
-    <EuiDataGridHeaderCellWrapper
-      {...displayHeaderCellProps}
-      className={classes}
-      id={id}
-      index={index}
-      width={width}
-      headerIsInteractive={headerIsInteractive}
-      aria-sort={ariaSort}
-    >
-      {column.isResizable !== false && width != null ? (
-        <EuiDataGridColumnResizer
-          columnId={id}
-          columnWidth={width}
-          setColumnWidth={setColumnWidth}
-        />
-      ) : null}
+      return (
+        <EuiDataGridHeaderCellWrapper
+          {...displayHeaderCellProps}
+          className={classes}
+          id={id}
+          index={index}
+          width={width}
+          headerIsInteractive={headerIsInteractive}
+          aria-sort={ariaSort}
+        >
+          {column.isResizable !== false && width != null ? (
+            <EuiDataGridColumnResizer
+              columnId={id}
+              columnWidth={width}
+              setColumnWidth={setColumnWidth}
+            />
+          ) : null}
 
-      {!showColumnActions ? (
-        <>
-          {sortingArrow}
-          <div
-            className="euiDataGridHeaderCell__content"
-            title={displayAsText || id}
-          >
-            {display || displayAsText || id}
-          </div>
-          {sortingScreenReaderText && (
-            <EuiScreenReaderOnly>
-              <p>{sortingScreenReaderText}</p>
-            </EuiScreenReaderOnly>
-          )}
-        </>
-      ) : (
-        <>
-          <EuiPopover
-            className="eui-fullWidth"
-            display="block"
-            panelPaddingSize="none"
-            offset={7}
-            button={
-              <button
-                className="euiDataGridHeaderCell__button"
-                onClick={() => {
-                  setFocusedCell([index, -1]);
-                  setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-                }}
-                aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
+          {!showColumnActions ? (
+            <>
+              {sortingArrow}
+              <div
+                className="euiDataGridHeaderCell__content"
+                title={displayAsText || id}
               >
-                {sortingArrow}
-                <div
-                  className="euiDataGridHeaderCell__content"
-                  title={displayAsText || id}
-                >
-                  {display || displayAsText || id}
-                </div>
-                <EuiIcon
-                  className="euiDataGridHeaderCell__icon"
-                  type="arrowDown"
-                  size="s"
-                  color="text"
-                  data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                {display || displayAsText || id}
+              </div>
+              {sortingScreenReaderText && (
+                <EuiScreenReaderOnly>
+                  <p>{sortingScreenReaderText}</p>
+                </EuiScreenReaderOnly>
+              )}
+            </>
+          ) : (
+            <>
+              <EuiPopover
+                className="eui-fullWidth"
+                display="block"
+                panelPaddingSize="none"
+                offset={7}
+                button={
+                  <button
+                    className="euiDataGridHeaderCell__button"
+                    onClick={() => {
+                      setFocusedCell([index, -1]);
+                      setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+                    }}
+                    aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
+                  >
+                    {sortingArrow}
+                    <div
+                      className="euiDataGridHeaderCell__content"
+                      title={displayAsText || id}
+                    >
+                      {display || displayAsText || id}
+                    </div>
+                    <EuiIcon
+                      className="euiDataGridHeaderCell__icon"
+                      type="arrowDown"
+                      size="s"
+                      color="text"
+                      data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                    />
+                  </button>
+                }
+                isOpen={isPopoverOpen}
+                closePopover={() => setIsPopoverOpen(false)}
+                {...popoverArrowNavigationProps}
+              >
+                <EuiListGroup
+                  listItems={columnActions}
+                  gutterSize="none"
+                  data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
                 />
-              </button>
-            }
-            isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}
-            {...popoverArrowNavigationProps}
-          >
-            <EuiListGroup
-              listItems={columnActions}
-              gutterSize="none"
-              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-            />
-          </EuiPopover>
+              </EuiPopover>
 
-          <p id={sortingAriaId} hidden>
-            {sortingScreenReaderText}
-          </p>
-          <p id={actionsAriaId} hidden>
-            <EuiI18n
-              token="euiDataGridHeaderCell.headerActions"
-              default="Click to view column header actions"
-            />
-          </p>
-        </>
-      )}
-    </EuiDataGridHeaderCellWrapper>
+              <p id={sortingAriaId} hidden>
+                {sortingScreenReaderText}
+              </p>
+              <p id={actionsAriaId} hidden>
+                <EuiI18n
+                  token="euiDataGridHeaderCell.headerActions"
+                  default="Click to view column header actions"
+                />
+              </p>
+            </>
+          )}
+        </EuiDataGridHeaderCellWrapper>
+      );
+    }
   );
-};
+EuiDataGridHeaderCell.displayName = 'EuiDataGridHeaderCell';
 
 /**
  * Column sorting utility helpers
@@ -208,14 +225,16 @@ export const useSortingUtils = ({
   /**
    * Arrow icon
    */
-  const sortingArrow = isColumnSorted ? (
-    <EuiIcon
-      type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
-      color="text"
-      className="euiDataGridHeaderCell__sortingArrow"
-      data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
-    />
-  ) : null;
+  const sortingArrow = useMemo(() => {
+    return isColumnSorted ? (
+      <EuiIcon
+        type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
+        color="text"
+        className="euiDataGridHeaderCell__sortingArrow"
+        data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
+      />
+    ) : null;
+  }, [id, isColumnSorted, sortedColumn]);
 
   /**
    * aria-sort attribute - should only be used when a single column is being sorted

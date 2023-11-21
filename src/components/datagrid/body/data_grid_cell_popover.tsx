@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useState, useCallback, ReactNode } from 'react';
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  ReactNode,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 
 import { keys } from '../../../services';
@@ -68,50 +74,61 @@ export const useCellPopover = (): {
     [popoverIsOpen, cellLocation]
   );
 
-  const cellPopoverContext = {
-    popoverIsOpen,
-    closeCellPopover,
-    openCellPopover,
-    cellLocation,
-    setPopoverAnchor,
-    setPopoverContent,
-    setCellPopoverProps,
-  };
+  const cellPopoverContext = useMemo(() => {
+    return {
+      popoverIsOpen,
+      closeCellPopover,
+      openCellPopover,
+      cellLocation,
+      setPopoverAnchor,
+      setPopoverContent,
+      setCellPopoverProps,
+    };
+  }, [popoverIsOpen, closeCellPopover, openCellPopover, cellLocation]);
 
   // Note that this popover is rendered once at the top grid level, rather than one popover per cell
-  const cellPopover = popoverIsOpen && popoverAnchor && (
-    <EuiWrappingPopover
-      isOpen={popoverIsOpen}
-      display="block"
-      hasArrow={false}
-      panelPaddingSize="s"
-      {...cellPopoverProps}
-      panelProps={{
-        'data-test-subj': 'euiDataGridExpansionPopover',
-        ...(cellPopoverProps.panelProps || {}),
-      }}
-      panelClassName={classNames(
-        'euiDataGridRowCell__popover',
-        cellPopoverProps.panelClassName,
-        cellPopoverProps.panelProps?.className
-      )}
-      onKeyDown={(event) => {
-        if (event.key === keys.F2 || event.key === keys.ESCAPE) {
-          event.preventDefault();
-          event.stopPropagation();
-          closeCellPopover();
-          // Ensure focus is returned to the parent cell
-          requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
-        }
-      }}
-      button={popoverAnchor}
-      closePopover={closeCellPopover}
-    >
-      {popoverContent}
-    </EuiWrappingPopover>
-  );
 
-  return { cellPopoverContext, cellPopover };
+  return useMemo(() => {
+    const cellPopover = popoverIsOpen && popoverAnchor && (
+      <EuiWrappingPopover
+        isOpen={popoverIsOpen}
+        display="block"
+        hasArrow={false}
+        panelPaddingSize="s"
+        {...cellPopoverProps}
+        panelProps={{
+          'data-test-subj': 'euiDataGridExpansionPopover',
+          ...(cellPopoverProps.panelProps || {}),
+        }}
+        panelClassName={classNames(
+          'euiDataGridRowCell__popover',
+          cellPopoverProps.panelClassName,
+          cellPopoverProps.panelProps?.className
+        )}
+        onKeyDown={(event) => {
+          if (event.key === keys.F2 || event.key === keys.ESCAPE) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeCellPopover();
+            // Ensure focus is returned to the parent cell
+            requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
+          }
+        }}
+        button={popoverAnchor}
+        closePopover={closeCellPopover}
+      >
+        {popoverContent}
+      </EuiWrappingPopover>
+    );
+    return { cellPopoverContext, cellPopover };
+  }, [
+    cellPopoverProps,
+    cellPopoverContext,
+    closeCellPopover,
+    popoverAnchor,
+    popoverContent,
+    popoverIsOpen,
+  ]);
 };
 
 /**

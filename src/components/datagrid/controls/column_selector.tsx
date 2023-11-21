@@ -122,30 +122,30 @@ export const useDataGridColumnSelector = (
     'Drag handle'
   );
 
-  let buttonText = (
-    <EuiI18n token="euiColumnSelector.button" default="Columns" />
-  );
+  const buttonText = useMemo(() => {
+    if (numberOfHiddenFields === 1) {
+      return (
+        <EuiI18n
+          token="euiColumnSelector.buttonActiveSingular"
+          default="{numberOfHiddenFields} column hidden"
+          values={{ numberOfHiddenFields }}
+        />
+      );
+    } else if (numberOfHiddenFields > 1) {
+      return (
+        <EuiI18n
+          token="euiColumnSelector.buttonActivePlural"
+          default="{numberOfHiddenFields} columns hidden"
+          values={{ numberOfHiddenFields }}
+        />
+      );
+    } else {
+      return <EuiI18n token="euiColumnSelector.button" default="Columns" />;
+    }
+  }, [numberOfHiddenFields]);
 
-  if (numberOfHiddenFields === 1) {
-    buttonText = (
-      <EuiI18n
-        token="euiColumnSelector.buttonActiveSingular"
-        default="{numberOfHiddenFields} column hidden"
-        values={{ numberOfHiddenFields }}
-      />
-    );
-  } else if (numberOfHiddenFields > 1) {
-    buttonText = (
-      <EuiI18n
-        token="euiColumnSelector.buttonActivePlural"
-        default="{numberOfHiddenFields} columns hidden"
-        values={{ numberOfHiddenFields }}
-      />
-    );
-  }
-
-  const columnSelector =
-    allowColumnHiding || allowColumnReorder ? (
+  const columnSelector = useMemo(() => {
+    return allowColumnHiding || allowColumnReorder ? (
       <EuiPopover
         data-test-subj="dataGridColumnSelectorPopover"
         isOpen={isOpen}
@@ -312,6 +312,23 @@ export const useDataGridColumnSelector = (
         )}
       </EuiPopover>
     ) : null;
+  }, [
+    allowColumnHiding,
+    allowColumnReorder,
+    buttonText,
+    isOpen,
+    columnSearchText,
+    displayValues,
+    visibleColumnIds,
+    controlBtnClasses,
+    sortedColumns,
+    setVisibleColumns,
+    setIsOpen,
+    onDragEnd,
+    isDragEnabled,
+    dragHandleAriaLabel,
+    filteredColumns,
+  ]);
 
   const orderedVisibleColumns = useMemo(
     () =>
@@ -343,10 +360,17 @@ export const useDataGridColumnSelector = (
     [setColumns, sortedColumns]
   );
 
-  return [
+  return useMemo(() => {
+    return [
+      columnSelector,
+      orderedVisibleColumns,
+      setVisibleColumns,
+      switchColumnPos,
+    ];
+  }, [
     columnSelector,
     orderedVisibleColumns,
     setVisibleColumns,
     switchColumnPos,
-  ];
+  ]);
 };

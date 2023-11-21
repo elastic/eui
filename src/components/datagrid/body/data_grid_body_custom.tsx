@@ -124,7 +124,26 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   /**
    * Cell render fn
    */
-  const cellProps = {
+  const cellProps = useMemo(() => {
+    return {
+      schema,
+      schemaDetectors,
+      pagination,
+      columns,
+      leadingControlColumns,
+      trailingControlColumns,
+      visibleColCount,
+      columnWidths,
+      defaultColumnWidth,
+      renderCellValue,
+      renderCellContext,
+      renderCellPopover,
+      interactiveCellId,
+      setRowHeight,
+      rowHeightsOptions,
+      rowHeightUtils,
+    };
+  }, [
     schema,
     schemaDetectors,
     pagination,
@@ -141,7 +160,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     setRowHeight,
     rowHeightsOptions,
     rowHeightUtils,
-  };
+  ]);
 
   const _Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
     ({ colIndex, visibleRowIndex, ...rest }) => {
@@ -158,7 +177,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
       };
       return <Cell {...props} {...rest} />;
     },
-    [...Object.values(cellProps), getRowHeight] // eslint-disable-line react-hooks/exhaustive-deps
+    [cellProps, getRowHeight, rowHeightUtils, rowHeightsOptions]
   );
 
   // Allow consumers to pass custom props/attributes/listeners etc. to the wrapping div

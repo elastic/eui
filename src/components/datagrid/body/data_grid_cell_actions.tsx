@@ -20,24 +20,17 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
 import classNames from 'classnames';
 
-export const EuiDataGridCellActions = ({
-  onExpandClick,
-  column,
-  rowIndex,
-  colIndex,
-  cellHeightType,
-}: {
-  onExpandClick: () => void;
-  column?: EuiDataGridColumn;
-  rowIndex: number;
-  colIndex: number;
-  cellHeightType: string;
-}) => {
-  // Note: The cell expand button/expansion popover is *always* rendered if
-  // column.cellActions is present (regardless of column.isExpandable).
-  // This is because cell actions are not otherwise accessible to keyboard
-  // or screen reader users
-  const expandButton = (
+const ButtonComponent = (props: EuiButtonIconProps) => (
+  <EuiButtonIcon
+    {...props}
+    aria-hidden
+    className="euiDataGridRowCell__actionButtonIcon"
+    iconSize="s"
+  />
+);
+
+const ExpandButton = ({ onExpandClick }: { onExpandClick: () => void }) => {
+  return (
     <EuiI18n
       key={'expand'}
       token="euiDataGridCellActions.expandButtonTitle"
@@ -58,18 +51,28 @@ export const EuiDataGridCellActions = ({
       )}
     </EuiI18n>
   );
+};
+
+export const EuiDataGridCellActions = ({
+  onExpandClick,
+  column,
+  rowIndex,
+  colIndex,
+  cellHeightType,
+}: {
+  onExpandClick: () => void;
+  column?: EuiDataGridColumn;
+  rowIndex: number;
+  colIndex: number;
+  cellHeightType: string;
+}) => {
+  // Note: The cell expand button/expansion popover is *always* rendered if
+  // column.cellActions is present (regardless of column.isExpandable).
+  // This is because cell actions are not otherwise accessible to keyboard
+  // or screen reader users
 
   const additionalButtons = useMemo(() => {
     if (!column || !Array.isArray(column?.cellActions)) return [];
-
-    const ButtonComponent = (props: EuiButtonIconProps) => (
-      <EuiButtonIcon
-        {...props}
-        aria-hidden
-        className="euiDataGridRowCell__actionButtonIcon"
-        iconSize="s"
-      />
-    );
 
     const [visibleCellActions] = getVisibleCellActions(
       column?.cellActions,
@@ -98,7 +101,12 @@ export const EuiDataGridCellActions = ({
     'euiDataGridRowCell__actions--overlay': cellHeightType !== 'default',
   });
 
-  return <div className={classes}>{[...additionalButtons, expandButton]}</div>;
+  return (
+    <div className={classes}>
+      {additionalButtons.map((button) => button)}
+      <ExpandButton onExpandClick={onExpandClick} />
+    </div>
+  );
 };
 
 export const EuiDataGridCellPopoverActions = ({

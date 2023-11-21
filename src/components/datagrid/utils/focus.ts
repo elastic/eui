@@ -140,14 +140,23 @@ export const useFocus = ({
     [isFocusedCellInView, focusFirstVisibleInteractiveCell]
   );
 
-  return {
+  return useMemo(() => {
+    return {
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+      focusProps,
+    };
+  }, [
     onFocusUpdate,
     focusedCell,
     setFocusedCell,
     setIsFocusedCellInView,
     focusFirstVisibleInteractiveCell,
     focusProps,
-  };
+  ]);
 };
 
 export const notifyCellOfFocusState = (

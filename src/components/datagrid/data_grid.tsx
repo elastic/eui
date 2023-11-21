@@ -104,6 +104,8 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 
+const emptyVirtualizationOptions = {};
+
 export const EuiDataGrid = memo(
   forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
     const {
@@ -272,11 +274,33 @@ export const EuiDataGrid = memo(
      */
     const { headerIsInteractive, handleHeaderMutation } =
       useHeaderIsInteractive(contentRef.current);
-    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus({
+    const {
+      focusProps: wrappingDivFocusProps,
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+    } = useFocus({
       headerIsInteractive,
       gridItemsRendered,
     });
 
+    const focusContext = useMemo(() => {
+      return {
+        onFocusUpdate,
+        focusedCell,
+        setFocusedCell,
+        setIsFocusedCellInView,
+        focusFirstVisibleInteractiveCell,
+      };
+    }, [
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+    ]);
     /**
      * Cell popover
      */
@@ -463,7 +487,9 @@ export const EuiDataGrid = memo(
                     visibleRows={visibleRows}
                     interactiveCellId={interactiveCellId}
                     rowHeightsOptions={rowHeightsOptions}
-                    virtualizationOptions={virtualizationOptions || {}}
+                    virtualizationOptions={
+                      virtualizationOptions || emptyVirtualizationOptions
+                    }
                     isFullScreen={isFullScreen}
                     gridStyles={gridStyles}
                     gridWidth={gridWidth}

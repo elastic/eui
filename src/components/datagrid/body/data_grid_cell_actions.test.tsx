@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { render } from '../../../test/rtl';
 
 import { EuiDataGridColumnCellAction } from '../data_grid_types';
@@ -29,35 +29,351 @@ describe('EuiDataGridCellActions', () => {
   };
 
   it('renders an expand button', () => {
-    const component = shallow(<EuiDataGridCellActions {...requiredProps} />);
+    const component = mount(<EuiDataGridCellActions {...requiredProps} />);
 
     expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridRowCell__actions"
+      <EuiDataGridCellActions
+        cellHeightType="default"
+        colIndex={0}
+        onExpandClick={[MockFunction]}
+        rowIndex={0}
       >
-        <EuiI18n
-          default="Click or hit enter to interact with cell content"
-          key="expand"
-          token="euiDataGridCellActions.expandButtonTitle"
+        <div
+          className="euiDataGridRowCell__actions"
         >
-          <Component />
-        </EuiI18n>
-      </div>
-    `);
+          <ExpandButton
+            onExpandClick={[MockFunction]}
+          >
+            <EuiI18n
+              default="Click or hit enter to interact with cell content"
+              key="expand"
+              token="euiDataGridCellActions.expandButtonTitle"
+            >
+              <EuiButtonIcon
+                aria-hidden={true}
+                className="euiDataGridRowCell__actionButtonIcon"
+                color="primary"
+                data-test-subj="euiDataGridCellExpandButton"
+                display="fill"
+                iconSize="s"
+                iconType="expandMini"
+                onClick={[MockFunction]}
+                title="Click or hit enter to interact with cell content"
+              >
+                <button
+                  aria-hidden={true}
+                  css="unknown styles"
+                  data-test-subj="euiDataGridCellExpandButton"
+                  disabled={false}
+                  onClick={[MockFunction]}
+                  tabIndex={-1}
+                  title="Click or hit enter to interact with cell content"
+                  type="button"
+                >
+                  <Insertion
+                    cache={
+                      Object {
+                        "insert": [Function],
+                        "inserted": Object {
+                          "wkdoi2-euiButtonIcon-xs-fill-primary": true,
+                        },
+                        "key": "css",
+                        "nonce": undefined,
+                        "registered": Object {},
+                        "sheet": StyleSheet {
+                          "_alreadyInsertedOrderInsensitiveRule": true,
+                          "_insertTag": [Function],
+                          "before": null,
+                          "container": <head>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiButtonIcon-xs-fill-primary{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:space-around;-ms-flex-pack:space-around;-webkit-justify-content:space-around;justify-content:space-around;inline-size:24px;block-size:24px;border-radius:4px;color:#FFF;background-color:#07C;outline-color:#000;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiButtonIcon-xs-fill-primary&gt;svg{pointer-events:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              @media screen and (prefers-reduced-motion: no-preference){.emotion-euiButtonIcon-xs-fill-primary{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.emotion-euiButtonIcon-xs-fill-primary:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.emotion-euiButtonIcon-xs-fill-primary:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.emotion-euiButtonIcon-xs-fill-primary:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            </style>
+                          </head>,
+                          "ctr": 3,
+                          "insertionPoint": undefined,
+                          "isSpeedy": false,
+                          "key": "css",
+                          "nonce": undefined,
+                          "prepend": undefined,
+                          "tags": Array [
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiButtonIcon-xs-fill-primary{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:space-around;-ms-flex-pack:space-around;-webkit-justify-content:space-around;justify-content:space-around;inline-size:24px;block-size:24px;border-radius:4px;color:#FFF;background-color:#07C;outline-color:#000;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiButtonIcon-xs-fill-primary&gt;svg{pointer-events:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              @media screen and (prefers-reduced-motion: no-preference){.emotion-euiButtonIcon-xs-fill-primary{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.emotion-euiButtonIcon-xs-fill-primary:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.emotion-euiButtonIcon-xs-fill-primary:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.emotion-euiButtonIcon-xs-fill-primary:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            </style>,
+                          ],
+                        },
+                      }
+                    }
+                    isStringTag={true}
+                    serialized={
+                      Object {
+                        "map": undefined,
+                        "name": "wkdoi2-euiButtonIcon-xs-fill-primary",
+                        "next": undefined,
+                        "styles": "
+          display: inline-block;
+          appearance: none;
+          cursor: pointer;
+          [object Object];
+          white-space: nowrap;
+          max-inline-size: 100%;;
+          vertical-align: middle;
+        display:inline-flex;align-items:center;justify-content:space-around;&>svg{pointer-events:none;};label:euiButtonIcon;;;
+          inline-size: 24px;
+          block-size: 24px;
+         border-radius:4px;;label:xs;;;color:#FFF;background-color:#07C;outline-color:#000;;label:fill;;;label:primary;;;
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: transform 250ms ease-in-out,
+              background-color 250ms ease-in-out;
 
+            &:hover:not(:disabled) {
+              transform: translateY(-1px);
+            }
+
+            &:focus {
+              animation: euiButtonActive 250ms
+                cubic-bezier(.34, 1.61, .7, 1);
+            }
+
+            &:active:not(:disabled) {
+              transform: translateY(1px);
+            }
+          }
+        ;;;",
+                        "toString": [Function],
+                      }
+                    }
+                  />
+                  <button
+                    aria-hidden={true}
+                    className="euiButtonIcon euiDataGridRowCell__actionButtonIcon emotion-euiButtonIcon-xs-fill-primary"
+                    data-test-subj="euiDataGridCellExpandButton"
+                    disabled={false}
+                    onClick={[MockFunction]}
+                    tabIndex={-1}
+                    title="Click or hit enter to interact with cell content"
+                    type="button"
+                  >
+                    <EuiIcon
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      size="s"
+                      type="expandMini"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="euiButtonIcon__icon"
+                        color="inherit"
+                        data-euiicon-type="expandMini"
+                        size="s"
+                      />
+                    </EuiIcon>
+                  </button>
+                </button>
+              </EuiButtonIcon>
+            </EuiI18n>
+          </ExpandButton>
+        </div>
+      </EuiDataGridCellActions>
+    `);
     const button: Function = component.find('EuiI18n').renderProp('children');
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
-      <EuiButtonIcon
-        aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon"
-        color="primary"
-        data-test-subj="euiDataGridCellExpandButton"
-        display="fill"
-        iconSize="s"
-        iconType="expandMini"
-        onClick={[MockFunction]}
-        title="expandButtonTitle"
-      />
+      <Component>
+        <EuiButtonIcon
+          aria-hidden={true}
+          className="euiDataGridRowCell__actionButtonIcon"
+          color="primary"
+          data-test-subj="euiDataGridCellExpandButton"
+          display="fill"
+          iconSize="s"
+          iconType="expandMini"
+          onClick={[MockFunction]}
+          title="expandButtonTitle"
+        >
+          <button
+            aria-hidden={true}
+            css="unknown styles"
+            data-test-subj="euiDataGridCellExpandButton"
+            disabled={false}
+            onClick={[MockFunction]}
+            tabIndex={-1}
+            title="expandButtonTitle"
+            type="button"
+          >
+            <Insertion
+              cache={
+                Object {
+                  "insert": [Function],
+                  "inserted": Object {
+                    "wkdoi2-euiButtonIcon-xs-fill-primary": true,
+                  },
+                  "key": "css",
+                  "nonce": undefined,
+                  "registered": Object {},
+                  "sheet": StyleSheet {
+                    "_alreadyInsertedOrderInsensitiveRule": true,
+                    "_insertTag": [Function],
+                    "before": null,
+                    "container": <head>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .emotion-euiButtonIcon-xs-fill-primary{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:space-around;-ms-flex-pack:space-around;-webkit-justify-content:space-around;justify-content:space-around;inline-size:24px;block-size:24px;border-radius:4px;color:#FFF;background-color:#07C;outline-color:#000;}
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .emotion-euiButtonIcon-xs-fill-primary&gt;svg{pointer-events:none;}
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        @media screen and (prefers-reduced-motion: no-preference){.emotion-euiButtonIcon-xs-fill-primary{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.emotion-euiButtonIcon-xs-fill-primary:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.emotion-euiButtonIcon-xs-fill-primary:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.emotion-euiButtonIcon-xs-fill-primary:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                      </style>
+                    </head>,
+                    "ctr": 3,
+                    "insertionPoint": undefined,
+                    "isSpeedy": false,
+                    "key": "css",
+                    "nonce": undefined,
+                    "prepend": undefined,
+                    "tags": Array [
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .emotion-euiButtonIcon-xs-fill-primary{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:space-around;-ms-flex-pack:space-around;-webkit-justify-content:space-around;justify-content:space-around;inline-size:24px;block-size:24px;border-radius:4px;color:#FFF;background-color:#07C;outline-color:#000;}
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .emotion-euiButtonIcon-xs-fill-primary&gt;svg{pointer-events:none;}
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        @media screen and (prefers-reduced-motion: no-preference){.emotion-euiButtonIcon-xs-fill-primary{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.emotion-euiButtonIcon-xs-fill-primary:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.emotion-euiButtonIcon-xs-fill-primary:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.emotion-euiButtonIcon-xs-fill-primary:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                      </style>,
+                    ],
+                  },
+                }
+              }
+              isStringTag={true}
+              serialized={
+                Object {
+                  "map": undefined,
+                  "name": "wkdoi2-euiButtonIcon-xs-fill-primary",
+                  "next": undefined,
+                  "styles": "
+          display: inline-block;
+          appearance: none;
+          cursor: pointer;
+          [object Object];
+          white-space: nowrap;
+          max-inline-size: 100%;;
+          vertical-align: middle;
+        display:inline-flex;align-items:center;justify-content:space-around;&>svg{pointer-events:none;};label:euiButtonIcon;;;
+          inline-size: 24px;
+          block-size: 24px;
+         border-radius:4px;;label:xs;;;color:#FFF;background-color:#07C;outline-color:#000;;label:fill;;;label:primary;;;
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: transform 250ms ease-in-out,
+              background-color 250ms ease-in-out;
+
+            &:hover:not(:disabled) {
+              transform: translateY(-1px);
+            }
+
+            &:focus {
+              animation: euiButtonActive 250ms
+                cubic-bezier(.34, 1.61, .7, 1);
+            }
+
+            &:active:not(:disabled) {
+              transform: translateY(1px);
+            }
+          }
+        ;;;",
+                  "toString": [Function],
+                }
+              }
+            />
+            <button
+              aria-hidden={true}
+              className="euiButtonIcon euiDataGridRowCell__actionButtonIcon emotion-euiButtonIcon-xs-fill-primary"
+              data-test-subj="euiDataGridCellExpandButton"
+              disabled={false}
+              onClick={[MockFunction]}
+              tabIndex={-1}
+              title="expandButtonTitle"
+              type="button"
+            >
+              <EuiIcon
+                aria-hidden="true"
+                className="euiButtonIcon__icon"
+                color="inherit"
+                size="s"
+                type="expandMini"
+              >
+                <span
+                  aria-hidden="true"
+                  className="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="expandMini"
+                  size="s"
+                />
+              </EuiIcon>
+            </button>
+          </button>
+        </EuiButtonIcon>
+      </Component>
     `);
   });
 
@@ -100,13 +416,9 @@ describe('EuiDataGridCellActions', () => {
           key="0"
           rowIndex={0}
         />
-        <EuiI18n
-          default="Click or hit enter to interact with cell content"
-          key="expand"
-          token="euiDataGridCellActions.expandButtonTitle"
-        >
-          <Component />
-        </EuiI18n>
+        <ExpandButton
+          onExpandClick={[MockFunction]}
+        />
       </div>
     `);
   });
