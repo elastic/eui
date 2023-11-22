@@ -153,6 +153,14 @@
     z-index: $euiZDataGridCellPopover - 1;
   }
 
+  .euiDataGridRowCell--alignLeft & {
+    border-bottom-right-radius: $euiBorderRadius / 2;
+  }
+
+  .euiDataGridRowCell--alignRight & {
+    border-bottom-left-radius: $euiBorderRadius / 2;
+  }
+
   // Visual trickery - fill in the gap between the cell outline border-radius & the actions
   &::after {
     content: '';
