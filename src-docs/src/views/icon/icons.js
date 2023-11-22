@@ -78,6 +78,7 @@ export const iconTypes = [
   'download',
   'email',
   'empty',
+  'endpoint',
   'eql',
   'eraser',
   'error',
