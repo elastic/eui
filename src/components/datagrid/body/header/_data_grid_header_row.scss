@@ -73,14 +73,9 @@
   // Align numeric and currency schemas to the right
   &.euiDataGridHeaderCell--numeric,
   &.euiDataGridHeaderCell--currency {
-    justify-content: flex-end; // Accounts for columns with disabled actions (no popover)
-
-    .euiDataGridHeaderCell__button {
-      justify-content: flex-end; // Accounts for cells with a popover
-    }
-
-    .euiDataGridHeaderCell__icon {
-      margin-left: 0;
+    .euiDataGridHeaderCell__content {
+      flex-grow: 1;
+      text-align: right;
     }
   }
 }
