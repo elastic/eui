@@ -34,7 +34,8 @@
   --euiDataGridCellOutlineColor: #{$euiColorPrimary};
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.euiDataGridRowCell--open {
     @include euiDataGridCellFocus;
   }
 
