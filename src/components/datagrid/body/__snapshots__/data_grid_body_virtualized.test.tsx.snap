@@ -29,21 +29,21 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           data-test-subj="dataGridColumnResizer"
           style="margin-right: 0px;"
         />
-        <div
-          class="euiPopover eui-fullWidth emotion-euiPopover-block"
+        <button
+          aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+          class="euiDataGridHeaderCell__button"
+          data-euigrid-tab-managed="true"
+          tabindex="-1"
         >
-          <button
-            aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-            class="euiDataGridHeaderCell__button"
-            data-euigrid-tab-managed="true"
-            tabindex="-1"
+          <div
+            class="euiDataGridHeaderCell__content"
+            title="columnA"
           >
-            <div
-              class="euiDataGridHeaderCell__content"
-              title="columnA"
-            >
-              columnA
-            </div>
+            columnA
+          </div>
+          <div
+            class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+          >
             <div
               class="euiDataGridHeaderCell__icon"
             >
@@ -53,8 +53,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
                 data-test-subj="dataGridHeaderCellActionButton-columnA"
               />
             </div>
-          </button>
-        </div>
+          </div>
+        </button>
         <p
           hidden=""
           id="euiDataGridCellHeader_generated-id_sorting"
@@ -82,21 +82,21 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           data-test-subj="dataGridColumnResizer"
           style="margin-right: 0px;"
         />
-        <div
-          class="euiPopover eui-fullWidth emotion-euiPopover-block"
+        <button
+          aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+          class="euiDataGridHeaderCell__button"
+          data-euigrid-tab-managed="true"
+          tabindex="-1"
         >
-          <button
-            aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-            class="euiDataGridHeaderCell__button"
-            data-euigrid-tab-managed="true"
-            tabindex="-1"
+          <div
+            class="euiDataGridHeaderCell__content"
+            title="columnB"
           >
-            <div
-              class="euiDataGridHeaderCell__content"
-              title="columnB"
-            >
-              columnB
-            </div>
+            columnB
+          </div>
+          <div
+            class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+          >
             <div
               class="euiDataGridHeaderCell__icon"
             >
@@ -106,8 +106,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
                 data-test-subj="dataGridHeaderCellActionButton-columnB"
               />
             </div>
-          </button>
-        </div>
+          </div>
+        </button>
         <p
           hidden=""
           id="euiDataGridCellHeader_generated-id_sorting"

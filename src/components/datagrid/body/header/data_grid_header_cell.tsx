@@ -80,6 +80,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   });
 
   const showColumnActions = columnActions && columnActions.length > 0;
+  const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const { sortingArrow, ariaSort, sortingScreenReaderText } = useSortingUtils({
     sorting,
@@ -136,21 +137,34 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         </>
       ) : (
         <>
-          <EuiPopover
-            className="eui-fullWidth"
-            display="block"
-            panelPaddingSize="none"
-            offset={7}
-            button={
-              <button
-                className="euiDataGridHeaderCell__button"
-                onClick={() => {
-                  setFocusedCell([index, -1]);
-                  setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-                }}
-                aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
-              >
-                {cellContent}
+          <button
+            className="euiDataGridHeaderCell__button"
+            onClick={() => {
+              setFocusedCell([index, -1]);
+              setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+            }}
+            aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
+            ref={actionsButtonRef}
+          >
+            {cellContent}
+            <EuiPopover
+              display="block"
+              panelPaddingSize="none"
+              offset={7}
+              anchorPosition="downRight"
+              css={{ marginInlineStart: 'auto' }} // Align to right
+              focusTrapProps={{
+                // We need to override the default EuiPopover `onClickOutside` since the anchor is separate from the actual button
+                onClickOutside: (event: Event) => {
+                  if (
+                    actionsButtonRef.current?.contains(event.target as Node) ===
+                    false
+                  ) {
+                    setIsPopoverOpen(false);
+                  }
+                },
+              }}
+              button={
                 <div className="euiDataGridHeaderCell__icon">
                   <EuiIcon
                     type="boxesVertical"
@@ -159,18 +173,18 @@ export const EuiDataGridHeaderCell: FunctionComponent<
                     data-test-subj={`dataGridHeaderCellActionButton-${id}`}
                   />
                 </div>
-              </button>
-            }
-            isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}
-            {...popoverArrowNavigationProps}
-          >
-            <EuiListGroup
-              listItems={columnActions}
-              gutterSize="none"
-              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-            />
-          </EuiPopover>
+              }
+              isOpen={isPopoverOpen}
+              closePopover={() => setIsPopoverOpen(false)}
+              {...popoverArrowNavigationProps}
+            >
+              <EuiListGroup
+                listItems={columnActions}
+                gutterSize="none"
+                data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+              />
+            </EuiPopover>
+          </button>
 
           <p id={sortingAriaId} hidden>
             {sortingScreenReaderText}
