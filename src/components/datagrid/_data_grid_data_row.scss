@@ -31,9 +31,10 @@
     border-right-color: $euiBorderColor;
   }
 
+  --euiDataGridCellOutlineColor: #{$euiColorPrimary};
+
   &:hover,
   &:focus {
-    --euiDataGridCellOutlineColor: #{$euiColorPrimary};
     @include euiDataGridCellFocus;
   }
 
