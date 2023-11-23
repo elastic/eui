@@ -88,9 +88,9 @@ export const useCellPopover = (): {
   // clicking the expansion cell action triggers an outside click
   const onClickOutside = useCallback(
     (event: Event) => {
-      if (!popoverAnchor) return;
-      const cellActions = popoverAnchor.previousElementSibling;
-      if (cellActions?.contains(event.target as Node) === false) {
+      const cellActions =
+        popoverAnchor?.parentElement?.parentElement?.previousElementSibling;
+      if (!cellActions?.contains(event.target as Node)) {
         closeCellPopover();
       }
     },
