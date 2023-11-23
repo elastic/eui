@@ -37,6 +37,12 @@ export default () => {
     {
       label: 'Vestibulum lobortis ipsum sit amet tellus scelerisque vestibulum',
     },
+    {
+      prepend: <EuiIcon type="alert" color="warning" aria-label="Note!" />,
+      label:
+        'This option has `textWrap` settings that will override the parent',
+      textWrap: 'truncate',
+    },
   ]);
 
   type TextWrap = NonNullable<EuiSelectableOptionsListProps['textWrap']>;

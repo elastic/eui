@@ -298,6 +298,25 @@ describe('EuiSelectableListItem', () => {
         ).toBeInTheDocument();
       });
 
+      it('allows setting `textWrap` per-option', () => {
+        const { container } = render(
+          <EuiSelectableList
+            {...selectableListRequiredProps}
+            textWrap="wrap"
+            isVirtualized={false}
+            options={[
+              { label: 'A' },
+              { label: 'B', textWrap: 'truncate' },
+              { label: 'C' },
+            ]}
+          />
+        );
+
+        expect(
+          container.querySelectorAll('.euiSelectableListItem__text--truncate')
+        ).toHaveLength(1);
+      });
+
       test('truncate', () => {
         const { container } = render(
           <EuiSelectableList

@@ -58,6 +58,12 @@ export type EuiSelectableOptionBase = CommonProps & {
    * Bypass `EuiSelectableItem` and avoid DOM attribute warnings.
    */
   data?: { [key: string]: any };
+  /**
+   * How to handle long text within the item.
+   * Wrapping only works if `isVirtualization` is false.
+   * @default 'truncate'
+   */
+  textWrap?: 'truncate' | 'wrap';
 };
 
 type _EuiSelectableGroupLabelOption = Omit<

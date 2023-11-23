@@ -274,7 +274,6 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       setActiveOptionIndex,
       searchable,
       searchValue,
-      textWrap,
       isVirtualized,
     } = this.props;
 
@@ -296,7 +295,10 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     const id = makeOptionId(index);
 
-    const _textWrap = isVirtualized ? 'truncate' : textWrap;
+    // Text wrapping
+    const canWrap = !isVirtualized;
+    const _textWrap = option.textWrap ?? this.props.textWrap;
+    const textWrap = canWrap ? _textWrap : 'truncate';
 
     return (
       <EuiSelectableListItem
@@ -324,7 +326,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         showIcons={showIcons}
         paddingSize={paddingSize}
         searchable={searchable}
-        textWrap={_textWrap}
+        textWrap={textWrap}
         {...(optionRest as EuiSelectableListItemProps)}
       >
         {renderOption
@@ -334,8 +336,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
               searchValue
             )
           : searchValue
-          ? this.renderSearchedText(label, _textWrap)
-          : _textWrap === 'truncate'
+          ? this.renderSearchedText(label, textWrap)
+          : textWrap === 'truncate'
           ? this.renderTruncatedText(label)
           : label}
       </EuiSelectableListItem>
