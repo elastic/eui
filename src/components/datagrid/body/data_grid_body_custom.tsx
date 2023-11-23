@@ -24,7 +24,7 @@ import {
 } from '../data_grid_types';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { Cell } from './data_grid_cell_wrapper';
+import { Cell } from './cell';
 
 export const EuiDataGridBodyCustomRender: FunctionComponent<
   EuiDataGridBodyProps

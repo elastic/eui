@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
-import { DataGridCellPopoverContext } from '../body/data_grid_cell_popover';
+import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 

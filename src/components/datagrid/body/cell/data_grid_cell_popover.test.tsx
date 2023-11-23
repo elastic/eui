@@ -7,12 +7,12 @@
  */
 
 import React from 'react';
-import { renderHook, renderHookAct } from '../../../test/rtl';
+import { renderHook, renderHookAct } from '../../../../test/rtl';
 import { shallow } from 'enzyme';
 
-import { keys } from '../../../services';
+import { keys } from '../../../../services';
 
-import { DataGridCellPopoverContextShape } from '../data_grid_types';
+import { DataGridCellPopoverContextShape } from '../../data_grid_types';
 import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
 
 describe('useCellPopover', () => {

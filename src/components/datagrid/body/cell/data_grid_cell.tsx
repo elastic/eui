@@ -21,14 +21,14 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { tabbable } from 'tabbable';
-import { keys } from '../../../services';
-import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiFocusTrap } from '../../focus_trap';
-import { EuiI18n } from '../../i18n';
-import { EuiTextBlockTruncate } from '../../text_truncate';
-import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
-import { DataGridFocusContext } from '../utils/focus';
-import { RowHeightVirtualizationUtils } from '../utils/row_heights';
+import { keys } from '../../../../services';
+import { EuiScreenReaderOnly } from '../../../accessibility';
+import { EuiFocusTrap } from '../../../focus_trap';
+import { EuiI18n } from '../../../i18n';
+import { EuiTextBlockTruncate } from '../../../text_truncate';
+import { hasResizeObserver } from '../../../observer/resize_observer/resize_observer';
+import { DataGridFocusContext } from '../../utils/focus';
+import { RowHeightVirtualizationUtils } from '../../utils/row_heights';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,
@@ -37,13 +37,13 @@ import {
   EuiDataGridCellValueProps,
   EuiDataGridCellPopoverElementProps,
   EuiDataGridRowHeightOption,
-} from '../data_grid_types';
+} from '../../data_grid_types';
 import {
   EuiDataGridCellActions,
   EuiDataGridCellPopoverActions,
 } from './data_grid_cell_actions';
 import { DefaultCellPopover } from './data_grid_cell_popover';
-import { IS_JEST_ENVIRONMENT } from '../../../utils';
+import { IS_JEST_ENVIRONMENT } from '../../../../utils';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {

@@ -8,10 +8,10 @@
 
 /// <reference types="cypress" />
 /// <reference types="cypress-real-events" />
-/// <reference types="../../../../cypress/support" />
+/// <reference types="../../../../../cypress/support" />
 
 import React, { useEffect } from 'react';
-import { EuiDataGrid, EuiDataGridProps } from '../';
+import { EuiDataGrid, EuiDataGridProps } from '../..';
 
 const baseProps: EuiDataGridProps = {
   'aria-label': 'Grid cell popover test',

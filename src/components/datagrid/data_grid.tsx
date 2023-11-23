@@ -41,10 +41,7 @@ import {
   EuiDataGridInMemoryRenderer,
 } from './utils/in_memory';
 import { useHeaderIsInteractive } from './body/header/header_is_interactive';
-import {
-  DataGridCellPopoverContext,
-  useCellPopover,
-} from './body/data_grid_cell_popover';
+import { DataGridCellPopoverContext, useCellPopover } from './body/cell';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {

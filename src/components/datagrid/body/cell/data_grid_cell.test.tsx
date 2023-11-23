@@ -9,11 +9,11 @@
 import React, { useEffect } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { act } from '@testing-library/react';
-import { keys } from '../../../services';
-import { render } from '../../../test/rtl';
-import { RowHeightUtils } from '../utils/__mocks__/row_heights';
-import { mockFocusContext } from '../utils/__mocks__/focus_context';
-import { DataGridFocusContext } from '../utils/focus';
+import { keys } from '../../../../services';
+import { render } from '../../../../test/rtl';
+import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
+import { mockFocusContext } from '../../utils/__mocks__/focus_context';
+import { DataGridFocusContext } from '../../utils/focus';
 
 import { EuiDataGridCell } from './data_grid_cell';
 

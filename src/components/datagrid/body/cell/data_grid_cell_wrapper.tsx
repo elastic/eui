@@ -14,8 +14,8 @@ import {
   EuiDataGridBodyProps,
   EuiDataGridHeaderRowProps,
   EuiDataGridSchemaDetector,
-} from '../data_grid_types';
-import { DataGridSortingContext } from '../utils/sorting';
+} from '../../data_grid_types';
+import { DataGridSortingContext } from '../../utils/sorting';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 
 import { EuiDataGridCell } from './data_grid_cell';
