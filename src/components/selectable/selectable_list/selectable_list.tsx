@@ -20,6 +20,7 @@ import {
   ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
 } from 'react-window';
+
 import { CommonProps, ExclusiveUnion } from '../../common';
 import {
   EuiAutoSizer,
@@ -27,6 +28,9 @@ import {
   EuiAutoSizeHorizontal,
 } from '../../auto_sizer';
 import { EuiHighlight } from '../../highlight';
+import { EuiMark } from '../../mark';
+import { EuiTextTruncate } from '../../text_truncate';
+
 import { EuiSelectableOption } from '../selectable_option';
 import { EuiSelectableOnChangeEvent } from '../selectable';
 import {
@@ -264,13 +268,14 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       allowExclusions,
       onFocusBadge,
       paddingSize,
-      searchValue,
       showIcons,
       makeOptionId,
       renderOption,
       setActiveOptionIndex,
       searchable,
+      searchValue,
       textWrap,
+      isVirtualized,
     } = this.props;
 
     if (isGroupLabel) {
@@ -290,6 +295,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     }
 
     const id = makeOptionId(index);
+
+    const _textWrap = isVirtualized ? 'truncate' : textWrap;
 
     return (
       <EuiSelectableListItem
@@ -317,18 +324,20 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         showIcons={showIcons}
         paddingSize={paddingSize}
         searchable={searchable}
-        textWrap={textWrap}
+        textWrap={_textWrap}
         {...(optionRest as EuiSelectableListItemProps)}
       >
-        {renderOption ? (
-          renderOption(
-            // @ts-ignore complex
-            { ..._option, ...optionData },
-            this.props.searchValue
-          )
-        ) : (
-          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
-        )}
+        {renderOption
+          ? renderOption(
+              // @ts-ignore complex
+              { ..._option, ...optionData },
+              searchValue
+            )
+          : searchValue
+          ? this.renderSearchedText(label, _textWrap)
+          : _textWrap === 'truncate'
+          ? this.renderTruncatedText(label)
+          : label}
       </EuiSelectableListItem>
     );
   }, areEqual);
@@ -392,6 +401,48 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         )}
       </EuiAutoSizer>
     );
+  };
+
+  renderSearchedText = (
+    text: string,
+    textWrap: EuiSelectableOptionsListProps['textWrap']
+  ) => {
+    const { searchValue } = this.props;
+
+    if (textWrap === 'wrap') {
+      return <EuiHighlight search={searchValue}>{text}</EuiHighlight>;
+    }
+
+    const searchPositionStart = text
+      .toLowerCase()
+      .indexOf(searchValue.toLowerCase());
+    const searchPositionCenter =
+      searchPositionStart + Math.floor(searchValue.length / 2);
+
+    return (
+      <EuiTextTruncate
+        truncation="startEnd"
+        truncationPosition={searchPositionCenter}
+        text={text}
+      >
+        {(text) => (
+          <>
+            {text.length >= searchValue.length ? (
+              <EuiHighlight search={searchValue}>{text}</EuiHighlight>
+            ) : (
+              // If the available truncated text is shorter than the full search string,
+              // just highlight the entire truncated text
+              <EuiMark>{text}</EuiMark>
+            )}
+          </>
+        )}
+      </EuiTextTruncate>
+    );
+  };
+
+  renderTruncatedText = (text: string) => {
+    // TODO: Set up `truncationProps` next
+    return <EuiTextTruncate text={text}>{(text) => text}</EuiTextTruncate>;
   };
 
   render() {

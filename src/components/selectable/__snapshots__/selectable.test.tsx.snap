@@ -178,9 +178,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
               <span
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
-                <span>
-                  Titan
-                </span>
+                Titan
               </span>
             </span>
           </li>
@@ -205,9 +203,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
               <span
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
-                <span>
-                  Enceladus
-                </span>
+                Enceladus
               </span>
             </span>
           </li>
@@ -232,9 +228,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
               <span
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
-                <span>
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
+                Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
             </span>
           </li>

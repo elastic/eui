@@ -67,28 +67,38 @@ describe('EuiSelectableListItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('searchValue', () => {
-      const { container } = render(
-        <EuiSelectableList
-          options={options}
-          searchValue="Mi"
-          {...selectableListRequiredProps}
-        />
-      );
+    describe('searchValue', () => {
+      it('renders just a EuiHighlight component when wrapping text', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            isVirtualized={false}
+            textWrap="wrap"
+            searchValue="Mi"
+          />
+        );
 
-      expect(container.firstChild).toMatchSnapshot();
-    });
+        expect(container.querySelector('.euiMark')).toHaveTextContent('Mi');
+        expect(
+          container.querySelector('.euiTextTruncate')
+        ).not.toBeInTheDocument();
+      });
 
-    test('searchValue', () => {
-      const { container } = render(
-        <EuiSelectableList
-          options={options}
-          searchValue="Mi"
-          {...selectableListRequiredProps}
-        />
-      );
+      it('renders an EuiTextTruncate component when truncating text', () => {
+        const { container, getByTestSubject } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            textWrap="truncate"
+            searchValue="titan"
+          />
+        );
 
-      expect(container.firstChild).toMatchSnapshot();
+        expect(getByTestSubject('titanOption')).toContainElement(
+          container.querySelector('.euiTextTruncate')
+        );
+      });
     });
 
     test('renderOption', () => {
@@ -258,16 +268,48 @@ describe('EuiSelectableListItem', () => {
     });
 
     describe('textWrap', () => {
-      test('can be "wrap"', () => {
+      test('wrap', () => {
         const { container } = render(
           <EuiSelectableList
             options={options}
-            textWrap="wrap"
             {...selectableListRequiredProps}
+            textWrap="wrap"
+            isVirtualized={false}
           />
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(
+          container.querySelector('.euiSelectableListItem__text--truncate')
+        ).not.toBeInTheDocument();
+      });
+
+      it('does not allow wrapping text if virtualization is on', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            textWrap="wrap"
+            isVirtualized={true}
+          />
+        );
+
+        expect(
+          container.querySelector('.euiSelectableListItem__text--truncate')
+        ).toBeInTheDocument();
+      });
+
+      test('truncate', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            textWrap="truncate"
+          />
+        );
+
+        expect(
+          container.querySelector('.euiSelectableListItem__text--truncate')
+        ).toBeInTheDocument();
       });
     });
   });
