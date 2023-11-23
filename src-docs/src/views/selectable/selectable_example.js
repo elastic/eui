@@ -38,6 +38,9 @@ const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 import SelectableSizing from './selectable_sizing';
 const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
 
+import Truncation from './selectable_truncation';
+const truncationSource = require('!!raw-loader!./selectable_truncation');
+
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
 
@@ -384,6 +387,38 @@ export const SelectableExample = {
 >
   {list => list}
 </EuiSelectable>`,
+    },
+    {
+      title: 'Truncation',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: truncationSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiSelectable</strong> defaults to{' '}
+            <EuiCode>listProps.textWrap="truncate"</EuiCode>, which truncates
+            long option text at the end of the string.
+          </p>
+        </>
+      ),
+      props: {
+        EuiSelectableOptionsList,
+        EuiSelectableOptionProps,
+      },
+      snippet: `<EuiSelectable
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  listProps={{
+    textWrap: 'truncate',
+  }}
+>
+  {list => list}
+</EuiSelectable>`,
+      demo: <Truncation />,
     },
     {
       title: 'Rendering the options',
