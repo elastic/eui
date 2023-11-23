@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
+  EuiDataGridToolbarControl,
   EuiButtonEmpty,
   EuiButtonIcon,
   EuiLink,
@@ -149,13 +150,12 @@ export default () => {
                 <EuiPopover
                   id={popoverId}
                   button={
-                    <EuiButtonEmpty
-                      size="xs"
+                    <EuiDataGridToolbarControl
                       iconType="download"
                       onClick={() => setPopover((open) => !open)}
                     >
                       Download
-                    </EuiButtonEmpty>
+                    </EuiDataGridToolbarControl>
                   }
                   isOpen={isPopoverOpen}
                   closePopover={() => setPopover(false)}

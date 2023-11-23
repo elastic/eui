@@ -537,7 +537,7 @@ describe('EuiDataGrid', () => {
         Array [
           Object {
             "aria-rowindex": 1,
-            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
             "data-gridcell-row-index": 0,
@@ -563,7 +563,7 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "aria-rowindex": 1,
-            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
             "data-gridcell-row-index": 0,
@@ -589,7 +589,7 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "aria-rowindex": 2,
-            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
             "data-gridcell-row-index": 1,
@@ -615,7 +615,7 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "aria-rowindex": 2,
-            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
             "data-gridcell-row-index": 1,
@@ -778,17 +778,17 @@ describe('EuiDataGrid', () => {
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -821,12 +821,12 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -853,10 +853,10 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -890,13 +890,13 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--currency",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--currency",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -939,8 +939,8 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -1901,13 +1901,15 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      // Get column sorting button
-      const sortColumn = component.find(
-        'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
-      );
-      const getButtonText = (): string =>
-        sortColumn.find('span[className~="euiButtonEmpty__text"]').text();
-      expect(getButtonText()).toEqual('Sort fields');
+      // Get column sort count
+      const getBadgeText = () => {
+        const button = component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+        );
+        const badge = button.find('span.euiDataGridToolbarControl__badge');
+        return badge.length ? badge.text() : false;
+      };
+      expect(getBadgeText()).toBeFalsy();
 
       // Update sorted columns
       component.setProps({
@@ -1916,7 +1918,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('1 field sorted');
+      expect(getBadgeText()).toEqual('1');
 
       // Update sorted columns again
       component.setProps({
@@ -1928,7 +1930,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('2 fields sorted');
+      expect(getBadgeText()).toEqual('2');
     });
   });
 

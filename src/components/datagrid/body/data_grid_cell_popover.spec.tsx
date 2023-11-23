@@ -16,12 +16,12 @@ import { EuiDataGrid, EuiDataGridProps } from '../';
 const baseProps: EuiDataGridProps = {
   'aria-label': 'Grid cell popover test',
   height: 300,
-  width: 300,
-  columns: [{ id: 'A' }, { id: 'B' }],
+  width: 400,
+  columns: [{ id: 'A' }, { id: 'B' }, { id: 'C', schema: 'numeric' }],
   rowCount: 2,
   renderCellValue: ({ rowIndex, columnId }) => `${columnId}, ${rowIndex}`,
   columnVisibility: {
-    visibleColumns: ['A', 'B'],
+    visibleColumns: ['A', 'B', 'C'],
     setVisibleColumns: () => {},
   },
 };
@@ -53,7 +53,7 @@ describe('EuiDataGridCellPopover', () => {
         '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
       ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -73,7 +73,7 @@ describe('EuiDataGridCellPopover', () => {
         '[data-gridcell-row-index="1"][data-gridcell-column-index="1"]'
       ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -93,12 +93,12 @@ describe('EuiDataGridCellPopover', () => {
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
     ).realClick();
 
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-    ).realClick();
+    ).realClick({ position: 'right' });
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
       'not.exist'
     );
@@ -126,7 +126,7 @@ describe('EuiDataGridCellPopover', () => {
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
     ).realClick();
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
 
     cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
   });
@@ -136,10 +136,13 @@ describe('EuiDataGridCellPopover', () => {
       ...baseProps,
       rowCount: 1,
       renderCellValue: ({ columnId }) => {
-        if (columnId === 'A') {
-          return 'short text';
-        } else {
-          return 'Very long text that should get cut off because it is so long';
+        switch (columnId) {
+          case 'A':
+            return 'short text';
+          case 'B':
+            return 'Very long text that should get cut off because it is so long, lorem ipsum dolor sit amet words words words';
+          case 'C':
+            return 'right aligned text';
         }
       },
     };
@@ -147,65 +150,81 @@ describe('EuiDataGridCellPopover', () => {
     const openCellPopover = (id: string) => {
       cy.get(
         `[data-gridcell-row-index="0"][data-gridcell-column-id="${id}"]`
-      ).realClick();
+      ).click();
       cy.realPress('Enter');
     };
 
-    it('default row height', () => {
+    it('small popover', () => {
+      cy.realMount(<EuiDataGrid {...props} />);
+
+      openCellPopover('A');
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'left', '1px')
+        .should('have.css', 'top', '73px')
+        .should('have.css', 'width', '112px');
+    });
+
+    it('large popover', () => {
       cy.realMount(<EuiDataGrid {...props} />);
 
       openCellPopover('B');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'left', '24.5px')
-        .should('have.css', 'top')
-        .and('match', /^(104|103)px/); // CI is off by 1 px
+        .should('have.css', 'left', '109px')
+        .should('have.css', 'top', '73px')
+        .should('have.css', 'width', '375px');
     });
 
-    it('lineCount row height', () => {
-      cy.realMount(
-        <EuiDataGrid
-          {...props}
-          rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
-        />
-      );
-      openCellPopover('B');
+    it('right aligned popover', () => {
+      cy.realMount(<EuiDataGrid {...props} />);
 
+      openCellPopover('C');
+
+      // Matchers used due to subpixel rendering shenanigans
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'left', '24.5px')
-        .should('have.css', 'top')
-        .and('match', /^(127|126)px/); // CI is off by 1 px
+        .should('have.css', 'top', '73px')
+        .should('have.css', 'left')
+        .and('match', /^254[.\d]+px$/);
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+        .should('have.css', 'width')
+        .and('match', /^144[.\d]+px$/);
     });
 
-    it('numerical row height', () => {
-      cy.realMount(
-        <EuiDataGrid {...props} rowHeightsOptions={{ defaultHeight: 40 }} />
-      );
-      openCellPopover('B');
+    describe('max popover dimensions', () => {
+      it('never exceeds 75% of the viewport width or 50% of the viewport height', () => {
+        cy.viewport(300, 200);
+        cy.realMount(<EuiDataGrid {...props} />);
 
-      // Should not be anchored to the bottom of the overflowing text
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'left', '24.5px')
-        .should('have.css', 'top')
-        .and('match', /^(106|105)px/); // CI is off by 1 px
-    });
+        openCellPopover('B');
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+          .should('have.css', 'width', '225px') // 300 * .75
+          .should('have.css', 'height', '100px'); // 200 * .5
+      });
 
-    it('auto row height', () => {
-      cy.realMount(
-        <EuiDataGrid {...props} rowHeightsOptions={{ defaultHeight: 'auto' }} />
-      );
+      it('does not exceed 400px width if the column width is smaller than 400px', () => {
+        cy.viewport(1000, 500);
+        cy.realMount(<EuiDataGrid {...props} />);
 
-      openCellPopover('B');
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'left', '24.5px')
-        .should('have.css', 'top')
-        .and('match', /^(151|150)px/); // CI is off by 1 px
+        openCellPopover('B');
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+          .should('have.css', 'width', '400px')
+          .should('have.css', 'height', '88px');
+      });
 
-      // The shorter cell content should not have the same top position
-      openCellPopover('A');
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'left', '19px')
-        .should('have.css', 'top')
-        .and('match', /^(103|102)px/); // CI is off by 1 px
+      it('matches the width of the column if the column width is larger than 400px', () => {
+        cy.viewport(1000, 500);
+        cy.realMount(
+          <EuiDataGrid
+            {...props}
+            width={500}
+            columns={[{ id: 'B', initialWidth: 500 }]}
+          />
+        );
+
+        openCellPopover('B');
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
+          .should('have.css', 'width', '500px')
+          .should('have.css', 'height', '64px');
+      });
     });
   });
 });

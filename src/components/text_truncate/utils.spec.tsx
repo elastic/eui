@@ -12,19 +12,7 @@
 
 import { TruncationUtils } from './utils';
 
-// CI doesn't have access to the Inter font, so we need to manually include it
-// for font calculations to work correctly
 const font = '14px Inter';
-before(() => {
-  const linkElem = document.createElement('link');
-  linkElem.setAttribute('rel', 'stylesheet');
-  linkElem.setAttribute(
-    'href',
-    'https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap'
-  );
-  document.head.appendChild(linkElem);
-  cy.wait(1000); // Wait a second to give the font time to load/swap in
-});
 
 describe('Truncation utils', () => {
   const params = {

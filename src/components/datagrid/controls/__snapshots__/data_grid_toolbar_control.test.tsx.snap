@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`euiDataGridToolbarControl passes props to the underlying EuiButtonEmpty 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiDataGridToolbarControl testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl-euiTestCss"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+  >
+    <span
+      color="inherit"
+      data-euiicon-type="sortable"
+    />
+    <span
+      class="euiDataGridToolbarControl__text eui-textTruncate"
+    >
+      Test button text
+    </span>
+  </span>
+</button>
+`;
+
+exports[`euiDataGridToolbarControl renders with a badge 1`] = `
+<button
+  class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="euiDataGridToolbarControl__text eui-textTruncate"
+    >
+      Test button text
+    </span>
+    <span
+      aria-label="- Active: 5"
+      class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+      role="marquee"
+    >
+      5
+    </span>
+  </span>
+</button>
+`;

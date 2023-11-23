@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../../components';
-import { EuiCode } from '../../../../../src';
+import {
+  EuiDataGridToolbarControl,
+  EuiCode,
+  EuiCallOut,
+} from '../../../../../src';
 
 import DataGridToolbarVisibility from './visibility';
 const dataGridToolbarVisibilitySource = require('!!raw-loader!./_grid');
@@ -174,7 +178,7 @@ export const DataGridToolbarExample = {
           </ul>
           <p>
             Although any node is allowed, the recommendation is to use{' '}
-            <EuiCode>{'<EuiButtonEmpty size="xs" />'}</EuiCode> for the
+            <EuiCode>{'<EuiDataGridToolbarControl />'}</EuiCode> for the
             left-side of the toolbar and{' '}
             <EuiCode>{'<EuiButtonIcon size="xs" />'}</EuiCode> for the
             right-side of the toolbar.
@@ -186,6 +190,7 @@ export const DataGridToolbarExample = {
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarAdditionalControlsOptions,
         EuiDataGridToolBarAdditionalControlsLeftOptions,
+        EuiDataGridToolbarControl,
       },
       demo: <DataGridControls />,
     },
@@ -211,18 +216,27 @@ export const DataGridToolbarExample = {
             <EuiCode>renderCustomToolbar</EuiCode> should only be used when a
             very custom layout (e.g. moving default buttons between sides,
             interspering custom controls between default controls, custom
-            responsive behavior, etc.) is required. We would caution you to keep
-            consistency in mind also when customizing the toolbar: if using
-            multiple datagrid instances across your app, users will typically
-            want to reach for the same controls for each grid. Changing the
-            available controls inconsistently across your app may result in user
-            frustration.
+            responsive behavior, etc.) is required. For consistent visuals, we
+            recommend using the{' '}
+            <EuiCode>{'<EuiDataGridToolbarControl />'}</EuiCode> subcomponent
+            when rendering custom controls.
           </p>
+          <EuiCallOut
+            color="warning"
+            iconType="alert"
+            title="Keep consistency in mind when customizing the toolbar"
+          >
+            If using multiple datagrid instances across your app, users will
+            typically want to reach for the same controls for each grid.
+            Changing the available controls inconsistently across your app may
+            result in user frustration.
+          </EuiCallOut>
         </>
       ),
       demo: <DataGridCustomToolbar />,
       props: {
         EuiDataGridCustomToolbarProps,
+        EuiDataGridToolbarControl,
       },
       snippet: `<EuiDataGrid
   aria-label="Data grid with a custom toolbar and additional content in the display settings popover "

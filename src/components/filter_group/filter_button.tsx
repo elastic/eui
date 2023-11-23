@@ -119,7 +119,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const buttonTextClassNames = classNames(
     'euiFilterButton__text',
     { 'euiFilterButton__text-hasNotification': showBadge },
-    textProps?.className
+    textProps && textProps.className
   );
 
   const badgeContent = showBadge && (
@@ -171,7 +171,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         css: [
           textStyles.euiFilterButton__text,
           showBadge && textStyles.hasNotification,
-          textProps?.css,
+          textProps && textProps.css,
         ],
       }}
       contentProps={{
