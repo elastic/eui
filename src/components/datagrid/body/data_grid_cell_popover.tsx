@@ -128,8 +128,16 @@ export const useCellPopover = (): {
           event.preventDefault();
           event.stopPropagation();
           closeCellPopover();
-          // Ensure focus is returned to the parent cell
-          requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
+          const cell =
+            popoverAnchor.parentElement?.parentElement?.parentElement;
+
+          // Prevent cell animation flash while focus is being shifted between popover and cell
+          cell?.setAttribute('data-keyboard-closing', 'true');
+          // Ensure focus is returned to the parent cell, and remove animation stopgap
+          requestAnimationFrame(() => {
+            popoverAnchor.parentElement!.focus();
+            cell?.removeAttribute('data-keyboard-closing');
+          });
         }
       }}
       button={popoverAnchor}
