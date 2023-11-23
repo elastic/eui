@@ -155,6 +155,18 @@ describe('EuiDataGridCellPopover', () => {
 
     cy.get('[data-test-subj="cellActionB"]').first().realClick();
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
+
+    // Clicking the cell actions outside the popover should not have disabled the focus trap
+    cy.repeatRealPress('Tab', 3);
+    cy.focused().should(
+      'have.attr',
+      'data-test-subj',
+      'euiDataGridExpansionPopover'
+    );
+    cy.get('body').realClick({ position: 'bottomRight' });
+    cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
+      'not.exist'
+    );
   });
 
   it('allows consumers to use setCellPopoverProps, passed from renderCellPopover, to customize popover props', () => {

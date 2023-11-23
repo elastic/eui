@@ -107,7 +107,7 @@ export const useCellPopover = (): {
       anchorPosition={popoverAnchorPosition}
       repositionToCrossAxis={false}
       {...cellPopoverProps}
-      focusTrapProps={{ onClickOutside }}
+      focusTrapProps={{ onClickOutside, clickOutsideDisables: false }}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
         ...(cellPopoverProps.panelProps || {}),
