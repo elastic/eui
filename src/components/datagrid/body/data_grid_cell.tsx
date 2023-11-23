@@ -49,13 +49,11 @@ const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
-    setPopoverAnchorRef: MutableRefObject<HTMLDivElement | null>;
     isExpanded: boolean;
     isControlColumn: boolean;
     isFocused: boolean;
     ariaRowIndex: number;
     rowHeight?: EuiDataGridRowHeightOption;
-    cellHeightType: string;
     cellActions?: ReactNode;
   }
 > = memo(
@@ -63,7 +61,6 @@ const EuiDataGridCellContent: FunctionComponent<
     renderCellValue,
     column,
     setCellContentsRef,
-    setPopoverAnchorRef,
     rowIndex,
     colIndex,
     ariaRowIndex,
@@ -71,7 +68,6 @@ const EuiDataGridCellContent: FunctionComponent<
     rowHeightUtils,
     isControlColumn,
     isFocused,
-    cellHeightType,
     cellActions,
     ...rest
   }) => {
@@ -79,13 +75,12 @@ const EuiDataGridCellContent: FunctionComponent<
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
-    const wrapperClasses = classNames(
-      'euiDataGridRowCell__contentWrapper',
-      `euiDataGridRowCell__${cellHeightType}Height`
-    );
+    const cellHeightType =
+      rowHeightUtils?.getHeightType(rowHeight) || 'default';
 
     const classes = classNames(
       'euiDataGridRowCell__content',
+      `euiDataGridRowCell__content--${cellHeightType}Height`,
       !isControlColumn && {
         'eui-textBreakWord': cellHeightType !== 'default',
         'eui-textTruncate': cellHeightType === 'default',
@@ -94,18 +89,7 @@ const EuiDataGridCellContent: FunctionComponent<
 
     let cellContent = (
       <div
-        ref={(el) => {
-          setCellContentsRef(el);
-          setPopoverAnchorRef.current =
-            cellHeightType === 'default'
-              ? // Default height cells need the popover to be anchored on the wrapper,
-                // in order for the popover to centered on the full cell width (as content
-                // width is affected by the width of cell actions)
-                (el?.parentElement as HTMLDivElement)
-              : // Numerical height cells need the popover anchor to be below the wrapper
-                // class, in order to set height: 100% on the portalled popover div wrappers
-                el;
-        }}
+        ref={setCellContentsRef}
         data-datagrid-cellcontent
         className={classes}
       >
@@ -146,11 +130,11 @@ const EuiDataGridCellContent: FunctionComponent<
     );
 
     return (
-      <div className={wrapperClasses}>
+      <>
         {cellContent}
         {screenReaderText}
         {cellActions}
-      </div>
+      </>
     );
   }
 );
@@ -180,6 +164,7 @@ export class EuiDataGridCell extends Component<
     isEntered: false,
     enableInteractions: false,
     disableCellTabIndex: false,
+    cellTextAlign: 'Left',
   };
   unsubscribeCell?: Function;
   focusTimeout: number | undefined;
@@ -445,6 +430,7 @@ export class EuiDataGridCell extends Component<
       this.contentObserver.disconnect();
     }
     this.preventTabbing();
+    this.setCellTextAlign();
   };
 
   onFocus = (e: FocusEvent<HTMLDivElement>) => {
@@ -503,6 +489,29 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  setCellTextAlign = () => {
+    if (this.cellContentsRef) {
+      const { columnType } = this.props;
+      if (!columnType) {
+        // If no schema was set, this is likely a left aligned column
+        this.setState({ cellTextAlign: 'Left' });
+      } else if (columnType === 'numeric' || columnType === 'currency') {
+        // Default EUI schemas that we know set right text align
+        this.setState({ cellTextAlign: 'Right' });
+      } else {
+        // If the consumer is using a custom schema, it may have custom text alignment
+        const textAlign = window
+          .getComputedStyle(this.cellContentsRef)
+          .getPropertyValue('text-align');
+
+        this.setState({
+          cellTextAlign:
+            textAlign === 'right' || textAlign === 'end' ? 'Right' : 'Left',
+        });
+      }
+    }
+  };
+
   isExpandable = () => {
     // A cell must always show an expansion popover if it has cell actions,
     // otherwise keyboard and screen reader users have no way of accessing them
@@ -526,12 +535,17 @@ export class EuiDataGridCell extends Component<
 
   handleCellPopover = () => {
     if (this.isPopoverOpen()) {
-      const { setPopoverAnchor, setPopoverContent, setCellPopoverProps } =
-        this.props.popoverContext;
+      const {
+        setPopoverAnchor,
+        setPopoverAnchorPosition,
+        setPopoverContent,
+        setCellPopoverProps,
+      } = this.props.popoverContext;
 
       // Set popover anchor
       const cellAnchorEl = this.popoverAnchorRef.current!;
       setPopoverAnchor(cellAnchorEl);
+      setPopoverAnchorPosition(`down${this.state.cellTextAlign}`);
 
       // Set popover contents with cell content
       const {
@@ -603,6 +617,7 @@ export class EuiDataGridCell extends Component<
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
+      `euiDataGridRowCell--align${this.state.cellTextAlign}`,
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
         'euiDataGridRowCell--open': popoverIsOpen,
@@ -697,21 +712,17 @@ export class EuiDataGridCell extends Component<
       rowIndex,
       rowHeightsOptions
     );
-    const cellHeightType =
-      rowHeightUtils?.getHeightType(rowHeight) || 'default';
 
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
       column,
       columnType,
-      cellHeightType,
       isExpandable,
       isExpanded: popoverIsOpen,
       isDetails: false,
       isFocused: this.state.isFocused,
       setCellContentsRef: this.setCellContentsRef,
-      setPopoverAnchorRef: this.popoverAnchorRef,
       rowHeight,
       rowHeightUtils,
       isControlColumn: cellClasses.includes(
@@ -721,19 +732,27 @@ export class EuiDataGridCell extends Component<
     };
 
     const cellActions = showCellActions && (
-      <EuiDataGridCellActions
-        rowIndex={rowIndex}
-        colIndex={colIndex}
-        column={column}
-        cellHeightType={cellHeightType}
-        onExpandClick={() => {
-          if (popoverIsOpen) {
-            closeCellPopover();
-          } else {
-            openCellPopover({ rowIndex: visibleRowIndex, colIndex });
-          }
-        }}
-      />
+      <>
+        <EuiDataGridCellActions
+          rowIndex={rowIndex}
+          colIndex={colIndex}
+          column={column}
+          onExpandClick={() => {
+            if (popoverIsOpen) {
+              closeCellPopover();
+            } else {
+              openCellPopover({ rowIndex: visibleRowIndex, colIndex });
+            }
+          }}
+        />
+        {/* Give the cell expansion popover a separate div/ref - otherwise the
+            extra popover wrappers mess up the absolute positioning and cause
+            animation stuttering */}
+        <div
+          ref={this.popoverAnchorRef}
+          data-test-subject="cellPopoverAnchor"
+        />
+      </>
     );
 
     const cellContent = isExpandable ? (

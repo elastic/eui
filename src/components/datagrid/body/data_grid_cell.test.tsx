@@ -26,6 +26,7 @@ describe('EuiDataGridCell', () => {
     closeCellPopover: jest.fn(),
     openCellPopover: jest.fn(),
     setPopoverAnchor: jest.fn(),
+    setPopoverAnchorPosition: jest.fn(),
     setPopoverContent: jest.fn(),
     setCellPopoverProps: () => {},
   };
@@ -216,6 +217,7 @@ describe('EuiDataGridCell', () => {
     it('resets cell props when the cell is moved (columnId) or sorted (rowIndex)', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mount(<EuiDataGridCell {...requiredProps} />);
+      setState.mockClear();
 
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
@@ -727,7 +729,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__defaultHeight').exists()
+        component.find('.euiDataGridRowCell__content--defaultHeight').exists()
       ).toBe(true);
       expect(component.find('.eui-textTruncate').exists()).toBe(true);
     });
@@ -740,9 +742,9 @@ describe('EuiDataGridCell', () => {
         />
       );
 
-      expect(component.find('.euiDataGridRowCell__autoHeight').exists()).toBe(
-        true
-      );
+      expect(
+        component.find('.euiDataGridRowCell__content--autoHeight').exists()
+      ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
     });
 
@@ -755,7 +757,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__numericalHeight').exists()
+        component.find('.euiDataGridRowCell__content--numericalHeight').exists()
       ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
     });
@@ -769,7 +771,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect(
-        component.find('.euiDataGridRowCell__lineCountHeight').exists()
+        component.find('.euiDataGridRowCell__content--lineCountHeight').exists()
       ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
       expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);

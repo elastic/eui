@@ -31,11 +31,6 @@
   }
 }
 
-.euiDataGrid__controlBtn--active,
-.euiDataGrid__controlBtn--active:focus {
-  font-weight: $euiFontWeightSemiBold;
-}
-
 @include euiDataGridStyles(bordersNone) {
   .euiDataGrid__controls {
     border: none;
