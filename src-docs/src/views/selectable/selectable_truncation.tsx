@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
 import {
+  useGeneratedHtmlId,
   EuiFlexGroup,
   EuiFlexItem,
   EuiButtonGroup,
+  EuiFieldNumber,
+  EuiTextTruncationTypes,
   EuiTitle,
   EuiSpacer,
   EuiSelectable,
@@ -40,13 +43,20 @@ export default () => {
     {
       prepend: <EuiIcon type="alert" color="warning" aria-label="Note!" />,
       label:
-        'This option has `textWrap` settings that will override the parent',
+        'This option has `textWrap` and `truncationProps` settings that will override the parent',
       textWrap: 'truncate',
+      truncationProps: {
+        truncation: 'start',
+        truncationOffset: 5,
+      },
     },
   ]);
 
   type TextWrap = NonNullable<EuiSelectableOptionsListProps['textWrap']>;
   const [textWrap, setTextWrap] = useState<TextWrap>('truncate');
+  const [truncation, setTruncation] = useState<EuiTextTruncationTypes>('end');
+  const [truncationOffset, setTruncationOffset] = useState(0);
+  const offsetId = useGeneratedHtmlId();
 
   return (
     <>
@@ -76,6 +86,41 @@ export default () => {
             </EuiText>
           </EuiFlexItem>
         )}
+        {textWrap === 'truncate' && (
+          <EuiFlexItem grow={false}>
+            <EuiTitle size="xxs">
+              <h3>Truncation type</h3>
+            </EuiTitle>
+            <EuiSpacer size="xs" />
+            <EuiButtonGroup
+              legend="Truncation type"
+              idSelected={truncation}
+              onChange={(id) => setTruncation(id as EuiTextTruncationTypes)}
+              options={[
+                { id: 'start', label: 'start ' },
+                { id: 'end', label: 'end' },
+                { id: 'startEnd', label: 'startEnd' },
+                { id: 'middle', label: 'middle' },
+              ]}
+              color="primary"
+            />
+          </EuiFlexItem>
+        )}
+        {textWrap === 'truncate' &&
+          (truncation === 'start' || truncation === 'end') && (
+            <EuiFlexItem grow={false}>
+              <EuiTitle size="xxs">
+                <h3 id={offsetId}>Truncation offset</h3>
+              </EuiTitle>
+              <EuiSpacer size="xs" />
+              <EuiFieldNumber
+                aria-labelledby={offsetId}
+                value={truncationOffset}
+                onChange={(e) => setTruncationOffset(Number(e.target.value))}
+                compressed
+              />
+            </EuiFlexItem>
+          )}
       </EuiFlexGroup>
       <EuiSpacer />
       <EuiPanel paddingSize="s" style={{ inlineSize: 400 }}>
@@ -86,6 +131,10 @@ export default () => {
           listProps={{
             isVirtualized: textWrap !== 'wrap',
             textWrap,
+            truncationProps: {
+              truncation,
+              truncationOffset,
+            },
           }}
         >
           {(list, search) => (

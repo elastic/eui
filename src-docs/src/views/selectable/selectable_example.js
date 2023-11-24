@@ -8,6 +8,7 @@ import {
   EuiSelectable,
   EuiSelectableMessage,
   EuiText,
+  EuiTextTruncate,
   EuiCallOut,
   EuiLink,
 } from '../../../../src';
@@ -403,17 +404,32 @@ export const SelectableExample = {
             <EuiCode>listProps.textWrap="truncate"</EuiCode>, which truncates
             long option text at the end of the string.
           </p>
+          <p>
+            You can use <EuiCode>listProps.truncationProps</EuiCode> and almost
+            any prop that{' '}
+            <Link to="/utilities/text-truncation">
+              <strong>EuiTextTruncate</strong>
+            </Link>{' '}
+            accepts to configure this behavior. This can be configured at the{' '}
+            <strong>EuiSelectable</strong> level, as well as by each individual
+            option.
+          </p>
         </>
       ),
       props: {
         EuiSelectableOptionsList,
         EuiSelectableOptionProps,
+        EuiTextTruncate,
       },
       snippet: `<EuiSelectable
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
   listProps={{
     textWrap: 'truncate',
+    truncationProps: {
+      truncation: 'start',
+      truncationOffset: 5,
+    },
   }}
 >
   {list => list}
