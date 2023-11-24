@@ -482,7 +482,10 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     truncationProps?: EuiSelectableOptionsListProps['truncationProps']
   ) => {
     return (
-      <EuiTextTruncate {...truncationProps} text={text}>
+      // For some bizarre reason, truncation in EuiSelectable is off on initial mount
+      // (but not on rerender) for Safari and _some_ truncation types in Firefox :|
+      // Waiting a tick before calculating truncation seems to smooth over the issue
+      <EuiTextTruncate calculationDelayMs={2} {...truncationProps} text={text}>
         {(text) => text}
       </EuiTextTruncate>
     );

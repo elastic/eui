@@ -14,6 +14,7 @@ import React, {
   useState,
   useMemo,
   useCallback,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
@@ -92,6 +93,12 @@ export type EuiTextTruncateProps = Omit<
      * or highlighting
      */
     children?: (truncatedString: string) => ReactNode;
+    /**
+     * For some edge case scenarios, EuiTextTruncate's calculations may be off until
+     * fonts are done loading or layout is done shifting or settling. Adding a delay
+     * may help resolve any rendering issues.
+     */
+    calculationDelayMs?: number;
   };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
@@ -119,6 +126,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   truncationOffset: _truncationOffset = 0,
   truncationPosition,
   ellipsis = '…',
+  calculationDelayMs,
   containerRef,
   className,
   ...rest
@@ -126,6 +134,14 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   // Note: This needs to be a state and not a ref to trigger a rerender on mount
   const [containerEl, setContainerEl] = useState<HTMLDivElement | null>(null);
   const refs = useCombinedRefs([setContainerEl, containerRef]);
+
+  // If necessary, wait a tick on mount before truncating
+  const [ready, setReady] = useState(!calculationDelayMs);
+  useEffect(() => {
+    if (calculationDelayMs) {
+      setTimeout(() => setReady(true), calculationDelayMs);
+    }
+  }, [calculationDelayMs]);
 
   // Handle exceptions where we need to override the passed props
   const { truncation, truncationOffset } = useMemo(() => {
@@ -148,7 +164,8 @@ const EuiTextTruncateWithWidth: FunctionComponent<
 
   const truncatedText = useMemo(() => {
     let truncatedText = '';
-    if (!containerEl || !width) return truncatedText;
+    if (!ready || !containerEl) return text;
+    if (!width) return truncatedText;
 
     const utils = new TruncationUtils({
       fullText: text,
@@ -184,6 +201,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     }
     return truncatedText;
   }, [
+    ready,
     width,
     text,
     truncation,

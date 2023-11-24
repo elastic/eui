@@ -18,6 +18,7 @@ jest.mock('./utils', () => ({
 }));
 
 import { EuiTextTruncate } from './text_truncate';
+import { act } from '@testing-library/react';
 
 describe('EuiTextTruncate', () => {
   beforeEach(() => jest.clearAllMocks());
@@ -35,6 +36,20 @@ describe('EuiTextTruncate', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('allows delaying truncation calculation by `calculationDelayMs`', () => {
+    jest.useFakeTimers();
+
+    const { queryByTestSubject } = render(
+      <EuiTextTruncate {...props} width={0} calculationDelayMs={50} />
+    );
+    expect(queryByTestSubject('truncatedText')).not.toBeInTheDocument();
+
+    act(() => jest.advanceTimersByTime(50));
+    expect(queryByTestSubject('truncatedText')).toBeInTheDocument();
+
+    jest.useRealTimers();
   });
 
   describe('resize observer', () => {
