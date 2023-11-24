@@ -40,16 +40,23 @@ describe('EuiTextTruncate', () => {
   describe('resize observer', () => {
     it('does not render a resize observer if a width is passed', () => {
       const onResize = jest.fn();
-      render(<EuiTextTruncate {...props} width={100} onResize={onResize} />);
+      const { container } = render(
+        <EuiTextTruncate {...props} width={100} onResize={onResize} />
+      );
       expect(onResize).not.toHaveBeenCalled();
+      expect(container.firstChild).not.toHaveAttribute('data-resize-observer');
     });
 
     it('renders a resize observer when no width is passed', () => {
       const onResize = jest.fn();
-      render(
+      const { container } = render(
         <EuiTextTruncate {...props} width={undefined} onResize={onResize} />
       );
       expect(onResize).toHaveBeenCalledWith(0);
+      expect(container.firstChild).toHaveAttribute(
+        'data-resize-observer',
+        'true'
+      );
     });
   });
 

@@ -245,7 +245,12 @@ const EuiTextTruncateWithResizeObserver: FunctionComponent<
   return (
     <EuiResizeObserver onResize={onResize}>
       {(ref) => (
-        <EuiTextTruncateWithWidth width={width} containerRef={ref} {...props} />
+        <EuiTextTruncateWithWidth
+          width={width}
+          containerRef={ref}
+          {...props}
+          data-resize-observer="true"
+        />
       )}
     </EuiResizeObserver>
   );
