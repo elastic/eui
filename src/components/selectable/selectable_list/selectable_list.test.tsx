@@ -331,6 +331,50 @@ describe('EuiSelectableListItem', () => {
         ).toBeInTheDocument();
       });
     });
+
+    describe('truncationProps', () => {
+      it('renders EuiTextTruncate', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            truncationProps={{ truncation: 'middle' }}
+          />
+        );
+
+        expect(container.querySelector('.euiTextTruncate')).toBeInTheDocument();
+      });
+
+      it('defaults to CSS truncation if truncationProps is not passed', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+          />
+        );
+
+        expect(
+          container.querySelector('.euiTextTruncate')
+        ).not.toBeInTheDocument();
+        expect(
+          container.querySelector('.euiSelectableListItem__text--truncate')
+        ).toBeInTheDocument();
+      });
+
+      it('allows setting `truncationProps` per-option', () => {
+        const { container } = render(
+          <EuiSelectableList
+            {...selectableListRequiredProps}
+            truncationProps={undefined}
+            options={[
+              { label: 'test', truncationProps: { truncation: 'startEnd' } },
+            ]}
+          />
+        );
+
+        expect(container.querySelector('.euiTextTruncate')).toBeInTheDocument();
+      });
+    });
   });
 
   describe('group labels', () => {

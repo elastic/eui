@@ -100,6 +100,15 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * Wrapping only works if virtualization is off.
      */
     textWrap?: EuiSelectableListItemProps['textWrap'];
+    /**
+     * If textWrap is set to `truncate`, you can pass a custom truncation configuration
+     * that accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop except for
+     * `text` and `children`.
+     *
+     * Note: when searching, custom truncation props are ignored. The highlighted search
+     * text will always take precedence.
+     */
+    truncationProps?: EuiSelectableOption['truncationProps'];
   } & EuiSelectableOptionsListVirtualizedProps;
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
@@ -260,6 +269,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       key,
       searchableLabel,
       data: _data,
+      truncationProps: _truncationProps,
       ...optionRest
     } = option;
 
@@ -300,6 +310,10 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     const _textWrap = option.textWrap ?? this.props.textWrap;
     const textWrap = canWrap ? _textWrap : 'truncate';
 
+    // Truncation config (if any). If none, CSS truncation is used
+    const truncationProps =
+      textWrap === 'truncate' ? this.getTruncationProps(option) : undefined;
+
     return (
       <EuiSelectableListItem
         key={id}
@@ -336,9 +350,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
               searchValue
             )
           : searchValue
-          ? this.renderSearchedText(label, textWrap)
-          : textWrap === 'truncate'
-          ? this.renderTruncatedText(label)
+          ? this.renderSearchedText(label, truncationProps)
+          : truncationProps
+          ? this.renderTruncatedText(label, truncationProps)
           : label}
       </EuiSelectableListItem>
     );
@@ -405,13 +419,32 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     );
   };
 
+  getTruncationProps = (option: EuiSelectableOption) => {
+    // Individual truncation settings should override component-wide settings
+    const truncationProps = {
+      ...this.props.truncationProps,
+      ...option.truncationProps,
+    };
+
+    // If we're not actually using EuiTextTruncate, no need to continue
+    const hasComplexTruncation =
+      this.props.searchValue || Object.keys(truncationProps).length > 0;
+    if (!hasComplexTruncation) return undefined;
+
+    // TODO: Performantly calculate a default option width, so that
+    // each list item doesn't have to generate its own resize observer
+
+    return truncationProps;
+  };
+
   renderSearchedText = (
     text: string,
-    textWrap: EuiSelectableOptionsListProps['textWrap']
+    truncationProps?: EuiSelectableOptionsListProps['truncationProps']
   ) => {
     const { searchValue } = this.props;
 
-    if (textWrap === 'wrap') {
+    // If truncationProps is undefined, we're using non-virtualized text wrapping
+    if (!truncationProps) {
       return <EuiHighlight search={searchValue}>{text}</EuiHighlight>;
     }
 
@@ -423,6 +456,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return (
       <EuiTextTruncate
+        {...truncationProps}
+        // When searching, don't allow overriding the truncation settings
         truncation="startEnd"
         truncationPosition={searchPositionCenter}
         text={text}
@@ -442,9 +477,15 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     );
   };
 
-  renderTruncatedText = (text: string) => {
-    // TODO: Set up `truncationProps` next
-    return <EuiTextTruncate text={text}>{(text) => text}</EuiTextTruncate>;
+  renderTruncatedText = (
+    text: string,
+    truncationProps?: EuiSelectableOptionsListProps['truncationProps']
+  ) => {
+    return (
+      <EuiTextTruncate {...truncationProps} text={text}>
+        {(text) => text}
+      </EuiTextTruncate>
+    );
   };
 
   render() {
@@ -475,6 +516,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       role,
       isVirtualized,
       textWrap,
+      truncationProps,
       ...rest
     } = this.props;
 

@@ -8,6 +8,7 @@
 
 import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
+import type { EuiTextTruncateProps } from '../text_truncate';
 
 export type EuiSelectableOptionCheckedType = 'on' | 'off' | 'mixed' | undefined;
 
@@ -64,6 +65,15 @@ export type EuiSelectableOptionBase = CommonProps & {
    * @default 'truncate'
    */
   textWrap?: 'truncate' | 'wrap';
+  /**
+   * If textWrap is set to `truncate`, you can pass a custom truncation configuration
+   * that accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop except for
+   * `text` and `children`.
+   *
+   * Note: when searching, custom truncation props are ignored. The highlighted search
+   * text will always take precedence.
+   */
+  truncationProps?: Partial<Omit<EuiTextTruncateProps, 'text' | 'children'>>;
 };
 
 type _EuiSelectableGroupLabelOption = Omit<

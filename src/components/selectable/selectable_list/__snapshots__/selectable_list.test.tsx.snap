@@ -202,22 +202,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Spaaaace"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Spaaaace
-                </span>
-              </div>
+              Spaaaace
             </span>
           </span>
         </li>
@@ -249,22 +234,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -289,22 +259,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Io"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Io
-                </span>
-              </div>
+              Io
             </span>
           </span>
         </li>
@@ -336,22 +291,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mercury"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mercury
-                </span>
-              </div>
+              Mercury
             </span>
           </span>
         </li>
@@ -376,22 +316,7 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mars"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mars
-                </span>
-              </div>
+              Mars
             </span>
           </span>
         </li>
@@ -451,22 +376,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -491,22 +401,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -531,22 +426,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -571,22 +451,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -611,22 +476,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -651,22 +501,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -719,22 +554,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -759,22 +579,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -799,22 +604,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
             <span
               class="euiSelectableListItem__append"
@@ -858,22 +648,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -898,22 +673,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -938,22 +698,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -1006,22 +751,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -1052,22 +782,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -1098,22 +813,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -1144,22 +844,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -1190,22 +875,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -1236,22 +906,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -1310,22 +965,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -1350,22 +990,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -1390,22 +1015,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -1430,22 +1040,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -1470,22 +1065,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -1510,22 +1090,7 @@ exports[`EuiSelectableListItem props bordered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -1578,22 +1143,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -1618,22 +1168,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -1658,22 +1193,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -1698,22 +1218,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -1738,22 +1243,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -1778,22 +1268,7 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -1846,22 +1321,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -1886,22 +1346,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -1926,22 +1371,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -1966,22 +1396,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -2006,22 +1421,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -2046,22 +1446,7 @@ exports[`EuiSelectableListItem props height is full 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -2280,22 +1665,7 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -2320,22 +1690,7 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -2360,22 +1715,7 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -2400,22 +1740,7 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -2440,22 +1765,7 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -2480,22 +1790,7 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -2548,22 +1843,7 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -2588,22 +1868,7 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -2628,22 +1893,7 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -2668,22 +1918,7 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -2708,22 +1943,7 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -2748,22 +1968,7 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -3012,22 +2217,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -3052,22 +2242,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -3092,22 +2267,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -3132,22 +2292,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -3172,22 +2317,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -3212,22 +2342,7 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -3278,22 +2393,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -3324,22 +2424,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -3370,22 +2455,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -3416,22 +2486,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -3462,22 +2517,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -3508,22 +2548,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
               <div
                 class="emotion-euiScreenReaderOnly"
               >
@@ -3578,22 +2603,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -3614,22 +2624,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -3650,22 +2645,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -3686,22 +2666,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -3722,22 +2687,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -3758,22 +2708,7 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -3825,22 +2760,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -3865,22 +2785,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -3905,22 +2810,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -3945,22 +2835,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -3985,22 +2860,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -4025,22 +2885,7 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -4092,22 +2937,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Titan"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Titan
-                </span>
-              </div>
+              Titan
             </span>
           </span>
         </li>
@@ -4132,22 +2962,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Enceladus"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Enceladus
-                </span>
-              </div>
+              Enceladus
             </span>
           </span>
         </li>
@@ -4172,22 +2987,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -4212,22 +3012,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -4252,22 +3037,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -4292,22 +3062,7 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
@@ -4359,22 +3114,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Mimas"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Mimas
-                </span>
-              </div>
+              Mimas
             </span>
           </span>
         </li>
@@ -4399,22 +3139,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
-              </div>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
             </span>
           </span>
         </li>
@@ -4439,22 +3164,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Tethys"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Tethys
-                </span>
-              </div>
+              Tethys
             </span>
           </span>
         </li>
@@ -4479,22 +3189,7 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
             <span
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
-              <div
-                class="euiTextTruncate emotion-euiTextTruncate"
-                title="Hyperion"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiTextTruncate__truncatedText emotion-euiTextTruncate__truncatedText"
-                  data-test-subj="truncatedText"
-                />
-                <span
-                  class="euiTextTruncate__fullText emotion-euiTextTruncate__fullText"
-                  data-test-subj="fullText"
-                >
-                  Hyperion
-                </span>
-              </div>
+              Hyperion
             </span>
           </span>
         </li>
