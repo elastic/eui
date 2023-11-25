@@ -158,12 +158,36 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   setActiveOptionIndex: (index: number, cb?: () => void) => void;
 };
 
-export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
+type State<T> = {
+  defaultOptionWidth: number;
+  optionArray: Array<EuiSelectableOption<T>>;
+  itemData: Record<number, EuiSelectableOption<T>>;
+  ariaPosInSetMap: Record<number, number>;
+  ariaSetSize: number;
+};
+
+export class EuiSelectableList<T> extends Component<
+  EuiSelectableListProps<T>,
+  State<T>
+> {
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
     isVirtualized: true,
   };
+
+  constructor(props: EuiSelectableListProps<T>) {
+    super(props);
+
+    const optionArray = props.visibleOptions || props.options;
+
+    this.state = {
+      defaultOptionWidth: 0,
+      optionArray: optionArray,
+      itemData: { ...optionArray },
+      ...this.calculateAriaSetAttrs(optionArray),
+    };
+  }
 
   listRef: FixedSizeList | null = null;
   listBoxRef: HTMLUListElement | null = null;
@@ -219,8 +243,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     }
   };
 
-  componentDidUpdate() {
-    const { activeOptionIndex } = this.props;
+  componentDidUpdate(prevProps: EuiSelectableListProps<T>) {
+    const { activeOptionIndex, visibleOptions, options } = this.props;
 
     if (this.listBoxRef && this.props.searchable !== true) {
       this.listBoxRef.setAttribute(
@@ -229,30 +253,36 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       );
     }
 
-    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
-      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
+    if (this.listRef && typeof activeOptionIndex !== 'undefined') {
+      this.listRef.scrollToItem(activeOptionIndex, 'auto');
+    }
+
+    if (
+      prevProps.visibleOptions !== visibleOptions ||
+      prevProps.options !== options
+    ) {
+      const optionArray = visibleOptions || options;
+      this.setState({
+        optionArray,
+        itemData: { ...optionArray },
+        ...this.calculateAriaSetAttrs(optionArray),
+      });
     }
   }
 
-  constructor(props: EuiSelectableListProps<T>) {
-    super(props);
-  }
-
-  ariaSetSize = 0;
-  ariaPosInSetMap: Record<number, number> = {};
-
-  calculateAriaSetAttrs = (optionArray: Array<EuiSelectableOption<T>>) => {
-    this.ariaPosInSetMap = {};
+  // This utility is necessary to exclude group labels from the aria set count
+  calculateAriaSetAttrs = (optionArray: State<T>['optionArray']) => {
+    const ariaPosInSetMap: State<T>['ariaPosInSetMap'] = {};
     let latestAriaPosIndex = 0;
 
     optionArray.forEach((option, index) => {
       if (!option.isGroupLabel) {
         latestAriaPosIndex++;
-        this.ariaPosInSetMap[index] = latestAriaPosIndex;
+        ariaPosInSetMap[index] = latestAriaPosIndex;
       }
     });
 
-    this.ariaSetSize = latestAriaPosIndex;
+    return { ariaPosInSetMap, ariaSetSize: latestAriaPosIndex };
   };
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
@@ -304,6 +334,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     }
 
     const id = makeOptionId(index);
+    const isFocused = activeOptionIndex === index;
 
     // Text wrapping
     const canWrap = !isVirtualized;
@@ -312,7 +343,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     // Truncation config (if any). If none, CSS truncation is used
     const truncationProps =
-      textWrap === 'truncate' ? this.getTruncationProps(option) : undefined;
+      textWrap === 'truncate'
+        ? this.getTruncationProps(option, isFocused)
+        : undefined;
 
     return (
       <EuiSelectableListItem
@@ -327,14 +360,14 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
           this.onAddOrRemoveOption(option, event);
         }}
         ref={ref ? ref.bind(null, index) : undefined}
-        isFocused={activeOptionIndex === index}
+        isFocused={isFocused}
         title={searchableLabel || label}
         checked={checked}
         disabled={disabled}
         prepend={prepend}
         append={append}
-        aria-posinset={this.ariaPosInSetMap[index]}
-        aria-setsize={this.ariaSetSize}
+        aria-posinset={this.state.ariaPosInSetMap[index]}
+        aria-setsize={this.state.ariaSetSize}
         onFocusBadge={onFocusBadge}
         allowExclusions={allowExclusions}
         showIcons={showIcons}
@@ -358,13 +391,12 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     );
   }, areEqual);
 
-  renderVirtualizedList = (
-    heightIsFull: boolean,
-    optionArray: EuiSelectableOption[]
-  ) => {
+  renderVirtualizedList = () => {
     if (!this.props.isVirtualized) return null;
 
+    const { optionArray, itemData } = this.state;
     const { windowProps, height: forcedHeight, rowHeight } = this.props;
+    const heightIsFull = forcedHeight === 'full';
 
     const virtualizationProps = {
       className: 'euiSelectableList__list',
@@ -373,7 +405,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       innerRef: this.setListBoxRef,
       innerElementType: 'ul',
       itemCount: optionArray.length,
-      itemData: optionArray,
+      itemData: itemData,
       itemSize: rowHeight,
       'data-skip-axe': 'scrollable-region-focusable',
       ...windowProps,
@@ -397,7 +429,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     }
 
     return heightIsFull ? (
-      <EuiAutoSizer>
+      <EuiAutoSizer onResize={this.calculateDefaultOptionWidth}>
         {({ width, height }: EuiAutoSize) => (
           <FixedSizeList width={width} height={height} {...virtualizationProps}>
             {this.ListRow}
@@ -405,7 +437,10 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         )}
       </EuiAutoSizer>
     ) : (
-      <EuiAutoSizer disableHeight={true}>
+      <EuiAutoSizer
+        disableHeight={true}
+        onResize={this.calculateDefaultOptionWidth}
+      >
         {({ width }: EuiAutoSizeHorizontal) => (
           <FixedSizeList
             width={width}
@@ -419,7 +454,45 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     );
   };
 
-  getTruncationProps = (option: EuiSelectableOption) => {
+  forceVirtualizedListRowRerender = () => {
+    this.setState({ itemData: { ...this.state.optionArray } });
+  };
+
+  // EuiTextTruncate is expensive perf-wise - we use several utilities here to
+  // offset its performance cost
+
+  // and creates a resize observer for
+  // each individual item. This logic tries to offset this performance hit by
+  // guesstimating a default width for each option
+  focusBadgeOffset = 0;
+
+  calculateDefaultOptionWidth = ({
+    width: containerWidth,
+  }: EuiAutoSizeHorizontal) => {
+    const { truncationProps, searchable, searchValue } = this.props;
+
+    // If it's not likely we'll need to use EuiTextTruncate, don't set state/rerender on every panel resize
+    const mayTruncate = searchable || truncationProps;
+    if (!mayTruncate) return;
+
+    const paddingOffset = this.props.paddingSize === 'none' ? 0 : 24; // Defaults to 's'
+    const checkedIconOffset = this.props.showIcons === false ? 0 : 28; // Defaults to true
+    this.focusBadgeOffset = this.props.onFocusBadge === false ? 0 : 46;
+
+    this.setState({
+      defaultOptionWidth: containerWidth - paddingOffset - checkedIconOffset,
+    });
+
+    // Potentially force list rows to rerender on dynamic resize as well,
+    // but try to do it as lightly as possible
+    if (truncationProps) {
+      this.forceVirtualizedListRowRerender();
+    } else if (searchable && searchValue) {
+      this.forceVirtualizedListRowRerender();
+    }
+  };
+
+  getTruncationProps = (option: EuiSelectableOption, isFocused: boolean) => {
     // Individual truncation settings should override component-wide settings
     const truncationProps = {
       ...this.props.truncationProps,
@@ -431,10 +504,17 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       this.props.searchValue || Object.keys(truncationProps).length > 0;
     if (!hasComplexTruncation) return undefined;
 
-    // TODO: Performantly calculate a default option width, so that
-    // each list item doesn't have to generate its own resize observer
+    // Determine whether we can use the optimized default option width
+    const { defaultOptionWidth } = this.state;
+    const useDefaultWidth = !option.append && !option.prepend;
+    const defaultWidth =
+      useDefaultWidth && defaultOptionWidth
+        ? isFocused
+          ? defaultOptionWidth - this.focusBadgeOffset
+          : defaultOptionWidth
+        : undefined;
 
-    return truncationProps;
+    return { width: defaultWidth, ...truncationProps };
   };
 
   renderSearchedText = (
@@ -523,15 +603,10 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       ...rest
     } = this.props;
 
-    const optionArray = visibleOptions || options;
-    this.calculateAriaSetAttrs(optionArray);
-
-    const heightIsFull = forcedHeight === 'full';
-
     const classes = classNames(
       'euiSelectableList',
       {
-        'euiSelectableList-fullHeight': heightIsFull,
+        'euiSelectableList-fullHeight': forcedHeight === 'full',
         'euiSelectableList-bordered': bordered,
       },
       className
@@ -540,19 +615,19 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     return (
       <div className={classes} {...rest}>
         {isVirtualized ? (
-          this.renderVirtualizedList(heightIsFull, optionArray)
+          this.renderVirtualizedList()
         ) : (
           <div
             className="euiSelectableList__list"
             ref={this.removeScrollableTabStop}
           >
             <ul ref={this.setListBoxRef}>
-              {optionArray.map((_, index) =>
+              {this.state.optionArray.map((_, index) =>
                 React.createElement(
                   this.ListRow,
                   {
                     key: index,
-                    data: optionArray,
+                    data: this.state.optionArray,
                     index,
                   },
                   null
