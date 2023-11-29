@@ -1,3 +1,43 @@
+## [`v91.1.0`](https://github.com/elastic/eui/releases/tag/v91.1.0)
+
+- Updated `EuiDataGrid` cell actions to display above cells instead of within them, to avoid content clipping issues ([#7343](https://github.com/elastic/eui/pull/7343))
+- Updated `EuiDataGrid` cell expansion popovers to sit on top of cells instead of below/next to them ([#7343](https://github.com/elastic/eui/pull/7343))
+- Updated `EuiListGroupItem` to render an external icon and screen reader affordance for links with `target` set to to `_blank` ([#7352](https://github.com/elastic/eui/pull/7352))
+- Updated `EuiListGroupItem` with a new `external` prop, which allows enabling or disabling the new external link icon ([#7352](https://github.com/elastic/eui/pull/7352))
+- Updated `EuiText` to no longer set any opinionated styles on child `<img>` tags - use `EuiImage` for image display within text instead ([#7360](https://github.com/elastic/eui/pull/7360))
+- Improved `EuiBasicTable`/`EuiInMemoryTable's mobile UI for custom actions ([#7361](https://github.com/elastic/eui/pull/7361))
+- Added a new `EuiDataGridToolbarControl` subcomponent, which is useful for rendering your own custom `EuiDataGrid` toolbar buttons while matching the look of the default controls ([#7369](https://github.com/elastic/eui/pull/7369))
+- Updated `EuiDataGrid`'s toolbar controls to show active/current counts in badges, and updated the Columns button icon ([#7369](https://github.com/elastic/eui/pull/7369))
+- Updated `EuiButtonEmpty` to allow passing `false` to `textProps`, which allows rendering custom button content without an extra text wrapper ([#7369](https://github.com/elastic/eui/pull/7369))
+- Updated `EuiDataGrid` column header cells to show the sort arrow after the heading text, instead of before ([#7371](https://github.com/elastic/eui/pull/7371))
+- Updated `EuiDataGrid`'s column header actions icon from a chevron to `boxesVertical` ([#7371](https://github.com/elastic/eui/pull/7371))
+- Updated the actions column in `EuiBasicTable` and `EuiInMemoryTable`s. Alongside `name`, the `description`, `href`, and `data-test-subj` properties now also accept an optional callback that the current `item` will be passed to ([#7373](https://github.com/elastic/eui/pull/7373))
+- Updated `EuiContextMenuItem` with a new `toolTipProps` prop ([#7373](https://github.com/elastic/eui/pull/7373))
+- `EuiSelectable` now allows configurable text truncation via `listProps.truncationProps` ([#7388](https://github.com/elastic/eui/pull/7388))
+- `EuiTextTruncate` now supports a new `calculationDelayMs` prop for working around font loading or layout shifting scenarios ([#7388](https://github.com/elastic/eui/pull/7388))
+
+**Bug fixes**
+
+- Fixed incorrect `EuiPopover` positioning calculations when `hasArrow` was set to false ([#7343](https://github.com/elastic/eui/pull/7343))
+- Fixed `EuiSuperSelect` to render options with falsy values (false, 0, and ''), but not nullish values (undefined or null) ([#7362](https://github.com/elastic/eui/pull/7362))
+- Fixed `EuiSuperSelect`'s typing to allow non-string values (e.g., booleans or numbers) ([#7362](https://github.com/elastic/eui/pull/7362))
+- Fixed `EuiDataGrid`'s numeric and currency column heading cells to be correctly right-aligned ([#7371](https://github.com/elastic/eui/pull/7371))
+- Fixed `EuiBasicTable` and `EuiInMemoryTable` actions not showing tooltip descriptions when rendered in the all actions popover menu ([#7373](https://github.com/elastic/eui/pull/7373))
+- Fixed missing underlines on `EuiContextMenu` link hover ([#7373](https://github.com/elastic/eui/pull/7373))
+- Fixed visual text truncation of `EuiBreadcrumb`s with `popoverContent` ([#7375](https://github.com/elastic/eui/pull/7375))
+- Fixed `EuiFormRow`s with `hasEmptyLabelSpace` being very slightly off in vertical alignment ([#7380](https://github.com/elastic/eui/pull/7380))
+
+**Deprecations**
+
+- Deprecated `EuiContextMenuItem`'s `toolTipTitle` prop. Use `toolTipProps.title` instead ([#7373](https://github.com/elastic/eui/pull/7373))
+- Deprecated `EuiContextMenuItem`'s `toolTipPosition` prop. Use `toolTipProps.position` instead ([#7373](https://github.com/elastic/eui/pull/7373))
+
+**Accessibility**
+
+- Fixed custom `EuiBasicTable`/`EuiInMemoryTable` rendering nested interactive custom actions ([#7361](https://github.com/elastic/eui/pull/7361))
+- Fixed `EuiBasicTable` and `EuiInMemoryTable` actions not correctly reading out action descriptions to screen readers ([#7373](https://github.com/elastic/eui/pull/7373))
+- Fixed `EuiBasicTable` and `EuiInMemoryTable` primary actions not visibly appearing on keyboard focus ([#7373](https://github.com/elastic/eui/pull/7373))
+
 ## [`v91.0.0`](https://github.com/elastic/eui/releases/tag/v91.0.0)
 
 - Updated the background color of `EuiPopover`s in dark mode to increase visibility & contrast against other page/panel backgrounds ([#7310](https://github.com/elastic/eui/pull/7310))
