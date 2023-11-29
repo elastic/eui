@@ -124,6 +124,7 @@ export const typeToPathMap = {
   email: 'email',
   empty: 'empty',
   emsApp: 'app_ems',
+  endpoint: 'endpoint',
   eql: 'eql',
   eraser: 'eraser',
   error: 'error',

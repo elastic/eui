@@ -2840,6 +2840,29 @@ exports[`EuiIcon props type emsApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type endpoint is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="endpoint"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9.406 13.454a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M6.86 6.09a2.545 2.545 0 1 1 2.497-3.045h.368a2.727 2.727 0 1 1 0 5.455H6.543a1.727 1.727 0 1 0 0 3.454h.367a2.546 2.546 0 1 1 0 1h-.367a2.727 2.727 0 1 1 0-5.454h3.182a1.727 1.727 0 1 0 0-3.455h-.368a2.546 2.546 0 0 1-2.496 2.046L6.86 6.09Zm0-1a1.545 1.545 0 1 1 0-3.09 1.545 1.545 0 0 1 0 3.09ZM9.407 14a1.545 1.545 0 1 1 0-3.09 1.545 1.545 0 0 1 0 3.09Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type eql is rendered 1`] = `
 <svg
   aria-hidden="true"
