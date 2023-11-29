@@ -485,9 +485,7 @@ export class EuiSelectableList<T> extends Component<
 
     // Potentially force list rows to rerender on dynamic resize as well,
     // but try to do it as lightly as possible
-    if (truncationProps) {
-      this.forceVirtualizedListRowRerender();
-    } else if (searchable && searchValue) {
+    if (truncationProps || (searchable && searchValue)) {
       this.forceVirtualizedListRowRerender();
     }
   };
