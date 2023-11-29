@@ -8,12 +8,17 @@
 
 import classNames from 'classnames';
 import React, { Component, LiHTMLAttributes } from 'react';
+
 import { CommonProps, keysOf } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
-import { EuiSelectableOptionCheckedType } from '../selectable_option';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
+
+import type {
+  EuiSelectableOption,
+  EuiSelectableOptionCheckedType,
+} from '../selectable_option';
 
 function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
   icon: IconType;
@@ -84,7 +89,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * How to handle long text within the item.
      * Wrapping only works if virtualization is off.
      */
-    textWrap?: 'truncate' | 'wrap';
+    textWrap?: EuiSelectableOption['textWrap'];
   };
 
 export class EuiSelectableListItem extends Component<EuiSelectableListItemProps> {

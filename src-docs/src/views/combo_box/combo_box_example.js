@@ -474,7 +474,7 @@ export const ComboBoxExample = {
           By default, <strong>EuiComboBox</strong> truncates long option text at
           the end of the string. You can use <EuiCode>truncationProps</EuiCode>{' '}
           and almost any prop that{' '}
-          <Link to="/utilities/text-truncate">
+          <Link to="/utilities/text-truncation">
             <strong>EuiTextTruncate</strong>
           </Link>{' '}
           accepts to configure this behavior. This can be configured at the{' '}
