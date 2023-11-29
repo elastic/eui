@@ -155,7 +155,7 @@ export interface _EuiComboBoxProps<T>
   /**
    * By default, EuiComboBox will truncate option labels at the end of
    * the string. You can use pass in a custom truncation configuration that
-   * accepts any prop that [EuiTextTruncate](/#/utilities/text-truncate) prop
+   * accepts any [EuiTextTruncate](/#/utilities/text-truncation) prop,
    * except for `text` and `children`.
    *
    * Note: when searching, custom truncation props are ignored. The highlighted search
