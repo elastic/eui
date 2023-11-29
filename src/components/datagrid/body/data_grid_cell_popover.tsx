@@ -88,9 +88,9 @@ export const useCellPopover = (): {
   // clicking the expansion cell action triggers an outside click
   const onClickOutside = useCallback(
     (event: Event) => {
-      if (!popoverAnchor) return;
-      const cellActions = popoverAnchor.previousElementSibling;
-      if (cellActions?.contains(event.target as Node) === false) {
+      const cellActions =
+        popoverAnchor?.parentElement?.parentElement?.previousElementSibling;
+      if (!cellActions?.contains(event.target as Node)) {
         closeCellPopover();
       }
     },
@@ -107,7 +107,7 @@ export const useCellPopover = (): {
       anchorPosition={popoverAnchorPosition}
       repositionToCrossAxis={false}
       {...cellPopoverProps}
-      focusTrapProps={{ onClickOutside }}
+      focusTrapProps={{ onClickOutside, clickOutsideDisables: false }}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
         ...(cellPopoverProps.panelProps || {}),
@@ -128,8 +128,16 @@ export const useCellPopover = (): {
           event.preventDefault();
           event.stopPropagation();
           closeCellPopover();
-          // Ensure focus is returned to the parent cell
-          requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
+          const cell =
+            popoverAnchor.parentElement?.parentElement?.parentElement;
+
+          // Prevent cell animation flash while focus is being shifted between popover and cell
+          cell?.setAttribute('data-keyboard-closing', 'true');
+          // Ensure focus is returned to the parent cell, and remove animation stopgap
+          requestAnimationFrame(() => {
+            popoverAnchor.parentElement!.focus();
+            cell?.removeAttribute('data-keyboard-closing');
+          });
         }
       }}
       button={popoverAnchor}

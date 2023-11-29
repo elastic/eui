@@ -57,7 +57,9 @@
   &:focus,
   &:focus-within,
   // Always make the cell actions visible when the cell popover is open
-  &.euiDataGridRowCell--open {
+  &.euiDataGridRowCell--open,
+  // Prevents the animation from replaying when keyboard focus is moved from the popover back to the cell
+  &[data-keyboard-closing] {
     .euiDataGridRowCell__actions {
       animation-duration: $euiAnimSpeedExtraFast;
       animation-name: euiDataGridCellActionsSlideIn;
@@ -67,7 +69,7 @@
   }
 
   // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
-  &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
+  &:not(:hover):not(:focus):not(.euiDataGridRowCell--open):not([data-keyboard-closing]) {
     .euiDataGridRowCell__actions {
       display: none;
     }

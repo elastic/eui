@@ -18,6 +18,7 @@ jest.mock('./utils', () => ({
 }));
 
 import { EuiTextTruncate } from './text_truncate';
+import { act } from '@testing-library/react';
 
 describe('EuiTextTruncate', () => {
   beforeEach(() => jest.clearAllMocks());
@@ -37,19 +38,40 @@ describe('EuiTextTruncate', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('allows delaying truncation calculation by `calculationDelayMs`', () => {
+    jest.useFakeTimers();
+
+    const { queryByTestSubject } = render(
+      <EuiTextTruncate {...props} width={0} calculationDelayMs={50} />
+    );
+    expect(queryByTestSubject('truncatedText')).not.toBeInTheDocument();
+
+    act(() => jest.advanceTimersByTime(50));
+    expect(queryByTestSubject('truncatedText')).toBeInTheDocument();
+
+    jest.useRealTimers();
+  });
+
   describe('resize observer', () => {
     it('does not render a resize observer if a width is passed', () => {
       const onResize = jest.fn();
-      render(<EuiTextTruncate {...props} width={100} onResize={onResize} />);
+      const { container } = render(
+        <EuiTextTruncate {...props} width={100} onResize={onResize} />
+      );
       expect(onResize).not.toHaveBeenCalled();
+      expect(container.firstChild).not.toHaveAttribute('data-resize-observer');
     });
 
     it('renders a resize observer when no width is passed', () => {
       const onResize = jest.fn();
-      render(
+      const { container } = render(
         <EuiTextTruncate {...props} width={undefined} onResize={onResize} />
       );
       expect(onResize).toHaveBeenCalledWith(0);
+      expect(container.firstChild).toHaveAttribute(
+        'data-resize-observer',
+        'true'
+      );
     });
   });
 
