@@ -1,5 +1,45 @@
 [
   {
+    "version": "91.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSelector.buttonActiveSingular",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSelector.buttonActivePlural",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSorting.buttonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.external.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbarControl.badgeAriaLabel",
+        "changeType": "added",
+        "value": "Active: {count}"
+      },
+      {
+        "token": "euiExternalLinkIcon.ariaLabel",
+        "changeType": "added",
+        "value": "External link"
+      },
+      {
+        "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
     "version": "91.0.0",
     "changes": [
       {
