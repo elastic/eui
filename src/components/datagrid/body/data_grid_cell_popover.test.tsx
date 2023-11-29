@@ -101,6 +101,7 @@ describe('useCellPopover', () => {
           display="block"
           focusTrapProps={
             Object {
+              "clickOutsideDisables": false,
               "onClickOutside": [Function],
             }
           }

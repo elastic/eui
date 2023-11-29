@@ -87,18 +87,83 @@ describe('EuiDataGridCellPopover', () => {
     });
   });
 
-  it('closes the cell popover when the originating cell is clicked', () => {
-    cy.realMount(<EuiDataGrid {...baseProps} />);
-    cy.get(
-      '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-    ).realClick();
+  describe('closes the cell popover', () => {
+    // Mount and open the first cell popover
+    beforeEach(() => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+      cy.get(
+        '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
+      ).click();
+      cy.realPress('Enter');
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
+    });
 
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
+    it('when the originating cell is clicked', () => {
+      cy.get(
+        '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
+      ).realClick({ position: 'right' });
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
+        'not.exist'
+      );
+    });
+
+    it('when the cell expand action button is clicked', () => {
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
+        'not.exist'
+      );
+    });
+
+    it('when anywhere outside the grid is clicked', () => {
+      cy.get('body').realClick({ position: 'bottomRight' });
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
+        'not.exist'
+      );
+    });
+  });
+
+  it('does not close the cell popover when other cell actions are clicked', () => {
+    const cellActions = [
+      ({ Component }) => (
+        <Component
+          iconType="plusInCircle"
+          aria-label="A"
+          data-test-subj="cellActionA"
+        />
+      ),
+      ({ Component }) => (
+        <Component
+          iconType="minusInCircle"
+          aria-label="B"
+          data-test-subj="cellActionB"
+        />
+      ),
+    ];
+    cy.realMount(
+      <EuiDataGrid {...baseProps} columns={[{ id: 'A', cellActions }]} />
+    );
+    cy.get('[data-test-subj="dataGridRowCell"]').first().click();
+    cy.realPress('Enter');
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
-    cy.get(
-      '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-    ).realClick({ position: 'right' });
+    cy.get('[data-test-subj="cellActionA"]').first().realClick();
+    cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
+
+    // Close and re-open the cell popover by clicking
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
+
+    cy.get('[data-test-subj="cellActionB"]').first().realClick();
+    cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
+
+    // Clicking the cell actions outside the popover should not have disabled the focus trap
+    cy.repeatRealPress('Tab', 3);
+    cy.focused().should(
+      'have.attr',
+      'data-test-subj',
+      'euiDataGridExpansionPopover'
+    );
+    cy.get('body').realClick({ position: 'bottomRight' });
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
       'not.exist'
     );
