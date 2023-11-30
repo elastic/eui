@@ -1,3 +1,10 @@
+## [`90.0.1`](https://github.com/elastic/eui/tree/vpatch)
+
+**This release is a backport intended for Kibana only.**
+
+- `EuiSelectable` now allows configurable text truncation via `listProps.truncationProps` ([#7388](https://github.com/elastic/eui/pull/7388))
+- `EuiTextTruncate` now supports a new `calculationDelayMs` prop for working around font loading or layout shifting scenarios ([#7388](https://github.com/elastic/eui/pull/7388))
+
 ## [`90.0.0`](https://github.com/elastic/eui/tree/v90.0.0)
 
 - Updated the `eventColor` prop on `EuiCommentEvent` to apply the color to the entire comment header. ([#7288](https://github.com/elastic/eui/pull/7288))
