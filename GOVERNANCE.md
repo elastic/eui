@@ -21,7 +21,7 @@ EUI is a mature library with over 100 publicly exported components, and generall
 - Bug fixes :D
 
 **What we don’t accept**
-- Features specific to a single use case (see One-offs, below)
+- Features specific to a single use case (see [One-offs](#one-offs), below)
 - Features that carry an excessive long-term maintenance burden, relative to their usage
 - Features that are inaccessible
 
