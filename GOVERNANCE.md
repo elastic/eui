@@ -10,7 +10,7 @@ EUI is a mature library with over 100 publicly exported components, and generall
 - If you cannot find an existing component or workaround for your use case:
   - Start a conversation with the EUI team, we may be able to help identify a solution or a workaround.
   - If it is clear a new component does not exist:
-    - If you believe the feature would qualify as a new addition to EUI (See What we do and don't accept below), submit a feature request.
+    - If you believe the feature would qualify as a new addition to EUI (See [What we do and don't accept](#what-we-do-and-dont-accept) below), submit a feature request.
     - If you believe this would require a one-off, please follow the one-off guidelines below.
 
 ## What we do and don’t accept
