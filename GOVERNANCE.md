@@ -33,7 +33,7 @@ A design system component should handle 90% of use cases. The remaining 10% may 
 
 In general, our philosophy is to make our components as flexible and customizable as possible, up to the point where that flexibility explicitly enables bad or inaccessible UX.
 
-If you can’t find a component that does what you need, start a discussion with us so we can help determine whether your use case is general enough to bring back to EUI, or specific enough to remain a one-off.
+If you can’t find a component that does what you need, [start a discussion](https://github.com/elastic/eui/discussions) with us so we can help determine whether your use case is general enough to bring back to EUI, or specific enough to remain a one-off.
 
 ## One-offs
 One-offs are a reality in mature design systems. If existing components do not meet your needs, it is acceptable to create a one-off component. One-offs must meet the following criteria to be considered for inclusion in EUI when its usage grows.
