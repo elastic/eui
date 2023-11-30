@@ -26,7 +26,7 @@ EUI is a mature library with over 100 publicly exported components, and generall
 - Features that are inaccessible
 
 **Open source**
-Elastic is an open-source repository, but not completely open-contribution. While we appreciate and welcome all your ideas and contributions, we cannot always guarantee we’ll accept them. Please see our CONTRIBUTING.md for more.
+Elastic is an open-source repository, but not completely open-contribution. While we appreciate and welcome all your ideas and contributions, we cannot always guarantee we’ll accept them. Please see our [CONTRIBUTING.md](./wiki/wiki/contributing-to-eui/README.md) for more.
 
 ## What a design system should and shouldn’t do
 A design system component should handle 90% of use cases. The remaining 10% may require customization through props, wrapping, or other actions.
