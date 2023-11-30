@@ -889,12 +889,12 @@
       "start": {
         "line": 767,
         "column": 8,
-        "index": 22243
+        "index": 22236
       },
       "end": {
         "line": 770,
         "column": 9,
-        "index": 22362
+        "index": 22355
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -6107,14 +6107,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 179,
+        "line": 184,
         "column": 10,
-        "index": 5596
+        "index": 5641
       },
       "end": {
-        "line": 182,
+        "line": 187,
         "column": 12,
-        "index": 5711
+        "index": 5756
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6125,14 +6125,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 190,
         "column": 10,
-        "index": 5757
+        "index": 5802
       },
       "end": {
-        "line": 188,
+        "line": 193,
         "column": 12,
-        "index": 5901
+        "index": 5946
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6143,14 +6143,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 193,
+        "line": 198,
         "column": 10,
-        "index": 5975
+        "index": 6020
       },
       "end": {
-        "line": 196,
+        "line": 201,
         "column": 12,
-        "index": 6123
+        "index": 6168
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6161,14 +6161,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 201,
+        "line": 206,
         "column": 10,
-        "index": 6189
+        "index": 6234
       },
       "end": {
-        "line": 204,
+        "line": 209,
         "column": 12,
-        "index": 6306
+        "index": 6351
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6179,14 +6179,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 207,
+        "line": 212,
         "column": 10,
-        "index": 6352
+        "index": 6397
       },
       "end": {
-        "line": 210,
+        "line": 215,
         "column": 12,
-        "index": 6500
+        "index": 6545
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6197,14 +6197,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 220,
         "column": 10,
-        "index": 6563
+        "index": 6608
       },
       "end": {
-        "line": 218,
+        "line": 223,
         "column": 12,
-        "index": 6690
+        "index": 6735
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6215,14 +6215,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
+        "line": 226,
         "column": 10,
-        "index": 6736
+        "index": 6781
       },
       "end": {
-        "line": 224,
+        "line": 229,
         "column": 12,
-        "index": 6893
+        "index": 6938
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6233,14 +6233,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 232,
         "column": 10,
-        "index": 6946
+        "index": 6991
       },
       "end": {
-        "line": 230,
+        "line": 235,
         "column": 12,
-        "index": 7113
+        "index": 7158
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6251,14 +6251,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 233,
+        "line": 238,
         "column": 10,
-        "index": 7166
+        "index": 7211
       },
       "end": {
-        "line": 236,
+        "line": 241,
         "column": 12,
-        "index": 7333
+        "index": 7378
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
