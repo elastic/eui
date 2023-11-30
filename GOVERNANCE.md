@@ -17,7 +17,7 @@ EUI is a mature library with over 100 publicly exported components, and generall
 
 **What we do accept**
 - Features that are clearly reusable
-- New changes must have a clear case for general reuse for Elastic products. Feature requests should include specific examples, or strong evidence of potential reuse.
+  - New changes must have a clear case for general reuse for Elastic products. Feature requests should include specific examples, or strong evidence of potential reuse.
 - Bug fixes :D
 
 **What we don’t accept**
