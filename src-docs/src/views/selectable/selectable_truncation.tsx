@@ -131,7 +131,6 @@ export default () => {
           searchable={true}
           options={options}
           onChange={(updatedOptions) => setOptions(updatedOptions)}
-          height={100}
           listProps={{
             isVirtualized: textWrap !== 'wrap',
             textWrap,
