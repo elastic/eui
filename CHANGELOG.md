@@ -1,3 +1,11 @@
+## [`v90.0.1-backport.0`](https://github.com/elastic/eui/releases/v90.0.1-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+**Bug fixes**
+
+- Fixed a bug with `EuiSelectable`s with custom `truncationProps`, where scrollbar widths were not being accounted for ([#7392](https://github.com/elastic/eui/pull/7392))
+
 ## [`90.0.1`](https://github.com/elastic/eui/tree/vpatch)
 
 **This release is a backport intended for Kibana only.**
