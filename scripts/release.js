@@ -147,7 +147,11 @@ const hasStep = (step) => {
     const otp = await getOneTimePassword(versionTarget);
 
     // publish new version to npm
-    execSync(`npm publish --otp=${otp}`, execOptions);
+    if (isSpecialRelease) {
+      execSync(`npm publish --tag=${args.type} --otp=${otp}`, execOptions);
+    } else {
+      execSync(`npm publish --otp=${otp}`, execOptions);
+    }
   }
 })().catch((e) => console.error(e));
 
