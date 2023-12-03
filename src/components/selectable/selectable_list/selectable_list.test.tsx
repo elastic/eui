@@ -362,6 +362,13 @@ describe('EuiSelectableListItem', () => {
   });
 
   describe('truncation performance optimization', () => {
+    // Mock requestAnimationFrame
+    beforeEach(() => {
+      jest
+        .spyOn(window, 'requestAnimationFrame')
+        .mockImplementation((cb: Function) => cb());
+    });
+
     it('does not render EuiTextTruncate if not virtualized and text is wrapping', () => {
       const { container } = render(
         <EuiSelectableList
@@ -395,6 +402,12 @@ describe('EuiSelectableListItem', () => {
     });
 
     it('attempts to use a default optimized option width calculated from the wrapping EuiAutoSizer', () => {
+      // jsdom doesn't return valid element offsetWidths, so we have to mock it here
+      Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+        configurable: true,
+        value: 600,
+      });
+
       const { container } = render(
         <EuiSelectableList
           options={options}
@@ -409,6 +422,9 @@ describe('EuiSelectableListItem', () => {
       expect(
         container.querySelector('[data-resize-observer]')
       ).not.toBeInTheDocument();
+
+      // Reset jsdom mock
+      Object.defineProperty(HTMLElement.prototype, 'offsetWidth', { value: 0 });
     });
 
     it('falls back to individual resize observers if options have append/prepend nodes', () => {

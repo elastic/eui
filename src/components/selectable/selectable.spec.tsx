@@ -284,6 +284,23 @@ describe('EuiSelectable', () => {
         );
       });
 
+      it('correctly accounts for scrollbar width', () => {
+        const multipleOptions = Array.from({ length: 5 }).map(
+          () => sharedProps.options[0]
+        );
+        cy.realMount(
+          <EuiSelectableListboxOnly
+            {...truncationProps}
+            height={100}
+            options={multipleOptions}
+          />
+        );
+
+        cy.get('[data-test-subj="truncatedText"]')
+          .first()
+          .should('have.text', 'Lorem ipsum …iscing elit.');
+      });
+
       it('correctly accounts for the keyboard focus badge', () => {
         cy.realMount(<EuiSelectableListboxOnly {...truncationProps} />);
 
