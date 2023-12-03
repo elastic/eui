@@ -42,6 +42,8 @@
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "yo-changelog": "yo ./generator-eui/changelog/index.js",
     "release": "node ./scripts/release.js",
+    "release-backport": "node ./scripts/release.js --type=backport",
+    "release-rc": "node ./scripts/release.js --type=prerelease",
     "storybook": "yarn compile-scss && storybook dev -p 6006",
     "build-storybook": "yarn compile-scss && storybook build"
   },

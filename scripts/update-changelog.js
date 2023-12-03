@@ -123,7 +123,14 @@ const updateChangelog = (upcomingChangelog, version) => {
     changelogArchive = fs.readFileSync(pathToChangelog).toString();
   } catch {}
 
-  const latestVersionHeading = `## [\`v${version}\`](https://github.com/elastic/eui/releases/tag/v${version})`;
+  let latestVersionHeading = `## [\`v${version}\`](https://github.com/elastic/eui/releases/v${version})`;
+  if (version.includes('-backport')) {
+    latestVersionHeading +=
+      '\n\n**This is a backport release only intended for use by Kibana.**';
+  } else if (version.includes('-rc')) {
+    latestVersionHeading +=
+      '\n\n**This is a prerelease candidate not intended for public use.**';
+  }
 
   if (changelogArchive.startsWith(latestVersionHeading)) {
     throwError('Cannot update changelog - already on latest version');

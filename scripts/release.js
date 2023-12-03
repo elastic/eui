@@ -21,6 +21,8 @@ const {
 const TYPE_MAJOR = 'major';
 const TYPE_MINOR = 'minor';
 const TYPE_PATCH = 'patch';
+const TYPE_BACKPORT = 'backport';
+const TYPE_PRERELEASE = 'prerelease';
 
 // NOTE: Because this script has to be run with `npm`, args must be passed after an extra `--`
 // e.g. `npm run release -- --dry-run`, `npm run release -- --steps=build,version`
@@ -42,9 +44,11 @@ const args = yargs(hideBin(process.argv))
         TYPE_MAJOR,
         TYPE_MINOR,
         TYPE_PATCH,
+        TYPE_BACKPORT,
+        TYPE_PRERELEASE,
       ],
       describe:
-        'Version type; For normal releases, can be "major", "minor" or "patch". If not passed, will be automatically prompted for based on the upcoming changelogs.',
+        'Version type; For normal releases, can be "major", "minor" or "patch". Special releases: "backport" and "prerelease". If not passed, will be automatically prompted for based on the upcoming changelogs.',
     },
     steps: {
       type: 'string',
@@ -64,6 +68,9 @@ const args = yargs(hideBin(process.argv))
       },
     },
   }).argv;
+
+const isSpecialRelease =
+  args.type === TYPE_BACKPORT || args.type === TYPE_PRERELEASE;
 
 const isDryRun = args['dry-run'] === true;
 
@@ -183,10 +190,13 @@ async function ensureCorrectSetup() {
   if (
     !branchStatus.includes("Your branch is up to date with 'upstream/main'.")
   ) {
-    console.error(
-      'Your branch is not pointed at "upstream/main". Please ensure your `main` branch is pointed at the correct remote first before proceeding.'
-    );
-    process.exit(1);
+    // Backports and prereleases do not need to be made from main branch
+    if (!isSpecialRelease) {
+      console.error(
+        'Your branch is not pointed at "upstream/main". Please ensure your `main` branch is pointed at the correct remote first before proceeding.'
+      );
+      process.exit(1);
+    }
   }
   if (!branchStatus.endsWith('nothing to commit, working tree clean')) {
     console.error(
@@ -203,6 +213,16 @@ async function ensureCorrectSetup() {
 }
 
 async function getVersionTypeFromChangelog(changelogMap) {
+  // Special releases don't need to check recommended semver
+  if (isSpecialRelease) {
+    console.log(
+      `${chalk.magenta('--type set to')} ${chalk.blue(
+        args.type
+      )}. Creating a special release`
+    );
+    return args.type;
+  }
+
   // @see update-changelog.js
   const hasFeatures = changelogMap['Features'].length > 0;
   const hasBugFixes = changelogMap['Bug fixes'].length > 0;
