@@ -69,6 +69,13 @@ const args = yargs(hideBin(process.argv))
     },
   }).argv;
 
+const isDryRun = args['dry-run'] === true;
+
+const hasStep = (step) => {
+  if (!args.steps) return true; // If no steps were passed, run them all
+  return args.steps.includes(step);
+};
+
 /**
  * Main script
  */
@@ -81,22 +88,28 @@ const args = yargs(hideBin(process.argv))
     process.exit(1);
   }
 
-  // ensure git and local setup is at latest
-  await ensureCorrectSetup();
+  if (isDryRun) {
+    console.warn(
+      chalk.yellow('Dry run mode: no changes will be pushed to npm or Github')
+    );
+  } else {
+    // ensure git and local setup is at latest
+    await ensureCorrectSetup();
+  }
 
   // run lint, unit, and e2e tests
-  if (args.steps.indexOf('test') > -1) {
+  if (hasStep('test')) {
     execSync('npm run test-ci', execOptions);
   }
 
   // (trans|com)pile `src` into `lib` and `dist`
-  if (args.steps.indexOf('build') > -1) {
+  if (hasStep('build')) {
     execSync('npm run build', execOptions);
   }
 
   let versionTarget;
 
-  if (args.steps.indexOf('version') > -1) {
+  if (hasStep('version')) {
     // Fetch latest tags and clear any local ones
     execSync('git fetch upstream --tags --prune --prune-tags --force');
 
@@ -120,12 +133,14 @@ const args = yargs(hideBin(process.argv))
     execSync(`npm version ${versionTarget}`, execOptions);
   }
 
-  if (args.steps.indexOf('tag') > -1) {
+  if (hasStep('tag') && !isDryRun) {
     // push the version commit & tag to upstream
-    execSync('git push upstream --follow-tags', execOptions);
+    // conditionally skip prepush test hook if we already ran the test step earlier
+    const withTests = hasStep('test') ? '--no-verify' : '';
+    execSync(`git push upstream --follow-tags ${withTests}`, execOptions);
   }
 
-  if (args.steps.indexOf('publish') > -1) {
+  if (hasStep('publish') && !isDryRun) {
     // prompt user for npm 2FA
     const otp = await getOneTimePassword(versionTarget);
 
