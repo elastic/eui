@@ -165,29 +165,8 @@ const updateChangelogYears = (year) => {
   }
 };
 
-/**
- * Command to manually update the changelog (standalone from release.js).
- * Primarily used for backports. Usage from project root:
- *
- * npm run update-changelog-manual --release=patch|minor|major (must be `npm` and not `yarn` to specify the release arg)
- * OR
- * node -e "require('./scripts/update-changelog').manualChangelog('patch|minor|major')"
- */
-const manualChangelog = (release) => {
-  const upcomingVersion = require('./update-versions-log').getUpcomingVersion(
-    release || 'patch'
-  );
-  console.log(
-    chalk.magenta(`Manually updating changelog to ${upcomingVersion}`)
-  );
-
-  const { changelog } = collateChangelogFiles();
-  updateChangelog(changelog, upcomingVersion);
-};
-
 module.exports = {
   collateChangelogFiles,
   updateChangelog,
   updateChangelogYears,
-  manualChangelog,
 };
