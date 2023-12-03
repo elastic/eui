@@ -38,7 +38,6 @@
     "test-cypress-a11y": "yarn test-cypress --a11y",
     "combine-test-coverage": "sh ./scripts/combine-coverage.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
-    "update-token-changelog": "node ./scripts/update-token-changelog.js",
     "update-changelog-manual": "node -e \"require('./scripts/update-changelog').manualChangelog('${npm_config_release}')\"",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "yo-changelog": "yo ./generator-eui/changelog/index.js",

@@ -8,6 +8,7 @@ const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
 const execOptions = { cwd, stdio };
 
+const updateTokenChangelog = require('./update-token-changelog');
 const {
   collateChangelogFiles,
   updateChangelog,
@@ -108,20 +109,21 @@ const hasStep = (step) => {
     // Fetch latest tags and clear any local ones
     execSync('git fetch upstream --tags --prune --prune-tags --force');
 
+    // Prompt user for what type of version bump to make (major|minor|patch) based on the upcoming changelogs
     const { changelogMap, changelog } = collateChangelogFiles();
+    const versionType = await getVersionTypeFromChangelog(changelogMap);
 
-    // prompt user for what type of version bump to make (major|minor|patch)
-    versionTarget = await getVersionTypeFromChangelog(changelogMap);
+    // Get the upcoming version target
+    versionTarget = getUpcomingVersion(versionType);
 
     // build may have generated a new i18ntokens.json file, dirtying the git workspace
     // it's important to track those changes with this release, so determine the changes and write them
     // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
-    execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
+    await updateTokenChangelog(versionTarget);
 
     // Update version switcher data and changelog
-    const upcomingVersion = getUpcomingVersion(versionTarget);
-    updateDocsVersionSwitcher(upcomingVersion);
-    updateChangelog(changelog, upcomingVersion);
+    if (!isSpecialRelease) updateDocsVersionSwitcher(versionTarget);
+    updateChangelog(changelog, versionTarget);
     execSync('git commit -m "Updated changelog" -n');
 
     // update package.json & package-lock.json version, git commit, git tag
