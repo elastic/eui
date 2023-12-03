@@ -116,9 +116,20 @@ const updateChangelog = (upcomingChangelog, version) => {
   }
 
   const pathToChangelog = path.resolve(rootDir, 'CHANGELOG.md');
-  const changelogArchive = fs.readFileSync(pathToChangelog).toString();
 
-  const latestVersionHeading = `## [\`${version}\`](https://github.com/elastic/eui/tree/v${version})`;
+  let changelogArchive = '';
+  try {
+    changelogArchive = fs.readFileSync(pathToChangelog).toString();
+  } catch {}
+
+  let latestVersionHeading = `## [\`v${version}\`](https://github.com/elastic/eui/releases/v${version})`;
+  if (version.includes('-backport')) {
+    latestVersionHeading +=
+      '\n\n**This is a backport release only intended for use by Kibana.**';
+  } else if (version.includes('-rc')) {
+    latestVersionHeading +=
+      '\n\n**This is a prerelease candidate not intended for public use.**';
+  }
 
   if (changelogArchive.startsWith(latestVersionHeading)) {
     throwError('Cannot update CHANGELOG.md - already on latest version');
@@ -133,27 +144,7 @@ const updateChangelog = (upcomingChangelog, version) => {
   execSync('git add CHANGELOG.md upcoming_changelogs/');
 };
 
-/**
- * Command to manually update the changelog (standalone from release.js).
- * Primarily used for backports. Usage from project root:
- *
- * npm run update-changelog-manual --release=patch|minor|major (must be `npm` and not `yarn` to specify the release arg)
- * OR
- * node -e "require('./scripts/update-changelog').manualChangelog('patch|minor|major')"
- */
-const manualChangelog = (release) => {
-  versionTarget = release || 'patch'; // Unfortunately can't be a = fallback, because the package.json script passes an empty string
-  console.log(
-    chalk.magenta(
-      `Manually updating CHANGELOG.md to next ${versionTarget} version.`
-    )
-  );
-  const { changelog } = collateChangelogFiles();
-  updateChangelog(changelog, versionTarget);
-};
-
 module.exports = {
   collateChangelogFiles,
   updateChangelog,
-  manualChangelog,
 };

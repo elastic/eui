@@ -38,12 +38,29 @@ const updateDocsVersionSwitcher = (versionToAdd, file = versionsLogFile) => {
 
 /**
  * Get the current EUI version and increment it based on the
- * user-input versionTarget (major/minor/patch)
+ * user-input versionTarget (major/minor/patch, backport/prerelease)
  */
 const getUpcomingVersion = (versionTarget) => {
   const pathToPackage = rootDir + '/package.json';
   const { version } = require(pathToPackage);
+
+  // Normal releases
   let [major, minor, patch] = version.split('.').map(Number);
+
+  // Special releases, e.g. `v1.1.1-backport.0` or `v2.2.2-rc.1`
+  const incrementPreId = (preId) => {
+    const [versionWithoutPreId, affix] = version.split(`-${preId}`);
+    // Releasing from a main release, e.g. `v1.1.1` - add the preId and number automatically
+    if (!affix) return `${version}-${preId}.0`;
+
+    const releaseNumber = Number(affix.split('.')[1]);
+    // Edge case for odd formats - coerce to the format we want
+    if (isNaN(releaseNumber)) return `${versionWithoutPreId}-${preId}.0`;
+
+    // Otherwise, increment the existing release number
+    return `${versionWithoutPreId}-${preId}.${releaseNumber + 1}`;
+  };
+
   switch (versionTarget) {
     case 'major':
       major += 1;
@@ -57,7 +74,12 @@ const getUpcomingVersion = (versionTarget) => {
     case 'patch':
       patch += 1;
       break;
+    case 'backport':
+      return incrementPreId('backport');
+    case 'prerelease':
+      return incrementPreId('rc');
   }
+
   return [major, minor, patch].join('.');
 };
 

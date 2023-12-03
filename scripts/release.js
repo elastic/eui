@@ -1,4 +1,5 @@
-const argparse = require('argparse');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 const chalk = require('chalk');
 const path = require('path');
 let { execSync } = require('child_process');
@@ -7,6 +8,7 @@ const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
 const execOptions = { cwd, stdio };
 
+const updateTokenChangelog = require('./update-token-changelog');
 const {
   collateChangelogFiles,
   updateChangelog,
@@ -16,26 +18,70 @@ const {
   updateDocsVersionSwitcher,
 } = require('./update-versions-log');
 
-const TYPE_MAJOR = 0;
-const TYPE_MINOR = 1;
-const TYPE_PATCH = 2;
-const humanReadableTypes = {
-  [TYPE_MAJOR]: 'major',
-  [TYPE_MINOR]: 'minor',
-  [TYPE_PATCH]: 'patch',
+const TYPE_MAJOR = 'major';
+const TYPE_MINOR = 'minor';
+const TYPE_PATCH = 'patch';
+const TYPE_BACKPORT = 'backport';
+const TYPE_PRERELEASE = 'prerelease';
+
+// NOTE: Because this script has to be run with `npm`, args must be passed after an extra `--`
+// e.g. `npm run release -- --dry-run`, `npm run release -- --steps=build,version`
+const args = yargs(hideBin(process.argv))
+  .parserConfiguration({
+    'camel-case-expansion': false,
+    'halt-at-non-option': true,
+  })
+  .describe('Tag and publish a new version of EUI')
+  .options({
+    'dry-run': {
+      type: 'boolean',
+      default: false,
+      describe: 'Dry run mode; no changes are made',
+    },
+    type: {
+      type: 'string',
+      choices: [
+        TYPE_MAJOR,
+        TYPE_MINOR,
+        TYPE_PATCH,
+        TYPE_BACKPORT,
+        TYPE_PRERELEASE,
+      ],
+      describe:
+        'Version type; For normal releases, can be "major", "minor" or "patch". Special releases: "backport" and "prerelease". If not passed, will be automatically prompted for based on the upcoming changelogs.',
+    },
+    steps: {
+      type: 'string',
+      describe:
+        'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", and "publish". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
+      coerce: (value) => {
+        if (value) {
+          const allSteps = ['test', 'build', 'version', 'tag', 'publish'];
+          const steps = value.split(',').map((step) => step.trim());
+          const invalidSteps = steps.filter((step) => !allSteps.includes(step));
+          if (invalidSteps.length > 0) {
+            console.error(`Invalid --step(s): ${invalidSteps.join(', ')}`);
+            process.exit(1);
+          }
+        }
+        return value;
+      },
+    },
+  }).argv;
+
+const isSpecialRelease =
+  args.type === TYPE_BACKPORT || args.type === TYPE_PRERELEASE;
+
+const isDryRun = args['dry-run'] === true;
+
+const hasStep = (step) => {
+  if (!args.steps) return true; // If no steps were passed, run them all
+  return args.steps.includes(step);
 };
 
-const args = parseArguments();
-
-if (args.dry_run) {
-  console.warn(
-    chalk.yellow('Dry run mode: no changes will be pushed to npm or Github')
-  );
-  execSync = function () {
-    console.log.apply(null, arguments);
-  };
-}
-
+/**
+ * Main script
+ */
 (async function () {
   // make sure the release script is being run by npm (required for `npm publish` step)
   // https://github.com/yarnpkg/yarn/issues/5063
@@ -45,51 +91,60 @@ if (args.dry_run) {
     process.exit(1);
   }
 
-  // ensure git and local setup is at latest
-  await ensureCorrectSetup();
+  if (isDryRun) {
+    console.warn(
+      chalk.yellow('Dry run mode: no changes will be pushed to npm or Github')
+    );
+  } else {
+    // ensure git and local setup is at latest
+    await ensureCorrectSetup();
+  }
 
   // run lint, unit, and e2e tests
-  if (args.steps.indexOf('test') > -1) {
+  if (hasStep('test')) {
     execSync('npm run test-ci', execOptions);
   }
 
   // (trans|com)pile `src` into `lib` and `dist`
-  if (args.steps.indexOf('build') > -1) {
+  if (hasStep('build')) {
     execSync('npm run build', execOptions);
   }
 
   let versionTarget;
 
-  if (args.steps.indexOf('version') > -1) {
+  if (hasStep('version')) {
     // Fetch latest tags and clear any local ones
     execSync('git fetch upstream --tags --prune --prune-tags --force');
 
+    // Prompt user for what type of version bump to make (major|minor|patch) based on the upcoming changelogs
     const { changelogMap, changelog } = collateChangelogFiles();
+    const versionType = await getVersionTypeFromChangelog(changelogMap);
 
-    // prompt user for what type of version bump to make (major|minor|patch)
-    versionTarget = await getVersionTypeFromChangelog(changelogMap);
+    // Get the upcoming version target
+    versionTarget = getUpcomingVersion(versionType);
 
     // build may have generated a new i18ntokens.json file, dirtying the git workspace
     // it's important to track those changes with this release, so determine the changes and write them
     // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
-    execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
+    await updateTokenChangelog(versionTarget);
 
-    // Update version switcher data and CHANGELOG.md
-    const upcomingVersion = getUpcomingVersion(versionTarget);
-    updateDocsVersionSwitcher(upcomingVersion);
-    updateChangelog(changelog, upcomingVersion);
+    // Update version switcher data and changelog
+    if (!isSpecialRelease) updateDocsVersionSwitcher(versionTarget);
+    updateChangelog(changelog, versionTarget);
     execSync('git commit -m "Updated changelog" -n');
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);
   }
 
-  if (args.steps.indexOf('tag') > -1) {
+  if (hasStep('tag') && !isDryRun) {
     // push the version commit & tag to upstream
-    execSync('git push upstream --follow-tags', execOptions);
+    // conditionally skip prepush test hook if we already ran the test step earlier
+    const withTests = hasStep('test') ? '--no-verify' : '';
+    execSync(`git push upstream --follow-tags ${withTests}`, execOptions);
   }
 
-  if (args.steps.indexOf('publish') > -1) {
+  if (hasStep('publish') && !isDryRun) {
     // prompt user for npm 2FA
     const otp = await getOneTimePassword(versionTarget);
 
@@ -97,45 +152,6 @@ if (args.dry_run) {
     execSync(`npm publish --otp=${otp}`, execOptions);
   }
 })().catch((e) => console.error(e));
-
-function parseArguments() {
-  const parser = new argparse.ArgumentParser({
-    add_help: true,
-    description: 'Tag and publish a new version of EUI',
-  });
-
-  parser.add_argument('--type', {
-    help: 'Version type; can be "major", "minor" or "patch"',
-    choices: Object.values(humanReadableTypes),
-  });
-
-  parser.add_argument('--dry-run', {
-    action: 'store_true',
-    default: false,
-    help: 'Dry run mode; no changes are made',
-  });
-
-  const allSteps = ['test', 'build', 'version', 'tag', 'publish'];
-  parser.add_argument('--steps', {
-    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", and "publish". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
-    default: allSteps.join(','),
-  });
-
-  const args = parser.parse_args();
-
-  // validate --steps argument
-  const steps = args.steps.split(',').map((step) => step.trim());
-  const diff = steps.filter((x) => allSteps.indexOf(x) === -1);
-  if (diff.length > 0) {
-    console.error(`Invalid --step value(s): ${diff.join(', ')}`);
-    process.exit(1);
-  }
-
-  return {
-    ...args,
-    steps,
-  };
-}
 
 async function ensureCorrectSetup() {
   if (process.env.CI === 'true') {
@@ -174,10 +190,13 @@ async function ensureCorrectSetup() {
   if (
     !branchStatus.includes("Your branch is up to date with 'upstream/main'.")
   ) {
-    console.error(
-      'Your branch is not pointed at "upstream/main". Please ensure your `main` branch is pointed at the correct remote first before proceeding.'
-    );
-    process.exit(1);
+    // Backports and prereleases do not need to be made from main branch
+    if (!isSpecialRelease) {
+      console.error(
+        'Your branch is not pointed at "upstream/main". Please ensure your `main` branch is pointed at the correct remote first before proceeding.'
+      );
+      process.exit(1);
+    }
   }
   if (!branchStatus.endsWith('nothing to commit, working tree clean')) {
     console.error(
@@ -194,6 +213,16 @@ async function ensureCorrectSetup() {
 }
 
 async function getVersionTypeFromChangelog(changelogMap) {
+  // Special releases don't need to check recommended semver
+  if (isSpecialRelease) {
+    console.log(
+      `${chalk.magenta('--type set to')} ${chalk.blue(
+        args.type
+      )}. Creating a special release`
+    );
+    return args.type;
+  }
+
   // @see update-changelog.js
   const hasFeatures = changelogMap['Features'].length > 0;
   const hasBugFixes = changelogMap['Bug fixes'].length > 0;
@@ -212,7 +241,6 @@ async function getVersionTypeFromChangelog(changelogMap) {
     recommendedType = TYPE_MAJOR;
   }
 
-  const humanReadableRecommendation = humanReadableTypes[recommendedType];
   console.log(chalk.magenta('Detected the following upcoming changelogs:'));
   console.log('');
   Object.entries(changelogMap).forEach(([section, items]) => {
@@ -222,7 +250,7 @@ async function getVersionTypeFromChangelog(changelogMap) {
   console.log(
     `${chalk.magenta(
       'The recommended version update for these changes is'
-    )} ${chalk.blue(humanReadableRecommendation)}`
+    )} ${chalk.blue(recommendedType)}`
   );
 
   // checking for --type argument value; used by CI to automate releases
@@ -235,7 +263,7 @@ async function getVersionTypeFromChangelog(changelogMap) {
       )}`
     );
 
-    if (versionType !== humanReadableRecommendation) {
+    if (versionType !== recommendedType) {
       console.warn(
         `${chalk.yellow(
           'WARNING: --type argument does not match recommended version update'
@@ -251,7 +279,7 @@ async function getVersionTypeFromChangelog(changelogMap) {
       )} ${chalk.gray('(major, minor, patch)')}`
     );
 
-    return await promptUserForVersionType(humanReadableRecommendation);
+    return await promptUserForVersionType(recommendedType);
   }
 }
 
@@ -262,7 +290,7 @@ async function promptUserForVersionType(recommendedType) {
       type: 'list',
       name: 'versionType',
       message: 'Your choice must be major, minor, or patch',
-      choices: ['major', 'minor', 'patch'],
+      choices: [TYPE_MAJOR, TYPE_MINOR, TYPE_PATCH],
       default: recommendedType || '',
     },
   ]);
