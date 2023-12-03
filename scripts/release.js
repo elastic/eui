@@ -1,4 +1,5 @@
-const argparse = require('argparse');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 const chalk = require('chalk');
 const path = require('path');
 let { execSync } = require('child_process');
@@ -25,17 +26,52 @@ const humanReadableTypes = {
   [TYPE_PATCH]: 'patch',
 };
 
-const args = parseArguments();
+// NOTE: Because this script has to be run with `npm`, args must be passed after an extra `--`
+// e.g. `npm run release -- --dry-run`, `npm run release -- --steps=build,version`
+const args = yargs(hideBin(process.argv))
+  .parserConfiguration({
+    'camel-case-expansion': false,
+    'halt-at-non-option': true,
+  })
+  .describe('Tag and publish a new version of EUI')
+  .options({
+    'dry-run': {
+      type: 'boolean',
+      default: false,
+      describe: 'Dry run mode; no changes are made',
+    },
+    type: {
+      type: 'string',
+      choices: [
+        humanReadableTypes[TYPE_MAJOR],
+        humanReadableTypes[TYPE_MINOR],
+        humanReadableTypes[TYPE_PATCH],
+      ],
+      describe:
+        'Version type; For normal releases, can be "major", "minor" or "patch". If not passed, will be automatically prompted for based on the upcoming changelogs.',
+    },
+    steps: {
+      type: 'string',
+      describe:
+        'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", and "publish". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
+      coerce: (value) => {
+        if (value) {
+          const allSteps = ['test', 'build', 'version', 'tag', 'publish'];
+          const steps = value.split(',').map((step) => step.trim());
+          const invalidSteps = steps.filter((step) => !allSteps.includes(step));
+          if (invalidSteps.length > 0) {
+            console.error(`Invalid --step(s): ${invalidSteps.join(', ')}`);
+            process.exit(1);
+          }
+        }
+        return value;
+      },
+    },
+  }).argv;
 
-if (args.dry_run) {
-  console.warn(
-    chalk.yellow('Dry run mode: no changes will be pushed to npm or Github')
-  );
-  execSync = function () {
-    console.log.apply(null, arguments);
-  };
-}
-
+/**
+ * Main script
+ */
 (async function () {
   // make sure the release script is being run by npm (required for `npm publish` step)
   // https://github.com/yarnpkg/yarn/issues/5063
@@ -97,45 +133,6 @@ if (args.dry_run) {
     execSync(`npm publish --otp=${otp}`, execOptions);
   }
 })().catch((e) => console.error(e));
-
-function parseArguments() {
-  const parser = new argparse.ArgumentParser({
-    add_help: true,
-    description: 'Tag and publish a new version of EUI',
-  });
-
-  parser.add_argument('--type', {
-    help: 'Version type; can be "major", "minor" or "patch"',
-    choices: Object.values(humanReadableTypes),
-  });
-
-  parser.add_argument('--dry-run', {
-    action: 'store_true',
-    default: false,
-    help: 'Dry run mode; no changes are made',
-  });
-
-  const allSteps = ['test', 'build', 'version', 'tag', 'publish'];
-  parser.add_argument('--steps', {
-    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", and "publish". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
-    default: allSteps.join(','),
-  });
-
-  const args = parser.parse_args();
-
-  // validate --steps argument
-  const steps = args.steps.split(',').map((step) => step.trim());
-  const diff = steps.filter((x) => allSteps.indexOf(x) === -1);
-  if (diff.length > 0) {
-    console.error(`Invalid --step value(s): ${diff.join(', ')}`);
-    process.exit(1);
-  }
-
-  return {
-    ...args,
-    steps,
-  };
-}
 
 async function ensureCorrectSetup() {
   if (process.env.CI === 'true') {
