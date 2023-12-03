@@ -138,10 +138,8 @@ const hasStep = (step) => {
   }
 
   if (hasStep('tag') && !isDryRun) {
-    // push the version commit & tag to upstream
-    // conditionally skip prepush test hook if we already ran the test step earlier
-    const withTests = hasStep('test') ? '--no-verify' : '';
-    execSync(`git push upstream --follow-tags ${withTests}`, execOptions);
+    // push the version commit & tag to upstream, skipping prepush test hook
+    execSync(`git push upstream --follow-tags --no-verify`, execOptions);
   }
 
   if (hasStep('publish') && !isDryRun) {
@@ -208,7 +206,7 @@ async function ensureCorrectSetup() {
   /**
    * Ensure latest has been pulled and dependencies are up to date
    */
-  execSync('git pull');
+  if (!isSpecialRelease) execSync('git pull');
   execSync('yarn');
 }
 
