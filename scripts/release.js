@@ -17,14 +17,9 @@ const {
   updateDocsVersionSwitcher,
 } = require('./update-versions-log');
 
-const TYPE_MAJOR = 0;
-const TYPE_MINOR = 1;
-const TYPE_PATCH = 2;
-const humanReadableTypes = {
-  [TYPE_MAJOR]: 'major',
-  [TYPE_MINOR]: 'minor',
-  [TYPE_PATCH]: 'patch',
-};
+const TYPE_MAJOR = 'major';
+const TYPE_MINOR = 'minor';
+const TYPE_PATCH = 'patch';
 
 // NOTE: Because this script has to be run with `npm`, args must be passed after an extra `--`
 // e.g. `npm run release -- --dry-run`, `npm run release -- --steps=build,version`
@@ -43,9 +38,9 @@ const args = yargs(hideBin(process.argv))
     type: {
       type: 'string',
       choices: [
-        humanReadableTypes[TYPE_MAJOR],
-        humanReadableTypes[TYPE_MINOR],
-        humanReadableTypes[TYPE_PATCH],
+        TYPE_MAJOR,
+        TYPE_MINOR,
+        TYPE_PATCH,
       ],
       describe:
         'Version type; For normal releases, can be "major", "minor" or "patch". If not passed, will be automatically prompted for based on the upcoming changelogs.',
@@ -224,7 +219,6 @@ async function getVersionTypeFromChangelog(changelogMap) {
     recommendedType = TYPE_MAJOR;
   }
 
-  const humanReadableRecommendation = humanReadableTypes[recommendedType];
   console.log(chalk.magenta('Detected the following upcoming changelogs:'));
   console.log('');
   Object.entries(changelogMap).forEach(([section, items]) => {
@@ -234,7 +228,7 @@ async function getVersionTypeFromChangelog(changelogMap) {
   console.log(
     `${chalk.magenta(
       'The recommended version update for these changes is'
-    )} ${chalk.blue(humanReadableRecommendation)}`
+    )} ${chalk.blue(recommendedType)}`
   );
 
   // checking for --type argument value; used by CI to automate releases
@@ -247,7 +241,7 @@ async function getVersionTypeFromChangelog(changelogMap) {
       )}`
     );
 
-    if (versionType !== humanReadableRecommendation) {
+    if (versionType !== recommendedType) {
       console.warn(
         `${chalk.yellow(
           'WARNING: --type argument does not match recommended version update'
@@ -263,7 +257,7 @@ async function getVersionTypeFromChangelog(changelogMap) {
       )} ${chalk.gray('(major, minor, patch)')}`
     );
 
-    return await promptUserForVersionType(humanReadableRecommendation);
+    return await promptUserForVersionType(recommendedType);
   }
 }
 
@@ -274,7 +268,7 @@ async function promptUserForVersionType(recommendedType) {
       type: 'list',
       name: 'versionType',
       message: 'Your choice must be major, minor, or patch',
-      choices: ['major', 'minor', 'patch'],
+      choices: [TYPE_MAJOR, TYPE_MINOR, TYPE_PATCH],
       default: recommendedType || '',
     },
   ]);
