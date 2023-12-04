@@ -1,3 +1,11 @@
+## [`v91.2.0`](https://github.com/elastic/eui/releases/v91.2.0)
+
+- Added `endpoint` glyph to `EuiIcon` ([#7383](https://github.com/elastic/eui/pull/7383))
+
+**Bug fixes**
+
+- Fixed a bug with `EuiSelectable`s with custom `truncationProps`, where scrollbar widths were not being accounted for ([#7392](https://github.com/elastic/eui/pull/7392))
+
 ## [`v91.1.0`](https://github.com/elastic/eui/releases/tag/v91.1.0)
 
 - Updated `EuiDataGrid` cell actions to display above cells instead of within them, to avoid content clipping issues ([#7343](https://github.com/elastic/eui/pull/7343))
