@@ -2,6 +2,7 @@
 
 **This is a backport release only intended for use by Kibana.**
 
+- Added `esqlVis`, `pipeBreaks`, and `pipeNoBreaks` icon glyphs.
 - `EuiSelectable` now allows configurable text truncation via `listProps.truncationProps` ([#7388](https://github.com/elastic/eui/pull/7388))
 - `EuiTextTruncate` now supports a new `calculationDelayMs` prop for working around font loading or layout shifting scenarios ([#7388](https://github.com/elastic/eui/pull/7388))
 
