@@ -40,7 +40,7 @@ npm whoami # Should return an error about not being logged in
 
 Buildkite automatically deploys our docs to the EUI `Bekitzur` environment. The Buildkite job is started when a new tag is pushed to the `main` branch.
 
-To view the progress of your job or check for errors:
+**To view the progress of your job or check for errors:**
 
 * Log in to Buildkite using Elastic SSO
 * Filter jobs by `eui-team`
@@ -49,6 +49,16 @@ To view the progress of your job or check for errors:
 * From the build detail view:
   * Click the `Rebuild` button if your job needs to be restarted **or**
   * Click the `.buildkite/scripts/pipelines/pipeline_deploy_docs.sh` row to view logs and environment details
+
+**To deploy release docs manually:**
+
+* Log in to Buildkite using Elastic SSO
+* Filter jobs by `eui-team`
+* Click on `eui-release-deploy-docs`
+* Click the green `New Build` button on the top right
+* Click the `Options` accordion to show the Environment Variables textbox
+* Add `DEPLOY_ROOT=true` to the Environment Variables textbox
+* Click `Create Build` to start the job manually
 
 ### Tag the release in GitHub
 

@@ -45,7 +45,7 @@ post_comment_to_gh()
       curl -s -L "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments" \
       | jq -c '.[] | select(.user.login == "kibanamachine") | .id' \
     )
-    for comment_id in ${kibanamachine_comment_ids[@]}; do
+    for comment_id in "${kibanamachine_comment_ids[@]}"; do
       curl -L \
         -X DELETE \
         -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -150,7 +150,13 @@ else
       publish_to_bucket
     fi
 
-  # Let users know neither job ran
+  # Manually deploy latest docs via Buildkite UI
+  elif [[ "${DEPLOY_ROOT}" == "true" ]]; then
+    echo "Maually deploying latest release. Deploying to root eui.elastic.co"
+    full_bucket_path="gs://${BUCKET}/"
+    publish_to_bucket
+
+  # Let users know none of the three jobs ran
   else
     echo "This is neither a pull request nor a tag release. No docs were deployed."
   fi
