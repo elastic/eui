@@ -12,7 +12,6 @@ coverage/
 reports/
 .nyc_output/
 tmp/
-docs/
 dist/
 lib/
 es/
