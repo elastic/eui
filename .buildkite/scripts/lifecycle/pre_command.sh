@@ -17,5 +17,8 @@ export GCE_ACCOUNT
 GITHUB_TOKEN=$(retry 5 vault read -field=github_token $GITHUB_ACCOUNT)
 export GITHUB_TOKEN
 
+GCE_IMAGE=google/cloud-sdk:slim
+export GCE_IMAGE
+
 GPROJECT=elastic-bekitzur
 export GPROJECT

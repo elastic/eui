@@ -13,12 +13,16 @@ set +x
 # Expected env variables:
 # * GPROJECT - GCE project name, e.g. elastic-bekitzur
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
+# * GCE_IMAGE - Google's Docker image to publish docs
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 # * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999) or "false" from Buildkite env
 # * GIT_TAG - current Git tag (Ex. v87.0.0) from Buildkite env
+# * DEPLOY_ROOT - passed in from Buildkite UI to manually run release docs deployment
 
-# Docker images
-GCE_IMAGE=google/cloud-sdk:slim
+# Test that DEPLOY_ROOT is being passed properly
+# TODO: Revert
+echo "Testing deploy_root should be output"
+echo ${DEPLOY_ROOT}
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
