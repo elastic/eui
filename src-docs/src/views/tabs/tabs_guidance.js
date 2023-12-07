@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   EuiCode,
@@ -42,8 +43,13 @@ export default () => (
       <h3>Tabs must not update higher-level navigation</h3>
       <p>
         Do not update navigation such as{' '}
-        <EuiLink href="/#/navigation/breadcrumbs">breadcrumbs</EuiLink> or{' '}
-        <EuiLink href="/#/navigation/collapsible-nav">navigation menus</EuiLink>{' '}
+        <Link to="/navigation/breadcrumbs">
+          <strong>breadcrumbs</strong>
+        </Link>{' '}
+        or{' '}
+        <Link to="/navigation/collapsible-nav">
+          <strong>navigation menus</strong>
+        </Link>{' '}
         when users click on tabs. Tabs show localized information and it is not
         always clear what changed if tabs are below the fold or navigation does
         not match the route.
