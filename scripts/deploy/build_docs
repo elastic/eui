@@ -4,14 +4,23 @@ set -e
 
 NODE_IMG="docker.elastic.co/eui/ci:6.0"
 
+# Docusaurus must know the base URL to work properly
+DOCS_BASE_URL="/new-docs/"
+if [ -n "${GIT_PULL_REQUEST_ID}" ] && [ "${GIT_PULL_REQUEST_ID}" != "false" ]; then
+  DOCS_BASE_URL="/pr_${GIT_PULL_REQUEST_ID}/new-docs/"
+fi
+
+echo "Docusaurus base URL set to: ${DOCS_BASE_URL}"
+
 # Compile using node image
 echo "Building docs using ${NODE_IMG} Docker image"
 docker pull $NODE_IMG
 docker run \
     --rm -i \
     --env HOME=/tmp \
+    --env DOCS_BASE_URL="$DOCS_BASE_URL" \
     --"user=$(id -u)":"$(id -g)" \
     --volume "$PWD":/app \
     --workdir /app \
     $NODE_IMG \
-    bash -c 'yarn && yarn build && yarn build-docs && yarn build-storybook'
+    bash -c 'yarn && yarn build && yarn build-docs && yarn build-storybook && if [[ -d website ]]; then yarn --cwd website && yarn --cwd website build; fi'
