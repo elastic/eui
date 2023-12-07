@@ -8,6 +8,7 @@ const config: Config = {
   title: 'Elastic UI Framework',
   tagline: 'The framework powering the Elastic Stack',
   favicon: 'favicon.ico',
+  trailingSlash: true,
 
   // Set the production url of your site here
   url: 'https://eui.elastic.co',
