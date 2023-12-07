@@ -2,14 +2,23 @@
 
 set -e
 
+# Docusaurus must know the base URL to work properly
+DOCS_BASE_URL="/new-docs/"
+if [ -n "${GIT_PULL_REQUEST_ID}" ] && [ "${GIT_PULL_REQUEST_ID}" != "false" ]; then
+  DOCS_BASE_URL="/pr_${GIT_PULL_REQUEST_ID}/new-docs/"
+fi
+
+echo "Docusaurus base URL set to: ${DOCS_BASE_URL}"
+
 # Compile using base image from pre_command.sh
 echo "Building docs using ${DOCKER_BASE_IMAGE} Docker image"
 docker pull "$DOCKER_BASE_IMAGE"
 docker run \
     --rm -i \
     --env HOME=/tmp \
+    --env DOCS_BASE_URL="$DOCS_BASE_URL" \
     --"user=$(id -u)":"$(id -g)" \
     --volume "$PWD":/app \
     --workdir /app \
     "$DOCKER_BASE_IMAGE" \
-    bash -c 'yarn && yarn build && yarn build-docs && yarn build-storybook'
+    bash -c 'yarn && yarn build && yarn build-docs && yarn build-storybook && yarn --cwd website && yarn --cwd website build'
