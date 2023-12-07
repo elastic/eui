@@ -30,7 +30,7 @@ const defaultSizes = storedSizes || {
 export default () => {
   const [savedSizes, setSavedSizes] = useState(storedSizes);
   const [sizes, setSizes] = useState(defaultSizes);
-  const onPanelWidthChange = useCallback((newSizes) => {
+  const onPanelWidthChange = useCallback((newSizes: Record<string, number>) => {
     setSizes((prevSizes: Record<string, number>) => ({
       ...prevSizes,
       ...newSizes,

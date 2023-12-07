@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, renderHookAct } from '../../../test/rtl';
 import { shallow } from 'enzyme';
 
 import { keys } from '../../../services';
@@ -21,7 +21,7 @@ describe('useCellPopover', () => {
       const { result } = renderHook(useCellPopover);
       expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
 
-      act(() =>
+      renderHookAct(() =>
         result.current.cellPopoverContext.openCellPopover({
           rowIndex: 0,
           colIndex: 0,
@@ -31,21 +31,22 @@ describe('useCellPopover', () => {
     });
 
     it('does nothing if called again on a popover that is already open', () => {
+      const mockAnchor = document.createElement('div');
+      document.body.appendChild(mockAnchor);
+
       const { result } = renderHook(useCellPopover);
       expect(result.current.cellPopover).toBeFalsy();
 
-      act(() => {
+      renderHookAct(() => {
         result.current.cellPopoverContext.openCellPopover({
           rowIndex: 0,
           colIndex: 0,
         });
-        result.current.cellPopoverContext.setPopoverAnchor(
-          document.createElement('div')
-        );
+        result.current.cellPopoverContext.setPopoverAnchor(mockAnchor);
       });
       expect(result.current.cellPopover).not.toBeFalsy();
 
-      act(() => {
+      renderHookAct(() => {
         result.current.cellPopoverContext.openCellPopover({
           rowIndex: 0,
           colIndex: 0,
@@ -59,7 +60,7 @@ describe('useCellPopover', () => {
     it('sets popoverIsOpen state to false', () => {
       const { result } = renderHook(useCellPopover);
 
-      act(() =>
+      renderHookAct(() =>
         result.current.cellPopoverContext.openCellPopover({
           rowIndex: 0,
           colIndex: 0,
@@ -67,7 +68,7 @@ describe('useCellPopover', () => {
       );
       expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
-      act(() => result.current.cellPopoverContext.closeCellPopover());
+      renderHookAct(() => result.current.cellPopoverContext.closeCellPopover());
       expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
     });
   });
@@ -80,7 +81,7 @@ describe('useCellPopover', () => {
     const populateCellPopover = (
       cellPopoverContext: DataGridCellPopoverContextShape
     ) => {
-      act(() => {
+      renderHookAct(() => {
         cellPopoverContext.openCellPopover({ colIndex: 0, rowIndex: 0 });
         cellPopoverContext.setPopoverAnchor(mockPopoverAnchor);
         cellPopoverContext.setPopoverContent(mockPopoverContent);
@@ -94,9 +95,16 @@ describe('useCellPopover', () => {
       populateCellPopover(result.current.cellPopoverContext);
       expect(result.current.cellPopover).toMatchInlineSnapshot(`
         <EuiWrappingPopover
+          anchorPosition="downLeft"
           button={<div />}
           closePopover={[Function]}
           display="block"
+          focusTrapProps={
+            Object {
+              "clickOutsideDisables": false,
+              "onClickOutside": [Function],
+            }
+          }
           hasArrow={false}
           isOpen={true}
           onKeyDown={[Function]}
@@ -107,6 +115,13 @@ describe('useCellPopover', () => {
               "data-test-subj": "euiDataGridExpansionPopover",
             }
           }
+          panelStyle={
+            Object {
+              "maxBlockSize": "50vh",
+              "maxInlineSize": "min(75vw, max(0px, 400px))",
+            }
+          }
+          repositionToCrossAxis={false}
         >
           <div
             data-test-subj="mockPopover"
@@ -149,7 +164,7 @@ describe('useCellPopover', () => {
           preventDefault: jest.fn(),
           stopPropagation: jest.fn(),
         };
-        act(() => {
+        renderHookAct(() => {
           component.find('EuiWrappingPopover').simulate('keyDown', event);
         });
         expect(event.preventDefault).toHaveBeenCalled();
@@ -168,7 +183,7 @@ describe('useCellPopover', () => {
           preventDefault: jest.fn(),
           stopPropagation: jest.fn(),
         };
-        act(() => {
+        renderHookAct(() => {
           component.find('EuiWrappingPopover').simulate('keyDown', event);
         });
         expect(event.preventDefault).toHaveBeenCalled();
@@ -187,7 +202,7 @@ describe('useCellPopover', () => {
           preventDefault: jest.fn(),
           stopPropagation: jest.fn(),
         };
-        act(() => {
+        renderHookAct(() => {
           component.find('EuiWrappingPopover').simulate('keyDown', event);
         });
         expect(event.preventDefault).not.toHaveBeenCalled();

@@ -3,7 +3,7 @@
 exports[`EuiPageBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 emotion-euiPageBody"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -59,26 +59,26 @@ exports[`EuiPageBody panelled can be set to true 1`] = `
 exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
   data-test-subj="test subject string"
-  style="max-width:1024px"
+  style="max-width: 1024px;"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
   data-test-subj="test subject string"
-  style="max-width:24rem"
+  style="max-width: 24rem;"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a default 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
   data-test-subj="test subject string"
-  style="max-width:1200px"
+  style="max-width: 1200px;"
 />
 `;

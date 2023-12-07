@@ -6,12 +6,12 @@ exports[`EuiBottomBar is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="aria-label"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m-euiTestCss-euiColorMode-dark"
       data-test-subj="test subject string"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
@@ -38,12 +38,12 @@ exports[`EuiBottomBar props affordForDisplacement can be false 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -69,12 +69,12 @@ exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -99,12 +99,12 @@ exports[`EuiBottomBar props landmarkHeading 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="This should have been label"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -129,12 +129,12 @@ exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge emotion-euiBottomBar-fixed-l-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge emotion-euiBottomBar-fixed-l-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -159,12 +159,12 @@ exports[`EuiBottomBar props paddingSize m is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -189,12 +189,12 @@ exports[`EuiBottomBar props paddingSize none is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed emotion-euiBottomBar-fixed-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed emotion-euiBottomBar-fixed-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -219,12 +219,12 @@ exports[`EuiBottomBar props paddingSize s is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall emotion-euiBottomBar-fixed-s-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall emotion-euiBottomBar-fixed-s-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -249,12 +249,12 @@ exports[`EuiBottomBar props position fixed is rendered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -280,12 +280,12 @@ exports[`EuiBottomBar props position props are altered 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 30px; right: 30px; bottom: 30px; top: 30px;"
     >
       <h2
@@ -311,7 +311,7 @@ exports[`EuiBottomBar props position static is rendered 1`] = `
   <div>
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium emotion-euiBottomBar-static-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium emotion-euiBottomBar-static-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -337,7 +337,7 @@ exports[`EuiBottomBar props position sticky is rendered 1`] = `
   <div>
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium emotion-euiBottomBar-sticky-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium emotion-euiBottomBar-sticky-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -363,12 +363,12 @@ exports[`EuiBottomBar props style is customized 1`] = `
 >
   <div />
   <div
-    class="emotion-euiColorMode-dark-colorClassName"
+    class="emotion-euiColorMode-dark"
     data-euiportal="true"
   >
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 12px; right: 0px; bottom: 0px;"
     >
       <h2
@@ -394,7 +394,7 @@ exports[`EuiBottomBar props usePortal can be false 1`] = `
   <div>
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m-euiColorMode-dark"
       style="left: 0px; right: 0px; bottom: 0px;"
     >
       <h2

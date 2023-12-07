@@ -7,13 +7,14 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { mount, ReactWrapper, render } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { EuiDataGrid } from './';
 import { EuiDataGridProps } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 
 // Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
 jest.mock('../popover', () => ({
@@ -91,12 +92,15 @@ function resizeColumn(
   const firstResizer = datagrid
     .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
     .instance() as EuiDataGridColumnResizer;
-  firstResizer.onMouseDown({
-    pageX: originalWidth,
-    stopPropagation: () => {},
-    preventDefault: () => {},
-  } as React.MouseEvent<HTMLDivElement>);
-  firstResizer.onMouseMove({ pageX: columnWidth });
+
+  act(() => {
+    firstResizer.onMouseDown({
+      pageX: originalWidth,
+      stopPropagation: () => {},
+      preventDefault: () => {},
+    } as React.MouseEvent<HTMLDivElement>);
+  });
+  act(() => firstResizer.onMouseMove({ pageX: columnWidth }));
   act(() => firstResizer.onMouseUp());
 
   datagrid.update();
@@ -107,12 +111,11 @@ function openColumnSorterSelection(datagrid: ReactWrapper) {
     'EuiPopover[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
   );
   expect(columnSelectionPopover).not.euiPopoverToBeOpen();
-  const popoverButton = columnSelectionPopover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    columnSelectionPopover
+      .find('button[data-test-subj="dataGridColumnSortingSelectionButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -132,12 +135,11 @@ function closeColumnSorterSelection(datagrid: ReactWrapper) {
   if (columnSelectionPopover.length > 0) {
     expect(columnSelectionPopover).euiPopoverToBeOpen();
 
-    const popoverButton = columnSelectionPopover
-      .find('div[className~="euiPopover__anchor"]')
-      .find('[onClick]')
-      .first();
-    // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-    act(() => popoverButton.props().onClick());
+    act(() => {
+      columnSelectionPopover
+        .find('button[data-test-subj="dataGridColumnSortingSelectionButton"]')
+        .simulate('click');
+    });
 
     datagrid.update();
 
@@ -184,7 +186,7 @@ function getColumnSortDirection(
 
   expect(columnSorter.length).toBe(1);
   const activeSort = columnSorter.find(
-    'label[className*="euiButtonGroupButton-isSelected"]'
+    'button[className*="euiButtonGroupButton-isSelected"]'
   );
 
   const sortDirection = (
@@ -202,12 +204,11 @@ function openColumnSorter(datagrid: ReactWrapper) {
   );
   expect(popover).not.euiPopoverToBeOpen();
 
-  const popoverButton = popover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    popover
+      .find('button[data-test-subj="dataGridColumnSortingButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -225,12 +226,11 @@ function closeColumnSorter(datagrid: ReactWrapper) {
   );
   expect(popover).euiPopoverToBeOpen();
 
-  const popoverButton = popover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    popover
+      .find('button[data-test-subj="dataGridColumnSortingButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -272,10 +272,10 @@ function sortByColumn(
 
   if (currentSortDirection !== direction) {
     const sortButton = columnSorter.find(
-      `label[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
+      `button[data-test-subj="euiDataGridColumnSorting-sortColumn-${columnId}-${direction}"]`
     );
     expect(sortButton.length).toBe(1);
-    sortButton.find('input').simulate('change', [undefined, direction]);
+    sortButton.simulate('click');
   }
 
   closeColumnSorter(datagrid);
@@ -330,12 +330,11 @@ function openColumnSelector(datagrid: ReactWrapper) {
   );
   expect(popover).not.euiPopoverToBeOpen();
 
-  const popoverButton = popover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    popover
+      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -353,12 +352,11 @@ function closeColumnSelector(datagrid: ReactWrapper) {
   );
   expect(popover).euiPopoverToBeOpen();
 
-  const popoverButton = popover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    popover
+      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -399,12 +397,11 @@ function moveColumnToIndex(
   );
   expect(popover).not.euiPopoverToBeOpen();
 
-  let popoverButton = popover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    popover
+      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -434,12 +431,11 @@ function moveColumnToIndex(
   );
   expect(popover).euiPopoverToBeOpen();
 
-  popoverButton = popover
-    .find('div[className~="euiPopover__anchor"]')
-    .find('[onClick]')
-    .first();
-  // @ts-ignore onClick is known to exist, and does not require an argument in this usage
-  act(() => popoverButton.props().onClick());
+  act(() => {
+    popover
+      .find('button[data-test-subj="dataGridColumnSelectorButton"]')
+      .simulate('click');
+  });
 
   datagrid.update();
 
@@ -467,7 +463,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders with common and div attributes', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -482,11 +478,11 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders custom column headers', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[
@@ -504,7 +500,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders and applies custom props', () => {
@@ -541,7 +537,7 @@ describe('EuiDataGrid', () => {
         Array [
           Object {
             "aria-rowindex": 1,
-            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
             "data-gridcell-row-index": 0,
@@ -567,7 +563,7 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "aria-rowindex": 1,
-            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
             "data-gridcell-row-index": 0,
@@ -593,7 +589,7 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "aria-rowindex": 2,
-            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
             "data-gridcell-row-index": 1,
@@ -619,7 +615,7 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "aria-rowindex": 2,
-            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
             "data-gridcell-row-index": 1,
@@ -648,7 +644,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders additional toolbar controls', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -664,11 +660,11 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders control columns', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -702,9 +698,9 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
-      expect(component.find('.leadingControlCol')).toHaveLength(1);
-      expect(component.find('.trailingControlCol')).toHaveLength(1);
+      expect(container).toMatchSnapshot();
+      expect(container.querySelector('.leadingControlCol')).toBeDefined();
+      expect(container.querySelector('.trailingControlCol')).toBeDefined();
     });
 
     it('can hide the toolbar', () => {
@@ -782,17 +778,17 @@ describe('EuiDataGrid', () => {
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -825,12 +821,12 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -857,10 +853,10 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -894,13 +890,13 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--currency",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--currency",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -943,8 +939,8 @@ describe('EuiDataGrid', () => {
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
           Array [
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -1171,9 +1167,12 @@ describe('EuiDataGrid', () => {
         ['2'],
       ]);
 
-      findTestSubject(component, 'tablePaginationPopoverButton').simulate(
-        'click'
-      );
+      act(() => {
+        findTestSubject(component, 'tablePaginationPopoverButton').simulate(
+          'click'
+        );
+      });
+
       const rowButtons: NodeListOf<HTMLButtonElement> =
         document.body.querySelectorAll('.euiContextMenuItem');
       expect(
@@ -1182,7 +1181,10 @@ describe('EuiDataGrid', () => {
           (button: HTMLDivElement) => button.textContent || ''
         )
       ).toEqual(['3 rows', '6 rows', '10 rows']);
-      rowButtons[1].click();
+
+      act(() => {
+        rowButtons[1].click();
+      });
 
       expect(
         component.props().pagination.onChangeItemsPerPage
@@ -1240,18 +1242,22 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        const originalCellWidths = extractColumnWidths(component);
-        expect(originalCellWidths).toEqual({
-          'Column 1': 100,
-          'Column 2': 100,
+        act(() => {
+          const originalCellWidths = extractColumnWidths(component);
+          expect(originalCellWidths).toEqual({
+            'Column 1': 100,
+            'Column 2': 100,
+          });
         });
 
         resizeColumn(component, 'Column 1', 150);
 
-        const updatedCellWidths = extractColumnWidths(component);
-        expect(updatedCellWidths).toEqual({
-          'Column 1': 150,
-          'Column 2': 100,
+        act(() => {
+          const updatedCellWidths = extractColumnWidths(component);
+          expect(updatedCellWidths).toEqual({
+            'Column 1': 150,
+            'Column 2': 100,
+          });
         });
       });
 
@@ -1466,7 +1472,7 @@ describe('EuiDataGrid', () => {
     });
 
     test('column display, displayAsText, and displayHeaderCellProps', () => {
-      const component = render(
+      const { container, getByTitle, getByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           columnVisibility={{
@@ -1487,12 +1493,12 @@ describe('EuiDataGrid', () => {
           }
         />
       );
-      const colHeaderCell = component.find(
-        '.euiDataGridHeaderCell.displayHeaderCellProps'
-      );
-      expect(colHeaderCell).toHaveLength(1);
-      expect(colHeaderCell.find('[data-test-subj="display"]')).toHaveLength(1);
-      expect(colHeaderCell.find('[title="displayAsText"]')).toHaveLength(1);
+
+      expect(
+        container.querySelector('.euiDataGridHeaderCell.displayHeaderCellProps')
+      ).toBeDefined();
+      expect(getByTestSubject('display')).toBeInTheDocument();
+      expect(getByTitle('displayAsText')).toBeInTheDocument();
     });
   });
 
@@ -1799,7 +1805,7 @@ describe('EuiDataGrid', () => {
       let popover = openColumnSelector(component);
       expect(
         popover
-          .find('.euiDataGridColumnSelector__item')
+          .find('div.euiDataGridColumnSelector__item')
           .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSelector(component);
@@ -1817,7 +1823,7 @@ describe('EuiDataGrid', () => {
       popover = openColumnSelector(component);
       expect(
         popover
-          .find('.euiDataGridColumnSelector__item')
+          .find('div.euiDataGridColumnSelector__item')
           .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSelector(component);
@@ -1895,13 +1901,15 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      // Get column sorting button
-      const sortColumn = component.find(
-        'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
-      );
-      const getButtonText = (): string =>
-        sortColumn.find('span[className~="euiButtonEmpty__text"]').text();
-      expect(getButtonText()).toEqual('Sort fields');
+      // Get column sort count
+      const getBadgeText = () => {
+        const button = component.find(
+          'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+        );
+        const badge = button.find('span.euiDataGridToolbarControl__badge');
+        return badge.length ? badge.text() : false;
+      };
+      expect(getBadgeText()).toBeFalsy();
 
       // Update sorted columns
       component.setProps({
@@ -1910,7 +1918,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('1 field sorted');
+      expect(getBadgeText()).toEqual('1');
 
       // Update sorted columns again
       component.setProps({
@@ -1922,7 +1930,7 @@ describe('EuiDataGrid', () => {
           onSort: () => {},
         },
       });
-      expect(getButtonText()).toEqual('2 fields sorted');
+      expect(getBadgeText()).toEqual('2');
     });
   });
 
@@ -2173,9 +2181,11 @@ describe('EuiDataGrid', () => {
       expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
       expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
 
-      findTestSubject(component, 'dataGridRowCell').at(1).prop('onMouseEnter')!(
-        {} as React.MouseEvent
-      );
+      act(() => {
+        findTestSubject(component, 'dataGridRowCell')
+          .at(1)
+          .prop('onMouseEnter')!({} as React.MouseEvent);
+      });
 
       component.update();
 

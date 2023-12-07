@@ -9,7 +9,7 @@
 import { ReactElement, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { cloneElementWithCss } from '../../../services/theme/clone_element';
+import { cloneElementWithCss } from '../../../services';
 import { euiScreenReaderOnlyStyles } from './screen_reader_only.styles';
 
 export interface EuiScreenReaderOnlyProps {

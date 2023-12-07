@@ -13,6 +13,8 @@ import {
   logicalShorthandCSS,
   logicalTextAlignStyle,
 } from '../../../global_styling';
+import { euiButtonSizeMap } from '../../../themes/amsterdam/global_styling/mixins';
+import { EuiButtonDisplaySizes } from './_button_display';
 
 // Provides a solid reset and base for handling sizing layout
 // Does not include any visual styles
@@ -28,21 +30,24 @@ export const euiButtonBaseCSS = () => {
   `;
 };
 
-const _buttonSize = (size: string) => {
-  return `
-    ${logicalCSS('height', size)};
-    // prevents descenders from getting cut off
-    line-height: ${size};
-  `;
-};
-
 export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const sizes = euiButtonSizeMap(euiThemeContext);
+
+  const _buttonSize = (sizeKey: EuiButtonDisplaySizes) => {
+    const size = sizes[sizeKey];
+    return css`
+      ${logicalCSS('height', size.height)}
+      line-height: ${size.height}; /* Prevents descenders from getting cut off */
+      ${euiFontSize(euiThemeContext, size.fontScale)}
+      border-radius: ${size.radius};
+    `;
+  };
 
   return {
     // Base
     euiButtonDisplay: css`
-      ${euiButtonBaseCSS()};
+      ${euiButtonBaseCSS()}
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
 
@@ -63,8 +68,8 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}
     `,
     // Sizes
-    xs: css(_buttonSize(euiTheme.size.l), euiFontSize(euiThemeContext, 'xs')),
-    s: css(_buttonSize(euiTheme.size.xl), euiFontSize(euiThemeContext, 's')),
-    m: css(_buttonSize(euiTheme.size.xxl), euiFontSize(euiThemeContext, 's')),
+    xs: css(_buttonSize('xs')),
+    s: css(_buttonSize('s')),
+    m: css(_buttonSize('m')),
   };
 };

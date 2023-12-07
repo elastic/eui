@@ -18,6 +18,11 @@ By default tests are run using the light theme. Dark mode can be enabled by pass
 
 To ensure tests use up-to-date styles, the test runner compiles our SCSS to CSS before executing Cypress. This adds some processing time before the tests can run, and often the existing locally-built styles are still accurate. The CSS compilation step can be skipped by passing the `--skip-css` flag to `yarn test-cypress`, `yarn test-cypress-dev` and `yarn test-cypress-a11y`.
 
+### Testing specific version of React
+
+By default, EUI Cypress tests are run using the latest supported version of React.
+You can change that behavior and run e2e tests using a different React version by passing the `--react-version` option set to `16`, `17` or `18`. 
+
 ### Cypress arguments
 
 You can also pass [Cypress CLI arguments](https://docs.cypress.io/guides/guides/command-line). For example:
@@ -74,7 +79,7 @@ Create Cypress test files with the following name patterns to run in specific si
 * `{component name}.spec.tsx` will run a full component test as part of every build
 * `{component name}.a11y.tsx` will run an accessibility test using [Cypress Axe](#cypress-axe)
 
-These test files should be in the same directory as `{component name}.tsx`.
+These test files should be in the same directory as `{component_name}.tsx`.
 
 #### Do's and don'ts
 
@@ -82,6 +87,11 @@ These test files should be in the same directory as `{component name}.tsx`.
 * DO use the `data-test-subj` attribute to mark parts of a component you want to `find` later.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
+
+### Recording failed Cypress tests on CI
+EUI now has the ability to record failed Cypress tests as Buildkite CI artifacts. This feature is turned off by default, but can be turned on by changing line 50 of the [**cypress.config.ts**](https://github.com/elastic/eui/blob/main/cypress.config.ts) file from `video: false` to `video: true`. You can verify videos are being recorded by changing a Cypress test to fail on purpose, then running `yarn test-cypress` locally. Video files will be stored in the `cypress/videos/` directory.
+
+The EUI team has configured Cypress to only keep videos for failing tests. Videos are automatically compressed to make the artifact upload smaller.
 
 ### Cypress Axe
 EUI components are tested for accessibility as part of a scheduled task. This allows us to test changes to the DOM such as accordions being opened, or modal dialogs being triggered, more comprehensively. We use [cypress-axe](https://github.com/component-driven/cypress-axe) to access the underlying axe-core API methods and rulesets.

@@ -46,6 +46,15 @@ const dangerSnippet = [
 `,
 ];
 
+import OnDismiss from './on_dismiss';
+const onDismissSource = require('!!raw-loader!./on_dismiss');
+const onDismissSnippet = [
+  `<EuiCallOut onDismiss={onDismiss}>
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
+
 export const CallOutExample = {
   title: 'Callout',
   intro: (
@@ -163,6 +172,24 @@ export const CallOutExample = {
       ),
       snippet: dangerSnippet,
       demo: <Danger />,
+    },
+    {
+      title: 'Dismissible callouts',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: onDismissSource,
+        },
+      ],
+      text: (
+        <p>
+          To render a cross icon in the top right hand corner, pass an{' '}
+          <EuiCode>onDismiss</EuiCode> callback that handles conditionally
+          rendering your callout.
+        </p>
+      ),
+      snippet: onDismissSnippet,
+      demo: <OnDismiss />,
     },
   ],
 };

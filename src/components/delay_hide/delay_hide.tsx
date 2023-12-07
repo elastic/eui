@@ -54,7 +54,7 @@ export class EuiDelayHide extends Component<
     countdownExpired: this.props.hide,
   };
 
-  private timeoutId?: number;
+  private timeoutId?: ReturnType<typeof setTimeout>;
 
   componentDidMount() {
     // if the component begins visible start counting

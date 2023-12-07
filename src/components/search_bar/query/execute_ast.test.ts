@@ -8,9 +8,6 @@
 
 import { AST } from './ast';
 import { executeAst } from './execute_ast';
-import { Random } from '../../../services';
-
-const random = new Random();
 
 describe('execute ast', () => {
   test('single matching field clause', () => {
@@ -122,9 +119,12 @@ describe('execute ast', () => {
       { name: 'john', description: 'doe', age: 5 },
       { name: 'joe' },
     ];
-    const value = random.oneOf(['john', 'doe']);
-    const result = executeAst(AST.create([AST.Term.must(value)]), items);
-    expect(result).toHaveLength(1);
+
+    const result1 = executeAst(AST.create([AST.Term.must('john')]), items);
+    expect(result1).toHaveLength(1);
+
+    const result2 = executeAst(AST.create([AST.Term.must('doe')]), items);
+    expect(result2).toHaveLength(1);
   });
 
   // when no default fields specified, we automatically select all/only

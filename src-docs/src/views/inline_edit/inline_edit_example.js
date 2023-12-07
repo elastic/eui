@@ -30,6 +30,25 @@ const inlineEditTitleSnippet = `<EuiInlineEditTitle
   size="m"
 />`;
 
+import InlineEditControlled from './inline_edit_controlled';
+const inlineEditControlledSource = require('!!raw-loader!./inline_edit_controlled');
+const inlineEditControlledSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit title inline"
+  value={inlineEditValue}
+  onChange={inlineEditOnChange}
+  onCancel={(previousValue) => {
+  setInlineEditValue(previousValue);
+  }}
+/>`;
+
+import InlineEditPlaceholder from './inline_edit_placeholder';
+const inlineEditPlaceholderSource = require('!!raw-loader!./inline_edit_placeholder');
+const inlineEditPlaceholderSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue=""
+  placeholder="This is placeholder text!"
+/>`;
+
 import InlineEditSave from './inline_edit_save';
 const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
 const inlineEditModeSaveSnippet = `<EuiInlineEditText
@@ -97,7 +116,6 @@ export const InlineEditExample = {
       </EuiText>
     </>
   ),
-  isNew: true,
   sections: [
     {
       title: 'Display and edit basic text',
@@ -143,6 +161,30 @@ export const InlineEditExample = {
       props: { EuiInlineEditTitle },
       snippet: inlineEditTitleSnippet,
       playground: inlineEditTitleConfig,
+    },
+    {
+      title: 'Controlled values',
+      text: (
+        <>
+          <p>
+            To control the text value for inline edit, use the{' '}
+            <EuiCode>value</EuiCode> prop to continually pass a text value. An
+            <EuiCode>onChange</EuiCode> callback is required to receive and
+            update <EuiCode>value</EuiCode> based on user input. An{' '}
+            <EuiCode>onCancel</EuiCode> callback is required to reset the value
+            to the previous read mode text value.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditControlledSource,
+        },
+      ],
+      demo: <InlineEditControlled />,
+      props: { EuiInlineEditText },
+      snippet: inlineEditControlledSnippet,
     },
     {
       title: 'Saving edited text',
@@ -193,6 +235,27 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditValidation />,
+    },
+    {
+      title: 'Setting placeholder instructions',
+      text: (
+        <>
+          <p>
+            The <EuiCode>placeholder</EuiCode> property will display in both
+            read and edit mode whenever the <strong>EuiInlineEdit</strong>'s
+            value is empty. Use placeholder text to provide guidance or
+            instructions to consumers as to what they're editing.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditPlaceholderSource,
+        },
+      ],
+      demo: <InlineEditPlaceholder />,
+      snippet: inlineEditPlaceholderSnippet,
     },
     {
       title: 'Start in edit mode',

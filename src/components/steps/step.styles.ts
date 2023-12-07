@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import { mathWithUnits, logicalCSS } from '../../global_styling';
 
 export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
@@ -43,7 +43,7 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiStep: css`
-      // Create border on all but the last step
+      /* Create border on all but the last step */
       &:not(:last-of-type) {
         background-image: ${lineGradient};
         background-repeat: no-repeat;
@@ -62,7 +62,7 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     xs: css`
       &:not(:last-of-type) {
-        // Adjust the line to be centered on the smaller number
+        /* Adjust the line to be centered on the smaller number */
         background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
       }
     `,
@@ -73,7 +73,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
-  const styles = {
+  return {
     euiStep__content: css`
       ${logicalCSS('margin-top', euiTheme.size.s)}
       ${logicalCSS('padding-top', euiTheme.size.base)}
@@ -85,7 +85,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     m: css`
-      // Align the content's contents with the title
+      /* Align the content's contents with the title */
       ${logicalCSS(
         'padding-left',
         mathWithUnits(
@@ -93,15 +93,18 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
           (x, y) => x / 2 + y
         )
       )}
-      // Align content border to horizontal center of step number
+      /* Align content border to horizontal center of step number */
       ${logicalCSS(
         'margin-left',
         mathWithUnits(euiStep.numberSize, (x) => x / 2)
       )}
     `,
-    s: css``, // s is the same as m, so we'll programmatically duplicate it below
+    // `s` is the same as `m` - use a getter to duplicate its content
+    get s() {
+      return this.m;
+    },
     xs: css`
-      // Align the content's contents with the title
+      /* Align the content's contents with the title */
       ${logicalCSS(
         'padding-left',
         mathWithUnits(
@@ -109,16 +112,13 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
           (x, y) => x / 2 + y
         )
       )}
-      // Align content border to horizontal center of step number
+      /* Align content border to horizontal center of step number */
       ${logicalCSS(
         'margin-left',
         mathWithUnits(euiStep.numberXSSize, (x) => x / 2)
       )}
     `,
   };
-  styles.s = styles.m;
-
-  return styles;
 };
 
 export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
@@ -132,7 +132,9 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiStep__title: css``,
     isDisabled: css`
-      color: ${euiTheme.colors.disabledText};
+      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
+        euiTheme.colors.body
+      )};
     `,
     // Sizes
     m: css``,

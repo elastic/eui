@@ -7,10 +7,12 @@ test/failure-screenshots/**/*.png
 cypress/screenshots
 cypress/videos
 
+storybook-static/
 coverage/
 reports/
 .nyc_output/
 tmp/
+docs/
 dist/
 lib/
 es/

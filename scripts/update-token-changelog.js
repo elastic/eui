@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const semver = require('semver');
 const { execSync } = require('child_process');
 
 const repoDir = path.resolve(__dirname, '..');
@@ -8,16 +7,7 @@ const packagePath = path.resolve(repoDir, 'package.json');
 const tokensPath = path.resolve(repoDir, 'i18ntokens.json');
 const tokensChangelogPath = path.resolve(repoDir, 'i18ntokens_changelog.json');
 
-const validVersionTypes = new Set(['patch', 'minor', 'major']);
-const [, , versionIncrementType] = process.argv;
-
-if (validVersionTypes.has(versionIncrementType) === false) {
-  console.error(`Invalid version increment "${versionIncrementType}" passed`);
-  process.exit(1);
-}
-
 const { version: oldPackageVersion } = require(packagePath);
-const newPackageVersion = semver.inc(oldPackageVersion, versionIncrementType);
 
 function getTokenMap(tokenInstances) {
   // tokenInstances is the total set of tokens across all files
@@ -107,7 +97,7 @@ async function getPreviousI18nTokens() {
   return JSON.parse(fileContents);
 }
 
-async function main() {
+async function main(newPackageVersion) {
   // check for i18n token differences between the current file & the most recent EUI version
   const originalTokens = await getPreviousI18nTokens();
   const newTokens = require(tokensPath);
@@ -128,7 +118,4 @@ async function main() {
   await commitTokenChanges();
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+module.exports = main;

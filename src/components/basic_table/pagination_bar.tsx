@@ -7,8 +7,12 @@
  */
 
 import React, { useEffect } from 'react';
+
 import { EuiSpacer } from '../spacer';
-import { EuiTablePagination } from '../table';
+import {
+  EuiTablePagination,
+  useEuiTablePaginationDefaults,
+} from '../table/table_pagination';
 import {
   ItemsPerPageChangeHandler,
   PageChangeHandler,
@@ -22,8 +26,10 @@ export interface Pagination {
   /**
    * The maximum number of items that can be shown in a single page.
    * Pass `0` to display the selected "Show all" option and hide the pagination.
+   *
+   * @default 10
    */
-  pageSize: number;
+  pageSize?: number;
   /**
    * The total number of items the page is "sliced" of
    */
@@ -31,10 +37,14 @@ export interface Pagination {
   /**
    * Configures the page size dropdown options.
    * Pass `0` as one of the options to create a "Show all" option.
+   *
+   * @default [10, 25, 50]
    */
   pageSizeOptions?: number[];
   /**
-   * Hides the page size dropdown
+   * Set to false to hide the page size dropdown
+   *
+   * @default true
    */
   showPerPageOptions?: boolean;
 }
@@ -50,10 +60,6 @@ export interface PaginationBarProps {
   'aria-label'?: string;
 }
 
-export const defaults = {
-  pageSizeOptions: [10, 25, 50],
-};
-
 export const PaginationBar = ({
   pagination,
   onPageSizeChange,
@@ -61,26 +67,30 @@ export const PaginationBar = ({
   'aria-controls': ariaControls,
   'aria-label': ariaLabel,
 }: PaginationBarProps) => {
-  const pageSizeOptions = pagination.pageSizeOptions
-    ? pagination.pageSizeOptions
-    : defaults.pageSizeOptions;
-  const pageCount = pagination.pageSize
-    ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
-    : 1;
+  const defaults = useEuiTablePaginationDefaults();
+  const {
+    pageIndex,
+    totalItemCount,
+    pageSize = defaults.itemsPerPage,
+    pageSizeOptions = defaults.itemsPerPageOptions,
+    showPerPageOptions = defaults.showPerPageOptions,
+  } = pagination;
+
+  const pageCount = pageSize ? Math.ceil(totalItemCount / pageSize) : 1;
 
   useEffect(() => {
-    if (pageCount < pagination.pageIndex + 1) {
+    if (pageCount < pageIndex + 1) {
       onPageChange?.(pageCount - 1);
     }
-  }, [pageCount, onPageChange, pagination]);
+  }, [pageCount, onPageChange, pageIndex]);
 
   return (
     <div>
       <EuiSpacer size="m" />
       <EuiTablePagination
-        activePage={pagination.pageIndex}
-        showPerPageOptions={pagination.showPerPageOptions}
-        itemsPerPage={pagination.pageSize}
+        activePage={pageIndex}
+        showPerPageOptions={showPerPageOptions}
+        itemsPerPage={pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}
         onChangeItemsPerPage={onPageSizeChange}

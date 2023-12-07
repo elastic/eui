@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context 1`] = `
-Array [
+<div>
   <div
     class="euiText emotion-euiText-m"
   >
@@ -17,7 +17,7 @@ Array [
         world
       </button>
     </div>
-  </div>,
+  </div>
   <div
     class="euiPopoverFooter emotion-euiPopoverFooter-l-l"
   >
@@ -32,14 +32,14 @@ Array [
         </div>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiDataGridCell renders 1`] = `
 <div
   aria-rowindex="1"
-  class="euiDataGridRowCell"
+  class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
   data-gridcell-column-id="someColumn"
   data-gridcell-column-index="0"
   data-gridcell-row-index="0"
@@ -49,34 +49,30 @@ exports[`EuiDataGridCell renders 1`] = `
   tabindex="-1"
 >
   <div
-    class="euiDataGridRowCell__expandFlex"
+    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+    data-datagrid-cellcontent="true"
   >
-    <div
-      class="euiDataGridRowCell__expandContent"
-    >
-      <div
-        class="euiDataGridRowCell__truncate"
-        data-datagrid-cellcontent="true"
+    <div>
+      <button
+        data-datagrid-interactable="true"
+        tabindex="-1"
       >
-        <div>
-          <button
-            data-datagrid-interactable="true"
-          >
-            hello
-          </button>
-          <button
-            data-datagrid-interactable="true"
-          >
-            world
-          </button>
-        </div>
-      </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
+        hello
+      </button>
+      <button
+        data-datagrid-interactable="true"
+        tabindex="-1"
       >
-        - someColumn, column 1, row 1
-      </p>
+        world
+      </button>
     </div>
   </div>
+  <p
+    class="emotion-euiScreenReaderOnly"
+    hidden=""
+  >
+    - 
+    someColumn, column 1, row 1
+  </p>
 </div>
 `;

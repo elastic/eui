@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
-import { waitForEuiToolTipVisible } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -28,7 +28,7 @@ describe('EuiKeyPadMenuItem', () => {
       Test
     </EuiKeyPadMenuItem>,
     {
-      skipParentTest: true,
+      skip: { parentTest: true },
       childProps: ['betaBadgeTooltipProps'],
       renderCallback: async ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));
@@ -38,77 +38,77 @@ describe('EuiKeyPadMenuItem', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiKeyPadMenuItem label="Label" {...requiredProps}>
         Icon
       </EuiKeyPadMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('isDisabled', () => {
       test('renders with href', () => {
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem isDisabled label="Label" href="#">
             Icon
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders with onClick', () => {
         const onClickHandler = jest.fn();
 
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem isDisabled label="Label" onClick={onClickHandler}>
             Icon
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isSelected', () => {
       test('renders with href', () => {
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem isSelected label="Label" href="#">
             Icon
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders with onClick', () => {
         const onClickHandler = jest.fn();
 
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem isSelected label="Label" onClick={onClickHandler}>
             Icon
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('betaBadge', () => {
       test('renders', () => {
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem betaBadgeLabel="Beta" label="Label">
             Icon
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders with betaBadgeIconType', () => {
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem
             betaBadgeLabel="Beta"
             betaBadgeIconType="bolt"
@@ -118,11 +118,11 @@ describe('EuiKeyPadMenuItem', () => {
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders with betaBadgeTooltipContent', () => {
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem
             betaBadgeLabel="Beta"
             betaBadgeTooltipContent="Content"
@@ -132,11 +132,11 @@ describe('EuiKeyPadMenuItem', () => {
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders extra betaBadgeTooltipProps', () => {
-        const component = render(
+        const { container } = render(
           <EuiKeyPadMenuItem
             betaBadgeLabel="Beta"
             betaBadgeTooltipContent="Content"
@@ -147,41 +147,41 @@ describe('EuiKeyPadMenuItem', () => {
           </EuiKeyPadMenuItem>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   test('renders href', () => {
-    const component = render(
+    const { container } = render(
       <EuiKeyPadMenuItem label="Label" href="#">
         Icon
       </EuiKeyPadMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders href with rel', () => {
-    const component = render(
+    const { container } = render(
       <EuiKeyPadMenuItem label="Label" href="#" rel="noreferrer">
         Icon
       </EuiKeyPadMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders button', () => {
     const onClickHandler = jest.fn();
 
-    const component = render(
+    const { container } = render(
       <EuiKeyPadMenuItem label="Label" onClick={onClickHandler}>
         Icon
       </EuiKeyPadMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test("onClick isn't called upon instantiation", () => {
@@ -212,7 +212,7 @@ describe('EuiKeyPadMenuItem', () => {
 
   describe('checkable', () => {
     test('renders as radio', () => {
-      const component = render(
+      const { container } = render(
         <EuiKeyPadMenuItem
           onChange={() => {}}
           name="single"
@@ -223,17 +223,17 @@ describe('EuiKeyPadMenuItem', () => {
         </EuiKeyPadMenuItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders as checkbox', () => {
-      const component = render(
+      const { container } = render(
         <EuiKeyPadMenuItem onChange={() => {}} checkable="multi" label="Label">
           Icon
         </EuiKeyPadMenuItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

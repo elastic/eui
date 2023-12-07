@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 
 import {
   EuiAutoSizer,
+  EuiAutoSize,
   EuiCode,
   EuiPanel,
   logicalSizeCSS,
@@ -23,7 +24,7 @@ export default () => {
   return (
     <div css={containerStyles}>
       <EuiAutoSizer>
-        {({ height, width }) => (
+        {({ height, width }: EuiAutoSize) => (
           <EuiPanel css={[panelStyles, { height, width }]}>
             <EuiCode>
               height: {height}, width: {width}

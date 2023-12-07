@@ -10,20 +10,22 @@ import React, {
   cloneElement,
   Component,
   HTMLAttributes,
+  PropsWithChildren,
   ReactElement,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
 
-import { CommonProps, NoArgCallback, keysOf } from '../common';
-import { EuiIcon } from '../icon';
+import { withEuiTheme, WithEuiThemeProps, keys } from '../../services';
+import { CommonProps, NoArgCallback } from '../common';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeys } from '../../services';
+
 import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
+import { euiContextMenuPanelStyles } from './context_menu_panel.styles';
 
 export type EuiContextMenuPanelHeightChangeHandler = (height: number) => void;
 export type EuiContextMenuPanelTransitionType = 'in' | 'out';
@@ -32,48 +34,32 @@ export type EuiContextMenuPanelShowPanelCallback = (
   currentPanelIndex?: number
 ) => void;
 
-const titleSizeToClassNameMap = {
-  s: 'euiContextMenuPanelTitle--small',
-  m: null,
-};
+export const SIZES = ['s', 'm'] as const;
 
-export const SIZES = keysOf(titleSizeToClassNameMap);
-
-export interface EuiContextMenuPanelProps {
-  initialFocusedItemIndex?: number;
-  items?: ReactElement[];
-  onClose?: NoArgCallback<void>;
-  onHeightChange?: EuiContextMenuPanelHeightChangeHandler;
-  onTransitionComplete?: NoArgCallback<void>;
-  onUseKeyboardToNavigate?: NoArgCallback<void>;
-  showNextPanel?: EuiContextMenuPanelShowPanelCallback;
-  showPreviousPanel?: NoArgCallback<void>;
-  title?: ReactNode;
-  transitionDirection?: EuiContextMenuPanelTransitionDirection;
-  transitionType?: EuiContextMenuPanelTransitionType;
-  /**
-   * Alters the size of the items and the title
-   */
-  size?: (typeof SIZES)[number];
-}
-
-type Props = CommonProps &
+export type EuiContextMenuPanelProps = PropsWithChildren &
+  CommonProps &
   Omit<
     HTMLAttributes<HTMLDivElement>,
     'onKeyDown' | 'tabIndex' | 'onAnimationEnd' | 'title'
-  > &
-  EuiContextMenuPanelProps;
+  > & {
+    initialFocusedItemIndex?: number;
+    items?: ReactElement[];
+    onClose?: NoArgCallback<void>;
+    onHeightChange?: EuiContextMenuPanelHeightChangeHandler;
+    onTransitionComplete?: NoArgCallback<void>;
+    onUseKeyboardToNavigate?: NoArgCallback<void>;
+    showNextPanel?: EuiContextMenuPanelShowPanelCallback;
+    showPreviousPanel?: NoArgCallback<void>;
+    title?: ReactNode;
+    transitionDirection?: EuiContextMenuPanelTransitionDirection;
+    transitionType?: EuiContextMenuPanelTransitionType;
+    /**
+     * Alters the size of the items and the title
+     */
+    size?: (typeof SIZES)[number];
+  };
 
-const transitionDirectionAndTypeToClassNameMap = {
-  next: {
-    in: 'euiContextMenuPanel-txInLeft',
-    out: 'euiContextMenuPanel-txOutLeft',
-  },
-  previous: {
-    in: 'euiContextMenuPanel-txInRight',
-    out: 'euiContextMenuPanel-txOutRight',
-  },
-};
+type Props = EuiContextMenuPanelProps;
 
 interface State {
   prevProps: {
@@ -87,7 +73,10 @@ interface State {
   tookInitialFocus: boolean;
 }
 
-export class EuiContextMenuPanel extends Component<Props, State> {
+export class EuiContextMenuPanelClass extends Component<
+  WithEuiThemeProps & Props,
+  State
+> {
   static defaultProps: Partial<Props> = {
     items: [],
   };
@@ -97,7 +86,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   private panel?: HTMLElement | null = null;
   private initialPopoverParent?: HTMLElement | null = null;
 
-  constructor(props: Props) {
+  constructor(props: WithEuiThemeProps & Props) {
     super(props);
 
     this.state = {
@@ -164,7 +153,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         document.activeElement === this.backButton ||
         document.activeElement === this.panel)
     ) {
-      if (event.key === cascadingMenuKeys.ARROW_LEFT) {
+      if (event.key === keys.ARROW_LEFT) {
         if (showPreviousPanel) {
           event.preventDefault();
           event.stopPropagation();
@@ -179,7 +168,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     if (items?.length) {
       switch (event.key) {
-        case cascadingMenuKeys.TAB:
+        case keys.TAB:
           requestAnimationFrame(() => {
             // NOTE: document.activeElement is stale if not wrapped in requestAnimationFrame
             const focusedItemIndex = this.state.menuItems.indexOf(
@@ -197,7 +186,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           });
           break;
 
-        case cascadingMenuKeys.ARROW_UP:
+        case keys.ARROW_UP:
           event.preventDefault();
           this.focusMenuItem('up');
 
@@ -206,7 +195,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           }
           break;
 
-        case cascadingMenuKeys.ARROW_DOWN:
+        case keys.ARROW_DOWN:
           event.preventDefault();
           this.focusMenuItem('down');
 
@@ -215,7 +204,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           }
           break;
 
-        case cascadingMenuKeys.ARROW_RIGHT:
+        case keys.ARROW_RIGHT:
           if (this.props.showNextPanel) {
             event.preventDefault();
             this.props.showNextPanel(
@@ -405,6 +394,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
   render() {
     const {
+      theme,
       children,
       className,
       onClose,
@@ -421,55 +411,32 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       size,
       ...rest
     } = this.props;
-    let panelTitle;
 
-    if (title) {
-      const titleClasses = classNames(
-        'euiContextMenuPanelTitle',
-        size && titleSizeToClassNameMap[size]
-      );
+    const classes = classNames('euiContextMenuPanel', className);
 
-      if (Boolean(onClose)) {
-        panelTitle = (
-          <button
-            className={titleClasses}
-            type="button"
-            onClick={onClose}
-            ref={(node) => {
-              this.backButton = node;
-            }}
-            data-test-subj="contextMenuPanelTitleButton"
-          >
-            <span className="euiContextMenu__itemLayout">
-              <EuiIcon
-                type="arrowLeft"
-                size="m"
-                className="euiContextMenu__icon"
-              />
-
-              <span className="euiContextMenu__text">{title}</span>
-            </span>
-          </button>
-        );
-      } else {
-        panelTitle = (
-          <div className={titleClasses}>
-            <span className="euiContextMenu__itemLayout">{title}</span>
-          </div>
-        );
-      }
-    }
-
-    const classes = classNames(
-      'euiContextMenuPanel',
-      className,
+    const styles = euiContextMenuPanelStyles(theme);
+    const cssStyles = [
+      styles.euiContextMenuPanel,
       transitionDirection &&
         transitionType &&
-        transitionDirectionAndTypeToClassNameMap[transitionDirection]
-        ? transitionDirectionAndTypeToClassNameMap[transitionDirection][
-            transitionType
-          ]
-        : undefined
+        styles[transitionDirection][transitionType],
+    ];
+
+    const panelTitle = title && (
+      <EuiContextMenuItem
+        css={styles.euiContextMenuPanel__title}
+        className="euiContextMenuPanel__title"
+        onClick={onClose}
+        buttonRef={(node: HTMLButtonElement) => {
+          if (onClose) this.backButton = node;
+        }}
+        data-test-subj={
+          onClose ? 'contextMenuPanelTitleButton' : 'contextMenuPanelTitle'
+        }
+        icon={onClose && 'arrowLeft'}
+      >
+        {title}
+      </EuiContextMenuItem>
     );
 
     const content =
@@ -488,6 +455,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     return (
       <div
         ref={this.panelRef}
+        css={cssStyles}
         className={classes}
         onKeyDown={this.onKeyDown}
         tabIndex={-1}
@@ -503,3 +471,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     );
   }
 }
+
+export const EuiContextMenuPanel = withEuiTheme<EuiContextMenuPanelProps>(
+  EuiContextMenuPanelClass
+);

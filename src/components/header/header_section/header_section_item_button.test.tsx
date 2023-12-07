@@ -7,8 +7,10 @@
  */
 
 import React from 'react';
-import { mount, render, shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import {
   EuiHeaderSectionItemButton,
@@ -16,52 +18,58 @@ import {
 } from './header_section_item_button';
 
 describe('EuiHeaderSectionItemButton', () => {
-  test('is rendered', () => {
-    const component = render(<EuiHeaderSectionItemButton {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiHeaderSectionItemButton />);
 
-    expect(component).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(
+      <EuiHeaderSectionItemButton {...requiredProps} />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders children', () => {
-    const component = render(
+  it('renders children', () => {
+    const { container } = render(
       <EuiHeaderSectionItemButton>
         <span>Ahoy!</span>
       </EuiHeaderSectionItemButton>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders a link', () => {
-    const component = render(<EuiHeaderSectionItemButton href="#" />);
+  it('renders a link', () => {
+    const { container } = render(<EuiHeaderSectionItemButton href="#" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('renders notification', () => {
     test('as a badge', () => {
-      const component = render(<EuiHeaderSectionItemButton notification="1" />);
+      const { container } = render(
+        <EuiHeaderSectionItemButton notification="1" />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('as a dot', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeaderSectionItemButton notification={true} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('color', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeaderSectionItemButton
           notification="1"
           notificationColor="subdued"
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -75,39 +83,42 @@ describe('EuiHeaderSectionItemButton', () => {
     });
 
     it('renders animation', () => {
-      expect.assertions(2);
-
-      mount(
-        <EuiHeaderSectionItemButton ref={testAnimation} notification={true} />
-      );
-
-      function testAnimation(element: EuiHeaderSectionItemButtonRef) {
+      const testAnimation = (element: EuiHeaderSectionItemButtonRef) => {
         if (element) {
           expect(element.animate).toHaveBeenCalledTimes(0);
           element.euiAnimate();
           expect(element.animate).toHaveBeenCalledTimes(1);
         }
-      }
+      };
+
+      render(
+        <EuiHeaderSectionItemButton ref={testAnimation} notification={true} />
+      );
+
+      expect.assertions(2);
     });
   });
 
   describe('onClick', () => {
-    test("isn't called upon instantiation", () => {
+    it("isn't called upon instantiation", () => {
       const onClickHandler = jest.fn();
 
-      shallow(<EuiHeaderSectionItemButton onClick={onClickHandler} />);
+      render(<EuiHeaderSectionItemButton onClick={onClickHandler} />);
 
       expect(onClickHandler).not.toHaveBeenCalled();
     });
 
-    test('is called when the button is clicked', () => {
+    it('is called when the button is clicked', () => {
       const onClickHandler = jest.fn();
 
-      const $button = shallow(
-        <EuiHeaderSectionItemButton onClick={onClickHandler} />
+      const { getByTestSubject } = render(
+        <EuiHeaderSectionItemButton
+          onClick={onClickHandler}
+          data-test-subj="button"
+        />
       );
 
-      $button.simulate('click');
+      fireEvent.click(getByTestSubject('button'));
 
       expect(onClickHandler).toHaveBeenCalledTimes(1);
     });
@@ -116,20 +127,20 @@ describe('EuiHeaderSectionItemButton', () => {
   describe('ref', () => {
     it('is the button element', () => {
       const ref = jest.fn();
-      const component = mount(<EuiHeaderSectionItemButton ref={ref} />);
+      const { container } = render(<EuiHeaderSectionItemButton ref={ref} />);
 
       expect(ref).toHaveBeenCalledTimes(1);
-      expect(ref).toHaveBeenCalledWith(component.find('button').getDOMNode());
+      expect(ref).toHaveBeenCalledWith(container.querySelector('button'));
     });
 
     it('is the anchor element', () => {
       const ref = jest.fn();
-      const component = mount(
+      const { container } = render(
         <EuiHeaderSectionItemButton href="#" ref={ref} />
       );
 
       expect(ref).toHaveBeenCalledTimes(1);
-      expect(ref).toHaveBeenCalledWith(component.find('a').getDOMNode());
+      expect(ref).toHaveBeenCalledWith(container.querySelector('a'));
     });
   });
 });

@@ -51,7 +51,7 @@ export const euiLoadingElasticStyles = () => {
           transform-origin: 50% 50%;
         }
 
-        // Hide outline mainly for dark mode
+        /* Hide outline mainly for dark mode */
         &:nth-of-type(1) {
           display: none;
         }

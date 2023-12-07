@@ -3,7 +3,7 @@
 exports[`EuiTableHeaderCellCheckbox is rendered 1`] = `
 <th
   aria-label="aria-label"
-  class="euiTableHeaderCellCheckbox testClass1 testClass2"
+  class="euiTableHeaderCellCheckbox testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   scope="col"
 >
@@ -17,7 +17,7 @@ exports[`EuiTableHeaderCellCheckbox width and style accepts style attribute 1`] 
 <th
   class="euiTableHeaderCellCheckbox"
   scope="col"
-  style="width:20%"
+  style="width: 20%;"
 >
   <div
     class="euiTableCellContent"
@@ -31,7 +31,7 @@ exports[`EuiTableHeaderCellCheckbox width and style accepts width attribute 1`] 
 <th
   class="euiTableHeaderCellCheckbox"
   scope="col"
-  style="width:10%"
+  style="width: 10%;"
 >
   <div
     class="euiTableCellContent"
@@ -45,7 +45,7 @@ exports[`EuiTableHeaderCellCheckbox width and style accepts width attribute as n
 <th
   class="euiTableHeaderCellCheckbox"
   scope="col"
-  style="width:100px"
+  style="width: 100px;"
 >
   <div
     class="euiTableCellContent"
@@ -59,7 +59,7 @@ exports[`EuiTableHeaderCellCheckbox width and style resolves style and width att
 <th
   class="euiTableHeaderCellCheckbox"
   scope="col"
-  style="width:10%"
+  style="width: 10%;"
 >
   <div
     class="euiTableCellContent"

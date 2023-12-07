@@ -14,27 +14,21 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 import { EuiRangeTrack } from './range_track';
 
 describe('EuiRangeTrack', () => {
-  shouldRenderCustomStyles(
-    <EuiRangeTrack
-      min={0}
-      max={100}
-      step={10}
-      showTicks
-      value="10"
-      onChange={() => {}}
-      {...requiredProps}
-    />
-  );
+  const props = {
+    trackWidth: 400,
+    min: 0,
+    max: 100,
+  };
+
+  shouldRenderCustomStyles(<EuiRangeTrack {...props} />);
 
   test('is rendered', () => {
     const { container } = render(
       <EuiRangeTrack
-        min={0}
-        max={100}
+        {...props}
         step={10}
         showTicks
         value="10"
-        onChange={() => {}}
         {...requiredProps}
       />
     );
@@ -56,14 +50,7 @@ describe('EuiRangeTrack', () => {
 
     test('should throw error if `max` does not line up with `step` interval', () => {
       const component = () =>
-        render(<EuiRangeTrack min={0} max={105} step={10} />);
-
-      expect(component).toThrowErrorMatchingSnapshot();
-    });
-
-    test('should throw error if there are too many ticks to render', () => {
-      const component = () =>
-        render(<EuiRangeTrack min={0} max={21} showTicks />);
+        render(<EuiRangeTrack {...props} max={105} step={10} />);
 
       expect(component).toThrowErrorMatchingSnapshot();
     });
@@ -71,13 +58,7 @@ describe('EuiRangeTrack', () => {
     test('should throw error if `tickInterval` is off sequence from `step`', () => {
       const component = () =>
         render(
-          <EuiRangeTrack
-            min={0}
-            max={100}
-            step={10}
-            showTicks
-            tickInterval={3}
-          />
+          <EuiRangeTrack {...props} step={10} showTicks tickInterval={3} />
         );
 
       expect(component).toThrowErrorMatchingSnapshot();
@@ -87,8 +68,8 @@ describe('EuiRangeTrack', () => {
       const component = () =>
         render(
           <EuiRangeTrack
+            {...props}
             min={0}
-            max={100}
             showTicks
             ticks={[{ label: '-100', value: -100 }]}
           />
@@ -101,7 +82,7 @@ describe('EuiRangeTrack', () => {
       const component = () =>
         render(
           <EuiRangeTrack
-            min={0}
+            {...props}
             max={100}
             showTicks
             ticks={[{ label: '200', value: 200 }]}
@@ -115,8 +96,7 @@ describe('EuiRangeTrack', () => {
       const component = () =>
         render(
           <EuiRangeTrack
-            min={0}
-            max={100}
+            {...props}
             step={50}
             showTicks
             ticks={[{ label: '10', value: 10 }]}
@@ -124,6 +104,51 @@ describe('EuiRangeTrack', () => {
         );
 
       expect(component).toThrowErrorMatchingSnapshot();
+    });
+
+    describe('too many ticks to render', () => {
+      let consoleWarn: jest.SpyInstance;
+
+      beforeAll(() => {
+        consoleWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+      });
+
+      afterAll(() => {
+        consoleWarn.mockRestore();
+      });
+
+      test('should warn if each tick has under 20px of width', () => {
+        render(
+          <EuiRangeTrack
+            {...props}
+            trackWidth={100}
+            tickInterval={10}
+            showTicks
+          />
+        );
+
+        expect(consoleWarn).toHaveBeenCalledWith(
+          expect.stringContaining(
+            'The number of ticks to render (11) is too high for the range width'
+          )
+        );
+      });
+
+      test('should throw an error if each tick has under 5px of width', () => {
+        const component = () =>
+          render(
+            <EuiRangeTrack
+              {...props}
+              trackWidth={100}
+              tickInterval={2}
+              showTicks
+            />
+          );
+
+        expect(component).toThrow(
+          'The number of ticks to render (51) is too high for the range width'
+        );
+      });
     });
   });
 });

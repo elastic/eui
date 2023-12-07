@@ -11,7 +11,7 @@ import {
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
 
 import {
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteCool,
@@ -23,7 +23,7 @@ import {
 const paletteData = {
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteCool,

@@ -7,10 +7,10 @@
  */
 
 import React, {
-  Fragment,
   FunctionComponent,
   ButtonHTMLAttributes,
   ReactNode,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -24,7 +24,7 @@ import { getFormControlClassNameForIconCount } from '../form_control_layout/_num
 import { useFormContext } from '../eui_form_context';
 
 export interface EuiSuperSelectOption<T> {
-  value: T;
+  value: NonNullable<T>;
   inputDisplay?: ReactNode;
   dropdownDisplay?: ReactNode;
   disabled?: boolean;
@@ -73,13 +73,13 @@ export interface EuiSuperSelectControlProps<T>
   append?: EuiFormControlLayoutProps['append'];
 }
 
-export const EuiSuperSelectControl: <T extends string>(
+export const EuiSuperSelectControl: <T = string>(
   props: EuiSuperSelectControlProps<T>
 ) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     className,
-    options = [],
+    options,
     id,
     name,
     fullWidth = defaultFullWidth,
@@ -114,31 +114,26 @@ export const EuiSuperSelectControl: <T extends string>(
     className
   );
 
-  // React HTML input can not have both value and defaultValue properties.
-  // https://reactjs.org/docs/uncontrolled-components.html#default-values
-  let selectDefaultValue;
-  if (value == null) {
-    selectDefaultValue = defaultValue || '';
-  }
+  const inputValue = value != null ? value : defaultValue;
 
-  let selectedValue;
-  if (value) {
-    const selectedOption = options.find((option) => option.value === value);
-    selectedValue = selectedOption
-      ? selectedOption.inputDisplay
-      : selectedValue;
-  }
+  const selectedValue = useMemo(() => {
+    if (inputValue != null) {
+      const selectedOption = options?.find(
+        (option) => option.value === inputValue
+      );
+      return selectedOption ? selectedOption.inputDisplay : undefined;
+    }
+  }, [inputValue, options]);
 
   const showPlaceholder = !!placeholder && !selectedValue;
 
   return (
-    <Fragment>
+    <>
       <input
         type="hidden"
         id={id}
         name={name}
-        defaultValue={selectDefaultValue}
-        value={value}
+        value={String(inputValue ?? '')}
         readOnly={readOnly}
       />
 
@@ -171,6 +166,6 @@ export const EuiSuperSelectControl: <T extends string>(
           )}
         </button>
       </EuiFormControlLayout>
-    </Fragment>
+    </>
   );
 };

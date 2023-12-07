@@ -23,7 +23,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
     >
       <output
         class="euiRangeTooltip__value emotion-euiRangeTooltip__value-right"
-        style="inset-inline-start:8%"
+        style="inset-inline-start: 8%;"
       >
         8
       </output>
@@ -82,7 +82,7 @@ exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
 
 exports[`EuiRange is rendered 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-euiTestCss"
 >
   <div
     aria-hidden="false"
@@ -140,7 +140,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
     >
       <button
         class="euiRangeTick emotion-euiRangeTick-isCustom-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(-Infinity% + 8px)"
+        style="inset-inline-start: calc(-Infinity% + 8px);"
         tabindex="-1"
         title="20kb"
         type="button"
@@ -150,7 +150,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-regular"
-        style="inset-inline-end:0%;margin-inline-end:-1.25em"
+        style="inset-inline-end: 0%; margin-inline-end: -1.25em;"
         tabindex="-1"
         title="100kb"
         type="button"
@@ -159,7 +159,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
         <span
           aria-hidden="true"
           class="euiRangeTick__pseudo emotion-euiRangeTick__pseudo"
-          style="margin-inline-end:calc(1.25em + 4px)"
+          style="margin-inline-end: calc(1.25em + 4px);"
         />
         100kb
       </button>
@@ -225,7 +225,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
 >
   <div
     aria-hidden="true"
@@ -263,7 +263,7 @@ exports[`EuiRange props input should render 1`] = `
         min="0"
         name="name"
         step="1"
-        style="inline-size:calc(12px + 1ch + 2em + 0px)"
+        style="inline-size: calc(12px + 1ch + 2em + 0px);"
         type="number"
         value="8"
       />
@@ -317,11 +317,11 @@ exports[`EuiRange props levels should render 1`] = `
     >
       <span
         class="euiRangeLevel emotion-euiRangeLevel-danger"
-        style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
+        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
       />
       <span
         class="euiRangeLevel emotion-euiRangeLevel-success"
-        style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
+        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
       />
     </div>
     <input
@@ -331,7 +331,7 @@ exports[`EuiRange props levels should render 1`] = `
       max="100"
       min="0"
       step="1"
-      style="color:#BD271E"
+      style="color: rgb(189, 39, 30);"
       type="range"
       value="20"
     />
@@ -341,40 +341,34 @@ exports[`EuiRange props levels should render 1`] = `
 
 exports[`EuiRange props loading should display when showInput="inputWithPopover" 1`] = `
 <div
-  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-block-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor css-zih94u-render"
+    class="euiFormControlLayout"
   >
-    <div>
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-label="aria-label"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons euiFieldNumber-isLoading"
+        data-test-subj="test subject string"
+        id="id"
+        max="100"
+        min="0"
+        name="name"
+        step="1"
+        type="number"
+        value="8"
+      />
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <div
-          class="euiFormControlLayout__childrenWrapper"
-        >
-          <input
-            aria-label="aria-label"
-            class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons euiFieldNumber-isLoading"
-            data-test-subj="test subject string"
-            id="id"
-            max="100"
-            min="0"
-            name="name"
-            step="1"
-            type="number"
-            value="8"
-          />
-          <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-          >
-            <span
-              aria-label="Loading"
-              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
-              role="progressbar"
-            />
-          </div>
-        </div>
+        <span
+          aria-label="Loading"
+          class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+          role="progressbar"
+        />
       </div>
     </div>
   </div>
@@ -404,7 +398,8 @@ exports[`EuiRange props range should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-inline-start:0%;inline-size:8%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 8%;"
       />
     </div>
   </div>
@@ -412,13 +407,11 @@ exports[`EuiRange props range should render 1`] = `
 `;
 
 exports[`EuiRange props slider should display in popover 1`] = `
-<div
-  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiInputPopover"
->
-  <div
-    class="euiPopover__anchor css-zih94u-render"
-  >
-    <div>
+<body>
+  <div>
+    <div
+      class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-block-EuiInputPopover"
+    >
       <div
         class="euiFormControlLayout"
       >
@@ -441,7 +434,80 @@ exports[`EuiRange props slider should display in popover 1`] = `
       </div>
     </div>
   </div>
-</div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-live="assertive"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isAttached-bottom"
+        data-popover-panel="true"
+        data-test-subj="test"
+        role="dialog"
+        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
+      >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a custom range slider. Use the Up and Down arrow keys to change the value.
+        </p>
+        <div>
+          <div
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="-1"
+          />
+          <div
+            data-focus-lock-disabled="disabled"
+          >
+            <div
+              class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
+            >
+              <div
+                aria-hidden="true"
+                class="euiRangeTrack emotion-euiRangeTrack"
+              >
+                <input
+                  aria-hidden="true"
+                  aria-label="aria-label"
+                  class="euiRangeSlider emotion-euiRangeSlider"
+                  data-test-subj="test subject string"
+                  max="100"
+                  min="0"
+                  name="name"
+                  step="1"
+                  tabindex="-1"
+                  type="range"
+                  value="8"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+  </div>
+</body>
 `;
 
 exports[`EuiRange props ticks should render 1`] = `
@@ -457,8 +523,9 @@ exports[`EuiRange props ticks should render 1`] = `
     >
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(NaN% + 8px);max-inline-size:16.666666666666664%"
+        style="inset-inline-start: calc(NaN% + 8px); max-inline-size: 16.666666666666664%;"
         tabindex="-1"
+        title="0"
         type="button"
         value="0"
       >
@@ -466,8 +533,9 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
+        style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 16.666666666666664%;"
         tabindex="-1"
+        title="20"
         type="button"
         value="20"
       >
@@ -475,8 +543,9 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
+        style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 16.666666666666664%;"
         tabindex="-1"
+        title="40"
         type="button"
         value="40"
       >
@@ -484,8 +553,9 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
+        style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 16.666666666666664%;"
         tabindex="-1"
+        title="60"
         type="button"
         value="60"
       >
@@ -493,8 +563,9 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
+        style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 16.666666666666664%;"
         tabindex="-1"
+        title="80"
         type="button"
         value="80"
       >
@@ -502,8 +573,9 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
+        style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 16.666666666666664%;"
         tabindex="-1"
+        title="100"
         type="button"
         value="100"
       >
@@ -547,9 +619,11 @@ exports[`EuiRange props value should render 1`] = `
     >
       <output
         class="euiRangeTooltip__value emotion-euiRangeTooltip__value-left"
-        style="inset-inline-end:0%"
+        style="inset-inline-end: 0%;"
       >
-        before200after
+        before
+        200
+        after
       </output>
     </div>
   </div>

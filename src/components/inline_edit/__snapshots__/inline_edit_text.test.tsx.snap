@@ -2,21 +2,24 @@
 
 exports[`EuiInlineEditText isReadOnly 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m"
+  aria-label="aria-label"
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1xic7s3-empty-disabled-euiInlineEditReadMode-isReadOnly"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
     role="paragraph"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
@@ -35,24 +38,22 @@ exports[`EuiInlineEditText isReadOnly 1`] = `
 
 exports[`EuiInlineEditText renders 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m"
+  aria-label="aria-label"
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
@@ -60,6 +61,10 @@ exports[`EuiInlineEditText renders 1`] = `
           Hello World!
         </div>
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
@@ -73,24 +78,22 @@ exports[`EuiInlineEditText renders 1`] = `
 
 exports[`EuiInlineEditText text sizes renders m 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m"
+  aria-label="aria-label"
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
@@ -98,6 +101,10 @@ exports[`EuiInlineEditText text sizes renders m 1`] = `
           Hello World!
         </div>
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
@@ -111,24 +118,22 @@ exports[`EuiInlineEditText text sizes renders m 1`] = `
 
 exports[`EuiInlineEditText text sizes renders s 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-s-s"
+  aria-label="aria-label"
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-s-s-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-s"
@@ -136,6 +141,10 @@ exports[`EuiInlineEditText text sizes renders s 1`] = `
           Hello World!
         </div>
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
@@ -149,24 +158,22 @@ exports[`EuiInlineEditText text sizes renders s 1`] = `
 
 exports[`EuiInlineEditText text sizes renders xs 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-xs-xs"
+  aria-label="aria-label"
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-xs-xs-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-xs"
@@ -174,6 +181,10 @@ exports[`EuiInlineEditText text sizes renders xs 1`] = `
           Hello World!
         </div>
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span

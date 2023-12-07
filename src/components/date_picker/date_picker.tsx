@@ -13,6 +13,7 @@ import React, {
   Ref,
   useState,
   useCallback,
+  RefCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -71,9 +72,13 @@ interface EuiExtendedDatePickerProps
   dayClassName?: (date: Moment) => string | null;
 
   /**
-   * Makes the input full width
+   * Renders the input as full width
    */
   fullWidth?: boolean;
+  /**
+   * Renders the input with compressed height and sizing
+   */
+  compressed?: boolean;
 
   /**
    * ref for the ReactDatePicker instance
@@ -146,6 +151,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   adjustDateOnChange = true,
   calendarClassName,
   className,
+  compressed,
   controlOnly,
   customInput,
   dateFormat = euiDatePickerDefaultDateFormat,
@@ -198,11 +204,12 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     'euiDatePicker',
     'euiFieldText',
     numIconsClass,
-    {
+    !inline && {
       'euiFieldText--fullWidth': fullWidth,
       'euiFieldText-isLoading': isLoading,
-      'euiFieldText--withIcon': !inline && showIcon,
-      'euiFieldText--isClearable': !inline && selected && onClear,
+      'euiFieldText--compressed': compressed,
+      'euiFieldText--withIcon': showIcon,
+      'euiFieldText--isClearable': selected && onClear,
     },
     className
   );
@@ -226,9 +233,12 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   }
 
   // Set an internal ref on ReactDatePicker's `input` so we can set its :invalid state via useEuiValidatableControl
-  const [inputValidityRef, _setInputValidityRef] = useState(null);
-  const setInputValidityRef = useCallback((ref) => {
-    _setInputValidityRef(ref?.input);
+  const [inputValidityRef, _setInputValidityRef] =
+    useState<HTMLInputElement | null>(null);
+  const setInputValidityRef = useCallback<
+    RefCallback<Component & { input: HTMLInputElement }>
+  >((ref) => {
+    _setInputValidityRef(ref?.input || null);
   }, []);
   useEuiValidatableControl({ isInvalid, controlEl: inputValidityRef });
   const inputRefs = useCombinedRefs([inputRef, setInputValidityRef]);
@@ -284,7 +294,8 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     <span className={classes}>
       <EuiFormControlLayout
         icon={optionalIcon}
-        fullWidth={fullWidth}
+        fullWidth={!inline && fullWidth}
+        compressed={!inline && compressed}
         clear={selected && onClear ? { onClick: onClear } : undefined}
         isLoading={isLoading}
         isInvalid={isInvalid}

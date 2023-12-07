@@ -84,8 +84,6 @@ export const EuiTab: FunctionComponent<Props> = ({
   const cssTabContentStyles = [
     tabContentStyles.euiTab__content,
     size && tabContentStyles[size],
-    isSelected && tabContentStyles.selected,
-    disabled && tabContentStyles.disabled,
   ];
 
   const prependNode = prepend && (
@@ -129,7 +127,10 @@ export const EuiTab: FunctionComponent<Props> = ({
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {prependNode}
-      <span className="euiTab__content" css={cssTabContentStyles}>
+      <span
+        className="euiTab__content eui-textTruncate"
+        css={cssTabContentStyles}
+      >
         {children}
       </span>
       {appendNode}

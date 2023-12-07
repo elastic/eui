@@ -3,7 +3,7 @@
 exports[`EuiEmptyPrompt is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--transparent euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2 emotion-euiPanel-m-transparent"
+  class="euiPanel euiPanel--transparent euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2 emotion-euiPanel-m-transparent-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -470,7 +470,7 @@ exports[`EuiEmptyPrompt props paddingSize s is rendered 1`] = `
 exports[`EuiEmptyPrompt props styles are rendered 1`] = `
 <div
   class="euiPanel euiPanel--transparent euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-transparent"
-  style="background:yellow;min-width:200px;max-width:600px"
+  style="background: yellow; min-width: 200px; max-width: 600px;"
 >
   <div
     class="euiEmptyPrompt__main"

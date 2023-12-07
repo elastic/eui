@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable new-cap */
-
 const fs = require('fs');
 const path = require('path');
-const babelTemplate = require('babel-template');
+const babelTemplate = require('@babel/template').default;
 const babelCore = require('@babel/core');
 
 const importedDefinitionsCache = new Map();
@@ -13,7 +10,7 @@ function stripTypeScript(filename, ast) {
   return babelCore.transform(babelCore.transformFromAst(ast).code, {
     filename: filename,
     babelrc: false,
-    presets: ['@babel/typescript'],
+    presets: [['@babel/typescript', { allowDeclareFields: true }]],
   }).code;
 }
 
@@ -113,9 +110,10 @@ function resolveOmitToPropTypes(node, state) {
   );
 
   // filter out omitted properties
-  sourcePropTypes.arguments[0].properties = sourcePropTypes.arguments[0].properties.filter(
-    ({ key: { name } }) => keysToRemove.has(stripDoubleQuotes(name)) === false
-  );
+  sourcePropTypes.arguments[0].properties =
+    sourcePropTypes.arguments[0].properties.filter(
+      ({ key: { name } }) => keysToRemove.has(stripDoubleQuotes(name)) === false
+    );
 
   return sourcePropTypes;
 }
@@ -607,9 +605,7 @@ function getPropTypesForNode(node, optional, state) {
           if (mergedProperties.hasOwnProperty(typeProperty.key.name)) {
             const existing = mergedProperties[typeProperty.key.name];
             if (!areExpressionsIdentical(existing, typeProperty.value)) {
-              mergedProperties[
-                typeProperty.key.name
-              ] = types.callExpression(
+              mergedProperties[typeProperty.key.name] = types.callExpression(
                 types.memberExpression(
                   types.identifier('PropTypes'),
                   types.identifier('oneOfType')
@@ -632,9 +628,8 @@ function getPropTypesForNode(node, optional, state) {
             mergedProperties[typeProperty.key.name] = propTypeValue;
           }
 
-          mergedProperties[
-            typeProperty.key.name
-          ].leadingComments = leadingComments;
+          mergedProperties[typeProperty.key.name].leadingComments =
+            leadingComments;
         }
 
         return mergedProperties;
@@ -1533,10 +1528,8 @@ module.exports = function propTypesFromTypeScript({ types }) {
                 idTypeAnnotation.typeAnnotation.typeName.type ===
                 'TSQualifiedName'
               ) {
-                const {
-                  left,
-                  right,
-                } = idTypeAnnotation.typeAnnotation.typeName;
+                const { left, right } =
+                  idTypeAnnotation.typeAnnotation.typeName;
 
                 if (left.name === 'React') {
                   const rightName = right.name;
@@ -1576,18 +1569,16 @@ module.exports = function propTypesFromTypeScript({ types }) {
                   }
                 } else {
                   // reprocess this variable declaration but use the identifier lookup
-                  const nextTypeDefinition = state.get('typeDefinitions')[
-                    typeName
-                  ];
+                  const nextTypeDefinition =
+                    state.get('typeDefinitions')[typeName];
                   const types = state.get('types');
                   if (
                     nextTypeDefinition &&
                     types.isTSType(nextTypeDefinition)
                   ) {
                     const newId = types.cloneDeep(id);
-                    newId.typeAnnotation = types.TSTypeAnnotation(
-                      nextTypeDefinition
-                    );
+                    newId.typeAnnotation =
+                      types.TSTypeAnnotation(nextTypeDefinition);
                     const newNode = types.VariableDeclarator(
                       newId,
                       variableDeclarator.init

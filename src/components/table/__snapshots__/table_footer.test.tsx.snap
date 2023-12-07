@@ -1,14 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTableFooter is rendered 1`] = `
-Array [
+<div>
   <tfoot
     aria-label="aria-label"
-    class="testClass1 testClass2"
+    class="testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
   >
-    <tr />
-  </tfoot>,
-  "children",
-]
+    <tr>
+      children
+    </tr>
+  </tfoot>
+</div>
 `;

@@ -6,16 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { EuiToolTip } from '../../../tool_tip';
 import { EuiIcon } from '../../../icon';
 import { TooltipNodeDetails } from './types';
 
-export const tooltipMarkdownRenderer: FunctionComponent<
+type TooltipMarkdownRendererProps = PropsWithChildren &
   TooltipNodeDetails & {
     position: EuiMarkdownAstNodePosition;
-  }
+  };
+
+export const tooltipMarkdownRenderer: FunctionComponent<
+  TooltipMarkdownRendererProps
 > = ({ content, children }) => {
   return (
     <span>

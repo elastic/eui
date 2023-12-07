@@ -3,7 +3,7 @@
 exports[`EuiPageHeader is rendered 1`] = `
 <header
   aria-label="aria-label"
-  class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader"
+  class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -247,7 +247,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
   >
     <nav
       aria-label="aria-label"
-      class="euiBreadcrumbs testClass1 testClass2"
+      class="euiBreadcrumbs testClass1 testClass2 emotion-euiTestCss"
       data-test-subj="test subject string"
     >
       <ol
@@ -262,6 +262,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
             data-test-subj="breadcrumbsAnimals"
             href="#"
             rel="noreferrer"
+            title="Animals"
           >
             Animals
           </a>
@@ -273,6 +274,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           <span
             aria-current="page"
             class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+            title="Edit"
           >
             Edit
           </span>
@@ -290,11 +292,11 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <h1
           aria-label="aria-label"
-          class="euiTitle testClass1 testClass2 emotion-euiTitle-l"
+          class="euiTitle testClass1 testClass2 emotion-euiTitle-l-euiTestCss"
           data-test-subj="test subject string"
         >
           <span
-            class="testClass1 testClass2 emotion-euiPageHeaderContent__titleIcon"
+            class="testClass1 testClass2 emotion-euiPageHeaderContent__titleIcon-euiTestCss"
             data-euiicon-type="logoKibana"
             data-test-subj="test subject string"
           >
@@ -326,7 +328,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           />
           <div
             aria-label="aria-label"
-            class="euiTabs testClass1 testClass2 emotion-euiTabs-l"
+            class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
             data-test-subj="test subject string"
             role="tablist"
           >
@@ -337,7 +339,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
               type="button"
             >
               <span
-                class="euiTab__content emotion-euiTab__content-l-selected"
+                class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
               >
                 Tab 1
               </span>
@@ -349,7 +351,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
               type="button"
             >
               <span
-                class="euiTab__content emotion-euiTab__content-l"
+                class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
               >
                 Tab 2
               </span>
@@ -362,7 +364,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <div
           aria-label="aria-label"
-          class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row"
+          class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiTestCss"
           data-test-subj="test subject string"
         >
           <div
@@ -428,7 +430,7 @@ exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
 >
   <div
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
-    style="max-width:100px"
+    style="max-width: 100px;"
   >
     <div
       class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
@@ -447,7 +449,7 @@ exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
 >
   <div
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
-    style="max-width:1200px"
+    style="max-width: 1200px;"
   >
     <div
       class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"

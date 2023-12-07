@@ -8,8 +8,7 @@
 
 import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { useEuiTheme, cloneElementWithCss } from '../../services';
 import { euiTitleStyles } from './title.styles';
 import { CommonProps } from '../common';
 

@@ -7,11 +7,12 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import { fireEvent } from '@testing-library/react';
+import { render, waitForEuiContextMenuPanelTransition } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test';
 
 import { EuiContextMenu, SIZES } from './context_menu';
-import { setTimeout } from 'timers';
 
 const panel3 = {
   id: 3,
@@ -63,28 +64,25 @@ const panel0 = {
 
 const panels = [panel0, panel1, panel2, panel3];
 
-export const tick = (ms = 0) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-
 describe('EuiContextMenu', () => {
-  test('is rendered', () => {
-    const component = render(<EuiContextMenu {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiContextMenu />);
 
-    expect(component).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(<EuiContextMenu {...requiredProps} />);
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('panel item can contain JSX', () => {
-    const component = render(
+  it('renders panels with JSX', () => {
+    const { container } = render(
       <EuiContextMenu panels={panels} initialPanelId={3} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('panel item can be a separator line', () => {
-    const component = render(
+  it('renders isSeparator items', () => {
+    const { container } = render(
       <EuiContextMenu
         panels={[
           {
@@ -101,11 +99,11 @@ describe('EuiContextMenu', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('can pass-through horizontal rule props', () => {
-    const component = render(
+    const { container } = render(
       <EuiContextMenu
         panels={[
           {
@@ -125,41 +123,49 @@ describe('EuiContextMenu', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('panels and initialPanelId', () => {
       it('renders the referenced panel', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenu panels={panels} initialPanelId={2} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
-      it('allows you to click the title button to go back to the previous panel', async () => {
+      it('navigates to the next panel', async () => {
         const onPanelChange = jest.fn();
-        const component = mount(
+        const { getByText } = render(
+          <EuiContextMenu
+            panels={panels}
+            initialPanelId={1}
+            onPanelChange={onPanelChange}
+          />
+        );
+        fireEvent.click(getByText('2a'));
+        await waitForEuiContextMenuPanelTransition();
+
+        expect(onPanelChange).toHaveBeenCalledWith({
+          panelId: 2,
+          direction: 'next',
+        });
+      });
+
+      it('navigates back to the previous panel when clicking the title button', async () => {
+        const onPanelChange = jest.fn();
+        const { getByTestSubject } = render(
           <EuiContextMenu
             panels={panels}
             initialPanelId={2}
             onPanelChange={onPanelChange}
           />
         );
+        fireEvent.click(getByTestSubject('contextMenuPanelTitleButton'));
+        await waitForEuiContextMenuPanelTransition();
 
-        await tick(20);
-
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
-
-        // Navigate to a different panel.
-        component
-          .find('[data-test-subj="contextMenuPanelTitleButton"]')
-          .simulate('click');
-
-        await tick(20);
-
-        expect(takeMountedSnapshot(component)).toMatchSnapshot();
         expect(onPanelChange).toHaveBeenCalledWith({
           panelId: 1,
           direction: 'previous',
@@ -169,12 +175,12 @@ describe('EuiContextMenu', () => {
 
     describe('size', () => {
       SIZES.forEach((size) => {
-        it(`${size} is rendered`, () => {
-          const component = render(
+        test(size, () => {
+          const { container } = render(
             <EuiContextMenu panels={panels} initialPanelId={2} size={size} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

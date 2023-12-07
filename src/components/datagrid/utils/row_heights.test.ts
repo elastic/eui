@@ -7,8 +7,8 @@
  */
 
 import type { MutableRefObject } from 'react';
-import { act } from 'react-dom/test-utils';
-import { renderHook } from '@testing-library/react-hooks';
+import { act } from '@testing-library/react';
+import { renderHook } from '../../../test/rtl';
 import { startingStyles } from '../controls';
 import type { ImperativeGridApi } from '../data_grid_types';
 import {
@@ -184,34 +184,22 @@ describe('RowHeightUtils', () => {
         });
       });
     });
+  });
 
-    describe('getStylesForCell (returns inline CSS styles based on height config)', () => {
-      describe('auto height', () => {
-        it('returns empty styles object', () => {
-          expect(
-            rowHeightUtils.getStylesForCell({ defaultHeight: 'auto' }, 0)
-          ).toEqual({});
-        });
-      });
-
-      describe('lineCount height', () => {
-        it('returns line-clamp CSS', () => {
-          expect(
-            rowHeightUtils.getStylesForCell(
-              { defaultHeight: { lineCount: 5 } },
-              0
-            )
-          ).toEqual(expect.objectContaining({ WebkitLineClamp: 5 }));
-        });
-      });
-
-      describe('numeric heights', () => {
-        it('returns default CSS', () => {
-          expect(
-            rowHeightUtils.getStylesForCell({ defaultHeight: 34 }, 0)
-          ).toEqual({ height: '100%', overflow: 'hidden' });
-        });
-      });
+  describe('getHeightType', () => {
+    it('returns a string enum based on rowHeightsOptions', () => {
+      expect(rowHeightUtils.getHeightType(undefined)).toEqual('default');
+      expect(rowHeightUtils.getHeightType('auto')).toEqual('auto');
+      expect(rowHeightUtils.getHeightType({ lineCount: 3 })).toEqual(
+        'lineCount'
+      );
+      expect(rowHeightUtils.getHeightType({ lineCount: 0 })).toEqual(
+        'lineCount'
+      );
+      expect(rowHeightUtils.getHeightType({ height: 100 })).toEqual(
+        'numerical'
+      );
+      expect(rowHeightUtils.getHeightType(100)).toEqual('numerical');
     });
   });
 
@@ -308,17 +296,16 @@ describe('RowHeightUtils', () => {
         rowHeightUtils.setRowHeight(5, 'd', undefined, 0);
 
         // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
-        expect(rowHeightUtils.heightsCache.get(5)?.get('a')).toEqual(62); // @ts-ignore-line
-        expect(rowHeightUtils.heightsCache.get(5)?.get('b')).toEqual(46); // @ts-ignore-line
-        expect(rowHeightUtils.heightsCache.get(5)?.get('c')).toEqual(112); // @ts-ignore-line
-        expect(rowHeightUtils.heightsCache.get(5)?.get('d')).toEqual(46); // Falls back default row height
-        // NB: The cached heights have padding added to them
+        expect(rowHeightUtils.heightsCache.get(5)?.get('a')).toEqual(50); // @ts-ignore-line
+        expect(rowHeightUtils.heightsCache.get(5)?.get('b')).toEqual(34); // @ts-ignore-line
+        expect(rowHeightUtils.heightsCache.get(5)?.get('c')).toEqual(100); // @ts-ignore-line
+        expect(rowHeightUtils.heightsCache.get(5)?.get('d')).toEqual(34); // Falls back default row height
       });
     });
 
     describe('getRowHeight', () => {
       it('returns the highest height value stored for the specificed row', () => {
-        expect(rowHeightUtils.getRowHeight(5)).toEqual(112); // 100 + cell padding
+        expect(rowHeightUtils.getRowHeight(5)).toEqual(100);
       });
 
       it('returns 0 if the passed row does not have any existing heights', () => {
@@ -332,7 +319,7 @@ describe('RowHeightUtils', () => {
           { id: 'a' },
           { id: 'b' },
         ]);
-        expect(rowHeightUtils.getRowHeight(5)).toEqual(62);
+        expect(rowHeightUtils.getRowHeight(5)).toEqual(50);
         expect(didModify).toEqual(true);
       });
 
@@ -677,8 +664,8 @@ describe('useRowHeightUtils', () => {
     expect(result.current.heightsCache).toMatchInlineSnapshot(`
       Map {
         0 => Map {
-          "A" => 42,
-          "B" => 62,
+          "A" => 30,
+          "B" => 50,
         },
       }
     `);
@@ -689,7 +676,7 @@ describe('useRowHeightUtils', () => {
     expect(result.current.heightsCache).toMatchInlineSnapshot(`
       Map {
         0 => Map {
-          "A" => 42,
+          "A" => 30,
         },
       }
     `);

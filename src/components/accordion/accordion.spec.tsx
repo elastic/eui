@@ -10,63 +10,43 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React from 'react';
+import React, { useState } from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
-import { EuiPanel } from '../../components/panel';
-import { htmlIdGenerator } from '../../services';
 
-const baseProps: EuiAccordionProps = {
+const sharedProps: EuiAccordionProps = {
   buttonContent: 'Click me to toggle',
-  id: htmlIdGenerator()(),
+  id: 'cypress-accordion',
   initialIsOpen: false,
+  children: (
+    <>
+      Test accordion content.{' '}
+      <a data-test-subj="childLink" href="#">
+        Focusable link inside content
+      </a>
+    </>
+  ),
 };
 
-const noArrow = { arrowDisplay: 'none' };
-const noArrowProps: EuiAccordionProps = Object.assign(baseProps, noArrow);
-
 describe('EuiAccordion', () => {
-  describe('Keyboard and screen reader accessibility', () => {
-    it('renders with required props', () => {
-      cy.realMount(
-        <EuiAccordion {...baseProps}>
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here.
-          </EuiPanel>
-        </EuiAccordion>
-      );
+  describe('keyboard and screen reader accessibility', () => {
+    it('does not tab to the arrow if the button is interactive', () => {
+      cy.realMount(<EuiAccordion {...sharedProps} initialIsOpen={true} />);
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle');
+      cy.realPress('Tab');
+      cy.focused().contains('Focusable link inside content');
     });
 
-    it('opens and closes on ENTER keypress', () => {
-      cy.realMount(
-        <EuiAccordion {...baseProps}>
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here.
-          </EuiPanel>
-        </EuiAccordion>
-      );
+    it('does tab to the arrow if the button is not interactive', () => {
+      cy.realMount(<EuiAccordion {...sharedProps} buttonElement="div" />);
       cy.realPress('Tab');
-      cy.focused().contains('Click me to toggle').realPress('Enter');
-      cy.realPress(['Shift', 'Tab']);
-      cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
+      cy.focused().should('have.class', 'euiAccordion__arrow');
+    });
+
+    it('opens and closes the accordion on keypress', () => {
+      cy.realMount(<EuiAccordion {...sharedProps} />);
+      cy.realPress('Tab');
       cy.realPress('Enter');
-      cy.focused().invoke('attr', 'aria-expanded').should('equal', 'false');
-    });
-
-    it('opens and closes on SPACE keypress', () => {
-      cy.realMount(
-        <EuiAccordion {...baseProps}>
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here.
-          </EuiPanel>
-        </EuiAccordion>
-      );
-      cy.realPress('Tab');
-      cy.focused().contains('Click me to toggle').realPress('Space');
       cy.realPress(['Shift', 'Tab']);
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
       cy.realPress('Space');
@@ -74,65 +54,81 @@ describe('EuiAccordion', () => {
     });
   });
 
-  describe('Props and navigation', () => {
-    it('should not have an arrow', () => {
-      cy.realMount(
-        <EuiAccordion {...noArrowProps}>
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here.
-          </EuiPanel>
-        </EuiAccordion>
-      );
-      cy.get('.euiAccordion__iconButton').should('not.exist');
+  describe('focus management', () => {
+    const expectChildrenIsFocused = () => {
+      cy.focused()
+        .should('have.class', 'euiAccordion__childWrapper')
+        .should('have.attr', 'tabindex', '-1');
+    };
+
+    it('focuses the accordion content when the arrow is clicked', () => {
+      cy.realMount(<EuiAccordion {...sharedProps} />);
+      cy.get('.euiAccordion__arrow').realClick();
+      expectChildrenIsFocused();
     });
 
-    it('manages focus when panel is clicked', () => {
-      cy.realMount(
-        <EuiAccordion {...noArrowProps}>
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here.
-          </EuiPanel>
-        </EuiAccordion>
-      );
-      cy.get('button').contains('Click me to toggle').realClick();
-      cy.focused().invoke('attr', 'tabindex').should('equal', '-1');
-      cy.focused().contains('Any content inside of EuiAccordion');
-    });
-
-    it('manages focus when panel is opened by keyboard interaction', () => {
-      cy.realMount(
-        <EuiAccordion {...noArrowProps}>
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here. We will include <a href="#">a link</a> to confirm focus.
-          </EuiPanel>
-        </EuiAccordion>
-      );
+    it('focuses the accordion content when the button is clicked', () => {
+      cy.realMount(<EuiAccordion {...sharedProps} />);
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Enter');
-      cy.focused().invoke('attr', 'tabindex').should('equal', '-1');
-      cy.focused().contains('Any content inside of EuiAccordion');
-      cy.realPress('Tab');
-      cy.focused().contains('a link');
+      expectChildrenIsFocused();
     });
 
-    it('manages focus when forceState is open', () => {
-      cy.realMount(
-        <EuiAccordion {...noArrowProps} forceState="open">
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here. We will include <a href="#">a link</a> to confirm focus.
-          </EuiPanel>
-        </EuiAccordion>
-      );
-      cy.realPress('Tab');
-      cy.focused().contains('Click me to toggle');
-      cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
-      cy.focused().invoke('attr', 'tabindex').should('not.exist');
-      cy.realPress('Tab');
-      cy.focused().contains('a link');
+    describe('forceState', () => {
+      it('does not focus the accordion when `forceState` prevents the accordion from opening', () => {
+        cy.realMount(<EuiAccordion {...sharedProps} forceState="closed" />);
+
+        cy.contains('Click me to toggle').realClick();
+        // cy.focused() is flaky here and doesn't always return an element, so use document.activeElement instead
+        cy.then(() => {
+          expect(document.activeElement).not.to.have.class(
+            'euiAccordion__childWrapper'
+          );
+        });
+      });
+
+      it('does not focus the accordion when programmatically toggled from outside the accordion', () => {
+        const ControlledComponent = () => {
+          const [accordionOpen, setAccordionOpen] = useState(false);
+          return (
+            <>
+              <button
+                data-test-subj="toggleForceState"
+                onClick={() => setAccordionOpen(!accordionOpen)}
+              >
+                Control accordion
+              </button>
+              <EuiAccordion
+                {...sharedProps}
+                forceState={accordionOpen ? 'open' : 'closed'}
+              />
+            </>
+          );
+        };
+        cy.realMount(<ControlledComponent />);
+
+        cy.get('[data-test-subj="toggleForceState"]').realClick();
+        cy.focused()
+          .should('not.have.class', 'euiAccordion__childWrapper')
+          .should('have.attr', 'data-test-subj', 'toggleForceState');
+      });
+
+      it('attempts to focus the accordion children when `onToggle` controls `forceState`', () => {
+        const ControlledComponent = () => {
+          const [accordionOpen, setAccordionOpen] = useState(false);
+          return (
+            <EuiAccordion
+              {...sharedProps}
+              onToggle={(open) => setAccordionOpen(open)}
+              forceState={accordionOpen ? 'open' : 'closed'}
+            />
+          );
+        };
+        cy.realMount(<ControlledComponent />);
+
+        cy.contains('Click me to toggle').realClick();
+        expectChildrenIsFocused();
+      });
     });
   });
 });

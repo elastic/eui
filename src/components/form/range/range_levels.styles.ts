@@ -43,7 +43,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
         block-size: ${range.trackHeight};
         inline-size: 100%;
         background-image: ${stripesBackground};
-        background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; // Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly
+        background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; /* Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly */
         border-radius: ${range.trackBorderRadius};
       }
     `,

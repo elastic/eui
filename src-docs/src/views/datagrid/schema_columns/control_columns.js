@@ -63,14 +63,14 @@ for (let i = 1; i < 500; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        name={`${faker.name.lastName()}, ${faker.name.firstName()}`}
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
       />
     ),
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: faker.address.city(),
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 
@@ -309,10 +309,7 @@ const trailingControlColumns = [
 ];
 
 export default function DataGrid() {
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 15,
-  });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const setPageIndex = useCallback(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
@@ -369,7 +366,6 @@ export default function DataGrid() {
           renderCellValue={renderCellValue}
           pagination={{
             ...pagination,
-            pageSizeOptions: [5, 15, 25],
             onChangeItemsPerPage: setPageSize,
             onChangePage: setPageIndex,
           }}

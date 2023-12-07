@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -28,24 +30,29 @@ const findInternalInstance = (
   const instance = component.instance() as EuiSuperDatePickerInternal;
   return [instance, component];
 };
-const shallowAndDive = (component: React.ReactElement) =>
-  shallow(component).dive().dive();
 
 describe('EuiSuperDatePicker', () => {
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
-    skipStyles: true,
+    skip: { style: true },
   });
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
     childProps: ['updateButtonProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
-  test('is rendered', () => {
-    const component = shallowAndDive(
+  it('renders', () => {
+    const { container } = render(
       <EuiSuperDatePicker onTimeChange={noop} {...requiredProps} />
     );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-    expect(component).toMatchSnapshot();
+  it('renders an EuiDatePickerRange', () => {
+    const { container, getByTestSubject } = render(
+      <EuiSuperDatePicker onTimeChange={noop} {...requiredProps} />
+    );
+    fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('refresh is disabled by default', () => {
@@ -195,77 +202,106 @@ describe('EuiSuperDatePicker', () => {
 
     describe('showUpdateButton', () => {
       test('can be false', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} showUpdateButton={false} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('can be iconOnly', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} showUpdateButton="iconOnly" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('accepts data-test-subj and passes to EuiFormControlLayout', () => {
-      const component = shallowAndDive(
+      const { container } = render(
         <EuiSuperDatePicker
           onTimeChange={noop}
           data-test-subj="mySuperDatePicker"
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('width', () => {
       test('can be full', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} width="full" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
       test('can be auto', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} width="auto" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('compressed', () => {
       test('is rendered', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} compressed />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isQuickSelectOnly', () => {
       test('is rendered', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} isQuickSelectOnly />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('isDisabled', () => {
+      test('true', () => {
+        const { container } = render(
+          <EuiSuperDatePicker onTimeChange={noop} isDisabled={true} />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      // TODO: Convert to storybook once EuiSuperDatePicker is on Emotion
+      test('config object', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            isDisabled={{
+              display: (
+                <span data-test-subj="customDisabledDisplay">All time</span>
+              ),
+            }}
+          />
+        );
+        expect(getByTestSubject('customDisabledDisplay').textContent).toEqual(
+          'All time'
+        );
+        expect(
+          getByTestSubject('superDatePickerShowDatesButton')
+        ).toMatchSnapshot();
       });
     });
 
     describe('isAutoRefreshOnly', () => {
       it('is rendered', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker
             onTimeChange={noop}
             onRefreshChange={noop}
             isAutoRefreshOnly
           />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('passes required props', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker
             onTimeChange={noop}
             onRefreshChange={noop}
@@ -274,7 +310,7 @@ describe('EuiSuperDatePicker', () => {
             data-test-subj="autoRefreshOnly"
           />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

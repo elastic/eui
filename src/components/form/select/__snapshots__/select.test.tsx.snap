@@ -11,7 +11,7 @@ exports[`EuiSelect is rendered 1`] = `
   <eui-validatable-control>
     <select
       aria-label="aria-label"
-      class="euiSelect euiFormControlLayout--1icons testClass1 testClass2"
+      class="euiSelect euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
       data-test-subj="test subject string"
       id="id"
       name="name"
@@ -133,7 +133,6 @@ exports[`EuiSelect props value option is rendered 1`] = `
       class="euiSelect euiFormControlLayout--1icons"
     >
       <option
-        selected=""
         value="1"
       >
         Option #1

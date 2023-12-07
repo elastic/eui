@@ -7,47 +7,28 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderSectionItem } from './header_section_item';
 
 describe('EuiHeaderSectionItem', () => {
-  test('is rendered', () => {
-    const component = render(<EuiHeaderSectionItem {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiHeaderSectionItem>test</EuiHeaderSectionItem>);
 
-    expect(component).toMatchSnapshot();
+  it('renders nothing if no children are present', () => {
+    const { container } = render(<EuiHeaderSectionItem {...requiredProps} />);
+
+    expect(container).toBeEmptyDOMElement();
   });
 
-  test('renders children', () => {
-    const component = render(
-      <EuiHeaderSectionItem>
+  it('renders with children', () => {
+    const { container } = render(
+      <EuiHeaderSectionItem {...requiredProps}>
         <span>Call me Ishmael.</span>
       </EuiHeaderSectionItem>
     );
 
-    expect(component).toMatchSnapshot();
-  });
-
-  describe('border', () => {
-    test('defaults to left', () => {
-      const component = render(
-        <EuiHeaderSectionItem>
-          <span>Left is default</span>
-        </EuiHeaderSectionItem>
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('renders right', () => {
-      const component = render(
-        <EuiHeaderSectionItem border="right">
-          <span>Right section</span>
-        </EuiHeaderSectionItem>
-      );
-
-      expect(component).toMatchSnapshot();
-    });
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

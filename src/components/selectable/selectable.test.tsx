@@ -7,9 +7,11 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
+import { act } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiSelectable } from './selectable';
 import { EuiSelectableOption } from './selectable_option';
@@ -42,11 +44,11 @@ describe('EuiSelectable', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelectable options={options} {...requiredProps} id="testId" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its search/listbox', () => {
@@ -61,10 +63,13 @@ describe('EuiSelectable', () => {
       </EuiSelectable>
     );
 
-    component.setState({
-      activeOptionIndex: 0,
-      isFocused: true,
+    act(() => {
+      component.setState({
+        activeOptionIndex: 0,
+        isFocused: true,
+      });
     });
+
     expect(component.state()).toMatchSnapshot();
 
     const listBox = component.find('div.euiSelectableList__list').getDOMNode();
@@ -77,51 +82,55 @@ describe('EuiSelectable', () => {
 
   describe('props', () => {
     test('searchable', () => {
-      const component = render(<EuiSelectable options={options} searchable />);
+      const { container } = render(
+        <EuiSelectable options={options} searchable />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('singleSelection', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable options={options} singleSelection />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('allowExclusions', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable options={options} allowExclusions />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isLoading', () => {
-      const component = render(<EuiSelectable options={options} isLoading />);
+      const { container } = render(
+        <EuiSelectable options={options} isLoading />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('height can be forced', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable options={options} height={200} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('height can be full', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable options={options} height="full" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renderOption', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable
           options={options}
           renderOption={(option: EuiSelectableOption, searchValue?: string) => {
@@ -134,11 +143,11 @@ describe('EuiSelectable', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('listProps', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable
           options={options}
           listProps={{
@@ -149,13 +158,13 @@ describe('EuiSelectable', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('search value', () => {
     it('supports inheriting initialSearchValue from searchProps.defaultValue', () => {
-      const component = render(
+      const { container, getByTestSubject } = render(
         <EuiSelectable
           options={options}
           searchable
@@ -172,10 +181,8 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
-      expect(component).toMatchSnapshot();
-      expect(
-        component.find('input[data-test-subj="searchInput"]').prop('value')
-      ).toEqual('default value');
+      expect(container.firstChild).toMatchSnapshot();
+      expect(getByTestSubject('searchInput')).toHaveValue('default value');
     });
 
     it('supports controlled searchValue state from searchProps.value', () => {
@@ -255,7 +262,7 @@ describe('EuiSelectable', () => {
     });
 
     it('defaults to an empty string if no value or defaultValue is passed from searchProps', () => {
-      const component = render(
+      const { getByTestSubject } = render(
         <EuiSelectable
           options={options}
           searchable
@@ -264,9 +271,8 @@ describe('EuiSelectable', () => {
           {(_, search) => <>{search}</>}
         </EuiSelectable>
       );
-      expect(
-        component.find('input[data-test-subj="searchInput"]').prop('value')
-      ).toEqual('');
+
+      expect(getByTestSubject('searchInput')).toHaveValue('');
     });
   });
 
@@ -357,7 +363,7 @@ describe('EuiSelectable', () => {
           },
         },
       ];
-      const component = render(
+      const { container } = render(
         <EuiSelectable<WithData>
           options={options}
           renderOption={(option) => {
@@ -372,7 +378,7 @@ describe('EuiSelectable', () => {
         </EuiSelectable>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -486,27 +492,27 @@ describe('EuiSelectable', () => {
 
   describe('errorMessage prop', () => {
     it('does not render the message when not defined', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable options={options} errorMessage={null}>
           {(list) => list}
         </EuiSelectable>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('does renders the message when defined', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable options={options} errorMessage="Error!">
           {(list) => list}
         </EuiSelectable>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('can render an element as the message', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectable
           options={options}
           errorMessage={<span>Element error!</span>}
@@ -515,7 +521,7 @@ describe('EuiSelectable', () => {
         </EuiSelectable>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 

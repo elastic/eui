@@ -7,49 +7,49 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiFormLabel } from './form_label';
 
 describe('EuiFormLabel', () => {
   test('is rendered', () => {
-    const component = render(<EuiFormLabel {...requiredProps} />);
+    const { container } = render(<EuiFormLabel {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('isFocused is rendered', () => {
-      const component = render(<EuiFormLabel isFocused />);
+      const { container } = render(<EuiFormLabel isFocused />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isInvalid is rendered', () => {
-      const component = render(<EuiFormLabel isInvalid />);
+      const { container } = render(<EuiFormLabel isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('isDisabled', () => {
       test('is rendered', () => {
-        const component = render(<EuiFormLabel isDisabled />);
+        const { container } = render(<EuiFormLabel isDisabled />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is still disabled with for attribute', () => {
-        const component = render(<EuiFormLabel isDisabled htmlFor="" />);
+        const { container } = render(<EuiFormLabel isDisabled htmlFor="" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('type can be changed to legend', () => {
-      const component = render(<EuiFormLabel type="legend" />);
+      const { container } = render(<EuiFormLabel type="legend" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

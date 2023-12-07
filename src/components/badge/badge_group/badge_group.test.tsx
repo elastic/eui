@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiBadge } from '../badge';
 import { EuiBadgeGroup, GUTTER_SIZES } from './badge_group';
@@ -18,21 +18,21 @@ describe('EuiBadgeGroup', () => {
   shouldRenderCustomStyles(<EuiBadgeGroup />);
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadgeGroup {...requiredProps}>
         <EuiBadge>Content</EuiBadge>
       </EuiBadgeGroup>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('gutterSize', () => {
     GUTTER_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiBadgeGroup gutterSize={size} />);
+        const { container } = render(<EuiBadgeGroup gutterSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

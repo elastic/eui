@@ -32,6 +32,14 @@ export class GuidePageChrome extends Component {
     this.setState({
       isSideNavOpenOnMobile: !this.state.isSideNavOpenOnMobile,
     });
+    // Scroll the mobile nav to the currently open page
+    setTimeout(() => {
+      const sideNav = document.querySelector('.euiSideNav__content');
+      const selectedNavItem = sideNav?.querySelector(
+        '.euiSideNavItemButton-isSelected'
+      ).parentElement;
+      sideNav.scrollTop = selectedNavItem.offsetTop - sideNav.offsetHeight;
+    }, 200);
   };
 
   onSearchChange = (event) => {
@@ -41,19 +49,57 @@ export class GuidePageChrome extends Component {
     });
   };
 
+  renderSideNavBadge = ({ isBeta, isNew, isDeprecated }) => {
+    if (isBeta) {
+      return (
+        <EuiBadge color="warning" className="guideSideNav__itemBadge">
+          BETA
+        </EuiBadge>
+      );
+    }
+    if (isNew) {
+      return (
+        <EuiBadge color="accent" className="guideSideNav__itemBadge">
+          NEW
+        </EuiBadge>
+      );
+    }
+    if (isDeprecated) {
+      return (
+        <EuiBadge color="danger" className="guideSideNav__itemBadge">
+          Deprecated
+        </EuiBadge>
+      );
+    }
+    return undefined;
+  };
+
   scrollNavSectionIntoView = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const sideNav = document.querySelector('.guideSideNav__content');
-      const isMobile = sideNav?.querySelector('.euiSideNav__mobileToggle');
 
-      const selectedButton = sideNav?.querySelector(
+      const selectedNavItem = sideNav?.querySelector(
         '.euiSideNavItemButton-isSelected'
       );
-      selectedButton?.parentElement.scrollIntoView({
-        block: isMobile ? 'start' : 'center',
-      });
+      if (selectedNavItem) {
+        const selectedNavGroup = selectedNavItem.parentElement;
+
+        // Wait a bit for react to blow away and re-create the DOM
+        // then scroll the selected nav section into view
+        setTimeout(() => {
+          // Center the open/selected item on the nav
+          const scrollOffset =
+            selectedNavGroup.offsetTop -
+            sideNav.offsetHeight / 2 +
+            selectedNavGroup.offsetHeight / 2;
+
+          // Don't use `scrollIntoView` or scroll APIs - they cause side effects
+          // on body scrolling for some annoying reason
+          sideNav.scrollTop = scrollOffset;
+        }, 1); // Note: Webkit browsers require this timeout duration, FF doesn't
+      }
     });
   };
 
@@ -80,43 +126,46 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, sections }) => {
-      const id = slugify(title);
+    return subSectionsWithTitles.map(
+      ({ title, isBeta, isNew, isDeprecated, sections }) => {
+        const id = slugify(title);
 
-      const subSectionHref = `${href}/${id}`;
-      const subSectionHashIdHref = `${href}#${id}`;
+        const subSectionHref = `${href}/${id}`;
+        const subSectionHashIdHref = `${href}#${id}`;
 
-      const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
-      const subItems = sections
-        ? this.renderSubSections(sectionHref, sections, searchTerm)
-        : undefined;
+        const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
+        const subItems = sections
+          ? this.renderSubSections(sectionHref, sections, searchTerm)
+          : undefined;
 
-      const isCurrentlyOpenSubSection =
-        window.location.hash.includes(subSectionHref);
+        const isCurrentlyOpenSubSection =
+          window.location.hash.includes(subSectionHref);
 
-      let name = title;
-      if (searchTerm) {
-        name = (
-          <EuiHighlight
-            className="guideSideNav__item--inSearch"
-            search={searchTerm}
-          >
-            {title}
-          </EuiHighlight>
-        );
+        let name = title;
+        if (searchTerm) {
+          name = (
+            <EuiHighlight
+              className="guideSideNav__item--inSearch"
+              search={searchTerm}
+            >
+              {title}
+            </EuiHighlight>
+          );
+        }
+
+        return {
+          id: sectionHref,
+          name: isCurrentlyOpenSubSection ? <strong>{name}</strong> : name,
+          href: sectionHref,
+          className: isCurrentlyOpenSubSection
+            ? 'guideSideNav__item--openSubTitle'
+            : '',
+          items: subItems,
+          forceOpen: !!searchTerm || isCurrentlyOpenSubSection,
+          icon: this.renderSideNavBadge({ isBeta, isNew, isDeprecated }),
+        };
       }
-
-      return {
-        id: sectionHref,
-        name: isCurrentlyOpenSubSection ? <strong>{name}</strong> : name,
-        href: sectionHref,
-        className: isCurrentlyOpenSubSection
-          ? 'guideSideNav__item--openSubTitle'
-          : '',
-        items: subItems,
-        forceOpen: !!searchTerm || isCurrentlyOpenSubSection,
-      };
-    });
+    );
   };
 
   renderSideNav = (sideNav) => {
@@ -142,18 +191,9 @@ export class GuidePageChrome extends Component {
       });
 
       const items = matchingItems.map((item) => {
-        const { name, path, sections, isNew } = item;
+        const { name, path, sections, isBeta, isNew, isDeprecated } = item;
 
         const href = `#/${path}`;
-
-        let newBadge;
-        if (isNew) {
-          newBadge = (
-            <EuiBadge color="accent" className="guideSideNav__newBadge">
-              NEW
-            </EuiBadge>
-          );
-        }
 
         let visibleName = name;
         if (searchTerm) {
@@ -175,7 +215,7 @@ export class GuidePageChrome extends Component {
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
-          icon: newBadge,
+          icon: this.renderSideNavBadge({ isBeta, isNew, isDeprecated }),
         };
       });
 

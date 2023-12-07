@@ -262,6 +262,30 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 `${font.body.letterSpacing ? `letter-spacing: ${font.body.letterSpacing}` : ''`}`
 ```
 
+## Duplicate styles
+
+When writing styles for prop enums (e.g. sizing enums: `s`, `m`, `l`, etc.), some props may have duplicated styles between two values. If the duplicated styles are just a line or two, repeating the CSS is not particularly problematic.
+
+However, if the repeated CSS starts to get lengthy or unintuitive, consider using a [JS getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) to return duplicate styles, for example:
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  // Sizes
+  s: css`
+    /* lengthy or complex styles */
+  `,
+  get m() {
+    // Same as `s`
+    return this.s;
+  },
+  l: css`
+    /* different styles */
+  `,
+});
+```
+
+For a production example of this scenario, see [EuiStep's styles](https://github.com/elastic/eui/blob/ea535de773703ec225804228aa3aa68d18d84dc5/src/components/steps/step.styles.ts#L86-L105).
+
 ## Child selectors
 
 Most components also contain child elements that have their own styles. If you have just a few child elements, consider having them in the same function.
@@ -332,6 +356,82 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
     </div>
   )
 }
+```
+
+### Merging child element css with spread operators
+
+Please keep in mind that while Emotion will automatically merge `css` props for **top** level components, it will **not** do so for any child elements. Take for example the following component:
+
+```tsx
+// This example is incorrect!
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({ iconProps, ...rest }) => {
+  const euiTheme = useEuiTheme();
+
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+  const cssIconStyles = [styles.euiComponentName__icon];
+
+  return (
+    // This will merge Emotion CSS as expected
+    <div css={cssStyles} {...rest}>
+      <EuiIcon
+        // This will not!
+        css={cssIconStyles}
+        {...iconProps}
+      />
+    </div>
+  )
+}
+```
+
+If a consumer passes `<EuiComponentName css={{ color: 'red' }}>`, Emotion will automatically correctly combine EUI's component styles and the passed custom styles.
+
+**However**, if a consumer passes `<EuiComponentName iconProps={{ css: { color: red } }}>`, Emotion will **not** handle merging in the child `css` props and will simply override/ignore whichever `css` prop came first in the prop order.
+
+To ensure consumers do not either accidentally wipe our EUI's default styling, or are unable to pass in child `css` props, always check that you're manually merging in any `childProps.css` like so:
+
+```tsx
+// This example will correctly merge child CSS
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({ iconProps, ...rest }) => {
+  const euiTheme = useEuiTheme();
+
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+
+   // Include `childProps?.css` in the css array
+  const cssIconStyles = [styles.euiComponentName__icon, iconProps?.css];
+
+  return (
+    <div css={cssStyles} {...rest}>
+      <EuiIcon
+        // Ensure that your merged `css` array comes after the props spread
+        {...iconProps}
+        css={cssIconStyles}
+      />
+    </div>
+  )
+}
+```
+
+You can confirm that this behavior correctly merges Emotion CSS by using the `shouldRenderCustomStyles` test utility. Example usage:
+
+```tsx
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/';
+
+describe('EuiComponentName', () => {
+  shouldRenderCustomStyles(<EuiComponentName />, {
+    childProps: ['iconProps']
+  });
+
+  it('renders', () => {
+    // ...
+  })
+
+  it('renders `iconProps`', () => {
+    render(<EuiComponentName iconProps={requiredProps} />)
+  });
+});
 ```
 
 ## Nested selectors
@@ -418,6 +518,58 @@ When creating mixins & utilities for reuse within Emotion CSS, consider the foll
     - If you anticipate your mixin being used in the `style` prop instead of `css` (since React will want an object and camelCased CSS properties)
     - If you want your mixin to be partially composable, so if you think developers will want to obtain a single line/property from your mixin instead of the entire thing (e.g. `euiFontSize.lineHeight`)
 
+## JS vs. CSS component variables
+
+In general, most component-specific style variables can remain JS-only (e.g., [euiStepVariables](https://github.com/elastic/eui/blob/068f0000532e6433383093d3488d7b1c4979c022/src/components/steps/step.styles.ts#L13-L19), [euiFormVariables](https://github.com/elastic/eui/blob/d39c0e988409f90f62af57174590044664b2bfce/src/components/form/form.styles.ts#L19)). These JS variable examples are generally used internally by EUI, and are not public top-level exports.
+
+There are some scenarios, however, where certain component style variables are important enough to be made globally available via a [CSS variable](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+
+An example of this is **EuiHeader**: Fixed header height(s) and the page offset they cause need to be accounted for by multiple other EUI components (e.g. **EuiFlyout**, **EuiPageTemplate**), and potentially by custom consumer layouts. Using a global CSS variable allows **EuiHeader** to dynamically track the number of fixed headers and calculate total height in a single place. Other components can reuse that CSS variable without extra JS logic needed ([#7144](https://github.com/elastic/eui/pull/7144)).
+
+EUI components can set CSS variables in two places: globally, or at the nearest **EuiThemeProvider** wrapper level:
+
+```tsx
+import React, { useEffect } from 'react';
+import { useEuiTheme, useEuiThemeCSSVariables } from '../../services';
+
+const EuiComponent = ({ ...props }) => {
+  const { euiTheme } = useEuiTheme();
+  const {
+    setGlobalCSSVariables,
+    setNearestThemeCSSvariables,
+  } = useEuiThemeCSSVariables();
+
+  useEffect(() => {
+    // Sets the CSS variable at `:root`
+    setGlobalCSSVariables({ '--euiSomeGlobalVariable': euiTheme.color.success });
+
+    // Sets the CSS variable on the nearest parent theme provider wrapper
+    // If the nearest provider is EuiProvider, the variable is set globally on `:root` in any case
+    setNearestThemeCSSVariables({ '--euiSomeThemeVariable': euiTheme.size.m });
+  }, []);
+
+  return <></>;
+}
+```
+
+While a global CSS variable makes sense for **EuiHeader**, for most components, nearest theme variables would likely make more sense. For example, **EuiForm** should respect any custom theme modifications and pass its modified form variables to any children, but not siblings or parent forms that do not have modifications.
+
+```tsx
+// Normal form
+<EuiForm>
+  {/* ... Form controls that inherit global form variables */}
+</EuiForm>
+
+// Form with a custom size scale
+<EuiThemeProvider modify={{ base: 10 }}>
+  <EuiForm>
+    {/* ... Form controls that inherit from the nearest theme variables */}
+  </EuiForm>
+</EuiThemeProvider>
+```
+
+[See our EuiThemeProvider stories](http://localhost:6006/?path=/story/euithemeprovider--css-variables-nearest) to view an example of this behavior in the browser.
+
 ### Naming
 
 When naming your mixins & utilities, consider the following statements:
@@ -463,3 +615,17 @@ Same as the above answer, whichever element is given the generated `className` i
 ### How should `createElement` usages be converted?
 
 Emotion provides its own `createElement` function; existing uses of `import {createElement} from 'react'` can be converted to `import {createElement} from '@emotion/react'`
+
+### Why is stylelint / `yarn lint-css-in-js` giving me an `Unknown word (CssSyntaxError)` error?
+
+Unfortunately, a limitation of the CSS-in-JS syntax parser we're using is that `//` comments throw this error (see https://github.com/hudochenkov/postcss-styled-syntax#known-issues).
+
+You must convert all `//` comments to standard CSS `/* */` comments instead.
+
+### Should I use Emotion's `css={theme => {}}` API?
+
+No. The [Emotion theme context](https://emotion.sh/docs/theming) that we include by default in `EuiThemeProvider` is intended for **consumer usage** and convenience, particularly with the goal of making adoption by Kibana devs easier.
+
+It is not intended for internal EUI usage, primarily because it can be too easily overridden by consumers who want to use their own custom Emotion theme vars and set their own `<ThemeProvider>`. If this happens, and we're relying on Emotion's theme context, all of EUI's styles will break.
+
+When you're styling EUI components internally, you should use only EUI's theme context/`useEuiTheme()`, and not on Emotion's theme context (i.e., do not use the `css={theme => {}}` API).

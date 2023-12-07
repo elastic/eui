@@ -15,18 +15,23 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import {
+  getSecureRelForTarget,
+  useEuiTheme,
+  cloneElementWithCss,
+} from '../../services';
+import { useGeneratedHtmlId } from '../../services/accessibility';
+import { validateHref } from '../../services/security/href_validator';
+
 import { CommonProps, ExclusiveUnion } from '../common';
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
 import { EuiIconProps } from '../icon';
-import { EuiCardSelect, EuiCardSelectProps } from './card_select';
-import { useGeneratedHtmlId } from '../../services/accessibility';
-import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiSpacer } from '../spacer';
+
+import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 import {
   euiCardBetaBadgeStyles,
   euiCardStyles,
@@ -271,21 +276,22 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   if (betaBadgeProps?.label) {
     const betaStyles = euiCardBetaBadgeStyles(euiThemeContext, paddingSize);
     optionalBetaCSS = betaStyles.hasBetaBadge;
-    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor];
-    const badgeCSS = [betaStyles.euiCard__betaBadge];
+
     const { anchorProps, ...cleanedBetaBadgeProps } = betaBadgeProps;
+    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor, anchorProps?.css];
+    const badgeCSS = [betaStyles.euiCard__betaBadge, betaBadgeProps?.css];
 
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
       <EuiBetaBadge
-        css={badgeCSS}
         color={
           isDisabled && !betaBadgeProps.onClick && !betaBadgeProps.href
             ? 'subdued'
             : 'hollow'
         }
         {...cleanedBetaBadgeProps}
-        anchorProps={{ css: anchorCSS, ...anchorProps }}
+        css={badgeCSS}
+        anchorProps={{ ...anchorProps, css: anchorCSS }}
         id={optionalBetaBadgeID}
       />
     );

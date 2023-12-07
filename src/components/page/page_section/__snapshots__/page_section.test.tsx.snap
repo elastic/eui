@@ -3,7 +3,7 @@
 exports[`EuiPageSection is rendered 1`] = `
 <section
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPageSection-l-top-transparent"
+  class="testClass1 testClass2 emotion-euiPageSection-l-top-transparent-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -164,7 +164,7 @@ exports[`EuiPageSection props contentProps are passed down 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="testClass1 testClass2 emotion-euiPageSection__content-l"
+    class="testClass1 testClass2 emotion-euiPageSection__content-l-euiTestCss"
     data-test-subj="test subject string"
   />
 </section>
@@ -246,7 +246,7 @@ exports[`EuiPageSection props restrictWidth can be custom 1`] = `
 >
   <div
     class="emotion-euiPageSection__content-l-restrictWidth"
-    style="max-width:1000px"
+    style="max-width: 1000px;"
   />
 </section>
 `;
@@ -257,7 +257,7 @@ exports[`EuiPageSection props restrictWidth can be true 1`] = `
 >
   <div
     class="emotion-euiPageSection__content-l-restrictWidth"
-    style="max-width:1200px"
+    style="max-width: 1200px;"
   />
 </section>
 `;

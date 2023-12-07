@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavLink renders a button if an onClick is passed but not a href 1`] = `
+<button
+  class="euiLink euiCollapsibleNavLink emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isNotAccordion-isInteractive"
+  type="button"
+>
+  Link
+</button>
+`;
+
+exports[`EuiCollapsibleNavLink renders a link 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiCollapsibleNavLink testClass1 testClass2 testClass1 testClass2 emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isInteractive-euiTestCss-euiTestCss"
+  data-test-subj="test subject string"
+  href="#"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  Link
+  <span
+    class="emotion-EuiExternalLinkIcon"
+    data-euiicon-type="popout"
+  >
+    External link
+  </span>
+  <span
+    class="emotion-euiScreenReaderOnly"
+  >
+    (opens in a new tab or window)
+  </span>
+</a>
+`;
+
+exports[`EuiCollapsibleNavLink renders as a static span if \`isInteractive\` is false 1`] = `
+<span
+  class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem-isNotAccordion"
+>
+  Link
+</span>
+`;

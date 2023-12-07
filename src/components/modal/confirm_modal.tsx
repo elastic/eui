@@ -11,7 +11,7 @@ import React, {
   ComponentProps,
   ReactNode,
   useEffect,
-  useState,
+  useRef,
 } from 'react';
 import classnames from 'classnames';
 
@@ -88,30 +88,25 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   isLoading,
   ...rest
 }) => {
-  const [cancelButton, setCancelButton] = useState<
-    HTMLButtonElement | HTMLAnchorElement | null
-  >(null);
-  const [confirmButton, setConfirmButton] = useState<HTMLButtonElement | null>(
-    null
-  );
+  const cancelButtonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+  const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // We have to do this instead of using `autoFocus` because React's polyfill for auto-focusing
     // elements conflicts with the focus-trap logic we have on EuiModal.
     // Wait a beat for the focus-trap to complete, and then set focus to the right button. Check that
     // the buttons exist first, because it's possible the modal has been closed already.
-    requestAnimationFrame(() => {
-      if (defaultFocusedButton === CANCEL_BUTTON && cancelButton) {
-        cancelButton.focus();
-      } else if (defaultFocusedButton === CONFIRM_BUTTON && confirmButton) {
-        confirmButton.focus();
+    setTimeout(() => {
+      if (defaultFocusedButton === CANCEL_BUTTON && cancelButtonRef.current) {
+        cancelButtonRef.current.focus();
+      } else if (
+        defaultFocusedButton === CONFIRM_BUTTON &&
+        confirmButtonRef.current
+      ) {
+        confirmButtonRef.current.focus();
       }
     });
-  });
-
-  const confirmRef = (node: HTMLButtonElement | null) => setConfirmButton(node);
-  const cancelRef = (node: HTMLButtonElement | HTMLAnchorElement | null) =>
-    setCancelButton(node);
+  }, [defaultFocusedButton, cancelButtonRef, confirmButtonRef]);
 
   const classes = classnames('euiModal--confirmation', className);
 
@@ -156,7 +151,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
         <EuiButtonEmpty
           data-test-subj="confirmModalCancelButton"
           onClick={onCancel}
-          buttonRef={cancelRef}
+          buttonRef={cancelButtonRef}
         >
           {cancelButtonText}
         </EuiButtonEmpty>
@@ -166,7 +161,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
           onClick={onConfirm}
           isLoading={isLoading}
           fill
-          buttonRef={confirmRef}
+          buttonRef={confirmButtonRef}
           color={buttonColor}
           isDisabled={confirmButtonDisabled}
         >

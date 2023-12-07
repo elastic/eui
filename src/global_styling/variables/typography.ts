@@ -12,10 +12,9 @@ import { CSSProperties } from 'react';
  * Font units of measure
  */
 
-export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
+export const EuiThemeFontUnits = ['rem', 'px', 'em'] as const;
 
-export type _EuiThemeFontSizeMeasurement =
-  (typeof EuiThemeFontSizeMeasurements)[number];
+export type _EuiThemeFontUnit = (typeof EuiThemeFontUnits)[number];
 
 /*
  * Font scale
@@ -60,6 +59,16 @@ export type _EuiThemeFontBase = {
    */
   featureSettings?: string;
   /**
+   * Sets the default units used for font size & line height set by UI components
+   * like EuiText or EuiTitle. Defaults to `rem`.
+   *
+   * NOTE: This may overridden by some internal usages, e.g.
+   * EuiText's `relative` size which must use `em`.
+   *
+   * @default 'rem'
+   */
+  defaultUnits: _EuiThemeFontUnit;
+  /**
    * A computed number that is 1/4 of `base`
    */
   baseline: number;
@@ -83,10 +92,18 @@ export const EuiThemeFontWeights = [
 
 export type _EuiThemeFontWeight = (typeof EuiThemeFontWeights)[number];
 
-export type _EuiThemeFontWeights = Record<
-  _EuiThemeFontWeight,
-  CSSProperties['fontWeight']
->;
+export type _EuiThemeFontWeights = {
+  /** - Default value: 300 */
+  light: CSSProperties['fontWeight'];
+  /** - Default value: 400 */
+  regular: CSSProperties['fontWeight'];
+  /** - Default value: 500 */
+  medium: CSSProperties['fontWeight'];
+  /** - Default value: 600 */
+  semiBold: CSSProperties['fontWeight'];
+  /** - Default value: 700 */
+  bold: CSSProperties['fontWeight'];
+};
 
 /**
  * Body / Base styles
@@ -120,6 +137,9 @@ export interface _EuiThemeTitle {
 
 export type _EuiThemeFont = _EuiThemeFontBase & {
   scale: _EuiThemeFontScales;
+  /**
+   * @see {@link https://eui.elastic.co/#/theming/typography/values%23font-weight | Reference} for more information
+   */
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
   title: _EuiThemeTitle;

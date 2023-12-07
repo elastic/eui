@@ -33,16 +33,16 @@ const storeData = [];
 
 for (let i = 1; i < 5; i++) {
   storeData.push({
-    default: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     boolean: `${faker.datatype.boolean()}`,
-    numeric: faker.finance.account(),
+    numeric: faker.finance.accountNumber(),
     currency: faker.finance.amount(),
     datetime: `${faker.date.past()}`,
     json: JSON.stringify([
       {
-        default: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+        default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
         boolean: `${faker.datatype.boolean()}`,
-        numeric: faker.finance.account(),
+        numeric: faker.finance.accountNumber(),
         currency: faker.finance.amount(),
         date: `${faker.date.past()}`,
         custom: `${faker.date.past()}`,

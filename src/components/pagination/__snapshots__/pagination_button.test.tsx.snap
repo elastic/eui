@@ -3,15 +3,15 @@
 exports[`EuiPaginationButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton testClass1 testClass2 css-23ziaw-empty-text-euiPaginationButton"
+  class="euiButtonEmpty euiPaginationButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiPaginationButton-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       2
     </span>

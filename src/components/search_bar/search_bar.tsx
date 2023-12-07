@@ -11,8 +11,8 @@ import React, { Component, ReactElement } from 'react';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSearchBox, SchemaType } from './search_box';
-import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
+import { EuiSearchBox } from './search_box';
+import { EuiSearchBarFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 import { CommonProps } from '../common';
 import { EuiFieldSearchProps } from '../form/field_search';
@@ -34,6 +34,12 @@ interface ArgsWithError {
   query: null;
   queryText: string;
   error: Error;
+}
+
+export interface SchemaType {
+  strict?: boolean;
+  fields?: any;
+  flags?: string[];
 }
 
 export type EuiSearchBarOnChangeArgs = ArgsWithQuery | ArgsWithError;
@@ -255,7 +261,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const filtersBar = !filters ? undefined : (
       <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
-        <EuiSearchFilters
+        <EuiSearchBarFilters
           filters={filters}
           query={query}
           onChange={this.onFiltersChange}

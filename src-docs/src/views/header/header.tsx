@@ -112,11 +112,9 @@ export default () => {
 
   return (
     <EuiHeader>
-      <EuiHeaderSection grow={false}>
-        <EuiHeaderSectionItem border="right">
-          {renderLogo()}
-        </EuiHeaderSectionItem>
-        <EuiHeaderSectionItem border="right">
+      <EuiHeaderSection>
+        <EuiHeaderSectionItem>{renderLogo()}</EuiHeaderSectionItem>
+        <EuiHeaderSectionItem>
           <HeaderSpacesMenu />
         </EuiHeaderSectionItem>
       </EuiHeaderSection>
@@ -171,14 +169,10 @@ const HeaderUserMenu = () => {
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}
-      panelPaddingSize="none"
+      panelPaddingSize="m"
     >
-      <div style={{ width: 320 }}>
-        <EuiFlexGroup
-          gutterSize="m"
-          className="euiHeaderProfile"
-          responsive={false}
-        >
+      <div style={{ width: 300 }}>
+        <EuiFlexGroup gutterSize="m" responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>

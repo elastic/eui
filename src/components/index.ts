@@ -33,6 +33,7 @@ export * from './card';
 export * from './code';
 
 export * from './collapsible_nav';
+export * from './collapsible_nav_beta';
 
 export * from './color_picker';
 
@@ -151,8 +152,6 @@ export * from './stat';
 
 export * from './steps';
 
-export * from './suggest';
-
 export * from './table';
 
 export * from './token';
@@ -166,6 +165,8 @@ export * from './tabs';
 export * from './text';
 
 export * from './text_diff';
+
+export * from './text_truncate';
 
 export * from './timeline';
 

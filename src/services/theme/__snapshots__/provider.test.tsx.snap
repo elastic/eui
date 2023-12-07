@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiThemeProvider CSS variables allows child components to set non-global theme CSS variables 1`] = `
+<span
+  class="euiThemeProvider emotion-euiCSSVariables-euiColorMode-LIGHT"
+/>
+`;
+
+exports[`EuiThemeProvider nested EuiThemeProviders allows avoiding the extra span wrapper with \`wrapperProps.cloneElement\` 1`] = `
+<div>
+  Top-level provider
+   
+  <div
+    class="world hello emotion-euiColorMode-dark"
+  >
+    clone provider color onto div
+  </div>
+</div>
+`;
+
+exports[`EuiThemeProvider nested EuiThemeProviders allows customizing the span wrapper with \`wrapperProps\` 1`] = `
+<div>
+  Top-level provider
+   
+  <span
+    class="euiThemeProvider test css-1q6x6jl-customCss-euiColorMode-dark"
+    data-test-subj="nested"
+  >
+    Nested
+  </span>
+</div>
+`;
+
+exports[`EuiThemeProvider nested EuiThemeProviders renders with a span wrapper that sets the inherited text color 1`] = `
+<div>
+  Top-level provider
+   
+  <span
+    class="euiThemeProvider emotion-euiColorMode-dark"
+  >
+    Nested
+    <span
+      class="euiThemeProvider emotion-euiColorMode-light"
+    >
+      Double nested
+      <span
+        class="euiThemeProvider emotion-euiColorMode-inverse"
+      >
+        Triple nested
+      </span>
+    </span>
+  </span>
+</div>
+`;

@@ -1,5 +1,266 @@
 [
   {
+    "version": "91.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSelector.buttonActiveSingular",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSelector.buttonActivePlural",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSorting.buttonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.external.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbarControl.badgeAriaLabel",
+        "changeType": "added",
+        "value": "Active: {count}"
+      },
+      {
+        "token": "euiExternalLinkIcon.ariaLabel",
+        "changeType": "added",
+        "value": "External link"
+      },
+      {
+        "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
+    "version": "91.0.0",
+    "changes": [
+      {
+        "token": "euiAbsoluteTab.dateFormatError",
+        "changeType": "modified",
+        "value": "Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp."
+      },
+      {
+        "token": "euiAbsoluteTab.dateFormatHint",
+        "changeType": "added",
+        "value": "Press the Enter key to parse as a date."
+      }
+    ]
+  },
+  {
+    "version": "90.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "modified",
+        "value": "Open navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "modified",
+        "value": "Close navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelExpand",
+        "changeType": "added",
+        "value": "Expand navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+        "changeType": "added",
+        "value": "Collapse navigation"
+      }
+    ]
+  },
+  {
+    "version": "89.0.0",
+    "changes": [
+      {
+        "token": "euiColorStopThumb.buttonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.buttonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.stopLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.stopErrorMessage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.removeLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStops.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
+    "version": "88.5.0",
+    "changes": [
+      {
+        "token": "euiCallOut.dismissAriaLabel",
+        "changeType": "added",
+        "value": "Dismiss this callout"
+      }
+    ]
+  },
+  {
+    "version": "88.4.0",
+    "changes": [
+      {
+        "token": "euiSearchBox.placeholder",
+        "changeType": "added",
+        "value": "Search..."
+      },
+      {
+        "token": "euiSearchBox.incrementalAriaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. As you type, the results lower in the page will automatically filter."
+      },
+      {
+        "token": "euiSearchBox.ariaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+      }
+    ]
+  },
+  {
+    "version": "88.3.0",
+    "changes": [
+      {
+        "token": "euiAccordion.isLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiAccordionChildrenLoading.message",
+        "changeType": "added",
+        "value": "Loading"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonAriaLabel",
+        "changeType": "added",
+        "value": "Clear all toast notifications"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonDisplayText",
+        "changeType": "added",
+        "value": "Clear all"
+      }
+    ]
+  },
+  {
+    "version": "87.2.0",
+    "changes": [
+      {
+        "token": "euiResizableButton.horizontalResizerAriaLabel",
+        "changeType": "modified",
+        "value": "Press the left or right arrow keys to adjust panels size"
+      },
+      {
+        "token": "euiResizableButton.verticalResizerAriaLabel",
+        "changeType": "modified",
+        "value": "Press the up or down arrow keys to adjust panels size"
+      }
+    ]
+  },
+  {
+    "version": "87.1.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavBeta.ariaLabel",
+        "changeType": "added",
+        "value": "Site menu"
+      }
+    ]
+  },
+  {
+    "version": "87.0.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumb.popoverAriaLabel",
+        "changeType": "added",
+        "value": "Clicking this button will toggle a popover dialog."
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "added",
+        "value": "Toggle navigation open"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "added",
+        "value": "Toggle navigation closed"
+      }
+    ]
+  },
+  {
+    "version": "81.1.0",
+    "changes": [
+      {
+        "token": "euiInlineEditForm.saveButtonAriaLabel",
+        "changeType": "added",
+        "value": "Save edit"
+      },
+      {
+        "token": "euiInlineEditForm.cancelButtonAriaLabel",
+        "changeType": "added",
+        "value": "Cancel edit"
+      },
+      {
+        "token": "euiInlineEditForm.inputKeyboardInstructions",
+        "changeType": "added",
+        "value": "Press Enter to save your edited text. Press Escape to cancel your edit."
+      },
+      {
+        "token": "euiInlineEditForm.activateEditModeDescription",
+        "changeType": "added",
+        "value": "Click to edit this text inline."
+      }
+    ]
+  },
+  {
     "version": "81.0.0",
     "changes": [
       {

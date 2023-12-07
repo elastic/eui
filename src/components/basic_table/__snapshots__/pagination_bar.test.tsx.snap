@@ -1,94 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PaginationBar render - custom page size options 1`] = `
+exports[`PaginationBar renders 1`] = `
 <div>
-  <EuiSpacer
-    size="m"
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
   />
-  <EuiTablePagination
-    activePage={0}
-    aria-label="aria-label"
-    itemsPerPage={5}
-    itemsPerPageOptions={
-      Array [
-        1,
-        2,
-        3,
-      ]
-    }
-    onChangeItemsPerPage={[Function]}
-    onChangePage={[Function]}
-    pageCount={0}
-  />
-</div>
-`;
-
-exports[`PaginationBar render - hiding per page options 1`] = `
-<div>
-  <EuiSpacer
-    size="m"
-  />
-  <EuiTablePagination
-    activePage={0}
-    aria-label="aria-label"
-    itemsPerPage={5}
-    itemsPerPageOptions={
-      Array [
-        10,
-        25,
-        50,
-      ]
-    }
-    onChangeItemsPerPage={[Function]}
-    onChangePage={[Function]}
-    pageCount={0}
-    showPerPageOptions={false}
-  />
-</div>
-`;
-
-exports[`PaginationBar render - show all pageSize 1`] = `
-<div>
-  <EuiSpacer
-    size="m"
-  />
-  <EuiTablePagination
-    activePage={0}
-    aria-label="aria-label"
-    itemsPerPage={0}
-    itemsPerPageOptions={
-      Array [
-        1,
-        5,
-        0,
-      ]
-    }
-    onChangeItemsPerPage={[Function]}
-    onChangePage={[Function]}
-    pageCount={1}
-  />
-</div>
-`;
-
-exports[`PaginationBar render 1`] = `
-<div>
-  <EuiSpacer
-    size="m"
-  />
-  <EuiTablePagination
-    activePage={0}
-    aria-label="aria-label"
-    itemsPerPage={5}
-    itemsPerPageOptions={
-      Array [
-        10,
-        25,
-        50,
-      ]
-    }
-    onChangeItemsPerPage={[Function]}
-    onChangePage={[Function]}
-    pageCount={0}
-  />
+  <div
+    class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
+  >
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        class="euiPopover emotion-euiPopover-inline-block"
+      >
+        <button
+          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+          data-test-subj="tablePaginationPopoverButton"
+          type="button"
+        >
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+          >
+            <span
+              class="eui-textTruncate euiButtonEmpty__text"
+            >
+              Rows per page
+              : 
+              5
+            </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <nav
+        aria-label="aria-label"
+        class="euiPagination emotion-euiPagination"
+      >
+        <span
+          aria-atomic="true"
+          aria-relevant="additions text"
+          class="emotion-euiScreenReaderOnly"
+          role="status"
+        >
+          Page 1 of collection
+        </span>
+        <button
+          aria-label="First page"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
+          data-test-subj="pagination-button-first"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="arrowStart"
+          />
+        </button>
+        <button
+          aria-label="Previous page"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
+          data-test-subj="pagination-button-previous"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="arrowLeft"
+          />
+        </button>
+        <button
+          aria-label="Next page"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
+          data-test-subj="pagination-button-next"
+          title="Next page"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="arrowRight"
+          />
+        </button>
+        <button
+          aria-label="Last page"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
+          data-test-subj="pagination-button-last"
+          title="Last page"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="arrowEnd"
+          />
+        </button>
+      </nav>
+    </div>
+  </div>
 </div>
 `;

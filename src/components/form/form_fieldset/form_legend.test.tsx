@@ -7,35 +7,35 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiFormLegend } from './form_legend';
 
 describe('EuiFormLegend', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormLegend {...requiredProps}>Legend</EuiFormLegend>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('hidden is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormLegend display="hidden">Legend</EuiFormLegend>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('compressed is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormLegend compressed>Legend</EuiFormLegend>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

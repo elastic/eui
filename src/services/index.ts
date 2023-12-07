@@ -8,13 +8,7 @@
 
 // Export all keys under a `keys` named variable
 import * as keys from './keys';
-export {
-  accessibleClickKeys,
-  cascadingMenuKeys,
-  comboBoxKeys,
-  htmlIdGenerator,
-  useGeneratedHtmlId,
-} from './accessibility';
+export { htmlIdGenerator, useGeneratedHtmlId } from './accessibility';
 export { CENTER_ALIGNMENT, LEFT_ALIGNMENT, RIGHT_ALIGNMENT } from './alignment';
 export type { HorizontalAlignment } from './alignment';
 export {
@@ -26,6 +20,7 @@ export {
   useIsWithinMinBreakpoint,
 } from './breakpoint';
 export type { EuiBreakpointSize } from './breakpoint';
+export { CanvasTextUtils, type CanvasTextParams } from './canvas';
 export {
   brighten,
   calculateContrast,
@@ -36,7 +31,7 @@ export {
   desaturate,
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteCool,
   euiPaletteForDarkBackground,
   euiPaletteForLightBackground,
@@ -72,6 +67,7 @@ export { useColorPickerState, useColorStopsState } from './color_picker';
 export type { EuiSetColorMethod } from './color_picker';
 export * from './console';
 export { copyToClipboard } from './copy_to_clipboard';
+export * from './emotion';
 export * from './findElement';
 export {
   dateFormatAliases,
@@ -85,7 +81,6 @@ export * from './hooks';
 export { isEvenlyDivisibleBy, isWithinRange } from './number';
 export { Pager } from './paging';
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
-export { Random } from './random';
 export { getSecureRelForTarget } from './security';
 export {
   Comparators,

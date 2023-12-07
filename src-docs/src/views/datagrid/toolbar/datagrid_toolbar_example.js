@@ -1,13 +1,20 @@
 import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../../components';
-import { EuiCode } from '../../../../../src';
+import {
+  EuiDataGridToolbarControl,
+  EuiCode,
+  EuiCallOut,
+} from '../../../../../src';
 
 import DataGridToolbarVisibility from './visibility';
 const dataGridToolbarVisibilitySource = require('!!raw-loader!./_grid');
 
 import DataGridControls from './additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./additional_controls');
+
+import DataGridCustomToolbar from './render_custom_toolbar';
+const dataGridCustomToolbarSource = require('!!raw-loader!./render_custom_toolbar');
 
 import ToolbarPropsTable from './_props';
 
@@ -17,6 +24,7 @@ import {
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
   EuiDataGridToolBarVisibilityDisplaySelectorOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
+  EuiDataGridCustomToolbarProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 /* eslint-disable local/css-logical-properties */
@@ -170,7 +178,7 @@ export const DataGridToolbarExample = {
           </ul>
           <p>
             Although any node is allowed, the recommendation is to use{' '}
-            <EuiCode>{'<EuiButtonEmpty size="xs" />'}</EuiCode> for the
+            <EuiCode>{'<EuiDataGridToolbarControl />'}</EuiCode> for the
             left-side of the toolbar and{' '}
             <EuiCode>{'<EuiButtonIcon size="xs" />'}</EuiCode> for the
             right-side of the toolbar.
@@ -182,8 +190,67 @@ export const DataGridToolbarExample = {
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarAdditionalControlsOptions,
         EuiDataGridToolBarAdditionalControlsLeftOptions,
+        EuiDataGridToolbarControl,
       },
       demo: <DataGridControls />,
+    },
+    {
+      title: 'Completely custom toolbar rendering',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: dataGridCustomToolbarSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            If more customized control over the toolbar is required than{' '}
+            <EuiCode>toolbarVisibility</EuiCode> or{' '}
+            <EuiCode>additionalControls</EuiCode> allows, you can use the{' '}
+            <EuiCode>renderCustomToolbar</EuiCode> prop to pass a component. The
+            default datagrid controls are passed back as parameters for optional
+            usage.
+          </p>
+          <p>
+            <EuiCode>renderCustomToolbar</EuiCode> should only be used when a
+            very custom layout (e.g. moving default buttons between sides,
+            interspering custom controls between default controls, custom
+            responsive behavior, etc.) is required. For consistent visuals, we
+            recommend using the{' '}
+            <EuiCode>{'<EuiDataGridToolbarControl />'}</EuiCode> subcomponent
+            when rendering custom controls.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="alert"
+            title="Keep consistency in mind when customizing the toolbar"
+          >
+            If using multiple datagrid instances across your app, users will
+            typically want to reach for the same controls for each grid.
+            Changing the available controls inconsistently across your app may
+            result in user frustration.
+          </EuiCallOut>
+        </>
+      ),
+      demo: <DataGridCustomToolbar />,
+      props: {
+        EuiDataGridCustomToolbarProps,
+        EuiDataGridToolbarControl,
+      },
+      snippet: `<EuiDataGrid
+  aria-label="Data grid with a custom toolbar and additional content in the display settings popover "
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCustomToolbar={({ displayControl }) => <div>Custom toolbar content {displayControl}</div>}
+  toolbarVisibility={{
+    showDisplaySelector: {
+      allowResetButton: false,
+      additionalDisplaySettings: <div>Custom settings content</div>
+    }
+  }}
+/>`,
     },
     {
       title: 'Toolbar props',

@@ -12,7 +12,7 @@ export default ({
   content = <></>,
   sideBar,
   ...rest
-}: EuiPageProps & {
+}: Omit<EuiPageProps, 'content'> & {
   content: ReactElement;
   sideBar?: ReactElement;
 }) => (

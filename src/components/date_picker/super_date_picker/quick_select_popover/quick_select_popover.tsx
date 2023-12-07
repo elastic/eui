@@ -90,7 +90,7 @@ export const EuiQuickSelectPopover: FunctionComponent<
   const quickSelectButton = (
     <EuiButtonEmpty
       className="euiFormControlLayout__prepend"
-      textProps={{ className: 'euiQuickSelectPopover__buttonText' }}
+      contentProps={{ className: 'euiQuickSelectPopover__buttonContent' }}
       onClick={togglePopover}
       aria-label={buttonlabel}
       title={buttonlabel}
@@ -110,7 +110,6 @@ export const EuiQuickSelectPopover: FunctionComponent<
       isOpen={isOpen}
       closePopover={closePopover}
       anchorPosition="downLeft"
-      anchorClassName="euiQuickSelectPopover__anchor"
     >
       <EuiQuickSelectPanels
         {...props}

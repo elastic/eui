@@ -14,21 +14,22 @@ import React, {
   ReactNode,
   Ref,
   RefCallback,
+  PropsWithChildren,
 } from 'react';
 import classNames from 'classnames';
 import { focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
-import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
-  cascadingMenuKeys,
+  keys,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
 } from '../../services';
+import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -68,9 +69,11 @@ export const popoverAnchorPosition = [
 export type PopoverAnchorPosition = (typeof popoverAnchorPosition)[number];
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
-export interface EuiPopoverProps extends CommonProps {
+export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Class name passed to the direct parent of the button
+   *
+   * @deprecated Use `className` instead
    */
   anchorClassName?: string;
   /**
@@ -78,15 +81,17 @@ export interface EuiPopoverProps extends CommonProps {
    */
   anchorPosition?: PopoverAnchorPosition;
   /**
-   * Style and position alteration for arrow-less, left-aligned
-   * attachment. Intended for use with inputs as anchors, e.g.
-   * EuiInputPopover
+   * Style and position alteration for arrow-less attachment.
+   * Intended for use with inputs as anchors, e.g. EuiInputPopover
    */
   attachToAnchor?: boolean;
   /**
    * Triggering element for which to align the popover to
    */
   button: NonNullable<ReactNode>;
+  /**
+   * @deprecated Use `popoverRef` instead
+   */
   buttonRef?: RefCallback<HTMLDivElement>;
   /**
    * Callback to handle hiding of the popover
@@ -103,14 +108,7 @@ export interface EuiPopoverProps extends CommonProps {
   /**
    * Object of props passed to EuiFocusTrap
    */
-  focusTrapProps?: Pick<
-    EuiFocusTrapProps,
-    | 'clickOutsideDisables'
-    | 'onClickOutside'
-    | 'noIsolation'
-    | 'scrollLock'
-    | 'shards'
-  >;
+  focusTrapProps?: Partial<EuiFocusTrapProps>;
   /**
    * Show arrow indicating to originating button
    */
@@ -155,7 +153,10 @@ export interface EuiPopoverProps extends CommonProps {
   /**
    * Object of props passed to EuiPanel. See #EuiPopoverPanelProps
    */
-  panelProps?: Omit<EuiPopoverPanelProps, 'style'>;
+  panelProps?: Omit<
+    EuiPopoverPanelProps,
+    'style' | 'hasShadow' | 'hasBorder' | 'color'
+  >;
   panelRef?: RefCallback<HTMLElement | null>;
   /**
    * Optional screen reader instructions to announce upon popover open,
@@ -172,6 +173,18 @@ export interface EuiPopoverProps extends CommonProps {
    */
   repositionOnScroll?: boolean;
   /**
+   * By default, popovers will attempt to position themselves along the initial
+   * axis specified. If there is not enough room either vertically or horizontally
+   * however, the popover will attempt to reposition itself along the secondary
+   * cross axis if there is room there instead.
+   *
+   * If you do not not want this repositioning to occur (and it is acceptable for
+   * the popover to appear offscreen), set this to false to disable this behavior.
+   *
+   * @default true
+   */
+  repositionToCrossAxis?: boolean;
+  /**
    * Must be set to true if using `EuiDragDropContext` within a popover,
    * otherwise your nested drag & drop will have incorrect positioning
    */
@@ -181,10 +194,6 @@ export interface EuiPopoverProps extends CommonProps {
    * component; pass `zIndex` to override
    */
   zIndex?: number;
-  /**
-   * Function callback for when the focus trap is deactivated
-   */
-  onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
   /**
    * Distance away from the anchor that the popover will render
    */
@@ -293,6 +302,7 @@ export class EuiPopover extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
     ownFocus: true,
+    repositionToCrossAxis: true,
     anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
     hasArrow: true,
@@ -382,7 +392,7 @@ export class EuiPopover extends Component<Props, State> {
   };
 
   onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === cascadingMenuKeys.ESCAPE) {
+    if (event.key === keys.ESCAPE) {
       this.onEscapeKey(event as unknown as Event);
     }
   };
@@ -494,7 +504,7 @@ export class EuiPopover extends Component<Props, State> {
   positionPopover = (allowEnforcePosition: boolean) => {
     if (this.button == null || this.panel == null) return;
 
-    const { anchorPosition } = this.props as PropsWithDefaults;
+    const { anchorPosition, offset = 0 } = this.props as PropsWithDefaults;
 
     let position = getPopoverPositionFromAnchorPosition(anchorPosition);
     let forcePosition = undefined;
@@ -512,7 +522,6 @@ export class EuiPopover extends Component<Props, State> {
       left,
       position: foundPosition,
       arrow,
-      anchorBoundingBox,
     } = findPopoverPosition({
       container: this.props.container,
       position,
@@ -520,15 +529,16 @@ export class EuiPopover extends Component<Props, State> {
       align: getPopoverAlignFromAnchorPosition(anchorPosition),
       anchor: this.button,
       popover: this.panel,
-      offset:
-        !this.props.attachToAnchor && this.props.hasArrow
-          ? 16 + (this.props.offset || 0)
-          : 8 + (this.props.offset || 0),
-      arrowConfig: {
-        arrowWidth: 24,
-        arrowBuffer: 10,
-      },
+      offset: this.props.attachToAnchor
+        ? offset
+        : this.props.hasArrow
+        ? 16 + offset
+        : 8 + offset,
+      arrowConfig: this.props.hasArrow
+        ? { arrowWidth: 24, arrowBuffer: 10 }
+        : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
+      allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,
     });
 
@@ -544,10 +554,7 @@ export class EuiPopover extends Component<Props, State> {
     const popoverStyles = {
       ...this.props.panelStyle,
       top,
-      left:
-        this.props.attachToAnchor && anchorBoundingBox
-          ? anchorBoundingBox.left
-          : left,
+      left,
       zIndex,
     };
 
@@ -594,9 +601,9 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
-  buttonRef = (node: HTMLDivElement | null) => {
+  popoverRef = (node: HTMLDivElement | null) => {
     this.button = node;
-    this.props.buttonRef && this.props.buttonRef(node);
+    setMultipleRefs([this.props.popoverRef, this.props.buttonRef], node);
   };
 
   render() {
@@ -621,13 +628,13 @@ export class EuiPopover extends Component<Props, State> {
       hasArrow,
       arrowChildren,
       repositionOnScroll,
+      repositionToCrossAxis,
       hasDragDrop,
       zIndex,
       attachToAnchor,
       display,
       offset,
       onPositionChange,
-      onTrapDeactivation,
       buffer,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
@@ -640,16 +647,16 @@ export class EuiPopover extends Component<Props, State> {
     const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
     const styles = euiPopoverStyles();
-    const popoverStyles = [styles.euiPopover, { display }];
+    const popoverStyles = [styles.euiPopover, { display, label: display }];
     const classes = classNames(
       'euiPopover',
       {
         'euiPopover-isOpen': this.state.isOpening,
       },
-      className
+      className,
+      anchorClassName
     );
 
-    const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
     let panel;
@@ -703,14 +710,13 @@ export class EuiPopover extends Component<Props, State> {
           <EuiFocusTrap
             clickOutsideDisables={true}
             onClickOutside={this.onClickOutside}
-            {...focusTrapProps}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
-            onDeactivation={onTrapDeactivation}
             onEscapeKey={this.onEscapeKey}
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }
+            {...focusTrapProps}
           >
             <EuiPopoverPanel
               {...(panelProps as EuiPopoverPanelProps)}
@@ -767,10 +773,13 @@ export class EuiPopover extends Component<Props, State> {
     // when disabled, so we still need to conditionally check for that ourselves
     if (ownFocus) {
       return (
-        <div css={popoverStyles} className={classes} ref={popoverRef} {...rest}>
-          <div css={{ display }} className={anchorClasses} ref={this.buttonRef}>
-            {button instanceof HTMLElement ? null : button}
-          </div>
+        <div
+          css={popoverStyles}
+          className={classes}
+          ref={this.popoverRef}
+          {...rest}
+        >
+          {button instanceof HTMLElement ? null : button}
           {panel}
         </div>
       );
@@ -780,17 +789,11 @@ export class EuiPopover extends Component<Props, State> {
           <div
             css={popoverStyles}
             className={classes}
-            ref={popoverRef}
+            ref={this.popoverRef}
             onKeyDown={this.onKeyDown}
             {...rest}
           >
-            <div
-              css={{ display }}
-              className={anchorClasses}
-              ref={this.buttonRef}
-            >
-              {button instanceof HTMLElement ? null : button}
-            </div>
+            {button instanceof HTMLElement ? null : button}
             {panel}
           </div>
         </EuiOutsideClickDetector>

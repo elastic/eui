@@ -17,6 +17,8 @@ import {
   MutableRefObject,
   Ref,
   Component,
+  PropsWithChildren,
+  ComponentClass,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -45,6 +47,19 @@ export interface EuiDataGridToolbarProps {
   displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
+  renderCustomToolbar?: (props: EuiDataGridCustomToolbarProps) => ReactElement;
+}
+
+/**
+ * Props which are available for a custom toolbar rendering
+ */
+export interface EuiDataGridCustomToolbarProps {
+  hasRoomForGridControls: boolean;
+  fullScreenControl: ReactNode;
+  keyboardShortcutsControl: ReactNode;
+  displayControl: ReactNode;
+  columnControl: ReactNode;
+  columnSortingControl: ReactNode;
 }
 
 export interface EuiDataGridPaginationRendererProps
@@ -151,7 +166,7 @@ export interface EuiDataGridControlHeaderCellProps {
   headerIsInteractive: boolean;
 }
 
-export interface EuiDataGridHeaderCellWrapperProps {
+export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   id: string;
   index: number;
   headerIsInteractive: boolean;
@@ -207,6 +222,7 @@ export interface DataGridCellPopoverContextShape {
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
   closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
+  setPopoverAnchorPosition(position: 'downLeft' | 'downRight'): void;
   setPopoverContent(content: ReactNode): void;
   setCellPopoverProps: EuiDataGridCellPopoverElementProps['setCellPopoverProps'];
 }
@@ -279,6 +295,15 @@ export type CommonGridProps = CommonProps &
      */
     renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
     /**
+     * An optional function called to customize placement of controls in EuiDataGrid's toolbar.
+     * This can be used to add custom buttons or reorder existing ones.
+     *
+     * Behind the scenes, this function is treated as a React component,
+     * allowing hooks, context, and other React concepts to be used.
+     * It receives #EuiDataGridCustomToolbarProps as its only argument.
+     */
+    renderCustomToolbar?: EuiDataGridToolbarProps['renderCustomToolbar'];
+    /**
      * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
@@ -298,7 +323,7 @@ export type CommonGridProps = CommonProps &
      */
     inMemory?: EuiDataGridInMemory;
     /**
-     * A #EuiDataGridPagination object. Omit to disable pagination completely.
+     * A #EuiDataGridPaginationProps object. Omit to disable pagination completely.
      */
     pagination?: EuiDataGridPaginationProps;
     /**
@@ -427,7 +452,7 @@ export interface EuiDataGridBodyProps {
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
-  pagination?: EuiDataGridPaginationProps;
+  pagination?: Required<EuiDataGridPaginationProps>;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
@@ -480,6 +505,7 @@ export interface EuiDataGridCustomBodyProps {
    */
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
 }
+
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     ref?: MutableRefObject<HTMLDivElement> | Ref<HTMLDivElement>;
@@ -581,8 +607,8 @@ export interface EuiDataGridCellProps {
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+    | ((props: EuiDataGridCellValueElementProps) => ReactNode)
+    | ComponentClass<EuiDataGridCellValueElementProps>;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
@@ -592,7 +618,7 @@ export interface EuiDataGridCellProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
-  pagination?: EuiDataGridPaginationProps;
+  pagination?: Required<EuiDataGridPaginationProps>;
 }
 
 export interface EuiDataGridCellState {
@@ -601,6 +627,7 @@ export interface EuiDataGridCellState {
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
   disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
+  cellTextAlign: 'Left' | 'Right'; // determines the cell actions and cell popover expansion position
 }
 
 export type EuiDataGridCellValueProps = Omit<
@@ -705,8 +732,7 @@ export interface EuiDataGridColumn {
 }
 
 export type EuiDataGridColumnCellAction =
-  | JSXElementConstructor<EuiDataGridColumnCellActionProps>
-  | ((props: EuiDataGridColumnCellActionProps) => ReactNode);
+  ComponentType<EuiDataGridColumnCellActionProps>;
 
 export interface EuiDataGridColumnActions {
   /**
@@ -749,9 +775,14 @@ export interface EuiDataGridColumnCellActionProps {
    */
   columnId: string;
   /**
-   * React component representing the action displayed in the cell
+   * React component representing the action displayed in the cell.
+   *
+   * On cell hover/focus, an EuiButtonIcon will be displayed that cannot
+   * have its size or color customized, only its icon.
+   *
+   * On cell expand, an EuiButtonEmpty will be displayed in the cell popover
+   * that can have any sizing, color, or text.
    */
-  // Component: ComponentType<EuiButtonEmptyProps | EuiButtonProps>;
   Component: typeof EuiButtonEmpty | typeof EuiButtonIcon;
   /**
    * Determines whether the cell's action is displayed expanded (in the Popover)
@@ -845,6 +876,14 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
    * When `false`, removes the ability to change row height display through the UI
    */
   allowRowHeight?: boolean;
+  /**
+   * When `false`, removes the ability to reset styles to default through the UI
+   */
+  allowResetButton?: boolean;
+  /**
+   * Allows appending additional content to the bottom of the display settings popover
+   */
+  additionalDisplaySettings?: ReactNode;
 }
 
 export interface EuiDataGridToolBarVisibilityOptions {
@@ -917,12 +956,16 @@ export interface EuiDataGridPaginationProps {
   /**
    * How many rows should initially be shown per page.
    * Pass `0` to display the selected "Show all" option and hide the pagination.
+   *
+   * @default 10
    */
-  pageSize: number;
+  pageSize?: number;
   /**
    * An array of page sizes the user can select from.
    * Pass `0` as one of the options to create a "Show all" option.
-   * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
+   * Pass an empty array to hide "Rows per page" select button.
+   *
+   * @default [10, 25, 50]
    */
   pageSizeOptions?: number[];
   /**
@@ -935,18 +978,20 @@ export interface EuiDataGridPaginationProps {
   onChangePage: (pageIndex: number) => void;
 }
 
+export interface EuiDataGridColumnSortingConfig {
+  id: string;
+  direction: 'asc' | 'desc';
+}
+
 export interface EuiDataGridSorting {
   /**
    * A function that receives updated column sort details in response to user interactions in the toolbar controls
    */
-  onSort: (columns: EuiDataGridSorting['columns']) => void;
+  onSort: (columns: EuiDataGridColumnSortingConfig[]) => void;
   /**
    * An array of the column ids currently being sorted and their sort direction. The array order determines the sort order. `{ id: 'A'; direction: 'asc' }`
    */
-  columns: Array<{
-    id: string;
-    direction: 'asc' | 'desc';
-  }>;
+  columns: EuiDataGridColumnSortingConfig[];
 }
 
 export interface EuiDataGridInMemory {

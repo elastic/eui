@@ -4,7 +4,7 @@ exports[`EuiBetaBadge is rendered 1`] = `
 <span>
   <span
     aria-label="aria-label"
-    class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m-baseline"
+    class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m-baseline-euiTestCss"
     data-test-subj="test subject string"
     title="Beta"
   >

@@ -2,7 +2,7 @@
 
 set -e
 
-NODE_IMG="docker.elastic.co/eui/ci:3.5"
+NODE_IMG="docker.elastic.co/eui/ci:6.0"
 
 # Compile using node image
 echo "Building docs using ${NODE_IMG} Docker image"
@@ -10,8 +10,8 @@ docker pull $NODE_IMG
 docker run \
     --rm -i \
     --env HOME=/tmp \
-    --user=$(id -u):$(id -g) \
-    --volume $PWD:/app \
+    --"user=$(id -u)":"$(id -g)" \
+    --volume "$PWD":/app \
     --workdir /app \
     $NODE_IMG \
-    bash -c 'yarn && npm run build && npm run build-docs'
+    bash -c 'yarn && yarn build && yarn build-docs && yarn build-storybook'

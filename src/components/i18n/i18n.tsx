@@ -98,6 +98,7 @@ interface I18nTokensShape<T extends any[]> {
   tokens: string[];
   defaults: T;
   children: (x: Array<T[number]>) => ReactChild;
+  values?: Record<string, ReactChild>;
 }
 
 export type EuiI18nProps<
@@ -134,6 +135,7 @@ const EuiI18n = <
               i18nMapping: mapping,
               i18nMappingFunc: mappingFunc,
               valueDefault: props.defaults[idx],
+              values: props.values,
               render,
             })
           )

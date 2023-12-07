@@ -7,10 +7,14 @@
  */
 
 import React, { ReactNode } from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount } from 'enzyme';
+import { act } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import { EuiFocusTrap } from '../';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
+
+import { keys } from '../../services';
+import { EuiFocusTrap } from '../focus_trap';
 
 import {
   EuiPopover,
@@ -19,7 +23,8 @@ import {
   PopoverAnchorPosition,
 } from './popover';
 
-import { keys } from '../../services';
+const actAdvanceTimersByTime = (time: number) =>
+  act(() => jest.advanceTimersByTime(time));
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -34,11 +39,17 @@ describe('EuiPopover', () => {
   );
   shouldRenderCustomStyles(
     <EuiPopover button={<button />} closePopover={() => {}} isOpen />,
-    { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }
+    {
+      childProps: ['panelProps'],
+      skip: {
+        parentTest: true,
+        style: true, // EuiPopoverPanel does not allow custom `style`s
+      },
+    }
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPopover
         id={getId()}
         button={<button />}
@@ -47,23 +58,23 @@ describe('EuiPopover', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('children is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPopover id={getId()} button={<button />} closePopover={() => {}}>
         Children
       </EuiPopover>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('display block', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             display="block"
@@ -72,13 +83,13 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('anchorClassName', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             anchorClassName="test"
@@ -87,7 +98,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -128,7 +139,7 @@ describe('EuiPopover', () => {
 
     describe('anchorPosition', () => {
       test('defaults to centerDown', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -136,11 +147,11 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('leftCenter is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -149,11 +160,11 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('downRight is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -162,13 +173,13 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isOpen', () => {
       test('defaults to false', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -176,7 +187,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders true', () => {
@@ -308,36 +319,53 @@ describe('EuiPopover', () => {
 
     describe('offset', () => {
       test('with arrow', () => {
-        const component = mount(
-          <div>
-            <EuiPopover
-              id={getId()}
-              button={<button />}
-              closePopover={() => {}}
-              offset={10}
-              isOpen
-            />
-          </div>
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            isOpen
+          />
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '26px',
+        });
       });
 
       test('without arrow', () => {
-        const component = mount(
-          <div>
-            <EuiPopover
-              id={getId()}
-              button={<button />}
-              closePopover={() => {}}
-              offset={10}
-              hasArrow={false}
-              isOpen
-            />
-          </div>
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            hasArrow={false}
+            isOpen
+          />
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '18px',
+        });
+      });
+
+      test('with attachToAnchor', () => {
+        const { baseElement } = render(
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            offset={10}
+            attachToAnchor={true}
+            isOpen
+          />
+        );
+
+        expect(baseElement.querySelector('[data-popover-panel]')).toHaveStyle({
+          top: '10px',
+        });
       });
     });
 
@@ -473,7 +501,7 @@ describe('EuiPopover', () => {
 
       // execute any pending timeouts or animation frame callbacks
       // and validate the timeout/rAF clearing done by EuiPopover
-      jest.advanceTimersByTime(300);
+      actAdvanceTimersByTime(300);
     });
   });
 
@@ -507,7 +535,7 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -532,7 +560,7 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -552,7 +580,8 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+
+      actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).not.toEqual(toggleDivEl.current);

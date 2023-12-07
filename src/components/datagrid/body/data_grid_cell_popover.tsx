@@ -23,6 +23,7 @@ export const DataGridCellPopoverContext =
     openCellPopover: () => {},
     closeCellPopover: () => {},
     setPopoverAnchor: () => {},
+    setPopoverAnchorPosition: () => {},
     setPopoverContent: () => {},
     setCellPopoverProps: () => {},
   });
@@ -39,6 +40,9 @@ export const useCellPopover = (): {
   });
   // Popover anchor & content are passed by individual `EuiDataGridCell`s
   const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
+  const [popoverAnchorPosition, setPopoverAnchorPosition] = useState<
+    'downLeft' | 'downRight'
+  >('downLeft');
   const [popoverContent, setPopoverContent] = useState<ReactNode>();
   // Allow customization of most (not all) popover props by consumers
   const [cellPopoverProps, setCellPopoverProps] = useState<
@@ -46,7 +50,9 @@ export const useCellPopover = (): {
   >({});
 
   const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
-  const openCellPopover = useCallback(
+  const openCellPopover = useCallback<
+    DataGridCellPopoverContextShape['openCellPopover']
+  >(
     ({ rowIndex, colIndex }) => {
       // Prevent popover DOM issues when re-opening the same popover
       if (
@@ -72,9 +78,24 @@ export const useCellPopover = (): {
     openCellPopover,
     cellLocation,
     setPopoverAnchor,
+    setPopoverAnchorPosition,
     setPopoverContent,
     setCellPopoverProps,
   };
+
+  // Override the default EuiPopover `onClickOutside` behavior, since the toggling
+  // popover button isn't actually the DOM node we pass to `button`. Otherwise,
+  // clicking the expansion cell action triggers an outside click
+  const onClickOutside = useCallback(
+    (event: Event) => {
+      const cellActions =
+        popoverAnchor?.parentElement?.parentElement?.previousElementSibling;
+      if (!cellActions?.contains(event.target as Node)) {
+        closeCellPopover();
+      }
+    },
+    [popoverAnchor, closeCellPopover]
+  );
 
   // Note that this popover is rendered once at the top grid level, rather than one popover per cell
   const cellPopover = popoverIsOpen && popoverAnchor && (
@@ -83,7 +104,10 @@ export const useCellPopover = (): {
       display="block"
       hasArrow={false}
       panelPaddingSize="s"
+      anchorPosition={popoverAnchorPosition}
+      repositionToCrossAxis={false}
       {...cellPopoverProps}
+      focusTrapProps={{ onClickOutside, clickOutsideDisables: false }}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
         ...(cellPopoverProps.panelProps || {}),
@@ -93,13 +117,27 @@ export const useCellPopover = (): {
         cellPopoverProps.panelClassName,
         cellPopoverProps.panelProps?.className
       )}
+      panelStyle={{
+        maxInlineSize: `min(75vw, max(${
+          popoverAnchor.parentElement!.offsetWidth
+        }px, 400px))`,
+        maxBlockSize: '50vh',
+      }}
       onKeyDown={(event) => {
         if (event.key === keys.F2 || event.key === keys.ESCAPE) {
           event.preventDefault();
           event.stopPropagation();
           closeCellPopover();
-          // Ensure focus is returned to the parent cell
-          requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
+          const cell =
+            popoverAnchor.parentElement?.parentElement?.parentElement;
+
+          // Prevent cell animation flash while focus is being shifted between popover and cell
+          cell?.setAttribute('data-keyboard-closing', 'true');
+          // Ensure focus is returned to the parent cell, and remove animation stopgap
+          requestAnimationFrame(() => {
+            popoverAnchor.parentElement!.focus();
+            cell?.removeAttribute('data-keyboard-closing');
+          });
         }
       }}
       button={popoverAnchor}

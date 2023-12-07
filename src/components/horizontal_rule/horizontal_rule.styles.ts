@@ -15,8 +15,9 @@ export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
     border: none;
     ${logicalCSS('height', euiTheme.border.width.thin)}
     background-color: ${euiTheme.border.color};
-    flex-shrink: 0; // Ensure when used in flex group, it retains its size
-    flex-grow: 0; // Ensure when used in flex group, it retains its size
+    /* Ensure when used in flex group, it retains its size */
+    flex-shrink: 0;
+    flex-grow: 0;
   `,
 
   // Sizes

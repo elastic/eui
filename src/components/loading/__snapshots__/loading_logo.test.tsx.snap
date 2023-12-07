@@ -3,7 +3,7 @@
 exports[`EuiLoadingLogo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo testClass1 testClass2 emotion-euiLoadingLogo-m"
+  class="euiLoadingLogo testClass1 testClass2 emotion-euiLoadingLogo-m-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
 >
@@ -20,7 +20,7 @@ exports[`EuiLoadingLogo is rendered 1`] = `
 exports[`EuiLoadingLogo logo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo testClass1 testClass2 emotion-euiLoadingLogo-m"
+  class="euiLoadingLogo testClass1 testClass2 emotion-euiLoadingLogo-m-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
 >

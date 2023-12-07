@@ -63,7 +63,7 @@ exports[`renders EuiTableRowCell 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiTableCellContent testClass1 testClass2"
+    class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
   >
     <span
       class="euiTableCellContent__text"
@@ -112,7 +112,21 @@ exports[`truncateText defaults to false 1`] = `
 </td>
 `;
 
-exports[`truncateText is rendered when specified 1`] = `
+exports[`truncateText renders lines configuration 1`] = `
+<td
+  class="euiTableRowCell euiTableRowCell--middle"
+>
+  <div
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text euiTextBlockTruncate emotion-euiTextBlockTruncate"
+    />
+  </div>
+</td>
+`;
+
+exports[`truncateText renders true 1`] = `
 <td
   class="euiTableRowCell euiTableRowCell--middle"
 >
@@ -171,7 +185,7 @@ exports[`valign renders top when specified 1`] = `
 exports[`width and style accepts style attribute 1`] = `
 <td
   class="euiTableRowCell euiTableRowCell--middle"
-  style="width:20%"
+  style="width: 20%;"
 >
   <div
     class="euiTableCellContent"
@@ -188,7 +202,7 @@ exports[`width and style accepts style attribute 1`] = `
 exports[`width and style accepts width attribute 1`] = `
 <td
   class="euiTableRowCell euiTableRowCell--middle"
-  style="width:10%"
+  style="width: 10%;"
 >
   <div
     class="euiTableCellContent"
@@ -205,7 +219,7 @@ exports[`width and style accepts width attribute 1`] = `
 exports[`width and style accepts width attribute as number 1`] = `
 <td
   class="euiTableRowCell euiTableRowCell--middle"
-  style="width:100px"
+  style="width: 100px;"
 >
   <div
     class="euiTableCellContent"
@@ -222,7 +236,7 @@ exports[`width and style accepts width attribute as number 1`] = `
 exports[`width and style resolves style and width attribute 1`] = `
 <td
   class="euiTableRowCell euiTableRowCell--middle"
-  style="width:10%"
+  style="width: 10%;"
 >
   <div
     class="euiTableCellContent"

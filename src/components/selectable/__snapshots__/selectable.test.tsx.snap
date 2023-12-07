@@ -13,10 +13,15 @@ exports[`EuiSelectable custom options with data 1`] = `
     >
       <div
         class="euiSelectableList__list"
-        style="position:relative;height:96px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+        style="position: relative; height: 96px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
+        tabindex="-1"
       >
         <ul
-          style="height:96px;width:100%"
+          aria-multiselectable="true"
+          id="generated-id_listbox"
+          role="listbox"
+          style="height: 96px; width: 100%;"
+          tabindex="0"
         >
           <li
             aria-checked="false"
@@ -26,7 +31,7 @@ exports[`EuiSelectable custom options with data 1`] = `
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             id="generated-id_listbox_option-0"
             role="option"
-            style="position:absolute;left:0;top:0;height:32px;width:100%"
+            style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
             title="Titan"
           >
             <span
@@ -40,7 +45,9 @@ exports[`EuiSelectable custom options with data 1`] = `
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
-                  VI: Titan
+                  VI
+                  : 
+                  Titan
                 </span>
               </span>
             </span>
@@ -53,7 +60,7 @@ exports[`EuiSelectable custom options with data 1`] = `
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             id="generated-id_listbox_option-1"
             role="option"
-            style="position:absolute;left:0;top:32px;height:32px;width:100%"
+            style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
             title="Enceladus"
           >
             <span
@@ -67,7 +74,9 @@ exports[`EuiSelectable custom options with data 1`] = `
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
-                  II: Enceladus
+                  II
+                  : 
+                  Enceladus
                 </span>
               </span>
             </span>
@@ -80,7 +89,7 @@ exports[`EuiSelectable custom options with data 1`] = `
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             id="generated-id_listbox_option-2"
             role="option"
-            style="position:absolute;left:0;top:64px;height:32px;width:100%"
+            style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
@@ -94,7 +103,9 @@ exports[`EuiSelectable custom options with data 1`] = `
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
-                  XVII: Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+                  XVII
+                  : 
+                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                 </span>
               </span>
             </span>
@@ -135,10 +146,15 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
     >
       <div
         class="euiSelectableList__list"
-        style="position:relative;height:96px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+        style="position: relative; height: 96px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
+        tabindex="-1"
       >
         <ul
-          style="height:96px;width:100%"
+          aria-multiselectable="true"
+          id="generated-id_listbox"
+          role="listbox"
+          style="height: 96px; width: 100%;"
+          tabindex="0"
         >
           <li
             aria-checked="false"
@@ -149,7 +165,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             data-test-subj="titanOption"
             id="generated-id_listbox_option-0"
             role="option"
-            style="position:absolute;left:0;top:0;height:32px;width:100%"
+            style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
             title="Titan"
           >
             <span
@@ -162,9 +178,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
               <span
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
-                <span>
-                  Titan
-                </span>
+                Titan
               </span>
             </span>
           </li>
@@ -176,7 +190,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             id="generated-id_listbox_option-1"
             role="option"
-            style="position:absolute;left:0;top:32px;height:32px;width:100%"
+            style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
             title="Enceladus"
           >
             <span
@@ -189,9 +203,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
               <span
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
-                <span>
-                  Enceladus
-                </span>
+                Enceladus
               </span>
             </span>
           </li>
@@ -203,7 +215,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             id="generated-id_listbox_option-2"
             role="option"
-            style="position:absolute;left:0;top:64px;height:32px;width:100%"
+            style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
@@ -216,9 +228,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
               <span
                 class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
-                <span>
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-                </span>
+                Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
             </span>
           </li>
@@ -247,7 +257,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
 
 exports[`EuiSelectable is rendered 1`] = `
 <div
-  class="euiSelectable testClass1 testClass2"
+  class="euiSelectable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   id="testId"
 />
@@ -310,12 +320,6 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
   >
     <div
       aria-atomic="true"
-      aria-hidden="true"
-      aria-live="off"
-      role="status"
-    />
-    <div
-      aria-atomic="true"
       aria-live="polite"
       role="status"
     >
@@ -326,6 +330,12 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
          doesn't match any options
       </p>
     </div>
+    <div
+      aria-atomic="true"
+      aria-hidden="true"
+      aria-live="off"
+      role="status"
+    />
   </div>
   <div
     class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
@@ -391,7 +401,8 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     class="emotion-euiScreenReaderOnly"
     id="generated-id_instructions"
   >
-     Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+     
+    Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>
 </div>
 `;

@@ -13,12 +13,11 @@ import { requiredProps } from '../../test/required_props';
 import { <%= componentName %> } from './<%= fileName %>';
 
 describe('<%= componentName %>', () => {
-  test('is rendered', () => {
-    const component = render(
+  it('renders', () => {
+    const { container } = render(
       <<%= componentName %> {...requiredProps} />
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

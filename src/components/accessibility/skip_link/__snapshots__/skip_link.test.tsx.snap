@@ -3,7 +3,7 @@
 exports[`EuiSkipLink is rendered 1`] = `
 <a
   aria-label="aria-label"
-  class="euiSkipLink testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
+  class="euiButton euiSkipLink testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-euiScreenReaderOnly-euiTestCss"
   data-test-subj="test subject string"
   href="#somewhere"
   rel="noreferrer"
@@ -22,7 +22,7 @@ exports[`EuiSkipLink is rendered 1`] = `
 
 exports[`EuiSkipLink props position absolute is rendered 1`] = `
 <a
-  class="euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-absolute-euiScreenReaderOnly"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-absolute-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
 >
@@ -34,7 +34,7 @@ exports[`EuiSkipLink props position absolute is rendered 1`] = `
 
 exports[`EuiSkipLink props position fixed is rendered 1`] = `
 <a
-  class="euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-fixed-euiScreenReaderOnly"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-fixed-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
   tabindex="0"
@@ -47,7 +47,7 @@ exports[`EuiSkipLink props position fixed is rendered 1`] = `
 
 exports[`EuiSkipLink props position static is rendered 1`] = `
 <a
-  class="euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
 >
@@ -59,7 +59,7 @@ exports[`EuiSkipLink props position static is rendered 1`] = `
 
 exports[`EuiSkipLink props tabIndex is rendered 1`] = `
 <a
-  class="euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
   tabindex="-1"

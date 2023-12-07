@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiComment } from './comment';
-import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiComment', () => {
   shouldRenderCustomStyles(
@@ -19,52 +19,52 @@ describe('EuiComment', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiComment username="someuser" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('timestamp', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiComment timestamp="21 days ago" username="someuser" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('event', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiComment username="someuser" event="commented" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   test('renders a body', () => {
-    const component = render(
+    const { container } = render(
       <EuiComment username="someuser">
         <p>This is the body.</p>
       </EuiComment>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders a timeline icon', () => {
-    const component = render(
+    const { container } = render(
       <EuiComment username="someuser" timelineAvatar="dot">
         <p>This is the body.</p>
       </EuiComment>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

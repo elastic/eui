@@ -9,7 +9,7 @@ exports[`EuiFieldText is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldText testClass1 testClass2 euiFieldText--withIcon"
+      class="euiFieldText testClass1 testClass2 emotion-euiTestCss euiFieldText--withIcon"
       data-test-subj="test subject string"
       id="1"
       name="elastic"
@@ -26,6 +26,7 @@ exports[`EuiFieldText props controlOnly is rendered 1`] = `
   <input
     class="euiFieldText"
     type="text"
+    value=""
   />
 </eui-validatable-control>
 `;
@@ -38,6 +39,7 @@ exports[`EuiFieldText props fullWidth is rendered 1`] = `
     <input
       class="euiFieldText euiFieldText--fullWidth"
       type="text"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -54,6 +56,7 @@ exports[`EuiFieldText props isInvalid is rendered 1`] = `
     <input
       class="euiFieldText euiFormControlLayout--1icons"
       type="text"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -68,6 +71,7 @@ exports[`EuiFieldText props isLoading is rendered 1`] = `
     <input
       class="euiFieldText euiFormControlLayout--1icons euiFieldText-isLoading"
       type="text"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -83,6 +87,7 @@ exports[`EuiFieldText props readOnly is rendered 1`] = `
       class="euiFieldText"
       readonly=""
       type="text"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>

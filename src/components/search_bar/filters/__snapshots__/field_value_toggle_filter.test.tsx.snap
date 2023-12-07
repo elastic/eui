@@ -1,41 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FieldValueToggleFilter render - active 1`] = `
-<EuiFilterButton
-  aria-pressed={true}
-  hasActiveFilters={true}
-  onClick={[Function]}
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasActiveFilters"
+  type="button"
 >
-  Kibana
-</EuiFilterButton>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  >
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Kibana"
+        title="Kibana"
+      >
+        Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;
 
 exports[`FieldValueToggleFilter render - active negated - custom negated name 1`] = `
-<EuiFilterButton
-  aria-pressed={true}
-  hasActiveFilters={true}
-  onClick={[Function]}
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasActiveFilters"
+  type="button"
 >
-  Others
-</EuiFilterButton>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  >
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Others"
+        title="Others"
+      >
+        Others
+      </span>
+    </span>
+  </span>
+</button>
 `;
 
 exports[`FieldValueToggleFilter render - active negated 1`] = `
-<EuiFilterButton
-  aria-pressed={true}
-  hasActiveFilters={true}
-  onClick={[Function]}
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasActiveFilters"
+  type="button"
 >
-  Not Kibana
-</EuiFilterButton>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  >
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Not Kibana"
+        title="Not Kibana"
+      >
+        Not Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;
 
-exports[`FieldValueToggleFilter render 1`] = `
-<EuiFilterButton
-  aria-pressed={false}
-  hasActiveFilters={false}
-  onClick={[Function]}
+exports[`FieldValueToggleFilter renders 1`] = `
+<button
+  aria-pressed="false"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+  type="button"
 >
-  Kibana
-</EuiFilterButton>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  >
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Kibana"
+        title="Kibana"
+      >
+        Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;

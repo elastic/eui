@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -15,38 +16,38 @@ import { EuiButtonIcon, DISPLAYS, SIZES } from './button_icon';
 import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 
 describe('EuiButtonIcon', () => {
-  test('is rendered', () => {
-    const component = render(
-      <EuiButtonIcon iconType="user" {...requiredProps} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
   shouldRenderCustomStyles(
     <EuiButtonIcon iconType="user" {...requiredProps} />
   );
 
+  test('is rendered', () => {
+    const { container } = render(
+      <EuiButtonIcon iconType="user" {...requiredProps} />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon iconType="user" aria-label="button" isDisabled />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('or disabled is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon iconType="user" aria-label="button" disabled />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('renders a button even when href is defined', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon
             iconType="user"
             aria-label="button"
@@ -55,44 +56,36 @@ describe('EuiButtonIcon', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon aria-label="button" iconType="user" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       BUTTON_COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiButtonIcon iconType="user" aria-label="button" color={color} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
-      });
-
-      test('ghost is rendered', () => {
-        const component = render(
-          <EuiButtonIcon iconType="user" aria-label="button" color={'ghost'} />
-        );
-
-        expect(component).toMatchSnapshot();
       });
     });
 
     describe('display', () => {
       DISPLAYS.forEach((display) => {
         test(`${display} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiButtonIcon
               iconType="user"
               aria-label="button"
@@ -100,7 +93,7 @@ describe('EuiButtonIcon', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -108,26 +101,26 @@ describe('EuiButtonIcon', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiButtonIcon iconType="user" aria-label="button" size={size} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('isSelected', () => {
       it('is rendered as true', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon iconType="user" aria-label="button" isSelected />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('is rendered as false', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon
             iconType="user"
             aria-label="button"
@@ -135,13 +128,13 @@ describe('EuiButtonIcon', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('href', () => {
       it('secures the rel attribute when the target is _blank', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon
             iconType="user"
             aria-label="button"
@@ -150,42 +143,42 @@ describe('EuiButtonIcon', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('onClick', () => {
       it('supports onClick and href', () => {
-        const handler = jest.fn();
-        const component = mount(
+        const onClick = jest.fn();
+        const { container } = render(
           <EuiButtonIcon
             iconType="user"
             aria-label="hoi"
             href="#"
-            onClick={handler}
+            onClick={onClick}
           />
         );
-        component.find('a').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(container.querySelector('a')!);
+        expect(onClick).toHaveBeenCalledTimes(1);
       });
 
       it('supports onClick as a button', () => {
-        const handler = jest.fn();
-        const component = mount(
-          <EuiButtonIcon iconType="user" aria-label="hoi" onClick={handler} />
+        const onClick = jest.fn();
+        const { container } = render(
+          <EuiButtonIcon iconType="user" aria-label="hoi" onClick={onClick} />
         );
-        component.find('button').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(container.querySelector('button')!);
+        expect(onClick).toHaveBeenCalledTimes(1);
       });
     });
 
     describe('isLoading', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiButtonIcon aria-label="button" iconType="user" isLoading />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

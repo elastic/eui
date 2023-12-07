@@ -3,7 +3,7 @@
 exports[`EuiPopoverFooter is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopoverFooter testClass1 testClass2 emotion-euiPopoverFooter-l-l"
+  class="euiPopoverFooter testClass1 testClass2 emotion-euiPopoverFooter-l-l-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

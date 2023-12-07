@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
+  EuiDataGridToolbarControl,
   EuiButtonEmpty,
   EuiButtonIcon,
   EuiLink,
@@ -16,6 +17,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuPanel,
   EuiPopover,
+  EuiDataGridPaginationProps,
 } from '../../../../../src';
 
 const columns = [
@@ -40,16 +42,16 @@ const data: any[] = [];
 
 for (let i = 1; i < 20; i++) {
   data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: <EuiLink href="http://google.com">{faker.address.city()}</EuiLink>,
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: <EuiLink href="http://google.com">{faker.location.city()}</EuiLink>,
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 
 export default () => {
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const flyoutTitleId = useGeneratedHtmlId({
     prefix: 'dataGridAdditionalControlsFlyout',
@@ -94,12 +96,14 @@ export default () => {
     columns.map(({ id }) => id)
   );
 
-  const setPageIndex = useCallback(
+  const setPageIndex = useCallback<EuiDataGridPaginationProps['onChangePage']>(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
     []
   );
-  const setPageSize = useCallback(
+  const setPageSize = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
     (pageSize) =>
       setPagination((pagination) => ({
         ...pagination,
@@ -126,7 +130,6 @@ export default () => {
         renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
         pagination={{
           ...pagination,
-          pageSizeOptions: [5, 10, 25],
           onChangeItemsPerPage: setPageSize,
           onChangePage: setPageIndex,
         }}
@@ -147,13 +150,12 @@ export default () => {
                 <EuiPopover
                   id={popoverId}
                   button={
-                    <EuiButtonEmpty
-                      size="xs"
+                    <EuiDataGridToolbarControl
                       iconType="download"
                       onClick={() => setPopover((open) => !open)}
                     >
                       Download
-                    </EuiButtonEmpty>
+                    </EuiDataGridToolbarControl>
                   }
                   isOpen={isPopoverOpen}
                   closePopover={() => setPopover(false)}

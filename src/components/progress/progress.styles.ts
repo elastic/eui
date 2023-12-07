@@ -33,7 +33,7 @@ const crossBrowserProgressValue = (cssProperties: string) => `
   }
 `;
 const indeterminateProgressValue = (cssProperties: string) => `
-  &:before {
+  &::before {
     ${cssProperties}
   }
 `;
@@ -106,14 +106,14 @@ export const euiProgressStyles = (
     }
 
     ${crossBrowserProgressValue(
-      `transition: width ${euiTheme.animation.normal} linear;`
+      'transition: width ${euiTheme.animation.normal} linear;'
     )}
   `,
   // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
   // we apply this style to a <div> instead of a <progress> element.
   // See https://css-tricks.com/html5-progress-element/ for more info.
   indeterminate: css`
-    &:before {
+    &::before {
       position: absolute;
       content: '';
       ${logicalCSS('width', '100%')}
@@ -147,7 +147,7 @@ export const euiProgressStyles = (
   fixed: css`
     position: fixed;
     z-index: ${Number(euiTheme.levels.header) + 1};
-    ${nonStaticPositioning(isNative)}}
+    ${nonStaticPositioning(isNative)}
   `,
   absolute: css`
     position: absolute;
@@ -238,7 +238,7 @@ export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiProgress__valueText: css`
     flex-grow: 1;
     flex-shrink: 0;
-    font-feature-settings: 'tnum' 1; // Tabular numbers ensure the line up nicely when right-aligned
+    font-feature-settings: 'tnum' 1; /* Tabular numbers ensure the line up nicely when right-aligned */
     ${logicalTextAlignCSS('right')}
     ${euiTextTruncate()}
   `,

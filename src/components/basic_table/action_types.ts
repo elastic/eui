@@ -18,18 +18,18 @@ type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 export interface DefaultItemActionBase<T> {
   /**
-   * The display name of the action (will be the button caption)
+   * The display name of the action (will render as visible text if rendered within a collapsed menu)
    */
   name: ReactNode | ((item: T) => ReactNode);
   /**
-   * Describes the action (will be the button title)
+   * Describes the action (will render as tooltip content)
    */
-  description: string;
+  description: string | ((item: T) => string);
   /**
    * A handler function to execute the action
    */
   onClick?: (item: T) => void;
-  href?: string;
+  href?: string | ((item: T) => string);
   target?: string;
   /**
    * A callback function that determines whether the action is available
@@ -40,7 +40,7 @@ export interface DefaultItemActionBase<T> {
    */
   enabled?: (item: T) => boolean;
   isPrimary?: boolean;
-  'data-test-subj'?: string;
+  'data-test-subj'?: string | ((item: T) => string);
 }
 
 export interface DefaultItemEmptyButtonAction<T>
@@ -72,7 +72,7 @@ export type DefaultItemAction<T> = ExclusiveUnion<
 
 export interface CustomItemAction<T> {
   /**
-   * The function that renders the action. Note that the returned node is expected to have `onFocus` and `onBlur` functions
+   * Allows rendering a totally custom action
    */
   render: (item: T, enabled: boolean) => ReactElement;
   /**
@@ -88,8 +88,13 @@ export interface CustomItemAction<T> {
 
 export type Action<T> = DefaultItemAction<T> | CustomItemAction<T>;
 
-export const isCustomItemAction = (
-  action: DefaultItemAction<any> | CustomItemAction<any>
-): action is CustomItemAction<any> => {
+export const isCustomItemAction = <T>(
+  action: DefaultItemAction<T> | CustomItemAction<T>
+): action is CustomItemAction<T> => {
   return action.hasOwnProperty('render');
 };
+
+export const callWithItemIfFunction =
+  <T>(item: T) =>
+  <U>(prop: U | ((item: T) => U)): U =>
+    typeof prop === 'function' ? (prop as Function)(item) : prop;

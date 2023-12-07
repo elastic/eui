@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, FunctionComponent } from 'react';
+import React, { createContext, FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
 import { EuiPaddingSize } from '../../../global_styling';
@@ -46,40 +46,49 @@ export const EuiPopoverPanel: FunctionComponent<
   position,
   ...rest
 }) => {
-  const { paddingSize = DEFAULT_PANEL_PADDING_SIZE } = rest;
+  const classes = classNames('euiPopover__panel', className);
 
   const euiThemeContext = useEuiTheme();
-  // Using BEM child class for BWC
-  const classes = classNames('euiPopover__panel', className);
-  const styles = euiPopoverPanelStyles(euiThemeContext);
+  const cssStyles = useMemo(() => {
+    const styles = euiPopoverPanelStyles(euiThemeContext);
+    const colorMode = euiThemeContext.colorMode.toLowerCase() as Lowercase<
+      'LIGHT' | 'DARK'
+    >;
 
-  let panelCSS = [
-    styles.euiPopover__panel,
-    isOpen && styles.isOpen,
-    isOpen && position && styles[position],
-  ];
-
-  if (isAttached) {
-    panelCSS = [
-      ...panelCSS,
-      isOpen && styles.attached.isOpen,
-      position && styles.attached[position],
+    const sharedStyles = [
+      styles.euiPopover__panel,
+      styles[colorMode],
+      isOpen && styles.isOpen,
     ];
-  }
 
-  if (hasDragDrop) {
-    panelCSS = [
-      ...panelCSS,
-      styles.hasDragDrop.hasDragDrop,
-      position && styles.hasDragDrop[position],
+    if (hasDragDrop) {
+      return [
+        ...sharedStyles,
+        styles.hasDragDrop.hasDragDrop,
+        position && styles.hasDragDrop[position],
+      ];
+    }
+    if (isAttached) {
+      return [
+        ...sharedStyles,
+        styles.isAttached.isAttached,
+        position && styles.isAttached[position],
+      ];
+    }
+    return [
+      ...sharedStyles,
+      styles.hasTransform.hasTransform,
+      isOpen && position && styles.hasTransform[position],
     ];
-  }
+  }, [euiThemeContext, isOpen, position, isAttached, hasDragDrop]);
 
   return (
-    <EuiPopoverPanelContext.Provider value={{ paddingSize }}>
+    <EuiPopoverPanelContext.Provider
+      value={{ paddingSize: rest.paddingSize || DEFAULT_PANEL_PADDING_SIZE }}
+    >
       <EuiPanel
         className={classes}
-        css={panelCSS}
+        css={cssStyles}
         data-popover-panel
         data-popover-open={isOpen || undefined}
         {...rest}

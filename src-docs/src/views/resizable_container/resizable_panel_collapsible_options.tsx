@@ -64,7 +64,7 @@ export default () => {
               <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
 
-            <EuiResizableButton />
+            <EuiResizableButton alignIndicator="start" />
 
             <EuiResizablePanel
               mode="main"
@@ -81,7 +81,7 @@ export default () => {
               </EuiPanel>
             </EuiResizablePanel>
 
-            <EuiResizableButton />
+            <EuiResizableButton alignIndicator="end" />
 
             <EuiResizablePanel
               mode={[

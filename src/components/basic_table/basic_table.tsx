@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  Component,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  ContextType,
+} from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -27,6 +33,8 @@ import { get } from '../../services/objects';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiCheckbox } from '../form';
 
+import { EuiComponentDefaultsContext } from '../provider/component_defaults';
+import { euiTablePaginationDefaults } from '../table/table_pagination';
 import {
   EuiTable,
   EuiTableProps,
@@ -312,6 +320,9 @@ export class EuiBasicTable<T = any> extends Component<
   EuiBasicTableProps<T>,
   State<T>
 > {
+  static contextType = EuiComponentDefaultsContext;
+  declare context: ContextType<typeof EuiComponentDefaultsContext>;
+
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
@@ -329,20 +340,28 @@ export class EuiBasicTable<T = any> extends Component<
       return { selection: [] };
     }
 
-    const { itemId } = nextProps;
-    const selection = prevState.selection.filter(
+    const controlledSelection = nextProps.selection.selected;
+    const unfilteredSelection = controlledSelection ?? prevState.selection;
+
+    // Ensure we're not including selections that aren't in the
+    // current `items` array (affected by pagination)
+    const { itemId, items } = nextProps;
+    const selection = unfilteredSelection.filter(
       (selectedItem: T) =>
-        nextProps.items.findIndex(
+        items.findIndex(
           (item: T) =>
             getItemId(item, itemId) === getItemId(selectedItem, itemId)
         ) !== -1
     );
 
-    if (selection.length !== prevState.selection.length) {
-      if (nextProps.selection.onSelectionChange) {
-        nextProps.selection.onSelectionChange(selection);
-      }
+    // If some selected items were filtered out, update state and callback
+    if (selection.length !== unfilteredSelection.length) {
+      nextProps.selection.onSelectionChange?.(selection);
+      return { selection };
+    }
 
+    // Always update selection state from props if controlled
+    if (controlledSelection) {
       return { selection };
     }
 
@@ -366,18 +385,37 @@ export class EuiBasicTable<T = any> extends Component<
     this.getInitialSelection();
   }
 
+  get pageSize() {
+    return (
+      this.props.pagination?.pageSize ??
+      this.context.EuiTablePagination?.itemsPerPage ??
+      euiTablePaginationDefaults.itemsPerPage
+    );
+  }
+
+  get isSelectionControlled() {
+    return !!this.props.selection?.selected;
+  }
+
   getInitialSelection() {
+    if (this.isSelectionControlled) return;
+
     if (
       this.props.selection &&
       this.props.selection.initialSelected &&
       !this.state.initialSelectionRendered &&
       this.props.items.length > 0
     ) {
-      this.setState({ selection: this.props.selection.initialSelected });
-      this.setState({ initialSelectionRendered: true });
+      this.setState({
+        selection: this.props.selection.initialSelected,
+        initialSelectionRendered: true,
+      });
     }
   }
 
+  /**
+   * @deprecated Use `selection.selected` instead to declaratively control table selection
+   */
   setSelection(newSelection: T[]) {
     this.changeSelection(newSelection);
   }
@@ -387,7 +425,7 @@ export class EuiBasicTable<T = any> extends Component<
     if (hasPagination(props)) {
       criteria.page = {
         index: props.pagination.pageIndex,
-        size: props.pagination.pageSize,
+        size: this.pageSize,
       };
     }
     if (props.sorting) {
@@ -396,13 +434,14 @@ export class EuiBasicTable<T = any> extends Component<
     return criteria;
   }
 
-  changeSelection(selection: T[]) {
-    if (!this.props.selection) {
-      return;
-    }
-    this.setState({ selection });
-    if (this.props.selection.onSelectionChange) {
-      this.props.selection.onSelectionChange(selection);
+  changeSelection(changedSelection: T[]) {
+    const { selection } = this.props;
+    if (!selection) return;
+
+    selection.onSelectionChange?.(changedSelection);
+
+    if (!this.isSelectionControlled) {
+      this.setState({ selection: changedSelection });
     }
   }
 
@@ -610,8 +649,8 @@ export class EuiBasicTable<T = any> extends Component<
     const itemCount = items.length;
     const totalItemCount = pagination ? pagination.totalItemCount : itemCount;
     const page = pagination ? pagination.pageIndex + 1 : 1;
-    const pageCount = pagination?.pageSize
-      ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+    const pageCount = pagination
+      ? Math.ceil(pagination.totalItemCount / this.pageSize)
       : 1;
 
     let captionElement;
@@ -896,9 +935,8 @@ export class EuiBasicTable<T = any> extends Component<
       content = items.map((item: T, index: number) => {
         // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
         const tableItemIndex =
-          hasPagination(this.props) && this.props.pagination.pageSize > 0
-            ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
-              index
+          hasPagination(this.props) && this.pageSize > 0
+            ? this.props.pagination.pageIndex * this.pageSize + index
             : index;
         return this.renderItemRow(item, tableItemIndex);
       });

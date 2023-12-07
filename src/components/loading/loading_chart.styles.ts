@@ -36,15 +36,15 @@ export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   m: css`
     ${logicalCSS('width', euiTheme.size.xxs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.s)};
+    ${logicalCSS('margin-bottom', euiTheme.size.s)}
   `,
   l: css`
     ${logicalCSS('width', euiTheme.size.xs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.m)};
+    ${logicalCSS('margin-bottom', euiTheme.size.m)}
   `,
   xl: css`
     ${logicalCSS('width', euiTheme.size.s)}
-    ${logicalCSS('margin-bottom', euiTheme.size.base)};
+    ${logicalCSS('margin-bottom', euiTheme.size.base)}
   `,
 });
 
@@ -73,8 +73,8 @@ export const _barIndex = (
 
   return css`
     background-color: ${backgroundColor};
-    // Without the animation, the bars are all the same height,
-    // so we apply transforms which are overridden by the animation if animations are allowed
+    /* Without the animation, the bars are all the same height,
+       so we apply transforms which are overridden by the animation if animations are allowed */
     transform: translateY(${22 * index}%);
 
     ${euiCanAnimate} {

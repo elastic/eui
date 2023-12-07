@@ -166,24 +166,25 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
       },
       'index.js': {
         content: `import '${cssFile}';
-import ReactDOM from 'react-dom';
 import React from 'react';
+import { createRoot } from 'react-dom/client';
 import createCache from '@emotion/cache';
-import { EuiProvider } from '@elastic/eui';
+import { EuiProvider, euiStylisPrefixer } from '@elastic/eui';
 
 import { Demo } from './demo';
 
 const cache = createCache({
   key: 'codesandbox',
+  stylisPlugins: [euiStylisPrefixer],
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
 cache.compat = true;
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <EuiProvider cache={cache} ${providerProps}>
     <Demo />
-  </EuiProvider>,
-  document.getElementById('root')
+  </EuiProvider>
 );`,
       },
       /* 4 */
@@ -193,7 +194,7 @@ ReactDOM.render(
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
   <meta name="emotion-styles">
 </head>
 <body>

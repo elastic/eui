@@ -26,27 +26,47 @@
       text-decoration: none;
     }
   }
-}
 
-.euiComboBoxOption__contentWrapper {
-  display: flex;
+  &__contentWrapper {
+    display: flex;
+    align-items: center;
+  }
 
-  .euiComboBoxOption__emptyStateText {
+  &__content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     flex: 1;
     text-align: left;
-    margin-bottom: 0;
   }
 
-  .euiComboBoxOption__enterBadge {
-    align-self: center;
+  &__emptyStateText {
+    flex: 1;
+    text-align: left;
+
+    /* Extra specificity required to override EuiText's <p> styling */
+    .euiComboBoxOptionsList__empty & {
+      margin-bottom: 0;
+    }
+  }
+
+  &__enterBadge {
     margin-left: $euiSizeXS;
   }
-}
 
-.euiComboBoxOption__content {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  flex: 1;
-  text-align: left;
+  &__prepend {
+    margin-right: $euiSizeS;
+  }
+
+  &__append {
+    margin-left: $euiSizeS;
+  }
+
+  /* Fix vertical alignment of EuiIcons in prepend/append nodes */
+  &__prepend,
+  &__append {
+    .euiIcon {
+      display: block;
+    }
+  }
 }

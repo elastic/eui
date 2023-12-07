@@ -25,6 +25,7 @@ export const iconTypes = [
   'arrowEnd',
   'article',
   'asterisk',
+  'at',
   'beaker',
   'bell',
   'bellSlash',
@@ -77,9 +78,11 @@ export const iconTypes = [
   'download',
   'email',
   'empty',
+  'endpoint',
   'eql',
   'eraser',
   'error',
+  'esqlVis',
   'exit',
   'expand',
   'expandMini',
@@ -110,6 +113,8 @@ export const iconTypes = [
   'globe',
   'grab',
   'grabHorizontal',
+  'grabOmnidirectional',
+  'gradient',
   'grid',
   'heart',
   'heatmap',
@@ -131,6 +136,7 @@ export const iconTypes = [
   'inspect',
   'invert',
   'ip',
+  'key',
   'keyboard',
   'kqlField',
   'kqlFunction',
@@ -182,6 +188,7 @@ export const iconTypes = [
   'package',
   'pageSelect',
   'pagesSelect',
+  'palette',
   'paperClip',
   'partial',
   'pause',
@@ -190,6 +197,8 @@ export const iconTypes = [
   'percent',
   'pin',
   'pinFilled',
+  'pipeBreaks',
+  'pipeNoBreaks',
   'pivot',
   'play',
   'playFilled',
@@ -221,6 +230,7 @@ export const iconTypes = [
   'sortRight',
   'sortUp',
   'spaces',
+  'sparkles',
   'starEmpty',
   'starEmptySpace',
   'starFilled',
@@ -246,9 +256,14 @@ export const iconTypes = [
   'tear',
   'temperature',
   'timeline',
+  'timelineWithArrow',
   'timeRefresh',
   'timeslider',
   'training',
+  'transitionLeftIn',
+  'transitionLeftOut',
+  'transitionTopIn',
+  'transitionTopOut',
   'trash',
   'unfold',
   'unlink',
@@ -288,7 +303,7 @@ export default () => (
       {'<EuiIcon type="warning" />'}
     </EuiCodeBlock>
     <EuiSpacer />
-    <EuiFlexGrid direction="column" columns={3}>
+    <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
           <EuiCopy

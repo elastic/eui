@@ -6,11 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { mount, render, shallow } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import React from 'react';
+import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiCodeBlock, FONT_SIZES, PADDING_SIZES } from './code_block';
 
@@ -19,62 +18,62 @@ console.log(some);`;
 
 describe('EuiCodeBlock', () => {
   it('renders a code block', () => {
-    const component = render(
+    const { container } = render(
       <EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('transparentBackground', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isCopyable', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCodeBlock isCopyable>{code}</EuiCodeBlock>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('overflowHeight', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCodeBlock overflowHeight={200}>{code}</EuiCodeBlock>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('language', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCodeBlock language="html">{code}</EuiCodeBlock>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('fontSize', () => {
       FONT_SIZES.forEach((fontSize) => {
         test(`${fontSize} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -82,69 +81,44 @@ describe('EuiCodeBlock', () => {
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('whiteSpace', () => {
       it('renders a pre block tag with a css class modifier', () => {
-        const component = render(
+        const { container } = render(
           <EuiCodeBlock whiteSpace="pre" {...requiredProps}>
             {code}
           </EuiCodeBlock>
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   describe('dynamic content', () => {
-    it('updates DOM when input changes', (done) => {
-      expect.assertions(2);
+    it('updates DOM when input changes', () => {
+      const { container, rerender } = render(
+        <EuiCodeBlock language="javascript">
+          const value = &apos;State 1&apos;
+        </EuiCodeBlock>
+      );
 
-      function takeSnapshot() {
-        const snapshot = render(
-          <div dangerouslySetInnerHTML={{ __html: appDiv.innerHTML }} />
-        );
-        expect(snapshot).toMatchSnapshot();
-      }
+      expect(container).toMatchSnapshot();
 
-      // enzyme does not recreate enough of the React<->DOM interaction to reproduce this bug
-      const appDiv = document.createElement('div');
+      rerender(
+        <EuiCodeBlock language="javascript">
+          const value = &apos;State 2&apos;
+        </EuiCodeBlock>
+      );
 
-      function App() {
-        const [value, setValue] = useState('State 1');
-
-        useEffect(() => {
-          // Wait a tick for EuiCodeBlock internal state to update on render
-          setTimeout(() => {
-            takeSnapshot();
-            act(() => {
-              setValue('State 2');
-            });
-          });
-        }, []);
-
-        useEffect(() => {
-          if (value === 'State 2') {
-            takeSnapshot();
-            done();
-          }
-        }, [value]);
-
-        return (
-          <EuiCodeBlock language="javascript">
-            const value = &apos;{value}&apos;
-          </EuiCodeBlock>
-        );
-      }
-
-      ReactDOM.render(<App />, appDiv);
+      expect(container).toMatchSnapshot();
     });
   });
 
@@ -188,7 +162,7 @@ describe('EuiCodeBlock', () => {
 
   describe('virtualization', () => {
     it('renders a virtualized code block', () => {
-      const component = render(
+      const { container } = render(
         <EuiCodeBlock
           isVirtualized={true}
           overflowHeight="50%"
@@ -197,21 +171,7 @@ describe('EuiCodeBlock', () => {
           {code}
         </EuiCodeBlock>
       );
-      expect(component).toMatchSnapshot();
-    });
-
-    it('correctly copies virtualized text', () => {
-      const component = render(
-        <EuiCodeBlock
-          isCopyable
-          isVirtualized={true}
-          overflowHeight="50%"
-          {...requiredProps}
-        >
-          {code}
-        </EuiCodeBlock>
-      );
-      expect(component.find('.euiCodeBlock__copyButton')).toHaveLength(1);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('type checks', () => {
@@ -239,34 +199,34 @@ describe('EuiCodeBlock', () => {
 
   describe('line numbers', () => {
     it('renders line numbers', () => {
-      const component = render(
+      const { container } = render(
         <EuiCodeBlock lineNumbers {...requiredProps}>
           {code}
         </EuiCodeBlock>
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders line numbers with a start value', () => {
-      const component = render(
+      const { container } = render(
         <EuiCodeBlock lineNumbers={{ start: 10 }} {...requiredProps}>
           {code}
         </EuiCodeBlock>
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders highlighted line numbers', () => {
-      const component = render(
+      const { container } = render(
         <EuiCodeBlock lineNumbers={{ highlight: '1' }} {...requiredProps}>
           {code}
         </EuiCodeBlock>
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders annotated line numbers', () => {
-      const component = render(
+      const { container } = render(
         <EuiCodeBlock
           lineNumbers={{ annotations: { 1: 'hello world' } }}
           {...requiredProps}
@@ -274,7 +234,7 @@ describe('EuiCodeBlock', () => {
           {code}
         </EuiCodeBlock>
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

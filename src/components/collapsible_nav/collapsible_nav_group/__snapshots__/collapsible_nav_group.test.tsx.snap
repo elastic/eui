@@ -3,7 +3,7 @@
 exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiCollapsibleNavGroup testClass1 testClass2"
+  class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-notCollapsible-none-euiTestCss"
   data-test-subj="test subject string"
   id="id"
 />
@@ -11,28 +11,28 @@ exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props background dark is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--dark"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-dark-euiColorMode-dark"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup props background light is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--light"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-light"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -66,7 +66,7 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
 
 exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -99,7 +99,7 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -132,7 +132,7 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -158,7 +158,7 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props titleElement can change the rendered element to h2 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -184,14 +184,14 @@ exports[`EuiCollapsibleNavGroup props titleElement can change the rendered eleme
 
 exports[`EuiCollapsibleNavGroup props titleSize can be larger 1`] = `
 <div
-  class="euiCollapsibleNavGroup"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a title 1`] = `
 <div
-  class="euiCollapsibleNavGroup"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 />
 `;
@@ -199,17 +199,17 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading testClass1 testClass2"
+  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavGroup-isCollapsible-none-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <button
       aria-controls="id"
       aria-expanded="false"
       aria-label="aria-label"
-      class="euiAccordion__button euiCollapsibleNavGroup__heading testClass1 testClass2 emotion-euiAccordion__button"
+      class="euiAccordion__button euiCollapsibleNavGroup__heading testClass1 testClass2 emotion-euiAccordion__button-euiTestCss"
       data-test-subj="test subject string"
       id="generated-id"
       type="button"
@@ -237,7 +237,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
       aria-controls="id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-empty-text-hoverStyles-euiAccordion__iconButton-arrowRight"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"
       type="button"
     >
@@ -251,26 +251,26 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="id"
-    role="region"
+    inert=""
+    role="group"
+    style="block-size: 0;"
     tabindex="-1"
   >
-    <div>
-      <div
-        class=" emotion-euiAccordion__children"
-      />
-    </div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    />
   </div>
 </div>
 `;
 
 exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
+  class="euiAccordion euiCollapsibleNavGroup emotion-euiAccordion-euiCollapsibleNavGroup-isCollapsible-none"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <button
       aria-controls="id"
@@ -302,7 +302,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
       aria-controls="id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-empty-text-hoverStyles-euiAccordion__iconButton-arrowRight"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"
       type="button"
     >
@@ -316,16 +316,16 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="id"
-    role="region"
+    inert=""
+    role="group"
+    style="block-size: 0;"
     tabindex="-1"
   >
-    <div>
-      <div
-        class=" emotion-euiAccordion__children"
-      />
-    </div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    />
   </div>
 </div>
 `;

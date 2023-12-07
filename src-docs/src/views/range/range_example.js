@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -235,12 +236,21 @@ export const RangeControlExample = {
             To pass completely custom tick marks, you can pass an array of
             objects that require a <EuiCode>value</EuiCode> and{' '}
             <EuiCode>label</EuiCode>. The value must be included in the range of
-            values (min-max), though the label may be anythin you choose.
+            values (min-max), though the label may be anything you choose.
           </p>
-          <EuiCallOut color="warning" title="Maximum of 20 ticks allowed">
+          <EuiCallOut
+            color="warning"
+            title="Minimum of 5px width per tick allowed"
+          >
             <p>
-              Spacing can get quite cramped with lots of ticks so we max out the
-              number to 20.
+              If the width available for each tick displayed is below 5px, the
+              range component will error. Test your usage at multiple screen
+              widths to ensure all ticks are visible on the page at all times,
+              or use EUI's <EuiCode>useIsWithinBreakpoints</EuiCode>{' '}
+              <Link to="/theming/breakpoints/values?themeLanguage=js">
+                hook utility
+              </Link>{' '}
+              to reduce the tick interval responsively.
             </p>
           </EuiCallOut>
         </>

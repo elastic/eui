@@ -45,11 +45,11 @@ exports[`EuiTableFooterCell align renders right when specified 1`] = `
 exports[`EuiTableFooterCell is rendered 1`] = `
 <td
   aria-label="aria-label"
-  class="euiTableFooterCell testClass1 testClass2"
+  class="euiTableFooterCell testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiTableCellContent testClass1 testClass2"
+    class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
   >
     <span
       class="euiTableCellContent__text"
@@ -63,7 +63,7 @@ exports[`EuiTableFooterCell is rendered 1`] = `
 exports[`EuiTableFooterCell width and style accepts style attribute 1`] = `
 <td
   class="euiTableFooterCell"
-  style="width:20%"
+  style="width: 20%;"
 >
   <div
     class="euiTableCellContent"
@@ -80,7 +80,7 @@ exports[`EuiTableFooterCell width and style accepts style attribute 1`] = `
 exports[`EuiTableFooterCell width and style accepts width attribute 1`] = `
 <td
   class="euiTableFooterCell"
-  style="width:10%"
+  style="width: 10%;"
 >
   <div
     class="euiTableCellContent"
@@ -97,7 +97,7 @@ exports[`EuiTableFooterCell width and style accepts width attribute 1`] = `
 exports[`EuiTableFooterCell width and style accepts width attribute as number 1`] = `
 <td
   class="euiTableFooterCell"
-  style="width:100px"
+  style="width: 100px;"
 >
   <div
     class="euiTableCellContent"
@@ -114,7 +114,7 @@ exports[`EuiTableFooterCell width and style accepts width attribute as number 1`
 exports[`EuiTableFooterCell width and style resolves style and width attribute 1`] = `
 <td
   class="euiTableFooterCell"
-  style="width:10%"
+  style="width: 10%;"
 >
   <div
     class="euiTableCellContent"

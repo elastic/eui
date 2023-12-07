@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import type { CSSObject } from '@emotion/react';
+
 import { RecursivePartial, ValueOf } from '../../components/common';
 import { _EuiThemeAnimation } from '../../global_styling/variables/animations';
 import { _EuiThemeBreakpoints } from '../../global_styling/variables/breakpoint';
@@ -46,7 +48,11 @@ export type StrictColorModeSwitch<T = string> = {
 
 export type EuiThemeShape = {
   colors: _EuiThemeColors;
+  /** - Default value: 16 */
   base: _EuiThemeBase;
+  /**
+   * @see {@link https://eui.elastic.co/#/theming/sizing | Reference} for more information
+   */
   size: _EuiThemeSizes;
   font: _EuiThemeFont;
   border: _EuiThemeBorder;
@@ -95,4 +101,8 @@ export type EuiThemeNested = {
   hasDifferentColorFromGlobalTheme: boolean;
   bodyColor: string;
   colorClassName: string;
+  setGlobalCSSVariables: Function;
+  globalCSSVariables?: CSSObject;
+  setNearestThemeCSSVariables: Function;
+  themeCSSVariables?: CSSObject;
 };

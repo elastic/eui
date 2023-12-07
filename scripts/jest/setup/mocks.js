@@ -15,6 +15,14 @@ jest.mock('./../../../src/components/icon', () => {
   return { EuiIcon };
 });
 
+jest.mock('./../../../src/services/canvas', () => {
+  const rest = jest.requireActual('./../../../src/services/canvas');
+  const {
+    CanvasTextUtils,
+  } = require('./../../../src/services/canvas/canvas_text_utils.testenv');
+  return { ...rest, CanvasTextUtils };
+});
+
 jest.mock('./../../../src/services/accessibility', () => {
   const a11y = jest.requireActual('./../../../src/services/accessibility');
   const {
@@ -30,3 +38,18 @@ jest.mock('./../../../src/services/breakpoint/current_breakpoint_hook', () => {
   } = require('./../../../src/services/breakpoint/current_breakpoint_hook.testenv');
   return { useCurrentEuiBreakpoint };
 });
+
+// @see https://github.com/focus-trap/tabbable#testing-in-jsdom
+const mockTabbable = jest.requireActual('tabbable');
+
+jest.mock('tabbable', () => ({
+  ...mockTabbable,
+  tabbable: (node, options) =>
+    mockTabbable.tabbable(node, { ...options, displayCheck: 'none' }),
+  focusable: (node, options) =>
+    mockTabbable.focusable(node, { ...options, displayCheck: 'none' }),
+  isFocusable: (node, options) =>
+    mockTabbable.isFocusable(node, { ...options, displayCheck: 'none' }),
+  isTabbable: (node, options) =>
+    mockTabbable.isTabbable(node, { ...options, displayCheck: 'none' }),
+}));

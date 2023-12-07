@@ -48,16 +48,17 @@ exports[`align renders right when specified 1`] = `
 exports[`renders EuiTableHeaderCell 1`] = `
 <th
   aria-label="aria-label"
-  class="euiTableHeaderCell testClass1 testClass2"
+  class="euiTableHeaderCell testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   role="columnheader"
   scope="col"
 >
   <span
-    class="euiTableCellContent testClass1 testClass2"
+    class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
   >
     <span
       class="euiTableCellContent__text"
+      title="children"
     >
       children
     </span>
@@ -68,12 +69,12 @@ exports[`renders EuiTableHeaderCell 1`] = `
 exports[`renders td when children is null/undefined 1`] = `
 <td
   aria-label="aria-label"
-  class="euiTableHeaderCell testClass1 testClass2"
+  class="euiTableHeaderCell testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   role="columnheader"
 >
   <span
-    class="euiTableCellContent testClass1 testClass2"
+    class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
   >
     <span
       class="euiTableCellContent__text"
@@ -95,6 +96,7 @@ exports[`sorting does not render a button with readOnly 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -119,6 +121,7 @@ exports[`sorting is rendered with isSortAscending 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -143,6 +146,7 @@ exports[`sorting is rendered with isSorted 1`] = `
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -172,6 +176,7 @@ exports[`sorting renders a button with onSort 1`] = `
     >
       <span
         class="euiTableCellContent__text"
+        title="Test"
       >
         Test
       </span>
@@ -189,13 +194,14 @@ exports[`width and style accepts style attribute 1`] = `
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
-  style="width:20%"
+  style="width: 20%;"
 >
   <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -208,13 +214,14 @@ exports[`width and style accepts width attribute 1`] = `
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
-  style="width:10%"
+  style="width: 10%;"
 >
   <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -227,13 +234,14 @@ exports[`width and style accepts width attribute as number 1`] = `
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
-  style="width:100px"
+  style="width: 100px;"
 >
   <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>
@@ -246,13 +254,14 @@ exports[`width and style resolves style and width attribute 1`] = `
   class="euiTableHeaderCell"
   role="columnheader"
   scope="col"
-  style="width:10%"
+  style="width: 10%;"
 >
   <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
+      title="Test"
     >
       Test
     </span>

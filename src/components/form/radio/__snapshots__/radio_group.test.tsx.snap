@@ -3,7 +3,7 @@
 exports[`EuiRadioGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -18,6 +18,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
       class="euiRadio__input"
       id="1"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -36,6 +37,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
       class="euiRadio__input"
       id="2"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -64,6 +66,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
       class="euiRadio__input"
       id="1"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -82,6 +85,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
       class="euiRadio__input"
       id="2"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -106,6 +110,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
       id="1"
       name="radiogroupname"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -125,6 +130,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
       id="2"
       name="radiogroupname"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -148,6 +154,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
       class="euiRadio__input"
       id="1"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"
@@ -167,6 +174,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
       disabled=""
       id="2"
       type="radio"
+      value=""
     />
     <div
       class="euiRadio__circle"

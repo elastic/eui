@@ -28,12 +28,14 @@ const users: User[] = [];
 for (let i = 0; i < 10; i++) {
   users.push({
     id: i + 1,
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
-    jobTitle: faker.name.jobTitle(),
-    address: `${faker.address.streetAddress()} ${faker.address.cityName()} ${faker.address.stateAbbr()} ${faker.address.zipCode()}`,
+    jobTitle: faker.person.jobTitle(),
+    address: `${faker.location.streetAddress()} ${faker.location.city()} ${faker.location.state(
+      { abbreviated: true }
+    )} ${faker.location.zipCode()}`,
   });
 }
 
@@ -81,11 +83,12 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
   {
     field: 'jobTitle',
     name: 'Job title',
+    truncateText: true,
   },
   {
     field: 'address',
     name: 'Address',
-    truncateText: true,
+    truncateText: { lines: 2 },
   },
 ];
 
@@ -145,11 +148,12 @@ const alignButtons: EuiButtonGroupOptionProps[] = [
 
 export default () => {
   const [tableLayout, setTableLayout] = useState('tableLayoutFixed');
-  const [vAlign, setVAlign] = useState('columnVAlignTop');
+  const [vAlign, setVAlign] = useState('columnVAlignMiddle');
   const [align, setAlign] = useState('columnAlignLeft');
 
   const onTableLayoutChange = (id: string, value: string) => {
     setTableLayout(id);
+    columns[4].width = value === 'custom' ? '100px' : undefined;
     columns[5].width = value === 'custom' ? '20%' : undefined;
   };
 
@@ -167,14 +171,16 @@ export default () => {
 
   switch (tableLayout) {
     case 'tableLayoutFixed':
-      callOutText = 'Address has truncateText set to true';
+      callOutText =
+        'Job title has truncateText set to true. Address is set to { lines: 2 }';
       break;
     case 'tableLayoutAuto':
       callOutText =
-        'Address has truncateText set to true which is not applied since tableLayout is set to auto';
+        'Job title will not wrap or truncate since tableLayout is set to auto. Address will truncate if necessary';
       break;
     case 'tableLayoutCustom':
-      callOutText = 'Address has truncateText set to true and width set to 20%';
+      callOutText =
+        'Job title has a custom column width of 100px. Address has a custom column width of 20%';
       break;
   }
 

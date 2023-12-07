@@ -15,6 +15,8 @@ import React, {
   Ref,
   ReactNode,
 } from 'react';
+
+import { EuiThemeProvider } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../breadcrumbs';
 import {
@@ -153,6 +155,9 @@ export type Control = ExclusiveUnion<
   SpacerControl
 >;
 
+/**
+ * @deprecated
+ */
 export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
@@ -214,6 +219,13 @@ interface EuiControlBarState {
   selectedTab: string;
 }
 
+/**
+ * @deprecated - EuiControlBar is scheduled for deprecation due to low internal usage and high
+ * overlap with other existing EUI components. We recommend using EuiBottomBar instead,
+ * or copying this component into your own application for usage if necessary.
+ *
+ * The component will be permanently removed in December 2023.
+ */
 export class EuiControlBar extends Component<
   EuiControlBarProps,
   EuiControlBarState
@@ -302,14 +314,7 @@ export class EuiControlBar extends Component<
     const controlItem = (control: Control, index: number) => {
       switch (control.controlType) {
         case 'button': {
-          const {
-            controlType,
-            id,
-            color = 'ghost',
-            label,
-            className,
-            ...rest
-          } = control;
+          const { controlType, id, color, label, className, ...rest } = control;
           return (
             <EuiButton
               key={id + index}
@@ -328,7 +333,7 @@ export class EuiControlBar extends Component<
             id,
             iconType,
             className,
-            color = 'ghost',
+            color = 'text',
             onClick,
             href,
             ...rest
@@ -422,29 +427,39 @@ export class EuiControlBar extends Component<
         default="Page level controls"
       >
         {(screenReaderHeading: string) => (
-          // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
-          // A bug in voiceover won't list some landmarks in the rotor without an aria-label
-          <section
-            className={classes}
-            aria-label={landmarkHeading ? landmarkHeading : screenReaderHeading}
-            {...rest}
-            style={styles}
+          <EuiThemeProvider
+            colorMode="dark"
+            wrapperProps={{ cloneElement: true }}
           >
-            <EuiScreenReaderOnly>
-              <h2>{landmarkHeading ? landmarkHeading : screenReaderHeading}</h2>
-            </EuiScreenReaderOnly>
-            <div
-              className="euiControlBar__controls"
-              ref={(node) => {
-                this.bar = node;
-              }}
+            <section
+              className={classes}
+              // Though it would be better to use aria-labelledby than aria-label
+              // and not repeat the same string twice, a bug in voiceover won't list
+              // some landmarks in the rotor without an aria-label
+              aria-label={
+                landmarkHeading ? landmarkHeading : screenReaderHeading
+              }
+              {...rest}
+              style={styles}
             >
-              {controls.map((control, index) => controlItem(control, index))}
-            </div>
-            {this.props.showContent ? (
-              <div className="euiControlBar__content">{children}</div>
-            ) : null}
-          </section>
+              <EuiScreenReaderOnly>
+                <h2>
+                  {landmarkHeading ? landmarkHeading : screenReaderHeading}
+                </h2>
+              </EuiScreenReaderOnly>
+              <div
+                className="euiControlBar__controls"
+                ref={(node) => {
+                  this.bar = node;
+                }}
+              >
+                {controls.map((control, index) => controlItem(control, index))}
+              </div>
+              {this.props.showContent ? (
+                <div className="euiControlBar__content">{children}</div>
+              ) : null}
+            </section>
+          </EuiThemeProvider>
         )}
       </EuiI18n>
     );

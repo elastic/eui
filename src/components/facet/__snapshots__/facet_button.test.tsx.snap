@@ -3,7 +3,7 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton-euiTestCss"
   data-test-subj="test subject string"
   title="aria-label"
   type="button"
@@ -13,6 +13,7 @@ exports[`EuiFacetButton is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
+      data-text="Content"
     >
       Content
     </span>
@@ -22,7 +23,8 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
+  title="Content"
   type="button"
 >
   <span
@@ -34,6 +36,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     />
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
+      data-text="Content"
     >
       Content
     </span>
@@ -43,8 +46,9 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-euiFacetButton"
   disabled=""
+  title="Content"
   type="button"
 >
   <span
@@ -57,6 +61,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
     />
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
+      data-text="Content"
     >
       Content
     </span>
@@ -71,8 +76,9 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-euiFacetButton"
   disabled=""
+  title="Content"
   type="button"
 >
   <span
@@ -80,6 +86,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
+      data-text="Content"
     >
       Content
     </span>
@@ -94,7 +101,8 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
+  title="Content"
   type="button"
 >
   <span
@@ -102,6 +110,7 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-isSelected"
+      data-text="Content"
     >
       Content
     </span>
@@ -111,7 +120,8 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
+  title="Content"
   type="button"
 >
   <span
@@ -119,6 +129,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
   >
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
+      data-text="Content"
     >
       Content
     </span>

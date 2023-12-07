@@ -7,13 +7,15 @@
  */
 
 import React, { useState } from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
+import { mount } from 'enzyme';
 
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
-import { mount, shallow } from 'enzyme';
+import { keys } from '../../services';
+
 import { EuiSearchBar } from './search_bar';
 import { Query } from './query';
-import { keys } from '../../services';
 import { SearchFilterConfig } from './search_filters';
 
 describe('SearchBar', () => {
@@ -23,9 +25,9 @@ describe('SearchBar', () => {
       onChange: () => {},
     };
 
-    const component = shallow(<EuiSearchBar {...props} />);
+    const { container } = render(<EuiSearchBar {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - tools', () => {
@@ -36,9 +38,9 @@ describe('SearchBar', () => {
       toolsRight: <div>Right</div>,
     };
 
-    const component = shallow(<EuiSearchBar {...props} />);
+    const { container } = render(<EuiSearchBar {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - box', () => {
@@ -51,12 +53,12 @@ describe('SearchBar', () => {
       onChange: () => {},
     };
 
-    const component = shallow(<EuiSearchBar {...props} />);
+    const { container } = render(<EuiSearchBar {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - provided query, filters', () => {
+  test('render - provided query, filters', async () => {
     const filters: SearchFilterConfig[] = [
       {
         type: 'is',
@@ -78,9 +80,12 @@ describe('SearchBar', () => {
       onChange: () => {},
     };
 
-    const component = shallow(<EuiSearchBar {...props} />);
+    const { container, findByTitle } = render(<EuiSearchBar {...props} />);
 
-    expect(component).toMatchSnapshot();
+    // Wait for FieldValueSelectionFilter to finish updating its state on init
+    await findByTitle('Tag');
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('controlled input', () => {

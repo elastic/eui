@@ -19,7 +19,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 import {
@@ -27,9 +27,13 @@ import {
   EuiListGroupItemExtraActionProps,
 } from './list_group_item_extra_action';
 
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
+import {
+  getSecureRelForTarget,
+  useEuiTheme,
+  cloneElementWithCss,
+} from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiExternalLinkIcon } from '../link/external_link_icon';
 
 import {
   euiListGroupItemStyles,
@@ -86,10 +90,13 @@ export type EuiListGroupItemProps = CommonProps &
      * While permitted, `href` and `onClick` should not be used together in most cases and may create problems.
      */
     href?: string;
-
-    target?: string;
-
     rel?: string;
+    target?: string;
+    /**
+     * Set to true to show an icon indicating that it is an external link;
+     * Defaults to true if `target="_blank"`
+     */
+    external?: boolean;
 
     /**
      * Adds `EuiIcon` of `EuiIcon.type`
@@ -141,6 +148,12 @@ export type EuiListGroupItemProps = CommonProps &
      * By default the text will be same as the label text.
      */
     toolTipText?: string;
+
+    /**
+     * Allows customizing the tooltip shown when `showToolTip` is true.
+     * Accepts any props that [EuiToolTip](/#/display/tooltip) accepts.
+     */
+    toolTipProps?: Partial<EuiToolTipProps>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -148,10 +161,12 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   isActive = false,
   isDisabled: _isDisabled = false,
   href,
-  target,
   rel,
+  target,
+  external,
   className,
   css: customCss,
+  style,
   iconType,
   icon,
   iconProps,
@@ -163,6 +178,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   wrapText,
   buttonRef,
   toolTipText,
+  toolTipProps,
   ...rest
 }) => {
   const isClickable = !!(href || onClick);
@@ -172,7 +188,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const euiTheme = useEuiTheme();
 
   const iconStyles = euiListGroupItemIconStyles(euiTheme);
-  const cssIconStyles = [iconStyles.euiListGroupItem__icon];
+  const cssIconStyles = [iconStyles.euiListGroupItem__icon, iconProps?.css];
 
   let iconNode;
 
@@ -180,10 +196,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     iconNode = (
       <EuiIcon
         color="inherit" // forces the icon to inherit its parent color
-        css={cssIconStyles}
         {...iconProps}
         type={iconType}
         className={classNames('euiListGroupItem__icon', iconProps?.className)}
+        css={cssIconStyles}
       />
     );
 
@@ -278,6 +294,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       >
         {iconNode}
         {labelContent}
+        <EuiExternalLinkIcon external={external} target={target} />
       </a>
     );
   } else if ((href && isDisabled) || onClick) {
@@ -317,24 +334,41 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   if (showToolTip) {
     const tooltipStyles = euiListGroupItemTooltipStyles();
-    const cssTooltipStyles = [tooltipStyles.euiListGroupItem__tooltip];
+    const cssTooltipStyles = [
+      tooltipStyles.euiListGroupItem__tooltip,
+      toolTipProps?.anchorProps?.css,
+    ];
+
+    const anchorClasses = classNames(
+      'euiListGroupItem__tooltip',
+      toolTipProps?.anchorClassName
+    );
+
+    const anchorPropsAndCss = {
+      ...toolTipProps?.anchorProps,
+      css: cssTooltipStyles,
+    };
 
     itemContent = (
-      <li className={classes} css={cssStyles}>
+      <li className={classes} css={cssStyles} style={style}>
         <EuiToolTip
-          anchorClassName="euiListGroupItem__tooltip"
-          anchorProps={{ css: cssTooltipStyles }}
           content={toolTipText ?? label}
           position="right"
           delay="long"
+          {...toolTipProps}
+          anchorClassName={anchorClasses}
+          anchorProps={anchorPropsAndCss}
         >
-          {itemContent}
+          <>
+            {itemContent}
+            {extraActionNode}
+          </>
         </EuiToolTip>
       </li>
     );
   } else {
     itemContent = (
-      <li className={classes} css={cssStyles}>
+      <li className={classes} css={cssStyles} style={style}>
         {itemContent}
         {extraActionNode}
       </li>

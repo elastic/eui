@@ -8,7 +8,9 @@ import {
   EuiSelectable,
   EuiSelectableMessage,
   EuiText,
+  EuiTextTruncate,
   EuiCallOut,
+  EuiLink,
 } from '../../../../src';
 
 import {
@@ -36,6 +38,9 @@ const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
 import SelectableSizing from './selectable_sizing';
 const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
+
+import Truncation from './selectable_truncation';
+const truncationSource = require('!!raw-loader!./selectable_truncation');
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
@@ -69,7 +74,14 @@ export const SelectableExample = {
         </strong>{' '}
         but can be used to simplify the construction of popover navigational
         menus; i.e. the spaces menu in the{' '}
-        <Link to="/layout/header">header</Link>.
+        <Link to="/layout/header">header</Link>. See{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide on which selection component to use{' '}
+        </EuiLink>{' '}
+        for more information.
       </p>
     </EuiText>
   ),
@@ -376,6 +388,53 @@ export const SelectableExample = {
 >
   {list => list}
 </EuiSelectable>`,
+    },
+    {
+      title: 'Truncation',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: truncationSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiSelectable</strong> defaults to{' '}
+            <EuiCode>listProps.textWrap="truncate"</EuiCode>, which truncates
+            long option text at the end of the string.
+          </p>
+          <p>
+            You can use <EuiCode>listProps.truncationProps</EuiCode> and almost
+            any prop that{' '}
+            <Link to="/utilities/text-truncation">
+              <strong>EuiTextTruncate</strong>
+            </Link>{' '}
+            accepts to configure this behavior. This can be configured at the{' '}
+            <strong>EuiSelectable</strong> level, as well as by each individual
+            option.
+          </p>
+        </>
+      ),
+      props: {
+        EuiSelectableOptionsList,
+        EuiSelectableOptionProps,
+        EuiTextTruncate,
+      },
+      snippet: `<EuiSelectable
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  listProps={{
+    textWrap: 'truncate',
+    truncationProps: {
+      truncation: 'start',
+      truncationOffset: 5,
+    },
+  }}
+>
+  {list => list}
+</EuiSelectable>`,
+      demo: <Truncation />,
     },
     {
       title: 'Rendering the options',

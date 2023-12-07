@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconVisBarHorizontalStacked = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconVisBarHorizontalStacked = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M.5 0a.5.5 0 01.5.5v14a.5.5 0 11-1 0V.5A.5.5 0 01.5 0zm13 1a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H9v3h2.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5h-9a.5.5 0 110-1H9v-3H2.5a.5.5 0 010-1H6V6H2.5a.5.5 0 010-1H10V2H2.5a.5.5 0 010-1h11z" />
+    <path d="M.5 0a.5.5 0 0 1 .5.5v14a.5.5 0 1 1-1 0V.5A.5.5 0 0 1 .5 0Zm13 1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H9v3h2.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-9a.5.5 0 1 1 0-1H9v-3H2.5a.5.5 0 0 1 0-1H6V6H2.5a.5.5 0 0 1 0-1H10V2H2.5a.5.5 0 0 1 0-1h11Z" />
   </svg>
 );
-
 export const icon = EuiIconVisBarHorizontalStacked;

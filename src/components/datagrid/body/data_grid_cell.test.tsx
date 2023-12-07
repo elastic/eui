@@ -7,8 +7,10 @@
  */
 
 import React, { useEffect } from 'react';
-import { mount, render, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
+import { act } from '@testing-library/react';
 import { keys } from '../../../services';
+import { render } from '../../../test/rtl';
 import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
@@ -24,6 +26,7 @@ describe('EuiDataGridCell', () => {
     closeCellPopover: jest.fn(),
     openCellPopover: jest.fn(),
     setPopoverAnchor: jest.fn(),
+    setPopoverAnchorPosition: jest.fn(),
     setPopoverContent: jest.fn(),
     setCellPopoverProps: () => {},
   };
@@ -47,8 +50,8 @@ describe('EuiDataGridCell', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = render(<EuiDataGridCell {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiDataGridCell {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
@@ -58,6 +61,7 @@ describe('EuiDataGridCell', () => {
         pagination={{
           pageIndex: 3,
           pageSize: 20,
+          pageSizeOptions: [20],
           onChangePage: () => {},
           onChangeItemsPerPage: () => {},
         }}
@@ -79,7 +83,9 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    component.setState({ enableInteractions: true });
+    act(() => {
+      component.setState({ enableInteractions: true });
+    });
 
     const getCellActions = () => component.find('EuiDataGridCellActions');
     expect(getCellActions()).toHaveLength(1);
@@ -174,19 +180,29 @@ describe('EuiDataGridCell', () => {
 
       describe('when state changes:', () => {
         it('cellProps', () => {
-          component.setState({ cellProps: {} });
+          act(() => {
+            component.setState({ cellProps: {} });
+          });
         });
         it('isEntered', () => {
-          component.setState({ isEntered: true });
+          act(() => {
+            component.setState({ isEntered: true });
+          });
         });
         it('isFocused', () => {
-          component.setState({ isFocused: true });
+          act(() => {
+            component.setState({ isFocused: true });
+          });
         });
         it('enableInteractions', () => {
-          component.setState({ enableInteractions: true });
+          act(() => {
+            component.setState({ enableInteractions: true });
+          });
         });
         it('disableCellTabIndex', () => {
-          component.setState({ disableCellTabIndex: true });
+          act(() => {
+            component.setState({ disableCellTabIndex: true });
+          });
         });
       });
     });
@@ -201,6 +217,7 @@ describe('EuiDataGridCell', () => {
     it('resets cell props when the cell is moved (columnId) or sorted (rowIndex)', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mount(<EuiDataGridCell {...requiredProps} />);
+      setState.mockClear();
 
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
@@ -228,10 +245,10 @@ describe('EuiDataGridCell', () => {
       expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
 
       // Examine popover content which should contain popoverContent, renderCellValue, and cellActions
-      const popoverContent = render(
+      const { container } = render(
         <>{mockPopoverContext.setPopoverContent.mock.calls[0][0]}</>
       );
-      expect(popoverContent).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     describe('rowHeightsOptions.scrollAnchorRow', () => {
@@ -703,19 +720,61 @@ describe('EuiDataGridCell', () => {
     });
   });
 
-  it('renders certain classes/styles if rowHeightOptions is passed', () => {
-    const component = mount(
-      <EuiDataGridCell
-        {...requiredProps}
-        rowHeightsOptions={{
-          defaultHeight: 20,
-          rowHeights: { 0: 10 },
-        }}
-      />
-    );
+  describe('renders certain classes/styles based on rowHeightOptions', () => {
+    const props = { ...requiredProps, renderCellValue: () => null };
 
-    expect(
-      component.find('.euiDataGridRowCell__contentByHeight').exists()
-    ).toBe(true);
+    test('default', () => {
+      const component = mount(
+        <EuiDataGridCell {...props} rowHeightsOptions={undefined} />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__content--defaultHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textTruncate').exists()).toBe(true);
+    });
+
+    test('auto', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: 'auto' }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__content--autoHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+    });
+
+    test('numerical', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { height: 3 } }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__content--numericalHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+    });
+
+    test('lineCount', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+        />
+      );
+
+      expect(
+        component.find('.euiDataGridRowCell__content--lineCountHeight').exists()
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+    });
   });
 });

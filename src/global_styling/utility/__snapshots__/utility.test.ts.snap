@@ -1,0 +1,351 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`global utility styles generates static global styles 1`] = `
+".euiScreenReaderOnly{
+  /* Take the element out of the layout */
+  position: absolute;
+  /* Keep it vertically inline */
+  inset-block-start: auto;
+  /* Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text */
+  inset-inline-start: -10000px;
+  /* The element must have a size (for some screen readers) */
+  
+    inline-size: 1px;
+    block-size: 1px;
+  
+  /* But reduce the visible size to nothing */
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  /* And ensure no overflows occur */
+  overflow: hidden;
+  /* Chrome requires the negative margin to not cause overflows of parent containers */
+  margin: -1px;
+;}
+.eui-alignBaseline{vertical-align:baseline!important;}
+.eui-alignBottom{vertical-align:bottom!important;}
+.eui-alignMiddle{vertical-align:middle!important;}
+.eui-alignTop{vertical-align:top!important;}
+.eui-displayBlock{display:block!important;}
+.eui-displayInline{display:inline!important;}
+.eui-displayInlineBlock{display:inline-block!important;}
+.eui-fullWidth{display:block!important;inline-size: 100% !important;;}
+.eui-fullHeight{
+  block-size: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+;}
+.eui-textCenter{text-align:center!important;}
+.eui-textLeft{text-align:start!important;}
+.eui-textRight{text-align:end!important;}
+.eui-textNoWrap{white-space:nowrap!important;}
+.eui-textInheritColor{color:inherit!important;}
+.eui-textBreakWord{
+  overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
+  word-break: break-word;
+;}
+.eui-textBreakAll{overflow-wrap:break-word!important;word-break:break-all!important;}
+.eui-textBreakNormal{overflow-wrap:normal!important;word-wrap:normal!important;word-break:normal!important;}
+.eui-textTruncate{
+  max-inline-size: 100%;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+;}
+.eui-textNumber{
+  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1;
+;}
+.eui-scrollBar{scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      inline-size: 16px;
+      block-size: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(105,112,125,0.5);
+      background-clip: content-box;
+      border-radius: 16px;
+      border: calc(8px * 0.75) solid transparent;
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    scrollbar-color: rgba(105,112,125,0.5) transparent;
+  ;}
+.eui-yScroll{
+  scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      inline-size: 16px;
+      block-size: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(105,112,125,0.5);
+      background-clip: content-box;
+      border-radius: 16px;
+      border: calc(8px * 0.75) solid transparent;
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    scrollbar-color: rgba(105,112,125,0.5) transparent;
+  
+  block-size: 100%;
+  
+  overflow-y: auto;
+  overflow-block: auto;
+
+  
+  overflow-x: hidden;
+  overflow-inline: hidden;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
+;}
+.eui-xScroll{
+  scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      inline-size: 16px;
+      block-size: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(105,112,125,0.5);
+      background-clip: content-box;
+      border-radius: 16px;
+      border: calc(8px * 0.75) solid transparent;
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    scrollbar-color: rgba(105,112,125,0.5) transparent;
+  
+  
+  overflow-x: auto;
+  overflow-inline: auto;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
+;}
+.eui-yScrollWithShadows{
+  
+  scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      inline-size: 16px;
+      block-size: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(105,112,125,0.5);
+      background-clip: content-box;
+      border-radius: 16px;
+      border: calc(8px * 0.75) solid transparent;
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    scrollbar-color: rgba(105,112,125,0.5) transparent;
+  
+  block-size: 100%;
+  
+  overflow-y: auto;
+  overflow-block: auto;
+
+  
+  overflow-x: hidden;
+  overflow-inline: hidden;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
+
+  mask-image: linear-gradient(to bottom, 
+  rgba(255,0,0,0.1) 0%,
+  rgb(255,0,0) 8px
+  , 
+  rgb(255,0,0) calc(100% - 8px),
+  rgba(255,0,0,0.1) 100%
+  );
+;}
+.eui-xScrollWithShadows{
+  
+  scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      inline-size: 16px;
+      block-size: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(105,112,125,0.5);
+      background-clip: content-box;
+      border-radius: 16px;
+      border: calc(8px * 0.75) solid transparent;
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    scrollbar-color: rgba(105,112,125,0.5) transparent;
+  
+  
+  overflow-x: auto;
+  overflow-inline: auto;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
+
+  mask-image: linear-gradient(to right, 
+  rgba(255,0,0,0.1) 0%,
+  rgb(255,0,0) 8px
+  , 
+  rgb(255,0,0) calc(100% - 8px),
+  rgba(255,0,0,0.1) 100%
+  );
+;}[class*='eui-showFor']{display:none!important;}
+      .eui-hideFor--xl {
+        @media only screen and (min-width: 1200px) {
+          display: none !important;
+        }
+      }
+      .eui-showFor--xl {
+        @media only screen and (min-width: 1200px) {
+          display: inline !important;
+        }
+      }
+      .eui-showFor--xl--block {
+        @media only screen and (min-width: 1200px) {
+          display: block !important;
+        }
+      }
+      .eui-showFor--xl--inlineBlock {
+        @media only screen and (min-width: 1200px) {
+          display: inline-block !important;
+        }
+      }
+      .eui-showFor--xl--flex {
+        @media only screen and (min-width: 1200px) {
+          display: flex !important;
+        }
+      };
+      .eui-hideFor--l {
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+          display: none !important;
+        }
+      }
+      .eui-showFor--l {
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+          display: inline !important;
+        }
+      }
+      .eui-showFor--l--block {
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+          display: block !important;
+        }
+      }
+      .eui-showFor--l--inlineBlock {
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+          display: inline-block !important;
+        }
+      }
+      .eui-showFor--l--flex {
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+          display: flex !important;
+        }
+      };
+      .eui-hideFor--m {
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          display: none !important;
+        }
+      }
+      .eui-showFor--m {
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          display: inline !important;
+        }
+      }
+      .eui-showFor--m--block {
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          display: block !important;
+        }
+      }
+      .eui-showFor--m--inlineBlock {
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          display: inline-block !important;
+        }
+      }
+      .eui-showFor--m--flex {
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          display: flex !important;
+        }
+      };
+      .eui-hideFor--s {
+        @media only screen and (min-width: 575px) and (max-width: 767px) {
+          display: none !important;
+        }
+      }
+      .eui-showFor--s {
+        @media only screen and (min-width: 575px) and (max-width: 767px) {
+          display: inline !important;
+        }
+      }
+      .eui-showFor--s--block {
+        @media only screen and (min-width: 575px) and (max-width: 767px) {
+          display: block !important;
+        }
+      }
+      .eui-showFor--s--inlineBlock {
+        @media only screen and (min-width: 575px) and (max-width: 767px) {
+          display: inline-block !important;
+        }
+      }
+      .eui-showFor--s--flex {
+        @media only screen and (min-width: 575px) and (max-width: 767px) {
+          display: flex !important;
+        }
+      };
+      .eui-hideFor--xs {
+        @media only screen and (max-width: 574px) {
+          display: none !important;
+        }
+      }
+      .eui-showFor--xs {
+        @media only screen and (max-width: 574px) {
+          display: inline !important;
+        }
+      }
+      .eui-showFor--xs--block {
+        @media only screen and (max-width: 574px) {
+          display: block !important;
+        }
+      }
+      .eui-showFor--xs--inlineBlock {
+        @media only screen and (max-width: 574px) {
+          display: inline-block !important;
+        }
+      }
+      .eui-showFor--xs--flex {
+        @media only screen and (max-width: 574px) {
+          display: flex !important;
+        }
+      };;;label:globalStyles;"
+`;

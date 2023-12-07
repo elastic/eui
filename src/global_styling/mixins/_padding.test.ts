@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react';
 import { PADDING_SIZES, useEuiPaddingSize, useEuiPaddingCSS } from './_padding';
 import { LOGICAL_SIDES } from '../functions/logicals';
 
@@ -15,7 +15,7 @@ describe('useEuiPaddingSize returns a static padding value', () => {
     PADDING_SIZES.forEach((size) => {
       it(size, () => {
         expect(
-          testCustomHook(() => useEuiPaddingSize(size)).return
+          renderHook(() => useEuiPaddingSize(size)).result.current
         ).toMatchSnapshot();
       });
     });
@@ -25,7 +25,7 @@ describe('useEuiPaddingSize returns a static padding value', () => {
 describe('useEuiPaddingCSS hook returns an object of Emotion padding properties', () => {
   LOGICAL_SIDES.forEach((side) => {
     describe(`for side: ${side},`, () => {
-      const sizes = testCustomHook(() => useEuiPaddingCSS(side)).return as any;
+      const sizes = renderHook(() => useEuiPaddingCSS(side)).result.current;
 
       describe('for each size:', () => {
         Object.entries(sizes).map(([size, cssObj]) => {

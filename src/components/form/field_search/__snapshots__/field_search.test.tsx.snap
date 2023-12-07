@@ -11,7 +11,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch-isClearable testClass1 testClass2"
+      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch-isClearable testClass1 testClass2 emotion-euiTestCss"
       data-test-subj="test subject string"
       id="1"
       name="elastic"

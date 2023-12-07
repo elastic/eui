@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavGroup renders 1`] = `
+<div
+  class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isWrapper-euiTestCss"
+>
+  <span
+    aria-label="aria-label"
+    class="euiCollapsibleNavLink euiCollapsibleNavItem emotion-euiCollapsibleNavLink-isTopItem-isNotAccordion-euiCollapsibleNavGroup__title"
+    data-test-subj="test subject string"
+    id="generated-id"
+  >
+    <span
+      data-euiicon-type="home"
+    />
+    <span
+      class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+    >
+      Group
+    </span>
+  </span>
+  <div
+    aria-labelledby="generated-id"
+    class="euiCollapsibleNavItem__items emotion-euiCollapsibleNavItem__items-isGroup"
+    role="group"
+  >
+    <span
+      class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+    >
+      <span
+        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      >
+        Item
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavGroup renders as a docked button icon 1`] = `
+<div
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-euiCollapsibleNavGroup__title"
+>
+  <div
+    class="euiPopover euiCollapsibleNavGroup emotion-euiPopover-block"
+  >
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    >
+      <button
+        aria-label="Group"
+        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+        data-test-subj="euiCollapsedNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="home"
+        />
+      </button>
+    </span>
+  </div>
+</div>
+`;

@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { render, mount, ReactWrapper } from 'enzyme';
-import { requiredProps as commonProps, findTestSubject } from '../../test';
-import { act } from 'react-dom/test-utils';
-import { keys } from '../../services';
+import { fireEvent } from '@testing-library/react';
+import { render, screen } from '../../test/rtl';
+import { requiredProps as commonProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { keys } from '../../services';
 
 import { EuiImage } from './image';
 
@@ -25,73 +25,87 @@ describe('EuiImage', () => {
   shouldRenderCustomStyles(<EuiImage {...requiredProps} />, {
     childProps: ['wrapperProps'],
   });
+  shouldRenderCustomStyles(<EuiImage allowFullScreen {...requiredProps} />, {
+    skip: { parentTest: true },
+    childProps: ['wrapperProps'],
+    targetSelector: '.euiImageFullScreenWrapper',
+    renderCallback: ({ getByTestSubject }) => {
+      fireEvent.click(getByTestSubject('activateFullScreenButton'));
+    },
+  });
 
   test('is rendered', () => {
-    const component = render(<EuiImage {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiImage {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('src vs url', () => {
       test('src', () => {
-        const component = render(<EuiImage alt="" src="/dog.jpg" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiImage alt="" src="/dog.jpg" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('url', () => {
-        const component = render(<EuiImage alt="" url="/dog.jpg" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiImage alt="" url="/dog.jpg" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('picks src over url when both are present (and throws a typescript error)', () => {
-        const component = render(
+        const { container } = render(
           // @ts-expect-error - 'types of property url are incompatible'
           <EuiImage alt="" url="/cat.jpg" src="/dog.jpg" />
         );
-        expect(component.find('img').attr('src')).toEqual('/dog.jpg');
+        expect(container.querySelector('img')?.getAttribute('src')).toEqual(
+          '/dog.jpg'
+        );
       });
     });
 
     test('float', () => {
-      const component = render(<EuiImage {...requiredProps} float="left" />);
-      expect(component).toMatchSnapshot();
+      const { container } = render(
+        <EuiImage {...requiredProps} float="left" />
+      );
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('margin', () => {
-      const component = render(<EuiImage {...requiredProps} margin="l" />);
-      expect(component).toMatchSnapshot();
+      const { container } = render(<EuiImage {...requiredProps} margin="l" />);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('size', () => {
-      const component = render(<EuiImage {...requiredProps} size={50} />);
-      expect(component).toMatchSnapshot();
+      const { container } = render(<EuiImage {...requiredProps} size={50} />);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('caption', () => {
-      const component = render(
+      const { container } = render(
         <EuiImage {...requiredProps} caption={<span>caption</span>} />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('allowFullScreen', () => {
-      const component = render(<EuiImage {...requiredProps} allowFullScreen />);
-      expect(component).toMatchSnapshot();
+      const { container } = render(
+        <EuiImage {...requiredProps} allowFullScreen />
+      );
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullScreenIconColor', () => {
-      const component = render(
+      const { container } = render(
         <EuiImage
           {...requiredProps}
           allowFullScreen
           fullScreenIconColor="dark"
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('hasShadow', () => {
-      const component = render(
+      const { container } = render(
         <EuiImage
           {...requiredProps}
           size="fullWidth"
@@ -99,11 +113,11 @@ describe('EuiImage', () => {
           hasShadow
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('wrapperProps', () => {
-      const component = render(
+      const { container } = render(
         <EuiImage
           alt="alt"
           caption={<span>caption</span>}
@@ -114,15 +128,13 @@ describe('EuiImage', () => {
           }}
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('fullscreen behaviour', () => {
-    let component: ReactWrapper;
-
-    beforeAll(() => {
-      component = mount(
+    beforeEach(() => {
+      const { getByTestSubject } = render(
         <EuiImage
           {...requiredProps}
           wrapperProps={requiredProps}
@@ -130,87 +142,41 @@ describe('EuiImage', () => {
           allowFullScreen
         />
       );
-    });
-
-    beforeEach(() => {
-      findTestSubject(component, 'activateFullScreenButton').simulate('click');
+      fireEvent.click(getByTestSubject('activateFullScreenButton'));
     });
 
     test('fullscreen image is rendered', () => {
-      const overlayMask = document.querySelectorAll(
-        '[data-test-subj=fullScreenOverlayMask]'
-      );
-      expect(overlayMask.length).toBe(1);
-
-      const fullScreenImage = overlayMask[0].querySelectorAll('figure img');
-      expect(fullScreenImage.length).toBe(1);
+      const overlayMask = screen.getByTestSubject('fullScreenOverlayMask');
+      const fullScreenImage = overlayMask.querySelector('figure img');
+      expect(fullScreenImage).not.toBeNull();
     });
 
     test('close using close icon', () => {
-      const deactivateFullScreenBtn = document.querySelectorAll(
-        '[data-test-subj=deactivateFullScreenButton]'
+      const deactivateFullScreenBtn = screen.getByTestSubject(
+        'deactivateFullScreenButton'
       );
-      expect(deactivateFullScreenBtn.length).toBe(1);
+      fireEvent.click(deactivateFullScreenBtn);
 
-      act(() => {
-        (deactivateFullScreenBtn[0] as HTMLElement).click();
-      });
-
-      const overlayMask = document.querySelectorAll(
-        '[data-test-subj=fullScreenOverlayMask]'
-      );
-      expect(overlayMask.length).toBe(0);
+      expect(screen.queryByTestSubject('fullScreenOverlayMask')).toBeNull();
     });
 
     test('close using ESCAPE key', () => {
-      const deactivateFullScreenBtn = document.querySelector<HTMLElement>(
-        '[data-test-subj=deactivateFullScreenButton]'
+      const deactivateFullScreenBtn = screen.getByTestSubject(
+        'deactivateFullScreenButton'
       );
-      expect(deactivateFullScreenBtn).toBeTruthy();
 
       // Ignores non-escape keys
-      act(() => {
-        const escapeKeydownEvent = new KeyboardEvent('keydown', {
-          key: keys.TAB,
-          bubbles: true,
-        });
-        deactivateFullScreenBtn!.dispatchEvent(escapeKeydownEvent);
-      });
-      expect(deactivateFullScreenBtn).toBeTruthy();
+      fireEvent.keyDown(deactivateFullScreenBtn, { key: keys.TAB });
 
       // Removes full screen overlay on escape key
-      act(() => {
-        const escapeKeydownEvent = new KeyboardEvent('keydown', {
-          key: keys.ESCAPE,
-          bubbles: true,
-        });
-        deactivateFullScreenBtn!.dispatchEvent(escapeKeydownEvent);
-      });
+      fireEvent.keyDown(deactivateFullScreenBtn, { key: keys.ESCAPE });
 
-      const overlayMask = document.querySelector(
-        '[data-test-subj=fullScreenOverlayMask]'
-      );
-      expect(overlayMask).toBeFalsy();
+      expect(screen.queryByTestSubject('fullScreenOverlayMask')).toBeNull();
     });
 
     // Clicking the mask to close is now handled by EuiFocusTrap
     // and we can't use Enzyme to test this behavior.
     // A Cypress test exists in the EuiFocusTrap suite that
     // sufficiently covers this behavior
-    test.skip('close using overlay mask', () => {
-      let overlayMask = document.querySelectorAll(
-        '[data-test-subj=fullScreenOverlayMask]'
-      );
-      expect(overlayMask.length).toBe(1);
-
-      act(() => {
-        (overlayMask[0] as HTMLElement).click();
-      });
-
-      overlayMask = document.querySelectorAll(
-        '[data-test-subj=fullScreenOverlayMask]'
-      );
-      expect(overlayMask.length).toBe(0);
-    });
   });
 });

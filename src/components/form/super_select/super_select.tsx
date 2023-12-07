@@ -18,7 +18,7 @@ import {
   EuiSuperSelectControlProps,
   EuiSuperSelectOption,
 } from './super_select_control';
-import { EuiInputPopover, EuiPopoverProps } from '../../popover';
+import { EuiInputPopover, EuiInputPopoverProps } from '../../popover';
 import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
@@ -31,7 +31,7 @@ enum ShiftDirection {
   FORWARD = 'forward',
 }
 
-export type EuiSuperSelectProps<T extends string> = CommonProps &
+export type EuiSuperSelectProps<T = string> = CommonProps &
   Omit<
     EuiSuperSelectControlProps<T>,
     'onChange' | 'onClick' | 'onFocus' | 'onBlur' | 'options' | 'value'
@@ -44,7 +44,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      */
     options: Array<EuiSuperSelectOption<T>>;
 
-    valueOfSelected?: T;
+    valueOfSelected?: NonNullable<T>;
 
     /**
      * Placeholder to display when the current selected value is empty.
@@ -80,7 +80,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     isOpen?: boolean;
 
     /**
-     * Optional props to pass to the underlying [EuiPopover](/#/layout/popover).
+     * Optional props to pass to the underlying [EuiInputPopover](/#/layout/popover#popover-attached-to-input-element).
      * Allows fine-grained control of the popover dropdown menu, including
      * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
      * and customizing popover panel styling.
@@ -88,10 +88,10 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * Does not accept a nested `popoverProps.isOpen` property - use the top level
      * `isOpen` API instead.
      */
-    popoverProps?: Partial<CommonProps & Omit<EuiPopoverProps, 'isOpen'>>;
+    popoverProps?: Partial<CommonProps & Omit<EuiInputPopoverProps, 'isOpen'>>;
   };
 
-export class EuiSuperSelect<T extends string> extends Component<
+export class EuiSuperSelect<T = string> extends Component<
   EuiSuperSelectProps<T>
 > {
   static defaultProps = {
@@ -309,6 +309,7 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     const items = options.map((option, index) => {
       const { value, dropdownDisplay, inputDisplay, ...optionRest } = option;
+      if (value == null) return;
 
       return (
         <EuiContextMenuItem
@@ -320,7 +321,7 @@ export class EuiSuperSelect<T extends string> extends Component<
           layoutAlign={itemLayoutAlign}
           buttonRef={(node) => this.setItemNode(node, index)}
           role="option"
-          id={value}
+          id={String(value)}
           aria-selected={valueOfSelected === value}
           {...optionRest}
         >
@@ -355,7 +356,9 @@ export class EuiSuperSelect<T extends string> extends Component<
               aria-describedby={this.describedById}
               className="euiSuperSelect__listbox"
               role="listbox"
-              aria-activedescendant={valueOfSelected}
+              aria-activedescendant={
+                valueOfSelected != null ? String(valueOfSelected) : undefined
+              }
               tabIndex={0}
             >
               {items}

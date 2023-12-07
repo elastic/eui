@@ -4,7 +4,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id"
-  class="euiNotificationEvent testClass1 testClass2"
+  class="euiNotificationEvent testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -18,6 +18,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -77,8 +78,8 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
         class="euiNotificationEventMeta__section"
       >
         <span
-          class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge"
-          style="background-color:#FEC514;color:#000"
+          class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-warning"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -125,52 +126,37 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
 
 exports[`EuiNotificationEvent props contextMenuItems are rendered 1`] = `
 <div
-  class="euiContextMenuPanel"
+  class="euiContextMenuPanel emotion-euiContextMenuPanel"
   tabindex="-1"
 >
   <div>
-    <button
-      class="euiContextMenuItem"
-      type="button"
+    <div
+      class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
     >
       <span
-        class="euiContextMenu__itemLayout"
+        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
       >
-        <span
-          class="euiContextMenuItem__text"
-        >
-          Context menu 1 for id: id
-        </span>
+        Context menu 1 for id: id
       </span>
-    </button>
-    <button
-      class="euiContextMenuItem"
-      type="button"
+    </div>
+    <div
+      class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
     >
       <span
-        class="euiContextMenu__itemLayout"
+        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
       >
-        <span
-          class="euiContextMenuItem__text"
-        >
-          Context menu 2 for id: id
-        </span>
+        Context menu 2 for id: id
       </span>
-    </button>
-    <button
-      class="euiContextMenuItem"
-      type="button"
+    </div>
+    <div
+      class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
     >
       <span
-        class="euiContextMenu__itemLayout"
+        class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
       >
-        <span
-          class="euiContextMenuItem__text"
-        >
-          Context menu 3 for id: id
-        </span>
+        Context menu 3 for id: id
       </span>
-    </button>
+    </div>
   </div>
 </div>
 `;
@@ -191,6 +177,7 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -257,6 +244,7 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
         </span>
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -322,6 +310,7 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
         />
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -376,7 +365,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
   >
     <button
       aria-label="Mark title as unread"
-      class="euiButtonIcon euiButtonIcon--xSmall euiNotificationEventReadButton euiNotificationEventReadButton--isRead emotion-euiButtonIcon-empty-primary-hoverStyles"
+      class="euiButtonIcon euiNotificationEventReadButton euiNotificationEventReadButton--isRead emotion-euiButtonIcon-xs-empty-primary"
       data-test-subj="id-notificationEventReadButton"
       title="Mark as unread"
       type="button"
@@ -400,6 +389,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -460,6 +450,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -500,10 +491,10 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </p>
       </div>
       <div
-        class="euiAccordion euiNotificationEventMessages__accordion"
+        class="euiAccordion euiNotificationEventMessages__accordion emotion-euiAccordion"
       >
         <div
-          class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+          class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
         >
           <button
             aria-controls="euiNotificationEventMessagesAccordion_generated-id"
@@ -522,32 +513,32 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </div>
         <div
           aria-labelledby="generated-id"
-          class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+          class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
           id="euiNotificationEventMessagesAccordion_generated-id"
-          role="region"
+          inert=""
+          role="group"
+          style="block-size: 0;"
           tabindex="-1"
         >
-          <div>
+          <div
+            class="euiAccordion__children emotion-euiAccordion__children"
+          >
             <div
-              class=" emotion-euiAccordion__children"
+              class="euiNotificationEventMessages__accordionContent"
             >
               <div
-                class="euiNotificationEventMessages__accordionContent"
+                class="euiText emotion-euiText-s-euiTextColor-subdued"
               >
-                <div
-                  class="euiText emotion-euiText-s-euiTextColor-subdued"
-                >
-                  <p>
-                    message 2
-                  </p>
-                </div>
-                <div
-                  class="euiText emotion-euiText-s-euiTextColor-subdued"
-                >
-                  <p>
-                    message 3
-                  </p>
-                </div>
+                <p>
+                  message 2
+                </p>
+              </div>
+              <div
+                class="euiText emotion-euiText-s-euiTextColor-subdued"
+              >
+                <p>
+                  message 3
+                </p>
               </div>
             </div>
           </div>
@@ -574,6 +565,7 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -618,15 +610,15 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-left"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             primaryAction label
           </span>
@@ -653,6 +645,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -697,20 +690,19 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-left"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonContent__icon"
             color="inherit"
             data-euiicon-type="download"
           />
           <span
-            class="euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             primaryAction
           </span>
@@ -737,6 +729,7 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert: severity"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"

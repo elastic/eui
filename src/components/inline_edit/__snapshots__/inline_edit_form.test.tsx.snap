@@ -2,7 +2,9 @@
 
 exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -55,7 +57,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -68,7 +70,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
           </button>
           <button
             aria-label="Uh no. Do not save."
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-disabled"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-disabled-isDisabled"
             data-test-subj="euiInlineEditModeCancelButton"
             disabled=""
             type="button"
@@ -89,7 +91,9 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -143,7 +147,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -156,7 +160,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -176,7 +180,9 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -235,7 +241,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -248,7 +254,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -268,7 +274,9 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -321,7 +329,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
         >
           <button
             aria-label="Yes! Let's save."
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-primary"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-primary"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -334,7 +342,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -354,7 +362,9 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -416,7 +426,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -429,7 +439,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -449,7 +459,9 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
 
 exports[`EuiInlineEditForm edit mode isLoading 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -557,9 +569,100 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
 </div>
 `;
 
+exports[`EuiInlineEditForm edit mode placeholder 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
+  >
+    <div
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
+    >
+      <div
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
+      >
+        <div
+          class="euiFormRow__fieldWrapper"
+        >
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                placeholder="This is a placeholder."
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+        >
+          <button
+            aria-label="Save edit"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
+            data-test-subj="euiInlineEditModeSaveButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="check"
+            />
+          </button>
+          <button
+            aria-label="Cancel edit"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
+            data-test-subj="euiInlineEditModeCancelButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="cross"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiInlineEditForm edit mode renders 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -612,7 +715,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -625,7 +728,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -645,20 +748,23 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
 
 exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1xic7s3-empty-disabled-euiInlineEditReadMode-isReadOnly"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
@@ -671,26 +777,64 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm read mode readModeProps 1`] = `
+exports[`EuiInlineEditForm read mode placeholder 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1e81xrj-empty-primary-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode-hasPlaceholder"
     data-test-subj="euiInlineReadModeButton"
+    title="This is a placeholder."
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
+        class="eui-textTruncate euiButtonEmpty__text"
+      >
+        This is a placeholder.
+      </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </span>
+  </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click to edit this text inline.
+  </span>
+</div>
+`;
+
+exports[`EuiInlineEditForm read mode readModeProps 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <button
+    aria-describedby="inlineEdit_generated-id"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-both-euiInlineEditReadMode"
+    data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    >
+      <span
         color="inherit"
         data-euiicon-type="pencil"
       />
       <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
@@ -707,27 +851,29 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
 
 exports[`EuiInlineEditForm read mode renders 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
@@ -741,27 +887,29 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
 
 exports[`EuiInlineEditForm read mode sizes 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  aria-label="aria-label"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span

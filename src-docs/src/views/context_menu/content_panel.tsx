@@ -65,10 +65,20 @@ export default () => {
       anchorPosition="downLeft"
     >
       <EuiContextMenuPanel>
-        <EuiContextMenuItem key="item-1" icon="indexOpen" size="s">
+        <EuiContextMenuItem
+          key="item-1"
+          icon="indexOpen"
+          size="s"
+          onClick={closePopover}
+        >
           Add a field to this data view
         </EuiContextMenuItem>
-        <EuiContextMenuItem key="item-2" icon="indexSettings" size="s">
+        <EuiContextMenuItem
+          key="item-2"
+          icon="indexSettings"
+          size="s"
+          onClick={closePopover}
+        >
           Manage this data view
         </EuiContextMenuItem>
 

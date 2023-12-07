@@ -11,7 +11,6 @@ import {
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiButton, EuiButtonIcon } from '../../../../src/components/button';
 import { EuiLink } from '../../../../src/components/link';
-import { EuiThemeProvider } from '../../../../src/services';
 
 const deploymentsList: EuiListGroupProps['listItems'] = [
   {
@@ -62,13 +61,9 @@ export const DeploymentsGroup = (
     initialIsOpen={false}
     background="dark"
   >
-    <div role="group" className="kibanaNavDeployment__content">
-      <EuiThemeProvider colorMode="dark">
-        <EuiListGroup listItems={deploymentsList} flush />
-        <EuiSpacer size="s" />
-        <EuiButton fullWidth>Manage deployments</EuiButton>
-      </EuiThemeProvider>
-    </div>
+    <EuiListGroup listItems={deploymentsList} flush />
+    <EuiSpacer size="s" />
+    <EuiButton fullWidth>Manage deployments</EuiButton>
   </EuiCollapsibleNavGroup>
 );
 

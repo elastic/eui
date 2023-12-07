@@ -11,7 +11,7 @@ import { css } from '@emotion/react';
 export const euiCardSelectStyles = () => {
   return {
     euiCardSelect: css`
-      transform: none !important;
+      transform: none !important; /* stylelint-disable-line declaration-no-important */
       align-self: flex-end;
     `,
   };

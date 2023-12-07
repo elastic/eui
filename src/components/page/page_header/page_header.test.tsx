@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import { ALIGN_ITEMS } from './page_header_content';
@@ -48,17 +48,17 @@ export const rightSideItems: EuiPageHeaderProps['rightSideItems'] = [
 
 describe('EuiPageHeader', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPageHeader {...requiredProps}>Anything</EuiPageHeader>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('page content props are passed down', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeader
             pageTitle="Page title"
             pageTitleProps={requiredProps}
@@ -76,14 +76,14 @@ describe('EuiPageHeader', () => {
           </EuiPageHeader>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('alignItems', () => {
       ALIGN_ITEMS.forEach((alignment) => {
         it(`${alignment} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiPageHeader
               pageTitle="Page title"
               rightSideItems={rightSideItems}
@@ -91,50 +91,52 @@ describe('EuiPageHeader', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('responsive', () => {
       test('is rendered as false', () => {
-        const component = render(<EuiPageHeader responsive={false} />);
+        const { container } = render(<EuiPageHeader responsive={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered as reverse', () => {
-        const component = render(<EuiPageHeader responsive={'reverse'} />);
+        const { container } = render(<EuiPageHeader responsive={'reverse'} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('restrictWidth', () => {
       test('is rendered as true', () => {
-        const component = render(<EuiPageHeader restrictWidth={true} />);
+        const { container } = render(<EuiPageHeader restrictWidth={true} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered as custom', () => {
-        const component = render(<EuiPageHeader restrictWidth={100} />);
+        const { container } = render(<EuiPageHeader restrictWidth={100} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('bottomBorder', () => {
       test('is rendered as true', () => {
-        const component = render(<EuiPageHeader bottomBorder={true} />);
+        const { container } = render(<EuiPageHeader bottomBorder={true} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered as extended', () => {
-        const component = render(<EuiPageHeader bottomBorder={'extended'} />);
+        const { container } = render(
+          <EuiPageHeader bottomBorder={'extended'} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

@@ -19,13 +19,15 @@ export const AppSetup: FunctionComponent<AppSetup> = ({}) => {
       {`import React from 'react';
 import '@elastic/eui/dist/eui_theme_${colorMode.toLowerCase()}.css';
 
-import { EuiProvider } from '@elastic/eui';
+import { EuiProvider, EuiText } from '@elastic/eui';
 
-const MyApp = ({ Page }) => (
+const MyApp = () => (
   <EuiProvider colorMode="${colorMode.toLowerCase()}">
-    <Page />
+    <EuiText><p>Hello World!</p></EuiText>
   </EuiProvider>
-);`}
+);
+
+export default MyApp;`}
     </EuiCodeBlock>
   );
 

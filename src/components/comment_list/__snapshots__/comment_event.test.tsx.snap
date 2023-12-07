@@ -2,7 +2,7 @@
 
 exports[`EuiCommentEvent is rendered with custom content 1`] = `
 <div
-  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-custom"
+  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-euiTestCss"
   data-type="custom"
 >
   <div
@@ -17,14 +17,14 @@ exports[`EuiCommentEvent is rendered with custom content 1`] = `
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
 <div
-  class="euiCommentEvent emotion-euiCommentEvent-update"
+  class="euiCommentEvent emotion-euiCommentEvent"
   data-type="update"
 >
   <div
     class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
     >
       <div
         class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -51,21 +51,21 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
 
 exports[`EuiCommentEvent props eventColor is rendered 1`] = `
 <div
-  class="euiCommentEvent emotion-euiCommentEvent-custom"
+  class="euiCommentEvent emotion-euiCommentEvent"
   data-type="custom"
 />
 `;
 
 exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`] = `
 <div
-  class="euiCommentEvent emotion-euiCommentEvent-update"
+  class="euiCommentEvent emotion-euiCommentEvent"
   data-type="update"
 >
   <div
     class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
     >
       <div
         class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -99,14 +99,14 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
 
 exports[`EuiCommentEvent props timestamp is rendered 1`] = `
 <div
-  class="euiCommentEvent emotion-euiCommentEvent-update"
+  class="euiCommentEvent emotion-euiCommentEvent"
   data-type="update"
 >
   <div
     class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
     >
       <div
         class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"

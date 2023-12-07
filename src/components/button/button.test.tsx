@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiButton, COLORS, SIZES } from './button';
 
@@ -24,92 +25,94 @@ describe('EuiButton', () => {
   });
 
   test('is rendered', () => {
-    const component = render(<EuiButton {...requiredProps}>Content</EuiButton>);
+    const { container } = render(
+      <EuiButton {...requiredProps}>Content</EuiButton>
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('fill', () => {
       it('is rendered', () => {
-        const component = render(<EuiButton fill />);
+        const { container } = render(<EuiButton fill />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isDisabled', () => {
       it('is rendered', () => {
-        const component = render(<EuiButton isDisabled />);
+        const { container } = render(<EuiButton isDisabled />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('renders a button even when href is defined', () => {
-        const component = render(<EuiButton href="#" isDisabled />);
+        const { container } = render(<EuiButton href="#" isDisabled />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('renders if passed as disabled', () => {
-        const component = render(<EuiButton disabled />);
+        const { container } = render(<EuiButton disabled />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isLoading', () => {
       it('is rendered', () => {
-        const component = render(<EuiButton isLoading />);
+        const { container } = render(<EuiButton isLoading />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isSelected', () => {
       it('is rendered as true', () => {
-        const component = render(<EuiButton isSelected />);
+        const { container } = render(<EuiButton isSelected />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('is rendered as false', () => {
-        const component = render(<EuiButton isSelected={false} />);
+        const { container } = render(<EuiButton isSelected={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('fullWidth', () => {
       it('is rendered', () => {
-        const component = render(<EuiButton fullWidth />);
+        const { container } = render(<EuiButton fullWidth />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('minWidth', () => {
       it('is rendered', () => {
-        const component = render(<EuiButton minWidth={0} />);
+        const { container } = render(<EuiButton minWidth={0} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(<EuiButton iconType="user" />);
+        const { container } = render(<EuiButton iconType="user" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiButton color={color} />);
+          const { container } = render(<EuiButton color={color} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -117,9 +120,9 @@ describe('EuiButton', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(<EuiButton size={size} />);
+          const { container } = render(<EuiButton size={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -127,13 +130,13 @@ describe('EuiButton', () => {
     describe('iconSide', () => {
       ICON_SIDES.forEach((iconSide) => {
         test(`${iconSide} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiButton iconType="user" iconSide={iconSide}>
               Content
             </EuiButton>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -141,22 +144,22 @@ describe('EuiButton', () => {
     describe('iconSize', () => {
       ICON_SIZES.forEach((iconSize) => {
         test(`${iconSize} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiButton iconType="user" iconSize={iconSize}>
               Content
             </EuiButton>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('href', () => {
       it('secures the rel attribute when the target is _blank', () => {
-        const component = render(<EuiButton href="#" target="_blank" />);
+        const { container } = render(<EuiButton href="#" target="_blank" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -177,19 +180,19 @@ describe('EuiButton', () => {
     });
 
     test('contentProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiButton contentProps={requiredProps}>Content</EuiButton>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('textProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiButton textProps={requiredProps}>Content</EuiButton>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

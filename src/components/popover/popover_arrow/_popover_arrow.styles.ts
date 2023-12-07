@@ -7,11 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiBackgroundColor,
-  logicals,
-  logicalSizeCSS,
-} from '../../../global_styling';
+import { logicals, logicalSizeCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const popoverArrowSize = 'm';
@@ -19,8 +15,7 @@ export const popoverArrowSize = 'm';
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  // Match the background color of panels
-  const borderColor = euiBackgroundColor(euiThemeContext, 'plain');
+  const borderColor = 'var(--euiPopoverBackgroundColor)';
   const arrowSize = euiTheme.size[popoverArrowSize];
 
   return {
@@ -29,8 +24,8 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       ${logicalSizeCSS(0, 0)}
 
-      // This part of the arrow matches the panel.
-      &:before {
+      /* This part of the arrow matches the panel. */
+      &::before {
         content: '';
         position: absolute;
         ${logicalSizeCSS(0, 0)}
@@ -39,7 +34,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
 
     // POSITIONS
     top: css`
-      &:before {
+      &::before {
         ${logicals.bottom}: -${arrowSize};
         ${logicals['border-left']}: ${arrowSize} solid transparent;
         ${logicals['border-right']}: ${arrowSize} solid transparent;
@@ -48,7 +43,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     bottom: css`
-      &:before {
+      &::before {
         ${logicals.top}: -${arrowSize};
         ${logicals['border-left']}: ${arrowSize} solid transparent;
         ${logicals['border-right']}: ${arrowSize} solid transparent;
@@ -57,7 +52,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     left: css`
-      &:before {
+      &::before {
         ${logicals.top}: 50%;
         ${logicals.right}: -${arrowSize};
         ${logicals['border-top']}: ${arrowSize} solid transparent;
@@ -67,7 +62,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     right: css`
-      &:before {
+      &::before {
         ${logicals.top}: 50%;
         ${logicals.left}: -${arrowSize};
         ${logicals['border-top']}: ${arrowSize} solid transparent;

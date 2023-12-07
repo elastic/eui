@@ -152,7 +152,7 @@ exports[`EuiToast Props title is rendered 1`] = `
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiToast testClass1 testClass2 emotion-euiToast"
+  class="euiToast testClass1 testClass2 emotion-euiToast-euiTestCss"
   data-test-subj="test subject string"
 >
   <p

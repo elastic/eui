@@ -10,8 +10,12 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
+**Impact and severity**
+Is there an end-user impact caused by this bug? If so, how severe is it? Is there a known workaround? Understanding the impact and severity will help us determine the priority.
+
 **Environment and versions**
-- EUI version: 
+- EUI version:
+- React version:
 - Kibana version (if applicable):
 - Browser:
 - Operating System:

@@ -24,6 +24,7 @@ describe('EuiDataGridCellActions', () => {
     onExpandClick: jest.fn(),
     rowIndex: 0,
     colIndex: 0,
+    cellHeightType: 'default',
   };
 
   it('renders an expand button', () => {
@@ -31,7 +32,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandActions"
+        className="euiDataGridRowCell__actions"
       >
         <EuiI18n
           default="Click or hit enter to interact with cell content"
@@ -47,11 +48,11 @@ describe('EuiDataGridCellActions', () => {
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon"
+        className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
         color="primary"
         data-test-subj="euiDataGridCellExpandButton"
         display="fill"
-        iconSize="s"
+        iconSize="m"
         iconType="expandMini"
         onClick={[MockFunction]}
         title="expandButtonTitle"
@@ -72,8 +73,11 @@ describe('EuiDataGridCellActions', () => {
       <EuiButtonIcon
         aria-hidden={true}
         className="euiDataGridRowCell__actionButtonIcon"
+        color="primary"
+        display="fill"
         iconSize="s"
         iconType="eye"
+        size="xs"
       />
     `);
   });
@@ -88,7 +92,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandActions"
+        className="euiDataGridRowCell__actions"
       >
         <MockAction
           Component={[Function]}

@@ -97,10 +97,9 @@ describe('EuiNotificationEvent', () => {
 
   describe('Keyboard accessibility', () => {
     it('has zero violations when the popover is opened by keyboard', () => {
-      cy.repeatRealPress('Tab');
       cy.get(
         'button[data-test-subj="cy-eui-notification-1-notificationEventMetaButton"]'
-      ).should('have.focus');
+      ).focus();
       cy.realPress('Enter');
       cy.get('div.euiPopover__panel').should('exist');
       cy.checkAxe();

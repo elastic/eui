@@ -23,7 +23,6 @@ const inMemorySortingDataGridSource = require('!!raw-loader!./in_memory_sorting'
 
 import {
   EuiDataGridColumn,
-  EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
   EuiDataGridStyle,
@@ -32,6 +31,7 @@ import {
   EuiDataGridCellValueElementProps,
   EuiDataGridSchemaDetector,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
+import { EuiDataGridPaginationProps } from '../basics/_props';
 
 export const DataGridMemoryExample = {
   sections: [

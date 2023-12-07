@@ -23,9 +23,9 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     euiImageWrapper: css`
       display: inline-block;
       ${logicalCSS('max-width', '100%')}
-      ${logicalTextAlignCSS('center')}; // Aligns both caption and image
-      line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
-      flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
+      ${logicalTextAlignCSS('center')} /* Aligns both caption and image */
+      line-height: 0; /* Fixes cropping when image is resized by forcing its height to be determined by the image not line-height */
+      flex-shrink: 0; /* Don't ever let this shrink in height if direct descendent of flex */
     `,
     allowFullScreen: css`
       &:hover [class*='euiImageCaption'] {

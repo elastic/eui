@@ -7,53 +7,44 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderSection } from './header_section';
 
 describe('EuiHeaderSection', () => {
-  test('is rendered', () => {
-    const component = render(<EuiHeaderSection {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiHeaderSection />);
 
-    expect(component).toMatchSnapshot();
-  });
-
-  test('renders optional params', () => {
-    const component = render(
-      <EuiHeaderSection style={{ color: 'blue' }}>
+  it('renders', () => {
+    const { container } = render(
+      <EuiHeaderSection {...requiredProps}>
         <span>Some years ago never mind how long precisely...</span>
       </EuiHeaderSection>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('grow', () => {
-    test('defaults to false', () => {
-      const component = render(<EuiHeaderSection />);
+    it('renders true', () => {
+      const { container } = render(<EuiHeaderSection grow />);
 
-      expect(component).toMatchSnapshot();
-    });
-
-    test('renders true', () => {
-      const component = render(<EuiHeaderSection grow />);
-
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('side', () => {
-    test('defaults to left', () => {
-      const component = render(<EuiHeaderSection />);
+    it('renders left', () => {
+      const { container } = render(<EuiHeaderSection side="left" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('renders right', () => {
-      const component = render(<EuiHeaderSection side="right" />);
+    it('renders right', () => {
+      const { container } = render(<EuiHeaderSection side="right" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

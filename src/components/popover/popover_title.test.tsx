@@ -7,18 +7,18 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
-import { shouldRenderCustomStyles } from '../../test/internal';
 import { PADDING_SIZES } from '../../global_styling';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiPopoverTitle } from './popover_title';
 
 describe('EuiPopoverTitle', () => {
   test('is rendered', () => {
-    const component = render(<EuiPopoverTitle {...requiredProps} />);
+    const { container } = render(<EuiPopoverTitle {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiPopoverTitle />);
@@ -27,9 +27,9 @@ describe('EuiPopoverTitle', () => {
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(<EuiPopoverTitle paddingSize={size} />);
+          const { container } = render(<EuiPopoverTitle paddingSize={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

@@ -46,8 +46,8 @@ const euiScaleText = (
 ) => {
   const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 'm', options);
   const { euiTheme } = euiThemeContext;
-  const { measurement, customScale: _customScale } = options;
-  const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
+  const { unit, customScale: _customScale } = options;
+  const lineHeightSize = unit === 'em' ? `${lineHeight}em` : lineHeight;
 
   const headings = {
     h1: euiTitle(euiThemeContext, 'l', options),
@@ -144,7 +144,6 @@ const euiScaleText = (
     p,
     dl,
     blockquote,
-    img,
     pre,
     > ul,
     > ol {
@@ -156,9 +155,8 @@ const euiScaleText = (
       ${logicalCSS('margin-left', lineHeightSize)}
     }
 
-    // The styles of the nested ordered lists follow the style of GitHub
-    // which is commonly used in Markdown or MDX formatting.
-
+    /* The styles of the nested ordered lists follow the style of GitHub
+       which is commonly used in Markdown or MDX formatting. */
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -202,7 +200,7 @@ const euiScaleText = (
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
-      font-size: .9em; // 90% of parent font size
+      font-size: .9em; /* 90% of parent font size */
     }
     ${
       // when textSize is 'm', the 'kbd' element gets a line between the text and the border-bottom
@@ -210,7 +208,7 @@ const euiScaleText = (
         ? `
     kbd {
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
-      // ensures when only one character the shape looks like a square
+      /* Ensures the shape still looks like a square when only one character */
       ${logicalCSS('min-width', euiTheme.size.l)}
       ${logicalTextAlignCSS('center')}
     }
@@ -239,20 +237,15 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiText: css`
-      ${euiText(euiTheme, true)};
+      ${euiText(euiTheme, true)}
 
-      // EuiImage with floats are often used within EuiText.
+      /* EuiImage with floats are often used within EuiText. */
       clear: both;
 
-      // Style anchors that don't have a class. This prevents overwriting "buttons"
-      // and other stylized elements passed in.
+      /* Style anchors that don't have a class. This prevents overwriting "buttons"
+         and other stylized elements passed in. */
       a:not([class]) {
         ${euiLinkCSS(euiThemeContext)}
-      }
-
-      img {
-        display: block;
-        ${logicalCSS('max-width', '100%')}
       }
 
       ul {
@@ -268,10 +261,8 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         border-inline-start-style: solid;
       }
 
-      // the blockquote color in euiMarkdownFormat works differently
-      // it inherits the color from the parent element
-      // for this reason, we just apply the subdued text color for
-      // blockquotes that are not in euiMarkdownFormat
+      /* The blockquote color in euiMarkdownFormat inherits the color from the parent element
+         For this reason, we just apply the subdued text color for blockquotes not in markdown */
       blockquote:not(.euiMarkdownFormat__blockquote) {
         color: ${euiTheme.colors.subduedText};
       }
@@ -314,12 +305,10 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       pre:not(.euiCodeBlock__pre) {
         white-space: pre-wrap;
-        background: ${euiBackgroundColor(
-          euiThemeContext,
-          'subdued'
-        )}; // TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted
-        color: ${euiTheme.colors
-          .text}; // TODO: $euiCodeBlockColor - switch to var once EuiCode is converted
+        /* TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted */
+        background: ${euiBackgroundColor(euiThemeContext, 'subdued')};
+        /* TODO: $euiCodeBlockColor - switch to var once EuiCode is converted */
+        color: ${euiTheme.colors.text};
       }
 
       pre:not(.euiCodeBlock__pre),
@@ -350,25 +339,22 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 'm',
       })}
     `,
     s: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 's',
       })}
     `,
     xs: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 'xs',
       })}
     `,
     relative: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'em',
+        unit: 'em',
       })}
     `,
   };

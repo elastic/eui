@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 
@@ -51,6 +52,7 @@ describe('EuiDataGridFooterRow', () => {
               "popoverIsOpen": false,
               "setCellPopoverProps": [Function],
               "setPopoverAnchor": [Function],
+              "setPopoverAnchorPosition": [Function],
               "setPopoverContent": [Function],
             }
           }
@@ -78,6 +80,7 @@ describe('EuiDataGridFooterRow', () => {
               "popoverIsOpen": false,
               "setCellPopoverProps": [Function],
               "setPopoverAnchor": [Function],
+              "setPopoverAnchorPosition": [Function],
               "setPopoverContent": [Function],
             }
           }
@@ -131,6 +134,7 @@ describe('EuiDataGridFooterRow', () => {
                 "popoverIsOpen": false,
                 "setCellPopoverProps": [Function],
                 "setPopoverAnchor": [Function],
+                "setPopoverAnchorPosition": [Function],
                 "setPopoverContent": [Function],
               }
             }
@@ -183,6 +187,7 @@ describe('EuiDataGridFooterRow', () => {
                 "popoverIsOpen": false,
                 "setCellPopoverProps": [Function],
                 "setPopoverAnchor": [Function],
+                "setPopoverAnchorPosition": [Function],
                 "setPopoverContent": [Function],
               }
             }
@@ -201,7 +206,7 @@ describe('EuiDataGridFooterRow', () => {
     });
 
     it('renders control column `footerCellRender`s and `footerCellProps` if passed', () => {
-      const component = render(
+      const { container, getByTestSubject } = render(
         <EuiDataGridFooterRow
           {...requiredProps}
           columns={[]}
@@ -228,15 +233,19 @@ describe('EuiDataGridFooterRow', () => {
         />
       );
 
-      expect(component.find('.euiDataGridFooterCell.leading')).toHaveLength(1);
       expect(
-        component.find('[data-test-subj="customLeadingControlFooterCell"]')
-      ).toHaveLength(1);
+        container.querySelector('.euiDataGridFooterCell.leading')
+      ).toBeInTheDocument();
+      expect(
+        getByTestSubject('customLeadingControlFooterCell')
+      ).toBeInTheDocument();
 
-      expect(component.find('.euiDataGridFooterCell.trailing')).toHaveLength(1);
       expect(
-        component.find('[data-test-subj="customTrailingControlFooterCell"]')
-      ).toHaveLength(1);
+        container.querySelector('.euiDataGridFooterCell.trailing')
+      ).toBeInTheDocument();
+      expect(
+        getByTestSubject('customTrailingControlFooterCell')
+      ).toBeInTheDocument();
     });
   });
 

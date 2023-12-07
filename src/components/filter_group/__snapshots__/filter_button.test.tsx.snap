@@ -3,39 +3,37 @@
 exports[`EuiFilterButton does not render a badge or count if numFilters is not passed 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
 </button>
 `;
 
-exports[`EuiFilterButton is rendered 1`] = `
+exports[`EuiFilterButton props badgeColor renders 1`] = `
 <button
-  aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wvaqcf-empty-text"
-  data-test-subj="test subject string"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
@@ -44,103 +42,102 @@ exports[`EuiFilterButton is rendered 1`] = `
 
 exports[`EuiFilterButton props grow can be turned off 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--noGrow css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-noGrow"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
 </button>
 `;
 
-exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
+exports[`EuiFilterButton props iconType and iconSide renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
   >
     <span
-      class="euiButtonContent__icon"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+      />
+    </span>
+    <span
       color="inherit"
       data-euiicon-type="user"
     />
-    <span
-      class="euiButtonEmpty__text"
-    >
-      <span
-        class="euiFilterButton__textShift"
-      />
-    </span>
   </span>
 </button>
 `;
 
-exports[`EuiFilterButton props isDisabled is rendered 1`] = `
+exports[`EuiFilterButton props isDisabled renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-1at5a38-empty-disabled"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled-euiFilterButton"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
 </button>
 `;
 
-exports[`EuiFilterButton props isSelected is rendered 1`] = `
+exports[`EuiFilterButton props isSelected renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-isSelected css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-isSelected emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
 </button>
 `;
 
-exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered 1`] = `
+exports[`EuiFilterButton props numActiveFilters and hasActiveFilters renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasActiveFilters"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
       <span
         aria-label="5 active filters"
-        class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-accent"
+        class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-accent-euiFilterButton__notification-badgeContent"
         role="marquee"
       >
         5
@@ -150,23 +147,23 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
 </button>
 `;
 
-exports[`EuiFilterButton props numFilters is rendered 1`] = `
+exports[`EuiFilterButton props numFilters renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasNotification"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
       <span
         aria-label="5 available filters"
-        class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-subdued"
+        class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-subdued-euiFilterButton__notification-badgeContent"
         role="marquee"
       >
         5
@@ -176,38 +173,59 @@ exports[`EuiFilterButton props numFilters is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiFilterButton props type is rendered 1`] = `
+exports[`EuiFilterButton props type renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
 </button>
 `;
 
-exports[`EuiFilterButton props withNext is rendered 1`] = `
+exports[`EuiFilterButton props withNext renders 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+      />
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiFilterButton renders 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiFilterButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-euiTestCss"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  >
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
     </span>
   </span>
@@ -217,22 +235,22 @@ exports[`EuiFilterButton props withNext is rendered 1`] = `
 exports[`EuiFilterButton renders zero properly 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasNotification-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
       />
       <span
         aria-label="0 available filters"
-        class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-subdued"
+        class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-subdued-euiFilterButton__notification-badgeContent"
         role="marquee"
       >
         0

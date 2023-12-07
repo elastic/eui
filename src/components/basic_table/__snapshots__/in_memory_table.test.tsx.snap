@@ -1,9 +1,105 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiInMemoryTable behavior pagination 1`] = `
+<nav
+  aria-label="Pagination for table: "
+  class="euiPagination emotion-euiPagination"
+>
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="emotion-euiScreenReaderOnly"
+    role="status"
+  >
+    Page 2 of 2
+  </span>
+  <a
+    aria-controls="__table_generated-id"
+    aria-label="Previous page"
+    class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
+    data-test-subj="pagination-button-previous"
+    href="#__table_generated-id"
+    rel="noreferrer"
+    title="Previous page"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </a>
+  <ul
+    aria-label="Pagination for table: "
+    class="euiPagination__list emotion-euiPagination__list"
+  >
+    <li
+      class="euiPagination__item"
+    >
+      <a
+        aria-controls="__table_generated-id"
+        aria-label="Page 1 of 2"
+        class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiPaginationButton"
+        data-test-subj="pagination-button-0"
+        href="#__table_generated-id"
+        rel="noreferrer"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        >
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            1
+          </span>
+        </span>
+      </a>
+    </li>
+    <li
+      class="euiPagination__item"
+    >
+      <button
+        aria-controls="__table_generated-id"
+        aria-current="true"
+        aria-label="Page 2 of 2"
+        class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
+        data-test-subj="pagination-button-1"
+        disabled=""
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        >
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            2
+          </span>
+        </span>
+      </button>
+    </li>
+  </ul>
+  <button
+    aria-label="Next page"
+    class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
+    data-test-subj="pagination-button-next"
+    disabled=""
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
+</nav>
+`;
+
+exports[`EuiInMemoryTable empty array 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBasicTable testClass1 testClass2"
+  class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div>
@@ -63,41 +159,15 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         >
           <td
             class="euiTableRowCell euiTableRowCell--middle"
+            colspan="1"
           >
             <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
+              class="euiTableCellContent euiTableCellContent--alignCenter"
             >
               <span
                 class="euiTableCellContent__text"
               >
-                name3
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
-        >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name4
+                No items found
               </span>
             </div>
           </td>
@@ -105,178 +175,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       </tbody>
     </table>
   </div>
-  <div>
-    <div
-      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
-    />
-    <div
-      class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
-    >
-      <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-16vtueo-render"
-          >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
-              data-test-subj="tablePaginationPopoverButton"
-              type="button"
-            >
-              <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-              >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
-                >
-                  Rows per page: 2
-                </span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
-      >
-        <nav
-          aria-label="Pagination for table: "
-          class="euiPagination emotion-euiPagination-EuiPagination"
-        >
-          <span
-            aria-atomic="true"
-            aria-relevant="additions text"
-            class="emotion-euiScreenReaderOnly"
-            role="status"
-          >
-            Page 2 of 2
-          </span>
-          <a
-            aria-controls="__table_generated-id"
-            aria-label="Previous page"
-            class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton emotion-euiButtonIcon-empty-text-hoverStyles-euiPaginationArrowButton"
-            data-test-subj="pagination-button-previous"
-            href="#__table_generated-id"
-            rel="noreferrer"
-            title="Previous page"
-          >
-            <span
-              aria-hidden="true"
-              class="euiButtonIcon__icon"
-              color="inherit"
-              data-euiicon-type="arrowLeft"
-            />
-          </a>
-          <ul
-            aria-label="Pagination for table: "
-            class="euiPagination__list emotion-euiPagination__list"
-          >
-            <li
-              class="euiPagination__item"
-            >
-              <a
-                aria-controls="__table_generated-id"
-                aria-label="Page 1 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-23ziaw-empty-text-euiPaginationButton"
-                data-test-subj="pagination-button-0"
-                href="#__table_generated-id"
-                rel="noreferrer"
-              >
-                <span
-                  class="euiButtonContent euiButtonEmpty__content"
-                >
-                  <span
-                    class="euiButtonEmpty__text"
-                  >
-                    1
-                  </span>
-                </span>
-              </a>
-            </li>
-            <li
-              class="euiPagination__item"
-            >
-              <button
-                aria-controls="__table_generated-id"
-                aria-current="true"
-                aria-label="Page 2 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-7ubx5w-empty-disabled-euiPaginationButton-isActive"
-                data-test-subj="pagination-button-1"
-                disabled=""
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButtonEmpty__content"
-                >
-                  <span
-                    class="euiButtonEmpty__text"
-                  >
-                    2
-                  </span>
-                </span>
-              </button>
-            </li>
-          </ul>
-          <button
-            aria-label="Next page"
-            class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton emotion-euiButtonIcon-empty-disabled-hoverStyles-euiPaginationArrowButton"
-            data-test-subj="pagination-button-next"
-            disabled=""
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-              class="euiButtonIcon__icon"
-              color="inherit"
-              data-euiicon-type="arrowRight"
-            />
-          </button>
-        </nav>
-      </div>
-    </div>
-  </div>
 </div>
-`;
-
-exports[`EuiInMemoryTable empty array 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={Array []}
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  responsive={true}
-  tableLayout="fixed"
-/>
 `;
 
 exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -296,345 +201,14 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
   }
   onChange={[Function]}
   responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with initial selection 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  itemId="id"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  responsive={true}
-  selection={
-    Object {
-      "initialSelected": Array [
-        Object {
-          "id": "1",
-          "name": "name1",
-        },
-      ],
-      "onSelectionChange": [Function],
-    }
-  }
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with initial sorting 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-        "sortable": true,
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  responsive={true}
-  sorting={
-    Object {
-      "allowNeutralSort": true,
-      "sort": Object {
-        "direction": "desc",
-        "field": "Name",
-      },
-    }
-  }
   tableLayout="fixed"
 />
 `;
 
 exports[`EuiInMemoryTable with items 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with items and expanded item 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  itemId="id"
-  itemIdToExpandedRowMap={
-    Object {
-      "1": <div>
-        expanded row content
-      </div>,
-    }
-  }
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with items and message - expecting to show the items 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage="show me!"
-  onChange={[Function]}
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with message 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={Array []}
-  noItemsMessage="where my items at?"
-  onChange={[Function]}
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with message and loading 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={Array []}
-  loading={true}
-  noItemsMessage="Loading items...."
-  onChange={[Function]}
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 2,
-      "pageSizeOptions": Array [
-        2,
-        4,
-        6,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBasicTable testClass1 testClass2"
+  class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div>
@@ -673,7 +247,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
             >
               <span
                 class="euiTableCellContent__text"
-                title="; description"
+                title="Name; description"
               >
                 Name
               </span>
@@ -758,717 +332,5 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
       </tbody>
     </table>
   </div>
-  <div>
-    <div
-      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
-    />
-    <div
-      class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
-    >
-      <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-16vtueo-render"
-          >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
-              data-test-subj="tablePaginationPopoverButton"
-              type="button"
-            >
-              <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-              >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
-                >
-                  Showing all rows
-                </span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiInMemoryTable with pagination and default page size and index 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 1,
-      "pageSize": 2,
-      "pageSizeOptions": Array [
-        1,
-        2,
-        3,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination and selection 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  itemId="id"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 10,
-      "pageSizeOptions": Array [
-        10,
-        25,
-        50,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  selection={
-    Object {
-      "onSelectionChange": [Function],
-    }
-  }
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  error="ouch!"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 4,
-      "pageSizeOptions": Array [
-        2,
-        4,
-        6,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 1,
-    }
-  }
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 10,
-      "pageSizeOptions": Array [
-        10,
-        25,
-        50,
-      ],
-      "showPerPageOptions": false,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-        "sortable": true,
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  itemId="id"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 10,
-      "pageSizeOptions": Array [
-        10,
-        25,
-        50,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  selection={
-    Object {
-      "onSelectionChange": [Function],
-    }
-  }
-  sorting={
-    Object {
-      "allowNeutralSort": true,
-      "sort": undefined,
-    }
-  }
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search 1`] = `
-<div>
-  <EuiSearchBar
-    onChange={[Function]}
-  />
-  <EuiSpacer
-    size="l"
-  />
-  <EuiBasicTable
-    aria-label="aria-label"
-    className="testClass1 testClass2"
-    columns={
-      Array [
-        Object {
-          "description": "description",
-          "field": "name",
-          "name": "Name",
-          "sortable": true,
-        },
-        Object {
-          "actions": Array [
-            Object {
-              "description": "edit",
-              "name": "Edit",
-              "onClick": [Function],
-            },
-          ],
-          "name": "Actions",
-        },
-      ]
-    }
-    data-test-subj="test subject string"
-    itemId="id"
-    items={
-      Array [
-        Object {
-          "id": "1",
-          "name": "name1",
-        },
-        Object {
-          "id": "2",
-          "name": "name2",
-        },
-        Object {
-          "id": "3",
-          "name": "name3",
-        },
-      ]
-    }
-    noItemsMessage={
-      <EuiI18n
-        default="No items found"
-        token="euiBasicTable.noItemsMessage"
-      />
-    }
-    onChange={[Function]}
-    pagination={
-      Object {
-        "pageIndex": 0,
-        "pageSize": 10,
-        "pageSizeOptions": Array [
-          10,
-          25,
-          50,
-        ],
-        "showPerPageOptions": undefined,
-        "totalItemCount": 3,
-      }
-    }
-    responsive={true}
-    selection={
-      Object {
-        "onSelectionChange": [Function],
-      }
-    }
-    sorting={
-      Object {
-        "allowNeutralSort": true,
-        "sort": undefined,
-      }
-    }
-    tableLayout="fixed"
-  />
-</div>
-`;
-
-exports[`EuiInMemoryTable with pagination, selection, sorting and a single record action 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-        "sortable": true,
-      },
-      Object {
-        "actions": Array [
-          Object {
-            "description": "edit",
-            "name": "Edit",
-            "onClick": [Function],
-          },
-        ],
-        "name": "Actions",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  itemId="id"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 10,
-      "pageSizeOptions": Array [
-        10,
-        25,
-        50,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  selection={
-    Object {
-      "onSelectionChange": [Function],
-    }
-  }
-  sorting={
-    Object {
-      "allowNeutralSort": true,
-      "sort": undefined,
-    }
-  }
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination, selection, sorting and column renderer 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-        "render": [Function],
-        "sortable": true,
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  itemId="id"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  pagination={
-    Object {
-      "pageIndex": 0,
-      "pageSize": 2,
-      "pageSizeOptions": Array [
-        2,
-        4,
-        6,
-      ],
-      "showPerPageOptions": undefined,
-      "totalItemCount": 3,
-    }
-  }
-  responsive={true}
-  selection={
-    Object {
-      "onSelectionChange": [Function],
-    }
-  }
-  sorting={
-    Object {
-      "allowNeutralSort": true,
-      "sort": undefined,
-    }
-  }
-  tableLayout="fixed"
-/>
-`;
-
-exports[`EuiInMemoryTable with pagination, selection, sorting and configured search 1`] = `
-<div>
-  <EuiSearchBar
-    box={
-      Object {
-        "incremental": true,
-      }
-    }
-    defaultQuery="name:name1"
-    filters={
-      Array [
-        Object {
-          "field": "name",
-          "name": "Name1",
-          "negatedName": "Not Name1",
-          "type": "field_value_toggle",
-          "value": "name1",
-        },
-      ]
-    }
-    onChange={[Function]}
-  />
-  <EuiSpacer
-    size="l"
-  />
-  <EuiBasicTable
-    aria-label="aria-label"
-    className="testClass1 testClass2"
-    columns={
-      Array [
-        Object {
-          "description": "description",
-          "field": "name",
-          "name": "Name",
-          "sortable": true,
-        },
-        Object {
-          "actions": Array [
-            Object {
-              "description": "edit",
-              "name": "Edit",
-              "onClick": [Function],
-            },
-          ],
-          "name": "Actions",
-        },
-      ]
-    }
-    data-test-subj="test subject string"
-    itemId="id"
-    items={
-      Array [
-        Object {
-          "id": "1",
-          "name": "name1",
-        },
-      ]
-    }
-    noItemsMessage={
-      <EuiI18n
-        default="No items found"
-        token="euiBasicTable.noItemsMessage"
-      />
-    }
-    onChange={[Function]}
-    pagination={
-      Object {
-        "pageIndex": 0,
-        "pageSize": 10,
-        "pageSizeOptions": Array [
-          10,
-          25,
-          50,
-        ],
-        "showPerPageOptions": undefined,
-        "totalItemCount": 1,
-      }
-    }
-    responsive={true}
-    selection={
-      Object {
-        "onSelectionChange": [Function],
-      }
-    }
-    sorting={
-      Object {
-        "allowNeutralSort": true,
-        "sort": undefined,
-      }
-    }
-    tableLayout="fixed"
-  />
-</div>
-`;
-
-exports[`EuiInMemoryTable with search and component between search and table 1`] = `
-<div>
-  <EuiSearchBar
-    onChange={[Function]}
-  />
-  <EuiSpacer
-    size="l"
-  />
-  <div>
-    Children Between
-  </div>
-  <EuiBasicTable
-    aria-label="aria-label"
-    className="testClass1 testClass2"
-    columns={
-      Array [
-        Object {
-          "description": "description",
-          "field": "name",
-          "name": "Name",
-          "sortable": true,
-        },
-        Object {
-          "actions": Array [
-            Object {
-              "description": "edit",
-              "name": "Edit",
-              "onClick": [Function],
-            },
-          ],
-          "name": "Actions",
-        },
-      ]
-    }
-    data-test-subj="test subject string"
-    itemId="id"
-    items={
-      Array [
-        Object {
-          "id": "1",
-          "name": "name1",
-        },
-        Object {
-          "id": "2",
-          "name": "name2",
-        },
-        Object {
-          "id": "3",
-          "name": "name3",
-        },
-      ]
-    }
-    noItemsMessage={
-      <EuiI18n
-        default="No items found"
-        token="euiBasicTable.noItemsMessage"
-      />
-    }
-    onChange={[Function]}
-    responsive={true}
-    tableLayout="fixed"
-  />
 </div>
 `;

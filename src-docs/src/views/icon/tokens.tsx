@@ -22,7 +22,6 @@ const tokens: EuiTokenMapType[] = [
   'tokenCompletionSuggester',
   'tokenConstant',
   'tokenDate',
-  'tokenDenseVector',
   'tokenElement',
   'tokenEnum',
   'tokenEnumMember',
@@ -66,6 +65,8 @@ const tokens: EuiTokenMapType[] = [
   'tokenText',
   'tokenTokenCount',
   'tokenVariable',
+  'tokenVectorDense',
+  'tokenVectorSparse',
 ];
 
 export default () => (
@@ -74,7 +75,7 @@ export default () => (
       {'<EuiToken iconType="tokenAnnotation" />'}
     </EuiCodeBlock>
     <EuiSpacer />
-    <EuiFlexGrid direction="column" columns={3}>
+    <EuiFlexGrid direction="row" columns={3}>
       {tokens.map((token) => (
         <EuiFlexItem key={token}>
           <EuiCopy

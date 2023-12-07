@@ -4,7 +4,7 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 <span>
   different 
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark-hasScreenReaderHelpText"
   >
     case
   </mark>
@@ -15,19 +15,19 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 <span>
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark-hasScreenReaderHelpText"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark-hasScreenReaderHelpText"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark-hasScreenReaderHelpText"
   >
     match
   </mark>
@@ -37,19 +37,19 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 exports[`EuiHighlight behavior matching hasScreenReaderHelpText can be false 1`] = `
 <span>
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark"
   >
     match
   </mark>
@@ -59,7 +59,7 @@ exports[`EuiHighlight behavior matching hasScreenReaderHelpText can be false 1`]
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 <span>
   <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
+    class="euiMark emotion-euiMark-hasScreenReaderHelpText"
   >
     match
   </mark>
@@ -76,7 +76,7 @@ exports[`EuiHighlight behavior strict matching doesn't match strings with differ
 exports[`EuiHighlight is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   value

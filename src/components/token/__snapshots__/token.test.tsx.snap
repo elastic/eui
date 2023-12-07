@@ -2,7 +2,7 @@
 
 exports[`EuiToken is rendered 1`] = `
 <span
-  class="euiToken testClass1 testClass2 emotion-euiToken-circle-light-s-gray"
+  class="euiToken testClass1 testClass2 emotion-euiToken-circle-light-s-gray-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -16,7 +16,7 @@ exports[`EuiToken is rendered 1`] = `
 exports[`EuiToken props color can be a custom hex 1`] = `
 <span
   class="euiToken emotion-euiToken-circle-light-s-customColor"
-  style="color:#000000;background-color:#FF0000"
+  style="color: rgb(0, 0, 0); background-color: rgb(255, 0, 0);"
 >
   <span
     data-euiicon-type="dot"
@@ -256,7 +256,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenDate is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenDenseVector is rendered 1`] = `
 <span
-  class="euiToken emotion-euiToken-square-light-s-euiColorVis2"
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis5"
 >
   <span
     data-euiicon-type="tokenDenseVector"
@@ -690,6 +690,26 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenVariable is rendered 1`
 >
   <span
     data-euiicon-type="tokenVariable"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenVectorDense is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis5"
+>
+  <span
+    data-euiicon-type="tokenVectorDense"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenVectorSparse is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis1"
+>
+  <span
+    data-euiicon-type="tokenVectorSparse"
   />
 </span>
 `;

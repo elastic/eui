@@ -3,7 +3,7 @@
 exports[`EuiExpression props color accent is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-accent"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-accent-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -23,7 +23,7 @@ exports[`EuiExpression props color accent is rendered 1`] = `
 exports[`EuiExpression props color danger is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-danger"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-danger-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -43,7 +43,7 @@ exports[`EuiExpression props color danger is rendered 1`] = `
 exports[`EuiExpression props color primary is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-primary"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-primary-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -63,7 +63,7 @@ exports[`EuiExpression props color primary is rendered 1`] = `
 exports[`EuiExpression props color subdued is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-subdued"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-subdued-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -83,7 +83,7 @@ exports[`EuiExpression props color subdued is rendered 1`] = `
 exports[`EuiExpression props color success is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-success"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-success-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -103,7 +103,7 @@ exports[`EuiExpression props color success is rendered 1`] = `
 exports[`EuiExpression props color warning is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-warning"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-warning-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -126,7 +126,7 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
 >
   <span
     class="euiExpression__description emotion-euiExpression__description-danger-isUppercase-columns"
-    style="flex-basis:50px"
+    style="flex-basis: 50px;"
   >
     the answer is
   </span>
@@ -150,7 +150,7 @@ exports[`EuiExpression props display can be columns 1`] = `
 >
   <span
     class="euiExpression__description emotion-euiExpression__description-success-isUppercase-columns"
-    style="flex-basis:20%"
+    style="flex-basis: 20%;"
   >
     the answer is
   </span>
@@ -279,7 +279,7 @@ exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 exports[`EuiExpression render with only description 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-isClickable-success"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-isClickable-success-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -294,7 +294,7 @@ exports[`EuiExpression render with only description 1`] = `
 exports[`EuiExpression renders 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 emotion-euiExpression-isClickable-success"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-isClickable-success-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

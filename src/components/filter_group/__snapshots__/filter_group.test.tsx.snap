@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiFilterGroup is rendered 1`] = `
+exports[`EuiFilterGroup renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFilterGroup testClass1 testClass2"
+  class="euiFilterGroup testClass1 testClass2 emotion-euiFilterGroup-uncompressed-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
-exports[`EuiFilterGroup props compressed is rendered 1`] = `
+exports[`EuiFilterGroup props compressed 1`] = `
 <div
-  class="euiFilterGroup euiFilterGroup--compressed"
+  class="euiFilterGroup emotion-euiFilterGroup-compressed"
 />
 `;
 
-exports[`EuiFilterGroup props fullWidth is rendered 1`] = `
+exports[`EuiFilterGroup props fullWidth 1`] = `
 <div
-  class="euiFilterGroup euiFilterGroup--fullWidth"
+  class="euiFilterGroup emotion-euiFilterGroup-fullWidth-uncompressed"
 />
 `;

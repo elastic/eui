@@ -16,15 +16,19 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiText,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridPaginationProps,
+  EuiDataGridSorting,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
   raw_data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()}`,
     email: faker.internet.email(),
-    location: `${faker.address.city()}, ${faker.address.country()}`,
-    account: faker.finance.account(),
+    location: `${faker.location.city()}, ${faker.location.country()}`,
+    account: faker.finance.accountNumber(),
     date: `${faker.date.past()}`,
   });
 }
@@ -44,13 +48,16 @@ export default () => {
     dataGridRef.current!.setFocusedCell(lastFocusedCell); // Set the data grid focus back to the cell that opened the modal
   }, [lastFocusedCell]);
 
-  const showModal = useCallback(({ rowIndex, colIndex }) => {
-    setIsModalVisible(true);
-    dataGridRef.current!.closeCellPopover(); // Close any open cell popovers
-    setLastFocusedCell({ rowIndex, colIndex }); // Store the cell that opened this modal
-  }, []);
+  const showModal = useCallback(
+    ({ rowIndex, colIndex }: { rowIndex: number; colIndex: number }) => {
+      setIsModalVisible(true);
+      dataGridRef.current!.closeCellPopover(); // Close any open cell popovers
+      setLastFocusedCell({ rowIndex, colIndex }); // Store the cell that opened this modal
+    },
+    []
+  );
 
-  const openModalAction = useCallback(
+  const openModalAction = useCallback<EuiDataGridColumnCellAction>(
     ({ Component, rowIndex, colIndex }) => {
       return (
         <Component
@@ -104,17 +111,24 @@ export default () => {
   );
 
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 25 });
-  const onChangePage = useCallback((pageIndex) => {
-    setPagination((pagination) => ({ ...pagination, pageIndex }));
-  }, []);
-  const onChangePageSize = useCallback((pageSize) => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
+    (pageIndex) => {
+      setPagination((pagination) => ({ ...pagination, pageIndex }));
+    },
+    []
+  );
+  const onChangePageSize = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >((pageSize) => {
     setPagination((pagination) => ({ ...pagination, pageSize }));
   }, []);
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = useCallback((sortingColumns) => {
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>((sortingColumns) => {
     setSortingColumns(sortingColumns);
   }, []);
 
@@ -210,7 +224,6 @@ export default () => {
         }
         pagination={{
           ...pagination,
-          pageSizeOptions: [25, 50],
           onChangePage: onChangePage,
           onChangeItemsPerPage: onChangePageSize,
         }}

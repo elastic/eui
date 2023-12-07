@@ -3,7 +3,7 @@
 exports[`EuiSubSteps is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSubSteps testClass1 testClass2 emotion-euiSubSteps"
+  class="euiSubSteps testClass1 testClass2 emotion-euiSubSteps-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

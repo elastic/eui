@@ -4,9 +4,9 @@ exports[`EuiGlobalToastList is rendered 1`] = `
 <div
   aria-label="aria-label"
   aria-live="polite"
-  class="euiGlobalToastList testClass1 testClass2 emotion-euiGlobalToastList-right"
+  class="euiGlobalToastList testClass1 testClass2 emotion-euiGlobalToastList-right-euiTestCss"
   data-test-subj="test subject string"
-  role="region"
+  role="log"
 />
 `;
 
@@ -14,7 +14,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
 <div
   aria-live="polite"
   class="euiGlobalToastList emotion-euiGlobalToastList-left"
-  role="region"
+  role="log"
 >
   <div
     class="euiToast euiGlobalToastListItem emotion-euiToast-success-euiGlobalToastListItem"
@@ -45,7 +45,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
@@ -92,7 +92,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
@@ -117,7 +117,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
 <div
   aria-live="polite"
   class="euiGlobalToastList emotion-euiGlobalToastList-right"
-  role="region"
+  role="log"
 >
   <div
     class="euiToast euiGlobalToastListItem emotion-euiToast-success-euiGlobalToastListItem"
@@ -148,7 +148,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
@@ -195,7 +195,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >

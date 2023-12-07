@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { dateValueParser, isDateValue } from './date_value';
-import { Random } from '../../../services';
+import moment from 'moment';
+import { faker } from '@faker-js/faker';
 
-const random = new Random();
+import { dateValueParser, isDateValue } from './date_value';
 
 describe('date value', () => {
   test('dateValueParser', () => {
-    const date = random.moment().utc();
+    const date = moment(faker.date.anytime()).utc();
     const parse = jest.fn();
     parse.mockReturnValue(date);
     const format = { parse, print: jest.fn() };

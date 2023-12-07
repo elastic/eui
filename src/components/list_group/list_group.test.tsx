@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiListGroup, GUTTER_SIZES } from './list_group';
 import { EuiListGroupItemProps } from './list_group_item';
@@ -48,85 +48,85 @@ describe('EuiListGroup', () => {
   shouldRenderCustomStyles(<EuiListGroup {...requiredProps} />);
 
   test('is rendered', () => {
-    const component = render(<EuiListGroup {...requiredProps} />);
+    const { container } = render(<EuiListGroup {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('listItems', () => {
     test('is rendered', () => {
-      const component = render(<EuiListGroup listItems={someListItems} />);
+      const { container } = render(<EuiListGroup listItems={someListItems} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered with color', () => {
-      const component = render(
+      const { container } = render(
         <EuiListGroup color="primary" listItems={someListItems} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered with size', () => {
-      const component = render(<EuiListGroup color="primary" size="xs" />);
+      const { container } = render(<EuiListGroup color="primary" size="xs" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('props', () => {
     test('bordered is rendered', () => {
-      const component = render(<EuiListGroup bordered />);
+      const { container } = render(<EuiListGroup bordered />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('flush is rendered', () => {
-      const component = render(<EuiListGroup flush />);
+      const { container } = render(<EuiListGroup flush />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('showToolTips is rendered', () => {
-      const component = render(<EuiListGroup showToolTips />);
+      const { container } = render(<EuiListGroup showToolTips />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('wrapText is rendered', () => {
-      const component = render(<EuiListGroup wrapText />);
+      const { container } = render(<EuiListGroup wrapText />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('gutter size', () => {
       GUTTER_SIZES.forEach((gutter) => {
         test(`${gutter} is rendered`, () => {
-          const component = render(<EuiListGroup gutterSize={gutter} />);
+          const { container } = render(<EuiListGroup gutterSize={gutter} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('maxWidth', () => {
       test('as true is rendered', () => {
-        const component = render(<EuiListGroup maxWidth={true} />);
+        const { container } = render(<EuiListGroup maxWidth={true} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('as a number is rendered', () => {
-        const component = render(<EuiListGroup maxWidth={300} />);
+        const { container } = render(<EuiListGroup maxWidth={300} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('as a string is rendered', () => {
-        const component = render(<EuiListGroup maxWidth="20em" />);
+        const { container } = render(<EuiListGroup maxWidth="20em" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

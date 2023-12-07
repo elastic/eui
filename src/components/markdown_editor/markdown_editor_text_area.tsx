@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { TextareaHTMLAttributes, forwardRef, useContext } from 'react';
+import React, {
+  TextareaHTMLAttributes,
+  forwardRef,
+  useContext,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiMarkdownContext } from './markdown_context';
@@ -45,11 +50,20 @@ export const EuiMarkdownEditorTextArea = forwardRef<
       'euiMarkdownEditorTextArea-isReadOnly': readOnly,
     });
 
+    // Ignore invalid empty string style values
+    const style: CSSProperties = {};
+    if (height !== '') {
+      style.height = height;
+    }
+    if (maxHeight !== '') {
+      style.maxHeight = maxHeight;
+    }
+
     return (
       <textarea
         ref={ref}
         data-test-subj="euiMarkdownEditorTextArea"
-        style={{ height, maxHeight }}
+        style={style}
         className={classes}
         {...rest}
         rows={6}

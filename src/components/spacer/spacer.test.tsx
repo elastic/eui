@@ -7,17 +7,17 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiSpacer } from './spacer';
 
 describe('EuiSpacer', () => {
   test('is rendered', () => {
-    const component = render(<EuiSpacer {...requiredProps} />);
+    const { container } = render(<EuiSpacer {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiSpacer />);

@@ -1,78 +1,250 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollapsedItemActions render 1`] = `
-<div
-  class="euiPopover emotion-euiPopover"
-  id="id-actions"
+exports[`CollapsedItemActions custom actions 1`] = `
+<body
+  class=""
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span
-      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  <div>
+    <div
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
+      id="id-actions"
     >
-      <button
-        aria-label="All actions"
-        class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
-        data-test-subj="euiCollapsedItemActionsButton"
-        type="button"
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
       >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="boxesHorizontal"
-        />
-      </button>
-    </span>
+        <button
+          aria-label="All actions"
+          class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+          data-test-subj="euiCollapsedItemActionsButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesHorizontal"
+          />
+        </button>
+      </span>
+    </div>
   </div>
-</div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-left"
+        data-autofocus="true"
+        data-popover-open="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: -22px; left: -16px; z-index: 2000;"
+        tabindex="0"
+      >
+        <div
+          class="euiPopover__arrow emotion-euiPopoverArrow-left"
+          data-popover-arrow="left"
+          style="left: 0px; top: 10px;"
+        />
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+        </p>
+        <div>
+          <div
+            class="euiContextMenuPanel euiBasicTable__collapsedActions emotion-euiContextMenuPanel"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiContextMenuItem-m-center"
+              >
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  <span>
+                    <button
+                      data-test-subj="customAction"
+                    >
+                      hello
+                    </button>
+                  </span>
+                </span>
+              </div>
+              <div
+                class="euiContextMenuItem euiBasicTable__collapsedCustomAction emotion-euiContextMenuItem-m-center"
+              >
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  <span>
+                    <a
+                      href="#"
+                    >
+                      world
+                    </a>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
 `;
 
-exports[`CollapsedItemActions render with href and _target provided 1`] = `
-<EuiPopover
-  anchorPosition="leftCenter"
-  button={
-    <EuiI18n
-      default="All actions"
-      token="euiCollapsedItemActions.allActions"
+exports[`CollapsedItemActions default actions 1`] = `
+<body>
+  <div>
+    <div
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
+      id="id-actions"
     >
-      [Function]
-    </EuiI18n>
-  }
-  closePopover={[Function]}
-  display="inline-block"
-  hasArrow={true}
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      >
+        <button
+          aria-label="All actions"
+          class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+          data-test-subj="euiCollapsedItemActionsButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesHorizontal"
+          />
+        </button>
+      </span>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-left"
+        data-autofocus="true"
+        data-popover-open="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: -22px; left: -16px; z-index: 2000;"
+        tabindex="0"
+      >
+        <div
+          class="euiPopover__arrow emotion-euiPopoverArrow-left"
+          data-popover-arrow="left"
+          style="left: 0px; top: 10px;"
+        />
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+        </p>
+        <div>
+          <div
+            class="euiContextMenuPanel euiBasicTable__collapsedActions emotion-euiContextMenuPanel"
+            tabindex="-1"
+          >
+            <div>
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+              >
+                <button
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  data-test-subj="defaultAction"
+                  type="button"
+                >
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    default1
+                  </span>
+                </button>
+              </span>
+              <span
+                class="euiToolTipAnchor eui-displayBlock emotion-euiToolTipAnchor-inlineBlock"
+              >
+                <a
+                  class="euiContextMenuItem euiBasicTable__collapsedAction emotion-euiContextMenuItem-m-center"
+                  data-test-subj="xyz-link"
+                  href="#/xyz"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span
+                    class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                  >
+                    name xyz
+                  </span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;
+
+exports[`CollapsedItemActions renders 1`] = `
+<div
+  class="euiPopover emotion-euiPopover-inline-block"
   id="id-actions"
-  isOpen={true}
-  ownFocus={true}
-  panelPaddingSize="none"
-  popoverRef={[Function]}
 >
-  <EuiContextMenuPanel
-    items={
-      Array [
-        <EuiContextMenuItem
-          disabled={false}
-          onClick={[Function]}
-        >
-          default1
-        </EuiContextMenuItem>,
-        <EuiContextMenuItem
-          onClick={[Function]}
-        >
-          <div />
-        </EuiContextMenuItem>,
-        <EuiContextMenuItem
-          disabled={false}
-          href="https://www.elastic.co/"
-          onClick={[Function]}
-          target="_blank"
-        >
-          default2
-        </EuiContextMenuItem>,
-      ]
-    }
-  />
-</EuiPopover>
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  >
+    <button
+      aria-label="All actions"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiCollapsedItemActionsButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="boxesHorizontal"
+      />
+    </button>
+  </span>
+</div>
 `;

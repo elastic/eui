@@ -135,6 +135,36 @@ describe('EuiDataGridToolbar', () => {
       </div>
     `);
   });
+
+  it('renders custom content if renderCustomToolbar is defined', () => {
+    const mockRenderCustomToolbar = jest.fn(() => (
+      <div data-test-subj="test">Custom</div>
+    ));
+    const component = shallow(
+      <EuiDataGridToolbar
+        {...requiredProps}
+        renderCustomToolbar={mockRenderCustomToolbar}
+      />
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <div
+        data-test-subj="test"
+      >
+        Custom
+      </div>
+    `);
+    expect(mockRenderCustomToolbar).toHaveBeenCalledWith(
+      expect.objectContaining({
+        hasRoomForGridControls: true,
+        fullScreenControl: requiredProps.fullScreenSelector,
+        keyboardShortcutsControl: requiredProps.keyboardShortcuts,
+        displayControl: requiredProps.displaySelector,
+        columnControl: requiredProps.columnSelector,
+        columnSortingControl: requiredProps.columnSorting,
+      })
+    );
+  });
 });
 
 describe('checkOrDefaultToolBarDisplayOptions', () => {

@@ -62,8 +62,8 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
       display: inline-block;
 
       ${euiCanAnimate} {
-        &:before,
-        &:after {
+        &::before,
+        &::after {
           position: absolute;
           content: '';
           inline-size: 90%;
@@ -73,13 +73,13 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
           z-index: 1;
         }
 
-        &:before {
+        &::before {
           box-shadow: 0 0 ${euiTheme.size.s} ${euiTheme.colors.fullShade};
           animation: 1s ${loadingPulsateAndFade}
             ${euiTheme.animation.resistance} infinite;
         }
 
-        &:after {
+        &::after {
           background-color: ${euiTheme.colors.fullShade};
           animation: 1s ${loadingPulsate} ${euiTheme.animation.resistance}
             infinite;
@@ -97,8 +97,8 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
         padding-block-start: ${euiTheme.size[loadingPadding.m]};
       }
 
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         block-size: ${euiTheme.base * 0.25}px; /* 1 */
         inset-block-end: -${euiTheme.size.xs};
       }
@@ -110,8 +110,8 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
         padding-block-start: ${euiTheme.size[loadingPadding.l]};
       }
 
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         block-size: ${euiTheme.base * 0.375}px; /* 1 */
         inset-block-end: -${euiTheme.size.s};
       }
@@ -123,8 +123,8 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
         padding-block-start: ${euiTheme.size[loadingPadding.xl]};
       }
 
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         block-size: ${euiTheme.base * 0.5}px; /* 1 */
         inset-block-end: -${euiTheme.size.m};
       }

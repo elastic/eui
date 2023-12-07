@@ -8,21 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import {
-  euiFocusRing,
-  logicalCSS,
-  logicalTextAlignCSS,
-} from '../../global_styling';
+import { euiFocusRing, logicalTextAlignCSS } from '../../global_styling';
 
 const _colorCSS = (color: string) => {
   return `
     color: ${color};
-
-    &:hover,
-    &:focus,
-    &:target {
-      text-decoration: underline;
-    }
 
     &:target {
       color: darken(${color}, 10%);
@@ -39,7 +29,7 @@ export const euiLinkHoverCSS = () => {
 export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   return `
     text-decoration: underline;
-    text-decoration-thickness: ${euiTheme.border.width.thick} !important;
+    text-decoration-thickness: ${euiTheme.border.width.thick};
   `;
 };
 
@@ -93,13 +83,5 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     warning: css(_colorCSS(euiTheme.colors.warningText)),
     ghost: css(_colorCSS(euiTheme.colors.ghost)),
     text: css(_colorCSS(euiTheme.colors.text)),
-
-    // Children
-    euiLink__screenReaderText: css`
-      ${logicalCSS('left', '0px')}
-    `,
-    euiLink__externalIcon: css`
-      ${logicalCSS('margin-left', euiTheme.size.xs)}
-    `,
   };
 };

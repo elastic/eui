@@ -7,26 +7,45 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react'; // Note - don't use the EUI custom RTL `render`, as it auto-wraps an `EuiProvider`
-import { css } from '@emotion/react';
+import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
-import { EuiThemeProvider } from '../../services';
+import { setEuiDevProviderWarning } from '../../services';
 import { EuiProvider } from './provider';
 
 describe('EuiProvider', () => {
-  it('is rendered', () => {
-    const component = shallow(<EuiProvider />);
+  it('renders children', () => {
+    const { container } = render(
+      <EuiProvider>
+        <main>Hello world</main>
+      </EuiProvider>
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <main>
+        Hello world
+      </main>
+    `);
   });
 
-  describe('using `null` theme option', () => {
-    it('does not add global styles', () => {
-      const component = shallow(<EuiProvider theme={null} />);
+  describe('global styles and reset CSS', () => {
+    it('renders by default', () => {
+      render(<EuiProvider />);
 
-      expect(component).toMatchSnapshot();
+      const globalStyleElement = document.querySelector(
+        'style[data-emotion="css-global"]'
+      );
+      expect(globalStyleElement).not.toEqual(null);
+    });
+
+    it('does not render when `theme` is null', () => {
+      render(<EuiProvider theme={null} />);
+
+      const globalStyleElement = document.querySelector(
+        'style[data-emotion="css-global"]'
+      );
+      expect(globalStyleElement).toEqual(null);
     });
   });
 
@@ -41,127 +60,164 @@ describe('EuiProvider', () => {
       key: 'utility',
     });
 
-    it('provides a default cache from Emotion when configured without a cache', () => {
-      const component = shallow(<EuiProvider />);
+    const getStyleByCss = (content: string) => {
+      return Array.from(document.querySelectorAll('style[data-emotion]')).find(
+        (el) => el?.textContent?.includes(content)
+      ) as HTMLStyleElement;
+    };
 
-      expect(component).toMatchSnapshot();
-      expect(component.prop('cache').key).toEqual('css');
-      expect(component.prop('cache').compat).toEqual(true);
+    it('uses a default fallback cache with EUI prefixing when one is not passed', () => {
+      render(
+        <EuiProvider>
+          <div css={{ label: 'test-no-cache', display: 'flex' }} />
+        </EuiProvider>
+      );
+
+      expect(emotionCache.key).toEqual('css');
+      expect(getStyleByCss('html').dataset.emotion).toEqual('css-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'css-global'
+      );
+      // The below CSS would have prefixes if the default `@emotion/css` cache were used
+      expect(getStyleByCss('test-no-cache').textContent).toMatchInlineSnapshot(
+        `".css-1b3dqg7-test-no-cache{display:flex;}"`
+      );
     });
-    it('applies the cache to all styles', () => {
-      const component = shallow(<EuiProvider cache={defaultCache} />);
 
-      expect(component).toMatchSnapshot();
+    it('applies the cache to all styles', () => {
+      render(<EuiProvider cache={defaultCache} />);
+
+      expect(getStyleByCss('html').dataset.emotion).toEqual('default-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'default-global'
+      );
     });
 
     it('applies the cache to global styles', () => {
-      const component = shallow(
-        <EuiProvider cache={{ global: globalCache }} />
-      );
+      render(<EuiProvider cache={{ global: globalCache }} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getStyleByCss('html').dataset.emotion).toEqual('global-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'css-global'
+      );
     });
 
     it('applies the cache to utility styles', () => {
-      const component = shallow(
-        <EuiProvider cache={{ utility: utilityCache }} />
-      );
+      render(<EuiProvider cache={{ utility: utilityCache }} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getStyleByCss('html').dataset.emotion).toEqual('css-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'utility-global'
+      );
     });
 
     it('applies the cache to each location separately', () => {
-      const component = shallow(
+      render(
         <EuiProvider
           cache={{
             default: defaultCache,
             global: globalCache,
             utility: utilityCache,
           }}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('changing color modes', () => {
-    it('propagates `colorMode`', () => {
-      const component = shallow(<EuiProvider colorMode="dark" />);
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('applying modifications', () => {
-    it('propagates `modify`', () => {
-      const component = shallow(
-        <EuiProvider
-          modify={{
-            colors: {
-              LIGHT: { lightShade: '#d3e6df' },
-              DARK: { lightShade: '#394c4b' },
-            },
-          }}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('nested EuiThemeProviders', () => {
-    it('renders with a span wrapper that sets the inherited text color', () => {
-      const { container } = render(
-        <EuiProvider>
-          Top-level provider{' '}
-          <EuiThemeProvider colorMode="inverse">Nested</EuiThemeProvider>
+        >
+          <div css={{ color: 'red', label: 'test' }} />
         </EuiProvider>
       );
 
-      expect(container).toMatchSnapshot();
+      expect(getStyleByCss('.default-').dataset.emotion).toEqual('default');
+      expect(getStyleByCss('html').dataset.emotion).toEqual('global-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'utility-global'
+      );
+    });
+  });
+
+  describe('EuiThemeProvider prop passing', () => {
+    const modify = {
+      colors: {
+        LIGHT: { lightShade: '#aaa' },
+        DARK: { lightShade: '#333' },
+      },
+    };
+
+    it('passes `modify`', () => {
+      const { getByText } = render(
+        <EuiProvider modify={modify}>
+          <div css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}>
+            Modified
+          </div>
+        </EuiProvider>
+      );
+
+      expect(getByText('Modified')).toHaveStyleRule('color', '#aaa');
     });
 
-    it('allows customizing the span wrapper with `wrapperProps`', () => {
-      const customCss = css`
-        display: flex;
-      `;
+    it('passes `colorMode`', () => {
+      const { getByText } = render(
+        <EuiProvider modify={modify} colorMode="dark">
+          <div css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}>
+            Dark mode
+          </div>
+        </EuiProvider>
+      );
 
+      expect(getByText('Dark mode')).toHaveStyleRule('color', '#333');
+    });
+  });
+
+  describe('nested EuiProviders', () => {
+    it('emits a log/error/warning per `euiDevProviderWarning` levels', () => {
+      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {}); // Silence warning
+      setEuiDevProviderWarning('warn');
+
+      render(
+        <EuiProvider>
+          Top-level provider
+          <EuiProvider>Nested</EuiProvider>
+        </EuiProvider>
+      );
+
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining(
+          '`EuiProvider` should not be nested or used more than once'
+        )
+      );
+
+      setEuiDevProviderWarning(undefined);
+      warnSpy.mockRestore();
+    });
+
+    it('returns children as-is without rendering any nested contexts', () => {
       const { container } = render(
         <EuiProvider>
-          Top-level provider{' '}
-          <EuiThemeProvider
-            colorMode="dark"
-            wrapperProps={{
-              className: 'test',
-              'data-test-subj': 'nested',
-              css: customCss,
-            }}
-          >
+          Top-level provider
+          <EuiProvider>
             Nested
-          </EuiThemeProvider>
+            <EuiProvider>Nested again</EuiProvider>
+          </EuiProvider>
         </EuiProvider>
       );
 
-      expect(container).toMatchSnapshot();
-      expect(container.querySelector('.test')).toBeTruthy();
+      expect(container).toMatchInlineSnapshot(`
+        <div>
+          Top-level provider
+          Nested
+          Nested again
+        </div>
+      `);
     });
 
-    it('allows avoiding the extra span wrapper with `wrapperProps.cloneElement`', () => {
-      const { container } = render(
+    it('does not instantiate any extra logic, including setting cache behavior', () => {
+      const ignoredCache = createCache({ key: 'ignore' });
+
+      render(
         <EuiProvider>
-          Top-level provider{' '}
-          <EuiThemeProvider
-            colorMode="dark"
-            wrapperProps={{ cloneElement: true, className: 'hello' }}
-          >
-            <div className="world">clone provider color onto div</div>
-          </EuiThemeProvider>
+          Top-level provider
+          <EuiProvider cache={ignoredCache}>Nested</EuiProvider>
         </EuiProvider>
       );
 
-      expect(container).toMatchSnapshot();
-      expect(container.querySelector('.hello.world')).toBeTruthy();
+      expect(ignoredCache.compat).not.toEqual(true);
     });
   });
 });

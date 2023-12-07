@@ -1,29 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHeaderSection grow defaults to false 1`] = `
-<div
-  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
-/>
-`;
-
 exports[`EuiHeaderSection grow renders true 1`] = `
 <div
-  class="euiHeaderSection euiHeaderSection--grow euiHeaderSection--left"
+  class="euiHeaderSection emotion-euiHeaderSection-grow"
 />
 `;
 
-exports[`EuiHeaderSection is rendered 1`] = `
+exports[`EuiHeaderSection renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left testClass1 testClass2"
+  class="euiHeaderSection testClass1 testClass2 emotion-euiHeaderSection-euiTestCss"
   data-test-subj="test subject string"
-/>
-`;
-
-exports[`EuiHeaderSection renders optional params 1`] = `
-<div
-  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
-  style="color:blue"
 >
   <span>
     Some years ago never mind how long precisely...
@@ -31,14 +18,14 @@ exports[`EuiHeaderSection renders optional params 1`] = `
 </div>
 `;
 
-exports[`EuiHeaderSection side defaults to left 1`] = `
+exports[`EuiHeaderSection side renders left 1`] = `
 <div
-  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+  class="euiHeaderSection emotion-euiHeaderSection-left"
 />
 `;
 
 exports[`EuiHeaderSection side renders right 1`] = `
 <div
-  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--right"
+  class="euiHeaderSection emotion-euiHeaderSection-right"
 />
 `;

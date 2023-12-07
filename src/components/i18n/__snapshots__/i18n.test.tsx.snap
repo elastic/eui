@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiI18n default rendering render prop with multiple tokens renders render prop result to the dom 1`] = `
+exports[`EuiI18n default rendering render prop with multiple tokens renders basic strings to the dom 1`] = `
 <EuiI18n
   defaults={
     Array [
@@ -19,6 +19,34 @@ exports[`EuiI18n default rendering render prop with multiple tokens renders rend
     This is the first basic string.
      
     This is the second basic string.
+  </div>
+</EuiI18n>
+`;
+
+exports[`EuiI18n default rendering render prop with multiple tokens renders strings with placeholders to the dom 1`] = `
+<EuiI18n
+  defaults={
+    Array [
+      "This is the first basic string.",
+      "This is the a second string with a {placeholder}.",
+    ]
+  }
+  tokens={
+    Array [
+      "test1",
+      "test2",
+    ]
+  }
+  values={
+    Object {
+      "placeholder": "value",
+    }
+  }
+>
+  <div>
+    This is the first basic string.
+     
+    This is the a second string with a value.
   </div>
 </EuiI18n>
 `;

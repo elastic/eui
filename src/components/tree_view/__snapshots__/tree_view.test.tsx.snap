@@ -13,7 +13,7 @@ exports[`EuiTreeView is rendered 1`] = `
   <ul
     aria-describedby="euiTreeView_generated-id--instruction"
     aria-label="aria-label"
-    class="euiTreeView testClass1 testClass2"
+    class="euiTreeView testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
     id="euiTreeView_generated-id"
   >

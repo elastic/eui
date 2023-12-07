@@ -12,14 +12,16 @@ import React, {
   useRef,
   useMemo,
   useState,
+  useCallback,
   PropsWithChildren,
   HTMLAttributes,
 } from 'react';
-import classNames from 'classnames';
-import { css } from '@emotion/css';
+import { Global, type CSSObject } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
 
 import type { CommonProps } from '../../components/common';
+import { cloneElementWithCss } from '../emotion';
+import { css, cx } from '../emotion/css';
 
 import {
   EuiSystemContext,
@@ -28,6 +30,7 @@ import {
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
+import { EuiEmotionThemeProvider } from './emotion';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
@@ -36,13 +39,7 @@ import {
   EuiThemeModifications,
 } from './types';
 
-type LEVELS = 'log' | 'warn' | 'error';
-let providerWarning: LEVELS | undefined = undefined;
-export const setEuiDevProviderWarning = (level: LEVELS | undefined) =>
-  (providerWarning = level);
-export const getEuiDevProviderWarning = () => providerWarning;
-
-export interface EuiThemeProviderProps<T> {
+export interface EuiThemeProviderProps<T> extends PropsWithChildren {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
   modify?: EuiThemeModifications<T>;
@@ -67,8 +64,13 @@ export const EuiThemeProvider = <T extends {} = {}>({
   modify: _modifications,
   children,
   wrapperProps,
-}: PropsWithChildren<EuiThemeProviderProps<T>>) => {
-  const { isGlobalTheme, bodyColor } = useContext(EuiNestedThemeContext);
+}: EuiThemeProviderProps<T>) => {
+  const {
+    isGlobalTheme,
+    bodyColor,
+    globalCSSVariables,
+    setGlobalCSSVariables,
+  } = useContext(EuiNestedThemeContext);
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -142,6 +144,13 @@ export const EuiThemeProvider = <T extends {} = {}>({
     }
   }, [colorMode, system, modifications]);
 
+  const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
+  const setThemeCSSVariables = useCallback(
+    (variables: CSSObject) =>
+      _setThemeCSSVariables((previous) => ({ ...previous, ...variables })),
+    []
+  );
+
   const nestedThemeContext = useMemo(() => {
     return {
       isGlobalTheme: false, // The theme that determines the global body styles
@@ -150,11 +159,29 @@ export const EuiThemeProvider = <T extends {} = {}>({
         ? false
         : bodyColor !== theme.colors.text,
       colorClassName: css`
-        label: euiColorMode-${_colorMode};
+        label: euiColorMode-${_colorMode || colorMode};
         color: ${theme.colors.text};
       `,
+      setGlobalCSSVariables: isGlobalTheme
+        ? setThemeCSSVariables
+        : setGlobalCSSVariables,
+      globalCSSVariables: isGlobalTheme
+        ? themeCSSVariables
+        : globalCSSVariables,
+      setNearestThemeCSSVariables: setThemeCSSVariables,
+      themeCSSVariables: themeCSSVariables,
     };
-  }, [theme, isGlobalTheme, bodyColor, _colorMode]);
+  }, [
+    theme,
+    isGlobalTheme,
+    bodyColor,
+    _colorMode,
+    colorMode,
+    setGlobalCSSVariables,
+    globalCSSVariables,
+    setThemeCSSVariables,
+    themeCSSVariables,
+  ]);
 
   const renderedChildren = useMemo(() => {
     if (isGlobalTheme) {
@@ -164,37 +191,52 @@ export const EuiThemeProvider = <T extends {} = {}>({
     const { cloneElement, className, ...rest } = wrapperProps || {};
     const props = {
       ...rest,
-      className: classNames(className, nestedThemeContext.colorClassName),
+      className: cx(className, nestedThemeContext.colorClassName),
     };
+    // Condition avoids rendering an empty Emotion selector if no
+    // theme-specific CSS variables have been set by child components
+    if (themeCSSVariables) {
+      props.css = { label: 'euiCSSVariables', ...themeCSSVariables };
+    }
 
     if (cloneElement) {
-      return React.cloneElement(children, {
+      return cloneElementWithCss(children, {
         ...props,
-        className: classNames(children.props.className, props.className),
+        className: cx(children.props.className, props.className),
       });
     } else {
       return (
-        <span
-          {...props}
-          className={classNames('euiThemeProvider', props.className)}
-        >
+        <span {...props} className={cx('euiThemeProvider', props.className)}>
           {children}
         </span>
       );
     }
-  }, [isGlobalTheme, nestedThemeContext, wrapperProps, children]);
+  }, [
+    isGlobalTheme,
+    themeCSSVariables,
+    nestedThemeContext,
+    wrapperProps,
+    children,
+  ]);
 
   return (
-    <EuiColorModeContext.Provider value={colorMode}>
-      <EuiSystemContext.Provider value={system}>
-        <EuiModificationsContext.Provider value={modifications}>
-          <EuiThemeContext.Provider value={theme}>
-            <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-              {renderedChildren}
-            </EuiNestedThemeContext.Provider>
-          </EuiThemeContext.Provider>
-        </EuiModificationsContext.Provider>
-      </EuiSystemContext.Provider>
-    </EuiColorModeContext.Provider>
+    <>
+      {isGlobalTheme && themeCSSVariables && (
+        <Global styles={{ ':root': themeCSSVariables }} />
+      )}
+      <EuiColorModeContext.Provider value={colorMode}>
+        <EuiSystemContext.Provider value={system}>
+          <EuiModificationsContext.Provider value={modifications}>
+            <EuiThemeContext.Provider value={theme}>
+              <EuiNestedThemeContext.Provider value={nestedThemeContext}>
+                <EuiEmotionThemeProvider>
+                  {renderedChildren}
+                </EuiEmotionThemeProvider>
+              </EuiNestedThemeContext.Provider>
+            </EuiThemeContext.Provider>
+          </EuiModificationsContext.Provider>
+        </EuiSystemContext.Provider>
+      </EuiColorModeContext.Provider>
+    </>
   );
 };

@@ -28,9 +28,11 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-import { useGeneratedHtmlId } from '../../../../src/services';
+import { useGeneratedHtmlId, useEuiTheme } from '../../../../src/services';
 
 const HeaderUpdates = () => {
+  const { euiTheme } = useEuiTheme();
+
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'newsFeedFlyout' });
@@ -216,7 +218,13 @@ const HeaderUpdates = () => {
       panelPaddingSize="none"
     >
       <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
-      <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
+      <div
+        style={{
+          maxHeight: '40vh',
+          overflowY: 'auto',
+          padding: euiTheme.size.s,
+        }}
+      >
         <EuiSpacer size="s" />
         {alerts.map((alert, i) => (
           <EuiHeaderAlert
@@ -278,14 +286,10 @@ const HeaderUserMenu = () => {
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}
-      panelPaddingSize="none"
+      panelPaddingSize="m"
     >
-      <div style={{ width: 320 }}>
-        <EuiFlexGroup
-          gutterSize="m"
-          className="euiHeaderProfile"
-          responsive={false}
-        >
+      <div style={{ width: 300 }}>
+        <EuiFlexGroup gutterSize="m" responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>
@@ -345,8 +349,8 @@ export default () => {
       <EuiSpacer />
 
       <EuiHeader position={position} theme={theme}>
-        <EuiHeaderSection grow={false}>
-          <EuiHeaderSectionItem border="right">
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>
             <EuiHeaderLogo>Elastic</EuiHeaderLogo>
           </EuiHeaderSectionItem>
         </EuiHeaderSection>

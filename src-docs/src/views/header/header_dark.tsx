@@ -28,7 +28,6 @@ export default () => {
               <EuiHeaderLink iconType="help"> Help</EuiHeaderLink>
             </EuiHeaderLinks>,
           ],
-          borders: 'right',
         },
         {
           items: [
@@ -49,7 +48,6 @@ export default () => {
               <EuiAvatar name="John Username" size="s" />
             </EuiHeaderSectionItemButton>,
           ],
-          borders: 'none',
         },
       ]}
     />

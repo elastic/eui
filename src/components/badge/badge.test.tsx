@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiBadge, COLORS, ICON_SIDES } from './badge';
 
@@ -24,23 +24,25 @@ describe('EuiBadge', () => {
   );
 
   test('is rendered', () => {
-    const component = render(<EuiBadge {...requiredProps}>Content</EuiBadge>);
+    const { container } = render(
+      <EuiBadge {...requiredProps}>Content</EuiBadge>
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is disabled', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge isDisabled {...requiredProps}>
         Content
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with onClick provided', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge
         {...requiredProps}
         onClick={jest.fn()}
@@ -50,21 +52,21 @@ describe('EuiBadge', () => {
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with href provided', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge {...requiredProps} href="/#/">
         Content
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with iconOnClick provided', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge
         {...requiredProps}
         iconOnClick={jest.fn()}
@@ -74,11 +76,11 @@ describe('EuiBadge', () => {
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with iconOnClick and onClick provided', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge
         {...requiredProps}
         iconOnClick={jest.fn()}
@@ -90,11 +92,11 @@ describe('EuiBadge', () => {
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with iconOnClick and href provided', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge
         {...requiredProps}
         iconOnClick={jest.fn()}
@@ -105,11 +107,11 @@ describe('EuiBadge', () => {
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with href and rel provided', () => {
-    const component = render(
+    const { container } = render(
       <EuiBadge
         {...requiredProps}
         iconOnClick={jest.fn()}
@@ -121,52 +123,56 @@ describe('EuiBadge', () => {
       </EuiBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(<EuiBadge iconType="user">Content</EuiBadge>);
+        const { container } = render(
+          <EuiBadge iconType="user">Content</EuiBadge>
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach((color) => {
         it(`${color} is rendered`, () => {
-          const component = render(<EuiBadge color={color}>Content</EuiBadge>);
+          const { container } = render(
+            <EuiBadge color={color}>Content</EuiBadge>
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
       it('accepts rgba', () => {
-        const component = render(
+        const { container } = render(
           <EuiBadge color="rgba(255,255,255,1)">Content</EuiBadge>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('accepts hex', () => {
-        const component = render(<EuiBadge color="#333">Content</EuiBadge>);
+        const { container } = render(<EuiBadge color="#333">Content</EuiBadge>);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('iconSide', () => {
       ICON_SIDES.forEach((iconSide) => {
         it(`${iconSide} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiBadge iconType="user" iconSide={iconSide}>
               Content
             </EuiBadge>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -175,31 +181,33 @@ describe('EuiBadge', () => {
       const style = { border: '4px solid tomato' };
 
       it('is rendered', () => {
-        const component = render(<EuiBadge style={style}>Content</EuiBadge>);
+        const { container } = render(
+          <EuiBadge style={style}>Content</EuiBadge>
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       COLORS.forEach((color) => {
         it(`is rendered with ${color}`, () => {
-          const component = render(
+          const { container } = render(
             <EuiBadge style={style} color={color}>
               Content
             </EuiBadge>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
       it('is rendered with hollow', () => {
-        const component = render(
+        const { container } = render(
           <EuiBadge style={style} color="hollow">
             Content
           </EuiBadge>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

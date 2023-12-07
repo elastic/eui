@@ -1,5 +1,17 @@
-import React, { FunctionComponent, ReactNode, useContext } from 'react';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useContext,
+} from 'react';
+import {
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  useLocation,
+  useRouteMatch,
+} from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
@@ -8,32 +20,32 @@ import {
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
-import { GuideSection } from '../guide_section/guide_section';
+import {
+  GuideSection,
+  GuideSectionProps,
+} from '../guide_section/guide_section';
 
-export type GuideTabbedPageProps = CommonProps & {
-  description?: ReactNode;
-  guidelines?: ReactNode;
-  history: any;
-  intro?: ReactNode;
-  isBeta?: boolean;
-  location: any;
-  match: any;
-  notice?: ReactNode;
-  pages?: any;
-  rightSideItems?: ReactNode[];
-  showThemeLanguageToggle?: boolean;
-  tabs?: any;
-  title: string;
-};
+export type GuideTabbedPageProps = PropsWithChildren &
+  CommonProps & {
+    description?: ReactNode;
+    guidelines?: ReactNode;
+    intro?: ReactNode;
+    isBeta?: boolean;
+    isNew?: boolean;
+    notice?: ReactNode;
+    pages?: any;
+    rightSideItems?: ReactNode[];
+    showThemeLanguageToggle?: boolean;
+    tabs?: any;
+    title: string;
+  };
 
-const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
+export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
   description,
   guidelines,
-  history,
   intro,
   isBeta,
-  location,
-  match,
+  isNew,
   notice,
   pages,
   rightSideItems: _rightSideItems,
@@ -42,16 +54,23 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   title,
   children,
 }) => {
+  const history = useHistory();
+  const location = useLocation();
+  const match = useRouteMatch();
+
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const betaBadge =
+  const headerBadge =
     isBeta || (showThemeLanguageToggle && !showSass) ? (
       <EuiBetaBadge
         label="Beta"
+        color="accent"
         tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
       />
+    ) : isNew ? (
+      <EuiBetaBadge label="New" color="accent" />
     ) : undefined;
 
   let tabs:
@@ -110,11 +129,20 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
           />
         );
       } else {
-        const PageComponent = page.page;
+        let rendered: ReactNode;
+
+        if (page.page) {
+          const PageComponent = page.page;
+          rendered = <PageComponent showSass={showSass} />;
+        } else {
+          rendered = page.sections.map((sectionProps: GuideSectionProps) => (
+            <GuideSection {...sectionProps} />
+          ));
+        }
 
         return (
           <Route key={pathname} path={`${match.path}/${id}`}>
-            <PageComponent showSass={showSass} />
+            {rendered}
           </Route>
         );
       }
@@ -186,7 +214,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         paddingSize="l"
         pageTitle={
           <>
-            {title} {betaBadge}
+            {title} {headerBadge}
           </>
         }
         tabs={renderTabs()}
@@ -201,5 +229,3 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     </>
   );
 };
-
-export const GuideTabbedPage = withRouter(GuideTabbedPageComponent);

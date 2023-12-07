@@ -10,9 +10,11 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useRef, useState } from 'react';
-import { EuiFocusTrap } from './focus_trap';
+import React, { ComponentType, useRef, useState } from 'react';
+
 import { EuiPortal } from '../portal';
+
+import { EuiFocusTrap } from './focus_trap';
 
 describe('EuiFocusTrap', () => {
   describe('focus', () => {
@@ -161,78 +163,70 @@ describe('EuiFocusTrap', () => {
   });
 
   describe('outside click handling', () => {
-    const Trap = ({
-      onClickOutside,
-      shards,
-      closeOnMouseup,
-    }: {
-      onClickOutside?: any;
+    // For some reason using FunctionComponent with inline props type
+    // definition here causes cypress to crash
+    let Trap: ComponentType<{
       shards?: boolean;
       closeOnMouseup?: boolean;
-    }) => {
-      const buttonRef = useRef(null);
-      return (
-        <div>
-          <EuiFocusTrap
-            onClickOutside={onClickOutside}
-            shards={shards ? [buttonRef] : []}
-            closeOnMouseup={closeOnMouseup}
-          >
-            <div data-test-subj="container">
-              <input data-test-subj="input" />
-              <input data-test-subj="input2" />
-            </div>
-          </EuiFocusTrap>
-          <button ref={buttonRef} data-test-subj="outside">
-            outside the focus trap
-          </button>
-          <button data-test-subj="outside2">also outside the focus trap</button>
-        </div>
-      );
-    };
+    }>;
+
+    beforeEach(() => {
+      const onClickOutside = cy.stub().as('onClickOutside');
+
+      Trap = ({ shards, closeOnMouseup }) => {
+        const buttonRef = useRef(null);
+        return (
+          <div>
+            <EuiFocusTrap
+              onClickOutside={onClickOutside}
+              shards={shards ? [buttonRef] : []}
+              closeOnMouseup={closeOnMouseup}
+            >
+              <div data-test-subj="container">
+                <input data-test-subj="input" />
+                <input data-test-subj="input2" />
+              </div>
+            </EuiFocusTrap>
+            <button ref={buttonRef} data-test-subj="outside">
+              outside the focus trap
+            </button>
+            <button data-test-subj="outside2">
+              also outside the focus trap
+            </button>
+          </div>
+        );
+      };
+    });
 
     it('calls the callback on mousedown', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} />);
+      cy.mount(<Trap />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside]').should('be.visible').realMouseDown();
+      cy.get('@onClickOutside').should('be.called');
     });
 
     it('calls the callback on mouseup when using closeOnMouseup', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} closeOnMouseup />);
+      cy.mount(<Trap closeOnMouseup />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.not.be.called;
-        });
-      cy.get('[data-test-subj=outside]')
-        .click() // real events not  working here
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('not.be.called');
+
+      cy.get('[data-test-subj=outside]').click(); // real events not  working here
+      cy.get('@onClickOutside').should('be.called');
     });
 
     it('does not call the callback if the element is a shard', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} shards />);
+      cy.mount(<Trap shards />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.not.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('not.be.called');
+
       // But still calls if the element is not a shard
-      cy.get('[data-test-subj=outside2]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside2]').realMouseDown();
+      cy.get('@onClickOutside').should('be.called');
     });
   });
 
@@ -355,6 +349,25 @@ describe('EuiFocusTrap', () => {
 
       it('allows customizing gapMode', () => {
         cy.realMount(<ToggledFocusTrap gapMode="margin" />);
+        skipIfNoScrollbars();
+        cy.get('[data-test-subj="openFocusTrap"]').click();
+
+        cy.get('body').then(($body) => {
+          const styles = window.getComputedStyle($body[0]);
+
+          const margin = parseFloat(styles.getPropertyValue('margin-right'));
+          expect(margin).to.be.gt(0);
+
+          expect(styles.getPropertyValue('padding-right')).to.equal('0px');
+        });
+      });
+
+      it('allows customizing gapMode via EuiProvider.componentDefaults', () => {
+        cy.mount(<ToggledFocusTrap />, {
+          providerProps: {
+            componentDefaults: { EuiFocusTrap: { gapMode: 'margin' } },
+          },
+        });
         skipIfNoScrollbars();
         cy.get('[data-test-subj="openFocusTrap"]').click();
 

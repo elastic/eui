@@ -1,6 +1,7 @@
-import { mount } from 'cypress/react';
 import { ContextObject, Result, RunOptions } from 'axe-core';
 import { realPress } from 'cypress-real-events/commands/realPress';
+import type { mountCommand } from './setup/mount';
+import type { realMountCommand } from './setup/realMount';
 
 type KeyOrShortcut = Parameters<typeof realPress>[0];
 type RealPressOptions = Parameters<typeof realPress>[1];
@@ -30,13 +31,13 @@ declare global {
       /**
        * Mounts components with a basic `EuiProvider` wrapper
        */
-      mount: typeof mount;
+      mount: mountCommand;
 
       /**
        * This ensures the correct testing window has focus when using Cypress Real Events.
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196
        */
-      realMount: typeof mount;
+      realMount: realMountCommand;
 
       /**
        * Repeat the Real Events `realPress()` method 2 or more times

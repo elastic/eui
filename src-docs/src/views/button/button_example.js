@@ -101,12 +101,6 @@ const splitButtonSnippet = [
 </EuiFlexGroup>`,
 ];
 
-import ButtonGhost from './button_ghost';
-const buttonGhostSource = require('!!raw-loader!./button_ghost');
-const buttonGhostSnippet = `<EuiButton color="ghost">
-  <!-- Button text -->
-</EuiButton>`;
-
 import ButtonAsLink from './button_as_link';
 const buttonAsLinkSource = require('!!raw-loader!./button_as_link');
 const buttonAsLinkSnippet = `<EuiButton href={someUrl}><!-- Button text --></EuiButton>
@@ -702,35 +696,6 @@ export const ButtonExample = {
       snippet: buttonGroupCompressedSnippet,
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
       demoPanelProps: { color: 'subdued' },
-    },
-    {
-      title: 'Ghost vs. dark mode',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonGhostSource,
-        },
-      ],
-      text: (
-        <p>
-          For buttons on dark color backgrounds, it is recommended to wrap the
-          entire area in{' '}
-          <EuiCode language="js">
-            {'<EuiThemeProvider colorMode="dark">'}
-          </EuiCode>{' '}
-          to invert all colors to dark mode. The legacy{' '}
-          <EuiCode language="js">{'color="ghost"'}</EuiCode> now uses this
-          method and is set for deprecation. An example usage of inverted
-          buttons is in combination with{' '}
-          <Link to="/layout/bottom-bar">
-            <strong>EuiBottomBar</strong>
-          </Link>{' '}
-          which already wraps its children in dark mode.
-        </p>
-      ),
-      snippet: buttonGhostSnippet,
-      demo: <ButtonGhost />,
-      demoPanelProps: { paddingSize: 'none' },
     },
   ],
   guidelines: <Guidelines />,

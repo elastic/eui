@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { DraggableLocation } from 'react-beautiful-dnd';
+import { DraggableLocation } from '@hello-pangea/dnd';
 
 interface DropResult {
   [droppableId: string]: any[];

@@ -8,12 +8,10 @@
 
 import React, {
   FunctionComponent,
-  useState,
   useMemo,
   useEffect,
   MouseEventHandler,
   HTMLAttributes,
-  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
@@ -38,12 +36,13 @@ export interface EuiRangeTrackProps
     _SharedRangeDataStructures,
     Pick<_SharedRangeVisualConfiguration, 'showTicks' | 'showRange'>,
     Pick<_SharedRangeInputProps, 'compressed' | 'disabled'> {
+  trackWidth: number;
   onChange?: MouseEventHandler<HTMLButtonElement>;
-  children?: ReactNode | ((trackWidth: number) => React.ReactNode);
 }
 
 export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
   children,
+  trackWidth,
   disabled,
   max,
   min,
@@ -92,14 +91,12 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     }
 
     // Error out if there are too many ticks to render
-    if (sequence.length > 20) {
-      throw new Error(
-        `The number of ticks to render is too high (${sequence.length}), reduce the interval.`
-      );
+    if (trackWidth && sequence.length) {
+      validateTickRenderCount(trackWidth, sequence.length);
     }
 
     return sequence;
-  }, [showTicks, ticks, min, max, tickInterval, step]);
+  }, [showTicks, ticks, min, max, tickInterval, step, trackWidth]);
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeTrackStyles(euiTheme);
@@ -110,19 +107,10 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     showTicks && (tickSequence || ticks) && styles.hasTicks,
   ];
 
-  const [trackWidth, setTrackWidth] = useState(0);
-
   const classes = classNames('euiRangeTrack', className);
 
   return (
-    <div
-      className={classes}
-      css={cssStyles}
-      {...rest}
-      ref={(node: HTMLDivElement | null) => {
-        setTrackWidth(node?.clientWidth ?? 0);
-      }}
-    >
+    <div className={classes} css={cssStyles} {...rest}>
       {levels && !!levels.length && (
         <EuiRangeLevels
           levels={levels}
@@ -147,7 +135,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
           trackWidth={trackWidth}
         />
       )}
-      {typeof children === 'function' ? children(trackWidth) : children}
+      {children}
     </div>
   );
 };
@@ -174,4 +162,20 @@ const validateValueIsInStep = (
   }
   // Return the value if nothing fails
   return value;
+};
+
+const validateTickRenderCount = (trackWidth: number, tickCount: number) => {
+  const tickWidth = trackWidth / tickCount;
+
+  // These widths are guesstimations - it's possible we should use actual label content/widths instead
+  const COMFORTABLE_TICK_WIDTH = 20; // Set a warning threshold before throwing
+  const MIN_TICK_WIDTH = 5; // If ticks are smaller than this, something's gone seriously wrong and we should throw
+
+  const message = `The number of ticks to render (${tickCount}) is too high for the range width. Ensure all ticks are visible on the page at multiple screen widths, or use EUI's breakpoint hook utilities to reduce the tick interval responsively.`;
+
+  if (tickWidth <= MIN_TICK_WIDTH) {
+    throw new Error(message);
+  } else if (tickWidth < COMFORTABLE_TICK_WIDTH) {
+    console.warn(message);
+  }
 };

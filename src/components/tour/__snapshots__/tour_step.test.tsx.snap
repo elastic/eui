@@ -2,16 +2,12 @@
 
 exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -25,7 +21,7 @@ exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = 
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
@@ -100,31 +96,23 @@ exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = 
 
 exports[`EuiTourStep can be closed 1`] = `
 <div
-  class="euiPopover emotion-euiPopover"
+  class="euiPopover emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
 </div>
 `;
 
 exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -138,7 +126,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
@@ -183,14 +171,14 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>
@@ -213,16 +201,12 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 
 exports[`EuiTourStep can have subtitle 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -236,7 +220,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
@@ -286,14 +270,14 @@ exports[`EuiTourStep can have subtitle 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>
@@ -316,16 +300,12 @@ exports[`EuiTourStep can have subtitle 1`] = `
 
 exports[`EuiTourStep can override the footer action 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -339,7 +319,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
@@ -403,16 +383,12 @@ exports[`EuiTourStep can override the footer action 1`] = `
 
 exports[`EuiTourStep can turn off the beacon 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -426,7 +402,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
@@ -466,14 +442,14 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>
@@ -496,16 +472,12 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
 
 exports[`EuiTourStep is rendered 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
   data-test-subj="test subject string"
 >
-  <div
-    class="euiPopover__anchor css-16vtueo-render"
-  >
-    <span>
-      Test
-    </span>
-  </div>
+  <span>
+    Test
+  </span>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -519,7 +491,7 @@ exports[`EuiTourStep is rendered 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
@@ -564,14 +536,14 @@ exports[`EuiTourStep is rendered 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>

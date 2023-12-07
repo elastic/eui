@@ -8,12 +8,18 @@ import {
   EuiCodeBlock,
   EuiLink,
   EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { GuideSectionPropsTable } from '../../components/guide_section/guide_section_parts/guide_section_props_table';
 
 import Setup from './provider_setup';
 import GlobalStyles from './provider_styles';
+import Warnings from './provider_warning';
+import {
+  EuiComponentDefaultsProps,
+  euiProviderComponentDefaultsSnippet,
+} from './provider_component_defaults';
 
 export const ProviderExample = {
   title: 'Provider',
@@ -21,12 +27,9 @@ export const ProviderExample = {
     <EuiText>
       <p>
         <strong>EuiProvider</strong> contains all necessary context providers
-        required for full functionality and styling of EUI. It currently
-        includes the{' '}
-        <Link to="/theming/theme-provider">
-          <strong>EuiThemeProvider</strong>
-        </Link>{' '}
-        for theming and writing custom styles.
+        required for full functionality and styling of EUI. A single instance of{' '}
+        <strong>EuiProvider</strong> should exist at the top level of your app,
+        where functionality will flow down the component tree.
       </p>
     </EuiText>
   ),
@@ -37,67 +40,97 @@ export const ProviderExample = {
         <EuiText>
           <p>
             For EUI to work correctly, set up <strong>EuiProvider</strong> at
-            the root of your application.
+            the root of your application:
           </p>
 
           <Setup />
 
           <p>
-            See{' '}
-            <EuiLink href="#/theming/theme-provider">
-              <strong>EuiThemeProvider</strong>
-            </EuiLink>{' '}
-            for full documentation as all relevant props will pass through. For
-            instance, it&apos;s likely that you will want to implement color
-            mode switching at this level:
-          </p>
-
-          <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
-            {"<EuiProvider colorMode={isDark ? 'dark' : 'light'} />"}
-          </EuiCodeBlock>
-
-          <EuiSpacer size="s" />
-
-          <p>
-            It is not recommended to recreate the functionality of{' '}
-            <strong>EuiProvider</strong> by composing its constituent parts.
-            More context, functionality, and configurations will be added to{' '}
-            <strong>EuiProvider</strong> in future releases. Nested instances of{' '}
-            <EuiLink href="#/theming/theme-provider">
-              <strong>EuiThemeProvider</strong>
-            </EuiLink>
-            , however, are valid.
+            <strong>EuiProvider</strong> includes global reset and utilites
+            styles and other app-wide contexts, functionality, and configuration
+            options. It should only be instantiated <strong>once</strong>. This
+            requirement is enforced internally - if another nested instance of{' '}
+            <strong>EuiProvider</strong> is detected, that instance will return
+            early without further processing, and will{' '}
+            <Link to="#enforce-usage">warn if configured to do so</Link>. Nested
+            instances of <strong>EuiThemeProvider</strong>, however, are valid.
           </p>
         </EuiText>
       ),
     },
     {
-      title: 'Global styles',
+      title: 'Theming and global styles',
       text: (
         <EuiText>
           <p>
-            The provider includes general reset and global styles, applied via
-            Emotion. These only need to be applied <strong>once</strong> so to
-            prevent these styles from loading in nested instances of the
-            provider, pass
-            <EuiCode>{'globalStyles={false}'}</EuiCode>.
+            To customize the global theme of your app, use the{' '}
+            <EuiCode>theme</EuiCode>, <EuiCode>colorMode</EuiCode>, and{' '}
+            <EuiCode>modify</EuiCode> props (documented in{' '}
+            <Link to="/theming/theme-provider">
+              <strong>EuiThemeProvider</strong>
+            </Link>
+            ). For instance, it&apos;s likely that you will want to implement
+            color mode switching at the top level:
           </p>
 
-          <h3>
-            <EuiCode>@emotion/cache</EuiCode> and style injection location
-          </h3>
+          <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
+            {"<EuiProvider colorMode={isDark ? 'dark' : 'light'} />"}
+          </EuiCodeBlock>
+          <EuiSpacer />
+
           <p>
-            In the case that your app has its own static stylesheet,{' '}
-            <EuiCode>@emotion</EuiCode> styles may not be injected into the
-            correct location in the <EuiCode>{'<head>'}</EuiCode>, causing
-            unintentional overrides or unapplied styles.{' '}
-            <EuiLink href="https://emotion.sh/docs/@emotion/cache" external>
-              The <strong>@emotion/cache</strong> library
-            </EuiLink>{' '}
-            provides configuration options that help with specifying the
-            injection location. We recommend using <EuiCode>{'<meta>'}</EuiCode>{' '}
-            tags to achieve this.
+            If you do not wish your app to include EUI's default global reset
+            CSS or{' '}
+            <Link to="/utilities/css-utility-classes">utility CSS classes</Link>
+            , this is configurable via the <EuiCode>globalStyles</EuiCode> or{' '}
+            <EuiCode>utilityClasses</EuiCode> props. You can either pass in your
+            own as a React component returning an{' '}
+            <EuiLink href="https://emotion.sh/docs/globals" target="_blank">
+              Emotion Global
+            </EuiLink>
+            , or remove them completely by setting the props to{' '}
+            <EuiCode>false</EuiCode>:
           </p>
+
+          <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
+            {'<EuiProvider globalStyles={false} utilityClasses={false} />'}
+          </EuiCodeBlock>
+
+          <h3 id="cache-customization">@emotion/cache customization</h3>
+          <p>
+            The{' '}
+            <EuiLink
+              href="https://emotion.sh/docs/@emotion/cache"
+              target="_blank"
+            >
+              <strong>@emotion/cache</strong> library
+            </EuiLink>{' '}
+            provides extra configuration options for EUI's CSS-in-JS behavior:
+          </p>
+          <ul>
+            <li>
+              <strong>Browser prefixing</strong>: By default, EUI uses CSS
+              browser prefixes based on our{' '}
+              <EuiLink
+                href="https://www.elastic.co/support/matrix#matrix_browsers"
+                target="_blank"
+              >
+                supported browsers matrix
+              </EuiLink>{' '}
+              (latest evergreen only). Should you need to customize this, you
+              can pass in your own prefix plugin via the{' '}
+              <EuiCode>stylisPlugins</EuiCode> option.
+              <EuiSpacer size="s" />
+            </li>
+            <li>
+              <strong>Injection location</strong>: In the case that your app has
+              its own static stylesheet, Emotion's styles may not be injected
+              into the correct location in the <EuiCode>{'<head>'}</EuiCode>,
+              causing unintentional overrides or unapplied styles. You can use
+              the <EuiCode>container</EuiCode> option and{' '}
+              <EuiCode>{'<meta>'}</EuiCode> tags to achieve this.
+            </li>
+          </ul>
 
           <GlobalStyles />
 
@@ -108,10 +141,8 @@ export const ProviderExample = {
             <EuiCode>utility</EuiCode> properties on the{' '}
             <EuiCode>cache</EuiCode> prop to further define where specific
             styles should be inserted. See{' '}
-            <EuiLink href="#/utilities/provider#euiprovider-props">
-              the props documentation
-            </EuiLink>{' '}
-            for details.
+            <Link to="#euiprovider-props">the props documentation</Link> for
+            details.
           </p>
 
           <p>
@@ -122,14 +153,70 @@ export const ProviderExample = {
             >
               the <strong>createCache</strong> API
             </EuiLink>{' '}
-            will be respected by EUI.
+            will be respected by EUI. Note that EUI does not include the{' '}
+            <EuiCode>@emotion/cache</EuiCode> library, so you will need to add
+            it to your application dependencies.
           </p>
+        </EuiText>
+      ),
+    },
+    {
+      title: 'Component defaults',
+      isBeta: true,
+      text: (
+        <EuiText>
+          <EuiCallOut title="Beta status" iconType="beta">
+            <p>
+              This functionality is still currently in beta, and the list of
+              components as well as defaults that EUI will be supporting is
+              still under consideration. If you have a component you would like
+              to see added, feel free to{' '}
+              <EuiLink
+                href="https://github.com/elastic/eui/discussions/6922"
+                target="_blank"
+              >
+                discuss that request in EUI's GitHub repo
+              </EuiLink>
+              .
+            </p>
+          </EuiCallOut>
+          <EuiSpacer />
 
           <p>
-            Note that EUI does not include the <EuiCode>@emotion/cache</EuiCode>{' '}
-            library, so you will need to add it to your application
-            dependencies.
+            All EUI components ship with a set of baseline defaults that can
+            usually be configured via props. For example,{' '}
+            <Link to="/utilities/focus-trap">
+              <strong>EuiFocusTrap</strong>
+            </Link>{' '}
+            defaults to <EuiCode>crossFrame={'{false}'}</EuiCode> - i.e., it
+            does not trap focus between iframes. If you wanted to change that
+            behavior in your app across all instances of{' '}
+            <strong>EuiFocusTrap</strong>, you would be stuck manually passing
+            that prop over and over again, including in higher-level components
+            (like modals, popovers, and flyouts) that utilize focus traps.
           </p>
+          <p>
+            <strong>EuiProvider</strong> allows overriding some component
+            defaults across all component usages globally via the{' '}
+            <EuiCode>componentDefaults</EuiCode> prop like so:
+          </p>
+
+          <EuiCodeBlock language="jsx" isCopyable fontSize="m">
+            {euiProviderComponentDefaultsSnippet}
+          </EuiCodeBlock>
+
+          <p>
+            The above example would override EUI's default table pagination size
+            (50) across all usages of EUI tables and data grids, all EUI focus
+            traps would trap focus even from iframes, and all EUI portals would
+            be inserted at a specified position (instead of the end of the
+            document body).
+          </p>
+          <p>
+            The current list of supported components and the prop defaults they
+            accept are:
+          </p>
+          <GuideSectionPropsTable component={EuiComponentDefaultsProps} />
         </EuiText>
       ),
     },
@@ -139,12 +226,18 @@ export const ProviderExample = {
         <EuiText>
           <p>
             For complex applications with multiple mount points or template
-            wrappers, it may be beneficial to enable logging when components do
-            not have access to a parent <EuiCode>EuiProvider</EuiCode>.
+            wrappers, it may be beneficial to enable logging. Doing so will
+            allow you to see warnings for duplicate{' '}
+            <strong>EuiProviders</strong>, as well as when components do not
+            have access to a parent <strong>EuiProvider</strong>. To enable
+            logging or erroring, use <EuiCode>setEuiDevProviderWarning</EuiCode>
+            :
           </p>
+
+          <Warnings />
+
           <p>
-            <EuiCode>setEuiDevProviderWarning</EuiCode> is a function that will
-            enable adding logging or erroring if the Provider is missing. It
+            <EuiCode>setEuiDevProviderWarning</EuiCode>
             accepts three levels:
           </p>
           <ul>
@@ -157,7 +250,7 @@ export const ProviderExample = {
               <EuiCode>console.warn</EuiCode>
             </li>
             <li>
-              <EuiCode>&apos;error&apos;</EuiCode>: <EuiCode>Throw</EuiCode> an
+              <EuiCode>&apos;error&apos;</EuiCode>: <EuiCode>Throw</EuiCode>s an
               exception
             </li>
           </ul>

@@ -11,20 +11,14 @@ import {
   euiFontSize,
   euiTextBreakWord,
   logicalTextAlignCSS,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
   logicalCSS,
 } from '../../global_styling';
-import { tint, UseEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
-  const columnDisplay = `
-  ${logicalCSS('width', '50%')}
-    ${logicalCSS('padding-right', euiTheme.size.s)}
-  `;
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()}
@@ -32,29 +26,20 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Types
     row: css``,
-    column: css`
-      ${columnDisplay}
-    `,
-    responsiveColumn: css`
-      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        ${logicalCSS('width', '100%')}
-        padding: 0;
-      }
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        ${columnDisplay}
-      }
-    `,
+    column: css``,
     inline: css`
       display: inline;
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.medium};
       background-color: ${colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.5)
+        ? euiTheme.colors.lightShade
         : euiTheme.colors.lightestShade};
       ${logicalCSS('margin-vertical', '0')}
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
 
-      // Make sure the first <dt> doesn't get a margin.
+       ${colorMode === 'DARK' && `color: ${euiTheme.colors.title};`}
+
+      /* Make sure the first <dt> doesn't get a margin */
       &:first-of-type {
         ${logicalCSS('margin-left', '0')}
       }
@@ -63,10 +48,10 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
       normal: css`
-        ${euiTitle(euiThemeContext, 'xs')};
+        ${euiTitle(euiThemeContext, 'xs')}
       `,
       reverse: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiFontSize(euiThemeContext, 's')}
       `,
       compressed: css`
         ${euiTitle(euiThemeContext, 'xxs')}
@@ -76,12 +61,13 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // Inline types
     inlineStyles: {
       normal: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiFontSize(euiThemeContext, 's')}
         ${logicalCSS('padding-vertical', '1px')}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
       compressed: css`
-        ${euiFontSize(euiThemeContext, 'xs')};
+        font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+        line-height: ${euiTheme.font.lineHeightMultiplier};
         ${logicalCSS('padding-vertical', '0')}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
@@ -89,7 +75,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Alignment
     right: css`
-      ${logicalTextAlignCSS('right')};
+      ${logicalTextAlignCSS('right')}
     `,
 
     // Gutter

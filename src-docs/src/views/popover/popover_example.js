@@ -364,19 +364,20 @@ export const PopoverExample = {
           <p>
             <strong>EuiInputPopover</strong> is a specialized popover component
             intended to be used with form elements. Stylistically, the popover
-            panel is
-            {'"attached"'} to the input. Functionally, consumers have control
-            over what events open and close the popover, and it can allow for
-            natural tab order.
+            panel is {'"attached"'} to the input. As a result, the popover will
+            always try to set its width to match the width of the input,
+            although this can be configured via <EuiCode>panelMinWidth</EuiCode>
+            .
           </p>
           <p>
-            Although some assumptions are made about keyboard behavior,
-            consumers should provide specific key event handlers depending on
-            the use case. For instance, a <EuiCode>type=text</EuiCode> input
-            could use the down key to trigger popover opening, but this
-            interaction would not be appropriate for{' '}
-            <EuiCode>type=number</EuiCode> inputs as they natively bind to the
-            down key.
+            Functionally, consumers have control over what events open and close
+            the popover, and it can allow for natural tab order. Although some
+            assumptions are made about keyboard behavior, consumers should
+            provide specific key event handlers depending on the use case. For
+            instance, a <EuiCode>type=text</EuiCode> input could use the down
+            key to trigger popover opening, but this interaction would not be
+            appropriate for <EuiCode>type=number</EuiCode> inputs as they
+            natively bind to the down key.
           </p>
         </>
       ),

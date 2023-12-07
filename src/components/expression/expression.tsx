@@ -148,13 +148,9 @@ export const EuiExpression: FunctionComponent<
 
   const Component = onClick ? 'button' : 'span';
 
-  const descriptionStyle = descriptionProps && descriptionProps.style;
   const customWidth =
     display === 'columns' && descriptionWidth
-      ? {
-          flexBasis: descriptionWidth,
-          ...descriptionStyle,
-        }
+      ? { flexBasis: descriptionWidth }
       : undefined;
 
   const invalidIcon = isInvalid ? (
@@ -169,18 +165,21 @@ export const EuiExpression: FunctionComponent<
   return (
     <Component css={cssStyles} className={classes} onClick={onClick} {...rest}>
       <span
-        className="euiExpression__description"
-        css={cssDescriptionStyles}
-        style={customWidth}
         {...descriptionProps}
+        className={classNames(
+          'euiExpression__description',
+          descriptionProps?.className
+        )}
+        css={[...cssDescriptionStyles, descriptionProps?.css]}
+        style={{ ...customWidth, ...descriptionProps?.style }}
       >
         {description}
       </span>{' '}
       {value && (
         <span
-          className="euiExpression__value"
-          css={cssValueStyles}
           {...valueProps}
+          className={classNames('euiExpression__value', valueProps?.className)}
+          css={[...cssValueStyles, valueProps?.css]}
         >
           {value}
         </span>

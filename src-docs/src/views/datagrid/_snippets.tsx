@@ -64,13 +64,13 @@ inMemory={{ level: 'sorting' }}`,
     'renderFooterCellValue={({ rowIndex, columnId }) => {}}',
   renderCustomGridBody: `// Optional; advanced usage only. This render function is an escape hatch for consumers who need to opt out of virtualization or otherwise need total custom control over how data grid cells are rendered.
 
-renderCustomDataGridBody={({ visibleColumns, visibleRowData, Cell }) => (
+renderCustomGridBody={({ visibleColumns, visibleRowData, Cell }) => (
   <Cell colIndex={mappedFromVisibleColumns} visibleRowIndex={mappedFromVisibleRowData} />
 )}`,
   pagination: `pagination={{
   pageIndex: 1,
-  pageSize: 100,
-  pageSizeOptions: [50, 100, 200],
+  pageSize: 100, // If not specified, defaults to EuiTablePagination.itemsPerPage
+  pageSizeOptions: [50, 100, 200], // If not specified, defaults to EuiTablePagination.itemsPerPageOptions
   onChangePage: () => {},
   onChangeItemsPerPage: () => {},
 }}`,

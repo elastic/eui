@@ -1,6 +1,6 @@
 /**
- * This script collates all files in the `upcoming_changelogs/` directory
- * into the CHANGELOG.md file under the latest release version
+ * This script collates all files in the `changelogs/upcoming/` directory
+ * into the latest year's changelog file under the latest release version
  */
 
 const path = require('path');
@@ -12,6 +12,7 @@ const { execSync } = require('child_process');
 
 // Helpers
 const rootDir = path.resolve(__dirname, '..');
+const changelogDir = rootDir + '/changelogs';
 
 const throwError = (error) => {
   console.error(chalk.red(error));
@@ -22,16 +23,14 @@ const throwError = (error) => {
  * Convert individual changelog files into a single changelog string
  */
 const collateChangelogFiles = () => {
-  const upcomingChangelogsDir = path.resolve(rootDir, 'upcoming_changelogs');
+  const upcomingChangelogsDir = path.resolve(changelogDir, 'upcoming');
   const upcomingChangelogFiles = glob.sync('**.md', {
     cwd: upcomingChangelogsDir,
     realpath: true,
     ignore: ['_template.md'],
   });
   if (!upcomingChangelogFiles.length) {
-    throwError(
-      'Cannot update CHANGELOG.md - No upcoming changelog files exist'
-    );
+    throwError('Cannot update changelog - No upcoming changelog files exist');
   }
 
   /**
@@ -108,80 +107,66 @@ const collateChangelogFiles = () => {
 };
 
 /**
- * Write to CHANGELOG.md, delete individual upcoming changelog files, & stage changes
+ * Write to latest year's changelog file, delete individual upcoming changelog files, & stage changes
  */
-const updateChangelog = (upcomingChangelog, versionTarget) => {
+const updateChangelog = (upcomingChangelog, version) => {
   if (!upcomingChangelog) {
-    throwError('Cannot update CHANGELOG.md - no changes found');
+    throwError('Cannot update changelog - no changes found');
   }
 
-  const pathToChangelog = path.resolve(rootDir, 'CHANGELOG.md');
-  const changelogArchive = fs.readFileSync(pathToChangelog).toString();
+  const year = new Date().getUTCFullYear();
+  const pathToChangelog = path.resolve(changelogDir, `CHANGELOG_${year}.md`);
+  updateChangelogYears(year);
 
-  const version = getUpcomingVersion(versionTarget);
-  const latestVersionHeading = `## [\`${version}\`](https://github.com/elastic/eui/tree/v${version})`;
+  let changelogArchive = '';
+  try {
+    changelogArchive = fs.readFileSync(pathToChangelog).toString();
+  } catch {}
+
+  let latestVersionHeading = `## [\`v${version}\`](https://github.com/elastic/eui/releases/v${version})`;
+  if (version.includes('-backport')) {
+    latestVersionHeading +=
+      '\n\n**This is a backport release only intended for use by Kibana.**';
+  } else if (version.includes('-rc')) {
+    latestVersionHeading +=
+      '\n\n**This is a prerelease candidate not intended for public use.**';
+  }
 
   if (changelogArchive.startsWith(latestVersionHeading)) {
-    throwError('Cannot update CHANGELOG.md - already on latest version');
+    throwError('Cannot update changelog - already on latest version');
   }
 
   const updatedChangelog = `${latestVersionHeading}\n\n${upcomingChangelog}\n\n${changelogArchive}`;
   fs.writeFileSync(pathToChangelog, updatedChangelog);
 
   // Delete upcoming changelogs
-  rimraf.sync('upcoming_changelogs/!(_template).md');
+  rimraf.sync('changelogs/upcoming/!(_template).md');
 
-  execSync('git add CHANGELOG.md upcoming_changelogs/');
-  execSync('git commit -m "Updated changelog." -n');
+  execSync('git add changelogs/');
 };
 
 /**
- * Get the current EUI version and increment it based on the
- * user-input versionTarget (major/minor/patch)
+ * Automatically update the docs' site array of changelog years
+ * whenever a new year changelog file is added
  */
-const getUpcomingVersion = (versionTarget) => {
-  const pathToPackage = path.resolve(rootDir, 'package.json');
-  const { version } = require(pathToPackage);
-  let [major, minor, patch] = version.split('.').map(Number);
-  switch (versionTarget) {
-    case 'major':
-      major += 1;
-      minor = 0;
-      patch = 0;
-      break;
-    case 'minor':
-      minor += 1;
-      patch = 0;
-      break;
-    case 'patch':
-      patch += 1;
-      break;
+const changelogYears =
+  rootDir + '/src-docs/src/views/package/changelog_years.json';
+
+const updateChangelogYears = (year) => {
+  const { years } = JSON.parse(fs.readFileSync(changelogYears).toString());
+
+  if (!years.includes(year)) {
+    console.log(
+      chalk.magenta(`Adding new changelog year ${year} to docs site`)
+    );
+    years.unshift(year);
+    fs.writeFileSync(changelogYears, JSON.stringify({ years }, null, 2));
+    execSync(`git add ${changelogYears}`);
   }
-  return [major, minor, patch].join('.');
-};
-
-/**
- * Command to manually update the changelog (standalone from release.js).
- * Primarily used for backports. Usage from project root:
- *
- * npm run update-changelog-manual --release=patch|minor|major (must be `npm` and not `yarn` to specify the release arg)
- * OR
- * node -e "require('./scripts/update-changelog').manualChangelog('patch|minor|major')"
- */
-const manualChangelog = (release) => {
-  versionTarget = release || 'patch'; // Unfortunately can't be a = fallback, because the package.json script passes an empty string
-  console.log(
-    chalk.magenta(
-      `Manually updating CHANGELOG.md to next ${versionTarget} version.`
-    )
-  );
-  const { changelog } = collateChangelogFiles();
-  updateChangelog(changelog, versionTarget);
 };
 
 module.exports = {
   collateChangelogFiles,
   updateChangelog,
-  getUpcomingVersion,
-  manualChangelog,
+  updateChangelogYears,
 };

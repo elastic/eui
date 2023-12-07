@@ -2,8 +2,6 @@ import React, { createElement, Fragment } from 'react';
 
 import { slugify } from '../../src/services';
 
-import { createHashHistory } from 'history';
-
 import { GuideSection, GuideMarkdownFormat } from './components';
 
 import { GuideTabbedPage } from './components/guide_tabbed_page';
@@ -217,8 +215,6 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
-import { SuggestExample } from './views/suggest/suggest_example';
-
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
@@ -228,6 +224,8 @@ import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 import { TabsExample } from './views/tabs/tabs_example';
 
 import { TextDiffExample } from './views/text_diff/text_diff_example';
+
+import { TextTruncateExample } from './views/text_truncate/text_truncate_example';
 
 import { TextExample } from './views/text/text_example';
 
@@ -298,8 +296,16 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, sections, beta, isNew, playground, guidelines, ...rest } =
-    example;
+  const {
+    title,
+    sections,
+    isBeta,
+    isNew,
+    isDeprecated,
+    playground,
+    guidelines,
+    ...rest
+  } = example;
   const filteredSections = sections.filter((section) => section !== undefined);
 
   filteredSections.forEach((section) => {
@@ -327,7 +333,9 @@ const createExample = (example, customTitle) => {
     <EuiErrorBoundary>
       <GuideTabbedPage
         title={title}
-        isBeta={beta}
+        isBeta={isBeta}
+        isNew={isNew}
+        isDeprecated={isDeprecated}
         playground={playgroundComponent}
         guidelines={guidelines}
         {...rest}
@@ -341,12 +349,21 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections: filteredSections,
+    isBeta,
     isNew,
+    isDeprecated,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
+const createTabbedPage = ({
+  title,
+  pages,
+  isBeta,
+  isNew,
+  isDeprecated,
+  ...rest
+}) => {
   const component = () => (
     <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
@@ -363,7 +380,9 @@ const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
     name: title,
     component,
     sections: pagesSections,
+    isBeta,
     isNew,
+    isDeprecated,
   };
 };
 
@@ -556,7 +575,6 @@ const navigation = [
       HealthExample,
       IconExample,
       ImageExample,
-      InlineEditExample,
       ListGroupExample,
       LoadingExample,
       NotificationEventExample,
@@ -585,10 +603,10 @@ const navigation = [
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
+      InlineEditExample,
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
-      SuggestExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },
@@ -629,30 +647,33 @@ const navigation = [
   {
     name: 'Utilities',
     items: [
-      AccessibilityExample,
-      AutoSizerExample,
-      BeaconExample,
-      ColorPaletteExample,
-      CopyExample,
-      UtilityClassesExample,
-      DelayRenderExample,
-      ErrorBoundaryExample,
-      FocusTrapExample,
-      HighlightAndMarkExample,
-      HtmlIdGeneratorExample,
-      InnerTextExample,
-      I18nExample,
-      MutationObserverExample,
-      OutsideClickDetectorExample,
-      OverlayMaskExample,
-      PortalExample,
-      PrettyDurationExample,
-      ProviderExample,
-      ResizeObserverExample,
-      ScrollExample,
-      TextDiffExample,
-      WindowEventExample,
-    ].map((example) => createExample(example)),
+      ...[
+        AccessibilityExample,
+        AutoSizerExample,
+        BeaconExample,
+        ColorPaletteExample,
+        CopyExample,
+        UtilityClassesExample,
+        DelayRenderExample,
+        ErrorBoundaryExample,
+        FocusTrapExample,
+        HighlightAndMarkExample,
+        HtmlIdGeneratorExample,
+        InnerTextExample,
+        I18nExample,
+        MutationObserverExample,
+        OutsideClickDetectorExample,
+        OverlayMaskExample,
+        PortalExample,
+        PrettyDurationExample,
+        ProviderExample,
+        ResizeObserverExample,
+        ScrollExample,
+        TextDiffExample,
+      ].map((example) => createExample(example)),
+      createTabbedPage(TextTruncateExample),
+      createExample(WindowEventExample),
+    ],
   },
   {
     name: 'Package',
@@ -687,7 +708,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: createHashHistory(),
   navigation,
 
   getAppRoutes: function getAppRoutes() {

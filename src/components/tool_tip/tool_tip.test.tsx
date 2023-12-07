@@ -8,7 +8,7 @@
 
 import React, { useRef } from 'react';
 import { mount } from 'enzyme';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -97,14 +97,18 @@ describe('EuiToolTip', () => {
     );
 
     const trigger = findTestSubject(component, 'trigger');
-    trigger.simulate('focus');
-    jest.runAllTimers(); // wait for showToolTip setTimeout
+    act(() => {
+      trigger.simulate('focus');
+      jest.runAllTimers(); // wait for showToolTip setTimeout
+    });
 
     expect(
       document.querySelectorAll('[data-test-subj="tooltip"]')[1]
     ).not.toBeNull();
 
     jest.useRealTimers();
+
+    component.unmount(); // Enzyme's portals stay in the DOM otherwise
   });
 
   test('display prop renders block', () => {
@@ -146,6 +150,36 @@ describe('EuiToolTip', () => {
     // Should remove the scroll event listener on unmount
     unmount();
     expect(removeEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
+  });
+
+  describe('aria-describedby', () => {
+    it('by default, sets an `aria-describedby` on the anchor when the tooltip is visible', async () => {
+      const { getByTestSubject } = render(
+        <EuiToolTip content="Tooltip content" id="toolTipId">
+          <button data-test-subj="anchor" />
+        </EuiToolTip>
+      );
+      fireEvent.mouseOver(getByTestSubject('anchor'));
+      await waitForEuiToolTipVisible();
+
+      expect(
+        getByTestSubject('anchor').getAttribute('aria-describedby')
+      ).toEqual('toolTipId');
+    });
+
+    it('merges with custom consumer `aria-describedby`s', async () => {
+      const { getByTestSubject } = render(
+        <EuiToolTip content="Tooltip content" id="toolTipId">
+          <button data-test-subj="anchor" aria-describedby="customId" />
+        </EuiToolTip>
+      );
+      fireEvent.mouseOver(getByTestSubject('anchor'));
+      await waitForEuiToolTipVisible();
+
+      expect(
+        getByTestSubject('anchor').getAttribute('aria-describedby')
+      ).toEqual('toolTipId customId');
+    });
   });
 
   describe('ref methods', () => {

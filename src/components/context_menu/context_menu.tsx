@@ -15,7 +15,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { withEuiTheme, WithEuiThemeProps } from '../../services';
+import { CommonProps, ExclusiveUnion } from '../common';
+import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
+
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -25,7 +28,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
-import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
+import { euiContextMenuStyles } from './context_menu.styles';
 
 export type EuiContextMenuPanelId = string | number;
 
@@ -59,15 +62,10 @@ export interface EuiContextMenuPanelDescriptor {
   /**
    * Alters the size of the items and the title
    */
-  size?: keyof typeof sizeToClassNameMap;
+  size?: (typeof SIZES)[number];
 }
 
-const sizeToClassNameMap = {
-  s: 'euiContextMenu--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm'] as const;
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
@@ -84,7 +82,7 @@ export type EuiContextMenuProps = CommonProps &
     /**
      * Alters the size of the items and the title
      */
-    size?: keyof typeof sizeToClassNameMap;
+    size?: (typeof SIZES)[number];
   };
 
 const isItemSeparator = (
@@ -161,7 +159,10 @@ interface State {
   isUsingKeyboardToNavigate: boolean;
 }
 
-export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
+export class EuiContextMenuClass extends Component<
+  WithEuiThemeProps & EuiContextMenuProps,
+  State
+> {
   static defaultProps: Partial<EuiContextMenuProps> = {
     panels: [],
     size: 'm',
@@ -185,7 +186,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     return null;
   }
 
-  constructor(props: EuiContextMenuProps) {
+  constructor(props: WithEuiThemeProps & EuiContextMenuProps) {
     super(props);
 
     this.state = {
@@ -377,11 +378,16 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       onClose = () => window.requestAnimationFrame(this.showPreviousPanel);
     }
 
+    const cssStyles = {
+      position: 'absolute' as const,
+      label: 'euiContextMenu__panel',
+    };
+
     return (
       <EuiContextMenuPanel
         key={panelId}
         size={this.props.size}
-        className="euiContextMenu__panel"
+        css={cssStyles}
         onHeightChange={
           transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined
         }
@@ -416,8 +422,15 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   render() {
-    const { panels, onPanelChange, className, initialPanelId, size, ...rest } =
-      this.props;
+    const {
+      theme,
+      panels,
+      onPanelChange,
+      className,
+      initialPanelId,
+      size,
+      ...rest
+    } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId!, 'in');
     let outgoingPanel;
@@ -432,14 +445,14 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         ? this.state.idToPanelMap[this.state.incomingPanelId!].width
         : undefined;
 
-    const classes = classNames(
-      'euiContextMenu',
-      size && sizeToClassNameMap[size],
-      className
-    );
+    const classes = classNames('euiContextMenu', className);
+
+    const styles = euiContextMenuStyles(theme);
+    const cssStyles = [styles.euiContextMenu];
 
     return (
       <div
+        css={cssStyles}
         className={classes}
         style={{ height: this.state.height, width: width }}
         {...rest}
@@ -450,3 +463,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     );
   }
 }
+
+export const EuiContextMenu =
+  withEuiTheme<EuiContextMenuProps>(EuiContextMenuClass);

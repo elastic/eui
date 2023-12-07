@@ -6,26 +6,18 @@
  * Side Public License, v 1.
  */
 
-/**
- * NOTE: These were quick conversions of their Sass counterparts.
- *       The commented out keys have not been established as necessary yet.
- */
-
 import { computed } from '../../../../services/theme/utils';
+import { transparentize } from '../../../../services/color/manipulation';
 import { _EuiThemeFocus } from '../../../../global_styling/variables/states';
 import { sizeToPixel } from '../../../../global_styling/functions/size';
 
 export const focus: _EuiThemeFocus = {
+  // Focus ring
   color: 'currentColor',
   width: computed(sizeToPixel(0.125)),
-
-  // transparency: { LIGHT: 0.9, DARK: 0.7 },
-  // backgroundColor: computed(({ colors, focus }) =>
-  //   transparentize(colors.primary, focus!.transparency)
-  // ),
-
-  // Outline
-  // outline: {
-  //   outline: computed(({ focus }) => `${focus!.width} solid ${focus!.color}`),
-  // },
+  // Focus background
+  transparency: { LIGHT: 0.1, DARK: 0.2 },
+  backgroundColor: computed(({ colors, focus }) =>
+    transparentize(colors.primary, focus.transparency)
+  ),
 };

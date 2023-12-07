@@ -7,100 +7,113 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../..//test/internal';
 
 import { EuiFilterButton } from './filter_button';
 
 describe('EuiFilterButton', () => {
-  test('is rendered', () => {
-    const component = render(<EuiFilterButton {...requiredProps} />);
-
-    expect(component).toMatchSnapshot();
+  shouldRenderCustomStyles(<EuiFilterButton />, {
+    childProps: ['textProps', 'contentProps'],
   });
 
-  test('renders zero properly', () => {
-    const component = render(
+  it('renders', () => {
+    const { container } = render(<EuiFilterButton {...requiredProps} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders zero properly', () => {
+    const { container } = render(
       <EuiFilterButton {...requiredProps} numFilters={0} numActiveFilters={0} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('does not render a badge or count if numFilters is not passed', () => {
-    const component = render(
+  it('does not render a badge or count if numFilters is not passed', () => {
+    const { container } = render(
       <EuiFilterButton {...requiredProps} numActiveFilters={0} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('iconType and iconSide', () => {
-      it('is rendered', () => {
-        const component = render(
+      it('renders', () => {
+        const { container } = render(
           <EuiFilterButton iconType="user" iconSide="right" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('numFilters', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFilterButton numFilters={5} />);
+      it('renders', () => {
+        const { container } = render(<EuiFilterButton numFilters={5} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('numActiveFilters and hasActiveFilters', () => {
-      it('is rendered', () => {
-        const component = render(
+      it('renders', () => {
+        const { container } = render(
           <EuiFilterButton numActiveFilters={5} hasActiveFilters />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isSelected', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFilterButton isSelected />);
+      it('renders', () => {
+        const { container } = render(<EuiFilterButton isSelected />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isDisabled', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFilterButton isDisabled />);
+      it('renders', () => {
+        const { container } = render(<EuiFilterButton isDisabled />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('type', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFilterButton type="button" />);
+      it('renders', () => {
+        const { container } = render(<EuiFilterButton type="button" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('grow', () => {
       it('can be turned off', () => {
-        const component = render(<EuiFilterButton grow={false} />);
+        const { container } = render(<EuiFilterButton grow={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('withNext', () => {
-      it('is rendered', () => {
-        const component = render(<EuiFilterButton withNext />);
+      it('renders', () => {
+        const { container } = render(<EuiFilterButton withNext />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('badgeColor', () => {
+      it('renders', () => {
+        const { container } = render(<EuiFilterButton badgeColor="success" />);
+
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

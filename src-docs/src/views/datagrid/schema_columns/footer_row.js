@@ -14,7 +14,7 @@ const raw_data = [];
 
 for (let i = 1; i < 20; i++) {
   raw_data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     date: `${faker.date.past()}`,
     amount: `$${faker.commerce.price()}`,
     phone: faker.phone.number(),
@@ -130,7 +130,7 @@ const RenderFooterCellValue = ({ columnId, setCellProps }) => {
 
 export default () => {
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -177,7 +177,6 @@ export default () => {
           }
           pagination={{
             ...pagination,
-            pageSizeOptions: [10, 15, 20],
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}

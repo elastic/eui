@@ -7,7 +7,7 @@
  */
 
 import React, { useImperativeHandle, createRef, forwardRef } from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { mount } from 'enzyme';
 import { useForceRender } from './useForceRender';
 

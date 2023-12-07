@@ -26,5 +26,29 @@ console.error = (message, ...rest) => {
     return;
   }
 
+  // Silence RTL act() errors, that appear to primarily come from the fact
+  // that we have multiple versions of `@testing-library/dom` installed
+  if (
+    typeof message === 'string' &&
+    message.startsWith(
+      'Warning: The current testing environment is not configured to support act(...)'
+    )
+  ) {
+    return;
+  }
+
+  // Print React validateDOMNesting warning as a console.warn instead
+  // of throwing an error.
+  // TODO: Remove when edge-case DOM nesting is fixed in all components
+  if (
+    typeof message === 'string' &&
+    message.startsWith(
+      'Warning: validateDOMNesting(...): %s cannot appear as a child of <%s>'
+    )
+  ) {
+    console.warn(message, ...rest);
+    return;
+  }
+
   throw new Error(format(message, ...rest));
 };

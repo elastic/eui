@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiModalFooter } from './modal_footer';
 
@@ -17,9 +17,9 @@ describe('EuiModalFooter', () => {
   shouldRenderCustomStyles(<EuiModalFooter>children</EuiModalFooter>);
 
   test('is rendered', () => {
-    const component = (
+    const { container } = render(
       <EuiModalFooter {...requiredProps}>children</EuiModalFooter>
     );
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

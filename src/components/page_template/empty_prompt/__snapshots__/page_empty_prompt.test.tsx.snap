@@ -74,7 +74,7 @@ exports[`_EuiPageEmptyPrompt is rendered 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -359,7 +359,7 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a custom number 1`] = 
 >
   <div
     class="emotion-euiPageSection__content-l-center-restrictWidth"
-    style="max-width:1024px"
+    style="max-width: 1024px;"
   >
     <div
       class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
@@ -386,7 +386,7 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a custom value and mea
 >
   <div
     class="emotion-euiPageSection__content-l-center-restrictWidth"
-    style="max-width:24rem"
+    style="max-width: 24rem;"
   >
     <div
       class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
@@ -413,7 +413,7 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a default 1`] = `
 >
   <div
     class="emotion-euiPageSection__content-l-center-restrictWidth"
-    style="max-width:1200px"
+    style="max-width: 1200px;"
   >
     <div
       class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"

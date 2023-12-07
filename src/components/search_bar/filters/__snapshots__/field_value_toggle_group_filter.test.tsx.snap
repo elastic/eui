@@ -1,93 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TermToggleGroupFilter render - active 1`] = `
-Array [
-  <EuiFilterButton
-    aria-pressed={true}
-    hasActiveFilters={true}
-    key="field_value_toggle_filter_item_0"
-    onClick={[Function]}
-    withNext={true}
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
-    Kibana
-  </EuiFilterButton>,
-  <EuiFilterButton
-    aria-pressed={false}
-    hasActiveFilters={false}
-    key="field_value_toggle_filter_item_1"
-    onClick={[Function]}
-    withNext={false}
-  >
-    Elasticsearch
-  </EuiFilterButton>,
-]
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Kibana"
+        title="Kibana"
+      >
+        Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;
 
 exports[`TermToggleGroupFilter render - active negated - custom negated name 1`] = `
-Array [
-  <EuiFilterButton
-    aria-pressed={true}
-    hasActiveFilters={true}
-    key="field_value_toggle_filter_item_0"
-    onClick={[Function]}
-    withNext={true}
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
-    -Kibana
-  </EuiFilterButton>,
-  <EuiFilterButton
-    aria-pressed={false}
-    hasActiveFilters={false}
-    key="field_value_toggle_filter_item_1"
-    onClick={[Function]}
-    withNext={false}
-  >
-    Elasticsearch
-  </EuiFilterButton>,
-]
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="-Kibana"
+        title="-Kibana"
+      >
+        -Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;
 
 exports[`TermToggleGroupFilter render - active negated 1`] = `
-Array [
-  <EuiFilterButton
-    aria-pressed={true}
-    hasActiveFilters={true}
-    key="field_value_toggle_filter_item_0"
-    onClick={[Function]}
-    withNext={true}
+<button
+  aria-pressed="true"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
-    Not Kibana
-  </EuiFilterButton>,
-  <EuiFilterButton
-    aria-pressed={false}
-    hasActiveFilters={false}
-    key="field_value_toggle_filter_item_1"
-    onClick={[Function]}
-    withNext={false}
-  >
-    Elasticsearch
-  </EuiFilterButton>,
-]
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Not Kibana"
+        title="Not Kibana"
+      >
+        Not Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;
 
-exports[`TermToggleGroupFilter render 1`] = `
-Array [
-  <EuiFilterButton
-    aria-pressed={false}
-    hasActiveFilters={false}
-    key="field_value_toggle_filter_item_0"
-    onClick={[Function]}
-    withNext={true}
+exports[`TermToggleGroupFilter renders 1`] = `
+<button
+  aria-pressed="false"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
-    Kibana
-  </EuiFilterButton>,
-  <EuiFilterButton
-    aria-pressed={false}
-    hasActiveFilters={false}
-    key="field_value_toggle_filter_item_1"
-    onClick={[Function]}
-    withNext={false}
-  >
-    Elasticsearch
-  </EuiFilterButton>,
-]
+    <span
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+    >
+      <span
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
+        data-text="Kibana"
+        title="Kibana"
+      >
+        Kibana
+      </span>
+    </span>
+  </span>
+</button>
 `;

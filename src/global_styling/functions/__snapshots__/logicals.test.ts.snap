@@ -60,7 +60,7 @@ exports[`logicalCSS mixin returns a string property for each directional propert
 
 exports[`logicalCSS mixin returns a string property for each directional property: height 1`] = `"block-size: 8px;"`;
 
-exports[`logicalCSS mixin returns a string property for each directional property: horizontal 1`] = `"inset-block: 8px;"`;
+exports[`logicalCSS mixin returns a string property for each directional property: horizontal 1`] = `"inset-inline: 8px;"`;
 
 exports[`logicalCSS mixin returns a string property for each directional property: left 1`] = `"inset-inline-start: 8px;"`;
 
@@ -104,7 +104,7 @@ exports[`logicalCSS mixin returns a string property for each directional propert
 
 exports[`logicalCSS mixin returns a string property for each directional property: top 1`] = `"inset-block-start: 8px;"`;
 
-exports[`logicalCSS mixin returns a string property for each directional property: vertical 1`] = `"inset-inline: 8px;"`;
+exports[`logicalCSS mixin returns a string property for each directional property: vertical 1`] = `"inset-block: 8px;"`;
 
 exports[`logicalCSS mixin returns a string property for each directional property: width 1`] = `"inline-size: 8px;"`;
 
@@ -297,7 +297,7 @@ Object {
 
 exports[`logicalStyle mixin returns an object property for each directional property: horizontal 1`] = `
 Object {
-  "insetBlock": "8px",
+  "insetInline": "8px",
 }
 `;
 
@@ -429,7 +429,7 @@ Object {
 
 exports[`logicalStyle mixin returns an object property for each directional property: vertical 1`] = `
 Object {
-  "insetInline": "8px",
+  "insetBlock": "8px",
 }
 `;
 

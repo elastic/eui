@@ -1,30 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHeaderSectionItem border defaults to left 1`] = `
+exports[`EuiHeaderSectionItem renders with children 1`] = `
 <div
-  class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
->
-  <span>
-    Left is default
-  </span>
-</div>
-`;
-
-exports[`EuiHeaderSectionItem border renders right 1`] = `
-<div
-  class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
->
-  <span>
-    Right section
-  </span>
-</div>
-`;
-
-exports[`EuiHeaderSectionItem is rendered 1`] = `null`;
-
-exports[`EuiHeaderSectionItem renders children 1`] = `
-<div
-  class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+  aria-label="aria-label"
+  class="euiHeaderSectionItem testClass1 testClass2 emotion-euiHeaderSectionItem-euiTestCss"
+  data-test-subj="test subject string"
 >
   <span>
     Call me Ishmael.

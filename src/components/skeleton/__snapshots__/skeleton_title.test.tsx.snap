@@ -7,7 +7,7 @@ exports[`EuiSkeletonTitle is rendered 1`] = `
 >
   <span
     aria-label="Loading "
-    class="euiSkeletonTitle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-m"
+    class="euiSkeletonTitle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-m-euiTestCss"
     data-test-subj="test subject string"
     role="progressbar"
   />

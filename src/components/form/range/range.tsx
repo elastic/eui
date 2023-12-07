@@ -56,6 +56,7 @@ export class EuiRangeClass extends Component<
   state = {
     id: this.props.id || htmlIdGenerator()(),
     isPopoverOpen: false,
+    trackWidth: 0,
   };
 
   handleOnChange = (
@@ -78,6 +79,10 @@ export class EuiRangeClass extends Component<
       this.props.value || ''
     );
   }
+
+  rangeSliderRef = (ref: HTMLInputElement | null) => {
+    this.setState({ trackWidth: ref?.clientWidth || 0 });
+  };
 
   onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
@@ -127,6 +132,7 @@ export class EuiRangeClass extends Component<
       step,
       showLabels,
       showInput,
+      inputPopoverProps,
       showTicks,
       tickInterval,
       ticks,
@@ -198,6 +204,7 @@ export class EuiRangeClass extends Component<
           </EuiRangeLabel>
         )}
         <EuiRangeTrack
+          trackWidth={this.state.trackWidth}
           disabled={disabled}
           compressed={compressed}
           max={max}
@@ -212,56 +219,53 @@ export class EuiRangeClass extends Component<
           aria-hidden={!!showInput}
           showRange={showRange}
         >
-          {(trackWidth) => (
-            <>
-              <EuiRangeSlider
-                id={showInput ? undefined : id} // Attach id only to the input if there is one
-                name={name}
-                min={min}
-                max={max}
-                step={step}
-                value={value}
-                disabled={disabled}
-                onChange={this.handleOnChange}
-                showTicks={showTicks}
-                showRange={showRange}
-                tabIndex={showInput ? -1 : tabIndex}
-                onMouseDown={
-                  showInputOnly
-                    ? () => (this.preventPopoverClose = true)
-                    : undefined
-                }
-                onFocus={showInput === true ? undefined : onFocus}
-                onBlur={showInputOnly ? this.onInputBlur : onBlur}
-                aria-hidden={!!showInput}
-                thumbColor={thumbColor}
-                {...rest}
-              />
+          <EuiRangeSlider
+            id={showInput ? undefined : id} // Attach id only to the input if there is one
+            name={name}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            disabled={disabled}
+            onChange={this.handleOnChange}
+            showTicks={showTicks}
+            showRange={showRange}
+            tabIndex={showInput ? -1 : tabIndex}
+            onMouseDown={
+              showInputOnly
+                ? () => (this.preventPopoverClose = true)
+                : undefined
+            }
+            onFocus={showInput === true ? undefined : onFocus}
+            onBlur={showInputOnly ? this.onInputBlur : onBlur}
+            aria-hidden={!!showInput}
+            thumbColor={thumbColor}
+            {...rest}
+            ref={this.rangeSliderRef}
+          />
 
-              {showRange && this.isValid && (
-                <EuiRangeHighlight
-                  showTicks={showTicks}
-                  min={Number(min)}
-                  max={Number(max)}
-                  lowerValue={Number(min)}
-                  upperValue={Number(value)}
-                  levels={levels}
-                  trackWidth={trackWidth}
-                />
-              )}
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(min)}
+              upperValue={Number(value)}
+              levels={levels}
+              trackWidth={this.state.trackWidth}
+            />
+          )}
 
-              {showValue && !!String(value).length && (
-                <EuiRangeTooltip
-                  value={value}
-                  max={max}
-                  min={min}
-                  name={name}
-                  showTicks={showTicks}
-                  valuePrepend={valuePrepend}
-                  valueAppend={valueAppend}
-                />
-              )}
-            </>
+          {showValue && !!String(value).length && (
+            <EuiRangeTooltip
+              value={value}
+              max={max}
+              min={min}
+              name={name}
+              showTicks={showTicks}
+              valuePrepend={valuePrepend}
+              valueAppend={valueAppend}
+            />
           )}
         </EuiRangeTrack>
         {showLabels && (
@@ -291,7 +295,11 @@ export class EuiRangeClass extends Component<
 
     const thePopover = showInputOnly ? (
       <EuiInputPopover
-        className="euiRange__popover"
+        {...inputPopoverProps}
+        className={classNames(
+          'euiRange__popover',
+          inputPopoverProps?.className
+        )}
         input={theInput!} // `showInputOnly` confirms existence
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}

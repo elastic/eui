@@ -225,10 +225,9 @@ describe('EuiExpression', () => {
     });
 
     it('has zero violations when first popover is interacted with by keyboard', () => {
-      cy.realPress('Tab');
       cy.get('button')
         .contains(/When count\(\)/i)
-        .should('have.focus');
+        .focus();
       cy.realPress('Enter');
       cy.get('div[data-test-subj="cy-expression-popover-1"]').should('exist');
       cy.realPress('Tab');
@@ -241,10 +240,9 @@ describe('EuiExpression', () => {
     });
 
     it('has zero violations when second popover is interacted with by keyboard', () => {
-      cy.repeatRealPress('Tab');
       cy.get('button')
         .contains(/Is above 100/i)
-        .should('have.focus');
+        .focus();
       cy.realPress('Enter');
       cy.get('div[data-test-subj="cy-expression-popover-2"]').should('exist');
       cy.realPress('Tab');

@@ -13,8 +13,9 @@ import {
   EuiModificationsContext,
   EuiColorModeContext,
   defaultComputedTheme,
+  EuiNestedThemeContext,
 } from './context';
-import { getEuiDevProviderWarning } from './provider';
+import { emitEuiProviderWarning } from './warning';
 import {
   EuiThemeColorModeStandard,
   EuiThemeModifications,
@@ -39,20 +40,8 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const modifications = useContext(EuiModificationsContext);
 
   const isFallback = theme === defaultComputedTheme;
-  const warningLevel = getEuiDevProviderWarning();
-  if (isFallback && typeof warningLevel !== 'undefined') {
-    switch (warningLevel) {
-      case 'log':
-        console.log(providerMessage);
-        break;
-      case 'warn':
-        console.warn(providerMessage);
-        break;
-      case 'error':
-        throw new Error(providerMessage);
-      default:
-        break;
-    }
+  if (isFallback) {
+    emitEuiProviderWarning(providerMessage);
   }
 
   const assembledTheme = useMemo(
@@ -106,4 +95,24 @@ export const RenderWithEuiTheme = <T extends {} = {}>({
 }) => {
   const theme = useEuiTheme<T>();
   return children(theme);
+};
+
+/**
+ * Minor syntactical sugar hook for theme CSS variables.
+ * Primarily meant for internal EUI usage.
+ */
+export const useEuiThemeCSSVariables = () => {
+  const {
+    setGlobalCSSVariables,
+    globalCSSVariables,
+    setNearestThemeCSSVariables,
+    themeCSSVariables,
+  } = useContext(EuiNestedThemeContext);
+
+  return {
+    setGlobalCSSVariables,
+    globalCSSVariables,
+    setNearestThemeCSSVariables,
+    themeCSSVariables,
+  };
 };

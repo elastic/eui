@@ -1,3 +1,24 @@
 .euiSuperDatePicker__absoluteDateFormRow {
   padding: 0 $euiSizeS $euiSizeS;
+
+  /* A bit of a visual trickery to make the format "hint" become an "error" text.
+     NOTE: Normally reordering visually (vs DOM) isn't super great for screen reader users,
+     but as the help text is already read out via `aria-describedby`, and the error text
+     is read out immediately via `aria-live`, we can fairly safely prioritize visuals instead */
+  .euiFormRow__fieldWrapper {
+    display: flex;
+    flex-direction: column;
+  };
+
+  .euiFormControlLayout {
+    order: 0;
+  }
+
+  .euiFormHelpText {
+    order: 1;
+  }
+
+  .euiFormErrorText {
+    order: 2;
+  }
 }

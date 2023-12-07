@@ -5,6 +5,7 @@
 3. [Resolving errors](#resolving-errors)
     * [Snafus requiring backports](#snafu)
 4. [Merging the PR](#merging-the-pr)
+    * [FAQ for Kibana teams](#faq-for-kibana-teams)
 
 ## Getting started
 
@@ -30,6 +31,12 @@ If changes exist:
 3. Run `yarn test:jest packages/core/i18n/core-i18n-browser-internal/src/i18n_service.test.ts -u` to update mapping snapshots
 4. Run `node scripts/i18n_check --fix` to delete removed or updated token entries from the [various translation files](https://github.com/elastic/kibana/tree/main/x-pack/plugins/translations/translations)
 
+### Breaking changes and deprecations
+
+EUI should be handling all breaking changes noted in the `changelog` of each upgrade. Unless it's unreasonable to do time-wise (e.g. more than several days of work), EUI should also be handling any deprecations in the `changelog`. This typically involves removing or migrating uses of removed types or components.
+
+If it's too much effort for the EUI team alone to handle migrating/updating deprecated components, we should be creating a follow-up issue for each team using the deprecated components, and giving them a timeline for removal/migration. An example of this: https://github.com/elastic/kibana/issues/161872.
+
 ## Opening a draft PR to kick off CI
 
 At this point, we recommend opening a **draft** PR with your existing commits/changes against Kibana main. Unfortunately, Kibana's many tests are far too numerous to reasonably run them all locally - your machine will OOM if you even try. Kicking off a CI run is therefore the quickest way to find test failures at this point.
@@ -39,7 +46,7 @@ At this point, we recommend opening a **draft** PR with your existing commits/ch
 The typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157), and reviewers have begun to expect the consistency. There are two important inclusions:
 
 * Call out changes made to accommodate test failures that might not be apparent from looking at the diff.
-* Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/main/CHANGELOG.md) for the upgrade.
+* Copy-paste the full changelog version range [from the latest changelog file](https://github.com/elastic/eui/blob/main/changelogs) for the upgrade.
 
 Labels to use:
 
@@ -74,6 +81,26 @@ It's likely that Jest test failures will be snapshot failures due to changing pr
 
 Other unit test failures will require narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
+### Jest integration test errors
+Some teams also use Jest to run longer integration tests. These tests have a different command that requires a configuration file.
+
+1. In the test failures reported by `kibana-ci`, Click the `[logs]` link next to the test failure
+2. Integration test failures will have a two-line heading. The first line confirms these are Jest integration test failures. The second line is the relative path you will need to re-run the test.
+    <img width="1325" alt="Screenshot of Kibana buildkite test failure" src="https://github.com/elastic/eui/assets/934879/cd7d7b0b-f532-43ea-84bc-2f05d927a20a">
+3. Look for a `jest.integration.config.js` file near the failing test. This file may be in the same directory, or up 1-3 parent directories. It is usually at least within the same plugin directory (if an `x-pack` plugin).
+4. In your terminal, paste the following command, substituting the `RELATIVE_TEST_PATH` from step 2 and the `JEST_CONFIG` with the appropriate paths. Some IDE’s like VSCode have a `Copy relative path` command that make this process easier.
+
+    ```shell
+    # Command to run Jest integration test
+    yarn test:jest_integration --config=JEST_CONFIG RELATIVE_TEST_PATH
+    ```
+
+    ```shell
+    # Example with full config and relative path
+    yarn test:jest_integration --config=x-pack/plugins/security_solution/jest.integration.config.js x-pack/plugins/security_solution/public/management/pages/host_isolation_exceptions/view/components/integration_tests
+    ```
+5. After running a Jest integration test locally, you'll be able to determine whether or not you can reproduce the error. If yes, your terminal should have output the specific test file throwing the error. You can then examine it for selectors, screen reader text, or other things that might have changed in EUI to cause a failure.
+
 ### E2E test errors
 
 The vast majority of functional tests use the Mocha-based functional test runner, but some plugins have opted for Cypress-based integration tests.
@@ -97,13 +124,19 @@ Tips:
     * `export TEST_BROWSER_HEADLESS=1` (runs screenshot updates in headless mode to match CI)
     * `yarn node scripts/functional_test_runner --config=... -u --headless` (`-u` or `--updateBaseline` is what updates the screenshots)
 
-#### Security/OSQuery Cypress (`x-pack/plugins/{security_solution|osquery}/cypress/`)
+#### Security Cypress tests (`x-pack/test/security_solution_cypress/`)
 
-Follow [Security's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) or [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+Follow [Security's Cypress README](https://github.com/elastic/kibana/tree/main/x-pack/test/security_solution_cypress/cypress#running-the-tests) to run individual tests in headed Cypress.
 
-> Note: OSQuery's Cypress tests appear to have copied Security's Cypress setup and should generally function similarly.
+> Note: Kibana's Cypress tests landscape is changing very quickly as of late and many other teams (e.g. Fleet, Observability) are starting to add Cypress tests directly to `x-pack/test/`.
 
-#### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability|ux}/e2e`)
+#### OSQuery Cypress tests (`x-pack/plugins/osquery/cypress/`)
+
+Follow [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in headed Cypress.
+
+> Note that this README may be slightly out of date, if `yarn cypress:open-as-ci` doesn't work, try `yarn cypress:open` instead.
+
+#### @elastic/synthetics tests (`x-pack/plugins/{synthetics|observability|ux}/e2e`)
 
 Follow [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
 
@@ -147,7 +180,7 @@ Once CI is passing green, mark your draft PR as "Ready for review".
 ### Leaving comments
 
 * Mention/ping any teams that are waiting on features to be available.
-* Upgrades that result in significant changes to tests and/or snapshots will often require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering code styles typical of the plugin.
+* Upgrades that result in significant changes to tests and/or snapshots will often require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering to code styles typical of the plugin.
 
 ### Keeping your PR up to date
 
@@ -156,6 +189,33 @@ Once CI is passing green, mark your draft PR as "Ready for review".
 
 ### Waiting for approvals/admin merges
 
-* Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews containing non-snapshot code changes on Slack, letting them know that the review is for an EUI upgrade PR.
+* When the PR opens, ping all CODEOWNER teams immediately on Slack to give teams as much heads up as possible, as team sizes and priorities vary. We should let teams know an approximate amount of time they'll have before we request an admin merge (e.g. EOD Friday).
 * Once all approvals are in and CI is still passing green, smash that merge button :boom:
-* If, after several days and nudges, review(s) remain outstanding, we should ask KibanaOps to admin merge the PR without all approvals (provided that the review(s) are for minor changes we feel confident in, e.g. snapshot updates with an expected diff).
+* If, by the end of the week, review(s) remain outstanding, we should ask KibanaOps to admin merge the PR without all approvals (provided CI is passing and that that the review(s) are for minor changes we feel confident in, e.g. snapshot updates with an expected diff).
+
+### FAQ for Kibana teams
+
+#### Q: I've been pinged as a CODEOWNER for an EUI upgrade PR. What should I do?
+
+If you've been pinged, this means that some code belonging to your team has been changed as a result of upstream EUI changes. This can be due to several reasons:
+- A snapshot change due to underlying DOM or CSS/class changes in EUI
+- A breaking change that required your code to be updated in order to continue functioning as before
+- A (typically) minor cleanup change that EUI noticed in your code
+
+We ask for a code review of the files owned by your team (not the entire PR) to ensure that it looks reasonable. QA is optional - in general, we rely on tests and feature freeze QA to catch any UI issues that may have slipped past (hopefully few to none).
+
+We do encourage manual QA of your team's app/plugin if the changes are large enough, or if the impacted component/UI raises concern about regressions or broken behavior. In general, EUI tries to call out any larger or riskier changes at the top of our PR description to help narrow down QA/smoke testing.
+
+#### Q: I've caught an issue that we think is caused by the EUI upgrade - what do I do?
+
+If the issue only occurs on the upgrade PR branch and not in Kibana main, please feel free to alert us in a GitHub comment and we'll look into resolving it ASAP.
+
+If you've caught an issue post-merge that you think is the a result of an EUI upgrade, we're always more than happy to investigate and find a resolution - please feel free to reach out to us in the EUI Slack channel.
+
+EUI tries (when humanly possible) not to merge in larger or riskier PRs close to feature freeze dates, to avoid issues shipping into production releases.
+
+#### Q: Why are requested review turnaround times so short?
+
+EUI upgrade PRs have shorter (~weekly) turnarounds, which is an challenging necessity for our team. We own upgrades that touch many teams' files (usually snapshots), and holding up PRs can at times block certain teams from needed features, or end up causing a pile-up of massive changelogs later.
+
+If you can't review in time, that's fine, just let us know. We're always happy to investigate issues post-merge if necessary.

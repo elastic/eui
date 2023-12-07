@@ -7,127 +7,148 @@
  */
 
 import React from 'react';
-import { render, shallow, mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiContextMenuItem, SIZES } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
-  test('is rendered', () => {
-    const component = render(
-      <EuiContextMenuItem {...requiredProps}>Hello</EuiContextMenuItem>
+  shouldRenderCustomStyles(<EuiContextMenuItem />);
+
+  shouldRenderCustomStyles(
+    <EuiContextMenuItem toolTipContent="test" data-test-subj="trigger" />,
+    {
+      childProps: ['toolTipProps', 'toolTipProps.anchorProps'],
+      skip: { parentTest: true },
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
+    }
+  );
+
+  it('renders', () => {
+    const { container } = render(
+      <EuiContextMenuItem {...requiredProps} href="url">
+        Hello
+      </EuiContextMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
-    describe('icon', () => {
-      test('is rendered', () => {
-        const component = render(
-          <EuiContextMenuItem icon={<span className="euiIcon fa-user" />} />
-        );
+    test('icon', () => {
+      const { container } = render(
+        <EuiContextMenuItem icon={<span className="euiIcon fa-user" />} />
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(container.firstChild).toMatchSnapshot();
     });
 
-    describe('disabled', () => {
-      test('is rendered', () => {
-        const component = render(<EuiContextMenuItem disabled />);
+    test('disabled', () => {
+      const { container } = render(<EuiContextMenuItem href="url" disabled />);
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('size', () => {
       SIZES.forEach((size) => {
-        it(`${size} is rendered`, () => {
-          const component = render(<EuiContextMenuItem size={size} />);
+        test(size, () => {
+          const { container } = render(<EuiContextMenuItem size={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('onClick', () => {
-      test('renders a button', () => {
-        const component = render(
+      it('renders a button', () => {
+        const { container } = render(
           <EuiContextMenuItem {...requiredProps} onClick={() => {}} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild?.nodeName).toEqual('BUTTON');
       });
 
-      test("isn't called upon instantiation", () => {
+      it('is called when the item is clicked', () => {
         const onClickHandler = jest.fn();
 
-        shallow(<EuiContextMenuItem onClick={onClickHandler} />);
-
-        expect(onClickHandler).not.toHaveBeenCalled();
-      });
-
-      test('is called when the item is clicked', () => {
-        const onClickHandler = jest.fn();
-
-        const component = shallow(
+        const { container } = render(
           <EuiContextMenuItem onClick={onClickHandler} />
         );
+        expect(onClickHandler).not.toHaveBeenCalled();
 
-        component.simulate('click');
-
+        fireEvent.click(container.firstChild!);
         expect(onClickHandler).toHaveBeenCalledTimes(1);
       });
 
-      test('is not called when the item is clicked but set to disabled', () => {
+      it('is not called when the item is clicked but set to disabled', () => {
         const onClickHandler = jest.fn();
 
-        const component = mount(
+        const { container } = render(
           <EuiContextMenuItem disabled onClick={onClickHandler} />
         );
 
-        component.simulate('click');
+        fireEvent.click(container.firstChild!);
 
         expect(onClickHandler).not.toHaveBeenCalled();
       });
     });
 
-    describe('href', () => {
-      test('renders a link', () => {
-        const component = render(
-          <EuiContextMenuItem {...requiredProps} href="url" />
-        );
+    test('href', () => {
+      const { container } = render(
+        <EuiContextMenuItem {...requiredProps} href="url" />
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(container.firstChild?.nodeName).toEqual('A');
     });
 
-    describe('rel', () => {
-      test('is rendered', () => {
-        const component = render(
-          <EuiContextMenuItem {...requiredProps} href="url" rel="help" />
-        );
+    test('rel', () => {
+      const { container } = render(
+        <EuiContextMenuItem {...requiredProps} href="url" rel="help" />
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(container.querySelector('a')).toHaveAttribute(
+        'rel',
+        'help noreferrer'
+      );
     });
 
-    describe('target', () => {
-      test('is rendered', () => {
-        const component = render(
-          <EuiContextMenuItem {...requiredProps} href="url" target="_blank" />
-        );
+    test('target', () => {
+      const { container } = render(
+        <EuiContextMenuItem {...requiredProps} href="url" target="_blank" />
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(container.querySelector('a')).toHaveAttribute('target', '_blank');
     });
 
-    describe('hasPanel', () => {
-      test('is rendered', () => {
-        const component = render(<EuiContextMenuItem hasPanel />);
+    test('hasPanel renders a right arrow', () => {
+      const { container } = render(<EuiContextMenuItem hasPanel />);
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(
+        container.querySelector('.euiContextMenu__arrow')
+      ).toBeInTheDocument();
     });
+  });
+
+  test('tooltip behavior', async () => {
+    const { getByRole, baseElement } = render(
+      <EuiContextMenuItem
+        toolTipContent="tooltip content"
+        toolTipTitle="overridden"
+        // Should override the deprecated props
+        toolTipProps={{ title: 'Test', position: 'top', delay: 'long' }}
+      >
+        Hello
+      </EuiContextMenuItem>
+    );
+
+    fireEvent.mouseOver(getByRole('button'));
+    await waitForEuiToolTipVisible();
+
+    expect(baseElement).toMatchSnapshot();
   });
 });

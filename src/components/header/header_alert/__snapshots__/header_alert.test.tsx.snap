@@ -1,42 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHeaderAlert is rendered 1`] = `
-<article
-  aria-label="aria-label"
-  aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-spaceBetween-stretch-row"
-  >
-    <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
-    >
-      <div
-        class="euiHeaderAlert__date"
-      >
-        date
-      </div>
-    </div>
-  </div>
-  <h3
-    class="euiHeaderAlert__title"
-    id="generated-id-title"
-  >
-    title
-  </h3>
-  <div
-    class="euiHeaderAlert__text"
-  />
-</article>
-`;
-
 exports[`EuiHeaderAlert renders action 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiHeaderAlert-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -46,23 +14,23 @@ exports[`EuiHeaderAlert renders action 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiHeaderAlert__date"
+        class="euiHeaderAlert__date emotion-euiHeaderAlert__date"
       >
         date
       </div>
     </div>
   </div>
   <h3
-    class="euiHeaderAlert__title"
+    class="euiHeaderAlert__title emotion-euiHeaderAlert__title"
     id="generated-id-title"
   >
     title
   </h3>
   <div
-    class="euiHeaderAlert__text"
+    class="euiHeaderAlert__text emotion-euiHeaderAlert__text"
   />
   <div
-    class="euiHeaderAlert__action euiLink"
+    class="euiHeaderAlert__action emotion-euiHeaderAlert__action"
   >
     <button>
       Quietly take to the ship
@@ -71,11 +39,11 @@ exports[`EuiHeaderAlert renders action 1`] = `
 </article>
 `;
 
-exports[`EuiHeaderAlert renders date as an element 1`] = `
+exports[`EuiHeaderAlert renders badge 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiHeaderAlert-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -85,31 +53,47 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiHeaderAlert__date"
+        class="euiHeaderAlert__date emotion-euiHeaderAlert__date"
       >
-        <h2>
-          October 18, 1851
-        </h2>
+        date
       </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <span
+        class="euiBadge emotion-euiBadge-default"
+        title="badge"
+      >
+        <span
+          class="euiBadge__content emotion-euiBadge__content"
+        >
+          <span
+            class="euiBadge__text emotion-euiBadge__text"
+          >
+            badge
+          </span>
+        </span>
+      </span>
     </div>
   </div>
   <h3
-    class="euiHeaderAlert__title"
+    class="euiHeaderAlert__title emotion-euiHeaderAlert__title"
     id="generated-id-title"
   >
-    shazm
+    title
   </h3>
   <div
-    class="euiHeaderAlert__text"
+    class="euiHeaderAlert__text emotion-euiHeaderAlert__text"
   />
 </article>
 `;
 
-exports[`EuiHeaderAlert renders title as an element 1`] = `
+exports[`EuiHeaderAlert renders text 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiHeaderAlert-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -119,21 +103,56 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiHeaderAlert__date"
+        class="euiHeaderAlert__date emotion-euiHeaderAlert__date"
       >
         date
       </div>
     </div>
   </div>
   <h3
-    class="euiHeaderAlert__title"
+    class="euiHeaderAlert__title emotion-euiHeaderAlert__title"
     id="generated-id-title"
-  />
-  <h2>
-    Circumambulate the city
-  </h2>
+  >
+    title
+  </h3>
   <div
-    class="euiHeaderAlert__text"
+    class="euiHeaderAlert__text emotion-euiHeaderAlert__text"
+  >
+    <p>
+      Circumambulate the city
+    </p>
+  </div>
+</article>
+`;
+
+exports[`EuiHeaderAlert renders title and date 1`] = `
+<article
+  aria-label="aria-label"
+  aria-labelledby="generated-id-title"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiHeaderAlert-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-spaceBetween-stretch-row"
+  >
+    <div
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
+    >
+      <div
+        class="euiHeaderAlert__date emotion-euiHeaderAlert__date"
+      >
+        date
+      </div>
+    </div>
+  </div>
+  <h3
+    class="euiHeaderAlert__title emotion-euiHeaderAlert__title"
+    id="generated-id-title"
+  >
+    title
+  </h3>
+  <div
+    class="euiHeaderAlert__text emotion-euiHeaderAlert__text"
   />
 </article>
 `;

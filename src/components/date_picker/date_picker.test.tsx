@@ -7,28 +7,35 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
 import moment from 'moment';
 
 import { EuiDatePicker } from './date_picker';
 import { EuiContext } from '../context';
 
 describe('EuiDatePicker', () => {
-  test('is rendered', () => {
-    const component = shallow(<EuiDatePicker {...requiredProps} />);
+  it('renders', () => {
+    const { container } = render(<EuiDatePicker {...requiredProps} />);
 
-    expect(component).toMatchSnapshot(); // snapshot of wrapping dom
-    expect(component.find('ContextConsumer').shallow()).toMatchSnapshot(); // snapshot of DatePicker usage
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('popoverPlacement', () => {
+  test('compressed', () => {
+    const { container } = render(<EuiDatePicker compressed />);
+    // TODO: Should probably be a visual snapshot test
+    expect(container.innerHTML).toContain('--compressed');
+  });
+
+  // TODO: These tests/snapshots don't really do anything in Jest without
+  // the corresponding popover opening. Should be switched to an E2E test instead
+  describe.skip('popoverPlacement', () => {
     test('upRight is rendered', () => {
-      const component = mount(
+      const { container } = render(
         <EuiDatePicker {...requiredProps} popoverPlacement="upRight" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -36,7 +43,7 @@ describe('EuiDatePicker', () => {
     const selectedDate = moment('2019-07-01T00:00:00-0700').locale('fr');
 
     test('accepts the locale prop', () => {
-      const component = mount(
+      const { container } = render(
         <EuiDatePicker
           {...requiredProps}
           inline
@@ -45,17 +52,17 @@ describe('EuiDatePicker', () => {
         />
       );
 
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('inherits locale from context', () => {
-      const component = mount(
+      const { container } = render(
         <EuiContext i18n={{ locale: 'fr' }}>
           <EuiDatePicker {...requiredProps} inline selected={selectedDate} />
         </EuiContext>
       );
 
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

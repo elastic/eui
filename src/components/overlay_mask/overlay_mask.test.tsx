@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { testOnReactVersion } from '../../test/internal';
 import { EuiThemeProvider } from '../../services';
 
 import { EuiOverlayMask } from './overlay_mask';
@@ -30,7 +31,7 @@ describe('EuiOverlayMask', () => {
     );
 
     expect(baseElement.querySelector('.euiOverlayMask')!.className).toContain(
-      'euiColorMode-inverse-colorClassName'
+      'euiColorMode-inverse'
     );
   });
 
@@ -44,7 +45,7 @@ describe('EuiOverlayMask', () => {
       baseElement.querySelector('.euiOverlayMask')!.className;
 
     expect(getClassName()).toMatchInlineSnapshot(
-      '"euiOverlayMask css-11w8yva-euiOverlayMask-aboveHeader hello"'
+      `"euiOverlayMask css-1hzbeld-euiOverlayMask-aboveHeader hello"`
     );
 
     rerender(
@@ -53,7 +54,7 @@ describe('EuiOverlayMask', () => {
       </EuiOverlayMask>
     );
     expect(getClassName()).toMatchInlineSnapshot(
-      '"euiOverlayMask css-13fdnee-euiOverlayMask-belowHeader world"'
+      `"euiOverlayMask css-1j0pa91-euiOverlayMask-belowHeader world"`
     );
   });
 
@@ -83,11 +84,17 @@ describe('EuiOverlayMask', () => {
     });
   });
 
+  // React 18 is really unhappy when RTL wants to unmount
+  // it while the component is still updating.
+  // TODO: https://github.com/elastic/eui/issues/6998
   // Note - this needs to be the last test in the suite, otherwise subsequent overlay masks stop working
-  it('throws if a non-string property value is passed', () => {
-    // @ts-expect-error expected error
-    expect(() => render(<EuiOverlayMask aria-hidden={true} />)).toThrow(
-      'EuiOverlayMask property aria-hidden is not a string'
-    );
-  });
+  testOnReactVersion(['16', '17'])(
+    'throws if a non-string property value is passed',
+    () => {
+      // @ts-expect-error expected error
+      expect(() => render(<EuiOverlayMask aria-hidden={true} />)).toThrow(
+        'EuiOverlayMask property aria-hidden is not a string'
+      );
+    }
+  );
 });

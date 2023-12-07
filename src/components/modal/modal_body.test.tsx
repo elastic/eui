@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiModalBody } from './modal_body';
 
@@ -17,7 +17,9 @@ describe('EuiModalBody', () => {
   shouldRenderCustomStyles(<EuiModalBody>children</EuiModalBody>);
 
   test('is rendered', () => {
-    const component = <EuiModalBody {...requiredProps}>children</EuiModalBody>;
-    expect(render(component)).toMatchSnapshot();
+    const { container } = render(
+      <EuiModalBody {...requiredProps}>children</EuiModalBody>
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

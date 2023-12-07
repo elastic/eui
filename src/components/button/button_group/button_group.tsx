@@ -8,16 +8,21 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+
+import { useEuiTheme } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiButtonGroupButton } from './button_group_button';
-import { colorToClassNameMap } from '../button';
-import { EuiButtonContentProps } from '../_button_content_deprecated';
 import { CommonProps } from '../../common';
-import { useGeneratedHtmlId } from '../../../services';
+
 import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
+import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
+import { EuiButtonGroupButton } from './button_group_button';
+import {
+  euiButtonGroupStyles,
+  euiButtonGroupButtonsStyles,
+} from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
-  extends EuiButtonContentProps,
+  extends EuiButtonDisplayContentProps,
     CommonProps {
   /**
    * Each option must have a unique `id` for maintaining selection
@@ -80,8 +85,7 @@ export type EuiButtonGroupProps = CommonProps & {
          */
         type?: 'single';
         /**
-         * The `name` attribute for radio inputs;
-         * Defaults to a random string
+         * @deprecated No longer needed. You can safely remove this prop entirely
          */
         name?: string;
         /**
@@ -107,18 +111,15 @@ export type EuiButtonGroupProps = CommonProps & {
          */
         onChange: (id: string) => void;
         idSelected?: never;
+        /**
+         * @deprecated
+         */
         name?: never;
       }
   );
 
 type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange' | 'color'> &
   EuiButtonGroupProps;
-
-const groupSizeToClassNameMap = {
-  s: '--small',
-  m: '--medium',
-  compressed: '--compressed',
-};
 
 export const EuiButtonGroup: FunctionComponent<Props> = ({
   className,
@@ -130,41 +131,58 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   isFullWidth = false,
   isIconOnly = false,
   legend,
-  name,
+  name, // Prevent prop from being spread
   onChange,
   options = [],
   type = 'single',
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+
+  const wrapperStyles = euiButtonGroupStyles();
+  const wrapperCssStyles = [
+    wrapperStyles.euiButtonGroup,
+    isFullWidth && wrapperStyles.fullWidth,
+  ];
+
+  const styles = euiButtonGroupButtonsStyles(euiTheme);
+  const cssStyles = [
+    styles.euiButtonGroup__buttons,
+    isFullWidth && styles.fullWidth,
+    styles[buttonSize],
+  ];
+
   const classes = classNames(
     'euiButtonGroup',
-    `euiButtonGroup${groupSizeToClassNameMap[buttonSize]}`,
-    `euiButtonGroup${colorToClassNameMap[color]}`,
-    {
-      'euiButtonGroup--fullWidth': isFullWidth,
-      'euiButtonGroup--isDisabled': isDisabled,
-    },
+    { 'euiButtonGroup-isDisabled': isDisabled },
     className
   );
 
   const typeIsSingle = type === 'single';
-  const nameIfSingle = useGeneratedHtmlId({ conditionalId: name });
 
   return (
-    <fieldset className={classes} {...rest} disabled={isDisabled}>
+    <fieldset
+      css={wrapperCssStyles}
+      className={classes}
+      {...rest}
+      disabled={isDisabled}
+    >
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
 
-      <div className="euiButtonGroup__buttons">
+      <div css={cssStyles} className="euiButtonGroup__buttons">
         {options.map((option, index) => {
           return (
             <EuiButtonGroupButton
               key={index}
-              name={nameIfSingle}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
-              element={typeIsSingle ? 'label' : 'button'}
+              onClick={
+                typeIsSingle
+                  ? () => onChange(option.id, option.value)
+                  : () => onChange(option.id)
+              }
               isSelected={
                 typeIsSingle
                   ? option.id === idSelected
@@ -173,7 +191,6 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
               color={color}
               size={buttonSize}
               isIconOnly={isIconOnly}
-              onChange={onChange}
             />
           );
         })}
