@@ -80,7 +80,7 @@ export const useSorting = ({
             }
           }
 
-          const result = comparator(aValue, bValue, column.direction);
+          const result = comparator(aValue, bValue, column.direction, {aIndex: a.index, bIndex: b.index});
           // only return if the columns are unequal, otherwise allow the next sort-by column to run
           if (result !== 0) return result;
         }
