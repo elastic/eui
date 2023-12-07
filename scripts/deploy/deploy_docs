@@ -56,7 +56,7 @@ post_comment_to_gh()
     comment="Preview staging links for this PR:
 - Docs site: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/
 - Storybook: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook
-- New docs site (in development): https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/new-docs"
+- New docs site (in development): https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/new-docs/"
 
     curl \
       --silent \
