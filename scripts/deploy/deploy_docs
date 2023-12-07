@@ -55,7 +55,8 @@ post_comment_to_gh()
     printf '\nAdding comment to GitHub Pull Request: %i\n' "${GIT_PULL_REQUEST_ID}"
     comment="Preview staging links for this PR:
 - Docs site: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/
-- Storybook: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook"
+- Storybook: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook
+- New docs site (in development): https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/new-docs"
 
     curl \
       --silent \
@@ -78,11 +79,17 @@ publish_to_bucket()
     -z js,css,html # enable gzip encoding for these extensions
   )
 
+  # Current docs
   echo "Copying ${PWD}/docs/* to ${full_bucket_path}"
   gsutil "${copy_options[@]}" "${PWD}/docs/*" "${full_bucket_path}"
 
+  # Storybook
   echo "Copying ${PWD}/storybook-static/* to ${full_bucket_path}storybook/"
   gsutil "${copy_options[@]}" "${PWD}/storybook-static/*" "${full_bucket_path}storybook/"
+
+  # New docs
+  echo "Copying ${PWD}/website/build/* to ${full_bucket_path}new-docs/"
+  gsutil "${copy_options[@]}" "${PWD}/website/build/*" "${full_bucket_path}new-docs/"
 }
 
 if [[ "$1" != "nodocker" ]]; then

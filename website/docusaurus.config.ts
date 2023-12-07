@@ -2,6 +2,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const baseUrl = process.env.DOCS_BASE_URL || '/';
+
 const config: Config = {
   title: 'Elastic UI Framework',
   tagline: 'The framework powering the Elastic Stack',
@@ -11,7 +13,7 @@ const config: Config = {
   url: 'https://eui.elastic.co',
 
   // Set the /<baseUrl>/ pathname under which your site is served
-  baseUrl: '/',
+  baseUrl,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
