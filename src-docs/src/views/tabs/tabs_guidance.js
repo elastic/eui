@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   EuiCode,
@@ -11,48 +10,43 @@ import {
 export default () => (
   <>
     <EuiText grow={false}>
-      <h2>Follow best practices for tabbed interfaces</h2>
+      <h2>Do</h2>
       <p>
-        Use tabs to organize in-page content. Each tab should contain a segment
-        of information relevant to the current subject. For more best practices
-        see{' '}
+        Follow best practices. Use tabs to organize in-page content. Each tab
+        should contain a segment of information relevant to the current subject.
+        For more UX tips see{' '}
         <EuiLink href="https://www.nngroup.com/articles/tabs-used-right/">
           NNG&apos;s article &quot;Tabs, Used Right&quot;
         </EuiLink>
         .
       </p>
-      <EuiSpacer size="xs" />
-      <h3>Use props to tailor the user experience</h3>
+      <h2>Do</h2>
       <p>
-        Tab props allow consumers to set the selected tab on first render, and
-        add custom behavior on tab click. For instance, you could use the{' '}
-        <EuiCode>selectedTab</EuiCode> prop to show a second or third tab on
-        page load. You could also use the <EuiCode>onTabClick</EuiCode> prop to
-        add custom click behavior.
+        For tabs showing primary page content, use the <EuiCode>href</EuiCode>{' '}
+        prop to change the current URL hash. Ensure the tab selection is
+        persisted in the user's navigation history and works with the browser's
+        back button.
       </p>
       <EuiSpacer size="xs" />
-      <h3>Manage the user experience if you change routes or URLs</h3>
+      <h2>Do</h2>
       <p>
-        Be sure the correct tab is selected if you use the{' '}
-        <EuiCode>href</EuiCode> prop to append a hash to the current route. If
-        your tab adds a <EuiCode>#tabbedHash</EuiCode> to the URL, the matching
-        tab should be selected when users refresh the page. It can be confusing
-        to users when hash routes do not match a selected tab.
+        Ensure when a page is loaded with a URL hash representing a selected tab
+        (as applied by the <EuiCode>href</EuiCode> prop), that the corresponding
+        tab is shown using the <EuiCode>selectedTab</EuiCode> prop.
       </p>
       <EuiSpacer size="xs" />
-      <h3>Tabs must not update higher-level navigation</h3>
+      <h2>Don't</h2>
       <p>
-        Do not update navigation such as{' '}
-        <Link to="/navigation/breadcrumbs">
-          <strong>breadcrumbs</strong>
-        </Link>{' '}
-        or{' '}
-        <Link to="/navigation/collapsible-nav">
-          <strong>navigation menus</strong>
-        </Link>{' '}
-        when users click on tabs. Tabs show localized information and it is not
-        always clear what changed if tabs are below the fold or navigation does
-        not match the route.
+        Apply the <EuiCode>href</EuiCode> prop to change the current page URL
+        hash on more than one set of tabs per page, or non-primary content.
+      </p>
+      <EuiSpacer size="xs" />
+      <h2>Don't</h2>
+      <p>
+        Keep users on the same page visually, but change the higher-level
+        navigation logically. Tabs should keep users at the same place within an
+        application. Breadcrumbs and main navigation should not change. The URL
+        hash is the only thing that should change.
       </p>
     </EuiText>
   </>
