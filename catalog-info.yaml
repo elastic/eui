@@ -223,11 +223,13 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_release_deploy_docs.yml"
-      default_branch: main
       provider_settings:
         build_branches: false
-        build_tags: true # Will trigger job when GitHub tags are created
+        build_tags: true # Will trigger job when GitHub release tags are created
         build_pull_requests: false
+        filter_enabled: true
+        filter_condition: | # Eg 100.100.100 but skip 100.100.100.1 or 100.100.100-rc
+          build.tag =~ /^[0-9]+\.[0-9]+\.[0-9]+$/
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ

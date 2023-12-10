@@ -479,15 +479,23 @@ export class EuiSelectableList<T> extends Component<
     const checkedIconOffset = this.props.showIcons === false ? 0 : 28; // Defaults to true
     this.focusBadgeOffset = this.props.onFocusBadge === false ? 0 : 46;
 
-    this.setState({
-      defaultOptionWidth: containerWidth - paddingOffset - checkedIconOffset,
-    });
+    // Wait a tick for the listbox ref to update before proceeding
+    requestAnimationFrame(() => {
+      const scrollbarOffset = this.listBoxRef
+        ? containerWidth - this.listBoxRef.offsetWidth
+        : 0;
 
-    // Potentially force list rows to rerender on dynamic resize as well,
-    // but try to do it as lightly as possible
-    if (truncationProps || (searchable && searchValue)) {
-      this.forceVirtualizedListRowRerender();
-    }
+      this.setState({
+        defaultOptionWidth:
+          containerWidth - scrollbarOffset - paddingOffset - checkedIconOffset,
+      });
+
+      // Potentially force list rows to rerender on dynamic resize as well,
+      // but try to do it as lightly as possible
+      if (truncationProps || (searchable && searchValue)) {
+        this.forceVirtualizedListRowRerender();
+      }
+    });
   };
 
   getTruncationProps = (option: EuiSelectableOption, isFocused: boolean) => {
