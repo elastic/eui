@@ -13,7 +13,7 @@ import { requiredProps } from '../../../../test';
 import { EuiCollapsedNavItem } from './collapsed_nav_item';
 
 describe('EuiCollapsedNavItem', () => {
-  it('renders a popover if items exist', () => {
+  it('renders a popover if items are passed', () => {
     const { container } = render(
       <EuiCollapsedNavItem
         {...requiredProps}
@@ -26,14 +26,9 @@ describe('EuiCollapsedNavItem', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders an icon button/link if items are missing or empty', () => {
+  it('renders an icon button/link if href is passed', () => {
     const { container } = render(
-      <EuiCollapsedNavItem
-        {...requiredProps}
-        title="Item"
-        href="#"
-        items={[]}
-      />
+      <EuiCollapsedNavItem {...requiredProps} title="Item" href="#" />
     );
 
     expect(container.firstChild).toHaveClass('euiToolTipAnchor');

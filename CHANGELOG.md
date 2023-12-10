@@ -1,3 +1,10 @@
+## [`91.0.0-backport.1`](https://github.com/elastic/eui/tree/v91.0.0-backport.1)
+
+**This release is a backport intended for Kibana only.**
+
+- `EuiSelectable` now allows configurable text truncation via `listProps.truncationProps` ([#7388](https://github.com/elastic/eui/pull/7388))
+- `EuiTextTruncate` now supports a new `calculationDelayMs` prop for working around font loading or layout shifting scenarios ([#7388](https://github.com/elastic/eui/pull/7388))
+
 ## [`91.0.0`](https://github.com/elastic/eui/tree/v91.0.0)
 
 - Updated the background color of `EuiPopover`s in dark mode to increase visibility & contrast against other page/panel backgrounds ([#7310](https://github.com/elastic/eui/pull/7310))

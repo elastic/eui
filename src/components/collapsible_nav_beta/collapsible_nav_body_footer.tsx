@@ -61,9 +61,13 @@ export const EuiCollapsibleNavFooter: EuiFlyoutFooterProps = ({
 }) => {
   const classes = classNames('euiCollapsibleNav__footer', className);
 
+  const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavFooterStyles(euiTheme);
-  const cssStyles = [styles.euiCollapsibleNav__footer];
+  const cssStyles = [
+    styles.euiCollapsibleNav__footer,
+    isCollapsed && isPush && styles.isPushCollapsed,
+  ];
 
   return <EuiFlyoutFooter className={classes} css={cssStyles} {...props} />;
 };
