@@ -102,7 +102,12 @@ export interface EuiDataGridSchemaDetector {
   /**
    * A custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc', indexes: {aIndex: number, bIndex: number}) => -1 | 0 | 1`
    */
-  comparator?: (a: string, b: string, direction: 'asc' | 'desc', indexes: {aIndex: number, bIndex: number}) => -1 | 0 | 1;
+  comparator?: (
+    a: string,
+    b: string,
+    direction: 'asc' | 'desc',
+    indexes: { aIndex: number; bIndex: number }
+  ) => -1 | 0 | 1;
   /**
    * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
    */
