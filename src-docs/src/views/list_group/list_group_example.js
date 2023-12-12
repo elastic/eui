@@ -107,7 +107,7 @@ export const ListGroupExample = {
     },
     {
       label: 'Second link',
-      href: '#,
+      href: '#',
       isActive: true,
       iconType: 'clock',
     }]

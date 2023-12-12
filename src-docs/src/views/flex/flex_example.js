@@ -363,28 +363,6 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'Allowing flex items to wrap',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flexGroupWrapSource,
-        },
-      ],
-      text: (
-        <p>
-          You can set <EuiCode>wrap</EuiCode> on <strong>EuiFlexGroup</strong>{' '}
-          if it contains <strong>EuiFlexItems</strong> with minimum widths,
-          which you want to wrap as the container becomes narrower.
-        </p>
-      ),
-      snippet: flexGroupWrap,
-      demo: (
-        <FlexItemHighlightWrapper>
-          <FlexGroupWrap />
-        </FlexItemHighlightWrapper>
-      ),
-    },
-    {
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -452,6 +430,28 @@ export const FlexExample = {
       demo: (
         <FlexItemHighlightWrapper>
           <Direction />
+        </FlexItemHighlightWrapper>
+      ),
+    },
+    {
+      title: 'Allowing flex items to wrap',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGroupWrapSource,
+        },
+      ],
+      text: (
+        <p>
+          You can set <EuiCode>wrap</EuiCode> on <strong>EuiFlexGroup</strong>{' '}
+          if it contains <strong>EuiFlexItems</strong> with minimum widths,
+          which you want to wrap as the container becomes narrower.
+        </p>
+      ),
+      snippet: flexGroupWrap,
+      demo: (
+        <FlexItemHighlightWrapper>
+          <FlexGroupWrap />
         </FlexItemHighlightWrapper>
       ),
     },
