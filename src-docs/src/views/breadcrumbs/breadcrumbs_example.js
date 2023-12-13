@@ -57,6 +57,13 @@ export const BreadcrumbsExample = {
         </Link>{' '}
         should be used for application-wide navigation.
       </p>
+      <p>
+        See{' '}
+        <Link to="/navigation/tabs/guidelines">
+          <strong>EuiTabs guidelines</strong>
+        </Link>{' '}
+        if your application requires breadcrumbs and tabs on the same view.
+      </p>
     </EuiText>
   ),
   sections: [
