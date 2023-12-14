@@ -1,0 +1,53 @@
+---
+title: Component testing recommendations
+sidebar_label: Recommendations
+---
+
+<p style={{ fontSize: '22px' }}>
+  Our general set of do's and don'ts for testing components and views.
+</p>
+
+## Choose right selectors
+
+Follow RTL's [Guiding Principles](https://testing-library.com/docs/guiding-principles/)
+and [query priorities](https://testing-library.com/docs/queries/about/#priority) when choosing right element selectors.
+
+Prioritize accessible and semantic queries (e.g., `[role="dialog"]`) followed by `data-test-subj` attributes over
+other, more complicated and prone to breaking queries (e.g. `div > span.title`) whenever possible.
+
+## Don't use snapshots
+
+As much as we love the simplicity of snapshot testing with Jest, **we strongly discourage it**.
+We find that snapshot tests are prone to frequent failures due to the smallest things, like whitespace changes,
+and developers often update stored snapshots whenever they see them fail without thinking too much of them.
+
+Tests should tell a user story and be considered an instant red flag whenever they fail. They should focus
+only on the important parts like the data a component is displaying coming from a prop
+or being dynamically calculated inside of it.
+
+Instead, consider writing simple, but precise assertion tests.
+
+## Avoid time-based waits
+
+Sometimes the easiest solution to fixing a test is adding a wait/sleep call. In most cases, though,
+this can't be considered a reliable fix, because:
+
+1. It greatly increases total test run time, especially when used often
+2. Every machine will take a different amount of time to execute the code, and some - especially CI runners -
+   are prone to lag during the test run.
+
+Instead, use the utilities available for every testing framework to wait for elements to appear
+or for asynchronous operations to finish execution.
+
+## Write descriptive test names
+
+[TODO]
+
+## Clean up after every run
+
+[TODO]
+
+## Add debug-friendly error messages
+
+[TODO]
+
