@@ -1,3 +1,8 @@
+## [`v91.3.0`](https://github.com/elastic/eui/releases/v91.3.0)
+
+- Added `esqlVis`, `pipeBreaks`, and `pipeNoBreaks` icon glyphs. ([#7399](https://github.com/elastic/eui/pull/7399))
+- Updated `EuiDataGridSchemaDetector`'s comparator arguments to include entry indexes ([#7406](https://github.com/elastic/eui/pull/7406))
+
 ## [`v91.2.0`](https://github.com/elastic/eui/releases/v91.2.0)
 
 - Added `endpoint` glyph to `EuiIcon` ([#7383](https://github.com/elastic/eui/pull/7383))
