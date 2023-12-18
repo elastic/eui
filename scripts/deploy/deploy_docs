@@ -13,12 +13,15 @@ set +x
 # Expected env variables:
 # * GPROJECT - GCE project name, e.g. elastic-bekitzur
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
+# * GCE_IMAGE - Google's Docker image to publish docs
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 # * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999) or "false" from Buildkite env
 # * GIT_TAG - current Git tag (Ex. v87.0.0) from Buildkite env
+# * DEPLOY_ROOT - passed in from Buildkite UI or undefined. Manually publishes release docs when set to true.
 
-# Docker images
-GCE_IMAGE=google/cloud-sdk:slim
+# Test that DEPLOY_ROOT is being passed properly
+# TODO: Revert
+echo "Testing deploy_root is ${DEPLOY_ROOT}"
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
@@ -103,6 +106,7 @@ if [[ "$1" != "nodocker" ]]; then
     --env GIT_PULL_REQUEST_ID \
     --env GIT_TAG \
     --env CURRENT_RELEASE="${CURRENT_RELEASE}" \
+    --env DEPLOY_ROOT="${DEPLOY_ROOT}" \
     --env HOME=/tmp \
     --user="$(id -u):$(id -g)" \
     --volume "${PWD}":/app:ro \
@@ -137,7 +141,7 @@ else
 
   # Our branched docs deploys are **only** ever triggered by tags
   # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_TAG
-  elif [[ ! -z "${GIT_TAG}" ]]; then
+  elif [[ -n "${GIT_TAG}" ]]; then
     echo "Deploying eui.elastic.co/${GIT_TAG}"
     full_bucket_path="gs://${BUCKET}/${GIT_TAG}/"
     max_age="1800" # Reducing to 15 minutes to limit stale docs
