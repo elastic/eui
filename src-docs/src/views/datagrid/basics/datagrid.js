@@ -71,7 +71,9 @@ const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
   useEffect(() => {
     if (columnId === 'amount') {
       if (data.hasOwnProperty(rowIndex)) {
-        const numeric = parseFloat(data[rowIndex][columnId].match(/\d+\.\d+/)[0]);
+        const numeric = parseFloat(
+          data[rowIndex][columnId].match(/\d+\.\d+/)[0]
+        );
         setCellProps({
           style: {
             backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
