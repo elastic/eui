@@ -27,8 +27,7 @@ const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
     if (columnId === 'amount') {
       if (raw_data.hasOwnProperty(rowIndex)) {
         const numeric = parseFloat(
-          raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
-          10
+          raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0]
         );
         setCellProps({
           style: {
