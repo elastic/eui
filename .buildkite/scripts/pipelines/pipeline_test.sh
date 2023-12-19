@@ -10,7 +10,7 @@ DOCKER_OPTIONS=(
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
-  docker.elastic.co/eui/ci:6.0
+  "$DOCKER_BASE_IMAGE"
 )
 
 case $TEST_TYPE in

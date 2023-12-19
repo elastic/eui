@@ -6,7 +6,7 @@
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "20.9.0",
+  "docker_image": "20.10.0",
   "engines": {
     "node": "16.x || 18.x || >=20.x"
   },
@@ -16,8 +16,6 @@
   ],
   "scripts": {
     "start": "cross-env BABEL_MODULES=false webpack serve --config=src-docs/webpack.config.js",
-    "test-docker": "node ./scripts/test-docker.js",
-    "test-a11y-docker": "node ./scripts/test-a11y-docker.js",
     "build-docs": "cross-env BABEL_MODULES=false cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src-docs/webpack.config.js",
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
