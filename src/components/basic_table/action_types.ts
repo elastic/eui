@@ -90,7 +90,7 @@ export type Action<T extends object> =
   | DefaultItemAction<T>
   | CustomItemAction<T>;
 
-export const isCustomItemAction = <T>(
+export const isCustomItemAction = <T extends object>(
   action: DefaultItemAction<T> | CustomItemAction<T>
 ): action is CustomItemAction<T> => {
   return action.hasOwnProperty('render');

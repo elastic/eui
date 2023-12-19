@@ -31,7 +31,7 @@ export interface DefaultItemActionProps<T extends object> {
   className?: string;
 }
 
-export const DefaultItemAction = <T,>({
+export const DefaultItemAction = <T extends object>({
   action,
   enabled,
   item,
