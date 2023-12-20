@@ -22,7 +22,7 @@ export interface ExpandedItemActionsProps<T> {
   actions: Array<Action<T>>;
   itemId: ItemIdResolved;
   item: T;
-  actionEnabled: (action: Action<T>) => boolean;
+  actionsDisabled: boolean;
   className?: string;
 }
 
@@ -30,7 +30,7 @@ export const ExpandedItemActions = <T extends {}>({
   actions,
   itemId,
   item,
-  actionEnabled,
+  actionsDisabled,
   className,
 }: ExpandedItemActionsProps<T>): ReactElement => {
   const moreThanThree = actions.length > 2;
@@ -43,7 +43,7 @@ export const ExpandedItemActions = <T extends {}>({
           return tools;
         }
 
-        const enabled = actionEnabled(action);
+        const enabled = action.enabled == null || action.enabled(item);
 
         const key = `item_action_${itemId}_${index}`;
 
@@ -59,7 +59,7 @@ export const ExpandedItemActions = <T extends {}>({
               className={classes}
               index={index}
               action={action as CustomAction<T>}
-              enabled={enabled}
+              enabled={enabled && !actionsDisabled}
               item={item}
             />
           );
@@ -69,7 +69,7 @@ export const ExpandedItemActions = <T extends {}>({
               key={key}
               className={classes}
               action={action as DefaultAction<T>}
-              enabled={enabled}
+              enabled={enabled && !actionsDisabled}
               item={item}
             />
           );
