@@ -42,7 +42,7 @@ export const section = {
           stays visible at all times.
         </li>
         <li>
-          When any table row(s) are being selected, all item actions are
+          When one or more table row(s) are selected, all item actions are
           disabled. Users should be expected to use some bulk action outside the
           individual table rows instead.
         </li>
