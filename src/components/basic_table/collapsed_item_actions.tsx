@@ -112,11 +112,21 @@ export const CollapsedItemActions = <T extends {}>({
   }, [actions, actionsDisabled, item, onClickItem]);
 
   const popoverButton = (
-    <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
-      {(allActions: string) => (
+    <EuiI18n
+      tokens={[
+        'euiCollapsedItemActions.allActions',
+        'euiCollapsedItemActions.allActionsDisabled',
+      ]}
+      defaults={[
+        'All actions',
+        'Individual item actions are disabled when rows are being selected.',
+      ]}
+    >
+      {([allActions, allActionsDisabled]: string[]) => (
         <EuiButtonIcon
           className={className}
-          aria-label={allActions}
+          aria-label={actionsDisabled ? allActionsDisabled : allActions}
+          title={actionsDisabled ? allActionsDisabled : undefined}
           iconType="boxesHorizontal"
           color="text"
           isDisabled={actionsDisabled}
