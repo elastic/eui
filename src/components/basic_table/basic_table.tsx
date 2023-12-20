@@ -1153,17 +1153,21 @@ export class EuiBasicTable<T = any> extends Component<
     column: EuiTableActionsColumnType<T>,
     columnIndex: number
   ) {
-    const actionEnabled = (action: Action<T>) =>
-      this.state.selection.length === 0 &&
-      (!action.enabled || action.enabled(item));
+    // Disable all actions if any row(s) are selected
+    const allDisabled = this.state.selection.length > 0;
 
     let actualActions = column.actions.filter(
       (action: Action<T>) => !action.available || action.available(item)
     );
     if (actualActions.length > 2) {
-      // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = actualActions.filter((o) => o.isPrimary);
-      actualActions = primaryActions.slice(0, 2);
+      if (allDisabled) {
+        // If all actions are disabled, do not show any actions but the popover toggle
+        actualActions = [];
+      } else {
+        // if any of the actions `isPrimary`, add them inline as well, but only the first 2
+        const primaryActions = actualActions.filter((o) => o.isPrimary);
+        actualActions = primaryActions.slice(0, 2);
+      }
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
       // put them all in a popover tool. This effectively means we can only have a maximum
@@ -1177,9 +1181,9 @@ export class EuiBasicTable<T = any> extends Component<
           return (
             <CollapsedItemActions
               actions={column.actions}
+              actionsDisabled={allDisabled}
               itemId={itemId}
               item={item}
-              actionEnabled={actionEnabled}
             />
           );
         },
@@ -1189,9 +1193,9 @@ export class EuiBasicTable<T = any> extends Component<
     const tools = (
       <ExpandedItemActions
         actions={actualActions}
+        actionsDisabled={allDisabled}
         itemId={itemId}
         item={item}
-        actionEnabled={actionEnabled}
       />
     );
 

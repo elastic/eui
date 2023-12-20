@@ -36,7 +36,7 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: '1' },
-      actionEnabled: () => true,
+      actionsDisabled: false,
     };
 
     const { container } = render(<CollapsedItemActions {...props} />);
@@ -63,7 +63,7 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: 'xyz' },
-      actionEnabled: () => true,
+      actionsDisabled: false,
     };
 
     const { getByTestSubject, getByText, baseElement } = render(
@@ -92,7 +92,7 @@ describe('CollapsedItemActions', () => {
       ],
       itemId: 'id',
       item: { id: 'xyz' },
-      actionEnabled: () => true,
+      actionsDisabled: false,
     };
 
     const { getByTestSubject, baseElement } = render(

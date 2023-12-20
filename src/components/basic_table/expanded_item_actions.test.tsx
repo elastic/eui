@@ -30,7 +30,7 @@ describe('ExpandedItemActions', () => {
       ],
       itemId: 'xyz',
       item: { id: 'xyz' },
-      actionEnabled: () => true,
+      actionsDisabled: false,
     };
 
     const component = shallow(<ExpandedItemActions {...props} />);

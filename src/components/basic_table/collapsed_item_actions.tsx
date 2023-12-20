@@ -33,7 +33,7 @@ export interface CollapsedItemActionsProps<T extends {}> {
   actions: Array<Action<T>>;
   item: T;
   itemId: ItemIdResolved;
-  actionEnabled: (action: Action<T>) => boolean;
+  actionsDisabled: boolean;
   className?: string;
 }
 
@@ -41,11 +41,10 @@ export const CollapsedItemActions = <T extends {}>({
   actions,
   itemId,
   item,
-  actionEnabled,
+  actionsDisabled,
   className,
 }: CollapsedItemActionsProps<T>) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const [allDisabled, setAllDisabled] = useState(true);
 
   const onClickItem = useCallback((onClickAction?: () => void) => {
     setPopoverOpen(false);
@@ -57,8 +56,7 @@ export const CollapsedItemActions = <T extends {}>({
       const available = action.available?.(item) ?? true;
       if (!available) return controls;
 
-      const enabled = actionEnabled(action);
-      if (enabled) setAllDisabled(false);
+      const enabled = action.enabled == null || action.enabled(item);
 
       if (isCustomItemAction<T>(action)) {
         const customAction = action as CustomItemAction<T>;
@@ -94,7 +92,7 @@ export const CollapsedItemActions = <T extends {}>({
           <EuiContextMenuItem
             key={index}
             className="euiBasicTable__collapsedAction"
-            disabled={!enabled}
+            disabled={!enabled && !actionsDisabled}
             href={href}
             target={target}
             icon={icon}
@@ -111,7 +109,7 @@ export const CollapsedItemActions = <T extends {}>({
       }
       return controls;
     }, []);
-  }, [actions, actionEnabled, item, onClickItem]);
+  }, [actions, actionsDisabled, item, onClickItem]);
 
   const popoverButton = (
     <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
@@ -121,7 +119,7 @@ export const CollapsedItemActions = <T extends {}>({
           aria-label={allActions}
           iconType="boxesHorizontal"
           color="text"
-          isDisabled={allDisabled}
+          isDisabled={actionsDisabled}
           onClick={() => setPopoverOpen((isOpen) => !isOpen)}
           data-test-subj="euiCollapsedItemActionsButton"
         />
@@ -129,7 +127,7 @@ export const CollapsedItemActions = <T extends {}>({
     </EuiI18n>
   );
 
-  const withTooltip = !allDisabled && (
+  const withTooltip = !actionsDisabled && (
     <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
       {(allActions: ReactNode) => (
         <EuiToolTip content={allActions} delay="long">
