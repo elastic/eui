@@ -41,6 +41,11 @@ export const section = {
           When more than 2 actions are supplied, only the ellipses icon button
           stays visible at all times.
         </li>
+        <li>
+          When any table row(s) are being selected, all item actions are
+          disabled. Users should be expected to use some bulk action outside the
+          individual table rows instead.
+        </li>
       </ul>
     </>
   ),

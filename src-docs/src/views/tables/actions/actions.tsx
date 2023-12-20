@@ -362,7 +362,10 @@ export default () => {
 
   return (
     <>
-      <EuiFlexGroup alignItems="center">
+      <EuiFlexGroup
+        alignItems="center"
+        css={({ euiTheme }) => ({ minHeight: euiTheme.size.xxl })}
+      >
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Multiple Actions"
