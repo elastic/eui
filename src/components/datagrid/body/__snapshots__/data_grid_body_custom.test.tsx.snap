@@ -29,6 +29,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
         class="euiDataGridHeaderCell__button"
         data-euigrid-tab-managed="true"
+        data-test-subj="dataGridHeaderCellActionButton-columnA"
         tabindex="-1"
       >
         <div
@@ -46,7 +47,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             <span
               color="text"
               data-euiicon-type="boxesVertical"
-              data-test-subj="dataGridHeaderCellActionButton-columnA"
             />
           </div>
         </div>
@@ -82,6 +82,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
         class="euiDataGridHeaderCell__button"
         data-euigrid-tab-managed="true"
+        data-test-subj="dataGridHeaderCellActionButton-columnB"
         tabindex="-1"
       >
         <div
@@ -99,7 +100,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             <span
               color="text"
               data-euiicon-type="boxesVertical"
-              data-test-subj="dataGridHeaderCellActionButton-columnB"
             />
           </div>
         </div>

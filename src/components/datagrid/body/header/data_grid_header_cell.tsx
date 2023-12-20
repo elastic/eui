@@ -145,6 +145,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             }}
             aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
             ref={actionsButtonRef}
+            data-test-subj={`dataGridHeaderCellActionButton-${id}`}
           >
             {cellContent}
             <EuiPopover
@@ -166,12 +167,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
               }}
               button={
                 <div className="euiDataGridHeaderCell__icon">
-                  <EuiIcon
-                    type="boxesVertical"
-                    size="s"
-                    color="text"
-                    data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-                  />
+                  <EuiIcon type="boxesVertical" size="s" color="text" />
                 </div>
               }
               isOpen={isPopoverOpen}
