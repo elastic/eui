@@ -614,6 +614,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-A"
                   tabindex="-1"
                 >
                   <div
@@ -631,7 +632,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
                     </div>
                   </div>
@@ -667,6 +667,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-B"
                   tabindex="-1"
                 >
                   <div
@@ -684,7 +685,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
                     </div>
                   </div>
@@ -1060,6 +1060,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-A"
                   tabindex="-1"
                 >
                   <div
@@ -1077,7 +1078,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
                     </div>
                   </div>
@@ -1113,6 +1113,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-B"
                   tabindex="-1"
                 >
                   <div
@@ -1130,7 +1131,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
                     </div>
                   </div>
@@ -1743,6 +1743,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-A"
                   tabindex="-1"
                 >
                   <div
@@ -1760,7 +1761,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
                     </div>
                   </div>
@@ -1796,6 +1796,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-B"
                   tabindex="-1"
                 >
                   <div
@@ -1815,7 +1816,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
                     </div>
                   </div>
@@ -2169,6 +2169,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-A"
                   tabindex="-1"
                 >
                   <div
@@ -2186,7 +2187,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-A"
                       />
                     </div>
                   </div>
@@ -2222,6 +2222,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                   class="euiDataGridHeaderCell__button"
                   data-euigrid-tab-managed="true"
+                  data-test-subj="dataGridHeaderCellActionButton-B"
                   tabindex="-1"
                 >
                   <div
@@ -2239,7 +2240,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                       <span
                         color="text"
                         data-euiicon-type="boxesVertical"
-                        data-test-subj="dataGridHeaderCellActionButton-B"
                       />
                     </div>
                   </div>

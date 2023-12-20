@@ -33,6 +33,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
           class="euiDataGridHeaderCell__button"
           data-euigrid-tab-managed="true"
+          data-test-subj="dataGridHeaderCellActionButton-columnA"
           tabindex="-1"
         >
           <div
@@ -50,7 +51,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
               <span
                 color="text"
                 data-euiicon-type="boxesVertical"
-                data-test-subj="dataGridHeaderCellActionButton-columnA"
               />
             </div>
           </div>
@@ -86,6 +86,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
           class="euiDataGridHeaderCell__button"
           data-euigrid-tab-managed="true"
+          data-test-subj="dataGridHeaderCellActionButton-columnB"
           tabindex="-1"
         >
           <div
@@ -103,7 +104,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
               <span
                 color="text"
                 data-euiicon-type="boxesVertical"
-                data-test-subj="dataGridHeaderCellActionButton-columnB"
               />
             </div>
           </div>
