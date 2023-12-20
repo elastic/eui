@@ -1,5 +1,15 @@
 [
   {
+    "version": "91.3.1",
+    "changes": [
+      {
+        "token": "euiCollapsedItemActions.allActionsDisabled",
+        "changeType": "added",
+        "value": "Individual item actions are disabled when rows are being selected."
+      }
+    ]
+  },
+  {
     "version": "91.1.0",
     "changes": [
       {
