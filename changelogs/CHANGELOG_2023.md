@@ -1,3 +1,10 @@
+## [`v91.3.1`](https://github.com/elastic/eui/releases/v91.3.1)
+
+**Bug fixes**
+
+- Moved `EuiDataGrid`'s header cells' `dataGridHeaderCellActionButton` test subject attribute from to the clickable button, for easier E2E testing ([#7427](https://github.com/elastic/eui/pull/7427))
+- Fixed `EuiBasicTable`/`EuiInMemoryTable` actions to correctly show as disabled when rows are being selected ([#7428](https://github.com/elastic/eui/pull/7428))
+
 ## [`v91.3.0`](https://github.com/elastic/eui/releases/v91.3.0)
 
 - Added `esqlVis`, `pipeBreaks`, and `pipeNoBreaks` icon glyphs. ([#7399](https://github.com/elastic/eui/pull/7399))
