@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="432" height="293" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="293" fill="none" role="img" aria-labelledby="euiComboBoxTestingQuickReferenceTitle euiComboBoxTestingQuickReferenceDescription">
+  <title id="euiComboBoxTestingQuickReferenceTitle">EuiComboBox selectors quick reference</title>
+  <desc id="euiComboBoxTestingQuickReferenceDescription">EuiComboBox provides five selectors for its inner elements: [data-test-subj="euiComboBoxPill"] for selected options, [data-test-subj="comboBoxSearchInput"] for the search input field, [data-test-subj="comboBoxClearButton"] for the clear button, [role="option"] for the list options, and [role="option"][aria-selected="true"] for the selected list options</desc>
   <g clip-path="url(#a)">
     <rect width="400" height="40" x="16" y="113" fill="#fff" rx="6"/>
     <rect width="399" height="39" x="16.5" y="113.5" stroke="#112B86" stroke-opacity=".1" rx="5.5"/>

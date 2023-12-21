@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="217" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="217" fill="none" role="img" aria-labelledby="euiCallOutTestingQuickReferenceTitle euiCallOutTestingQuickReferenceDescription">
+  <title id="euiCallOutTestingQuickReferenceTitle">EuiCallOut selectors quick reference</title>
+  <desc id="euiCallOutTestingQuickReferenceDescription">EuiCallOut provides three selectors for its inner elements: .euiIcon for the rendered icon, .euiCallOutHeader__title for the title, and [data-test-subj="euiDismissCalloutButton"] for the dismiss button. EuiCallOut's root element can be queried using the .euiCallOut selector</desc>
   <g clip-path="url(#a)">
     <path fill="#E6F1FA" d="M0 113h400v104H0z"/>
     <path fill="#0071C2" fill-rule="evenodd" d="M23.5 144.508 23.468 141H22.25v-1h2.401l.03 3.508H25.8v1h-2.3Zm-.25-6.202c0-.231.069-.424.206-.577.138-.153.335-.229.591-.229.256 0 .454.076.593.229.14.153.21.346.21.577 0 .228-.07.417-.21.568-.14.151-.337.226-.593.226-.256 0-.453-.075-.59-.226a.81.81 0 0 1-.207-.568ZM24 146a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 1a6 6 0 1 1 0-12 6 6 0 0 1 0 12Z" clip-rule="evenodd"/>
