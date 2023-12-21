@@ -112,8 +112,6 @@ export * from './modal';
 
 export * from './observer/mutation_observer';
 
-export * from './notification';
-
 export * from './outside_click_detector';
 
 export * from './overlay_mask';
