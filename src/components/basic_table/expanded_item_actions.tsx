@@ -18,7 +18,7 @@ import {
 } from './action_types';
 import { ItemIdResolved } from './table_types';
 
-export interface ExpandedItemActionsProps<T> {
+export interface ExpandedItemActionsProps<T extends object> {
   actions: Array<Action<T>>;
   itemId: ItemIdResolved;
   item: T;

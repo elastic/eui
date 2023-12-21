@@ -9,7 +9,7 @@
 import React, { Component, ReactNode, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, PropsOf } from '../common';
 
 import { EuiSideNavItem, RenderItem } from './side_nav_item';
 import { EuiSideNavItemType } from './side_nav_types';
@@ -146,7 +146,9 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           items={renderedItems}
           key={id}
           depth={depth}
-          renderItem={renderItem}
+          renderItem={
+            renderItem as PropsOf<typeof EuiSideNavItem>['renderItem']
+          }
           truncate={truncate}
           childrenOnly={childrenOnly}
           {...rest}

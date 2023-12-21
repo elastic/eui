@@ -132,7 +132,7 @@ export interface EuiTableComputedColumnType<T>
   readOnly?: boolean;
 }
 
-export interface EuiTableActionsColumnType<T> {
+export interface EuiTableActionsColumnType<T extends object> {
   /**
    * An array of one of the objects: #DefaultItemAction or #CustomItemAction
    */

@@ -300,7 +300,7 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
             {...defaultOnFocusBadgeProps}
           />
         );
-      } else if (!!onFocusBadge && onFocusBadge !== false) {
+      } else if (typeof onFocusBadge !== 'boolean' && !!onFocusBadge) {
         const { children, className, ...restBadgeProps } = onFocusBadge;
         onFocusBadgeNode = (
           <EuiBadge

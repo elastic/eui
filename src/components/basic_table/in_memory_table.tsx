@@ -47,7 +47,7 @@ interface onChangeArgument {
   error: Error | null;
 }
 
-function isEuiSearchBarProps<T>(
+function isEuiSearchBarProps<T extends object>(
   x: EuiInMemoryTableProps<T>['search']
 ): x is EuiSearchBarProps {
   return typeof x !== 'boolean';
@@ -71,7 +71,7 @@ interface SortingOptions {
 
 type Sorting = boolean | SortingOptions;
 
-type InMemoryTableProps<T> = Omit<
+type InMemoryTableProps<T extends object> = Omit<
   EuiBasicTableProps<T>,
   'pagination' | 'sorting' | 'noItemsMessage' | 'onChange'
 > & {
@@ -130,7 +130,7 @@ type InMemoryTableProps<T> = Omit<
   childrenBetween?: ReactNode;
 };
 
-type InMemoryTablePropsWithPagination<T> = Omit<
+type InMemoryTablePropsWithPagination<T extends object> = Omit<
   InMemoryTableProps<T>,
   'pagination' | 'onTableChange'
 > & {
@@ -138,10 +138,10 @@ type InMemoryTablePropsWithPagination<T> = Omit<
   onTableChange?: (nextValues: CriteriaWithPagination<T>) => void;
 };
 
-export type EuiInMemoryTableProps<T> = CommonProps &
+export type EuiInMemoryTableProps<T extends object = object> = CommonProps &
   (InMemoryTableProps<T> | InMemoryTablePropsWithPagination<T>);
 
-interface State<T> {
+interface State<T extends object> {
   prevProps: {
     items: T[];
     sortName: ReactNode;
@@ -230,7 +230,7 @@ const getInitialPagination = (
   };
 };
 
-function findColumnByProp<T>(
+function findColumnByProp<T extends object>(
   columns: Array<EuiBasicTableColumn<T>>,
   prop: 'field' | 'name',
   value: string | ReactNode
@@ -247,7 +247,7 @@ function findColumnByProp<T>(
   }
 }
 
-function findColumnByFieldOrName<T>(
+function findColumnByFieldOrName<T extends object>(
   columns: Array<EuiBasicTableColumn<T>>,
   value: string | ReactNode
 ) {
@@ -260,7 +260,7 @@ function findColumnByFieldOrName<T>(
   return column;
 }
 
-function getInitialSorting<T>(
+function getInitialSorting<T extends object>(
   columns: Array<EuiBasicTableColumn<T>>,
   sorting: Sorting | undefined
 ) {
@@ -292,7 +292,7 @@ function getInitialSorting<T>(
   };
 }
 
-export class EuiInMemoryTable<T> extends Component<
+export class EuiInMemoryTable<T extends object = object> extends Component<
   EuiInMemoryTableProps<T>,
   State<T>
 > {
@@ -305,7 +305,7 @@ export class EuiInMemoryTable<T> extends Component<
   };
   tableRef: React.RefObject<EuiBasicTable>;
 
-  static getDerivedStateFromProps<T>(
+  static getDerivedStateFromProps<T extends object>(
     nextProps: EuiInMemoryTableProps<T>,
     prevState: State<T>
   ) {
