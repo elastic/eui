@@ -1,0 +1,9 @@
+# We're using a docker compose file primarily to utilize built-in
+# caching in docker-compose-buildkite-plugin
+
+services:
+  prerelease:
+    build:
+      context: .
+      target: base
+    restart: no

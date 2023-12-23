@@ -1,0 +1,10 @@
+steps:
+  # TODO: Add image build step
+  - command: /bin/sh -c "./buildkite/scripts/pipelines/pipeline_prerelease.sh"
+    label: ':package: Publish a prerelease version'
+    plugins:
+      - docker-compose#v4.16.0:
+          run: prerelease
+    agents:
+      provider: "gcp"
+    if: build.branch == "build/configure-prerelease-pipeline"
