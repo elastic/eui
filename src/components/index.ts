@@ -45,8 +45,6 @@ export * from './context';
 
 export * from './context_menu';
 
-export * from './control_bar';
-
 export * from './copy';
 
 export * from './datagrid';
