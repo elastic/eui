@@ -11,6 +11,7 @@ import React, {
   useState,
   useEffect,
   useRef,
+  useMemo,
   useCallback,
 } from 'react';
 
@@ -31,6 +32,7 @@ export const EuiFlyoutResizable = forwardRef(
       size,
       maxWidth,
       minWidth = 200,
+      side = 'right',
       children,
       ...rest
     }: EuiFlyoutResizableProps,
@@ -38,7 +40,7 @@ export const EuiFlyoutResizable = forwardRef(
   ) => {
     const euiTheme = useEuiTheme();
     const styles = euiFlyoutResizableButtonStyles(euiTheme);
-    const cssStyles = [styles.euiFlyoutResizableButton];
+    const cssStyles = [styles.euiFlyoutResizableButton, styles[side]];
 
     const getFlyoutMinMaxWidth = useCallback(
       (width: number) => {
@@ -66,14 +68,25 @@ export const EuiFlyoutResizable = forwardRef(
     const initialWidth = useRef(0);
     const initialMouseX = useRef(0);
 
+    // Account for flyout side and logical property direction
+    const direction = useMemo(() => {
+      let modifier = side === 'right' ? -1 : 1;
+      if (flyoutRef) {
+        const languageDirection = window.getComputedStyle(flyoutRef).direction;
+        if (languageDirection === 'rtl') modifier *= -1;
+      }
+      return modifier;
+    }, [side, flyoutRef]);
+
     const onMouseMove = useCallback(
       (e: MouseEvent | TouchEvent) => {
         const mouseOffset = getMouseOrTouchX(e) - initialMouseX.current;
-        const changedFlyoutWidth = initialWidth.current - mouseOffset;
+        const changedFlyoutWidth =
+          initialWidth.current + mouseOffset * direction;
 
         setFlyoutWidth(getFlyoutMinMaxWidth(changedFlyoutWidth));
       },
-      [getFlyoutMinMaxWidth]
+      [getFlyoutMinMaxWidth, direction]
     );
 
     const onMouseUp = useCallback(() => {
@@ -108,17 +121,17 @@ export const EuiFlyoutResizable = forwardRef(
           case keys.ARROW_RIGHT:
             e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
             setFlyoutWidth((flyoutWidth) =>
-              getFlyoutMinMaxWidth(flyoutWidth - KEYBOARD_OFFSET)
+              getFlyoutMinMaxWidth(flyoutWidth + KEYBOARD_OFFSET * direction)
             );
             break;
           case keys.ARROW_LEFT:
             e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
             setFlyoutWidth((flyoutWidth) =>
-              getFlyoutMinMaxWidth(flyoutWidth + KEYBOARD_OFFSET)
+              getFlyoutMinMaxWidth(flyoutWidth - KEYBOARD_OFFSET * direction)
             );
         }
       },
-      [getFlyoutMinMaxWidth]
+      [getFlyoutMinMaxWidth, direction]
     );
 
     return (
@@ -126,6 +139,7 @@ export const EuiFlyoutResizable = forwardRef(
         {...rest}
         size={flyoutWidth || size}
         maxWidth={maxWidth}
+        side={side}
         ref={setRefs}
       >
         <EuiResizableButton

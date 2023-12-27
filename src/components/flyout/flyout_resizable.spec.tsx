@@ -125,5 +125,40 @@ describe('EuiFlyoutResizable', () => {
         .trigger('mousemove', { pageX: 2000 });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '100px');
     });
+
+    describe('direction', () => {
+      it('reverses the calculations for left side flyouts', () => {
+        cy.mount(
+          <EuiFlyoutResizable onClose={onClose} size={800} side="left" />
+        );
+        assertReversedDirections();
+      });
+
+      it('reverses again for RTL logical property directions', () => {
+        cy.mount(
+          <EuiFlyoutResizable
+            onClose={onClose}
+            size={800}
+            style={{ direction: 'rtl' }}
+          />
+        );
+        assertReversedDirections({ force: true });
+      });
+
+      const assertReversedDirections = (options?: { force: boolean }) => {
+        cy.get('[data-test-subj="euiResizableButton"]').focus();
+
+        cy.repeatRealPress('ArrowRight', 10);
+        cy.get('.euiFlyout').should('have.css', 'inline-size', '900px');
+
+        cy.repeatRealPress('ArrowLeft', 5);
+        cy.get('.euiFlyout').should('have.css', 'inline-size', '850px');
+
+        cy.get('[data-test-subj="euiResizableButton"]')
+          .trigger('mousedown', { pageX: 850, ...options })
+          .trigger('mousemove', { pageX: 400, ...options });
+        cy.get('.euiFlyout').should('have.css', 'inline-size', '400px');
+      };
+    });
   });
 });

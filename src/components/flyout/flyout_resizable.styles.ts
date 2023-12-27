@@ -9,16 +9,22 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 export const euiFlyoutResizableButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiFlyoutResizableButton: css`
     position: absolute;
-    inset-inline-start: -${euiTheme.border.width.thin};
 
     /* Hide the default grab icon (although the hover/focus states should remain) */
     &::before,
     &::after {
       background-color: transparent;
     }
+  `,
+  left: css`
+    ${logicalCSS('right', `-${euiTheme.border.width.thin}`)}
+  `,
+  right: css`
+    ${logicalCSS('left', `-${euiTheme.border.width.thin}`)}
   `,
 });
