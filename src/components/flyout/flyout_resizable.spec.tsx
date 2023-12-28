@@ -161,4 +161,37 @@ describe('EuiFlyoutResizable', () => {
       };
     });
   });
+
+  describe('push flyouts', () => {
+    it('correctly updates the body padding offset on resize', () => {
+      cy.mount(<EuiFlyoutResizable onClose={onClose} size={800} type="push" />);
+      cy.get('body').should('have.css', 'padding-inline-end', '800px');
+
+      cy.get('[data-test-subj="euiResizableButton"]')
+        .trigger('mousedown', { pageX: 400 })
+        .trigger('mousemove', { pageX: 1000 });
+
+      cy.get('.euiFlyout').should('have.css', 'inline-size', '200px');
+      cy.get('body').should('have.css', 'padding-inline-end', '200px');
+    });
+
+    it('handles left side push flyouts', () => {
+      cy.mount(
+        <EuiFlyoutResizable
+          onClose={onClose}
+          size={800}
+          type="push"
+          side="left"
+        />
+      );
+      cy.get('body').should('have.css', 'padding-inline-start', '800px');
+
+      cy.get('[data-test-subj="euiResizableButton"]')
+        .trigger('mousedown', { pageX: 800 })
+        .trigger('mousemove', { pageX: 200 });
+
+      cy.get('.euiFlyout').should('have.css', 'inline-size', '200px');
+      cy.get('body').should('have.css', 'padding-inline-start', '200px');
+    });
+  });
 });
