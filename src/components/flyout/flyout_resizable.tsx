@@ -57,8 +57,10 @@ export const EuiFlyoutResizable = forwardRef(
     const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
     const setRefs = useCombinedRefs([setFlyoutRef, ref]);
     useEffect(() => {
-      setFlyoutWidth(flyoutRef?.offsetWidth ?? 0);
-    }, [flyoutRef, size]);
+      setFlyoutWidth(
+        flyoutRef ? getFlyoutMinMaxWidth(flyoutRef.offsetWidth) : 0
+      );
+    }, [flyoutRef, getFlyoutMinMaxWidth, size]);
 
     // Initial numbers to calculate from, on resize drag start
     const initialWidth = useRef(0);
