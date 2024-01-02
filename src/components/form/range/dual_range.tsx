@@ -406,6 +406,10 @@ export class EuiDualRangeClass extends Component<
     this.props.inputPopoverProps?.onPanelResize?.(width);
   };
 
+  setRangeWidth = ({ width }: { width: number }) => {
+    this.setState({ rangeWidth: width });
+  };
+
   getNearestStep = (value: number) => {
     const min = this.props.min;
     const max = this.props.max;
@@ -689,7 +693,6 @@ export class EuiDualRangeClass extends Component<
           <EuiRangeSlider
             className="euiDualRange__slider"
             css={dualRangeStyles.euiDualRange__slider}
-            ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
             min={min}
@@ -704,6 +707,7 @@ export class EuiDualRangeClass extends Component<
             onFocus={onFocus}
             onBlur={onBlur}
             {...rest}
+            onResize={this.setRangeWidth}
           />
 
           {this.state.rangeSliderRefAvailable && (
