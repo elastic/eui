@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
@@ -14,7 +14,7 @@ import { render, screen } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import type { EuiDualRangeProps } from './types';
-import { EuiDualRange, EuiDualRangeClass } from './dual_range';
+import { EuiDualRange } from './dual_range';
 
 const props = {
   min: 0,
@@ -327,33 +327,6 @@ describe('EuiDualRange', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
-    });
-  });
-
-  describe('ref methods', () => {
-    // Whether we like it or not, at least 2 Kibana instances are using EuiDualRange
-    // `ref`s to access the `onResize` instance method (search for `rangeRef.current?.onResize`)
-    // If we switch EuiDualRange to a function component, we'll need to use `useImperativeHandle`
-    // to allow Kibana to continue calling `onResize`
-    it('allows calling the internal onResize method', () => {
-      // This super annoying type is now required to pass both the `ref` typing and account for instance methods
-      type EuiDualRangeRef = React.ComponentProps<typeof EuiDualRange> &
-        EuiDualRangeClass;
-
-      const ConsumerDualRange = () => {
-        const rangeRef = useRef<EuiDualRangeRef>(null);
-
-        useEffect(() => {
-          rangeRef.current?.onResize(500);
-        }, []);
-
-        return <EuiDualRange {...props} ref={rangeRef} />;
-      };
-
-      render(<ConsumerDualRange />);
-
-      // There isn't anything we can assert on here that isn't a huge headache,
-      // but the test should fail if `ref.current.onResize` is no longer available
     });
   });
 });

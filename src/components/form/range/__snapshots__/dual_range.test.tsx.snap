@@ -27,7 +27,7 @@ exports[`EuiDualRange props isDraggable renders draggable track when isDraggable
       aria-valuetext="1, 8"
       class="euiRangeDraggable emotion-euiRangeDraggable"
       role="slider"
-      style="inset-inline-start: -Infinity%; inset-inline-end: calc(100% - -Infinity% - 16px);"
+      style="inset-inline-start: 0; inset-inline-end: calc(100% - 0 - 16px);"
       tabindex="0"
     >
       <div
@@ -41,7 +41,7 @@ exports[`EuiDualRange props isDraggable renders draggable track when isDraggable
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -51,7 +51,7 @@ exports[`EuiDualRange props isDraggable renders draggable track when isDraggable
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -105,7 +105,7 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%; background-color: rgb(189, 39, 30);"
+      style="inset-inline-start: 0; background-color: rgb(189, 39, 30);"
       tabindex="0"
     />
     <div
@@ -115,7 +115,7 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%; background-color: rgb(189, 39, 30);"
+      style="inset-inline-start: 0; background-color: rgb(189, 39, 30);"
       tabindex="0"
     />
     <div
@@ -191,7 +191,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -201,7 +201,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -294,7 +294,7 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -304,7 +304,7 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -407,7 +407,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -417,7 +417,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -511,7 +511,7 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -521,7 +521,7 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="-1"
     />
     <div
@@ -598,7 +598,7 @@ exports[`EuiDualRange props showLabels renders labels when showLabels=true 1`] =
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -608,7 +608,7 @@ exports[`EuiDualRange props showLabels renders labels when showLabels=true 1`] =
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -655,7 +655,7 @@ exports[`EuiDualRange props showRange hides range when showRange=false 1`] = `
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -665,7 +665,7 @@ exports[`EuiDualRange props showRange hides range when showRange=false 1`] = `
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
   </div>
@@ -698,7 +698,7 @@ exports[`EuiDualRange props showRange renders range when showRange=true 1`] = `
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -708,7 +708,7 @@ exports[`EuiDualRange props showRange renders range when showRange=true 1`] = `
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -750,7 +750,7 @@ exports[`EuiDualRange props value accepts empty strings 1`] = `
       aria-valuenow="0"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: NaN%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -760,7 +760,7 @@ exports[`EuiDualRange props value accepts empty strings 1`] = `
       aria-valuenow="0"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
   </div>
@@ -793,7 +793,7 @@ exports[`EuiDualRange props value accepts numbers 1`] = `
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -803,7 +803,7 @@ exports[`EuiDualRange props value accepts numbers 1`] = `
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -849,7 +849,7 @@ exports[`EuiDualRange renders 1`] = `
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
@@ -860,7 +860,7 @@ exports[`EuiDualRange renders 1`] = `
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: -Infinity%;"
+      style="inset-inline-start: 0;"
       tabindex="0"
     />
     <div
