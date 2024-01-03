@@ -144,6 +144,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   );
   const textCssStyles = [
     textStyles.euiFilterButton__text,
+    showBadge && textStyles.hasNotification,
     textProps && textProps.css,
   ];
 

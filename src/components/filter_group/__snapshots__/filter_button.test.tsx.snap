@@ -106,7 +106,7 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters renders 1`]
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text"
+      class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
     />
     <span
       aria-label="5 active filters"
@@ -128,7 +128,7 @@ exports[`EuiFilterButton props numFilters renders 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text"
+      class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
     />
     <span
       aria-label="5 available filters"
@@ -199,7 +199,7 @@ exports[`EuiFilterButton renders zero properly 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text"
+      class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
     />
     <span
       aria-label="0 available filters"

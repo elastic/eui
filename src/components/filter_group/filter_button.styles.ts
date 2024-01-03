@@ -93,6 +93,8 @@ export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
       euiFilterButton__text: css`
         ${euiTextShift('bold', 'data-text', euiTheme)}
         ${euiTextTruncate()}
+      `,
+      hasNotification: css`
         ${logicalCSS(
           'min-width',
           mathWithUnits(euiTheme.size.base, (x) => x * 3)
