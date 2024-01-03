@@ -11,7 +11,6 @@ import React, {
   Component,
   ContextType,
   createRef,
-  FocusEvent,
   FunctionComponent,
   JSXElementConstructor,
   KeyboardEvent,
@@ -20,10 +19,9 @@ import React, {
   ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { tabbable } from 'tabbable';
+
 import { keys } from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
-import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
 import { hasResizeObserver } from '../../../observer/resize_observer/resize_observer';
@@ -44,6 +42,7 @@ import {
 } from './data_grid_cell_actions';
 import { DefaultCellPopover } from './data_grid_cell_popover';
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
+import { HandleInteractiveChildren } from './focus_utils';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
@@ -173,38 +172,18 @@ export class EuiDataGridCell extends Component<
   static contextType = DataGridFocusContext;
   declare context: ContextType<typeof DataGridFocusContext>;
 
-  getInteractables = () => {
-    const tabbingRef = this.cellContentsRef;
-
-    if (tabbingRef) {
-      return tabbingRef.querySelectorAll<HTMLElement>(
-        '[data-datagrid-interactable=true]'
-      );
-    }
-
-    return [];
+  updateCellFocusContext = () => {
+    this.context.setFocusedCell([
+      this.props.colIndex,
+      this.props.visibleRowIndex,
+    ]);
   };
 
   takeFocus = (preventScroll: boolean) => {
     const cell = this.cellRef.current;
-
-    if (cell) {
-      // only update focus if we are not already focused on something in this cell
-      let element: Element | null = document.activeElement;
-      while (element != null && element !== cell) {
-        element = element.parentElement;
-      }
-      const doFocusUpdate = element !== cell;
-
-      if (doFocusUpdate) {
-        const interactables = this.getInteractables();
-        if (this.isExpandable() === false && interactables.length === 1) {
-          // Only one element can be interacted with
-          interactables[0].focus({ preventScroll });
-        } else {
-          cell.focus({ preventScroll });
-        }
-      }
+    // Only focus the cell if not already focused on something in the cell
+    if (cell && !cell.contains(document.activeElement)) {
+      cell.focus({ preventScroll });
     }
   };
 
@@ -429,60 +408,7 @@ export class EuiDataGridCell extends Component<
     } else if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
-    this.preventTabbing();
     this.setCellTextAlign();
-  };
-
-  onFocus = (e: FocusEvent<HTMLDivElement>) => {
-    // only perform this logic when the event's originating element (e.target) is
-    // the wrapping element with the onFocus logic
-    // reasons:
-    //  * the outcome is only meaningful when the focus shifts to the wrapping element
-    //  * if the cell children include portalled content React will bubble the focus
-    //      event up, which can trigger the focus() call below, causing focus lock fighting
-    if (this.cellRef.current === e.target) {
-      const { colIndex, visibleRowIndex } = this.props;
-      // focus in next tick to give potential focus capturing mechanisms time to release their traps
-      // also clear any previous focus timeout that may still be queued
-      if (EuiDataGridCell.activeFocusTimeoutId) {
-        window.clearTimeout(EuiDataGridCell.activeFocusTimeoutId);
-      }
-      EuiDataGridCell.activeFocusTimeoutId = this.focusTimeout =
-        window.setTimeout(() => {
-          this.context.setFocusedCell([colIndex, visibleRowIndex]);
-
-          const interactables = this.getInteractables();
-          if (interactables.length === 1 && this.isExpandable() === false) {
-            interactables[0].focus();
-            this.setState({ disableCellTabIndex: true });
-          }
-        }, 0);
-    }
-  };
-
-  onBlur = () => {
-    this.setState({ disableCellTabIndex: false });
-  };
-
-  preventTabbing = () => {
-    if (this.cellContentsRef) {
-      const tabbables = tabbable(this.cellContentsRef);
-      for (let i = 0; i < tabbables.length; i++) {
-        const element = tabbables[i];
-        element.setAttribute('tabIndex', '-1');
-        element.setAttribute('data-datagrid-interactable', 'true');
-      }
-    }
-  };
-
-  enableTabbing = () => {
-    if (this.cellContentsRef) {
-      const interactables = this.getInteractables();
-      for (let i = 0; i < interactables.length; i++) {
-        const element = interactables[i];
-        element.removeAttribute('tabIndex');
-      }
-    }
   };
 
   setCellTextAlign = () => {
@@ -659,48 +585,6 @@ export class EuiDataGridCell extends Component<
             openCellPopover({ rowIndex: visibleRowIndex, colIndex });
             break;
         }
-      } else {
-        if (
-          event.key === keys.ENTER ||
-          event.key === keys.F2 ||
-          event.key === keys.ESCAPE
-        ) {
-          const interactables = this.getInteractables();
-          if (interactables.length >= 2) {
-            switch (event.key) {
-              case keys.ENTER:
-                // `Enter` only activates the trap
-                if (this.state.isEntered === false) {
-                  this.enableTabbing();
-                  this.setState({ isEntered: true });
-
-                  // result of this keypress is focus shifts to the first interactive element
-                  // and then the browser fires the onClick event because that's how [Enter] works
-                  // so we need to prevent that default action otherwise entering the trap triggers the first element
-                  event.preventDefault();
-                }
-                break;
-              case keys.F2:
-                // toggle interactives' focus trap
-                this.setState(({ isEntered }) => {
-                  if (isEntered) {
-                    this.preventTabbing();
-                  } else {
-                    this.enableTabbing();
-                  }
-                  return { isEntered: !isEntered };
-                });
-                break;
-              case keys.ESCAPE:
-                // `Escape` only de-activates the trap
-                this.preventTabbing();
-                if (this.state.isEntered === true) {
-                  this.setState({ isEntered: false });
-                }
-                break;
-            }
-          }
-        }
       }
     };
 
@@ -751,19 +635,17 @@ export class EuiDataGridCell extends Component<
       </>
     );
 
-    const cellContent = isExpandable ? (
-      <EuiDataGridCellContent {...cellContentProps} cellActions={cellActions} />
-    ) : (
-      <EuiFocusTrap
-        disabled={!this.state.isEntered}
-        autoFocus={true}
-        onDeactivation={() => {
-          this.setState({ isEntered: false }, this.preventTabbing);
-        }}
-        clickOutsideDisables={true}
+    const cellContent = (
+      <HandleInteractiveChildren
+        cellEl={this.cellRef.current}
+        updateCellFocusContext={this.updateCellFocusContext}
+        renderFocusTrap={!isExpandable}
       >
-        <EuiDataGridCellContent {...cellContentProps} />
-      </EuiFocusTrap>
+        <EuiDataGridCellContent
+          {...cellContentProps}
+          cellActions={isExpandable ? cellActions : undefined}
+        />
+      </HandleInteractiveChildren>
     );
 
     const cell = (
@@ -782,14 +664,12 @@ export class EuiDataGridCell extends Component<
         data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
         data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
         onKeyDown={handleCellKeyDown}
-        onFocus={this.onFocus}
         onMouseEnter={() => {
           this.setState({ enableInteractions: true });
         }}
         onMouseLeave={() => {
           this.setState({ enableInteractions: false });
         }}
-        onBlur={this.onBlur}
       >
         {cellContent}
       </div>
