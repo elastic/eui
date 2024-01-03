@@ -9,7 +9,6 @@
 import React, { useEffect } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { act } from '@testing-library/react';
-import { keys } from '../../../../services';
 import { render } from '../../../../test/rtl';
 import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
@@ -636,75 +635,6 @@ describe('EuiDataGridCell', () => {
     });
   });
 
-  // TODO: Test interacting/focus/tabbing in Cypress instead of Jest
-  describe('interactions', () => {
-    describe('keyboard events', () => {
-      it('when cell is expandable', () => {
-        const component = mount(<EuiDataGridCell {...requiredProps} />);
-        const preventDefault = jest.fn();
-
-        component.simulate('keyDown', { preventDefault, key: keys.ENTER });
-        component.simulate('keyDown', { preventDefault, key: keys.F2 });
-
-        expect(mockPopoverContext.openCellPopover).toHaveBeenCalledWith({
-          rowIndex: 0,
-          colIndex: 0,
-        });
-        expect(mockPopoverContext.openCellPopover).toHaveBeenCalledTimes(2);
-
-        // If the cell popover is open, the nothing should happen
-        jest.clearAllMocks();
-        component.setProps({
-          popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
-        });
-
-        component.simulate('keyDown', { preventDefault, key: keys.ENTER });
-        component.simulate('keyDown', { preventDefault, key: keys.F2 });
-
-        expect(mockPopoverContext.openCellPopover).not.toHaveBeenCalled();
-      });
-
-      it('when cell is not expandable', () => {
-        const component = mount(
-          <EuiDataGridCell {...requiredProps} isExpandable={false} />
-        );
-        const preventDefault = jest.fn();
-
-        component.simulate('keyDown', { preventDefault, key: keys.ENTER });
-        // TODO: Assert that tabbing should be enabled
-        expect(component.state('isEntered')).toEqual(true);
-
-        component.simulate('keyDown', { preventDefault, key: keys.F2 });
-        // TODO: Assert that tabbing should be prevented
-        expect(component.state('isEntered')).toEqual(false);
-
-        component.simulate('keyDown', { preventDefault, key: keys.F2 });
-        // TODO: Assert that tabbing should be enabled
-        expect(component.state('isEntered')).toEqual(true);
-
-        component.simulate('keyDown', { preventDefault, key: keys.ENTER });
-        component.simulate('keyDown', { preventDefault, key: keys.ESCAPE });
-        // TODO: Assert that tabbing should be prevented
-        expect(component.state('isEntered')).toEqual(false);
-      });
-    });
-
-    it('mouse events', () => {
-      const component = mount(<EuiDataGridCell {...requiredProps} />);
-      component.simulate('mouseEnter');
-      expect(component.state('enableInteractions')).toEqual(true);
-      component.simulate('mouseLeave');
-      expect(component.state('enableInteractions')).toEqual(false);
-    });
-
-    it('focus/blur events', () => {
-      const component = mount(<EuiDataGridCell {...requiredProps} />);
-      component.simulate('focus');
-      component.simulate('blur');
-      expect(component.state('disableCellTabIndex')).toEqual(false);
-    });
-  });
-
   describe('renders certain classes/styles based on rowHeightOptions', () => {
     const props = { ...requiredProps, renderCellValue: () => null };
 
@@ -762,4 +692,6 @@ describe('EuiDataGridCell', () => {
       expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
     });
   });
+
+  // Note: Tests for cell interactivity (focus, tabbing, etc) are in `focus_utils.spec.tsx`
 });
