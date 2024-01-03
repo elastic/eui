@@ -1,3 +1,8 @@
+# This file is meant to be edited by EUI core contributors and Elastic
+# employees only. We *won't* accept any changes from external contributors
+# and will close any pull requests that modify this file,
+# even if the changes seem safe.
+
 # EUI Catalog info for Backstage
 # Docs: https://backstage.io/docs/features/software-catalog/descriptor-format/
 # DO NOT MODIFY THIS FILE UNLESS YOU KNOW WHAT YOU'RE DOING!
