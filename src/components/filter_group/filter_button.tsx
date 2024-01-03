@@ -103,6 +103,9 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     className
   );
 
+  /**
+   * Badge
+   */
   const showBadge = numFiltersDefined || numActiveFiltersDefined;
   const badgeCount = numActiveFilters || numFilters;
   const activeBadgeLabel = useEuiI18n(
@@ -114,12 +117,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     'euiFilterButton.filterBadgeAvailableAriaLabel',
     '{count} available filters',
     { count: badgeCount }
-  );
-
-  const buttonTextClassNames = classNames(
-    'euiFilterButton__text',
-    { 'euiFilterButton__text-hasNotification': showBadge },
-    textProps && textProps.className
   );
 
   const badgeContent = showBadge && (
@@ -137,23 +134,34 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     </EuiNotificationBadge>
   );
 
+  /**
+   * Text
+   */
+  const buttonTextClassNames = classNames(
+    'euiFilterButton__text',
+    { 'euiFilterButton__text-hasNotification': showBadge },
+    textProps && textProps.className
+  );
+  const textCssStyles = [
+    textStyles.euiFilterButton__text,
+    textProps && textProps.css,
+  ];
+
   const [ref, innerText] = useInnerText();
   const dataText =
     children && typeof children === 'string' ? children : innerText;
-  const buttonContents = (
-    <>
-      <span
-        ref={ref}
-        className="euiFilterButton__textShift"
-        css={textStyles.euiFilterButton__textShift}
-        data-text={dataText}
-        title={dataText}
-      >
-        {children}
-      </span>
 
-      {badgeContent}
-    </>
+  const textContent = (
+    <span
+      ref={ref}
+      data-text={dataText}
+      title={dataText}
+      {...textProps}
+      className={buttonTextClassNames}
+      css={textCssStyles}
+    >
+      {children}
+    </span>
   );
 
   return (
@@ -165,15 +173,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       iconSide={iconSide}
       iconType={iconType}
       type={type}
-      textProps={{
-        ...textProps,
-        className: buttonTextClassNames,
-        css: [
-          textStyles.euiFilterButton__text,
-          showBadge && textStyles.hasNotification,
-          textProps && textProps.css,
-        ],
-      }}
+      textProps={false}
       contentProps={{
         ...contentProps,
         css: [
@@ -184,7 +184,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       }}
       {...rest}
     >
-      {buttonContents}
+      {textContent}
+      {badgeContent}
     </EuiButtonEmpty>
   );
 };
