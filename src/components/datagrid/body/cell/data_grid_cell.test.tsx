@@ -184,24 +184,9 @@ describe('EuiDataGridCell', () => {
             component.setState({ cellProps: {} });
           });
         });
-        it('isEntered', () => {
-          act(() => {
-            component.setState({ isEntered: true });
-          });
-        });
         it('isFocused', () => {
           act(() => {
             component.setState({ isFocused: true });
-          });
-        });
-        it('enableInteractions', () => {
-          act(() => {
-            component.setState({ enableInteractions: true });
-          });
-        });
-        it('disableCellTabIndex', () => {
-          act(() => {
-            component.setState({ disableCellTabIndex: true });
           });
         });
       });

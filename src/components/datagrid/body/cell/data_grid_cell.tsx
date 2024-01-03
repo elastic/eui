@@ -20,11 +20,13 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 
+import { IS_JEST_ENVIRONMENT } from '../../../../utils';
 import { keys } from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
 import { hasResizeObserver } from '../../../observer/resize_observer/resize_observer';
+
 import { DataGridFocusContext } from '../../utils/focus';
 import { RowHeightVirtualizationUtils } from '../../utils/row_heights';
 import {
@@ -41,7 +43,6 @@ import {
   EuiDataGridCellPopoverActions,
 } from './data_grid_cell_actions';
 import { DefaultCellPopover } from './data_grid_cell_popover';
-import { IS_JEST_ENVIRONMENT } from '../../../../utils';
 import { HandleInteractiveChildren } from './focus_utils';
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -142,17 +143,6 @@ export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
-  // focus tracking is split between the entire grid & individual cells,
-  // the parent grid owns which cell is focused,
-  // but individual cells need to react to changes and also report that
-  // they are focused in response to user actions like clicking on the cell
-  // to avoid focus trap fighting, cells wait a tick after being clicked to allow
-  // any existing traps to disconnect before the cell reports the new focus state to the parent grid
-  // but because of this small delay, multiple cells could queue up focus and
-  // create an infinite loop as the cells activate->deactivate->...
-  // so we track the last timeout id and clear that request if superseded
-  static activeFocusTimeoutId: number | undefined = undefined;
-
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
   contentObserver!: any; // Cell Content ResizeObserver
   popoverAnchorRef = createRef() as MutableRefObject<HTMLDivElement | null>;
@@ -160,13 +150,9 @@ export class EuiDataGridCell extends Component<
   state: EuiDataGridCellState = {
     cellProps: {},
     isFocused: false,
-    isEntered: false,
-    enableInteractions: false,
-    disableCellTabIndex: false,
     cellTextAlign: 'Left',
   };
   unsubscribeCell?: Function;
-  focusTimeout: number | undefined;
   style = null;
 
   static contextType = DataGridFocusContext;
@@ -284,7 +270,6 @@ export class EuiDataGridCell extends Component<
   };
 
   componentWillUnmount() {
-    window.clearTimeout(this.focusTimeout);
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
     }
@@ -383,12 +368,7 @@ export class EuiDataGridCell extends Component<
     }
 
     if (nextState.cellProps !== this.state.cellProps) return true;
-    if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
-    if (nextState.enableInteractions !== this.state.enableInteractions)
-      return true;
-    if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
-      return true;
 
     return false;
   }
@@ -531,11 +511,6 @@ export class EuiDataGridCell extends Component<
 
     const isExpandable = this.isExpandable();
     const popoverIsOpen = this.isPopoverOpen();
-    const showCellActions =
-      this.state.isFocused ||
-      this.state.isEntered ||
-      this.state.enableInteractions ||
-      popoverIsOpen;
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
@@ -611,7 +586,7 @@ export class EuiDataGridCell extends Component<
       ariaRowIndex,
     };
 
-    const cellActions = showCellActions && (
+    const cellActions = (
       <>
         <EuiDataGridCellActions
           rowIndex={rowIndex}
@@ -652,9 +627,7 @@ export class EuiDataGridCell extends Component<
       <div
         role="gridcell"
         aria-rowindex={ariaRowIndex}
-        tabIndex={
-          this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
-        }
+        tabIndex={this.state.isFocused ? 0 : -1}
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
@@ -664,12 +637,6 @@ export class EuiDataGridCell extends Component<
         data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
         data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
         onKeyDown={handleCellKeyDown}
-        onMouseEnter={() => {
-          this.setState({ enableInteractions: true });
-        }}
-        onMouseLeave={() => {
-          this.setState({ enableInteractions: false });
-        }}
       >
         {cellContent}
       </div>

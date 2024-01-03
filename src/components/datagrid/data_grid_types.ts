@@ -629,9 +629,6 @@ export interface EuiDataGridCellProps {
 export interface EuiDataGridCellState {
   cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
-  isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
-  enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
-  disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
   cellTextAlign: 'Left' | 'Right'; // determines the cell actions and cell popover expansion position
 }
 
