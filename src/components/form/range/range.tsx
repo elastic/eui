@@ -80,8 +80,8 @@ export class EuiRangeClass extends Component<
     );
   }
 
-  rangeSliderRef = (ref: HTMLInputElement | null) => {
-    this.setState({ trackWidth: ref?.clientWidth || 0 });
+  setTrackWidth = ({ width }: { width: number }) => {
+    this.setState({ trackWidth: width });
   };
 
   onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -241,7 +241,7 @@ export class EuiRangeClass extends Component<
             aria-hidden={!!showInput}
             thumbColor={thumbColor}
             {...rest}
-            ref={this.rangeSliderRef}
+            onResize={this.setTrackWidth}
           />
 
           {showRange && this.isValid && (

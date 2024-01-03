@@ -59,10 +59,8 @@ export class EuiDualRangeClass extends Component<
 
   state = {
     id: this.props.id || htmlIdGenerator()(),
-    rangeSliderRefAvailable: false,
     isPopoverOpen: false,
     rangeWidth: 0,
-    isVisible: true, // used to trigger a rerender if initial element width is 0
   };
 
   get isInPopover() {
@@ -70,32 +68,6 @@ export class EuiDualRangeClass extends Component<
   }
   preventPopoverClose = false;
 
-  rangeSliderRef: HTMLInputElement | null = null;
-  handleRangeSliderRefUpdate = (ref: HTMLInputElement | null) => {
-    this.rangeSliderRef = ref;
-    if (ref) {
-      if (this.isInPopover) {
-        // Wait a tick for popover rendering to settle
-        requestAnimationFrame(() => {
-          this.setState({
-            rangeSliderRefAvailable: true,
-            rangeWidth: ref.clientWidth,
-          });
-        });
-      } else {
-        // If not in a popover, no need to wait
-        this.setState({
-          rangeSliderRefAvailable: true,
-          rangeWidth: ref.clientWidth,
-        });
-      }
-    } else {
-      this.setState({
-        rangeSliderRefAvailable: false,
-        rangeWidth: 0,
-      });
-    }
-  };
   private leftPosition = 0;
   private dragAcc = 0;
 
@@ -113,18 +85,6 @@ export class EuiDualRangeClass extends Component<
   }
   get isValid() {
     return this.lowerValueIsValid && this.upperValueIsValid;
-  }
-
-  componentDidMount() {
-    if (this.rangeSliderRef?.clientWidth === 0) {
-      this.setState({ isVisible: false });
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.rangeSliderRef?.clientWidth && !this.state.isVisible) {
-      this.setState({ isVisible: true });
-    }
   }
 
   _determineInvalidThumbMovement = (
@@ -397,13 +357,8 @@ export class EuiDualRangeClass extends Component<
     });
   };
 
-  onResize = (width: number) => {
-    if (this.rangeSliderRef) {
-      this.setState({
-        rangeWidth: this.rangeSliderRef.clientWidth,
-      });
-    }
-    this.props.inputPopoverProps?.onPanelResize?.(width);
+  setRangeWidth = ({ width }: { width: number }) => {
+    this.setState({ rangeWidth: width });
   };
 
   getNearestStep = (value: number) => {
@@ -428,7 +383,7 @@ export class EuiDualRangeClass extends Component<
     const delta = this.leftPosition - x;
     this.leftPosition = x;
     this.dragAcc = this.dragAcc + delta;
-    const percentageOfArea = this.dragAcc / this.rangeSliderRef!.clientWidth;
+    const percentageOfArea = this.dragAcc / this.state.rangeWidth;
     const percentageOfRange = percentageOfArea * (max - min);
     const newLower = this.getNearestStep(lowerValue - percentageOfRange);
     const newUpper = this.getNearestStep(upperValue - percentageOfRange);
@@ -605,13 +560,13 @@ export class EuiDualRangeClass extends Component<
     const dualRangeStyles = euiDualRangeStyles();
     const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
-    const leftThumbPosition = this.state.rangeSliderRefAvailable
+    const leftThumbPosition = this.state.rangeWidth
       ? this.calculateThumbPositionStyle(
           Number(this.lowerValue) || min,
           this.state.rangeWidth
         )
       : { left: '0' };
-    const rightThumbPosition = this.state.rangeSliderRefAvailable
+    const rightThumbPosition = this.state.rangeWidth
       ? this.calculateThumbPositionStyle(
           Number(this.upperValue) || max,
           this.state.rangeWidth
@@ -689,7 +644,6 @@ export class EuiDualRangeClass extends Component<
           <EuiRangeSlider
             className="euiDualRange__slider"
             css={dualRangeStyles.euiDualRange__slider}
-            ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
             min={min}
@@ -704,71 +658,62 @@ export class EuiDualRangeClass extends Component<
             onFocus={onFocus}
             onBlur={onBlur}
             {...rest}
+            onResize={this.setRangeWidth}
           />
 
-          {this.state.rangeSliderRefAvailable && (
-            <>
-              {isDraggable && this.isValid && (
-                <EuiRangeDraggable
-                  min={min}
-                  max={max}
-                  value={[this.lowerValue, this.upperValue]}
-                  disabled={disabled}
-                  lowerPosition={leftThumbPosition.left}
-                  upperPosition={rightThumbPosition.left}
-                  showTicks={showTicks}
-                  onChange={this.handleDrag}
-                  onFocus={this.onThumbFocus}
-                  onBlur={this.onThumbBlur}
-                  onKeyDown={this.handleDraggableKeyDown}
-                  aria-describedby={
-                    showInputOnly ? undefined : this.props['aria-describedby']
-                  }
-                  aria-label={
-                    showInputOnly ? undefined : this.props['aria-label']
-                  }
-                />
-              )}
-
-              <EuiRangeThumb
-                min={min}
-                max={Number(this.upperValue)}
-                value={this.lowerValue}
-                disabled={disabled}
-                showTicks={showTicks}
-                showInput={!!showInput}
-                onKeyDown={this.handleLowerKeyDown}
-                onFocus={this.onThumbFocus}
-                onBlur={this.onThumbBlur}
-                style={logicalStyles(leftThumbStyles)}
-                aria-describedby={
-                  showInputOnly ? undefined : this.props['aria-describedby']
-                }
-                aria-label={
-                  showInputOnly ? undefined : this.props['aria-label']
-                }
-              />
-
-              <EuiRangeThumb
-                min={Number(this.lowerValue)}
-                max={max}
-                value={this.upperValue}
-                disabled={disabled}
-                showTicks={showTicks}
-                showInput={!!showInput}
-                onKeyDown={this.handleUpperKeyDown}
-                onFocus={this.onThumbFocus}
-                onBlur={this.onThumbBlur}
-                style={logicalStyles(rightThumbStyles)}
-                aria-describedby={
-                  showInputOnly ? undefined : this.props['aria-describedby']
-                }
-                aria-label={
-                  showInputOnly ? undefined : this.props['aria-label']
-                }
-              />
-            </>
+          {isDraggable && this.isValid && (
+            <EuiRangeDraggable
+              min={min}
+              max={max}
+              value={[this.lowerValue, this.upperValue]}
+              disabled={disabled}
+              lowerPosition={leftThumbPosition.left}
+              upperPosition={rightThumbPosition.left}
+              showTicks={showTicks}
+              onChange={this.handleDrag}
+              onFocus={this.onThumbFocus}
+              onBlur={this.onThumbBlur}
+              onKeyDown={this.handleDraggableKeyDown}
+              aria-describedby={
+                showInputOnly ? undefined : this.props['aria-describedby']
+              }
+              aria-label={showInputOnly ? undefined : this.props['aria-label']}
+            />
           )}
+
+          <EuiRangeThumb
+            min={min}
+            max={Number(this.upperValue)}
+            value={this.lowerValue}
+            disabled={disabled}
+            showTicks={showTicks}
+            showInput={!!showInput}
+            onKeyDown={this.handleLowerKeyDown}
+            onFocus={this.onThumbFocus}
+            onBlur={this.onThumbBlur}
+            style={logicalStyles(leftThumbStyles)}
+            aria-describedby={
+              showInputOnly ? undefined : this.props['aria-describedby']
+            }
+            aria-label={showInputOnly ? undefined : this.props['aria-label']}
+          />
+
+          <EuiRangeThumb
+            min={Number(this.lowerValue)}
+            max={max}
+            value={this.upperValue}
+            disabled={disabled}
+            showTicks={showTicks}
+            showInput={!!showInput}
+            onKeyDown={this.handleUpperKeyDown}
+            onFocus={this.onThumbFocus}
+            onBlur={this.onThumbBlur}
+            style={logicalStyles(rightThumbStyles)}
+            aria-describedby={
+              showInputOnly ? undefined : this.props['aria-describedby']
+            }
+            aria-label={showInputOnly ? undefined : this.props['aria-label']}
+          />
 
           {showRange && this.isValid && (
             <EuiRangeHighlight
@@ -828,7 +773,6 @@ export class EuiDualRangeClass extends Component<
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         disableFocusTrap={true}
-        onPanelResize={this.onResize}
         popoverScreenReaderText={dualSliderScreenReaderInstructions}
       >
         {theRange}
