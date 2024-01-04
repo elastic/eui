@@ -42,7 +42,7 @@ export default () => {
                 data={[
                   [
                     {
-                      color: chartBaseTheme.metric?.background ?? 'white',
+                      color: chartBaseTheme.background.color,
                       title: 'Number of visitors',
                       extra: (
                         <span>
