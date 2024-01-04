@@ -101,19 +101,8 @@ export const useFocus = ({
   }, [cellsUpdateFocus, focusedCell]);
 
   const focusFirstVisibleInteractiveCell = useCallback(() => {
-    if (headerIsInteractive) {
-      // The header (rowIndex -1) is sticky and will always be in view
       setFocusedCell([0, -1]);
-    } else if (gridItemsRendered.current) {
-      const { visibleColumnStartIndex, visibleRowStartIndex } =
-        gridItemsRendered.current;
-
-      setFocusedCell([visibleColumnStartIndex, visibleRowStartIndex]);
-    } else {
-      // If the header is non-interactive and there are no rendered cells,
-      // there's nothing to do - we might as well leave focus on the grid body wrapper
-    }
-  }, [setFocusedCell, headerIsInteractive, gridItemsRendered]);
+  }, [setFocusedCell]);
 
   const focusProps = useMemo<FocusProps>(
     () =>
@@ -218,8 +207,7 @@ export const createKeyDownHandler = ({
       }
     } else if (key === keys.ARROW_UP) {
       event.preventDefault();
-      const minimumIndex = headerIsInteractive ? -1 : 0;
-      if (y > minimumIndex) {
+      if (y > -1) {
         setFocusedCell([x, y - 1]);
       }
     } else if (key === keys.ARROW_RIGHT) {

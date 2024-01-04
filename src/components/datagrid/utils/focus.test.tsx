@@ -66,46 +66,13 @@ describe('useFocus', () => {
   });
 
   describe('focusFirstVisibleInteractiveCell', () => {
-    describe('when the sticky header is interactive', () => {
-      it('always focuses the first header cell', () => {
-        const { result } = renderHook(() =>
-          useFocus({ ...mockArgs, headerIsInteractive: true })
-        );
+    it('focuses the first sticky header cell', () => {
+      const { result } = renderHook(() =>
+        useFocus({ ...mockArgs, headerIsInteractive: true })
+      );
 
-        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
-        expect(result.current.focusedCell).toEqual([0, -1]);
-      });
-    });
-
-    describe('describe when the header is not interactive', () => {
-      it('focuses the first visible data cell in the virtualized grid', () => {
-        const { result } = renderHook(() =>
-          useFocus({
-            headerIsInteractive: false,
-            gridItemsRendered: {
-              current: {
-                visibleColumnStartIndex: 1,
-                visibleRowStartIndex: 10,
-              } as any,
-            },
-          })
-        );
-
-        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
-        expect(result.current.focusedCell).toEqual([1, 10]);
-      });
-
-      it("does nothing if the grid isn't yet rendered", () => {
-        const { result } = renderHook(() =>
-          useFocus({
-            headerIsInteractive: false,
-            gridItemsRendered: { current: null },
-          })
-        );
-
-        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
-        expect(result.current.focusedCell).toEqual(undefined);
-      });
+      renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
+      expect(result.current.focusedCell).toEqual([0, -1]);
     });
   });
 
@@ -323,26 +290,13 @@ describe('createKeyDownHandler', () => {
       expect(focusContext.setFocusedCell).toHaveBeenCalledWith([1, 0]);
     });
 
-    describe('when focus is on the top-most row', () => {
-      it('does nothing', () => {
-        const keyDownHandler = createKeyDownHandler({
-          ...mockArgs,
-          headerIsInteractive: false,
-          focusContext: { ...focusContext, focusedCell: [1, 0] },
-        });
-        keyDownHandler({ ...mockKeyDown, key: keys.ARROW_UP });
-        expect(focusContext.setFocusedCell).not.toHaveBeenCalled();
+    it('does nothing when focus is on the top-most header row', () => {
+      const keyDownHandler = createKeyDownHandler({
+        ...mockArgs,
+        focusContext: { ...focusContext, focusedCell: [1, -1] },
       });
-
-      it('accounts for an interactive header row', () => {
-        const keyDownHandler = createKeyDownHandler({
-          ...mockArgs,
-          headerIsInteractive: true,
-          focusContext: { ...focusContext, focusedCell: [1, -1] },
-        });
-        keyDownHandler({ ...mockKeyDown, key: keys.ARROW_UP });
-        expect(focusContext.setFocusedCell).not.toHaveBeenCalled();
-      });
+      keyDownHandler({ ...mockKeyDown, key: keys.ARROW_UP });
+      expect(focusContext.setFocusedCell).not.toHaveBeenCalled();
     });
   });
 
