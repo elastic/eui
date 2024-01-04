@@ -255,7 +255,7 @@ describe('EuiDataGrid', () => {
 
     describe('cell keyboard interactions', () => {
       it('tabbing to the grid the controls, then the first cell, then off', () => {
-        cy.mount(
+        cy.realMount(
           <>
             <EuiDataGrid {...focusManagementBaseProps} />
             <span tabIndex={0} id="final-tabbable" />
@@ -293,17 +293,17 @@ describe('EuiDataGrid', () => {
           'dataGridFullScreenButton'
         );
 
-        // tab into the grid, should focus first cell after a short delay
+        // tab into the grid, should focus first header cell
         cy.realPress('Tab');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')
-          .should('have.attr', 'data-gridcell-row-index', '0');
+          .should('have.attr', 'data-gridcell-row-index', '-1');
 
         cy.realPress('Tab');
         cy.focused().should('have.id', 'final-tabbable');
       });
 
-      it('arrow-keying focuses another cell, unless it has only one interactive element', () => {
+      it('arrow-keying focuses another cell', () => {
         cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
 
         getGridData();
@@ -328,9 +328,11 @@ describe('EuiDataGrid', () => {
           .should('have.attr', 'data-gridcell-column-index', '1')
           .should('have.attr', 'data-gridcell-row-index', '0');
 
-        // arrow right, non-expandable cell with one interactive = focus interactive
+        // arrow right, non-expandable cell with one interactive = focus cell
         cy.focused().type('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '2')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // arrow right, non-expandable cell with two interactives = focus cell
         cy.focused().type('{rightarrow}');
@@ -384,7 +386,7 @@ describe('EuiDataGrid', () => {
         // fourth cell is expandable & interactive, click should focus on the popover
         cy.get(
           '[data-gridcell-column-index="3"][data-gridcell-row-index="0"]'
-        ).click();
+        ).realClick({ position: 'right' });
         cy.focused().type('{enter}');
         // focus trap focuses the popover
         cy.focused().should(

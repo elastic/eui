@@ -25,7 +25,10 @@ jest.mock('../popover', () => ({
 }));
 
 function getFocusableCell(component: ReactWrapper) {
-  return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
+  const headerCell = component.find('[role="columnheader"][tabIndex=0]');
+  return headerCell.length
+    ? headerCell
+    : findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
 }
 
 function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
@@ -2340,12 +2343,12 @@ describe('EuiDataGrid', () => {
       );
       component.update();
 
+      // focus should begin at the first header cell
       let focusableCell = getFocusableCell(component);
-      // focus should begin at the first cell
       expect(focusableCell.length).toEqual(1);
       expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+        focusableCell.find('.euiDataGridHeaderCell__content').text()
+      ).toEqual('A');
 
       // focus should not move when up against the left edge
       focusableCell
@@ -2353,16 +2356,17 @@ describe('EuiDataGrid', () => {
         .simulate('keydown', { key: keys.ARROW_LEFT });
       focusableCell = getFocusableCell(component);
       expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+        focusableCell.find('.euiDataGridHeaderCell__content').text()
+      ).toEqual('A');
 
       // focus should not move when up against the top edge
       focusableCell.simulate('keydown', { key: keys.ARROW_UP });
       expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+        focusableCell.find('.euiDataGridHeaderCell__content').text()
+      ).toEqual('A');
 
       // move down
+      focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
       focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
       focusableCell = getFocusableCell(component);
       expect(
