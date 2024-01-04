@@ -25,8 +25,9 @@ Badges can use icons on the left and right (default) sides.
 
 Badges can have `onClick` events applied to the badge itself or the icon within the badge. The latter option is useful for when you might use badges in other components (like a tag system with autocomplete where you need close events).
 
+:::note
 
-:::note onClick with iconOnClick
+`onClick` with `iconOnClick`
 
 When providing both these click handlers, **EuiBadge** must alter the contents so that it does not contain nested button tags. Please make note that if you provide props other than those explicit to **EuiBadge**, they will always be applied to the main `button` tag which may be inside of the outer most tag.
 
