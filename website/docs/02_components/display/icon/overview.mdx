@@ -1,0 +1,114 @@
+---
+id: component_icon_overview
+title: Icon
+export_name: EuiIcon
+slug: /components/icon
+---
+
+# Icons
+
+**EuiIcon** is a handy component for using our custom glyphs and logos.
+The `type` prop accepts either an enumerated name from one of the sets below,
+a location to a custom SVG asset, or a React Element.
+
+<!-- TODO: Add basic example -->
+
+:::warning
+
+For better accessibility it's always recommended to give a descriptive `title` based on the icon use.
+
+If no title is provided the icon is going to be purely decorative, and it will get by default an `aria-hidden=true`.
+
+:::
+
+## Glyphs
+
+Glyphs are small, monochromatic icons that typically should always use the default size of `size="m"`.
+They are named according to their appearance or the action they represent. For example, `star`, `play`, etc.
+
+If you would like to contribute to our growing list of glyphs, you can follow
+[these guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md).
+
+<!-- TODO: Add glyphs table -->
+
+## Editor controls
+
+Editor icons relate to the visual styling of elements and are commonly used within **EuiButtonGroup** components.
+
+<!-- TODO: Add editor controls glyphs table -->
+
+## Elastic logos
+
+These logos are restricted in use to Elastic products or when referencing Elastic products.
+They are multicolor with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors
+for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
+
+<!-- TODO: Add Elastic logos glyphs table -->
+
+## Apps
+
+App logos are logos for Elastic Apps, and can contain multiple colors. Normally the Elastic Design team
+creates those icons. They are not meant to be used outside of Elastic, because they represent our apps.
+App logos are usually displayed at `32x32` or above and can contain multiple colors.
+
+<!-- TODO: Add apps glyphs table -->
+
+### Machine learning icons
+
+Machine learning has some specific icons for job creation. Again, these are made for `32x32`.
+
+<!-- TODO: Add ML glyphs table -->
+
+## Tokens
+
+Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon**
+as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed
+with "token" in their name and have pre-defined styles.
+
+<!-- TODO: Add tokens glyphs table -->
+
+## Custom tokens
+
+By default, an `iconType` with the token prefix (i.e. those listed above) will have predefined styles.
+However, any valid `iconType` can be passed and, in either case, the `shape`, `size`, `color`, and `fill` can be customized.
+
+<!-- TODO: Add custom tokens example -->
+
+## Sizes
+
+Use the `size` prop to automatically size your icons. Medium is the default, and will output a `16x16` icon.
+
+<!-- TODO: Add sizes example -->
+
+## Colors
+
+The default behavior of icons is to inherit from the text color. You can use the `color` prop to assign
+a custom color which accepts a named color from our palette
+or a valid [CSS color data type](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) which
+will be passed down through the inline-style `fill`  property. **We recommend relying on the EUI named color
+palette** unless the custom color is initiated by the user (like as a graph color).
+
+Two-tone icons, like our app style icons, will behave similarly to normal glyphs when provided a specific color
+by applying the color to **all** the shapes within. You can force the icon to match the parent's text color by
+passing `color="inherit"` to the icon.
+
+<!-- TODO: Add colors example -->
+
+## Custom SVGs
+
+The `type` prop can accept a valid enum, string or React SVG Element. When using a custom SVG, please make sure
+it sits on a square canvas and preferably utilizes one of EUI's sizes (`16x16` or `32x32`).
+
+When using custom SVGs for simple glyphs, **remove all fill attributes** on the SVG and utilize the CSS helpers
+if you have complex logos that need to work with theming.
+
+:::warning
+
+Important considerations when importing SVGs as components
+
+When importing an SVG as a component like `import { ReactComponent as ReactLogo } from './logo.svg';`,
+keep in mind that the component will not support the `title` prop. The `title` prop is designed to only work with
+our icons or SVGs imported as images or passed as a Data URL. So, if you're importing your SVG as a component,
+be sure to use an `aria-label` instead of a `title` prop to enhance accessibility and avoid potential issues.
+
+:::
