@@ -62,19 +62,21 @@ export const useFocus = (): DataGridFocusContextShape & {
 
   const setFocusedCell = useCallback(
     (nextFocusedCell: EuiDataGridFocusedCell) => {
-      // If the x/y coordinates remained the same, don't update. This keeps the focusedCell
-      // reference stable, and allows it to be used in places that need reference equality.
-      if (
-        nextFocusedCell[0] === focusedCell?.[0] &&
-        nextFocusedCell[1] === focusedCell?.[1]
-      ) {
-        return;
-      }
-
-      _setFocusedCell(nextFocusedCell);
-      setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
+      _setFocusedCell((prevFocusedCell) => {
+        // If the x/y coordinates remained the same, don't update. This keeps the focusedCell
+        // reference stable, and allows it to be used in places that need reference equality.
+        if (
+          nextFocusedCell[0] === prevFocusedCell?.[0] &&
+          nextFocusedCell[1] === prevFocusedCell?.[1]
+        ) {
+          return prevFocusedCell;
+        } else {
+          setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
+          return nextFocusedCell;
+        }
+      });
     },
-    [focusedCell]
+    []
   );
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
@@ -94,7 +96,7 @@ export const useFocus = (): DataGridFocusContextShape & {
   }, [cellsUpdateFocus, focusedCell]);
 
   const focusFirstVisibleInteractiveCell = useCallback(() => {
-      setFocusedCell([0, -1]);
+    setFocusedCell([0, -1]);
   }, [setFocusedCell]);
 
   const focusProps = useMemo<FocusProps>(
