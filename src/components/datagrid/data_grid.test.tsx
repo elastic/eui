@@ -1329,7 +1329,7 @@ describe('EuiDataGrid', () => {
         const component = mount(
           <EuiDataGrid
             aria-labelledby="#test"
-            columns={[{ id: 'ColumnA' }]}
+            columns={[{ id: 'ColumnA', isExpandable: false }]}
             columnVisibility={{
               visibleColumns: ['ColumnA'],
               setVisibleColumns: () => {},
@@ -2177,21 +2177,17 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      // cell buttons should not get rendered for unfocused, unhovered cell
-      expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
-      expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
+      // cell buttons should be `display: none` for unfocused, unhovered cell
+      expect(
+        findTestSubject(component, 'alertAction').last().getDOMNode()
+      ).not.toBeVisible();
+      expect(
+        findTestSubject(component, 'happyAction').last().getDOMNode()
+      ).not.toBeVisible();
 
-      act(() => {
-        findTestSubject(component, 'dataGridRowCell')
-          .at(1)
-          .prop('onMouseEnter')!({} as React.MouseEvent);
-      });
-
-      component.update();
-
-      findTestSubject(component, 'alertAction').at(0).simulate('click');
+      findTestSubject(component, 'alertAction').at(1).simulate('click');
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyAction').at(0).simulate('click');
+      findTestSubject(component, 'happyAction').at(1).simulate('click');
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
       alertFn.mockReset();
       happyFn.mockReset();

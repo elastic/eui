@@ -586,7 +586,7 @@ export class EuiDataGridCell extends Component<
       ariaRowIndex,
     };
 
-    const cellActions = (
+    const cellActions = isExpandable ? (
       <>
         <EuiDataGridCellActions
           rowIndex={rowIndex}
@@ -608,7 +608,7 @@ export class EuiDataGridCell extends Component<
           data-test-subject="cellPopoverAnchor"
         />
       </>
-    );
+    ) : undefined;
 
     const cellContent = (
       <HandleInteractiveChildren
@@ -618,7 +618,7 @@ export class EuiDataGridCell extends Component<
       >
         <EuiDataGridCellContent
           {...cellContentProps}
-          cellActions={isExpandable ? cellActions : undefined}
+          cellActions={cellActions}
         />
       </HandleInteractiveChildren>
     );
