@@ -142,6 +142,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       >
         - 
         columnA, column 1, row 1
+        . 
+        Press the Enter key to expand this cell.
       </p>
       <div
         class="euiDataGridRowCell__actions"
@@ -192,6 +194,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       >
         - 
         columnB, column 2, row 1
+        . 
+        Press the Enter key to expand this cell.
       </p>
       <div
         class="euiDataGridRowCell__actions"

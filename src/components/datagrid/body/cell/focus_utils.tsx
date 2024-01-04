@@ -17,6 +17,8 @@ import { tabbable } from 'tabbable';
 
 import { keys } from '../../../../services';
 import { EuiFocusTrap } from '../../../focus_trap';
+import { EuiScreenReaderOnly } from '../../../accessibility';
+import { EuiI18n } from '../../../i18n';
 
 /**
  * This internal utility component is used by all cells, both header and body/footer cells.
@@ -120,6 +122,17 @@ export const FocusTrappedChildren: FunctionComponent<
       clickOutsideDisables={true}
     >
       {children}
+
+      <EuiScreenReaderOnly>
+        <p>
+          {' - '}
+          <EuiI18n
+            // eslint-disable-next-line local/i18n
+            token="euiDataGridCell.focusTrapEnterPrompt"
+            default="Press the Enter key to interact with this cell's contents."
+          />
+        </p>
+      </EuiScreenReaderOnly>
     </EuiFocusTrap>
   );
 };

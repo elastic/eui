@@ -125,6 +125,15 @@ const EuiDataGridCellContent: FunctionComponent<
               row: ariaRowIndex,
             }}
           />
+          {cellActions && (
+            <>
+              {'. '}
+              <EuiI18n
+                token="euiDataGridCell.expansionEnterPrompt"
+                default="Press the Enter key to expand this cell."
+              />
+            </>
+          )}
         </p>
       </EuiScreenReaderOnly>
     );

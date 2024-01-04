@@ -124,6 +124,23 @@ describe('HandleInteractiveChildren', () => {
 });
 
 describe('FocusTrappedChildren', () => {
+  it('renders a screen reader hint', () => {
+    const cell = getCellWithInteractiveChildren();
+    const { container } = render(<FocusTrappedChildren cellEl={cell} />);
+    expect(container.childNodes[1]).toMatchInlineSnapshot(`
+      <div
+        data-focus-lock-disabled="disabled"
+      >
+        <p
+          class="emotion-euiScreenReaderOnly"
+        >
+           - 
+          Press the Enter key to interact with this cell's contents.
+        </p>
+      </div>
+    `);
+  });
+
   describe('on enter', () => {
     it('enables the focus trap, all interactive children, and moves focus to the first focusable child', () => {
       const cell = getCellWithInteractiveChildren();

@@ -725,6 +725,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 A, column 1, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -773,6 +775,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 B, column 2, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -821,6 +825,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 A, column 1, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -869,6 +875,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 B, column 2, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -917,6 +925,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 A, column 1, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -965,6 +975,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 B, column 2, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -1348,6 +1360,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 A, column 2, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -1396,6 +1410,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 B, column 3, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -1496,6 +1512,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 A, column 2, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -1544,6 +1562,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 B, column 3, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -1644,6 +1664,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 A, column 2, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -1692,6 +1714,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 B, column 3, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2036,6 +2060,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 A, column 1, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2084,6 +2110,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 B, column 2, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2132,6 +2160,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 A, column 1, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2180,6 +2210,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 B, column 2, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2228,6 +2260,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 A, column 1, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2276,6 +2310,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 B, column 2, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2592,6 +2628,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 A, column 1, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2640,6 +2678,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 B, column 2, row 1
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2688,6 +2728,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 A, column 1, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2736,6 +2778,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 B, column 2, row 2
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2784,6 +2828,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 A, column 1, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
@@ -2832,6 +2878,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 B, column 2, row 3
+                . 
+                Press the Enter key to expand this cell.
               </p>
               <div
                 class="euiDataGridRowCell__actions"
