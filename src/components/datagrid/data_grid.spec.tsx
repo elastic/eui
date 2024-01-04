@@ -79,7 +79,6 @@ describe('EuiDataGrid', () => {
         <EuiDataGrid {...baseProps} renderCellValue={renderCellValue} />
       );
 
-      getGridData();
       cy.get('[data-test-subj=euiDataGridBody]')
         .invoke('outerHeight')
         .then((firstHeight) => {
@@ -109,8 +108,6 @@ describe('EuiDataGrid', () => {
           renderFooterCellValue={undefined}
         />
       );
-
-      getGridData();
 
       const virtualizedContainer = cy
         .get('[data-test-subj=euiDataGridBody]')
@@ -240,8 +237,6 @@ describe('EuiDataGrid', () => {
     it('focuses a cell when clicked', () => {
       cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
 
-      getGridData();
-
       // starts with body in focus
       cy.focused().should('not.exist');
 
@@ -261,8 +256,6 @@ describe('EuiDataGrid', () => {
             <span tabIndex={0} id="final-tabbable" />
           </>
         );
-
-        getGridData();
 
         // starts with body in focus
         cy.focused().should('not.exist');
@@ -306,8 +299,6 @@ describe('EuiDataGrid', () => {
       it('arrow-keying focuses another cell', () => {
         cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
 
-        getGridData();
-
         // first cell is non-interactive and non-expandable = focus cell
         cy.get(
           '[data-gridcell-column-index="0"][data-gridcell-row-index="0"]'
@@ -349,8 +340,6 @@ describe('EuiDataGrid', () => {
 
       it('cell expansion/interaction', () => {
         cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
-
-        getGridData();
 
         // first cell is non-interactive and non-expandable, enter should have no effect
         cy.get(
