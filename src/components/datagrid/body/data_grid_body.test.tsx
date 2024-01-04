@@ -16,7 +16,6 @@ import { EuiDataGridBody } from './data_grid_body';
 
 // Body props, reused by other body unit tests
 export const dataGridBodyProps = {
-  headerIsInteractive: true,
   rowCount: 1,
   visibleRows: { startRow: 0, endRow: 1, visibleRowCount: 1 },
   columnWidths: { columnA: 100 },

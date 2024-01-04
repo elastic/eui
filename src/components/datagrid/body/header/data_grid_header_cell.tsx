@@ -48,7 +48,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   setColumnWidth,
   setVisibleColumns,
   switchColumnPos,
-  headerIsInteractive,
 }) => {
   const { id, display, displayAsText, displayHeaderCellProps } = column;
   const width = columnWidths[id] || defaultColumnWidth;
@@ -123,7 +122,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<
       id={id}
       index={index}
       width={width}
-      headerIsInteractive={headerIsInteractive}
       aria-sort={ariaSort}
       hasActionsPopover={showColumnActions}
       isActionsButtonFocused={isActionsButtonFocused}

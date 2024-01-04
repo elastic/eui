@@ -149,7 +149,6 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
-  headerIsInteractive: boolean;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -168,13 +167,11 @@ export interface EuiDataGridHeaderCellProps
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
   controlColumn: EuiDataGridControlColumn;
-  headerIsInteractive: boolean;
 }
 
 export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   id: string;
   index: number;
-  headerIsInteractive: boolean;
   width?: number | null;
   className?: string;
   hasActionsPopover?: boolean;
@@ -461,8 +458,6 @@ export interface EuiDataGridBodyProps {
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: Required<EuiDataGridPaginationProps>;
-  headerIsInteractive: boolean;
-  handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   onColumnResize?: EuiDataGridOnColumnResizeHandler;

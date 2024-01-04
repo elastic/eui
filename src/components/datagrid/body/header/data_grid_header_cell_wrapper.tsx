@@ -30,7 +30,6 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 > = ({
   id,
   index,
-  headerIsInteractive,
   width,
   className,
   children,

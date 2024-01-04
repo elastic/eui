@@ -38,7 +38,6 @@ describe('EuiDataGridHeaderCell', () => {
     setColumnWidth: jest.fn(),
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
-    headerIsInteractive: false,
   };
 
   it('renders', () => {

@@ -8,7 +8,6 @@
 
 import {
   createContext,
-  useContext,
   useCallback,
   useEffect,
   useMemo,
@@ -16,9 +15,7 @@ import {
   useState,
   HTMLAttributes,
   KeyboardEvent,
-  MutableRefObject,
 } from 'react';
-import { GridOnItemsRenderedProps } from 'react-window';
 import { tabbable } from 'tabbable';
 import { keys } from '../../../services';
 import {
@@ -40,13 +37,9 @@ type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onKeyUp'>;
 /**
  * Main focus context and overarching focus state management
  */
-export const useFocus = ({
-  headerIsInteractive,
-  gridItemsRendered,
-}: {
-  headerIsInteractive: boolean;
-  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
-}): DataGridFocusContextShape & { focusProps: FocusProps } => {
+export const useFocus = (): DataGridFocusContextShape & {
+  focusProps: FocusProps;
+} => {
   // Maintain a map of focus cell state callbacks
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
@@ -162,7 +155,6 @@ export const createKeyDownHandler = ({
   rowCount,
   pagination,
   hasFooter,
-  headerIsInteractive,
   focusContext,
 }: {
   gridElement: HTMLDivElement | null;
@@ -172,7 +164,6 @@ export const createKeyDownHandler = ({
   rowCount: EuiDataGridProps['rowCount'];
   pagination: Required<EuiDataGridProps['pagination']>;
   hasFooter: boolean;
-  headerIsInteractive: boolean;
   focusContext: DataGridFocusContextShape;
 }) => {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -299,19 +290,4 @@ export const getParentCellContent = (_element: Node | HTMLElement) => {
     element = element.parentElement;
   }
   return element;
-};
-
-/**
- * Focus fixes & workarounds
- */
-
-// If the focus is on the header, and the header is no longer interactive,
-// move the focus down to the first row
-export const useHeaderFocusWorkaround = (headerIsInteractive: boolean) => {
-  const { focusedCell, setFocusedCell } = useContext(DataGridFocusContext);
-  useEffect(() => {
-    if (!headerIsInteractive && focusedCell && focusedCell[1] === -1) {
-      setFocusedCell([focusedCell[0], 0]);
-    }
-  }, [headerIsInteractive, focusedCell, setFocusedCell]);
 };

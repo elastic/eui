@@ -20,7 +20,6 @@ describe('EuiDataGridHeaderRow', () => {
     setColumnWidth: jest.fn(),
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
-    headerIsInteractive: false,
   };
 
   it('renders', () => {
@@ -70,7 +69,6 @@ describe('EuiDataGridHeaderRow', () => {
             ]
           }
           defaultColumnWidth={20}
-          headerIsInteractive={false}
           index={0}
           key="someColumn"
           schema={
@@ -101,7 +99,6 @@ describe('EuiDataGridHeaderRow', () => {
             width: 25,
           },
         ]}
-        headerIsInteractive={true}
       />
     );
 
@@ -120,7 +117,6 @@ describe('EuiDataGridHeaderRow', () => {
               "width": 25,
             }
           }
-          headerIsInteractive={true}
           index={0}
           key="someLeadingColumn"
         />
@@ -140,7 +136,6 @@ describe('EuiDataGridHeaderRow', () => {
             width: 50,
           },
         ]}
-        headerIsInteractive={true}
       />
     );
 
@@ -159,7 +154,6 @@ describe('EuiDataGridHeaderRow', () => {
               "width": 50,
             }
           }
-          headerIsInteractive={true}
           index={0}
           key="someTrailingColumn"
         />

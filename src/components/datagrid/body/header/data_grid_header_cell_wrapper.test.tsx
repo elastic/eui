@@ -18,7 +18,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   const requiredProps = {
     id: 'someColumn',
     index: 0,
-    headerIsInteractive: true,
     hasActionsPopover: true,
     children: <button />,
   };
@@ -42,7 +41,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     const component = mountWithContext();
     expect(component).toMatchInlineSnapshot(`
       <EuiDataGridHeaderCellWrapper
-        headerIsInteractive={true}
         hasActionsPopover={true}
         id="someColumn"
         index={0}
@@ -78,8 +76,8 @@ describe('EuiDataGridHeaderCellWrapper', () => {
             }
             renderFocusTrap={false}
             updateCellFocusContext={[Function]}
-        >
-          <button />
+          >
+            <button />
           </HandleInteractiveChildren>
         </div>
       </EuiDataGridHeaderCellWrapper>
@@ -132,8 +130,8 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           }
           renderFocusTrap={false}
           updateCellFocusContext={[Function]}
-      >
-        <button />
+        >
+          <button />
         </HandleInteractiveChildren>
       </div>
     `);

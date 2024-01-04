@@ -117,8 +117,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<
   renderFooterCellValue,
   interactiveCellId,
   pagination,
-  headerIsInteractive,
-  handleHeaderMutation,
   setVisibleColumns,
   switchColumnPos,
   onColumnResize,
@@ -177,8 +175,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<
    * Header & footer
    */
   const { headerRow, headerRowHeight } = useDataGridHeader({
-    headerIsInteractive,
-    handleHeaderMutation,
     switchColumnPos,
     setVisibleColumns,
     leadingControlColumns,

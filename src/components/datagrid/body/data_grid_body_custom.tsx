@@ -41,8 +41,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   renderCellPopover,
   renderFooterCellValue,
   interactiveCellId,
-  headerIsInteractive,
-  handleHeaderMutation,
   setVisibleColumns,
   switchColumnPos,
   onColumnResize,
@@ -92,8 +90,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
    * Header & footer
    */
   const { headerRow } = useDataGridHeader({
-    headerIsInteractive,
-    handleHeaderMutation,
     switchColumnPos,
     setVisibleColumns,
     leadingControlColumns,
