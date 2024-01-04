@@ -34,6 +34,9 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
+  hasActionsPopover,
+  isActionsButtonFocused,
+  focusActionsButton,
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
@@ -66,7 +69,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     <div
       role="columnheader"
       ref={headerRef}
-      tabIndex={isFocused ? 0 : -1}
+      tabIndex={isFocused && !isActionsButtonFocused ? 0 : -1}
+      onFocus={hasActionsPopover ? focusActionsButton : undefined}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       data-gridcell-column-id={id}

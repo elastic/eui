@@ -38,6 +38,24 @@ describe('Cell focus utils', () => {
       columns: [{ id: 'column', isExpandable: true, actions: {} }],
     };
 
+    it('when header cells have actions', () => {
+      cy.mount(<EuiDataGrid {...props} />);
+
+      const headerCell = '[data-test-subj="dataGridHeaderCell-column"]';
+      const headerCellPopover =
+        '[data-test-subj="dataGridHeaderCellActionGroup-column"]';
+
+      // Should toggle the actions popover instead
+      cy.get(headerCell).click();
+      cy.get(headerCellPopover).should('be.visible');
+
+      // Keyboard behavior
+      cy.realPress('Escape');
+      cy.get(headerCellPopover).should('not.exist');
+      cy.realPress('Enter');
+      cy.get(headerCellPopover).should('exist');
+    });
+
     it('when body cells are expandable', () => {
       cy.mount(<EuiDataGrid {...props} />);
 
@@ -60,6 +78,39 @@ describe('Cell focus utils', () => {
   });
 
   describe('renders a focus trap', () => {
+    it('when header cells do not have actions', () => {
+      cy.mount(
+        <EuiDataGrid
+          {...baseProps}
+          columns={[
+            { id: 'column', actions: false, display: interactiveChildren },
+          ]}
+        />
+      );
+      // For some reason the header click doesn't register in Cypress until the body is clicked
+      cy.get('[data-test-subj="dataGridRowCell"]').realClick();
+      cy.wait(50);
+
+      // Enter the trap
+      cy.get('[data-test-subj="dataGridHeaderCell-column"]').realClick();
+      cy.realPress('Enter');
+
+      // Should cycle through focus trap
+      cy.focused().should('have.attr', 'data-test-subj', 'interactiveChildA');
+      cy.realPress('Tab');
+      cy.focused().should('have.attr', 'data-test-subj', 'interactiveChildB');
+      cy.realPress('Tab');
+      cy.focused().should('have.attr', 'data-test-subj', 'interactiveChildA');
+
+      // Exit the trap
+      cy.realPress('Escape');
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'dataGridHeaderCell-column'
+      );
+    });
+
     it('when body cells are not expandable', () => {
       cy.mount(
         <EuiDataGrid
@@ -103,6 +154,8 @@ describe('Cell focus utils', () => {
               {
                 id: 'B',
                 isExpandable: false,
+                actions: false,
+                display: interactiveChildren,
               },
             ]}
             renderCellValue={() => interactiveChildren}
@@ -117,6 +170,13 @@ describe('Cell focus utils', () => {
         .should('have.attr', 'data-gridcell-row-index', '-1')
         .should('have.attr', 'data-gridcell-column-index', '0');
 
+      cy.get('[data-test-subj="interactiveChildB"]').first().realClick();
+      cy.realPress('Tab');
+      cy.realPress(['Shift', 'Tab']);
+      cy.focused()
+        .should('have.attr', 'data-gridcell-row-index', '-1')
+        .should('have.attr', 'data-gridcell-column-index', '1');
+
       cy.get('[data-test-subj="interactiveChildB"]').last().realClick();
       cy.realPress('Tab');
       cy.realPress(['Shift', 'Tab']);
@@ -124,5 +184,42 @@ describe('Cell focus utils', () => {
         .should('have.attr', 'data-gridcell-row-index', '0')
         .should('have.attr', 'data-gridcell-column-index', '1');
     });
+  });
+
+  it('correctly toggles the header cell actions on focus when tabbing back into the datagrid', () => {
+    cy.realMount(
+      <EuiDataGrid {...baseProps} columns={[{ id: 'column', actions: {} }]} />
+    );
+
+    const assertFocusedHeaderActions = () => {
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'dataGridHeaderCellActionButton-column'
+      );
+      cy.focused()
+        .parent()
+        .should('have.attr', 'data-gridcell-row-index', '-1')
+        .should('have.attr', 'data-gridcell-column-index', '0');
+    };
+
+    const assertCanToggleActionsPopover = () => {
+      const headerCellPopover =
+        '[data-test-subj="dataGridHeaderCellActionGroup-column"]';
+
+      cy.realPress('Enter');
+      cy.get(headerCellPopover).should('be.visible');
+      cy.realPress('Escape');
+      cy.get(headerCellPopover).should('not.exist');
+    };
+
+    cy.repeatRealPress('Tab', 4);
+    assertFocusedHeaderActions();
+    assertCanToggleActionsPopover();
+
+    cy.realPress(['Shift', 'Tab']);
+    cy.realPress('Tab');
+    assertFocusedHeaderActions();
+    assertCanToggleActionsPopover();
   });
 });
