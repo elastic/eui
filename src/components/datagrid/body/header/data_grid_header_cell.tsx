@@ -139,10 +139,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         <>
           <button
             className="euiDataGridHeaderCell__button"
-            onClick={() => {
-              setFocusedCell([index, -1]);
-              setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-            }}
+            onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}
             aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
             ref={actionsButtonRef}
             data-test-subj={`dataGridHeaderCellActionButton-${id}`}

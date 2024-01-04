@@ -58,7 +58,29 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           style={Object {}}
           tabIndex={-1}
         >
+          <HandleInteractiveChildren
+            cellEl={
+              <div
+                class="euiDataGridHeaderCell"
+                data-gridcell-column-id="someColumn"
+                data-gridcell-column-index="0"
+                data-gridcell-row-index="-1"
+                data-gridcell-visible-row-index="-1"
+                data-test-subj="dataGridHeaderCell-someColumn"
+                role="columnheader"
+                tabindex="0"
+              >
+                <button
+                  data-euigrid-tab-managed="true"
+                  tabindex="-1"
+                />
+              </div>
+            }
+            renderFocusTrap={false}
+            updateCellFocusContext={[Function]}
+        >
           <button />
+          </HandleInteractiveChildren>
         </div>
       </EuiDataGridHeaderCellWrapper>
     `);
@@ -88,7 +110,31 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         }
         tabIndex={-1}
       >
+        <HandleInteractiveChildren
+          cellEl={
+            <div
+              aria-label="test"
+              class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+              data-gridcell-column-id="someColumn"
+              data-gridcell-column-index="0"
+              data-gridcell-row-index="-1"
+              data-gridcell-visible-row-index="-1"
+              data-test-subj="dataGridHeaderCell-someColumn"
+              role="columnheader"
+              style="width: 30px;"
+              tabindex="0"
+            >
+              <button
+                data-euigrid-tab-managed="true"
+                tabindex="-1"
+              />
+            </div>
+          }
+          renderFocusTrap={false}
+          updateCellFocusContext={[Function]}
+      >
         <button />
+        </HandleInteractiveChildren>
       </div>
     `);
   });

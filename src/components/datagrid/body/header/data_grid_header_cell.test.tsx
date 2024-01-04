@@ -255,7 +255,6 @@ describe('EuiDataGridHeaderCell', () => {
 
       fireEvent.click(toggle);
       waitForEuiPopoverOpen();
-      expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, -1]);
 
       fireEvent.click(toggle);
       waitForEuiPopoverClose();
