@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   useEffect,
   useState,
+  useMemo,
 } from 'react';
 import { tabbable } from 'tabbable';
 
@@ -58,9 +59,10 @@ export const HandleInteractiveChildren: FunctionComponent<
     }
   }, [cellEl, updateCellFocusContext]);
 
-  if (!cellEl) return children; // Do nothing if cell has yet to mount or is unmounting
-  if (!renderFocusTrap) return children; // Cells with default actions / expansion popovers do not need to trap
-  if (!hasInteractiveChildren) return children; // No need to focus trap if no children are interactive
+  const _children = useMemo(() => <>{children}</>, [children]);
+  if (!cellEl) return _children; // Do nothing if cell has yet to mount or is unmounting
+  if (!renderFocusTrap) return _children; // Cells with default actions / expansion popovers do not need to trap
+  if (!hasInteractiveChildren) return _children; // No need to focus trap if no children are interactive
 
   return (
     <FocusTrappedChildren cellEl={cellEl}>{children}</FocusTrappedChildren>
