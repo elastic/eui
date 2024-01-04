@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
@@ -6,8 +6,6 @@ import {
   EuiDataGrid,
   EuiCode,
   EuiCallOut,
-  EuiBasicTable,
-  EuiSpacer,
   EuiText,
   EuiListGroupItem,
 } from '../../../../../src';
@@ -64,7 +62,7 @@ export const DataGridCellsExample = {
       ],
       title: 'Cell actions',
       text: (
-        <Fragment>
+        <>
           <p>
             In addition to making a cell expandable, you can add more custom
             actions by setting <EuiCode>columns.cellActions</EuiCode>. These
@@ -97,7 +95,7 @@ export const DataGridCellsExample = {
             <EuiCode>cellAction</EuiCode> each, while the country column
             provides 2 <EuiCode>cellAction</EuiCode>s.
           </p>
-        </Fragment>
+        </>
       ),
       props: {
         EuiDataGrid,
@@ -157,7 +155,7 @@ export const DataGridCellsExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             <strong>EuiDataGrid</strong> tracks and manages complicated focus
             state management based upon the content of the individual inner
@@ -166,93 +164,44 @@ export const DataGridCellsExample = {
           <h3>Initial focus</h3>
           <ul>
             <li>
-              When tabbing to the grid before it has received focus, the first
-              cell of either the header (if it is interaction) or first content
+              When tabbing to the grid before it has received focus, the header
               cell is focused.
             </li>
-            <li>Datagrid does not auto-focus on mount / page load</li>
             <li>
-              When removing focus from the grid and then returning, the last
-              focused cell remains focused.
+              When tabbing away from the grid and then returning, the last
+              focused cell will regain focus.
+            </li>
+            <li>
+              If the last focused cell has been scrolled out of view, the first
+              header cell receives focus instead.
             </li>
           </ul>
           <h3>Click and key events</h3>
           <ul>
             <li>
-              Clicking on an interactive cell (not its content) should focus on
-              the cell, or if it has only one interactive element the focus
-              should shift to the element.
+              Clicking on an interactive cell or its content should focus on the
+              cell.
             </li>
             <li>
-              Clicking on an interactive element within a cell the focus should
-              always remain on that element, not shift to the cell or another
-              element unless a subsequent user action changes it.
+              The up, down, left, and right arrow keys can be pressed to
+              navigate between cells.
             </li>
             <li>
-              Enter or F2 can be used interchangeably to enter inner cell focus
-              if the logic below allows it.
+              For expandable cells, either the Enter or F2 keys can be pressed
+              interchangeably to toggle the cell popover. The Escape key will
+              close the popover.
+            </li>
+            <li>
+              For non-expandable cells with interactive content, either the
+              Enter or F2 keys can be pressed to enter a focus trap, allowing
+              users to Tab between the cell's content. The Escape key will exit
+              the cell trap.
+            </li>
+            <li>
+              For non-expandable cells with no interactive content, the cell
+              alone will receive focus, with no inner content action.
             </li>
           </ul>
-          <h3>
-            The content and expandability of the cells dictate the focus target
-            of the cell
-          </h3>
-          <p>
-            The following combinations of focus are maintained to provide for a
-            good balance between accessibility and ease of use while navigating
-            the grid with your keyboard.
-          </p>
-          <EuiBasicTable
-            columns={[
-              {
-                field: 'expandable',
-                name: 'Expandablity',
-              },
-              {
-                field: 'contents',
-                name: 'Cell contains',
-              },
-              {
-                field: 'result',
-                name: 'Resulting focus',
-                width: '50%',
-                mobileOptions: {
-                  width: '100%',
-                },
-              },
-            ]}
-            items={[
-              {
-                id: '1',
-                expandable: 'Not expandable',
-                contents: 'No interactive elements',
-                result:
-                  'Cell alone receives the focus, with no possible inner focus action',
-              },
-              {
-                id: '2',
-                expandable: 'Not expandable',
-                contents: 'Single interactive element',
-                result:
-                  'The single inner element within the cell receives focus',
-              },
-              {
-                id: '3',
-                expandable: 'Not expandable',
-                contents: 'Multiple interactive elements',
-                result:
-                  'The cell will allow a non-expanding focus trap on Enter keyDown',
-              },
-              {
-                id: '4',
-                expandable: 'Is expandable',
-                contents:
-                  'Any combination of interactive / non-interactive elements',
-                result: 'The cell will focus on the expansion action',
-              },
-            ]}
-          />
-          <EuiSpacer />
           <EuiCallOut
             color="warning"
             title="Don't turn off cell expansion when the width of the column is unknown"
@@ -265,7 +214,7 @@ export const DataGridCellsExample = {
             when you cannot control the width can lead to hidden focus because
             the content is truncated.
           </EuiCallOut>
-        </Fragment>
+        </>
       ),
       demo: <DataGridFocus />,
     },
