@@ -12,7 +12,6 @@ import React, {
   FocusEventHandler,
   useContext,
   useEffect,
-  useRef,
   useState,
   useCallback,
 } from 'react';
@@ -41,7 +40,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
 
-  const headerRef = useRef<HTMLDivElement>(null);
+  // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
+  const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
 
   const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
   const updateCellFocusContext = useCallback(() => {
@@ -56,30 +56,29 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   }, [index, onFocusUpdate]);
 
   useEffect(() => {
-    if (isFocused) {
-      const cell = headerRef.current!;
+    if (isFocused && headerEl) {
       // Only focus the cell if not already focused on something in the cell
-      if (!cell.contains(document.activeElement)) {
-        cell.focus();
+      if (!headerEl.contains(document.activeElement)) {
+        headerEl.focus();
       }
     }
-  }, [isFocused]);
+  }, [isFocused, headerEl]);
 
   // For cell headers with actions, auto-focus into the button instead of the cell wrapper div
   // The button text is significantly more useful to screen readers (e.g. contains sort order & hints)
   const onFocus: FocusEventHandler = useCallback(
     (e) => {
-      if (hasActionsPopover && e.target === headerRef.current) {
+      if (hasActionsPopover && e.target === headerEl) {
         focusActionsButton?.();
       }
     },
-    [hasActionsPopover, focusActionsButton]
+    [hasActionsPopover, focusActionsButton, headerEl]
   );
 
   return (
     <div
       role="columnheader"
-      ref={headerRef}
+      ref={setHeaderEl}
       tabIndex={isFocused && !isActionsButtonFocused ? 0 : -1}
       onFocus={onFocus}
       className={classes}
@@ -92,7 +91,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       {...rest}
     >
       <HandleInteractiveChildren
-        cellEl={headerRef.current}
+        cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
         renderFocusTrap={!hasActionsPopover}
       >

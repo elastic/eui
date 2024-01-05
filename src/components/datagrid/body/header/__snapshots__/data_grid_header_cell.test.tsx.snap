@@ -20,7 +20,9 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
   <button
     aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
     class="euiDataGridHeaderCell__button"
+    data-euigrid-tab-managed="true"
     data-test-subj="dataGridHeaderCellActionButton-someColumn"
+    tabindex="-1"
   >
     <div
       class="euiDataGridHeaderCell__content"
