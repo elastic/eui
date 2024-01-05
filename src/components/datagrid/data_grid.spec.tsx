@@ -139,29 +139,24 @@ describe('EuiDataGrid', () => {
       {
         id: 'no_interactive_expandable',
         display: '0 interactive',
-        actions: false,
       },
       {
         id: 'one_interactive',
         display: '1 interactive',
         isExpandable: false,
-        actions: false,
       },
       {
         id: 'one_interactive_expandable',
         display: '1 interactive',
-        actions: false,
       },
       {
         id: 'two_interactives',
         display: '2 interactives',
         isExpandable: false,
-        actions: false,
       },
       {
         id: 'two_interactives_expandable',
         display: '2 interactives',
-        actions: false,
       },
     ];
     const columnVisibility = {
@@ -435,6 +430,32 @@ describe('EuiDataGrid', () => {
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '5')
           .should('have.attr', 'data-gridcell-row-index', '0');
+      });
+
+      it('column header cells', () => {
+        cy.realMount(<EuiDataGrid {...focusManagementBaseProps} />);
+        cy.repeatRealPress('Tab', 5);
+        cy.realPress('{rightarrow}');
+
+        // Should auto-focus the actions button (over the cell itself)
+        cy.focused()
+          .parent()
+          .should('have.attr', 'data-gridcell-column-index', '1')
+          .should('have.attr', 'data-gridcell-row-index', '-1');
+
+        // Pressing enter should toggle the actions popover
+        cy.realPress('Enter');
+        cy.get(
+          '[data-test-subj="dataGridHeaderCellActionGroup-no_interactive_expandable"]'
+        ).should('be.visible');
+
+        // The actions popover should be fully tabbable/focus trapped with no regressions
+        cy.realPress('Tab');
+        cy.focused().should('have.text', 'Hide column');
+        cy.realPress('Tab');
+        cy.focused().should('have.text', 'Move left');
+        cy.realPress('Tab');
+        cy.focused().should('have.text', 'Move right');
       });
     });
   });

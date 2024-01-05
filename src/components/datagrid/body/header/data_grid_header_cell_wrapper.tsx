@@ -9,6 +9,7 @@
 import classnames from 'classnames';
 import React, {
   FunctionComponent,
+  FocusEventHandler,
   useContext,
   useEffect,
   useRef,
@@ -64,12 +65,23 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     }
   }, [isFocused]);
 
+  // For cell headers with actions, auto-focus into the button instead of the cell wrapper div
+  // The button text is significantly more useful to screen readers (e.g. contains sort order & hints)
+  const onFocus: FocusEventHandler = useCallback(
+    (e) => {
+      if (hasActionsPopover && e.target === headerRef.current) {
+        focusActionsButton?.();
+      }
+    },
+    [hasActionsPopover, focusActionsButton]
+  );
+
   return (
     <div
       role="columnheader"
       ref={headerRef}
       tabIndex={isFocused && !isActionsButtonFocused ? 0 : -1}
-      onFocus={hasActionsPopover ? focusActionsButton : undefined}
+      onFocus={onFocus}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       data-gridcell-column-id={id}

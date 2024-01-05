@@ -52,6 +52,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           data-gridcell-row-index="-1"
           data-gridcell-visible-row-index="-1"
           data-test-subj="dataGridHeaderCell-someColumn"
+          onFocus={[Function]}
           role="columnheader"
           style={Object {}}
           tabIndex={0}
@@ -100,6 +101,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         data-gridcell-row-index="-1"
         data-gridcell-visible-row-index="-1"
         data-test-subj="dataGridHeaderCell-someColumn"
+        onFocus={[Function]}
         role="columnheader"
         style={
           Object {
