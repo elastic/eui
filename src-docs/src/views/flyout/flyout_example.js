@@ -402,6 +402,7 @@ export const FlyoutExample = {
     },
     {
       title: 'Resizable flyouts',
+      isBeta: true,
       source: [
         {
           type: GuideSectionTypes.JS,
