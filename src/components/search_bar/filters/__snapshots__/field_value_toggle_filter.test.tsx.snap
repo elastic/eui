@@ -10,15 +10,11 @@ exports[`FieldValueToggleFilter render - active 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+      class="euiFilterButton__text emotion-euiFilterButton__text"
+      data-text="Kibana"
+      title="Kibana"
     >
-      <span
-        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-        data-text="Kibana"
-        title="Kibana"
-      >
-        Kibana
-      </span>
+      Kibana
     </span>
   </span>
 </button>
@@ -34,15 +30,11 @@ exports[`FieldValueToggleFilter render - active negated - custom negated name 1`
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+      class="euiFilterButton__text emotion-euiFilterButton__text"
+      data-text="Others"
+      title="Others"
     >
-      <span
-        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-        data-text="Others"
-        title="Others"
-      >
-        Others
-      </span>
+      Others
     </span>
   </span>
 </button>
@@ -58,15 +50,11 @@ exports[`FieldValueToggleFilter render - active negated 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+      class="euiFilterButton__text emotion-euiFilterButton__text"
+      data-text="Not Kibana"
+      title="Not Kibana"
     >
-      <span
-        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-        data-text="Not Kibana"
-        title="Not Kibana"
-      >
-        Not Kibana
-      </span>
+      Not Kibana
     </span>
   </span>
 </button>
@@ -82,15 +70,11 @@ exports[`FieldValueToggleFilter renders 1`] = `
     class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+      class="euiFilterButton__text emotion-euiFilterButton__text"
+      data-text="Kibana"
+      title="Kibana"
     >
-      <span
-        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-        data-text="Kibana"
-        title="Kibana"
-      >
-        Kibana
-      </span>
+      Kibana
     </span>
   </span>
 </button>
