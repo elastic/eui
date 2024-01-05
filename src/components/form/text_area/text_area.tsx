@@ -17,8 +17,13 @@ import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_cont
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
+    icon?: EuiFormControlLayoutIconsProps['icon'];
     isLoading?: boolean;
     isInvalid?: boolean;
+    /**
+     * Shows a button that allows users to quickly clear the textarea
+     */
+    isClearable?: boolean;
     /**
      * Expand to fill 100% of the parent.
      * Defaults to `fullWidth` prop of `<EuiForm>`.
@@ -26,11 +31,6 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
      */
     fullWidth?: boolean;
     compressed?: boolean;
-    /**
-     * Shows a button that quickly clears any input
-     */
-    isClearable?: boolean;
-    icon?: EuiFormControlLayoutIconsProps['icon'];
 
     /**
      * Which direction, if at all, should the textarea resize
@@ -58,15 +58,15 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     compressed,
     fullWidth = defaultFullWidth,
     id,
+    icon,
     inputRef,
     isLoading,
     isInvalid,
+    isClearable,
     name,
     placeholder,
     resize = 'vertical',
     rows,
-    isClearable,
-    icon,
     ...rest
   } = props;
 
