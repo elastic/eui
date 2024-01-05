@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { useFormContext } from '../eui_form_context';
+import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
@@ -25,6 +26,11 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
      */
     fullWidth?: boolean;
     compressed?: boolean;
+    /**
+     * Shows a button that quickly clears any input
+     */
+    isClearable?: boolean;
+    icon?: EuiFormControlLayoutIconsProps['icon'];
 
     /**
      * Which direction, if at all, should the textarea resize
@@ -59,6 +65,8 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     placeholder,
     resize = 'vertical',
     rows,
+    isClearable,
+    icon,
     ...rest
   } = props;
 
@@ -82,11 +90,25 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     definedRows = 6;
   }
 
+  const onClear = () => {
+    if (rest.onChange) {
+      rest.onChange({
+        target: { value: '' },
+      } as React.ChangeEvent<HTMLTextAreaElement>);
+    }
+  };
+
   return (
     <EuiFormControlLayout
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
+      clear={
+        isClearable
+          ? { onClick: onClear, 'data-test-subj': 'clearTextAreaButton' }
+          : undefined
+      }
+      icon={icon}
       className="euiFormControlLayout--euiTextArea"
     >
       <EuiValidatableControl isInvalid={isInvalid}>
