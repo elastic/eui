@@ -6,9 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
-import { CommonProps } from '../../common';
+import React, {
+  TextareaHTMLAttributes,
+  Ref,
+  FunctionComponent,
+  useRef,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../../common';
+import { useCombinedRefs } from '../../../services';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
@@ -90,24 +98,34 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     definedRows = 6;
   }
 
-  const onClear = () => {
-    if (rest.onChange) {
-      rest.onChange({
-        target: { value: '' },
-      } as React.ChangeEvent<HTMLTextAreaElement>);
+  const ref = useRef<HTMLTextAreaElement | null>(null);
+  const refs = useCombinedRefs([ref, inputRef]);
+
+  const clear = useMemo(() => {
+    if (isClearable) {
+      return {
+        onClick: () => {
+          if (ref.current) {
+            ref.current.value = '';
+            const event = new Event('input', {
+              bubbles: true,
+              cancelable: false,
+            });
+            ref.current.dispatchEvent(event);
+            ref.current.focus(); // set focus back to the textarea
+          }
+        },
+        'data-test-subj': 'clearTextAreaButton',
+      };
     }
-  };
+  }, [isClearable]);
 
   return (
     <EuiFormControlLayout
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
-      clear={
-        isClearable
-          ? { onClick: onClear, 'data-test-subj': 'clearTextAreaButton' }
-          : undefined
-      }
+      clear={clear}
       icon={icon}
       className="euiFormControlLayout--euiTextArea"
     >
@@ -118,7 +136,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
           rows={definedRows}
           name={name}
           id={id}
-          ref={inputRef}
+          ref={refs}
           placeholder={placeholder}
         >
           {children}
