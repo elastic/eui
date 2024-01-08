@@ -8,8 +8,7 @@
 
 import classnames from 'classnames';
 import React, { forwardRef, memo, useContext } from 'react';
-import { EuiDataGridCell } from '../data_grid_cell';
-import { DataGridCellPopoverContext } from '../data_grid_cell_popover';
+import { EuiDataGridCell, DataGridCellPopoverContext } from '../cell';
 import { EuiDataGridFooterRowProps } from '../../data_grid_types';
 
 const renderEmpty = () => null;

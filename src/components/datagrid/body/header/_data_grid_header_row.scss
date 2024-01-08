@@ -17,18 +17,19 @@
   align-items: center;
   display: flex;
 
-  &:focus {
+  // Workaround for focus trap
+  & > [data-focus-lock-disabled] {
+    width: 100%;
+  }
+
+  &:focus,
+  &--hasColumnActions:focus-within,
+  &--isActionsPopoverOpen {
     @include euiDataGridCellFocus;
-    border-top: none;
   }
 
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
-    &:focus-within {
-      @include euiDataGridCellFocus;
-      border-top: none;
-    }
-
     .euiDataGridHeaderCell__button {
       position: relative;
       display: flex;

@@ -9,7 +9,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { EuiDataGridColumnCellAction } from '../data_grid_types';
+import { EuiDataGridColumnCellAction } from '../../data_grid_types';
 import {
   EuiDataGridCellActions,
   EuiDataGridCellPopoverActions,

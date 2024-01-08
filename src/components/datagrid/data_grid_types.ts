@@ -149,7 +149,6 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
-  headerIsInteractive: boolean;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -168,15 +167,16 @@ export interface EuiDataGridHeaderCellProps
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
   controlColumn: EuiDataGridControlColumn;
-  headerIsInteractive: boolean;
 }
 
 export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   id: string;
   index: number;
-  headerIsInteractive: boolean;
   width?: number | null;
   className?: string;
+  hasActionsPopover?: boolean;
+  isActionsButtonFocused?: boolean;
+  focusActionsButton?: () => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &
@@ -458,8 +458,6 @@ export interface EuiDataGridBodyProps {
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: Required<EuiDataGridPaginationProps>;
-  headerIsInteractive: boolean;
-  handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
@@ -629,9 +627,6 @@ export interface EuiDataGridCellProps {
 export interface EuiDataGridCellState {
   cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
-  isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
-  enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
-  disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
   cellTextAlign: 'Left' | 'Right'; // determines the cell actions and cell popover expansion position
 }
 

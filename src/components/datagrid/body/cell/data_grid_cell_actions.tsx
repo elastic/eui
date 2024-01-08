@@ -11,13 +11,16 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
   EuiDataGridColumnCellActionProps,
-} from '../data_grid_types';
+} from '../../data_grid_types';
 
-import { EuiI18n } from '../../i18n';
-import { EuiButtonIcon, EuiButtonIconProps } from '../../button/button_icon';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiPopoverFooter } from '../../popover';
+import { EuiI18n } from '../../../i18n';
+import { EuiButtonIcon, EuiButtonIconProps } from '../../../button/button_icon';
+import {
+  EuiButtonEmpty,
+  EuiButtonEmptyProps,
+} from '../../../button/button_empty';
+import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
+import { EuiPopoverFooter } from '../../../popover';
 
 export const EuiDataGridCellActions = ({
   onExpandClick,

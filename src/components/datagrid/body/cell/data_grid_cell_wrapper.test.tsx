@@ -9,8 +9,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { RowHeightUtils } from '../utils/__mocks__/row_heights';
-import { schemaDetectors } from '../utils/data_grid_schema';
+import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
+import { schemaDetectors } from '../../utils/data_grid_schema';
 
 import { Cell } from './data_grid_cell_wrapper';
 

@@ -48,16 +48,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<
   setColumnWidth,
   setVisibleColumns,
   switchColumnPos,
-  headerIsInteractive,
 }) => {
   const { id, display, displayAsText, displayHeaderCellProps } = column;
   const width = columnWidths[id] || defaultColumnWidth;
-
   const columnType = schema[id] ? schema[id].columnType : null;
-  const classes = classnames(
-    { [`euiDataGridHeaderCell--${columnType}`]: columnType },
-    displayHeaderCellProps?.className
-  );
 
   const { setFocusedCell, focusFirstVisibleInteractiveCell } =
     useContext(DataGridFocusContext);
@@ -81,6 +75,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<
 
   const showColumnActions = columnActions && columnActions.length > 0;
   const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
+  const focusActionsButton = useCallback(() => {
+    actionsButtonRef.current?.focus();
+  }, []);
+  const [isActionsButtonFocused, setIsActionsButtonFocused] = useState(false);
 
   const { sortingArrow, ariaSort, sortingScreenReaderText } = useSortingUtils({
     sorting,
@@ -108,6 +106,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<
     </>
   );
 
+  const classes = classnames(
+    {
+      [`euiDataGridHeaderCell--${columnType}`]: columnType,
+      'euiDataGridHeaderCell--hasColumnActions': showColumnActions,
+      'euiDataGridHeaderCell--isActionsPopoverOpen': isPopoverOpen,
+    },
+    displayHeaderCellProps?.className
+  );
+
   return (
     <EuiDataGridHeaderCellWrapper
       {...displayHeaderCellProps}
@@ -115,8 +122,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<
       id={id}
       index={index}
       width={width}
-      headerIsInteractive={headerIsInteractive}
       aria-sort={ariaSort}
+      hasActionsPopover={showColumnActions}
+      isActionsButtonFocused={isActionsButtonFocused}
+      focusActionsButton={focusActionsButton}
     >
       {column.isResizable !== false && width != null ? (
         <EuiDataGridColumnResizer
@@ -139,10 +148,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<
         <>
           <button
             className="euiDataGridHeaderCell__button"
-            onClick={() => {
-              setFocusedCell([index, -1]);
-              setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-            }}
+            onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}
+            onFocus={() => setIsActionsButtonFocused(true)}
+            onBlur={() => setIsActionsButtonFocused(false)}
             aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
             ref={actionsButtonRef}
             data-test-subj={`dataGridHeaderCellActionButton-${id}`}

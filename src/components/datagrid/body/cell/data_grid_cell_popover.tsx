@@ -9,12 +9,12 @@
 import React, { createContext, useState, useCallback, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { keys } from '../../../services';
-import { EuiWrappingPopover, EuiPopoverProps } from '../../popover';
+import { keys } from '../../../../services';
+import { EuiWrappingPopover, EuiPopoverProps } from '../../../popover';
 import {
   DataGridCellPopoverContextShape,
   EuiDataGridCellPopoverElementProps,
-} from '../data_grid_types';
+} from '../../data_grid_types';
 
 export const DataGridCellPopoverContext =
   createContext<DataGridCellPopoverContextShape>({
@@ -153,8 +153,8 @@ export const useCellPopover = (): {
 /**
  * Popover content renderers
  */
-import { EuiText } from '../../text';
-import { EuiCodeBlock } from '../../code';
+import { EuiText } from '../../../text';
+import { EuiCodeBlock } from '../../../code';
 
 export const DefaultCellPopover = ({
   schema,
