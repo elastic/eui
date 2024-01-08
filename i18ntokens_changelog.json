@@ -1,5 +1,70 @@
 [
   {
+    "version": "92.0.0",
+    "changes": [
+      {
+        "token": "euiControlBar.screenReaderHeading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiControlBar.customScreenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiControlBar.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionButtonText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionAriaLabelButtonText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionHideText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMeta.contextMenuButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsReadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnreadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsRead",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnread",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.readAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unreadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.read",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unread",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "91.3.1",
     "changes": [
       {
