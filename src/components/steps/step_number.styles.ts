@@ -97,14 +97,9 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     current: css`
-      border: 2px solid ${euiTheme.colors.body};
-      box-shadow: 0 0 0 2px ${euiTheme.colors.primary};
-
-      .euiStepNumber__number {
-        /* Transform the step number so it appears in the center of the step circle */
-        display: inline-block;
-        transform: translateY(-2px);
-      }
+      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.body};
+      box-shadow: 0 0 0 ${euiTheme.border.width.thick}
+        ${euiTheme.colors.primary};
     `,
   };
 };
@@ -141,6 +136,10 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     loading: css``,
     disabled: css``,
-    current: css``,
+    current: css`
+      /* Transform the step number so it appears in the center of the step circle */
+      display: inline-block;
+      transform: translateY(-${euiTheme.border.width.thick});
+    `,
   };
 };
