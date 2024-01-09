@@ -74,12 +74,17 @@ export const EuiResizableButton = forwardRef<
   ) => {
     const classes = classNames('euiResizableButton', className);
 
+    const resizeDirection = isHorizontal ? 'horizontal' : 'vertical';
+    const indicatorType = showIndicator ? 'grabHandle' : 'border';
+
     const euiTheme = useEuiTheme();
     const styles = euiResizableButtonStyles(euiTheme);
     const cssStyles = [
       styles.euiResizableButton,
-      isHorizontal ? styles.horizontal : styles.vertical,
-      styles.alignIndicator[alignIndicator],
+      showIndicator ? styles.grabHandle.grabHandle : styles.border.border,
+      styles[indicatorType][resizeDirection],
+      styles[resizeDirection],
+      showIndicator && styles.alignIndicator[alignIndicator],
     ];
 
     return (
