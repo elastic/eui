@@ -6863,14 +6863,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 291,
+        "line": 295,
         "column": 12,
-        "index": 8058
+        "index": 8348
       },
       "end": {
-        "line": 294,
+        "line": 298,
         "column": 13,
-        "index": 8218
+        "index": 8508
       }
     },
     "filepath": "src/components/tree_view/tree_view.tsx"
@@ -6881,14 +6881,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 318,
+        "line": 322,
         "column": 20,
-        "index": 9097
+        "index": 9387
       },
       "end": {
-        "line": 326,
+        "line": 330,
         "column": 21,
-        "index": 9472
+        "index": 9762
       }
     },
     "filepath": "src/components/tree_view/tree_view.tsx"
