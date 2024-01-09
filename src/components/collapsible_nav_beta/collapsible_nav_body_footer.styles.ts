@@ -36,8 +36,11 @@ export const euiCollapsibleNavFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiCollapsibleNav__footer: css`
+      ${logicalCSS('max-height', '50%')}
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('border-top', euiTheme.border.thin)}
+    `,
+    euiFlyoutFooter__overflow: css`
       ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
     `,
     isPushCollapsed: css`

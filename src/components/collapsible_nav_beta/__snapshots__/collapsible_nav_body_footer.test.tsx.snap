@@ -22,5 +22,9 @@ exports[`EuiCollapsibleNavFooter renders 1`] = `
   aria-label="aria-label"
   class="euiFlyoutFooter euiCollapsibleNav__footer testClass1 testClass2 emotion-euiFlyoutFooter-euiCollapsibleNav__footer-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="emotion-euiFlyoutFooter__overflow"
+  />
+</div>
 `;
