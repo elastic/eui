@@ -138,8 +138,15 @@ const hasStep = (step) => {
   }
 
   if (hasStep('tag') && !isDryRun) {
-    // push the version commit & tag to upstream, skipping prepush test hook
-    execSync(`git push upstream --follow-tags --no-verify`, execOptions);
+    // Skip prepush test hook on all pushes - we should have already tested previously,
+    // or we skipped the test step for a reason
+    if (isSpecialRelease) {
+      // Only push the tag, not the branch
+      execSync(`git push upstream v${versionTarget} --no-verify`, execOptions);
+    } else {
+      // Push commits as well as tag
+      execSync(`git push upstream --follow-tags --no-verify`, execOptions);
+    }
   }
 
   if (hasStep('publish') && !isDryRun) {
