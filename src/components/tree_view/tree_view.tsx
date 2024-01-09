@@ -31,7 +31,7 @@ function hasAriaLabel(
 
 function getTreeId(
   propId: string | undefined,
-  contextId: string,
+  contextId: string = '',
   idGenerator: Function
 ) {
   return propId ?? (contextId === '' ? idGenerator() : contextId);
@@ -123,8 +123,12 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
 
   constructor(
     props: EuiTreeViewProps,
-    context: ContextType<typeof EuiTreeViewContext>
+    // Without the optional ? typing, TS will throw errors on JSX component errors
+    // @see https://github.com/facebook/react/issues/13944#issuecomment-1183693239
+    context?: ContextType<typeof EuiTreeViewContext>
   ) {
+    // TODO: context in constructor has been deprecated.
+    // We should likely convert this to a function component
     super(props, context);
 
     this.isNested = !!this.context;
