@@ -21,10 +21,7 @@ export const hideScrollbars = `
 `;
 
 export const euiCollapsibleNavBodyStyles = {
-  // In case things get really dire responsively, ensure the footer doesn't overtake the body
-  euiCollapsibleNav__body: css`
-    ${logicalCSS('min-height', '50%')}
-  `,
+  euiCollapsibleNav__body: css``,
   isPushCollapsed: css`
     .euiFlyoutBody__overflow {
       ${hideScrollbars}
@@ -36,8 +33,12 @@ export const euiCollapsibleNavFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiCollapsibleNav__footer: css`
+      /* In case things get really dire responsively, ensure the footer doesn't overtake the body */
+      ${logicalCSS('max-height', '50%')}
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('border-top', euiTheme.border.thin)}
+    `,
+    euiFlyoutFooter__overflow: css`
       ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
     `,
     isPushCollapsed: css`
