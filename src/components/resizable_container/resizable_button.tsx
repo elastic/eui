@@ -44,7 +44,7 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
      */
     showIndicator?: boolean;
     /**
-     * Specify the alignment of the initial resize indicator. Defaults to `center`,
+     * Specify the alignment of the initial grab handle indicator. Defaults to `center`,
      * but consider using `start` for extremely tall content that scrolls off-screen
      */
     alignIndicator?: 'center' | 'start' | 'end';

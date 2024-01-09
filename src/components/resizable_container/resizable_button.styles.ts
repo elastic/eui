@@ -22,9 +22,9 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const transition = `${transitionSpeed} ease`;
 
   return {
-    // Mimics the "grab" icon with CSS psuedo-elements.
-    // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
-    // 2. Start/end aligned handles should have a slight margin offset that disappears on hover/focus
+    // Creates a resizable indicator (either a grab handle or a plain border) with CSS psuedo-elements.
+    // 1. The "grab" handle transforms into a thicker straight line on :hover and :focus
+    // 2. Start/end aligned grab handles should have a slight margin offset that disappears on hover/focus
     // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
     euiResizableButton: css`
       z-index: 1;
@@ -47,7 +47,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Lighten the "grab" icon on :hover */
+      /* Lighten color on :hover */
       &:hover {
         &::before,
         &::after {
@@ -55,7 +55,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Add a transparent background to the container and emphasize the "grab" icon
+      /* Add a transparent background to the container and color the border primary
          with primary color on :focus (NOTE - :active is needed for Safari) */
       &:focus,
       &:active {
@@ -65,7 +65,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::after {
           background-color: ${euiTheme.colors.primary};
 
-          /* Overrides default transition so that "grab" icon background-color doesn't animate */
+          /* Overrides default transition so that "grab" background-color doesn't animate */
           ${euiCanAnimate} {
             transition: width ${transition}, height ${transition};
             transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
