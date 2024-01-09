@@ -73,9 +73,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       background: transparent;
     `,
     warning: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'warning').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'warning')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'warning')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -83,9 +81,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     danger: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'danger').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'danger')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'danger')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -93,9 +89,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     complete: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'success').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'success')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'success')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
