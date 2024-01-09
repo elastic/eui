@@ -37,6 +37,13 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
      */
     isHorizontal?: boolean;
     /**
+     * By default, EuiResizableButton will show a grab handle to indicate resizability.
+     * This indicator can be optionally hidden to show a plain border instead.
+     *
+     * @default true
+     */
+    showIndicator?: boolean;
+    /**
      * Specify the alignment of the initial resize indicator. Defaults to `center`,
      * but consider using `start` for extremely tall content that scrolls off-screen
      */
@@ -54,44 +61,57 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 export const EuiResizableButton = forwardRef<
   HTMLButtonElement,
   EuiResizableButtonProps
->(({ isHorizontal, alignIndicator = 'center', className, ...rest }, ref) => {
-  const classes = classNames('euiResizableButton', className);
+>(
+  (
+    {
+      isHorizontal,
+      showIndicator = true,
+      alignIndicator = 'center',
+      className,
+      ...rest
+    },
+    ref
+  ) => {
+    const classes = classNames('euiResizableButton', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiResizableButtonStyles(euiTheme);
-  const cssStyles = [
-    styles.euiResizableButton,
-    isHorizontal ? styles.horizontal : styles.vertical,
-    styles.alignIndicator[alignIndicator],
-  ];
+    const euiTheme = useEuiTheme();
+    const styles = euiResizableButtonStyles(euiTheme);
+    const cssStyles = [
+      styles.euiResizableButton,
+      isHorizontal ? styles.horizontal : styles.vertical,
+      styles.alignIndicator[alignIndicator],
+    ];
 
-  return (
-    <EuiI18n
-      tokens={[
-        'euiResizableButton.horizontalResizerAriaLabel',
-        'euiResizableButton.verticalResizerAriaLabel',
-      ]}
-      defaults={[
-        'Press the left or right arrow keys to adjust panels size',
-        'Press the up or down arrow keys to adjust panels size',
-      ]}
-    >
-      {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
-        <button
-          ref={ref}
-          aria-label={
-            isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
-          }
-          className={classes}
-          css={cssStyles}
-          data-test-subj="euiResizableButton"
-          type="button"
-          {...rest}
-        />
-      )}
-    </EuiI18n>
-  );
-});
+    return (
+      <EuiI18n
+        tokens={[
+          'euiResizableButton.horizontalResizerAriaLabel',
+          'euiResizableButton.verticalResizerAriaLabel',
+        ]}
+        defaults={[
+          'Press the left or right arrow keys to adjust panels size',
+          'Press the up or down arrow keys to adjust panels size',
+        ]}
+      >
+        {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
+          <button
+            ref={ref}
+            aria-label={
+              isHorizontal
+                ? horizontalResizerAriaLabel
+                : verticalResizerAriaLabel
+            }
+            className={classes}
+            css={cssStyles}
+            data-test-subj="euiResizableButton"
+            type="button"
+            {...rest}
+          />
+        )}
+      </EuiI18n>
+    );
+  }
+);
 EuiResizableButton.displayName = 'EuiResizableButton';
 
 /**

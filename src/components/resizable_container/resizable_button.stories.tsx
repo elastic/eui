@@ -21,6 +21,7 @@ const meta: Meta<EuiResizableButtonProps> = {
   component: EuiResizableButton,
   args: {
     // Component defaults
+    showIndicator: true,
     alignIndicator: 'center',
     disabled: false,
     isHorizontal: false,
