@@ -65,7 +65,7 @@ export const EuiCollapsibleNavFooter: EuiFlyoutFooterProps = ({
   const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavFooterStyles(euiTheme);
-  const cssStyles = [styles.euiCollapsibleNav__footer];
+  const cssStyles = styles.euiCollapsibleNav__footer;
   const overflowWrapperStyles = [
     styles.euiFlyoutFooter__overflow,
     isCollapsed && isPush && styles.isPushCollapsed,
