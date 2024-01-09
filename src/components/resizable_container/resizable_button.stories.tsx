@@ -33,8 +33,14 @@ type Story = StoryObj<EuiResizableButtonProps>;
 
 export const Playground: Story = {
   render: (args) => (
-    <EuiPanel style={{ blockSize: 200, inlineSize: 200 }}>
-      <EuiResizableButton {...args} />
+    <EuiPanel
+      style={{ blockSize: 200, inlineSize: 200, position: 'relative' }}
+      borderRadius="none"
+    >
+      <EuiResizableButton
+        style={{ position: 'absolute', top: 0, left: 0 }}
+        {...args}
+      />
     </EuiPanel>
   ),
 };
