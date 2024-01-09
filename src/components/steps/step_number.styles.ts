@@ -14,7 +14,7 @@ import {
   euiCanAnimate,
   euiAnimScale,
 } from '../../global_styling';
-import { UseEuiTheme, makeHighContrastColor } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -67,11 +67,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thick};
     `,
     disabled: css`
-      background-color: ${euiButtonFillColor(euiThemeContext, 'disabled')
-        .backgroundColor};
-      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
-        euiButtonFillColor(euiThemeContext, 'disabled').backgroundColor
-      )};
+      ${euiButtonFillColor(euiThemeContext, 'disabled')}
     `,
     loading: css`
       background: transparent;
