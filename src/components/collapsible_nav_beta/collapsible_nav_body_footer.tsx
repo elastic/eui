@@ -57,6 +57,7 @@ export const EuiCollapsibleNavBody: EuiFlyoutBodyProps = ({
 
 export const EuiCollapsibleNavFooter: EuiFlyoutFooterProps = ({
   className,
+  children,
   ...props
 }) => {
   const classes = classNames('euiCollapsibleNav__footer', className);
@@ -64,10 +65,15 @@ export const EuiCollapsibleNavFooter: EuiFlyoutFooterProps = ({
   const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavFooterStyles(euiTheme);
-  const cssStyles = [
-    styles.euiCollapsibleNav__footer,
+  const cssStyles = styles.euiCollapsibleNav__footer;
+  const overflowWrapperStyles = [
+    styles.euiFlyoutFooter__overflow,
     isCollapsed && isPush && styles.isPushCollapsed,
   ];
 
-  return <EuiFlyoutFooter className={classes} css={cssStyles} {...props} />;
+  return (
+    <EuiFlyoutFooter className={classes} css={cssStyles} {...props}>
+      <div css={overflowWrapperStyles}>{children}</div>
+    </EuiFlyoutFooter>
+  );
 };
