@@ -165,32 +165,32 @@ export const EuiResizableContainer: FunctionComponent<
       const position = getPosition(event, isHorizontal);
       resizeStart('pointer');
       actions.dragStart({ position, prevPanelId, nextPanelId });
-    },
-    [actions, isHorizontal, resizeStart]
-  );
 
-  const onMouseMove = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => {
-      if (
-        !reducerState.prevPanelId ||
-        !reducerState.nextPanelId ||
-        !reducerState.isDragging
-      )
-        return;
-      const position = getPosition(event, isHorizontal);
-      actions.dragMove({
-        position,
-        prevPanelId: reducerState.prevPanelId,
-        nextPanelId: reducerState.nextPanelId,
-      });
+      // Window event listeners instead of React events are used to continue
+      // detecting movement even if the user's mouse leaves the container
+
+      const onMouseMove = (event: MouseEvent | TouchEvent) => {
+        const position = getPosition(event, isHorizontal);
+        actions.dragMove({ position, prevPanelId, nextPanelId });
+      };
+
+      const onMouseUp = () => {
+        if (resizeContext.current.trigger === 'pointer') {
+          resizeEnd();
+        }
+        actions.reset();
+
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        window.removeEventListener('touchmove', onMouseMove);
+        window.removeEventListener('touchend', onMouseUp);
+      };
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+      window.addEventListener('touchmove', onMouseMove);
+      window.addEventListener('touchend', onMouseUp);
     },
-    [
-      actions,
-      isHorizontal,
-      reducerState.prevPanelId,
-      reducerState.nextPanelId,
-      reducerState.isDragging,
-    ]
+    [actions, isHorizontal, resizeStart, resizeEnd]
   );
 
   const getKeyMoveDirection = useCallback(
@@ -245,13 +245,6 @@ export const EuiResizableContainer: FunctionComponent<
     },
     [getKeyMoveDirection, resizeEnd]
   );
-
-  const onMouseUp = useCallback(() => {
-    if (resizeContext.current.trigger === 'pointer') {
-      resizeEnd();
-    }
-    actions.reset();
-  }, [actions, resizeEnd]);
 
   const onBlur = useCallback(() => {
     if (resizeContext.current.trigger === 'key') {
@@ -322,17 +315,7 @@ export const EuiResizableContainer: FunctionComponent<
         resizers: reducerState.resizers,
       }}
     >
-      <div
-        css={cssStyles}
-        className={classes}
-        ref={containerRef}
-        onMouseMove={reducerState.isDragging ? onMouseMove : undefined}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-        onTouchMove={onMouseMove}
-        onTouchEnd={onMouseUp}
-        {...rest}
-      >
+      <div css={cssStyles} className={classes} ref={containerRef} {...rest}>
         {render()}
       </div>
     </EuiResizableContainerContextProvider>
