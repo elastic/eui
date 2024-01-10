@@ -53,6 +53,19 @@ describe('EuiAspectRatio', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('inherits child styles', () => {
+    const { getByTestSubject } = render(
+      <EuiAspectRatio height={4} width={9} style={{ color: 'gray' }}>
+        <div data-test-subj="child" style={{ backgroundColor: 'salmon' }} />
+      </EuiAspectRatio>
+    );
+
+    expect(getByTestSubject('child')).toHaveStyle({
+      'background-color': 'salmon',
+      color: 'gray',
+    });
+  });
+
   describe('props', () => {
     describe('maxWidth', () => {
       test('is rendered', () => {
