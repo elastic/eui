@@ -130,7 +130,8 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* 1 */
         &:hover,
-        &:focus {
+        &:focus,
+        &:active {
           gap: 0;
         }
 
