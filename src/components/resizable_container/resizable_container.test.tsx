@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
+
 import { findTestSubject, requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -217,8 +219,7 @@ describe('EuiResizableContainer', () => {
     };
 
     test('onResizeStart and onResizeEnd are called for pointer events', () => {
-      const { container, button, onResizeStart, onResizeEnd } =
-        mountWithCallbacks();
+      const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
       button.simulate('mousedown', {
         pageX: 0,
         pageY: 0,
@@ -227,7 +228,9 @@ describe('EuiResizableContainer', () => {
       });
       expect(onResizeStart).toHaveBeenCalledTimes(1);
       expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
-      container.simulate('mouseup');
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
       button.simulate('mousedown', {
         pageX: 0,
@@ -237,7 +240,9 @@ describe('EuiResizableContainer', () => {
       });
       expect(onResizeStart).toHaveBeenCalledTimes(2);
       expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
-      container.simulate('mouseleave');
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(2);
       button.simulate('touchstart', {
         touches: [
@@ -249,7 +254,9 @@ describe('EuiResizableContainer', () => {
       });
       expect(onResizeStart).toHaveBeenCalledTimes(3);
       expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
-      container.simulate('touchend');
+      act(() => {
+        window.dispatchEvent(new Event('touchend'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(3);
     });
 
@@ -312,8 +319,7 @@ describe('EuiResizableContainer', () => {
     });
 
     test('onResizeEnd is called before starting a new resize if a keyboard resize is triggered while a pointer resize is in progress', () => {
-      const { container, button, onResizeStart, onResizeEnd } =
-        mountWithCallbacks();
+      const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
       button.simulate('mousedown', {
         pageX: 0,
         pageY: 0,
@@ -326,7 +332,9 @@ describe('EuiResizableContainer', () => {
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
       expect(onResizeStart).toHaveBeenCalledTimes(2);
       expect(onResizeStart).toHaveBeenLastCalledWith('key');
-      container.simulate('mouseup');
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
       button.simulate('keyup', { key: keys.ARROW_RIGHT });
       expect(onResizeEnd).toHaveBeenCalledTimes(2);

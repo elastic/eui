@@ -62,27 +62,33 @@ describe('EuiFlyoutResizable', () => {
     it('mouse drag', () => {
       cy.mount(<EuiFlyoutResizable onClose={onClose} size={800} />);
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('mousedown', { pageX: 400 })
-        .trigger('mousemove', { pageX: 600 });
+        .trigger('mousedown', { clientX: 400 })
+        .trigger('mousemove', { clientX: 600 });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '600px');
 
       cy.get('[data-test-subj="euiResizableButton"]').trigger('mousemove', {
-        pageX: 200,
+        clientX: 200,
       });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '1000px');
 
       // Should not change the flyout width if not dragging
       cy.get('[data-test-subj="euiResizableButton"]')
         .trigger('mouseup')
-        .trigger('mousemove', { pageX: 1000 });
+        .trigger('mousemove', { clientX: 1000 });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '1000px');
     });
 
     it('mobile touch drag', () => {
       cy.mount(<EuiFlyoutResizable onClose={onClose} size={800} />);
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('touchstart', { targetTouches: [{ pageX: 400 }], touches: [] })
-        .trigger('touchmove', { targetTouches: [{ pageX: 800 }], touches: [] })
+        .trigger('touchstart', {
+          targetTouches: [{ clientX: 400 }],
+          touches: [],
+        })
+        .trigger('touchmove', {
+          targetTouches: [{ clientX: 800 }],
+          touches: [],
+        })
         .trigger('touchend', { touches: [] });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '400px');
     });
@@ -101,8 +107,8 @@ describe('EuiFlyoutResizable', () => {
     it('does not allow the flyout to be resized past the window width', () => {
       cy.mount(<EuiFlyoutResizable onClose={onClose} size={800} />);
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('mousedown', { pageX: 400 })
-        .trigger('mousemove', { pageX: -100 });
+        .trigger('mousedown', { clientX: 400 })
+        .trigger('mousemove', { clientX: -100 });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '1180px');
     });
 
@@ -111,8 +117,8 @@ describe('EuiFlyoutResizable', () => {
         <EuiFlyoutResizable onClose={onClose} size={800} maxWidth={1000} />
       );
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('mousedown', { pageX: 400 })
-        .trigger('mousemove', { pageX: 100 });
+        .trigger('mousedown', { clientX: 400 })
+        .trigger('mousemove', { clientX: 100 });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '1000px');
     });
 
@@ -121,8 +127,8 @@ describe('EuiFlyoutResizable', () => {
         <EuiFlyoutResizable onClose={onClose} size={800} minWidth={100} />
       );
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('mousedown', { pageX: 400 })
-        .trigger('mousemove', { pageX: 2000 });
+        .trigger('mousedown', { clientX: 400 })
+        .trigger('mousemove', { clientX: 2000 });
       cy.get('.euiFlyout').should('have.css', 'inline-size', '100px');
     });
 
@@ -155,8 +161,8 @@ describe('EuiFlyoutResizable', () => {
         cy.get('.euiFlyout').should('have.css', 'inline-size', '850px');
 
         cy.get('[data-test-subj="euiResizableButton"]')
-          .trigger('mousedown', { pageX: 850, ...options })
-          .trigger('mousemove', { pageX: 400, ...options });
+          .trigger('mousedown', { clientX: 850, ...options })
+          .trigger('mousemove', { clientX: 400, ...options });
         cy.get('.euiFlyout').should('have.css', 'inline-size', '400px');
       };
     });
@@ -168,8 +174,8 @@ describe('EuiFlyoutResizable', () => {
       cy.get('body').should('have.css', 'padding-inline-end', '800px');
 
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('mousedown', { pageX: 400 })
-        .trigger('mousemove', { pageX: 1000 });
+        .trigger('mousedown', { clientX: 400 })
+        .trigger('mousemove', { clientX: 1000 });
 
       cy.get('.euiFlyout').should('have.css', 'inline-size', '200px');
       cy.get('body').should('have.css', 'padding-inline-end', '200px');
@@ -187,8 +193,8 @@ describe('EuiFlyoutResizable', () => {
       cy.get('body').should('have.css', 'padding-inline-start', '800px');
 
       cy.get('[data-test-subj="euiResizableButton"]')
-        .trigger('mousedown', { pageX: 800 })
-        .trigger('mousemove', { pageX: 200 });
+        .trigger('mousedown', { clientX: 800 })
+        .trigger('mousemove', { clientX: 200 });
 
       cy.get('.euiFlyout').should('have.css', 'inline-size', '200px');
       cy.get('body').should('have.css', 'padding-inline-start', '200px');
