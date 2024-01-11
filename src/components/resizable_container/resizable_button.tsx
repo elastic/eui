@@ -39,13 +39,12 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     /**
      * By default, EuiResizableButton will show a grab handle to indicate resizability.
      * This indicator can be optionally hidden to show a plain border instead.
-     *
-     * @default true
      */
-    showIndicator?: boolean;
+    indicator?: 'handle' | 'border';
     /**
-     * Specify the alignment of the initial grab handle indicator. Defaults to `center`,
-     * but consider using `start` for extremely tall content that scrolls off-screen
+     * Allows customizing the alignment of grab `handle` indicators (does nothing for
+     * border indicators). Defaults to `center`, but consider using `start` for extremely
+     * tall content that scrolls off-screen
      */
     alignIndicator?: 'center' | 'start' | 'end';
     /**
@@ -65,7 +64,7 @@ export const EuiResizableButton = forwardRef<
   (
     {
       isHorizontal,
-      showIndicator = true,
+      indicator = 'handle',
       alignIndicator = 'center',
       className,
       ...rest
@@ -75,16 +74,15 @@ export const EuiResizableButton = forwardRef<
     const classes = classNames('euiResizableButton', className);
 
     const resizeDirection = isHorizontal ? 'horizontal' : 'vertical';
-    const indicatorType = showIndicator ? 'grabHandle' : 'border';
 
     const euiTheme = useEuiTheme();
     const styles = euiResizableButtonStyles(euiTheme);
     const cssStyles = [
       styles.euiResizableButton,
-      showIndicator ? styles.grabHandle.grabHandle : styles.border.border,
-      styles[indicatorType][resizeDirection],
+      styles[indicator],
+      styles[`${indicator}Direction`][resizeDirection],
       styles[resizeDirection],
-      showIndicator && styles.alignIndicator[alignIndicator],
+      indicator === 'handle' && styles.alignIndicator[alignIndicator],
     ];
 
     return (

@@ -86,13 +86,14 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', buttonSize)}
       margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
     `,
-    border: {
-      border: css`
-        &::before,
-        &::after {
-          background-color: ${euiTheme.border.color};
-        }
-      `,
+
+    border: css`
+      &::before,
+      &::after {
+        background-color: ${euiTheme.border.color};
+      }
+    `,
+    borderDirection: {
       horizontal: css`
         &::before {
           ${logicalCSS('width', euiTheme.border.width.thin)}
@@ -124,38 +125,39 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
-    grabHandle: {
-      grabHandle: css`
-        gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
-        /* 1 */
-        &:hover,
-        &:focus,
-        &:active {
-          gap: 0;
-        }
+    handle: css`
+      gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
-        ${euiCanAnimate} {
-          transition: gap ${transition};
-        }
+      /* 1 */
+      &:hover,
+      &:focus,
+      &:active {
+        gap: 0;
+      }
 
+      ${euiCanAnimate} {
+        transition: gap ${transition};
+      }
+
+      &::before,
+      &::after {
+        background-color: ${euiTheme.colors.darkestShade};
+        transform: translateZ(0); /* 3 */
+      }
+
+      /* Lighten color on :hover */
+      &:hover {
         &::before,
         &::after {
-          background-color: ${euiTheme.colors.darkestShade};
-          transform: translateZ(0); /* 3 */
-        }
-
-        /* Lighten color on :hover */
-        &:hover {
-          &::before,
-          &::after {
-            /* Delay transition on hover so animation is not accidentally triggered on mouse over */
-            ${euiCanAnimate} {
-              transition-delay: ${transitionSpeed};
-            }
+          /* Delay transition on hover so animation is not accidentally triggered on mouse over */
+          ${euiCanAnimate} {
+            transition-delay: ${transitionSpeed};
           }
         }
-      `,
+      }
+    `,
+    handleDirection: {
       horizontal: css`
         &::before,
         &::after {
