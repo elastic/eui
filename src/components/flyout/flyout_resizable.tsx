@@ -17,6 +17,7 @@ import React, {
 
 import { keys, useCombinedRefs, useEuiTheme } from '../../services';
 import { EuiResizableButton } from '../resizable_container';
+import { getPosition } from '../resizable_container/helpers';
 
 import { EuiFlyout, EuiFlyoutProps } from './flyout';
 import { euiFlyoutResizableButtonStyles } from './flyout_resizable.styles';
@@ -81,7 +82,7 @@ export const EuiFlyoutResizable = forwardRef(
 
     const onMouseMove = useCallback(
       (e: MouseEvent | TouchEvent) => {
-        const mouseOffset = getMouseOrTouchX(e) - initialMouseX.current;
+        const mouseOffset = getPosition(e, true) - initialMouseX.current;
         const changedFlyoutWidth =
           initialWidth.current + mouseOffset * direction;
 
@@ -101,7 +102,7 @@ export const EuiFlyoutResizable = forwardRef(
 
     const onMouseDown = useCallback(
       (e: React.MouseEvent | React.TouchEvent) => {
-        initialMouseX.current = getMouseOrTouchX(e);
+        initialMouseX.current = getPosition(e, true);
         initialWidth.current = flyoutRef?.offsetWidth ?? 0;
 
         // Window event listeners instead of React events are used
@@ -158,13 +159,3 @@ export const EuiFlyoutResizable = forwardRef(
   }
 );
 EuiFlyoutResizable.displayName = 'EuiFlyoutResizable';
-
-const getMouseOrTouchX = (
-  e: TouchEvent | MouseEvent | React.MouseEvent | React.TouchEvent
-): number => {
-  // Some Typescript fooling is needed here
-  const x = (e as TouchEvent).targetTouches
-    ? (e as TouchEvent).targetTouches[0].pageX
-    : (e as MouseEvent).pageX;
-  return x;
-};
