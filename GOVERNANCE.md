@@ -60,7 +60,7 @@ Ideally, we can help you find a way to work within what EUI provides. If not, pr
 
 ### 3. When we have something that works for you, but would require customization for your use case
 
-For example -- you've found EUIBadge. It's perfect. Except for one thing ... it only provides solid colors, and you really feel that for your use case, it should be not be solid shaded and just have a colored border.
+For example -- you've found `EuiBadge`. It's perfect. Except for one thing ... it only provides solid colors, and you really feel that for your use case, it should be not be solid shaded and just have a colored border.
 
 Firstly, congratuations, at this point you've followed step 1, you're using EUI.
 
