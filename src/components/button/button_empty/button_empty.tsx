@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, Ref } from 'react';
+import React, { FunctionComponent, Ref, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -69,7 +69,7 @@ export interface CommonEuiButtonEmptyProps
   href?: string;
   target?: string;
   rel?: string;
-  type?: 'button' | 'submit';
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   buttonRef?: Ref<HTMLButtonElement | HTMLAnchorElement>;
   /**
    * Object of props passed to the `<span>` wrapping the button's content

@@ -68,6 +68,7 @@ export interface EuiButtonDisplayCommonProps
    */
   contentProps?: CommonProps & EuiButtonDisplayContentType;
   style?: CSSProperties;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 export type EuiButtonDisplayPropsForAnchor = PropsForAnchor<

@@ -78,7 +78,7 @@ export interface EuiButtonIconProps extends CommonProps {
 }
 
 export type EuiButtonIconPropsForAnchor = {
-  type?: string;
+  type?: AnchorHTMLAttributes<HTMLAnchorElement>['type'];
 } & PropsForAnchor<
   EuiButtonIconProps,
   {
@@ -87,7 +87,7 @@ export type EuiButtonIconPropsForAnchor = {
 >;
 
 export type EuiButtonIconPropsForButton = {
-  type?: 'submit' | 'reset' | 'button';
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 } & PropsForButton<
   EuiButtonIconProps,
   {

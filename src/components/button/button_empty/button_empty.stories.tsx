@@ -23,6 +23,7 @@ const meta: Meta<EuiButtonEmptyProps> = {
   },
   args: {
     // Component defaults
+    type: 'button',
     color: 'primary',
     size: 'm',
     iconSize: 'm',
