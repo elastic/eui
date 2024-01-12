@@ -18,7 +18,7 @@ The following are some quotes and principles that guide the way we think about E
 
 \- [Brad Frost](https://bradfrost.com/blog/post/a-design-system-governance-process/)
 
-> Design Systems should actively discourage deviations from the system, otherwise all the benefits of the system are lost.
+> Design systems should actively discourage deviations from the system, otherwise all the benefits of the system are lost.
 
 \- Someone, somewhere, probably
 
