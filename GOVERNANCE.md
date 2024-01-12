@@ -73,7 +73,7 @@ However, after some discussion with our team, you've convinced us that this is t
 1. Provide you a workaround with custom CSS for a workaround.
 2. Track this as a [one-off](#one-offs) customization.
 
-If you feel strongly that this customization should be part of EUI and aligns with our guidance for [What we do accept](#what-we-do-and-dont-accept), you should create a [Feature Request](https://github.com/elastic/eui/issues/new?assignees=&labels=feature+request&projects=&template=feature_request.md&title=) for it.
+If you feel strongly that this customization should be part of EUI and aligns with our guidance for [What we do accept](#what-we-do-and-dont-accept), you should create a [feature request](https://github.com/elastic/eui/issues/new?assignees=&labels=feature+request&projects=&template=feature_request.md&title=) for it.
 
 The EUI team will consider the Feature Request and assign it a priority and work it as we have time. If and when we do, we will be sure to circle back to your "one-off" to make sure it is replaced with this new feature.
 
