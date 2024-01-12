@@ -104,6 +104,6 @@ One-off components are a reality in mature design systems. If existing component
 - The component follows EUI best practices, especially UX and accessibility
 - The component has undergone manual accessibility testing
 - The component has or is included in automated accessibility tests
-- Works with Dark Mode
+- Works in dark mode
 
 The EUI team tracks one-offs. If you create a one-off component within our products, we would like.
