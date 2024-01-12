@@ -71,7 +71,9 @@ export type EuiBottomBarProps = CommonProps &
      */
     bodyClassName?: string;
     /**
-     * Customize the screen reader heading that helps users find this control. Default is 'Page level controls'.
+     * Customize the screen reader heading that helps users find this control.
+     *
+     * @default Page level controls
      */
     landmarkHeading?: string;
     /**
