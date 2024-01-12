@@ -1,6 +1,6 @@
 # EUI’s Design System Governance
 
-This Governance describes the processes we follow within Elastic when working with the EUI Design System.
+This governance document describes the processes we follow within Elastic when working with the EUI design system.
 
 ## Prelude and principles
 
