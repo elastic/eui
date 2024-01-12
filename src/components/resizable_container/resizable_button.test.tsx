@@ -28,6 +28,14 @@ describe('EuiResizableButton', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('renders different indicator styles and directions', () => {
+    const { container } = render(
+      <EuiResizableButton isHorizontal={true} indicator="border" />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
   it('renders as hidden if disabled', () => {
     const { container } = render(<EuiResizableButton disabled />);
 

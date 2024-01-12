@@ -22,38 +22,24 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const transition = `${transitionSpeed} ease`;
 
   return {
-    // Mimics the "grab" icon with CSS psuedo-elements.
-    // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
-    // 2. Start/end aligned handles should have a slight margin offset that disappears on hover/focus
+    // Creates a resizable indicator (either a grab handle or a plain border) with CSS psuedo-elements.
+    // 1. The "grab" handle transforms into a thicker straight line on :hover and :focus
+    // 2. Start/end aligned grab handles should have a slight margin offset that disappears on hover/focus
     // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
     euiResizableButton: css`
       z-index: 1;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
-      gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
       &:disabled {
         display: none;
-      }
-
-      /* 1 */
-      &:hover,
-      &:focus {
-        gap: 0;
-        justify-content: center;
-      }
-
-      ${euiCanAnimate} {
-        transition: gap ${transition}, justify-content ${transition};
       }
 
       &::before,
       &::after {
         content: '';
         display: block;
-        background-color: ${euiTheme.colors.darkestShade};
-        transform: translateZ(0); /* 3 */
 
         ${euiCanAnimate} {
           transition: width ${transition}, height ${transition},
@@ -61,20 +47,15 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Lighten the "grab" icon on :hover */
+      /* Lighten color on :hover */
       &:hover {
         &::before,
         &::after {
           background-color: ${euiTheme.colors.mediumShade};
-
-          /* Delay transition on hover so animation is not accidentally triggered on mouse over */
-          ${euiCanAnimate} {
-            transition-delay: ${transitionSpeed};
-          }
         }
       }
 
-      /* Add a transparent background to the container and emphasize the "grab" icon
+      /* Add a transparent background to the container and color the border primary
          with primary color on :focus (NOTE - :active is needed for Safari) */
       &:focus,
       &:active {
@@ -84,7 +65,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::after {
           background-color: ${euiTheme.colors.primary};
 
-          /* Overrides default transition so that "grab" icon background-color doesn't animate */
+          /* Overrides default transition so that "grab" background-color doesn't animate */
           ${euiCanAnimate} {
             transition: width ${transition}, height ${transition};
             transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
@@ -97,25 +78,6 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', '100%')}
       ${logicalCSS('width', buttonSize)}
       margin-inline: ${mathWithUnits(buttonSize, (x) => x / -2)};
-
-      &::before,
-      &::after {
-        ${logicalCSS('width', grabHandleHeight)}
-        ${logicalCSS('height', grabHandleWidth)}
-        margin-block: ${euiTheme.size.base}; /* 2 */
-      }
-
-      /* 1 */
-      &:hover,
-      &:focus,
-      &:active {
-        &::before,
-        &::after {
-          ${logicalCSS('height', '100%')}
-          margin-block: 0; /* 2 */
-          transform: none; /* 3 */
-        }
-      }
     `,
     vertical: css`
       flex-direction: column;
@@ -123,26 +85,120 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
       ${logicalCSS('height', buttonSize)}
       margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
+    `,
 
+    border: css`
       &::before,
       &::after {
-        ${logicalCSS('height', grabHandleHeight)}
-        ${logicalCSS('width', grabHandleWidth)}
-        margin-inline: ${euiTheme.size.base}; /* 2 */
+        background-color: ${euiTheme.border.color};
       }
+    `,
+    borderDirection: {
+      horizontal: css`
+        &::before {
+          ${logicalCSS('width', euiTheme.border.width.thin)}
+          ${logicalCSS('height', '100%')}
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          &::after {
+            ${logicalCSS('width', euiTheme.border.width.thin)}
+            ${logicalCSS('height', '100%')}
+          }
+        }
+      `,
+      vertical: css`
+        &::before {
+          ${logicalCSS('height', euiTheme.border.width.thin)}
+          ${logicalCSS('width', '100%')}
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          &::after {
+            ${logicalCSS('height', euiTheme.border.width.thin)}
+            ${logicalCSS('width', '100%')}
+          }
+        }
+      `,
+    },
+
+    handle: css`
+      gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
       /* 1 */
       &:hover,
       &:focus,
       &:active {
+        gap: 0;
+      }
+
+      ${euiCanAnimate} {
+        transition: gap ${transition};
+      }
+
+      &::before,
+      &::after {
+        background-color: ${euiTheme.colors.darkestShade};
+        transform: translateZ(0); /* 3 */
+      }
+
+      /* Lighten color on :hover */
+      &:hover {
         &::before,
         &::after {
-          ${logicalCSS('width', '100%')}
-          margin-inline: 0; /* 2 */
-          transform: none; /* 3 */
+          /* Delay transition on hover so animation is not accidentally triggered on mouse over */
+          ${euiCanAnimate} {
+            transition-delay: ${transitionSpeed};
+          }
         }
       }
     `,
+    handleDirection: {
+      horizontal: css`
+        &::before,
+        &::after {
+          ${logicalCSS('width', grabHandleHeight)}
+          ${logicalCSS('height', grabHandleWidth)}
+          margin-block: ${euiTheme.size.base}; /* 2 */
+        }
+
+        /* 1 */
+        &:hover,
+        &:focus,
+        &:active {
+          &::before,
+          &::after {
+            ${logicalCSS('height', '100%')}
+            margin-block: 0; /* 2 */
+            transform: none; /* 3 */
+          }
+        }
+      `,
+      vertical: css`
+        &::before,
+        &::after {
+          ${logicalCSS('height', grabHandleHeight)}
+          ${logicalCSS('width', grabHandleWidth)}
+          margin-inline: ${euiTheme.size.base}; /* 2 */
+        }
+
+        /* 1 */
+        &:hover,
+        &:focus,
+        &:active {
+          &::before,
+          &::after {
+            ${logicalCSS('width', '100%')}
+            margin-inline: 0; /* 2 */
+            transform: none; /* 3 */
+          }
+        }
+      `,
+    },
     alignIndicator: {
       center: css`
         align-items: center;

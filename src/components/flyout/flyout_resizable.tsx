@@ -34,6 +34,7 @@ export const EuiFlyoutResizable = forwardRef(
       maxWidth,
       minWidth = 200,
       side = 'right',
+      type = 'overlay',
       children,
       ...rest
     }: EuiFlyoutResizableProps,
@@ -41,7 +42,7 @@ export const EuiFlyoutResizable = forwardRef(
   ) => {
     const euiTheme = useEuiTheme();
     const styles = euiFlyoutResizableButtonStyles(euiTheme);
-    const cssStyles = [styles.euiFlyoutResizableButton, styles[side]];
+    const cssStyles = [styles.euiFlyoutResizableButton, styles[type][side]];
 
     const getFlyoutMinMaxWidth = useCallback(
       (width: number) => {
@@ -141,10 +142,12 @@ export const EuiFlyoutResizable = forwardRef(
         size={flyoutWidth || size}
         maxWidth={maxWidth}
         side={side}
+        type={type}
         ref={setRefs}
       >
         <EuiResizableButton
           isHorizontal
+          indicator="border"
           css={cssStyles}
           onMouseDown={onMouseDown}
           onTouchStart={onMouseDown}
