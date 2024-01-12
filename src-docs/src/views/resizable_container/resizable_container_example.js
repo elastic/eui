@@ -521,9 +521,9 @@ export const ResizableContainerExample = {
             indicator as a UI hint. For use cases where the resize behavior is
             "nice to have" but not a primary UX focus, or where there are many
             other busy UI elements on the page, you can set{' '}
-            <EuiCode>{'showIndicator={false}'}</EuiCode> to display a subdued
-            border element instead, which only provides resize affordance on
-            hover or focus.
+            <EuiCode>indicator="border"</EuiCode> to display a subdued border
+            element instead, which only provides resize affordance on hover or
+            focus.
           </p>
         </>
       ),
@@ -532,7 +532,7 @@ export const ResizableContainerExample = {
       props: { EuiResizableButton },
       snippet: `<EuiResizableButton
   isHorizontal
-  showIndicator={false}
+  indicator="border"
 />`,
     },
     {

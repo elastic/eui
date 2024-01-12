@@ -147,7 +147,7 @@ export const EuiFlyoutResizable = forwardRef(
       >
         <EuiResizableButton
           isHorizontal
-          showIndicator={false}
+          indicator="border"
           css={cssStyles}
           onMouseDown={onMouseDown}
           onTouchStart={onMouseDown}
