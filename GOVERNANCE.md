@@ -22,7 +22,7 @@ The following are some quotes and principles that guide the way we think about E
 
 \- Someone, somewhere, probably
 
-- Enablement over enforcement: EUI is here to help you move faster, not to put up walls or slow you down. It works best when we collaborate early and often. "When in doubt, react out!"
+- Enablement over enforcement: EUI is here to help you move faster, not to put up walls or slow you down. It works best when we collaborate early and often. "When in doubt, reach out!"
 
 - A design system component should handle 90% of use cases. The remaining 10% may require customization through props, wrapping, or other actions.
 
