@@ -54,7 +54,7 @@ The EUI team is here to help you work within the EUI design system. If you're no
 
 You can interact with us by:
 - Subbmitting a Github issue
-- Contacting us at #eui on Slack (Internal to Elastic)
+- Contacting us at #eui on Slack (internal to Elastic)
 
 Ideally, we can help you find a way to work within what EUI provides. If not, proceed to step 3 or 4!
 
