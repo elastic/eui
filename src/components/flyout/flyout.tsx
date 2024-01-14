@@ -231,7 +231,10 @@ export const EuiFlyout = forwardRef(
           document.body.style.paddingInlineStart = `${dimensions.width}px`;
         }
       }
+    }, [side, dimensions, isPushed]);
 
+    // Remove the hasFlyout class and padding when the flyout is unmounted
+    useEffect(() => {
       return () => {
         document.body.classList.remove('euiBody--hasFlyout');
 
@@ -243,7 +246,7 @@ export const EuiFlyout = forwardRef(
           }
         }
       };
-    }, [side, dimensions, isPushed]);
+    }, [isPushed, side]);
 
     /**
      * ESC key closes flyout (always?)
