@@ -45,6 +45,9 @@ export default () => {
       label: 'Underline',
       name: 'underline',
       iconType: 'editorUnderline',
+      title: 'Underline with a custom title',
+      titleDelay: 'short',
+      titlePosition: 'bottom',
     },
     {
       id: `${idPrefix3}6`,

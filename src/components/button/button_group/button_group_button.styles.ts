@@ -42,24 +42,30 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const uncompressedBorderRadii = (
     radiusSize: CSSProperties['borderRadius']
   ) => `
-    border-radius: 0;
+    & > .euiButtonGroupButton {
+      border-radius: 0;
+    }
 
-    &:first-child {
+    &:first-child > .euiButtonGroupButton {
       ${logicalShorthandCSS('border-radius', `${radiusSize} 0 0 ${radiusSize}`)}
     }
 
-    &:last-child {
+    &:last-child > .euiButtonGroupButton {
       ${logicalShorthandCSS('border-radius', `0 ${radiusSize} ${radiusSize} 0`)}
     }
   `;
 
   return {
     // Base
-    euiButtonGroupButton: css`
+    euiButtonGroupButtonTooltipAnchor: css`
       /* Allow button to shrink and truncate */
       ${logicalCSS('min-width', 0)}
       flex-shrink: 1;
       flex-grow: 0;
+    `,
+    euiButtonGroupButton: css`
+      ${logicalCSS('width', '100%')}
+      ${logicalCSS('min-width', 0)}
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
@@ -77,40 +83,46 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
     `,
     uncompressed: css`
-      &:is(.euiButtonGroupButton-isSelected) {
+      & > .euiButtonGroupButton:is(.euiButtonGroupButton-isSelected) {
         font-weight: ${euiTheme.font.weight.bold};
       }
 
       /* "Borders" between buttons - should be present between two of the same colored buttons,
          and absent between selected vs non-selected buttons (different colors) */
 
-      &:not(.euiButtonGroupButton-isSelected)
-        + .euiButtonGroupButton:not(.euiButtonGroupButton-isSelected) {
+      &:not(.euiButtonGroupButton__tooltipAnchor-isSelected)
+        + .euiButtonGroupButton__tooltipAnchor:not(
+          .euiButtonGroupButton__tooltipAnchor-isSelected
+        )
+        > .euiButtonGroupButton {
         box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.fullShade, 0.1)};
       }
 
-      &:is(.euiButtonGroupButton-isSelected)
-        + .euiButtonGroupButton-isSelected {
+      &:is(.euiButtonGroupButton__tooltipAnchor-isSelected)
+        + .euiButtonGroupButton__tooltipAnchor-isSelected
+        > .euiButtonGroupButton {
         box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.emptyShade, 0.2)};
       }
     `,
     compressed: css`
-      ${logicalCSS('height', compressedButtonHeight)}
-      line-height: ${compressedButtonHeight};
+      & > .euiButtonGroupButton {
+        ${logicalCSS('height', compressedButtonHeight)}
+        line-height: ${compressedButtonHeight};
 
-      /* Offset the background color from the border by clipping background to before the padding starts */
-      padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
-      background-clip: content-box;
-      /* Tweak border radius to account for the padding & background-clip */
-      border-radius: ${mathWithUnits(
-        [controlCompressedBorderRadius, euiTheme.border.width.thin],
-        (x, y) => x + y
-      )};
+        /* Offset the background color from the border by clipping background to before the padding starts */
+        padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
+        background-clip: content-box;
+        /* Tweak border radius to account for the padding & background-clip */
+        border-radius: ${mathWithUnits(
+          [controlCompressedBorderRadius, euiTheme.border.width.thin],
+          (x, y) => x + y
+        )};
 
-      font-weight: ${euiTheme.font.weight.regular};
+        font-weight: ${euiTheme.font.weight.regular};
 
-      &:is(.euiButtonGroupButton-isSelected) {
-        font-weight: ${euiTheme.font.weight.semiBold};
+        &:is(.euiButtonGroupButton-isSelected) {
+          font-weight: ${euiTheme.font.weight.semiBold};
+        }
       }
     `,
     // States
