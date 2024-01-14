@@ -53,10 +53,12 @@ export interface EuiButtonGroupOptionProps
   title?: EuiToolTipProps['content'];
   /**
    * Custom title delay
+   * @default 'long'
    */
   titleDelay?: EuiToolTipProps['delay'];
   /**
    * Custom title position
+   * @default 'top'
    */
   titlePosition?: EuiToolTipProps['position'];
 }
