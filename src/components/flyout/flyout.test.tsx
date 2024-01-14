@@ -25,6 +25,12 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
 }));
 
+let mockWidth = 500;
+
+jest.mock('../observer/resize_observer', () => ({
+  useResizeObserver: () => ({ width: mockWidth, height: 500 }),
+}));
+
 describe('EuiFlyout', () => {
   shouldRenderCustomStyles(
     <EuiFlyout {...requiredProps} onClose={() => {}} />,
@@ -276,6 +282,77 @@ describe('EuiFlyout', () => {
         expect(
           takeMountedSnapshot(component, { hasArrayOutput: true })
         ).toMatchSnapshot();
+      });
+    });
+
+    describe('"euiBody--hasFlyout" class', () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+      });
+
+      it('should add "euiBody--hasFlyout" class on mount', () => {
+        const add = jest.spyOn(document.body.classList, 'add');
+
+        render(<EuiFlyout onClose={() => {}} size={500} />);
+        expect(add).toHaveBeenCalledTimes(1);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+      });
+
+      it('should remove "euiBody--hasFlyout" class on unmount', () => {
+        const remove = jest.spyOn(document.body.classList, 'remove');
+        const { unmount } = render(<EuiFlyout onClose={() => {}} size={500} />);
+        expect(remove).not.toHaveBeenCalled();
+        unmount();
+        expect(remove).toHaveBeenCalledTimes(1);
+        expect(remove).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+      });
+
+      it('should remove and re-add "euiBody--hasFlyout" class on "type" change', () => {
+        const add = jest.spyOn(document.body.classList, 'add');
+        const remove = jest.spyOn(document.body.classList, 'remove');
+        const { rerender } = render(
+          <EuiFlyout onClose={() => {}} size={500} />
+        );
+
+        expect(add).toHaveBeenCalledTimes(1);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+        rerender(<EuiFlyout onClose={() => {}} size={500} type="push" />);
+        expect(remove).toHaveBeenCalledTimes(1);
+        expect(remove).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+        expect(add).toHaveBeenCalledTimes(2);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+      });
+
+      it('should remove and re-add "euiBody--hasFlyout" class on "side" change', () => {
+        const add = jest.spyOn(document.body.classList, 'add');
+        const remove = jest.spyOn(document.body.classList, 'remove');
+        const { rerender } = render(
+          <EuiFlyout onClose={() => {}} size={500} />
+        );
+
+        expect(add).toHaveBeenCalledTimes(1);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+        rerender(<EuiFlyout onClose={() => {}} size={500} side="left" />);
+        expect(remove).toHaveBeenCalledTimes(1);
+        expect(remove).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+        expect(add).toHaveBeenCalledTimes(2);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+      });
+
+      it('should not remove and re-add "euiBody--hasFlyout" class on resize', async () => {
+        const add = jest.spyOn(document.body.classList, 'add');
+        const remove = jest.spyOn(document.body.classList, 'remove');
+        const { rerender } = render(
+          <EuiFlyout onClose={() => {}} size={mockWidth} />
+        );
+
+        expect(add).toHaveBeenCalledTimes(1);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+
+        mockWidth = 600;
+
+        rerender(<EuiFlyout onClose={() => {}} size={mockWidth} />);
+        expect(remove).not.toHaveBeenCalled();
       });
     });
   });

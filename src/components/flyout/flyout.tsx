@@ -215,7 +215,7 @@ export const EuiFlyout = forwardRef(
     );
     const setRef = useCombinedRefs([setResizeRef, ref]);
     // TODO: Allow this hook to be conditional
-    const dimensions = useResizeObserver(resizeRef);
+    const { width } = useResizeObserver(resizeRef);
 
     useEffect(() => {
       // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
@@ -226,12 +226,12 @@ export const EuiFlyout = forwardRef(
        */
       if (isPushed) {
         if (side === 'right') {
-          document.body.style.paddingInlineEnd = `${dimensions.width}px`;
+          document.body.style.paddingInlineEnd = `${width}px`;
         } else if (side === 'left') {
-          document.body.style.paddingInlineStart = `${dimensions.width}px`;
+          document.body.style.paddingInlineStart = `${width}px`;
         }
       }
-    }, [side, dimensions, isPushed]);
+    }, [side, isPushed, width]);
 
     // Remove the hasFlyout class and padding when the flyout is unmounted
     useEffect(() => {
