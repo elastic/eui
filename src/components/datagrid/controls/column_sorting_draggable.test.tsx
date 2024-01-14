@@ -106,13 +106,15 @@ describe('EuiDataGridColumnSortingDraggable', () => {
       );
 
       expect(
-        getByTestSubject('euiDataGridColumnSorting-sortColumn-columnA-asc')
-          .title
+        getByTestSubject(
+          'euiDataGridColumnSorting-sortColumn-columnA-asc'
+        )?.querySelector('[data-text]')?.textContent
       ).toEqual('A-Z');
 
       expect(
-        getByTestSubject('euiDataGridColumnSorting-sortColumn-columnA-desc')
-          .title
+        getByTestSubject(
+          'euiDataGridColumnSorting-sortColumn-columnA-desc'
+        )?.querySelector('[data-text]')?.textContent
       ).toEqual('Z-A');
     });
 
@@ -131,13 +133,15 @@ describe('EuiDataGridColumnSortingDraggable', () => {
       );
 
       expect(
-        getByTestSubject('euiDataGridColumnSorting-sortColumn-columnA-asc')
-          .title
+        getByTestSubject(
+          'euiDataGridColumnSorting-sortColumn-columnA-asc'
+        )?.querySelector('[data-text]')?.textContent
       ).toEqual('False-True');
 
       expect(
-        getByTestSubject('euiDataGridColumnSorting-sortColumn-columnA-desc')
-          .title
+        getByTestSubject(
+          'euiDataGridColumnSorting-sortColumn-columnA-desc'
+        )?.querySelector('[data-text]')?.textContent
       ).toEqual('True-False');
     });
   });
