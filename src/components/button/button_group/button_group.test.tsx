@@ -8,7 +8,11 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { render } from '../../../test/rtl';
+import {
+  render,
+  waitForEuiToolTipHidden,
+  waitForEuiToolTipVisible,
+} from '../../../test/rtl';
 import { requiredProps as commonProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -18,6 +22,7 @@ import {
   EuiButtonGroupProps,
 } from './button_group';
 import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
+import { act, fireEvent } from '@testing-library/react';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
   's',
@@ -215,5 +220,206 @@ describe('EuiButtonGroup', () => {
     expect(getByTestSubject('buttonWithCss')).toHaveStyle(
       'text-transform: uppercase'
     );
+  });
+
+  describe('tooltips', () => {
+    it('shows a tooltip on hover', async () => {
+      const { getByTestSubject, getByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      expect(getByRole('tooltip')).toHaveTextContent('Option 4');
+    });
+
+    it('shows a tooltip on focus', async () => {
+      const { getByTestSubject, getByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+            },
+          ]}
+        />
+      );
+      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      expect(getByRole('tooltip')).toHaveTextContent('Option 4');
+    });
+
+    it('allows overriding the default title', async () => {
+      const { getByTestSubject, getByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              title: 'I am a tooltip',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
+    });
+
+    it('allows customizing the tooltip delay', async () => {
+      let result = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              title: 'I am a tooltip',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      });
+      expect(result.queryByRole('tooltip')).toBeNull();
+      result.unmount();
+      result = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              title: 'I am a tooltip',
+              titleDelay: 'regular',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      });
+      expect(result.queryByRole('tooltip')).not.toBeNull();
+    });
+
+    it('allows customizing the tooltip position', async () => {
+      let result = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              title: 'I am a tooltip',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      expect(result.getByRole('tooltip')).toHaveAttribute(
+        'data-position',
+        'top'
+      );
+      result.unmount();
+      result = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              title: 'I am a tooltip',
+              titlePosition: 'bottom',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      expect(result.getByRole('tooltip')).toHaveAttribute(
+        'data-position',
+        'bottom'
+      );
+    });
+
+    it('does not show a tooltip for buttons with visible text', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              titleDelay: 'regular',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      });
+      expect(queryByRole('tooltip')).toBeNull();
+    });
+
+    it('hides the tooltip on click until rehovered/refocused', async () => {
+      const { getByTestSubject, queryByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      fireEvent.click(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      });
+      expect(queryByRole('tooltip')).toBeNull();
+      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      fireEvent.click(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      });
+      expect(queryByRole('tooltip')).toBeNull();
+    });
   });
 });
