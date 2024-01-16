@@ -1,5 +1,20 @@
 [
   {
+    "version": "92.1.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.expansionEnterPrompt",
+        "changeType": "added",
+        "value": "Press the Enter key to expand this cell."
+      },
+      {
+        "token": "euiDataGridCell.focusTrapEnterPrompt",
+        "changeType": "added",
+        "value": "Press the Enter key to interact with this cell's contents."
+      }
+    ]
+  },
+  {
     "version": "92.0.0",
     "changes": [
       {
