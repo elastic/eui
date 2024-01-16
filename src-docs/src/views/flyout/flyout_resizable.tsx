@@ -32,6 +32,7 @@ export default () => {
         side={flyoutSide as EuiFlyoutProps['side']}
         onClose={() => setIsFlyoutVisible(false)}
         aria-labelledby={flyoutTitleId}
+        onResize={console.log}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
