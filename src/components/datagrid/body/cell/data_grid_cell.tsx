@@ -159,6 +159,7 @@ export class EuiDataGridCell extends Component<
   state: EuiDataGridCellState = {
     cellProps: {},
     isFocused: false,
+    isHovered: false,
     cellTextAlign: 'Left',
   };
   unsubscribeCell?: Function;
@@ -378,6 +379,7 @@ export class EuiDataGridCell extends Component<
 
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
+    if (nextState.isHovered !== this.state.isHovered) return true;
 
     return false;
   }
@@ -534,6 +536,9 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  onMouseEnter = () => this.setState({ isHovered: true });
+  onMouseLeave = () => this.setState({ isHovered: false });
+
   render() {
     const {
       width,
@@ -553,6 +558,9 @@ export class EuiDataGridCell extends Component<
 
     const isExpandable = this.isExpandable();
     const popoverIsOpen = this.isPopoverOpen();
+    const showCellActions =
+      isExpandable &&
+      (popoverIsOpen || this.state.isFocused || this.state.isHovered);
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
@@ -627,6 +635,8 @@ export class EuiDataGridCell extends Component<
         data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
         data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
         onKeyDown={this.handleCellKeyDown}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
       >
         <HandleInteractiveChildren
           cellEl={this.cellRef.current}
@@ -636,7 +646,7 @@ export class EuiDataGridCell extends Component<
           <EuiDataGridCellContent
             {...cellContentProps}
             cellActions={
-              isExpandable && (
+              showCellActions && (
                 <>
                   <EuiDataGridCellActions
                     rowIndex={rowIndex}
