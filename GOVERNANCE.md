@@ -1,43 +1,113 @@
 # EUI’s Design System Governance
 
-EUI is a mature library with over 100 publicly exported components, and generally is not actively adding new components.
+This governance document describes the processes we follow within Elastic when working with the EUI design system.
+
+## Prelude and principles
+
+The following are some quotes and principles that guide the way we think about EUI.
+
+-  > You can have a comprehensive design system [...] but if a design system user can’t get done what they’re trying to get done, the whole system risks obsolescence.
+   >
+   > Teams get creative and will find ways of getting things done, which may involve hacking styles, creating a slew of one-off components, or abandoning the design system altogether.
+   >
+   > This is why it is so incredibly important [...] to establish a crystal-clear governance process that helps users understand what to do when:
+   >
+   > - They can’t find a component that does what they need.
+   > - A design system component gets them 90% of the way there, but not 100%.
+   > - They have questions or concerns about the design system.
+   >
+   > \- [Brad Frost](https://bradfrost.com/blog/post/a-design-system-governance-process/)
+
+- > Design systems should actively discourage deviations from the system, otherwise all the benefits of the system are lost.
+  > 
+  > \- Someone, somewhere, probably
+
+
+- Enablement over enforcement: EUI is here to help you move faster, not to put up walls or slow you down. It works best when we collaborate early and often. "When in doubt, reach out!"
+
+- A design system component should handle 90% of use cases. The remaining 10% may require customization through props, wrapping, or other actions.
+
+- In general, our philosophy is to make our components as flexible and customizable as possible, up to the point where that flexibility explicitly enables bad or inaccessible UX.
+
+- EUI is a mature library with over 100 publicly exported components, and generally is not actively adding new components.
+
 
 ## Process
-- If a component exists for your use case:
-  - Use it!
-- If a component exists but would require changes to work for your use case:
-  - Start a conversation with the EUI team, we may be able to help identify a solution or a workaround.
-- If you cannot find an existing component or workaround for your use case:
-  - Start a conversation with the EUI team, we may be able to help identify a solution or a workaround.
-  - If it is clear a new component does not exist:
-    - If you believe the feature would qualify as a new addition to EUI (See [What we do and don't accept](#what-we-do-and-dont-accept) below), submit a feature request.
-    - If you believe this would require a one-off, please follow the [one-off guidelines](#one-offs) below.
+
+### 1. If you're designing or developing new features in Elastic products, you should be using EUI
+
+This doesn't mean just using components here and there as they suit your needs -- this means following the guidelines, patterns, and principles outlined in the EUI docs, and proactively and intentionally striving to stay within the bounds of EUI.
+
+It is incredibly important to do this because:
+
+1. As an organization, we will be able to both design and develop features faster.
+2. We will establish a consistent product UX, regardless of solution or feature. This has an overwhlemingly positive effect on user perception of our products.
+3. We will have less redundant code.
+4. It is much easier to make sweeping product UX changes when we are using EUI consistently.
+
+Things we want to avoid:
+1. **Applying custom CSS to work around EUI** - These changes are brittle and prone to break in the future. They also create UX inconsistencies.
+2. **Creating new UI patterns and elements** - New UI elements and patterns break user consistency, creates more work for engineers, and opens the door for regressions and quality issues. EUI is well tested and built for quality and accessibility by default. EUI may not work for every scenario but please make an effort to use what we have when possible.
+
+### 2. When in doubt, reach out!
+
+The EUI team is here to help you work within the EUI design system. If you're not sure if we have a capability, what component to use, or how to achieve a certain result, please reach out! A short conversation with us could save you a lot of work downstream.
+
+You can interact with us by:
+- Subbmitting a Github issue
+- Contacting us at #eui on Slack (internal to Elastic)
+
+Ideally, we can help you find a way to work within what EUI provides. If not, proceed to step 3 or 4!
+
+### 3. When we have something that works for you, but would require customization for your use case
+
+For example -- you've found `EuiBadge`. It's perfect. Except for one thing ... it only provides solid fill color options. For your use case you feel that you also really need the ability to change the border color as well.
+
+Firstly, congratuations, at this point you've followed step 1, you're using EUI.
+
+Secondly, you've likely reached out to the EUI team to start a conversation about customizable border colors, well done!
+
+In this case, the EUI team likely responded by encouraging you to find a different approach that doesn't require customizing border colors.
+
+However, after some discussion with our team, you've convinced us that this is truly the only thing that will work here. At this point, we will:
+
+1. Provide you a workaround with custom CSS.
+2. Track this as a [one-off](#one-offs) customization.
+
+If you feel strongly that this customization should be a feature supported by EUI and aligns with our guidance for [What we do accept](#what-we-do-and-dont-accept), you should create a [feature request](https://github.com/elastic/eui/issues/new?assignees=&labels=feature+request&projects=&template=feature_request.md&title=).
+
+The EUI team will consider the Feature Request, assign it a priority, and work it as we have time. If and when we do, we will be sure to circle back to your "one-off" to make sure it is replaced with this new feature. We may do that ourselves or notify you that your custom code can now be replaced.
+
+### 4. When we don't have a component or pattern for you
+
+The process is the same for new components as it is for customizations. Be sure to check out the [one-off](#one-offs) section below.
+
+## One-offs
+
+One-off components are a reality in mature design systems. If existing components do not meet your needs, it is acceptable to create a one-off components. One-offs must meet the following criteria to be considered for inclusion in EUI when its usage grows.
+- The component must match the look and feel of EUI components
+- The component follows EUI best practices, especially UX and accessibility
+- The component has undergone manual accessibility testing
+- The component has or is included in automated accessibility tests
+- Works in dark mode
+
+The EUI team tracks one-offs. If you create a one-off component within our products, we would like.
+
+Note: One-off components can *still* be shared and reusable, even if they're not part of EUI. Within Kibana, components can be shared in a [package](https://github.com/elastic/kibana/tree/main/packages). The Shared UX team at Elastic is a good team to engage with when creating a shared component within Kibana.
 
 ## What we do and don’t accept
 
 **What we do accept**
 - Features that are clearly reusable
   - New changes must have a clear case for general reuse for Elastic products. Feature requests should include specific examples, or strong evidence of potential reuse.
+- Features should have clear guidance around *when* they should be used.
 - Bug fixes :D
 
 **What we don’t accept**
 - Features specific to a single use case (see [One-offs](#one-offs), below)
-- Features that carry an excessive long-term maintenance burden, relative to their usage
-- Features that are inaccessible
+- Features that carry an excessive long-term maintenance burden, relative to their usage.
+- Features that are inaccessible.
 
 **Open source**
 Elastic is an open-source repository, but not completely open-contribution. While we appreciate and welcome all your ideas and contributions, we cannot always guarantee we’ll accept them. Please see our [CONTRIBUTING.md](./wiki/contributing-to-eui/README.md) for more.
 
-## What a design system should and shouldn’t do
-A design system component should handle 90% of use cases. The remaining 10% may require customization through props, wrapping, or other actions.
-
-In general, our philosophy is to make our components as flexible and customizable as possible, up to the point where that flexibility explicitly enables bad or inaccessible UX.
-
-If you can’t find a component that does what you need, [start a discussion](https://github.com/elastic/eui/discussions) with us so we can help determine whether your use case is general enough to bring back to EUI, or specific enough to remain a one-off.
-
-## One-offs
-One-offs are a reality in mature design systems. If existing components do not meet your needs, it is acceptable to create a one-off component. One-offs must meet the following criteria to be considered for inclusion in EUI when its usage grows.
-- The component must match the look and feel of EUI components
-- The component follows EUI best practices, especially UX and accessibility
-- The component has undergone manual accessibility testing
-- The component has or is included in automated accessibility tests
