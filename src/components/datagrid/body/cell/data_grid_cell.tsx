@@ -501,10 +501,43 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (this.isExpandable()) {
+      if (this.isPopoverOpen()) return;
+      const {
+        popoverContext: { openCellPopover },
+        visibleRowIndex,
+        colIndex,
+      } = this.props;
+
+      switch (event.key) {
+        case keys.ENTER:
+        case keys.F2:
+          event.preventDefault();
+          openCellPopover({ rowIndex: visibleRowIndex, colIndex });
+          break;
+      }
+    }
+  };
+
+  handleCellExpansionClick = () => {
+    const {
+      popoverContext: { openCellPopover, closeCellPopover },
+      visibleRowIndex,
+      colIndex,
+    } = this.props;
+
+    if (this.isPopoverOpen()) {
+      closeCellPopover();
+    } else {
+      openCellPopover({ rowIndex: visibleRowIndex, colIndex });
+    }
+  };
+
   render() {
     const {
       width,
-      popoverContext: { closeCellPopover, openCellPopover },
+      popoverContext,
       interactiveCellId,
       columnType,
       className,
@@ -557,21 +590,6 @@ export class EuiDataGridCell extends Component<
       ...cellPropsStyle, // apply anything from setCellProps({ style })
     };
 
-    const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      if (isExpandable) {
-        if (popoverIsOpen) {
-          return;
-        }
-        switch (event.key) {
-          case keys.ENTER:
-          case keys.F2:
-            event.preventDefault();
-            openCellPopover({ rowIndex: visibleRowIndex, colIndex });
-            break;
-        }
-      }
-    };
-
     const rowHeight = rowHeightUtils?.getRowHeightOption(
       rowIndex,
       rowHeightsOptions
@@ -595,43 +613,6 @@ export class EuiDataGridCell extends Component<
       ariaRowIndex,
     };
 
-    const cellActions = isExpandable ? (
-      <>
-        <EuiDataGridCellActions
-          rowIndex={rowIndex}
-          colIndex={colIndex}
-          column={column}
-          onExpandClick={() => {
-            if (popoverIsOpen) {
-              closeCellPopover();
-            } else {
-              openCellPopover({ rowIndex: visibleRowIndex, colIndex });
-            }
-          }}
-        />
-        {/* Give the cell expansion popover a separate div/ref - otherwise the
-            extra popover wrappers mess up the absolute positioning and cause
-            animation stuttering */}
-        <div
-          ref={this.popoverAnchorRef}
-          data-test-subject="cellPopoverAnchor"
-        />
-      </>
-    ) : undefined;
-
-    const cellContent = (
-      <HandleInteractiveChildren
-        cellEl={this.cellRef.current}
-        updateCellFocusContext={this.updateCellFocusContext}
-        renderFocusTrap={!isExpandable}
-      >
-        <EuiDataGridCellContent
-          {...cellContentProps}
-          cellActions={cellActions}
-        />
-      </HandleInteractiveChildren>
-    );
-
     const cell = (
       <div
         role="gridcell"
@@ -645,9 +626,36 @@ export class EuiDataGridCell extends Component<
         data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
         data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
         data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
-        onKeyDown={handleCellKeyDown}
+        onKeyDown={this.handleCellKeyDown}
       >
-        {cellContent}
+        <HandleInteractiveChildren
+          cellEl={this.cellRef.current}
+          updateCellFocusContext={this.updateCellFocusContext}
+          renderFocusTrap={!isExpandable}
+        >
+          <EuiDataGridCellContent
+            {...cellContentProps}
+            cellActions={
+              isExpandable && (
+                <>
+                  <EuiDataGridCellActions
+                    rowIndex={rowIndex}
+                    colIndex={colIndex}
+                    column={column}
+                    onExpandClick={this.handleCellExpansionClick}
+                  />
+                  {/* Give the cell expansion popover a separate div/ref - otherwise the
+                    extra popover wrappers mess up the absolute positioning and cause
+                    animation stuttering */}
+                  <div
+                    ref={this.popoverAnchorRef}
+                    data-test-subject="cellPopoverAnchor"
+                  />
+                </>
+              )
+            }
+          />
+        </HandleInteractiveChildren>
       </div>
     );
 
