@@ -83,7 +83,7 @@ describe('EuiDataGridCell', () => {
       />
     );
     act(() => {
-      component.setState({ enableInteractions: true });
+      component.setState({ isHovered: true });
     });
 
     const getCellActions = () => component.find('EuiDataGridCellActions');

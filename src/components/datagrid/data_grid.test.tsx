@@ -547,6 +547,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -569,6 +571,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -591,6 +595,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -613,6 +619,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -1316,7 +1324,7 @@ describe('EuiDataGrid', () => {
         const component = mount(
           <EuiDataGrid
             aria-labelledby="#test"
-            columns={[{ id: 'ColumnA', isExpandable: false }]}
+            columns={[{ id: 'ColumnA' }]}
             columnVisibility={{
               visibleColumns: ['ColumnA'],
               setVisibleColumns: () => {},
@@ -2164,17 +2172,21 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      // cell buttons should be `display: none` for unfocused, unhovered cell
-      expect(
-        findTestSubject(component, 'alertAction').last().getDOMNode()
-      ).not.toBeVisible();
-      expect(
-        findTestSubject(component, 'happyAction').last().getDOMNode()
-      ).not.toBeVisible();
+      // cell buttons should not get rendered for unfocused, unhovered cell
+      expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
+      expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
 
-      findTestSubject(component, 'alertAction').at(1).simulate('click');
+      act(() => {
+        findTestSubject(component, 'dataGridRowCell')
+          .at(1)
+          .prop('onMouseEnter')!({} as React.MouseEvent);
+      });
+
+      component.update();
+
+      findTestSubject(component, 'alertAction').at(0).simulate('click');
       expect(alertFn).toHaveBeenCalledWith(1, 'A');
-      findTestSubject(component, 'happyAction').at(1).simulate('click');
+      findTestSubject(component, 'happyAction').at(0).simulate('click');
       expect(happyFn).toHaveBeenCalledWith(1, 'A');
       alertFn.mockReset();
       happyFn.mockReset();

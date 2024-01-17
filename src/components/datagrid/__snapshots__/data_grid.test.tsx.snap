@@ -725,31 +725,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 A, column 1, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="1"
@@ -775,31 +751,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 B, column 2, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -825,31 +777,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 A, column 1, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -875,31 +803,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 B, column 2, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -925,31 +829,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 A, column 1, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -975,31 +855,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 - 
                 B, column 2, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
           </div>
         </div>
@@ -1360,31 +1216,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 A, column 2, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="1"
@@ -1410,31 +1242,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 B, column 3, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="1"
@@ -1512,31 +1320,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 A, column 2, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -1562,31 +1346,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 B, column 3, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -1664,31 +1424,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 A, column 2, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -1714,31 +1450,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 - 
                 B, column 3, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -2060,31 +1772,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 A, column 1, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="1"
@@ -2110,31 +1798,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 B, column 2, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -2160,31 +1824,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 A, column 1, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -2210,31 +1850,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 B, column 2, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -2260,31 +1876,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 A, column 1, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -2310,31 +1902,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 - 
                 B, column 2, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
           </div>
         </div>
@@ -2628,31 +2196,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 A, column 1, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="1"
@@ -2678,31 +2222,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 B, column 2, row 1
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -2728,31 +2248,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 A, column 1, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="2"
@@ -2778,31 +2274,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 B, column 2, row 2
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -2828,31 +2300,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 A, column 1, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
             <div
               aria-rowindex="3"
@@ -2878,31 +2326,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 - 
                 B, column 2, row 3
-                . 
-                Press the Enter key to expand this cell.
               </p>
-              <div
-                class="euiDataGridRowCell__actions"
-              >
-                <button
-                  aria-hidden="true"
-                  class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary"
-                  data-test-subj="euiDataGridCellExpandButton"
-                  tabindex="-1"
-                  title="Click or hit enter to interact with cell content"
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="euiButtonIcon__icon"
-                    color="inherit"
-                    data-euiicon-type="expandMini"
-                  />
-                </button>
-              </div>
-              <div
-                data-test-subject="cellPopoverAnchor"
-              />
             </div>
           </div>
         </div>

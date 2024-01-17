@@ -53,9 +53,7 @@ describe('EuiDataGridCellPopover', () => {
         '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
       ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-        .filter(':visible')
-        .click();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -75,9 +73,7 @@ describe('EuiDataGridCellPopover', () => {
         '[data-gridcell-row-index="1"][data-gridcell-column-index="1"]'
       ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-        .filter(':visible')
-        .click();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -112,9 +108,7 @@ describe('EuiDataGridCellPopover', () => {
     });
 
     it('when the cell expand action button is clicked', () => {
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-        .filter(':visible')
-        .click();
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
         'not.exist'
       );
@@ -156,12 +150,8 @@ describe('EuiDataGridCellPopover', () => {
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
     // Close and re-open the cell popover by clicking
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-      .filter(':visible')
-      .click();
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-      .filter(':visible')
-      .click();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
 
     cy.get('[data-test-subj="cellActionB"]').first().realClick();
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
@@ -201,9 +191,7 @@ describe('EuiDataGridCellPopover', () => {
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
     ).realClick();
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-      .filter(':visible')
-      .click();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
 
     cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
   });
