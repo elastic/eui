@@ -65,9 +65,9 @@ describe('EuiDataGridFooterRow', () => {
     cy.get(
       '[data-gridcell-column-index="0"][data-gridcell-row-index="3"]'
     ).realClick();
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]')
-      .filter(':visible')
-      .should('not.exist');
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').should(
+      'not.exist'
+    );
   });
 
   // Regression test for #5720
