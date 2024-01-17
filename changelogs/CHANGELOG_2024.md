@@ -1,3 +1,9 @@
+## [`v92.1.1`](https://github.com/elastic/eui/releases/v92.1.1)
+
+**Bug fixes**
+
+- Minor `EuiDataGrid` cell performance fixes ([#7465](https://github.com/elastic/eui/pull/7465))
+
 ## [`v92.1.0`](https://github.com/elastic/eui/releases/v92.1.0)
 
 - Updated `EuiResizableButton` to allow customizing the `indicator` style with either `handle` (default) or `border` ([#7455](https://github.com/elastic/eui/pull/7455))
