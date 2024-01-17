@@ -547,6 +547,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -569,6 +571,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -591,6 +595,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -613,6 +619,8 @@ describe('EuiDataGrid', () => {
             "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onKeyDown": [Function],
+            "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
