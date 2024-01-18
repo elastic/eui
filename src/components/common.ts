@@ -46,7 +46,7 @@ export type OneOf<T, K extends keyof T> = Omit<T, K> &
 /**
  * Wraps Object.keys with proper typescript definition of the resulting array
  */
-export function keysOf<T, K extends keyof T>(obj: T): K[] {
+export function keysOf<T extends object, K extends keyof T>(obj: T): K[] {
   return Object.keys(obj) as K[];
 }
 

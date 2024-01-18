@@ -226,9 +226,9 @@ export const EuiFlyout = forwardRef(
        */
       if (isPushed) {
         if (side === 'right') {
-          document.body.style.paddingRight = `${dimensions.width}px`;
+          document.body.style.paddingInlineEnd = `${dimensions.width}px`;
         } else if (side === 'left') {
-          document.body.style.paddingLeft = `${dimensions.width}px`;
+          document.body.style.paddingInlineStart = `${dimensions.width}px`;
         }
       }
 
@@ -237,9 +237,9 @@ export const EuiFlyout = forwardRef(
 
         if (isPushed) {
           if (side === 'right') {
-            document.body.style.paddingRight = '';
+            document.body.style.paddingInlineEnd = '';
           } else if (side === 'left') {
-            document.body.style.paddingLeft = '';
+            document.body.style.paddingInlineStart = '';
           }
         }
       };

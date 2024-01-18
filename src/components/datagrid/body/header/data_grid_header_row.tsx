@@ -29,7 +29,6 @@ const EuiDataGridHeaderRow = memo(
       setColumnWidth,
       setVisibleColumns,
       switchColumnPos,
-      headerIsInteractive,
       'data-test-subj': _dataTestSubj,
       ...rest
     } = props;
@@ -50,7 +49,6 @@ const EuiDataGridHeaderRow = memo(
             key={controlColumn.id}
             index={index}
             controlColumn={controlColumn}
-            headerIsInteractive={headerIsInteractive}
           />
         ))}
         {columns.map((column, index) => (
@@ -66,7 +64,6 @@ const EuiDataGridHeaderRow = memo(
             setVisibleColumns={setVisibleColumns}
             switchColumnPos={switchColumnPos}
             defaultColumnWidth={defaultColumnWidth}
-            headerIsInteractive={headerIsInteractive}
           />
         ))}
         {trailingControlColumns.map((controlColumn, index) => (
@@ -74,7 +71,6 @@ const EuiDataGridHeaderRow = memo(
             key={controlColumn.id}
             index={index + leadingControlColumns.length + columns.length}
             controlColumn={controlColumn}
-            headerIsInteractive={headerIsInteractive}
           />
         ))}
       </div>

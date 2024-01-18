@@ -100,9 +100,14 @@ export interface EuiDataGridSchemaDetector {
    */
   detector: (value: string) => number;
   /**
-   * A custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc) => -1 | 0 | 1`
+   * A custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc', indexes: {aIndex: number, bIndex: number}) => -1 | 0 | 1`
    */
-  comparator?: (a: string, b: string, direction: 'asc' | 'desc') => -1 | 0 | 1;
+  comparator?: (
+    a: string,
+    b: string,
+    direction: 'asc' | 'desc',
+    indexes: { aIndex: number; bIndex: number }
+  ) => -1 | 0 | 1;
   /**
    * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
    */
@@ -144,7 +149,6 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
-  headerIsInteractive: boolean;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -163,15 +167,16 @@ export interface EuiDataGridHeaderCellProps
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
   controlColumn: EuiDataGridControlColumn;
-  headerIsInteractive: boolean;
 }
 
 export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   id: string;
   index: number;
-  headerIsInteractive: boolean;
   width?: number | null;
   className?: string;
+  hasActionsPopover?: boolean;
+  isActionsButtonFocused?: boolean;
+  focusActionsButton?: () => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &
@@ -222,6 +227,7 @@ export interface DataGridCellPopoverContextShape {
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
   closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
+  setPopoverAnchorPosition(position: 'downLeft' | 'downRight'): void;
   setPopoverContent(content: ReactNode): void;
   setCellPopoverProps: EuiDataGridCellPopoverElementProps['setCellPopoverProps'];
 }
@@ -454,8 +460,6 @@ export interface EuiDataGridBodyProps {
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: Required<EuiDataGridPaginationProps>;
-  headerIsInteractive: boolean;
-  handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
@@ -642,9 +646,8 @@ export interface EuiDataGridCellProps {
 export interface EuiDataGridCellState {
   cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
-  isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
-  enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
-  disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
+  isHovered: boolean; // tracks if this cell is hovered, used to conditionally render cell actions
+  cellTextAlign: 'Left' | 'Right'; // determines the cell actions and cell popover expansion position
 }
 
 export type EuiDataGridCellValueProps = Omit<
@@ -792,9 +795,14 @@ export interface EuiDataGridColumnCellActionProps {
    */
   columnId: string;
   /**
-   * React component representing the action displayed in the cell
+   * React component representing the action displayed in the cell.
+   *
+   * On cell hover/focus, an EuiButtonIcon will be displayed that cannot
+   * have its size or color customized, only its icon.
+   *
+   * On cell expand, an EuiButtonEmpty will be displayed in the cell popover
+   * that can have any sizing, color, or text.
    */
-  // Component: ComponentType<EuiButtonEmptyProps | EuiButtonProps>;
   Component: typeof EuiButtonEmpty | typeof EuiButtonIcon;
   /**
    * Determines whether the cell's action is displayed expanded (in the Popover)

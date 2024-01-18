@@ -34,11 +34,10 @@ interface Params {
   onPanelWidthChange?: ({}: { [key: string]: number }) => any;
 }
 
-function isMouseEvent(
-  event: ReactMouseEvent | ReactTouchEvent
-): event is ReactMouseEvent {
-  return typeof event === 'object' && 'pageX' in event && 'pageY' in event;
-}
+export const isTouchEvent = (
+  event: MouseEvent | ReactMouseEvent | TouchEvent | ReactTouchEvent
+): event is TouchEvent | ReactTouchEvent =>
+  typeof event === 'object' && 'targetTouches' in event;
 
 export const pxToPercent = (proportion: number, whole: number) => {
   if (whole < 1 || proportion < 0) return 0;
@@ -81,16 +80,13 @@ export const getPanelMinSize = (
 };
 
 export const getPosition = (
-  event: ReactMouseEvent | ReactTouchEvent,
+  event: ReactMouseEvent | MouseEvent | ReactTouchEvent | TouchEvent,
   isHorizontal: boolean
-) => {
-  const clientX = isMouseEvent(event)
-    ? event.clientX
-    : event.touches[0].clientX;
-  const clientY = isMouseEvent(event)
-    ? event.clientY
-    : event.touches[0].clientY;
-  return isHorizontal ? clientX : clientY;
+): number => {
+  const direction = isHorizontal ? 'clientX' : 'clientY';
+  return isTouchEvent(event)
+    ? event.targetTouches[0][direction]
+    : event[direction];
 };
 
 const getSiblingPanel = (

@@ -135,7 +135,7 @@ describe('EuiDataGridBodyCustomRender', () => {
       '[data-gridcell-row-index="0"][data-gridcell-column-index="1"]'
     ).contains('B,0');
 
-    cy.get('[data-test-subj="dataGridHeaderCell-A"] button').click();
+    cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').click();
     cy.contains('Move right').click();
 
     cy.get(
@@ -145,7 +145,7 @@ describe('EuiDataGridBodyCustomRender', () => {
       '[data-gridcell-row-index="0"][data-gridcell-column-index="1"]'
     ).contains('A,0');
 
-    cy.get('[data-test-subj="dataGridHeaderCell-B"] button').click();
+    cy.get('[data-test-subj="dataGridHeaderCellActionButton-B"]').click();
     cy.contains('Hide column').should('be.visible').click();
 
     cy.get(
@@ -160,7 +160,7 @@ describe('EuiDataGridBodyCustomRender', () => {
     cy.realMount(<DataGridTest />);
     cy.get('[role="gridcell"]').first().contains('A,0');
 
-    cy.get('[data-test-subj="dataGridHeaderCell-A"] button').click();
+    cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').click();
     cy.contains('Sort High-Low').click();
 
     cy.get('[role="gridcell"]').first().contains('A,99');

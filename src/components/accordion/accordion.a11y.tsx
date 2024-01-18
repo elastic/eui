@@ -31,7 +31,7 @@ describe('EuiAccordion', () => {
         <EuiAccordion {...noArrowProps}>
           <EuiPanel color="subdued">
             Any content inside of <strong>EuiAccordion</strong> will appear
-            here. We will include <a href="#">a link</a> to confirm focus.
+            here.
           </EuiPanel>
         </EuiAccordion>
       );

@@ -40,11 +40,7 @@ import {
   useInMemoryValues,
   EuiDataGridInMemoryRenderer,
 } from './utils/in_memory';
-import { useHeaderIsInteractive } from './body/header/header_is_interactive';
-import {
-  DataGridCellPopoverContext,
-  useCellPopover,
-} from './body/data_grid_cell_popover';
+import { DataGridCellPopoverContext, useCellPopover } from './body/cell';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
@@ -272,35 +268,8 @@ export const EuiDataGrid = memo(
     /**
      * Focus
      */
-    const { headerIsInteractive, handleHeaderMutation } =
-      useHeaderIsInteractive(contentRef.current);
-    const {
-      focusProps: wrappingDivFocusProps,
-      onFocusUpdate,
-      focusedCell,
-      setFocusedCell,
-      setIsFocusedCellInView,
-      focusFirstVisibleInteractiveCell,
-    } = useFocus({
-      headerIsInteractive,
-      gridItemsRendered,
-    });
+    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus();
 
-    const focusContext = useMemo(() => {
-      return {
-        onFocusUpdate,
-        focusedCell,
-        setFocusedCell,
-        setIsFocusedCellInView,
-        focusFirstVisibleInteractiveCell,
-      };
-    }, [
-      onFocusUpdate,
-      focusedCell,
-      setFocusedCell,
-      setIsFocusedCellInView,
-      focusFirstVisibleInteractiveCell,
-    ]);
     /**
      * Cell popover
      */
@@ -455,7 +424,6 @@ export const EuiDataGrid = memo(
                     rowCount,
                     pagination,
                     hasFooter: !!renderFooterCellValue,
-                    headerIsInteractive,
                     focusContext,
                   })}
                   data-test-subj="euiDataGridBody"
@@ -475,8 +443,6 @@ export const EuiDataGrid = memo(
                     setVisibleColumns={setVisibleColumns}
                     switchColumnPos={switchColumnPos}
                     onColumnResize={onColumnResize}
-                    headerIsInteractive={headerIsInteractive}
-                    handleHeaderMutation={handleHeaderMutation}
                     schemaDetectors={allSchemaDetectors}
                     pagination={pagination}
                     renderCellValue={renderCellValue}

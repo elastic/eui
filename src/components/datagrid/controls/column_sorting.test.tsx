@@ -84,7 +84,7 @@ describe('useDataGridColumnSorting', () => {
           component.find('[data-popover-panel]').first().render()
         ).toMatchSnapshot();
         closePopover(component);
-        expect(component.text()).toEqual('1 field sorted');
+        expect(component.text()).toEqual('Sort fields1');
       }
     );
 

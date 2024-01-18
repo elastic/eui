@@ -14,7 +14,7 @@ import {
   euiCanAnimate,
   euiAnimScale,
 } from '../../global_styling';
-import { UseEuiTheme, makeHighContrastColor } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -67,19 +67,13 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thick};
     `,
     disabled: css`
-      background-color: ${euiButtonFillColor(euiThemeContext, 'disabled')
-        .backgroundColor};
-      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
-        euiButtonFillColor(euiThemeContext, 'disabled').backgroundColor
-      )};
+      ${euiButtonFillColor(euiThemeContext, 'disabled')}
     `,
     loading: css`
       background: transparent;
     `,
     warning: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'warning').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'warning')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'warning')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -87,9 +81,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     danger: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'danger').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'danger')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'danger')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -97,9 +89,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     complete: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'success').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'success')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'success')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -107,14 +97,9 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     current: css`
-      border: 2px solid ${euiTheme.colors.body};
-      box-shadow: 0 0 0 2px ${euiTheme.colors.primary};
-
-      .euiStepNumber__number {
-        /* Transform the step number so it appears in the center of the step circle */
-        display: inline-block;
-        transform: translateY(-2px);
-      }
+      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.body};
+      box-shadow: 0 0 0 ${euiTheme.border.width.thick}
+        ${euiTheme.colors.primary};
     `,
   };
 };
@@ -151,6 +136,10 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     loading: css``,
     disabled: css``,
-    current: css``,
+    current: css`
+      /* Transform the step number so it appears in the center of the step circle */
+      display: inline-block;
+      transform: translateY(-${euiTheme.border.width.thick});
+    `,
   };
 };

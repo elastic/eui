@@ -9,6 +9,7 @@ import {
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiFlyoutFooter,
+  EuiFlyoutResizable,
   EuiCallOut,
   EuiLink,
 } from '../../../../src/components';
@@ -36,6 +37,9 @@ const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 
 import FlyoutPush from './flyout_push';
 const flyoutPushSource = require('!!raw-loader!./flyout_push');
+
+import FlyoutResizable from './flyout_resizable';
+const flyoutResizableSource = require('!!raw-loader!./flyout_resizable');
 
 const flyOutSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
@@ -141,6 +145,18 @@ const flyoutPushedSnippet = `<EuiFlyout type="push" onClose={closeFlyout}>
   <EuiFlyoutFooter>
     <EuiButton onClose={closeFlyout}>Close</EuiButton>
   </EuiFlyoutFooter>
+</EuiFlyout>
+`;
+
+const flyoutResizableSnippet = `<EuiFlyoutResizable onClose={closeFlyout} maxWidth={1000} minWidth={300}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}>Flyout title</h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Flyout content -->
+  </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
@@ -383,6 +399,37 @@ export const FlyoutExample = {
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
       props: { EuiFlyout },
+    },
+    {
+      title: 'Resizable flyouts',
+      isBeta: true,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutResizableSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            You can use <strong>EuiFlyoutResizable</strong> to render a flyout
+            that users can drag with their mouse or use arrow keys to resize.
+            This may be useful for scenarios where the space the user needs can
+            be unpredictable, if content is dynamic. Resizable flyouts allow
+            users to adjust content to better fit their individual screens and
+            workflows.
+          </p>
+          <p>
+            We strongly recommend setting reasonable numerical{' '}
+            <EuiCode>minWidth</EuiCode> and <EuiCode>maxWidth</EuiCode> props
+            based on the flyout content and page content that you <em>can</em>{' '}
+            predict.
+          </p>
+        </>
+      ),
+      snippet: flyoutResizableSnippet,
+      demo: <FlyoutResizable />,
+      props: { EuiFlyoutResizable },
     },
   ],
 };

@@ -19,15 +19,11 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="Open"
+        title="Open"
       >
-        <span
-          class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-          data-text="Open"
-          title="Open"
-        >
-          Open
-        </span>
+        Open
       </span>
     </span>
   </button>
@@ -42,15 +38,11 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
         class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
+          class="euiFilterButton__text emotion-euiFilterButton__text"
+          data-text="Tag"
+          title="Tag"
         >
-          <span
-            class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
-            data-text="Tag"
-            title="Tag"
-          >
-            Tag
-          </span>
+          Tag
         </span>
         <span
           color="inherit"

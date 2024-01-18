@@ -45,8 +45,6 @@ export * from './context';
 
 export * from './context_menu';
 
-export * from './control_bar';
-
 export * from './copy';
 
 export * from './datagrid';
@@ -111,8 +109,6 @@ export * from './mark';
 export * from './modal';
 
 export * from './observer/mutation_observer';
-
-export * from './notification';
 
 export * from './outside_click_detector';
 

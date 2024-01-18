@@ -40,7 +40,7 @@ npm whoami # Should return an error about not being logged in
 
 Buildkite automatically deploys our docs to the EUI `Bekitzur` environment. The Buildkite job is started when a new tag is pushed to the `main` branch.
 
-To view the progress of your job or check for errors:
+**To view the progress of your job or check for errors:**
 
 * Log in to Buildkite using Elastic SSO
 * Filter jobs by `eui-team`
@@ -49,6 +49,16 @@ To view the progress of your job or check for errors:
 * From the build detail view:
   * Click the `Rebuild` button if your job needs to be restarted **or**
   * Click the `.buildkite/scripts/pipelines/pipeline_deploy_docs.sh` row to view logs and environment details
+
+**To deploy release docs manually:**
+
+* Log in to Buildkite using Elastic SSO
+* Filter jobs by `eui-team`
+* Click on `eui-release-deploy-docs`
+* Click the green `New Build` button on the top right
+* Click the `Options` accordion to show the Environment Variables textbox
+* Add `DEPLOY_ROOT=true` to the Environment Variables textbox
+* Click `Create Build` to start the job manually
 
 ### Tag the release in GitHub
 
@@ -66,25 +76,19 @@ For information on releasing the eslint plugin checkout the readme in [packages/
 
 # Backport process
 
-In general, we strongly encourage updating to the latest version of EUI to obtain bug fixes, and we do not actively consider backporting fixes to previous major or minor release versions. The exception to this is when supporting Kibana's release process, as we want to avoid pushing larger changes near the feature freeze.
+In general, we strongly encourage updating to the latest version of EUI to obtain bug fixes, and we do not actively consider backporting fixes to previous major or minor release versions.
 
-### Tracking issue
+As such, backports are typically only released to support Kibana's [upgrade process](./upgrading-kibana.md), typically when we want to avoid pushing larger changes near the feature freeze.
 
-When preparing for a backport a GitHub issue should be created in EUI referencing the relevant issues and/or PRs to be included - see https://github.com/elastic/eui/issues/3386 as an example. This issue is used to keep track of the patch's completion progress and to ensure the desired changes are included in the release.
 
-### Patch process
+If it's possible to avoid a backport by performing a full release or patch release instead, we generally encourage doing so.
 
-This provides a walkthrough of the patching & backport release process; examples are taken from the release of v22.3.1 based on https://github.com/elastic/eui/issues/3386
-
-* Unless it is unreasonable, begin by performing a full release from the `main` branch. This ensures the changelog is prepared for referencing later by the backport, and pulls in all commits that will be used by the backport.
-  * Switch to `main` - `git checkout main`
-  * Run the release script and follow the prompts - `npm run release`
-* Identify the target version of EUI to patch; GitHub issue says the new version should be `22.3.1` and I confirmed the patch's base is `22.3.0`
-  * in the EUI git repo, checkout the release tag the patch is intended for - `git checkout v22.3.0`
-  * create a new branch from the versioned tag, the name is unimportant but I use the target version without a leading `v` - `git checkout -b 22.3.1`
+* Identify the target version of EUI to patch (based on [Kibana's package.json](https://github.com/elastic/kibana/blob/main/package.json))
+  * in the EUI git repo, checkout the release tag the patch is intended for - e.g., `git checkout v22.3.0`
+  * create a new branch from the versioned tag, e.g. `git checkout -b 22.3.0-backport` (the name is not terribly important as the branch should not be pushed up to remote)
 * Run `yarn` to ensure you have the correct dependencies for that point in time installed
 * Apply the commit(s) with the desired changes
-  * GitHub issue references #3369, #3378, #3330, and #3398
+  * If the fixes we backporting are #3369, #3378, #3330, and #3398:
   * We always use squash merges, so each PR has a single commit hash to include
     * For each PR, find the merge commit
     * For example, #3369's merge message is
@@ -96,41 +100,23 @@ This provides a walkthrough of the patching & backport release process; examples
       * You may need to re-run yarn in order to commit changes, if the commit modified dependencies
       * Remember to continue cherry picking with `git cherry-pick --continue` until all commits have been applied
 * Start the dev server and check that the intended changes have been properly applied, you don't want to repeat this process to patch the patch - `yarn start`
-* Once everything looks correct, it's time to release; the `yarn release` script only works when releasing from `main`, so we'll run [a subset of those steps](https://github.com/elastic/eui/blob/main/scripts/release.js) manually
-  * Run the unit tests again - `npm run test-ci`
-  * Create the release builds - `npm run build`
-  * Update the I18n tokens - `npm run update-token-changelog -- patch`
-  * Update the changelog - `npm run update-changelog-manual --release=patch`
-  * Use npm to update package.json & package-lock.json version, git commit, and git tag - `npm version patch`
-  * Push the version commit & tag to upstream - `git push upstream --tags`
-  * Publish the new version to npm
-    * Get your npm One Time Password (OTP) from Google Authenticator, Authy, etc
-    * Publish with your OPT and the new version as the tag - `npm publish --tag=backport --otp=your-one-time-password`
-* Let people know the backport is released
-* Celebrate profusely
+* Once everything looks correct, it's time to [release](https://github.com/elastic/eui/blob/main/scripts/release.js):
+  * `npm run release-backport`
+* Update Kibana's `package.json` to point at the newly-released backport, e.g. `"@elastic/eui": "90.0.0-backport.0"`
 
 # Pre-release process
 
 Some changes may be particularly difficult to test in local EUI environments alone, or effects may be so wide-ranging that they should be tested against Kibana's expansive set of CI tests beforehand to catch as many regressions as possible. In those scenarios, we should utilize a release candidate (RC) that we can point to other staging or CI environments for easier testing.
 
-The prerelease process is very similar to the backport process above, with different arguments for the `npm version` and `npm publish` steps.
+The prerelease process is very similar to the backport process above.
 
 - Check out the latest release:
   - If testing against Kibana specifically, [use the latest EUI version specified in Kibana main's package.json](https://github.com/elastic/kibana/blob/main/package.json#L101) and check out that release, e.g. `git checkout v80.0.0`
   - Otherwise, simply check out the [latest EUI release](https://github.com/elastic/eui/releases), e.g. `git checkout v83.0.0`
   - The purpose of this step (instead of releasing from latest `main`) is to reduce as much noise as possible and ensure you're *only* testing the changes you want to test. This is particularly necessary for Kibana CI testing.
 - Apply the commit(s) with the desired changes, e.g. `git cherry-pick [commit-id]`
-- We cannot run the full [release script](https://github.com/elastic/eui/blob/main/scripts/release.js), so run a subset of the script's steps instead:
-    ```sh
-    yarn && yarn test-ci && yarn build
-    ```
-    The i18n token and changelog steps are skippable as prereleases are not officially documented releases.
-- Run npm version/publish steps specific to a prerelease build:
-    ```sh
-    npm version prerelease --preid rc1 # the `1` can be incremented as necessary for additional RC builds
-    npm publish --tag=prerelease # will require an OTP
-    ```
-    The step for pushing git tags can/should be skipped, as prereleases are not officially documented releases and are primarily for testing purposes.
-- Go to https://www.npmjs.com/package/@elastic/eui?activeTab=versions and confirm that your pre-release has been pushed up with the correct version and tag, e.g. `83.1.1-rc1.0`
+- Once everything looks correct, it's time to [release](https://github.com/elastic/eui/blob/main/scripts/release.js):
+  * `npm run release-rc`
+- Go to https://www.npmjs.com/package/@elastic/eui?activeTab=versions and confirm that your pre-release has been pushed up with the correct version and tag, e.g. `83.1.1-rc.0`
 - Update Kibana or CodeSandbox (or whatever other environment you are using to test) to point at that version
 - QA away!

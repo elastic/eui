@@ -9,7 +9,7 @@
 import React, {
   ChangeEventHandler,
   InputHTMLAttributes,
-  forwardRef,
+  FunctionComponent,
   useMemo,
 } from 'react';
 import classNames from 'classnames';
@@ -17,6 +17,10 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
+import {
+  EuiResizeObserver,
+  EuiResizeObserverProps,
+} from '../../observer/resize_observer';
 
 import type { EuiRangeProps, EuiRangeLevel } from './types';
 import { euiRangeLevelColor } from './range_levels_colors';
@@ -26,7 +30,10 @@ import {
 } from './range_slider.styles';
 
 export interface EuiRangeSliderProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'min' | 'max' | 'step'>,
+  extends Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      'min' | 'max' | 'step' | 'onResize'
+    >,
     CommonProps,
     Pick<
       EuiRangeProps,
@@ -43,68 +50,67 @@ export interface EuiRangeSliderProps
     > {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   thumbColor?: EuiRangeLevel['color'];
+  onResize: EuiResizeObserverProps['onResize'];
 }
 
-export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
-  (
-    {
-      className,
-      disabled,
-      id,
-      max,
-      min,
-      name,
-      step,
-      onChange,
-      tabIndex,
-      value,
-      style,
-      showTicks,
-      showRange,
-      thumbColor,
-      ...rest
-    },
-    ref
-  ) => {
-    const classes = classNames('euiRangeSlider', className);
+export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
+  className,
+  disabled,
+  id,
+  max,
+  min,
+  name,
+  step,
+  onChange,
+  tabIndex,
+  value,
+  style,
+  showTicks,
+  showRange,
+  thumbColor,
+  onResize,
+  ...rest
+}) => {
+  const classes = classNames('euiRangeSlider', className);
 
-    const euiTheme = useEuiTheme();
-    const styles = euiRangeSliderStyles(euiTheme);
-    const thumbStyles = euiRangeSliderThumbStyles(euiTheme);
-    const cssStyles = [
-      styles.euiRangeSlider,
-      showTicks && styles.hasTicks,
-      showRange && styles.hasRange,
-      thumbColor && thumbStyles.thumb,
-    ];
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeSliderStyles(euiTheme);
+  const thumbStyles = euiRangeSliderThumbStyles(euiTheme);
+  const cssStyles = [
+    styles.euiRangeSlider,
+    showTicks && styles.hasTicks,
+    showRange && styles.hasRange,
+    thumbColor && thumbStyles.thumb,
+  ];
 
-    const sliderStyle = useMemo(() => {
-      return logicalStyles({
-        color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
-        ...style,
-      });
-    }, [thumbColor, euiTheme, style]);
+  const sliderStyle = useMemo(() => {
+    return logicalStyles({
+      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+      ...style,
+    });
+  }, [thumbColor, euiTheme, style]);
 
-    return (
-      <input
-        ref={ref}
-        type="range"
-        id={id}
-        name={name}
-        className={classes}
-        css={cssStyles}
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        disabled={disabled}
-        onChange={onChange}
-        style={sliderStyle}
-        tabIndex={tabIndex}
-        {...rest}
-      />
-    );
-  }
-);
-
-EuiRangeSlider.displayName = 'EuiRangeSlider';
+  return (
+    <EuiResizeObserver onResize={onResize}>
+      {(resizeRef) => (
+        <input
+          ref={resizeRef}
+          type="range"
+          id={id}
+          name={name}
+          className={classes}
+          css={cssStyles}
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          disabled={disabled}
+          onChange={onChange}
+          style={sliderStyle}
+          tabIndex={tabIndex}
+          {...rest}
+        />
+      )}
+    </EuiResizeObserver>
+  );
+};

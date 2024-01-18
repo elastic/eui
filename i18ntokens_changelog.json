@@ -1,5 +1,135 @@
 [
   {
+    "version": "92.1.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.expansionEnterPrompt",
+        "changeType": "added",
+        "value": "Press the Enter key to expand this cell."
+      },
+      {
+        "token": "euiDataGridCell.focusTrapEnterPrompt",
+        "changeType": "added",
+        "value": "Press the Enter key to interact with this cell's contents."
+      }
+    ]
+  },
+  {
+    "version": "92.0.0",
+    "changes": [
+      {
+        "token": "euiControlBar.screenReaderHeading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiControlBar.customScreenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiControlBar.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionButtonText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionAriaLabelButtonText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionHideText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMeta.contextMenuButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsReadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnreadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsRead",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnread",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.readAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unreadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.read",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unread",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
+    "version": "91.3.1",
+    "changes": [
+      {
+        "token": "euiCollapsedItemActions.allActionsDisabled",
+        "changeType": "added",
+        "value": "Individual item actions are disabled when rows are being selected."
+      }
+    ]
+  },
+  {
+    "version": "91.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSelector.buttonActiveSingular",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSelector.buttonActivePlural",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSorting.buttonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.external.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbarControl.badgeAriaLabel",
+        "changeType": "added",
+        "value": "Active: {count}"
+      },
+      {
+        "token": "euiExternalLinkIcon.ariaLabel",
+        "changeType": "added",
+        "value": "External link"
+      },
+      {
+        "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
     "version": "91.0.0",
     "changes": [
       {

@@ -3,7 +3,7 @@
 exports[`EuiCollapsibleNavBeta renders 1`] = `
 <body
   class="euiBody--hasFlyout"
-  style="padding-left: 0px;"
+  style="padding-inline-start: 0px;"
 >
   <div>
     <div
@@ -56,7 +56,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
 exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
 <body
   class="euiBody--hasFlyout"
-  style="padding-left: 0px;"
+  style="padding-inline-start: 0px;"
 >
   <div>
     <div

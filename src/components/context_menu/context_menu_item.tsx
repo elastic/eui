@@ -25,7 +25,7 @@ import {
 import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
-import { EuiToolTip, ToolTipPositions } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps, ToolTipPositions } from '../tool_tip';
 
 import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
@@ -46,11 +46,16 @@ export interface EuiContextMenuItemProps extends CommonProps {
    */
   toolTipContent?: ReactNode;
   /**
-   * Optional title for the tooltip
+   * Optional configuration to pass to the underlying [EuiToolTip](/#/display/tooltip).
+   * Accepts any prop that EuiToolTip does, except for `content` and `children`.
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
+  /**
+   * @deprecated Use toolTipProps.title instead
    */
   toolTipTitle?: ReactNode;
   /**
-   * Dictates the position of the tooltip.
+   * @deprecated Use tooltipProps.position instead
    */
   toolTipPosition?: ToolTipPositions;
   href?: string;
@@ -94,6 +99,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   toolTipTitle,
   toolTipContent,
   toolTipPosition = 'right',
+  toolTipProps,
   href,
   target,
   rel,
@@ -173,7 +179,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
         {buttonContent}
       </a>
     );
-  } else if (href || rest.onClick) {
+  } else if (href || rest.onClick || toolTipContent) {
     button = (
       <button
         disabled={disabled}
@@ -200,12 +206,17 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   }
 
   if (toolTipContent) {
+    const anchorClasses = classNames(
+      'eui-displayBlock',
+      toolTipProps?.anchorClassName
+    );
     return (
       <EuiToolTip
         title={toolTipTitle ? toolTipTitle : null}
-        content={toolTipContent}
-        anchorClassName="eui-displayBlock"
         position={toolTipPosition}
+        {...toolTipProps}
+        anchorClassName={anchorClasses}
+        content={toolTipContent}
       >
         {button}
       </EuiToolTip>

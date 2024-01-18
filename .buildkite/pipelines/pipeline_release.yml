@@ -1,0 +1,7 @@
+steps:
+  - command: "echo 'This pipeline is currently a no-op'"
+    label: ':shrug: noop'
+    agents:
+      provider: gcp
+    # TODO: remove the test-automatic-releases condition when the pipeline is production-ready
+    if: build.branch == "main" || build.branch == "build/test-automatic-releases"

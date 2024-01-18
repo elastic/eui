@@ -116,5 +116,21 @@ describe('EuiFilterButton', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+
+    it('allows customizing the inner filter button text via textProps', () => {
+      const { getByTestSubject } = render(
+        <EuiFilterButton textProps={{ 'data-test-subj': 'test' }} />
+      );
+
+      expect(getByTestSubject('test')).toBeInTheDocument();
+    });
+
+    it('allows passing other EuiButtonEmpty props', () => {
+      const { getByTestSubject } = render(
+        <EuiFilterButton contentProps={{ 'data-test-subj': 'test' }} />
+      );
+
+      expect(getByTestSubject('test')).toBeInTheDocument();
+    });
   });
 });

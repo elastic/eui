@@ -31,7 +31,7 @@ function hasAriaLabel(
 
 function getTreeId(
   propId: string | undefined,
-  contextId: string,
+  contextId: string = '',
   idGenerator: Function
 ) {
   return propId ?? (contextId === '' ? idGenerator() : contextId);
@@ -119,24 +119,36 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
   static contextType = EuiTreeViewContext;
   declare context: ContextType<typeof EuiTreeViewContext>;
 
-  isNested: boolean = !!this.context;
+  isNested: boolean;
 
-  state: EuiTreeViewState = {
-    openItems: this.props.expandByDefault
-      ? this.props.items
-          .map<string>(({ id, children }) =>
-            children ? id : (null as unknown as string)
-          )
-          .filter((x) => x != null)
-      : this.props.items
-          .map<string>(({ id, children, isExpanded }) =>
-            children && isExpanded ? id : (null as unknown as string)
-          )
-          .filter((x) => x != null),
-    activeItem: '',
-    treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
-    expandChildNodes: this.props.expandByDefault || false,
-  };
+  constructor(
+    props: EuiTreeViewProps,
+    // Without the optional ? typing, TS will throw errors on JSX component errors
+    // @see https://github.com/facebook/react/issues/13944#issuecomment-1183693239
+    context?: ContextType<typeof EuiTreeViewContext>
+  ) {
+    // TODO: context in constructor has been deprecated.
+    // We should likely convert this to a function component
+    super(props, context);
+
+    this.isNested = !!this.context;
+    this.state = {
+      openItems: this.props.expandByDefault
+        ? this.props.items
+            .map<string>(({ id, children }) =>
+              children ? id : (null as unknown as string)
+            )
+            .filter((x) => x != null)
+        : this.props.items
+            .map<string>(({ id, children, isExpanded }) =>
+              children && isExpanded ? id : (null as unknown as string)
+            )
+            .filter((x) => x != null),
+      activeItem: '',
+      treeID: getTreeId(this.props.id, context, this.treeIdGenerator),
+      expandChildNodes: this.props.expandByDefault || false,
+    };
+  }
 
   componentDidUpdate(prevProps: EuiTreeViewProps) {
     if (this.props.id !== prevProps.id) {

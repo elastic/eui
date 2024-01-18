@@ -46,7 +46,7 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         /* Remove underline from whole button so notifications don't get the underline */
         text-decoration: none;
 
-        .euiFilterButton__textShift {
+        .euiFilterButton__text {
           /* And put it only on the actual text part */
           text-decoration: underline;
         }
@@ -83,19 +83,18 @@ export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
     content: {
       euiFilterButton__content: css``,
       hasIcon: css`
-        justify-content: space-between;
+        /* Align the dropdown arrow/caret to the right */
+        & > .euiIcon:last-child {
+          ${logicalCSS('margin-left', 'auto')}
+        }
       `,
     },
     text: {
-      euiFilterButton__text: css``,
-      hasNotification: css`
-        display: flex;
-        align-items: center;
-        gap: ${euiTheme.size.s};
-      `,
-      euiFilterButton__textShift: css`
+      euiFilterButton__text: css`
         ${euiTextShift('bold', 'data-text', euiTheme)}
         ${euiTextTruncate()}
+      `,
+      hasNotification: css`
         ${logicalCSS(
           'min-width',
           mathWithUnits(euiTheme.size.base, (x) => x * 3)

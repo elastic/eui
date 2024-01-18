@@ -171,7 +171,11 @@ export class Query {
    *    information about why the objects matched the query (default to `false`, mainly/only useful for
    *    debugging)
    */
-  static execute<T>(query: string | Query, items: T[], options = {}): T[] {
+  static execute<T extends object>(
+    query: string | Query,
+    items: T[],
+    options = {}
+  ): T[] {
     const q = isString(query) ? Query.parse(query) : query;
     return executeAst(q.ast, items, options);
   }

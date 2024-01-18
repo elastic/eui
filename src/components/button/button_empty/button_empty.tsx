@@ -72,7 +72,7 @@ export interface CommonEuiButtonEmptyProps
   type?: 'button' | 'submit';
   buttonRef?: Ref<HTMLButtonElement | HTMLAnchorElement>;
   /**
-   * Object of props passed to the <span/> wrapping the button's content
+   * Object of props passed to the `<span>` wrapping the button's content
    */
   contentProps?: CommonProps & EuiButtonDisplayContentType;
 }
@@ -139,7 +139,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
 
   const textClassNames = classNames(
     'euiButtonEmpty__text',
-    textProps?.className
+    textProps && textProps.className
   );
 
   const innerNode = (
@@ -149,7 +149,11 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       iconType={iconType}
       iconSide={iconSide}
       iconSize={size === 'xs' ? 's' : iconSize}
-      textProps={{ ...textProps, className: textClassNames }}
+      textProps={
+        textProps === false
+          ? false
+          : { ...textProps, className: textClassNames }
+      }
       {...{ ...contentProps, className: contentClassNames }}
     >
       {children}

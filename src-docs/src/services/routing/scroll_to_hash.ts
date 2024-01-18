@@ -15,13 +15,6 @@ export const useScrollToHash = () => {
       document.removeEventListener('readystatechange', readyStateListener);
   }, []);
 
-  // Scroll back to top of page when going to a completely separate page
-  useEffect(() => {
-    // For some annoying reason, the docs side nav using scrollIntoView() causes
-    // the window to scroll as well, so we need to wrap this in a timeout to supersede it
-    setTimeout(() => window.scrollTo(0, 0), 1);
-  }, [location.pathname]);
-
   useEffect(() => {
     if (documentReadyState !== 'complete') return; // Wait for page to finish loading before scrolling
 
@@ -30,7 +23,7 @@ export const useScrollToHash = () => {
 
     if (element) {
       // Wait a beat for layout to settle (especially when navigating to a hash of a new page)
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         // Focus element for keyboard and screen reader users
         if (!isTabbable(element)) {
           element.tabIndex = -1;
@@ -46,7 +39,7 @@ export const useScrollToHash = () => {
           top: element.offsetTop - HEADER_OFFSET,
           behavior: 'smooth',
         });
-      });
+      }, 1);
     } else {
       // Scroll back to top of page
       window.scrollTo({

@@ -27,13 +27,15 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.text};
       outline-offset: -${euiTheme.focus.width};
 
-      &:enabled:hover,
-      &:enabled:focus {
-        text-decoration: underline;
-      }
+      &:not(:disabled) {
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
 
-      &:enabled:focus {
-        background-color: ${euiTheme.focus.backgroundColor};
+        &:focus {
+          background-color: ${euiTheme.focus.backgroundColor};
+        }
       }
     `,
     disabled: css`

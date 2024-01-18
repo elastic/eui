@@ -70,7 +70,7 @@ beforeEach(() => {
   cy.realMount(<DragAndDrop />);
 });
 
-describe('EuiControlBar', () => {
+describe('EuiDragDrop', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on render', () => {
       cy.checkAxe();

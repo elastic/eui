@@ -139,7 +139,7 @@ function getRowProps<T>(item: T, rowProps: RowPropsCallback<T>) {
   return {};
 }
 
-function getCellProps<T>(
+function getCellProps<T extends object>(
   item: T,
   column: EuiBasicTableColumn<T>,
   cellProps: CellPropsCallback<T>
@@ -154,7 +154,7 @@ function getCellProps<T>(
   return {};
 }
 
-function getColumnFooter<T>(
+function getColumnFooter<T extends object>(
   column: EuiBasicTableColumn<T>,
   { items, pagination }: EuiTableFooterProps<T>
 ) {
@@ -169,7 +169,7 @@ function getColumnFooter<T>(
   return undefined;
 }
 
-export type EuiBasicTableColumn<T> =
+export type EuiBasicTableColumn<T extends object> =
   | EuiTableFieldDataColumnType<T>
   | EuiTableComputedColumnType<T>
   | EuiTableActionsColumnType<T>;
@@ -201,10 +201,14 @@ export interface CriteriaWithPagination<T> extends Criteria<T> {
   };
 }
 
-type CellPropsCallback<T> = (item: T, column: EuiBasicTableColumn<T>) => object;
+type CellPropsCallback<T extends object> = (
+  item: T,
+  column: EuiBasicTableColumn<T>
+) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
-interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
+interface BasicTableProps<T extends object>
+  extends Omit<EuiTableProps, 'onChange'> {
   /**
    * Describes how to extract a unique ID from each item, used for selections & expanded rows
    */
@@ -285,7 +289,7 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   textOnly?: boolean;
 }
 
-type BasicTableWithPaginationProps<T> = Omit<
+type BasicTableWithPaginationProps<T extends object> = Omit<
   BasicTableProps<T>,
   'pagination' | 'onChange'
 > & {
@@ -293,7 +297,7 @@ type BasicTableWithPaginationProps<T> = Omit<
   onChange?: (criteria: CriteriaWithPagination<T>) => void;
 };
 
-export type EuiBasicTableProps<T> = CommonProps &
+export type EuiBasicTableProps<T extends object> = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   (BasicTableProps<T> | BasicTableWithPaginationProps<T>);
 
@@ -310,13 +314,13 @@ interface SortOptions {
   readOnly?: boolean;
 }
 
-function hasPagination<T>(
+function hasPagination<T extends object>(
   x: EuiBasicTableProps<T>
 ): x is BasicTableWithPaginationProps<T> {
   return x.hasOwnProperty('pagination') && !!x.pagination;
 }
 
-export class EuiBasicTable<T = any> extends Component<
+export class EuiBasicTable<T extends object = any> extends Component<
   EuiBasicTableProps<T>,
   State<T>
 > {
@@ -331,7 +335,7 @@ export class EuiBasicTable<T = any> extends Component<
     ),
   };
 
-  static getDerivedStateFromProps<T>(
+  static getDerivedStateFromProps<T extends object>(
     nextProps: EuiBasicTableProps<T>,
     prevState: State<T>
   ) {
@@ -630,9 +634,9 @@ export class EuiBasicTable<T = any> extends Component<
 
       items.push({
         name: column.name,
-        key: `_data_s_${
+        key: `_data_s_${String(
           (column as EuiTableFieldDataColumnType<T>).field
-        }_${index}`,
+        )}_${index}`,
         onSort: this.resolveColumnOnSort(column),
         isSorted: !!sortDirection,
         isSortAscending: sortDirection
@@ -854,11 +858,11 @@ export class EuiBasicTable<T = any> extends Component<
       }
       headers.push(
         <EuiTableHeaderCell
-          key={`_data_h_${field}_${index}`}
+          key={`_data_h_${String(field)}_${index}`}
           align={columnAlign}
           width={width}
           mobileOptions={mobileOptions}
-          data-test-subj={`tableHeaderCell_${field}_${index}`}
+          data-test-subj={`tableHeaderCell_${String(field)}_${index}`}
           description={description}
           {...sorting}
         >
@@ -897,7 +901,7 @@ export class EuiBasicTable<T = any> extends Component<
       if (footer) {
         footers.push(
           <EuiTableFooterCell
-            key={`footer_${field}_${footers.length - 1}`}
+            key={`footer_${String(field)}_${footers.length - 1}`}
             align={align}
           >
             {footer}
@@ -1153,17 +1157,21 @@ export class EuiBasicTable<T = any> extends Component<
     column: EuiTableActionsColumnType<T>,
     columnIndex: number
   ) {
-    const actionEnabled = (action: Action<T>) =>
-      this.state.selection.length === 0 &&
-      (!action.enabled || action.enabled(item));
+    // Disable all actions if any row(s) are selected
+    const allDisabled = this.state.selection.length > 0;
 
     let actualActions = column.actions.filter(
       (action: Action<T>) => !action.available || action.available(item)
     );
     if (actualActions.length > 2) {
-      // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-      const primaryActions = actualActions.filter((o) => o.isPrimary);
-      actualActions = primaryActions.slice(0, 2);
+      if (allDisabled) {
+        // If all actions are disabled, do not show any actions but the popover toggle
+        actualActions = [];
+      } else {
+        // if any of the actions `isPrimary`, add them inline as well, but only the first 2
+        const primaryActions = actualActions.filter((o) => o.isPrimary);
+        actualActions = primaryActions.slice(0, 2);
+      }
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
       // put them all in a popover tool. This effectively means we can only have a maximum
@@ -1177,9 +1185,9 @@ export class EuiBasicTable<T = any> extends Component<
           return (
             <CollapsedItemActions
               actions={column.actions}
+              actionsDisabled={allDisabled}
               itemId={itemId}
               item={item}
-              actionEnabled={actionEnabled}
             />
           );
         },
@@ -1189,9 +1197,9 @@ export class EuiBasicTable<T = any> extends Component<
     const tools = (
       <ExpandedItemActions
         actions={actualActions}
+        actionsDisabled={allDisabled}
         itemId={itemId}
         item={item}
-        actionEnabled={actionEnabled}
       />
     );
 
@@ -1219,7 +1227,7 @@ export class EuiBasicTable<T = any> extends Component<
   ) {
     const { field, render, dataType } = column;
 
-    const key = `_data_column_${field}_${itemId}_${columnIndex}`;
+    const key = `_data_column_${String(field)}_${itemId}_${columnIndex}`;
     const contentRenderer = render || this.getRendererForDataType(dataType);
     const value = get(item, field as string);
     const content = contentRenderer(value, item);

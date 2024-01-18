@@ -28,7 +28,7 @@ import {
 import { useResizeObserver } from '../../observer/resize_observer';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { Cell } from './data_grid_cell_wrapper';
+import { Cell } from './cell';
 import {
   EuiDataGridBodyProps,
   DataGridWrapperRowsContentsShape,
@@ -127,8 +127,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       renderFooterCellValue,
       interactiveCellId,
       pagination,
-      headerIsInteractive,
-      handleHeaderMutation,
       setVisibleColumns,
       switchColumnPos,
       onColumnResize,
@@ -187,8 +185,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
        * Header & footer
        */
       const { headerRow, headerRowHeight } = useDataGridHeader({
-        headerIsInteractive,
-        handleHeaderMutation,
         switchColumnPos,
         setVisibleColumns,
         leadingControlColumns,

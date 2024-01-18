@@ -534,10 +534,9 @@ export class EuiPopover extends Component<Props, State> {
         : this.props.hasArrow
         ? 16 + offset
         : 8 + offset,
-      arrowConfig: {
-        arrowWidth: 24,
-        arrowBuffer: 10,
-      },
+      arrowConfig: this.props.hasArrow
+        ? { arrowWidth: 24, arrowBuffer: 10 }
+        : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,

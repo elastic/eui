@@ -56,20 +56,7 @@ export default () => {
   const columns = [
     {
       id: 'no-interactives not expandable',
-      display: (
-        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiButtonIcon
-              aria-label="column settings"
-              iconType="gear"
-              onClick={() => {}}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiBadge>0 interactive</EuiBadge>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      ),
+      display: <EuiBadge>0 interactive</EuiBadge>,
       isExpandable: false,
       actions: false,
     },
@@ -95,7 +82,16 @@ export default () => {
     },
     {
       id: 'one-interactive not expandable',
-      display: <EuiBadge>1 interactive</EuiBadge>,
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiButtonIcon
+            aria-label="column settings"
+            iconType="gear"
+            onClick={() => {}}
+          />
+          <EuiBadge>1 interactive</EuiBadge>
+        </EuiFlexGroup>
+      ),
       isExpandable: false,
       actions: false,
     },
@@ -103,13 +99,6 @@ export default () => {
       id: 'one-interactives is expandable',
       display: (
         <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-          <EuiFlexItem grow={false}>
-            <EuiButtonIcon
-              aria-label="column settings"
-              iconType="gear"
-              onClick={() => {}}
-            />
-          </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiToken
               iconType="expandMini"
@@ -128,7 +117,21 @@ export default () => {
     },
     {
       id: 'two-interactives not expandable',
-      display: <EuiBadge>2 interactive</EuiBadge>,
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiButtonIcon
+            aria-label="column settings"
+            iconType="gear"
+            onClick={() => {}}
+          />
+          <EuiButtonIcon
+            aria-label="column settings"
+            iconType="gear"
+            onClick={() => {}}
+          />
+          <EuiBadge>2 interactive</EuiBadge>
+        </EuiFlexGroup>
+      ),
       isExpandable: false,
       actions: false,
     },

@@ -6,29 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { render, renderHook, renderHookAct } from '../../../test/rtl';
+import { renderHook, renderHookAct } from '../../../test/rtl';
 import { keys } from '../../../services';
 import {
-  DataGridFocusContext,
   useFocus,
   notifyCellOfFocusState,
   createKeyDownHandler,
   preventTabbing,
   getParentCellContent,
-  useHeaderFocusWorkaround,
 } from './focus';
 
 describe('useFocus', () => {
-  const mockArgs = {
-    headerIsInteractive: true,
-    gridItemsRendered: { current: null },
-  };
-
   describe('onFocusUpdate', () => {
     it("adds a cell's onFocus callback to the internal cellsUpdateFocus map,", () => {
       const onFocus = jest.fn();
-      const { result } = renderHook(() => useFocus(mockArgs));
+      const { result } = renderHook(() => useFocus());
       const cleanupFn = result.current.onFocusUpdate([0, 0], onFocus);
 
       // the mapped onFocus is called with true when the cell becomes focused
@@ -48,7 +40,7 @@ describe('useFocus', () => {
 
   describe('focusedCell / setFocusedCell', () => {
     it('gets and sets the focusedCell state', () => {
-      const { result } = renderHook(() => useFocus(mockArgs));
+      const { result } = renderHook(() => useFocus());
       expect(result.current.focusedCell).toEqual(undefined);
 
       renderHookAct(() => result.current.setFocusedCell([2, 2]));
@@ -56,7 +48,7 @@ describe('useFocus', () => {
     });
 
     it('does not update if setFocusedCell is called with the same cell X/Y coordinates', () => {
-      const { result } = renderHook(() => useFocus(mockArgs));
+      const { result } = renderHook(() => useFocus());
       renderHookAct(() => result.current.setFocusedCell([2, 2]));
 
       const focusedCellInMemory = result.current.focusedCell;
@@ -66,54 +58,18 @@ describe('useFocus', () => {
   });
 
   describe('focusFirstVisibleInteractiveCell', () => {
-    describe('when the sticky header is interactive', () => {
-      it('always focuses the first header cell', () => {
-        const { result } = renderHook(() =>
-          useFocus({ ...mockArgs, headerIsInteractive: true })
-        );
+    it('focuses the first sticky header cell', () => {
+      const { result } = renderHook(() => useFocus());
 
-        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
-        expect(result.current.focusedCell).toEqual([0, -1]);
-      });
-    });
-
-    describe('describe when the header is not interactive', () => {
-      it('focuses the first visible data cell in the virtualized grid', () => {
-        const { result } = renderHook(() =>
-          useFocus({
-            headerIsInteractive: false,
-            gridItemsRendered: {
-              current: {
-                visibleColumnStartIndex: 1,
-                visibleRowStartIndex: 10,
-              } as any,
-            },
-          })
-        );
-
-        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
-        expect(result.current.focusedCell).toEqual([1, 10]);
-      });
-
-      it("does nothing if the grid isn't yet rendered", () => {
-        const { result } = renderHook(() =>
-          useFocus({
-            headerIsInteractive: false,
-            gridItemsRendered: { current: null },
-          })
-        );
-
-        renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
-        expect(result.current.focusedCell).toEqual(undefined);
-      });
+      renderHookAct(() => result.current.focusFirstVisibleInteractiveCell());
+      expect(result.current.focusedCell).toEqual([0, -1]);
     });
   });
 
   describe('setIsFocusedCellInView / focusProps', () => {
     describe('when no focused child cell is in view', () => {
       it('renders the grid with tabindex 0 and an onKeyUp event', () => {
-        const { focusProps } = renderHook(() => useFocus(mockArgs)).result
-          .current;
+        const { focusProps } = renderHook(() => useFocus()).result.current;
 
         expect(focusProps).toEqual({
           tabIndex: 0,
@@ -128,7 +84,7 @@ describe('useFocus', () => {
         );
 
         it('focuses into the first visible cell of the grid when the grid is directly tabbed to', () => {
-          const { result } = renderHook(() => useFocus(mockArgs));
+          const { result } = renderHook(() => useFocus());
 
           renderHookAct(() =>
             result.current.focusProps.onKeyUp!({
@@ -141,7 +97,7 @@ describe('useFocus', () => {
         });
 
         it('does nothing if not a tab keyup, or if the event was not on the grid itself', () => {
-          const { result } = renderHook(() => useFocus(mockArgs));
+          const { result } = renderHook(() => useFocus());
 
           renderHookAct(() =>
             result.current.focusProps.onKeyUp!({
@@ -166,7 +122,7 @@ describe('useFocus', () => {
 
     describe('when a focused cell is in view', () => {
       it('renders the grid with tabindex -1 (because the child cell will already have a tabindex 0)', () => {
-        const { result } = renderHook(() => useFocus(mockArgs));
+        const { result } = renderHook(() => useFocus());
 
         renderHookAct(() => result.current.setIsFocusedCellInView(true));
         expect(result.current.focusProps).toEqual({
@@ -208,7 +164,6 @@ describe('createKeyDownHandler', () => {
     rowCount: 10,
     pagination: undefined,
     hasFooter: false,
-    headerIsInteractive: true,
     focusContext,
   };
   const mockKeyDown = {
@@ -323,26 +278,13 @@ describe('createKeyDownHandler', () => {
       expect(focusContext.setFocusedCell).toHaveBeenCalledWith([1, 0]);
     });
 
-    describe('when focus is on the top-most row', () => {
-      it('does nothing', () => {
-        const keyDownHandler = createKeyDownHandler({
-          ...mockArgs,
-          headerIsInteractive: false,
-          focusContext: { ...focusContext, focusedCell: [1, 0] },
-        });
-        keyDownHandler({ ...mockKeyDown, key: keys.ARROW_UP });
-        expect(focusContext.setFocusedCell).not.toHaveBeenCalled();
+    it('does nothing when focus is on the top-most header row', () => {
+      const keyDownHandler = createKeyDownHandler({
+        ...mockArgs,
+        focusContext: { ...focusContext, focusedCell: [1, -1] },
       });
-
-      it('accounts for an interactive header row', () => {
-        const keyDownHandler = createKeyDownHandler({
-          ...mockArgs,
-          headerIsInteractive: true,
-          focusContext: { ...focusContext, focusedCell: [1, -1] },
-        });
-        keyDownHandler({ ...mockKeyDown, key: keys.ARROW_UP });
-        expect(focusContext.setFocusedCell).not.toHaveBeenCalled();
-      });
+      keyDownHandler({ ...mockKeyDown, key: keys.ARROW_UP });
+      expect(focusContext.setFocusedCell).not.toHaveBeenCalled();
     });
   });
 
@@ -601,38 +543,5 @@ describe('getParentCellContent', () => {
 
   it('does not locate the cell element when starting outside the cell', () => {
     expect(getParentCellContent(body)).toBeNull();
-  });
-});
-
-describe('useHeaderFocusWorkaround', () => {
-  const MockComponent = () => {
-    useHeaderFocusWorkaround(false);
-    return <div />;
-  };
-
-  it('moves focus down from the header to the first data row if the header becomes uninteractive', () => {
-    const focusedCell = [2, -1];
-    const setFocusedCell = jest.fn();
-    render(
-      <DataGridFocusContext.Provider
-        value={{ focusedCell, setFocusedCell } as any}
-      >
-        <MockComponent />
-      </DataGridFocusContext.Provider>
-    );
-    expect(setFocusedCell).toHaveBeenCalledWith([2, 0]);
-  });
-
-  it('does nothing if the focus was not on the header when the header became uninteractive', () => {
-    const focusedCell = [2, 0];
-    const setFocusedCell = jest.fn();
-    render(
-      <DataGridFocusContext.Provider
-        value={{ focusedCell, setFocusedCell } as any}
-      >
-        <MockComponent />
-      </DataGridFocusContext.Provider>
-    );
-    expect(setFocusedCell).not.toHaveBeenCalled();
   });
 });

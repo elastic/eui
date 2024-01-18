@@ -98,6 +98,16 @@ describe('EuiButtonDisplayContent', () => {
       expect(container.querySelector('.eui-textTruncate')).toBeTruthy();
     });
 
+    it('does not render a text span wrapper if textProps is explicitly set to false', () => {
+      const { container } = render(
+        <EuiButtonDisplayContent textProps={false}>
+          Text
+        </EuiButtonDisplayContent>
+      );
+
+      expect(container.querySelector('.eui-textTruncate')).toBeFalsy();
+    });
+
     it('does not render a text span wrapper if custom child with no textProps are passed', () => {
       const { getByTestSubject, container } = render(
         <EuiButtonDisplayContent>

@@ -6,18 +6,32 @@
  * Side Public License, v 1.
  */
 
-import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
-import { CommonProps } from '../../common';
+import React, {
+  TextareaHTMLAttributes,
+  Ref,
+  FunctionComponent,
+  useRef,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../../common';
+import { useCombinedRefs } from '../../../services';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { useFormContext } from '../eui_form_context';
+import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
+    icon?: EuiFormControlLayoutIconsProps['icon'];
     isLoading?: boolean;
     isInvalid?: boolean;
+    /**
+     * Shows a button that allows users to quickly clear the textarea
+     */
+    isClearable?: boolean;
     /**
      * Expand to fill 100% of the parent.
      * Defaults to `fullWidth` prop of `<EuiForm>`.
@@ -52,9 +66,11 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     compressed,
     fullWidth = defaultFullWidth,
     id,
+    icon,
     inputRef,
     isLoading,
     isInvalid,
+    isClearable,
     name,
     placeholder,
     resize = 'vertical',
@@ -82,11 +98,35 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     definedRows = 6;
   }
 
+  const ref = useRef<HTMLTextAreaElement | null>(null);
+  const refs = useCombinedRefs([ref, inputRef]);
+
+  const clear = useMemo(() => {
+    if (isClearable) {
+      return {
+        onClick: () => {
+          if (ref.current) {
+            ref.current.value = '';
+            const event = new Event('input', {
+              bubbles: true,
+              cancelable: false,
+            });
+            ref.current.dispatchEvent(event);
+            ref.current.focus(); // set focus back to the textarea
+          }
+        },
+        'data-test-subj': 'clearTextAreaButton',
+      };
+    }
+  }, [isClearable]);
+
   return (
     <EuiFormControlLayout
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
+      clear={clear}
+      icon={icon}
       className="euiFormControlLayout--euiTextArea"
     >
       <EuiValidatableControl isInvalid={isInvalid}>
@@ -96,7 +136,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
           rows={definedRows}
           name={name}
           id={id}
-          ref={inputRef}
+          ref={refs}
           placeholder={placeholder}
         >
           {children}

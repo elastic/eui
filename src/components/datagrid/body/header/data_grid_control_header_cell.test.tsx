@@ -20,7 +20,6 @@ describe('EuiDataGridControlHeaderCell', () => {
       rowCellRender: () => <div />,
       width: 50,
     },
-    headerIsInteractive: true,
   };
 
   it('renders', () => {
@@ -28,7 +27,6 @@ describe('EuiDataGridControlHeaderCell', () => {
     expect(component).toMatchInlineSnapshot(`
       <EuiDataGridHeaderCellWrapper
         className="euiDataGridHeaderCell--controlColumn"
-        headerIsInteractive={true}
         id="someControlColumn"
         index={0}
         width={50}
