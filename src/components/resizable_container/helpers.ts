@@ -11,6 +11,8 @@ import {
   useReducer,
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,
+  useRef,
+  useState,
 } from 'react';
 
 import { assertNever } from '../common';
@@ -605,4 +607,21 @@ export const useContainerCallbacks = ({
   }, []);
 
   return [actions, reducerState];
+};
+
+/**
+ * Gives the provided callback a stable reference, allowing it to be
+ * be used outside the React lifecycle without causing stale closures.
+ */
+export const useStableCallback = <T extends (...args: any[]) => any>(
+  callback: T
+): ((...args: Parameters<T>) => ReturnType<T>) => {
+  const callbackRef = useRef(callback);
+  const [stableCallback] = useState(() => (...args: Parameters<T>) => {
+    return callbackRef.current(...args);
+  });
+
+  callbackRef.current = callback;
+
+  return stableCallback;
 };

@@ -33,7 +33,11 @@ import {
   getModeType,
   ToggleCollapseCallback,
 } from './resizable_panel';
-import { useContainerCallbacks, getPosition } from './helpers';
+import {
+  useContainerCallbacks,
+  getPosition,
+  useStableCallback,
+} from './helpers';
 import {
   EuiResizableButtonMouseEvent,
   EuiResizableButtonKeyEvent,
@@ -134,10 +138,10 @@ export const EuiResizableContainer: FunctionComponent<
     keyMoveDirection?: KeyMoveDirection;
   }>({});
 
-  const resizeEnd = useCallback(() => {
+  const resizeEnd = useStableCallback(() => {
     onResizeEnd?.();
     resizeContext.current = {};
-  }, [onResizeEnd]);
+  });
 
   const resizeStart = useCallback(
     (trigger: ResizeTrigger, keyMoveDirection?: KeyMoveDirection) => {

@@ -215,7 +215,7 @@ describe('EuiResizableContainer', () => {
       );
       const container = findTestSubject(component, 'euiResizableContainer');
       const button = findTestSubject(component, 'euiResizableButton');
-      return { container, button, onResizeStart, onResizeEnd };
+      return { component, container, button, onResizeStart, onResizeEnd };
     };
 
     test('onResizeStart and onResizeEnd are called for pointer events', () => {
@@ -347,6 +347,26 @@ describe('EuiResizableContainer', () => {
       expect(onResizeStart).toHaveBeenLastCalledWith('key');
       button.simulate('blur');
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
+    });
+
+    test('onResizeEnd does not go stale when renders occur between resize start and end', async () => {
+      const { component, button, onResizeStart, onResizeEnd } =
+        mountWithCallbacks();
+      button.simulate('mousedown', {
+        pageX: 0,
+        pageY: 0,
+        clientX: 0,
+        clientY: 0,
+      });
+      expect(onResizeStart).toHaveBeenCalledTimes(1);
+      expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
+      const newResizeEnd = jest.fn();
+      component.setProps({ onResizeEnd: newResizeEnd });
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
+      expect(onResizeEnd).toHaveBeenCalledTimes(0);
+      expect(newResizeEnd).toHaveBeenCalledTimes(1);
     });
   });
 });
