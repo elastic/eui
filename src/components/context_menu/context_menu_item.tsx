@@ -7,6 +7,7 @@
  */
 
 import React, {
+  PropsWithChildren,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   HTMLAttributes,
@@ -35,7 +36,9 @@ export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export const SIZES = ['s', 'm'] as const;
 
-export interface EuiContextMenuItemProps extends CommonProps {
+export interface EuiContextMenuItemProps
+  extends PropsWithChildren,
+    CommonProps {
   icon?: EuiContextMenuItemIcon;
   hasPanel?: boolean;
   disabled?: boolean;

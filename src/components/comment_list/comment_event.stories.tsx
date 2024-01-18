@@ -6,10 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiButtonIcon } from '../button';
+import { _eventColorArgType, _actionsExampleArgType } from './comment.stories';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 
 const meta: Meta<EuiCommentEventProps> = {
@@ -19,36 +18,8 @@ const meta: Meta<EuiCommentEventProps> = {
     username: 'janed',
   },
   argTypes: {
-    eventColor: {
-      options: [
-        undefined,
-        'subdued',
-        'transparent',
-        'plain',
-        'warning',
-        'danger',
-        'success',
-        'primary',
-        'accent',
-      ],
-      control: { type: 'radio' },
-      defaultValue: undefined,
-    },
-    actions: {
-      control: 'radio',
-      options: ['Example action', 'No actions'],
-      mapping: {
-        'Example action': (
-          <EuiButtonIcon
-            title="Custom action"
-            aria-label="Custom action"
-            color="text"
-            iconType="copy"
-          />
-        ),
-        'No actions': null,
-      },
-    },
+    eventColor: _eventColorArgType,
+    actions: _actionsExampleArgType,
   },
 };
 

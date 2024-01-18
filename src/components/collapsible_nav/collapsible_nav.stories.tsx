@@ -6,8 +6,10 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { disableStorybookControls } from '../../../.storybook/utils';
 
 import { EuiButton } from '../button';
 import { EuiCollapsibleNav, EuiCollapsibleNavProps } from './collapsible_nav';
@@ -15,12 +17,27 @@ import { EuiCollapsibleNav, EuiCollapsibleNavProps } from './collapsible_nav';
 const meta: Meta<EuiCollapsibleNavProps> = {
   title: 'EuiCollapsibleNav',
   component: EuiCollapsibleNav,
+  argTypes: {
+    ...disableStorybookControls(['button']),
+    as: { options: ['nav', 'div'], control: 'radio' },
+    maxWidth: { control: 'number' }, // TODO: also accepts bool | string
+  },
   args: {
     // Component defaults
+    as: 'nav',
+    side: 'left',
+    size: 320,
+    paddingSize: 'none',
+    pushAnimation: false,
+    pushMinBreakpoint: 'l',
     isDocked: false,
     dockedBreakpoint: 'l',
     showButtonIfDocked: false,
-    size: 320,
+    closeButtonPosition: 'outside',
+    hideCloseButton: false,
+    includeFixedHeadersInFocusTrap: true,
+    outsideClickCloses: true,
+    ownFocus: true,
   },
   // TODO: Improve props inherited from EuiFlyout, ideally through
   // a DRY import from `flyout.stories.tsx` once that's created
@@ -40,7 +57,10 @@ const StatefulCollapsibleNav = (props: Partial<EuiCollapsibleNavProps>) => {
           Toggle nav
         </EuiButton>
       }
-      onClose={() => setIsOpen(false)}
+      onClose={(...args) => {
+        setIsOpen(false);
+        action('onClose')(...args);
+      }}
     />
   );
 };
