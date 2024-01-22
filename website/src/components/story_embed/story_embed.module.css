@@ -1,0 +1,25 @@
+/* TODO: Replace with proper EUI-compatible styles and use Emotion instead if possible */
+.story-embed__iframe {
+  display: block;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-bottom-width: 0;
+  border-radius: 5px 5px 0 0;
+  transition: 0.35s ease-in-out height;
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+}
+
+.story-embed__expand-button {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-content);
+  font-weight: 600;
+  font-size: 12px;
+  background: var(--ifm-background-color);
+  display: block;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+  padding: 4px 10px;
+}
