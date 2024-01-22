@@ -7,7 +7,12 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -40,7 +45,7 @@ export interface EuiButtonGroupOptionProps
   /**
    * The type of the underlying HTML button
    */
-  type?: 'button' | 'submit' | 'reset';
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 export type EuiButtonGroupProps = CommonProps & {
