@@ -27,7 +27,7 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.text};
       outline-offset: -${euiTheme.focus.width};
 
-      &:not(:disabled) {
+      &:where(a, button):not(:disabled) {
         &:hover,
         &:focus {
           text-decoration: underline;
