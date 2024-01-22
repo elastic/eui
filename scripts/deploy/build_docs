@@ -4,8 +4,10 @@ set -e
 
 # Docusaurus must know the base URL to work properly
 DOCS_BASE_URL="/new-docs/"
+DOCS_STORYBOOK_BASE_URL="https://eui.elastic.co/storybook"
 if [ -n "${GIT_PULL_REQUEST_ID}" ] && [ "${GIT_PULL_REQUEST_ID}" != "false" ]; then
   DOCS_BASE_URL="/pr_${GIT_PULL_REQUEST_ID}/new-docs/"
+  DOCS_STORYBOOK_BASE_URL="https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/storybook"
 fi
 
 echo "Docusaurus base URL set to: ${DOCS_BASE_URL}"
@@ -17,6 +19,7 @@ docker run \
     --rm -i \
     --env HOME=/tmp \
     --env DOCS_BASE_URL="$DOCS_BASE_URL" \
+    --env DOCS_STORYBOOK_BASE_URL="$DOCS_STORYBOOK_BASE_URL" \
     --"user=$(id -u)":"$(id -g)" \
     --volume "$PWD":/app \
     --workdir /app \
