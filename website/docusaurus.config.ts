@@ -4,6 +4,15 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 
+let storybookBaseUrl = process.env.DOCS_STORYBOOK_BASE_URL;
+if (!storybookBaseUrl) {
+  if (process.env.NODE_ENV !== 'production') {
+    storybookBaseUrl = 'http://localhost:6006';
+  } else {
+    storybookBaseUrl = 'https://eui.elastic.co/storybook';
+  }
+}
+
 const config: Config = {
   title: 'Elastic UI Framework',
   tagline: 'The framework powering the Elastic Stack',
@@ -25,6 +34,10 @@ const config: Config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  customFields: {
+    storybookBaseUrl: storybookBaseUrl,
   },
 
   presets: [
