@@ -206,7 +206,7 @@ export class EuiComboBox<T> extends Component<
   _EuiComboBoxProps<T>,
   EuiComboBoxState<T>
 > {
-  static defaultProps = {
+  static defaultProps: Partial<_EuiComboBoxProps<object>> = {
     async: false,
     compressed: false,
     fullWidth: false,
