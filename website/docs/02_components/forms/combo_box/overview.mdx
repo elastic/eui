@@ -20,34 +20,48 @@ or passing a text node ID to the `aria-labelledby` prop.
 
 :::
 
+<StoryEmbed storyId="components-euicombobox--default" view="docs" height={230} />
+
 ## Disabled
 
 Set the prop `isDisabled` to make the combo box disabled.
 
+<StoryEmbed storyId="components-euicombobox--disabled" view="docs" height={230} />
+
 ## Case-sensitive matching
 
 Set the prop `isCaseSensitive` to make the combo box option matching case sensitive.
+
+<StoryEmbed storyId="components-euicombobox--case-sensitive" view="docs" height={230} />
 
 ## Virtualized
 
 **EuiComboBoxList** uses [react-window](https://github.com/bvaughn/react-window) to only render visible options
 to be super fast no matter how many options there are.
 
+<StoryEmbed storyId="components-euicombobox--virtualized-options" view="docs" height={230} />
+
 ## Containers
 
 This example demonstrates how the combo box works within containers. Because this component uses portals,
 it’s important that it works within other portal-using components.
+
+<StoryEmbed storyId="components-euicombobox--inside-modal" view="docs" height={230} />
 
 ## Pill colors
 
 Useful for visualization or tagging systems. You can also pass a color in your option list. The color can be
 a hex value (like `#000`) or any other named color value accepted by the [**EuiBadge**](#/display/badge) component.
 
+<StoryEmbed storyId="components-euicombobox--pill-colors" view="docs" height={230} />
+
 ## Option rendering
 
 There are two object properties you can add to enhance the content of your options, `option.prepend`
 and `option.append`. These will add nodes before and after the option label respectively, to both the dropdown option
 and selected pill. They will not be included in the searchable content as this only matches against the label property.
+
+<StoryEmbed storyId="components-euicombobox--prepend-append" view="docs" height={230} />
 
 ### Custom dropdown content
 
@@ -60,15 +74,21 @@ You can use the `value` prop of the `option` object to store metadata about the 
 **Note:** virtualization (above) requires that each option have the same height. Ensure that you render the options
 so that wrapping text is truncated instead of causing the height of the option to change.
 
+<StoryEmbed storyId="components-euicombobox--custom-dropdown-content" view="docs" height={230} />
+
 ## Truncation
 
 By default, **EuiComboBox** truncates long option text at the end of the string.
 You can use `truncationProps` and almost any prop that [**EuiTextTruncate**](#/utilities/text-truncation) accepts
 to configure this behavior. This can be configured at the **EuiComboBox** level, as well as by each individual option.
 
+<!-- TODO: Add truncation example with interactive truncationProps controls -->
+
 ## Groups
 
 You can group options together. The groups _won’t_ match against the search value.
+
+<StoryEmbed storyId="components-euicombobox--groups" view="docs" height={230} />
 
 ## Single selection
 
@@ -76,10 +96,14 @@ To only allow the user to select a single option, provide the `singleSelection` 
 You may want to render the selected option as plain text instead of pill form.
 To do this, pass `singleSelection={{ asPlainText: true }}`
 
+<StoryEmbed storyId="components-euicombobox--single-selection" view="docs" height={230} />
+
 ## Single selection with prepended label
 
 `append` and `prepend` props only work if `singleSelection` prop is not set to `false` to avoid multi-lines
 that makes combobox height greater than that of `append` and `prepend`.
+
+<StoryEmbed storyId="components-euicombobox--single-selection-with-prepend" view="docs" height={230} />
 
 ## Single selection with custom options
 
@@ -90,24 +114,34 @@ To do that, use the `singleSelection` in conjunction with the `onCreateOption` p
 that this option is available. You can also customize the custom option text by passing
 a text to `customOptionText` prop.
 
+<StoryEmbed storyId="components-euicombobox--single-selection-with-custom-options" view="docs" height={230} />
+
 ## Disallowing custom options
 
 Leave out the `onCreateOption` prop to disallow the creation of custom options.
+
+<StoryEmbed storyId="components-euicombobox--single-selection-with-custom-options-disallowed" view="docs" height={230} />
 
 ## Custom options only, with validation
 
 Alternatively, provide the `noSuggestions` prop to hide the suggestions list and _only_
 allow the creation of custom options.
 
+<StoryEmbed storyId="components-euicombobox--single-selection-with-custom-options-and-validation" view="docs" height={230} />
+
 ## Async
 
 Use the `onSearchChange` code to handle searches asynchronously.
 Use the`isLoading` prop to let the user know that something async is happening.
 
+<StoryEmbed storyId="components-euicombobox--async" view="docs" height={230} />
+
 ## With delimiter
 
 Pass a unique character to the `delimiter` prop to aid in option creation.
 This is best used when knowing that content may be pasted from elsewhere such as a comma separated list.
+
+<StoryEmbed storyId="components-euicombobox--delimiter" view="docs" height={230} />
 
 ## Sorting matches
 
@@ -115,13 +149,19 @@ By default, the matched options will keep their original sort order.
 If you would like to prioritize those options that **start with** the searched string,
 pass `sortMatchesBy="startsWith"`to display those options at the top of the list.
 
+<StoryEmbed storyId="components-euicombobox--sorting-matches" view="docs" height={230} />
+
 ## Duplicate labels
 
 In general, it is not recommended to use duplicate labels on the options because the user has no way to distinguish
 between them. If you need duplicate labels, you will need to add a unique `key` for each option.
+
+<StoryEmbed storyId="components-euicombobox--duplicate-labels" view="docs" height={230} />
 
 ## Accessible label with aria-labelledby
 
 Sometimes it’s preferable to label a combobox with a heading or paragraph.
 You can easily create a unique ID for a text element using the [HTML ID generator](/#/utilities/html-id-generator),
 then pass your unique ID to the `aria-labelledby` prop.
+
+<StoryEmbed storyId="components-euicombobox--accessible-label" view="docs" height={230} />
