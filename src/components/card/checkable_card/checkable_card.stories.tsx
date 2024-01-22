@@ -7,7 +7,6 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import { EuiCheckableCard, EuiCheckableCardProps } from './checkable_card';
 
@@ -22,6 +21,7 @@ const meta: Meta<EuiCheckableCardProps> = {
       control: 'radio',
     },
     onChange: {
+      action: 'onChange',
       type: { name: 'function', required: true },
     },
   },
@@ -42,6 +42,5 @@ export const Playground: Story = {
   args: {
     id: 'id',
     label: 'Checkable option',
-    onChange: action('onChange'),
   },
 };
