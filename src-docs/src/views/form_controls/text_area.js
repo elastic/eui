@@ -17,7 +17,10 @@ export default () => {
         placeholder="Placeholder text"
         aria-label="Use aria labels when no actual label is in use"
         value={value}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => {
+          console.log('onChange fired');
+          onChange(e);
+        }}
       />
     </DisplayToggles>
   );
