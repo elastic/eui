@@ -10,10 +10,6 @@ export type { EuiColorPickerProps } from './color_picker';
 export { EuiColorPicker } from './color_picker';
 export type { EuiColorPickerSwatchProps } from './color_picker_swatch';
 export { EuiColorPickerSwatch } from './color_picker_swatch';
-export type { EuiHueProps } from './hue';
-export { EuiHue } from './hue';
-export type { EuiSaturationProps } from './saturation';
-export { EuiSaturation } from './saturation';
 export type {
   EuiColorPalettePickerProps,
   EuiColorPalettePickerPaletteProps,
