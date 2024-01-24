@@ -350,7 +350,7 @@ describe('EuiResizableContainer', () => {
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
     });
 
-    test('unmemoized consumer onResizeStart/End callbacks are handled', () => {
+    test('unmemoized consumer onResizeStart/End callbacks do not cause stale closures', () => {
       const ConsumerUsage = () => {
         const [rerender, setRerender] = useState(0);
         // Unmemoized consumer callbacks
@@ -387,7 +387,8 @@ describe('EuiResizableContainer', () => {
 
       fireEvent.mouseUp(getByTestSubject('euiResizableButton'));
       expect(getByTestSubject('rerenders')).toHaveTextContent('2');
-      // Without `useLatest`, the rerender count doesn't correctly update due to `onResizeEnd` not being memoized and causing the wrong `resizeEnd` to be called on event listener end
+      // Without `useLatest`, the rerender count doesn't correctly update due to `onResizeEnd`
+      // not being memoized and causing a stale `resizeEnd` closure to be called on event end
     });
   });
 });

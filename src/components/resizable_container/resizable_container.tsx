@@ -101,7 +101,7 @@ export const EuiResizableContainer: FunctionComponent<
   ...rest
 }) => {
   // Note: It's important to memoize consumer callbacks to prevent our own functions
-  // from reinstantiating unnecessarily and breaking our window event listeners
+  // from reinstantiating unnecessarily & causing window event listeners to call stale closures
   const onResizeEndRef = useLatest(onResizeEnd);
   const onResizeStartRef = useLatest(onResizeStart);
   const containerRef = useRef<HTMLDivElement>(null);
