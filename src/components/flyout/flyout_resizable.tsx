@@ -25,6 +25,10 @@ import { euiFlyoutResizableButtonStyles } from './flyout_resizable.styles';
 export type EuiFlyoutResizableProps = Omit<EuiFlyoutProps, 'maxWidth'> & {
   maxWidth?: number;
   minWidth?: number;
+  /**
+   * Optional callback that fires on user resize with the new flyout width
+   */
+  onResize?: (width: number) => void;
 };
 
 export const EuiFlyoutResizable = forwardRef(
@@ -33,6 +37,7 @@ export const EuiFlyoutResizable = forwardRef(
       size,
       maxWidth,
       minWidth = 200,
+      onResize,
       side = 'right',
       type = 'overlay',
       children,
@@ -56,11 +61,13 @@ export const EuiFlyoutResizable = forwardRef(
     );
 
     const [flyoutWidth, setFlyoutWidth] = useState(0);
+    const [callOnResize, setCallOnResize] = useState(false);
 
     // Must use state for the flyout ref in order for the useEffect to be correctly called after render
     const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
     const setRefs = useCombinedRefs([setFlyoutRef, ref]);
     useEffect(() => {
+      setCallOnResize(false); // Don't call `onResize` for non-user width changes
       setFlyoutWidth(
         flyoutRef ? getFlyoutMinMaxWidth(flyoutRef.offsetWidth) : 0
       );
@@ -92,6 +99,7 @@ export const EuiFlyoutResizable = forwardRef(
     );
 
     const onMouseUp = useCallback(() => {
+      setCallOnResize(true);
       initialMouseX.current = 0;
 
       window.removeEventListener('mousemove', onMouseMove);
@@ -102,6 +110,7 @@ export const EuiFlyoutResizable = forwardRef(
 
     const onMouseDown = useCallback(
       (e: React.MouseEvent | React.TouchEvent) => {
+        setCallOnResize(false);
         initialMouseX.current = getPosition(e, true);
         initialWidth.current = flyoutRef?.offsetWidth ?? 0;
 
@@ -117,6 +126,7 @@ export const EuiFlyoutResizable = forwardRef(
 
     const onKeyDown = useCallback(
       (e: React.KeyboardEvent) => {
+        setCallOnResize(true);
         const KEYBOARD_OFFSET = 10;
 
         switch (e.key) {
@@ -135,6 +145,15 @@ export const EuiFlyoutResizable = forwardRef(
       },
       [getFlyoutMinMaxWidth, direction]
     );
+
+    // To reduce unnecessary calls, only fire onResize callback:
+    // 1. After initial mount / on user width change events only
+    // 2. If not currently mouse dragging
+    useEffect(() => {
+      if (callOnResize) {
+        onResize?.(flyoutWidth);
+      }
+    }, [onResize, callOnResize, flyoutWidth]);
 
     return (
       <EuiFlyout

@@ -16,6 +16,11 @@ import { EuiFilterGroup, EuiFilterGroupProps } from './filter_group';
 const meta: Meta<EuiFilterGroupProps> = {
   title: 'EuiFilterGroup',
   component: EuiFilterGroup,
+  args: {
+    // Component defaults
+    compressed: false,
+    fullWidth: false,
+  },
 };
 
 export default meta;

@@ -26,23 +26,46 @@ describe('EuiTextArea', () => {
     });
 
     it('works for controlled components', () => {
+      const onChange = cy.stub();
       const ControlledTextArea = ({}) => {
         const [value, setValue] = useState('');
-        return (
-          <EuiTextArea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            isClearable
-          />
-        );
+        onChange.callsFake((e) => {
+          setValue(e.target.value);
+        });
+        return <EuiTextArea value={value} onChange={onChange} isClearable />;
       };
       cy.realMount(<ControlledTextArea />);
 
       cy.get('textarea').type('hello world');
-      cy.get('textarea').should('have.value', 'hello world');
+      cy.get('textarea')
+        .should('have.value', 'hello world')
+        .then(() => {
+          expect(onChange).to.have.callCount(11);
+        });
 
       cy.get('[data-test-subj="clearTextAreaButton"]').click();
-      cy.get('textarea').should('have.value', '');
+      cy.get('textarea')
+        .should('have.value', '')
+        .then(() => {
+          expect(onChange).to.have.callCount(12);
+        });
+    });
+
+    it('manually fires an onInput event', () => {
+      const onInput = cy.stub();
+      cy.realMount(<EuiTextArea isClearable onInput={onInput} />);
+
+      cy.get('textarea')
+        .type('1')
+        .then(() => {
+          expect(onInput).to.have.callCount(1);
+        });
+
+      cy.get('[data-test-subj="clearTextAreaButton"]')
+        .click()
+        .then(() => {
+          expect(onInput).to.have.callCount(2);
+        });
     });
   });
 });

@@ -28,6 +28,8 @@ const meta: Meta<EuiFilterButtonProps> = {
     grow: true,
     isSelected: false,
     isDisabled: false,
+    withNext: false,
+    hasActiveFilters: false,
   },
 };
 
@@ -56,7 +58,6 @@ export const MultipleButtons: Story = {
     </EuiFilterGroup>
   ),
   args: {
-    hasActiveFilters: true,
     numFilters: 5,
     iconType: 'arrowDown',
   },

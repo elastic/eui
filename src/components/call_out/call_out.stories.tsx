@@ -7,39 +7,29 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { disableStorybookControls } from '../../../../.storybook/utils';
 
-import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';
+import { EuiCallOut, EuiCallOutProps } from './call_out';
 
-const meta: Meta<EuiButtonEmptyProps> = {
-  title: 'EuiButtonEmpty',
-  component: EuiButtonEmpty,
+const meta: Meta<EuiCallOutProps> = {
+  title: 'EuiCallOut',
+  component: EuiCallOut,
   argTypes: {
-    flush: {
-      options: [undefined, 'left', 'right', 'both'],
-    },
     iconType: { control: 'text' },
-    target: { control: 'text' },
   },
   args: {
     // Component defaults
-    type: 'button',
     color: 'primary',
+    heading: 'p',
     size: 'm',
-    iconSize: 'm',
-    iconSide: 'left',
-    isDisabled: false,
-    isLoading: false,
-    isSelected: false,
   },
 };
 
 export default meta;
-type Story = StoryObj<EuiButtonEmptyProps>;
+type Story = StoryObj<EuiCallOutProps>;
 
 export const Playground: Story = {
-  argTypes: disableStorybookControls(['buttonRef']),
   args: {
-    children: 'Tertiary action',
+    title: 'Callout title',
+    children: 'Callout text',
   },
 };

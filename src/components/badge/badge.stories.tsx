@@ -7,39 +7,27 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { disableStorybookControls } from '../../../../.storybook/utils';
 
-import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';
+import { EuiBadge, EuiBadgeProps } from './badge';
 
-const meta: Meta<EuiButtonEmptyProps> = {
-  title: 'EuiButtonEmpty',
-  component: EuiButtonEmpty,
+const meta: Meta<EuiBadgeProps> = {
+  title: 'EuiBadge',
+  component: EuiBadge,
   argTypes: {
-    flush: {
-      options: [undefined, 'left', 'right', 'both'],
-    },
     iconType: { control: 'text' },
-    target: { control: 'text' },
   },
   args: {
     // Component defaults
-    type: 'button',
-    color: 'primary',
-    size: 'm',
-    iconSize: 'm',
     iconSide: 'left',
     isDisabled: false,
-    isLoading: false,
-    isSelected: false,
   },
 };
 
 export default meta;
-type Story = StoryObj<EuiButtonEmptyProps>;
+type Story = StoryObj<EuiBadgeProps>;
 
 export const Playground: Story = {
-  argTypes: disableStorybookControls(['buttonRef']),
   args: {
-    children: 'Tertiary action',
+    children: 'Badge text',
   },
 };

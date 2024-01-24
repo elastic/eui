@@ -7,27 +7,24 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { disableStorybookControls } from '../../../../.storybook/utils';
 
-import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';
+import { EuiFacetButton, EuiFacetButtonProps } from './facet_button';
 
-const meta: Meta<EuiButtonEmptyProps> = {
-  title: 'EuiButtonEmpty',
-  component: EuiButtonEmpty,
+const meta: Meta<EuiFacetButtonProps> = {
+  title: 'EuiFacetButton',
+  component: EuiFacetButton,
   argTypes: {
-    flush: {
-      options: [undefined, 'left', 'right', 'both'],
-    },
-    iconType: { control: 'text' },
-    target: { control: 'text' },
+    // TODO: icon
+    // TODO: minWidth has multiple types
   },
   args: {
     // Component defaults
+    element: 'button',
     type: 'button',
-    color: 'primary',
-    size: 'm',
-    iconSize: 'm',
+    size: 's',
     iconSide: 'left',
+    iconSize: 'm',
+    fullWidth: false,
     isDisabled: false,
     isLoading: false,
     isSelected: false,
@@ -35,11 +32,11 @@ const meta: Meta<EuiButtonEmptyProps> = {
 };
 
 export default meta;
-type Story = StoryObj<EuiButtonEmptyProps>;
+type Story = StoryObj<EuiFacetButtonProps>;
 
 export const Playground: Story = {
-  argTypes: disableStorybookControls(['buttonRef']),
   args: {
-    children: 'Tertiary action',
+    children: 'Facet button',
+    quantity: 0,
   },
 };

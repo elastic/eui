@@ -66,12 +66,14 @@ export type EuiButtonPropsForAnchor = PropsForAnchor<
   }
 >;
 
-export type EuiButtonPropsForButton = PropsForButton<
-  EuiButtonProps,
-  {
-    buttonRef?: Ref<HTMLButtonElement>;
-  }
->;
+// For some reason, Storybook doesn't parse `EuiButtonDisplayCommonProps` unless we include it here
+export type EuiButtonPropsForButton = EuiButtonDisplayCommonProps &
+  PropsForButton<
+    EuiButtonProps,
+    {
+      buttonRef?: Ref<HTMLButtonElement>;
+    }
+  >;
 
 export type Props = ExclusiveUnion<
   EuiButtonPropsForAnchor,
