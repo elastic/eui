@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiButton } from '../button';
 import { EuiFieldText } from '../form';
@@ -23,6 +24,18 @@ const meta: Meta<EuiFocusTrapProps> = {
   component: EuiFocusTrap,
   argTypes: {
     returnFocus: { type: 'boolean' },
+    ...hideStorybookControls(['style']),
+  },
+  args: {
+    // Component defaults
+    clickOutsideDisables: false,
+    closeOnMouseup: false,
+    crossFrame: false,
+    disabled: false,
+    gapMode: 'padding',
+    noIsolation: true,
+    returnFocus: true,
+    scrollLock: false,
   },
 };
 
