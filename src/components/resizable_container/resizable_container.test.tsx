@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { act } from 'react-dom/test-utils';
+import { fireEvent } from '@testing-library/react';
 import { mount } from 'enzyme';
 
 import { findTestSubject, requiredProps } from '../../test';
@@ -347,6 +348,46 @@ describe('EuiResizableContainer', () => {
       expect(onResizeStart).toHaveBeenLastCalledWith('key');
       button.simulate('blur');
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
+    });
+
+    test('unmemoized consumer onResizeStart/End callbacks are handled', () => {
+      const ConsumerUsage = () => {
+        const [rerender, setRerender] = useState(0);
+        // Unmemoized consumer callbacks
+        const onResizeStart = () => {
+          setRerender(rerender + 1);
+        };
+        const onResizeEnd = () => {
+          setRerender(rerender + 1);
+        };
+
+        return (
+          <EuiResizableContainer
+            {...requiredProps}
+            onResizeStart={onResizeStart}
+            onResizeEnd={onResizeEnd}
+          >
+            {(EuiResizablePanel, EuiResizableButton) => (
+              <>
+                <EuiResizablePanel initialSize={50}>Testing</EuiResizablePanel>
+                <EuiResizableButton data-test-subj="euiResizableButton" />
+                <EuiResizablePanel initialSize={50} data-test-subj="rerenders">
+                  {rerender}
+                </EuiResizablePanel>
+              </>
+            )}
+          </EuiResizableContainer>
+        );
+      };
+      const { getByTestSubject } = render(<ConsumerUsage />);
+      expect(getByTestSubject('rerenders')).toHaveTextContent('0');
+
+      fireEvent.mouseDown(getByTestSubject('euiResizableButton'));
+      expect(getByTestSubject('rerenders')).toHaveTextContent('1');
+
+      fireEvent.mouseUp(getByTestSubject('euiResizableButton'));
+      expect(getByTestSubject('rerenders')).toHaveTextContent('2');
+      // Without `useLatest`, the rerender count doesn't correctly update due to `onResizeEnd` not being memoized and causing the wrong `resizeEnd` to be called on event listener end
     });
   });
 });
