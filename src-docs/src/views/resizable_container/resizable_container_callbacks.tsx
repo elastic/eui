@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import {
   EuiText,
   EuiResizableContainer,
@@ -26,16 +26,6 @@ export default () => {
     [firstPanelId]: 50,
     [secondPanelId]: 50,
   });
-
-  const onResizeStart = useCallback((trigger: 'pointer' | 'key') => {
-    setResizeTrigger(trigger);
-  }, []);
-
-  const onResizeEnd = useCallback(() => {
-    if (resizeTrigger) {
-      setResizeTrigger(undefined);
-    }
-  }, [resizeTrigger]);
 
   return (
     <EuiFlexGroup direction="column">
@@ -79,8 +69,8 @@ export default () => {
           onPanelWidthChange={(newSizes) => {
             setSizes((prevSizes) => ({ ...prevSizes, ...newSizes }));
           }}
-          onResizeStart={onResizeStart}
-          onResizeEnd={onResizeEnd}
+          onResizeStart={(trigger) => setResizeTrigger(trigger)}
+          onResizeEnd={() => setResizeTrigger(undefined)}
         >
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
