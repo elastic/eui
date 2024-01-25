@@ -9,6 +9,7 @@
 import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../services';
 import { CommonProps, keysOf } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -17,6 +18,8 @@ import { EuiIcon, IconColor, IconType } from '../icon';
 import { isNamedColor } from '../icon/named_colors';
 import { EuiText } from '../text';
 import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
+
+import { euiEmptyPromptStyles } from './empty_prompt.styles';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -96,6 +99,10 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   footer,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiEmptyPromptStyles(euiTheme);
+  const cssStyles = [styles.euiEmptyPrompt, styles[layout]];
+
   const isVerticalLayout = layout === 'vertical';
   // Default the iconColor to `subdued`,
   // otherwise try to match the iconColor with the panel color unless iconColor is specified
@@ -171,17 +178,16 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     className
   );
 
-  const panelProps: _EuiPanelDivlike = {
-    className: classes,
-    color: color,
-    paddingSize: 'none',
-    hasBorder: hasBorder,
-    grow: false,
-    ...rest,
-  };
-
   return (
-    <EuiPanel {...panelProps}>
+    <EuiPanel
+      css={cssStyles}
+      className={classes}
+      color={color}
+      paddingSize="none"
+      grow={false}
+      hasBorder={hasBorder}
+      {...rest}
+    >
       <div className="euiEmptyPrompt__main">
         {iconNode && <div className="euiEmptyPrompt__icon">{iconNode}</div>}
         <div className="euiEmptyPrompt__content">

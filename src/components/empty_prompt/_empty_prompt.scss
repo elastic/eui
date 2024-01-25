@@ -1,11 +1,4 @@
 .euiEmptyPrompt {
-  text-align: center;
-  margin: auto;
-
-  @include euiBreakpoint('l', 'xl') {
-    max-width: max-content; // the width becomes as wide as necessary to contain all of its contents
-  }
-
   .euiEmptyPrompt__icon {
     // Consumers should use an EuiImage (recommended) with the horizontal layout
     // But they can use for example an img or other react node
