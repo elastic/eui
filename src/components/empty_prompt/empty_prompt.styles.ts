@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import {
   euiBreakpoint,
   euiPaddingSize,
+  euiBorderColor,
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
@@ -30,6 +31,11 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       ${property}: ${euiPaddingSize(euiThemeContext, 'l')}
     `,
   });
+  const generateFooterBorder = (color: Parameters<typeof euiBorderColor>[1]) =>
+    `${euiTheme.border.width.thin} solid ${euiBorderColor(
+      euiThemeContext,
+      color
+    )}`;
 
   return {
     euiEmptyPrompt: css`
@@ -123,6 +129,31 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       roundedBorders: css`
         /* Round all corners */
         border-radius: inherit;
+      `,
+      // Colors
+      transparent: css`
+        background-color: ${euiTheme.colors.body};
+      `,
+      plain: css`
+        background-color: ${euiTheme.colors.body};
+      `,
+      subdued: css`
+        ${logicalCSS('border-top', generateFooterBorder('subdued'))}
+      `,
+      primary: css`
+        ${logicalCSS('border-top', generateFooterBorder('primary'))}
+      `,
+      accent: css`
+        ${logicalCSS('border-top', generateFooterBorder('accent'))}
+      `,
+      danger: css`
+        ${logicalCSS('border-top', generateFooterBorder('danger'))}
+      `,
+      warning: css`
+        ${logicalCSS('border-top', generateFooterBorder('warning'))}
+      `,
+      success: css`
+        ${logicalCSS('border-top', generateFooterBorder('success'))}
       `,
       ...generatePaddingStyles(),
     },

@@ -219,6 +219,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
           css={[
             styles.footer.euiEmptyPrompt__footer,
             styles.footer[paddingSize],
+            styles.footer[color],
             color === 'transparent' &&
               !hasBorder &&
               styles.footer.roundedBorders,

@@ -10,13 +10,13 @@ import React, { FunctionComponent, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../services';
+import { useEuiBorderColorCSS } from '../../global_styling';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiAvatar } from '../avatar';
 
 import {
-  euiCommentEventBorderColors,
   euiCommentEventStyles,
   euiCommentEventHeaderStyles,
   euiCommentEventBodyStyles,
@@ -119,7 +119,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
    * Styles
    */
   const euiTheme = useEuiTheme();
-  const borderStyles = euiCommentEventBorderColors(euiTheme);
+  const borderStyles = useEuiBorderColorCSS();
 
   const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [

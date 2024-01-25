@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
+import { useMemo } from 'react';
 import { css } from '@emotion/react';
 import {
   shade,
   tint,
+  tintOrShade,
   transparentize,
   useEuiTheme,
   UseEuiTheme,
@@ -103,4 +105,54 @@ export const useEuiBackgroundColorCSS = () => {
       background-color: ${useEuiBackgroundColor('danger')};
     `,
   };
+};
+
+export const euiBorderColor = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  color: _EuiBackgroundColor
+) => {
+  switch (color) {
+    case 'transparent':
+    case 'plain':
+    case 'subdued':
+      return euiTheme.border.color;
+    case 'warning':
+      return tintOrShade(euiTheme.colors.warning, 0.4, colorMode);
+    default:
+      return tintOrShade(euiTheme.colors[color], 0.6, colorMode);
+  }
+};
+
+export const useEuiBorderColorCSS = () => {
+  const euiThemeContext = useEuiTheme();
+
+  return useMemo(
+    () => ({
+      transparent: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'transparent')};
+      `,
+      plain: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'plain')};
+      `,
+      subdued: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'subdued')};
+      `,
+      accent: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'accent')};
+      `,
+      primary: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'primary')};
+      `,
+      success: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'success')};
+      `,
+      warning: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'warning')};
+      `,
+      danger: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'danger')};
+      `,
+    }),
+    [euiThemeContext]
+  );
 };
