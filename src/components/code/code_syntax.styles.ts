@@ -14,43 +14,82 @@ import {
 
 const visColors = euiPaletteColorBlind();
 
-export const euiCodeSyntaxColors = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+type IEuiCodeSyntaxColorTokens =
+  | 'backgroundColor'
+  | 'color'
+  | 'inlineCodeColor'
+  | 'selectedBackgroundColor'
+  | 'commentColor'
+  | 'selectorTagColor'
+  | 'stringColor'
+  | 'tagColor'
+  | 'nameColor'
+  | 'numberColor'
+  | 'keywordColor'
+  | 'functionTitleColor'
+  | 'typeColor'
+  | 'attributeColor'
+  | 'symbolColor'
+  | 'paramsColor'
+  | 'metaColor'
+  | 'titleColor'
+  | 'sectionColor'
+  | 'additionColor'
+  | 'deletionColor'
+  | 'selectorClassColor'
+  | 'selectorIdColor';
 
-  const backgroundColor = euiTheme.colors.lightestShade;
+const generateEuiCodeSyntaxColors = () => {
+  const cache: Record<string, Record<IEuiCodeSyntaxColorTokens, string>> = {};
 
-  return {
-    backgroundColor: backgroundColor,
-    color: makeHighContrastColor(euiTheme.colors.text)(backgroundColor),
-    inlineCodeColor: makeHighContrastColor(visColors[3])(backgroundColor),
-    selectedBackgroundColor: 'inherit',
-    commentColor: makeHighContrastColor(euiTheme.colors.subduedText)(
-      backgroundColor
-    ),
-    selectorTagColor: 'inherit',
-    stringColor: makeHighContrastColor(visColors[2])(backgroundColor),
-    tagColor: makeHighContrastColor(visColors[1])(backgroundColor),
-    nameColor: makeHighContrastColor(visColors[1])(backgroundColor),
-    numberColor: makeHighContrastColor(visColors[0])(backgroundColor),
-    keywordColor: makeHighContrastColor(visColors[3])(backgroundColor),
-    functionTitleColor: 'inherit',
-    typeColor: makeHighContrastColor(visColors[1])(backgroundColor),
-    attributeColor: 'inherit',
-    symbolColor: makeHighContrastColor(visColors[9])(backgroundColor),
-    paramsColor: 'inherit',
-    metaColor: makeHighContrastColor(euiTheme.colors.subduedText)(
-      backgroundColor
-    ),
-    titleColor: makeHighContrastColor(visColors[7])(backgroundColor),
-    sectionColor: makeHighContrastColor(visColors[9])(backgroundColor),
-    additionColor: makeHighContrastColor(visColors[0])(backgroundColor),
-    deletionColor: makeHighContrastColor(euiTheme.colors.danger)(
-      backgroundColor
-    ),
-    selectorClassColor: 'inherit',
-    selectorIdColor: 'inherit',
+  return (euiThemeContext: UseEuiTheme) => {
+    const { euiTheme } = euiThemeContext;
+
+    const backgroundColor = euiTheme.colors.lightestShade;
+
+    if (cache[backgroundColor]) {
+      return cache[backgroundColor];
+    }
+
+    const result = {
+      backgroundColor: backgroundColor,
+      color: makeHighContrastColor(euiTheme.colors.text)(backgroundColor),
+      inlineCodeColor: makeHighContrastColor(visColors[3])(backgroundColor),
+      selectedBackgroundColor: 'inherit',
+      commentColor: makeHighContrastColor(euiTheme.colors.subduedText)(
+        backgroundColor
+      ),
+      selectorTagColor: 'inherit',
+      stringColor: makeHighContrastColor(visColors[2])(backgroundColor),
+      tagColor: makeHighContrastColor(visColors[1])(backgroundColor),
+      nameColor: makeHighContrastColor(visColors[1])(backgroundColor),
+      numberColor: makeHighContrastColor(visColors[0])(backgroundColor),
+      keywordColor: makeHighContrastColor(visColors[3])(backgroundColor),
+      functionTitleColor: 'inherit',
+      typeColor: makeHighContrastColor(visColors[1])(backgroundColor),
+      attributeColor: 'inherit',
+      symbolColor: makeHighContrastColor(visColors[9])(backgroundColor),
+      paramsColor: 'inherit',
+      metaColor: makeHighContrastColor(euiTheme.colors.subduedText)(
+        backgroundColor
+      ),
+      titleColor: makeHighContrastColor(visColors[7])(backgroundColor),
+      sectionColor: makeHighContrastColor(visColors[9])(backgroundColor),
+      additionColor: makeHighContrastColor(visColors[0])(backgroundColor),
+      deletionColor: makeHighContrastColor(euiTheme.colors.danger)(
+        backgroundColor
+      ),
+      selectorClassColor: 'inherit',
+      selectorIdColor: 'inherit',
+    };
+
+    cache[backgroundColor] = result;
+
+    return result;
   };
 };
+
+export const euiCodeSyntaxColors = generateEuiCodeSyntaxColors();
 
 export const euiCodeSyntaxTokens = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
