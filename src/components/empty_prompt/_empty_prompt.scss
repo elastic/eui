@@ -33,19 +33,3 @@
     }
   }
 }
-
-// Padding
-@each $modifier, $amount in $euiPanelPaddingModifiers {
-  .euiEmptyPrompt--#{$modifier} {
-    .euiEmptyPrompt__main,
-    .euiEmptyPrompt__footer {
-      padding: $amount;
-    }
-
-    &.euiEmptyPrompt--horizontal {
-      .euiEmptyPrompt__main {
-        gap: $amount;
-      }
-    }
-  }
-}

@@ -191,7 +191,12 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     >
       <div
         className="euiEmptyPrompt__main"
-        css={[styles.main.euiEmptyPrompt__main, styles.main[layout]]}
+        css={[
+          styles.main.euiEmptyPrompt__main,
+          styles.main[layout],
+          styles.main[paddingSize],
+          layout === 'horizontal' && styles.main.horizontalPadding[paddingSize],
+        ]}
       >
         {iconNode && (
           <div
@@ -208,7 +213,17 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
           {contentNodes}
         </div>
       </div>
-      {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
+      {footer && (
+        <div
+          className="euiEmptyPrompt__footer"
+          css={[
+            styles.footer.euiEmptyPrompt__footer,
+            styles.footer[paddingSize],
+          ]}
+        >
+          {footer}
+        </div>
+      )}
     </EuiPanel>
   );
 };

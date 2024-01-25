@@ -7,11 +7,29 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint, logicalCSS, mathWithUnits } from '../../global_styling';
+import {
+  euiBreakpoint,
+  euiPaddingSize,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const generatePaddingStyles = (property = 'padding') => ({
+    none: css``,
+    s: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 's')}
+    `,
+    m: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 'm')}
+    `,
+    l: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 'l')}
+    `,
+  });
 
   return {
     euiEmptyPrompt: css`
@@ -45,6 +63,8 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
           flex-direction: row-reverse;
         }
       `,
+      ...generatePaddingStyles(),
+      horizontalPadding: generatePaddingStyles('gap'),
     },
     content: {
       euiEmptyPrompt__content: css`
@@ -93,6 +113,10 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
           justify-content: flex-start;
         }
       `,
+    },
+    footer: {
+      euiEmptyPrompt__footer: css``,
+      ...generatePaddingStyles(),
     },
   };
 };
