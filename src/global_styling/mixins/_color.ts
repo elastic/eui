@@ -79,32 +79,37 @@ export const useEuiBackgroundColor = (
 };
 
 export const useEuiBackgroundColorCSS = () => {
-  return {
-    transparent: css`
-      background-color: ${useEuiBackgroundColor('transparent')};
-    `,
-    plain: css`
-      background-color: ${useEuiBackgroundColor('plain')};
-    `,
-    subdued: css`
-      background-color: ${useEuiBackgroundColor('subdued')};
-    `,
-    accent: css`
-      background-color: ${useEuiBackgroundColor('accent')};
-    `,
-    primary: css`
-      background-color: ${useEuiBackgroundColor('primary')};
-    `,
-    success: css`
-      background-color: ${useEuiBackgroundColor('success')};
-    `,
-    warning: css`
-      background-color: ${useEuiBackgroundColor('warning')};
-    `,
-    danger: css`
-      background-color: ${useEuiBackgroundColor('danger')};
-    `,
-  };
+  const euiThemeContext = useEuiTheme();
+
+  return useMemo(
+    () => ({
+      transparent: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'transparent')};
+      `,
+      plain: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
+      `,
+      subdued: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued')};
+      `,
+      accent: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'accent')};
+      `,
+      primary: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'primary')};
+      `,
+      success: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'success')};
+      `,
+      warning: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'warning')};
+      `,
+      danger: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'danger')};
+      `,
+    }),
+    [euiThemeContext]
+  );
 };
 
 export const euiBorderColor = (
