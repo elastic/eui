@@ -1,13 +1,4 @@
 .euiEmptyPrompt {
-  .euiEmptyPrompt__icon {
-    // Consumers should use an EuiImage (recommended) with the horizontal layout
-    // But they can use for example an img or other react node
-    > * {
-      flex-shrink: 1;
-      max-width: convertToRem(360px);
-    }
-  }
-
   // Footer background colors
   @each $modifier, $color in $euiPanelBackgroundColorModifiers {
     @if ($modifier == 'transparent') {
@@ -46,60 +37,18 @@
 $euiEmptyPromptContentMaxWidth: 36em;
 
 .euiEmptyPrompt--vertical {
-  .euiEmptyPrompt__main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .euiEmptyPrompt__contentInner {
     max-width: $euiEmptyPromptContentMaxWidth;
     margin: auto;
   }
-
-  .euiEmptyPrompt__icon {
-    margin-bottom: $euiSize;
-  }
 }
 
 .euiEmptyPrompt--horizontal {
-  @include euiBreakpoint('l', 'xl') {
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .euiEmptyPrompt__main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @include euiBreakpoint('l', 'xl') {
-      flex-direction: row-reverse;
-    }
-  }
-
-  .euiEmptyPrompt__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @include euiBreakpoint('l', 'xl') {
-      min-width: 40%;
-      max-width: 50%;
-    }
-  }
-
   .euiEmptyPrompt__content {
     max-width: $euiEmptyPromptContentMaxWidth;
 
     @include euiBreakpoint('l', 'xl') {
       padding: $euiSizeL 0;
-    }
-  }
-
-  .euiEmptyPrompt__actions {
-    @include euiBreakpoint('l', 'xl') {
-      justify-content: flex-start;
     }
   }
 }

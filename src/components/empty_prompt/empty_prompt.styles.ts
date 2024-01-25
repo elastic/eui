@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint, logicalCSS } from '../../global_styling';
+import { euiBreakpoint, logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
@@ -23,5 +23,63 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('max-width', 'max-content')}
       }
     `,
+    vertical: css``,
+    horizontal: css`
+      ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+        justify-content: flex-start;
+        text-align: start;
+      }
+    `,
+    main: {
+      euiEmptyPrompt__main: css`
+        display: flex;
+        flex-direction: column;
+      `,
+      vertical: css`
+        justify-content: center;
+      `,
+      horizontal: css`
+        align-items: center;
+
+        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+          flex-direction: row-reverse;
+        }
+      `,
+    },
+    icon: {
+      euiEmptyPrompt__icon: css`
+        /* Consumers should use an EuiImage (recommended) with the horizontal layout
+         * But they can use for example an img or other react node */
+        & > * {
+          flex-shrink: 1;
+          ${logicalCSS(
+            'max-width',
+            mathWithUnits(euiTheme.size.l, (x) => x * 24)
+          )}
+        }
+      `,
+      vertical: css`
+        ${logicalCSS('margin-bottom', euiTheme.size.base)}
+      `,
+      horizontal: css`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+          ${logicalCSS('min-width', '40%')}
+          ${logicalCSS('max-width', '50%')}
+        }
+      `,
+    },
+    actions: {
+      euiEmptyPrompt__actions: css``,
+      vertical: css``,
+      horizontal: css`
+        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+          justify-content: flex-start;
+        }
+      `,
+    },
   };
 };

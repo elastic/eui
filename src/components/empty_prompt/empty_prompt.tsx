@@ -139,6 +139,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       actionsRow = (
         <EuiFlexGroup
           className="euiEmptyPrompt__actions"
+          css={[styles.actions.euiEmptyPrompt__actions, styles.actions[layout]]}
           gutterSize="m"
           alignItems="center"
           justifyContent="center"
@@ -188,8 +189,18 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       hasBorder={hasBorder}
       {...rest}
     >
-      <div className="euiEmptyPrompt__main">
-        {iconNode && <div className="euiEmptyPrompt__icon">{iconNode}</div>}
+      <div
+        className="euiEmptyPrompt__main"
+        css={[styles.main.euiEmptyPrompt__main, styles.main[layout]]}
+      >
+        {iconNode && (
+          <div
+            className="euiEmptyPrompt__icon"
+            css={[styles.icon.euiEmptyPrompt__icon, styles.icon[layout]]}
+          >
+            {iconNode}
+          </div>
+        )}
         <div className="euiEmptyPrompt__content">
           <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
         </div>
