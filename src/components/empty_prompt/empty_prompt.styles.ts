@@ -46,26 +46,39 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+    content: {
+      euiEmptyPrompt__content: css`
+        ${logicalCSS('max-width', '36em')}
+      `,
+      vertical: css`
+        margin: auto;
+      `,
+      horizontal: css`
+        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+          padding-block: ${euiTheme.size.l};
+          padding-inline: 0;
+        }
+      `,
+    },
     icon: {
       euiEmptyPrompt__icon: css`
+        ${logicalCSS(
+          'max-width',
+          mathWithUnits(euiTheme.size.l, (x) => x * 15)
+        )}
+        margin: auto;
+
         /* Consumers should use an EuiImage (recommended) with the horizontal layout
          * But they can use for example an img or other react node */
         & > * {
           flex-shrink: 1;
-          ${logicalCSS(
-            'max-width',
-            mathWithUnits(euiTheme.size.l, (x) => x * 24)
-          )}
+          ${logicalCSS('max-width', '100%')}
         }
       `,
       vertical: css`
         ${logicalCSS('margin-bottom', euiTheme.size.base)}
       `,
       horizontal: css`
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
         ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
           ${logicalCSS('min-width', '40%')}
           ${logicalCSS('max-width', '50%')}

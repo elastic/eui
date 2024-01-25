@@ -34,25 +34,6 @@
   }
 }
 
-$euiEmptyPromptContentMaxWidth: 36em;
-
-.euiEmptyPrompt--vertical {
-  .euiEmptyPrompt__contentInner {
-    max-width: $euiEmptyPromptContentMaxWidth;
-    margin: auto;
-  }
-}
-
-.euiEmptyPrompt--horizontal {
-  .euiEmptyPrompt__content {
-    max-width: $euiEmptyPromptContentMaxWidth;
-
-    @include euiBreakpoint('l', 'xl') {
-      padding: $euiSizeL 0;
-    }
-  }
-}
-
 // Padding
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiEmptyPrompt--#{$modifier} {

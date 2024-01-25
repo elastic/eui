@@ -201,8 +201,11 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
             {iconNode}
           </div>
         )}
-        <div className="euiEmptyPrompt__content">
-          <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
+        <div
+          className="euiEmptyPrompt__content"
+          css={[styles.content.euiEmptyPrompt__content, styles.content[layout]]}
+        >
+          {contentNodes}
         </div>
       </div>
       {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
