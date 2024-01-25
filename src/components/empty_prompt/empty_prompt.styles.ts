@@ -115,7 +115,15 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     footer: {
-      euiEmptyPrompt__footer: css``,
+      euiEmptyPrompt__footer: css`
+        /* Round bottom corners only */
+        border-end-end-radius: inherit;
+        border-end-start-radius: inherit;
+      `,
+      roundedBorders: css`
+        /* Round all corners */
+        border-radius: inherit;
+      `,
       ...generatePaddingStyles(),
     },
   };

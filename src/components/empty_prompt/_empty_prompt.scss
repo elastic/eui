@@ -6,29 +6,18 @@
         .euiEmptyPrompt__footer {
           background-color: $euiPageBackgroundColor;
         }
-
-        &:not(.euiPanel--hasBorder) .euiEmptyPrompt__footer {
-          border-radius: $euiBorderRadius;
-        }
-
-        &.euiPanel--hasBorder .euiEmptyPrompt__footer {
-          border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
-        }
       }
     } @else if ($modifier == 'plain') {
       &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
         background-color: $euiPageBackgroundColor;
-        border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
       }
     } @else if ($modifier == 'subdued') {
       &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
         border-top: $euiBorderThin;
-        border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
       }
     } @else {
       &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
         border-top: 1px solid lightOrDarkTheme(darken($color, 10%), lighten($color, 6%));
-        border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
       }
     }
   }
