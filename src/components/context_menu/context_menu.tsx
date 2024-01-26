@@ -318,16 +318,7 @@ export class EuiContextMenuClass extends Component<
         return <EuiHorizontalRule key={key} margin="none" {...rest} />;
       }
 
-      const {
-        panel,
-        name,
-        key,
-        icon,
-        onClick,
-        toolTipTitle,
-        toolTipContent,
-        ...rest
-      } = item;
+      const { panel, name, key, icon, onClick, ...rest } = item;
 
       const onClickHandler = panel
         ? (event: React.MouseEvent) => {
@@ -351,8 +342,6 @@ export class EuiContextMenuClass extends Component<
           icon={icon}
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}
-          toolTipTitle={toolTipTitle}
-          toolTipContent={toolTipContent}
           {...rest}
         >
           {name}
