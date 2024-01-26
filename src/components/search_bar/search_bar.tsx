@@ -8,7 +8,7 @@
 
 import React, { Component, ReactElement } from 'react';
 
-import { htmlIdGenerator } from '../../services/accessibility';
+import { RenderWithEuiTheme, htmlIdGenerator } from '../../services';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox } from './search_box';
@@ -18,6 +18,10 @@ import { CommonProps } from '../common';
 import { EuiFieldSearchProps } from '../form/field_search';
 import { EuiInputPopoverProps } from '../popover';
 
+import {
+  euiSearchBar__searchHolder,
+  euiSearchBar__filtersHolder,
+} from './search_bar.styles';
 export { Query, AST as Ast } from './query';
 
 export type QueryType = Query | string;
@@ -259,48 +263,58 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const toolsLeftEl = this.renderTools(toolsLeft);
 
-    const filtersBar = !filters ? undefined : (
-      <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
-        <EuiSearchBarFilters
-          filters={filters}
-          query={query}
-          onChange={this.onFiltersChange}
-        />
-      </EuiFlexItem>
-    );
-
     const toolsRightEl = this.renderTools(toolsRight);
 
     const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
 
     return (
-      <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
-        {toolsLeftEl}
-        <EuiFlexItem className="euiSearchBar__searchHolder" grow={true}>
-          <EuiSearchBox
-            {...box}
-            query={queryText}
-            onSearch={this.onSearch}
-            isInvalid={error != null}
-            title={error ? error.message : undefined}
-            aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
-            hint={
-              hint
-                ? {
-                    isVisible: isHintVisible,
-                    setIsVisible: (isVisible: boolean) => {
-                      this.setState({ isHintVisible: isVisible });
-                    },
-                    id: this.hintId,
-                    ...hint,
-                  }
-                : undefined
-            }
-          />
-        </EuiFlexItem>
-        {filtersBar}
-        {toolsRightEl}
-      </EuiFlexGroup>
+      <RenderWithEuiTheme>
+        {(euiTheme) => (
+          <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
+            {toolsLeftEl}
+            <EuiFlexItem
+              className="euiSearchBar__searchHolder"
+              css={euiSearchBar__searchHolder(euiTheme)}
+              grow={true}
+            >
+              <EuiSearchBox
+                {...box}
+                query={queryText}
+                onSearch={this.onSearch}
+                isInvalid={error != null}
+                title={error ? error.message : undefined}
+                aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
+                hint={
+                  hint
+                    ? {
+                        isVisible: isHintVisible,
+                        setIsVisible: (isVisible: boolean) => {
+                          this.setState({ isHintVisible: isVisible });
+                        },
+                        id: this.hintId,
+                        ...hint,
+                      }
+                    : undefined
+                }
+              />
+            </EuiFlexItem>
+            {filters && (
+              <EuiFlexItem
+                className="euiSearchBar__filtersHolder"
+                css={euiSearchBar__filtersHolder(euiTheme)}
+                grow={false}
+              >
+                <EuiSearchBarFilters
+                  filters={filters}
+                  query={query}
+                  onChange={this.onFiltersChange}
+                />
+              </EuiFlexItem>
+            )}
+            {toolsRightEl}
+          </EuiFlexGroup>
+        )}
+      </RenderWithEuiTheme>
     );
   }
 }
