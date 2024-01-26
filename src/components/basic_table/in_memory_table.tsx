@@ -428,12 +428,6 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
     this.tableRef = React.createRef<EuiBasicTable>();
   }
 
-  setSelection(newSelection: T[]) {
-    if (this.tableRef.current) {
-      this.tableRef.current.setSelection(newSelection);
-    }
-  }
-
   onTableChange = ({ page, sort }: Criteria<T>) => {
     let { index: pageIndex, size: pageSize } = (page || {}) as {
       index: number;
