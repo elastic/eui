@@ -20,7 +20,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const generatePaddingStyles = (property = 'padding') => ({
-    none: css``,
+    none: null,
     s: css`
       ${property}: ${euiPaddingSize(euiThemeContext, 's')}
     `,
