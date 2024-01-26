@@ -84,10 +84,6 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    */
   button: NonNullable<ReactNode>;
   /**
-   * @deprecated Use `popoverRef` instead
-   */
-  buttonRef?: RefCallback<HTMLDivElement>;
-  /**
    * Callback to handle hiding of the popover
    */
   closePopover: NoArgCallback<void>;
@@ -597,14 +593,13 @@ export class EuiPopover extends Component<Props, State> {
 
   popoverRef = (node: HTMLDivElement | null) => {
     this.button = node;
-    setMultipleRefs([this.props.popoverRef, this.props.buttonRef], node);
+    setMultipleRefs([this.props.popoverRef], node);
   };
 
   render() {
     const {
       anchorPosition,
       button,
-      buttonRef,
       insert,
       isOpen,
       ownFocus,
