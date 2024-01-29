@@ -1,3 +1,18 @@
+## [`v92.2.0`](https://github.com/elastic/eui/releases/v92.2.0)
+
+- Updated `EuiFlyoutResizable` with new optional `onResize` callback ([#7464](https://github.com/elastic/eui/pull/7464))
+
+**Bug fixes**
+
+- Fixed an issue in `EuiResizableContainer` where `onResizeEnd` could become a stale closure when renders occured between resize start and end, resulting in an outdated version of a consumer's `onResizeEnd` callback being called ([#7468](https://github.com/elastic/eui/pull/7468))
+- Fixed `EuiTextArea` to correctly fire `onChange` callbacks on clear button click ([#7473](https://github.com/elastic/eui/pull/7473))
+- Fixed `EuiContextMenu`'s panel titles & items to not show underlines on hover for non-interactive elements ([#7474](https://github.com/elastic/eui/pull/7474))
+
+**Deprecations**
+
+- Remove unused public `EuiHue` and `EuiSaturation` subcomponent exports. Use the parent `EuiColorPicker` component instead ([#7460](https://github.com/elastic/eui/pull/7460))
+- Remove unused public `EuiCommentTimeline` subcomponent export. Use the parent `EuiComment` or `EuiCommentList` components instead. ([#7467](https://github.com/elastic/eui/pull/7467))
+
 ## [`v92.1.1`](https://github.com/elastic/eui/releases/v92.1.1)
 
 **Bug fixes**
