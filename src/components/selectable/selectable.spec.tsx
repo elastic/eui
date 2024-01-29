@@ -298,7 +298,7 @@ describe('EuiSelectable', () => {
 
         cy.get('[data-test-subj="truncatedText"]')
           .first()
-          .should('have.text', 'Lorem ipsum …iscing elit.');
+          .should('have.text', 'Lorem ipsum …piscing elit.');
       });
 
       it('correctly accounts for the keyboard focus badge', () => {
