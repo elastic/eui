@@ -918,60 +918,6 @@
     "filepath": "src/components/combo_box/combo_box.tsx"
   },
   {
-    "token": "euiContext.stories.name",
-    "defString": "John Doe",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 34,
-        "column": 15,
-        "index": 1005
-      },
-      "end": {
-        "line": 34,
-        "column": 64,
-        "index": 1054
-      }
-    },
-    "filepath": "src/components/context/context.stories.tsx"
-  },
-  {
-    "token": "euiContext.stories.greeting",
-    "defString": "Welcome, {name}!",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 39,
-        "column": 10,
-        "index": 1152
-      },
-      "end": {
-        "line": 45,
-        "column": 12,
-        "index": 1342
-      }
-    },
-    "filepath": "src/components/context/context.stories.tsx"
-  },
-  {
-    "token": "euiContext.stories.guestNo",
-    "defString": "You are guest #",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 47,
-        "column": 12,
-        "index": 1369
-      },
-      "end": {
-        "line": 50,
-        "column": 14,
-        "index": 1481
-      }
-    },
-    "filepath": "src/components/context/context.stories.tsx"
-  },
-  {
     "token": "euiDataGridCellActions.expandButtonTitle",
     "defString": "Click or hit enter to interact with cell content",
     "highlighting": "string",

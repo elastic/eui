@@ -1,25 +1,5 @@
 [
   {
-    "version": "92.2.0",
-    "changes": [
-      {
-        "token": "euiContext.stories.name",
-        "changeType": "added",
-        "value": "John Doe"
-      },
-      {
-        "token": "euiContext.stories.greeting",
-        "changeType": "added",
-        "value": "Welcome, {name}!"
-      },
-      {
-        "token": "euiContext.stories.guestNo",
-        "changeType": "added",
-        "value": "You are guest #"
-      }
-    ]
-  },
-  {
     "version": "92.1.0",
     "changes": [
       {
