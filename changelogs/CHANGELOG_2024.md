@@ -1,3 +1,9 @@
+## [`v92.2.1`](https://github.com/elastic/eui/releases/v92.2.1)
+
+**Bug fixes**
+
+- Removed unintentional i18n tokens in prior release that should not have been exported
+
 ## [`v92.2.0`](https://github.com/elastic/eui/releases/v92.2.0)
 
 - Updated `EuiFlyoutResizable` with new optional `onResize` callback ([#7464](https://github.com/elastic/eui/pull/7464))
