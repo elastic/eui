@@ -59,9 +59,11 @@ export default () => {
         {
           name: 'Add a tooltip',
           icon: 'document',
-          toolTipTitle: 'Optional tooltip',
           toolTipContent: 'Optional content for a tooltip',
-          toolTipPosition: 'right',
+          toolTipProps: {
+            title: 'Optional tooltip title',
+            position: 'right',
+          },
           onClick: closePopover,
         },
         {
@@ -78,7 +80,7 @@ export default () => {
           name: 'Disabled option',
           icon: 'user',
           toolTipContent: 'For reasons, this item is disabled',
-          toolTipPosition: 'right',
+          toolTipProps: { position: 'right' },
           disabled: true,
           onClick: closePopover,
         },
