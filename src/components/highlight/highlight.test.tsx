@@ -79,5 +79,15 @@ describe('EuiHighlight', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+
+    it('does not parse regex characters', () => {
+      const { container } = render(
+        <EuiHighlight search="(.)+" highlightAll>
+          match match match
+        </EuiHighlight>
+      );
+
+      expect(container.querySelector('mark')).not.toBeInTheDocument();
+    });
   });
 });

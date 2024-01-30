@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
+import React, {
+  useMemo,
+  Fragment,
+  HTMLAttributes,
+  FunctionComponent,
+} from 'react';
+import escapeRegExp from 'lodash/escapeRegExp';
 import { CommonProps } from '../common';
 import { EuiMark, EuiMarkProps } from '../mark';
 
@@ -171,12 +177,16 @@ const fillInChunks = (
 export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   children,
   className,
-  search,
+  search: _search,
   strict = false,
   highlightAll = false,
   hasScreenReaderHelpText = true,
   ...rest
 }) => {
+  const search = useMemo(() => {
+    return escapeRegExp(_search);
+  }, [_search]);
+
   return (
     <span className={className} {...rest}>
       {highlight(
