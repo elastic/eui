@@ -6,10 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, {
+  HTMLAttributes,
+  FunctionComponent,
+  ElementType,
+  useCallback,
+} from 'react';
 
 import { CommonProps } from '../common';
-import { EuiMarkProps } from '../mark';
+import { EuiMark, EuiMarkProps } from '../mark';
 
 import { HighlightAll } from './_highlight_all';
 import { HighlightFirst } from './_highlight_first';
@@ -52,6 +57,16 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
 }) => {
   const hasSearch = search && search.length > 0;
 
+  const HighlightComponent: FunctionComponent<{ children: string }> =
+    useCallback(
+      ({ children }) => (
+        <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
+          {children}
+        </EuiMark>
+      ),
+      [hasScreenReaderHelpText]
+    );
+
   return (
     <span className={className} {...rest}>
       {children && hasSearch ? (
@@ -59,15 +74,15 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
           <HighlightAll
             searchValue={search}
             searchSubject={children}
-            isStrict={!!strict}
-            hasScreenReaderHelpText={hasScreenReaderHelpText}
+            isStrict={strict}
+            highlightComponent={HighlightComponent}
           />
         ) : (
           <HighlightFirst
             searchValue={search}
             searchSubject={children}
-            isStrict={!!strict}
-            hasScreenReaderHelpText={hasScreenReaderHelpText}
+            isStrict={strict}
+            highlightComponent={HighlightComponent}
           />
         )
       ) : (
@@ -77,9 +92,9 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   );
 };
 
-export type _SharedSubcomponentProps = Required<{
+export type _SharedSubcomponentProps = {
   searchValue: EuiHighlightProps['search'];
   searchSubject: EuiHighlightProps['children'];
   isStrict: EuiHighlightProps['strict'];
-  hasScreenReaderHelpText: EuiHighlightProps['hasScreenReaderHelpText'];
-}>;
+  highlightComponent?: ElementType;
+};

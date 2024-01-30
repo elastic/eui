@@ -9,8 +9,6 @@
 import React, { memo, useMemo, FunctionComponent } from 'react';
 import escapeRegExp from 'lodash/escapeRegExp';
 
-import { EuiMark } from '../mark';
-
 import type { _SharedSubcomponentProps } from './highlight';
 
 /**
@@ -24,7 +22,7 @@ export const HighlightAll: FunctionComponent<_SharedSubcomponentProps> = memo(
     searchSubject,
     searchValue: _searchValue,
     isStrict,
-    hasScreenReaderHelpText,
+    highlightComponent: HighlightComponent = 'mark',
   }) => {
     const searchValue = useMemo(() => {
       return Array.isArray(_searchValue)
@@ -49,12 +47,7 @@ export const HighlightAll: FunctionComponent<_SharedSubcomponentProps> = memo(
           const value = searchSubject.substring(start, end);
 
           return highlight ? (
-            <EuiMark
-              key={start}
-              hasScreenReaderHelpText={hasScreenReaderHelpText}
-            >
-              {value}
-            </EuiMark>
+            <HighlightComponent key={start}>{value}</HighlightComponent>
           ) : (
             value
           );

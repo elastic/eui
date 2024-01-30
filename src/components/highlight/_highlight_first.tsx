@@ -8,8 +8,6 @@
 
 import React, { memo, FunctionComponent } from 'react';
 
-import { EuiMark } from '../mark';
-
 import { _SharedSubcomponentProps } from './highlight';
 
 /**
@@ -19,7 +17,12 @@ import { _SharedSubcomponentProps } from './highlight';
  * Uses indexOf for performance (which does matter for, e.g. EuiSelectable searching)
  */
 export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = memo(
-  ({ searchSubject, searchValue, isStrict, hasScreenReaderHelpText }) => {
+  ({
+    searchSubject,
+    searchValue,
+    isStrict,
+    highlightComponent: HighlightComponent = 'mark',
+  }) => {
     if (Array.isArray(searchValue)) {
       throw new Error(
         'Cannot parse multiple search strings without `highlightAll` enabled'
@@ -50,9 +53,7 @@ export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = memo(
     return (
       <>
         {preMatch}
-        <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
-          {match}
-        </EuiMark>
+        <HighlightComponent>{match}</HighlightComponent>
         {postMatch}
       </>
     );
