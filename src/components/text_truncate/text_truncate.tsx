@@ -138,9 +138,14 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   // If necessary, wait a tick on mount before truncating
   const [ready, setReady] = useState(!calculationDelayMs);
   useEffect(() => {
+    let timerId: NodeJS.Timeout;
     if (calculationDelayMs) {
-      setTimeout(() => setReady(true), calculationDelayMs);
+      timerId = setTimeout(() => setReady(true), calculationDelayMs);
     }
+
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [calculationDelayMs]);
 
   // Handle exceptions where we need to override the passed props
