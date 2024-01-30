@@ -42,9 +42,12 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
     children: string;
 
     /**
-     * What to search for
+     * What to search for.
+     *
+     * Allows passing an array of strings (searching by multiple separate
+     * words or phrases) **only** if `highlightAll` is also set to `true`.
      */
-    search: string;
+    search: string | string[];
 
     /**
      * Should the search be strict or not
@@ -181,8 +184,22 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   ...rest
 }) => {
   const search = useMemo(() => {
-    return escapeRegExp(_search);
-  }, [_search]);
+    const isArray = Array.isArray(_search);
+
+    if (!highlightAll) {
+      if (isArray) {
+        throw new Error(
+          'Cannot parse multiple search strings without `highlightAll` enabled'
+        );
+      } else {
+        return _search;
+      }
+    } else {
+      return isArray
+        ? _search.map(escapeRegExp).join('|')
+        : escapeRegExp(_search);
+    }
+  }, [_search, highlightAll]);
 
   return (
     <span className={className} {...rest}>

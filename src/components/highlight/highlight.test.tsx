@@ -43,6 +43,31 @@ describe('EuiHighlight', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
+      describe('array of search strings', () => {
+        it('returns results for each word in the array', () => {
+          const { container } = render(
+            <EuiHighlight search={['dog', 'fox']} highlightAll>
+              The quick brown fox jumped over the lazy dog
+            </EuiHighlight>
+          );
+
+          const results = container.querySelectorAll('mark');
+          expect(results).toHaveLength(2);
+          expect(results[0]).toHaveTextContent('fox');
+          expect(results[1]).toHaveTextContent('dog');
+        });
+
+        it('throws an error if `highlightAll` is not set', () => {
+          expect(() =>
+            render(
+              <EuiHighlight search={['dog', 'fox']}>
+                The quick brown fox jumped over the lazy dog
+              </EuiHighlight>
+            )
+          ).toThrow();
+        });
+      });
+
       test('hasScreenReaderHelpText can be false', () => {
         const { container } = render(
           <EuiHighlight
