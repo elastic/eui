@@ -59,3 +59,4 @@ export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = memo(
     );
   }
 );
+HighlightFirst.displayName = '_HighlightFirst';

@@ -10,7 +10,7 @@ import React, {
   HTMLAttributes,
   FunctionComponent,
   ElementType,
-  useCallback,
+  useMemo,
 } from 'react';
 
 import { CommonProps } from '../common';
@@ -57,15 +57,17 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
 }) => {
   const hasSearch = search && search.length > 0;
 
-  const HighlightComponent: FunctionComponent<{ children: string }> =
-    useCallback(
-      ({ children }) => (
-        <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
-          {children}
-        </EuiMark>
-      ),
-      [hasScreenReaderHelpText]
+  const HighlightComponent = useMemo(() => {
+    const Component: FunctionComponent<{ children: string }> = ({
+      children,
+    }) => (
+      <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
+        {children}
+      </EuiMark>
     );
+    Component.displayName = '_HighlightComponent';
+    return Component;
+  }, [hasScreenReaderHelpText]);
 
   return (
     <span className={className} {...rest}>

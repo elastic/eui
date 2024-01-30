@@ -2,11 +2,12 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Enforce display name to forwardRef components',
+      description:
+        'Enforce display name on components wrapped in forwardRef & memo',
     },
   },
-  create: function(context) {
-    const forwardRefUsages = [];
+  create: function (context) {
+    const usagesToCheck = [];
     const displayNameUsages = [];
     return {
       VariableDeclarator(node) {
@@ -16,14 +17,20 @@ module.exports = {
             node.init.callee.type === 'MemberExpression'
           ) {
             if (
-              node.init.callee.property &&
-              node.init.callee.property.name === 'forwardRef'
+              node.init.callee.property?.name === 'forwardRef' ||
+              node.init.callee.property?.name === 'memo'
             ) {
-              forwardRefUsages.push(node.id);
+              usagesToCheck.push({
+                id: node.id,
+                type: node.init.callee.property.name,
+              });
             }
           }
-          if (node.init.callee && node.init.callee.name === 'forwardRef') {
-            forwardRefUsages.push(node.id);
+          if (
+            node.init.callee?.name === 'forwardRef' ||
+            node.init.callee?.name === 'memo'
+          ) {
+            usagesToCheck.push({ id: node.id, type: node.init.callee.name });
           }
         }
       },
@@ -38,11 +45,11 @@ module.exports = {
         }
       },
       'Program:exit'() {
-        forwardRefUsages.forEach(identifier => {
-          if (!isDisplayNameUsed(identifier)) {
+        usagesToCheck.forEach(({ id, type }) => {
+          if (!isDisplayNameUsed(id)) {
             context.report({
-              node: identifier,
-              message: 'Forward ref components must use a display name',
+              node: id,
+              message: `Components wrapped in React.${type} must set a manual displayName`,
             });
           }
         });
@@ -50,7 +57,7 @@ module.exports = {
     };
     function isDisplayNameUsed(identifier) {
       const node = displayNameUsages.find(
-        displayName => displayName.name === identifier.name
+        (displayName) => displayName.name === identifier.name
       );
       return !!node;
     }

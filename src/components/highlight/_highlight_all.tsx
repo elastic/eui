@@ -56,6 +56,7 @@ export const HighlightAll: FunctionComponent<_SharedSubcomponentProps> = memo(
     );
   }
 );
+HighlightAll.displayName = '_HighlightAll';
 
 /**
  * Chunk utility
