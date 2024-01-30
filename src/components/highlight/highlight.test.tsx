@@ -15,7 +15,7 @@ import { EuiHighlight } from './highlight';
 describe('EuiHighlight', () => {
   test('is rendered', () => {
     const { container } = render(
-      <EuiHighlight {...requiredProps} search="">
+      <EuiHighlight {...requiredProps} search="va">
         value
       </EuiHighlight>
     );
@@ -30,7 +30,8 @@ describe('EuiHighlight', () => {
           <EuiHighlight search="match">match match match</EuiHighlight>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(container.querySelectorAll('mark')).toHaveLength(1);
+        expect(container.querySelector('mark')).toHaveTextContent('match');
       });
 
       test('applies to all matches', () => {
@@ -40,7 +41,7 @@ describe('EuiHighlight', () => {
           </EuiHighlight>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(container.querySelectorAll('mark')).toHaveLength(3);
       });
 
       describe('array of search strings', () => {
@@ -67,20 +68,6 @@ describe('EuiHighlight', () => {
           ).toThrow();
         });
       });
-
-      test('hasScreenReaderHelpText can be false', () => {
-        const { container } = render(
-          <EuiHighlight
-            search="match"
-            highlightAll
-            hasScreenReaderHelpText={false}
-          >
-            match match match
-          </EuiHighlight>
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
     });
 
     describe('loose matching', () => {
@@ -89,7 +76,7 @@ describe('EuiHighlight', () => {
           <EuiHighlight search="CASE">different case match</EuiHighlight>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(container.querySelector('mark')).toBeInTheDocument();
       });
     });
 
@@ -101,7 +88,7 @@ describe('EuiHighlight', () => {
           </EuiHighlight>
         );
 
-        expect(container.firstChild).toMatchSnapshot();
+        expect(container.querySelector('mark')).not.toBeInTheDocument();
       });
     });
 
@@ -114,5 +101,17 @@ describe('EuiHighlight', () => {
 
       expect(container.querySelector('mark')).not.toBeInTheDocument();
     });
+  });
+
+  test('hasScreenReaderHelpText can be false', () => {
+    const { container } = render(
+      <EuiHighlight search="match" hasScreenReaderHelpText={false}>
+        match match match
+      </EuiHighlight>
+    );
+
+    expect(container.querySelector('mark')!.className).not.toContain(
+      'hasScreenReaderHelpText'
+    );
   });
 });
