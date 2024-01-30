@@ -19,6 +19,8 @@ import { UseEuiTheme } from '../../services';
 export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const iconMaxWidth = mathWithUnits(euiTheme.size.l, (x) => x * 15);
+
   const generatePaddingStyles = (property = 'padding') => ({
     none: null,
     s: css`
@@ -31,6 +33,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       ${property}: ${euiPaddingSize(euiThemeContext, 'l')}
     `,
   });
+
   const generateFooterBorder = (color: Parameters<typeof euiBorderColor>[1]) =>
     `${euiTheme.border.width.thin} solid ${euiBorderColor(
       euiThemeContext,
@@ -88,10 +91,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
     },
     icon: {
       euiEmptyPrompt__icon: css`
-        ${logicalCSS(
-          'max-width',
-          mathWithUnits(euiTheme.size.l, (x) => x * 15)
-        )}
+        ${logicalCSS('max-width', iconMaxWidth)}
         margin: auto;
 
         /* Consumers should use an EuiImage (recommended) with the horizontal layout
@@ -108,6 +108,15 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
           ${logicalCSS('min-width', '40%')}
           ${logicalCSS('max-width', '50%')}
+
+          /* I'm not totally sure why setting a percentage max width on the wrapper and a static
+             max-width on the underlying image/icon makes sense, but this ports over the previous Sass
+             styles as-is to avoid UI changes/regressions 🤷 Also for some bizarre reason, & > *
+             isn't enough specificity to override .euiImageWrapper's CSS */
+          & > *,
+          & > .euiImageWrapper {
+            ${logicalCSS('max-width', iconMaxWidth)}
+          }
         }
       `,
     },
