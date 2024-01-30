@@ -70,6 +70,19 @@ describe('EuiTextTruncate', () => {
       expect(clearTimeoutSpy).toHaveBeenCalledTimes(2);
       expect(clearTimeoutSpy).toHaveBeenLastCalledWith(expect.any(Number));
     });
+
+    it('does not set or clear a timeout if a duration is not passed', () => {
+      const setTimeoutSpy = jest.spyOn(window, 'setTimeout');
+      const clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');
+
+      const { unmount } = render(
+        <EuiTextTruncate {...props} width={0} calculationDelayMs={0} />
+      );
+
+      expect(setTimeoutSpy).not.toHaveBeenCalled();
+      unmount();
+      expect(clearTimeoutSpy).not.toHaveBeenCalled();
+    });
   });
 
   describe('resize observer', () => {
