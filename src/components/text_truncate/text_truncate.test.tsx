@@ -38,18 +38,38 @@ describe('EuiTextTruncate', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('allows delaying truncation calculation by `calculationDelayMs`', () => {
-    jest.useFakeTimers();
+  describe('calculationDelayMs', () => {
+    beforeAll(jest.useFakeTimers);
+    afterAll(jest.useRealTimers);
 
-    const { queryByTestSubject } = render(
-      <EuiTextTruncate {...props} width={0} calculationDelayMs={50} />
-    );
-    expect(queryByTestSubject('truncatedText')).not.toBeInTheDocument();
+    it('allows delaying truncation calculation by the specified duration', () => {
+      const { queryByTestSubject } = render(
+        <EuiTextTruncate {...props} width={0} calculationDelayMs={50} />
+      );
+      expect(queryByTestSubject('truncatedText')).not.toBeInTheDocument();
 
-    act(() => jest.advanceTimersByTime(50));
-    expect(queryByTestSubject('truncatedText')).toBeInTheDocument();
+      act(() => jest.advanceTimersByTime(50));
+      expect(queryByTestSubject('truncatedText')).toBeInTheDocument();
+    });
 
-    jest.useRealTimers();
+    it('sets and clears the timeout on update or unmount', () => {
+      const clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');
+
+      const { unmount, rerender } = render(
+        <EuiTextTruncate {...props} width={0} calculationDelayMs={50} />
+      );
+      expect(clearTimeoutSpy).toHaveBeenCalledTimes(0);
+
+      rerender(
+        <EuiTextTruncate {...props} width={0} calculationDelayMs={100} />
+      );
+      expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+      expect(clearTimeoutSpy).toHaveBeenLastCalledWith(expect.any(Number));
+
+      unmount();
+      expect(clearTimeoutSpy).toHaveBeenCalledTimes(2);
+      expect(clearTimeoutSpy).toHaveBeenLastCalledWith(expect.any(Number));
+    });
   });
 
   describe('resize observer', () => {
