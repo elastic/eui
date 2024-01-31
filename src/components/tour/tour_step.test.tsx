@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -130,5 +131,26 @@ describe('EuiTourStep', () => {
     );
 
     expect(component.render()).toMatchSnapshot();
+  });
+
+  test('applies classNames to the correct locations', () => {
+    const TestTour = ({ isStepOpen }: { isStepOpen?: boolean }) => (
+      <EuiTourStep
+        {...props}
+        className="goesOnAnchor"
+        panelClassName="goesOnPopover"
+        isStepOpen={isStepOpen}
+      >
+        <span>Test</span>
+      </EuiTourStep>
+    );
+
+    const { container, rerender } = render(<TestTour />);
+
+    expect(container.querySelector('.goesOnPopover')).not.toBeInTheDocument();
+    expect(container.querySelector('.goesOnAnchor')).toBeInTheDocument();
+
+    rerender(<TestTour isStepOpen />);
+    expect(container.querySelector('.goesOnPopover')).toBeInTheDocument();
   });
 });

@@ -154,6 +154,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   decoration = 'beacon',
   footerAction,
   panelProps,
+  panelClassName,
   ...rest
 }) => {
   const titleId = useGeneratedHtmlId();
@@ -189,7 +190,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     };
   }, [anchor]);
 
-  const classes = classNames('euiTour', className);
+  const anchorClasses = classNames('euiTourAnchor', className);
+  const popoverClasses = classNames('euiTour', panelClassName);
   const euiTheme = useEuiTheme();
   const tourStyles = euiTourStyles(euiTheme);
   const headerStyles = euiTourHeaderStyles(euiTheme);
@@ -281,11 +283,12 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   const hasBeacon = decoration === 'beacon';
 
   const popoverProps = {
+    className: anchorClasses,
     anchorPosition: anchorPosition,
     closePopover: closePopover,
     isOpen: isStepOpen,
     ownFocus: false,
-    panelClassName: classes,
+    panelClassName: popoverClasses,
     panelStyle: style,
     panelProps: {
       ...panelProps,
