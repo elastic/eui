@@ -8,6 +8,7 @@
 
 import React, {
   CSSProperties,
+  HTMLAttributes,
   FunctionComponent,
   ReactElement,
   ReactNode,
@@ -47,9 +48,11 @@ import {
   euiTourHeaderStyles,
 } from './tour.styles';
 
-type PopoverOverrides = 'button' | 'closePopover';
-
-type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, 'closePopover'>>;
+type _EuiPopoverProps = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
+type _PopoverOverrides = 'button' | 'closePopover';
+type _PopoverPartials = 'closePopover';
+type ExtendedEuiPopoverProps = Omit<_EuiPopoverProps, _PopoverOverrides> &
+  Partial<Pick<EuiPopoverProps, _PopoverPartials>>;
 
 export type EuiTourStepAnchorProps = ExclusiveUnion<
   {
@@ -69,8 +72,7 @@ export type EuiTourStepAnchorProps = ExclusiveUnion<
 >;
 
 export type EuiTourStepProps = CommonProps &
-  Omit<EuiPopoverProps, PopoverOverrides> &
-  EuiPopoverPartials &
+  ExtendedEuiPopoverProps &
   EuiTourStepAnchorProps & {
     /**
      * Contents of the tour step popover
@@ -108,11 +110,6 @@ export type EuiTourStepProps = CommonProps &
     stepsTotal: number;
 
     /**
-     * Optional, standard DOM `style` attribute. Passed to the EuiPopover panel.
-     */
-    style?: CSSProperties;
-
-    /**
      * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
      */
     subtitle?: ReactNode;
@@ -148,7 +145,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   onFinish,
   step = 1,
   stepsTotal,
-  style,
   subtitle,
   title,
   decoration = 'beacon',
@@ -289,7 +285,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     isOpen: isStepOpen,
     ownFocus: false,
     panelClassName: popoverClasses,
-    panelStyle: style,
     panelProps: {
       ...panelProps,
       css: [tourStyles.euiTour, css, panelProps?.css],

@@ -133,12 +133,14 @@ describe('EuiTourStep', () => {
     expect(component.render()).toMatchSnapshot();
   });
 
-  test('applies classNames to the correct locations', () => {
+  test('applies classNames and styles to the correct locations', () => {
     const TestTour = ({ isStepOpen }: { isStepOpen?: boolean }) => (
       <EuiTourStep
         {...props}
         className="goesOnAnchor"
+        style={{ color: 'blue' }}
         panelClassName="goesOnPopover"
+        panelStyle={{ color: 'red' }}
         isStepOpen={isStepOpen}
       >
         <span>Test</span>
@@ -149,8 +151,14 @@ describe('EuiTourStep', () => {
 
     expect(container.querySelector('.goesOnPopover')).not.toBeInTheDocument();
     expect(container.querySelector('.goesOnAnchor')).toBeInTheDocument();
+    expect(container.querySelector('.goesOnAnchor')).toHaveStyle({
+      color: 'blue',
+    });
 
     rerender(<TestTour isStepOpen />);
     expect(container.querySelector('.goesOnPopover')).toBeInTheDocument();
+    expect(container.querySelector('.goesOnPopover')).toHaveStyle({
+      color: 'red',
+    });
   });
 });
