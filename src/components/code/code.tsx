@@ -16,6 +16,7 @@ import {
   getHtmlContent,
 } from './utils';
 import { useEuiTheme } from '../../services';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 import { euiCodeStyles } from './code.styles';
 
 export type EuiCodeProps = EuiCodeSharedProps;
@@ -46,8 +47,7 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
 
   const classes = classNames('euiCode', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCodeStyles(euiTheme);
+  const styles = euiCodeStyles(useEuiTheme(), useEuiCodeSyntaxVariables());
   const cssStyles = [
     styles.euiCode,
     transparentBackground && styles.transparentBackground,

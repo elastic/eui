@@ -19,6 +19,7 @@ import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 import { euiCodeBlockStyles } from './code_block.styles';
 
 /**
@@ -91,9 +92,7 @@ export const useFullScreen = ({
 export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
   PropsWithChildren
 > = ({ children }) => {
-  const euiThemeContext = useEuiTheme();
-
-  const styles = euiCodeBlockStyles(euiThemeContext);
+  const styles = euiCodeBlockStyles(useEuiTheme(), useEuiCodeSyntaxVariables());
   const cssStyles = [
     styles.euiCodeBlock,
     styles.l, // Force fullscreen to use large font

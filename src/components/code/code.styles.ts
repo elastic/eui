@@ -9,11 +9,13 @@
 import { css } from '@emotion/react';
 import { logicalShorthandCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiCodeSyntaxColors, euiCodeSyntaxTokens } from './code_syntax.styles';
+import { UseEuiCodeSyntaxVariables } from './code_syntax.styles';
 
-export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCodeStyles = (
+  euiThemeContext: UseEuiTheme,
+  euiCodeSyntaxVariables: UseEuiCodeSyntaxVariables
+) => {
   const { euiTheme } = euiThemeContext;
-  const euiCodeSyntax = euiCodeSyntaxColors(euiThemeContext);
 
   return {
     /*
@@ -23,12 +25,12 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       font-family: ${euiTheme.font.familyCode};
       font-size: 0.9em; /* 1 */
       ${logicalShorthandCSS('padding', '0.2em 0.5em')} /* 1 */
-      background: ${euiCodeSyntax.backgroundColor};
+      background: ${euiCodeSyntaxVariables.backgroundColor};
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.bold};
-      color: ${euiCodeSyntax.inlineCodeColor};
+      color: ${euiCodeSyntaxVariables.inlineCodeColor};
 
-      ${euiCodeSyntaxTokens(euiThemeContext)}
+      ${euiCodeSyntaxVariables.tokensCss}
     `,
     transparentBackground: css`
       background: transparent;
