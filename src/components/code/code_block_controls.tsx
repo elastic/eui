@@ -9,14 +9,17 @@
 import React, { FC, Fragment, ReactNode } from 'react';
 import { useEuiTheme } from '../../services';
 import type { EuiCodeBlockPaddingSize } from './code_block';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 import { euiCodeBlockControlsStyles } from './code_block_controls.styles';
 
 export const EuiCodeBlockControls: FC<{
   controls: ReactNode[];
   paddingSize: EuiCodeBlockPaddingSize;
 }> = ({ paddingSize, controls }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiCodeBlockControlsStyles(euiTheme);
+  const styles = euiCodeBlockControlsStyles(
+    useEuiTheme(),
+    useEuiCodeSyntaxVariables()
+  );
   const cssStyles = [styles.euiCodeBlock__controls, styles.offset[paddingSize]];
 
   const hasControls = controls.some((control) => !!control);
