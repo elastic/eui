@@ -139,7 +139,8 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   const [ready, setReady] = useState(!calculationDelayMs);
   useEffect(() => {
     if (calculationDelayMs) {
-      setTimeout(() => setReady(true), calculationDelayMs);
+      const timerId = setTimeout(() => setReady(true), calculationDelayMs);
+      return () => clearTimeout(timerId);
     }
   }, [calculationDelayMs]);
 

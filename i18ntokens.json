@@ -221,14 +221,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 181,
+        "line": 183,
         "column": 8,
-        "index": 5292
+        "index": 5301
       },
       "end": {
-        "line": 184,
+        "line": 186,
         "column": 9,
-        "index": 5401
+        "index": 5410
       }
     },
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
@@ -239,14 +239,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 211,
+        "line": 213,
         "column": 14,
-        "index": 6342
+        "index": 6351
       },
       "end": {
-        "line": 215,
+        "line": 217,
         "column": 16,
-        "index": 6615
+        "index": 6624
       }
     },
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
@@ -257,14 +257,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 219,
         "column": 14,
-        "index": 6648
+        "index": 6657
       },
       "end": {
-        "line": 220,
+        "line": 222,
         "column": 16,
-        "index": 6845
+        "index": 6854
       }
     },
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"

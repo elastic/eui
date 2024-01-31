@@ -71,12 +71,6 @@ type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
 export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
-   * Class name passed to the direct parent of the button
-   *
-   * @deprecated Use `className` instead
-   */
-  anchorClassName?: string;
-  /**
    * Alignment of the popover and arrow relative to the button
    */
   anchorPosition?: PopoverAnchorPosition;
@@ -89,10 +83,6 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    * Triggering element for which to align the popover to
    */
   button: NonNullable<ReactNode>;
-  /**
-   * @deprecated Use `popoverRef` instead
-   */
-  buttonRef?: RefCallback<HTMLDivElement>;
   /**
    * Callback to handle hiding of the popover
    */
@@ -603,15 +593,13 @@ export class EuiPopover extends Component<Props, State> {
 
   popoverRef = (node: HTMLDivElement | null) => {
     this.button = node;
-    setMultipleRefs([this.props.popoverRef, this.props.buttonRef], node);
+    setMultipleRefs([this.props.popoverRef], node);
   };
 
   render() {
     const {
-      anchorClassName,
       anchorPosition,
       button,
-      buttonRef,
       insert,
       isOpen,
       ownFocus,
@@ -653,8 +641,7 @@ export class EuiPopover extends Component<Props, State> {
       {
         'euiPopover-isOpen': this.state.isOpening,
       },
-      className,
-      anchorClassName
+      className
     );
 
     const showArrow = hasArrow && !attachToAnchor;
