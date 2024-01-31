@@ -38,7 +38,7 @@ export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = memo(
 
     const indexOfMatch = normalizedSearchSubject.indexOf(normalizedSearchValue);
     if (indexOfMatch === -1) {
-      return searchSubject;
+      return <>{searchSubject}</>;
     }
 
     const preMatch = searchSubject.substring(0, indexOfMatch);
