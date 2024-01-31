@@ -37,7 +37,8 @@ import { EuiTourHeader } from './_tour_header';
 import { EuiTourFooter } from './_tour_footer';
 import { euiTourStyles, euiTourBeaconStyles } from './tour.styles';
 
-type _EuiPopoverProps = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
+type _EuiPopoverProps = EuiPopoverProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'content' | 'title' | 'step'>;
 type _PopoverOverrides = 'button' | 'closePopover';
 type _PopoverPartials = 'closePopover';
 type ExtendedEuiPopoverProps = Omit<_EuiPopoverProps, _PopoverOverrides> &
