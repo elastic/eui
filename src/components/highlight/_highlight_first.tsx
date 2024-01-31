@@ -51,10 +51,12 @@ export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = memo(
     );
 
     return (
+      // Note: React 16/17 will render empty strings in the DOM. The
+      // `|| undefined` prevents this & keeps snapshots the same for all versions
       <>
-        {preMatch}
+        {preMatch || undefined}
         <HighlightComponent>{match}</HighlightComponent>
-        {postMatch}
+        {postMatch || undefined}
       </>
     );
   }
