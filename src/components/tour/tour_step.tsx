@@ -14,9 +14,11 @@ import React, {
   ReactNode,
   useEffect,
   useState,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
+import { logicalStyles } from '../../global_styling';
 import { CommonProps, ExclusiveUnion, NoArgCallback } from '../common';
 
 import { EuiBeacon } from '../beacon';
@@ -298,8 +300,13 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     ...rest,
   };
 
+  const widthStyles = useMemo(
+    () => logicalStyles({ minWidth, maxWidth }),
+    [minWidth, maxWidth]
+  );
+
   const layout = (
-    <div style={{ minWidth, maxWidth }}>
+    <div style={widthStyles}>
       <EuiPopoverTitle
         css={headerStyles.euiTourHeader}
         className="euiTourHeader"

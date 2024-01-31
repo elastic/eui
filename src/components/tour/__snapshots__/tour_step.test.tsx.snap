@@ -36,12 +36,12 @@ exports[`EuiTourStep renders 1`] = `
           >
             <div
               class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
-              style="height: 12px; width: 12px;"
+              style="block-size: 12px; inline-size: 12px;"
             />
           </div>
           <div>
             <div
-              style="min-width: 300px; max-width: 600px;"
+              style="min-inline-size: 300px; max-inline-size: 600px;"
             >
               <div
                 class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"

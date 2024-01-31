@@ -6,12 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useMemo } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
-import { euiBeaconStyles } from './beacon.styles';
+import { logicalStyles } from '../../global_styling';
 import { useEuiTheme } from '../../services';
+
+import { euiBeaconStyles } from './beacon.styles';
 
 export const COLORS = [
   'subdued',
@@ -51,11 +53,15 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   const styles = euiBeaconStyles(euiTheme);
   const cssStyles = [styles.euiBeacon, styles[color]];
 
-  const beaconStyle = {
-    ...style,
-    height: size,
-    width: size,
-  };
+  const beaconStyle = useMemo(
+    () =>
+      logicalStyles({
+        ...style,
+        height: size,
+        width: size,
+      }),
+    [style, size]
+  );
 
   return (
     <div className={classes} css={cssStyles} style={beaconStyle} {...rest} />

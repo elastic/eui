@@ -91,8 +91,8 @@ describe('EuiTourStep', () => {
     expect(
       container.querySelector('.euiTour__content')?.parentElement
     ).toHaveStyle({
-      'min-width': '240px',
-      'max-width': '420px',
+      'min-inline-size': '240px',
+      'max-inline-size': '420px',
     });
   });
 
