@@ -111,10 +111,9 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
 
           /* I'm not totally sure why setting a percentage max width on the wrapper and a static
              max-width on the underlying image/icon makes sense, but this ports over the previous Sass
-             styles as-is to avoid UI changes/regressions 🤷 Also for some bizarre reason, & > *
-             isn't enough specificity to override .euiImageWrapper's CSS */
-          & > *,
-          & > .euiImageWrapper {
+             styles as-is to avoid UI changes/regressions 🤷 */
+          /* Note: The extra && selector specificity is there to override euiImageWrapper's CSS */
+          && > * {
             ${logicalCSS('max-width', iconMaxWidth)}
           }
         }
