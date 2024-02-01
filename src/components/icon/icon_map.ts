@@ -175,6 +175,7 @@ export const typeToPathMap = {
   iInCircle: 'iInCircle',
   image: 'image',
   importAction: 'import',
+  index: 'index',
   indexClose: 'index_close',
   indexEdit: 'index_edit',
   indexFlush: 'index_flush',

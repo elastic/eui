@@ -123,6 +123,7 @@ export const iconTypes = [
   'iInCircle',
   'image',
   'importAction',
+  'index',
   'indexClose',
   'indexEdit',
   'indexFlush',
