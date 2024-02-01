@@ -84,12 +84,11 @@ export const EuiDatePopoverButton: FunctionComponent<
     },
   ]);
 
-  const formattedValue = useFormatTimeString(
-    value,
-    dateFormat,
+  const formattedValue = useFormatTimeString(value, dateFormat, {
     roundUp,
-    locale
-  );
+    locale,
+    preferLargerRelativeUnits,
+  });
   let title = formattedValue;
 
   const invalidTitle = useEuiI18n(
