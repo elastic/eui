@@ -32,6 +32,13 @@ export const superDatePickerConfig = () => {
     value: true,
   };
 
+  propsToUse.preferLargerRelativeUnits = {
+    ...propsToUse.preferLargerRelativeUnits,
+    type: PropTypes.Boolean,
+    defaultValue: true,
+    value: true,
+  };
+
   propsToUse.locale = {
     ...propsToUse.locale,
     type: PropTypes.String,

@@ -28,6 +28,7 @@ import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 export interface EuiDatePopoverContentProps {
   value: string;
   onChange: (date: string) => void;
+  preferLargerRelativeUnits?: boolean;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;
@@ -41,6 +42,7 @@ export const EuiDatePopoverContent: FunctionComponent<
   EuiDatePopoverContentProps
 > = ({
   value,
+  preferLargerRelativeUnits = true,
   roundUp = false,
   onChange,
   dateFormat,
@@ -108,7 +110,9 @@ export const EuiDatePopoverContent: FunctionComponent<
         <EuiRelativeTab
           dateFormat={dateFormat}
           locale={locale}
-          value={toAbsoluteString(value, roundUp)}
+          value={
+            preferLargerRelativeUnits ? toAbsoluteString(value, roundUp) : value
+          }
           onChange={onChange}
           roundUp={roundUp}
           position={position}
