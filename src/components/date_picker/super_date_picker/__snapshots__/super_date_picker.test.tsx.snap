@@ -41,6 +41,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -109,6 +110,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -241,6 +243,7 @@ exports[`EuiSuperDatePicker props isDisabled config object 1`] = `
   class="euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled"
   data-test-subj="superDatePickerShowDatesButton"
   disabled=""
+  type="button"
 >
   <span
     data-test-subj="customDisabledDisplay"
@@ -293,6 +296,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
         class="euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled"
         data-test-subj="superDatePickerShowDatesButton"
         disabled=""
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -423,6 +427,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -471,6 +476,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -542,6 +548,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -610,6 +617,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -679,6 +687,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
       <button
         class="euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
+        type="button"
       >
         Last 15 minutes
       </button>
@@ -755,6 +764,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
             class="euiDatePopoverButton euiDatePopoverButton--start euiDatePopoverButton-isSelected"
             data-test-subj="superDatePickerstartDatePopoverButton"
             title="~ 15 minutes ago"
+            type="button"
           >
             ~ 15 minutes ago
           </button>
@@ -775,6 +785,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
             class="euiDatePopoverButton euiDatePopoverButton--end"
             data-test-subj="superDatePickerendDatePopoverButton"
             title="now"
+            type="button"
           >
             now
           </button>
