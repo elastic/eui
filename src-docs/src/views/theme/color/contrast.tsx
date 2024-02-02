@@ -28,7 +28,7 @@ import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables
 import {
   BACKGROUND_COLORS,
   _EuiBackgroundColor,
-  useEuiBackgroundColor,
+  euiBackgroundColor,
 } from '../../../../../src/global_styling';
 import {
   BUTTON_COLORS,
@@ -297,7 +297,9 @@ export default () => {
                         <ColorSectionJS
                           key={color}
                           color={color as keyof _EuiThemeColorsMode}
-                          colorValue={useEuiBackgroundColor(
+                          // Can't use hooks in a conditional switch, so use the non-hook version
+                          colorValue={euiBackgroundColor(
+                            euiTheme,
                             color as _EuiBackgroundColor
                           )}
                           hookName="useEuiBackgroundColor"
@@ -314,7 +316,9 @@ export default () => {
                         <ColorSectionJS
                           key={color}
                           color={color as keyof _EuiThemeColorsMode}
-                          colorValue={useEuiBackgroundColor(
+                          // Can't use hooks in a conditional switch
+                          colorValue={euiBackgroundColor(
+                            euiTheme,
                             color as _EuiBackgroundColor,
                             { method: 'transparent' }
                           )}
