@@ -313,5 +313,34 @@ describe('EuiSuperDatePicker', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+
+    describe('onRefreshChange', () => {
+      it('returns the expected props', () => {
+        const onRefreshChange = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            onRefreshChange={onRefreshChange}
+          />
+        );
+
+        fireEvent.click(
+          getByTestSubject('superDatePickerToggleQuickMenuButton')
+        );
+        fireEvent.change(
+          getByTestSubject('superDatePickerToggleRefreshButton')
+        );
+        fireEvent.change(
+          getByTestSubject('superDatePickerRefreshIntervalUnitsSelect'),
+          { target: { value: 'h' } }
+        );
+
+        expect(onRefreshChange).toHaveBeenCalledWith({
+          refreshInterval: 3600000,
+          intervalUnits: 'h',
+          isPaused: expect.any(Boolean),
+        });
+      });
+    });
   });
 });

@@ -20,7 +20,11 @@ import {
   RenderI18nTimeOptions,
   TimeOptions,
 } from '../super_date_picker/time_options';
-import { Milliseconds, TimeUnitId, ApplyRefreshInterval } from '../types';
+import {
+  Milliseconds,
+  RefreshUnitsOptions,
+  ApplyRefreshInterval,
+} from '../types';
 
 const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
@@ -48,7 +52,7 @@ function fromMilliseconds(milliseconds: Milliseconds): EuiRefreshIntervalState {
   };
 }
 
-function toMilliseconds(units: TimeUnitId, value: Milliseconds) {
+function toMilliseconds(units: RefreshUnitsOptions, value: Milliseconds) {
   switch (units) {
     case 'h':
       return Math.round(value * MILLISECONDS_IN_HOUR);
@@ -70,14 +74,21 @@ export type EuiRefreshIntervalProps = {
    */
   refreshInterval?: Milliseconds;
   /**
-   * Passes back the updated state of `isPaused` and `refreshInterval`.
+   * Passes back the updated state of `isPaused` `refreshInterval`, and `intervalUnits`.
    */
   onRefreshChange: ApplyRefreshInterval;
+  /**
+   * By default, refresh interval units will be rounded up to next largest unit of time
+   * (for example, 90 seconds will become 2m).
+   *
+   * If you do not want this behavior, you can manually control the rendered unit via this prop.
+   */
+  intervalUnits?: RefreshUnitsOptions;
 };
 
 interface EuiRefreshIntervalState {
   value: number | '';
-  units: TimeUnitId;
+  units: RefreshUnitsOptions;
 }
 
 export class EuiRefreshInterval extends Component<
@@ -110,7 +121,7 @@ export class EuiRefreshInterval extends Component<
   onUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     this.setState(
       {
-        units: event.target.value as TimeUnitId,
+        units: event.target.value as RefreshUnitsOptions,
       },
       this.applyRefreshInterval
     );
@@ -123,6 +134,7 @@ export class EuiRefreshInterval extends Component<
     if (value !== '' && value > 0 && onRefreshChange !== undefined) {
       onRefreshChange({
         refreshInterval: toMilliseconds(units, value),
+        intervalUnits: units,
         isPaused: false,
       });
     }
@@ -148,6 +160,7 @@ export class EuiRefreshInterval extends Component<
 
     onRefreshChange({
       refreshInterval,
+      intervalUnits: units,
       isPaused: refreshInterval <= 0 ? true : !!isPaused,
     });
   };
@@ -161,6 +174,7 @@ export class EuiRefreshInterval extends Component<
     }
     onRefreshChange({
       refreshInterval: toMilliseconds(units, value),
+      intervalUnits: units,
       isPaused: !isPaused,
     });
   };

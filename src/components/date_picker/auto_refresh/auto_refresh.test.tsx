@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
 
@@ -40,6 +41,29 @@ describe('EuiAutoRefresh', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  test('onRefreshChange passes back all expected values', () => {
+    const onRefreshChange = jest.fn();
+    const { getByLabelText, getByTestSubject } = render(
+      <EuiAutoRefresh
+        isPaused={false}
+        refreshInterval={1000}
+        onRefreshChange={onRefreshChange}
+      />
+    );
+
+    fireEvent.click(getByLabelText('Auto refresh'));
+    fireEvent.change(
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect'),
+      { target: { value: 'h' } }
+    );
+
+    expect(onRefreshChange).toHaveBeenCalledWith({
+      refreshInterval: 3600000,
+      intervalUnits: 'h',
+      isPaused: false,
+    });
+  });
 });
 
 describe('EuiAutoRefreshButton', () => {
@@ -69,5 +93,28 @@ describe('EuiAutoRefreshButton', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('onRefreshChange passes back all expected values', () => {
+    const onRefreshChange = jest.fn();
+    const { getByRole, getByTestSubject } = render(
+      <EuiAutoRefreshButton
+        isPaused={false}
+        refreshInterval={1000}
+        onRefreshChange={onRefreshChange}
+      />
+    );
+
+    fireEvent.click(getByRole('button'));
+    fireEvent.change(
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect'),
+      { target: { value: 'h' } }
+    );
+
+    expect(onRefreshChange).toHaveBeenCalledWith({
+      refreshInterval: 3600000,
+      intervalUnits: 'h',
+      isPaused: false,
+    });
   });
 });
