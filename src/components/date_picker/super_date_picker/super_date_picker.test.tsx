@@ -320,7 +320,7 @@ describe('EuiSuperDatePicker', () => {
       });
     });
 
-    describe('preferLargerRelativeUnits', () => {
+    describe('canRoundRelativeUnits', () => {
       const props = {
         onTimeChange: noop,
         start: 'now-300m',
@@ -329,7 +329,7 @@ describe('EuiSuperDatePicker', () => {
 
       it('defaults to true, which will round relative units up to the next largest unit', () => {
         const { getByTestSubject } = render(
-          <EuiSuperDatePicker {...props} preferLargerRelativeUnits={true} />
+          <EuiSuperDatePicker {...props} canRoundRelativeUnits={true} />
         );
         fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
 
@@ -355,7 +355,7 @@ describe('EuiSuperDatePicker', () => {
 
       it('when false, allows preserving the unit set in the start/end time timestamp', () => {
         const { getByTestSubject } = render(
-          <EuiSuperDatePicker {...props} preferLargerRelativeUnits={false} />
+          <EuiSuperDatePicker {...props} canRoundRelativeUnits={false} />
         );
         fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
 

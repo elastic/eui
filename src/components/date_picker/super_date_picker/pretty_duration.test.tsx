@@ -154,8 +154,8 @@ describe('useFormatTimeString', () => {
       ).toBe('~ 15分後');
     });
 
-    describe('preferLargerRelativeUnits', () => {
-      const option = { preferLargerRelativeUnits: false };
+    describe('canRoundRelativeUnits', () => {
+      const option = { canRoundRelativeUnits: false };
 
       it("allows skipping moment.fromNow()'s default rounding", () => {
         expect(

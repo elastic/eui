@@ -187,7 +187,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * If you do not want this behavior and instead wish to keep the exact units
    * input by the user, set this flag to `false`.
    */
-  preferLargerRelativeUnits?: boolean;
+  canRoundRelativeUnits?: boolean;
 };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
@@ -250,7 +250,7 @@ export class EuiSuperDatePickerInternal extends Component<
     recentlyUsedRanges: [],
     refreshInterval: 1000,
     showUpdateButton: true,
-    preferLargerRelativeUnits: true,
+    canRoundRelativeUnits: true,
     start: 'now-15m',
     timeFormat: 'HH:mm',
     width: 'restricted',
@@ -478,7 +478,7 @@ export class EuiSuperDatePickerInternal extends Component<
       isQuickSelectOnly,
       showUpdateButton,
       commonlyUsedRanges,
-      preferLargerRelativeUnits,
+      canRoundRelativeUnits,
       timeOptions,
       dateFormat,
       refreshInterval,
@@ -573,7 +573,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
-                preferLargerRelativeUnits={preferLargerRelativeUnits}
+                canRoundRelativeUnits={canRoundRelativeUnits}
                 isOpen={this.state.isStartDatePopoverOpen}
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
@@ -594,7 +594,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
-                preferLargerRelativeUnits={preferLargerRelativeUnits}
+                canRoundRelativeUnits={canRoundRelativeUnits}
                 roundUp
                 isOpen={this.state.isEndDatePopoverOpen}
                 onPopoverToggle={this.onEndDatePopoverToggle}

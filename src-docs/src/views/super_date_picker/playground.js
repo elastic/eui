@@ -32,8 +32,8 @@ export const superDatePickerConfig = () => {
     value: true,
   };
 
-  propsToUse.preferLargerRelativeUnits = {
-    ...propsToUse.preferLargerRelativeUnits,
+  propsToUse.canRoundRelativeUnits = {
+    ...propsToUse.canRoundRelativeUnits,
     type: PropTypes.Boolean,
     defaultValue: true,
     value: true,

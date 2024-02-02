@@ -38,7 +38,7 @@ export interface EuiDatePopoverButtonProps {
   onPopoverClose: EuiPopoverProps['closePopover'];
   onPopoverToggle: MouseEventHandler<HTMLButtonElement>;
   position: 'start' | 'end';
-  preferLargerRelativeUnits?: boolean;
+  canRoundRelativeUnits?: boolean;
   roundUp?: boolean;
   timeFormat: string;
   value: string;
@@ -57,7 +57,7 @@ export const EuiDatePopoverButton: FunctionComponent<
     needsUpdating,
     value,
     buttonProps,
-    preferLargerRelativeUnits,
+    canRoundRelativeUnits,
     roundUp,
     onChange,
     locale,
@@ -87,7 +87,7 @@ export const EuiDatePopoverButton: FunctionComponent<
   const formattedValue = useFormatTimeString(value, dateFormat, {
     roundUp,
     locale,
-    preferLargerRelativeUnits,
+    canRoundRelativeUnits,
   });
   let title = formattedValue;
 
@@ -134,7 +134,7 @@ export const EuiDatePopoverButton: FunctionComponent<
       <EuiDatePopoverContent
         value={value}
         roundUp={roundUp}
-        preferLargerRelativeUnits={preferLargerRelativeUnits}
+        canRoundRelativeUnits={canRoundRelativeUnits}
         onChange={onChange}
         dateFormat={dateFormat}
         timeFormat={timeFormat}

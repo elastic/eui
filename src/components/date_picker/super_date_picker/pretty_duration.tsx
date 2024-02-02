@@ -149,13 +149,13 @@ export const useFormatTimeString = (
   options?: {
     locale?: LocaleSpecifier;
     roundUp?: boolean;
-    preferLargerRelativeUnits?: boolean;
+    canRoundRelativeUnits?: boolean;
   }
 ): string => {
   const {
     locale = 'en',
     roundUp = false,
-    preferLargerRelativeUnits = true,
+    canRoundRelativeUnits = true,
   } = options || {};
 
   // i18n'd strings
@@ -180,7 +180,7 @@ export const useFormatTimeString = (
   }
 
   if (moment.isMoment(tryParse)) {
-    if (preferLargerRelativeUnits) {
+    if (canRoundRelativeUnits) {
       return `~ ${tryParse.locale(locale).fromNow()}`;
     } else {
       // To force a specific unit to be used, we need to skip moment.fromNow()
