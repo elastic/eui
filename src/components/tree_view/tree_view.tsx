@@ -406,7 +406,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                               ) : null}
                               <span
                                 ref={ref}
-                                className="euiTreeView__nodeLabel"
+                                className="euiTreeView__nodeLabel eui-textTruncate"
                               >
                                 {node.label}
                               </span>
