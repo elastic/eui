@@ -32,8 +32,8 @@ export const colorsInfo = {
   title: 'Colors',
   notice: <ThemeNotice />,
   showThemeLanguageToggle: true,
-  description: (
-    <>
+  intro: (
+    <EuiText grow={false}>
       <p>
         Elastic UI builds with a very limited palette. It uses a core set of
         three colors with a green / orange / red qualitative set and combined
@@ -46,7 +46,7 @@ export const colorsInfo = {
         their <strong>evaluated</strong> value but by their{' '}
         <strong>purpose</strong>.
       </p>
-    </>
+    </EuiText>
   ),
 };
 
