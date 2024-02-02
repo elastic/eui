@@ -84,13 +84,15 @@ export default () => {
     <>
       {renderTimeRange()}
       <EuiSpacer />
-      <EuiSuperDatePicker
-        isLoading={isLoading}
-        start={start}
-        end={end}
-        onTimeChange={onTimeChange}
-        onRefresh={onRefresh}
-      />
+      <form>
+        <EuiSuperDatePicker
+          isLoading={isLoading}
+          start={start}
+          end={end}
+          onTimeChange={onTimeChange}
+          onRefresh={onRefresh}
+        />
+      </form>
     </>
   );
 };
