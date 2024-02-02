@@ -166,6 +166,8 @@ color: $\{euiTheme.colors.${foreground}};`;
               color: foregroundColor,
               borderRadius: euiTheme.border.radius.medium,
             }}
+            // @ts-expect-error - this isn't a valid color type, we mostly just want to disable the default EuiListGroupItem button color from being rendered since we're setting our own via `style`
+            color="inherit"
             label={sanitizeColorName(foreground)}
           />
         )}
