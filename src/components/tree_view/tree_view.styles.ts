@@ -82,5 +82,10 @@ export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
         border-radius: ${euiTheme.border.radius.small};
       `,
     },
+
+    // Line height helps vertically center the icons
+    euiTreeView__iconWrapper: css`
+      line-height: 0;
+    `,
   };
 };

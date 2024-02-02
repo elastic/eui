@@ -399,7 +399,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 />
                               ) : null}
                               {node.icon && !node.useEmptyIcon ? (
-                                <span className="euiTreeView__iconWrapper">
+                                <span
+                                  css={styles.euiTreeView__iconWrapper}
+                                  className="euiTreeView__iconWrapper"
+                                >
                                   {this.isNodeOpen(node) &&
                                   node.iconWhenExpanded
                                     ? node.iconWhenExpanded
