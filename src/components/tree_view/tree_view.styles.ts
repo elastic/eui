@@ -13,6 +13,7 @@ import {
   euiFontSize,
   euiFocusRing,
   logicalCSS,
+  mathWithUnits,
 } from '../../global_styling';
 
 export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
@@ -75,10 +76,12 @@ export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       default: css`
         ${logicalCSS('height', defaultSize)}
+        gap: ${euiTheme.size.s};
         border-radius: ${euiTheme.border.radius.medium};
       `,
       compressed: css`
         ${logicalCSS('height', compressedSize)}
+        gap: ${euiTheme.size.xs};
         border-radius: ${euiTheme.border.radius.small};
       `,
     },
