@@ -1,28 +1,5 @@
-.euiTreeView__nodeInner {
-  @include euiTextTruncate;
-
-  padding-left: $euiSizeS;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: $euiSizeXL;
-  border-radius: $euiBorderRadius;
-  width: 100%;
-  text-align-last: left;
-
-  &:focus {
-    @include euiFocusRing('small', 'inner');
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    @include euiFocusBackground($euiTextColor);
-  }
-
-  .euiTreeView__iconPlaceholder {
-    width: $euiSizeXL;
-  }
+.euiTreeView__iconPlaceholder {
+  width: $euiSizeXL;
 }
 
 .euiTreeView__iconWrapper {
@@ -36,10 +13,6 @@
 }
 
 .euiTreeView--compressed {
-  .euiTreeView__nodeInner {
-    height: $euiSizeL;
-  }
-
   .euiTreeView__iconWrapper {
     margin: 0 ($euiSizeS * .75) 0 0;
   }

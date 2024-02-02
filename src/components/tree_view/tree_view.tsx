@@ -366,6 +366,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                           : null,
                         node.className ? node.className : null
                       );
+                      const buttonStyles = [
+                        styles.button.euiTreeView__nodeInner,
+                        styles.button[display],
+                      ];
 
                       return (
                         <React.Fragment>
@@ -380,6 +384,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 this.onKeyDown(event, node)
                               }
                               onClick={() => this.handleNodeClick(node)}
+                              css={buttonStyles}
                               className={nodeButtonClasses}
                             >
                               {showExpansionArrows && node.children ? (

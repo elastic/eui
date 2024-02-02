@@ -8,8 +8,12 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
-import { euiFontSize, logicalCSS } from '../../global_styling';
+import { UseEuiTheme, transparentize } from '../../services';
+import {
+  euiFontSize,
+  euiFocusRing,
+  logicalCSS,
+} from '../../global_styling';
 
 export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -45,6 +49,37 @@ export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       expanded: css`
         ${logicalCSS('max-height', '100vh')}
+      `,
+    },
+
+    button: {
+      euiTreeView__nodeInner: css`
+        ${logicalCSS('width', '100%')}
+        ${logicalCSS('padding-left', euiTheme.size.s)}
+        ${logicalCSS('padding-right', euiTheme.size.xxs)}
+        display: flex;
+        align-items: center;
+
+        &:focus {
+          ${euiFocusRing(euiThemeContext, 'inset')}
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: ${transparentize(
+            euiTheme.colors.text,
+            euiTheme.focus.transparency
+          )};
+        }
+      `,
+      default: css`
+        ${logicalCSS('height', defaultSize)}
+        border-radius: ${euiTheme.border.radius.medium};
+      `,
+      compressed: css`
+        ${logicalCSS('height', compressedSize)}
+        border-radius: ${euiTheme.border.radius.small};
       `,
     },
   };
