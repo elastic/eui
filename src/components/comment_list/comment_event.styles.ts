@@ -7,41 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, tintOrShade } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
-
-export const euiCommentEventBorderColors = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
-  const ratio = 0.6;
-  return {
-    warning: css`
-      border-color: ${tintOrShade(euiTheme.colors.warning, 0.4, colorMode)};
-    `,
-    accent: css`
-      border-color: ${tintOrShade(euiTheme.colors.accent, ratio, colorMode)};
-    `,
-    primary: css`
-      border-color: ${tintOrShade(euiTheme.colors.primary, ratio, colorMode)};
-    `,
-    success: css`
-      border-color: ${tintOrShade(euiTheme.colors.success, ratio, colorMode)};
-    `,
-    danger: css`
-      border-color: ${tintOrShade(euiTheme.colors.danger, ratio, colorMode)};
-    `,
-    subdued: css`
-      border-color: ${euiTheme.border.color};
-    `,
-    transparent: css`
-      border-color: ${euiTheme.border.color};
-    `,
-    plain: css`
-      border-color: ${euiTheme.border.color};
-    `,
-  };
-};
 
 export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
