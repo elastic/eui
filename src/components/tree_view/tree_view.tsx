@@ -79,13 +79,6 @@ export interface Node {
 
 export type EuiTreeViewDisplayOptions = 'default' | 'compressed';
 
-const displayToClassNameMap: {
-  [option in EuiTreeViewDisplayOptions]: string | null;
-} = {
-  default: null,
-  compressed: 'euiTreeView--compressed',
-};
-
 interface EuiTreeViewState {
   openItems: string[];
   activeItem: string;
@@ -287,12 +280,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     const cssStyles = [styles.euiTreeView, styles[display]];
 
     // Computed classNames
-    const classes = classNames(
-      'euiTreeView',
-      display ? displayToClassNameMap[display] : null,
-      { 'euiTreeView--withArrows': showExpansionArrows },
-      className
-    );
+    const classes = classNames('euiTreeView', className);
 
     const instructionsId = `${this.state.treeID}--instruction`;
 
@@ -358,13 +346,11 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
 
                       const nodeButtonClasses = classNames(
                         'euiTreeView__nodeInner',
-                        showExpansionArrows && node.children
-                          ? 'euiTreeView__nodeInner--withArrows'
-                          : null,
-                        this.state.activeItem === node.id
-                          ? 'euiTreeView__node--active'
-                          : null,
-                        node.className ? node.className : null
+                        node.className,
+                        {
+                          'euiTreeView__node--active':
+                            this.state.activeItem === node.id,
+                        }
                       );
                       const buttonStyles = [
                         styles.button.euiTreeView__nodeInner,
