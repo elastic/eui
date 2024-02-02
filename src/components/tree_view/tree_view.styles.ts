@@ -9,16 +9,25 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { euiFontSize, logicalCSS } from '../../global_styling';
 
 export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
     euiTreeView: css`
+      margin: 0;
+      list-style-type: none;
+
       & & {
         ${logicalCSS('padding-left', euiTheme.size.l)}
       }
+    `,
+    default: css`
+      font-size: ${euiFontSize(euiThemeContext, 'm').fontSize};
+    `,
+    compressed: css`
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     `,
   };
 };

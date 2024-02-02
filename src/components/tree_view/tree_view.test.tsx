@@ -79,7 +79,7 @@ describe('EuiTreeView', () => {
       <EuiTreeView items={items} {...requiredProps} />
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   test('length of open items', () => {

@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTreeView is rendered 1`] = `
-<div
-  class="euiText euiTreeView__wrapper emotion-euiText-m"
->
+<div>
   <p
     class="emotion-euiScreenReaderOnly"
     id="euiTreeView_generated-id--instruction"
@@ -43,96 +41,92 @@ exports[`EuiTreeView is rendered 1`] = `
       <div
         id="euiTreeView_generated-id_item_one"
       >
-        <div
-          class="euiText euiTreeView__wrapper emotion-euiText-m"
+        <ul
+          aria-label="Item One child of aria-label"
+          class="euiTreeView emotion-euiTreeView"
         >
-          <ul
-            aria-label="Item One child of aria-label"
-            class="euiTreeView emotion-euiTreeView"
+          <li
+            class="euiTreeView__node"
           >
-            <li
-              class="euiTreeView__node"
+            <button
+              aria-controls="euiTreeView_generated-id_item_a"
+              aria-expanded="false"
+              class="euiTreeView__nodeInner"
+              data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+              id="item_a"
             >
-              <button
-                aria-controls="euiTreeView_generated-id_item_a"
-                aria-expanded="false"
-                class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
-                id="item_a"
+              <span
+                class="euiTreeView__iconWrapper"
               >
                 <span
-                  class="euiTreeView__iconWrapper"
-                >
-                  <span
-                    data-euiicon-type="document"
-                  />
-                </span>
-                <span
-                  class="euiTreeView__nodeLabel"
-                >
-                  Item A
-                </span>
-              </button>
-              <div
-                id="euiTreeView_generated-id_item_a"
-              />
-            </li>
-            <li
-              class="euiTreeView__node"
+                  data-euiicon-type="document"
+                />
+              </span>
+              <span
+                class="euiTreeView__nodeLabel"
+              >
+                Item A
+              </span>
+            </button>
+            <div
+              id="euiTreeView_generated-id_item_a"
+            />
+          </li>
+          <li
+            class="euiTreeView__node"
+          >
+            <button
+              aria-controls="euiTreeView_generated-id_item_b"
+              aria-expanded="false"
+              class="euiTreeView__nodeInner"
+              data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+              id="item_b"
             >
-              <button
-                aria-controls="euiTreeView_generated-id_item_b"
-                aria-expanded="false"
-                class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
-                id="item_b"
+              <span
+                class="euiTreeView__iconWrapper"
               >
                 <span
-                  class="euiTreeView__iconWrapper"
-                >
-                  <span
-                    data-euiicon-type="arrowRight"
-                  />
-                </span>
-                <span
-                  class="euiTreeView__nodeLabel"
-                >
-                  Item B
-                </span>
-              </button>
-              <div
-                id="euiTreeView_generated-id_item_b"
-              />
-            </li>
-            <li
-              class="euiTreeView__node"
+                  data-euiicon-type="arrowRight"
+                />
+              </span>
+              <span
+                class="euiTreeView__nodeLabel"
+              >
+                Item B
+              </span>
+            </button>
+            <div
+              id="euiTreeView_generated-id_item_b"
+            />
+          </li>
+          <li
+            class="euiTreeView__node"
+          >
+            <button
+              aria-controls="euiTreeView_generated-id_item_c"
+              aria-expanded="false"
+              class="euiTreeView__nodeInner"
+              data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+              id="item_c"
             >
-              <button
-                aria-controls="euiTreeView_generated-id_item_c"
-                aria-expanded="false"
-                class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
-                id="item_c"
+              <span
+                class="euiTreeView__iconWrapper"
               >
                 <span
-                  class="euiTreeView__iconWrapper"
-                >
-                  <span
-                    data-euiicon-type="arrowRight"
-                  />
-                </span>
-                <span
-                  class="euiTreeView__nodeLabel"
-                >
-                  Item C
-                </span>
-              </button>
-              <div
-                id="euiTreeView_generated-id_item_c"
-              />
-            </li>
-          </ul>
-        </div>
+                  data-euiicon-type="arrowRight"
+                />
+              </span>
+              <span
+                class="euiTreeView__nodeLabel"
+              >
+                Item C
+              </span>
+            </button>
+            <div
+              id="euiTreeView_generated-id_item_c"
+            />
+          </li>
+        </ul>
       </div>
     </li>
     <li
