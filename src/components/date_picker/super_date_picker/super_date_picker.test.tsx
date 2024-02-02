@@ -314,6 +314,33 @@ describe('EuiSuperDatePicker', () => {
       });
     });
 
+    describe('refreshInterval and refreshIntervalUnits', () => {
+      it('renders', () => {
+        const { container, getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            onRefreshChange={noop}
+            refreshInterval={3600000}
+            refreshIntervalUnits="m"
+            isPaused={false}
+          />
+        );
+
+        const autoRefreshButton = container.querySelector(
+          '.euiAutoRefreshButton'
+        )!;
+        expect(autoRefreshButton).toHaveTextContent('60 m');
+
+        fireEvent.click(autoRefreshButton);
+        expect(
+          getByTestSubject('superDatePickerRefreshIntervalInput')
+        ).toHaveValue(60);
+        expect(
+          getByTestSubject('superDatePickerRefreshIntervalUnitsSelect')
+        ).toHaveValue('m');
+      });
+    });
+
     describe('onRefreshChange', () => {
       it('returns the expected props', () => {
         const onRefreshChange = jest.fn();

@@ -30,16 +30,19 @@ const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
 const MILLISECONDS_IN_HOUR = MILLISECONDS_IN_MINUTE * 60;
 
-function fromMilliseconds(milliseconds: Milliseconds): EuiRefreshIntervalState {
+function fromMilliseconds(
+  milliseconds: Milliseconds,
+  unit?: RefreshUnitsOptions
+): EuiRefreshIntervalState {
   const round = (value: number) => parseFloat(value.toFixed(2));
-  if (milliseconds > MILLISECONDS_IN_HOUR) {
+  if (unit === 'h' || (!unit && milliseconds > MILLISECONDS_IN_HOUR)) {
     return {
       units: 'h',
       value: round(milliseconds / MILLISECONDS_IN_HOUR),
     };
   }
 
-  if (milliseconds > MILLISECONDS_IN_MINUTE) {
+  if (unit === 'm' || (!unit && milliseconds > MILLISECONDS_IN_MINUTE)) {
     return {
       units: 'm',
       value: round(milliseconds / MILLISECONDS_IN_MINUTE),
@@ -101,7 +104,8 @@ export class EuiRefreshInterval extends Component<
   };
 
   state: EuiRefreshIntervalState = fromMilliseconds(
-    this.props.refreshInterval || 0
+    this.props.refreshInterval || 0,
+    this.props.intervalUnits
   );
 
   generateId = htmlIdGenerator();

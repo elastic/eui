@@ -75,7 +75,9 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
           }
           readOnly={readOnly}
           disabled={isDisabled}
-          value={usePrettyInterval(Boolean(isPaused), refreshInterval)}
+          value={usePrettyInterval(Boolean(isPaused), refreshInterval, {
+            unit: intervalUnits,
+          })}
           {...rest}
         />
       }
@@ -128,7 +130,11 @@ export const EuiAutoRefreshButton: FunctionComponent<
   const autoRefeshLabelOn = useEuiI18n(
     'euiAutoRefresh.buttonLabelOn',
     'Auto refresh is on and set to {prettyInterval}',
-    { prettyInterval: usePrettyInterval(Boolean(isPaused), refreshInterval) }
+    {
+      prettyInterval: usePrettyInterval(Boolean(isPaused), refreshInterval, {
+        unit: intervalUnits,
+      }),
+    }
   );
 
   return (
@@ -144,7 +150,10 @@ export const EuiAutoRefreshButton: FunctionComponent<
           isDisabled={isDisabled}
           {...rest}
         >
-          {usePrettyInterval(Boolean(isPaused), refreshInterval, shortHand)}
+          {usePrettyInterval(Boolean(isPaused), refreshInterval, {
+            shortHand,
+            unit: intervalUnits,
+          })}
         </EuiButtonEmpty>
       }
       isOpen={isPopoverOpen}
