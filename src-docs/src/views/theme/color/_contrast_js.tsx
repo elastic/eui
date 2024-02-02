@@ -56,7 +56,12 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
       }}
     >
       <EuiText size="xs">
-        <EuiFlexGrid columns={2} direction="column" gutterSize="s">
+        <EuiFlexGrid
+          css={{ gridTemplateRows: 'auto', gridAutoFlow: 'row' }}
+          columns={2}
+          direction="column"
+          gutterSize="s"
+        >
           {showTextVariants && colorIsCore(colorValue) && (
             <ColorsContrastItem
               foreground={`${color}Text`}

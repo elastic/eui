@@ -83,7 +83,12 @@ export const ColorSectionSass: FunctionComponent<ColorSection> = ({
       style={{ background: matchPanelColor ? palette[color] : undefined }}
     >
       <EuiText size="xs">
-        <EuiFlexGrid columns={2} direction="column" gutterSize="s">
+        <EuiFlexGrid
+          css={{ gridTemplateRows: 'auto', gridAutoFlow: 'row' }}
+          columns={2}
+          direction="column"
+          gutterSize="s"
+        >
           {showTextVariants && colorIsCore(color) && (
             <ColorsContrastItem
               foreground={`${color}Text`}
