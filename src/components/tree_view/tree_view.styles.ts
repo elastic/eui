@@ -14,6 +14,9 @@ import { euiFontSize, logicalCSS } from '../../global_styling';
 export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const defaultSize = euiTheme.size.xl;
+  const compressedSize = euiTheme.size.l;
+
   return {
     euiTreeView: css`
       margin: 0;
@@ -29,5 +32,20 @@ export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
     compressed: css`
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     `,
+
+    li: {
+      euiTreeView__node: css``,
+      default: css`
+        ${logicalCSS('max-height', defaultSize)}
+        line-height: ${defaultSize};
+      `,
+      compressed: css`
+        ${logicalCSS('max-height', compressedSize)}
+        line-height: ${compressedSize};
+      `,
+      expanded: css`
+        ${logicalCSS('max-height', '100vh')}
+      `,
+    },
   };
 };

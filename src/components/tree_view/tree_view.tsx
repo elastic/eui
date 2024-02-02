@@ -347,13 +347,14 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                             'aria-labelledby': `${buttonId} ${rest['aria-labelledby']}`,
                           };
 
-                      const nodeClasses = classNames(
-                        'euiTreeView__node',
-                        display ? displayToClassNameMap[display] : null,
-                        {
-                          'euiTreeView__node--expanded': this.isNodeOpen(node),
-                        }
-                      );
+                      const nodeClasses = classNames('euiTreeView__node', {
+                        'euiTreeView__node--expanded': this.isNodeOpen(node),
+                      });
+                      const liStyles = [
+                        styles.li.euiTreeView__node,
+                        styles.li[display],
+                        this.isNodeOpen(node) && styles.li.expanded,
+                      ];
 
                       const nodeButtonClasses = classNames(
                         'euiTreeView__nodeInner',
@@ -368,7 +369,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
 
                       return (
                         <React.Fragment>
-                          <li className={nodeClasses}>
+                          <li css={liStyles} className={nodeClasses}>
                             <button
                               id={buttonId}
                               aria-controls={wrappingId}

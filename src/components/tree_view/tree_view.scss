@@ -1,12 +1,3 @@
-.euiTreeView__node {
-  max-height: $euiSizeXL;
-  line-height: $euiSizeXL;
-}
-
-.euiTreeView__node--expanded {
-  max-height: 100vh;
-}
-
 .euiTreeView__nodeInner {
   @include euiTextTruncate;
 
@@ -48,32 +39,21 @@
   }
 }
 
-// TODO: Address nesting during Emotion conversion, if possible
-// stylelint-disable max-nesting-depth
 .euiTreeView--compressed {
-  .euiTreeView__node {
-    max-height: $euiSizeL;
-    line-height: $euiSizeL;
-
-    .euiTreeView__nodeInner {
-      height: $euiSizeL;
-    }
-
-    .euiTreeView__iconWrapper {
-      margin: 0 ($euiSizeS * .75) 0 0;
-    }
-
-    .euiTreeView__nodeLabel {
-      margin-top: -1px;
-    }
-
-    .euiTreeView__iconPlaceholder {
-      width: $euiSizeL;
-    }
+  .euiTreeView__nodeInner {
+    height: $euiSizeL;
   }
 
-  .euiTreeView__node--expanded {
-    max-height: 100vh;
+  .euiTreeView__iconWrapper {
+    margin: 0 ($euiSizeS * .75) 0 0;
+  }
+
+  .euiTreeView__nodeLabel {
+    margin-top: -1px;
+  }
+
+  .euiTreeView__iconPlaceholder {
+    width: $euiSizeL;
   }
 }
 
