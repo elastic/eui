@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { ThemeContext } from '../../../components/with_theme';
 
 import {
@@ -48,22 +48,21 @@ export const contrastSections = [
 const background_colors = BACKGROUND_COLORS.filter(
   (color) => color !== 'transparent'
 );
+const backgroundButtons = [
+  'container',
+  // 'hover', Commenting out for now since contrast can't be calculated on transparent values
+  'button',
+].map((m) => {
+  return {
+    id: m,
+    label: m,
+  };
+});
 
 export default () => {
   const euiTheme = useEuiTheme();
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(4.5);
-
-  const backgroundButtons = [
-    'container',
-    // 'hover', Commenting out for now since contrast can't be calculated on transparent values
-    'button',
-  ].map((m) => {
-    return {
-      id: m,
-      label: m,
-    };
-  });
 
   const [backgroundColors, setBackgroundColors] =
     useState<any>(background_colors);
@@ -74,7 +73,7 @@ export default () => {
     backgroundButtons[0].id
   );
 
-  const switchBackgroundColors = (id: string) => {
+  const switchBackgroundColors = useCallback((id: string) => {
     switch (id) {
       case 'container':
         setBackgroundSelected(id);
@@ -92,7 +91,7 @@ export default () => {
         setBackgroundFunction('euiButtonColor(color)');
         break;
     }
-  };
+  }, []);
 
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
