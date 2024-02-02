@@ -19,19 +19,10 @@ exports[`EuiPopover is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiPopover props anchorClassName is rendered 1`] = `
-<div
-  class="euiPopover test emotion-euiPopover-inline-block"
-  id="3"
->
-  <button />
-</div>
-`;
-
 exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
-  id="6"
+  id="5"
 >
   <button />
 </div>
@@ -40,7 +31,7 @@ exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
-  id="8"
+  id="7"
 >
   <button />
 </div>
@@ -49,7 +40,7 @@ exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
-  id="7"
+  id="6"
 >
   <button />
 </div>
@@ -59,7 +50,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="20"
+    id="19"
   >
     <button />
     <div
@@ -111,7 +102,7 @@ exports[`EuiPopover props buffer 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="21"
+    id="20"
   >
     <button />
     <div
@@ -161,7 +152,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="22"
+    id="21"
   >
     <button />
     <div
@@ -220,7 +211,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="16"
+    id="15"
   >
     <button />
     <div
@@ -269,7 +260,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
 exports[`EuiPopover props isOpen defaults to false 1`] = `
 <div
   class="euiPopover emotion-euiPopover-inline-block"
-  id="9"
+  id="8"
 >
   <button />
 </div>
@@ -279,7 +270,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="10"
+    id="9"
   >
     <button />
     <div
@@ -329,7 +320,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="11"
+    id="10"
   >
     <button />
     <div
@@ -379,7 +370,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="12"
+    id="11"
   >
     <button />
     <div
@@ -420,7 +411,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="13"
+    id="12"
   >
     <button />
     <div
@@ -470,7 +461,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="14"
+    id="13"
   >
     <button />
     <div
@@ -520,7 +511,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="15"
+    id="14"
   >
     <button />
     <div
@@ -571,7 +562,7 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
 <div>
   <div
     class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-    id="23"
+    id="22"
   >
     <button />
     <div

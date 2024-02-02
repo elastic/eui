@@ -32,6 +32,7 @@ import {
   euiCodeBlockPreStyles,
   euiCodeBlockCodeStyles,
 } from './code_block.styles';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -122,6 +123,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
+  const euiCodeSyntaxVariables = useEuiCodeSyntaxVariables();
   const language = useMemo(
     () => checkSupportedLanguage(_language),
     [_language]
@@ -175,7 +177,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   const hasControls = !!(copyButton || fullScreenButton);
   const hasBothControls = !!(copyButton && fullScreenButton);
 
-  const styles = euiCodeBlockStyles(euiTheme);
+  const styles = euiCodeBlockStyles(euiTheme, euiCodeSyntaxVariables);
   const cssStyles = [
     styles.euiCodeBlock,
     styles[fontSize],
@@ -236,7 +238,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ]);
 
   const codeProps = useMemo(() => {
-    const styles = euiCodeBlockCodeStyles(euiTheme);
+    const styles = euiCodeBlockCodeStyles(euiTheme, euiCodeSyntaxVariables);
     const cssStyles = [
       styles.euiCodeBlock__code,
       isVirtualized && styles.isVirtualized,
@@ -248,7 +250,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       'data-code-language': language,
       ...rest,
     };
-  }, [language, euiTheme, isVirtualized, rest]);
+  }, [language, euiTheme, euiCodeSyntaxVariables, isVirtualized, rest]);
 
   return (
     <div

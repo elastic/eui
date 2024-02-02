@@ -5,7 +5,7 @@ exports[`EuiBeacon is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -14,7 +14,7 @@ exports[`EuiBeacon props color accent is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-accent-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -23,7 +23,7 @@ exports[`EuiBeacon props color danger is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-danger-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -32,7 +32,7 @@ exports[`EuiBeacon props color primary is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-primary-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -41,7 +41,7 @@ exports[`EuiBeacon props color subdued is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-subdued-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -50,7 +50,7 @@ exports[`EuiBeacon props color success is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -59,7 +59,7 @@ exports[`EuiBeacon props color warning is rendered 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-warning-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 12px; width: 12px;"
+  style="block-size: 12px; inline-size: 12px;"
 />
 `;
 
@@ -68,6 +68,6 @@ exports[`EuiBeacon props size accepts size 1`] = `
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
   data-test-subj="test subject string"
-  style="height: 14px; width: 14px;"
+  style="block-size: 14px; inline-size: 14px;"
 />
 `;

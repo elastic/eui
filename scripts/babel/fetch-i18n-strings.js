@@ -165,6 +165,8 @@ const files = glob.sync(
   if (filepath.endsWith('test.ts')) return false;
   if (filepath.endsWith('test.tsx')) return false;
   if (filepath.endsWith('test.js')) return false;
+  if (filepath.endsWith('.stories.tsx')) return false;
+  if (filepath.endsWith('.stories.ts')) return false;
 
   return true;
 });
