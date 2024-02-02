@@ -8,6 +8,7 @@ import {
   propUtilityForPlayground,
   dummyFunction,
   simulateFunction,
+  createOptionalEnum,
 } from '../../services/playground';
 
 export const autoRefreshConfig = () => {
@@ -20,6 +21,8 @@ export const autoRefreshConfig = () => {
     propsToUse.onRefreshChange,
     true
   );
+
+  propsToUse.intervalUnits = createOptionalEnum(propsToUse.intervalUnits);
 
   propsToUse.append = {
     ...propsToUse.append,
@@ -56,6 +59,8 @@ export const autoRefreshButtonConfig = () => {
     true
   );
 
+  propsToUse.intervalUnits = createOptionalEnum(propsToUse.intervalUnits);
+
   return {
     config: {
       componentName: 'EuiAutoRefreshButton',
@@ -85,6 +90,8 @@ export const refreshIntervalConfig = () => {
     propsToUse.onRefreshChange,
     true
   );
+
+  propsToUse.intervalUnits = createOptionalEnum(propsToUse.intervalUnits);
 
   return {
     config: {
