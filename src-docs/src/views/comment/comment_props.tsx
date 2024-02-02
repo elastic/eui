@@ -54,6 +54,7 @@ export default ({ snippet }: { snippet: ReactNode }) => {
       color="transparent"
       paddingSize="none"
       style={{ maxWidth: '540px' }}
+      hasBorder={false}
     >
       <EuiCommentList>
         <EuiComment username="avatar" timelineAvatarAriaLabel="Avatar">

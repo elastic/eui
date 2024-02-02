@@ -84,7 +84,7 @@ export default () => {
 
         <EuiHorizontalRule margin="none" />
 
-        <EuiPanel color="transparent" paddingSize="s">
+        <EuiPanel color="transparent" paddingSize="s" hasBorder={false}>
           <EuiTitle size="xxxs">
             <h3>Data views</h3>
           </EuiTitle>

@@ -54,6 +54,7 @@ export default () => {
                     <EuiPanel
                       color="transparent"
                       paddingSize="s"
+                      hasBorder={false}
                       {...provided.dragHandleProps}
                       aria-label="Drag Handle"
                     >

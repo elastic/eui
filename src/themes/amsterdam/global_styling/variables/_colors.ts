@@ -30,9 +30,9 @@ import {
 export const brand_colors: _EuiThemeBrandColors = {
   primary: '#07C',
   accent: '#F04E98',
-  success: '#00BFB3',
+  success: '#148742',
   warning: '#FEC514',
-  danger: '#BD271E',
+  danger: '#D93333',
 };
 
 export const brand_text_colors: _EuiThemeBrandTextColors = {
@@ -61,7 +61,7 @@ export const special_colors: _EuiThemeSpecialColors = {
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
   disabled: '#ABB4C4',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
-  shadow: computed(({ colors }) => colors.ink),
+  shadow: computed(({ colors }) => colors.darkShade),
 };
 
 export const text_colors: _EuiThemeTextColors = {
@@ -85,7 +85,7 @@ export const light_colors: _EuiThemeColorsMode = {
  */
 
 export const dark_shades: _EuiThemeShadeColors = {
-  emptyShade: '#1D1E24',
+  emptyShade: '#1C1E23',
   lightestShade: '#25262E',
   lightShade: '#343741',
   mediumShade: '#535966',
@@ -96,11 +96,11 @@ export const dark_shades: _EuiThemeShadeColors = {
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
   // Brand
-  primary: '#36A2EF',
-  accent: '#F68FBE',
-  success: '#7DDED8',
-  warning: '#F3D371',
-  danger: '#F86B63',
+  primary: '#36B9FF',
+  accent: '#F990C6',
+  success: '#3CD278',
+  warning: '#FFD836',
+  danger: '#FB6363',
 
   // Shades
   ...dark_shades,

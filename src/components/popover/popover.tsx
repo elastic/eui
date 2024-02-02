@@ -713,7 +713,7 @@ export class EuiPopover extends Component<Props, State> {
               isAttached={attachToAnchor}
               className={classNames(panelClassName, panelProps?.className)}
               hasDragDrop={hasDragDrop}
-              hasShadow={false}
+              hasBorder={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}

@@ -146,21 +146,21 @@ export const GettingStarted = {
 
           <EuiCodeBlock language="scss" isCopyable fontSize="m">
             {`<link
-  href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@300;400;500;600&family=Roboto+Mono:ital,wght@0,400;0,600;1,400;1,600&display=swap"
   rel="stylesheet"
 />`}
           </EuiCodeBlock>
           <EuiSpacer />
           <EuiText grow={false}>
             <p>
-              Or grab all weights, including italics, between 400 and 700 as a
+              Or grab all weights, including italics, between 400 and 600 as a
               variable font.
             </p>
           </EuiText>
           <EuiSpacer />
           <EuiCodeBlock language="scss" isCopyable fontSize="m">
             {`<link
-  href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..600;0,300..600&family=Roboto+Mono:ital,wght@0,400..600;1,400..600&display=swap"
   rel="stylesheet"
 />`}
           </EuiCodeBlock>

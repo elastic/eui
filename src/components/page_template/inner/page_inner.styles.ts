@@ -7,7 +7,6 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
 import { euiBackgroundColor, logicalCSS } from '../../../global_styling';
 import { transparentize, UseEuiTheme } from '../../../services';
 
@@ -30,7 +29,6 @@ export const euiPageInnerStyles = (euiThemeContext: UseEuiTheme) => {
 
     panelled: css`
       background: ${euiBackgroundColor(euiThemeContext, 'plain')};
-      ${euiShadow(euiThemeContext, 'm')}
     `,
 
     border: {

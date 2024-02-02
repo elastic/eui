@@ -16,6 +16,7 @@ export const Panel: FunctionComponent<{
       iconType="securityAnalyticsApp"
       title={<h2>Start adding cases</h2>}
       color={color}
+      hasBorder={true}
       body={<p>Add a new case or change your filter settings.</p>}
       actions={
         <EuiButton color="primary" fill>

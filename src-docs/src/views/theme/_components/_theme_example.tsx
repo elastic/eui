@@ -65,9 +65,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
         direction="row"
         css={css`
           gap: ${euiTheme.size.xl};
-
-          ${useEuiPaddingCSS(isLargeBreakpoint ? 'vertical' : undefined).xl};
-          /* padding: ${euiTheme.size.xl}; */
+          padding: ${euiTheme.size.xl};
 
           :not(:first-child) {
             margin-block-start: ${euiTheme.size.xl};

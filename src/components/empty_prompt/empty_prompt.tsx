@@ -91,7 +91,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   actions,
   className,
   layout = 'vertical',
-  hasBorder,
+  hasBorder = false,
   color = 'transparent',
   footer,
   ...rest
