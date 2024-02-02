@@ -21,7 +21,7 @@ import {
   ratingAll,
 } from './_contrast_utilities';
 
-type ContrastSlider = EuiFlexGroupProps & {
+type ContrastSlider = Omit<EuiFlexGroupProps, 'onChange'> & {
   contrastValue: EuiRangeProps['value'];
   showTextVariants: boolean;
   onChange?: (value: number | string, checked: boolean) => void;
