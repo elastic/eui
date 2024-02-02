@@ -92,16 +92,21 @@ export type CommonTreeProps = CommonProps &
      * Never accepts children directly, only through the `items` prop
      */
     children?: never;
-    /** An array of EuiTreeViewNodes
+    /**
+     * An array of EuiTreeViewNodes
      */
     items: Node[];
-    /** Optionally use a variation with smaller text and icon sizes
+    /**
+     * Optionally use a variation with smaller text and icon sizes
+     * @default 'default'
      */
     display?: EuiTreeViewDisplayOptions;
-    /** Set all items to open on initial load
+    /**
+     * Set all items to open on initial load
      */
     expandByDefault?: boolean;
-    /** Display expansion arrows next to all items
+    /**
+     * Display expansion arrows next to all items
      * that contain children
      */
     showExpansionArrows?: boolean;
@@ -113,7 +118,10 @@ export type EuiTreeViewProps = Omit<
 > &
   ({ 'aria-label': string } | { 'aria-labelledby': string });
 
-export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
+export class EuiTreeViewClass extends Component<
+  EuiTreeViewProps & WithEuiThemeProps,
+  EuiTreeViewState
+> {
   treeIdGenerator = htmlIdGenerator('euiTreeView');
 
   static contextType = EuiTreeViewContext;
@@ -122,7 +130,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
   isNested: boolean;
 
   constructor(
-    props: EuiTreeViewProps,
+    props: EuiTreeViewProps & WithEuiThemeProps,
     // Without the optional ? typing, TS will throw errors on JSX component errors
     // @see https://github.com/facebook/react/issues/13944#issuecomment-1183693239
     context?: ContextType<typeof EuiTreeViewContext>
@@ -367,7 +375,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                       ];
 
                       return (
-                        <React.Fragment>
+                        <>
                           <li css={liStyles} className={nodeClasses}>
                             <button
                               id={buttonId}
@@ -399,7 +407,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                     className="euiTreeView__arrowPlaceholder"
                                   />
                                 ))}
-                              {node.icon && !node.useEmptyIcon ? (
+                              {node.icon && !node.useEmptyIcon && (
                                 <span
                                   css={iconStyles}
                                   className="euiTreeView__iconWrapper"
@@ -409,13 +417,13 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                     ? node.iconWhenExpanded
                                     : node.icon}
                                 </span>
-                              ) : null}
-                              {node.useEmptyIcon && !node.icon ? (
+                              )}
+                              {node.useEmptyIcon && !node.icon && (
                                 <span
                                   css={placeholderStyles}
                                   className="euiTreeView__iconPlaceholder"
                                 />
-                              ) : null}
+                              )}
                               <span
                                 ref={ref}
                                 className="euiTreeView__nodeLabel eui-textTruncate"
@@ -429,7 +437,7 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 this.onChildrenKeydown(event, index)
                               }
                             >
-                              {node.children && this.isNodeOpen(node) ? (
+                              {node.children && this.isNodeOpen(node) && (
                                 <EuiTreeView
                                   items={node.children}
                                   display={display}
@@ -437,10 +445,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                   expandByDefault={this.state.expandChildNodes}
                                   {...label}
                                 />
-                              ) : null}
+                              )}
                             </div>
                           </li>
-                        </React.Fragment>
+                        </>
                       );
                     }}
                   </EuiI18n>
