@@ -13,13 +13,20 @@ import React, {
   ContextType,
 } from 'react';
 import classNames from 'classnames';
+
+import {
+  withEuiTheme,
+  WithEuiThemeProps,
+  keys,
+  htmlIdGenerator,
+} from '../../services';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiText } from '../text';
-import { keys, htmlIdGenerator } from '../../services';
 import { EuiInnerText } from '../inner_text';
+
+import { euiTreeViewStyles } from './tree_view.styles';
 
 const EuiTreeViewContext = createContext<string>('');
 
@@ -272,8 +279,12 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
       display = 'default',
       expandByDefault,
       showExpansionArrows,
+      theme,
       ...rest
     } = this.props;
+
+    const styles = euiTreeViewStyles(theme);
+    const cssStyles = [styles.euiTreeView];
 
     // Computed classNames
     const classes = classNames(
@@ -436,3 +447,5 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     );
   }
 }
+
+export const EuiTreeView = withEuiTheme<EuiTreeViewProps>(EuiTreeViewClass);

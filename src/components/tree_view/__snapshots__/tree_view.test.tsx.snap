@@ -13,7 +13,7 @@ exports[`EuiTreeView is rendered 1`] = `
   <ul
     aria-describedby="euiTreeView_generated-id--instruction"
     aria-label="aria-label"
-    class="euiTreeView testClass1 testClass2 emotion-euiTestCss"
+    class="euiTreeView testClass1 testClass2 emotion-euiTreeView-euiTestCss"
     data-test-subj="test subject string"
     id="euiTreeView_generated-id"
   >
@@ -48,7 +48,7 @@ exports[`EuiTreeView is rendered 1`] = `
         >
           <ul
             aria-label="Item One child of aria-label"
-            class="euiTreeView"
+            class="euiTreeView emotion-euiTreeView"
           >
             <li
               class="euiTreeView__node"
