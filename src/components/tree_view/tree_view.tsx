@@ -371,6 +371,15 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                         styles.button[display],
                       ];
 
+                      const iconStyles = [
+                        styles.icon.euiTreeView__iconWrapper,
+                        styles.icon[display],
+                      ];
+                      const placeholderStyles = [
+                        styles.icon.euiTreeView__placeholder,
+                        styles.icon[display],
+                      ];
+
                       return (
                         <React.Fragment>
                           <li css={liStyles} className={nodeClasses}>
@@ -387,20 +396,26 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                               css={buttonStyles}
                               className={nodeButtonClasses}
                             >
-                              {showExpansionArrows && node.children ? (
-                                <EuiIcon
-                                  className="euiTreeView__expansionArrow"
-                                  size={display === 'compressed' ? 's' : 'm'}
-                                  type={
-                                    this.isNodeOpen(node)
-                                      ? 'arrowDown'
-                                      : 'arrowRight'
-                                  }
-                                />
-                              ) : null}
+                              {showExpansionArrows &&
+                                (node.children ? (
+                                  <EuiIcon
+                                    className="euiTreeView__expansionArrow"
+                                    size={display === 'compressed' ? 's' : 'm'}
+                                    type={
+                                      this.isNodeOpen(node)
+                                        ? 'arrowDown'
+                                        : 'arrowRight'
+                                    }
+                                  />
+                                ) : (
+                                  <span
+                                    css={placeholderStyles}
+                                    className="euiTreeView__arrowPlaceholder"
+                                  />
+                                ))}
                               {node.icon && !node.useEmptyIcon ? (
                                 <span
-                                  css={styles.euiTreeView__iconWrapper}
+                                  css={iconStyles}
                                   className="euiTreeView__iconWrapper"
                                 >
                                   {this.isNodeOpen(node) &&
@@ -410,7 +425,10 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 </span>
                               ) : null}
                               {node.useEmptyIcon && !node.icon ? (
-                                <span className="euiTreeView__iconPlaceholder" />
+                                <span
+                                  css={placeholderStyles}
+                                  className="euiTreeView__iconPlaceholder"
+                                />
                               ) : null}
                               <span
                                 ref={ref}

@@ -86,9 +86,24 @@ export const euiTreeViewStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
 
-    // Line height helps vertically center the icons
-    euiTreeView__iconWrapper: css`
-      line-height: 0;
-    `,
+    icon: {
+      // Line height helps vertically center the icons
+      euiTreeView__iconWrapper: css`
+        line-height: 0;
+      `,
+      euiTreeView__placeholder: css``,
+      default: css`
+        ${logicalCSS(
+          'width',
+          mathWithUnits(defaultSize, (x) => x / 2)
+        )}
+      `,
+      compressed: css`
+        ${logicalCSS(
+          'width',
+          mathWithUnits(compressedSize, (x) => x / 2)
+        )}
+      `,
+    },
   };
 };
