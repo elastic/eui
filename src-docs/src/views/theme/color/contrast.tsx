@@ -127,12 +127,8 @@ export default () => {
           <ContrastSlider
             contrastValue={contrastValue}
             showTextVariants={showTextVariants}
-            // @ts-ignore Help
-            onChange={(
-              sliderValue: React.SetStateAction<number>,
-              toggleChecked: React.SetStateAction<boolean>
-            ) => {
-              setContrastValue(sliderValue);
+            onChange={(sliderValue, toggleChecked) => {
+              setContrastValue(Number(sliderValue));
               setShowTextVariants(toggleChecked);
             }}
           />
