@@ -14,8 +14,16 @@ import { EuiTableRow } from './table_row';
 
 import { EuiTableRowCell } from './table_row_cell';
 
+function renderTable(ui: React.ReactElement) {
+  return render(
+    <table>
+      <tbody>{ui}</tbody>
+    </table>
+  );
+}
+
 test('renders EuiTableRow', () => {
-  const { container } = render(
+  const { container } = renderTable(
     <EuiTableRow {...requiredProps}>
       <EuiTableRowCell>hi</EuiTableRowCell>
     </EuiTableRow>
@@ -26,7 +34,7 @@ test('renders EuiTableRow', () => {
 
 describe('isSelected', () => {
   test('renders true when specified', () => {
-    const { container } = render(
+    const { container } = renderTable(
       <EuiTableRow isSelected={true}>
         <EuiTableRowCell />
       </EuiTableRow>
