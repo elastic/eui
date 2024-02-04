@@ -1,25 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTableHeader is rendered 1`] = `
-<thead
-  aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiTestCss"
-  data-test-subj="test subject string"
->
-  <tr>
-    <td>
-      children
-    </td>
-  </tr>
-</thead>
+<table>
+  <thead
+    aria-label="aria-label"
+    class="testClass1 testClass2 emotion-euiTestCss"
+    data-test-subj="test subject string"
+  >
+    <tr>
+      <td>
+        children
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`EuiTableHeader is rendered without <tr> 1`] = `
-<thead>
-  <tr>
-    <td>
-      children
-    </td>
-  </tr>
-</thead>
+<table>
+  <thead>
+    <tr>
+      <td>
+        children
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
