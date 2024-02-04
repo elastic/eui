@@ -11,8 +11,8 @@ import { euiBackgroundColor, euiCanAnimate } from '../../../../global_styling';
 import {
   hexToRgb,
   isColorDark,
-  makeHighContrastColor,
-  shade,
+  // makeHighContrastColor,
+  // shade,
   tint,
   transparentize,
   useEuiTheme,
@@ -46,35 +46,41 @@ export const euiButtonColor = (
   color: _EuiButtonColor | 'disabled'
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
-  function tintOrShade(color: string) {
-    return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
-  }
+  // function tintOrShade(color: string) {
+  //   return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
+  // }
 
   let foreground;
-  let background;
+  // let background;
+  let borderColor;
 
   switch (color) {
     case 'disabled':
       return {
         color: euiTheme.colors.disabledText,
+        borderColor: color,
         backgroundColor: transparentize(euiTheme.colors.lightShade, 0.15),
       };
     case 'text':
       foreground = euiTheme.colors[color];
-      background =
-        colorMode === 'DARK'
-          ? shade(euiTheme.colors.lightShade, 0.2)
-          : tint(euiTheme.colors.lightShade, 0.5);
+      borderColor =
+        colorMode === 'DARK' ? euiTheme.colors.text : euiTheme.colors.darkShade;
+      // background =
+      //   colorMode === 'DARK'
+      //     ? shade(euiTheme.colors.lightShade, 0.2)
+      //     : tint(euiTheme.colors.lightShade, 0.5);
       break;
     default:
       foreground = euiTheme.colors[`${color}Text`];
-      background = tintOrShade(euiTheme.colors[color]);
+      borderColor = euiTheme.colors[color];
       break;
   }
 
   return {
-    color: makeHighContrastColor(foreground)(background),
-    backgroundColor: background,
+    color: foreground,
+    backgroundColor: 'none',
+    border: euiTheme.border.thick,
+    borderColor: borderColor,
   };
 };
 
@@ -182,6 +188,13 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
     return {
       base: css`
         ${euiButtonColor(euiThemeContext, color)}
+
+        /* Use a shaded backgroun fill for icon-only buttons as opposed to a border */
+        &.euiButtonIcon {
+          border: none;
+          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+            .backgroundColor};
+        }
       `,
       fill: css`
         ${euiButtonFillColor(euiThemeContext, color)}
@@ -264,3 +277,15 @@ export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
     fontScale: 's' as const,
   },
 });
+
+/**
+ * Creates the translate animation when button is in focus.
+ * @returns string
+ */
+export const euiButtonFontWeight = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return {
+    fontWeight: euiTheme.font.weight.semiBold,
+  };
+};

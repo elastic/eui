@@ -50,7 +50,7 @@ export default () => {
             id={splitButtonPopoverId}
             button={
               <EuiButtonIcon
-                display="base"
+                display="empty"
                 size="s"
                 iconType="boxesVertical"
                 aria-label="More"

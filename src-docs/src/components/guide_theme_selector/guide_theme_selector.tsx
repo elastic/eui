@@ -15,7 +15,7 @@ import {
   EuiTourStep,
   EuiPopover,
   EuiHorizontalRule,
-  EuiButton,
+  EuiButtonEmpty,
   EuiContextMenuPanel,
   EuiContextMenuItem,
   EuiLink,
@@ -88,7 +88,7 @@ const GuideThemeSelectorComponent: React.FunctionComponent<
 
   const button = (
     <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
-      <EuiButton
+      <EuiButtonEmpty
         size="s"
         iconType="arrowDown"
         iconSide="right"
@@ -97,7 +97,7 @@ const GuideThemeSelectorComponent: React.FunctionComponent<
         onClick={onButtonClick}
       >
         {isMobileSize ? 'Theme' : currentTheme.text}
-      </EuiButton>
+      </EuiButtonEmpty>
     </EuiThemeProvider>
   );
 

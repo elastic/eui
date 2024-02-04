@@ -26,6 +26,7 @@ import {
 import {
   useEuiButtonColorCSS,
   _EuiButtonColor,
+  euiButtonFontWeight,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
 
@@ -119,12 +120,15 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     display: 'empty',
   });
 
+  const buttonFontWeight = euiButtonFontWeight();
+
   const euiTheme = useEuiTheme();
   const styles = euiButtonEmptyStyles(euiTheme);
   const cssStyles = [
     styles.euiButtonEmpty,
     styles[size],
     buttonColorStyles[isDisabled ? 'disabled' : color],
+    buttonFontWeight,
     flush && styles.flush,
     flush && styles[flush],
     isDisabled && styles.isDisabled,
