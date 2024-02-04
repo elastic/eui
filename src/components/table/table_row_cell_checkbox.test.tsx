@@ -15,7 +15,13 @@ import { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';
 describe('EuiTableRowCellCheckbox', () => {
   test('is rendered', () => {
     const { container } = render(
-      <EuiTableRowCellCheckbox {...requiredProps} />
+      <table>
+        <tbody>
+          <tr>
+            <EuiTableRowCellCheckbox {...requiredProps} />
+          </tr>
+        </tbody>
+      </table>
     );
 
     expect(container.firstChild).toMatchSnapshot();
