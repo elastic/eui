@@ -8,7 +8,7 @@
 
 - Removed deprecated `anchorClassName` prop from `EuiPopover`. Use `className` instead ([#7488](https://github.com/elastic/eui/pull/7488))
 - Removed deprecated `buttonRef` prop from `EuiPopover`. Use `popoverRef` instead ([#7488](https://github.com/elastic/eui/pull/7488))
-- Removed deprecated `toolTipTitle` and `toolTipPosition` props from `EuiContextMenuItem`. Use `toolTipProps.title` and `toolTilProps.position` instead ([#7489](https://github.com/elastic/eui/pull/7489))
+- Removed deprecated `toolTipTitle` and `toolTipPosition` props from `EuiContextMenuItem`. Use `toolTipProps.title` and `toolTipProps.position` instead ([#7489](https://github.com/elastic/eui/pull/7489))
 - Removed deprecated internal `setSelection` ref method from `EuiInMemoryTable` and `EuiBasicTable`. Use the new controlled `selection.selected` prop API instead. ([#7491](https://github.com/elastic/eui/pull/7491))
 - `EuiTourStep`'s `className` and `style` props now apply to the anchoring element instead of to the popover panel, to match `EuiPopover` behavior. ([#7497](https://github.com/elastic/eui/pull/7497))
   - Convert your existing usages to `panelClassName` and `panelStyle` respectively instead.
