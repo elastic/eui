@@ -12,8 +12,17 @@ import { render } from '../../test/rtl';
 
 import { EuiTableFooterCell } from './table_footer_cell';
 
-import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
+import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services';
 import { WARNING_MESSAGE } from './utils';
+
+const renderInTableFooter = (cell: React.ReactElement) =>
+  render(
+    <table>
+      <tfoot>
+        <tr>{cell}</tr>
+      </tfoot>
+    </table>
+  );
 
 describe('EuiTableFooterCell', () => {
   const _consoleWarn = console.warn;
@@ -29,7 +38,7 @@ describe('EuiTableFooterCell', () => {
   });
 
   test('is rendered', () => {
-    const { container } = render(
+    const { container } = renderInTableFooter(
       <EuiTableFooterCell {...requiredProps}>children</EuiTableFooterCell>
     );
 
@@ -38,13 +47,13 @@ describe('EuiTableFooterCell', () => {
 
   describe('align', () => {
     test('defaults to left', () => {
-      const { container } = render(<EuiTableFooterCell />);
+      const { container } = renderInTableFooter(<EuiTableFooterCell />);
 
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders right when specified', () => {
-      const { container } = render(
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell align={RIGHT_ALIGNMENT} />
       );
 
@@ -52,7 +61,7 @@ describe('EuiTableFooterCell', () => {
     });
 
     test('renders center when specified', () => {
-      const { container } = render(
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell align={CENTER_ALIGNMENT} />
       );
 
@@ -62,7 +71,7 @@ describe('EuiTableFooterCell', () => {
 
   describe('width and style', () => {
     test('accepts style attribute', () => {
-      const { container } = render(
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell style={{ width: '20%' }}>Test</EuiTableFooterCell>
       );
 
@@ -70,7 +79,7 @@ describe('EuiTableFooterCell', () => {
     });
 
     test('accepts width attribute', () => {
-      const { container } = render(
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell width="10%">Test</EuiTableFooterCell>
       );
 
@@ -78,7 +87,7 @@ describe('EuiTableFooterCell', () => {
     });
 
     test('accepts width attribute as number', () => {
-      const { container } = render(
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
       );
 
@@ -86,7 +95,7 @@ describe('EuiTableFooterCell', () => {
     });
 
     test('resolves style and width attribute', () => {
-      const { container } = render(
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
           Test
         </EuiTableFooterCell>
