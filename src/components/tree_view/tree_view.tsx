@@ -91,7 +91,7 @@ export type CommonTreeProps = CommonProps &
     items: Node[];
     /**
      * Optionally use a variation with smaller text and icon sizes
-     * @default 'default'
+     * @default default
      */
     display?: EuiTreeViewDisplayOptions;
     /**

@@ -67,11 +67,24 @@ export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     icon: {
-      // Line height helps vertically center the icons
       euiTreeView__iconWrapper: css`
-        line-height: 0;
+        flex-shrink: 0;
+        line-height: 0; /* Vertically centers the icon */
+
+        /* Handle smaller icons in compressed mode */
+        & > * {
+          ${logicalCSS('max-width', '100%')}
+        }
+
+        & > .euiToken {
+          ${logicalCSS('max-height', '100%')}
+          ${logicalCSS('height', 'auto')}
+
+          svg {
+            ${logicalCSS('width', '100%')}
+          }
+        }
       `,
-      euiTreeView__placeholder: css``,
       default: css`
         ${logicalCSS(
           'width',
