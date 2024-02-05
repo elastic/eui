@@ -126,6 +126,42 @@ describe('EuiContextMenu', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('allows wildcard content via the `renderItem` prop', () => {
+    const CustomComponent = () => (
+      <div data-test-subj="custom">Hello world</div>
+    );
+
+    const { container, getByTestSubject } = render(
+      <EuiContextMenu
+        panels={[
+          {
+            id: 1,
+            title: 'Testing renderItem',
+            items: [
+              {
+                name: 'Renders an EuiContextMenuItem',
+                panel: 2,
+              },
+              {
+                renderItem: () => <h3 data-test-subj="subtitle">Subtitle</h3>,
+              },
+              {
+                key: 'custom',
+                renderItem: CustomComponent,
+              },
+              ...panel3.items,
+            ],
+          },
+        ]}
+        initialPanelId={1}
+      />
+    );
+
+    expect(container.querySelectorAll('.euiContextMenuItem')).toHaveLength(3);
+    expect(getByTestSubject('subtitle')).toHaveTextContent('Subtitle');
+    expect(getByTestSubject('custom')).toHaveTextContent('Hello world');
+  });
+
   describe('props', () => {
     describe('panels and initialPanelId', () => {
       it('renders the referenced panel', () => {
