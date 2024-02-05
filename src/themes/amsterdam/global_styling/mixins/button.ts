@@ -11,8 +11,6 @@ import { euiBackgroundColor, euiCanAnimate } from '../../../../global_styling';
 import {
   hexToRgb,
   isColorDark,
-  // makeHighContrastColor,
-  // shade,
   tint,
   transparentize,
   useEuiTheme,
@@ -46,12 +44,8 @@ export const euiButtonColor = (
   color: _EuiButtonColor | 'disabled'
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
-  // function tintOrShade(color: string) {
-  //   return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
-  // }
 
   let foreground;
-  // let background;
   let borderColor;
 
   switch (color) {
@@ -65,10 +59,6 @@ export const euiButtonColor = (
       foreground = euiTheme.colors[color];
       borderColor =
         colorMode === 'DARK' ? euiTheme.colors.text : euiTheme.colors.darkShade;
-      // background =
-      //   colorMode === 'DARK'
-      //     ? shade(euiTheme.colors.lightShade, 0.2)
-      //     : tint(euiTheme.colors.lightShade, 0.5);
       break;
     default:
       foreground = euiTheme.colors[`${color}Text`];
@@ -189,11 +179,10 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
       base: css`
         ${euiButtonColor(euiThemeContext, color)}
 
-        /* Use a shaded backgroun fill for icon-only buttons as opposed to a border */
-        &.euiButtonIcon {
+        /* Use a shaded background fill for icon-only buttons and button groups */
+        &.euiButtonIcon, &.euiButtonGroupButton {
           border: none;
-          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-            .backgroundColor};
+          background: ${transparentize(euiThemeContext.euiTheme.colors[color], 0.1)};
         }
       `,
       fill: css`
