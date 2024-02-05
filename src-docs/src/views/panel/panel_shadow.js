@@ -4,14 +4,20 @@ import { EuiPanel, EuiCode, EuiSpacer } from '../../../../src';
 export default () => {
   return (
     <div>
-      <EuiPanel hasShadow={false}>
-        <EuiCode>{'hasShadow={false}'}</EuiCode>
+      <EuiPanel>
+        <EuiCode>{`default for current theme`}</EuiCode>
       </EuiPanel>
 
       <EuiSpacer />
 
-      <EuiPanel hasBorder={true}>
-        <EuiCode>{'hasBorder={true}'}</EuiCode>
+      <EuiPanel hasBorder={false}>
+        <EuiCode>{'hasBorder={false}'}</EuiCode>
+      </EuiPanel>
+
+      <EuiSpacer />
+
+      <EuiPanel hasBorder={false} hasShadow={true}>
+        <EuiCode>{`hasBorder={false} hasShadow={true}`}</EuiCode>
       </EuiPanel>
     </div>
   );

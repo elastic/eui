@@ -26,7 +26,7 @@ export default () => {
 
   const maskWithClick = (
     <EuiOverlayMask data-test-subj="yolo">
-      <EuiButton onClick={() => changeMaskWithClick(false)}>
+      <EuiButton onClick={() => changeMaskWithClick(false)} fill>
         Click this button to close
       </EuiButton>
     </EuiOverlayMask>

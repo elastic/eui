@@ -15,7 +15,7 @@ export default () => {
 
   const mask = (
     <EuiOverlayMask headerZindexLocation="below">
-      <EuiButton onClick={() => changeMask(false)}>
+      <EuiButton onClick={() => changeMask(false)} fill>
         Click this button to close
       </EuiButton>
     </EuiOverlayMask>
