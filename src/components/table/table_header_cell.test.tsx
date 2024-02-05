@@ -15,18 +15,17 @@ import { EuiTableHeaderCell } from './table_header_cell';
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
 import { WARNING_MESSAGE } from './utils';
 
-function renderTable(ui: React.ReactElement) {
-  return render(
+const renderInTableHeader = (cell: React.ReactElement) =>
+  render(
     <table>
       <thead>
-        <tr>{ui}</tr>
+        <tr>{cell}</tr>
       </thead>
     </table>
   );
-}
 
 test('renders EuiTableHeaderCell', () => {
-  const { container } = renderTable(
+  const { container } = renderInTableHeader(
     <EuiTableHeaderCell {...requiredProps}>children</EuiTableHeaderCell>
   );
 
@@ -34,20 +33,22 @@ test('renders EuiTableHeaderCell', () => {
 });
 
 test('renders td when children is null/undefined', () => {
-  const { container } = renderTable(<EuiTableHeaderCell {...requiredProps} />);
+  const { container } = renderInTableHeader(
+    <EuiTableHeaderCell {...requiredProps} />
+  );
 
   expect(container.firstChild).toMatchSnapshot();
 });
 
 describe('align', () => {
   test('defaults to left', () => {
-    const { container } = renderTable(<EuiTableHeaderCell />);
+    const { container } = renderInTableHeader(<EuiTableHeaderCell />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders right when specified', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell align={RIGHT_ALIGNMENT} />
     );
 
@@ -55,7 +56,7 @@ describe('align', () => {
   });
 
   test('renders center when specified', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell align={CENTER_ALIGNMENT} />
     );
 
@@ -65,7 +66,7 @@ describe('align', () => {
 
 describe('sorting', () => {
   test('is rendered with isSorted', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell isSorted>Test</EuiTableHeaderCell>
     );
 
@@ -73,7 +74,7 @@ describe('sorting', () => {
   });
 
   test('is rendered with isSortAscending', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell isSorted isSortAscending>
         Test
       </EuiTableHeaderCell>
@@ -83,7 +84,7 @@ describe('sorting', () => {
   });
 
   test('renders a button with onSort', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell isSorted onSort={() => {}}>
         Test
       </EuiTableHeaderCell>
@@ -93,7 +94,7 @@ describe('sorting', () => {
   });
 
   test('does not render a button with readOnly', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell readOnly isSorted onSort={() => {}}>
         Test
       </EuiTableHeaderCell>
@@ -117,7 +118,7 @@ describe('width and style', () => {
   });
 
   test('accepts style attribute', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell style={{ width: '20%' }}>Test</EuiTableHeaderCell>
     );
 
@@ -125,7 +126,7 @@ describe('width and style', () => {
   });
 
   test('accepts width attribute', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell width="10%">Test</EuiTableHeaderCell>
     );
 
@@ -133,7 +134,7 @@ describe('width and style', () => {
   });
 
   test('accepts width attribute as number', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell width={100}>Test</EuiTableHeaderCell>
     );
 
@@ -141,7 +142,7 @@ describe('width and style', () => {
   });
 
   test('resolves style and width attribute', () => {
-    const { container } = renderTable(
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell width="10%" style={{ width: '20%' }}>
         Test
       </EuiTableHeaderCell>
