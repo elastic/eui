@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { memo, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import { _SharedSubcomponentProps } from './highlight';
 
@@ -16,49 +16,44 @@ import { _SharedSubcomponentProps } from './highlight';
  *
  * Uses indexOf for performance (which does matter for, e.g. EuiSelectable searching)
  */
-export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = memo(
-  ({
-    searchSubject,
-    searchValue,
-    isStrict,
-    highlightComponent: HighlightComponent = 'mark',
-  }) => {
-    if (Array.isArray(searchValue)) {
-      throw new Error(
-        'Cannot parse multiple search strings without `highlightAll` enabled'
-      );
-    }
-
-    const normalizedSearchSubject = isStrict
-      ? searchSubject
-      : searchSubject.toLowerCase();
-    const normalizedSearchValue = isStrict
-      ? searchValue
-      : searchValue.toLowerCase();
-
-    const indexOfMatch = normalizedSearchSubject.indexOf(normalizedSearchValue);
-    if (indexOfMatch === -1) {
-      return <>{searchSubject}</>;
-    }
-
-    const preMatch = searchSubject.substring(0, indexOfMatch);
-    const match = searchSubject.substring(
-      indexOfMatch,
-      indexOfMatch + searchValue.length
-    );
-    const postMatch = searchSubject.substring(
-      indexOfMatch + searchValue.length
-    );
-
-    return (
-      // Note: React 16/17 will render empty strings in the DOM. The
-      // `|| undefined` prevents this & keeps snapshots the same for all versions
-      <>
-        {preMatch || undefined}
-        <HighlightComponent>{match}</HighlightComponent>
-        {postMatch || undefined}
-      </>
+export const HighlightFirst: FunctionComponent<_SharedSubcomponentProps> = ({
+  searchSubject,
+  searchValue,
+  isStrict,
+  highlightComponent: HighlightComponent = 'mark',
+}) => {
+  if (Array.isArray(searchValue)) {
+    throw new Error(
+      'Cannot parse multiple search strings without `highlightAll` enabled'
     );
   }
-);
-HighlightFirst.displayName = '_HighlightFirst';
+
+  const normalizedSearchSubject = isStrict
+    ? searchSubject
+    : searchSubject.toLowerCase();
+  const normalizedSearchValue = isStrict
+    ? searchValue
+    : searchValue.toLowerCase();
+
+  const indexOfMatch = normalizedSearchSubject.indexOf(normalizedSearchValue);
+  if (indexOfMatch === -1) {
+    return <>{searchSubject}</>;
+  }
+
+  const preMatch = searchSubject.substring(0, indexOfMatch);
+  const match = searchSubject.substring(
+    indexOfMatch,
+    indexOfMatch + searchValue.length
+  );
+  const postMatch = searchSubject.substring(indexOfMatch + searchValue.length);
+
+  return (
+    // Note: React 16/17 will render empty strings in the DOM. The
+    // `|| undefined` prevents this & keeps snapshots the same for all versions
+    <>
+      {preMatch || undefined}
+      <HighlightComponent>{match}</HighlightComponent>
+      {postMatch || undefined}
+    </>
+  );
+};
