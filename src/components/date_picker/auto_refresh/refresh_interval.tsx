@@ -171,7 +171,7 @@ export class EuiRefreshInterval extends Component<
   };
 
   applyRefreshInterval = () => {
-    const { onRefreshChange, isPaused } = this.props;
+    const { onRefreshChange, isPaused, minInterval } = this.props;
     const { units, value } = this.state;
     if (value === '') {
       return;
@@ -180,7 +180,10 @@ export class EuiRefreshInterval extends Component<
       return;
     }
 
-    const refreshInterval = toMilliseconds(units, value);
+    const refreshInterval = Math.max(
+      toMilliseconds(units, value),
+      minInterval || 0
+    );
 
     onRefreshChange({
       refreshInterval,

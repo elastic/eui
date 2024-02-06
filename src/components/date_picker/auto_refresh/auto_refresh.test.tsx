@@ -43,12 +43,13 @@ describe('EuiAutoRefresh', () => {
   });
 
   test('minInterval renders an invalid warning on the number input', () => {
+    const onRefreshChange = jest.fn();
     const { getByRole, getByTestSubject } = render(
       <EuiAutoRefresh
         isPaused={false}
         refreshInterval={1000}
         minInterval={3000}
-        onRefreshChange={() => {}}
+        onRefreshChange={onRefreshChange}
       />
     );
     const getNumberInput = () =>
@@ -60,12 +61,27 @@ describe('EuiAutoRefresh', () => {
     expect(getNumberInput()).toBeInvalid();
 
     fireEvent.change(getUnitSelect(), { target: { value: 'm' } });
+    expect(onRefreshChange).toHaveBeenLastCalledWith({
+      refreshInterval: 60000,
+      intervalUnits: 'm',
+      isPaused: false,
+    });
     expect(getNumberInput()).toBeValid();
 
     fireEvent.change(getUnitSelect(), { target: { value: 's' } });
+    expect(onRefreshChange).toHaveBeenLastCalledWith({
+      refreshInterval: 3000, // Should pass back the minimum instead of the current 1000 value
+      intervalUnits: 's',
+      isPaused: false,
+    });
     expect(getNumberInput()).toBeInvalid();
 
     fireEvent.change(getNumberInput(), { target: { value: 5 } });
+    expect(onRefreshChange).toHaveBeenLastCalledWith({
+      refreshInterval: 5000,
+      intervalUnits: 's',
+      isPaused: false,
+    });
     expect(getNumberInput()).toBeValid();
   });
 
