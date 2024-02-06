@@ -110,6 +110,7 @@ export const EuiDatePopoverButton: FunctionComponent<
 
   const button = (
     <button
+      type="button"
       onClick={onPopoverToggle}
       className={classes}
       title={title}

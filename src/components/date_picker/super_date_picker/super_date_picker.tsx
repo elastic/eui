@@ -529,6 +529,7 @@ export class EuiSuperDatePickerInternal extends Component<
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
           <button
+            type="button"
             className={classNames('euiSuperDatePicker__prettyFormat', {
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
