@@ -42,6 +42,33 @@ describe('EuiAutoRefresh', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('minInterval renders an invalid warning on the number input', () => {
+    const { getByRole, getByTestSubject } = render(
+      <EuiAutoRefresh
+        isPaused={false}
+        refreshInterval={1000}
+        minInterval={3000}
+        onRefreshChange={() => {}}
+      />
+    );
+    const getNumberInput = () =>
+      getByTestSubject('superDatePickerRefreshIntervalInput');
+    const getUnitSelect = () =>
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect');
+
+    fireEvent.click(getByRole('button'));
+    expect(getNumberInput()).toBeInvalid();
+
+    fireEvent.change(getUnitSelect(), { target: { value: 'm' } });
+    expect(getNumberInput()).toBeValid();
+
+    fireEvent.change(getUnitSelect(), { target: { value: 's' } });
+    expect(getNumberInput()).toBeInvalid();
+
+    fireEvent.change(getNumberInput(), { target: { value: 5 } });
+    expect(getNumberInput()).toBeValid();
+  });
+
   test('intervalUnits forces rendering in the provided units', () => {
     const { getByLabelText, getByRole, getByTestSubject } = render(
       <EuiAutoRefresh

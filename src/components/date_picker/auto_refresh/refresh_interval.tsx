@@ -30,10 +30,10 @@ const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
 const MILLISECONDS_IN_HOUR = MILLISECONDS_IN_MINUTE * 60;
 
-function fromMilliseconds(
+const fromMilliseconds = (
   milliseconds: Milliseconds,
   unit?: RefreshUnitsOptions
-): EuiRefreshIntervalState {
+): EuiRefreshIntervalState => {
   const round = (value: number) => parseFloat(value.toFixed(2));
   if (unit === 'h' || (!unit && milliseconds > MILLISECONDS_IN_HOUR)) {
     return {
@@ -53,9 +53,9 @@ function fromMilliseconds(
     units: 's',
     value: round(milliseconds / MILLISECONDS_IN_SECOND),
   };
-}
+};
 
-function toMilliseconds(units: RefreshUnitsOptions, value: Milliseconds) {
+const toMilliseconds = (units: RefreshUnitsOptions, value: Milliseconds) => {
   switch (units) {
     case 'h':
       return Math.round(value * MILLISECONDS_IN_HOUR);
@@ -65,7 +65,16 @@ function toMilliseconds(units: RefreshUnitsOptions, value: Milliseconds) {
     default:
       return Math.round(value * MILLISECONDS_IN_SECOND);
   }
-}
+};
+
+const getMinInterval = (
+  minInterval?: Milliseconds,
+  unit?: RefreshUnitsOptions
+): number => {
+  if (!minInterval) return 0;
+  const { value } = fromMilliseconds(minInterval, unit);
+  return Math.floor(value || 0);
+};
 
 export type EuiRefreshIntervalProps = {
   /**
@@ -96,6 +105,7 @@ export type EuiRefreshIntervalProps = {
 interface EuiRefreshIntervalState {
   value: number | '';
   units: RefreshUnitsOptions;
+  min?: Milliseconds;
 }
 
 export class EuiRefreshInterval extends Component<
@@ -108,10 +118,13 @@ export class EuiRefreshInterval extends Component<
     minInterval: 0,
   };
 
-  state: EuiRefreshIntervalState = fromMilliseconds(
-    this.props.refreshInterval || 0,
-    this.props.intervalUnits
-  );
+  state: EuiRefreshIntervalState = {
+    ...fromMilliseconds(
+      this.props.refreshInterval || 0,
+      this.props.intervalUnits
+    ),
+    min: getMinInterval(this.props.minInterval, this.props.intervalUnits),
+  };
 
   generateId = htmlIdGenerator();
   legendId = this.generateId();
@@ -128,9 +141,11 @@ export class EuiRefreshInterval extends Component<
   };
 
   onUnitsChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const units = event.target.value as RefreshUnitsOptions;
     this.setState(
       {
-        units: event.target.value as RefreshUnitsOptions,
+        units,
+        min: getMinInterval(this.props.minInterval, units),
       },
       this.applyRefreshInterval
     );
@@ -226,7 +241,7 @@ export class EuiRefreshInterval extends Component<
 
   render() {
     const { isPaused } = this.props;
-    const { value, units } = this.state;
+    const { value, units, min } = this.state;
 
     return (
       <RenderI18nTimeOptions>
@@ -260,6 +275,7 @@ export class EuiRefreshInterval extends Component<
                   compressed
                   fullWidth
                   value={value}
+                  min={min}
                   onChange={this.onValueChange}
                   onKeyDown={this.handleKeyDown}
                   isInvalid={!isPaused && (value === '' || value <= 0)}
