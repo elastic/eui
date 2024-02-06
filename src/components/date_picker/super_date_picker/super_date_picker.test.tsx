@@ -32,6 +32,12 @@ const findInternalInstance = (
 };
 
 describe('EuiSuperDatePicker', () => {
+  // RTL doesn't automatically clean up portals/datepicker popovers between tests
+  afterEach(() => {
+    const portals = document.querySelectorAll('[data-euiportal]');
+    portals.forEach((portal) => portal.parentNode?.removeChild(portal));
+  });
+
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
     skip: { style: true },
   });
@@ -367,6 +373,60 @@ describe('EuiSuperDatePicker', () => {
           intervalUnits: 'h',
           isPaused: expect.any(Boolean),
         });
+      });
+    });
+
+    describe('canRoundRelativeUnits', () => {
+      const props = {
+        onTimeChange: noop,
+        start: 'now-300m',
+        end: 'now',
+      };
+
+      it('defaults to true, which will round relative units up to the next largest unit', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker {...props} canRoundRelativeUnits={true} />
+        );
+        fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
+
+        const startButton = getByTestSubject(
+          'superDatePickerstartDatePopoverButton'
+        );
+        expect(startButton).toHaveTextContent('~ 5 hours ago');
+
+        const countInput = getByTestSubject(
+          'superDatePickerRelativeDateInputNumber'
+        );
+        expect(countInput).toHaveValue(5);
+
+        const unitSelect = getByTestSubject(
+          'superDatePickerRelativeDateInputUnitSelector'
+        );
+        expect(unitSelect).toHaveValue('h');
+
+        fireEvent.change(countInput, { target: { value: 300 } });
+        fireEvent.change(unitSelect, { target: { value: 'd' } });
+        expect(startButton).toHaveTextContent('~ 10 months ago');
+      });
+
+      it('when false, allows preserving the unit set in the start/end time timestamp', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker {...props} canRoundRelativeUnits={false} />
+        );
+        fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
+
+        const startButton = getByTestSubject(
+          'superDatePickerstartDatePopoverButton'
+        );
+        expect(startButton).toHaveTextContent('300 minutes ago');
+
+        const unitSelect = getByTestSubject(
+          'superDatePickerRelativeDateInputUnitSelector'
+        );
+        expect(unitSelect).toHaveValue('m');
+
+        fireEvent.change(unitSelect, { target: { value: 'd' } });
+        expect(startButton).toHaveTextContent('300 days ago');
       });
     });
   });

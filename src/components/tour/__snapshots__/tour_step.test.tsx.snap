@@ -1,565 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = `
-<div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
+exports[`EuiTourStep renders 1`] = `
+<body>
+  <div>
     <div
-      aria-label="aria-label"
-      aria-labelledby="generated-id"
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
-      data-popover-open="true"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
+      class="euiPopover euiPopover-isOpen euiTourAnchor testClass1 testClass2 emotion-euiPopover-inline-block-euiTestCss"
+      data-test-subj="test subject string"
     >
+      <span>
+        Test
+      </span>
       <div
-        class="euiPopover__arrow emotion-euiPopoverArrow-left"
-        data-popover-arrow="left"
-        style="left: 0px; top: 10px;"
-      >
-        <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
-          style="height: 12px; width: 12px;"
-        />
-      </div>
-      <div>
-        <div
-          style="min-width: 300px; max-width: 600px;"
-        >
-          <div
-            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
-            id="generated-id"
-          >
-            <h2
-              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
-            >
-              A demo
-            </h2>
-          </div>
-          <div
-            class="euiTour__content"
-          >
-            You are here
-          </div>
-          <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
-          >
-            <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
-            >
-              <div
-                class="euiFlexGroup emotion-euiFlexGroup-wrap-s-flexEnd-center-row"
-              >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <button>
-                    Button 1
-                  </button>
-                </div>
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
-                >
-                  <button>
-                    Button 2
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiTourStep can be closed 1`] = `
-<div
-  class="euiPopover emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-</div>
-`;
-
-exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
-<div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-label="aria-label"
-      aria-labelledby="generated-id"
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
-      data-popover-open="true"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
-    >
-      <div
-        class="euiPopover__arrow emotion-euiPopoverArrow-left"
-        data-popover-arrow="left"
-        style="left: 0px; top: 10px;"
-      >
-        <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
-          style="height: 12px; width: 12px;"
-        />
-      </div>
-      <div>
-        <div
-          style="min-width: 240px; max-width: 420px;"
-        >
-          <div
-            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
-            id="generated-id"
-          >
-            <h2
-              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
-            >
-              A demo
-            </h2>
-          </div>
-          <div
-            class="euiTour__content"
-          >
-            You are here
-          </div>
-          <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
-          >
-            <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
-            >
-              <div
-                class="euiFlexItem emotion-euiFlexItem-growZero"
-              >
-                <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Close tour
-                    </span>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiTourStep can have subtitle 1`] = `
-<div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-label="aria-label"
-      aria-labelledby="generated-id"
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
-      data-popover-open="true"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
-    >
-      <div
-        class="euiPopover__arrow emotion-euiPopoverArrow-left"
-        data-popover-arrow="left"
-        style="left: 0px; top: 10px;"
-      >
-        <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
-          style="height: 12px; width: 12px;"
-        />
-      </div>
-      <div>
-        <div
-          style="min-width: 300px; max-width: 600px;"
-        >
-          <div
-            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
-            id="generated-id"
-          >
-            <h2
-              class="euiTitle emotion-euiTitle-xxxs-euiTourHeader__subtitle"
-            >
-              Subtitle
-            </h2>
-            <h3
-              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
-            >
-              A demo
-            </h3>
-          </div>
-          <div
-            class="euiTour__content"
-          >
-            You are here
-          </div>
-          <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
-          >
-            <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
-            >
-              <div
-                class="euiFlexItem emotion-euiFlexItem-growZero"
-              >
-                <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Close tour
-                    </span>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiTourStep can override the footer action 1`] = `
-<div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-label="aria-label"
-      aria-labelledby="generated-id"
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
-      data-popover-open="true"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
-    >
-      <div
-        class="euiPopover__arrow emotion-euiPopoverArrow-left"
-        data-popover-arrow="left"
-        style="left: 0px; top: 10px;"
-      >
-        <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
-          style="height: 12px; width: 12px;"
-        />
-      </div>
-      <div>
-        <div
-          style="min-width: 300px; max-width: 600px;"
-        >
-          <div
-            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
-            id="generated-id"
-          >
-            <h2
-              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
-            >
-              A demo
-            </h2>
-          </div>
-          <div
-            class="euiTour__content"
-          >
-            You are here
-          </div>
-          <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
-          >
-            <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
-            >
-              <div
-                class="euiFlexItem emotion-euiFlexItem-growZero"
-              >
-                <button>
-                  Test
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiTourStep can turn off the beacon 1`] = `
-<div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-label="aria-label"
-      aria-labelledby="generated-id"
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
-      data-popover-open="true"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: -22px; left: -16px; will-change: transform, opacity; z-index: 2000;"
-    >
-      <div
-        class="euiPopover__arrow emotion-euiPopoverArrow-left"
-        data-popover-arrow="left"
-        style="left: 0px; top: 10px;"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
       />
-      <div>
-        <div
-          style="min-width: 300px; max-width: 600px;"
-        >
-          <div
-            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
-            id="generated-id"
-          >
-            <h2
-              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
-            >
-              A demo
-            </h2>
-          </div>
-          <div
-            class="euiTour__content"
-          >
-            You are here
-          </div>
-          <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
-          >
-            <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
-            >
-              <div
-                class="euiFlexItem emotion-euiFlexItem-growZero"
-              >
-                <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Close tour
-                    </span>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
-`;
-
-exports[`EuiTourStep is rendered 1`] = `
-<div
-  class="euiPopover euiPopover-isOpen emotion-euiPopover-inline-block"
-  data-test-subj="test subject string"
->
-  <span>
-    Test
-  </span>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div
-      aria-label="aria-label"
-      aria-labelledby="generated-id"
-      aria-live="assertive"
-      aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour-euiTestCss"
-      data-popover-open="true"
-      data-popover-panel="true"
-      role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
-    >
       <div
-        class="euiPopover__arrow emotion-euiPopoverArrow-left"
-        data-popover-arrow="left"
-        style="left: 0px; top: 10px;"
+        data-focus-lock-disabled="disabled"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
-          style="height: 12px; width: 12px;"
-        />
-      </div>
-      <div>
-        <div
-          style="min-width: 300px; max-width: 600px;"
+          aria-label="aria-label"
+          aria-labelledby="generated-id"
+          aria-live="assertive"
+          aria-modal="true"
+          class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-left-euiTour"
+          data-popover-open="true"
+          data-popover-panel="true"
+          role="dialog"
+          style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
-            id="generated-id"
-          >
-            <h2
-              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
-            >
-              A demo
-            </h2>
-          </div>
-          <div
-            class="euiTour__content"
-          >
-            You are here
-          </div>
-          <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
+            class="euiPopover__arrow emotion-euiPopoverArrow-left"
+            data-popover-arrow="left"
+            style="left: 0px; top: 10px;"
           >
             <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
+              class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
+              style="block-size: 12px; inline-size: 12px;"
+            />
+          </div>
+          <div>
+            <div
+              style="min-inline-size: 300px; max-inline-size: 600px;"
             >
               <div
-                class="euiFlexItem emotion-euiFlexItem-growZero"
+                class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
+                id="generated-id"
               >
-                <button
-                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
-                  type="button"
+                <h2
+                  class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
                 >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                  A demo
+                </h2>
+              </div>
+              <div
+                class="euiTour__content"
+              >
+                You are here
+              </div>
+              <div
+                class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
+              >
+                <div
+                  class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
+                >
+                  <div
+                    class="euiFlexItem emotion-euiFlexItem-growZero"
                   >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
+                    <button
+                      class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
+                      type="button"
                     >
-                      Close tour
-                    </span>
-                  </span>
-                </button>
+                      <span
+                        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                      >
+                        <span
+                          class="eui-textTruncate euiButtonEmpty__text"
+                        >
+                          Close tour
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
     </div>
   </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-</div>
+</body>
 `;

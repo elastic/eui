@@ -7,8 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import { act } from '@testing-library/react';
-import { mount } from 'enzyme';
+import { fireEvent, act } from '@testing-library/react';
 
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
@@ -92,7 +91,7 @@ describe('SearchBar', () => {
     test('calls onChange callback when the query is modified', () => {
       const onChange = jest.fn();
 
-      const component = mount(
+      const { getByTestSubject } = render(
         <EuiSearchBar
           query="status:active"
           onChange={onChange}
@@ -100,7 +99,7 @@ describe('SearchBar', () => {
         />
       );
 
-      component.find('input[data-test-subj="searchbar"]').simulate('keyup', {
+      fireEvent.keyUp(getByTestSubject('searchbar'), {
         key: keys.ENTER,
         target: { value: 'status:inactive' },
       });
@@ -114,7 +113,7 @@ describe('SearchBar', () => {
 
   describe('hint', () => {
     test('renders a hint below the search bar on focus', () => {
-      const component = mount(
+      const { getByTestSubject, queryByTestSubject } = render(
         <EuiSearchBar
           query="status:active"
           box={{ 'data-test-subj': 'searchbar' }}
@@ -124,19 +123,14 @@ describe('SearchBar', () => {
         />
       );
 
-      const getHint = () => component.find('[data-test-subj="myHint"]');
-
-      let hint = getHint();
-      expect(hint.length).toBe(0);
+      expect(queryByTestSubject('myHint')).toBeNull();
 
       act(() => {
-        component.find('input[data-test-subj="searchbar"]').simulate('focus');
+        fireEvent.focus(getByTestSubject('searchbar'));
       });
-      component.update();
 
-      hint = getHint();
-      expect(hint.length).toBe(1);
-      expect(hint.text()).toBe('Hello from hint');
+      expect(queryByTestSubject('myHint')).toBeInTheDocument();
+      expect(queryByTestSubject('myHint')).toHaveTextContent('Hello from hint');
     });
 
     test('control the visibility of the hint', () => {
@@ -164,28 +158,22 @@ describe('SearchBar', () => {
         );
       };
 
-      const component = mount(<TestComp />);
-      const getHint = () => component.find('[data-test-subj="myHint"]');
+      const { getByTestSubject, queryByTestSubject } = render(<TestComp />);
 
-      let hint = getHint();
-      expect(hint.length).toBe(0);
+      expect(queryByTestSubject('myHint')).toBeNull(); // Not visible on focus as it is controlled
 
       act(() => {
-        component.find('input[data-test-subj="searchbar"]').simulate('focus');
+        fireEvent.focus(getByTestSubject('searchbar'));
       });
-      component.update();
 
-      hint = getHint();
-      expect(hint.length).toBe(0); // Not visible on focus as it is controlled
+      expect(queryByTestSubject('myHint')).toBeNull(); // Not visible on focus as it is controlled
 
       act(() => {
-        component.find('[data-test-subj="showHintBtn"]').simulate('click');
+        fireEvent.click(getByTestSubject('showHintBtn'));
       });
-      component.update();
 
-      hint = getHint();
-      expect(hint.length).toBe(1);
-      expect(hint.text()).toBe('Hello from hint');
+      expect(queryByTestSubject('myHint')).toBeInTheDocument();
+      expect(queryByTestSubject('myHint')).toHaveTextContent('Hello from hint');
     });
   });
 });

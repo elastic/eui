@@ -188,6 +188,15 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Props passed to the update button #EuiSuperUpdateButtonProps
    */
   updateButtonProps?: EuiSuperUpdateButtonProps;
+
+  /**
+   * By default, relative units will be rounded up to next largest unit of time
+   * (for example, 90 minutes will become ~ 2 hours).
+   *
+   * If you do not want this behavior and instead wish to keep the exact units
+   * input by the user, set this flag to `false`.
+   */
+  canRoundRelativeUnits?: boolean;
 };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
@@ -250,6 +259,7 @@ export class EuiSuperDatePickerInternal extends Component<
     recentlyUsedRanges: [],
     refreshInterval: 1000,
     showUpdateButton: true,
+    canRoundRelativeUnits: true,
     start: 'now-15m',
     timeFormat: 'HH:mm',
     width: 'restricted',
@@ -483,6 +493,7 @@ export class EuiSuperDatePickerInternal extends Component<
       isQuickSelectOnly,
       showUpdateButton,
       commonlyUsedRanges,
+      canRoundRelativeUnits,
       timeOptions,
       dateFormat,
       refreshInterval,
@@ -579,6 +590,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
+                canRoundRelativeUnits={canRoundRelativeUnits}
                 isOpen={this.state.isStartDatePopoverOpen}
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
@@ -599,6 +611,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
+                canRoundRelativeUnits={canRoundRelativeUnits}
                 roundUp
                 isOpen={this.state.isEndDatePopoverOpen}
                 onPopoverToggle={this.onEndDatePopoverToggle}

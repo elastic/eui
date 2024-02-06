@@ -37,6 +37,13 @@ export const superDatePickerConfig = () => {
     value: true,
   };
 
+  propsToUse.canRoundRelativeUnits = {
+    ...propsToUse.canRoundRelativeUnits,
+    type: PropTypes.Boolean,
+    defaultValue: true,
+    value: true,
+  };
+
   propsToUse.locale = {
     ...propsToUse.locale,
     type: PropTypes.String,
