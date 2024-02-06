@@ -77,9 +77,9 @@ export type EuiRefreshIntervalProps = {
    */
   refreshInterval?: Milliseconds;
   /**
-   * Passes back the updated state of `isPaused` `refreshInterval`, and `intervalUnits`.
+   * Allows specifying a minimum interval in milliseconds
    */
-  onRefreshChange: ApplyRefreshInterval;
+  minInterval?: Milliseconds;
   /**
    * By default, refresh interval units will be rounded up to next largest unit of time
    * (for example, 90 seconds will become 2m).
@@ -87,6 +87,10 @@ export type EuiRefreshIntervalProps = {
    * If you do not want this behavior, you can manually control the rendered unit via this prop.
    */
   intervalUnits?: RefreshUnitsOptions;
+  /**
+   * Passes back the updated state of `isPaused`, `refreshInterval`, and `intervalUnits`.
+   */
+  onRefreshChange: ApplyRefreshInterval;
 };
 
 interface EuiRefreshIntervalState {
@@ -101,6 +105,7 @@ export class EuiRefreshInterval extends Component<
   static defaultProps = {
     isPaused: true,
     refreshInterval: 1000,
+    minInterval: 0,
   };
 
   state: EuiRefreshIntervalState = fromMilliseconds(
