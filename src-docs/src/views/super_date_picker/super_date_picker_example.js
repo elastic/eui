@@ -303,7 +303,7 @@ if (!endMoment || !endMoment.isValid()) {
       text: (
         <>
           <p>
-            Set <EuiCode>isAutoRefreshOnly</EuiCode> to <EuiCode>true </EuiCode>{' '}
+            Set <EuiCode>isAutoRefreshOnly</EuiCode> to <EuiCode>true</EuiCode>{' '}
             to limit the component to only display auto refresh content. This is
             useful in cases where there is no time data but auto-refresh
             configuration is still desired.
