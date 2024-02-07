@@ -8,30 +8,23 @@
 
 import React, {
   CSSProperties,
+  HTMLAttributes,
   FunctionComponent,
   ReactElement,
   ReactNode,
   useEffect,
   useState,
+  useMemo,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
+import { logicalStyles } from '../../global_styling';
 import { CommonProps, ExclusiveUnion, NoArgCallback } from '../common';
 
 import { EuiBeacon } from '../beacon';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiI18n } from '../i18n';
-import {
-  EuiPopover,
-  EuiPopoverFooter,
-  EuiPopoverProps,
-  EuiPopoverTitle,
-  EuiWrappingPopover,
-} from '../popover';
-import { EuiTitle } from '../title';
+import { EuiPopover, EuiPopoverProps, EuiWrappingPopover } from '../popover';
 
-import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
 import {
   useGeneratedHtmlId,
   findElementBySelectorOrRef,
@@ -40,16 +33,16 @@ import {
 } from '../../services';
 import { EuiPopoverPosition } from '../../services/popover';
 
-import {
-  euiTourStyles,
-  euiTourBeaconStyles,
-  euiTourFooterStyles,
-  euiTourHeaderStyles,
-} from './tour.styles';
+import { EuiTourHeader } from './_tour_header';
+import { EuiTourFooter } from './_tour_footer';
+import { euiTourStyles, euiTourBeaconStyles } from './tour.styles';
 
-type PopoverOverrides = 'button' | 'closePopover';
-
-type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, 'closePopover'>>;
+type _EuiPopoverProps = EuiPopoverProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'content' | 'title' | 'step'>;
+type _PopoverOverrides = 'button' | 'closePopover';
+type _PopoverPartials = 'closePopover';
+type ExtendedEuiPopoverProps = Omit<_EuiPopoverProps, _PopoverOverrides> &
+  Partial<Pick<EuiPopoverProps, _PopoverPartials>>;
 
 export type EuiTourStepAnchorProps = ExclusiveUnion<
   {
@@ -69,8 +62,7 @@ export type EuiTourStepAnchorProps = ExclusiveUnion<
 >;
 
 export type EuiTourStepProps = CommonProps &
-  Omit<EuiPopoverProps, PopoverOverrides> &
-  EuiPopoverPartials &
+  ExtendedEuiPopoverProps &
   EuiTourStepAnchorProps & {
     /**
      * Contents of the tour step popover
@@ -108,11 +100,6 @@ export type EuiTourStepProps = CommonProps &
     stepsTotal: number;
 
     /**
-     * Optional, standard DOM `style` attribute. Passed to the EuiPopover panel.
-     */
-    style?: CSSProperties;
-
-    /**
      * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
      */
     subtitle?: ReactNode;
@@ -148,30 +135,29 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   onFinish,
   step = 1,
   stepsTotal,
-  style,
   subtitle,
   title,
   decoration = 'beacon',
   footerAction,
   panelProps,
+  panelClassName,
   ...rest
 }) => {
   const titleId = useGeneratedHtmlId();
   if (step === 0) {
     console.warn(
-      'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'
+      'EuiTourStep `step` should use 1-based indexing. Please update to eliminate 0 indexes.'
     );
   }
 
   const [anchorNode, setAnchorNode] = useState<HTMLElement | null>(null);
   const [popoverPosition, setPopoverPosition] = useState<EuiPopoverPosition>();
 
-  const onPositionChange = (position: EuiPopoverPosition) => {
+  const onPositionChange = useCallback((position: EuiPopoverPosition) => {
     setPopoverPosition(position);
-  };
+  }, []);
 
   useEffect(() => {
-    let timeout: number;
     if (anchor) {
       // Wait until next tick to find anchor node in case it's not already
       // in DOM requestAnimationFrame isn't used here because we don't need to
@@ -179,21 +165,18 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       // needs to go through a react DOM rerender which may take more than
       // 1 frame (16ms) of time.
       // TODO: It would be ideal to have some kind of intersection observer here instead
-      timeout = window.setTimeout(() => {
+      const timeout = window.setTimeout(() => {
         setAnchorNode(findElementBySelectorOrRef(anchor));
       });
-    }
 
-    return () => {
-      timeout && window.clearTimeout(timeout);
-    };
+      return () => window.clearTimeout(timeout);
+    }
   }, [anchor]);
 
-  const classes = classNames('euiTour', className);
+  const anchorClasses = classNames('euiTourAnchor', className);
+  const popoverClasses = classNames('euiTour', panelClassName);
   const euiTheme = useEuiTheme();
   const tourStyles = euiTourStyles(euiTheme);
-  const headerStyles = euiTourHeaderStyles(euiTheme);
-  const footerStyles = euiTourFooterStyles(euiTheme);
   const beaconStyles = euiTourBeaconStyles(euiTheme);
   const beaconCss = [
     beaconStyles.euiTourBeacon,
@@ -201,142 +184,48 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     popoverPosition && beaconStyles[popoverPosition],
   ];
 
-  const finishButtonProps: EuiButtonEmptyProps = {
-    color: 'text',
-    flush: 'right',
-    size: 'xs',
-  };
-
-  const optionalFooterAction: JSX.Element = Array.isArray(footerAction) ? (
-    <EuiFlexGroup
-      gutterSize="s"
-      alignItems="center"
-      justifyContent="flexEnd"
-      responsive={false}
-      wrap
-    >
-      {footerAction.map((action, index) => (
-        <EuiFlexItem key={index} grow={false}>
-          {action}
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
-  ) : (
-    <EuiFlexItem grow={false}>{footerAction}</EuiFlexItem>
-  );
-
-  const footer = (
-    <EuiFlexGroup
-      responsive={false}
-      justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}
-      alignItems="center"
-    >
-      {stepsTotal > 1 && (
-        <EuiFlexItem grow={false}>
-          <ul className="euiTourFooter__stepList">
-            {[...Array(stepsTotal).keys()].map((_, i) => {
-              let status: EuiTourStepStatus = 'complete';
-              if (step === i + 1) {
-                status = 'active';
-              } else if (step <= i) {
-                status = 'incomplete';
-              }
-              return (
-                <EuiTourStepIndicator key={i} number={i + 1} status={status} />
-              );
-            })}
-          </ul>
-        </EuiFlexItem>
-      )}
-
-      {footerAction ? (
-        optionalFooterAction
-      ) : (
-        <EuiFlexItem grow={false}>
-          <EuiI18n
-            tokens={[
-              'euiTourStep.endTour',
-              'euiTourStep.skipTour',
-              'euiTourStep.closeTour',
-            ]}
-            defaults={['End tour', 'Skip tour', 'Close tour']}
-          >
-            {([endTour, skipTour, closeTour]: string[]) => {
-              let content = closeTour;
-              if (stepsTotal > 1) {
-                content = stepsTotal === step ? endTour : skipTour;
-              }
-              return (
-                <EuiButtonEmpty onClick={onFinish} {...finishButtonProps}>
-                  {content}
-                </EuiButtonEmpty>
-              );
-            }}
-          </EuiI18n>
-        </EuiFlexItem>
-      )}
-    </EuiFlexGroup>
-  );
-
   const hasBeacon = decoration === 'beacon';
 
-  const popoverProps = {
-    anchorPosition: anchorPosition,
-    closePopover: closePopover,
-    isOpen: isStepOpen,
-    ownFocus: false,
-    panelClassName: classes,
-    panelStyle: style,
-    panelProps: {
-      ...panelProps,
-      css: [tourStyles.euiTour, css, panelProps?.css],
-    },
-    offset: hasBeacon ? 10 : 0,
-    'aria-labelledby': titleId,
-    arrowChildren: hasBeacon && (
-      <EuiBeacon css={beaconCss} className="euiTour__beacon" />
-    ),
-    onPositionChange,
-    ...rest,
-  };
-
-  const layout = (
-    <div style={{ minWidth, maxWidth }}>
-      <EuiPopoverTitle
-        css={headerStyles.euiTourHeader}
-        className="euiTourHeader"
-        id={titleId}
-      >
-        {subtitle && (
-          <EuiTitle css={headerStyles.euiTourHeader__subtitle} size="xxxs">
-            <h2>{subtitle}</h2>
-          </EuiTitle>
-        )}
-        <EuiTitle css={headerStyles.euiTourHeader__title} size="xxs">
-          {subtitle ? <h3>{title}</h3> : <h2>{title}</h2>}
-        </EuiTitle>
-      </EuiPopoverTitle>
-      <div className="euiTour__content">{content}</div>
-      <EuiPopoverFooter
-        css={footerStyles.euiTourFooter}
-        className="euiTourFooter"
-      >
-        {footer}
-      </EuiPopoverFooter>
-    </div>
+  const widthStyles = useMemo(
+    () => logicalStyles({ minWidth, maxWidth }),
+    [minWidth, maxWidth]
   );
 
-  if (!anchor && children) {
-    return (
-      <EuiPopover button={children} {...popoverProps}>
-        {layout}
-      </EuiPopover>
-    );
-  }
+  const noAnchor = !anchor && children;
+  const PopoverComponent = noAnchor ? EuiPopover : EuiWrappingPopover;
+  const button = noAnchor ? children : anchorNode;
 
-  return anchorNode ? (
-    <EuiWrappingPopover button={anchorNode} {...popoverProps}>
-      {layout}
-    </EuiWrappingPopover>
+  return button ? (
+    <PopoverComponent
+      button={button as HTMLElement & ReactNode}
+      className={anchorClasses}
+      anchorPosition={anchorPosition}
+      closePopover={closePopover}
+      isOpen={isStepOpen}
+      ownFocus={false}
+      panelClassName={popoverClasses}
+      panelProps={{
+        ...panelProps,
+        css: [tourStyles.euiTour, css, panelProps?.css],
+      }}
+      offset={hasBeacon ? 10 : 0}
+      aria-labelledby={titleId}
+      arrowChildren={
+        hasBeacon && <EuiBeacon css={beaconCss} className="euiTour__beacon" />
+      }
+      onPositionChange={onPositionChange}
+      {...rest}
+    >
+      <div style={widthStyles}>
+        <EuiTourHeader id={titleId} title={title} subtitle={subtitle} />
+        <div className="euiTour__content">{content}</div>
+        <EuiTourFooter
+          footerAction={footerAction}
+          step={step}
+          stepsTotal={stepsTotal}
+          onFinish={onFinish}
+        />
+      </div>
+    </PopoverComponent>
   ) : null;
 };

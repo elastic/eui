@@ -6,23 +6,36 @@
  * Side Public License, v 1.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { hideStorybookControls } from '../../../.storybook/utils';
 
-import { EuiButton, EuiText } from '../index';
+import { EuiButton, EuiText, EuiTitle } from '../index';
 
-import { EuiFlyout, EuiFlyoutProps, EuiFlyoutBody } from './index';
+import {
+  EuiFlyout,
+  EuiFlyoutProps,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiFlyoutFooter,
+} from './index';
 
 const meta: Meta<EuiFlyoutProps> = {
   title: 'EuiFlyout',
   component: EuiFlyout,
+  argTypes: {
+    as: { control: 'text' },
+    // TODO: maxWidth has multiple types
+  },
   args: {
     // Component defaults
+    as: 'div',
     type: 'overlay',
     side: 'right',
     size: 'm',
     paddingSize: 'l',
+    pushAnimation: false,
     pushMinBreakpoint: 'l',
     closeButtonPosition: 'inside',
     hideCloseButton: false,
@@ -33,6 +46,8 @@ const meta: Meta<EuiFlyoutProps> = {
 export default meta;
 type Story = StoryObj<EuiFlyoutProps>;
 
+const onClose = action('onClose');
+
 const StatefulFlyout = (props: Partial<EuiFlyoutProps>) => {
   const [isOpen, setIsOpen] = useState(true);
   return (
@@ -40,12 +55,35 @@ const StatefulFlyout = (props: Partial<EuiFlyoutProps>) => {
       <EuiButton size="s" onClick={() => setIsOpen(!isOpen)}>
         Toggle flyout
       </EuiButton>
-      {isOpen && <EuiFlyout {...props} onClose={() => setIsOpen(false)} />}
+      {isOpen && (
+        <EuiFlyout
+          {...props}
+          onClose={(...args) => {
+            setIsOpen(false);
+            onClose(...args);
+          }}
+        />
+      )}
     </>
   );
 };
 
 export const Playground: Story = {
+  args: {
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Flyout header</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
+  },
   render: ({ ...args }) => <StatefulFlyout {...args} />,
 };
 

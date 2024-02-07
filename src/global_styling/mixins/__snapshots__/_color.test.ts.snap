@@ -47,3 +47,19 @@ exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-c
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: transparent 1`] = `"background-color:transparent;;label:transparent;"`;
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: warning 1`] = `"background-color:#fff9e8;;label:warning;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: accent 1`] = `"border-color:#f9b8d6;;label:accent;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: danger 1`] = `"border-color:#e5a9a5;;label:danger;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: plain 1`] = `"border-color:#D3DAE6;;label:plain;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: primary 1`] = `"border-color:#99c9eb;;label:primary;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: subdued 1`] = `"border-color:#D3DAE6;;label:subdued;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: success 1`] = `"border-color:#99e5e1;;label:success;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: transparent 1`] = `"border-color:#D3DAE6;;label:transparent;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: warning 1`] = `"border-color:#fedc72;;label:warning;"`;

@@ -268,6 +268,7 @@ const EuiDataGridCellContent: FunctionComponent<
     );
   }
 );
+EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
 
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,

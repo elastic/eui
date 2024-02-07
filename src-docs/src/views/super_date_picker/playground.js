@@ -7,6 +7,7 @@ import {
   propUtilityForPlayground,
   dummyFunction,
   simulateFunction,
+  createOptionalEnum,
 } from '../../services/playground';
 
 export const superDatePickerConfig = () => {
@@ -18,6 +19,10 @@ export const superDatePickerConfig = () => {
   propsToUse.onTimeChange = simulateFunction(propsToUse.onTimeChange, true);
   propsToUse.onRefreshChange = simulateFunction(propsToUse.onRefreshChange);
 
+  propsToUse.refreshIntervalUnits = createOptionalEnum(
+    propsToUse.refreshIntervalUnits
+  );
+
   propsToUse.isPaused = {
     ...propsToUse.isPaused,
     type: PropTypes.Boolean,
@@ -27,6 +32,13 @@ export const superDatePickerConfig = () => {
 
   propsToUse.showUpdateButton = {
     ...propsToUse.showUpdateButton,
+    type: PropTypes.Boolean,
+    defaultValue: true,
+    value: true,
+  };
+
+  propsToUse.canRoundRelativeUnits = {
+    ...propsToUse.canRoundRelativeUnits,
     type: PropTypes.Boolean,
     defaultValue: true,
     value: true,

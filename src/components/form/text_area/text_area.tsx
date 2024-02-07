@@ -106,13 +106,22 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
       return {
         onClick: () => {
           if (ref.current) {
-            ref.current.value = '';
+            // Updates the displayed value and fires `onChange` callbacks
+            // @see https://stackoverflow.com/questions/23892547/what-is-the-best-way-to-trigger-onchange-event-in-react-js
+            const nativeValueSetter = Object.getOwnPropertyDescriptor(
+              window.HTMLTextAreaElement.prototype,
+              'value'
+            )!.set!;
+            nativeValueSetter.call(ref.current, '');
+
             const event = new Event('input', {
               bubbles: true,
               cancelable: false,
             });
             ref.current.dispatchEvent(event);
-            ref.current.focus(); // set focus back to the textarea
+
+            // Set focus back to the textarea
+            ref.current.focus();
           }
         },
         'data-test-subj': 'clearTextAreaButton',

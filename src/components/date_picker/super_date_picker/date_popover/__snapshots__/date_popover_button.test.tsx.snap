@@ -10,6 +10,7 @@ exports[`EuiSuperUpdateButton renders 1`] = `
       class="euiDatePopoverButton euiDatePopoverButton--start"
       data-test-subj="superDatePickerstartDatePopoverButton"
       title=""
+      type="button"
     />
   </div>
 </div>

@@ -25,7 +25,7 @@ import { euiCollapsibleNavStyles } from './collapsible_nav.styles';
 
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<
-  EuiFlyoutProps,
+  EuiFlyoutProps<'nav' | 'div'>,
   'type' | 'pushBreakpoint'
 > & {
   /**
@@ -64,7 +64,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   showButtonIfDocked = false,
   dockedBreakpoint = 'l',
   // Setting different EuiFlyout defaults
-  as = 'nav' as EuiCollapsibleNavProps['as'],
+  as = 'nav',
   size = 320,
   side = 'left',
   ownFocus = true,

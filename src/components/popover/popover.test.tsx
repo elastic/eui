@@ -87,21 +87,6 @@ describe('EuiPopover', () => {
       });
     });
 
-    describe('anchorClassName', () => {
-      test('is rendered', () => {
-        const { container } = render(
-          <EuiPopover
-            id={getId()}
-            anchorClassName="test"
-            button={<button />}
-            closePopover={() => {}}
-          />
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
-
     describe('closePopover', () => {
       it('is called when ESC key is hit and the popover is open', () => {
         const closePopoverHandler = jest.fn();

@@ -20,7 +20,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { keys } from '../../services';
+import { keys, useLatest } from '../../services';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiResizableContainerContextProvider } from './context';
 import {
@@ -100,6 +100,10 @@ export const EuiResizableContainer: FunctionComponent<
   onResizeEnd,
   ...rest
 }) => {
+  // Note: It's important to memoize consumer callbacks to prevent our own functions
+  // from reinstantiating unnecessarily & causing window event listeners to call stale closures
+  const onResizeEndRef = useLatest(onResizeEnd);
+  const onResizeStartRef = useLatest(onResizeStart);
   const containerRef = useRef<HTMLDivElement>(null);
   const isHorizontal = direction === 'horizontal';
 
@@ -135,9 +139,9 @@ export const EuiResizableContainer: FunctionComponent<
   }>({});
 
   const resizeEnd = useCallback(() => {
-    onResizeEnd?.();
+    onResizeEndRef.current?.();
     resizeContext.current = {};
-  }, [onResizeEnd]);
+  }, [onResizeEndRef]);
 
   const resizeStart = useCallback(
     (trigger: ResizeTrigger, keyMoveDirection?: KeyMoveDirection) => {
@@ -148,10 +152,10 @@ export const EuiResizableContainer: FunctionComponent<
       if (resizeContext.current.trigger) {
         resizeEnd();
       }
-      onResizeStart?.(trigger);
+      onResizeStartRef.current?.(trigger);
       resizeContext.current = { trigger, keyMoveDirection };
     },
-    [onResizeStart, resizeEnd]
+    [onResizeStartRef, resizeEnd]
   );
 
   const onMouseDown = useCallback(

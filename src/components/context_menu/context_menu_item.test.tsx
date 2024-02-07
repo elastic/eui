@@ -138,8 +138,6 @@ describe('EuiContextMenuItem', () => {
     const { getByRole, baseElement } = render(
       <EuiContextMenuItem
         toolTipContent="tooltip content"
-        toolTipTitle="overridden"
-        // Should override the deprecated props
         toolTipProps={{ title: 'Test', position: 'top', delay: 'long' }}
       >
         Hello

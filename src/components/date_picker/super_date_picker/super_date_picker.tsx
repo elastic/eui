@@ -28,6 +28,7 @@ import {
   DurationRange,
   ApplyTime,
   ApplyRefreshInterval,
+  RefreshUnitsOptions,
   QuickSelectPanel,
 } from '../types';
 
@@ -147,6 +148,14 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * @default 1000
    */
   refreshInterval?: Milliseconds;
+  /**
+   * By default, refresh interval units will be rounded up to next largest unit of time
+   * (for example, 90 seconds will become 2m).
+   *
+   * If you do not want this behavior, you will need to store the user-set `intervalUnits`
+   * (passed by `onRefreshChange`) and manually control it via this prop.
+   */
+  refreshIntervalUnits?: RefreshUnitsOptions;
 
   /**
    * @default 'now-15m'
@@ -179,6 +188,15 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Props passed to the update button #EuiSuperUpdateButtonProps
    */
   updateButtonProps?: EuiSuperUpdateButtonProps;
+
+  /**
+   * By default, relative units will be rounded up to next largest unit of time
+   * (for example, 90 minutes will become ~ 2 hours).
+   *
+   * If you do not want this behavior and instead wish to keep the exact units
+   * input by the user, set this flag to `false`.
+   */
+  canRoundRelativeUnits?: boolean;
 };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
@@ -241,6 +259,7 @@ export class EuiSuperDatePickerInternal extends Component<
     recentlyUsedRanges: [],
     refreshInterval: 1000,
     showUpdateButton: true,
+    canRoundRelativeUnits: true,
     start: 'now-15m',
     timeFormat: 'HH:mm',
     width: 'restricted',
@@ -390,13 +409,17 @@ export class EuiSuperDatePickerInternal extends Component<
     this.setState({ isEndDatePopoverOpen: false });
   };
 
-  onRefreshChange: ApplyRefreshInterval = ({ refreshInterval, isPaused }) => {
+  onRefreshChange: ApplyRefreshInterval = ({
+    refreshInterval,
+    intervalUnits,
+    isPaused,
+  }) => {
     this.stopInterval();
     if (!isPaused) {
       this.startInterval(refreshInterval);
     }
     if (this.props.onRefreshChange) {
-      this.props.onRefreshChange({ refreshInterval, isPaused });
+      this.props.onRefreshChange({ refreshInterval, isPaused, intervalUnits });
     }
   };
 
@@ -429,6 +452,7 @@ export class EuiSuperDatePickerInternal extends Component<
       onRefreshChange,
       recentlyUsedRanges,
       refreshInterval,
+      refreshIntervalUnits,
       isPaused,
       isDisabled,
     } = this.props;
@@ -448,6 +472,7 @@ export class EuiSuperDatePickerInternal extends Component<
         isPaused={isPaused}
         recentlyUsedRanges={recentlyUsedRanges}
         refreshInterval={refreshInterval}
+        intervalUnits={refreshIntervalUnits}
         start={start}
         timeOptions={timeOptions}
       />
@@ -468,9 +493,11 @@ export class EuiSuperDatePickerInternal extends Component<
       isQuickSelectOnly,
       showUpdateButton,
       commonlyUsedRanges,
+      canRoundRelativeUnits,
       timeOptions,
       dateFormat,
       refreshInterval,
+      refreshIntervalUnits,
       isPaused,
       isDisabled,
       isLoading,
@@ -484,6 +511,7 @@ export class EuiSuperDatePickerInternal extends Component<
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
       <EuiAutoRefreshButton
         refreshInterval={refreshInterval}
+        intervalUnits={refreshIntervalUnits}
         isDisabled={!!isDisabled}
         isPaused={isPaused}
         onRefreshChange={this.onRefreshChange}
@@ -518,6 +546,7 @@ export class EuiSuperDatePickerInternal extends Component<
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
           <button
+            type="button"
             className={classNames('euiSuperDatePicker__prettyFormat', {
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
@@ -562,6 +591,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
+                canRoundRelativeUnits={canRoundRelativeUnits}
                 isOpen={this.state.isStartDatePopoverOpen}
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
@@ -582,6 +612,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 utcOffset={utcOffset}
                 timeFormat={timeFormat}
                 locale={locale || contextLocale}
+                canRoundRelativeUnits={canRoundRelativeUnits}
                 roundUp
                 isOpen={this.state.isEndDatePopoverOpen}
                 onPopoverToggle={this.onEndDatePopoverToggle}
@@ -640,6 +671,7 @@ export class EuiSuperDatePickerInternal extends Component<
       isPaused,
       onRefreshChange,
       refreshInterval,
+      refreshIntervalUnits,
       showUpdateButton,
       'data-test-subj': dataTestSubj,
       width: _width,
@@ -668,7 +700,8 @@ export class EuiSuperDatePickerInternal extends Component<
           <EuiAutoRefresh
             isPaused={isPaused}
             refreshInterval={refreshInterval}
-            onRefreshChange={onRefreshChange}
+            intervalUnits={refreshIntervalUnits}
+            onRefreshChange={this.onRefreshChange}
             fullWidth={width === 'full'}
             compressed={compressed}
             isDisabled={!!isDisabled}

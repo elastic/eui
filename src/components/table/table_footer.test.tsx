@@ -15,9 +15,13 @@ import { EuiTableFooter } from './table_footer';
 describe('EuiTableFooter', () => {
   test('is rendered', () => {
     const { container } = render(
-      <EuiTableFooter {...requiredProps}>children</EuiTableFooter>
+      <table>
+        <EuiTableFooter {...requiredProps}>
+          <td>children</td>
+        </EuiTableFooter>
+      </table>
     );
 
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

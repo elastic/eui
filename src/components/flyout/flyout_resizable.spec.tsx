@@ -166,6 +166,36 @@ describe('EuiFlyoutResizable', () => {
         cy.get('.euiFlyout').should('have.css', 'inline-size', '400px');
       };
     });
+
+    it('calls the optional onResize callback on mouseup and keyboard events only', () => {
+      const onResize = cy.stub();
+      cy.mount(
+        <EuiFlyoutResizable onClose={onClose} size={800} onResize={onResize} />
+      );
+
+      cy.get('[data-test-subj="euiResizableButton"]')
+        .trigger('mousedown', { clientX: 400 })
+        .trigger('mousemove', { clientX: 600 })
+        .then(() => {
+          expect(onResize).not.have.been.called;
+        });
+      cy.get('[data-test-subj="euiResizableButton"]')
+        .trigger('mouseup')
+        .then(() => {
+          expect(onResize.callCount).to.eql(1);
+          expect(onResize).to.have.been.calledWith(600);
+        });
+
+      cy.get('[data-test-subj="euiResizableButton"]').focus();
+      cy.realPress('ArrowRight').then(() => {
+        expect(onResize.callCount).to.eql(2);
+        expect(onResize).to.have.been.calledWith(590);
+      });
+      cy.realPress('ArrowLeft').then(() => {
+        expect(onResize.callCount).to.eql(3);
+        expect(onResize.lastCall.args).to.eql([600]);
+      });
+    });
   });
 
   describe('push flyouts', () => {

@@ -29,6 +29,7 @@ export type {
   NowDateMode,
   DateMode,
   OnRefreshChangeProps,
+  RefreshUnitsOptions,
   ShortDate,
   RelativeParts,
   RelativeOption,

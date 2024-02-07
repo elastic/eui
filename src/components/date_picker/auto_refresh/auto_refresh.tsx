@@ -36,6 +36,7 @@ export type EuiAutoRefreshProps = EuiAutoRefreshSharedProps & {
 export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
   className,
   onRefreshChange,
+  intervalUnits,
   isDisabled,
   isPaused = true,
   refreshInterval = 1000,
@@ -74,7 +75,9 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
           }
           readOnly={readOnly}
           disabled={isDisabled}
-          value={usePrettyInterval(Boolean(isPaused), refreshInterval)}
+          value={usePrettyInterval(Boolean(isPaused), refreshInterval, {
+            unit: intervalUnits,
+          })}
           {...rest}
         />
       }
@@ -87,6 +90,7 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
         onRefreshChange={onRefreshChange}
         isPaused={isPaused}
         refreshInterval={refreshInterval}
+        intervalUnits={intervalUnits}
       />
     </EuiInputPopover>
   );
@@ -107,6 +111,7 @@ export const EuiAutoRefreshButton: FunctionComponent<
 > = ({
   className,
   onRefreshChange,
+  intervalUnits,
   isDisabled,
   isPaused = true,
   refreshInterval = 1000,
@@ -125,7 +130,11 @@ export const EuiAutoRefreshButton: FunctionComponent<
   const autoRefeshLabelOn = useEuiI18n(
     'euiAutoRefresh.buttonLabelOn',
     'Auto refresh is on and set to {prettyInterval}',
-    { prettyInterval: usePrettyInterval(Boolean(isPaused), refreshInterval) }
+    {
+      prettyInterval: usePrettyInterval(Boolean(isPaused), refreshInterval, {
+        unit: intervalUnits,
+      }),
+    }
   );
 
   return (
@@ -141,7 +150,10 @@ export const EuiAutoRefreshButton: FunctionComponent<
           isDisabled={isDisabled}
           {...rest}
         >
-          {usePrettyInterval(Boolean(isPaused), refreshInterval, shortHand)}
+          {usePrettyInterval(Boolean(isPaused), refreshInterval, {
+            shortHand,
+            unit: intervalUnits,
+          })}
         </EuiButtonEmpty>
       }
       isOpen={isPopoverOpen}
@@ -156,6 +168,7 @@ export const EuiAutoRefreshButton: FunctionComponent<
         onRefreshChange={onRefreshChange}
         isPaused={isPaused}
         refreshInterval={refreshInterval}
+        intervalUnits={intervalUnits}
       />
     </EuiPopover>
   );

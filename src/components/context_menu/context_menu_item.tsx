@@ -7,6 +7,7 @@
  */
 
 import React, {
+  PropsWithChildren,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   HTMLAttributes,
@@ -25,7 +26,7 @@ import {
 import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
-import { EuiToolTip, EuiToolTipProps, ToolTipPositions } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
@@ -35,7 +36,9 @@ export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
 export const SIZES = ['s', 'm'] as const;
 
-export interface EuiContextMenuItemProps extends CommonProps {
+export interface EuiContextMenuItemProps
+  extends PropsWithChildren,
+    CommonProps {
   icon?: EuiContextMenuItemIcon;
   hasPanel?: boolean;
   disabled?: boolean;
@@ -50,14 +53,6 @@ export interface EuiContextMenuItemProps extends CommonProps {
    * Accepts any prop that EuiToolTip does, except for `content` and `children`.
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
-  /**
-   * @deprecated Use toolTipProps.title instead
-   */
-  toolTipTitle?: ReactNode;
-  /**
-   * @deprecated Use tooltipProps.position instead
-   */
-  toolTipPosition?: ToolTipPositions;
   href?: string;
   target?: string;
   rel?: string;
@@ -96,9 +91,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
   buttonRef,
   disabled: _disabled,
   layoutAlign = 'center',
-  toolTipTitle,
   toolTipContent,
-  toolTipPosition = 'right',
   toolTipProps,
   href,
   target,
@@ -212,8 +205,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
     );
     return (
       <EuiToolTip
-        title={toolTipTitle ? toolTipTitle : null}
-        position={toolTipPosition}
+        position="right"
         {...toolTipProps}
         anchorClassName={anchorClasses}
         content={toolTipContent}

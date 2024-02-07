@@ -7,21 +7,23 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
+import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';
 
 const meta: Meta<EuiButtonEmptyProps> = {
   title: 'EuiButtonEmpty',
-  component: EuiButtonEmpty as any,
+  component: EuiButtonEmpty,
   argTypes: {
     flush: {
       options: [undefined, 'left', 'right', 'both'],
-      control: 'select',
     },
     iconType: { control: 'text' },
+    target: { control: 'text' },
   },
   args: {
     // Component defaults
+    type: 'button',
     color: 'primary',
     size: 'm',
     iconSize: 'm',
@@ -36,6 +38,7 @@ export default meta;
 type Story = StoryObj<EuiButtonEmptyProps>;
 
 export const Playground: Story = {
+  argTypes: disableStorybookControls(['buttonRef']),
   args: {
     children: 'Tertiary action',
   },
