@@ -12,6 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiPopover } from '../popover';
 import { EuiButton } from '../button';
 import { EuiIcon } from '../icon';
+import { EuiTitle } from '../title';
 
 import { EuiContextMenu, EuiContextMenuProps } from './context_menu';
 
@@ -94,6 +95,23 @@ const panels: EuiContextMenuProps['panels'] = [
         name: 'Embed code',
         icon: 'user',
         panel: 2,
+      },
+      {
+        isSeparator: true,
+      },
+      {
+        renderItem: () => (
+          <EuiTitle
+            size="xxs"
+            css={({ euiTheme }) => ({
+              marginInline: euiTheme.size.s,
+              marginBlockStart: euiTheme.size.m,
+              marginBlockEnd: euiTheme.size.xs,
+            })}
+          >
+            <h3>Custom rendered subtitle</h3>
+          </EuiTitle>
+        ),
       },
       {
         name: 'Permalinks',
