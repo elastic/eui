@@ -20,7 +20,7 @@ import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
-type CellProps = Pick<
+export type CellProps = Pick<
   EuiDataGridCellProps,
   | 'colIndex'
   | 'visibleRowIndex'
@@ -33,6 +33,7 @@ type CellProps = Pick<
   | 'rowHeightUtils'
   | 'rowManager'
   | 'setRowHeight'
+  | 'column'
 > &
   Pick<
     EuiDataGridBodyProps,
@@ -52,7 +53,7 @@ type CellProps = Pick<
  * It grabs context,  determines the type of cell being rendered
  * (e.g. control vs data cell), & sets shared props between all cells
  */
-export const Cell: FunctionComponent<CellProps> = memo(
+export const CellWrapper: FunctionComponent<CellProps> = memo(
   ({
     colIndex,
     visibleRowIndex,
@@ -143,81 +144,61 @@ export const Cell: FunctionComponent<CellProps> = memo(
       textTransform,
     ]);
 
-    const cellContent = useMemo(() => {
-      if (isLeadingControlColumn) {
-        const leadingColumn = leadingControlColumns[colIndex];
-        const { id, rowCellRender } = leadingColumn;
+    if (isLeadingControlColumn) {
+      const leadingColumn = leadingControlColumns[colIndex];
+      const { id, rowCellRender } = leadingColumn;
 
-        return (
-          <EuiDataGridCell
-            {...sharedCellProps}
-            columnId={id}
-            width={leadingColumn.width}
-            renderCellValue={rowCellRender}
-            isExpandable={false}
-            {...rest}
-          />
-        );
-      } else if (isTrailingControlColumn) {
-        const columnOffset = columns.length + leadingControlColumns.length;
-        const trailingcolIndex = colIndex - columnOffset;
-        const trailingColumn = trailingControlColumns[trailingcolIndex];
-        const { id, rowCellRender } = trailingColumn;
+      return (
+        <EuiDataGridCell
+          {...sharedCellProps}
+          columnId={id}
+          width={leadingColumn.width}
+          renderCellValue={rowCellRender}
+          isExpandable={false}
+          {...rest}
+        />
+      );
+    } else if (isTrailingControlColumn) {
+      const columnOffset = columns.length + leadingControlColumns.length;
+      const trailingcolIndex = colIndex - columnOffset;
+      const trailingColumn = trailingControlColumns[trailingcolIndex];
+      const { id, rowCellRender } = trailingColumn;
 
-        return (
-          <EuiDataGridCell
-            {...sharedCellProps}
-            columnId={id}
-            width={trailingColumn.width}
-            renderCellValue={rowCellRender}
-            isExpandable={false}
-            {...rest}
-          />
-        );
-      } else {
-        // this is a normal data cell
-        const columnType = schema[columnId]
-          ? schema[columnId].columnType
-          : null;
+      return (
+        <EuiDataGridCell
+          {...sharedCellProps}
+          columnId={id}
+          width={trailingColumn.width}
+          renderCellValue={rowCellRender}
+          isExpandable={false}
+          {...rest}
+        />
+      );
+    } else {
+      // this is a normal data cell
+      const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
-        const isExpandable =
-          column.isExpandable !== undefined ? column.isExpandable : true;
+      const isExpandable =
+        column?.isExpandable !== undefined ? column?.isExpandable : true;
 
-        const width = columnWidths[columnId] || defaultColumnWidth;
+      const width = columnWidths[columnId] || defaultColumnWidth;
 
-        return (
-          <EuiDataGridCell
-            {...sharedCellProps}
-            columnId={columnId}
-            column={column}
-            columnType={columnType}
-            width={width || undefined}
-            renderCellValue={renderCellValue}
-            renderCellPopover={renderCellPopover}
-            interactiveCellId={interactiveCellId}
-            isExpandable={isExpandable}
-            {...rest}
-          />
-        );
-      }
-    }, [
-      colIndex,
-      isLeadingControlColumn,
-      isTrailingControlColumn,
-      rest,
-      columnId,
-      column,
-      columnWidths,
-      defaultColumnWidth,
-      renderCellValue,
-      renderCellPopover,
-      interactiveCellId,
-      sharedCellProps,
-      schema,
-      columns,
-      leadingControlColumns,
-      trailingControlColumns,
-    ]);
-    return cellContent;
+      return (
+        <EuiDataGridCell
+          {...sharedCellProps}
+          columnId={columnId}
+          column={column}
+          columnType={columnType}
+          width={width || undefined}
+          renderCellValue={renderCellValue}
+          renderCellPopover={renderCellPopover}
+          interactiveCellId={interactiveCellId}
+          isExpandable={isExpandable}
+          {...rest}
+        />
+      );
+    }
   }
 );
+
+CellWrapper.displayName = 'CellWrapper';

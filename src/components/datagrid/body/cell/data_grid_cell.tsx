@@ -47,7 +47,123 @@ import {
 import { DefaultCellPopover } from './data_grid_cell_popover';
 import { HandleInteractiveChildren } from './focus_utils';
 
-const Cell: React.FunctionComponent<{
+const EuiDataGridCellContent: FunctionComponent<
+  EuiDataGridCellValueProps & {
+    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
+    setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    isExpanded: boolean;
+    isControlColumn: boolean;
+    isFocused: boolean;
+    ariaRowIndex: number;
+    rowHeight?: EuiDataGridRowHeightOption;
+    cellActions?: ReactNode;
+  }
+> = memo(
+  ({
+    renderCellValue,
+    renderCellContext,
+    column,
+    setCellContentsRef,
+    rowIndex,
+    colIndex,
+    ariaRowIndex,
+    rowHeight,
+    rowHeightUtils,
+    isControlColumn,
+    isFocused,
+    cellActions,
+    ...rest
+  }) => {
+    // React is more permissible than the TS types indicate
+    const CellElement =
+      renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
+
+    const cellHeightType =
+      rowHeightUtils?.getHeightType(rowHeight) || 'default';
+
+    const classes = classNames(
+      'euiDataGridRowCell__content',
+      `euiDataGridRowCell__content--${cellHeightType}Height`,
+      !isControlColumn && {
+        'eui-textBreakWord': cellHeightType !== 'default',
+        'eui-textTruncate': cellHeightType === 'default',
+      }
+    );
+
+    const mergedProps = useMemo(() => {
+      if (renderCellContext) {
+        return {
+          ...renderCellContext(),
+          ...rest,
+        };
+      } else {
+        return rest;
+      }
+    }, [rest, renderCellContext]);
+
+    let cellContent = (
+      <div
+        ref={setCellContentsRef}
+        data-datagrid-cellcontent
+        className={classes}
+      >
+        <CellElement
+          isDetails={false}
+          data-test-subj="cell-content"
+          rowIndex={rowIndex}
+          colIndex={colIndex}
+          schema={column?.schema || rest.columnType}
+          {...mergedProps}
+        />
+      </div>
+    );
+    if (cellHeightType === 'lineCount' && !isControlColumn) {
+      const lines = rowHeightUtils!.getLineCount(rowHeight)!;
+      cellContent = (
+        <EuiTextBlockTruncate lines={lines} cloneElement>
+          {cellContent}
+        </EuiTextBlockTruncate>
+      );
+    }
+
+    const screenReaderText = (
+      <EuiScreenReaderOnly>
+        <p hidden={!isFocused}>
+          {'- '}
+          <EuiI18n
+            token="euiDataGridCell.position"
+            default="{columnId}, column {col}, row {row}"
+            values={{
+              columnId: column?.displayAsText || rest.columnId,
+              col: colIndex + 1,
+              row: ariaRowIndex,
+            }}
+          />
+          {cellActions && (
+            <>
+              {'. '}
+              <EuiI18n
+                token="euiDataGridCell.expansionEnterPrompt"
+                default="Press the Enter key to expand this cell."
+              />
+            </>
+          )}
+        </p>
+      </EuiScreenReaderOnly>
+    );
+
+    return (
+      <>
+        {cellContent}
+        {screenReaderText}
+        {cellActions}
+      </>
+    );
+  }
+);
+EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
+
+export const Cell: React.FunctionComponent<{
   ariaRowIndex: number;
   isFocused: boolean;
   cellRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -143,132 +259,7 @@ const Cell: React.FunctionComponent<{
     );
   }
 );
-
-const EuiDataGridCellContent: FunctionComponent<
-  EuiDataGridCellValueProps & {
-    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-    setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
-    isExpanded: boolean;
-    isControlColumn: boolean;
-    isFocused: boolean;
-    ariaRowIndex: number;
-    rowHeight?: EuiDataGridRowHeightOption;
-    cellActions?: ReactNode;
-  }
-> = memo(
-  ({
-    renderCellValue,
-    renderCellContext,
-    column,
-    setCellContentsRef,
-    rowIndex,
-    colIndex,
-    ariaRowIndex,
-    rowHeight,
-    rowHeightUtils,
-    isControlColumn,
-    isFocused,
-    cellActions,
-    ...rest
-  }) => {
-    // React is more permissible than the TS types indicate
-    const CellElement =
-      renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
-
-    const cellHeightType =
-      rowHeightUtils?.getHeightType(rowHeight) || 'default';
-
-    const classes = classNames(
-      'euiDataGridRowCell__content',
-      `euiDataGridRowCell__content--${cellHeightType}Height`,
-      !isControlColumn && {
-        'eui-textBreakWord': cellHeightType !== 'default',
-        'eui-textTruncate': cellHeightType === 'default',
-      }
-    );
-
-    const mergedProps = useMemo(() => {
-      if (renderCellContext) {
-        return {
-          ...rest,
-          ...renderCellContext(),
-        };
-      } else {
-        return {
-          ...rest,
-        };
-      }
-    }, [rest, renderCellContext]);
-
-    const cellContent = useMemo(() => {
-      return (
-        <div
-          ref={setCellContentsRef}
-          data-datagrid-cellcontent
-          className={classes}
-        >
-          <CellElement
-            isDetails={false}
-            data-test-subj="cell-content"
-            rowIndex={rowIndex}
-            colIndex={colIndex}
-            schema={column?.schema || rest.columnType}
-            {...mergedProps}
-          />
-        </div>
-      );
-    }, [
-      CellElement,
-      classes,
-      column,
-      colIndex,
-      mergedProps,
-      rowIndex,
-      setCellContentsRef,
-      rest.columnType,
-    ]);
-
-    const truncatedCellContent = useMemo(() => {
-      if (cellHeightType === 'lineCount' && !isControlColumn) {
-        const lines = rowHeightUtils!.getLineCount(rowHeight)!;
-        return (
-          <EuiTextBlockTruncate lines={lines} cloneElement>
-            {cellContent}
-          </EuiTextBlockTruncate>
-        );
-      } else {
-        return cellContent;
-      }
-    }, [
-      cellContent,
-      cellHeightType,
-      isControlColumn,
-      rowHeightUtils,
-      rowHeight,
-    ]);
-
-    return (
-      <>
-        {truncatedCellContent}
-        <EuiScreenReaderOnly>
-          <p hidden={!isFocused}>
-            {'- '}
-            <EuiI18n
-              token="euiDataGridCell.position"
-              default="{columnId}, column {col}, row {row}"
-              values={{
-                columnId: column?.displayAsText || rest.columnId,
-                col: colIndex + 1,
-                row: ariaRowIndex,
-              }}
-            />
-          </p>
-        </EuiScreenReaderOnly>
-      </>
-    );
-  }
-);
-EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
+Cell.displayName = 'Cell';
 
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
@@ -647,7 +638,6 @@ export class EuiDataGridCell extends Component<
   };
 
   handleCellExpansionClick = () => {
-    console.log('fire');
     const {
       popoverContext: { openCellPopover, closeCellPopover },
       visibleRowIndex,
@@ -661,8 +651,12 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  onMouseEnter = () => this.setState({ isHovered: true });
-  onMouseLeave = () => this.setState({ isHovered: false });
+  onMouseEnter = () => {
+    this.setState({ isHovered: true });
+  };
+  onMouseLeave = () => {
+    this.setState({ isHovered: false });
+  };
 
   render() {
     const {

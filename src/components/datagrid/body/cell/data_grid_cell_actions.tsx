@@ -6,13 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  JSXElementConstructor,
-  useMemo,
-  useCallback,
-  type FunctionComponent,
-  type MouseEventHandler,
-} from 'react';
+import React, { JSXElementConstructor, useMemo, useCallback } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
@@ -28,23 +22,22 @@ import {
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiPopoverFooter } from '../../../popover';
 
-const ButtonComponent = (props: EuiButtonIconProps) => (
-  <EuiButtonIcon
-    {...props}
-    aria-hidden
-    className="euiDataGridRowCell__actionButtonIcon"
-    // Don't allow consumers to override sizes or colors for cell actions on hover/focus
-    size="xs"
-    iconSize="s"
-    display="fill"
-    color="primary"
-  />
-);
-
-const ExpandButton: FunctionComponent<{ onExpandClick: MouseEventHandler }> = ({
+export const EuiDataGridCellActions = ({
   onExpandClick,
+  column,
+  rowIndex,
+  colIndex,
+}: {
+  onExpandClick: () => void;
+  column?: EuiDataGridColumn;
+  rowIndex: number;
+  colIndex: number;
 }) => {
-  return (
+  // Note: The cell expand button/expansion popover is *always* rendered if
+  // column.cellActions is present (regardless of column.isExpandable).
+  // This is because cell actions are not otherwise accessible to keyboard
+  // or screen reader users
+  const expandButton = (
     <EuiI18n
       key={'expand'}
       token="euiDataGridCellActions.expandButtonTitle"
@@ -65,26 +58,22 @@ const ExpandButton: FunctionComponent<{ onExpandClick: MouseEventHandler }> = ({
       )}
     </EuiI18n>
   );
-};
-
-export const EuiDataGridCellActions = ({
-  onExpandClick,
-  column,
-  rowIndex,
-  colIndex,
-}: {
-  onExpandClick: () => void;
-  column?: EuiDataGridColumn;
-  rowIndex: number;
-  colIndex: number;
-}) => {
-  // Note: The cell expand button/expansion popover is *always* rendered if
-  // column.cellActions is present (regardless of column.isExpandable).
-  // This is because cell actions are not otherwise accessible to keyboard
-  // or screen reader users
 
   const additionalButtons = useMemo(() => {
     if (!column || !Array.isArray(column?.cellActions)) return [];
+
+    const ButtonComponent = (props: EuiButtonIconProps) => (
+      <EuiButtonIcon
+        {...props}
+        aria-hidden
+        className="euiDataGridRowCell__actionButtonIcon"
+        // Don't allow consumers to override sizes or colors for cell actions on hover/focus
+        size="xs"
+        iconSize="s"
+        display="fill"
+        color="primary"
+      />
+    );
 
     const [visibleCellActions] = getVisibleCellActions(
       column?.cellActions,
@@ -111,8 +100,7 @@ export const EuiDataGridCellActions = ({
 
   return (
     <div className="euiDataGridRowCell__actions">
-      {[...additionalButtons]}
-      <ExpandButton onExpandClick={onExpandClick} />
+      {[...additionalButtons, expandButton]}
     </div>
   );
 };

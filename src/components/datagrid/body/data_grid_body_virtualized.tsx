@@ -28,12 +28,13 @@ import {
 import { useResizeObserver } from '../../observer/resize_observer';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { Cell } from './cell';
+import { CellWrapper } from './cell';
 import {
   EuiDataGridBodyProps,
   DataGridWrapperRowsContentsShape,
 } from '../data_grid_types';
 import { useRowManager } from './data_grid_row_manager';
+import type { CellProps } from './cell/data_grid_cell_wrapper';
 import {
   useFinalGridDimensions,
   useUnconstrainedHeight,
@@ -44,27 +45,31 @@ import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useScrollBars, useScroll } from '../utils/scrolling';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
-export const _Cell: FunctionComponent<GridChildComponentProps> = memo(
-  ({ columnIndex, rowIndex, style, data }) => {
-    const cellStyles = useMemo(() => {
-      const { headerRowHeight } = data;
-      return {
-        ...style,
-        top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-      };
-    }, [style, data]);
-    return (
-      <Cell
-        colIndex={columnIndex}
-        visibleRowIndex={rowIndex}
-        style={cellStyles}
-        {...data}
-      />
-    );
-  }
-);
+export const _Cell: FunctionComponent<
+  GridChildComponentProps<
+    Omit<CellProps, 'colIndex' | 'visibleRowIndex'> & {
+      headerRowHeight: number;
+    }
+  >
+> = memo(({ columnIndex, rowIndex, style, data }) => {
+  const cellStyles = useMemo(() => {
+    const { headerRowHeight } = data;
+    return {
+      ...style,
+      top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+    };
+  }, [style, data]);
+  return (
+    <CellWrapper
+      style={cellStyles}
+      colIndex={columnIndex}
+      visibleRowIndex={rowIndex}
+      {...data}
+    />
+  );
+});
 
-_Cell.displayName = 'Cell';
+_Cell.displayName = '_Cell';
 
 // Context is required to pass props to react-window's innerElementType
 // @see https://github.com/bvaughn/react-window/issues/404
@@ -387,3 +392,5 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       ) : null;
     }
   );
+
+EuiDataGridBodyVirtualized.displayName = 'EuiDataGridBodyVirtualized';

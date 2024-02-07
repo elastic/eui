@@ -34,15 +34,17 @@ describe('EuiDataGridCellActions', () => {
       <div
         className="euiDataGridRowCell__actions"
       >
-        <ExpandButton
-          onExpandClick={[MockFunction]}
-        />
+        <EuiI18n
+          default="Click or hit enter to interact with cell content"
+          key="expand"
+          token="euiDataGridCellActions.expandButtonTitle"
+        >
+          <Component />
+        </EuiI18n>
       </div>
     `);
 
-    const button: Function = component
-      .find('ExpandButton')
-      .renderProp('children');
+    const button: Function = component.find('EuiI18n').renderProp('children');
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
@@ -100,9 +102,13 @@ describe('EuiDataGridCellActions', () => {
           key="0"
           rowIndex={0}
         />
-        <ExpandButton
-          onExpandClick={[MockFunction]}
-        />
+        <EuiI18n
+          default="Click or hit enter to interact with cell content"
+          key="expand"
+          token="euiDataGridCellActions.expandButtonTitle"
+        >
+          <Component />
+        </EuiI18n>
       </div>
     `);
   });

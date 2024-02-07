@@ -78,19 +78,6 @@ export const useCellPopover = (): {
     [popoverIsOpen, cellLocation]
   );
 
-  const cellPopoverContext = useMemo(() => {
-    return {
-      popoverIsOpen,
-      closeCellPopover,
-      openCellPopover,
-      cellLocation,
-      setPopoverAnchorPosition,
-      setPopoverAnchor,
-      setPopoverContent,
-      setCellPopoverProps,
-    };
-  }, [popoverIsOpen, closeCellPopover, openCellPopover, cellLocation]);
-
   // Override the default EuiPopover `onClickOutside` behavior, since the toggling
   // popover button isn't actually the DOM node we pass to `button`. Otherwise,
   // clicking the expansion cell action triggers an outside click
@@ -126,6 +113,16 @@ export const useCellPopover = (): {
   );
 
   return useMemo(() => {
+    const cellPopoverContext = {
+      popoverIsOpen,
+      closeCellPopover,
+      openCellPopover,
+      cellLocation,
+      setPopoverAnchorPosition,
+      setPopoverAnchor,
+      setPopoverContent,
+      setCellPopoverProps,
+    };
     // Note that this popover is rendered once at the top grid level, rather than one popover per cell
     const cellPopover = popoverIsOpen && popoverAnchor && (
       <EuiWrappingPopover
@@ -161,14 +158,15 @@ export const useCellPopover = (): {
     );
     return { cellPopoverContext, cellPopover };
   }, [
-    cellPopoverProps,
-    cellPopoverContext,
-    closeCellPopover,
-    onKeyDown,
+    cellLocation,
+    popoverIsOpen,
     popoverAnchor,
     popoverContent,
-    popoverIsOpen,
+    cellPopoverProps,
+    closeCellPopover,
     onClickOutside,
+    onKeyDown,
+    openCellPopover,
     popoverAnchorPosition,
   ]);
 };
