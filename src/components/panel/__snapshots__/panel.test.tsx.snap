@@ -3,7 +3,7 @@
 exports[` 1`] = `
 <button
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiTestCss"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasBorder-isClickable-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -11,20 +11,20 @@ exports[` 1`] = `
 exports[`EuiPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiTestCss"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasBorder-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPanel props borderRadius m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props borderRadius none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-none-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-none-m-plain-hasBorder"
 />
 `;
 
@@ -42,7 +42,7 @@ exports[`EuiPanel props color danger is rendered 1`] = `
 
 exports[`EuiPanel props color plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasBorder"
 />
 `;
 
@@ -66,7 +66,7 @@ exports[`EuiPanel props color success is rendered 1`] = `
 
 exports[`EuiPanel props color transparent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--transparent euiPanel--paddingMedium emotion-euiPanel-grow-m-m-transparent"
+  class="euiPanel euiPanel--transparent euiPanel--paddingMedium emotion-euiPanel-grow-m-m-transparent-hasBorder"
 />
 `;
 
@@ -78,13 +78,13 @@ exports[`EuiPanel props color warning is rendered 1`] = `
 
 exports[`EuiPanel props grow can be false 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-m-m-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props hasBorder can be false 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain"
 />
 `;
 
@@ -96,42 +96,42 @@ exports[`EuiPanel props hasBorder can be true 1`] = `
 
 exports[`EuiPanel props hasShadow can be false 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingLarge emotion-euiPanel-grow-m-l-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge emotion-euiPanel-grow-m-l-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall emotion-euiPanel-grow-m-s-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall emotion-euiPanel-grow-m-s-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props paddingSize xl is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-xl-plain-hasShadow"
+  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-xl-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props paddingSize xs is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-xs-plain-hasShadow"
+  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-xs-plain-hasBorder"
 />
 `;

@@ -11,7 +11,7 @@ exports[`euiProgressStyles indeterminate div CSS colors accent 1`] = `
 exports[`euiProgressStyles indeterminate div CSS colors danger 1`] = `
 "
   &::before {
-    background-color: #BD271E;
+    background-color: #D93333;
   }
 ;;label:danger;"
 `;
@@ -35,7 +35,7 @@ exports[`euiProgressStyles indeterminate div CSS colors subdued 1`] = `
 exports[`euiProgressStyles indeterminate div CSS colors success 1`] = `
 "
   &::before {
-    background-color: #00BFB3;
+    background-color: #148742;
   }
 ;;label:success;"
 `;
@@ -164,10 +164,10 @@ exports[`euiProgressStyles native progress CSS colors accent 1`] = `
 exports[`euiProgressStyles native progress CSS colors danger 1`] = `
 "
   &::-webkit-progress-value {
-    background-color: #BD271E;
+    background-color: #D93333;
   }
   &::-moz-progress-bar {
-    background-color: #BD271E;
+    background-color: #D93333;
   }
 ;;label:danger;"
 `;
@@ -197,10 +197,10 @@ exports[`euiProgressStyles native progress CSS colors subdued 1`] = `
 exports[`euiProgressStyles native progress CSS colors success 1`] = `
 "
   &::-webkit-progress-value {
-    background-color: #00BFB3;
+    background-color: #148742;
   }
   &::-moz-progress-bar {
-    background-color: #00BFB3;
+    background-color: #148742;
   }
 ;;label:success;"
 `;

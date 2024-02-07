@@ -171,7 +171,7 @@ exports[`EuiEmptyPrompt props color danger is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain"
 >
   <div
     class="euiEmptyPrompt__main"

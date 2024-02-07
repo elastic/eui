@@ -24,7 +24,7 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
     class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent-hasBorder"
     >
       <div
         class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -65,7 +65,7 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
     class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent-hasBorder"
     >
       <div
         class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -106,7 +106,7 @@ exports[`EuiCommentEvent props timestamp is rendered 1`] = `
     class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent-hasBorder"
     >
       <div
         class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"

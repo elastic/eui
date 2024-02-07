@@ -31,7 +31,7 @@ describe('euiFormVariables', () => {
         "backgroundReadOnlyColor": "#FFF",
         "borderColor": "rgba(211,218,230,0.9)",
         "borderDisabledColor": "rgba(211,218,230,0.9)",
-        "controlBorderRadius": "6px",
+        "controlBorderRadius": "4px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
         "controlCompressedHeight": "32px",

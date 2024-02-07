@@ -2,7 +2,7 @@
 
 exports[`EuiCard betaBadgeProps renders href 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-hasBetaBadge"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center-hasBetaBadge"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -48,7 +48,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
 
 exports[`EuiCard horizontal selectable 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-left"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-isClickable-euiCard-left"
 >
   <div
     class="euiCard__main emotion-euiCard__main-horizontal"
@@ -98,7 +98,7 @@ exports[`EuiCard horizontal selectable 1`] = `
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-euiTestCss"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -132,7 +132,7 @@ exports[`EuiCard is rendered 1`] = `
 
 exports[`EuiCard props a null icon 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -165,7 +165,7 @@ exports[`EuiCard props a null icon 1`] = `
 
 exports[`EuiCard props accepts div props like style 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
   style="min-width: 0;"
 >
   <div
@@ -199,7 +199,7 @@ exports[`EuiCard props accepts div props like style 1`] = `
 
 exports[`EuiCard props an avatar icon 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -248,7 +248,7 @@ exports[`EuiCard props an avatar icon 1`] = `
 
 exports[`EuiCard props children 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -278,7 +278,7 @@ exports[`EuiCard props children 1`] = `
 
 exports[`EuiCard props children with description 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -580,7 +580,7 @@ exports[`EuiCard props display warning is rendered 1`] = `
 
 exports[`EuiCard props footer 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -653,7 +653,7 @@ exports[`EuiCard props hasBorder 1`] = `
 
 exports[`EuiCard props horizontal 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-left"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-left"
 >
   <div
     class="euiCard__main emotion-euiCard__main-horizontal"
@@ -686,7 +686,7 @@ exports[`EuiCard props horizontal 1`] = `
 
 exports[`EuiCard props href supports href as a link 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-isClickable-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -722,7 +722,7 @@ exports[`EuiCard props href supports href as a link 1`] = `
 
 exports[`EuiCard props icon 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -763,7 +763,7 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props image 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -845,7 +845,7 @@ exports[`EuiCard props isDisabled 1`] = `
 
 exports[`EuiCard props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard emotion-euiPanel-grow-m-l-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard emotion-euiPanel-grow-m-l-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -878,7 +878,7 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
 
 exports[`EuiCard props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -911,7 +911,7 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
 
 exports[`EuiCard props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -944,7 +944,7 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
 
 exports[`EuiCard props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiCard emotion-euiPanel-grow-m-s-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiCard emotion-euiPanel-grow-m-s-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -977,7 +977,7 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
 
 exports[`EuiCard props paddingSize xl is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-xl-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-xl-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1010,7 +1010,7 @@ exports[`EuiCard props paddingSize xl is rendered 1`] = `
 
 exports[`EuiCard props paddingSize xs is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-xs-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiCard emotion-euiPanel-grow-m-xs-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1043,7 +1043,7 @@ exports[`EuiCard props paddingSize xs is rendered 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-isClickable-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1092,7 +1092,7 @@ exports[`EuiCard props selectable 1`] = `
 
 exports[`EuiCard props textAlign center 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1125,7 +1125,7 @@ exports[`EuiCard props textAlign center 1`] = `
 
 exports[`EuiCard props textAlign left 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-left"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-left"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1158,7 +1158,7 @@ exports[`EuiCard props textAlign left 1`] = `
 
 exports[`EuiCard props textAlign right 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-right"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-right"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1191,7 +1191,7 @@ exports[`EuiCard props textAlign right 1`] = `
 
 exports[`EuiCard props titleElement 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1224,7 +1224,7 @@ exports[`EuiCard props titleElement 1`] = `
 
 exports[`EuiCard props titleElement with nodes 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -1257,7 +1257,7 @@ exports[`EuiCard props titleElement with nodes 1`] = `
 
 exports[`EuiCard props titleSize 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"

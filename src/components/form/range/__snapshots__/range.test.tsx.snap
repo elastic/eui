@@ -331,7 +331,7 @@ exports[`EuiRange props levels should render 1`] = `
       max="100"
       min="0"
       step="1"
-      style="color: rgb(189, 39, 30);"
+      style="color: rgb(217, 51, 51);"
       type="range"
       value="20"
     />
