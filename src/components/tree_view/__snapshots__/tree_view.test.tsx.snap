@@ -48,7 +48,6 @@ exports[`EuiTreeView is rendered 1`] = `
             class="euiTreeView__node emotion-euiTreeView__node-default"
           >
             <button
-              aria-expanded="false"
               class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
               data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
               id="item_a"
@@ -128,7 +127,6 @@ exports[`EuiTreeView is rendered 1`] = `
       class="euiTreeView__node emotion-euiTreeView__node-default"
     >
       <button
-        aria-expanded="false"
         class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
         data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
         id="item_two"

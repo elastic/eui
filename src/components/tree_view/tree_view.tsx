@@ -309,7 +309,9 @@ export class EuiTreeViewClass extends Component<
           {items.map((node, index) => {
             const buttonId = node.id;
             const wrappingId = this.treeIdGenerator(buttonId);
-            const isNodeExpanded = this.isNodeOpen(node);
+            const isNodeExpanded = node.children
+              ? this.isNodeOpen(node)
+              : undefined; // Determines the `aria-expanded` attribute
 
             let icon = node.icon;
             if (node.iconWhenExpanded && isNodeExpanded) {
