@@ -299,11 +299,13 @@ export class EuiTreeViewClass extends Component<
             )}
           </EuiI18n>
         )}
+        {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
         <ul
           css={cssStyles}
           className={classes}
           id={!this.isNested ? this.state.treeID : undefined}
           aria-describedby={!this.isNested ? instructionsId : undefined}
+          role="list" // VoiceOver doesn't parse lists with `list-style: none` as the correct role - @see https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html
           {...rest}
         >
           {items.map((node, index) => {

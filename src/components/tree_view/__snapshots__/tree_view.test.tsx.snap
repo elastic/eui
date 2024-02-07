@@ -14,6 +14,7 @@ exports[`EuiTreeView is rendered 1`] = `
     class="euiTreeView testClass1 testClass2 emotion-euiTreeView-default-euiTestCss"
     data-test-subj="test subject string"
     id="euiTreeView_generated-id"
+    role="list"
   >
     <li
       class="euiTreeView__node euiTreeView__node--expanded emotion-euiTreeView__node-default-expanded"
@@ -43,6 +44,7 @@ exports[`EuiTreeView is rendered 1`] = `
       >
         <ul
           class="euiTreeView emotion-euiTreeView-default"
+          role="list"
         >
           <li
             class="euiTreeView__node emotion-euiTreeView__node-default"
