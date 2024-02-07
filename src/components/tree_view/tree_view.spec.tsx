@@ -77,7 +77,7 @@ describe('EuiTreeView', () => {
   describe('Keyboard functionality', () => {
     it('Expands and collapses children correctly', () => {
       cy.realMount(<TreeView />);
-      cy.get('div.euiTreeView__wrapper').should('exist');
+      cy.get('ul.euiTreeView').should('exist');
       cy.repeatRealPress('Tab', 3);
       cy.focused().contains('Item B');
       cy.realPress('Enter');

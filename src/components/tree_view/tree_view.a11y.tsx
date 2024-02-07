@@ -77,13 +77,13 @@ describe('EuiTreeView', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on first render', () => {
       cy.mount(<TreeView />);
-      cy.get('div.euiTreeView__wrapper').should('exist');
+      cy.get('ul.euiTreeView').should('exist');
       cy.checkAxe();
     });
 
     it('has zero violations with a nested child expanded', () => {
       cy.mount(<TreeView />);
-      cy.get('div.euiTreeView__wrapper').should('exist');
+      cy.get('ul.euiTreeView').should('exist');
       cy.get('button#item_b').realClick();
       cy.get('button#item_b').should('have.attr', 'aria-expanded', 'true');
       cy.get('li.euiTreeView__node').contains('A Cloud').should('exist');
