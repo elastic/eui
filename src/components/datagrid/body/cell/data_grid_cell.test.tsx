@@ -85,12 +85,14 @@ describe('EuiDataGridCell', () => {
     act(() => {
       component.setState({ isHovered: true });
     });
-
-    const getCellActions = () => component.find('EuiDataGridCellActions');
+    // given how nested this component ends up being, too nested for enzyme to render, this should probably be moved to
+    // data_grid_cell_actions.test.tsx I think.
+    const getCellActions = () =>
+      component.find('[ariaRowIndex=1][colIndex=0][rowIndex=0][onMouseEnter]');
     expect(getCellActions()).toHaveLength(1);
 
     // Should handle opening the popover
-    (getCellActions().prop('onExpandClick') as Function)();
+    (getCellActions().prop('handleCellExpansionClick') as Function)();
     expect(mockPopoverContext.openCellPopover).toHaveBeenCalled();
 
     // Should handle closing the popover
@@ -98,7 +100,7 @@ describe('EuiDataGridCell', () => {
       isExpandable: true,
       popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
     });
-    (getCellActions().prop('onExpandClick') as Function)();
+    (getCellActions().prop('handleCellExpansionClick') as Function)();
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
   });
 

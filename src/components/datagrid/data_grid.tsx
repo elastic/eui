@@ -7,7 +7,14 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, useMemo, useRef, useState, memo } from 'react';
+import React, {
+  forwardRef,
+  useMemo,
+  useRef,
+  useState,
+  memo,
+  useCallback,
+} from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
@@ -369,6 +376,30 @@ export const EuiDataGrid = memo(
       delete rest['aria-labelledby'];
     }
 
+    const onKeyDown = useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
+        createKeyDownHandler({
+          gridElement: contentRef.current,
+          visibleColCount,
+          visibleRowCount,
+          visibleRowStartIndex:
+            gridItemsRendered.current?.visibleRowStartIndex || 0,
+          rowCount,
+          pagination,
+          hasFooter: !!renderFooterCellValue,
+          focusContext,
+        })(event);
+      },
+      [
+        focusContext,
+        visibleColCount,
+        visibleRowCount,
+        rowCount,
+        pagination,
+        renderFooterCellValue,
+      ]
+    );
+
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
@@ -415,17 +446,7 @@ export const EuiDataGrid = memo(
                 ) : null}
                 <div // eslint-disable-line jsx-a11y/interactive-supports-focus
                   ref={contentRef}
-                  onKeyDown={createKeyDownHandler({
-                    gridElement: contentRef.current,
-                    visibleColCount,
-                    visibleRowCount,
-                    visibleRowStartIndex:
-                      gridItemsRendered.current?.visibleRowStartIndex || 0,
-                    rowCount,
-                    pagination,
-                    hasFooter: !!renderFooterCellValue,
-                    focusContext,
-                  })}
+                  onKeyDown={onKeyDown}
                   data-test-subj="euiDataGridBody"
                   className="euiDataGrid__content"
                   role="grid"
