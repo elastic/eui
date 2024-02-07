@@ -18,7 +18,7 @@ import {
 
 import {
   BUTTON_COLORS,
-  euiButtonFontWeight,
+  useEuiButtonFontWeight,
   useEuiButtonColorCSS,
   useEuiButtonFocusCSS,
   _EuiButtonColor,
@@ -104,8 +104,8 @@ export const EuiButton: FunctionComponent<Props> = ({
   })[isDisabled ? 'disabled' : color];
 
   const buttonFocusStyle = useEuiButtonFocusCSS();
-  
-  const buttonFontWeight = euiButtonFontWeight();
+
+  const buttonFontWeight = useEuiButtonFontWeight();
 
   const classes = classNames('euiButton', className);
   const cssStyles = [buttonColorStyles, buttonFocusStyle, buttonFontWeight];

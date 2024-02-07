@@ -15,15 +15,16 @@ import {
 } from '../../../../global_styling/variables/typography';
 
 // Typographic scale -- loosely based on Minor Third (1.200)
+// 9, 11, 12, 14, 16, 20, 24, 30
 export const fontScale: _EuiThemeFontScales = {
-  xxxs: 0.5625, // 9px
-  xxs: 0.6875,  // 11px
-  xs: 0.75,     // 12px
-  s: 0.875,     // 14px
-  m: 1,         // 16px
-  l: 1.25,      // 20px
-  xl: 1.5,      // 24px
-  xxl: 1.875,   // 30px
+  xxxs: 0.5625,
+  xxs: 0.6875,
+  xs: 0.75,
+  s: 0.875,
+  m: 1,
+  l: 1.25,
+  xl: 1.5,
+  xxl: 1.875,
 };
 
 // Families & base font settings

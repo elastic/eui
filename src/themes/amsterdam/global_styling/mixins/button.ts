@@ -182,7 +182,10 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
         /* Use a shaded background fill for icon-only buttons and button groups */
         &.euiButtonIcon, &.euiButtonGroupButton {
           border: none;
-          background: ${transparentize(euiThemeContext.euiTheme.colors[color], 0.1)};
+          background: ${transparentize(
+            euiThemeContext.euiTheme.colors[color],
+            0.1
+          )};
         }
       `,
       fill: css`
@@ -268,10 +271,10 @@ export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
 });
 
 /**
- * Creates the translate animation when button is in focus.
- * @returns string
+ * Sets base font weight for buttons
+ * @returns Style object `{ fontWeight }`
  */
-export const euiButtonFontWeight = () => {
+export const useEuiButtonFontWeight = () => {
   const { euiTheme } = useEuiTheme();
 
   return {

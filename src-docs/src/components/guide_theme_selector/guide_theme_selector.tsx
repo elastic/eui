@@ -93,7 +93,6 @@ const GuideThemeSelectorComponent: React.FunctionComponent<
         iconType="arrowDown"
         iconSide="right"
         color="text"
-        minWidth={0}
         onClick={onButtonClick}
       >
         {isMobileSize ? 'Theme' : currentTheme.text}

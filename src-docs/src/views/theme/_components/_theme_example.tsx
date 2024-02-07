@@ -11,7 +11,6 @@ import {
   EuiBadge,
   logicalCSS,
   useIsWithinBreakpoints,
-  useEuiPaddingCSS,
 } from '../../../../../src';
 import {
   _EuiSplitPanelInnerProps,
