@@ -70,7 +70,10 @@ export const useResizeObserver = (
   container: Element | null,
   dimension?: 'width' | 'height'
 ) => {
-  const [size, _setSize] = useState({ width: 0, height: 0 });
+  const [size, _setSize] = useState<{
+    width: undefined | number;
+    height: undefined | number;
+  }>({ width: undefined, height: undefined });
 
   // _currentDimensions and _setSize are used to only store the
   // new state (and trigger a re-render) when the new dimensions actually differ
@@ -119,5 +122,5 @@ export const useResizeObserver = (
     }
   }, [container, setSize]);
 
-  return size;
+  return { width: size.width ?? 0, height: size.height ?? 0 };
 };
