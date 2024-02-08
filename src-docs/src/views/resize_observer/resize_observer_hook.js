@@ -24,6 +24,7 @@ export const ResizeObserverHookExample = () => {
     setItems((items) => [...items, `Item ${items.length + 1}`]);
   };
 
+  // Note: This must be a `useState` and not a `useRef` to correctly update on mount & unmount
   const [resizeRef, setResizeRef] = useState();
   const dimensions = useResizeObserver(resizeRef);
 
