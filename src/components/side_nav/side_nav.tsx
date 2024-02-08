@@ -188,54 +188,48 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     const headingId = headingProps?.id || this.generateId('heading');
     const headingScreenReaderOnly = !!headingProps?.screenReaderOnly;
 
-    let mobileNode;
-    const breakpoints: EuiBreakpointSize[] | undefined = mobileBreakpoints;
-    if (hasMobileVersion) {
-      mobileNode = (
-        <EuiShowFor sizes={breakpoints || 'none'}>
-          <nav aria-labelledby={headingId} className={classes} {...rest}>
-            <EuiSideNavHeading
-              id={headingId}
-              {...headingProps}
-              screenReaderOnly={false}
-            >
-              <EuiI18n
-                token="euiSideNav.mobileToggleAriaLabel"
-                default="Toggle navigation"
-              >
-                {(mobileToggleAriaLabel: string) => (
-                  <EuiButtonEmpty
-                    className="euiSideNav__mobileToggle"
-                    textProps={{ className: 'euiSideNav__mobileToggleText' }}
-                    contentProps={{
-                      className: 'euiSideNav__mobileToggleContent',
-                    }}
-                    onClick={toggleOpenOnMobile}
-                    iconType="apps"
-                    iconSide="right"
-                    aria-controls={sideNavContentId}
-                    aria-expanded={isOpenOnMobile}
-                    aria-label={
-                      !mobileToggleText || headingScreenReaderOnly
-                        ? mobileToggleAriaLabel
-                        : undefined
-                    }
-                  >
-                    {!headingScreenReaderOnly && mobileToggleText}
-                  </EuiButtonEmpty>
-                )}
-              </EuiI18n>
-            </EuiSideNavHeading>
-            {navContent}
-          </nav>
-        </EuiShowFor>
-      );
-    }
-
     return (
       <>
-        {mobileNode}
-        <EuiHideFor sizes={breakpoints || 'none'}>
+        {hasMobileVersion && (
+          <EuiShowFor sizes={mobileBreakpoints || 'none'}>
+            <nav aria-labelledby={headingId} className={classes} {...rest}>
+              <EuiSideNavHeading
+                id={headingId}
+                {...headingProps}
+                screenReaderOnly={false}
+              >
+                <EuiI18n
+                  token="euiSideNav.mobileToggleAriaLabel"
+                  default="Toggle navigation"
+                >
+                  {(mobileToggleAriaLabel: string) => (
+                    <EuiButtonEmpty
+                      className="euiSideNav__mobileToggle"
+                      textProps={{ className: 'euiSideNav__mobileToggleText' }}
+                      contentProps={{
+                        className: 'euiSideNav__mobileToggleContent',
+                      }}
+                      onClick={toggleOpenOnMobile}
+                      iconType="apps"
+                      iconSide="right"
+                      aria-controls={sideNavContentId}
+                      aria-expanded={isOpenOnMobile}
+                      aria-label={
+                        !mobileToggleText || headingScreenReaderOnly
+                          ? mobileToggleAriaLabel
+                          : undefined
+                      }
+                    >
+                      {!headingScreenReaderOnly && mobileToggleText}
+                    </EuiButtonEmpty>
+                  )}
+                </EuiI18n>
+              </EuiSideNavHeading>
+              {navContent}
+            </nav>
+          </EuiShowFor>
+        )}
+        <EuiHideFor sizes={mobileBreakpoints || 'none'}>
           <nav
             aria-labelledby={heading ? headingId : undefined}
             className={classes}
