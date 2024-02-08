@@ -20,7 +20,7 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
 >
   <h3
     aria-label="aria-label"
-    class="euiTitle euiSideNav__heading testClass1 testClass2 testClass1 testClass2 emotion-euiTitle-xs-euiTestCss"
+    class="euiTitle euiSideNav__heading testClass1 testClass2 emotion-EuiSideNavHeading-euiTitle-xs-euiTestCss"
     data-test-subj="test subject string"
     id="testID"
   >
@@ -39,7 +39,7 @@ exports[`EuiSideNav props heading is hidden with screenReaderOnly 1`] = `
   class="euiSideNav"
 >
   <h2
-    class="emotion-euiScreenReaderOnly"
+    class="euiSideNav__heading emotion-euiScreenReaderOnly"
     id="euiSideNav_generated-id_heading"
   >
     Side Nav Heading
@@ -57,7 +57,7 @@ exports[`EuiSideNav props heading is rendered 1`] = `
   class="euiSideNav"
 >
   <h2
-    class="euiTitle euiSideNav__heading emotion-euiTitle-xs"
+    class="euiTitle euiSideNav__heading emotion-EuiSideNavHeading-euiTitle-xs"
     id="euiSideNav_generated-id_heading"
   >
     Side Nav Heading
@@ -539,10 +539,12 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
   class="euiSideNav"
 >
   <h2
+    class="euiTitle euiSideNav__heading emotion-EuiSideNavHeading-euiTitle-xs"
     id="euiSideNav_generated-id_heading"
   >
     <button
       aria-controls="euiSideNav_generated-id_content"
+      aria-label="Toggle navigation"
       class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
       type="button"
     >

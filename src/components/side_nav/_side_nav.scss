@@ -17,10 +17,6 @@
   }
 }
 
-.euiSideNav__heading {
-  margin-bottom: $euiSizeL;
-}
-
 // Loop through the breakpoints and apply mobile styles only to the right className
 // stylelint-disable max-nesting-depth
 @each $breakpoint in $euiBreakpointKeys {

@@ -83,7 +83,7 @@ const sharedSideNavItems = [
 export const Playground: Story = {
   args: {
     heading: 'Elastic',
-    headingProps: { element: 'h1', screenReaderOnly: false },
+    headingProps: { size: 'xs', element: 'h2', screenReaderOnly: false },
     items: sharedSideNavItems,
     mobileTitle: 'Mobile navigation header',
   },

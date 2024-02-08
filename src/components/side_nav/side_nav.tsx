@@ -10,26 +10,13 @@ import React, { Component, ReactNode, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, PropsOf } from '../common';
-
-import { EuiSideNavItem, RenderItem } from './side_nav_item';
-import { EuiSideNavItemType } from './side_nav_types';
 import { EuiButtonEmpty } from '../button';
-import { EuiTitle, EuiTitleProps } from '../title';
-import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
 
-export type EuiSideNavHeadingProps = Partial<EuiTitleProps> & {
-  /**
-   * The actual HTML heading element to wrap the `heading`.
-   * Default is `h2`
-   */
-  element?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
-  /**
-   * For best accessibility, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else (except on mobile).
-   */
-  screenReaderOnly?: boolean;
-};
+import { EuiSideNavHeading, EuiSideNavHeadingProps } from './_side_nav_heading';
+import { EuiSideNavItem, RenderItem } from './side_nav_item';
+import { EuiSideNavItemType } from './side_nav_types';
 
 export type EuiSideNavProps<T = {}> = T &
   CommonProps & {
@@ -48,7 +35,7 @@ export type EuiSideNavProps<T = {}> = T &
     /**
      * Adds a couple extra #EuiSideNavHeading props and extends the props of EuiTitle that wraps the `heading`
      */
-    headingProps?: CommonProps & EuiSideNavHeadingProps;
+    headingProps?: EuiSideNavHeadingProps;
     /**
      * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
      */
@@ -171,7 +158,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       renderItem,
       truncate,
       heading,
-      headingProps = {},
+      headingProps,
       ...rest
     } = this.props;
 
@@ -194,57 +181,19 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       </div>
     );
 
-    const {
-      screenReaderOnly: headingScreenReaderOnly = false,
-      element: HeadingElement = 'h2',
-      ...titleProps
-    } = headingProps!;
-
     const hasMobileVersion = mobileBreakpoints && mobileBreakpoints.length > 0;
-    const hasHeader = !!heading;
-    let headingNode;
-
-    const sharedHeadingProps = {
-      id: headingProps?.id || this.generateId('heading'),
-      className: headingProps?.className,
-      'data-test-subj': headingProps?.['data-test-subj'],
-      'aria-label': headingProps?.['aria-label'],
-    };
-
-    if (hasHeader) {
-      headingNode = (
-        <HeadingElement {...sharedHeadingProps}>{heading}</HeadingElement>
-      );
-
-      if (headingScreenReaderOnly) {
-        headingNode = <EuiScreenReaderOnly>{headingNode}</EuiScreenReaderOnly>;
-      } else {
-        headingNode = (
-          <EuiTitle
-            size="xs"
-            {...titleProps}
-            className={classNames(
-              'euiSideNav__heading',
-              headingProps?.className
-            )}
-          >
-            <HeadingElement {...sharedHeadingProps}>{heading}</HeadingElement>
-          </EuiTitle>
-        );
-      }
-    }
+    const headingId = headingProps?.id || this.generateId('heading');
 
     let mobileNode;
     const breakpoints: EuiBreakpointSize[] | undefined = mobileBreakpoints;
     if (hasMobileVersion) {
       mobileNode = (
         <EuiShowFor sizes={breakpoints || 'none'}>
-          <nav
-            aria-labelledby={sharedHeadingProps.id}
-            className={classes}
-            {...rest}
-          >
-            <HeadingElement {...sharedHeadingProps}>
+          <nav aria-labelledby={headingId} className={classes} {...rest}>
+            <EuiSideNavHeading
+              id={headingId}
+              {...headingProps}
+            >
               <EuiButtonEmpty
                 className="euiSideNav__mobileToggle"
                 textProps={{ className: 'euiSideNav__mobileToggleText' }}
@@ -259,7 +208,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
               >
                 {mobileTitle || heading}
               </EuiButtonEmpty>
-            </HeadingElement>
+            </EuiSideNavHeading>
             {navContent}
           </nav>
         </EuiShowFor>
@@ -271,11 +220,15 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
         {mobileNode}
         <EuiHideFor sizes={breakpoints || 'none'}>
           <nav
-            aria-labelledby={headingNode ? sharedHeadingProps.id : undefined}
+            aria-labelledby={heading ? headingId : undefined}
             className={classes}
             {...rest}
           >
-            {headingNode}
+            {heading && (
+              <EuiSideNavHeading id={headingId} {...headingProps}>
+                {heading}
+              </EuiSideNavHeading>
+            )}
             {navContent}
           </nav>
         </EuiHideFor>
