@@ -3819,6 +3819,24 @@ exports[`EuiIcon props type importAction is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type index is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="index"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13 2H3v11h11v1H2V1h12v12h-1V2ZM6 5h5.999V4H6v1ZM4 5V4h1v1H4Zm2 3V7h6v1H6ZM4 8V7h1v1H4Zm2 3v-1h6v1H6Zm-2 0v-1h1v1H4Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type indexClose is rendered 1`] = `
 <svg
   aria-hidden="true"
