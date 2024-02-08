@@ -2,7 +2,7 @@
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
 # >=12.0 required (for cypress). v18 is LTS.
-FROM --platform=linux/amd64 node:20.10.0-slim
+FROM --platform=linux/amd64 node:20.11.0-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
