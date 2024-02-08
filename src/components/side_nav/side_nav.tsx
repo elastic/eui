@@ -11,6 +11,7 @@ import classNames from 'classnames';
 
 import { CommonProps, PropsOf } from '../common';
 import { EuiButtonEmpty } from '../button';
+import { EuiI18n } from '../i18n';
 import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
 
@@ -35,7 +36,7 @@ export type EuiSideNavProps<T = {}> = T &
     /**
      * Adds a couple extra #EuiSideNavHeading props and extends the props of EuiTitle that wraps the `heading`
      */
-    headingProps?: EuiSideNavHeadingProps;
+    headingProps?: Partial<EuiSideNavHeadingProps>;
     /**
      * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
      */
@@ -182,7 +183,10 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     );
 
     const hasMobileVersion = mobileBreakpoints && mobileBreakpoints.length > 0;
+    const mobileToggleText = mobileTitle || heading;
+
     const headingId = headingProps?.id || this.generateId('heading');
+    const headingScreenReaderOnly = !!headingProps?.screenReaderOnly;
 
     let mobileNode;
     const breakpoints: EuiBreakpointSize[] | undefined = mobileBreakpoints;
@@ -193,21 +197,34 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
             <EuiSideNavHeading
               id={headingId}
               {...headingProps}
+              screenReaderOnly={false}
             >
-              <EuiButtonEmpty
-                className="euiSideNav__mobileToggle"
-                textProps={{ className: 'euiSideNav__mobileToggleText' }}
-                contentProps={{
-                  className: 'euiSideNav__mobileToggleContent',
-                }}
-                onClick={toggleOpenOnMobile}
-                iconType="apps"
-                iconSide="right"
-                aria-controls={sideNavContentId}
-                aria-expanded={isOpenOnMobile}
+              <EuiI18n
+                token="euiSideNav.mobileToggleAriaLabel"
+                default="Toggle navigation"
               >
-                {mobileTitle || heading}
-              </EuiButtonEmpty>
+                {(mobileToggleAriaLabel: string) => (
+                  <EuiButtonEmpty
+                    className="euiSideNav__mobileToggle"
+                    textProps={{ className: 'euiSideNav__mobileToggleText' }}
+                    contentProps={{
+                      className: 'euiSideNav__mobileToggleContent',
+                    }}
+                    onClick={toggleOpenOnMobile}
+                    iconType="apps"
+                    iconSide="right"
+                    aria-controls={sideNavContentId}
+                    aria-expanded={isOpenOnMobile}
+                    aria-label={
+                      !mobileToggleText || headingScreenReaderOnly
+                        ? mobileToggleAriaLabel
+                        : undefined
+                    }
+                  >
+                    {!headingScreenReaderOnly && mobileToggleText}
+                  </EuiButtonEmpty>
+                )}
+              </EuiI18n>
             </EuiSideNavHeading>
             {navContent}
           </nav>

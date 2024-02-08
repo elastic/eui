@@ -86,6 +86,62 @@ describe('EuiSideNav', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      describe('mobile behavior', () => {
+        const JSDOM_BREAKPOINT = ['l'];
+
+        it('is overridden by `mobileTitle`', () => {
+          const { getByTestSubject } = render(
+            <EuiSideNav
+              mobileBreakpoints={JSDOM_BREAKPOINT}
+              heading="Side Nav Heading"
+              mobileTitle="Mobile heading"
+              headingProps={{ 'data-test-subj': 'heading' }}
+            />
+          );
+          const heading = getByTestSubject('heading');
+
+          expect(heading).toHaveTextContent('Mobile heading');
+          expect(heading.querySelector('button')).toHaveAccessibleName(
+            'Mobile heading'
+          );
+        });
+
+        it('renders a fallback aria-label if neither `heading` nor `mobileTitle` is passed', () => {
+          const { getByTestSubject } = render(
+            <EuiSideNav
+              mobileBreakpoints={JSDOM_BREAKPOINT}
+              headingProps={{ 'data-test-subj': 'heading' }}
+            />
+          );
+          const heading = getByTestSubject('heading');
+
+          expect(heading).toHaveTextContent('');
+          expect(heading.querySelector('button')).toHaveAccessibleName(
+            'Toggle navigation'
+          );
+        });
+
+        it('does not render any visible text if `headingProps.screenReaderOnly` is true, but does render an aria-label', () => {
+          const { getByTestSubject } = render(
+            <EuiSideNav
+              mobileBreakpoints={JSDOM_BREAKPOINT}
+              heading="Side Nav Heading"
+              mobileTitle="Mobile heading"
+              headingProps={{
+                'data-test-subj': 'heading',
+                screenReaderOnly: true,
+              }}
+            />
+          );
+          const heading = getByTestSubject('heading');
+
+          expect(heading).toHaveTextContent('');
+          expect(heading.querySelector('button')).toHaveAccessibleName(
+            'Toggle navigation'
+          );
+        });
+      });
     });
 
     describe('items', () => {
