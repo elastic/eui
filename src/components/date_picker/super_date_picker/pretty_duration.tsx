@@ -8,7 +8,7 @@
 
 import React from 'react';
 import dateMath from '@elastic/datemath';
-import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import moment, { LocaleSpecifier, RelativeTimeKey } from 'moment'; // eslint-disable-line import/named
 import { useEuiI18n } from '../../i18n';
 import { getDateMode, DATE_MODES } from './date_modes';
 import { parseRelativeParts } from './relative_utils';
@@ -146,9 +146,18 @@ const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
 export const useFormatTimeString = (
   timeString: string,
   dateFormat: string,
-  roundUp = false,
-  locale: LocaleSpecifier = 'en'
+  options?: {
+    locale?: LocaleSpecifier;
+    roundUp?: boolean;
+    canRoundRelativeUnits?: boolean;
+  }
 ): string => {
+  const {
+    locale = 'en',
+    roundUp = false,
+    canRoundRelativeUnits = true,
+  } = options || {};
+
   // i18n'd strings
   const nowDisplay = useEuiI18n('euiPrettyDuration.now', 'now');
   const invalidDateDisplay = useEuiI18n(
@@ -171,7 +180,27 @@ export const useFormatTimeString = (
   }
 
   if (moment.isMoment(tryParse)) {
-    return `~ ${tryParse.locale(locale).fromNow()}`;
+    if (canRoundRelativeUnits) {
+      return `~ ${tryParse.locale(locale).fromNow()}`;
+    } else {
+      // To force a specific unit to be used, we need to skip moment.fromNow()
+      // entirely and write our own custom moment formatted output.
+      const { count, unit: _unit } = parseRelativeParts(timeString);
+      const isFuture = _unit.endsWith('+');
+      const unit = isFuture ? _unit.slice(0, -1) : _unit; // We want just the unit letter without the trailing +
+
+      // @see https://momentjs.com/docs/#/customization/relative-time/
+      const relativeUnitKey = (
+        count === 1 ? unit : unit + unit
+      ) as RelativeTimeKey;
+
+      // @see https://momentjs.com/docs/#/i18n/locale-data/
+      return moment.localeData().pastFuture(
+        isFuture ? count : count * -1,
+        moment.localeData().relativeTime(count, false, relativeUnitKey, false)
+        // Booleans don't seem to actually matter for output, .pastFuture() handles that
+      );
+    }
   }
 
   return timeString;
@@ -246,7 +275,7 @@ export const usePrettyDuration = ({
    * If it's none of the above, display basic fallback copy
    */
   const displayFrom = useFormatTimeString(timeFrom, dateFormat);
-  const displayTo = useFormatTimeString(timeTo, dateFormat, true);
+  const displayTo = useFormatTimeString(timeTo, dateFormat, { roundUp: true });
   const fallbackDuration = useEuiI18n(
     'euiPrettyDuration.fallbackDuration',
     '{displayFrom} to {displayTo}',

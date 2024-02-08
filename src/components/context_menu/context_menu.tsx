@@ -12,6 +12,7 @@ import React, {
   CSSProperties,
   ReactElement,
   ReactNode,
+  Fragment,
 } from 'react';
 import classNames from 'classnames';
 
@@ -47,9 +48,21 @@ export interface EuiContextMenuPanelItemSeparator
   key?: string;
 }
 
+export type EuiContextMenuPanelItemRenderCustom = {
+  /**
+   * Allows rendering any custom content alongside your array of context menu items.
+   * Accepts either a component or an inline function component that returns any JSX.
+   */
+  renderItem: (() => ReactNode) | Function;
+  key?: string;
+};
+
 export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
-  EuiContextMenuPanelItemDescriptorEntry,
-  EuiContextMenuPanelItemSeparator
+  ExclusiveUnion<
+    EuiContextMenuPanelItemDescriptorEntry,
+    EuiContextMenuPanelItemSeparator
+  >,
+  EuiContextMenuPanelItemRenderCustom
 >;
 
 export interface EuiContextMenuPanelDescriptor {
@@ -313,6 +326,10 @@ export class EuiContextMenuClass extends Component<
 
   renderItems(items: EuiContextMenuPanelItemDescriptor[] = []) {
     return items.map((item, index) => {
+      if (item.renderItem) {
+        return <Fragment key={item.key ?? index}>{item.renderItem()}</Fragment>;
+      }
+
       if (isItemSeparator(item)) {
         const { isSeparator: omit, key = index, ...rest } = item;
         return <EuiHorizontalRule key={key} margin="none" {...rest} />;

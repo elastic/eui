@@ -8,11 +8,15 @@
 
 import React from 'react';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
-import { EuiEmptyPrompt, PADDING_SIZES } from './empty_prompt';
+
 import { COLORS } from '../panel/panel';
+import { EuiEmptyPrompt, PADDING_SIZES } from './empty_prompt';
 
 describe('EuiEmptyPrompt', () => {
+  shouldRenderCustomStyles(<EuiEmptyPrompt />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiEmptyPrompt

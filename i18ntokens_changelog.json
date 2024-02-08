@@ -1,5 +1,37 @@
 [
   {
+    "version": "93.0.0",
+    "changes": [
+      {
+        "token": "euiTourStep.endTour",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStep.skipTour",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStep.closeTour",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourFooter.endTour",
+        "changeType": "added",
+        "value": "End tour"
+      },
+      {
+        "token": "euiTourFooter.skipTour",
+        "changeType": "added",
+        "value": "Skip tour"
+      },
+      {
+        "token": "euiTourFooter.closeTour",
+        "changeType": "added",
+        "value": "Close tour"
+      }
+    ]
+  },
+  {
     "version": "92.1.0",
     "changes": [
       {

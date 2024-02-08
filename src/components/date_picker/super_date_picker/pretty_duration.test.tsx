@@ -13,6 +13,7 @@ import {
   usePrettyDuration,
   PrettyDuration,
   showPrettyDuration,
+  useFormatTimeString,
 } from './pretty_duration';
 
 const dateFormat = 'MMMM Do YYYY, HH:mm:ss.SSS';
@@ -121,5 +122,55 @@ describe('showPrettyDuration', () => {
     expect(
       showPrettyDuration('2018-01-17T18:57:57.149Z', 'now', quickRanges)
     ).toBe(false);
+  });
+});
+
+describe('useFormatTimeString', () => {
+  it('it takes a time string and formats it into a humanized date', () => {
+    expect(
+      renderHook(() => useFormatTimeString('now-3s', dateFormat)).result.current
+    ).toEqual('~ a few seconds ago');
+    expect(
+      renderHook(() => useFormatTimeString('now+1m', dateFormat)).result.current
+    ).toEqual('~ in a minute');
+    expect(
+      renderHook(() => useFormatTimeString('now+100w', dateFormat)).result
+        .current
+    ).toEqual('~ in 2 years');
+  });
+
+  it("always parses the 'now' string as-is", () => {
+    expect(
+      renderHook(() => useFormatTimeString('now', dateFormat)).result.current
+    ).toEqual('now');
+  });
+
+  describe('options', () => {
+    test('locale', () => {
+      expect(
+        renderHook(() =>
+          useFormatTimeString('now+15m', dateFormat, { locale: 'ja' })
+        ).result.current
+      ).toBe('~ 15分後');
+    });
+
+    describe('canRoundRelativeUnits', () => {
+      const option = { canRoundRelativeUnits: false };
+
+      it("allows skipping moment.fromNow()'s default rounding", () => {
+        expect(
+          renderHook(() => useFormatTimeString('now-3s', dateFormat, option))
+            .result.current
+        ).toEqual('3 seconds ago');
+        expect(
+          renderHook(() => useFormatTimeString('now+1m', dateFormat, option))
+            .result.current
+        ).toEqual('in a minute');
+        expect(
+          renderHook(() => useFormatTimeString('now+100w', dateFormat, option))
+            .result.current
+        ).toEqual('in 100 weeks');
+      });
+    });
   });
 });

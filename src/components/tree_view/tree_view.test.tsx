@@ -7,11 +7,13 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+
 import { EuiIcon } from '../icon';
 import { EuiToken } from '../token';
-import { shallow } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
 
 import { EuiTreeView } from './tree_view';
 
@@ -74,52 +76,52 @@ const items = [
 ];
 
 describe('EuiTreeView', () => {
+  shouldRenderCustomStyles(<EuiTreeView items={items} />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiTreeView items={items} {...requiredProps} />
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
-  test('length of open items', () => {
-    const component = shallow<EuiTreeView>(
+  test('item expansion', () => {
+    const { container, getByText } = render(
       <EuiTreeView items={items} aria-label="Tree" />
     );
-    const instance = component.instance();
+    const getExpandedItems = () =>
+      container.querySelectorAll('[aria-expanded="true"]');
+    expect(getExpandedItems()).toHaveLength(1);
 
-    expect(component.state('openItems')).toHaveLength(1);
-
-    instance.handleNodeClick(items[1]);
-    expect(component.state('openItems')).toHaveLength(2);
+    fireEvent.click(getByText('Item B'));
+    expect(getExpandedItems()).toHaveLength(2);
   });
 
-  test('activeItem changes', () => {
-    const component = shallow<EuiTreeView>(
+  test('active item', () => {
+    const { container, getByText } = render(
       <EuiTreeView items={items} aria-label="Tree" />
     );
-    const instance = component.instance();
+    const getActiveItem = () =>
+      container.querySelector('.euiTreeView__node--active');
+    expect(getActiveItem()).not.toBeInTheDocument();
 
-    expect(component.state('activeItem')).toBe('');
-
-    instance.handleNodeClick(items[1]);
-    expect(component.state('activeItem')).toBe('item_two');
+    fireEvent.click(getByText('Item Two')!);
+    expect(getActiveItem()).toBeInTheDocument();
   });
 
   test('open node changes', () => {
-    const component = shallow<EuiTreeView>(
+    const { queryByText, getByText } = render(
       <EuiTreeView items={items} aria-label="Tree" />
     );
-    const instance = component.instance();
+    expect(queryByText('Item C')).toBeInTheDocument();
+    expect(queryByText('Another Bug')).not.toBeInTheDocument();
 
-    expect(instance.isNodeOpen(items[1])).toBe(false);
+    fireEvent.click(getByText('Item C'));
+    expect(queryByText('Another Bug')).toBeInTheDocument();
 
-    instance.handleNodeClick(items[1]);
-    expect(instance.isNodeOpen(items[1])).toBe(true);
-
-    expect(instance.isNodeOpen(items[0])).toBe(true);
-
-    instance.handleNodeClick(items[0]);
-    expect(instance.isNodeOpen(items[0])).toBe(false);
+    fireEvent.click(getByText('Item One'));
+    expect(queryByText('Item C')).not.toBeInTheDocument();
+    expect(queryByText('Another Bug')).not.toBeInTheDocument();
   });
 });

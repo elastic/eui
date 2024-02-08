@@ -417,13 +417,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
     }
   }
 
-  /**
-   * @deprecated Use `selection.selected` instead to declaratively control table selection
-   */
-  setSelection(newSelection: T[]) {
-    this.changeSelection(newSelection);
-  }
-
   buildCriteria(props: EuiBasicTableProps<T>): Criteria<T> {
     const criteria: Criteria<T> = {};
     if (hasPagination(props)) {

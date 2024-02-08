@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
 
@@ -40,6 +41,50 @@ describe('EuiAutoRefresh', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  test('intervalUnits forces rendering in the provided units', () => {
+    const { getByLabelText, getByRole, getByTestSubject } = render(
+      <EuiAutoRefresh
+        isPaused={false}
+        refreshInterval={200000}
+        intervalUnits="s"
+        onRefreshChange={() => {}}
+      />
+    );
+
+    expect(getByLabelText('Auto refresh')).toHaveValue('200 seconds');
+
+    fireEvent.click(getByRole('button'));
+    expect(getByTestSubject('superDatePickerRefreshIntervalInput')).toHaveValue(
+      200
+    );
+    expect(
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect')
+    ).toHaveValue('s');
+  });
+
+  test('onRefreshChange passes back all expected values', () => {
+    const onRefreshChange = jest.fn();
+    const { getByLabelText, getByTestSubject } = render(
+      <EuiAutoRefresh
+        isPaused={false}
+        refreshInterval={1000}
+        onRefreshChange={onRefreshChange}
+      />
+    );
+
+    fireEvent.click(getByLabelText('Auto refresh'));
+    fireEvent.change(
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect'),
+      { target: { value: 'h' } }
+    );
+
+    expect(onRefreshChange).toHaveBeenCalledWith({
+      refreshInterval: 3600000,
+      intervalUnits: 'h',
+      isPaused: false,
+    });
+  });
 });
 
 describe('EuiAutoRefreshButton', () => {
@@ -69,5 +114,49 @@ describe('EuiAutoRefreshButton', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('intervalUnits forces rendering in the provided units', () => {
+    const { getByRole, getByTestSubject } = render(
+      <EuiAutoRefreshButton
+        isPaused={false}
+        refreshInterval={200000}
+        intervalUnits="s"
+        onRefreshChange={() => {}}
+      />
+    );
+
+    expect(getByRole('button')).toHaveTextContent('200 s');
+
+    fireEvent.click(getByRole('button'));
+    expect(getByTestSubject('superDatePickerRefreshIntervalInput')).toHaveValue(
+      200
+    );
+    expect(
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect')
+    ).toHaveValue('s');
+  });
+
+  test('onRefreshChange passes back all expected values', () => {
+    const onRefreshChange = jest.fn();
+    const { getByRole, getByTestSubject } = render(
+      <EuiAutoRefreshButton
+        isPaused={false}
+        refreshInterval={1000}
+        onRefreshChange={onRefreshChange}
+      />
+    );
+
+    fireEvent.click(getByRole('button'));
+    fireEvent.change(
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect'),
+      { target: { value: 'h' } }
+    );
+
+    expect(onRefreshChange).toHaveBeenCalledWith({
+      refreshInterval: 3600000,
+      intervalUnits: 'h',
+      isPaused: false,
+    });
   });
 });

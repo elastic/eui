@@ -15,20 +15,24 @@ import { EuiTableHeader } from './table_header';
 describe('EuiTableHeader', () => {
   test('is rendered', () => {
     const { container } = render(
-      <EuiTableHeader {...requiredProps}>
-        <td>children</td>
-      </EuiTableHeader>
+      <table>
+        <EuiTableHeader {...requiredProps}>
+          <td>children</td>
+        </EuiTableHeader>
+      </table>
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered without <tr>', () => {
     const { container } = render(
-      <EuiTableHeader wrapWithTableRow={false}>
-        <tr>
-          <td>children</td>
-        </tr>
-      </EuiTableHeader>
+      <table>
+        <EuiTableHeader wrapWithTableRow={false}>
+          <tr>
+            <td>children</td>
+          </tr>
+        </EuiTableHeader>
+      </table>
     );
     expect(container.firstChild).toMatchSnapshot();
   });
