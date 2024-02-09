@@ -186,10 +186,7 @@ export const EuiSideNavItem = <
     setItemIsOpen((isOpen) => !isOpen);
   };
 
-  let childItems;
-  if (items && itemIsOpen) {
-    childItems = <div className="euiSideNavItem__items">{items}</div>;
-  }
+  const hasChildItems = items && itemIsOpen;
 
   let buttonIcon;
   if (icon) {
@@ -205,7 +202,7 @@ export const EuiSideNavItem = <
       'euiSideNavItem--rootIcon': depth === 0 && icon,
       'euiSideNavItem--trunk': depth === 1,
       'euiSideNavItem--branch': depth > 1,
-      'euiSideNavItem--hasChildItems': !!childItems,
+      'euiSideNavItem--hasChildItems': hasChildItems,
       'euiSideNavItem--emphasized': emphasize,
     },
     className
@@ -216,6 +213,12 @@ export const EuiSideNavItem = <
     depth === 0 && styles.root,
     depth === 1 && styles.trunk,
     depth > 1 && styles.branch,
+  ];
+  const itemsStyles = hasChildItems && [
+    styles.items.euiSideNavItem__items,
+    depth === 0 && icon && styles.items.rootWithIcon,
+    depth === 1 && styles.items.trunk,
+    depth > 1 && styles.items.branch,
   ];
 
   const buttonClasses = classNames(
@@ -277,7 +280,11 @@ export const EuiSideNavItem = <
         {caret}
       </RenderItem>
 
-      {childItems}
+      {hasChildItems && (
+        <div css={itemsStyles} className="euiSideNavItem__items">
+          {items}
+        </div>
+      )}
     </div>
   );
 };

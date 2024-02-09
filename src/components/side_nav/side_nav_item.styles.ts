@@ -49,6 +49,19 @@ export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('height', euiTheme.size.m)}
       }
     `,
+
+    items: {
+      euiSideNavItem__items: css``,
+      rootWithIcon: css`
+        ${logicalCSS('margin-left', euiTheme.size.l)}
+      `,
+      trunk: css`
+        ${logicalCSS('margin-left', euiTheme.size.s)}
+      `,
+      branch: css`
+        ${logicalCSS('margin-left', euiTheme.size.base)}
+      `,
+    },
   };
 };
 
