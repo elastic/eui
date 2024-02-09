@@ -149,64 +149,52 @@ exports[`EuiSideNav props items is rendered 1`] = `
     id="euiSideNav_generated-id_content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem-hasChildItems emotion-euiSideNavItem-root"
     >
       <div
-        class="euiSideNavItemButton"
+        class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
       >
         <span
-          class="euiSideNavItemButton__content"
+          class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+          title="A"
         >
-          <span
-            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-            title="A"
-          >
-            A
-          </span>
+          A
         </span>
       </div>
       <div
-        class="euiSideNavItem__items"
+        class="euiSideNavItem__items emotion-euiSideNavItem__items"
       >
         <div
-          class="euiSideNavItem euiSideNavItem--trunk class"
+          class="euiSideNavItem euiSideNavItem--trunk class emotion-euiSideNavItem-trunk"
         >
           <div
             aria-label="aria"
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
             data-test-sub="dts"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="B"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="B"
-              >
-                B
-              </span>
+              B
             </span>
           </div>
         </div>
         <div
-          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--emphasized"
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--emphasized emotion-euiSideNavItem-trunk-emphasized"
         >
           <button
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-emphasized-trunk"
             type="button"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label emotion-euiSideNavItemButton__label"
             >
-              <span
-                class="euiSideNavItemButton__label"
-              >
-                C
-              </span>
-              <span
-                data-euiicon-type="arrowRight"
-              />
+              C
             </span>
+            <span
+              data-euiicon-type="arrowRight"
+            />
           </button>
         </div>
       </div>
@@ -224,106 +212,86 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
     id="euiSideNav_generated-id_content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem-hasChildItems emotion-euiSideNavItem-root"
     >
       <div
-        class="euiSideNavItemButton"
+        class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
       >
         <span
-          class="euiSideNavItemButton__content"
+          class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+          title="A"
         >
-          <span
-            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-            title="A"
-          >
-            A
-          </span>
+          A
         </span>
       </div>
       <div
-        class="euiSideNavItem__items"
+        class="euiSideNavItem__items emotion-euiSideNavItem__items"
       >
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk emotion-euiSideNavItem-trunk"
         >
           <div
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="B"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="B"
-              >
-                B
-              </span>
+              B
             </span>
           </div>
         </div>
         <div
-          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem-hasChildItems emotion-euiSideNavItem-trunk"
         >
           <button
-            class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+            class="euiSideNavItemButton euiSideNavItemButton-isOpen emotion-euiSideNavItemButton-trunk"
             type="button"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="C"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="C"
-              >
-                C
-              </span>
-              <span
-                data-euiicon-type="arrowDown"
-              />
+              C
             </span>
+            <span
+              data-euiicon-type="arrowDown"
+            />
           </button>
           <div
-            class="euiSideNavItem__items"
+            class="euiSideNavItem__items emotion-euiSideNavItem__items-trunk"
           >
             <div
-              class="euiSideNavItem euiSideNavItem--branch euiSideNavItem--hasChildItems"
+              class="euiSideNavItem euiSideNavItem--branch euiSideNavItem-hasChildItems emotion-euiSideNavItem-branch"
             >
               <button
-                class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+                class="euiSideNavItemButton euiSideNavItemButton-isOpen emotion-euiSideNavItemButton-branch"
                 type="button"
               >
                 <span
-                  class="euiSideNavItemButton__content"
+                  class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+                  title="D"
                 >
-                  <span
-                    class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                    title="D"
-                  >
-                    D
-                  </span>
-                  <span
-                    data-euiicon-type="arrowDown"
-                  />
+                  D
                 </span>
+                <span
+                  data-euiicon-type="arrowDown"
+                />
               </button>
               <div
-                class="euiSideNavItem__items"
+                class="euiSideNavItem__items emotion-euiSideNavItem__items-branch"
               >
                 <div
-                  class="euiSideNavItem euiSideNavItem--branch"
+                  class="euiSideNavItem euiSideNavItem--branch emotion-euiSideNavItem-branch"
                 >
                   <div
-                    class="euiSideNavItemButton"
+                    class="euiSideNavItemButton emotion-euiSideNavItemButton-branch"
                   >
                     <span
-                      class="euiSideNavItemButton__content"
+                      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+                      title="E"
                     >
-                      <span
-                        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                        title="E"
-                      >
-                        E
-                      </span>
+                      E
                     </span>
                   </div>
                 </div>
@@ -346,43 +314,35 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
     id="euiSideNav_generated-id_content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem-hasChildItems emotion-euiSideNavItem-root"
     >
       <a
-        class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+        class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
         data-test-id="my-custom-element"
         href="http://www.elastic.co"
       >
         <span
-          class="euiSideNavItemButton__content"
+          class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+          title="A"
         >
-          <span
-            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-            title="A"
-          >
-            A
-          </span>
+          A
         </span>
       </a>
       <div
-        class="euiSideNavItem__items"
+        class="euiSideNavItem__items emotion-euiSideNavItem__items"
       >
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk emotion-euiSideNavItem-trunk"
         >
           <a
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
             data-test-id="my-custom-element"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="B"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="B"
-              >
-                B
-              </span>
+              B
             </span>
           </a>
         </div>
@@ -401,65 +361,53 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
     id="euiSideNav_generated-id_content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem-hasChildItems emotion-euiSideNavItem-root"
     >
       <a
-        class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+        class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
         href="http://www.elastic.co"
         rel="noreferrer"
       >
         <span
-          class="euiSideNavItemButton__content"
+          class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+          title="A"
         >
-          <span
-            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-            title="A"
-          >
-            A
-          </span>
+          A
         </span>
       </a>
       <div
-        class="euiSideNavItem__items"
+        class="euiSideNavItem__items emotion-euiSideNavItem__items"
       >
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk emotion-euiSideNavItem-trunk"
         >
           <div
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="B"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="B"
-              >
-                B
-              </span>
+              B
             </span>
           </div>
         </div>
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk emotion-euiSideNavItem-trunk"
         >
           <button
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
             type="button"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="C"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="C"
-              >
-                C
-              </span>
-              <span
-                data-euiicon-type="arrowRight"
-              />
+              C
             </span>
+            <span
+              data-euiicon-type="arrowRight"
+            />
           </button>
         </div>
       </div>
@@ -477,100 +425,80 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
     id="euiSideNav_generated-id_content"
   >
     <div
-      class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
+      class="euiSideNavItem euiSideNavItem--root euiSideNavItem-hasChildItems emotion-euiSideNavItem-root"
     >
       <div
-        class="euiSideNavItemButton"
+        class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
       >
         <span
-          class="euiSideNavItemButton__content"
+          class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+          title="A"
         >
-          <span
-            class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-            title="A"
-          >
-            A
-          </span>
+          A
         </span>
       </div>
       <div
-        class="euiSideNavItem__items"
+        class="euiSideNavItem__items emotion-euiSideNavItem__items"
       >
         <div
-          class="euiSideNavItem euiSideNavItem--trunk"
+          class="euiSideNavItem euiSideNavItem--trunk emotion-euiSideNavItem-trunk"
         >
           <div
-            class="euiSideNavItemButton"
+            class="euiSideNavItemButton emotion-euiSideNavItemButton-trunk"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="B"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="B"
-              >
-                B
-              </span>
+              B
             </span>
           </div>
         </div>
         <div
-          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
+          class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem-hasChildItems emotion-euiSideNavItem-trunk"
         >
           <button
-            class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+            class="euiSideNavItemButton euiSideNavItemButton-isOpen emotion-euiSideNavItemButton-trunk"
             type="button"
           >
             <span
-              class="euiSideNavItemButton__content"
+              class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+              title="C"
             >
-              <span
-                class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                title="C"
-              >
-                C
-              </span>
-              <span
-                data-euiicon-type="arrowDown"
-              />
+              C
             </span>
+            <span
+              data-euiicon-type="arrowDown"
+            />
           </button>
           <div
-            class="euiSideNavItem__items"
+            class="euiSideNavItem__items emotion-euiSideNavItem__items-trunk"
           >
             <div
-              class="euiSideNavItem euiSideNavItem--branch"
+              class="euiSideNavItem euiSideNavItem--branch emotion-euiSideNavItem-branch"
             >
               <div
-                class="euiSideNavItemButton euiSideNavItemButton-isSelected"
+                class="euiSideNavItemButton euiSideNavItemButton-isSelected emotion-euiSideNavItemButton-selected-branch"
               >
                 <span
-                  class="euiSideNavItemButton__content"
+                  class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+                  title="D"
                 >
-                  <span
-                    class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                    title="D"
-                  >
-                    D
-                  </span>
+                  D
                 </span>
               </div>
             </div>
             <div
-              class="euiSideNavItem euiSideNavItem--branch"
+              class="euiSideNavItem euiSideNavItem--branch emotion-euiSideNavItem-branch"
             >
               <div
-                class="euiSideNavItemButton"
+                class="euiSideNavItemButton emotion-euiSideNavItemButton-branch"
               >
                 <span
-                  class="euiSideNavItemButton__content"
+                  class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+                  title="E"
                 >
-                  <span
-                    class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
-                    title="E"
-                  >
-                    E
-                  </span>
+                  E
                 </span>
               </div>
             </div>
