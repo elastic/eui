@@ -7,6 +7,7 @@
  */
 
 import React, {
+  HTMLAttributes,
   ReactNode,
   ReactElement,
   MouseEventHandler,
@@ -75,6 +76,10 @@ export interface _EuiSideNavItemProps {
    * Passed to the actual `.euiSideNavItemButton` element
    */
   buttonClassName?: string;
+  /**
+   * className, css, and style are passed to the parent wrapper, not the button
+   */
+  style?: HTMLAttributes<HTMLDivElement>['style'];
   // Exposed as different prop type to consumer
   items?: ReactNode;
   // Not exposed to consumer
@@ -165,6 +170,8 @@ export const EuiSideNavItem = <
   renderItem: RenderItem = DefaultRenderItem,
   depth = 0,
   className,
+  css,
+  style,
   truncate = true,
   emphasize,
   buttonClassName,
@@ -210,6 +217,7 @@ export const EuiSideNavItem = <
     isTrunk && styles.trunk,
     isBranch && styles.branch,
     emphasize && styles.emphasized,
+    css,
   ];
   const itemsStyles = hasChildItems && [
     styles.items.euiSideNavItem__items,
@@ -241,7 +249,7 @@ export const EuiSideNavItem = <
   ];
 
   return (
-    <div css={cssStyles} className={classes}>
+    <div css={cssStyles} className={classes} style={style}>
       <RenderItem
         css={buttonCssStyles}
         className={buttonClasses}

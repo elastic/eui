@@ -7,12 +7,15 @@
  */
 
 import React from 'react';
-import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiSideNavItem } from './side_nav_item';
 
 describe('EuiSideNavItem', () => {
+  shouldRenderCustomStyles(<EuiSideNavItem>test</EuiSideNavItem>);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiSideNavItem>
