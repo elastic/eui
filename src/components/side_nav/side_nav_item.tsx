@@ -16,13 +16,13 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme, getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 import { CommonProps } from '../common';
-
+import { EuiInnerText } from '../inner_text';
 import { EuiIcon } from '../icon';
 
-import { getSecureRelForTarget } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
-import { EuiInnerText } from '../inner_text';
+import { euiSideNavItemButtonStyles } from './side_nav_item.styles';
 
 /**
  * The props that are exposed to, or altered for, the consumer
@@ -145,7 +145,7 @@ const DefaultRenderItem = ({
   );
 };
 
-export function EuiSideNavItem<
+export const EuiSideNavItem = <
   T extends _EuiSideNavItemButtonProps &
     _EuiSideNavItemProps & { renderItem?: (props: any) => JSX.Element }
 >({
@@ -167,7 +167,9 @@ export function EuiSideNavItem<
   buttonClassName,
   childrenOnly,
   ...rest
-}: EuiSideNavItemProps<T>) {
+}: EuiSideNavItemProps<T>) => {
+  const euiTheme = useEuiTheme();
+
   const isHrefValid = !_href || validateHref(_href);
   const href = isHrefValid ? _href : '';
   const isClickable = onClick || href;
@@ -216,6 +218,8 @@ export function EuiSideNavItem<
     },
     buttonClassName
   );
+  const buttonStyles = euiSideNavItemButtonStyles(euiTheme);
+  const buttonCssStyles = [buttonStyles.euiSideNavItemButton];
 
   let caret;
 
@@ -250,6 +254,7 @@ export function EuiSideNavItem<
     rel,
     target,
     onClick: childrenOnly ? toggleItemOpen : onClick,
+    css: buttonCssStyles,
     className: buttonClasses,
     children: buttonContent,
   };
@@ -259,4 +264,4 @@ export function EuiSideNavItem<
       {childItems}
     </div>
   );
-}
+};
