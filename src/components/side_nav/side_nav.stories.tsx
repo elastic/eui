@@ -8,7 +8,10 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../.storybook/utils';
+import {
+  hideStorybookControls,
+  disableStorybookControls,
+} from '../../../.storybook/utils';
 
 import { EuiText } from '../text';
 
@@ -17,6 +20,7 @@ import { EuiSideNav, EuiSideNavProps } from './side_nav';
 const meta: Meta<EuiSideNavProps> = {
   title: 'EuiSideNav',
   component: EuiSideNav,
+  argTypes: disableStorybookControls(['children']),
   args: {
     // Component defaults
     mobileBreakpoints: ['xs', 's'],
@@ -98,6 +102,7 @@ export const MobileSideNav: Story = {
   // This story demos the side nav on smaller screens; removing other props to streamline controls
   argTypes: hideStorybookControls<EuiSideNavProps>([
     'aria-label',
+    'children',
     'heading',
     'headingProps',
     'items',

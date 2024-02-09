@@ -12,7 +12,12 @@ import classNames from 'classnames';
 import { CommonProps, PropsOf } from '../common';
 import { EuiButtonEmpty } from '../button';
 import { EuiI18n } from '../i18n';
-import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
+import {
+  EuiBreakpointSize,
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
 
 import { EuiSideNavHeading, EuiSideNavHeadingProps } from './_side_nav_heading';
@@ -68,7 +73,9 @@ export type EuiSideNavProps<T = {}> = T &
     truncate?: boolean;
   };
 
-export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
+export class EuiSideNavClass<T> extends Component<
+  EuiSideNavProps<T> & WithEuiThemeProps
+> {
   generateId = htmlIdGenerator('euiSideNav');
 
   static defaultProps = {
@@ -160,6 +167,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       truncate,
       heading,
       headingProps,
+      theme,
       ...rest
     } = this.props;
 
@@ -247,3 +255,5 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     );
   }
 }
+
+export const EuiSideNav = withEuiTheme<EuiSideNavProps>(EuiSideNavClass);
