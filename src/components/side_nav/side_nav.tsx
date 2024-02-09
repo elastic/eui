@@ -23,6 +23,7 @@ import { EuiHideFor, EuiShowFor } from '../responsive';
 import { EuiSideNavHeading, EuiSideNavHeadingProps } from './_side_nav_heading';
 import { EuiSideNavItem, RenderItem } from './side_nav_item';
 import { EuiSideNavItemType } from './side_nav_types';
+import { euiSideNavMobileStyles } from './side_nav.styles';
 
 export type EuiSideNavProps<T = {}> = T &
   CommonProps & {
@@ -174,24 +175,21 @@ export class EuiSideNavClass<T> extends Component<
     const classes = classNames('euiSideNav', className, {
       'euiSideNav-isOpenMobile': isOpenOnMobile,
     });
+    const styles = euiSideNavMobileStyles(theme);
 
-    // To support the extra CSS needed to show/hide/animate the content,
-    // We add a className for every breakpoint supported
-    const contentClasses = classNames(
-      'euiSideNav__content',
-      mobileBreakpoints?.map(
-        (breakpointName) => `euiSideNav__contentMobile-${breakpointName}`
-      )
-    );
+    const contentClasses = classNames('euiSideNav__content');
     const sideNavContentId = this.generateId('content');
-    const navContent = (
-      <div id={sideNavContentId} className={contentClasses}>
-        {this.renderTree(items)}
-      </div>
-    );
+    const mobileContentStyles = [
+      styles.content.euiSideNav__mobileContent,
+      isOpenOnMobile ? styles.content.open : styles.content.hidden,
+    ];
 
     const hasMobileVersion = mobileBreakpoints && mobileBreakpoints.length > 0;
     const mobileToggleText = mobileTitle || heading;
+    const mobileHeadingUnset = {
+      marginBlockEnd: 0,
+      label: 'mobile',
+    };
 
     const headingId = headingProps?.id || this.generateId('heading');
     const headingScreenReaderOnly = !!headingProps?.screenReaderOnly;
@@ -205,6 +203,7 @@ export class EuiSideNavClass<T> extends Component<
                 id={headingId}
                 {...headingProps}
                 screenReaderOnly={false}
+                css={mobileHeadingUnset}
               >
                 <EuiI18n
                   token="euiSideNav.mobileToggleAriaLabel"
@@ -213,9 +212,10 @@ export class EuiSideNavClass<T> extends Component<
                   {(mobileToggleAriaLabel: string) => (
                     <EuiButtonEmpty
                       className="euiSideNav__mobileToggle"
-                      textProps={{ className: 'euiSideNav__mobileToggleText' }}
+                      css={styles.euiSideNav__mobileToggle}
                       contentProps={{
                         className: 'euiSideNav__mobileToggleContent',
+                        css: styles.euiSideNav__mobileToggleContent,
                       }}
                       onClick={toggleOpenOnMobile}
                       iconType="apps"
@@ -233,7 +233,13 @@ export class EuiSideNavClass<T> extends Component<
                   )}
                 </EuiI18n>
               </EuiSideNavHeading>
-              {navContent}
+              <div
+                id={sideNavContentId}
+                className={contentClasses}
+                css={mobileContentStyles}
+              >
+                {this.renderTree(items)}
+              </div>
             </nav>
           </EuiShowFor>
         )}
@@ -248,7 +254,9 @@ export class EuiSideNavClass<T> extends Component<
                 {heading}
               </EuiSideNavHeading>
             )}
-            {navContent}
+            <div id={sideNavContentId} className={contentClasses}>
+              {this.renderTree(items)}
+            </div>
           </nav>
         </EuiHideFor>
       </>

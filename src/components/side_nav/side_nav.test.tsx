@@ -14,6 +14,8 @@ import { render } from '../../test/rtl';
 import { EuiSideNav } from './side_nav';
 import { RenderItem } from './side_nav_item';
 
+const JSDOM_BREAKPOINT = ['l'];
+
 describe('EuiSideNav', () => {
   shouldRenderCustomStyles(<EuiSideNav items={[]} heading="Test" />, {
     childProps: ['headingProps'],
@@ -29,7 +31,7 @@ describe('EuiSideNav', () => {
     describe('isOpenOnMobile', () => {
       test('defaults to false', () => {
         const { container } = render(
-          <EuiSideNav items={[]} />
+          <EuiSideNav items={[]} mobileBreakpoints={JSDOM_BREAKPOINT} />
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -39,6 +41,7 @@ describe('EuiSideNav', () => {
         const { container } = render(
           <EuiSideNav
             items={[]}
+            mobileBreakpoints={JSDOM_BREAKPOINT}
             isOpenOnMobile
           />
         );
@@ -102,8 +105,6 @@ describe('EuiSideNav', () => {
       });
 
       describe('mobile behavior', () => {
-        const JSDOM_BREAKPOINT = ['l'];
-
         it('is overridden by `mobileTitle`', () => {
           const { getByTestSubject } = render(
             <EuiSideNav

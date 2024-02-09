@@ -29,7 +29,7 @@ const meta: Meta<EuiSideNavProps> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 200 }}>
+      <div style={{ width: 248 }}>
         {/* The side nav is visually easier to see with the width set */}
         <Story />
       </div>
@@ -98,13 +98,13 @@ export const MobileSideNav: Story = {
     isOpenOnMobile: true,
     items: sharedSideNavItems,
     mobileTitle: 'Toggle isOpenOnMobile in the controls panel',
+    headingProps: { size: 'xxs' },
   },
   // This story demos the side nav on smaller screens; removing other props to streamline controls
   argTypes: hideStorybookControls<EuiSideNavProps>([
     'aria-label',
     'children',
     'heading',
-    'headingProps',
     'items',
     'renderItem',
     'truncate',

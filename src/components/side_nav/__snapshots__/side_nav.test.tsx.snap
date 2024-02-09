@@ -7,7 +7,7 @@ exports[`EuiSideNav is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -27,7 +27,7 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
     Side Nav Heading
   </h3>
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -45,7 +45,7 @@ exports[`EuiSideNav props heading is hidden with screenReaderOnly 1`] = `
     Side Nav Heading
   </h2>
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -63,7 +63,7 @@ exports[`EuiSideNav props heading is rendered 1`] = `
     Side Nav Heading
   </h2>
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -71,10 +71,34 @@ exports[`EuiSideNav props heading is rendered 1`] = `
 
 exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
 <nav
+  aria-labelledby="euiSideNav_generated-id_heading"
   class="euiSideNav"
 >
+  <h2
+    class="euiTitle euiSideNav__heading emotion-EuiSideNavHeading-euiTitle-xs-mobile"
+    id="euiSideNav_generated-id_heading"
+  >
+    <button
+      aria-controls="euiSideNav_generated-id_content"
+      aria-label="Toggle navigation"
+      class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-euiSideNav__mobileToggle"
+      type="button"
+    >
+      <span
+        class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent-euiSideNav__mobileToggleContent"
+      >
+        <span
+          class="eui-textTruncate euiButtonEmpty__text"
+        />
+        <span
+          color="inherit"
+          data-euiicon-type="apps"
+        />
+      </span>
+    </button>
+  </h2>
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content emotion-euiSideNav__mobileContent-hidden"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -82,10 +106,35 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
 
 exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] = `
 <nav
+  aria-labelledby="euiSideNav_generated-id_heading"
   class="euiSideNav euiSideNav-isOpenMobile"
 >
+  <h2
+    class="euiTitle euiSideNav__heading emotion-EuiSideNavHeading-euiTitle-xs-mobile"
+    id="euiSideNav_generated-id_heading"
+  >
+    <button
+      aria-controls="euiSideNav_generated-id_content"
+      aria-expanded="true"
+      aria-label="Toggle navigation"
+      class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-euiSideNav__mobileToggle"
+      type="button"
+    >
+      <span
+        class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent-euiSideNav__mobileToggleContent"
+      >
+        <span
+          class="eui-textTruncate euiButtonEmpty__text"
+        />
+        <span
+          color="inherit"
+          data-euiicon-type="apps"
+        />
+      </span>
+    </button>
+  </h2>
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content emotion-euiSideNav__mobileContent-open"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -96,7 +145,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
   class="euiSideNav"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   >
     <div
@@ -171,7 +220,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
   class="euiSideNav"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   >
     <div
@@ -293,7 +342,7 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
   class="euiSideNav"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   >
     <div
@@ -348,7 +397,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
   class="euiSideNav"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   >
     <div
@@ -424,7 +473,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
   class="euiSideNav"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   >
     <div
@@ -539,20 +588,20 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
   class="euiSideNav"
 >
   <h2
-    class="euiTitle euiSideNav__heading emotion-EuiSideNavHeading-euiTitle-xs"
+    class="euiTitle euiSideNav__heading emotion-EuiSideNavHeading-euiTitle-xs-mobile"
     id="euiSideNav_generated-id_heading"
   >
     <button
       aria-controls="euiSideNav_generated-id_content"
       aria-label="Toggle navigation"
-      class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
+      class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-euiSideNav__mobileToggle"
       type="button"
     >
       <span
-        class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent"
+        class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent-euiSideNav__mobileToggleContent"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text euiSideNav__mobileToggleText"
+          class="eui-textTruncate euiButtonEmpty__text"
         />
         <span
           color="inherit"
@@ -562,7 +611,7 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
     </button>
   </h2>
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s euiSideNav__contentMobile-m euiSideNav__contentMobile-l euiSideNav__contentMobile-xl"
+    class="euiSideNav__content emotion-euiSideNav__mobileContent-hidden"
     id="euiSideNav_generated-id_content"
   />
 </nav>
@@ -573,7 +622,7 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted null is rendered 1`]
   class="euiSideNav"
 >
   <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    class="euiSideNav__content"
     id="euiSideNav_generated-id_content"
   />
 </nav>
