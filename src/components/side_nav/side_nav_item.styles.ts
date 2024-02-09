@@ -12,6 +12,46 @@ import { UseEuiTheme } from '../../services';
 import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
 
+export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiSideNavItem: css``,
+
+    // Layout
+    root: css`
+      ${logicalCSS('padding-bottom', euiTheme.size.s)}
+
+      & + & {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+        ${logicalCSS('padding-top', euiTheme.size.s)}
+      }
+    `,
+    trunk: css`
+      color: ${euiTheme.colors.title};
+    `,
+    branch: css`
+      position: relative;
+      color: ${euiTheme.colors.subduedText};
+
+      /* Draw the vertical line to group an expanded item's child items together. */
+      &::after {
+        position: absolute;
+        content: '';
+        ${logicalCSS('vertical', 0)}
+        ${logicalCSS('left', 0)}
+        ${logicalCSS('width', euiTheme.border.width.thin)}
+        background-color: ${euiTheme.border.color};
+      }
+
+      /* If this is actually the last item, we don't want the vertical line to stretch all the way down */
+      &:last-of-type::after {
+        ${logicalCSS('height', euiTheme.size.m)}
+      }
+    `,
+  };
+};
+
 export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 

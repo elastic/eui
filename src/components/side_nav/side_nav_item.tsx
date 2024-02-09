@@ -22,7 +22,10 @@ import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon } from '../icon';
 
-import { euiSideNavItemButtonStyles } from './side_nav_item.styles';
+import {
+  euiSideNavItemStyles,
+  euiSideNavItemButtonStyles,
+} from './side_nav_item.styles';
 
 /**
  * The props that are exposed to, or altered for, the consumer
@@ -207,6 +210,13 @@ export const EuiSideNavItem = <
     },
     className
   );
+  const styles = euiSideNavItemStyles(euiTheme);
+  const cssStyles = [
+    styles.euiSideNavItem,
+    depth === 0 && styles.root,
+    depth === 1 && styles.trunk,
+    depth > 1 && styles.branch,
+  ];
 
   const buttonClasses = classNames(
     'euiSideNavItemButton',
@@ -237,7 +247,7 @@ export const EuiSideNavItem = <
   }
 
   return (
-    <div className={classes}>
+    <div css={cssStyles} className={classes}>
       <RenderItem
         css={buttonCssStyles}
         className={buttonClasses}
