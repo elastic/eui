@@ -1,28 +1,3 @@
-/**
- * 3. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
- */
-
-.euiSideNavItemButton__content {
-  display: flex;
-  align-items: center;
-}
-
-.euiSideNavItemButton__icon {
-  margin-right: $euiSizeS;
-}
-
-.euiSideNavItemButton__labelContainer {
-  min-width: 0; /* 3 */
-}
-
-.euiSideNavItemButton__label {
-  flex-grow: 1;
-}
-
-.euiSideNavItemButton__label--truncated {
-  @include euiTextTruncate;
-}
-
 .euiSideNavItem--root {
   &.euiSideNavItem--rootIcon > .euiSideNavItem__items {
     margin-left: $euiSizeL;
@@ -129,10 +104,6 @@
   color: $euiSideNavRootTextcolor;
   // The large y values allow the shadow to stretch beyond the side nav bounds to it's parents container
   box-shadow: 100px 0 0 0 $euiSideNavEmphasizedBackgroundColor, -100px 0 0 0 $euiSideNavEmphasizedBackgroundColor;
-
-  > .euiSideNavItemButton {
-    font-weight: $euiFontWeightBold;
-  }
 
   // Remove any extra box-shadows from nested emphasized items
   .euiSideNavItem--emphasized {

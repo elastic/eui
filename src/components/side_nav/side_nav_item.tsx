@@ -219,7 +219,8 @@ export const EuiSideNavItem = <
   const buttonStyles = euiSideNavItemButtonStyles(euiTheme);
   const buttonCssStyles = [
     buttonStyles.euiSideNavItemButton,
-    isSelected && buttonStyles.isSelected,
+    isSelected && buttonStyles.selected,
+    emphasize && buttonStyles.emphasized,
   ];
 
   let caret;
@@ -228,40 +229,37 @@ export const EuiSideNavItem = <
     caret = <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />;
   }
 
-  const buttonContent = (
-    <span className="euiSideNavItemButton__content">
-      {buttonIcon}
-
-      <EuiInnerText>
-        {(ref, innerText) => (
-          <span
-            ref={ref}
-            title={truncate ? innerText : undefined}
-            className={classNames('euiSideNavItemButton__label', {
-              'euiSideNavItemButton__label--truncated': truncate,
-            })}
-          >
-            {children}
-          </span>
-        )}
-      </EuiInnerText>
-
-      {caret}
-    </span>
-  );
-
-  const renderItemProps: _EuiSideNavItemButtonProps = {
-    href,
-    rel,
-    target,
-    onClick: childrenOnly ? toggleItemOpen : onClick,
-    css: buttonCssStyles,
-    className: buttonClasses,
-    children: buttonContent,
-  };
   return (
     <div className={classes}>
-      <RenderItem {...renderItemProps} {...rest} />
+      <RenderItem
+        css={buttonCssStyles}
+        className={buttonClasses}
+        href={href}
+        rel={rel}
+        target={target}
+        onClick={childrenOnly ? toggleItemOpen : onClick}
+        {...rest}
+      >
+        {buttonIcon}
+
+        <EuiInnerText>
+          {(ref, innerText) => (
+            <span
+              ref={ref}
+              title={truncate ? innerText : undefined}
+              css={buttonStyles.euiSideNavItemButton__label}
+              className={classNames('euiSideNavItemButton__label', {
+                'eui-textTruncate': truncate,
+              })}
+            >
+              {children}
+            </span>
+          )}
+        </EuiInnerText>
+
+        {caret}
+      </RenderItem>
+
       {childItems}
     </div>
   );

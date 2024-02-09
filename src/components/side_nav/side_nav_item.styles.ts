@@ -16,9 +16,11 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiSideNavItemButton: css`
-      display: block;
+      display: flex;
+      align-items: center;
       ${logicalCSS('width', '100%')} /* Needed for nested items */
       padding-block: ${euiTheme.size.xxs};
+      gap: ${euiTheme.size.s};
 
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       line-height: ${euiFontSize(euiThemeContext, 'm').lineHeight};
@@ -47,7 +49,7 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.disabledText};
       }
     `,
-    isSelected: css`
+    selected: css`
       color: ${euiTheme.colors.primaryText};
       font-weight: ${euiTheme.font.weight.bold};
 
@@ -55,6 +57,14 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
       .euiSideNavItemButton__label {
         text-decoration: underline;
       }
+    `,
+    emphasized: css`
+      font-weight: ${euiTheme.font.weight.bold};
+    `,
+
+    // Child elements
+    euiSideNavItemButton__label: css`
+      flex-grow: 1;
     `,
   };
 };
