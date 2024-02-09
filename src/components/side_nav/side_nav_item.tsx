@@ -172,7 +172,6 @@ export const EuiSideNavItem = <
 
   const isHrefValid = !_href || validateHref(_href);
   const href = isHrefValid ? _href : '';
-  const isClickable = onClick || href;
 
   // Forcing accordion style item if not linked, but has children
   const [itemIsOpen, setItemIsOpen] = useState(isOpen);
@@ -212,14 +211,16 @@ export const EuiSideNavItem = <
   const buttonClasses = classNames(
     'euiSideNavItemButton',
     {
-      'euiSideNavItemButton--isClickable': isClickable,
       'euiSideNavItemButton-isOpen': depth > 0 && itemIsOpen && !isSelected,
       'euiSideNavItemButton-isSelected': isSelected,
     },
     buttonClassName
   );
   const buttonStyles = euiSideNavItemButtonStyles(euiTheme);
-  const buttonCssStyles = [buttonStyles.euiSideNavItemButton];
+  const buttonCssStyles = [
+    buttonStyles.euiSideNavItemButton,
+    isSelected && buttonStyles.isSelected,
+  ];
 
   let caret;
 

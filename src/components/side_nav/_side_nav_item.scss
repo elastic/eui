@@ -1,38 +1,6 @@
 /**
- * 1. Text-align defaults to center, so we have to override that.
- * 2. Color the text at the item level and then have the button inherit so overrides are easier
  * 3. Enable ellipsis overflow to work (https://css-tricks.com/flexbox-truncated-text/)
- * 4. Restrict the underline to the button __label so it doesn't affect other components that might live within
  */
-
-.euiSideNavItemButton {
-  &.euiSideNavItemButton--isClickable:not(:disabled) {
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:hover,
-    &:focus {
-      .euiSideNavItemButton__label {
-        // A lingering focus will stay underlined even if it doesn't get the `isSelected` prop
-        text-decoration: underline; /* 4 */
-      }
-    }
-  }
-
-  &.euiSideNavItemButton-isSelected {
-    color: $euiSideNavSelectedTextcolor;
-    font-weight: $euiFontWeightBold;
-
-    .euiSideNavItemButton__label {
-      text-decoration: underline; /* 4 */
-    }
-  }
-
-  &:disabled {
-    @include euiDisabledState($euiSideNavDisabledTextcolor);
-  }
-}
 
 .euiSideNavItemButton__content {
   display: flex;

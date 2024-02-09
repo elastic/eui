@@ -27,6 +27,34 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: start;
       /* Color the text at the item level and then have the button inherit so overrides are easier */
       color: inherit;
+
+      &:is(a, button):not(:disabled) {
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:hover,
+        &:focus {
+          /* Restrict the underline to the button __label so it doesn't affect other components that might live within */
+          .euiSideNavItemButton__label {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        color: ${euiTheme.colors.disabledText};
+      }
+    `,
+    isSelected: css`
+      color: ${euiTheme.colors.primaryText};
+      font-weight: ${euiTheme.font.weight.bold};
+
+      /* Restrict the underline to the button __label so it doesn't affect other components that might live within */
+      .euiSideNavItemButton__label {
+        text-decoration: underline;
+      }
     `,
   };
 };
