@@ -75,6 +75,7 @@ export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-left', euiTheme.size.l)}
       `,
       trunk: css`
+        ${logicalCSS('width', '100%')} /* Needed for trunks with carets */
         ${logicalCSS('margin-left', euiTheme.size.s)}
       `,
       branch: css`

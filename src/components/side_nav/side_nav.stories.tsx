@@ -43,43 +43,91 @@ type Story = StoryObj<EuiSideNavProps>;
 
 const sharedSideNavItems = [
   {
-    name: 'Has nested children',
-    id: 'normal_children',
+    name: 'Root item with carets',
+    id: 'root_1',
     items: [
       {
-        name: 'Child 1',
-        id: 'child_1',
+        name: 'Trunk 1',
+        id: 'trunk_1',
         items: [
           {
-            name: 'Selected item',
-            id: 'selected_item',
-            onClick: () => {},
-            isSelected: true,
-            items: [],
+            name: 'Emphasized branch',
+            id: 'emphasized_branch',
+            icon: <EuiIcon type="faceHappy" />,
+            emphasize: true,
+            items: [
+              {
+                name: 'Yet another branch',
+                id: 'branch_1',
+                onClick: () => {},
+              },
+            ],
           },
         ],
       },
     ],
   },
   {
-    name: 'Has forceOpen: true',
-    id: 'force_open',
-    forceOpen: true,
+    name: 'Root item without carets',
+    id: 'root_2',
     items: [
       {
-        name: 'Child 3',
-        id: 'child_3',
+        name: 'Trunk 2',
+        id: 'trunk_2',
+        onClick: () => {}, // Causes the caret to not render
+        items: [
+          {
+            name: 'Branch 2',
+            id: 'branch_2',
+            onClick: () => {},
+            items: [
+              {
+                name: 'All parents are open because this branch is selected',
+                id: 'selected_branch',
+                onClick: () => {},
+                isSelected: true,
+                truncate: false,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
   {
-    name: 'Children only without link',
-    id: 'children_only',
-    onClick: undefined,
+    name: 'Root item with forced open children',
+    id: 'root_3',
     items: [
       {
-        name: 'Child 4',
-        id: 'child_4',
+        name: 'Trunk 3',
+        id: 'trunk_3',
+        onClick: () => {},
+        forceOpen: true,
+        items: [
+          {
+            name: 'Disabled branch',
+            id: 'disabled_branch',
+            href: '#',
+            disabled: true,
+            icon: <EuiIcon type="faceSad" />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Root item with icon and truncation',
+    icon: <EuiIcon type="logoElastic" />,
+    id: 'root_4',
+    items: [
+      {
+        name: 'Very very long text, truncated by default',
+        id: 'truncated',
+      },
+      {
+        name: 'Very very long text, truncate set to false',
+        id: 'truncateFalse',
+        truncate: false,
       },
     ],
   },
