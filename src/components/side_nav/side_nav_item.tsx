@@ -221,6 +221,13 @@ export const EuiSideNavItem = <
     buttonStyles.euiSideNavItemButton,
     isSelected && buttonStyles.selected,
     emphasize && buttonStyles.emphasized,
+    depth === 0 && buttonStyles.root,
+    depth === 1 && buttonStyles.trunk,
+    depth > 1 && buttonStyles.branch,
+  ];
+  const labelCssStyles = [
+    buttonStyles.label.euiSideNavItemButton__label,
+    depth === 0 && buttonStyles.label.root,
   ];
 
   let caret;
@@ -247,7 +254,7 @@ export const EuiSideNavItem = <
             <span
               ref={ref}
               title={truncate ? innerText : undefined}
-              css={buttonStyles.euiSideNavItemButton__label}
+              css={labelCssStyles}
               className={classNames('euiSideNavItemButton__label', {
                 'eui-textTruncate': truncate,
               })}

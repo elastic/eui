@@ -3,23 +3,6 @@
     margin-left: $euiSizeL;
   }
 
-  /**
-   * 1. Create padding around focus area without indenting the item itself.
-   */
-  & > .euiSideNavItemButton {
-    margin-bottom: $euiSizeS;
-    padding: 0;
-    padding-left: $euiSizeS; /* 1 */
-    padding-right: $euiSizeS; /* 1 */
-    margin-left: -$euiSizeS; /* 1 */
-    width: calc(100% + #{$euiSizeS * 2}); /* 1 */
-
-    .euiSideNavItemButton__label {
-      @include euiTitle('xs');
-      color: inherit;
-    }
-  }
-
   & > .euiSideNavItem__items {
     position: static;
     margin-left: 0;
@@ -36,16 +19,6 @@
 
 .euiSideNavItem--trunk {
   color: $euiSideNavRootTextcolor; /* 2 */
-
-  /**
-   * 1. Create padding around focus area without indenting the item itself.
-   */
-  & > .euiSideNavItemButton {
-    padding-left: $euiSizeS; /* 1 */
-    padding-right: $euiSizeS; /* 1 */
-    margin-left: -$euiSizeS; /* 1 */
-    width: calc(100% + #{$euiSizeS * 2}); /* 1 */
-  }
 
   & > .euiSideNavItem__items {
     margin-left: $euiSizeS;
@@ -73,25 +46,6 @@
   // If this is actually the last item, we don't want the vertical line to stretch all the way down
   &:last-of-type::after {
     height: $euiSizeM;
-  }
-
-  /**
-   * 2. Absolutely position the horizontal tick connecting the item to the vertical line.
-   */
-  & > .euiSideNavItemButton {
-    position: relative; /* 2 */
-    padding-left: $euiSizeS;
-    padding-right: $euiSizeS; /* 2 */
-
-    &::after {
-      position: absolute; /* 2 */
-      content: '';
-      top: $euiSizeM;
-      left: 0;
-      width: $euiSizeXS;
-      height: 1px;
-      background: $euiBorderColor;
-    }
   }
 
   & > .euiSideNavItem__items {

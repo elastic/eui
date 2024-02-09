@@ -9,10 +9,23 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, logicalCSS } from '../../global_styling';
+import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
+import { euiTitle } from '../title/title.styles';
 
 export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const lineHeightOverride = euiFontSize(euiThemeContext, 'm').lineHeight;
+
+  // Create padding around focus area without indenting the item itself.
+  const paddingMarginOffset = `
+    padding-inline: ${euiTheme.size.s};
+    ${logicalCSS('margin-left', `-${euiTheme.size.s}`)}
+    ${logicalCSS(
+      'width',
+      `calc(100% + ${mathWithUnits(euiTheme.size.s, (x) => x * 2)})`
+    )};
+  `;
 
   return {
     euiSideNavItemButton: css`
@@ -23,7 +36,7 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
 
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-      line-height: ${euiFontSize(euiThemeContext, 'm').lineHeight};
+      line-height: ${lineHeightOverride};
 
       /* Text-align defaults to center, so we have to override that. */
       text-align: start;
@@ -62,9 +75,41 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.bold};
     `,
 
-    // Child elements
-    euiSideNavItemButton__label: css`
-      flex-grow: 1;
+    // Layout
+    root: css`
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
+      padding-block: 0;
+      ${paddingMarginOffset}
     `,
+    trunk: css`
+      ${paddingMarginOffset}
+    `,
+    branch: css`
+      /* Absolutely position the horizontal tick connecting the item to the vertical line. */
+      position: relative;
+      padding-inline: ${euiTheme.size.s};
+
+      &::after {
+        position: absolute;
+        content: '';
+        ${logicalCSS('top', euiTheme.size.m)}
+        ${logicalCSS('left', 0)}
+        ${logicalCSS('width', euiTheme.size.xs)}
+        ${logicalCSS('height', euiTheme.border.width.thin)}
+        background-color: ${euiTheme.border.color};
+      }
+    `,
+
+    // Child elements
+    label: {
+      euiSideNavItemButton__label: css`
+        flex-grow: 1;
+      `,
+      root: {
+        ...euiTitle(euiThemeContext, 'xxs'),
+        lineHeight: lineHeightOverride,
+        color: 'inherit',
+      },
+    },
   };
 };

@@ -5,13 +5,4 @@
     padding-top: $euiSizeS;
     margin-top: $euiSizeS;
   }
-
-  & > .euiSideNavItemButton {
-    margin-bottom: $euiSizeXS;
-
-    .euiSideNavItemButton__label {
-      @include euiTitle('xxs');
-      color: inherit;
-    }
-  }
 }
