@@ -7,18 +7,38 @@
  */
 
 import { css } from '@emotion/react';
+
+import { UseEuiTheme, transparentize } from '../../../services';
 import { euiYScroll } from '../../../global_styling';
-import { UseEuiTheme } from '../../../services';
 
-export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => ({
-  euiPageSidebar: css`
-    /* Prevent side bar width from changing when content width changes */
-    flex: 0 1 0%;
-  `,
+export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
-  sticky: css`
-    ${euiYScroll(euiThemeContext, { height: 'auto' })}
-    flex-grow: 1;
-    position: sticky;
-  `,
-});
+  const embellishColor = transparentize(euiTheme.colors.lightShade, 0.3);
+
+  return {
+    euiPageSidebar: css`
+      /* Prevent side bar width from changing when content width changes */
+      flex: 0 1 0%;
+    `,
+    sticky: css`
+      ${euiYScroll(euiThemeContext, { height: 'auto' })}
+      flex-grow: 1;
+      position: sticky;
+    `,
+    embellish: css`
+      background: linear-gradient(
+          160deg,
+          ${embellishColor} 0,
+          ${embellishColor} ${euiTheme.size.xl},
+          transparent 0
+        ),
+        linear-gradient(
+          175deg,
+          ${embellishColor} 0,
+          ${embellishColor} ${euiTheme.size.base},
+          transparent 0
+        );
+    `,
+  };
+};
