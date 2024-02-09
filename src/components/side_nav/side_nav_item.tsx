@@ -213,6 +213,7 @@ export const EuiSideNavItem = <
     depth === 0 && styles.root,
     depth === 1 && styles.trunk,
     depth > 1 && styles.branch,
+    emphasize && styles.emphasized,
   ];
   const itemsStyles = hasChildItems && [
     styles.items.euiSideNavItem__items,

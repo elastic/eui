@@ -8,15 +8,34 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
 import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
 
 export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const emphasizedBackgroundColor = transparentize(
+    euiTheme.colors.lightShade,
+    0.3
+  );
+
   return {
     euiSideNavItem: css``,
+    emphasized: css`
+      background-color: ${emphasizedBackgroundColor};
+      color: ${euiTheme.colors.title};
+
+      /* The large y values allow the shadow to stretch beyond the side nav bounds to it's parents container */
+      box-shadow: 100px 0 0 0 ${emphasizedBackgroundColor},
+        -100px 0 0 0 ${emphasizedBackgroundColor};
+
+      /* Remove any extra box-shadows from nested emphasized items */
+      & & {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    `,
 
     // Layout
     root: css`
