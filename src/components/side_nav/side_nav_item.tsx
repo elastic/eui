@@ -259,26 +259,31 @@ export const EuiSideNavItem = <
         onClick={childrenOnly ? toggleItemOpen : onClick}
         {...rest}
       >
-        {icon}
+        <span
+          css={buttonStyles.euiSideNavItemButton__content}
+          className="euiSideNavItemButton__content"
+        >
+          {icon}
 
-        <EuiInnerText>
-          {(ref, innerText) => (
-            <span
-              ref={ref}
-              title={truncate ? innerText : undefined}
-              css={labelCssStyles}
-              className={classNames('euiSideNavItemButton__label', {
-                'eui-textTruncate': truncate,
-              })}
-            >
-              {children}
-            </span>
+          <EuiInnerText>
+            {(ref, innerText) => (
+              <span
+                ref={ref}
+                title={truncate ? innerText : undefined}
+                css={labelCssStyles}
+                className={classNames('euiSideNavItemButton__label', {
+                  'eui-textTruncate': truncate,
+                })}
+              >
+                {children}
+              </span>
+            )}
+          </EuiInnerText>
+
+          {hasCaret && (
+            <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />
           )}
-        </EuiInnerText>
-
-        {hasCaret && (
-          <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />
-        )}
+        </span>
       </RenderItem>
 
       {hasChildItems && (

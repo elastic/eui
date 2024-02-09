@@ -101,11 +101,9 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiSideNavItemButton: css`
-      display: flex;
-      align-items: center;
+      display: block;
       ${logicalCSS('width', '100%')} /* Needed for nested items */
       padding-block: ${euiTheme.size.xxs};
-      gap: ${euiTheme.size.s};
 
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       line-height: ${lineHeightOverride};
@@ -173,6 +171,11 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Child elements
+    euiSideNavItemButton__content: css`
+      display: flex;
+      align-items: center;
+      gap: ${euiTheme.size.s};
+    `,
     label: {
       euiSideNavItemButton__label: css`
         flex-grow: 1;

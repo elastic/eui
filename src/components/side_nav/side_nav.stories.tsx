@@ -13,6 +13,7 @@ import {
   disableStorybookControls,
 } from '../../../.storybook/utils';
 
+import { EuiIcon } from '../icon';
 import { EuiText } from '../text';
 
 import { EuiSideNav, EuiSideNavProps } from './side_nav';
@@ -118,19 +119,33 @@ export const MobileSideNav: Story = {
 
 export const RenderItem: Story = {
   args: {
-    renderItem: ({ children }) => <EuiText color="accent">{children}</EuiText>,
+    renderItem: ({ children, ...rest }) => (
+      <EuiText color="accent">
+        <button {...rest}>{children}</button>
+      </EuiText>
+    ),
     items: [
       {
         name: 'Kibana',
         id: 'kibana',
-      },
-      {
-        name: 'Observability',
-        id: 'observability',
+        icon: <EuiIcon size="m" type="logoKibana" />,
+        items: [
+          {
+            name: 'Observability',
+            id: 'observability',
+            items: [
+              {
+                name: 'Test',
+                id: 'test',
+              },
+            ],
+          },
+        ],
       },
       {
         name: 'Security',
         id: 'security',
+        icon: <EuiIcon size="m" type="logoSecurity" />,
         renderItem: ({ children }) => (
           <EuiText color="success">{children}</EuiText>
         ),

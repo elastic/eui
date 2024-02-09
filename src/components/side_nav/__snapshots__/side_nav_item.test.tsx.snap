@@ -10,10 +10,14 @@ exports[`EuiSideNavItem can be disabled 1`] = `
     type="button"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
-      title="Children"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      Children
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+        title="Children"
+      >
+        Children
+      </span>
     </span>
   </button>
 </div>
@@ -27,10 +31,14 @@ exports[`EuiSideNavItem can be emphasized 1`] = `
     class="euiSideNavItemButton emotion-euiSideNavItemButton-emphasized-root"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
-      title="Children"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      Children
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+        title="Children"
+      >
+        Children
+      </span>
     </span>
   </div>
 </div>
@@ -44,9 +52,13 @@ exports[`EuiSideNavItem can have truncation turned off 1`] = `
     class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__label emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      Children
+      <span
+        class="euiSideNavItemButton__label emotion-euiSideNavItemButton__label"
+      >
+        Children
+      </span>
     </span>
   </div>
 </div>
@@ -62,9 +74,13 @@ exports[`EuiSideNavItem href is rendered 1`] = `
     rel="noreferrer"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      <button />
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      >
+        <button />
+      </span>
     </span>
   </a>
 </div>
@@ -80,9 +96,13 @@ exports[`EuiSideNavItem href is rendered with rel 1`] = `
     rel="noopener noreferrer"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      <button />
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      >
+        <button />
+      </span>
     </span>
   </a>
 </div>
@@ -96,13 +116,17 @@ exports[`EuiSideNavItem is rendered 1`] = `
     class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      <button
-        aria-label="aria-label"
-        class="testClass1 testClass2 emotion-euiTestCss"
-        data-test-subj="test subject string"
-      />
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      >
+        <button
+          aria-label="aria-label"
+          class="testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+        />
+      </span>
     </span>
   </div>
 </div>
@@ -116,9 +140,13 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
     class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      <button />
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      >
+        <button />
+      </span>
     </span>
   </div>
 </div>
@@ -132,9 +160,13 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
     class="euiSideNavItemButton euiSideNavItemButton-isSelected emotion-euiSideNavItemButton-selected-root"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      <button />
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      >
+        <button />
+      </span>
     </span>
   </div>
 </div>
@@ -148,11 +180,15 @@ exports[`EuiSideNavItem preserves child's classes 1`] = `
     class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
-      <button
-        class="test"
-      />
+      <span
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
+      >
+        <button
+          class="test"
+        />
+      </span>
     </span>
   </div>
 </div>
