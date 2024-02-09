@@ -7,12 +7,12 @@
  */
 
 import React, {
-  cloneElement,
   ReactNode,
   ReactElement,
   MouseEventHandler,
   useState,
   useEffect,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -182,44 +182,40 @@ export const EuiSideNavItem = <
     setItemIsOpen(isOpen);
   }, [isOpen]);
 
-  const toggleItemOpen = () => {
+  const toggleItemOpen = useCallback(() => {
     setItemIsOpen((isOpen) => !isOpen);
-  };
+  }, []);
 
+  const isRoot = depth === 0;
+  const isTrunk = depth === 1;
+  const isBranch = depth > 1;
+  const hasCaret = depth > 0 && childrenOnly;
   const hasChildItems = items && itemIsOpen;
-
-  let buttonIcon;
-  if (icon) {
-    buttonIcon = cloneElement(icon, {
-      className: classNames('euiSideNavItemButton__icon', icon.props.className),
-    });
-  }
 
   const classes = classNames(
     'euiSideNavItem',
     {
-      'euiSideNavItem--root': depth === 0,
-      'euiSideNavItem--rootIcon': depth === 0 && icon,
-      'euiSideNavItem--trunk': depth === 1,
-      'euiSideNavItem--branch': depth > 1,
-      'euiSideNavItem--hasChildItems': hasChildItems,
+      'euiSideNavItem--root': isRoot,
+      'euiSideNavItem--trunk': isTrunk,
+      'euiSideNavItem--branch': isBranch,
       'euiSideNavItem--emphasized': emphasize,
+      'euiSideNavItem-hasChildItems': hasChildItems,
     },
     className
   );
   const styles = euiSideNavItemStyles(euiTheme);
   const cssStyles = [
     styles.euiSideNavItem,
-    depth === 0 && styles.root,
-    depth === 1 && styles.trunk,
-    depth > 1 && styles.branch,
+    isRoot && styles.root,
+    isTrunk && styles.trunk,
+    isBranch && styles.branch,
     emphasize && styles.emphasized,
   ];
   const itemsStyles = hasChildItems && [
     styles.items.euiSideNavItem__items,
-    depth === 0 && icon && styles.items.rootWithIcon,
-    depth === 1 && styles.items.trunk,
-    depth > 1 && styles.items.branch,
+    isRoot && icon && styles.items.rootWithIcon,
+    isTrunk && styles.items.trunk,
+    isBranch && styles.items.branch,
   ];
 
   const buttonClasses = classNames(
@@ -235,20 +231,14 @@ export const EuiSideNavItem = <
     buttonStyles.euiSideNavItemButton,
     isSelected && buttonStyles.selected,
     emphasize && buttonStyles.emphasized,
-    depth === 0 && buttonStyles.root,
-    depth === 1 && buttonStyles.trunk,
-    depth > 1 && buttonStyles.branch,
+    isRoot && buttonStyles.root,
+    isTrunk && buttonStyles.trunk,
+    isBranch && buttonStyles.branch,
   ];
   const labelCssStyles = [
     buttonStyles.label.euiSideNavItemButton__label,
-    depth === 0 && buttonStyles.label.root,
+    isRoot && buttonStyles.label.root,
   ];
-
-  let caret;
-
-  if (depth > 0 && childrenOnly) {
-    caret = <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />;
-  }
 
   return (
     <div css={cssStyles} className={classes}>
@@ -261,7 +251,7 @@ export const EuiSideNavItem = <
         onClick={childrenOnly ? toggleItemOpen : onClick}
         {...rest}
       >
-        {buttonIcon}
+        {icon}
 
         <EuiInnerText>
           {(ref, innerText) => (
@@ -278,7 +268,9 @@ export const EuiSideNavItem = <
           )}
         </EuiInnerText>
 
-        {caret}
+        {hasCaret && (
+          <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />
+        )}
       </RenderItem>
 
       {hasChildItems && (
