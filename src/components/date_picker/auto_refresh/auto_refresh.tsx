@@ -40,6 +40,7 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
   isDisabled,
   isPaused = true,
   refreshInterval = 1000,
+  minInterval = 0,
   readOnly = true,
   ...rest
 }) => {
@@ -90,6 +91,7 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
         onRefreshChange={onRefreshChange}
         isPaused={isPaused}
         refreshInterval={refreshInterval}
+        minInterval={minInterval}
         intervalUnits={intervalUnits}
       />
     </EuiInputPopover>
@@ -115,6 +117,7 @@ export const EuiAutoRefreshButton: FunctionComponent<
   isDisabled,
   isPaused = true,
   refreshInterval = 1000,
+  minInterval = 0,
   shortHand = false,
   size = 's',
   color = 'text',
@@ -168,6 +171,7 @@ export const EuiAutoRefreshButton: FunctionComponent<
         onRefreshChange={onRefreshChange}
         isPaused={isPaused}
         refreshInterval={refreshInterval}
+        minInterval={minInterval}
         intervalUnits={intervalUnits}
       />
     </EuiPopover>

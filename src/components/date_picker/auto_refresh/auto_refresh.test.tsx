@@ -42,6 +42,49 @@ describe('EuiAutoRefresh', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('minInterval renders an invalid warning on the number input', () => {
+    const onRefreshChange = jest.fn();
+    const { getByRole, getByTestSubject } = render(
+      <EuiAutoRefresh
+        isPaused={false}
+        refreshInterval={1000}
+        minInterval={3000}
+        onRefreshChange={onRefreshChange}
+      />
+    );
+    const getNumberInput = () =>
+      getByTestSubject('superDatePickerRefreshIntervalInput');
+    const getUnitSelect = () =>
+      getByTestSubject('superDatePickerRefreshIntervalUnitsSelect');
+
+    fireEvent.click(getByRole('button'));
+    expect(getNumberInput()).toBeInvalid();
+
+    fireEvent.change(getUnitSelect(), { target: { value: 'm' } });
+    expect(onRefreshChange).toHaveBeenLastCalledWith({
+      refreshInterval: 60000,
+      intervalUnits: 'm',
+      isPaused: false,
+    });
+    expect(getNumberInput()).toBeValid();
+
+    fireEvent.change(getUnitSelect(), { target: { value: 's' } });
+    expect(onRefreshChange).toHaveBeenLastCalledWith({
+      refreshInterval: 3000, // Should pass back the minimum instead of the current 1000 value
+      intervalUnits: 's',
+      isPaused: false,
+    });
+    expect(getNumberInput()).toBeInvalid();
+
+    fireEvent.change(getNumberInput(), { target: { value: 5 } });
+    expect(onRefreshChange).toHaveBeenLastCalledWith({
+      refreshInterval: 5000,
+      intervalUnits: 's',
+      isPaused: false,
+    });
+    expect(getNumberInput()).toBeValid();
+  });
+
   test('intervalUnits forces rendering in the provided units', () => {
     const { getByLabelText, getByRole, getByTestSubject } = render(
       <EuiAutoRefresh
