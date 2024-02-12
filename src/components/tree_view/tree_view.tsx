@@ -24,7 +24,7 @@ import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { EuiTreeViewItem } from './_tree_view_item';
+import { EuiTreeViewItem } from './tree_view_item';
 import { euiTreeViewStyles } from './tree_view.styles';
 
 const EuiTreeViewContext = createContext<string>('');
@@ -367,4 +367,7 @@ export class EuiTreeViewClass extends Component<
   }
 }
 
-export const EuiTreeView = withEuiTheme<EuiTreeViewProps>(EuiTreeViewClass);
+export const EuiTreeView = Object.assign(
+  withEuiTheme<EuiTreeViewProps>(EuiTreeViewClass),
+  { Item: EuiTreeViewItem }
+);

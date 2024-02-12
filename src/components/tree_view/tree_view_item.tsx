@@ -21,7 +21,7 @@ import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
 
 import { EuiTreeViewProps } from './tree_view';
-import { euiTreeViewItemStyles } from './_tree_view_item.styles';
+import { euiTreeViewItemStyles } from './tree_view_item.styles';
 
 type EuiTreeViewItemProps = HTMLAttributes<HTMLButtonElement> &
   CommonProps &
