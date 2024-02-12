@@ -8,7 +8,6 @@
 
 import React, {
   FunctionComponent,
-  PropsWithChildren,
   HTMLAttributes,
   ReactNode,
   Ref,
@@ -23,17 +22,47 @@ import { EuiIcon } from '../icon';
 import { EuiTreeViewProps } from './tree_view';
 import { euiTreeViewItemStyles } from './tree_view_item.styles';
 
-type EuiTreeViewItemProps = HTMLAttributes<HTMLButtonElement> &
-  CommonProps &
-  PropsWithChildren & {
+export type EuiTreeViewItemProps = Omit<
+  HTMLAttributes<HTMLButtonElement>,
+  'id' | 'children'
+> &
+  CommonProps & {
+    /**
+     * Required for `aria-controls` accessibility
+     */
     id: string;
+    /**
+     * The main button content
+     */
     label: ReactNode;
+    /**
+     * Used to render nested `EuiTreeView`s
+     */
+    children?: ReactNode;
+    /**
+     * Optional icon to render. Pass, e.g., `<EuiIcon />` or `<EuiToken />`
+     */
     icon?: ReactNode;
+    /**
+     * Renders an arrow if `children` exists. Otherwise renders a blank icon
+     */
     hasArrow?: boolean;
+    /**
+     * Adds a targetable modifier class
+     */
     isActive?: boolean;
+    /**
+     * Sets the `aria-expanded` attribute
+     */
     isExpanded?: boolean;
+    /**
+     * Determines default or compressed display
+     */
     display?: EuiTreeViewProps['display'];
     buttonRef?: Ref<HTMLButtonElement>;
+    /**
+     * Optional extra props to pass to the wrapping `<li>`
+     */
     wrapperProps?: HTMLAttributes<HTMLLIElement>;
   };
 
