@@ -1,3 +1,9 @@
+## [`v93.1.1`](https://github.com/elastic/eui/releases/v93.2.0)
+
+**This is a patch release primarily intended for use by Kibana.**
+
+- Added top-level `EuiTreeView.Item` export ([#7526](https://github.com/elastic/eui/pull/7526))
+
 ## [`v93.1.0`](https://github.com/elastic/eui/releases/v93.1.0)
 
 - Added `index` glyph to `EuiIcon` ([#7498](https://github.com/elastic/eui/pull/7498))
