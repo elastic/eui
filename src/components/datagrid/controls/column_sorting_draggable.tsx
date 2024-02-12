@@ -7,6 +7,8 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classNames from 'classnames';
+
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroup, EuiButtonIcon } from '../../button';
 import { EuiDraggable } from '../../drag_and_drop';
@@ -25,7 +27,9 @@ export const defaultSortDescLabel = (
   <EuiI18n token="euiColumnSortingDraggable.defaultSortDesc" default="Z-A" />
 );
 
-export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
+export const EuiDataGridColumnSortingDraggable: FunctionComponent<
+  EuiDataGridColumnSortingDraggableProps
+> = ({
   id,
   display,
   direction,
@@ -76,9 +80,9 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
     >
       {(provided, state) => (
         <div
-          className={`euiDataGridColumnSorting__item ${
-            state.isDragging && 'euiDataGridColumnSorting__item-isDragging'
-          }`}
+          className={classNames('euiDataGridColumnSorting__item', {
+            'euiDataGridColumnSorting__item-isDragging': state.isDragging,
+          })}
         >
           <EuiScreenReaderOnly>
             <p>

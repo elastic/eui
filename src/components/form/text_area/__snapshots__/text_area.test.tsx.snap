@@ -1,10 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTextArea is rendered 1`] = `
-<textarea
-  aria-label="aria-label"
-  class="euiTextArea euiTextArea--resizeVertical testClass1 testClass2"
-  data-test-subj="test subject string"
-  rows="6"
-/>
+<div
+  class="euiFormControlLayout euiFormControlLayout--euiTextArea"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <textarea
+      aria-label="aria-label"
+      class="euiTextArea euiTextArea--resizeVertical testClass1 testClass2 emotion-euiTestCss"
+      data-test-subj="test subject string"
+      rows="6"
+    />
+  </div>
+</div>
 `;

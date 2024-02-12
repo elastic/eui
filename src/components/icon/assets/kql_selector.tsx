@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconKqlSelector = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconKqlSelector = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 12a4 4 0 100-8 4 4 0 000 8zm0 1A5 5 0 115 3a5 5 0 010 10zm6-1a4 4 0 100-8 4 4 0 000 8zm0 1a5 5 0 110-10 5 5 0 010 10z" />
+    <path d="M5 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 1A5 5 0 1 1 5 3a5 5 0 0 1 0 10Zm6-1a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 1a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z" />
   </svg>
 );
-
 export const icon = EuiIconKqlSelector;

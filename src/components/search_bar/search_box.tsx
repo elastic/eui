@@ -6,21 +6,23 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { FunctionComponent, useRef } from 'react';
+
+import { useUpdateEffect } from '../../services';
+import { useEuiI18n } from '../i18n';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
 import { EuiInputPopover } from '../popover';
-import { EuiSearchBarProps } from './search_bar';
 
-export interface SchemaType {
-  strict?: boolean;
-  fields?: any;
-  flags?: string[];
-}
+import { EuiSearchBarProps } from './search_bar';
 
 export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   query: string;
   // This is optional in EuiFieldSearchProps
   onSearch: (queryText: string) => void;
+  /**
+   * @default Search...
+   */
+  placeholder?: string;
   hint?: {
     id: string;
     isVisible: boolean;
@@ -28,73 +30,73 @@ export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   } & EuiSearchBarProps['hint'];
 }
 
-type DefaultProps = Pick<EuiSearchBoxProps, 'placeholder' | 'incremental'>;
+export const EuiSearchBox: FunctionComponent<EuiSearchBoxProps> = ({
+  query,
+  placeholder,
+  incremental,
+  hint,
+  ...rest
+}) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-export class EuiSearchBox extends Component<EuiSearchBoxProps> {
-  static defaultProps: DefaultProps = {
-    placeholder: 'Search...',
-    incremental: false,
-  };
-
-  private inputElement: HTMLInputElement | null = null;
-
-  componentDidUpdate(oldProps: EuiSearchBoxProps) {
-    if (oldProps.query !== this.props.query && this.inputElement != null) {
-      this.inputElement.value = this.props.query;
-      this.inputElement.dispatchEvent(new Event('change'));
+  useUpdateEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = query;
+      inputRef.current.dispatchEvent(new Event('change'));
     }
-  }
+  }, [query]);
 
-  render() {
-    const { query, incremental, hint, ...rest } = this.props;
+  const defaultPlaceholder = useEuiI18n(
+    'euiSearchBox.placeholder',
+    'Search...'
+  );
+  const ariaLabelIncremental = useEuiI18n(
+    'euiSearchBox.incrementalAriaLabel',
+    'This is a search bar. As you type, the results lower in the page will automatically filter.'
+  );
+  const ariaLabelEnter = useEuiI18n(
+    'euiSearchBox.ariaLabel',
+    'This is a search bar. After typing your query, hit enter to filter the results lower in the page.'
+  );
 
-    let ariaLabel;
-    if (incremental) {
-      ariaLabel =
-        'This is a search bar. As you type, the results lower in the page will automatically filter.';
-    } else {
-      ariaLabel =
-        'This is a search bar. After typing your query, hit enter to filter the results lower in the page.';
-    }
+  const search = (
+    <EuiFieldSearch
+      inputRef={(input) => (inputRef.current = input)}
+      fullWidth
+      defaultValue={query}
+      incremental={incremental}
+      aria-label={incremental ? ariaLabelIncremental : ariaLabelEnter}
+      placeholder={placeholder ?? defaultPlaceholder}
+      onFocus={() => {
+        hint?.setIsVisible(true);
+      }}
+      {...rest}
+    />
+  );
 
-    const search = (
-      <EuiFieldSearch
-        inputRef={(input) => (this.inputElement = input)}
+  if (hint) {
+    return (
+      <EuiInputPopover
+        disableFocusTrap
+        input={search}
+        isOpen={hint.isVisible}
         fullWidth
-        defaultValue={query}
-        incremental={incremental}
-        aria-label={ariaLabel}
-        onFocus={() => {
-          hint?.setIsVisible(true);
+        closePopover={() => {
+          hint.setIsVisible(false);
         }}
-        {...rest}
-      />
+        panelProps={{
+          'aria-live': undefined,
+          'aria-modal': undefined,
+          role: undefined,
+          tabIndex: -1,
+          id: hint.id,
+        }}
+        {...hint.popoverProps}
+      >
+        {hint.content}
+      </EuiInputPopover>
     );
-
-    if (hint) {
-      return (
-        <EuiInputPopover
-          disableFocusTrap
-          input={search}
-          isOpen={hint.isVisible}
-          fullWidth
-          closePopover={() => {
-            hint.setIsVisible(false);
-          }}
-          panelProps={{
-            'aria-live': undefined,
-            'aria-modal': undefined,
-            role: undefined,
-            tabIndex: -1,
-            id: hint.id,
-          }}
-          {...hint.popoverProps}
-        >
-          {hint.content}
-        </EuiInputPopover>
-      );
-    }
-
-    return search;
   }
-}
+
+  return search;
+};

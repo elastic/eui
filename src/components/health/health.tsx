@@ -29,7 +29,7 @@ export type EuiHealthProps = CommonProps &
      * Matches the text scales of EuiText.
      * The `inherit` style will get its font size from the parent element
      */
-    textSize?: typeof TEXT_SIZES[number];
+    textSize?: (typeof TEXT_SIZES)[number];
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({

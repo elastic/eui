@@ -19,7 +19,7 @@ import { useEuiTheme } from '../../services';
 import { euiFlexGridStyles } from './flex_grid.styles';
 
 export const DIRECTIONS = ['row', 'column'] as const;
-export type FlexGridDirection = typeof DIRECTIONS[number];
+export type FlexGridDirection = (typeof DIRECTIONS)[number];
 
 export const ALIGN_ITEMS = [
   'stretch',
@@ -28,10 +28,10 @@ export const ALIGN_ITEMS = [
   'center',
   'baseline',
 ] as const;
-export type FlexGridAlignItems = typeof ALIGN_ITEMS[number];
+export type FlexGridAlignItems = (typeof ALIGN_ITEMS)[number];
 
 export const GUTTER_SIZES = ['none', 's', 'm', 'l', 'xl'] as const;
-export type FlexGridGutterSize = typeof GUTTER_SIZES[number];
+export type FlexGridGutterSize = (typeof GUTTER_SIZES)[number];
 
 export interface EuiFlexGridProps {
   /**

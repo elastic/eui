@@ -10,15 +10,18 @@ import classnames from 'classnames';
 import React, { forwardRef } from 'react';
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
-import { EuiDataGridHeaderRowProps } from '../../data_grid_types';
+import {
+  emptyControlColumns,
+  EuiDataGridHeaderRowProps,
+} from '../../data_grid_types';
 
 const EuiDataGridHeaderRow = forwardRef<
   HTMLDivElement,
   EuiDataGridHeaderRowProps
 >((props, ref) => {
   const {
-    leadingControlColumns = [],
-    trailingControlColumns = [],
+    leadingControlColumns = emptyControlColumns,
+    trailingControlColumns = emptyControlColumns,
     columns,
     schema,
     schemaDetectors,
@@ -28,7 +31,6 @@ const EuiDataGridHeaderRow = forwardRef<
     setColumnWidth,
     setVisibleColumns,
     switchColumnPos,
-    headerIsInteractive,
     'data-test-subj': _dataTestSubj,
     ...rest
   } = props;
@@ -49,7 +51,6 @@ const EuiDataGridHeaderRow = forwardRef<
           key={controlColumn.id}
           index={index}
           controlColumn={controlColumn}
-          headerIsInteractive={headerIsInteractive}
         />
       ))}
       {columns.map((column, index) => (
@@ -65,7 +66,6 @@ const EuiDataGridHeaderRow = forwardRef<
           setVisibleColumns={setVisibleColumns}
           switchColumnPos={switchColumnPos}
           defaultColumnWidth={defaultColumnWidth}
-          headerIsInteractive={headerIsInteractive}
         />
       ))}
       {trailingControlColumns.map((controlColumn, index) => (
@@ -73,7 +73,6 @@ const EuiDataGridHeaderRow = forwardRef<
           key={controlColumn.id}
           index={index + leadingControlColumns.length + columns.length}
           controlColumn={controlColumn}
-          headerIsInteractive={headerIsInteractive}
         />
       ))}
     </div>

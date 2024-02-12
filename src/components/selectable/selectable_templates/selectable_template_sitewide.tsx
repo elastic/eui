@@ -11,6 +11,7 @@ import React, {
   ReactNode,
   useState,
   useMemo,
+  useCallback,
   CSSProperties,
   ReactElement,
 } from 'react';
@@ -63,7 +64,9 @@ export type EuiSelectableTemplateSitewideProps = Partial<
   popoverButtonBreakpoints?: EuiBreakpointSize[];
 };
 
-export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTemplateSitewideProps> = ({
+export const EuiSelectableTemplateSitewide: FunctionComponent<
+  EuiSelectableTemplateSitewideProps
+> = ({
   children,
   className,
   options,
@@ -90,7 +93,12 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    */
   const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
-  const { closePopover: _closePopover, panelRef, width, ...popoverRest } = {
+  const {
+    closePopover: _closePopover,
+    panelRef,
+    width,
+    ...popoverRest
+  } = {
     ...popoverProps,
   };
 
@@ -99,9 +107,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     _closePopover && _closePopover();
   };
 
-  const togglePopover = () => {
-    setPopoverIsOpen(!popoverIsOpen);
-  };
+  const togglePopover = useCallback(() => {
+    setPopoverIsOpen((isOpen) => !isOpen);
+  }, []);
 
   // Width applied to the internal div
   const popoverWidth: CSSProperties['width'] = width || 600;
@@ -188,17 +196,18 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     return popoverButtonBreakpoints.includes(currentBreakpoint);
   }, [currentBreakpoint, popoverButtonBreakpoints]);
 
-  let popoverTrigger: ReactElement;
-  if (popoverButton && canShowPopoverButton) {
-    popoverTrigger = React.cloneElement(popoverButton, {
-      ...popoverButton.props,
-      onClick: togglePopover,
-      onKeyDown: (e: KeyboardEvent) => {
-        // Selectable preventsDefault on Enter which kills browser controls for pressing the button
-        e.stopPropagation();
-      },
-    });
-  }
+  const popoverTrigger = useMemo(() => {
+    if (!popoverButton || !canShowPopoverButton) return;
+    return (
+      <span
+        className="euiSelectableTemplateSitewide__popoverTrigger"
+        onClick={togglePopover}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        {popoverButton}
+      </span>
+    );
+  }, [popoverButton, canShowPopoverButton, togglePopover]);
 
   return (
     <EuiSelectable

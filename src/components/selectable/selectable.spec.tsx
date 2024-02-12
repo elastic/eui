@@ -7,7 +7,8 @@
  */
 
 /// <reference types="cypress" />
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 
@@ -29,7 +30,7 @@ const options: EuiSelectableProps['options'] = [
   },
 ];
 
-const EuiSelectableListboxOnly = (args) => {
+const EuiSelectableListboxOnly = (args: Partial<EuiSelectableProps>) => {
   return (
     <EuiSelectable options={options} {...args}>
       {(list) => <>{list}</>}
@@ -37,7 +38,7 @@ const EuiSelectableListboxOnly = (args) => {
   );
 };
 
-const EuiSelectableWithSearchInput = (args) => {
+const EuiSelectableWithSearchInput = (args: Partial<EuiSelectableProps>) => {
   return (
     <EuiSelectable searchable options={options} {...args}>
       {(list, search) => (
@@ -93,7 +94,7 @@ describe('EuiSelectable', () => {
     it('can clear the input', () => {
       cy.realMount(<EuiSelectableWithSearchInput />);
 
-      // Focus the second option
+      // Search/filter down to the second option
       cy.get('input')
         .realClick()
         .realType('enc')
@@ -103,7 +104,7 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Enceladus');
         });
 
-      // Using ENTER
+      // Clear search using ENTER
       cy.get('[data-test-subj="clearSearchButton"]')
         .focus()
         .realPress('{enter}')
@@ -113,7 +114,7 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Titan');
         });
 
-      // Focus the second option
+      // Search/filter again
       cy.get('input')
         .realClick()
         .realType('enc')
@@ -123,10 +124,34 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Enceladus');
         });
 
-      // Using SPACE
+      // Clear search using SPACE
       cy.get('[data-test-subj="clearSearchButton"]')
         .focus()
         .realPress('Space')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        });
+
+      // Ensure the clear button does not respond to up/down arrow keys
+      cy.get('input')
+        .realClick()
+        .realType('titan')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        });
+      cy.get('[data-test-subj="clearSearchButton"]')
+        .focus()
+        .realPress('ArrowDown')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        })
+        .realPress('ArrowUp')
         .then(() => {
           cy.get('li[role=option]')
             .first()
@@ -224,6 +249,154 @@ describe('EuiSelectable', () => {
           options[1],
           { ...options[2], checked: 'on' },
         ]);
+      });
+    });
+  });
+
+  describe('truncation', () => {
+    const sharedProps = {
+      style: { width: 240 },
+      options: [
+        {
+          label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          checked: 'on' as const,
+        },
+      ],
+    };
+
+    it('defaults to CSS truncation', () => {
+      cy.realMount(<EuiSelectableListboxOnly {...sharedProps} />);
+      cy.get('.euiTextTruncate').should('not.exist');
+    });
+
+    describe('when truncationProps are passed', () => {
+      const truncationProps = {
+        ...sharedProps,
+        listProps: { truncationProps: { truncation: 'middle' as const } },
+      };
+
+      it('renders EuiTextTruncate when truncationProps are passed', () => {
+        cy.realMount(<EuiSelectableListboxOnly {...truncationProps} />);
+        cy.get('.euiTextTruncate').should('exist');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lorem ipsum d…ipiscing elit.'
+        );
+      });
+
+      it('correctly accounts for scrollbar width', () => {
+        const multipleOptions = Array.from({ length: 5 }).map(
+          () => sharedProps.options[0]
+        );
+        cy.realMount(
+          <EuiSelectableListboxOnly
+            {...truncationProps}
+            height={100}
+            options={multipleOptions}
+          />
+        );
+
+        cy.get('[data-test-subj="truncatedText"]')
+          .first()
+          .should('have.text', 'Lorem ipsum …piscing elit.');
+      });
+
+      it('correctly accounts for the keyboard focus badge', () => {
+        cy.realMount(<EuiSelectableListboxOnly {...truncationProps} />);
+
+        cy.realPress('Tab');
+        cy.get('.euiSelectableListItem__onFocusBadge').should('exist');
+
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lorem ipsu…cing elit.'
+        );
+      });
+
+      it('handles custom append/prepend nodes', () => {
+        cy.realMount(
+          <EuiSelectableListboxOnly
+            {...truncationProps}
+            options={[
+              { ...sharedProps.options[0], append: 'Post', prepend: 'Pre' },
+            ]}
+          />
+        );
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lorem i…ng elit.'
+        );
+      });
+
+      it('updates on container resize', () => {
+        cy.realMount(
+          <EuiSelectableListboxOnly
+            {...truncationProps}
+            style={{ width: '100%' }}
+          />
+        );
+        cy.viewport(100, 100);
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lor…lit.'
+        );
+      });
+
+      it('allows individual option truncationProps to override parent truncationProps', () => {
+        cy.realMount(
+          <EuiSelectableListboxOnly
+            {...truncationProps}
+            options={[
+              {
+                ...sharedProps.options[0],
+                truncationProps: { truncation: 'start', truncationOffset: 3 },
+              },
+            ]}
+          />
+        );
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lor…sectetur adipiscing elit.'
+        );
+      });
+    });
+
+    describe('when searching', () => {
+      it('uses start & end truncation position', () => {
+        cy.realMount(<EuiSelectableWithSearchInput {...sharedProps} />);
+        cy.get('input[type="search"]').realClick();
+        cy.realType('sit');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          '…m dolor sit amet, …'
+        );
+      });
+
+      it('does not truncate the start when the found search is near the start', () => {
+        cy.realMount(<EuiSelectableWithSearchInput {...sharedProps} />);
+        cy.get('input[type="search"]').realClick();
+        cy.realType('ipsum');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          'Lorem ipsum dolor …'
+        );
+      });
+
+      it('does not truncate the end when the found search is near the end', () => {
+        cy.realMount(<EuiSelectableWithSearchInput {...sharedProps} />);
+        cy.get('input[type="search"]').realClick();
+        cy.realType('eli');
+        cy.get('[data-test-subj="truncatedText"]').should(
+          'have.text',
+          '…tetur adipiscing elit.'
+        );
+      });
+
+      it('marks the full available text if the search input is longer than the truncated text', () => {
+        cy.realMount(<EuiSelectableWithSearchInput {...sharedProps} />);
+        cy.get('input[type="search"]').realClick();
+        cy.realType('Lorem ipsum dolor sit amet');
+        cy.get('.euiMark').should('have.text', '…m ipsum dolor sit …');
       });
     });
   });

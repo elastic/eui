@@ -6,17 +6,22 @@
  * Side Public License, v 1.
  */
 
-import { HTMLAttributes, ReactNode, ImgHTMLAttributes } from 'react';
+import {
+  HTMLAttributes,
+  ReactNode,
+  ImgHTMLAttributes,
+  PropsWithChildren,
+} from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
-export type EuiImageSize = typeof SIZES[number];
+export type EuiImageSize = (typeof SIZES)[number];
 
 const FLOATS = ['left', 'right'] as const;
-export type EuiImageWrapperFloat = typeof FLOATS[number];
+export type EuiImageWrapperFloat = (typeof FLOATS)[number];
 
 const MARGINS = ['s', 'm', 'l', 'xl'] as const;
-export type EuiImageWrapperMargin = typeof MARGINS[number];
+export type EuiImageWrapperMargin = (typeof MARGINS)[number];
 
 export type EuiImageButtonIconColor = 'light' | 'dark';
 
@@ -85,32 +90,31 @@ export type EuiImageProps = CommonProps &
     wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   };
 
-export type EuiImageWrapperProps = Pick<
-  EuiImageProps,
-  | 'alt'
-  | 'caption'
-  | 'float'
-  | 'margin'
-  | 'hasShadow'
-  | 'wrapperProps'
-  | 'fullScreenIconColor'
-  | 'allowFullScreen'
-  | 'onFullScreen'
-> & {
-  isFullWidth: boolean;
-  setIsFullScreen: (isFullScreen: boolean) => void;
-};
+export type EuiImageWrapperProps = PropsWithChildren &
+  Pick<
+    EuiImageProps,
+    | 'alt'
+    | 'caption'
+    | 'float'
+    | 'margin'
+    | 'hasShadow'
+    | 'wrapperProps'
+    | 'fullScreenIconColor'
+    | 'allowFullScreen'
+    | 'onFullScreen'
+  > & {
+    isFullWidth: boolean;
+    setIsFullScreen: (isFullScreen: boolean) => void;
+  };
 
-export type EuiImageButtonProps = Pick<
-  EuiImageProps,
-  'hasShadow' | 'fullScreenIconColor'
-> & {
-  hasAlt: boolean;
-  onClick: () => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
-  isFullWidth: boolean;
-  isFullScreen?: boolean;
-};
+export type EuiImageButtonProps = PropsWithChildren &
+  Pick<EuiImageProps, 'hasShadow' | 'fullScreenIconColor'> & {
+    hasAlt: boolean;
+    onClick: () => void;
+    onKeyDown?: (e: React.KeyboardEvent) => void;
+    isFullWidth: boolean;
+    isFullScreen?: boolean;
+  };
 
 export type EuiImageCaptionProps = Pick<EuiImageProps, 'caption'> & {
   isOnOverlayMask?: boolean;

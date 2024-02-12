@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import {
   euiBreakpoint,
   logicalShorthandCSS,
@@ -28,6 +28,19 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
    *    e.g. due to some of their titles wrapping to multiple lines
    */
 
+  const _generateStepSizeAndInset = (stepNumberSize: string) => {
+    return css`
+      &::before,
+      &::after {
+        inline-size: calc(50% - (${stepNumberSize} / 2));
+        inset-block-start: ${mathWithUnits(
+          [euiTheme.size.l, stepNumberSize],
+          (x, y) => x + y / 2
+        )};
+      }
+    `;
+  };
+
   return {
     euiStepHorizontal: css`
       ${logicalShorthandCSS(
@@ -42,18 +55,13 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       inline-size: 100%;
 
-      // create the connecting lines
+      /* Create the connecting lines */
       &::before,
       &::after {
         content: '';
         position: absolute;
         background-color: ${euiTheme.border.color};
         block-size: ${euiTheme.border.width.thick};
-        inline-size: calc(50% - (${euiStep.numberSize} / 2));
-        inset-block-start: ${mathWithUnits(
-          [euiTheme.size.l, euiStep.numberSize],
-          (x, y) => x + y / 2
-        )};
         z-index: ${euiTheme.levels.content}; /* 1 */
       }
 
@@ -65,6 +73,9 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         inset-inline-end: 0;
       }
     `,
+    // Adjust the size of the step number and connecting lines based on size
+    m: _generateStepSizeAndInset(euiStep.numberSize),
+    s: _generateStepSizeAndInset(euiStep.numberXSSize),
     // Note: these selectors must be nested because focus/hover state
     // is on the parent container, but affects specific children
     enabled: css`
@@ -113,18 +124,20 @@ export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiStepHorizontal__title: css`
-      ${euiTitle(euiThemeContext, 'xs')};
+      ${euiTitle(euiThemeContext, 'xs')}
       margin-block-start: ${euiTheme.size.s};
       font-weight: ${euiTheme.font.weight.bold};
       text-align: center;
 
-      // hide titles on small screens
+      /* Hide titles on small screens */
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         display: none;
       }
     `,
     disabled: css`
-      color: ${euiTheme.colors.disabledText};
+      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
+        euiTheme.colors.body
+      )};
     `,
   };
 };

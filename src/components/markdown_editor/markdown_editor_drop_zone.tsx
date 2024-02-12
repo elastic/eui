@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, PropsWithChildren, useEffect } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
@@ -19,7 +19,7 @@ import {
 } from './markdown_types';
 import { useResizeObserver } from '../observer/resize_observer';
 
-interface EuiMarkdownEditorDropZoneProps {
+interface EuiMarkdownEditorDropZoneProps extends PropsWithChildren {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   errors: EuiMarkdownParseError[];
   dropHandlers: EuiMarkdownDropHandler[];
@@ -55,9 +55,9 @@ const getUnacceptedItems = (
   return unacceptedItems;
 };
 
-export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = (
-  props
-) => {
+export const EuiMarkdownEditorDropZone: FunctionComponent<
+  EuiMarkdownEditorDropZoneProps
+> = (props) => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
   const [isDraggingError, toggleDraggingError] = React.useState(false);
@@ -80,10 +80,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
 
-  const [
-    editorFooterRef,
-    setEditorFooterRef,
-  ] = React.useState<HTMLDivElement | null>(null);
+  const [editorFooterRef, setEditorFooterRef] =
+    React.useState<HTMLDivElement | null>(null);
 
   const { height: editorFooterHeight } = useResizeObserver(
     editorFooterRef,

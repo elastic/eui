@@ -20,9 +20,9 @@ export const EuiThemeColors: FunctionComponent<_EuiThemeColorsMode> = () => (
   <div />
 );
 
-export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> = () => (
-  <div />
-);
+export const EuiThemeConstantColors: FunctionComponent<
+  _EuiThemeConstantColors
+> = () => <div />;
 
 import { _EuiThemeSizes } from '../../../../src/global_styling/variables/size';
 
@@ -38,9 +38,9 @@ import {
 export const EuiThemeFontBase: FunctionComponent<_EuiThemeFontBase> = () => (
   <div />
 );
-export const EuiThemeFontWeight: FunctionComponent<_EuiThemeFontWeights> = () => (
-  <div />
-);
+export const EuiThemeFontWeight: FunctionComponent<
+  _EuiThemeFontWeights
+> = () => <div />;
 export const EuiThemeFontScale: FunctionComponent<_EuiThemeFontScales> = () => (
   <div />
 );
@@ -53,18 +53,18 @@ import {
   _EuiThemeBorderWidthValues,
 } from '../../../../src/global_styling/variables/borders';
 
-export const EuiThemeBorderRadiusValues: FunctionComponent<_EuiThemeBorderRadiusValues> = () => (
-  <div />
-);
-export const EuiThemeBorderWidthValues: FunctionComponent<_EuiThemeBorderWidthValues> = () => (
-  <div />
-);
-export const EuiThemeBorderColorValues: FunctionComponent<_EuiThemeBorderColorValues> = () => (
-  <div />
-);
-export const EuiThemeBorderTypes: FunctionComponent<_EuiThemeBorderTypes> = () => (
-  <div />
-);
+export const EuiThemeBorderRadiusValues: FunctionComponent<
+  _EuiThemeBorderRadiusValues
+> = () => <div />;
+export const EuiThemeBorderWidthValues: FunctionComponent<
+  _EuiThemeBorderWidthValues
+> = () => <div />;
+export const EuiThemeBorderColorValues: FunctionComponent<
+  _EuiThemeBorderColorValues
+> = () => <div />;
+export const EuiThemeBorderTypes: FunctionComponent<
+  _EuiThemeBorderTypes
+> = () => <div />;
 
 import { _EuiThemeFocus } from '../../../../src/global_styling/variables/states';
 
@@ -75,12 +75,12 @@ import {
   _EuiThemeAnimationEasings,
 } from '../../../../src/global_styling/variables/animations';
 
-export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeeds> = () => (
-  <div />
-);
-export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasings> = () => (
-  <div />
-);
+export const EuiThemeAnimationSpeed: FunctionComponent<
+  _EuiThemeAnimationSpeeds
+> = () => <div />;
+export const EuiThemeAnimationEasing: FunctionComponent<
+  _EuiThemeAnimationEasings
+> = () => <div />;
 
 export const euiThemeBreakpointType = {
   custom: { origin: { type: { name: 'number' } } },

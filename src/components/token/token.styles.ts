@@ -105,7 +105,7 @@ export const euiTokenStyles = (
   `,
   // Sizes
   xs: css`
-    ${logicalSizeCSS(euiTheme.size.s, euiTheme.size.s)};
+    ${logicalSizeCSS(euiTheme.size.s)}
 
     &[class*='-square'],
     &[class*='-rectangle'] {
@@ -116,32 +116,30 @@ export const euiTokenStyles = (
     }
 
     &[class*='-rectangle'] {
-      ${logicalCSS(
-        'padding-vertical',
-        '1px'
-      )}; // adds a small padding so that the icon is not touching the border
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
+      /* adds a small padding so that the icon is not touching the border */
+      ${logicalCSS('padding-vertical', '1px')}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     }
   `,
   s: css`
-    ${logicalSizeCSS(euiTheme.size.base, euiTheme.size.base)};
+    ${logicalSizeCSS(euiTheme.size.base)}
 
     &[class*='-rectangle'] {
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     }
   `,
   m: css`
-    ${logicalSizeCSS(euiTheme.size.l, euiTheme.size.l)};
+    ${logicalSizeCSS(euiTheme.size.l)}
 
     &[class*='-rectangle'] {
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
     }
   `,
   l: css`
-    ${logicalSizeCSS(euiTheme.size.xl, euiTheme.size.xl)};
+    ${logicalSizeCSS(euiTheme.size.xl)}
 
     &[class*='-rectangle'] {
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
     }
   `,
   // Colors

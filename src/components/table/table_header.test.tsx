@@ -7,29 +7,33 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableHeader } from './table_header';
 
 describe('EuiTableHeader', () => {
   test('is rendered', () => {
-    const component = (
-      <EuiTableHeader {...requiredProps}>
-        <td>children</td>
-      </EuiTableHeader>
+    const { container } = render(
+      <table>
+        <EuiTableHeader {...requiredProps}>
+          <td>children</td>
+        </EuiTableHeader>
+      </table>
     );
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered without <tr>', () => {
-    const component = (
-      <EuiTableHeader wrapWithTableRow={false}>
-        <tr>
-          <td>children</td>
-        </tr>
-      </EuiTableHeader>
+    const { container } = render(
+      <table>
+        <EuiTableHeader wrapWithTableRow={false}>
+          <tr>
+            <td>children</td>
+          </tr>
+        </EuiTableHeader>
+      </table>
     );
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

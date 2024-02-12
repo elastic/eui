@@ -7,10 +7,10 @@
  */
 
 import chroma from 'chroma-js';
-import { ColorStop } from '../../components/color_picker/color_stops';
+import { PaletteColorStop } from '../../components/color_picker/color_palette_picker';
 
 export const getSteppedGradient = function (
-  colors: ColorStop[],
+  colors: PaletteColorStop[],
   steps: number
 ) {
   const range = colors[colors.length - 1].stop - colors[0].stop;

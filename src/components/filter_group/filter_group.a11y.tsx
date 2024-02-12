@@ -6,14 +6,17 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
-import { EuiFilterButton } from './filter_button';
-import { EuiFilterGroup } from './filter_group';
+
 import { EuiPopover, EuiPopoverTitle } from '../popover';
-import { EuiSelectable } from '../selectable';
+import { EuiSelectable, EuiSelectableOption } from '../selectable';
 import { useGeneratedHtmlId } from '../../services';
+
+import { EuiFilterGroup, EuiFilterButton } from './index';
 
 describe('EuiFilterGroup single filter example', () => {
   const SingleFilter = () => {
@@ -166,7 +169,7 @@ describe('EuiFilterGroup multiselect example', () => {
       prefix: 'filterGroupPopover',
     });
 
-    const [items, setItems] = useState<any>([
+    const [items, setItems] = useState<EuiSelectableOption[]>([
       { label: 'Johann Sebastian Bach', checked: 'on' },
       { label: 'Wolfgang Amadeus Mozart', checked: 'on' },
       { label: 'Antonín Dvořák', checked: 'off' },
@@ -254,7 +257,7 @@ describe('EuiFilterGroup multiselect example', () => {
         .find('span.euiSelectableListItem__text')
         .should(
           'have.text',
-          'Dmitri Shostakovich - Selected option. To exclude this option, press enter.'
+          'Dmitri Shostakovich. Checked option. To exclude this option, press Enter.'
         );
       cy.realPress('ArrowDown');
       cy.repeatRealPress('Enter');
@@ -262,7 +265,7 @@ describe('EuiFilterGroup multiselect example', () => {
         .find('span.euiSelectableListItem__text')
         .should(
           'have.text',
-          'Felix Mendelssohn-Bartholdy - Excluded option. To uncheck this option, press enter.'
+          'Felix Mendelssohn-Bartholdy. Excluded option. To uncheck this option, press Enter.'
         );
       cy.checkAxe();
     });

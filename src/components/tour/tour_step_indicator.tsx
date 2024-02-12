@@ -24,12 +24,9 @@ export interface EuiTourStepIndicatorProps
   status: EuiTourStepStatus;
 }
 
-export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> = ({
-  className,
-  number,
-  status,
-  ...rest
-}) => {
+export const EuiTourStepIndicator: FunctionComponent<
+  EuiTourStepIndicatorProps
+> = ({ className, number, status, ...rest }) => {
   const classes = classNames('euiTourStepIndicator', className);
 
   let indicatorIcon: ReactNode;

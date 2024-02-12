@@ -20,18 +20,26 @@ import {
   EuiTableSortingType,
 } from './table_types';
 import { PropertySort } from '../../services';
-import {
-  defaults as paginationBarDefaults,
-  Pagination as PaginationBarType,
-} from './pagination_bar';
+import { Pagination as PaginationBarType } from './pagination_bar';
 import { isString } from '../../services/predicate';
 import { Comparators, Direction } from '../../services/sort';
-import { EuiSearchBar, Query } from '../search_bar';
+import {
+  EuiSearchBar,
+  EuiSearchBarProps,
+  Query,
+  SchemaType,
+} from '../search_bar/search_bar';
+import { EuiSearchBox } from '../search_bar/search_box';
 import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
-import { EuiSearchBarProps } from '../search_bar/search_bar';
-import { SchemaType } from '../search_bar/search_box';
-import { EuiTablePaginationProps } from '../table';
+import {
+  EuiTablePaginationProps,
+  euiTablePaginationDefaults,
+} from '../table/table_pagination';
+import {
+  EuiComponentDefaultsContext,
+  EuiComponentDefaults,
+} from '../provider/component_defaults';
 
 interface onChangeArgument {
   query: Query | null;
@@ -39,7 +47,7 @@ interface onChangeArgument {
   error: Error | null;
 }
 
-function isEuiSearchBarProps<T>(
+function isEuiSearchBarProps<T extends object>(
   x: EuiInMemoryTableProps<T>['search']
 ): x is EuiSearchBarProps {
   return typeof x !== 'boolean';
@@ -63,7 +71,7 @@ interface SortingOptions {
 
 type Sorting = boolean | SortingOptions;
 
-type InMemoryTableProps<T> = Omit<
+type InMemoryTableProps<T extends object> = Omit<
   EuiBasicTableProps<T>,
   'pagination' | 'sorting' | 'noItemsMessage' | 'onChange'
 > & {
@@ -72,7 +80,25 @@ type InMemoryTableProps<T> = Omit<
    * Configures #Search.
    */
   search?: Search;
+  /**
+   * By default, tables use `eql` format for search which allows using advanced filters.
+   *
+   * However, certain special characters (such as quotes, parentheses, and colons)
+   * are reserved for EQL syntax and will error if used.
+   * If your table does not require filter search and instead requires searching for certain
+   * symbols, use a plain `text` search format instead (note that filters will be ignored
+   * in this format).
+   *
+   * @default "eql"
+   */
+  searchFormat?: 'eql' | 'text';
+  /**
+   * Configures #Pagination
+   */
   pagination?: undefined;
+  /**
+   * Configures #EuiTableSortingType
+   */
   sorting?: Sorting;
   /**
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
@@ -104,7 +130,7 @@ type InMemoryTableProps<T> = Omit<
   childrenBetween?: ReactNode;
 };
 
-type InMemoryTablePropsWithPagination<T> = Omit<
+type InMemoryTablePropsWithPagination<T extends object> = Omit<
   InMemoryTableProps<T>,
   'pagination' | 'onTableChange'
 > & {
@@ -112,10 +138,10 @@ type InMemoryTablePropsWithPagination<T> = Omit<
   onTableChange?: (nextValues: CriteriaWithPagination<T>) => void;
 };
 
-export type EuiInMemoryTableProps<T> = CommonProps &
+export type EuiInMemoryTableProps<T extends object = object> = CommonProps &
   (InMemoryTableProps<T> | InMemoryTablePropsWithPagination<T>);
 
-interface State<T> {
+interface State<T extends object> {
   prevProps: {
     items: T[];
     sortName: ReactNode;
@@ -152,7 +178,10 @@ const getQueryFromSearch = (
   return isString(query) ? EuiSearchBar.Query.parse(query) : query;
 };
 
-const getInitialPagination = (pagination: Pagination | undefined) => {
+const getInitialPagination = (
+  pagination: Pagination | undefined,
+  consumerDefaults: EuiComponentDefaults['EuiTablePagination']
+) => {
   if (!pagination) {
     return {
       pageIndex: undefined,
@@ -160,14 +189,19 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
     };
   }
 
+  const defaults = {
+    ...euiTablePaginationDefaults,
+    ...consumerDefaults,
+  };
+
   const {
-    pageSizeOptions = paginationBarDefaults.pageSizeOptions,
-    showPerPageOptions,
+    pageSizeOptions = defaults.itemsPerPageOptions,
+    showPerPageOptions = defaults.showPerPageOptions,
   } = pagination as PaginationOptions;
 
-  const defaultPageSize = pageSizeOptions
-    ? pageSizeOptions[0]
-    : paginationBarDefaults.pageSizeOptions[0];
+  const defaultPageSize = pageSizeOptions?.includes(defaults.itemsPerPage)
+    ? defaults.itemsPerPage
+    : pageSizeOptions[0];
 
   const initialPageIndex =
     pagination === true
@@ -181,7 +215,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
   if (
     showPerPageOptions &&
     initialPageSize != null &&
-    (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))
+    !pageSizeOptions?.includes(initialPageSize)
   ) {
     throw new Error(
       `EuiInMemoryTable received initialPageSize ${initialPageSize}, which wasn't provided within pageSizeOptions.`
@@ -196,7 +230,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
   };
 };
 
-function findColumnByProp<T>(
+function findColumnByProp<T extends object>(
   columns: Array<EuiBasicTableColumn<T>>,
   prop: 'field' | 'name',
   value: string | ReactNode
@@ -213,7 +247,7 @@ function findColumnByProp<T>(
   }
 }
 
-function findColumnByFieldOrName<T>(
+function findColumnByFieldOrName<T extends object>(
   columns: Array<EuiBasicTableColumn<T>>,
   value: string | ReactNode
 ) {
@@ -226,7 +260,7 @@ function findColumnByFieldOrName<T>(
   return column;
 }
 
-function getInitialSorting<T>(
+function getInitialSorting<T extends object>(
   columns: Array<EuiBasicTableColumn<T>>,
   sorting: Sorting | undefined
 ) {
@@ -237,10 +271,9 @@ function getInitialSorting<T>(
     };
   }
 
-  const {
-    field: sortable,
-    direction: sortDirection,
-  } = (sorting as SortingOptions).sort;
+  const { field: sortable, direction: sortDirection } = (
+    sorting as SortingOptions
+  ).sort;
 
   const sortColumn = findColumnByFieldOrName(columns, sortable);
 
@@ -259,17 +292,19 @@ function getInitialSorting<T>(
   };
 }
 
-export class EuiInMemoryTable<T> extends Component<
+export class EuiInMemoryTable<T extends object = object> extends Component<
   EuiInMemoryTableProps<T>,
   State<T>
 > {
+  static contextType = EuiComponentDefaultsContext;
+
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
+    searchFormat: 'eql',
   };
-  tableRef: React.RefObject<EuiBasicTable>;
 
-  static getDerivedStateFromProps<T>(
+  static getDerivedStateFromProps<T extends object>(
     nextProps: EuiInMemoryTableProps<T>,
     prevState: State<T>
   ) {
@@ -363,16 +398,12 @@ export class EuiInMemoryTable<T> extends Component<
     return null;
   }
 
-  constructor(props: EuiInMemoryTableProps<T>) {
+  constructor(props: EuiInMemoryTableProps<T>, context: EuiComponentDefaults) {
     super(props);
 
     const { columns, search, pagination, sorting, allowNeutralSort } = props;
-    const {
-      pageIndex,
-      pageSize,
-      pageSizeOptions,
-      showPerPageOptions,
-    } = getInitialPagination(pagination);
+    const { pageIndex, pageSize, pageSizeOptions, showPerPageOptions } =
+      getInitialPagination(pagination, context.EuiTablePagination);
     const { sortName, sortDirection } = getInitialSorting(columns, sorting);
 
     this.state = {
@@ -392,14 +423,6 @@ export class EuiInMemoryTable<T> extends Component<
       allowNeutralSort: allowNeutralSort !== false,
       showPerPageOptions,
     };
-
-    this.tableRef = React.createRef<EuiBasicTable>();
-  }
-
-  setSelection(newSelection: T[]) {
-    if (this.tableRef.current) {
-      this.tableRef.current.setSelection(newSelection);
-    }
   }
 
   onTableChange = ({ page, sort }: Criteria<T>) => {
@@ -428,7 +451,10 @@ export class EuiInMemoryTable<T> extends Component<
     // EuiBasicTable returns the column's `field` instead of `name` on sort
     // and the column's `name` instead of `field` on pagination
     if (sortName) {
-      const sortColumn = findColumnByFieldOrName(this.props.columns, sortName);
+      const sortColumn = findColumnByFieldOrName(
+        this.props.columns,
+        sortName as ReactNode
+      );
       if (sortColumn) {
         // Ensure sortName uses `name`
         sortName = sortColumn.name as keyof T;
@@ -465,7 +491,7 @@ export class EuiInMemoryTable<T> extends Component<
     this.setState({
       pageIndex,
       pageSize,
-      sortName,
+      sortName: sortName as ReactNode,
       sortDirection,
     });
   };
@@ -503,9 +529,34 @@ export class EuiInMemoryTable<T> extends Component<
     }));
   };
 
+  // Alternative to onQueryChange - allows consumers to specify they want the
+  // search bar to ignore EQL syntax and only use the searchbar for plain text
+  onPlainTextSearch = (searchValue: string) => {
+    const escapedQueryText = searchValue.replace(/["\\]/g, '\\$&');
+    const finalQuery = `"${escapedQueryText}"`;
+    this.setState({
+      query: EuiSearchBar.Query.parse(finalQuery),
+    });
+  };
+
   renderSearchBar() {
-    const { search } = this.props;
-    if (search) {
+    const { search, searchFormat } = this.props;
+    if (!search) return;
+
+    let searchBar: ReactNode;
+
+    if (searchFormat === 'text') {
+      const _searchBoxProps = (search as EuiSearchBarProps)?.box || {}; // Work around | boolean type
+      const { schema, ...searchBoxProps } = _searchBoxProps; // Destructure `schema` so it doesn't get rendered to DOM
+
+      searchBar = (
+        <EuiSearchBox
+          query="" // Unused, passed to satisfy Typescript
+          {...searchBoxProps}
+          onSearch={this.onPlainTextSearch}
+        />
+      );
+    } else {
       let searchBarProps: Omit<EuiSearchBarProps, 'onChange'> = {};
 
       if (isEuiSearchBarProps(search)) {
@@ -520,13 +571,17 @@ export class EuiInMemoryTable<T> extends Component<
         }
       }
 
-      return (
-        <>
-          <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
-          <EuiSpacer size="l" />
-        </>
+      searchBar = (
+        <EuiSearchBar onChange={this.onQueryChange} {...searchBarProps} />
       );
     }
+
+    return (
+      <>
+        {searchBar}
+        <EuiSpacer size="l" />
+      </>
+    );
   }
 
   resolveSearchSchema(): SchemaType {
@@ -635,6 +690,7 @@ export class EuiInMemoryTable<T> extends Component<
       tableLayout,
       items: _unuseditems,
       search,
+      searchFormat,
       onTableChange,
       executeQueryOptions,
       allowNeutralSort,
@@ -684,7 +740,6 @@ export class EuiInMemoryTable<T> extends Component<
     const table = (
       // @ts-ignore complex relationship between pagination's existence and criteria, the code logic ensures this is correctly maintained
       <EuiBasicTable
-        ref={this.tableRef}
         items={items}
         itemId={itemId}
         rowProps={rowProps}

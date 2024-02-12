@@ -25,7 +25,7 @@ export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
         `${euiTheme.size.l} ${euiTheme.size.xxl} ${euiTheme.size.base} ${euiTheme.size.l}`
       )}
 
-      // If a body doesn't exist, remove some extra padding from footer
+      /* If a body doesn't exist, remove some extra padding from footer */
       & + .euiModalFooter {
         padding-block-start: ${euiTheme.size.s};
       }

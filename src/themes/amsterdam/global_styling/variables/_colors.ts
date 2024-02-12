@@ -54,9 +54,10 @@ export const shade_colors: _EuiThemeShadeColors = {
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
-  body: computed(([lightestShade]) => tint(lightestShade, 0.4), [
-    'colors.lightestShade',
-  ]),
+  body: computed(
+    ([lightestShade]) => tint(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
   disabled: '#ABB4C4',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
@@ -105,9 +106,10 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   ...dark_shades,
 
   // Special
-  body: computed(([lightestShade]) => shade(lightestShade, 0.45), [
-    'colors.lightestShade',
-  ]),
+  body: computed(
+    ([lightestShade]) => shade(lightestShade, 0.45),
+    ['colors.lightestShade']
+  ),
   highlight: '#2E2D25',
   disabled: '#515761',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),

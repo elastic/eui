@@ -43,7 +43,7 @@ To run the [`test-docker`](../test-docker.js) script with the new image locally,
 
 ### Publish a built image
 
-Authentication and membership of the `eui-design` team on GitHub is required:
+Authentication and membership of the `eui-team` team on GitHub is required:
 
 * You can login at [https://docker-auth.elastic.co](https://docker-auth.elastic.co) using GitHub OAuth to sign in.
 * This will give you a login command that you can run locally to connect to the registry, like:
@@ -55,7 +55,7 @@ docker login -u thompsongl -p supersecret docker.elastic.co
 Then tag the built image by incrementing the tag version, first grabbing the image ID using `docker images`:
 
 ```bash
-# If the previous docker image was ci:1.0, then the new ci:x.x version should be 2.0
+# If the previous docker image was ci:1.0, then the new ci:x.x version should be either 1.1 or 2.0, depending on semver
 docker tag IMAGE_ID docker.elastic.co/eui/ci:x.x
 ```
 

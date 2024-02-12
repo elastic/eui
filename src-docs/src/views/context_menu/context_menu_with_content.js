@@ -5,6 +5,7 @@ import {
   EuiContextMenu,
   EuiIcon,
   EuiPopover,
+  EuiPopoverFooter,
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
@@ -62,13 +63,7 @@ export default () => {
         {
           name: 'Show fullscreen',
           icon: <EuiIcon type="search" size="m" />,
-          onClick: () => {
-            closePopover();
-          },
-        },
-        {
-          isSeparator: true,
-          key: 'sep',
+          onClick: closePopover,
         },
         {
           name: 'See more',
@@ -79,6 +74,19 @@ export default () => {
             title: 'See more',
             content: <Content />,
           },
+        },
+        {
+          isSeparator: true,
+          key: 'sep',
+        },
+        {
+          renderItem: () => (
+            <EuiPopoverFooter paddingSize="s">
+              <EuiButton size="s" style={{ marginInlineStart: 'auto' }}>
+                I'm a custom item!
+              </EuiButton>
+            </EuiPopoverFooter>
+          ),
         },
       ],
     });
@@ -118,7 +126,7 @@ export default () => {
   );
 
   return (
-    <React.Fragment>
+    <>
       <EuiPopover
         id={normalContextMenuPopoverId}
         button={button}
@@ -142,6 +150,6 @@ export default () => {
       >
         <EuiContextMenu initialPanelId={0} panels={dynamicPanels} />
       </EuiPopover>
-    </React.Fragment>
+    </>
   );
 };

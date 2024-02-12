@@ -73,7 +73,6 @@ const markdownEditorNoPluginsSnippet = `const {
 
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
-  beta: true,
   intro: (
     <Fragment>
       <EuiText>

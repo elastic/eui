@@ -33,9 +33,7 @@ export interface EuiOutsideClickDetectorProps {
   onTouchEnd?: (event: ReactMouseEvent) => void;
 }
 
-export class EuiOutsideClickDetector extends Component<
-  EuiOutsideClickDetectorProps
-> {
+export class EuiOutsideClickDetector extends Component<EuiOutsideClickDetectorProps> {
   // We are working with the assumption that a click event is
   // equivalent to a sequential, compound press and release of
   // the pointing device (mouse, finger, stylus, etc.).
@@ -83,7 +81,7 @@ export class EuiOutsideClickDetector extends Component<
       return;
     }
 
-    const event = (e as unknown) as EuiEvent;
+    const event = e as unknown as EuiEvent;
 
     if (
       (event.euiGeneratedBy && event.euiGeneratedBy.includes(this.id)) ||
@@ -114,16 +112,16 @@ export class EuiOutsideClickDetector extends Component<
     // to support nested click detectors, build an array
     // of detector ids that have been encountered;
     if (event.nativeEvent.hasOwnProperty('euiGeneratedBy')) {
-      ((event.nativeEvent as unknown) as EuiEvent).euiGeneratedBy.push(this.id);
+      (event.nativeEvent as unknown as EuiEvent).euiGeneratedBy.push(this.id);
     } else {
-      ((event.nativeEvent as unknown) as EuiEvent).euiGeneratedBy = [this.id];
+      (event.nativeEvent as unknown as EuiEvent).euiGeneratedBy = [this.id];
     }
     if (cb) cb(event);
   };
 
   onChildMouseDown = (event: ReactMouseEvent) => {
     this.onChildClick(event, (e) => {
-      const nativeEvent = (e.nativeEvent as unknown) as EuiEvent;
+      const nativeEvent = e.nativeEvent as unknown as EuiEvent;
       this.capturedDownIds = nativeEvent.euiGeneratedBy;
       if (this.props.onMouseDown) this.props.onMouseDown(e);
       if (this.props.onTouchStart) this.props.onTouchStart(e);

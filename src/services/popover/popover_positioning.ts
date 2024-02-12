@@ -338,9 +338,8 @@ export function getPopoverScreenCoordinates({
   const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
   const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
 
-  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = getBufferValues(
-    buffer
-  );
+  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] =
+    getBufferValues(buffer);
 
   const { crossAxisPosition, crossAxisArrowPosition } = getCrossAxisPosition({
     crossAxisFirstSide,
@@ -361,16 +360,14 @@ export function getPopoverScreenCoordinates({
   const primaryAxisPositionName =
     dimensionPositionAttribute[primaryAxisDimension]; // "height" -> "top"
 
-  const {
-    primaryAxisPosition,
-    primaryAxisArrowPosition,
-  } = getPrimaryAxisPosition({
-    position,
-    offset,
-    popoverBoundingBox,
-    anchorBoundingBox,
-    arrowConfig,
-  });
+  const { primaryAxisPosition, primaryAxisArrowPosition } =
+    getPrimaryAxisPosition({
+      position,
+      offset,
+      popoverBoundingBox,
+      anchorBoundingBox,
+      arrowConfig,
+    });
 
   const popoverPlacement = {
     [crossAxisFirstSide]: crossAxisPosition,
@@ -645,9 +642,8 @@ export function getAvailableSpace(
   offset: number,
   offsetSide: EuiPopoverPosition
 ): BoundingBox {
-  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = getBufferValues(
-    buffer
-  );
+  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] =
+    getBufferValues(buffer);
   return {
     top:
       anchorBoundingBox.top -

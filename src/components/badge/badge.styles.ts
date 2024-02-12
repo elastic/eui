@@ -16,11 +16,12 @@ import {
   logicalTextAlignCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
-import { UseEuiTheme, tint, transparentize } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
+import { euiBadgeColors } from './color_utils';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
+  const badgeColors = euiBadgeColors(euiThemeContext);
 
   return {
     euiBadge: css`
@@ -29,7 +30,11 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
-      line-height: ${euiTheme.base + 2}px; // Accounts for the border
+      line-height: ${mathWithUnits(
+        // Account for the border
+        [euiTheme.size.base, euiTheme.border.width.thin],
+        (x, y) => x + y * 2
+      )};
       font-weight: ${euiTheme.font.weight.medium};
       white-space: nowrap;
       text-decoration: none;
@@ -40,8 +45,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      // The badge will only ever be as wide as its content
-      // So, make the text left aligned to ensure all badges line up the same
+      /* The badge will only ever be as wide as its content
+         So, make the text left aligned to ensure all badges line up the same */
       ${logicalTextAlignCSS('left')}
 
       &:focus-within {
@@ -68,19 +73,27 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: not-allowed;
       }
     `,
-    disabled: css`
-      // Using !important to override inline styles
-      color: ${euiButtonColor(euiThemeContext, 'disabled').color} !important;
-      background-color: ${euiButtonColor(euiThemeContext, 'disabled')
-        .backgroundColor} !important;
-    `,
-    // Hollow has a border and is mostly used for autocompleters.
+
+    // Colors
+    default: css(badgeColors.default),
     hollow: css`
-      background-color: ${euiTheme.colors.emptyShade};
-      border-color: ${colorMode === 'DARK'
-        ? tint(euiTheme.border.color, 0.15)
-        : euiTheme.border.color};
-      color: ${euiTheme.colors.text};
+      color: ${badgeColors.hollow.color};
+      background-color: ${badgeColors.hollow.backgroundColor};
+      border-color: ${badgeColors.hollow.borderColor};
+    `,
+    primary: css(badgeColors.primary),
+    accent: css(badgeColors.accent),
+    warning: css(badgeColors.warning),
+    danger: css(badgeColors.danger),
+    success: css(badgeColors.success),
+    disabled: css`
+      /* stylelint-disable declaration-no-important */
+
+      /* Using !important to override inline styles */
+      color: ${badgeColors.disabled.color} !important;
+      background-color: ${badgeColors.disabled.backgroundColor} !important;
+
+      /* stylelint-enable declaration-no-important */
     `,
 
     // Content wrapper
@@ -127,7 +140,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     // Clickable icons (iconOnClick)
     iconButton: {
       euiBadge__iconButton: css`
-        font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
+        font-size: 0; /* Makes the button only as large as the icon so it aligns vertically better */
 
         &:focus {
           background-color: ${transparentize(euiTheme.colors.ghost, 0.8)};
@@ -143,10 +156,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         .euiBadge__icon {
-          // Remove margins from icon itself so that focus state doesn't include that space
-          margin: 0 !important;
+          /* Remove margins from icon itself so that focus state doesn't include that space */
+          margin: 0 !important; /* stylelint-disable-line declaration-no-important */
         }
-      }`,
+      `,
       right: css`
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       `,

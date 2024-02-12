@@ -10,14 +10,12 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const [position, setPosition] = useState<EuiHeaderProps['position']>(
-    'static'
-  );
+  const [position, setPosition] =
+    useState<EuiHeaderProps['position']>('static');
 
   const sections: EuiHeaderSections[] = [
     {
       items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
-      borders: 'right',
     },
   ];
 

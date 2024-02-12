@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconLogoLogging = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
@@ -28,10 +28,10 @@ const EuiIconLogoLogging = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path fill="#0080D5" d="M2 10v13a9 9 0 019 9h13c0-12.15-9.85-22-22-22" />
+    <path fill="#0080D5" d="M2 10v13a9 9 0 0 1 9 9h13c0-12.15-9.85-22-22-22" />
     <path
-      className="euiIcon__fillNegative"
       d="M14 13.565V32h10c0-7.722-3.981-14.51-10-18.436"
+      className="euiIcon__fillNegative"
     />
     <path
       fill="#00BFB3"
@@ -39,5 +39,4 @@ const EuiIconLogoLogging = ({
     />
   </svg>
 );
-
 export const icon = EuiIconLogoLogging;

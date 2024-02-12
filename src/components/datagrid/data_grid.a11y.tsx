@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
-import { EuiDataGrid, EuiDataGridColumn } from './index';
+import { EuiDataGrid, EuiDataGridColumn, EuiDataGridSorting } from './index';
 import { faker } from '@faker-js/faker';
 
 const columns: EuiDataGridColumn[] = [
@@ -54,16 +56,16 @@ const storeData: any[] = [];
 
 for (let i = 1; i < 11; i++) {
   storeData.push({
-    Name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    Name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     Email: `${faker.internet.email()}`,
-    'User ID': `${faker.datatype.number({ min: 1000000, max: 9999999 })}`,
+    'User ID': `${faker.number.int({ min: 1000000, max: 9999999 })}`,
     'Account balance': faker.finance.amount(),
     'Last purchase': `${faker.date.past()}`,
     'Favorite distro': i % 2 === 0 ? 'Alma' : 'Debian',
   });
 }
 
-const commaSeparateNumbers = (numberString) => {
+const commaSeparateNumbers = (numberString: string) => {
   // extract the groups-of-three digits that are right-aligned
   return numberString.replace(/((\d{3})+)$/, (match) =>
     // then replace each group of xyz digits with ,xyz
@@ -77,11 +79,11 @@ const DataGrid = () => {
   );
 
   const [data, setData] = useState(storeData);
-  const [sortingColumns, setSortingColumns] = useState([
-    { id: 'custom', direction: 'asc' as 'asc' | 'desc' },
-  ]);
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridSorting['columns']
+  >([{ id: 'custom', direction: 'asc' }]);
 
-  const setSorting = (sortingColumns) => {
+  const setSorting = (sortingColumns: EuiDataGridSorting['columns']) => {
     const sortedData = [...data].sort((a, b) => {
       for (let i = 0; i < sortingColumns.length; i++) {
         const column = sortingColumns[i];

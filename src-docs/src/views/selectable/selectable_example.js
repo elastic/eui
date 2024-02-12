@@ -8,7 +8,9 @@ import {
   EuiSelectable,
   EuiSelectableMessage,
   EuiText,
+  EuiTextTruncate,
   EuiCallOut,
+  EuiLink,
 } from '../../../../src';
 
 import {
@@ -28,11 +30,17 @@ const selectableSingleSource = require('!!raw-loader!./selectable_single');
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
 
+import SelectableMixed from './selectable_mixed';
+const selectableMixedSource = require('!!raw-loader!./selectable_mixed');
+
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
 import SelectableSizing from './selectable_sizing';
 const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
+
+import Truncation from './selectable_truncation';
+const truncationSource = require('!!raw-loader!./selectable_truncation');
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
@@ -66,7 +74,14 @@ export const SelectableExample = {
         </strong>{' '}
         but can be used to simplify the construction of popover navigational
         menus; i.e. the spaces menu in the{' '}
-        <Link to="/layout/header">header</Link>.
+        <Link to="/layout/header">header</Link>. See{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide on which selection component to use{' '}
+        </EuiLink>{' '}
+        for more information.
       </p>
     </EuiText>
   ),
@@ -95,9 +110,10 @@ export const SelectableExample = {
           >
             <p>
               <strong>EuiSelectable</strong> offers the ability to{' '}
-              <strong>exclude</strong> selections. Therefore, the{' '}
-              <EuiCode>checked</EuiCode> property is one of{' '}
-              <EuiCode>{"undefined | 'on' | 'off'"}</EuiCode>,{' '}
+              <strong>exclude</strong> selections or{' '}
+              <strong>include selections for some</strong> (mixed). Therefore,
+              the <EuiCode>checked</EuiCode> property is one of{' '}
+              <EuiCode>{"undefined | 'on' | 'off' | 'mixed'"}</EuiCode>,{' '}
               <EuiCode>{"'on'"}</EuiCode> being the default for selected options
               when <EuiCode>allowExclusions = false</EuiCode>.
             </p>
@@ -217,12 +233,10 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
-            cycling through the checked options (on {'-> off ->'} undefined).
-          </p>
-        </>
+        <p>
+          Adding <EuiCode>allowExclusions</EuiCode> allows cycling through the
+          checked options (on {'-> off ->'} undefined).
+        </p>
       ),
       props,
       demo: <SelectableExclusion />,
@@ -235,6 +249,44 @@ export const SelectableExample = {
   {list => list}
 </EuiSelectable>`,
     },
+
+    {
+      title: 'Options can be mixed (indeterminate)',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableMixedSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Setting an option to <EuiCode>checked: &ldquo;mixed&rdquo;</EuiCode>{' '}
+            allows showing an indeterminate/mixed state. This state can only be
+            set by the consuming application, and should typically be used to
+            show that another state being controlled by the{' '}
+            <strong>EuiSelectable</strong> has some, but not all, items
+            selected.
+          </p>
+          <p>
+            When clicking a mixed option, the option will cycle to
+            &quot;on&quot;, and after that cycle between {'on -> off'} (if{' '}
+            <EuiCode>allowExclusions</EuiCode> is true) {'-> undefined'}). Users
+            cannot manually cycle back to mixed.
+          </p>
+        </>
+      ),
+      props,
+      demo: <SelectableMixed />,
+      snippet: `<EuiSelectable
+  aria-label="Example supporting mixed (indeterminate) options"
+  options={[{ label: '', checked: 'mixed' }]}
+  onChange={newOptions => setOptions(newOptions)}
+>
+  {list => list}
+</EuiSelectable>`,
+    },
+
     {
       title: 'Messages and loading',
       source: [
@@ -336,6 +388,53 @@ export const SelectableExample = {
 >
   {list => list}
 </EuiSelectable>`,
+    },
+    {
+      title: 'Truncation',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: truncationSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiSelectable</strong> defaults to{' '}
+            <EuiCode>listProps.textWrap="truncate"</EuiCode>, which truncates
+            long option text at the end of the string.
+          </p>
+          <p>
+            You can use <EuiCode>listProps.truncationProps</EuiCode> and almost
+            any prop that{' '}
+            <Link to="/utilities/text-truncation">
+              <strong>EuiTextTruncate</strong>
+            </Link>{' '}
+            accepts to configure this behavior. This can be configured at the{' '}
+            <strong>EuiSelectable</strong> level, as well as by each individual
+            option.
+          </p>
+        </>
+      ),
+      props: {
+        EuiSelectableOptionsList,
+        EuiSelectableOptionProps,
+        EuiTextTruncate,
+      },
+      snippet: `<EuiSelectable
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  listProps={{
+    textWrap: 'truncate',
+    truncationProps: {
+      truncation: 'start',
+      truncationOffset: 5,
+    },
+  }}
+>
+  {list => list}
+</EuiSelectable>`,
+      demo: <Truncation />,
     },
     {
       title: 'Rendering the options',

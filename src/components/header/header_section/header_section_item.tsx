@@ -9,43 +9,32 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 
-type Border = 'left' | 'right' | 'none';
-
-const borderToClassNameMap: { [border in Border]: string | undefined } = {
-  left: 'euiHeaderSectionItem--borderLeft',
-  right: 'euiHeaderSectionItem--borderRight',
-  none: undefined,
-};
+import { euiHeaderSectionItemStyles } from './header_section_item.styles';
 
 export type EuiHeaderSectionItemProps = CommonProps & {
-  /**
-   * Side to display a short border on.
-   * Not supported in Amsterdam theme.
-   */
-  border?: Border;
   /**
    * ReactNode to render as this component's content
    */
   children?: ReactNode;
 };
 
-export const EuiHeaderSectionItem: FunctionComponent<EuiHeaderSectionItemProps> = ({
-  border = 'left',
-  children,
-  className,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiHeaderSectionItem',
-    borderToClassNameMap[border],
-    className
-  );
+/**
+ * Header items are small icon links that pop up menus
+ */
+export const EuiHeaderSectionItem: FunctionComponent<
+  EuiHeaderSectionItemProps
+> = ({ children, className, ...rest }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderSectionItemStyles(euiTheme);
+
+  const classes = classNames('euiHeaderSectionItem', className);
 
   // we check if there is any children and if not, we don't render anything
   return children ? (
-    <div className={classes} {...rest}>
+    <div className={classes} css={styles.euiHeaderSectionItem} {...rest}>
       {children}
     </div>
   ) : null;

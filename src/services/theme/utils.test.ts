@@ -235,9 +235,10 @@ describe('getComputed', () => {
           {
             colors: {
               LIGHT: {
-                tertiary: computed(([primary]) => `${primary}333`, [
-                  'colors.primary',
-                ]),
+                tertiary: computed(
+                  ([primary]) => `${primary}333`,
+                  ['colors.primary']
+                ),
               },
             },
           },

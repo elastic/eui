@@ -3,7 +3,7 @@
 exports[`EuiTextColor is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiTextColor-default"
+  class="testClass1 testClass2 emotion-euiTextColor-default-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -19,7 +19,7 @@ exports[`EuiTextColor props cloneElement is rendered 1`] = `
 exports[`EuiTextColor props color is rendered with custom color 1`] = `
 <span
   class="emotion-euiTextColor-customColor"
-  style="color:#ff0000"
+  style="color: rgb(255, 0, 0);"
 >
   <p>
     Content

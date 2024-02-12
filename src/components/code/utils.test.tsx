@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 
 import {
@@ -139,7 +139,7 @@ describe('line utils', () => {
           expect(highlight).toMatchSnapshot();
           expect(
             // @ts-expect-error RefractorNode
-            highlight[0].children[0].properties['data-line-number']
+            highlight[0].children[0].children[0].properties['data-line-number']
           ).toBe(10);
         });
       });

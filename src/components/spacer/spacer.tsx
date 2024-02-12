@@ -15,7 +15,7 @@ import { useEuiTheme } from '../../services';
 import { euiSpacerStyles } from './spacer.styles';
 
 export const SIZES = ['xs', 's', 'm', 'l', 'xl', 'xxl'] as const;
-export type SpacerSize = typeof SIZES[number];
+export type SpacerSize = (typeof SIZES)[number];
 
 export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {

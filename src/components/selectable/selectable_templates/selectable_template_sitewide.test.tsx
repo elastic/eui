@@ -7,9 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
 import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
@@ -51,7 +53,7 @@ const options: EuiSelectableTemplateSitewideOption[] = [
     label: 'Other metas',
     searchableLabel: 'Totally custom with pink metadata',
     icon: {
-      type: 'alert',
+      type: 'warning',
       color: 'accent',
     },
     meta: [
@@ -81,45 +83,45 @@ describe('EuiSelectableTemplateSitewide', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelectableTemplateSitewide options={options} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('popoverProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableTemplateSitewide
           options={options}
           popoverProps={{ className: 'customPopoverClass' }}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('popoverTitle is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableTemplateSitewide
           options={options}
           popoverTitle={<>Title</>}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('popoverFooter is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableTemplateSitewide
           options={options}
           popoverFooter={<>Footer</>}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('popoverButton', () => {
@@ -127,39 +129,73 @@ describe('EuiSelectableTemplateSitewide', () => {
       beforeAll(() => (window.innerWidth = 670));
       afterAll(() => 1024); // reset to jsdom's default
 
+      const button = (
+        <button data-test-subj="mobilePopoverButton">Button</button>
+      );
+
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiSelectableTemplateSitewide
             options={options}
-            popoverButton={<button>Button</button>}
+            popoverButton={button}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with popoverButtonBreakpoints m', () => {
-        const component = render(
+        const { getByTestSubject } = render(
           <EuiSelectableTemplateSitewide
             options={options}
-            popoverButton={<button>Button</button>}
+            popoverButton={button}
             popoverButtonBreakpoints={['xs', 's', 'm']}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(getByTestSubject('mobilePopoverButton')).toBeInTheDocument();
       });
 
       test('is not rendered with popoverButtonBreakpoints xs', () => {
-        const component = render(
+        const { queryByTestSubject } = render(
           <EuiSelectableTemplateSitewide
             options={options}
-            popoverButton={<button>Button</button>}
+            popoverButton={button}
             popoverButtonBreakpoints={['xs']}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(
+          queryByTestSubject('mobilePopoverButton')
+        ).not.toBeInTheDocument();
+      });
+
+      test('toggles the selectable popover for keyboard users', () => {
+        const { getByTestSubject } = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<div>{button}</div>}
+          />
+        );
+        // fireEvent doesn't seem to work: https://github.com/testing-library/user-event/issues/179#issuecomment-1125146667
+        getByTestSubject('mobilePopoverButton').focus();
+        userEvent.keyboard('{enter}');
+        waitForEuiPopoverOpen();
+
+        expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();
+      });
+
+      test('toggles the selectable popover even when a wrapper exists around the button', () => {
+        const { getByTestSubject } = render(
+          <EuiSelectableTemplateSitewide
+            options={options}
+            popoverButton={<>{button}</>}
+          />
+        );
+        fireEvent.click(getByTestSubject('mobilePopoverButton'));
+        waitForEuiPopoverOpen();
+
+        expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();
       });
     });
   });

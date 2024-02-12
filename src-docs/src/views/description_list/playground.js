@@ -18,7 +18,7 @@ export const descriptionListConfig = () => {
     {
       title: 'TIE Fighter',
       description:
-        'The sequel to XWING, join the dark side and fly for the Emporer.',
+        'The sequel to XWING, join the dark side and fly for the Emperor.',
     },
   ]`;
   propsToUse.listItems = {
@@ -28,10 +28,10 @@ export const descriptionListConfig = () => {
 
   return {
     config: {
-      componentName: 'EuiSuggest',
+      componentName: 'EuiDescriptionList',
       props: propsToUse,
       scope: {
-        EuiSuggest: EuiDescriptionList,
+        EuiDescriptionList: EuiDescriptionList,
       },
       imports: {
         '@elastic/eui': {

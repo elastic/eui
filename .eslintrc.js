@@ -11,7 +11,11 @@ const SSPL_ELASTIC_2_0_LICENSE_HEADER = `
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['./tsconfig.json', './tsconfig-cypress.json'],
+    project: [
+      './tsconfig.json',
+      './cypress/tsconfig.json',
+      './.storybook/tsconfig.json',
+    ],
     ecmaFeatures: {
       jsx: true,
     },
@@ -30,31 +34,68 @@ module.exports = {
     },
   },
   extends: [
-    '@elastic/eslint-config-kibana',
     'plugin:@typescript-eslint/recommended',
-    // Prettier options need to come last, in order to override other style
-    // rules.
-    'prettier/react',
-    'prettier/standard',
+    'plugin:storybook/recommended',
+    // Prettier options need to come last, in order to override other style rules
     'plugin:prettier/recommended',
   ],
-  plugins: ['jsx-a11y', 'prettier', 'local', 'react-hooks', '@emotion'],
+  plugins: [
+    'mocha',
+    'jsx-a11y',
+    'local',
+    'import',
+    'react',
+    'react-hooks',
+    '@emotion',
+  ],
   rules: {
+    'block-scoped-var': 'error',
+    camelcase: 'off',
+    'dot-notation': ['error', { allowKeywords: true }],
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'guard-for-in': 'error',
+    'new-cap': ['error', { capIsNewExceptions: ['Private'] }],
+    'no-caller': 'error',
+    'no-const-assign': 'error',
+    'no-debugger': 'error',
+    'no-empty': ['error', { allowEmptyCatch: true }],
+    'no-eval': 'error',
+    'no-extend-native': 'error',
+    'no-global-assign': 'error',
+    'no-loop-func': 'error',
+    'no-restricted-globals': ['error', 'context'],
+    'no-script-url': 'error',
+    'no-sequences': 'error',
+    'no-var': 'error',
+    'no-with': 'error',
+    'prefer-const': 'error',
     'prefer-template': 'error',
+    strict: ['error', 'never'],
+    'valid-typeof': 'error',
+
     'local/i18n': 'error',
     'local/href-with-rel': 'error',
     'local/forward-ref': 'error',
     'local/css-logical-properties': 'error',
-    'local/css_before_spread_props': 'error',
+    'local/require-cypress-references': 'error',
     'local/require-license-header': [
       'warn',
       {
         license: SSPL_ELASTIC_2_0_LICENSE_HEADER,
       },
     ],
-    'no-use-before-define': 'off',
-    quotes: ['warn', 'single', 'avoid-escape'],
-    camelcase: 'off',
+
+    'import/no-unresolved': ['error', { amd: true, commonjs: true }],
+    'import/namespace': 'error',
+    'import/default': 'error',
+    'import/export': 'error',
+    'import/no-named-as-default': 'error',
+    'import/no-named-as-default-member': 'error',
+    'import/no-duplicates': 'error',
+
+    'mocha/handle-done-callback': 'error',
+    'mocha/no-exclusive-tests': 'error',
+
     'jsx-a11y/accessible-emoji': 'error',
     'jsx-a11y/alt-text': 'error',
     'jsx-a11y/anchor-has-content': 'error',
@@ -80,6 +121,10 @@ module.exports = {
     'jsx-a11y/scope': 'error',
     'jsx-a11y/tabindex-no-positive': 'error',
     'jsx-a11y/label-has-associated-control': 'error',
+
+    'react/jsx-uses-vars': 'error',
+    'react/jsx-no-undef': 'error',
+    'react/jsx-pascal-case': 'error',
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -118,23 +163,12 @@ module.exports = {
       { fixMixedExportsWithInlineTypeSpecifier: false },
     ],
   },
-  env: {
-    jest: true,
-  },
   overrides: [
     {
       files: ['*.d.ts'],
       rules: {
-        'react/no-multi-comp': 'off',
         'react/prefer-es6-class': 'off',
-        'react/prefer-stateless-function': 'off',
       },
-    },
-    {
-      globals: {
-        cy: true,
-      },
-      files: ['*.spec.js'],
     },
   ],
 };

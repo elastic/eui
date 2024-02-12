@@ -2,8 +2,6 @@ import React, { createElement, Fragment } from 'react';
 
 import { slugify } from '../../src/services';
 
-import { createHashHistory } from 'history';
-
 import { GuideSection, GuideMarkdownFormat } from './components';
 
 import { GuideTabbedPage } from './components/guide_tabbed_page';
@@ -88,8 +86,6 @@ import { CommentListExample } from './views/comment/comment_example';
 
 import { ContextMenuExample } from './views/context_menu/context_menu_example';
 
-import { ControlBarExample } from './views/control_bar/control_bar_example';
-
 import { CopyExample } from './views/copy/copy_example';
 
 import { DataGridExample } from './views/datagrid/basics/datagrid_example';
@@ -151,6 +147,8 @@ import { ImageExample } from './views/image/image_example';
 
 import { InnerTextExample } from './views/inner_text/inner_text_example';
 
+import { InlineEditExample } from './views/inline_edit/inline_edit_example';
+
 import { KeyPadMenuExample } from './views/key_pad_menu/key_pad_menu_example';
 
 import { LinkExample } from './views/link/link_example';
@@ -168,8 +166,6 @@ import { MarkdownPluginExample } from './views/markdown_editor/markdown_plugin_e
 import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
-
-import { NotificationEventExample } from './views/notification_event/notification_event_example';
 
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
@@ -215,8 +211,6 @@ import { StatExample } from './views/stat/stat_example';
 
 import { StepsExample } from './views/steps/steps_example';
 
-import { SuggestExample } from './views/suggest/suggest_example';
-
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
@@ -226,6 +220,8 @@ import { TableInMemoryExample } from './views/tables/tables_in_memory_example';
 import { TabsExample } from './views/tabs/tabs_example';
 
 import { TextDiffExample } from './views/text_diff/text_diff_example';
+
+import { TextTruncateExample } from './views/text_truncate/text_truncate_example';
 
 import { TextExample } from './views/text/text_example';
 
@@ -299,8 +295,9 @@ const createExample = (example, customTitle) => {
   const {
     title,
     sections,
-    beta,
+    isBeta,
     isNew,
+    isDeprecated,
     playground,
     guidelines,
     ...rest
@@ -332,7 +329,9 @@ const createExample = (example, customTitle) => {
     <EuiErrorBoundary>
       <GuideTabbedPage
         title={title}
-        isBeta={beta}
+        isBeta={isBeta}
+        isNew={isNew}
+        isDeprecated={isDeprecated}
         playground={playgroundComponent}
         guidelines={guidelines}
         {...rest}
@@ -346,12 +345,21 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections: filteredSections,
+    isBeta,
     isNew,
+    isDeprecated,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
+const createTabbedPage = ({
+  title,
+  pages,
+  isBeta,
+  isNew,
+  isDeprecated,
+  ...rest
+}) => {
   const component = () => (
     <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
@@ -368,7 +376,9 @@ const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
     name: title,
     component,
     sections: pagesSections,
+    isBeta,
     isNew,
+    isDeprecated,
   };
 };
 
@@ -535,7 +545,6 @@ const navigation = [
       ButtonExample,
       CollapsibleNavExample,
       ContextMenuExample,
-      ControlBarExample,
       FacetExample,
       KeyPadMenuExample,
       LinkExample,
@@ -563,7 +572,6 @@ const navigation = [
       ImageExample,
       ListGroupExample,
       LoadingExample,
-      NotificationEventExample,
       ProgressExample,
       SkeletonExample,
       StatExample,
@@ -589,10 +597,10 @@ const navigation = [
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
+      InlineEditExample,
       RangeControlExample,
       SearchBarExample,
       SelectableExample,
-      SuggestExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },
@@ -633,30 +641,33 @@ const navigation = [
   {
     name: 'Utilities',
     items: [
-      AccessibilityExample,
-      AutoSizerExample,
-      BeaconExample,
-      ColorPaletteExample,
-      CopyExample,
-      UtilityClassesExample,
-      DelayRenderExample,
-      ErrorBoundaryExample,
-      FocusTrapExample,
-      HighlightAndMarkExample,
-      HtmlIdGeneratorExample,
-      InnerTextExample,
-      I18nExample,
-      MutationObserverExample,
-      OutsideClickDetectorExample,
-      OverlayMaskExample,
-      PortalExample,
-      PrettyDurationExample,
-      ProviderExample,
-      ResizeObserverExample,
-      ScrollExample,
-      TextDiffExample,
-      WindowEventExample,
-    ].map((example) => createExample(example)),
+      ...[
+        AccessibilityExample,
+        AutoSizerExample,
+        BeaconExample,
+        ColorPaletteExample,
+        CopyExample,
+        UtilityClassesExample,
+        DelayRenderExample,
+        ErrorBoundaryExample,
+        FocusTrapExample,
+        HighlightAndMarkExample,
+        HtmlIdGeneratorExample,
+        InnerTextExample,
+        I18nExample,
+        MutationObserverExample,
+        OutsideClickDetectorExample,
+        OverlayMaskExample,
+        PortalExample,
+        PrettyDurationExample,
+        ProviderExample,
+        ResizeObserverExample,
+        ScrollExample,
+        TextDiffExample,
+      ].map((example) => createExample(example)),
+      createTabbedPage(TextTruncateExample),
+      createExample(WindowEventExample),
+    ],
   },
   {
     name: 'Package',
@@ -691,26 +702,9 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: createHashHistory(),
   navigation,
 
   getAppRoutes: function getAppRoutes() {
     return allRoutes;
-  },
-
-  getPreviousRoute: function getPreviousRoute(routeName) {
-    const index = allRoutes.findIndex((item) => {
-      return item.name === routeName;
-    });
-
-    return index >= 0 ? allRoutes[index - 1] : undefined;
-  },
-
-  getNextRoute: function getNextRoute(routeName) {
-    const index = allRoutes.findIndex((item) => {
-      return item.name === routeName;
-    });
-
-    return index < allRoutes.length - 1 ? allRoutes[index + 1] : undefined;
   },
 };

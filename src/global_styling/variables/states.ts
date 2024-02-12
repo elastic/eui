@@ -9,37 +9,25 @@
 import { ColorModeSwitch } from '../../services/theme/types';
 import { CSSProperties } from 'react';
 
-/**
- * NOTE: These were quick conversions of their Sass counterparts.
- *       The commented out keys have not been established as necessary yet.
- */
-
-export interface _EuiThemeFocusOutline {
-  /**
-   * A single CSS property: value
-   */
-  [key: string]: ColorModeSwitch;
-}
-
 export interface _EuiThemeFocus {
   /**
    * Default color of the focus ring, some components may override this property
+   * - Default value: currentColor
    */
   color: ColorModeSwitch;
   /**
    * Thickness of the outline
+   * - Default value: 2px
    */
   width: CSSProperties['borderWidth'];
   /**
-   * Used to transparentize any color at certain values
+   * Used to transparentize the focus background color
+   * - Default value: { LIGHT: 0.1, DARK: 0.2 }
    */
-  // transparency: ColorModeSwitch<number>;
+  transparency: ColorModeSwitch<number>;
   /**
-   * Default color plus transparency
+   * Default focus background color. Not all components set a background color on focus
+   * - Default value: `colors.primary` computed with `focus.transparency`
    */
-  // backgroundColor: ColorModeSwitch;
-  /**
-   * Using `outline` is new for Amsterdam but is set to `none` in legacy theme
-   */
-  // outline: _EuiThemeFocusOutline;
+  backgroundColor: ColorModeSwitch;
 }

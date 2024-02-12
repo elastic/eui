@@ -9,8 +9,7 @@ export default () => {
       href: '#',
     },
     {
-      text:
-        'Metazoans is a real mouthful, especially for creatures without mouths',
+      text: 'Metazoans is a real mouthful, especially for creatures without mouths',
       href: '#',
       truncate: true,
     },
@@ -35,8 +34,7 @@ export default () => {
       href: '#',
     },
     {
-      text:
-        'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+      text: 'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
     },
   ];
 

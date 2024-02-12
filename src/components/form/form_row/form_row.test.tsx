@@ -7,21 +7,22 @@
  */
 
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiFormRow, DISPLAYS } from './form_row';
 
 describe('EuiFormRow', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormRow {...requiredProps}>
         <input />
       </EuiFormRow>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('ties together parts for accessibility', () => {
@@ -32,7 +33,7 @@ describe('EuiFormRow', () => {
       error: ['Error one', 'Error two'],
     };
 
-    const tree = shallow(
+    const tree = mount(
       <EuiFormRow {...requiredProps} {...props}>
         <input />
       </EuiFormRow>
@@ -59,167 +60,167 @@ describe('EuiFormRow', () => {
 
   describe('props', () => {
     test('label is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiFormRow label="label">
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('label append is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiFormRow label="label" labelAppend="append">
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('label renders as a legend and subsquently a fieldset wrapper', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiFormRow label="label" labelType="legend">
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('describedByIds is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiFormRow describedByIds={['generated-id-additional']}>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('id is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow id="id">
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isInvalid is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow isInvalid label="label">
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('error as string is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow error="Error" isInvalid={true}>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('error as array is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow error={['Error', 'Error2']} isInvalid={true}>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('error is not rendered if isInvalid is false', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow error={['Error']} isInvalid={false}>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('helpText is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow helpText={<span>This is help text.</span>}>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('hasEmptyLabelSpace is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow hasEmptyLabelSpace>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormRow fullWidth>
           <input />
         </EuiFormRow>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('isDisabled', () => {
       test('is passed as disabled to child', () => {
-        const component = render(
+        const { container } = render(
           <EuiFormRow isDisabled>
             <input />
           </EuiFormRow>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test("allows a child's disabled to override", () => {
-        const component = render(
+        const { container } = render(
           <EuiFormRow isDisabled>
             <input disabled={false} />
           </EuiFormRow>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('allows a child to still be disabled manually', () => {
-        const component = render(
+        const { container } = render(
           <EuiFormRow>
             <input disabled />
           </EuiFormRow>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('display type', () => {
       DISPLAYS.forEach((display) => {
         test(`${display} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiFormRow display={display}>
               <input />
             </EuiFormRow>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -297,7 +298,7 @@ describe('EuiFormRow', () => {
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiFormRow label={<span>Label</span>}>
             <input />
@@ -305,11 +306,8 @@ describe('EuiFormRow', () => {
         </EuiForm>
       );
 
-      if (!component.find('.euiFormRow').hasClass('euiFormRow--fullWidth')) {
-        throw new Error(
-          'expected EuiFormRow to inherit fullWidth from EuiForm'
-        );
-      }
+      const row = container.querySelector('.euiFormRow');
+      expect(row).toHaveClass('euiFormRow--fullWidth');
     });
   });
 });

@@ -12,10 +12,14 @@ import React, {
   CSSProperties,
   ReactElement,
   ReactNode,
+  Fragment,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { withEuiTheme, WithEuiThemeProps } from '../../services';
+import { CommonProps, ExclusiveUnion } from '../common';
+import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
+
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -25,7 +29,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemProps,
 } from './context_menu_item';
-import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
+import { euiContextMenuStyles } from './context_menu.styles';
 
 export type EuiContextMenuPanelId = string | number;
 
@@ -44,9 +48,21 @@ export interface EuiContextMenuPanelItemSeparator
   key?: string;
 }
 
+export type EuiContextMenuPanelItemRenderCustom = {
+  /**
+   * Allows rendering any custom content alongside your array of context menu items.
+   * Accepts either a component or an inline function component that returns any JSX.
+   */
+  renderItem: (() => ReactNode) | Function;
+  key?: string;
+};
+
 export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
-  EuiContextMenuPanelItemDescriptorEntry,
-  EuiContextMenuPanelItemSeparator
+  ExclusiveUnion<
+    EuiContextMenuPanelItemDescriptorEntry,
+    EuiContextMenuPanelItemSeparator
+  >,
+  EuiContextMenuPanelItemRenderCustom
 >;
 
 export interface EuiContextMenuPanelDescriptor {
@@ -59,24 +75,27 @@ export interface EuiContextMenuPanelDescriptor {
   /**
    * Alters the size of the items and the title
    */
-  size?: keyof typeof sizeToClassNameMap;
+  size?: (typeof SIZES)[number];
 }
 
-const sizeToClassNameMap = {
-  s: 'euiContextMenu--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm'] as const;
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
+    /**
+     * Optional callback that fires on every panel change. Passes back
+     * the new panel ID and whether its direction was `next` or `previous`.
+     */
+    onPanelChange?: (panelDetails: {
+      panelId: EuiContextMenuPanelId;
+      direction?: EuiContextMenuPanelTransitionDirection;
+    }) => void;
     initialPanelId?: EuiContextMenuPanelId;
     /**
      * Alters the size of the items and the title
      */
-    size?: keyof typeof sizeToClassNameMap;
+    size?: (typeof SIZES)[number];
   };
 
 const isItemSeparator = (
@@ -153,7 +172,10 @@ interface State {
   isUsingKeyboardToNavigate: boolean;
 }
 
-export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
+export class EuiContextMenuClass extends Component<
+  WithEuiThemeProps & EuiContextMenuProps,
+  State
+> {
   static defaultProps: Partial<EuiContextMenuProps> = {
     panels: [],
     size: 'm',
@@ -177,7 +199,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     return null;
   }
 
-  constructor(props: EuiContextMenuProps) {
+  constructor(props: WithEuiThemeProps & EuiContextMenuProps) {
     super(props);
 
     this.state = {
@@ -199,7 +221,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
   componentDidUpdate(prevProps: EuiContextMenuProps) {
     if (prevProps.panels !== this.props.panels) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         idToRenderedItemsMap: this.mapIdsToRenderedItems(this.props.panels),
       });
@@ -221,6 +242,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       transitionDirection: direction,
       isOutgoingPanelVisible: true,
     });
+
+    this.props.onPanelChange?.({ panelId, direction });
   }
 
   showNextPanel = (itemIndex?: number) => {
@@ -228,9 +251,10 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       return;
     }
 
-    const nextPanelId = this.state.idAndItemIndexToPanelIdMap[
-      this.state.incomingPanelId!
-    ][itemIndex];
+    const nextPanelId =
+      this.state.idAndItemIndexToPanelIdMap[this.state.incomingPanelId!][
+        itemIndex
+      ];
 
     if (nextPanelId) {
       if (this.state.isUsingKeyboardToNavigate) {
@@ -246,9 +270,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   showPreviousPanel = () => {
     // If there's a previous panel, then we can close the current panel to go back to it.
     if (this.hasPreviousPanel(this.state.incomingPanelId!)) {
-      const previousPanelId = this.state.idToPreviousPanelIdMap[
-        this.state.incomingPanelId!
-      ];
+      const previousPanelId =
+        this.state.idToPreviousPanelIdMap[this.state.incomingPanelId!];
 
       // Set focus on the item which shows the panel we're leaving.
       const previousPanel = this.state.idToPanelMap[previousPanelId];
@@ -303,21 +326,16 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
   renderItems(items: EuiContextMenuPanelItemDescriptor[] = []) {
     return items.map((item, index) => {
+      if (item.renderItem) {
+        return <Fragment key={item.key ?? index}>{item.renderItem()}</Fragment>;
+      }
+
       if (isItemSeparator(item)) {
         const { isSeparator: omit, key = index, ...rest } = item;
         return <EuiHorizontalRule key={key} margin="none" {...rest} />;
       }
 
-      const {
-        panel,
-        name,
-        key,
-        icon,
-        onClick,
-        toolTipTitle,
-        toolTipContent,
-        ...rest
-      } = item;
+      const { panel, name, key, icon, onClick, ...rest } = item;
 
       const onClickHandler = panel
         ? (event: React.MouseEvent) => {
@@ -341,8 +359,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
           icon={icon}
           onClick={onClickHandler}
           hasPanel={Boolean(panel)}
-          toolTipTitle={toolTipTitle}
-          toolTipContent={toolTipContent}
           {...rest}
         >
           {name}
@@ -368,11 +384,16 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       onClose = () => window.requestAnimationFrame(this.showPreviousPanel);
     }
 
+    const cssStyles = {
+      position: 'absolute' as const,
+      label: 'euiContextMenu__panel',
+    };
+
     return (
       <EuiContextMenuPanel
         key={panelId}
         size={this.props.size}
-        className="euiContextMenu__panel"
+        css={cssStyles}
         onHeightChange={
           transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined
         }
@@ -407,7 +428,15 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   render() {
-    const { panels, className, initialPanelId, size, ...rest } = this.props;
+    const {
+      theme,
+      panels,
+      onPanelChange,
+      className,
+      initialPanelId,
+      size,
+      ...rest
+    } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId!, 'in');
     let outgoingPanel;
@@ -422,14 +451,14 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         ? this.state.idToPanelMap[this.state.incomingPanelId!].width
         : undefined;
 
-    const classes = classNames(
-      'euiContextMenu',
-      size && sizeToClassNameMap[size],
-      className
-    );
+    const classes = classNames('euiContextMenu', className);
+
+    const styles = euiContextMenuStyles(theme);
+    const cssStyles = [styles.euiContextMenu];
 
     return (
       <div
+        css={cssStyles}
         className={classes}
         style={{ height: this.state.height, width: width }}
         {...rest}
@@ -440,3 +469,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     );
   }
 }
+
+export const EuiContextMenu =
+  withEuiTheme<EuiContextMenuProps>(EuiContextMenuClass);

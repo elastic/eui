@@ -41,7 +41,12 @@ export const SearchBarExample = {
               (free text words) - Example,
               <EuiCode>website -production</EuiCode>. In this example the
               intention is to find all items that have the &quot;website&quot;
-              terms in them but do not have the word &quot;production&quot;
+              terms in them but do not have the word &quot;production&quot;.
+              Terms are AND&apos;d together by default.
+            </li>
+            <li>
+              Phrases can be matched by surrounding multiple words with quotes -
+              Example, <EuiCode>&quot;website url&quot;</EuiCode>.
             </li>
             <li>
               Field/value search - one can search for terms within specific

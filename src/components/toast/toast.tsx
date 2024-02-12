@@ -30,7 +30,7 @@ import {
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 
-type ToastColor = typeof COLORS[number];
+type ToastColor = (typeof COLORS)[number];
 
 export interface EuiToastProps
   extends CommonProps,

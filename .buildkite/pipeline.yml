@@ -1,0 +1,8 @@
+## 🏠/.buildkite/pipeline.yml
+
+agents:
+  memory: "4G"
+
+steps:
+  - label: ":wave: Greetings!"
+    command: "echo 'The EUI CI pipeline, now with more robots'"

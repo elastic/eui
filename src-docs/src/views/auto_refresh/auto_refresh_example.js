@@ -25,7 +25,6 @@ const autoRefreshIntervalSource = require('!!raw-loader!./auto_refresh_interval'
 
 export const AutoRefreshExample = {
   title: 'Auto refresh',
-  isNew: true,
   sections: [
     {
       source: [

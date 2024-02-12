@@ -27,7 +27,8 @@ import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverContentProps {
   value: string;
-  onChange(date: string | null, event?: React.SyntheticEvent<any>): void;
+  onChange: (date: string) => void;
+  canRoundRelativeUnits?: boolean;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;
@@ -37,8 +38,11 @@ export interface EuiDatePopoverContentProps {
   timeOptions: TimeOptions;
 }
 
-export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
+export const EuiDatePopoverContent: FunctionComponent<
+  EuiDatePopoverContentProps
+> = ({
   value,
+  canRoundRelativeUnits = true,
   roundUp = false,
   onChange,
   dateFormat,
@@ -106,7 +110,9 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
         <EuiRelativeTab
           dateFormat={dateFormat}
           locale={locale}
-          value={toAbsoluteString(value, roundUp)}
+          value={
+            canRoundRelativeUnits ? toAbsoluteString(value, roundUp) : value
+          }
           onChange={onChange}
           roundUp={roundUp}
           position={position}

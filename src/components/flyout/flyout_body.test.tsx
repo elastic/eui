@@ -7,15 +7,24 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiFlyoutBody } from './flyout_body';
 
 describe('EuiFlyoutBody', () => {
   test('is rendered', () => {
-    const component = render(<EuiFlyoutBody {...requiredProps} />);
+    const { container } = render(<EuiFlyoutBody {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('scrollableTabIndex', () => {
+    const { container } = render(<EuiFlyoutBody scrollableTabIndex={-1} />);
+
+    expect(container.querySelector('.euiFlyoutBody__overflow')).toHaveAttribute(
+      'tabIndex',
+      '-1'
+    );
   });
 });

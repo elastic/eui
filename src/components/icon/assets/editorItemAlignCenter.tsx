@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconEditorItemAlignCenter = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconEditorItemAlignCenter = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 4H7V1.5a.5.5 0 011 0V4zm0 8v2.5a.5.5 0 11-1 0V12h1zM3 5h9a2 2 0 012 2v2a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2z" />
+    <path d="M8 4H7V1.5a.5.5 0 0 1 1 0V4Zm0 8v2.5a.5.5 0 1 1-1 0V12h1ZM3 5h9a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
   </svg>
 );
-
 export const icon = EuiIconEditorItemAlignCenter;

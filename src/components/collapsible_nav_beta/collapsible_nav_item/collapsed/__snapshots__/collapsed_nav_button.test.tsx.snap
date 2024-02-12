@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsedNavButton renders a tooltip around the icon button 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      aria-label="aria-label"
+      class="euiToolTipAnchor testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"
+      data-test-subj="test subject string"
+    >
+      <button
+        aria-describedby="generated-id"
+        aria-label="Nav item"
+        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+        data-test-subj="euiCollapsedNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="link"
+        />
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-left-euiCollapsedNavItemTooltip-left"
+      data-position="left"
+      id="generated-id"
+      position="left"
+      role="tooltip"
+      style="top: -10px; left: -16px;"
+    >
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-left"
+        style="left: 0px; top: 4px;"
+      />
+      <div>
+        Nav item
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`EuiCollapsedNavButton renders isSelected 1`] = `
+<div>
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+  >
+    <a
+      aria-label="Nav item"
+      class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton-isSelected"
+      data-test-subj="euiCollapsedNavButton"
+      href="#"
+      rel="noreferrer"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="link"
+      />
+    </a>
+  </span>
+</div>
+`;

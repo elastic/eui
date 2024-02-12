@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiProgress color #885522 is rendered 1`] = `
-<div
-  class="euiProgress emotion-euiProgress-indeterminate-m-static-customColor"
-  style="color:#885522"
-/>
-`;
-
 exports[`EuiProgress color accent is rendered 1`] = `
 <div
   class="euiProgress emotion-euiProgress-indeterminate-m-static-accent"
@@ -22,6 +15,13 @@ exports[`EuiProgress color danger is rendered 1`] = `
 exports[`EuiProgress color primary is rendered 1`] = `
 <div
   class="euiProgress emotion-euiProgress-indeterminate-m-static-primary"
+/>
+`;
+
+exports[`EuiProgress color rgb(136, 85, 34) is rendered 1`] = `
+<div
+  class="euiProgress emotion-euiProgress-indeterminate-m-static-customColor"
+  style="color: rgb(136, 85, 34);"
 />
 `;
 
@@ -104,32 +104,33 @@ exports[`EuiProgress color warning is rendered 1`] = `
 `;
 
 exports[`EuiProgress has labelProps 1`] = `
-Array [
+<div>
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
     <span
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
+      title="150"
     >
       150
     </span>
-  </div>,
+  </div>
   <progress
     aria-hidden="false"
     aria-label="aria-label"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiProgress has max 1`] = `
 <progress
   aria-hidden="false"
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
   data-test-subj="test subject string"
   max="100"
 />
@@ -138,43 +139,45 @@ exports[`EuiProgress has max 1`] = `
 exports[`EuiProgress has value 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiProgress has valueText and label 1`] = `
-Array [
+<div>
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
     <span
       class="euiProgress__label emotion-euiProgress__label"
+      title="Label"
     >
       Label
     </span>
     <span
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
+      title="150"
     >
       150
     </span>
-  </div>,
+  </div>
   <progress
     aria-hidden="true"
     aria-label="aria-label"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiProgress is determinate 1`] = `
 <progress
   aria-hidden="false"
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
   data-test-subj="test subject string"
   max="100"
   value="50"
@@ -184,7 +187,7 @@ exports[`EuiProgress is determinate 1`] = `
 exports[`EuiProgress is indeterminate 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -192,7 +195,7 @@ exports[`EuiProgress is indeterminate 1`] = `
 exports[`EuiProgress is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -222,23 +225,24 @@ exports[`EuiProgress size xs is rendered 1`] = `
 `;
 
 exports[`EuiProgress valueText is true 1`] = `
-Array [
+<div>
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
     <span
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
+      title="50%"
     >
       50%
     </span>
-  </div>,
+  </div>
   <progress
     aria-hidden="false"
     aria-label="aria-label"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
-  />,
-]
+  />
+</div>
 `;

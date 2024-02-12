@@ -17,8 +17,8 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
 
       > .euiFormControlLayout {
-        // There's no way to target the layout of the extra input, so we must
-        // use the descendant selector to allow the width to shrink.
+        /* There's no way to target the layout of the extra input, so we must
+         * use the descendant selector to allow the width to shrink. */
         inline-size: auto;
       }
     `,

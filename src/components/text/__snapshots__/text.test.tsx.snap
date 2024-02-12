@@ -3,7 +3,7 @@
 exports[`EuiText is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 emotion-euiText-m"
+  class="euiText testClass1 testClass2 emotion-euiText-m-euiTestCss"
   data-test-subj="test subject string"
 >
   <p>
@@ -15,7 +15,7 @@ exports[`EuiText is rendered 1`] = `
 exports[`EuiText props color & align 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 emotion-euiText-m-euiTextColor-danger-euiTextAlign-center"
+  class="euiText testClass1 testClass2 emotion-euiText-m-euiTextColor-danger-euiTextAlign-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <p>
@@ -27,7 +27,7 @@ exports[`EuiText props color & align 1`] = `
 exports[`EuiText props grow false 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 emotion-euiText-constrainedWidth-m"
+  class="euiText testClass1 testClass2 emotion-euiText-constrainedWidth-m-euiTestCss"
   data-test-subj="test subject string"
 >
   <p>
@@ -39,9 +39,9 @@ exports[`EuiText props grow false 1`] = `
 exports[`EuiText props style 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 emotion-euiText-m-euiTextColor-customColor"
+  class="euiText testClass1 testClass2 emotion-euiText-m-euiTextColor-customColor-euiTestCss"
   data-test-subj="test subject string"
-  style="background-color:#000;color:#fff"
+  style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255);"
 >
   <p>
     Content

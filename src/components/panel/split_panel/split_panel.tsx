@@ -8,11 +8,17 @@
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, _EuiPanelProps } from '../panel';
+
 import {
   EuiBreakpointSize,
   useIsWithinBreakpoints,
 } from '../../../services/breakpoint';
+
+import { EuiPanel, _EuiPanelProps } from '../panel';
+import {
+  euiSplitPanelOuterStyles,
+  euiSplitPanelInnerStyles,
+} from './split_panel.styles';
 
 export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
   Omit<_EuiPanelProps, 'hasShadow' | 'hasBorder' | 'borderRadius'>;
@@ -21,11 +27,9 @@ export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
  * Consumed via `EuiSplitPanel.Inner`.
  * Extends most `EuiPanelProps`.
  */
-export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const _EuiSplitPanelInner: FunctionComponent<
+  _EuiSplitPanelInnerProps
+> = ({ children, className, ...rest }) => {
   const classes = classNames('euiSplitPanel__inner', className);
 
   const panelProps: _EuiPanelProps = {
@@ -39,6 +43,7 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
     <EuiPanel
       element="div"
       className={classes}
+      css={euiSplitPanelInnerStyles.euiSplitPanelInner}
       {...panelProps}
       {...(rest as _EuiPanelProps)}
     >
@@ -67,7 +72,9 @@ export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
  * Consumed via `EuiSplitPanel.Outer`.
  * Extends most `EuiPanelProps`.
  */
-export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = ({
+export const _EuiSplitPanelOuter: FunctionComponent<
+  _EuiSplitPanelOuterProps
+> = ({
   children,
   className,
   direction = 'column',
@@ -79,20 +86,20 @@ export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = 
     !!responsive
   );
 
-  const classes = classNames(
-    'euiSplitPanel',
-    {
-      'euiSplitPanel--row': direction === 'row',
-      'euiSplitPanel-isResponsive': isResponsive,
-    },
-    className
-  );
+  const styles = euiSplitPanelOuterStyles;
+  const cssStyles = [
+    styles.euiSplitPanelOuter,
+    direction === 'row' && !isResponsive ? styles.row : styles.column,
+  ];
+
+  const classes = classNames('euiSplitPanel', className);
 
   return (
     <EuiPanel
       paddingSize="none"
       grow={false}
       className={classes}
+      css={cssStyles}
       {...(rest as _EuiPanelProps)}
     >
       {children}

@@ -21,6 +21,12 @@ export const euiListGroupItemExtraActionStyles = ({
 
       ${euiCanAnimate} {
         transition: opacity ${euiTheme.animation.fast};
+
+        /* Unset default EuiButtonIcon animation - extra & used for specificy override */
+        &&:hover,
+        &&:focus {
+          transform: translateY(0);
+        }
       }
     `,
     hoverStyles: css`

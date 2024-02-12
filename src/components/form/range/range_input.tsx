@@ -6,10 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useMemo } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useCombinedRefs } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
+import { euiFormVariables } from '../form.styles';
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
 
 import type { _SingleRangeValue, _SharedRangeInputSide } from './types';
@@ -20,7 +27,6 @@ export interface EuiRangeInputProps
     Omit<_SingleRangeValue, 'onChange'>,
     _SharedRangeInputSide {
   autoSize?: boolean;
-  digitTolerance: number;
 }
 
 export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
@@ -28,28 +34,58 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
   max,
   step,
   value,
+  inputRef,
+  isInvalid,
   disabled,
   compressed,
   onChange,
   name,
   side = 'max',
-  digitTolerance,
   fullWidth,
   autoSize = true,
   ...rest
 }) => {
-  // Chrome will properly size the input based on the max value, but FF does not.
-  // Calculate the width of the input based on highest number of characters.
-  // Add 2 to accommodate for input stepper
-  const widthStyle = useMemo(() => {
-    return autoSize
-      ? logicalStyles({ width: `${digitTolerance / 1.25 + 2}em` })
-      : {};
-  }, [autoSize, digitTolerance]);
-
   const euiTheme = useEuiTheme();
   const styles = euiRangeInputStyles(euiTheme);
   const cssStyles = [styles.euiRangeInput];
+
+  // Determine whether an invalid icon is showing, which can come from
+  // the underlying EuiFieldNumber's native :invalid state
+  const [hasInvalidIcon, setHasInvalidIcon] = useState(isInvalid);
+  const validityRef = useRef<HTMLInputElement | null>(null);
+  const setRefs = useCombinedRefs([validityRef, inputRef]);
+
+  useEffect(() => {
+    const isNativelyInvalid = !validityRef.current?.validity.valid;
+    setHasInvalidIcon(isNativelyInvalid || isInvalid);
+  }, [value, isInvalid]);
+
+  // Calculate the auto size width of the input
+  const widthStyle = useMemo(() => {
+    if (!autoSize) return undefined;
+
+    // Calculate the number of characters to show (dynamic based on user input)
+    // Uses the min/max char length as a max, then add an extra UX buffer of 1
+    const maxChars = Math.max(String(min).length, String(max).length) + 1;
+    const inputCharWidth = Math.min(String(value).length, maxChars);
+
+    // Calculate the form padding based on `compressed` state
+    const { controlPadding, controlCompressedPadding } =
+      euiFormVariables(euiTheme);
+    const inputPadding = compressed ? controlCompressedPadding : controlPadding;
+
+    // Calculate the invalid icon (if being displayed), also based on `compressed` state
+    const invalidIconWidth = hasInvalidIcon
+      ? euiTheme.euiTheme.base * (compressed ? 1.125 : 1.375) // TODO: DRY this out once EuiFormControlLayoutIcons is converted to Emotion
+      : 0;
+
+    // Guesstimate a width for the stepper. Note that it's a little wider in FF than it is in Chrome
+    const stepperWidth = 2;
+
+    return logicalStyles({
+      width: `calc(${inputPadding} + ${inputCharWidth}ch + ${stepperWidth}em + ${invalidIconWidth}px)`,
+    });
+  }, [autoSize, euiTheme, compressed, hasInvalidIcon, min, max, value]);
 
   return (
     <EuiFieldNumber
@@ -60,6 +96,8 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
       max={Number(max)}
       step={step}
       value={value === '' ? '' : Number(value)}
+      inputRef={setRefs}
+      isInvalid={isInvalid}
       disabled={disabled}
       compressed={compressed}
       onChange={onChange}

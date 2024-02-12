@@ -41,19 +41,6 @@ const complexEvent = (
   </EuiFlexGroup>
 );
 
-const longBody = (
-  <EuiText size="s">
-    <p>
-      This planet has - or rather had - a problem, which was this: most of the
-      people living on it were unhappy for pretty much of the time. Many
-      solutions were suggested for this problem, but most of these were largely
-      concerned with the movements of small green pieces of paper, which is odd
-      because on the whole it was not the small green pieces of paper that were
-      unhappy.
-    </p>
-  </EuiText>
-);
-
 const comments: EuiCommentProps[] = [
   {
     username: 'janed',
@@ -88,12 +75,12 @@ const comments: EuiCommentProps[] = [
     eventIconAriaLabel: 'tag',
   },
   {
-    username: 'elohar',
-    timelineAvatarAriaLabel: 'Elohar Jackson',
-    event: 'added a comment',
-    timestamp: 'on Jan 14, 2020',
-    children: longBody,
+    username: 'Assistant',
+    timelineAvatarAriaLabel: 'Assistant',
+    timestamp: 'on Jan 14, 2020, 1:39:04 PM',
+    children: <p>An error ocurred sending your message.</p>,
     actions: copyAction,
+    eventColor: 'danger',
   },
 ];
 

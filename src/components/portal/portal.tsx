@@ -11,77 +11,118 @@
  * into portals.
  */
 
-import { Component, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  Component,
+  ContextType,
+  ReactNode,
+} from 'react';
 import { createPortal } from 'react-dom';
-import { keysOf } from '../common';
 
-interface InsertPositionsMap {
-  after: InsertPosition;
-  before: InsertPosition;
-}
+import { EuiNestedThemeContext } from '../../services';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
-export const insertPositions: InsertPositionsMap = {
+const INSERT_POSITIONS = ['after', 'before'] as const;
+type EuiPortalInsertPosition = (typeof INSERT_POSITIONS)[number];
+const insertPositions: Record<EuiPortalInsertPosition, InsertPosition> = {
   after: 'afterend',
   before: 'beforebegin',
 };
-
-type EuiPortalInsertPosition = keyof typeof insertPositions;
-
-export const INSERT_POSITIONS: EuiPortalInsertPosition[] = keysOf(
-  insertPositions
-);
 
 export interface EuiPortalProps {
   /**
    * ReactNode to render as this component's content
    */
   children: ReactNode;
-  insert?: { sibling: HTMLElement; position: 'before' | 'after' };
+  /**
+   * If not specified, `EuiPortal` will insert itself
+   * into the end of the `document.body` by default
+   */
+  insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
+  /**
+   * Optional ref callback
+   */
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export class EuiPortal extends Component<EuiPortalProps> {
-  portalNode: HTMLDivElement | null = null;
+export const EuiPortal: FunctionComponent<EuiPortalProps> = (props) => {
+  const propsWithDefaults = usePropsWithComponentDefaults('EuiPortal', props);
+  return <EuiPortalClass {...propsWithDefaults} />;
+};
+
+interface EuiPortalState {
+  portalNode: HTMLDivElement | null;
+}
+
+export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
+  static contextType = EuiNestedThemeContext;
+  declare context: ContextType<typeof EuiNestedThemeContext>;
 
   constructor(props: EuiPortalProps) {
     super(props);
-    if (typeof window === 'undefined') return; // Prevent SSR errors
 
-    const { insert } = this.props;
-
-    this.portalNode = document.createElement('div');
-    this.portalNode.dataset.euiportal = 'true';
-
-    if (insert == null) {
-      // no insertion defined, append to body
-      document.body.appendChild(this.portalNode);
-    } else {
-      // inserting before or after an element
-      const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
-    }
+    this.state = {
+      portalNode: null,
+    };
   }
 
   componentDidMount() {
-    this.updatePortalRef(this.portalNode);
+    const { insert } = this.props;
+
+    const portalNode = document.createElement('div');
+    portalNode.dataset.euiportal = 'true';
+
+    if (insert == null) {
+      // no insertion defined, append to body
+      document.body.appendChild(portalNode);
+    } else {
+      // inserting before or after an element
+      const { sibling, position } = insert;
+      sibling.insertAdjacentElement(insertPositions[position], portalNode);
+    }
+
+    this.setThemeColor(portalNode);
+    this.updatePortalRef(portalNode);
+
+    // Update state with portalNode to intentionally trigger component rerender
+    // and call createPortal with correct root element in render()
+    this.setState({
+      portalNode,
+    });
   }
 
   componentWillUnmount() {
-    if (this.portalNode?.parentNode) {
-      this.portalNode.parentNode.removeChild(this.portalNode);
+    const { portalNode } = this.state;
+    if (portalNode?.parentNode) {
+      portalNode.parentNode.removeChild(portalNode);
     }
     this.updatePortalRef(null);
   }
 
-  updatePortalRef(ref: HTMLDivElement | null) {
+  // Set the inherited color of the portal based on the wrapping EuiThemeProvider
+  private setThemeColor(portalNode: HTMLDivElement) {
+    if (this.context) {
+      const { hasDifferentColorFromGlobalTheme, colorClassName } = this.context;
+
+      if (hasDifferentColorFromGlobalTheme && this.props.insert == null) {
+        portalNode.classList.add(colorClassName);
+      }
+    }
+  }
+
+  private updatePortalRef(ref: HTMLDivElement | null) {
     if (this.props.portalRef) {
       this.props.portalRef(ref);
     }
   }
 
   render() {
-    return this.portalNode
-      ? createPortal(this.props.children, this.portalNode)
-      : null;
+    const { portalNode } = this.state;
+
+    if (!portalNode) {
+      return null;
+    }
+
+    return createPortal(this.props.children, portalNode);
   }
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
@@ -9,7 +9,9 @@ import {
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiFlyoutFooter,
+  EuiFlyoutResizable,
   EuiCallOut,
+  EuiLink,
 } from '../../../../src/components';
 
 import Flyout from './flyout';
@@ -35,6 +37,9 @@ const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 
 import FlyoutPush from './flyout_push';
 const flyoutPushSource = require('!!raw-loader!./flyout_push');
+
+import FlyoutResizable from './flyout_resizable';
+const flyoutResizableSource = require('!!raw-loader!./flyout_resizable');
 
 const flyOutSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
@@ -140,6 +145,18 @@ const flyoutPushedSnippet = `<EuiFlyout type="push" onClose={closeFlyout}>
   <EuiFlyoutFooter>
     <EuiButton onClose={closeFlyout}>Close</EuiButton>
   </EuiFlyoutFooter>
+</EuiFlyout>
+`;
+
+const flyoutResizableSnippet = `<EuiFlyoutResizable onClose={closeFlyout} maxWidth={1000} minWidth={300}>
+  <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
+    <EuiTitle>
+      <h2 id={flyoutHeadingId}>Flyout title</h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    <!-- Flyout content -->
+  </EuiFlyoutBody>
 </EuiFlyout>
 `;
 
@@ -315,7 +332,7 @@ export const FlyoutExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             Another way to allow for continued interactions of the page content
             while a flyout is visible, is to change the <EuiCode>type</EuiCode>{' '}
@@ -329,7 +346,29 @@ export const FlyoutExample = {
             window widths. You can adjust this minimum breakpoint with{' '}
             <EuiCode>pushMinBreakpoint</EuiCode>.
           </p>
-        </Fragment>
+          <EuiCallOut
+            iconType="accessibility"
+            title="Push flyouts require manual accessibility management"
+            color="warning"
+          >
+            <p>
+              Push flyouts do not use a focus trap, do not close on Escape
+              keypress, do not inherit a{' '}
+              <EuiLink
+                href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role"
+                target="_blank"
+              >
+                dialog role
+              </EuiLink>
+              , and do not include any of the default screen reader guidance
+              that overlay flyouts contain out-of-the-box.
+            </p>
+            <p>
+              Please be cautious when using push flyouts, and make sure you are
+              managing your own focus and screen reader UX.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       snippet: flyoutPushedSnippet,
       demo: <FlyoutPush />,
@@ -344,7 +383,7 @@ export const FlyoutExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             By default, flyouts will continue to grow with the width of the
             window. To stop this growth at an ideal width, set{' '}
@@ -355,11 +394,42 @@ export const FlyoutExample = {
             color="warning"
             title="Note that there are some caveats to providing a maxWidth that is smaller than the minWidth."
           />
-        </Fragment>
+        </>
       ),
       snippet: flyoutMaxWidthSnippet,
       demo: <FlyoutMaxWidth />,
       props: { EuiFlyout },
+    },
+    {
+      title: 'Resizable flyouts',
+      isBeta: true,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutResizableSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            You can use <strong>EuiFlyoutResizable</strong> to render a flyout
+            that users can drag with their mouse or use arrow keys to resize.
+            This may be useful for scenarios where the space the user needs can
+            be unpredictable, if content is dynamic. Resizable flyouts allow
+            users to adjust content to better fit their individual screens and
+            workflows.
+          </p>
+          <p>
+            We strongly recommend setting reasonable numerical{' '}
+            <EuiCode>minWidth</EuiCode> and <EuiCode>maxWidth</EuiCode> props
+            based on the flyout content and page content that you <em>can</em>{' '}
+            predict.
+          </p>
+        </>
+      ),
+      snippet: flyoutResizableSnippet,
+      demo: <FlyoutResizable />,
+      props: { EuiFlyoutResizable },
     },
   ],
 };

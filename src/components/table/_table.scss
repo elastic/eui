@@ -206,20 +206,15 @@
       transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance, filter $euiAnimSpeedNormal $euiAnimSlightResistance;
     }
 
-    .expandedItemActions__completelyHide,
-    .expandedItemActions__completelyHide:disabled,
-    .expandedItemActions__completelyHide:disabled:hover,
-    .expandedItemActions__completelyHide:disabled:focus,
-    .euiTableRow:hover & .expandedItemActions__completelyHide:disabled {
+    .expandedItemActions__completelyHide {
       filter: grayscale(0%);
       opacity: 0;
     }
   }
 
-  &:hover .euiTableCellContent--showOnHover .euiTableCellContent__hoverItem:not(:disabled) {
-    &,
-    &:hover,
-    &:focus {
+  &:hover .euiTableCellContent--showOnHover,
+  .euiTableCellContent--showOnHover:focus-within {
+    .euiTableCellContent__hoverItem {
       opacity: 1;
       filter: grayscale(0%);
     }
@@ -227,22 +222,20 @@
 }
 
 // Animate expanded row must be on the contents div inside
-
+// This adds a quick pop in animation, but does not attempt to animate to height auto
+// - down that road dragons lie. @see https://github.com/elastic/eui/issues/6770
 .euiTableRow-isExpandedRow .euiTableCellContent {
-  overflow: hidden;
-  animation: $euiAnimSpeedNormal $euiAnimSlightResistance 1 normal forwards growExpandedRow;
+  animation: $euiAnimSpeedFast $euiAnimSlightResistance 1 normal none growExpandedRow;
 }
 
 @keyframes growExpandedRow {
   0% {
-    max-height: 0;
-  }
-
-  99% {
-    max-height: 100vh;
+    opacity: 0;
+    transform: translateY(-$euiSizeM);
   }
 
   100% {
-    max-height: unset;
+    opacity: 1;
+    transform: translateY(0);
   }
 }

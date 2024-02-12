@@ -7,8 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
+
+import { EuiProvider } from '../../provider';
 
 import { EuiTablePagination } from './table_pagination';
 
@@ -18,16 +21,45 @@ describe('EuiTablePagination', () => {
     pageCount: 5,
     onChangePage: jest.fn(),
   };
-  test('is rendered', () => {
-    const component = render(
+
+  it('renders', () => {
+    const { getByTestSubject, baseElement } = render(
       <EuiTablePagination {...requiredProps} {...paginationProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+    expect(baseElement).toMatchSnapshot();
   });
 
-  test('is rendered when hiding the per page options', () => {
-    const component = render(
+  it('renders custom items per page / page sizes', () => {
+    const { getByText } = render(
+      <EuiTablePagination
+        {...requiredProps}
+        {...paginationProps}
+        itemsPerPage={10}
+      />
+    );
+
+    expect(getByText('Rows per page: 10')).toBeTruthy();
+  });
+
+  it('renders custom items per page size options', () => {
+    const { getByTestSubject } = render(
+      <EuiTablePagination
+        {...requiredProps}
+        {...paginationProps}
+        itemsPerPageOptions={[1, 2, 3]}
+      />
+    );
+
+    fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+    expect(getByTestSubject('tablePagination-1-rows')).toBeTruthy();
+    expect(getByTestSubject('tablePagination-2-rows')).toBeTruthy();
+    expect(getByTestSubject('tablePagination-3-rows')).toBeTruthy();
+  });
+
+  it('hides the per page options', () => {
+    const { queryByTestSubject } = render(
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
@@ -35,11 +67,11 @@ describe('EuiTablePagination', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(queryByTestSubject('tablePaginationPopoverButton')).toBe(null);
   });
 
-  test('renders a "show all" itemsPerPage option', () => {
-    const component = render(
+  it('renders a "show all" itemsPerPage option', () => {
+    const { getByText, getByTestSubject } = render(
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
@@ -48,6 +80,56 @@ describe('EuiTablePagination', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(getByText('Showing all rows')).toBeTruthy();
+    fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+    expect(getByText('Show all rows')).toBeTruthy();
+  });
+
+  describe('configurable defaults', () => {
+    test('itemsPerPage', () => {
+      const { getByText } = render(
+        <EuiProvider
+          componentDefaults={{ EuiTablePagination: { itemsPerPage: 20 } }}
+        >
+          <EuiTablePagination {...paginationProps} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      expect(getByText('Rows per page: 20')).toBeTruthy();
+    });
+
+    test('itemsPerPageOptions', () => {
+      const { getByTestSubject } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiTablePagination: { itemsPerPageOptions: [5, 10, 15] },
+          }}
+        >
+          <EuiTablePagination {...paginationProps} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      expect(getByTestSubject('tablePaginationRowOptions').textContent).toEqual(
+        '5 rows10 rows15 rows'
+      );
+    });
+
+    test('showPerPageOptions', () => {
+      const { queryByTestSubject } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiTablePagination: { showPerPageOptions: false },
+          }}
+        >
+          <EuiTablePagination {...paginationProps} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      expect(queryByTestSubject('tablePaginationPopoverButton')).toBe(null);
+    });
   });
 });

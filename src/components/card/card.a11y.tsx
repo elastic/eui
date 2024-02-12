@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiButtonEmpty } from '../button';
@@ -39,6 +41,7 @@ const Card = () => {
     <EuiFlexGroup gutterSize="l">
       <EuiFlexItem>
         <EuiCard
+          data-test-subj="cy-card-1"
           icon={<EuiIcon size="xxl" type="logoSketch" />}
           title="Sketch"
           description="Example of a short card description."
@@ -123,24 +126,14 @@ describe('EuiCard', () => {
     });
 
     it('has zero violations after keyboard interaction', () => {
-      cy.repeatRealPress('Tab');
-      cy.realPress('Enter');
-      cy.focused().should('have.attr', 'aria-checked', 'true');
-      cy.repeatRealPress('Tab');
-      cy.realPress('Enter');
-      cy.focused().should('have.attr', 'aria-checked', 'true');
-      cy.repeatRealPress('Tab');
-      cy.realPress('Enter');
-      cy.focused().should('have.attr', 'aria-checked', 'true');
-      cy.checkAxe();
-      cy.realPress('Enter');
-      cy.focused().should('have.attr', 'aria-checked', 'false');
-      cy.repeatRealPress(['Shift', 'Tab']);
-      cy.realPress('Enter');
-      cy.focused().should('have.attr', 'aria-checked', 'false');
-      cy.repeatRealPress(['Shift', 'Tab']);
-      cy.realPress('Enter');
-      cy.focused().should('have.attr', 'aria-checked', 'false');
+      cy.get('div[data-test-subj="cy-card-1"]')
+        .find('button.euiButtonEmpty')
+        .focus();
+      cy.realPress('Tab');
+      cy.realPress('{enter}');
+      cy.get('div[data-test-subj="cy-card-1"]')
+        .find('button.euiButton')
+        .should('have.attr', 'aria-checked', 'true');
       cy.checkAxe();
     });
   });

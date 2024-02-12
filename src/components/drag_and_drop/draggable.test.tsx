@@ -7,84 +7,90 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render } from 'enzyme';
-import { resetServerContext } from 'react-beautiful-dnd';
-import { requiredProps } from '../../test/required_props';
-import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
+import {
+  shouldRenderCustomStyles,
+  describeByReactVersion,
+} from '../../test/internal';
 
-function takeSnapshot(element: HTMLElement) {
-  const snapshot = render(
-    <div dangerouslySetInnerHTML={{ __html: element.innerHTML }} />
+import { EuiDragDropContext, EuiDroppable } from './';
+import { EuiDraggable } from './draggable';
+
+describeByReactVersion('EuiDraggable', () => {
+  const TestContextWrapper = ({ children }: { children: any }) => (
+    <EuiDragDropContext onDragEnd={() => {}}>
+      <EuiDroppable droppableId="testDroppable">{children}</EuiDroppable>
+    </EuiDragDropContext>
   );
-  expect(snapshot).toMatchSnapshot();
-}
 
-describe('EuiDraggable', () => {
-  let appDiv: HTMLElement;
+  shouldRenderCustomStyles(
+    <EuiDraggable draggableId="testDraggable" index={0}>
+      {() => <div>Hello</div>}
+    </EuiDraggable>,
+    { wrapper: TestContextWrapper }
+  );
 
-  beforeEach(() => {
-    resetServerContext(); // resets react-beautiful-dnd's internal instance counter which affects snapshots
-    appDiv = document.createElement('div');
-    document.body.appendChild(appDiv);
-  });
-
-  afterEach(() => {
-    ReactDOM.unmountComponentAtNode(appDiv);
-    document.body.removeChild(appDiv);
-  });
-
-  test('is rendered', () => {
-    const handler = jest.fn();
-
-    ReactDOM.render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable draggableId="testDraggable" index={0}>
-            {() => <div>Hello</div>}
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>,
-      appDiv
+  it('renders', () => {
+    const { container } = render(
+      <TestContextWrapper>
+        <EuiDraggable draggableId="testDraggable" index={0} {...requiredProps}>
+          {() => <div>Hello</div>}
+        </EuiDraggable>
+      </TestContextWrapper>
     );
 
-    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('can be given ReactElement children', () => {
-    const handler = jest.fn();
-
-    ReactDOM.render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable draggableId="testDraggable" index={0}>
-            <div>Hello</div>
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>,
-      appDiv
+  it('renders with render prop children', () => {
+    const { getByTestSubject } = render(
+      <TestContextWrapper>
+        <EuiDraggable draggableId="testDraggable" index={0}>
+          {() => <div>Hello</div>}
+        </EuiDraggable>
+      </TestContextWrapper>
     );
 
-    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+    expect(getByTestSubject('draggable')).toHaveTextContent('Hello');
   });
 
-  test('hasInteractiveChildren renders with role="group" and no tabIndex', () => {
-    const handler = jest.fn();
-    ReactDOM.render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable
-            hasInteractiveChildren={true}
-            draggableId="testDraggable"
-            index={0}
-          >
-            <div>Hello</div>
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>,
-      appDiv
+  it('renders with react element children', () => {
+    const { getByTestSubject } = render(
+      <TestContextWrapper>
+        <EuiDraggable draggableId="testDraggable" index={0}>
+          <div>Hello</div>
+        </EuiDraggable>
+      </TestContextWrapper>
     );
 
-    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+    expect(getByTestSubject('draggable')).toHaveTextContent('Hello');
+  });
+
+  it('should render with role="group" and no tabIndex when hasInteractiveChildren is true', () => {
+    const Test = ({
+      hasInteractiveChildren,
+    }: {
+      hasInteractiveChildren: boolean;
+    }) => (
+      <TestContextWrapper>
+        <EuiDraggable
+          hasInteractiveChildren={hasInteractiveChildren}
+          draggableId="testDraggable"
+          index={0}
+        >
+          <div>Hello</div>
+        </EuiDraggable>
+      </TestContextWrapper>
+    );
+
+    const { queryByRole, rerender } = render(
+      <Test hasInteractiveChildren={false} />
+    );
+    expect(queryByRole('group')).toBeNull();
+
+    rerender(<Test hasInteractiveChildren={true} />);
+    expect(queryByRole('group')).toBeVisible();
+    expect(queryByRole('group')).not.toHaveAttribute('tabindex', 0);
   });
 });

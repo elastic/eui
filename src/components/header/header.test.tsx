@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiHeader } from './header';
+import { euiFixedHeadersCount, EuiFixedHeader, EuiHeader } from './header';
 
 describe('EuiHeader', () => {
   shouldRenderCustomStyles(<EuiHeader />);
@@ -19,50 +19,49 @@ describe('EuiHeader', () => {
     <EuiHeader sections={[{ breadcrumbs: [{ text: 'test' }] }]} />,
     {
       childProps: ['sections[0].breadcrumbProps'],
-      skipParentTest: true,
+      skip: { parentTest: true },
     }
   );
 
-  test('is rendered', () => {
-    const component = render(<EuiHeader {...requiredProps} />);
+  it('renders', () => {
+    const { container } = render(<EuiHeader {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders children', () => {
-    const component = render(
+  it('renders children', () => {
+    const { container } = render(
       <EuiHeader>
         <span>Hello!</span>
       </EuiHeader>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders in fixed position', () => {
-    const component = render(
+  it('renders in fixed position', () => {
+    const { container } = render(
       <EuiHeader position="fixed">
         <span>Hello!</span>
       </EuiHeader>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders dark theme', () => {
-    const component = render(<EuiHeader theme="dark" />);
+  it('renders dark theme', () => {
+    const { container } = render(<EuiHeader theme="dark" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('sections', () => {
-    test('render simple items and borders', () => {
-      const component = render(
+    it('render simple items', () => {
+      const { container } = render(
         <EuiHeader
           sections={[
             {
               items: ['Item 1', 'Item 2'],
-              borders: 'right',
             },
             {
               items: ['Item A', 'Item B'],
@@ -71,11 +70,11 @@ describe('EuiHeader', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('render breadcrumbs and props', () => {
-      const component = render(
+    it('render breadcrumbs and props', () => {
+      const { container } = render(
         <EuiHeader
           sections={[
             {
@@ -86,7 +85,7 @@ describe('EuiHeader', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -106,7 +105,7 @@ describe('EuiHeader', () => {
     });
 
     test('if both children and sections were passed', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeader
           sections={[
             {
@@ -122,7 +121,49 @@ describe('EuiHeader', () => {
       expect(consoleStub.mock.calls[0][0]).toMatch(
         'cannot accept both `children` and `sections`'
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
+  });
+});
+
+describe('EuiFixedHeader', () => {
+  describe('on mount/unmount', () => {
+    it('updates the fixed headers count and body className', () => {
+      const { unmount } = render(
+        <>
+          <EuiFixedHeader />
+          <EuiFixedHeader />
+          <EuiFixedHeader />
+        </>
+      );
+      expect(euiFixedHeadersCount).toEqual(3);
+      // TODO: we're not yet on a jsdom version that supports inspecting :root
+      expect(document.body.className).toContain('euiBody--headerIsFixed');
+
+      unmount();
+      expect(euiFixedHeadersCount).toEqual(0);
+      // TODO: we're not yet on a jsdom version that supports inspecting :root
+      expect(document.body.className).not.toContain('euiBody--headerIsFixed');
+    });
+  });
+
+  it('sets the inline position styles of headers', () => {
+    const { getByTestSubject } = render(
+      <>
+        <EuiFixedHeader data-test-subj="first" />
+        <EuiFixedHeader data-test-subj="second" />
+        <EuiFixedHeader data-test-subj="last" />
+      </>
+    );
+    expect(getByTestSubject('first')).toHaveStyle('inset-block-start: 0px');
+    expect(getByTestSubject('second')).toHaveStyle('inset-block-start: 48px');
+    expect(getByTestSubject('last')).toHaveStyle('inset-block-start: 96px');
+  });
+
+  it('allows consumers to override inline styles as needed', () => {
+    const { container } = render(
+      <EuiFixedHeader style={{ insetBlockStart: '20px' }} />
+    );
+    expect(container.firstElementChild).toHaveStyle('inset-block-start: 20px');
   });
 });

@@ -10,7 +10,11 @@ import React, { HTMLAttributes, forwardRef, useMemo } from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { RefractorNode } from 'refractor';
 import { logicalStyles } from '../../global_styling';
-import { EuiAutoSizer } from '../auto_sizer';
+import {
+  EuiAutoSizer,
+  EuiAutoSize,
+  EuiAutoSizeHorizontal,
+} from '../auto_sizer';
 import { nodeToHtml } from './utils';
 
 export const EuiCodeBlockVirtualized = ({
@@ -47,18 +51,30 @@ export const EuiCodeBlockVirtualized = ({
     [codeProps]
   );
 
-  return (
-    <EuiAutoSizer disableHeight={typeof overflowHeight === 'number'}>
-      {({ height, width }) => (
+  const virtualizationProps = {
+    itemData: data,
+    itemSize: rowHeight,
+    itemCount: data.length,
+    outerElementType: VirtualizedOuterElement,
+    innerElementType: VirtualizedInnerElement,
+  };
+
+  return typeof overflowHeight === 'number' ? (
+    <EuiAutoSizer disableHeight={true}>
+      {({ width }: EuiAutoSizeHorizontal) => (
         <FixedSizeList
-          height={height ?? overflowHeight}
+          height={overflowHeight}
           width={width}
-          itemData={data}
-          itemSize={rowHeight}
-          itemCount={data.length}
-          outerElementType={VirtualizedOuterElement}
-          innerElementType={VirtualizedInnerElement}
+          {...virtualizationProps}
         >
+          {ListRow}
+        </FixedSizeList>
+      )}
+    </EuiAutoSizer>
+  ) : (
+    <EuiAutoSizer>
+      {({ height, width }: EuiAutoSize) => (
+        <FixedSizeList height={height} width={width} {...virtualizationProps}>
           {ListRow}
         </FixedSizeList>
       )}

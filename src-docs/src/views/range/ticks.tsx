@@ -8,13 +8,13 @@ import {
   EuiDualRange,
   EuiDualRangeProps,
   useGeneratedHtmlId,
+  useIsWithinBreakpoints,
 } from '../../../../src';
 
 export default () => {
   const [value, setValue] = useState<EuiRangeProps['value']>('20');
   const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
-    20,
-    100,
+    20, 100,
   ]);
   const [noLinearValue, setNoLinearValue] = useState('28');
 
@@ -39,7 +39,7 @@ export default () => {
     prefix: 'dualRangeLongLabels',
   });
 
-  const rangeNoLinearId = useGeneratedHtmlId({ prefix: 'rangeNoLinaerId' });
+  const rangeNoLinearId = useGeneratedHtmlId({ prefix: 'rangeNoLinear' });
 
   return (
     <>
@@ -57,7 +57,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiTitle size="xxs">
-        <h3>Custom tick interval</h3>
+        <h3>Custom responsive tick interval</h3>
       </EuiTitle>
 
       <EuiSpacer size="l" />
@@ -71,8 +71,8 @@ export default () => {
         showInput
         showRange
         showTicks
-        tickInterval={20}
-        aria-label="An example of EuiRange with custom tickInterval"
+        tickInterval={useIsWithinBreakpoints(['xs', 's']) ? 25 : 20}
+        aria-label="An example of EuiRange with a custom & responsive tickInterval"
       />
 
       <EuiSpacer size="xl" />

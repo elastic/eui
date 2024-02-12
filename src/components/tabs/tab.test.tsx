@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTab } from './tab';
 
@@ -19,12 +20,12 @@ describe('EuiTab', () => {
   describe('props', () => {
     describe('onClick', () => {
       test('renders button', () => {
-        const component = (
+        const { container } = render(
           <EuiTab onClick={() => {}} {...requiredProps}>
             children
           </EuiTab>
         );
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is called when the button is clicked', () => {
@@ -37,55 +38,55 @@ describe('EuiTab', () => {
     });
 
     test('href renders anchor', () => {
-      const component = (
+      const { container } = render(
         <EuiTab href="/baz/bing" {...requiredProps}>
           children
         </EuiTab>
       );
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('disabled is rendered', () => {
-      const component = render(<EuiTab disabled>Click Me</EuiTab>);
+      const { container } = render(<EuiTab disabled>Click Me</EuiTab>);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isSelected is rendered', () => {
-      const component = (
+      const { container } = render(
         <EuiTab onClick={() => {}} isSelected>
           children
         </EuiTab>
       );
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('disabled and selected', () => {
-      const component = render(
+      const { container } = render(
         <EuiTab disabled isSelected>
           Click Me
         </EuiTab>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('prepend is rendered', () => {
-      const component = (
+      const { container } = render(
         <EuiTab onClick={() => {}} prepend="Prepend">
           children
         </EuiTab>
       );
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('append is rendered', () => {
-      const component = (
+      const { container } = render(
         <EuiTab onClick={() => {}} prepend="Append">
           children
         </EuiTab>
       );
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

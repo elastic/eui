@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -16,18 +16,18 @@ import { TITLE_SIZES } from '../title/title';
 
 describe('EuiStat', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiStat title="title" description="description" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiStat title="title" description="description" />);
 
   describe('props', () => {
     test('loading is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiStat
           title="title"
           description="description"
@@ -36,20 +36,20 @@ describe('EuiStat', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('title and description are reversed', () => {
-      const component = render(
+      const { container } = render(
         <EuiStat title="title" description="description" reverse />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     ALIGNMENTS.forEach((alignment) => {
       test(`${alignment} is rendered`, () => {
-        const component = render(
+        const { container } = render(
           <EuiStat
             title="title"
             description="description"
@@ -57,30 +57,30 @@ describe('EuiStat', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     COLORS.forEach((color) => {
       test(`${color} is rendered`, () => {
-        const component = render(
+        const { container } = render(
           <EuiStat title="title" description="description" titleColor={color} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('hexcode colors are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiStat title="title" description="description" titleColor="#EB1919" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('render with custom description element', () => {
-      const component = render(
+      const { container } = render(
         <EuiStat
           title="title"
           description={<div>description</div>}
@@ -89,11 +89,11 @@ describe('EuiStat', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('render with custom title element', () => {
-      const component = render(
+      const { container } = render(
         <EuiStat
           title={<div>title</div>}
           titleElement="div"
@@ -101,16 +101,16 @@ describe('EuiStat', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     TITLE_SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
-        const component = render(
+        const { container } = render(
           <EuiStat title="title" description="description" titleSize={size} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

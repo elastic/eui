@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconFramePrevious = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -30,10 +30,9 @@ const EuiIconFramePrevious = ({
   >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
-      d="M13 2a1 1 0 011 1v10a1 1 0 11-2 0V3a1 1 0 011-1zm-5.146.22l-7.2 4.581a1.425 1.425 0 000 2.398l7.2 4.581c.936.595 2.146-.088 2.146-1.199V3.42c0-1.111-1.21-1.794-2.146-1.199z"
+      d="M13 2a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm-5.146.22-7.2 4.581a1.425 1.425 0 0 0 0 2.398l7.2 4.581c.936.595 2.146-.088 2.146-1.199V3.42c0-1.111-1.21-1.794-2.146-1.199z"
       clipRule="evenodd"
     />
   </svg>
 );
-
 export const icon = EuiIconFramePrevious;

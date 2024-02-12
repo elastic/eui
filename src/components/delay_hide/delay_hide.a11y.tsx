@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiDelayHide } from './delay_hide';
@@ -18,14 +20,6 @@ const DelayHide = () => {
   const [minimumDuration, setDuration] = useState(1000);
   const [hide, setHide] = useState(false);
 
-  const onChangeMinimumDuration = (event) => {
-    setDuration(parseInt(event.target.value, 10));
-  };
-
-  const onChangeHide = (event) => {
-    setHide(event.target.checked);
-  };
-
   return (
     <>
       <EuiFlexItem>
@@ -33,14 +27,14 @@ const DelayHide = () => {
           <EuiCheckbox
             id="dummy-id"
             checked={hide}
-            onChange={onChangeHide}
+            onChange={(event) => setHide(event.target.checked)}
             label="Hide child"
           />
         </EuiFormRow>
         <EuiFormRow label="Minimum duration">
           <EuiFieldNumber
             value={minimumDuration}
-            onChange={onChangeMinimumDuration}
+            onChange={(event) => setDuration(parseInt(event.target.value, 10))}
           />
         </EuiFormRow>
 

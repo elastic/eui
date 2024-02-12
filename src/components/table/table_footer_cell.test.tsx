@@ -7,13 +7,22 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableFooterCell } from './table_footer_cell';
 
-import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
+import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services';
 import { WARNING_MESSAGE } from './utils';
+
+const renderInTableFooter = (cell: React.ReactElement) =>
+  render(
+    <table>
+      <tfoot>
+        <tr>{cell}</tr>
+      </tfoot>
+    </table>
+  );
 
 describe('EuiTableFooterCell', () => {
   const _consoleWarn = console.warn;
@@ -29,66 +38,70 @@ describe('EuiTableFooterCell', () => {
   });
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = renderInTableFooter(
       <EuiTableFooterCell {...requiredProps}>children</EuiTableFooterCell>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('align', () => {
     test('defaults to left', () => {
-      const component = <EuiTableFooterCell />;
+      const { container } = renderInTableFooter(<EuiTableFooterCell />);
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders right when specified', () => {
-      const component = <EuiTableFooterCell align={RIGHT_ALIGNMENT} />;
+      const { container } = renderInTableFooter(
+        <EuiTableFooterCell align={RIGHT_ALIGNMENT} />
+      );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders center when specified', () => {
-      const component = <EuiTableFooterCell align={CENTER_ALIGNMENT} />;
+      const { container } = renderInTableFooter(
+        <EuiTableFooterCell align={CENTER_ALIGNMENT} />
+      );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('width and style', () => {
     test('accepts style attribute', () => {
-      const component = (
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell style={{ width: '20%' }}>Test</EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts width attribute', () => {
-      const component = (
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell width="10%">Test</EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts width attribute as number', () => {
-      const component = (
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('resolves style and width attribute', () => {
-      const component = (
+      const { container } = renderInTableFooter(
         <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
           Test
         </EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

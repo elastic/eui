@@ -1,5 +1,8 @@
-import React from 'react';
-import { EuiDataGrid } from '../../../../../src/components';
+import React, { FunctionComponent } from 'react';
+import {
+  EuiDataGrid,
+  EuiDataGridPaginationProps as _EuiDataGridPaginationProps,
+} from '../../../../../src/components';
 
 import { DataGridPropsTable } from '../_props_table';
 import { gridSnippets } from '../_snippets';
@@ -19,6 +22,8 @@ const gridLinks = {
   schemaDetectors: '/tabular-content/data-grid-schema-columns#schemas',
   toolbarVisibility: '/tabular-content/data-grid-toolbar#toolbar-visibility',
   ref: '/tabular-content/data-grid-advanced#ref-methods',
+  renderCustomGridBody:
+    '/tabular-content/data-grid-advanced#custom-body-renderer',
 };
 
 export const DataGridTopProps = () => {
@@ -27,6 +32,7 @@ export const DataGridTopProps = () => {
       component={EuiDataGrid}
       exclude={[
         'className',
+        'css',
         'data-test-subj',
         'aria-label',
         'width',
@@ -38,3 +44,8 @@ export const DataGridTopProps = () => {
     />
   );
 };
+
+// Loading `EuiDataGridPaginationProps` via !prop-loader doesn't correctly inherit @defaults
+export const EuiDataGridPaginationProps: FunctionComponent<
+  _EuiDataGridPaginationProps
+> = () => <div />;

@@ -60,7 +60,7 @@ export const WindowEventExample = {
           <EuiCallOut
             title="Be careful with global listeners"
             color="warning"
-            iconType="alert"
+            iconType="warning"
           >
             <p>
               Since window event listeners are global, they can conflict with

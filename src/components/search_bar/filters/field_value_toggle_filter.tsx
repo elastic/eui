@@ -29,9 +29,7 @@ export interface FieldValueToggleFilterProps {
   onChange: (value: Query) => void;
 }
 
-export class FieldValueToggleFilter extends Component<
-  FieldValueToggleFilterProps
-> {
+export class FieldValueToggleFilter extends Component<FieldValueToggleFilterProps> {
   resolveDisplay(clause: Clause | undefined) {
     const { name, negatedName } = this.props.config;
     if (isNil(clause)) {

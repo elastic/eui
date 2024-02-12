@@ -7,17 +7,8 @@ exports[`EuiSelectableSearch is rendered 1`] = `
   <div
     class="euiFormControlLayout__childrenWrapper"
   >
-    <input
-      aria-haspopup="listbox"
-      aria-label="aria-label"
-      autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
-      data-test-subj="test subject string"
-      type="search"
-      value=""
-    />
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -29,6 +20,15 @@ exports[`EuiSelectableSearch is rendered 1`] = `
         />
       </span>
     </div>
+    <input
+      aria-haspopup="listbox"
+      aria-label="aria-label"
+      autocomplete="off"
+      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+      data-test-subj="test subject string"
+      type="search"
+      value=""
+    />
   </div>
 </div>
 `;
@@ -40,22 +40,8 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
   <div
     class="euiFormControlLayout__childrenWrapper"
   >
-    <input
-      aria-autocomplete="list"
-      aria-controls="list"
-      aria-expanded="true"
-      aria-haspopup="listbox"
-      aria-label="aria-label"
-      aria-owns="list"
-      autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
-      data-test-subj="test subject string"
-      role="combobox"
-      type="search"
-      value=""
-    />
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -67,6 +53,20 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
         />
       </span>
     </div>
+    <input
+      aria-autocomplete="list"
+      aria-controls="list"
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-label="aria-label"
+      aria-owns="list"
+      autocomplete="off"
+      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+      data-test-subj="test subject string"
+      role="combobox"
+      type="search"
+      value=""
+    />
   </div>
 </div>
 `;
@@ -78,20 +78,8 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
   <div
     class="euiFormControlLayout__childrenWrapper"
   >
-    <input
-      aria-haspopup="listbox"
-      aria-label="aria-label"
-      autocomplete="off"
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch testClass"
-      data-test-subj="test subject string"
-      id="testId"
-      name="testName"
-      placeholder="start typing"
-      type="search"
-      value="typed"
-    />
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -103,8 +91,20 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
         />
       </span>
     </div>
+    <input
+      aria-haspopup="listbox"
+      aria-label="aria-label"
+      autocomplete="off"
+      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch testClass emotion-euiTestCss"
+      data-test-subj="test subject string"
+      id="testId"
+      name="testName"
+      placeholder="start typing"
+      type="search"
+      value="typed"
+    />
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <button
         aria-label="Clear input"

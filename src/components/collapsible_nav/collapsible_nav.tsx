@@ -15,15 +15,17 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import {
+  useEuiTheme,
   useGeneratedHtmlId,
   useIsWithinMinBreakpoint,
   useCombinedRefs,
 } from '../../services';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import { euiCollapsibleNavStyles } from './collapsible_nav.styles';
 
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<
-  EuiFlyoutProps,
+  EuiFlyoutProps<'nav' | 'div'>,
   'type' | 'pushBreakpoint'
 > & {
   /**
@@ -62,7 +64,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   showButtonIfDocked = false,
   dockedBreakpoint = 'l',
   // Setting different EuiFlyout defaults
-  as = 'nav' as EuiCollapsibleNavProps['as'],
+  as = 'nav',
   size = 320,
   side = 'left',
   ownFocus = true,
@@ -85,8 +87,12 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(dockedBreakpoint);
   const navIsDocked = isDocked && windowIsLargeEnoughToPush;
+  const flyoutType = navIsDocked ? 'push' : 'overlay';
 
   const classes = classNames('euiCollapsibleNav', className);
+  const euiTheme = useEuiTheme();
+  const styles = euiCollapsibleNavStyles(euiTheme);
+  const cssStyles = [styles.euiCollapsibleNav, styles[flyoutType]];
 
   // Show a trigger button if one was passed but
   // not if navIsDocked and showButtonIfDocked is false
@@ -111,6 +117,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   const flyout = (
     <EuiFlyout
       id={flyoutID}
+      css={cssStyles}
       className={classes}
       // Flyout props we set different defaults for
       as={as}
@@ -123,7 +130,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       focusTrapProps={focusTrapProps}
       {...rest}
       // Props dependent on internal docked status
-      type={navIsDocked ? 'push' : 'overlay'}
+      type={flyoutType}
       hideCloseButton={navIsDocked}
       pushMinBreakpoint={dockedBreakpoint}
     >

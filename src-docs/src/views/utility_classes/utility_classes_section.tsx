@@ -8,10 +8,9 @@ type UtilityClassesSection = ThemeExample & {
   code: string;
 };
 
-export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = ({
-  code,
-  ...rest
-}) => {
+export const UtilityClassesSection: FunctionComponent<
+  UtilityClassesSection
+> = ({ code, ...rest }) => {
   return (
     <ThemeExample
       title={

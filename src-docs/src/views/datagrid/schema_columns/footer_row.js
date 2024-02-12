@@ -3,6 +3,8 @@ import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
+  EuiCheckbox,
+  EuiButtonIcon,
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
@@ -12,9 +14,9 @@ const raw_data = [];
 
 for (let i = 1; i < 20; i++) {
   raw_data.push({
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     date: `${faker.date.past()}`,
-    amount: faker.commerce.price(),
+    amount: `$${faker.commerce.price()}`,
     phone: faker.phone.number(),
     version: faker.system.semver(),
   });
@@ -25,8 +27,7 @@ const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
     if (columnId === 'amount') {
       if (raw_data.hasOwnProperty(rowIndex)) {
         const numeric = parseFloat(
-          raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
-          10
+          raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0]
         );
         setCellProps({
           style: {
@@ -65,6 +66,47 @@ const columns = [
   },
 ];
 
+const leadingControlColumns = [
+  {
+    id: 'selection',
+    width: 32,
+    // Check state doesn't actually work - this is just a static example
+    headerCellRender: () => (
+      <EuiCheckbox
+        id="selectAllHeader"
+        aria-label="Select all rows"
+        onChange={() => {}}
+      />
+    ),
+    rowCellRender: ({ rowIndex }) => (
+      <EuiCheckbox
+        id={`selectRow${rowIndex}`}
+        aria-label="Select this row"
+        onChange={() => {}}
+      />
+    ),
+    footerCellRender: () => (
+      <EuiCheckbox
+        id="selectAllFooter"
+        aria-label="Select all rows"
+        onChange={() => {}}
+      />
+    ),
+  },
+];
+const trailingControlColumns = [
+  {
+    id: 'actions',
+    width: 36,
+    headerCellRender: () => (
+      <span className="euiScreenReaderOnly">Actions</span>
+    ),
+    rowCellRender: () => (
+      <EuiButtonIcon aria-label="Show actions" iconType="boxesHorizontal" />
+    ),
+  },
+];
+
 const footerCellValues = {
   amount: `Total: ${raw_data
     .reduce((acc, { amount }) => acc + Number(amount.split('$')[1]), 0)
@@ -87,7 +129,7 @@ const RenderFooterCellValue = ({ columnId, setCellProps }) => {
 
 export default () => {
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -125,6 +167,8 @@ export default () => {
           aria-label="Data grid footer row demo"
           columns={columns}
           columnVisibility={{ visibleColumns, setVisibleColumns }}
+          leadingControlColumns={leadingControlColumns}
+          trailingControlColumns={trailingControlColumns}
           rowCount={raw_data.length}
           renderCellValue={RenderCellValue}
           renderFooterCellValue={
@@ -132,7 +176,6 @@ export default () => {
           }
           pagination={{
             ...pagination,
-            pageSizeOptions: [10, 15, 20],
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}

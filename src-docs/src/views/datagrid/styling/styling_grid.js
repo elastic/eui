@@ -32,14 +32,14 @@ for (let i = 1; i < 6; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        name={`${faker.name.lastName()}, ${faker.name.firstName()}`}
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
       />
     ),
-    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
-    city: faker.address.city(),
-    country: faker.address.country(),
-    account: faker.finance.account(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 
@@ -59,27 +59,22 @@ const DataGridStyle = ({
   header = 'underline',
   footer = 'overline',
 }) => {
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 5,
-  });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
-  const setPageIndex = useCallback(
-    (pageIndex) => {
-      setPagination({ ...pagination, pageIndex });
-    },
-    [pagination, setPagination]
-  );
+  const setPageIndex = useCallback((pageIndex) => {
+    setPagination((pagination) => ({ ...pagination, pageIndex }));
+  }, []);
 
-  const setPageSize = useCallback(
-    (pageSize) => {
-      setPagination({ ...pagination, pageSize, pageIndex: 0 });
-    },
-    [pagination, setPagination]
-  );
+  const setPageSize = useCallback((pageSize) => {
+    setPagination((pagination) => ({
+      ...pagination,
+      pageSize,
+      pageIndex: 0,
+    }));
+  }, []);
 
   const handleVisibleColumns = (visibleColumns) =>
     setVisibleColumns(visibleColumns);
@@ -113,7 +108,6 @@ const DataGridStyle = ({
       renderFooterCellValue={renderFooterCellValue}
       pagination={{
         ...pagination,
-        pageSizeOptions: [5, 10, 25],
         onChangeItemsPerPage: setPageSize,
         onChangePage: setPageIndex,
       }}

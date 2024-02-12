@@ -402,6 +402,13 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           {humanizedName} <EuiTextColor color="danger">(required)</EuiTextColor>
         </>
       );
+    } else if (state[name].description?.includes('@deprecated')) {
+      humanizedName = (
+        <>
+          <s>{humanizedName}</s>{' '}
+          <EuiTextColor color="subdued">(deprecated)</EuiTextColor>
+        </>
+      );
     }
 
     /**

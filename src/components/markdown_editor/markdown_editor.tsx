@@ -259,10 +259,10 @@ export const EuiMarkdownEditor = forwardRef<
     const isPreviewing = viewMode === MODE_VIEWING;
     const isEditing = viewMode === MODE_EDITING;
 
-    const replaceNode = useCallback(
+    const replaceNode = useCallback<ContextShape['replaceNode']>(
       (position, next) => {
-        const leading = value.substr(0, position.start.offset);
-        const trailing = value.substr(position.end.offset);
+        const leading = value.substring(0, position.start.offset);
+        const trailing = value.substring(position.end.offset);
         onChange(`${leading}${next}${trailing}`);
       },
       [value, onChange]
@@ -377,27 +377,31 @@ export const EuiMarkdownEditor = forwardRef<
     }, [setEditorToolbarHeight]);
 
     useEffect(() => {
-      if (isPreviewing && autoExpandPreview && height !== 'full') {
-        if (previewRef.current!.scrollHeight > currentHeight) {
-          // scrollHeight does not include the border or margin
-          // so we ask for the computed value for those,
-          // which is always in pixels because getComputedValue
-          // returns the resolved values
-          const elementComputedStyle = window.getComputedStyle(
-            previewRef.current!
-          );
-          const borderWidth =
-            parseFloat(elementComputedStyle.borderTopWidth) +
-            parseFloat(elementComputedStyle.borderBottomWidth);
-          const marginWidth =
-            parseFloat(elementComputedStyle.marginTop) +
-            parseFloat(elementComputedStyle.marginBottom);
+      if (height === 'full' || currentHeight === 'full') return;
 
-          // then add an extra pixel for safety and because the scrollHeight value is rounded
-          const extraHeight = borderWidth + marginWidth + 1;
+      if (
+        isPreviewing &&
+        autoExpandPreview &&
+        previewRef.current!.scrollHeight > currentHeight
+      ) {
+        // scrollHeight does not include the border or margin
+        // so we ask for the computed value for those,
+        // which is always in pixels because getComputedValue
+        // returns the resolved values
+        const elementComputedStyle = window.getComputedStyle(
+          previewRef.current!
+        );
+        const borderWidth =
+          parseFloat(elementComputedStyle.borderTopWidth) +
+          parseFloat(elementComputedStyle.borderBottomWidth);
+        const marginWidth =
+          parseFloat(elementComputedStyle.marginTop) +
+          parseFloat(elementComputedStyle.marginBottom);
 
-          setCurrentHeight(previewRef.current!.scrollHeight + extraHeight);
-        }
+        // then add an extra pixel for safety and because the scrollHeight value is rounded
+        const extraHeight = borderWidth + marginWidth + 1;
+
+        setCurrentHeight(previewRef.current!.scrollHeight + extraHeight);
       }
     }, [currentHeight, isPreviewing, height, autoExpandPreview]);
 
@@ -463,8 +467,8 @@ export const EuiMarkdownEditor = forwardRef<
                   text = padWithNewlinesIfNeeded(textareaRef.current!, text);
                 }
 
-                const originalSelectionStart = textareaRef.current!
-                  .selectionStart;
+                const originalSelectionStart =
+                  textareaRef.current!.selectionStart;
                 const newSelectionPoint = originalSelectionStart + text.length;
 
                 insertText(textareaRef.current!, {

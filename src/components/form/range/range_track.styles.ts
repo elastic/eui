@@ -16,10 +16,10 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeTrack: css`
-      block-size: 100%; // Don't overflow euiRangeWrapper
+      block-size: 100%; /* Don't overflow euiRangeWrapper */
       flex-grow: 1;
-      position: relative; // for positioning ticks/levels
-      align-self: flex-start; // Adjust vertical alignment of input based on extras
+      position: relative; /* For positioning ticks/levels */
+      align-self: flex-start; /* Adjust vertical alignment of input based on extras */
 
       &::after {
         content: '';

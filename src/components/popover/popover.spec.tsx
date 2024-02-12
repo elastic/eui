@@ -6,20 +6,27 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { useState, FC, MouseEventHandler } from 'react';
 
 import { EuiButton, EuiConfirmModal } from '../../components';
-import { EuiPopover } from './popover';
+import { EuiPopover, EuiPopoverProps } from './popover';
 
-const PopoverToggle = ({ onClick }) => (
+const PopoverToggle: FC<{ onClick: MouseEventHandler<HTMLButtonElement> }> = ({
+  onClick,
+}) => (
   <EuiButton onClick={onClick} data-test-subj="togglePopover">
     Show popover
   </EuiButton>
 );
 
-const PopoverComponent = ({ children, ...rest }) => {
+const PopoverComponent: FC<Partial<EuiPopoverProps>> = ({
+  children,
+  ...rest
+}) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const closePopover = () => setIsPopoverOpen(false);
   const togglePopover = () =>
@@ -78,7 +85,7 @@ describe('EuiPopover', () => {
       it('focuses functions returning DOM Nodes', () => {
         cy.mount(
           <PopoverComponent
-            initialFocus={() => document.getElementById('test')}
+            initialFocus={() => document.getElementById('test')!}
           >
             <button id="test">Test</button>
           </PopoverComponent>
@@ -157,6 +164,46 @@ describe('EuiPopover', () => {
         cy.get('[data-test-subj="popoverPanel"]').should('not.exist');
         cy.focused().should('have.attr', 'data-test-subj', 'togglePopover'); // Popover toggle should be re-focused
       });
+    });
+  });
+
+  describe('repositionToCrossAxis', () => {
+    beforeEach(() => {
+      // Set a forced viewport with not enough room to render the popover vertically
+      cy.viewport(500, 50);
+    });
+
+    it('allows the popover to reposition to the cross/secondary axis if there is not enough room on the primary axis', () => {
+      cy.mount(
+        <PopoverComponent anchorPosition="downCenter">Test</PopoverComponent>
+      );
+      cy.get('[data-test-subj="togglePopover"]').click();
+
+      // Assert that the popover rendered horizontally and not vertically
+      cy.get('[data-popover-panel]')
+        .invoke('offset')
+        .then(({ top, left }) => {
+          expect(left).to.be.gt(top);
+        });
+    });
+
+    it('does not reposition to the cross axis if set to false', () => {
+      cy.mount(
+        <PopoverComponent
+          anchorPosition="downCenter"
+          repositionToCrossAxis={false}
+        >
+          Test
+        </PopoverComponent>
+      );
+      cy.get('[data-test-subj="togglePopover"]').click();
+
+      // Assert that the popover vertically and not horizontally
+      cy.get('[data-popover-panel]')
+        .invoke('offset')
+        .then(({ top, left }) => {
+          expect(top).to.be.gt(left);
+        });
     });
   });
 });

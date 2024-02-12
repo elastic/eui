@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EuiFormControlLayoutDelimited,
   EuiFormLabel,
+  EuiFieldNumber,
   EuiIcon,
 } from '../../../../src/components';
 
@@ -214,6 +215,50 @@ export default () => (
           placeholder="100"
           className="euiFieldNumber"
           readOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      isDisabled
+      prepend={<EuiFormLabel>Disabled</EuiFormLabel>}
+      startControl={
+        <input
+          type="number"
+          placeholder="0"
+          className="euiFieldNumber"
+          disabled
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <input
+          type="number"
+          placeholder="100"
+          className="euiFieldNumber"
+          disabled
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      isInvalid
+      prepend={<EuiFormLabel>Invalid</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          isInvalid
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          isInvalid
+          controlOnly
+          placeholder="100"
           aria-label="Use aria labels when no actual label is in use"
         />
       }

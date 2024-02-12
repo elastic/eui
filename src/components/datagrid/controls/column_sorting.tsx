@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-import classNames from 'classnames';
-import React, { Fragment, ReactNode, useEffect, useState } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { DropResult } from '@hello-pangea/dnd';
 import { EuiButtonEmpty } from '../../button';
 import {
   EuiDragDropContext,
@@ -20,6 +19,7 @@ import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
+import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
 import { getDetailsForSchema } from '../utils/data_grid_schema';
 import {
@@ -63,17 +63,6 @@ export const useDataGridColumnSorting = (
     'Sort fields'
   );
 
-  const sortingButtonTextActive = useEuiI18n(
-    'euiColumnSorting.buttonActive',
-    ({ numberOfSortedFields }) =>
-      `${numberOfSortedFields} field${
-        numberOfSortedFields === 1 ? '' : 's'
-      } sorted`,
-    {
-      numberOfSortedFields: sorting != null ? sorting.columns.length : 0,
-    }
-  );
-
   if (sorting == null) return null;
 
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -110,10 +99,6 @@ export const useDataGridColumnSorting = (
     }
   };
 
-  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-    'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
-  });
-
   const schemaDetails = (id: string | number) =>
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
@@ -143,47 +128,40 @@ export const useDataGridColumnSorting = (
       panelPaddingSize="s"
       hasDragDrop
       button={
-        <EuiButtonEmpty
-          size="xs"
+        <EuiDataGridToolbarControl
+          badgeContent={sorting.columns.length}
           iconType="sortable"
-          color="text"
-          className={controlBtnClasses}
           data-test-subj="dataGridColumnSortingButton"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {sorting.columns.length > 0
-            ? sortingButtonTextActive
-            : sortingButtonText}
-        </EuiButtonEmpty>
+          {sortingButtonText}
+        </EuiDataGridToolbarControl>
       }
     >
       {sorting.columns.length > 0 ? (
-        <div
-          role="region"
-          aria-live="assertive"
-          className="euiDataGrid__controlScroll"
-        >
-          <EuiDragDropContext onDragEnd={onDragEnd}>
-            <EuiDroppable droppableId="columnSorting">
-              <Fragment>
-                {sorting.columns.map(({ id, direction }, index) => {
-                  return (
-                    <EuiDataGridColumnSortingDraggable
-                      key={id}
-                      id={id}
-                      display={displayValues[id]}
-                      direction={direction}
-                      index={index}
-                      sorting={sorting}
-                      schema={schema}
-                      schemaDetectors={schemaDetectors}
-                    />
-                  );
-                })}
-              </Fragment>
-            </EuiDroppable>
-          </EuiDragDropContext>
-        </div>
+        <EuiDragDropContext onDragEnd={onDragEnd}>
+          <EuiDroppable
+            droppableId="columnSorting"
+            className="euiDataGrid__controlScroll"
+          >
+            <>
+              {sorting.columns.map(({ id, direction }, index) => {
+                return (
+                  <EuiDataGridColumnSortingDraggable
+                    key={id}
+                    id={id}
+                    display={displayValues[id]}
+                    direction={direction}
+                    index={index}
+                    sorting={sorting}
+                    schema={schema}
+                    schemaDetectors={schemaDetectors}
+                  />
+                );
+              })}
+            </>
+          </EuiDroppable>
+        </EuiDragDropContext>
       ) : (
         <EuiText size="s" color="subdued">
           <p role="alert">

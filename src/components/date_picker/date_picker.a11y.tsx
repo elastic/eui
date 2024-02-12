@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import moment from 'moment';
@@ -16,7 +18,7 @@ import { EuiFormRow } from '../form';
 const DatePicker = () => {
   const [startDate, setStartDate] = useState(moment());
 
-  const handleChange = (date) => {
+  const handleChange = (date: moment.Moment) => {
     setStartDate(date);
   };
 

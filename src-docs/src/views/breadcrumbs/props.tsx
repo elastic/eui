@@ -7,6 +7,6 @@ import {
 
 export const BreadcrumbProps: FunctionComponent<EuiBreadcrumb> = () => <div />;
 
-export const BreadcrumbResponsiveMaxCount: FunctionComponent<EuiBreadcrumbResponsiveMaxCount> = () => (
-  <div />
-);
+export const BreadcrumbResponsiveMaxCount: FunctionComponent<
+  EuiBreadcrumbResponsiveMaxCount
+> = () => <div />;

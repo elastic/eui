@@ -15,10 +15,10 @@ import { useEuiTheme } from '../../services';
 import { euiFacetGroupStyles } from './facet_group.styles';
 
 export const LAYOUTS = ['vertical', 'horizontal'] as const;
-export type EuiFacetGroupLayout = typeof LAYOUTS[number];
+export type EuiFacetGroupLayout = (typeof LAYOUTS)[number];
 
 export const GUTTER_SIZES = ['none', 's', 'm', 'l'] as const;
-export type EuiFacetGroupGutterSizes = typeof GUTTER_SIZES[number];
+export type EuiFacetGroupGutterSizes = (typeof GUTTER_SIZES)[number];
 
 export type EuiFacetGroupProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

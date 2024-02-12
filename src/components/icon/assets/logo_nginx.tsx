@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconLogoNginx = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
@@ -29,14 +29,13 @@ const EuiIconLogoNginx = ({
   >
     {title ? <title id={titleId}>{title}</title> : null}
     <g fill="none" fillRule="evenodd">
-      <path fill="#119639" d="M16 0l13.856 8v16L16 32 2.144 24V8z" />
+      <path fill="#119639" d="m16 0 13.856 8v16L16 32 2.144 24V8z" />
       <path
         fill="#FFF"
         fillRule="nonzero"
-        d="M11.17 13.512v8.376a1.607 1.607 0 11-3.215 0V9.632c0-1.432 1.731-2.149 2.744-1.136l9.51 9.512V9.632a1.607 1.607 0 013.215 0v12.256c0 1.432-1.731 2.149-2.744 1.136l-9.51-9.512z"
+        d="M11.17 13.512v8.376a1.607 1.607 0 1 1-3.215 0V9.632c0-1.432 1.731-2.149 2.744-1.136l9.51 9.512V9.632a1.607 1.607 0 0 1 3.215 0v12.256c0 1.432-1.731 2.149-2.744 1.136l-9.51-9.512Z"
       />
     </g>
   </svg>
 );
-
 export const icon = EuiIconLogoNginx;

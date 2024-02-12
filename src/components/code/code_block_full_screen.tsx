@@ -12,12 +12,14 @@ import React, {
   useState,
   useCallback,
   useMemo,
+  PropsWithChildren,
 } from 'react';
 import { keys, useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 import { euiCodeBlockStyles } from './code_block.styles';
 
 /**
@@ -87,12 +89,10 @@ export const useFullScreen = ({
 /**
  * Portalled full screen wrapper
  */
-export const EuiCodeBlockFullScreenWrapper: FunctionComponent = ({
-  children,
-}) => {
-  const euiThemeContext = useEuiTheme();
-
-  const styles = euiCodeBlockStyles(euiThemeContext);
+export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
+  PropsWithChildren
+> = ({ children }) => {
+  const styles = euiCodeBlockStyles(useEuiTheme(), useEuiCodeSyntaxVariables());
   const cssStyles = [
     styles.euiCodeBlock,
     styles.l, // Force fullscreen to use large font
@@ -101,7 +101,7 @@ export const EuiCodeBlockFullScreenWrapper: FunctionComponent = ({
 
   return (
     <EuiOverlayMask>
-      <EuiFocusTrap clickOutsideDisables={true}>
+      <EuiFocusTrap scrollLock preventScrollOnFocus clickOutsideDisables={true}>
         <div className="euiCodeBlockFullScreen" css={cssStyles}>
           {children}
         </div>

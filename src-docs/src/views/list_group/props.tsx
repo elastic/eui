@@ -5,10 +5,10 @@ import {
   EuiListGroupItemExtraActionProps,
 } from '../../../../src/components/list_group';
 
-export const EuiPinnableListGroupItem: FunctionComponent<EuiPinnableListGroupItemProps> = () => (
-  <div />
-);
+export const EuiPinnableListGroupItem: FunctionComponent<
+  EuiPinnableListGroupItemProps
+> = () => <div />;
 
-export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtraActionProps> = () => (
-  <div />
-);
+export const EuiListGroupItemExtraAction: FunctionComponent<
+  EuiListGroupItemExtraActionProps
+> = () => <div />;

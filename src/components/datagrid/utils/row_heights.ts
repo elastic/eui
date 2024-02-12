@@ -7,7 +7,6 @@
  */
 
 import {
-  CSSProperties,
   MutableRefObject,
   useCallback,
   useContext,
@@ -39,14 +38,9 @@ export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
 export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
-export class RowHeightUtils {
-  constructor(
-    private gridRef: MutableRefObject<ImperativeGridApi | null>,
-    private outerGridElementRef: MutableRefObject<HTMLDivElement | null>,
-    private gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>,
-    private rerenderGridBodyRef: MutableRefObject<(() => void) | null>
-  ) {}
+export type RowHeightUtilsType = RowHeightUtils | RowHeightVirtualizationUtils;
 
+export class RowHeightUtils {
   getRowHeightOption(
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
@@ -112,31 +106,21 @@ export class RowHeightUtils {
     };
   }
 
-  getStylesForCell = (
-    rowHeightsOptions: EuiDataGridRowHeightsOptions,
-    rowIndex: number
-  ): CSSProperties => {
-    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+  /**
+   * Height types
+   */
 
-    if (height === AUTO_HEIGHT) {
-      return {};
+  getHeightType = (option?: EuiDataGridRowHeightOption) => {
+    if (option == null) {
+      return 'default';
     }
-
-    const lineCount = this.getLineCount(height);
-    if (lineCount) {
-      return {
-        WebkitLineClamp: lineCount,
-        display: '-webkit-box',
-        WebkitBoxOrient: 'vertical',
-        height: '100%',
-        overflow: 'hidden',
-      };
+    if (option === AUTO_HEIGHT) {
+      return 'auto';
     }
-
-    return {
-      height: '100%',
-      overflow: 'hidden',
-    };
+    if (this.getLineCount(option) != null) {
+      return 'lineCount';
+    }
+    return 'numerical';
   };
 
   /**
@@ -165,10 +149,6 @@ export class RowHeightUtils {
    * Auto height utils
    */
 
-  private heightsCache = new Map<number, Map<string, number>>();
-  private timerId?: number;
-  private lastUpdatedRow: number = Infinity;
-
   isAutoHeight(
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
@@ -180,6 +160,13 @@ export class RowHeightUtils {
     }
     return false;
   }
+
+  /**
+   * Heights cache utils
+   * This cache is primarily used by auto heights & secondarily used by lineCount row overrides
+   */
+
+  private heightsCache = new Map<number, Map<string, number>>();
 
   getRowHeight(rowIndex: number) {
     const rowHeights = this.heightsCache.get(rowIndex);
@@ -195,25 +182,19 @@ export class RowHeightUtils {
     rowIndex: number,
     colId: string,
     height: number = DEFAULT_ROW_HEIGHT,
-    visibleRowIndex: number
+    _visibleRowIndex: number // Used by virtualization utils - mostly just here for typing
   ) {
     const rowHeights =
       this.heightsCache.get(rowIndex) || new Map<string, number>();
-    const adaptedHeight = Math.ceil(
-      height + this.styles.paddingTop + this.styles.paddingBottom
-    );
+    const adaptedHeight = Math.ceil(height);
 
     if (rowHeights.get(colId) === adaptedHeight) {
-      return;
+      return false;
+    } else {
+      rowHeights.set(colId, adaptedHeight);
+      this.heightsCache.set(rowIndex, rowHeights);
+      return true;
     }
-
-    rowHeights.set(colId, adaptedHeight);
-    this.heightsCache.set(rowIndex, rowHeights);
-    this.resetRow(visibleRowIndex);
-
-    // When an auto row height is updated, force a re-render
-    // of the grid body to update the unconstrained height
-    this.rerenderGridBodyRef.current?.();
   }
 
   pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
@@ -230,9 +211,58 @@ export class RowHeightUtils {
       });
     });
 
+    return didModify;
+  }
+}
+
+/**
+ * Row height utils with virtualization library-specific APIs
+ */
+export class RowHeightVirtualizationUtils extends RowHeightUtils {
+  constructor(
+    private gridRef: MutableRefObject<ImperativeGridApi | null>,
+    private outerGridElementRef: MutableRefObject<HTMLDivElement | null>,
+    private gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>,
+    private rerenderGridBodyRef: MutableRefObject<(() => void) | null>
+  ) {
+    super();
+  }
+
+  /**
+   * Virtualization workarounds for auto height rows
+   */
+
+  private timerId?: number;
+  private lastUpdatedRow: number = Infinity;
+
+  setRowHeight(
+    rowIndex: number,
+    colId: string,
+    height: number = DEFAULT_ROW_HEIGHT,
+    visibleRowIndex: number
+  ) {
+    const didModify = super.setRowHeight(
+      rowIndex,
+      colId,
+      height,
+      visibleRowIndex
+    );
+
+    // When an auto row height is updated, force a re-render
+    // of the grid body to update the unconstrained height
+    if (didModify) {
+      this.rerenderGridBodyRef.current?.();
+      this.resetRow(visibleRowIndex);
+    }
+    return didModify; // Mostly just here for typing
+  }
+
+  pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
+    const didModify = super.pruneHiddenColumnHeights(visibleColumns);
     if (didModify) {
       this.resetRow(0);
     }
+    return didModify; // Mostly just here for typing
   }
 
   resetRow(visibleRowIndex: number) {
@@ -298,30 +328,37 @@ export class RowHeightUtils {
  * and setting up various row-height-related side effects
  */
 export const useRowHeightUtils = ({
-  gridRef,
-  outerGridElementRef,
-  gridItemsRenderedRef,
+  virtualization,
+  rowHeightsOptions,
   gridStyles,
   columns,
-  rowHeightsOptions,
 }: {
-  gridRef: MutableRefObject<ImperativeGridApi | null>;
-  outerGridElementRef: MutableRefObject<HTMLDivElement | null>;
-  gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>;
+  virtualization?:
+    | false
+    | {
+        gridRef: MutableRefObject<ImperativeGridApi | null>;
+        outerGridElementRef: MutableRefObject<HTMLDivElement | null>;
+        gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>;
+      };
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
-  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
 }) => {
   const forceRenderRef = useLatest(useForceRender());
-  const [rowHeightUtils] = useState(
-    () =>
-      new RowHeightUtils(
+  const [rowHeightUtils] = useState(() => {
+    if (virtualization) {
+      const { gridRef, outerGridElementRef, gridItemsRenderedRef } =
+        virtualization;
+      return new RowHeightVirtualizationUtils(
         gridRef,
         outerGridElementRef,
         gridItemsRenderedRef,
         forceRenderRef
-      )
-  );
+      );
+    } else {
+      return new RowHeightUtils();
+    }
+  });
 
   // Forces a rerender whenever the row heights change, as this can cause the
   // grid to change height/have scrollbars. Without this, grid rerendering is stale
@@ -360,7 +397,7 @@ export const useDefaultRowHeight = ({
   rowHeightUtils,
 }: {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils: RowHeightUtils;
+  rowHeightUtils: RowHeightUtilsType;
 }) => {
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
 

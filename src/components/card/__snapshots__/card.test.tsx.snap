@@ -82,7 +82,7 @@ exports[`EuiCard horizontal selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-m-base-text-euiCardSelect"
+    class="euiButton emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
@@ -98,7 +98,7 @@ exports[`EuiCard horizontal selectable 1`] = `
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -166,7 +166,7 @@ exports[`EuiCard props a null icon 1`] = `
 exports[`EuiCard props accepts div props like style 1`] = `
 <div
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
-  style="min-width:0"
+  style="min-width: 0;"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"
@@ -209,7 +209,7 @@ exports[`EuiCard props an avatar icon 1`] = `
     >
       <div
         aria-label="test"
-        class="euiAvatar euiAvatar--xl euiAvatar--user euiCard__icon emotion-euiAvatar-xl-user-plain-euiCard__icon-vertical"
+        class="euiAvatar euiAvatar--xl euiAvatar--user euiCard__icon emotion-euiAvatar-user-xl-uppercase-plain-euiCard__icon-vertical"
         role="img"
         title="test"
       >
@@ -1077,7 +1077,7 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-m-base-text-euiCardSelect"
+    class="euiButton emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-base-text-euiCardSelect"
     role="switch"
     type="button"
   >

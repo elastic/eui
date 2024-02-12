@@ -6,9 +6,12 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
+import { DragDropContextProps } from '@hello-pangea/dnd';
 import { EuiDragDropContext } from './drag_drop_context';
 import { euiDragDropReorder } from './services';
 import { EuiDraggable } from './draggable';
@@ -18,7 +21,7 @@ import { htmlIdGenerator } from '../../services';
 
 const makeId = htmlIdGenerator();
 
-const makeList = (number, start = 1) =>
+const makeList = (number: number, start = 1) =>
   Array.from({ length: number }, (v, k) => k + start).map((el) => {
     return {
       content: `Item ${el}`,
@@ -28,8 +31,11 @@ const makeList = (number, start = 1) =>
 
 const DragAndDrop = () => {
   const [list, setList] = useState(makeList(3));
-  console.log(list);
-  const onDragEnd = ({ source, destination }) => {
+
+  const onDragEnd: DragDropContextProps['onDragEnd'] = ({
+    source,
+    destination,
+  }) => {
     if (source && destination) {
       const items = euiDragDropReorder(list, source.index, destination.index);
       setList(items);
@@ -64,7 +70,7 @@ beforeEach(() => {
   cy.realMount(<DragAndDrop />);
 });
 
-describe('EuiControlBar', () => {
+describe('EuiDragDrop', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on render', () => {
       cy.checkAxe();

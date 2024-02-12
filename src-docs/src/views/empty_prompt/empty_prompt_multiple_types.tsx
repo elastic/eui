@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { ReactNode, useState } from 'react';
 
 import { EuiSpacer, EuiSelect } from '../../../../src/components';
@@ -6,11 +5,11 @@ import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 import { PanelColor } from '../../../../src/components/panel/panel';
 
-import errorPages from './prompt_types/page_not_found';
+import ErrorPages from './prompt_types/page_not_found';
 const errorPagesSource = require('!!raw-loader!./prompt_types/page_not_found');
-import noPrivileges from './prompt_types/no_permission';
+import NoPrivileges from './prompt_types/no_permission';
 const noPrivilegesSource = require('!!raw-loader!./prompt_types/no_permission');
-import licenseUpgrade from './prompt_types/license_upgrade';
+import LicenseUpgrade from './prompt_types/license_upgrade';
 const licenseUpgradeSource = require('!!raw-loader!./prompt_types/license_upgrade');
 
 export default () => {
@@ -24,19 +23,19 @@ export default () => {
     {
       value: 'errorPages',
       text: 'Page not found',
-      component: errorPages,
+      component: <ErrorPages />,
       source: errorPagesSource,
     },
     {
       value: 'noPrivileges',
       text: 'No permission',
-      component: noPrivileges,
+      component: <NoPrivileges />,
       source: noPrivilegesSource,
     },
     {
       value: 'licenseUpgrade',
       text: 'License upgrade',
-      component: licenseUpgrade,
+      component: <LicenseUpgrade />,
       source: licenseUpgradeSource,
     },
   ];

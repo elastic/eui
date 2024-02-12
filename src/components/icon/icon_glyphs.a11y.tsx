@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React from 'react';
 import { EuiIcon } from './icon';
@@ -16,7 +18,6 @@ describe('EuiIcons', () => {
     const GlyphIcons = [
       'accessibility',
       'aggregate',
-      'alert',
       'analyzeEvent',
       'annotation',
       'apmTrace',
@@ -65,7 +66,6 @@ describe('EuiIcons', () => {
       'copyClipboard',
       'cross',
       'crosshairs',
-      'crossInACircleFilled',
       'currency',
       'cut',
       'database',
@@ -224,6 +224,7 @@ describe('EuiIcons', () => {
       'sortRight',
       'sortUp',
       'spaces',
+      'sparkles',
       'starEmpty',
       'starEmptySpace',
       'starFilled',
@@ -249,6 +250,7 @@ describe('EuiIcons', () => {
       'tear',
       'temperature',
       'timeline',
+      'timelineWithArrow',
       'timeRefresh',
       'timeslider',
       'training',
@@ -279,6 +281,7 @@ describe('EuiIcons', () => {
       'visTimelion',
       'visVega',
       'visVisualBuilder',
+      'warning',
       'wordWrap',
       'wordWrapDisabled',
       'wrench',

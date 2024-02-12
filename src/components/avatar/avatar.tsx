@@ -21,10 +21,13 @@ import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 import { euiAvatarStyles } from './avatar.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type EuiAvatarSize = typeof SIZES[number];
+export type EuiAvatarSize = (typeof SIZES)[number];
 
 export const TYPES = ['space', 'user'] as const;
-export type EuiAvatarType = typeof TYPES[number];
+export type EuiAvatarType = (typeof TYPES)[number];
+
+export const CASING = ['capitalize', 'uppercase', 'lowercase', 'none'] as const;
+export type EuiAvatarCasing = (typeof CASING)[number];
 
 /**
  * The avatar can only display one type of content,
@@ -91,6 +94,14 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     size?: EuiAvatarSize;
 
     /**
+     * Sets the letter casing of the displayed initials.
+     * Defaults to `uppercase` for `type="user"` avatars.
+     * Defaults to `none` (uses the existing casing of the passed `name` or `initials`) for `type="space"` avatars.
+     * @default uppercase
+     */
+    casing?: EuiAvatarCasing;
+
+    /**
      * Grays out the avatar to simulate being disabled
      */
     isDisabled?: boolean;
@@ -110,8 +121,10 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   type = 'user',
   isDisabled = false,
   style,
-  ...rest
+  ...props
 }) => {
+  const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
+
   const euiTheme = useEuiTheme();
   const styles = euiAvatarStyles(euiTheme);
 
@@ -132,8 +145,9 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   const cssStyles = [
     styles.euiAvatar,
-    styles[size],
     styles[type],
+    styles[size],
+    styles[casing],
     isPlain && styles.plain,
     isSubdued && styles.subdued,
     isDisabled && styles.isDisabled,

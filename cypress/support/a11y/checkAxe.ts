@@ -6,19 +6,19 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../"/>
-
 import { defaultContext, defaultAxeConfig } from './defaultAxeConfig';
 import { Result } from 'axe-core';
 
 function _handleViolations(violations: Result[], skipTestFailure?: boolean) {
   // Destructure keys from the violations object to create a readable array
-  const violationData = violations.map(({ id, description, impact, nodes }) => ({
-    id,
-    description,
-    impact,
-    nodes: nodes.length
-  }));
+  const violationData = violations.map(
+    ({ id, description, impact, nodes }) => ({
+      id,
+      description,
+      impact,
+      nodes: nodes.length,
+    })
+  );
 
   // Print reporting only message to the console
   // https://github.com/component-driven/cypress-axe#skipfailures-optional-defaults-to-false
@@ -36,9 +36,9 @@ function _handleViolations(violations: Result[], skipTestFailure?: boolean) {
   // https://github.com/component-driven/cypress-axe#using-the-violationcallback-argument
   cy.task(
     'log',
-    `${violations.length} violation${
-      violations.length === 1 ? '' : 's'
-    } ${violations.length === 1 ? 'was' : 'were'} detected.`
+    `${violations.length} violation${violations.length === 1 ? '' : 's'} ${
+      violations.length === 1 ? 'was' : 'were'
+    } detected.`
   );
 
   // Print the table of violations to the console
@@ -53,19 +53,17 @@ function logViolationsToConsoleOnly(violations: Result[]) {
   _handleViolations(violations, true);
 }
 
-Cypress.Commands.add('checkAxe', ({
-  skipFailures,
-  context,
-  axeConfig,
-  callback
-} = {}) => {
-  cy.injectAxe();
-  cy.checkA11y(
-    context ?? defaultContext,
-    axeConfig ?? defaultAxeConfig,
-    callback ?? skipFailures
-      ? logViolationsToConsoleOnly
-      : logViolationsAndThrow,
-    skipFailures
-  );
-});
+Cypress.Commands.add(
+  'checkAxe',
+  ({ skipFailures, context, axeConfig, callback } = {}) => {
+    cy.injectAxe();
+    cy.checkA11y(
+      context ?? defaultContext,
+      axeConfig ?? defaultAxeConfig,
+      callback ?? skipFailures
+        ? logViolationsToConsoleOnly
+        : logViolationsAndThrow,
+      skipFailures
+    );
+  }
+);

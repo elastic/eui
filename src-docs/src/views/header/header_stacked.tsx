@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiBreadcrumb,
@@ -27,14 +27,6 @@ export default () => {
     },
   ];
 
-  useEffect(() => {
-    if (isFixed) document.body.classList.add('euiBody--headerIsFixed--double');
-
-    return () => {
-      document.body.classList.remove('euiBody--headerIsFixed--double');
-    };
-  }, [isFixed]);
-
   const headers = (
     <>
       <EuiHeader
@@ -45,7 +37,6 @@ export default () => {
             items: [
               <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
             ],
-            borders: 'none',
           },
           {
             items: [
@@ -53,7 +44,6 @@ export default () => {
                 <EuiAvatar name="John Username" size="s" />
               </EuiHeaderSectionItemButton>,
             ],
-            borders: 'none',
           },
         ]}
       />
@@ -67,7 +57,6 @@ export default () => {
               </EuiHeaderSectionItemButton>,
             ],
             breadcrumbs: breadcrumbs,
-            borders: 'right',
           },
           {
             items: [
@@ -78,7 +67,6 @@ export default () => {
                 <EuiIcon type="cheer" size="m" />
               </EuiHeaderSectionItemButton>,
             ],
-            borders: 'none',
           },
         ]}
       />

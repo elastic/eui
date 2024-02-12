@@ -14,7 +14,6 @@ import {
   FunctionComponent,
   JSXElementConstructor,
   MouseEventHandler,
-  SFC,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
@@ -47,7 +46,7 @@ export type OneOf<T, K extends keyof T> = Omit<T, K> &
 /**
  * Wraps Object.keys with proper typescript definition of the resulting array
  */
-export function keysOf<T, K extends keyof T>(obj: T): K[] {
+export function keysOf<T extends object, K extends keyof T>(obj: T): K[] {
   return Object.keys(obj) as K[];
 }
 
@@ -58,7 +57,7 @@ export function keysOf<T, K extends keyof T>(obj: T): K[] {
  */
 export type ValueOf<T> = T[keyof T];
 
-export type PropsOf<C> = C extends SFC<infer SFCProps>
+export type PropsOf<C> = C extends FunctionComponent<infer SFCProps>
   ? SFCProps
   : C extends FunctionComponent<infer FunctionProps>
   ? FunctionProps
@@ -91,9 +90,7 @@ export type ApplyClassComponentDefaults<
   P = ExtractProps<C>
 > =
   // definition of Props that are not defaulted
-  Omit<P, keyof D> &
-    // definition of Props, made optional, that are have keys in defaultProps
-    { [K in keyof D]?: K extends keyof P ? P[K] : never };
+  Omit<P, keyof D> & { [K in keyof D]?: K extends keyof P ? P[K] : never }; // definition of Props, made optional, that are have keys in defaultProps
 
 /*
 https://github.com/Microsoft/TypeScript/issues/28339

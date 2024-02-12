@@ -67,10 +67,10 @@ const webpackConfig = new Promise(async (resolve, reject) => {
           fs: false,
           os: false,
           process: require.resolve('process/browser'),
-
           // provide requirements for playground
           path: require.resolve('path'),
           buffer: require.resolve('buffer/'),
+          assert: require.resolve('assert'),
         },
       },
 
@@ -118,11 +118,13 @@ const webpackConfig = new Promise(async (resolve, reject) => {
           },
           {
             test: /\.(png|jp(e*)g|svg|gif)$/,
-            use: {
-              loader: 'url-loader',
-              options: {
-                limit: 8000, // Convert images < 8kb to base64 strings
-                name: 'images/[hash]-[name].[ext]',
+            type: 'asset',
+            generator: {
+              filename: 'images/[hash]-[name][ext]',
+            },
+            parser: {
+              dataUrlCondition: {
+                maxSize: 4 * 1024, // 8KB
               },
             },
           },
@@ -151,7 +153,7 @@ const webpackConfig = new Promise(async (resolve, reject) => {
         }),
 
         new CircularDependencyPlugin({
-          exclude: /node_modules/,
+          exclude: /node_modules|collapsible_nav_item/, // EuiCollapsibleNavItem is intentionally recursive to support any amount of nested accordion items
           failOnError: true,
         }),
 

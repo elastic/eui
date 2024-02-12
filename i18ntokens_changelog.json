@@ -1,5 +1,510 @@
 [
   {
+    "version": "93.0.0",
+    "changes": [
+      {
+        "token": "euiTourStep.endTour",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStep.skipTour",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStep.closeTour",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourFooter.endTour",
+        "changeType": "added",
+        "value": "End tour"
+      },
+      {
+        "token": "euiTourFooter.skipTour",
+        "changeType": "added",
+        "value": "Skip tour"
+      },
+      {
+        "token": "euiTourFooter.closeTour",
+        "changeType": "added",
+        "value": "Close tour"
+      }
+    ]
+  },
+  {
+    "version": "92.1.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.expansionEnterPrompt",
+        "changeType": "added",
+        "value": "Press the Enter key to expand this cell."
+      },
+      {
+        "token": "euiDataGridCell.focusTrapEnterPrompt",
+        "changeType": "added",
+        "value": "Press the Enter key to interact with this cell's contents."
+      }
+    ]
+  },
+  {
+    "version": "92.0.0",
+    "changes": [
+      {
+        "token": "euiControlBar.screenReaderHeading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiControlBar.customScreenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiControlBar.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionButtonText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionAriaLabelButtonText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMessages.accordionHideText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventMeta.contextMenuButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsReadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnreadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsRead",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadButton.markAsUnread",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.readAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unreadAria",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.read",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unread",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
+    "version": "91.3.1",
+    "changes": [
+      {
+        "token": "euiCollapsedItemActions.allActionsDisabled",
+        "changeType": "added",
+        "value": "Individual item actions are disabled when rows are being selected."
+      }
+    ]
+  },
+  {
+    "version": "91.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSelector.buttonActiveSingular",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSelector.buttonActivePlural",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColumnSorting.buttonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.newTarget.screenReaderOnlyText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLink.external.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbarControl.badgeAriaLabel",
+        "changeType": "added",
+        "value": "Active: {count}"
+      },
+      {
+        "token": "euiExternalLinkIcon.ariaLabel",
+        "changeType": "added",
+        "value": "External link"
+      },
+      {
+        "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(opens in a new tab or window)"
+      }
+    ]
+  },
+  {
+    "version": "91.0.0",
+    "changes": [
+      {
+        "token": "euiAbsoluteTab.dateFormatError",
+        "changeType": "modified",
+        "value": "Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp."
+      },
+      {
+        "token": "euiAbsoluteTab.dateFormatHint",
+        "changeType": "added",
+        "value": "Press the Enter key to parse as a date."
+      }
+    ]
+  },
+  {
+    "version": "90.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "modified",
+        "value": "Open navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "modified",
+        "value": "Close navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelExpand",
+        "changeType": "added",
+        "value": "Expand navigation"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelCollapse",
+        "changeType": "added",
+        "value": "Collapse navigation"
+      }
+    ]
+  },
+  {
+    "version": "89.0.0",
+    "changes": [
+      {
+        "token": "euiColorStopThumb.buttonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.buttonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.stopLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.stopErrorMessage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStopThumb.removeLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorStops.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
+    "version": "88.5.0",
+    "changes": [
+      {
+        "token": "euiCallOut.dismissAriaLabel",
+        "changeType": "added",
+        "value": "Dismiss this callout"
+      }
+    ]
+  },
+  {
+    "version": "88.4.0",
+    "changes": [
+      {
+        "token": "euiSearchBox.placeholder",
+        "changeType": "added",
+        "value": "Search..."
+      },
+      {
+        "token": "euiSearchBox.incrementalAriaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. As you type, the results lower in the page will automatically filter."
+      },
+      {
+        "token": "euiSearchBox.ariaLabel",
+        "changeType": "added",
+        "value": "This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+      }
+    ]
+  },
+  {
+    "version": "88.3.0",
+    "changes": [
+      {
+        "token": "euiAccordion.isLoading",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiAccordionChildrenLoading.message",
+        "changeType": "added",
+        "value": "Loading"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonAriaLabel",
+        "changeType": "added",
+        "value": "Clear all toast notifications"
+      },
+      {
+        "token": "euiGlobalToastList.clearAllToastsButtonDisplayText",
+        "changeType": "added",
+        "value": "Clear all"
+      }
+    ]
+  },
+  {
+    "version": "87.2.0",
+    "changes": [
+      {
+        "token": "euiResizableButton.horizontalResizerAriaLabel",
+        "changeType": "modified",
+        "value": "Press the left or right arrow keys to adjust panels size"
+      },
+      {
+        "token": "euiResizableButton.verticalResizerAriaLabel",
+        "changeType": "modified",
+        "value": "Press the up or down arrow keys to adjust panels size"
+      }
+    ]
+  },
+  {
+    "version": "87.1.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavBeta.ariaLabel",
+        "changeType": "added",
+        "value": "Site menu"
+      }
+    ]
+  },
+  {
+    "version": "87.0.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumb.popoverAriaLabel",
+        "changeType": "added",
+        "value": "Clicking this button will toggle a popover dialog."
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "added",
+        "value": "Toggle navigation open"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "added",
+        "value": "Toggle navigation closed"
+      }
+    ]
+  },
+  {
+    "version": "81.1.0",
+    "changes": [
+      {
+        "token": "euiInlineEditForm.saveButtonAriaLabel",
+        "changeType": "added",
+        "value": "Save edit"
+      },
+      {
+        "token": "euiInlineEditForm.cancelButtonAriaLabel",
+        "changeType": "added",
+        "value": "Cancel edit"
+      },
+      {
+        "token": "euiInlineEditForm.inputKeyboardInstructions",
+        "changeType": "added",
+        "value": "Press Enter to save your edited text. Press Escape to cancel your edit."
+      },
+      {
+        "token": "euiInlineEditForm.activateEditModeDescription",
+        "changeType": "added",
+        "value": "Click to edit this text inline."
+      }
+    ]
+  },
+  {
+    "version": "81.0.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.unckeckedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.checkedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.checkOptionInstructions",
+        "changeType": "added",
+        "value": "To check this option, press Enter."
+      },
+      {
+        "token": "euiSelectableListItem.uncheckOptionInstructions",
+        "changeType": "added",
+        "value": "To uncheck this option, press Enter."
+      },
+      {
+        "token": "euiSelectableListItem.excludeOptionInstructions",
+        "changeType": "added",
+        "value": "To exclude this option, press Enter."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOption",
+        "changeType": "added",
+        "value": "Mixed (indeterminate) option."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOptionInstructions",
+        "changeType": "added",
+        "value": "To check this option for all, press Enter once."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOptionUncheckInstructions",
+        "changeType": "added",
+        "value": "To uncheck this option for all, press Enter twice."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOptionExcludeInstructions",
+        "changeType": "added",
+        "value": "To exclude this option for all, press Enter twice."
+      }
+    ]
+  },
+  {
+    "version": "77.2.0",
+    "changes": [
+      {
+        "token": "euiInlineEditForm.saveButtonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiInlineEditForm.cancelButtonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFormControlLayoutDelimited.delimiterLabel",
+        "changeType": "added",
+        "value": "to"
+      }
+    ]
+  },
+  {
+    "version": "77.1.0",
+    "changes": [
+      {
+        "token": "euiInlineEditForm.saveButtonAriaLabel",
+        "changeType": "added",
+        "value": "Save edit"
+      },
+      {
+        "token": "euiInlineEditForm.cancelButtonAriaLabel",
+        "changeType": "added",
+        "value": "Cancel edit"
+      }
+    ]
+  },
+  {
+    "version": "76.1.0",
+    "changes": [
+      {
+        "token": "euiSuperSelectControl.selectAnOption",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectable.screenReaderInstructions",
+        "changeType": "modified",
+        "value": "Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options."
+      },
+      {
+        "token": "euiDualRange.sliderScreenReaderInstructions",
+        "changeType": "added",
+        "value": "You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value."
+      },
+      {
+        "token": "euiRange.sliderScreenReaderInstructions",
+        "changeType": "added",
+        "value": "You are in a custom range slider. Use the Up and Down arrow keys to change the value."
+      },
+      {
+        "token": "euiSuperSelect.ariaLabel",
+        "changeType": "added",
+        "value": "Select listbox"
+      }
+    ]
+  },
+  {
     "version": "75.1.0",
     "changes": [
       {

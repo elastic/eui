@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -24,8 +24,9 @@ export const ResizeObserverHookExample = () => {
     setItems((items) => [...items, `Item ${items.length + 1}`]);
   };
 
-  const resizeRef = useRef();
-  const dimensions = useResizeObserver(resizeRef.current);
+  // Note: This must be a `useState` and not a `useRef` to correctly update on mount & unmount
+  const [resizeRef, setResizeRef] = useState();
+  const dimensions = useResizeObserver(resizeRef);
 
   return (
     <div>
@@ -37,8 +38,8 @@ export const ResizeObserverHookExample = () => {
           </p>
         ) : (
           <p>
-            <EuiIcon type="crossInACircleFilled" color="danger" /> Browser does
-            not support ResizeObserver API. Using MutationObserver.
+            <EuiIcon type="error" color="danger" /> Browser does not support
+            ResizeObserver API. Using MutationObserver.
           </p>
         )}
         <p>
@@ -56,7 +57,7 @@ export const ResizeObserverHookExample = () => {
 
       <EuiSpacer />
 
-      <div className="eui-displayInlineBlock" ref={resizeRef}>
+      <div className="eui-displayInlineBlock" ref={setResizeRef}>
         <EuiPanel className="eui-displayInlineBlock" paddingSize={paddingSize}>
           <ul>
             {items.map((item) => (

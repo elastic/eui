@@ -24,7 +24,7 @@ module.exports = {
         if (hasHref && hasOnClick) {
           context.report(
             node,
-            `<${node.name.name}> accepts either \`href\` or \`onClick\`, not both.`
+            `<${node.name.name}> supplied with both \`href\` and \`onClick\`; is this intentional? (Valid use cases include programmatic navigation via \`onClick\` while preserving "Open in new tab" style functionality via \`href\`.)`
           );
         }
       },

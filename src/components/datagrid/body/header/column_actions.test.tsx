@@ -69,7 +69,7 @@ describe('getColumnActions', () => {
       column: {
         ...testArgs.column,
         actions: {
-          additional: [{ label: 'Hi world!', iconType: 'alert' }],
+          additional: [{ label: 'Hi world!', iconType: 'warning' }],
         },
       },
     });
@@ -78,7 +78,7 @@ describe('getColumnActions', () => {
     const customAction = items[3];
     expect(customAction).toMatchInlineSnapshot(`
       Object {
-        "iconType": "alert",
+        "iconType": "warning",
         "label": "Hi world!",
         "onClick": [Function],
       }

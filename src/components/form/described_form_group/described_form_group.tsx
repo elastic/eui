@@ -70,9 +70,9 @@ export type EuiDescribedFormGroupProps = CommonProps &
     fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
-export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps> = (
-  props
-) => {
+export const EuiDescribedFormGroup: FunctionComponent<
+  EuiDescribedFormGroupProps
+> = (props) => {
   const { defaultFullWidth } = useFormContext();
 
   const {

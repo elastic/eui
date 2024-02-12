@@ -7,11 +7,15 @@
  */
 
 import React, { Component, ReactNode } from 'react';
+
+import { RenderWithEuiTheme } from '../../../services';
 import { isArray, isNil } from '../../../services/predicate';
 import { ExclusiveUnion } from '../../common';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiFilterButton } from '../../filter_group';
+import { euiFilterGroupStyles } from '../../filter_group/filter_group.styles';
 import { EuiSelectable, EuiSelectableProps } from '../../selectable';
+import { EuiSelectableOptionCheckedType } from '../../../components/selectable/selectable_option';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
 
@@ -246,7 +250,7 @@ export class FieldValueSelectionFilter extends Component<
   onOptionClick(
     field: string,
     value: Value,
-    checked: 'on' | 'off' | undefined
+    checked?: Omit<EuiSelectableOptionCheckedType, 'mixed'>
   ) {
     const multiSelect = this.resolveMultiSelect();
     const {
@@ -377,54 +381,61 @@ export class FieldValueSelectionFilter extends Component<
     }
 
     return (
-      <EuiPopover
-        button={button}
-        isOpen={this.state.popoverOpen}
-        closePopover={this.closePopover.bind(this)}
-        panelPaddingSize="none"
-        anchorPosition="downCenter"
-        panelClassName="euiFilterGroup__popoverPanel"
-      >
-        <EuiSelectable<Partial<typeof items[number]['data']>>
-          singleSelection={!multiSelect}
-          aria-label={config.name}
-          options={items}
-          renderOption={(option) => option.view}
-          isLoading={isNil(this.state.options)}
-          loadingMessage={
-            config.loadingMessage || defaults.config.loadingMessage
-          }
-          emptyMessage={
-            config.noOptionsMessage || defaults.config.noOptionsMessage
-          }
-          errorMessage={this.state.error}
-          noMatchesMessage={
-            config.noOptionsMessage || defaults.config.noOptionsMessage
-          }
-          listProps={{
-            isVirtualized: isOverSearchThreshold || false,
-          }}
-          onChange={(options, event, changedOption) => {
-            if (changedOption.data) {
-              this.onOptionClick(
-                changedOption.data.optionField,
-                changedOption.data.value,
-                changedOption.checked
-              );
-            }
-          }}
-          {...searchProps}
-        >
-          {(list, search) => (
-            <>
-              {isOverSearchThreshold && (
-                <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+      <RenderWithEuiTheme>
+        {(euiThemeContext) => (
+          <EuiPopover
+            button={button}
+            isOpen={this.state.popoverOpen}
+            closePopover={this.closePopover.bind(this)}
+            panelPaddingSize="none"
+            anchorPosition="downCenter"
+            panelProps={{
+              css: euiFilterGroupStyles(euiThemeContext)
+                .euiFilterGroup__popoverPanel,
+            }}
+          >
+            <EuiSelectable<Partial<(typeof items)[number]['data']>>
+              singleSelection={!multiSelect}
+              aria-label={config.name}
+              options={items}
+              renderOption={(option) => option.view}
+              isLoading={isNil(this.state.options)}
+              loadingMessage={
+                config.loadingMessage || defaults.config.loadingMessage
+              }
+              emptyMessage={
+                config.noOptionsMessage || defaults.config.noOptionsMessage
+              }
+              errorMessage={this.state.error}
+              noMatchesMessage={
+                config.noOptionsMessage || defaults.config.noOptionsMessage
+              }
+              listProps={{
+                isVirtualized: isOverSearchThreshold || false,
+              }}
+              onChange={(options, event, changedOption) => {
+                if (changedOption.data) {
+                  this.onOptionClick(
+                    changedOption.data.optionField,
+                    changedOption.data.value,
+                    changedOption.checked
+                  );
+                }
+              }}
+              {...searchProps}
+            >
+              {(list, search) => (
+                <>
+                  {isOverSearchThreshold && (
+                    <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+                  )}
+                  {list}
+                </>
               )}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
-      </EuiPopover>
+            </EuiSelectable>
+          </EuiPopover>
+        )}
+      </RenderWithEuiTheme>
     );
   }
 

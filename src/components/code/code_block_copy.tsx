@@ -11,6 +11,7 @@ import { useInnerText } from '../inner_text';
 import { EuiCopy } from '../copy';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
+import { NEW_LINE_REGEX_GLOBAL } from './utils';
 
 /**
  * Hook that returns copy-related state/logic/utils
@@ -26,7 +27,14 @@ export const useCopy = ({
 }) => {
   const [innerTextRef, _innerText] = useInnerText('');
   const innerText = useMemo(
-    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n') || '',
+    () =>
+      _innerText
+        // Normalize line terminations to match native JS format
+        ?.replace(NEW_LINE_REGEX_GLOBAL, '\n')
+        // Reduce two or more consecutive new line characters to a single one
+        // This is needed primarily because of how syntax highlighting
+        // generated DOM elements affect `innerText` output.
+        .replace(/\n{2,}/g, '\n') || '',
     [_innerText]
   );
   const textToCopy = isVirtualized ? `${children}` : innerText; // Virtualized code blocks do not have inner text
@@ -45,6 +53,7 @@ export const useCopy = ({
               iconType="copyClipboard"
               color="text"
               aria-label={copyAriaLabel}
+              data-test-subj="euiCodeBlockCopy"
             />
           )}
         </EuiCopy>

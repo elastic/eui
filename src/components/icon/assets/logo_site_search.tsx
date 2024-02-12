@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconLogoSiteSearch = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
@@ -35,14 +35,13 @@ const EuiIconLogoSiteSearch = ({
       />
       <path
         fill="#00BFB3"
-        d="M21.355 0H7.533L.427 14.211C-.903 16.871 1.032 20 4.004 20h7.351l10-20z"
+        d="M21.355 0H7.533L.427 14.211C-.903 16.871 1.032 20 4.004 20h7.351l10-20Z"
       />
       <path
+        d="M2.533 10 .428 14.211C-.903 16.871 1.032 20 4.005 20h7.35l5-10H2.533Z"
         className="euiIcon__fillNegative"
-        d="M2.533 10L.428 14.211C-.903 16.871 1.032 20 4.005 20h7.35l5-10H2.533z"
       />
     </g>
   </svg>
 );
-
 export const icon = EuiIconLogoSiteSearch;

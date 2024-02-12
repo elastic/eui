@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconSortLeft = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -29,10 +29,9 @@ const EuiIconSortLeft = ({
   >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
-      d="M4.308 7h8.136c.307 0 .556.224.556.5s-.249.5-.556.5H4.308l4.096 4.096a.5.5 0 01-.707.707L3.454 8.561a1.494 1.494 0 01-.433-.925.454.454 0 010-.272c.03-.338.175-.666.433-.925l4.243-4.242a.5.5 0 11.707.707L4.308 7z"
       fillRule="evenodd"
+      d="M4.308 7h8.136c.307 0 .556.224.556.5s-.249.5-.556.5H4.308l4.096 4.096a.5.5 0 0 1-.707.707L3.454 8.561a1.494 1.494 0 0 1-.433-.925.454.454 0 0 1 0-.272c.03-.338.175-.666.433-.925l4.243-4.242a.5.5 0 1 1 .707.707L4.308 7Z"
     />
   </svg>
 );
-
 export const icon = EuiIconSortLeft;

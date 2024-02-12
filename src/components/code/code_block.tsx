@@ -32,6 +32,7 @@ import {
   euiCodeBlockPreStyles,
   euiCodeBlockCodeStyles,
 } from './code_block.styles';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -41,10 +42,10 @@ const fontSizeToRowHeightMap = {
 };
 
 export const FONT_SIZES = ['s', 'm', 'l'] as const;
-export type EuiCodeBlockFontSize = typeof FONT_SIZES[number];
+export type EuiCodeBlockFontSize = (typeof FONT_SIZES)[number];
 
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
-export type EuiCodeBlockPaddingSize = typeof PADDING_SIZES[number];
+export type EuiCodeBlockPaddingSize = (typeof PADDING_SIZES)[number];
 
 // This exclusive union enforces specific props based on isVirtualized
 type VirtualizedOptionProps = ExclusiveUnion<
@@ -122,9 +123,11 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const language = useMemo(() => checkSupportedLanguage(_language), [
-    _language,
-  ]);
+  const euiCodeSyntaxVariables = useEuiCodeSyntaxVariables();
+  const language = useMemo(
+    () => checkSupportedLanguage(_language),
+    [_language]
+  );
 
   const lineNumbersConfig = useMemo(() => {
     const config = typeof lineNumbers === 'object' ? lineNumbers : {};
@@ -142,10 +145,10 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   }, [children, language, lineNumbersConfig, euiTheme]);
 
   // Used by `pre` when `isVirtualized=false` or `children` is not parsable
-  const content = useMemo(() => getHtmlContent(data, children), [
-    data,
-    children,
-  ]);
+  const content = useMemo(
+    () => getHtmlContent(data, children),
+    [data, children]
+  );
 
   const isVirtualized = useMemo(
     () => !!(_isVirtualized && Array.isArray(data)),
@@ -174,7 +177,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   const hasControls = !!(copyButton || fullScreenButton);
   const hasBothControls = !!(copyButton && fullScreenButton);
 
-  const styles = euiCodeBlockStyles(euiTheme);
+  const styles = euiCodeBlockStyles(euiTheme, euiCodeSyntaxVariables);
   const cssStyles = [
     styles.euiCodeBlock,
     styles[fontSize],
@@ -235,7 +238,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ]);
 
   const codeProps = useMemo(() => {
-    const styles = euiCodeBlockCodeStyles(euiTheme);
+    const styles = euiCodeBlockCodeStyles(euiTheme, euiCodeSyntaxVariables);
     const cssStyles = [
       styles.euiCodeBlock__code,
       isVirtualized && styles.isVirtualized,
@@ -247,7 +250,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       'data-code-language': language,
       ...rest,
     };
-  }, [language, euiTheme, isVirtualized, rest]);
+  }, [language, euiTheme, euiCodeSyntaxVariables, isVirtualized, rest]);
 
   return (
     <div

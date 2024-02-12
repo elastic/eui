@@ -1,7 +1,10 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 
-import { useIsWithinBreakpoints } from '../../../../src/services';
+import {
+  EuiThemeProvider,
+  useIsWithinBreakpoints,
+} from '../../../../src/services';
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';
@@ -25,9 +28,9 @@ type GuideThemeSelectorProps = {
   context?: any;
 };
 
-export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps> = ({
-  ...rest
-}) => {
+export const GuideThemeSelector: React.FunctionComponent<
+  GuideThemeSelectorProps
+> = ({ ...rest }) => {
   return (
     <ThemeContext.Consumer>
       {(context) => <GuideThemeSelectorComponent context={context} {...rest} />}
@@ -37,11 +40,9 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
 
 const STORAGE_KEY = 'legacy_theme_notification';
 
-const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
-  context,
-  onToggleLocale,
-  selectedLocale,
-}) => {
+const GuideThemeSelectorComponent: React.FunctionComponent<
+  GuideThemeSelectorProps
+> = ({ context, onToggleLocale, selectedLocale }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [isPopoverOpen, setPopover] = useState(false);
   const [isOpen, setIsOpen] = useState(
@@ -86,16 +87,18 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
   });
 
   const button = (
-    <EuiButton
-      size="s"
-      iconType="arrowDown"
-      iconSide="right"
-      color="ghost"
-      minWidth={0}
-      onClick={onButtonClick}
-    >
-      {isMobileSize ? 'Theme' : currentTheme.text}
-    </EuiButton>
+    <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
+      <EuiButton
+        size="s"
+        iconType="arrowDown"
+        iconSide="right"
+        color="text"
+        minWidth={0}
+        onClick={onButtonClick}
+      >
+        {isMobileSize ? 'Theme' : currentTheme.text}
+      </EuiButton>
+    </EuiThemeProvider>
   );
 
   return (

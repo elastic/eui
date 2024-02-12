@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiContextMenu,
   EuiContextMenuItem,
   EuiContextMenuPanel,
+  EuiTitle,
 } from '../../../../src/components';
 import { EuiContextMenuPanelDescriptor } from '!!prop-loader!../../../../src/components/context_menu/context_menu';
 
@@ -122,11 +124,24 @@ export const ContextMenuExample = {
         },
       ],
       text: (
-        <p>
-          Use <strong>EuiContextMenuPanel</strong> for simple, non-nested
-          context menus. The below pagination example has no nesting and no
-          title.
-        </p>
+        <>
+          <p>
+            Use <strong>EuiContextMenuPanel</strong> for simple, non-nested
+            context menus. The below pagination example has no nesting and no
+            title.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            title="The selected context menu item should have an aria-current attribute"
+          >
+            <p>
+              <strong>aria-current</strong> tells screen readers which item is
+              selected. Add an <EuiCode>aria-current="true"</EuiCode> attribute
+              to <EuiCode>EuiContextMenuItem</EuiCode> when a context menu item
+              is clicked or receives a keypress.
+            </p>
+          </EuiCallOut>
+        </>
       ),
       snippet: singlePanelSnippet,
       demo: <SinglePanel />,
@@ -159,6 +174,9 @@ export const ContextMenuExample = {
       ],
       text: (
         <>
+          <EuiTitle>
+            <h3>Custom panels</h3>
+          </EuiTitle>
           <p>
             Context menu panels can be passed React elements through the{' '}
             <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>.
@@ -170,15 +188,23 @@ export const ContextMenuExample = {
             <EuiCode language="ts">width: [number of pixels]</EuiCode> to the
             panel tree.
           </p>
+          <EuiTitle>
+            <h3>Custom items</h3>
+          </EuiTitle>
           <p>
             You can add separator lines in the <EuiCode>items</EuiCode> prop if
             you define an item as{' '}
             <EuiCode language="ts">{'{isSeparator: true}'}</EuiCode>. This will
-            pass the rest of its fields as props to a{' '}
+            pass the rest of the object properties to an{' '}
             <Link to="/layout/horizontal-rule">
               <strong>EuiHorizontalRule</strong>
             </Link>{' '}
             component.
+          </p>
+          <p>
+            For completely custom rendered items, you can use the{' '}
+            <EuiCode>{'{renderItem}'}</EuiCode> property to pass a component or
+            any function that returns a JSX node.
           </p>
         </>
       ),

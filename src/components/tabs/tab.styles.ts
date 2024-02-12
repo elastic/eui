@@ -7,9 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, mathWithUnits } from '../../global_styling';
+import { logicalCSS, mathWithUnits, euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiTitle } from '../title/title.styles';
 
 export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -18,13 +17,15 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       cursor: pointer;
       flex-direction: row;
       align-items: center;
-      font-weight: ${euiTheme.font.weight.semiBold};
       gap: ${euiTheme.size.s};
       ${logicalCSS('padding-vertical', 0)}
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
 
+      /* Font-weight used by append/prepend nodes - the tab title receives a heavier weight */
+      font-weight: ${euiTheme.font.weight.semiBold};
+      color: ${euiTheme.colors.title};
+
       &:focus {
-        background-color: transparent;
         outline-offset: -${euiTheme.focus.width};
       }
     `,
@@ -36,6 +37,7 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     selected: css`
       box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
+      color: ${euiTheme.colors.primaryText};
     `,
     disabled: {
       disabled: css`
@@ -54,39 +56,30 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiTab__content: css`
-      &:hover {
-        text-decoration: none;
-      }
+      font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
     `,
     // sizes
     s: css`
-      ${euiTitle(euiThemeContext, 'xxxs')};
+      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       line-height: ${euiTheme.size.xl};
     `,
     m: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       line-height: ${euiTheme.size.xxl};
     `,
     l: css`
-      ${euiTitle(euiThemeContext, 'xs')};
+      font-size: ${euiFontSize(euiThemeContext, 'm').fontSize};
       line-height: ${mathWithUnits(
         [euiTheme.size.xl, euiTheme.size.s],
         (x, y) => x + y
       )};
     `,
     xl: css`
-      ${euiTitle(euiThemeContext, 's')};
+      font-size: ${euiFontSize(euiThemeContext, 'l').fontSize};
       line-height: ${mathWithUnits(
         [euiTheme.size.xxxl, euiTheme.size.s],
         (x, y) => x + y
       )};
-    `,
-    // variations
-    selected: css`
-      color: ${euiTheme.colors.primaryText};
-    `,
-    disabled: css`
-      color: ${euiTheme.colors.disabledText};
     `,
   };
 };

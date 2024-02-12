@@ -7,9 +7,10 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { act } from 'react-dom/test-utils';
-import { render, mount } from 'enzyme';
+import { act } from '@testing-library/react';
+import { mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { useInnerText, EuiInnerText } from './inner_text';
 import { EuiBadge } from '../badge';
@@ -126,7 +127,7 @@ describe('useInnerText', () => {
 
 describe('EuiInnerText', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiInnerText {...requiredProps}>
         {(ref, innerText) => (
           <span ref={ref} title={innerText}>
@@ -136,7 +137,7 @@ describe('EuiInnerText', () => {
       </EuiInnerText>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('uses innerText', () => {

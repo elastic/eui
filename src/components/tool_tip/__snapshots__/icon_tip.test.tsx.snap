@@ -45,7 +45,7 @@ exports[`EuiIconTip props type is rendered as the icon 1`] = `
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
-    data-euiicon-type="alert"
+    data-euiicon-type="warning"
     tabindex="0"
   >
     Info

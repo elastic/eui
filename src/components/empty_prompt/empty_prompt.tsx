@@ -6,10 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
@@ -18,21 +24,15 @@ import { isNamedColor } from '../icon/named_colors';
 import { EuiText } from '../text';
 import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiEmptyPrompt--paddingSmall',
-  m: 'euiEmptyPrompt--paddingMedium',
-  l: 'euiEmptyPrompt--paddingLarge',
-};
+import { euiEmptyPromptStyles } from './empty_prompt.styles';
 
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-
-export type PaddingSize = typeof PADDING_SIZES[number];
+export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
+export type PaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiEmptyPromptProps = CommonProps &
   Omit<
     _EuiPanelDivlike,
-    'borderRadius' | 'grow' | 'panelRef' | 'paddingSize' | 'title'
+    'borderRadius' | 'grow' | 'panelRef' | 'paddingSize' | 'title' | 'element'
   > & {
     /*
      * Accepts any [EuiIcon.type](#/display/icons)
@@ -96,46 +96,55 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   footer,
   ...rest
 }) => {
-  const isVerticalLayout = layout === 'vertical';
+  const classes = classNames('euiEmptyPrompt', className);
+  const euiTheme = useEuiTheme();
+  const styles = useMemo(() => euiEmptyPromptStyles(euiTheme), [euiTheme]);
+  const cssStyles = [styles.euiEmptyPrompt, styles[layout]];
+  const mainStyles = [
+    styles.main.euiEmptyPrompt__main,
+    styles.main[layout],
+    styles.main[paddingSize],
+    layout === 'horizontal' && styles.main.horizontalPadding[paddingSize],
+  ];
+  const contentStyles = [
+    styles.content.euiEmptyPrompt__content,
+    styles.content[layout],
+  ];
+
   // Default the iconColor to `subdued`,
   // otherwise try to match the iconColor with the panel color unless iconColor is specified
   const iconColor = _iconColor ?? (isNamedColor(color) ? color : 'subdued');
+  const iconNode = useMemo(() => {
+    if (!iconType && !icon) return null;
 
-  const iconNode = iconType ? (
-    <EuiIcon type={iconType} size="xxl" color={iconColor} />
-  ) : (
-    icon
-  );
+    const iconStyles = [styles.icon.euiEmptyPrompt__icon, styles.icon[layout]];
+    return (
+      <div className="euiEmptyPrompt__icon" css={iconStyles}>
+        {iconType ? (
+          <EuiIcon type={iconType} size="xxl" color={iconColor} />
+        ) : (
+          icon
+        )}
+      </div>
+    );
+  }, [icon, iconType, iconColor, layout, styles.icon]);
 
-  let titleNode;
-  let bodyNode;
-  if (body || title) {
-    if (title) {
-      titleNode = <EuiTitle size={titleSize}>{title}</EuiTitle>;
-    }
-
-    if (body) {
-      bodyNode = (
-        <>
-          {title && <EuiSpacer size="m" />}
-          <EuiText color="subdued">{body}</EuiText>
-        </>
-      );
-    }
-  }
-
-  let actionsNode;
-  if (actions) {
-    let actionsRow;
+  const actionsNode = useMemo(() => {
+    if (!actions) return null;
 
     if (Array.isArray(actions)) {
-      actionsRow = (
+      const actionStyles = [
+        styles.actions.euiEmptyPrompt__actions,
+        styles.actions[layout],
+      ];
+      return (
         <EuiFlexGroup
           className="euiEmptyPrompt__actions"
+          css={actionStyles}
           gutterSize="m"
           alignItems="center"
           justifyContent="center"
-          direction={isVerticalLayout ? 'column' : 'row'}
+          direction={layout === 'vertical' ? 'column' : 'row'}
         >
           {actions.map((action, index) => (
             <EuiFlexItem key={index} grow={false}>
@@ -145,50 +154,46 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
         </EuiFlexGroup>
       );
     } else {
-      actionsRow = actions;
+      return actions;
     }
+  }, [actions, layout, styles.actions]);
 
-    actionsNode = (
-      <>
-        <EuiSpacer size="l" />
-        {actionsRow}
-      </>
+  const footerNode = useMemo(() => {
+    if (!footer) return null;
+    const footerStyles = [
+      styles.footer.euiEmptyPrompt__footer,
+      styles.footer[paddingSize],
+      styles.footer[color],
+      color === 'transparent' && !hasBorder && styles.footer.roundedBorders,
+    ];
+    return (
+      <div className="euiEmptyPrompt__footer" css={footerStyles}>
+        {footer}
+      </div>
     );
-  }
-
-  const contentNodes = (
-    <>
-      {titleNode}
-      {bodyNode}
-      {actionsNode}
-    </>
-  );
-
-  const classes = classNames(
-    'euiEmptyPrompt',
-    [`euiEmptyPrompt--${layout}`],
-    paddingSizeToClassNameMap[paddingSize],
-    className
-  );
-
-  const panelProps: _EuiPanelDivlike = {
-    className: classes,
-    color: color,
-    paddingSize: 'none',
-    hasBorder: hasBorder,
-    grow: false,
-    ...rest,
-  };
+  }, [footer, paddingSize, color, hasBorder, styles.footer]);
 
   return (
-    <EuiPanel {...panelProps}>
-      <div className="euiEmptyPrompt__main">
-        {iconNode && <div className="euiEmptyPrompt__icon">{iconNode}</div>}
-        <div className="euiEmptyPrompt__content">
-          <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
+    <EuiPanel
+      css={cssStyles}
+      className={classes}
+      color={color}
+      paddingSize="none"
+      grow={false}
+      hasBorder={hasBorder}
+      {...rest}
+    >
+      <div className="euiEmptyPrompt__main" css={mainStyles}>
+        {iconNode}
+        <div className="euiEmptyPrompt__content" css={contentStyles}>
+          {title && <EuiTitle size={titleSize}>{title}</EuiTitle>}
+          {title && body && <EuiSpacer size="m" />}
+          {body && <EuiText color="subdued">{body}</EuiText>}
+          {actionsNode && (body || title) && <EuiSpacer size="l" />}
+          {actionsNode}
         </div>
       </div>
-      {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
+      {footerNode}
     </EuiPanel>
   );
 };

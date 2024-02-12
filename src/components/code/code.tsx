@@ -16,6 +16,7 @@ import {
   getHtmlContent,
 } from './utils';
 import { useEuiTheme } from '../../services';
+import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 import { euiCodeStyles } from './code.styles';
 
 export type EuiCodeProps = EuiCodeSharedProps;
@@ -27,9 +28,10 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
   className,
   ...rest
 }) => {
-  const language = useMemo(() => checkSupportedLanguage(_language), [
-    _language,
-  ]);
+  const language = useMemo(
+    () => checkSupportedLanguage(_language),
+    [_language]
+  );
 
   const data: RefractorNode[] = useMemo(() => {
     if (typeof children !== 'string') {
@@ -38,15 +40,14 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
     return highlight(children, language);
   }, [children, language]);
 
-  const content = useMemo(() => getHtmlContent(data, children), [
-    data,
-    children,
-  ]);
+  const content = useMemo(
+    () => getHtmlContent(data, children),
+    [data, children]
+  );
 
   const classes = classNames('euiCode', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCodeStyles(euiTheme);
+  const styles = euiCodeStyles(useEuiTheme(), useEuiCodeSyntaxVariables());
   const cssStyles = [
     styles.euiCode,
     transparentBackground && styles.transparentBackground,

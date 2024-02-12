@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
+import { renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 import { EuiProvider } from '../provider';
 
@@ -17,9 +17,9 @@ import {
   euiCustomControl,
 } from './form.styles';
 
-const darkModeWrapper: React.FC = ({ children }) => (
-  <EuiProvider colorMode="DARK">{children}</EuiProvider>
-);
+const darkModeWrapper: FunctionComponent<PropsWithChildren> = ({
+  children,
+}) => <EuiProvider colorMode="DARK">{children}</EuiProvider>;
 
 describe('euiFormVariables', () => {
   it('outputs an object of reusable form vars', () => {
@@ -68,7 +68,7 @@ describe('euiFormVariables', () => {
     expect(result.current.controlPlaceholderText).toEqual('#878b95');
     expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
     expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
-    expect(result.current.customControlBorderColor).toEqual('#1e1f26');
+    expect(result.current.customControlBorderColor).toEqual('#16171c');
   });
 });
 

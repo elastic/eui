@@ -7,57 +7,59 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiProgress, COLORS, SIZES } from './progress';
 
 describe('EuiProgress', () => {
   test('is rendered', () => {
-    const component = render(<EuiProgress {...requiredProps} />);
+    const { container } = render(<EuiProgress {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiProgress />);
   shouldRenderCustomStyles(<EuiProgress max={100} label="Test" />, {
     childProps: ['labelProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   test('has max', () => {
-    const component = render(<EuiProgress max={100} {...requiredProps} />);
+    const { container } = render(<EuiProgress max={100} {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('has value', () => {
-    const component = render(<EuiProgress value={100} {...requiredProps} />);
+    const { container } = render(
+      <EuiProgress value={100} {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is determinate', () => {
     const val = 50;
-    const component = render(
+    const { container } = render(
       <EuiProgress max={val ? 100 : undefined} value={val} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is indeterminate', () => {
     const val = undefined;
-    const component = render(
+    const { container } = render(
       <EuiProgress max={val ? 100 : undefined} value={val} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('has valueText and label', () => {
-    const component = render(
+    const { container } = render(
       <EuiProgress
         valueText="150"
         label="Label"
@@ -67,19 +69,19 @@ describe('EuiProgress', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   test('valueText is true', () => {
-    const component = render(
+    const { container } = render(
       <EuiProgress valueText={true} value={50} max={100} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   test('has labelProps', () => {
-    const component = render(
+    const { container } = render(
       <EuiProgress
         max={100}
         value={50}
@@ -89,15 +91,15 @@ describe('EuiProgress', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   describe('color', () => {
-    [...COLORS, '#885522'].forEach((color) => {
+    [...COLORS, 'rgb(136, 85, 34)'].forEach((color) => {
       test(`${color} is rendered`, () => {
-        const component = render(<EuiProgress color={color} />);
+        const { container } = render(<EuiProgress color={color} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
@@ -105,9 +107,9 @@ describe('EuiProgress', () => {
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
-        const component = render(<EuiProgress size={size} />);
+        const { container } = render(<EuiProgress size={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

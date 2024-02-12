@@ -1,9 +1,14 @@
 import React from 'react';
-import { EuiBasicTable } from '../../../../../src/components';
+
+import { EuiBasicTable, EuiCode } from '../../../../../src/components';
+
 import { GuideSectionTypes } from '../../../components';
 
+import { EuiTableActionsColumnType } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
+import { CustomItemAction } from '!!prop-loader!../../../../../src/components/basic_table/action_types';
+import { DefaultItemActionProps as DefaultItemAction } from '../props/props';
+
 import Table from './actions';
-import { EuiCode } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./actions');
 
 export const section = {
@@ -36,9 +41,15 @@ export const section = {
           When more than 2 actions are supplied, only the ellipses icon button
           stays visible at all times.
         </li>
+        <li>
+          When one or more table row(s) are selected, all item actions are
+          disabled. Users should be expected to use some bulk action outside the
+          individual table rows instead.
+        </li>
       </ul>
     </>
   ),
   components: { EuiBasicTable },
+  props: { EuiTableActionsColumnType, DefaultItemAction, CustomItemAction },
   demo: <Table />,
 };

@@ -7,17 +7,21 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableFooter } from './table_footer';
 
 describe('EuiTableFooter', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableFooter {...requiredProps}>children</EuiTableFooter>
+    const { container } = render(
+      <table>
+        <EuiTableFooter {...requiredProps}>
+          <td>children</td>
+        </EuiTableFooter>
+      </table>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

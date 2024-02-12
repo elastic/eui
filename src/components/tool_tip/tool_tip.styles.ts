@@ -67,7 +67,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiToolTip: css`
-      ${euiShadow(euiThemeContext)};
+      ${euiShadow(euiThemeContext)}
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
@@ -75,7 +75,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '256px')}
       overflow-wrap: break-word;
       padding: ${euiTheme.size.s};
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
 
       position: absolute;
 
@@ -85,7 +85,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     s: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
     `,
     // Positions
     top: css`
@@ -122,7 +122,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         (x) => x / 2
       )};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      ${logicalSizeCSS(arrowSize, arrowSize)};
+      ${logicalSizeCSS(arrowSize, arrowSize)}
     `,
     arrowPositions: {
       top: css`
@@ -147,9 +147,9 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
           euiTheme,
           colorMode
         )}`
-      )};
-      ${logicalCSS('padding-bottom', euiTheme.size.xs)};
-      ${logicalCSS('margin-bottom', euiTheme.size.xs)};
+      )}
+      ${logicalCSS('padding-bottom', euiTheme.size.xs)}
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
     `,
   };
 };
@@ -157,10 +157,10 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiToolTipAnchorStyles = () => ({
   // Elements
   euiToolTipAnchor: css`
-    // disabled elements don't fire mouse events which means leaving a disabled element
-    // wouldn't trigger the onMouseOut and hide the tooltip; disabling pointer events
-    // on disabled elements means any mouse events remain handled by parent elements
-    // https://jakearchibald.com/2017/events-and-disabled-form-fields/
+    /* Disabled elements don't fire mouse events, which means leaving a disabled element
+       wouldn't trigger the onMouseOut and hide the tooltip. Disabling pointer events
+       on disabled elements means any mouse events remain handled by parent elements
+       https://jakearchibald.com/2017/events-and-disabled-form-fields/ */
     *[disabled] {
       pointer-events: none;
     }
@@ -170,6 +170,6 @@ export const euiToolTipAnchorStyles = () => ({
     display: block;
   `,
   inlineBlock: css`
-    display: inline-block; ;
+    display: inline-block;
   `,
 });

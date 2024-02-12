@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFormControlLayoutCustomIcon testClass1 testClass2 euiFormControlLayoutCustomIcon--clickable"
+  class="euiFormControlLayoutCustomIcon testClass1 testClass2 emotion-euiTestCss euiFormControlLayoutCustomIcon--clickable"
   data-test-subj="test subject string"
   type="button"
 >
@@ -11,7 +11,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
     color="danger"
-    data-euiicon-type="alert"
+    data-euiicon-type="error"
   />
 </button>
 `;
@@ -19,13 +19,13 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
 exports[`EuiFormControlLayoutCustomIcon is rendered as span 1`] = `
 <span
   aria-label="aria-label"
-  class="euiFormControlLayoutCustomIcon testClass1 testClass2"
+  class="euiFormControlLayoutCustomIcon testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
-    data-euiicon-type="alert"
+    data-euiicon-type="error"
   />
 </span>
 `;
@@ -37,7 +37,7 @@ exports[`EuiFormControlLayoutCustomIcon size is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
-    data-euiicon-type="alert"
+    data-euiicon-type="warning"
   />
 </span>
 `;

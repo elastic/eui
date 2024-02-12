@@ -4,8 +4,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 <li
   aria-checked="false"
   aria-label="aria-label"
-  class="euiSelectableListItem euiSelectableListItem--paddingSmall testClass1 testClass2"
-  data-test-selected="false"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   role="option"
 >
@@ -27,7 +26,6 @@ exports[`EuiSelectableListItem props append 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -50,11 +48,42 @@ exports[`EuiSelectableListItem props append 1`] = `
 </li>
 `;
 
-exports[`EuiSelectableListItem props checked is off 1`] = `
+exports[`EuiSelectableListItem props checked & allowExclusions mixed 1`] = `
+<li
+  aria-checked="mixed"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="minus"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        . 
+        Mixed (indeterminate) option.
+         
+        To check this option for all, press Enter once.
+         
+        To exclude this option for all, press Enter twice.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked & allowExclusions off 1`] = `
 <li
   aria-checked="true"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="true"
   role="option"
 >
   <span
@@ -71,18 +100,20 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
       <div
         class="emotion-euiScreenReaderOnly"
       >
-         - Checked option.
+        . 
+        Excluded option.
+         
+        To uncheck this option, press Enter.
       </div>
     </span>
   </span>
 </li>
 `;
 
-exports[`EuiSelectableListItem props checked is on 1`] = `
+exports[`EuiSelectableListItem props checked & allowExclusions on 1`] = `
 <li
   aria-checked="true"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="true"
   role="option"
 >
   <span
@@ -99,9 +130,176 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
       <div
         class="emotion-euiScreenReaderOnly"
       >
-         - Checked option.
+        . 
+        Checked option.
+         
+        To exclude this option, press Enter.
       </div>
     </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked & allowExclusions undefined 1`] = `
+<li
+  aria-checked="false"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        . 
+        To check this option, press Enter.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked & searchable on 1`] = `
+<li
+  aria-checked="true"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="check"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        . 
+        Checked option.
+         
+        To uncheck this option, press Enter.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked & searchable undefined 1`] = `
+<li
+  aria-checked="false"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        . 
+        To check this option, press Enter.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked mixed 1`] = `
+<li
+  aria-checked="mixed"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="minus"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        . 
+        Mixed (indeterminate) option.
+         
+        To check this option for all, press Enter once.
+         
+        To uncheck this option for all, press Enter twice.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked on 1`] = `
+<li
+  aria-checked="true"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="check"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        . 
+        Checked option.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
+exports[`EuiSelectableListItem props checked undefined 1`] = `
+<li
+  aria-checked="false"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      data-euiicon-type="empty"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    />
   </span>
 </li>
 `;
@@ -112,7 +310,6 @@ exports[`EuiSelectableListItem props disabled 1`] = `
   aria-disabled="true"
   aria-selected="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -134,7 +331,6 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
   aria-checked="false"
   aria-selected="true"
   class="euiSelectableListItem euiSelectableListItem-isFocused euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -174,7 +370,6 @@ exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -195,7 +390,6 @@ exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -216,7 +410,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -237,7 +430,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -258,7 +450,6 @@ exports[`EuiSelectableListItem props prepend 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -284,7 +475,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -301,7 +491,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span

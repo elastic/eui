@@ -3,8 +3,9 @@
  * that make sense in the input wrap.
  */
 .euiComboBoxPill {
-  height: $euiSizeL - 2px;
-  line-height: $euiSizeL - 2px;
+  $pillHeight: $euiSizeL - 2px;
+  height: $pillHeight;
+  line-height: $pillHeight - ($euiBorderWidthThin * 2);
   vertical-align: baseline;
 
   &,
@@ -17,15 +18,21 @@
     margin: ($euiSizeXS + 1px) $euiSizeXS 0 0;
   }
 
-  &--plainText {
-    @include euiFont;
-    @include euiTextTruncate;
+  &__prepend {
+    margin-right: $euiSizeXS;
+  }
 
-    line-height: $euiSizeL;
-    font-size: $euiFontSizeS;
-    padding: 0;
-    color: $euiTextColor;
-    vertical-align: middle;
-    display: inline-block;
+  &__append {
+    margin-left: $euiSizeXS;
+  }
+
+  /* Fix append/prepend vertical alignment */
+  .euiBadge__text {
+    display: flex;
+    align-items: center;
+
+    .euiIcon {
+      display: block;
+    }
   }
 }

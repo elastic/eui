@@ -1,6 +1,5 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, FunctionComponent } from 'react';
-import { useRouteMatch } from 'react-router';
+import { useRouteMatch } from 'react-router-dom';
 import {
   EuiImage,
   EuiButton,
@@ -44,11 +43,14 @@ const ExitFullscreenDemoButton = () => {
 
 type toggles = {
   pageHeader?: boolean;
-  panelled?: boolean;
   restrictedWidth?: boolean;
   sidebar?: boolean;
   sidebarSticky?: boolean;
   border?: boolean;
+  // If a sidebar is present, a basic switch can be used
+  panelledSwitch?: boolean;
+  // If a sidebar is not present, `undefined` matters - use a group instead
+  panelledGroup?: boolean;
 };
 
 type showing = {
@@ -76,11 +78,12 @@ export const PageDemo: FunctionComponent<
   },
   toggle = {
     pageHeader: false,
-    panelled: false,
     restrictedWidth: false,
     sidebar: false,
     sidebarSticky: false,
     border: false,
+    panelledSwitch: false,
+    panelledGroup: false,
   },
   template: Template = CustomTemplateExample,
   source = CustomTemplateExampleSource,
@@ -89,7 +92,9 @@ export const PageDemo: FunctionComponent<
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
   const [showHeader, setShowHeader] = useState<boolean>(true);
-  const [showPanelled, setShowPanelled] = useState<boolean>(true);
+  const [showPanelled, setShowPanelled] = useState<boolean | undefined>(
+    toggle.panelledGroup ? undefined : true
+  );
   const [showSidebar, setShowSidebar] = useState<boolean>(
     Boolean(show.sidebar)
   );
@@ -98,12 +103,10 @@ export const PageDemo: FunctionComponent<
   );
 
   // Restrict width combos
-  const [restrictWidth, setRestrictWidth] = useState<
-    EuiPageTemplateProps['restrictWidth']
-  >(true);
-  const [bottomBorder, setBottomBorder] = useState<
-    EuiPageTemplateProps['bottomBorder']
-  >(undefined);
+  const [restrictWidth, setRestrictWidth] =
+    useState<EuiPageTemplateProps['restrictWidth']>(true);
+  const [bottomBorder, setBottomBorder] =
+    useState<EuiPageTemplateProps['bottomBorder']>(undefined);
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
@@ -145,7 +148,7 @@ export const PageDemo: FunctionComponent<
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
-        <EuiButton color="ghost">Share</EuiButton>
+        <EuiButton color="text">Share</EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
   ) : undefined;
@@ -291,14 +294,57 @@ export const PageDemo: FunctionComponent<
           />
         </EuiFlexItem>
       )}
-      {toggle.panelled && (
+      {toggle.panelledSwitch && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Panelled"
-            checked={showPanelled}
+            checked={!!showPanelled}
             onChange={() => setShowPanelled((showing) => !showing)}
             compressed
           />
+        </EuiFlexItem>
+      )}
+      {toggle.panelledGroup && (
+        <EuiFlexItem grow={false}>
+          <div>
+            Panelled:&emsp;
+            <EuiButtonGroup
+              options={[
+                {
+                  id: 'radioTrue',
+                  label: 'true',
+                },
+                {
+                  id: 'radioFalse',
+                  label: 'false',
+                },
+                {
+                  id: 'radioUndefined',
+                  label: 'undefined',
+                },
+              ]}
+              idSelected={
+                showPanelled === true
+                  ? 'radioTrue'
+                  : showPanelled === false
+                  ? 'radioFalse'
+                  : 'radioUndefined'
+              }
+              onChange={(id) =>
+                setShowPanelled(
+                  id === 'radioTrue'
+                    ? true
+                    : id === 'radioFalse'
+                    ? false
+                    : undefined
+                )
+              }
+              name="panelledGroup"
+              legend="Panelled"
+              buttonSize="compressed"
+              color="primary"
+            />
+          </div>
         </EuiFlexItem>
       )}
     </EuiFlexGroup>

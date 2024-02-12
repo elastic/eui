@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -39,68 +39,86 @@ describe('EuiTourStep', () => {
     </EuiTourStep>
   );
   shouldRenderCustomStyles(
-    <EuiTourStep {...props} isStepOpen panelProps={requiredProps}>
+    <EuiTourStep {...config} {...steps[0]} isStepOpen>
       <span>Test</span>
     </EuiTourStep>,
-    { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }
+    {
+      childProps: ['panelProps'],
+      skip: {
+        parentTest: true,
+        style: true, // EuiPopoverPanel does not allow custom `style`s
+      },
+    }
   );
 
-  test('is rendered', () => {
-    const component = mount(
+  it('renders', () => {
+    const { baseElement } = render(
       <EuiTourStep {...props} isStepOpen>
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
-  test('can have subtitle', () => {
-    const component = mount(
+  it('can have subtitle', () => {
+    const { getByText } = render(
       <EuiTourStep {...props} isStepOpen subtitle="Subtitle">
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(getByText('Subtitle')).toBeInTheDocument();
   });
 
-  test('can be closed', () => {
-    const component = mount(
+  it('can be closed', () => {
+    const { container } = render(
       <EuiTourStep {...props} isStepOpen={false}>
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(container.querySelector('.euiTour')).not.toBeInTheDocument();
   });
 
-  test('can change the minWidth and maxWidth', () => {
-    const component = mount(
+  it('can change the minWidth and maxWidth', () => {
+    const { container } = render(
       <EuiTourStep {...props} minWidth={240} maxWidth={420} isStepOpen>
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(
+      container.querySelector('.euiTour__content')?.parentElement
+    ).toHaveStyle({
+      'min-inline-size': '240px',
+      'max-inline-size': '420px',
+    });
   });
 
-  test('can override the footer action', () => {
-    const component = mount(
+  it('can override the footer action', () => {
+    const { queryByText, rerender } = render(
+      <EuiTourStep {...props} isStepOpen>
+        <span>Test</span>
+      </EuiTourStep>
+    );
+    expect(queryByText('Close tour')).toBeInTheDocument();
+
+    rerender(
       <EuiTourStep
         {...props}
         isStepOpen
-        footerAction={<button onClick={() => {}}>Test</button>}
+        footerAction={<button onClick={() => {}}>Custom footer</button>}
       >
         <span>Test</span>
       </EuiTourStep>
     );
-
-    expect(component.render()).toMatchSnapshot();
+    expect(queryByText('Close tour')).not.toBeInTheDocument();
+    expect(queryByText('Custom footer')).toBeInTheDocument();
   });
 
-  test('accepts an array of buttons in the footerAction prop', () => {
-    const component = mount(
+  it('accepts an array of buttons in the footerAction prop', () => {
+    const { getByText } = render(
       <EuiTourStep
         {...props}
         isStepOpen
@@ -113,16 +131,52 @@ describe('EuiTourStep', () => {
       </EuiTourStep>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(getByText('Button 1')).toBeInTheDocument();
+    expect(getByText('Button 2')).toBeInTheDocument();
   });
 
-  test('can turn off the beacon', () => {
-    const component = mount(
+  it('can turn off the beacon', () => {
+    const { container, rerender } = render(
+      <EuiTourStep {...props} isStepOpen>
+        <span>Test</span>
+      </EuiTourStep>
+    );
+    expect(container.querySelector('.euiTour__beacon')).toBeInTheDocument();
+
+    rerender(
       <EuiTourStep {...props} isStepOpen decoration="none">
         <span>Test</span>
       </EuiTourStep>
     );
+    expect(container.querySelector('.euiTour__beacon')).not.toBeInTheDocument();
+  });
 
-    expect(component.render()).toMatchSnapshot();
+  it('applies classNames and styles to the correct locations', () => {
+    const TestTour = ({ isStepOpen }: { isStepOpen?: boolean }) => (
+      <EuiTourStep
+        {...props}
+        className="goesOnAnchor"
+        style={{ color: 'blue' }}
+        panelClassName="goesOnPopover"
+        panelStyle={{ color: 'red' }}
+        isStepOpen={isStepOpen}
+      >
+        <span>Test</span>
+      </EuiTourStep>
+    );
+
+    const { container, rerender } = render(<TestTour />);
+
+    expect(container.querySelector('.goesOnPopover')).not.toBeInTheDocument();
+    expect(container.querySelector('.goesOnAnchor')).toBeInTheDocument();
+    expect(container.querySelector('.goesOnAnchor')).toHaveStyle({
+      color: 'blue',
+    });
+
+    rerender(<TestTour isStepOpen />);
+    expect(container.querySelector('.goesOnPopover')).toBeInTheDocument();
+    expect(container.querySelector('.goesOnPopover')).toHaveStyle({
+      color: 'red',
+    });
   });
 });

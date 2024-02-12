@@ -10,15 +10,6 @@ export type { EuiColorPickerProps } from './color_picker';
 export { EuiColorPicker } from './color_picker';
 export type { EuiColorPickerSwatchProps } from './color_picker_swatch';
 export { EuiColorPickerSwatch } from './color_picker_swatch';
-export type { EuiHueProps } from './hue';
-export { EuiHue } from './hue';
-export type { EuiSaturationProps } from './saturation';
-export { EuiSaturation } from './saturation';
-export { EuiColorStops } from './color_stops';
-// TODO: Exporting `EuiColorStopsProps` from `'./color_stops'`
-// results in a duplicate d.ts entry that causes build warnings
-// and potential downstream TS project failures.
-export type { EuiColorStopsProps } from './color_stops/color_stops';
 export type {
   EuiColorPalettePickerProps,
   EuiColorPalettePickerPaletteProps,

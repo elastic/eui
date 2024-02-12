@@ -34,10 +34,11 @@ export interface EuiDatePopoverButtonProps {
   isOpen: boolean;
   needsUpdating?: boolean;
   locale?: LocaleSpecifier;
-  onChange: NonNullable<EuiDatePopoverContentProps['onChange']>;
+  onChange: EuiDatePopoverContentProps['onChange'];
   onPopoverClose: EuiPopoverProps['closePopover'];
   onPopoverToggle: MouseEventHandler<HTMLButtonElement>;
   position: 'start' | 'end';
+  canRoundRelativeUnits?: boolean;
   roundUp?: boolean;
   timeFormat: string;
   value: string;
@@ -46,9 +47,9 @@ export interface EuiDatePopoverButtonProps {
   timeOptions: TimeOptions;
 }
 
-export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = (
-  props
-) => {
+export const EuiDatePopoverButton: FunctionComponent<
+  EuiDatePopoverButtonProps
+> = (props) => {
   const {
     position,
     isDisabled,
@@ -56,6 +57,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     needsUpdating,
     value,
     buttonProps,
+    canRoundRelativeUnits,
     roundUp,
     onChange,
     locale,
@@ -82,12 +84,11 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     },
   ]);
 
-  const formattedValue = useFormatTimeString(
-    value,
-    dateFormat,
+  const formattedValue = useFormatTimeString(value, dateFormat, {
     roundUp,
-    locale
-  );
+    locale,
+    canRoundRelativeUnits,
+  });
   let title = formattedValue;
 
   const invalidTitle = useEuiI18n(
@@ -109,6 +110,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
 
   const button = (
     <button
+      type="button"
       onClick={onPopoverToggle}
       className={classes}
       title={title}
@@ -133,6 +135,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       <EuiDatePopoverContent
         value={value}
         roundUp={roundUp}
+        canRoundRelativeUnits={canRoundRelativeUnits}
         onChange={onChange}
         dateFormat={dateFormat}
         timeFormat={timeFormat}

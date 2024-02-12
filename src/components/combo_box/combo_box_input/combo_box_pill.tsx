@@ -14,8 +14,9 @@ import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
 
+import { EuiComboBoxOptionAppendPrepend } from '../utils';
+
 export interface EuiComboBoxPillProps<T> extends CommonProps {
-  asPlainText?: boolean;
   children?: string;
   className?: string;
   color?: string;
@@ -39,23 +40,18 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
 
   render() {
     const {
-      asPlainText,
       children,
       className,
       color,
       onClick,
       onClickAriaLabel,
-      onClose, // eslint-disable-line no-unused-vars
-      option, // eslint-disable-line no-unused-vars
+      onClose,
+      option,
       ...rest
     } = this.props;
-    const classes = classNames(
-      'euiComboBoxPill',
-      {
-        'euiComboBoxPill--plainText': asPlainText,
-      },
-      className
-    );
+
+    const classes = classNames('euiComboBoxPill', className);
+
     const onClickProps =
       onClick && onClickAriaLabel
         ? {
@@ -63,6 +59,18 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
             onClickAriaLabel,
           }
         : {};
+
+    const content = (
+      <EuiComboBoxOptionAppendPrepend
+        option={option}
+        classNamePrefix="euiComboBoxPill"
+      >
+        {/* .euiBadge__text normally text truncates, but because we set it to flex to align prepend/append
+          it breaks and we need to restore it manually
+         */}
+        <span className="eui-textTruncate">{children}</span>
+      </EuiComboBoxOptionAppendPrepend>
+    );
 
     if (onClose) {
       return (
@@ -75,6 +83,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
             <EuiBadge
               className={classes}
               color={color}
+              data-test-subj="euiComboBoxPill"
               iconOnClick={this.onCloseButtonClick}
               iconOnClickAriaLabel={removeSelection}
               iconSide="right"
@@ -83,18 +92,10 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
               {...onClickProps}
               {...rest}
             >
-              {children}
+              {content}
             </EuiBadge>
           )}
         </EuiI18n>
-      );
-    }
-
-    if (asPlainText) {
-      return (
-        <span className={classes} {...rest}>
-          {children}
-        </span>
       );
     }
 
@@ -102,11 +103,12 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       <EuiBadge
         className={classes}
         color={color}
+        data-test-subj="euiComboBoxPill"
         title={children}
         {...rest}
         {...onClickProps}
       >
-        {children}
+        {content}
       </EuiBadge>
     );
   }

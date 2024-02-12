@@ -28,15 +28,9 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
       | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
   };
 
-export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLayoutCustomIconProps> = ({
-  className,
-  onClick,
-  type,
-  iconRef,
-  size,
-  color,
-  ...rest
-}) => {
+export const EuiFormControlLayoutCustomIcon: FunctionComponent<
+  EuiFormControlLayoutCustomIconProps
+> = ({ className, onClick, type, iconRef, size, color, ...rest }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
     'euiFormControlLayoutCustomIcon--clickable': onClick,
   });

@@ -42,7 +42,7 @@ export default () => {
     },
   ];
 
-  const [value, setValue] = useState('option_one');
+  const [value, setValue] = useState();
 
   const onChange = (value) => {
     setValue(value);
@@ -52,6 +52,7 @@ export default () => {
     <EuiSuperSelect
       options={options}
       valueOfSelected={value}
+      placeholder="Select an option"
       onChange={(value) => onChange(value)}
       itemLayoutAlign="top"
       hasDividers

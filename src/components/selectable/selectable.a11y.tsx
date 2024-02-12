@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 
@@ -28,32 +30,37 @@ const options: EuiSelectableProps['options'] = [
   },
 ];
 
-const EuiSelectableListboxOnly = (args) => {
-  return (
-    <EuiSelectable options={options} {...args}>
-      {(list) => <>{list}</>}
-    </EuiSelectable>
-  );
-};
-
-const EuiSelectableWithSearchInput = (args) => {
-  return (
-    <EuiSelectable searchable options={options} {...args}>
-      {(list, search) => (
-        <>
-          {search}
-          {list}
-        </>
-      )}
-    </EuiSelectable>
-  );
-};
+const excludedOptions: EuiSelectableProps['options'] = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    checked: 'on',
+  },
+  {
+    label: 'Enceladus',
+    checked: 'off',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    checked: 'mixed',
+  },
+];
 
 describe('EuiSelectable', () => {
   describe('with a `searchable` configuration', () => {
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
-      cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
+      cy.realMount(
+        <EuiSelectable options={options} onChange={onChange} searchable>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
       cy.checkAxe();
     });
   });
@@ -62,10 +69,29 @@ describe('EuiSelectable', () => {
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
       cy.realMount(
-        <EuiSelectableListboxOnly
+        <EuiSelectable
           aria-label="No search box"
+          options={options}
           onChange={onChange}
-        />
+        >
+          {(list) => <>{list}</>}
+        </EuiSelectable>
+      );
+      cy.checkAxe();
+    });
+  });
+
+  describe('with excluded and mixed options configuration', () => {
+    it('has no accessibility errors', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable
+          aria-label="Excluded and mixed options"
+          options={excludedOptions}
+          onChange={onChange}
+        >
+          {(list) => <>{list}</>}
+        </EuiSelectable>
       );
       cy.checkAxe();
     });
@@ -99,13 +125,19 @@ describe('EuiSelectable', () => {
           isOpen={isPopoverOpen}
           closePopover={onClosePopover}
         >
-          <EuiSelectableWithSearchInput
+          <EuiSelectable
             aria-label="With popover"
             options={options}
             onChange={onChange}
+            searchable
           >
-            {(list) => <>{list}</>}
-          </EuiSelectableWithSearchInput>
+            {(list, search) => (
+              <>
+                {search}
+                {list}
+              </>
+            )}
+          </EuiSelectable>
         </EuiPopover>
       );
     };

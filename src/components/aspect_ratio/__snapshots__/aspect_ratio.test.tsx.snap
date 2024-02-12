@@ -1,22 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiAspectRatio is rendered 1`] = `
-<iframe
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen=""
-  aria-label="aria-label"
-  class="euiAspectRatio testClass1 testClass2"
-  data-test-subj="test subject string"
-  frameborder="0"
-  height="315"
-  src="https://www.youtube.com/embed/yJarWSLRM24"
-  style="aspect-ratio:9 / 4;height:auto;width:100%"
-  title="Elastic is a search company"
-  width="560"
-/>
-`;
-
-
 exports[`EuiAspectRatio allows overriding with custom styles 1`] = `
 <iframe
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -25,7 +8,23 @@ exports[`EuiAspectRatio allows overriding with custom styles 1`] = `
   frameborder="0"
   height="315"
   src="https://www.youtube.com/embed/yJarWSLRM24"
-  style="aspect-ratio:9 / 4;height:300px;width:100%;margin:2em"
+  style="height: 300px; width: 100%; margin: 2em;"
+  title="Elastic is a search company"
+  width="560"
+/>
+`;
+
+exports[`EuiAspectRatio is rendered 1`] = `
+<iframe
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen=""
+  aria-label="aria-label"
+  class="euiAspectRatio testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
+  frameborder="0"
+  height="315"
+  src="https://www.youtube.com/embed/yJarWSLRM24"
+  style="height: auto; width: 100%;"
   title="Elastic is a search company"
   width="560"
 />
@@ -36,12 +35,12 @@ exports[`EuiAspectRatio props maxWidth is rendered 1`] = `
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen=""
   aria-label="aria-label"
-  class="euiAspectRatio testClass1 testClass2"
+  class="euiAspectRatio testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   frameborder="0"
   height="315"
   src="https://www.youtube.com/embed/yJarWSLRM24"
-  style="aspect-ratio:9 / 16;height:auto;width:100%;max-width:500px"
+  style="height: auto; width: 100%; max-width: 500px;"
   title="Elastic is a search company"
   width="560"
 />

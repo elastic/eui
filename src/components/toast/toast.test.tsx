@@ -7,43 +7,48 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { COLORS, EuiToast } from './toast';
 
 describe('EuiToast', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiToast {...requiredProps} title="test title">
         <p>Hi</p>
       </EuiToast>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('Props', () => {
     describe('title', () => {
       test('is rendered', () => {
-        const component = <EuiToast title="toast title" />;
-        expect(render(component)).toMatchSnapshot();
+        const { container } = render(<EuiToast title="toast title" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = <EuiToast color={color} title="test title" />;
-          expect(render(component)).toMatchSnapshot();
+          const { container } = render(
+            <EuiToast color={color} title="test title" />
+          );
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('iconType', () => {
       test('is rendered', () => {
-        const component = <EuiToast iconType="user" title="test title" />;
-        expect(render(component)).toMatchSnapshot();
+        const { container } = render(
+          <EuiToast iconType="user" title="test title" />
+        );
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 

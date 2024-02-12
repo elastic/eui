@@ -22,7 +22,7 @@ const typeToSubtitleTextMap = {
 export const GuideRuleExample = ({
   children,
   className,
-  type,
+  type = 'default',
   text,
   minHeight,
   style,
@@ -102,8 +102,4 @@ GuideRuleExample.propTypes = {
   text: PropTypes.node,
   minHeight: PropTypes.number,
   panelProps: PropTypes.any,
-};
-
-GuideRuleExample.defaultProps = {
-  type: 'default',
 };

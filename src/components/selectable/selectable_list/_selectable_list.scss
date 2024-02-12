@@ -1,10 +1,12 @@
-// Expand height of list via flex box
 .euiSelectableList {
-  &:focus-within {
-    @include euiFocusRing;
+  // NOTE: This is currently only visible on supported browsers (all except FF)
+  // which is (unfortunately) better than always displaying the focus ring to mouse users
+  &:has(:focus-visible) {
+    @include euiFocusRing(null, $euiFocusRingSize / 2, false);
   }
 }
 
+// Expand height of list via flex box
 .euiSelectableList-fullHeight {
   flex-grow: 1;
 }
@@ -18,6 +20,11 @@
 .euiSelectableList__list {
   @include euiOverflowShadow;
   @include euiScrollBar;
+
+  &:focus,
+  & > ul:focus {
+    outline: none; // Focus outline handled by parent .euiSelectableList
+  }
 }
 
 .euiSelectableList__groupLabel {

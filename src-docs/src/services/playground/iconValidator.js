@@ -4,6 +4,7 @@ import { mapOptions } from './mapOptions';
 import { PropTypes } from 'react-view';
 
 const iconOptions = mapOptions(iconTypes.concat(logoTypes));
+iconOptions.alert = 'warning'; // Legacy alias for Elastic Charts - primarily here for playground testing
 
 export const iconValidator = (prop = { custom: {} }, value) => {
   const newProp = {

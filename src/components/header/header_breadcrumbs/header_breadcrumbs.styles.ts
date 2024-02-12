@@ -13,7 +13,7 @@ import { euiTextTruncate, logicalCSS } from '../../../global_styling';
 export const euiHeaderBreadcrumbsStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiHeaderBreadcrumbs: css`
-      ${euiTextTruncate()};
+      ${euiTextTruncate()}
       align-items: center;
       display: flex;
       flex-grow: 1;

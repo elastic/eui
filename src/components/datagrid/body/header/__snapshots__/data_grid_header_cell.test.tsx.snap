@@ -1,116 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDataGridHeaderCell renders 1`] = `
-<EuiDataGridHeaderCellWrapper
-  className="euiDataGridHeaderCell--numeric"
-  headerIsInteractive={false}
-  id="someColumn"
-  index={0}
-  width={50}
+<div
+  class="euiDataGridHeaderCell euiDataGridHeaderCell--numeric euiDataGridHeaderCell--hasColumnActions"
+  data-gridcell-column-id="someColumn"
+  data-gridcell-column-index="0"
+  data-gridcell-row-index="-1"
+  data-gridcell-visible-row-index="-1"
+  data-test-subj="dataGridHeaderCell-someColumn"
+  role="columnheader"
+  style="width: 50px;"
+  tabindex="-1"
 >
-  <EuiDataGridColumnResizer
-    columnId="someColumn"
-    columnWidth={50}
-    setColumnWidth={[MockFunction]}
+  <div
+    class="euiDataGridColumnResizer"
+    data-test-subj="dataGridColumnResizer"
+    style="margin-right: 0px;"
   />
-  <EuiPopover
-    anchorClassName="eui-fullWidth"
-    anchorPosition="downCenter"
-    button={
-      <button
-        aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-        className="euiDataGridHeaderCell__button"
-        onClick={[Function]}
-      >
-        <div
-          className="euiDataGridHeaderCell__content"
-          title="someColumn"
-        >
-          someColumn
-        </div>
-        <EuiIcon
-          className="euiDataGridHeaderCell__icon"
-          color="text"
-          data-test-subj="dataGridHeaderCellActionButton-someColumn"
-          size="s"
-          type="arrowDown"
-        />
-      </button>
-    }
-    className="eui-fullWidth"
-    closePopover={[Function]}
-    display="inline-block"
-    hasArrow={true}
-    isOpen={false}
-    offset={7}
-    ownFocus={true}
-    panelPaddingSize="none"
-    panelProps={
-      Object {
-        "onKeyDown": [Function],
-      }
-    }
-    panelRef={[Function]}
-    popoverScreenReaderText={
-      <EuiI18n
-        default="To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
-        token="euiDataGridHeaderCell.actionsPopoverScreenReaderText"
-      />
-    }
+  <button
+    aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+    class="euiDataGridHeaderCell__button"
+    data-euigrid-tab-managed="true"
+    data-test-subj="dataGridHeaderCellActionButton-someColumn"
+    tabindex="-1"
   >
-    <EuiListGroup
-      data-test-subj="dataGridHeaderCellActionGroup-someColumn"
-      gutterSize="none"
-      listItems={
-        Array [
-          Object {
-            "color": "text",
-            "iconType": "eyeClosed",
-            "label": <EuiI18n
-              default="Hide column"
-              token="euiColumnActions.hideColumn"
-            />,
-            "onClick": [Function],
-            "size": "xs",
-          },
-          Object {
-            "color": "text",
-            "iconType": "sortLeft",
-            "isDisabled": false,
-            "label": <EuiI18n
-              default="Move left"
-              token="euiColumnActions.moveLeft"
-            />,
-            "onClick": [Function],
-            "size": "xs",
-          },
-          Object {
-            "color": "text",
-            "iconType": "sortRight",
-            "isDisabled": true,
-            "label": <EuiI18n
-              default="Move right"
-              token="euiColumnActions.moveRight"
-            />,
-            "onClick": [Function],
-            "size": "xs",
-          },
-        ]
-      }
-    />
-  </EuiPopover>
+    <div
+      class="euiDataGridHeaderCell__content"
+      title="someColumn"
+    >
+      someColumn
+    </div>
+    <div
+      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+    >
+      <div
+        class="euiDataGridHeaderCell__icon"
+      >
+        <span
+          color="text"
+          data-euiicon-type="boxesVertical"
+        />
+      </div>
+    </div>
+  </button>
   <p
-    hidden={true}
+    hidden=""
     id="euiDataGridCellHeader_generated-id_sorting"
   />
   <p
-    hidden={true}
+    hidden=""
     id="euiDataGridCellHeader_generated-id_actions"
   >
-    <EuiI18n
-      default="Click to view column header actions"
-      token="euiDataGridHeaderCell.headerActions"
-    />
+    Click to view column header actions
   </p>
-</EuiDataGridHeaderCellWrapper>
+</div>
 `;

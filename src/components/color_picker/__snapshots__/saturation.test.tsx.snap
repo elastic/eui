@@ -3,9 +3,9 @@
 exports[`EuiHue accepts a color 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSaturation testClass1 testClass2"
+  class="euiSaturation testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
-  style="background:hsl(180, 100%, 50%)"
+  style="background: hsl(180, 100%, 50%);"
   tabindex="-1"
 >
   <div
@@ -20,7 +20,7 @@ exports[`EuiHue accepts a color 1`] = `
     aria-roledescription="HSV color mode saturation and value 2-axis slider"
     class="euiSaturation__indicator"
     id="undefined-saturationIndicator"
-    style="left:0;top:0"
+    style="left: 0px; top: 0px;"
   />
   <span
     aria-live="assertive"
@@ -38,9 +38,9 @@ exports[`EuiHue accepts a color 1`] = `
 exports[`EuiHue is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSaturation testClass1 testClass2"
+  class="euiSaturation testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
-  style="background:hsl(1, 100%, 50%)"
+  style="background: hsl(1, 100%, 50%);"
   tabindex="-1"
 >
   <div
@@ -55,7 +55,7 @@ exports[`EuiHue is rendered 1`] = `
     aria-roledescription="HSV color mode saturation and value 2-axis slider"
     class="euiSaturation__indicator"
     id="undefined-saturationIndicator"
-    style="left:0;top:0"
+    style="left: 0px; top: 0px;"
   />
   <span
     aria-live="assertive"

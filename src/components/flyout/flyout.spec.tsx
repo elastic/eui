@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 
@@ -51,14 +53,24 @@ describe('EuiFlyout', () => {
 
     it('traps focus and cycles tabbable items', () => {
       cy.mount(<Flyout />);
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
       cy.repeatRealPress('Tab', 4);
-      cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+      cy.get('[data-test-subj="itemC"]').should('be.focused');
       cy.repeatRealPress('Tab', 3);
-      cy.focused().should(
-        'have.attr',
-        'data-test-subj',
-        'euiFlyoutCloseButton'
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.focused');
+    });
+
+    it('does not focus trap or scrollLock for push flyouts', () => {
+      cy.mount(
+        <>
+          <div style={{ height: 2000 }}>Body scroll</div>
+          <Flyout type="push" pushMinBreakpoint="xs" size="100px" />
+        </>
       );
+
+      cy.get('body').realClick({ position: 'topLeft' }).realPress('End'); // TODO: Use cypress-real-event's `realMouseWheel` API, whenever they release it
+      cy.wait(500); // Wait a tick to let scroll position update
+      cy.window().its('scrollY').should('not.equal', 0);
     });
   });
 
@@ -114,11 +126,11 @@ describe('EuiFlyout', () => {
 
     it('closes the flyout when the overlay mask is clicked', () => {
       cy.mount(<Flyout />);
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.visible');
       cy.get('.euiOverlayMask')
-        .realClick()
-        .then(() => {
-          expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
-        });
+        .should('be.visible')
+        .realClick({ position: 'left' });
+      cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
     });
 
     it('does not close the flyout when `outsideClickCloses=false` and the overlay mask is clicked', () => {
@@ -152,10 +164,9 @@ describe('EuiFlyout', () => {
     it('closes the flyout when the toast is clicked when `ownFocus=false`', () => {
       cy.mount(<FlyoutWithToasts ownFocus={false} outsideClickCloses={true} />);
       cy.get('[data-test-subj="toastCloseButton"]')
-        .realClick()
-        .then(() => {
-          expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
-        });
+        .should('be.visible')
+        .realClick();
+      cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
     });
   });
 

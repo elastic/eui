@@ -30,6 +30,7 @@ import { TimeOptions } from '../time_options';
 import {
   DurationRange,
   ApplyRefreshInterval,
+  RefreshUnitsOptions,
   ApplyTime,
   QuickSelect,
   QuickSelectPanel,
@@ -57,14 +58,14 @@ export interface EuiQuickSelectPopoverProps {
   isPaused: boolean;
   recentlyUsedRanges: DurationRange[];
   refreshInterval: number;
+  intervalUnits?: RefreshUnitsOptions;
   start: string;
   timeOptions: TimeOptions;
 }
 
-export const EuiQuickSelectPopover: FunctionComponent<EuiQuickSelectPopoverProps> = ({
-  applyTime: _applyTime,
-  ...props
-}) => {
+export const EuiQuickSelectPopover: FunctionComponent<
+  EuiQuickSelectPopoverProps
+> = ({ applyTime: _applyTime, ...props }) => {
   const [prevQuickSelect, setQuickSelect] = useState<QuickSelect>();
   const [isOpen, setIsOpen] = useState(false);
   const closePopover = useCallback(() => setIsOpen(false), []);
@@ -91,7 +92,7 @@ export const EuiQuickSelectPopover: FunctionComponent<EuiQuickSelectPopoverProps
   const quickSelectButton = (
     <EuiButtonEmpty
       className="euiFormControlLayout__prepend"
-      textProps={{ className: 'euiQuickSelectPopover__buttonText' }}
+      contentProps={{ className: 'euiQuickSelectPopover__buttonContent' }}
       onClick={togglePopover}
       aria-label={buttonlabel}
       title={buttonlabel}
@@ -111,7 +112,6 @@ export const EuiQuickSelectPopover: FunctionComponent<EuiQuickSelectPopoverProps
       isOpen={isOpen}
       closePopover={closePopover}
       anchorPosition="downLeft"
-      anchorClassName="euiQuickSelectPopover__anchor"
     >
       <EuiQuickSelectPanels
         {...props}
@@ -137,6 +137,7 @@ export const EuiQuickSelectPanels: FunctionComponent<
   customQuickSelectRender,
   isPaused,
   refreshInterval,
+  intervalUnits,
   applyRefreshInterval,
   applyTime,
   prevQuickSelect,
@@ -172,6 +173,7 @@ export const EuiQuickSelectPanels: FunctionComponent<
       onRefreshChange={applyRefreshInterval}
       isPaused={isPaused}
       refreshInterval={refreshInterval}
+      intervalUnits={intervalUnits}
     />
   );
 

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiResizableButton renders 1`] = `
+<div>
+  <button
+    aria-label="aria-label"
+    class="euiResizableButton testClass1 testClass2 emotion-euiResizableButton-handle-vertical-vertical-center-euiTestCss"
+    data-test-subj="test subject string"
+    type="button"
+  />
+</div>
+`;
+
+exports[`EuiResizableButton renders different indicator styles and directions 1`] = `
+<div>
+  <button
+    aria-label="Press the left or right arrow keys to adjust panels size"
+    class="euiResizableButton emotion-euiResizableButton-border-horizontal-horizontal"
+    data-test-subj="euiResizableButton"
+    type="button"
+  />
+</div>
+`;

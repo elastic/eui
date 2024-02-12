@@ -1,261 +1,348 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`align defaults to left 1`] = `
-<td
-  class="euiTableHeaderCell"
-  role="columnheader"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    />
-  </span>
-</td>
+<table>
+  <thead>
+    <tr>
+      <td
+        class="euiTableHeaderCell"
+        role="columnheader"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          />
+        </span>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`align renders center when specified 1`] = `
-<td
-  class="euiTableHeaderCell"
-  role="columnheader"
->
-  <span
-    class="euiTableCellContent euiTableCellContent--alignCenter"
-  >
-    <span
-      class="euiTableCellContent__text"
-    />
-  </span>
-</td>
+<table>
+  <thead>
+    <tr>
+      <td
+        class="euiTableHeaderCell"
+        role="columnheader"
+      >
+        <span
+          class="euiTableCellContent euiTableCellContent--alignCenter"
+        >
+          <span
+            class="euiTableCellContent__text"
+          />
+        </span>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`align renders right when specified 1`] = `
-<td
-  class="euiTableHeaderCell"
-  role="columnheader"
->
-  <span
-    class="euiTableCellContent euiTableCellContent--alignRight"
-  >
-    <span
-      class="euiTableCellContent__text"
-    />
-  </span>
-</td>
+<table>
+  <thead>
+    <tr>
+      <td
+        class="euiTableHeaderCell"
+        role="columnheader"
+      >
+        <span
+          class="euiTableCellContent euiTableCellContent--alignRight"
+        >
+          <span
+            class="euiTableCellContent__text"
+          />
+        </span>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`renders EuiTableHeaderCell 1`] = `
-<th
-  aria-label="aria-label"
-  class="euiTableHeaderCell testClass1 testClass2"
-  data-test-subj="test subject string"
-  role="columnheader"
-  scope="col"
->
-  <span
-    class="euiTableCellContent testClass1 testClass2"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      children
-    </span>
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-label="aria-label"
+        class="euiTableHeaderCell testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+        role="columnheader"
+        scope="col"
+      >
+        <span
+          class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="children"
+          >
+            children
+          </span>
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`renders td when children is null/undefined 1`] = `
-<td
-  aria-label="aria-label"
-  class="euiTableHeaderCell testClass1 testClass2"
-  data-test-subj="test subject string"
-  role="columnheader"
->
-  <span
-    class="euiTableCellContent testClass1 testClass2"
-  >
-    <span
-      class="euiTableCellContent__text"
-    />
-  </span>
-</td>
+<table>
+  <thead>
+    <tr>
+      <td
+        aria-label="aria-label"
+        class="euiTableHeaderCell testClass1 testClass2 emotion-euiTestCss"
+        data-test-subj="test subject string"
+        role="columnheader"
+      >
+        <span
+          class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
+        >
+          <span
+            class="euiTableCellContent__text"
+          />
+        </span>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`sorting does not render a button with readOnly 1`] = `
-<th
-  aria-live="polite"
-  aria-sort="descending"
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-    <span
-      class="euiTableSortIcon"
-      data-euiicon-type="sortDown"
-    />
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-live="polite"
+        aria-sort="descending"
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+          <span
+            class="euiTableSortIcon"
+            data-euiicon-type="sortDown"
+          />
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`sorting is rendered with isSortAscending 1`] = `
-<th
-  aria-live="polite"
-  aria-sort="ascending"
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-    <span
-      class="euiTableSortIcon"
-      data-euiicon-type="sortUp"
-    />
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-live="polite"
+        aria-sort="ascending"
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+          <span
+            class="euiTableSortIcon"
+            data-euiicon-type="sortUp"
+          />
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`sorting is rendered with isSorted 1`] = `
-<th
-  aria-live="polite"
-  aria-sort="descending"
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-    <span
-      class="euiTableSortIcon"
-      data-euiicon-type="sortDown"
-    />
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-live="polite"
+        aria-sort="descending"
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+          <span
+            class="euiTableSortIcon"
+            data-euiicon-type="sortDown"
+          />
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`sorting renders a button with onSort 1`] = `
-<th
-  aria-live="polite"
-  aria-sort="descending"
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
->
-  <button
-    class="euiTableHeaderButton euiTableHeaderButton-isSorted"
-    data-test-subj="tableHeaderSortButton"
-    type="button"
-  >
-    <span
-      class="euiTableCellContent"
-    >
-      <span
-        class="euiTableCellContent__text"
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-live="polite"
+        aria-sort="descending"
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
       >
-        Test
-      </span>
-      <span
-        class="euiTableSortIcon"
-        data-euiicon-type="sortDown"
-      />
-    </span>
-  </button>
-</th>
+        <button
+          class="euiTableHeaderButton euiTableHeaderButton-isSorted"
+          data-test-subj="tableHeaderSortButton"
+          type="button"
+        >
+          <span
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
+              title="Test"
+            >
+              Test
+            </span>
+            <span
+              class="euiTableSortIcon"
+              data-euiicon-type="sortDown"
+            />
+          </span>
+        </button>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`width and style accepts style attribute 1`] = `
-<th
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
-  style="width:20%"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+        style="width: 20%;"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`width and style accepts width attribute 1`] = `
-<th
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
-  style="width:10%"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+        style="width: 10%;"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`width and style accepts width attribute as number 1`] = `
-<th
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
-  style="width:100px"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+        style="width: 100px;"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`width and style resolves style and width attribute 1`] = `
-<th
-  class="euiTableHeaderCell"
-  role="columnheader"
-  scope="col"
-  style="width:10%"
->
-  <span
-    class="euiTableCellContent"
-  >
-    <span
-      class="euiTableCellContent__text"
-    >
-      Test
-    </span>
-  </span>
-</th>
+<table>
+  <thead>
+    <tr>
+      <th
+        class="euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+        style="width: 10%;"
+      >
+        <span
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+            title="Test"
+          >
+            Test
+          </span>
+        </span>
+      </th>
+    </tr>
+  </thead>
+</table>
 `;

@@ -34,8 +34,7 @@ const customPalettes = [
       order: 'group',
       direction: 'both',
     }),
-    code:
-      "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
+    code: "euiPaletteColorBlind({rotations: 3, order: 'group', direction: 'both'})",
   },
   {
     title:

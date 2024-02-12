@@ -6,13 +6,21 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
-import { EuiComboBox } from './index';
+import { EuiComboBox, EuiComboBoxOptionOption } from './index';
+
+interface ComboBoxOption {
+  label: string;
+  'data-test-subj': string;
+}
+type ComboBoxOptions = Array<EuiComboBoxOptionOption<ComboBoxOption>>;
 
 const ComboBox = () => {
-  const [options] = useState([
+  const [options] = useState<ComboBoxOptions>([
     {
       label: 'Titan',
       'data-test-subj': 'titanOption',
@@ -51,9 +59,9 @@ const ComboBox = () => {
     },
   ]);
 
-  const [selectedOptions, setSelected] = useState([]);
+  const [selectedOptions, setSelected] = useState<ComboBoxOptions>([]);
 
-  const onChange = (selectedOptions) => {
+  const onChange = (selectedOptions: ComboBoxOptions) => {
     setSelected(selectedOptions);
   };
 

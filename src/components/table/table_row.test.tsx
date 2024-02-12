@@ -7,31 +7,38 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableRow } from './table_row';
 
 import { EuiTableRowCell } from './table_row_cell';
 
+const renderInTable = (row: React.ReactElement) =>
+  render(
+    <table>
+      <tbody>{row}</tbody>
+    </table>
+  );
+
 test('renders EuiTableRow', () => {
-  const component = (
+  const { container } = renderInTable(
     <EuiTableRow {...requiredProps}>
       <EuiTableRowCell>hi</EuiTableRowCell>
     </EuiTableRow>
   );
 
-  expect(render(component)).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 describe('isSelected', () => {
   test('renders true when specified', () => {
-    const component = (
+    const { container } = renderInTable(
       <EuiTableRow isSelected={true}>
         <EuiTableRowCell />
       </EuiTableRow>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -37,7 +37,7 @@ interface GranularitiesType {
   YEAR: GranularityType;
 }
 
-export const Granularity: GranularitiesType = Object.freeze({
+export const Granularity = Object.freeze<GranularitiesType>({
   DAY: {
     es: 'd',
     js: 'day',

@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { createRef } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
@@ -63,11 +65,11 @@ describe('useScroll', () => {
 
     it('handles setFocusedCell being called manually on cells out of view', () => {
       const ref = createRef<EuiDataGridRefProps>();
-      cy.mount(<EuiDataGrid {...baseProps} ref={ref} />);
+      cy.realMount(<EuiDataGrid {...baseProps} ref={ref} />);
 
       // Wait for the grid to finish rendering and pass back the ref
       cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
-        ref.current.setFocusedCell({ rowIndex: 14, colIndex: 5 });
+        ref.current!.setFocusedCell({ rowIndex: 14, colIndex: 5 });
         cy.focused()
           .should('have.attr', 'data-gridcell-visible-row-index', '14')
           .should('have.attr', 'data-gridcell-column-index', '5');
@@ -78,11 +80,11 @@ describe('useScroll', () => {
   describe('cell popover', () => {
     it('handles openCellPopover being called manually on cells out of view', () => {
       const ref = createRef<EuiDataGridRefProps>();
-      cy.mount(<EuiDataGrid {...baseProps} ref={ref} />);
+      cy.realMount(<EuiDataGrid {...baseProps} ref={ref} />);
 
       // Wait for the grid to finish rendering and pass back the ref
       cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
-        ref.current.openCellPopover({ rowIndex: 14, colIndex: 5 });
+        ref.current!.openCellPopover({ rowIndex: 14, colIndex: 5 });
         cy.focused().should(
           'have.attr',
           'data-test-subj',

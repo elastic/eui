@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableSearch } from './selectable_search';
@@ -25,19 +26,19 @@ describe('EuiSelectableSearch', () => {
   beforeEach(() => jest.clearAllMocks());
 
   test('is rendered', () => {
-    const component = render(<EuiSelectableSearch {...baseProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiSelectableSearch {...baseProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders aria props if a listId is present', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelectableSearch {...baseProps} listId="list" />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders placeholder, value, name, and other remaining EuiFieldSearch props', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelectableSearch
         {...baseProps}
         placeholder="start typing"
@@ -47,14 +48,15 @@ describe('EuiSelectableSearch', () => {
         className="testClass"
       />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it("calls the onChange callback when the EuiFieldSearch's change event fires", () => {
-    const component = shallow(<EuiSelectableSearch {...baseProps} />);
-    component
-      .find('EuiFieldSearch')
-      .simulate('change', { target: { value: 'h' } });
+    const { container } = render(<EuiSelectableSearch {...baseProps} />);
+
+    fireEvent.change(container.querySelector('input')!, {
+      target: { value: 'h' },
+    });
     expect(onChange).toHaveBeenCalledWith('h', [{ label: 'hello' }]);
   });
 });

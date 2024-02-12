@@ -18,7 +18,7 @@ describe('sortMapByLargeToSmallValues', () => {
         medium: 10,
         large: 30,
         small: 5,
-      })
+      } as any)
     ).toEqual({
       large: 30,
       medium: 10,
@@ -34,7 +34,7 @@ describe('sortMapBySmallToLargeValues', () => {
         large: 100,
         medium: 10,
         small: 1,
-      })
+      } as any)
     ).toEqual({
       small: 1,
       medium: 10,

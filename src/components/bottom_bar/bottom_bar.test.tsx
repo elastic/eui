@@ -7,10 +7,9 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render, mount } from 'enzyme';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
 import { keysOf } from '../common';
-import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import {
   EuiBottomBar,
@@ -18,30 +17,24 @@ import {
   POSITIONS,
 } from './bottom_bar';
 
-// @ts-ignore TODO: Temporary hack which we can remove once react-test-renderer supports portals.
-// More info at https://github.com/facebook/react/issues/11565.
-ReactDOM.createPortal = (children) => {
-  // hack to make enzyme treat the portal as a fragment
-  if (children == null) return [['nested']];
-  return children;
-};
-
 describe('EuiBottomBar', () => {
   test('is rendered', () => {
-    const component = render(
+    const { baseElement } = render(
       <EuiBottomBar {...requiredProps}>Content</EuiBottomBar>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('paddingSize', () => {
       keysOf(paddingSizeToClassNameMap).forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
-          const component = render(<EuiBottomBar paddingSize={paddingSize} />);
+          const { baseElement } = render(
+            <EuiBottomBar paddingSize={paddingSize} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(baseElement).toMatchSnapshot();
         });
       });
     });
@@ -49,52 +42,56 @@ describe('EuiBottomBar', () => {
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {
-          const component = render(<EuiBottomBar position={position} />);
+          const { baseElement } = render(<EuiBottomBar position={position} />);
 
-          expect(component).toMatchSnapshot();
+          expect(baseElement).toMatchSnapshot();
         });
       });
     });
 
     test('landmarkHeading', () => {
-      const component = render(
+      const { baseElement } = render(
         <EuiBottomBar landmarkHeading="This should have been label" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
 
     test('affordForDisplacement can be false', () => {
-      const component = render(<EuiBottomBar affordForDisplacement={false} />);
+      const { baseElement } = render(
+        <EuiBottomBar affordForDisplacement={false} />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
 
     test('usePortal can be false', () => {
-      const component = render(<EuiBottomBar usePortal={false} />);
+      const { baseElement } = render(<EuiBottomBar usePortal={false} />);
 
-      expect(component).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
 
     test('bodyClassName is rendered', () => {
-      const component = mount(<EuiBottomBar bodyClassName={'customClass'} />);
+      const { baseElement } = render(
+        <EuiBottomBar bodyClassName={'customClass'} />
+      );
 
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
       expect(document.body.classList.contains('customClass')).toBe(true);
     });
 
     test('style is customized', () => {
-      const component = render(<EuiBottomBar style={{ left: 12 }} />);
+      const { baseElement } = render(<EuiBottomBar style={{ left: 12 }} />);
 
-      expect(component).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
 
     test('position props are altered', () => {
-      const component = render(
+      const { baseElement } = render(
         <EuiBottomBar top={30} right={30} bottom={30} left={30} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
     });
   });
 });

@@ -28,16 +28,16 @@ const _avatarSize = ({
 export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiAvatar: css`
-    // Ensures it never scales down below its intended size
+    /* Ensures it never scales down below its intended size */
     flex-shrink: 0;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     vertical-align: middle;
     background-size: cover;
-    ${logicalTextAlignCSS('center')};
+    ${logicalTextAlignCSS('center')}
     ${logicalCSS('overflow-x', 'hidden')}
-    // Explicitly state weight so it doesn't get overridden by inheritance
+    /* Explicitly state weight so it doesn't get overridden by inheritance */
     font-weight: ${euiTheme.font.weight.medium};
   `,
   // Variants
@@ -83,4 +83,17 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
       fontSize: `calc(${euiTheme.size.xl} * 0.8)`,
     })
   ),
+  // Casing
+  capitalize: css`
+    text-transform: capitalize;
+  `,
+  uppercase: css`
+    text-transform: uppercase;
+  `,
+  lowercase: css`
+    text-transform: lowercase;
+  `,
+  none: css`
+    text-transform: none;
+  `,
 });

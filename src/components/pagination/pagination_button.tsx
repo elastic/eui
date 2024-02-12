@@ -17,21 +17,15 @@ import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
   isActive?: boolean;
-  /**
-   * For ellipsis or other non-clickable buttons.
-   */
-  isPlaceholder?: boolean;
   pageIndex: number;
   totalPages?: number;
 };
 
-type EuiPaginationButtonPropsForAnchor = PropsForAnchor<
-  EuiPaginationButtonProps
->;
+type EuiPaginationButtonPropsForAnchor =
+  PropsForAnchor<EuiPaginationButtonProps>;
 
-type EuiPaginationButtonPropsForButton = PropsForButton<
-  EuiPaginationButtonProps
->;
+type EuiPaginationButtonPropsForButton =
+  PropsForButton<EuiPaginationButtonProps>;
 
 type Props = ExclusiveUnion<
   EuiPaginationButtonPropsForAnchor,
@@ -41,7 +35,6 @@ type Props = ExclusiveUnion<
 export const EuiPaginationButton: FunctionComponent<Props> = ({
   className,
   isActive,
-  isPlaceholder,
   pageIndex,
   totalPages,
   ...rest
@@ -51,7 +44,6 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
   const paginationButtonCss = [
     styles.euiPaginationButton,
     isActive && styles.isActive,
-    isPlaceholder && styles.isPlaceholder,
   ];
 
   const classes = classNames('euiPaginationButton', className);
@@ -62,7 +54,7 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
     size: 's',
     color: 'text',
     'data-test-subj': `pagination-button-${pageIndex}`,
-    isDisabled: isPlaceholder || isActive,
+    isDisabled: isActive,
     ...(isActive && { 'aria-current': true }),
     ...(rest['aria-controls'] && { href: `#${rest['aria-controls']}` }),
     ...rest,

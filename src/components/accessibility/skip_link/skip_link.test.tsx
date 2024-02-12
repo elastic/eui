@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 
@@ -82,15 +82,40 @@ describe('EuiSkipLink', () => {
           <>
             <EuiSkipLink
               destinationId=""
-              fallbackDestination="main, [role=main]"
+              fallbackDestination="main, [role=main], .appWrapper"
             >
               Skip to content
             </EuiSkipLink>
-            <div role="main">I am content</div>
+            <div className="appWrapper">
+              <div role="main">I am content</div>
+            </div>
           </>
         );
         fireEvent.click(getByText('Skip to content'));
 
+        // Unlike the array behavior, querySelector always picks *the first node in the DOM tree* found
+        // vs. the first item in the selector comma string
+        const expectedFocus = document.querySelector('.appWrapper');
+        expect(document.activeElement).toEqual(expectedFocus);
+      });
+
+      it('supports an array of query selectors', () => {
+        const { getByText } = render(
+          <>
+            <EuiSkipLink
+              destinationId=""
+              fallbackDestination={['main', '[role=main]', '.appWrapper']}
+            >
+              Skip to content
+            </EuiSkipLink>
+            <div className="appWrapper">
+              <div role="main">Test</div>
+            </div>
+          </>
+        );
+        fireEvent.click(getByText('Skip to content'));
+
+        // Array syntax allows us to prioritize preferred selectors
         const expectedFocus = document.querySelector('[role=main]');
         expect(document.activeElement).toEqual(expectedFocus);
       });

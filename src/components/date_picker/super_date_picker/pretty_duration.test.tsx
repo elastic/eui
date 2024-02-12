@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import { testCustomHook } from '../../../test/internal';
+import { render, renderHook } from '../../../test/rtl';
 
 import {
   usePrettyDuration,
   PrettyDuration,
   showPrettyDuration,
+  useFormatTimeString,
 } from './pretty_duration';
 
 const dateFormat = 'MMMM Do YYYY, HH:mm:ss.SSS';
@@ -30,9 +30,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-15m';
     const timeTo = 'now';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('quick range 15 minutes custom display');
   });
 
@@ -40,9 +40,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-16m';
     const timeTo = 'now';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('Last 16 minutes');
   });
 
@@ -50,9 +50,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-1M/w';
     const timeTo = 'now';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('Last 1 month rounded to the week');
   });
 
@@ -60,9 +60,9 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now';
     const timeTo = 'now+16m';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('Next 16 minutes');
   });
 
@@ -70,16 +70,16 @@ describe('usePrettyDuration', () => {
     const timeFrom = 'now-17m';
     const timeTo = 'now-15m';
     expect(
-      testCustomHook(() =>
+      renderHook(() =>
         usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
-      ).return
+      ).result.current
     ).toBe('~ 17 minutes ago to ~ 15 minutes ago');
   });
 });
 
 describe('PrettyDuration', () => {
   it('renders the returned string from usePrettyDuration', () => {
-    const component = shallow(
+    const { container } = render(
       <PrettyDuration
         timeFrom="now"
         timeTo="now+15m"
@@ -87,11 +87,7 @@ describe('PrettyDuration', () => {
         dateFormat={dateFormat}
       />
     );
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        Next 15 minutes
-      </Fragment>
-    `);
+    expect(container.firstChild).toMatchInlineSnapshot(`Next 15 minutes`);
   });
 });
 
@@ -126,5 +122,55 @@ describe('showPrettyDuration', () => {
     expect(
       showPrettyDuration('2018-01-17T18:57:57.149Z', 'now', quickRanges)
     ).toBe(false);
+  });
+});
+
+describe('useFormatTimeString', () => {
+  it('it takes a time string and formats it into a humanized date', () => {
+    expect(
+      renderHook(() => useFormatTimeString('now-3s', dateFormat)).result.current
+    ).toEqual('~ a few seconds ago');
+    expect(
+      renderHook(() => useFormatTimeString('now+1m', dateFormat)).result.current
+    ).toEqual('~ in a minute');
+    expect(
+      renderHook(() => useFormatTimeString('now+100w', dateFormat)).result
+        .current
+    ).toEqual('~ in 2 years');
+  });
+
+  it("always parses the 'now' string as-is", () => {
+    expect(
+      renderHook(() => useFormatTimeString('now', dateFormat)).result.current
+    ).toEqual('now');
+  });
+
+  describe('options', () => {
+    test('locale', () => {
+      expect(
+        renderHook(() =>
+          useFormatTimeString('now+15m', dateFormat, { locale: 'ja' })
+        ).result.current
+      ).toBe('~ 15分後');
+    });
+
+    describe('canRoundRelativeUnits', () => {
+      const option = { canRoundRelativeUnits: false };
+
+      it("allows skipping moment.fromNow()'s default rounding", () => {
+        expect(
+          renderHook(() => useFormatTimeString('now-3s', dateFormat, option))
+            .result.current
+        ).toEqual('3 seconds ago');
+        expect(
+          renderHook(() => useFormatTimeString('now+1m', dateFormat, option))
+            .result.current
+        ).toEqual('in a minute');
+        expect(
+          renderHook(() => useFormatTimeString('now+100w', dateFormat, option))
+            .result.current
+        ).toEqual('in 100 weeks');
+      });
+    });
   });
 });

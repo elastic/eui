@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiKeyPadMenu } from './key_pad_menu';
 
@@ -17,38 +17,38 @@ describe('EuiKeyPadMenu', () => {
   shouldRenderCustomStyles(<EuiKeyPadMenu />);
   shouldRenderCustomStyles(<EuiKeyPadMenu checkable={{ legend: 'test' }} />, {
     childProps: ['checkable.legendProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   test('is rendered', () => {
-    const component = render(<EuiKeyPadMenu {...requiredProps} />);
+    const { container } = render(<EuiKeyPadMenu {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('checkable', () => {
     test('is rendered as a fieldset when true', () => {
-      const component = render(<EuiKeyPadMenu checkable />);
+      const { container } = render(<EuiKeyPadMenu checkable />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered as with a legend', () => {
-      const component = render(
+      const { container } = render(
         <EuiKeyPadMenu
           checkable={{ legend: 'Legend', legendProps: requiredProps }}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered as with an ariaLegend', () => {
-      const component = render(
+      const { container } = render(
         <EuiKeyPadMenu checkable={{ ariaLegend: 'Aria legend' }} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

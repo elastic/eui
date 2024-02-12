@@ -3,7 +3,7 @@
 exports[`EuiFacetGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFacetGroup testClass1 testClass2 emotion-euiFacetGroup-m-vertical"
+  class="euiFacetGroup testClass1 testClass2 emotion-euiFacetGroup-m-vertical-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

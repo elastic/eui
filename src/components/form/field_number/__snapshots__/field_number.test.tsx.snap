@@ -4,20 +4,20 @@ exports[`EuiFieldNumber is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="alert"
+  icon="warning"
   inputid="1"
   isloading="false"
 >
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldNumber testClass1 testClass2 euiFieldNumber--withIcon"
+      class="euiFieldNumber testClass1 testClass2 emotion-euiTestCss euiFieldNumber--withIcon"
       data-test-subj="test subject string"
       id="1"
       max="8"
       min="1"
       name="elastic"
-      step="1"
+      step="any"
       type="number"
       value="1"
     />
@@ -29,7 +29,9 @@ exports[`EuiFieldNumber props controlOnly is rendered 1`] = `
 <eui-validatable-control>
   <input
     class="euiFieldNumber"
+    step="any"
     type="number"
+    value=""
   />
 </eui-validatable-control>
 `;
@@ -43,13 +45,15 @@ exports[`EuiFieldNumber props fullWidth is rendered 1`] = `
   <eui-validatable-control>
     <input
       class="euiFieldNumber euiFieldNumber--fullWidth"
+      step="any"
       type="number"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
 `;
 
-exports[`EuiFieldNumber props isInvalid is rendered 1`] = `
+exports[`EuiFieldNumber props isInvalid is rendered from a prop 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
@@ -60,8 +64,11 @@ exports[`EuiFieldNumber props isInvalid is rendered 1`] = `
     isinvalid="true"
   >
     <input
+      aria-invalid="true"
       class="euiFieldNumber euiFormControlLayout--1icons"
+      step="any"
       type="number"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -76,7 +83,9 @@ exports[`EuiFieldNumber props isLoading is rendered 1`] = `
   <eui-validatable-control>
     <input
       class="euiFieldNumber euiFormControlLayout--1icons euiFieldNumber-isLoading"
+      step="any"
       type="number"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -93,7 +102,9 @@ exports[`EuiFieldNumber props readOnly is rendered 1`] = `
     <input
       class="euiFieldNumber"
       readonly=""
+      step="any"
       type="number"
+      value=""
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -108,6 +119,7 @@ exports[`EuiFieldNumber props value no initial value 1`] = `
   <eui-validatable-control>
     <input
       class="euiFieldNumber"
+      step="any"
       type="number"
       value=""
     />
@@ -124,6 +136,7 @@ exports[`EuiFieldNumber props value value is number 1`] = `
   <eui-validatable-control>
     <input
       class="euiFieldNumber"
+      step="any"
       type="number"
       value="0"
     />

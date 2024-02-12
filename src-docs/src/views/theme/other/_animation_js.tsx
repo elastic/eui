@@ -56,9 +56,9 @@ export const SpeedValuesJS = () => {
   const { euiTheme } = useEuiTheme();
   const animation = euiTheme.animation;
 
-  const speedTypes = (getPropsFromComponent(
+  const speedTypes = getPropsFromComponent(
     EuiThemeAnimationSpeed
-  ) as unknown) as _EuiThemeAnimationSpeeds;
+  ) as unknown as _EuiThemeAnimationSpeeds;
   const speeds = keysOf(speedTypes);
 
   return (
@@ -125,9 +125,9 @@ export const EasingJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const EasingValuesJS = () => {
   const { euiTheme } = useEuiTheme();
   const animation = euiTheme.animation;
-  const easingTypes = (getPropsFromComponent(
+  const easingTypes = getPropsFromComponent(
     EuiThemeAnimationEasing
-  ) as unknown) as _EuiThemeAnimationEasings;
+  ) as unknown as _EuiThemeAnimationEasings;
   const eases = keysOf(easingTypes);
 
   return (

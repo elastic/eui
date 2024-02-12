@@ -7,3 +7,4 @@
  */
 
 export { EuiDataGridHeaderRow } from './data_grid_header_row';
+export { useDataGridHeader } from './use_data_grid_header';

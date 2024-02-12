@@ -17,7 +17,10 @@ export { EuiSubSteps } from './sub_steps';
 
 export { EuiStepHorizontal } from './step_horizontal';
 
-export type { EuiStepsHorizontalProps } from './steps_horizontal';
+export type {
+  EuiStepsHorizontalProps,
+  EuiStepsHorizontalSizes,
+} from './steps_horizontal';
 export { EuiStepsHorizontal } from './steps_horizontal';
 
 export type { EuiStepStatus, EuiStepNumberProps } from './step_number';

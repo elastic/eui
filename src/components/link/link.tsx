@@ -13,13 +13,13 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
+
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { euiLinkStyles } from './link.styles';
-import { EuiIcon } from '../icon';
-import { EuiI18n, useEuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion } from '../common';
-import { EuiScreenReaderOnly } from '../accessibility';
 import { validateHref } from '../../services/security/href_validator';
+
+import { EuiExternalLinkIcon } from './external_link_icon';
+import { euiLinkStyles } from './link.styles';
 
 export type EuiLinkType = 'button' | 'reset' | 'submit';
 
@@ -34,7 +34,7 @@ export const COLORS = [
   'ghost',
 ] as const;
 
-export type EuiLinkColor = typeof COLORS[number];
+export type EuiLinkColor = (typeof COLORS)[number];
 
 export interface LinkButtonProps {
   type?: EuiLinkType;
@@ -95,31 +95,9 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     const euiTheme = useEuiTheme();
     const styles = euiLinkStyles(euiTheme);
     const cssStyles = [styles.euiLink];
-    const cssScreenReaderTextStyles = [styles.euiLink__screenReaderText];
-    const cssExternalLinkIconStyles = [styles.euiLink__externalIcon];
 
     const isHrefValid = !href || validateHref(href);
     const disabled = _disabled || !isHrefValid;
-
-    const newTargetScreenreaderText = (
-      <EuiScreenReaderOnly css={cssScreenReaderTextStyles}>
-        <span>
-          <EuiI18n
-            token="euiLink.newTarget.screenReaderOnlyText"
-            default="(opens in a new tab or window)"
-          />
-        </span>
-      </EuiScreenReaderOnly>
-    );
-
-    const externalLinkIcon = (
-      <EuiIcon
-        aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
-        size="s"
-        css={cssExternalLinkIconStyles}
-        type="popout"
-      />
-    );
 
     if (href === undefined || !isHrefValid) {
       const buttonProps = {
@@ -152,8 +130,6 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       onClick,
       ...rest,
     };
-    const showExternalLinkIcon =
-      (target === '_blank' && external !== false) || external === true;
 
     return (
       <a
@@ -161,8 +137,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
         {...(anchorProps as EuiLinkAnchorProps)}
       >
         {children}
-        {showExternalLinkIcon && externalLinkIcon}
-        {target === '_blank' && newTargetScreenreaderText}
+        <EuiExternalLinkIcon external={external} target={target} />
       </a>
     );
   }

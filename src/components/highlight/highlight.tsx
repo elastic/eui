@@ -6,29 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
+import React, {
+  HTMLAttributes,
+  FunctionComponent,
+  ElementType,
+  useMemo,
+} from 'react';
+
 import { CommonProps } from '../common';
 import { EuiMark, EuiMarkProps } from '../mark';
 
-interface EuiHighlightChunk {
-  /**
-   * Start of the chunk
-   */
-  start: number;
-  /**
-   * End of the chunk
-   */
-  end: number;
-  /**
-   * Whether to highlight chunk or not
-   */
-  highlight?: boolean;
-}
-
-type EuiMarkPropHelpText = Pick<EuiMarkProps, 'hasScreenReaderHelpText'>;
+import { HighlightAll } from './_highlight_all';
+import { HighlightFirst } from './_highlight_first';
 
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
-  EuiMarkPropHelpText &
+  Pick<EuiMarkProps, 'hasScreenReaderHelpText'> &
   CommonProps & {
     /**
      * string to highlight as this component's content
@@ -36,9 +28,12 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
     children: string;
 
     /**
-     * What to search for
+     * What to search for.
+     *
+     * Allows passing an array of strings (searching by multiple separate
+     * words or phrases) **only** if `highlightAll` is also set to `true`.
      */
-    search: string;
+    search: string | string[];
 
     /**
      * Should the search be strict or not
@@ -51,120 +46,6 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
     highlightAll?: boolean;
   };
 
-const highlight = (
-  searchSubject: string,
-  searchValue: string,
-  isStrict: boolean,
-  highlightAll: boolean,
-  hasScreenReaderHelpText: boolean
-) => {
-  if (!searchValue) {
-    return searchSubject;
-  }
-
-  if (!searchSubject) {
-    return null;
-  }
-
-  if (highlightAll) {
-    const chunks = getHightlightWords(searchSubject, searchValue, isStrict);
-    return (
-      <Fragment>
-        {chunks.map((chunk) => {
-          const { end, highlight, start } = chunk;
-          const value = searchSubject.substr(start, end - start);
-          if (highlight) {
-            return (
-              <EuiMark
-                key={start}
-                hasScreenReaderHelpText={hasScreenReaderHelpText}
-              >
-                {value}
-              </EuiMark>
-            );
-          }
-          return value;
-        })}
-      </Fragment>
-    );
-  }
-
-  const normalizedSearchSubject: string = isStrict
-    ? searchSubject
-    : searchSubject.toLowerCase();
-  const normalizedSearchValue: string = isStrict
-    ? searchValue
-    : searchValue.toLowerCase();
-
-  const indexOfMatch: number = normalizedSearchSubject.indexOf(
-    normalizedSearchValue
-  );
-  if (indexOfMatch === -1) {
-    return searchSubject;
-  }
-
-  const preMatch: string = searchSubject.substr(0, indexOfMatch);
-  const match: string = searchSubject.substr(indexOfMatch, searchValue.length);
-  const postMatch: string = searchSubject.substr(
-    indexOfMatch + searchValue.length
-  );
-
-  return (
-    <Fragment>
-      {preMatch}
-      <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
-        {match}
-      </EuiMark>
-      {postMatch}
-    </Fragment>
-  );
-};
-
-const getHightlightWords = (
-  searchSubject: string,
-  searchValue: string,
-  isStrict: boolean
-) => {
-  const regex = new RegExp(searchValue, isStrict ? 'g' : 'gi');
-  const matches = [];
-  let match;
-  while ((match = regex.exec(searchSubject)) !== null) {
-    matches.push({
-      start: match.index,
-      end: (match.index || 0) + match[0].length,
-    });
-  }
-  return fillInChunks(matches, searchSubject.length);
-};
-
-const fillInChunks = (
-  chunksToHighlight: EuiHighlightChunk[],
-  totalLength: number
-) => {
-  const allChunks: EuiHighlightChunk[] = [];
-  const append = (start: number, end: number, highlight: boolean) => {
-    if (end - start > 0) {
-      allChunks.push({
-        start,
-        end,
-        highlight,
-      });
-    }
-  };
-  if (chunksToHighlight.length === 0) {
-    append(0, totalLength, false);
-  } else {
-    let lastIndex = 0;
-    chunksToHighlight.forEach((chunk) => {
-      append(lastIndex, chunk.start, false);
-      append(chunk.start, chunk.end, true);
-      lastIndex = chunk.end;
-    });
-    append(lastIndex, totalLength, false);
-  }
-  return allChunks;
-};
-
 export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   children,
   className,
@@ -174,15 +55,48 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   hasScreenReaderHelpText = true,
   ...rest
 }) => {
+  const hasSearch = search && search.length > 0;
+
+  const HighlightComponent = useMemo(() => {
+    const Component: FunctionComponent<{ children: string }> = ({
+      children,
+    }) => (
+      <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
+        {children}
+      </EuiMark>
+    );
+    Component.displayName = '_HighlightComponent';
+    return Component;
+  }, [hasScreenReaderHelpText]);
+
   return (
     <span className={className} {...rest}>
-      {highlight(
-        children,
-        search,
-        strict,
-        highlightAll,
-        hasScreenReaderHelpText
+      {children && hasSearch ? (
+        highlightAll ? (
+          <HighlightAll
+            searchValue={search}
+            searchSubject={children}
+            isStrict={strict}
+            highlightComponent={HighlightComponent}
+          />
+        ) : (
+          <HighlightFirst
+            searchValue={search}
+            searchSubject={children}
+            isStrict={strict}
+            highlightComponent={HighlightComponent}
+          />
+        )
+      ) : (
+        children
       )}
     </span>
   );
+};
+
+export type _SharedSubcomponentProps = {
+  searchValue: EuiHighlightProps['search'];
+  searchSubject: EuiHighlightProps['children'];
+  isStrict: EuiHighlightProps['strict'];
+  highlightComponent?: ElementType;
 };

@@ -41,6 +41,22 @@ export type EuiCodeSharedProps = CommonProps &
 export const SUPPORTED_LANGUAGES = listLanguages();
 export const DEFAULT_LANGUAGE = 'text';
 
+/**
+ * Platform-agnostic new line regex that safely matches all standard
+ * line termination conventions:
+ * - LF: Unix-based platforms and JS-native sources like text areas
+ * - CRLF: Windows
+ * - CR: Mac Classic; to support files saved a long time ago
+ */
+export const NEW_LINE_REGEX = /\r\n|\r|\n/;
+
+/**
+ * Platform-agnostic global new line regex that safely matches all standard
+ * line termination conventions.
+ * See [NEW_LINE_REGEX]{@link NEW_LINE_REGEX} for more details.
+ */
+export const NEW_LINE_REGEX_GLOBAL = new RegExp(NEW_LINE_REGEX, 'g');
+
 export const checkSupportedLanguage = (language: string): string => {
   return SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE;
 };
@@ -80,8 +96,12 @@ export const nodeToHtml = (
         children.map((el, i) =>
           // @ts-ignore - using a custom type here to handle JSX annotations
           el.type === 'annotation' ? (
-            // @ts-ignore - custom keys are passed by annotationElement below
-            <EuiCodeBlockAnnotation lineNumber={el.lineNumber} children={el.annotation} key={i} /> // prettier-ignore
+            <EuiCodeBlockAnnotation
+              className="euiCodeBlock__lineAnnotation"
+              lineNumber={(el as any).lineNumber}
+              children={(el as any).annotation}
+              key={i}
+            />
           ) : (
             nodeToHtml(el, i, nodes, depth + 1)
           )
@@ -139,12 +159,12 @@ const addLineData = (
   return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
     const lineStart = data.lineNumber;
     if (node.type === 'text') {
-      if (!node.value.match(/\r\n?|\n/)) {
+      if (!node.value.match(NEW_LINE_REGEX)) {
         node.lineStart = lineStart;
         node.lineEnd = lineStart;
         result.push(node);
       } else {
-        const lines = node.value.split(/\r\n?|\n/);
+        const lines = node.value.split(NEW_LINE_REGEX);
         lines.forEach((line, i) => {
           const num = i === 0 ? data.lineNumber : ++data.lineNumber;
           result.push({
@@ -237,8 +257,10 @@ function wrapLines(
         tagName: 'span',
         properties: {
           style: { inlineSize: width },
-          ['data-line-number']: lineNumber,
-          className: ['euiCodeBlock__lineNumber', lineNumberWrapperStyles],
+          className: [
+            'euiCodeBlock__lineNumberWrapper',
+            lineNumberWrapperStyles,
+          ],
         },
         children: [],
       };
@@ -249,21 +271,22 @@ function wrapLines(
         type: 'element',
         tagName: 'span',
         properties: {
-          className: [lineNumberStyles],
+          className: ['euiCodeBlock__lineNumber', lineNumberStyles],
+          ['data-line-number']: lineNumber,
           ['aria-hidden']: true,
         },
-        children: [{ type: 'text', value: String(lineNumber) }],
+        children: [],
       };
       lineNumberWrapperElement.children.push(lineNumberElement);
 
       // Annotation element
       const hasAnnotation = options.annotations?.hasOwnProperty(lineNumber);
       if (hasAnnotation) {
-        const annotationElement = ({
+        const annotationElement = {
           type: 'annotation',
           annotation: options.annotations[lineNumber],
           lineNumber,
-        } as unknown) as RefractorNode;
+        } as unknown as RefractorNode;
         lineNumberWrapperElement.children.push(annotationElement);
       }
 

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavBody renders 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFlyoutBody euiCollapsibleNav__body testClass1 testClass2 emotion-euiFlyoutBody-euiCollapsibleNav__body-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFlyoutBody__overflow css-18yrfj9-noBanner"
+    tabindex="-1"
+  >
+    <div
+      class="euiFlyoutBody__overflowContent"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavFooter renders 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFlyoutFooter euiCollapsibleNav__footer testClass1 testClass2 emotion-euiFlyoutFooter-euiCollapsibleNav__footer-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="emotion-euiFlyoutFooter__overflow"
+  />
+</div>
+`;

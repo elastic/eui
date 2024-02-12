@@ -9,22 +9,21 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
-import { useGeneratedHtmlId } from '../../../services';
+import {
+  EuiThemeProvider,
+  useEuiTheme,
+  useGeneratedHtmlId,
+} from '../../../services';
 
 import { EuiAccordion, EuiAccordionProps } from '../../accordion';
 import { EuiIcon, IconType, IconSize, EuiIconProps } from '../../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../../title';
 
-type Background = 'none' | 'light' | 'dark';
-const backgroundToClassNameMap: { [color in Background]: string } = {
-  none: '',
-  light: 'euiCollapsibleNavGroup--light',
-  dark: 'euiCollapsibleNavGroup--dark',
-};
-export const BACKGROUNDS = Object.keys(
-  backgroundToClassNameMap
-) as Background[];
+import { euiCollapsibleNavGroupStyles } from './collapsible_nav_group.styles';
+
+export const BACKGROUNDS = ['none', 'light', 'dark'] as const;
+type Background = (typeof BACKGROUNDS)[number];
 
 export interface EuiCollapsibleNavGroupInterface extends CommonProps {
   /**
@@ -97,7 +96,9 @@ export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
   GroupAsDiv
 >;
 
-export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupProps> = ({
+export const EuiCollapsibleNavGroup: FunctionComponent<
+  EuiCollapsibleNavGroupProps
+> = ({
   className,
   children,
   id,
@@ -114,14 +115,15 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
   const groupID = useGeneratedHtmlId({ conditionalId: id });
   const titleID = `${groupID}__title`;
 
-  const classes = classNames(
-    'euiCollapsibleNavGroup',
-    backgroundToClassNameMap[background],
-    {
-      'euiCollapsibleNavGroup--withHeading': title,
-    },
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiCollapsibleNavGroupStyles(euiTheme);
+  const cssStyles = [
+    styles.euiCollapsibleNavGroup,
+    isCollapsible ? styles.isCollapsible : styles.notCollapsible,
+    background && styles[background],
+  ];
+
+  const classes = classNames('euiCollapsibleNavGroup', className);
 
   // Warn if consumer passes an iconType without a title
   if (iconType && !title) {
@@ -130,8 +132,14 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
     );
   }
 
+  const childrenStyles = [
+    styles.childrenWrapper.euiCollapsibleNavGroup__children,
+    title && styles.childrenWrapper.withHeading,
+  ];
   const content = children && (
-    <div className="euiCollapsibleNavGroup__children">{children}</div>
+    <div css={childrenStyles} className="euiCollapsibleNavGroup__children">
+      {children}
+    </div>
   );
 
   const headingClasses = 'euiCollapsibleNavGroup__heading';
@@ -155,27 +163,36 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
     </EuiFlexGroup>
   ) : undefined;
 
+  let render;
   if (isCollapsible && title) {
-    return (
+    render = (
       <EuiAccordion
         id={groupID}
+        css={cssStyles}
         className={classes}
         buttonClassName={headingClasses}
         buttonContent={titleContent}
         initialIsOpen={true}
         arrowDisplay="right"
-        arrowProps={{ color: background === 'dark' ? 'ghost' : 'text' }}
         {...rest}
       >
         {content}
       </EuiAccordion>
     );
   } else {
-    return (
-      <div id={groupID} className={classes} {...rest}>
+    render = (
+      <div id={groupID} css={cssStyles} className={classes} {...rest}>
         {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>
     );
   }
+
+  return background === 'dark' ? (
+    <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
+      {render}
+    </EuiThemeProvider>
+  ) : (
+    render
+  );
 };

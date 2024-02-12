@@ -14,6 +14,7 @@ import React, {
   ReactElement,
   KeyboardEvent,
   MouseEvent,
+  FocusEvent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -38,14 +39,15 @@ export type EuiSelectableOnChangeEvent = KeyboardEvent | MouseEvent;
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
-  keyof typeof EuiSelectableList['defaultProps']
+  keyof (typeof EuiSelectableList)['defaultProps']
 >;
 type OptionalEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
   keyof RequiredEuiSelectableOptionsListProps
 >;
-type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsListProps &
-  Partial<OptionalEuiSelectableOptionsListProps>;
+type EuiSelectableOptionsListPropsWithDefaults =
+  RequiredEuiSelectableOptionsListProps &
+    Partial<OptionalEuiSelectableOptionsListProps>;
 
 // The `searchable` prop has significant implications for a11y.
 // When present, we effectively change from adhering
@@ -170,6 +172,12 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      * Default: false
      */
     isPreFiltered?: boolean;
+    /**
+     * Optional screen reader instructions to announce upon focus/interaction. This text is read out
+     * after the `EuiSelectable` label and a brief pause, but before the default keyboard instructions for
+     * interacting with a selectable are read out.
+     */
+    selectableScreenReaderText?: string;
   };
 
 export interface EuiSelectableState<T> {
@@ -280,6 +288,17 @@ export class EuiSelectable<T = {}> extends Component<
     }
   }
 
+  isFocusOnSearchOrListBox = (target: EventTarget | null) => {
+    const searchHasFocus = this.props.searchable && target === this.inputRef;
+
+    const listBox = this.optionsListRef.current?.listBoxRef?.parentElement;
+    const listBoxContainsFocus =
+      target instanceof Node && listBox?.contains(target);
+    const listBoxHasFocus = target === listBox || listBoxContainsFocus;
+
+    return searchHasFocus || listBoxHasFocus;
+  };
+
   onMouseDown = () => {
     // Bypass onFocus when a click event originates from this.containerRef.
     // Prevents onFocus from scrolling away from a clicked option and negating the selection event.
@@ -287,7 +306,7 @@ export class EuiSelectable<T = {}> extends Component<
     this.preventOnFocus = true;
   };
 
-  onFocus = () => {
+  onFocus = (event?: FocusEvent) => {
     if (this.preventOnFocus) {
       this.preventOnFocus = false;
       return;
@@ -297,6 +316,10 @@ export class EuiSelectable<T = {}> extends Component<
       !this.state.visibleOptions.length ||
       this.state.activeOptionIndex != null
     ) {
+      return;
+    }
+
+    if (event && !this.isFocusOnSearchOrListBox(event.target)) {
       return;
     }
 
@@ -318,6 +341,15 @@ export class EuiSelectable<T = {}> extends Component<
 
   onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const optionsList = this.optionsListRef.current;
+
+    // Check if the user is interacting with something other than the
+    // searchbox or selection list. If so, the user may be attempting to
+    // interact with the search clear button or a totally custom button,
+    // and listbox keyboard navigation/selection should not be triggered.
+    if (!this.isFocusOnSearchOrListBox(event.target)) {
+      this.setState({ activeOptionIndex: undefined, isFocused: false });
+      return;
+    }
 
     switch (event.key) {
       case keys.ARROW_UP:
@@ -341,19 +373,6 @@ export class EuiSelectable<T = {}> extends Component<
           // For searchable instances, SPACE is reserved as a character for filtering
           // via the input box, and as such only ENTER will toggle selection.
           if (event.target === this.inputRef && event.key === keys.SPACE) {
-            return;
-          }
-          // Check if the user is interacting with something other than the
-          // searchbox or selection list. If not, the user is attempting to
-          // interact with an internal button such as the clear button,
-          // and the event should not be altered.
-          if (
-            !(
-              event.target === this.inputRef ||
-              event.target ===
-                this.optionsListRef.current?.listBoxRef?.parentElement
-            )
-          ) {
             return;
           }
         }
@@ -443,9 +462,7 @@ export class EuiSelectable<T = {}> extends Component<
 
   onContainerBlur = (e: React.FocusEvent) => {
     // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
-    if (
-      ((e.relatedTarget as Node)?.firstChild as HTMLElement)?.id === this.listId
-    ) {
+    if (this.isFocusOnSearchOrListBox(e.relatedTarget)) {
       return;
     }
 
@@ -503,6 +520,7 @@ export class EuiSelectable<T = {}> extends Component<
       noMatchesMessage,
       emptyMessage,
       errorMessage,
+      selectableScreenReaderText,
       isPreFiltered,
       ...rest
     } = this.props;
@@ -673,32 +691,51 @@ export class EuiSelectable<T = {}> extends Component<
       Object.keys(searchAccessibleName).length
     );
     const search = searchable ? (
-      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
-        {(placeholderName: string) => (
-          <EuiSelectableSearch<T>
-            key="listSearch"
-            options={options}
-            value={searchValue}
-            onChange={this.onSearchChange}
-            listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
-            aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
-            placeholder={placeholderName}
-            isPreFiltered={isPreFiltered ?? false}
-            inputRef={(node) => {
-              this.inputRef = node;
-              searchProps?.inputRef?.(node);
-            }}
-            {...(searchHasAccessibleName
-              ? searchAccessibleName
-              : { 'aria-label': placeholderName })}
-            {...cleanedSearchProps}
-          />
+      <EuiI18n
+        tokens={[
+          'euiSelectable.screenReaderInstructions',
+          'euiSelectable.placeholderName',
+        ]}
+        defaults={[
+          'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.',
+          'Filter options',
+        ]}
+      >
+        {([screenReaderInstructions, placeholderName]: string[]) => (
+          <>
+            <EuiSelectableSearch<T>
+              aria-describedby={listAriaDescribedbyId}
+              key="listSearch"
+              options={options}
+              value={searchValue}
+              onChange={this.onSearchChange}
+              listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
+              aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
+              placeholder={placeholderName}
+              isPreFiltered={isPreFiltered ?? false}
+              inputRef={(node) => {
+                this.inputRef = node;
+                searchProps?.inputRef?.(node);
+              }}
+              {...(searchHasAccessibleName
+                ? searchAccessibleName
+                : { 'aria-label': placeholderName })}
+              {...cleanedSearchProps}
+            />
+
+            <EuiScreenReaderOnly>
+              <p id={listAriaDescribedbyId}>
+                {selectableScreenReaderText} {screenReaderInstructions}
+              </p>
+            </EuiScreenReaderOnly>
+          </>
         )}
       </EuiI18n>
     ) : undefined;
 
-    const resultsLength = visibleOptions.filter((option) => !option.disabled)
-      .length;
+    const resultsLength = visibleOptions.filter(
+      (option) => !option.disabled
+    ).length;
     const listScreenReaderStatus = searchable && (
       <EuiI18n
         token="euiSelectable.searchResults"
@@ -718,17 +755,8 @@ export class EuiSelectable<T = {}> extends Component<
       Object.keys(listAccessibleName).length
     );
     const list = (
-      <EuiI18n
-        tokens={[
-          'euiSelectable.screenReaderInstructions',
-          'euiSelectable.placeholderName',
-        ]}
-        defaults={[
-          'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.',
-          'Filter options',
-        ]}
-      >
-        {([placeholderName, screenReaderInstructions]: string[]) => (
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
           <>
             {searchable && (
               <EuiScreenReaderLive
@@ -737,10 +765,6 @@ export class EuiSelectable<T = {}> extends Component<
                 {messageContent || listScreenReaderStatus}
               </EuiScreenReaderLive>
             )}
-
-            <EuiScreenReaderOnly>
-              <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
-            </EuiScreenReaderOnly>
 
             {messageContent ? (
               <EuiSelectableMessage

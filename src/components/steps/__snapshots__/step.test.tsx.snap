@@ -3,7 +3,7 @@
 exports[`EuiStep is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStep testClass1 testClass2 emotion-euiStep-s"
+  class="euiStep testClass1 testClass2 emotion-euiStep-s-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -307,7 +307,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
     >
       <span
         class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
-        data-euiicon-type="alert"
+        data-euiicon-type="warning"
       >
         Step 1 has warnings
       </span>

@@ -38,10 +38,10 @@ const paddingSizeToClassNameMap: {
   l: 'paddingLarge',
 };
 const _SIZES = keysOf(paddingSizeToClassNameMap);
-export type PanelPaddingSize = typeof _SIZES[number];
+export type PanelPaddingSize = (typeof _SIZES)[number];
 
 export const BORDER_RADII = ['none', 'm'] as const;
-export type PanelBorderRadius = typeof BORDER_RADII[number];
+export type PanelBorderRadius = (typeof BORDER_RADII)[number];
 
 export const COLORS = BACKGROUND_COLORS;
 export type PanelColor = _EuiBackgroundColor;
@@ -128,9 +128,8 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     'euiPanel',
     `euiPanel--${color}`,
     {
-      [`euiPanel--${paddingSizeToClassNameMap[paddingSize]}`]: paddingSizeToClassNameMap[
-        paddingSize
-      ],
+      [`euiPanel--${paddingSizeToClassNameMap[paddingSize]}`]:
+        paddingSizeToClassNameMap[paddingSize],
     },
     className
   );

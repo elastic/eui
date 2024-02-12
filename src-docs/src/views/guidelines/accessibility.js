@@ -445,7 +445,7 @@ export default {
               <EuiCode>tabIndex=-1</EuiCode>.
             </p>
             <EuiCallOut
-              iconType="alert"
+              iconType="error"
               title={
                 <span>
                   Using <EuiCode>tabIndex</EuiCode> values greater than 0 is

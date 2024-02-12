@@ -6,13 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  Ref,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react';
+import React, { FunctionComponent, Ref, useCallback } from 'react';
 import classNames from 'classnames';
 import { isTabbable } from 'tabbable';
 import { useEuiTheme } from '../../../services';
@@ -22,7 +16,7 @@ import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
 
 export const POSITIONS = ['static', 'fixed', 'absolute'] as const;
-type Positions = typeof POSITIONS[number];
+type Positions = (typeof POSITIONS)[number];
 
 interface EuiSkipLinkInterface extends EuiButtonProps {
   /**
@@ -36,11 +30,15 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    */
   destinationId: string;
   /**
-   * If no destination ID element exists or can be found, you may provide a string of
-   * query selectors to fall back to (e.g. a `main` or `role="main"` element)
+   * If no destination ID element exists or can be found, you may provide a query selector
+   * string to fall back to.
+   *
+   * For complex applications with potentially variable layouts per page, an array of
+   * query selectors can be passed, e.g. `['main', '[role=main]', '.appWrapper']`, which
+   * prioritizes looking for multiple fallbacks based on array order.
    * @default main
    */
-  fallbackDestination?: string;
+  fallbackDestination?: string | string[];
   /**
    * If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),
    * setting this flag to true will manually scroll to and focus the destination element
@@ -81,31 +79,24 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     position !== 'static' ? styles[position] : undefined,
   ];
 
-  const [destinationEl, setDestinationEl] = useState<HTMLElement | null>(null);
-  const [hasValidId, setHasValidId] = useState(true);
-
-  useEffect(() => {
-    const idEl = document.getElementById(destinationId);
-    if (idEl) {
-      setHasValidId(true);
-      setDestinationEl(idEl);
-      return;
-    }
-    setHasValidId(false);
-
-    // If no valid element via ID is available, use the fallback query selectors
-    if (fallbackDestination) {
-      const fallbackEl = document.querySelector<HTMLElement>(
-        fallbackDestination
-      );
-      if (fallbackEl) {
-        setDestinationEl(fallbackEl);
-      }
-    }
-  }, [destinationId, fallbackDestination]);
-
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
+      let destinationEl: HTMLElement | null = null;
+      // Check if the destination ID is valid
+      destinationEl = document.getElementById(destinationId);
+      const hasValidId = !!destinationEl;
+      // Check the fallback destination if not
+      if (!destinationEl && fallbackDestination) {
+        if (Array.isArray(fallbackDestination)) {
+          for (let i = 0; i < fallbackDestination.length; i++) {
+            destinationEl = document.querySelector(fallbackDestination[i]);
+            if (destinationEl) break; // Stop once the first fallback has been found
+          }
+        } else {
+          destinationEl = document.querySelector(fallbackDestination);
+        }
+      }
+
       if ((overrideLinkBehavior || !hasValidId) && destinationEl) {
         e.preventDefault();
 
@@ -124,7 +115,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
           destinationEl.tabIndex = -1;
           destinationEl.addEventListener(
             'blur',
-            () => destinationEl.removeAttribute('tabindex'),
+            () => destinationEl?.removeAttribute('tabindex'),
             { once: true }
           );
         }
@@ -134,7 +125,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
 
       _onClick?.(e);
     },
-    [overrideLinkBehavior, hasValidId, destinationEl, _onClick]
+    [overrideLinkBehavior, destinationId, fallbackDestination, _onClick]
   );
 
   return (

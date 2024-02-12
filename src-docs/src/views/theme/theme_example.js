@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -11,6 +12,9 @@ const consumingSource = require('!!raw-loader!./consuming');
 
 import { ConsumingHOC } from './consuming_hoc';
 const consumingHOCSource = require('!!raw-loader!./consuming_hoc');
+
+import ConsumingEmotionTheme from './consuming_emotion_theme';
+const consumingEmotionThemeSource = require('!!raw-loader!./consuming_emotion_theme');
 
 import OverrideSimple from './override_simple';
 const overrideSimpleSource = require('!!raw-loader!./override_simple');
@@ -32,11 +36,17 @@ export const ThemeExample = {
           EUI is in the progress of switching it&apos;s core styles processor
           from Sass to <EuiLink href="https://emotion.sh">Emotion</EuiLink>. To
           take full advantage of this context layer, wrap the root of your
-          application with{' '}
+          application with a single{' '}
           <EuiLink href="#utilities/provider">
             <strong>EuiProvider</strong>
           </EuiLink>
-          .
+          . While <strong>EuiProvider</strong> should not be included more than
+          once, you may use multiple nested <strong>EuiThemeProviders</strong>{' '}
+          to customize section-specific or component-specific{' '}
+          <Link to="/theming/color-mode#rendering-a-specific-color-mode">
+            color modes
+          </Link>{' '}
+          or theme overrides.
         </p>
       </EuiText>
     </>
@@ -48,23 +58,7 @@ export const ThemeExample = {
         <>
           <p>
             The context layer that enables theming (including the default theme
-            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. It is a thin
-            wrapper around and caching layer built onto{' '}
-            <EuiCode>React.Context.Provider</EuiCode>.
-          </p>
-          <p>
-            Typically your app will only need a single instance at the top level
-            and the functionality will flow down the component tree. We
-            recommend using{' '}
-            <EuiLink href="#utilities/provider">
-              <strong>EuiProvider</strong>
-            </EuiLink>{' '}
-            at this level as it includes reset styles and future configuration
-            options. It is also possible to use several nested theme providers.
-            In this case each nested provider will inherit from its closest
-            ancestor provider.
-          </p>
-          <p>
+            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>.{' '}
             <EuiCode>EuiThemeProvider</EuiCode> accepts three props, all of
             which have default values and are therefore optional. To use the
             default EUI theme, no configuration is required.
@@ -153,6 +147,36 @@ export const ThemeExample = {
         </>
       ),
       demo: <ConsumingHOC />,
+    },
+    {
+      title: "Consuming with Emotion's theming",
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: consumingEmotionThemeSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiThemeProvider</strong> by default sets an{' '}
+            <EuiLink href="https://emotion.sh/docs/theming" target="_blank">
+              Emotion theme context
+            </EuiLink>{' '}
+            with the results of <strong>useEuiTheme()</strong>. This is a
+            syntactical sugar convenience that allows you to take advantage of
+            Emotion's <EuiCode>styled</EuiCode> syntax, or use a function in the{' '}
+            <EuiCode>css</EuiCode> prop.
+          </p>
+          <p>
+            If you prefer to use or access your own custom Emotion theme, you
+            can completely override EUI's passed theme at any time with your own{' '}
+            <EuiCode>ThemeProvider</EuiCode> - see the second box below for an
+            example.
+          </p>
+        </>
+      ),
+      demo: <ConsumingEmotionTheme />,
     },
     {
       title: 'Simple instance overrides',

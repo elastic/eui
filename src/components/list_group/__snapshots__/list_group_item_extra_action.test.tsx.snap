@@ -3,7 +3,7 @@
 exports[`EuiListGroupItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-primary-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
+  class="euiButtonIcon euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-xs-empty-primary-euiListGroupItemExtraAction-hoverStyles-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -19,7 +19,7 @@ exports[`EuiListGroupItem is rendered 1`] = `
 exports[`EuiListGroupItem props alwaysShow 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-primary-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
+  class="euiButtonIcon euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-xs-empty-primary-euiListGroupItemExtraAction-alwaysShow-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -35,7 +35,7 @@ exports[`EuiListGroupItem props alwaysShow 1`] = `
 exports[`EuiListGroupItem props color 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-accent-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
+  class="euiButtonIcon euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-xs-empty-accent-euiListGroupItemExtraAction-hoverStyles-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -51,7 +51,7 @@ exports[`EuiListGroupItem props color 1`] = `
 exports[`EuiListGroupItem props isDisabled 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-disabled-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
+  class="euiButtonIcon euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiListGroupItemExtraAction-hoverStyles-euiTestCss"
   data-test-subj="test subject string"
   disabled=""
   type="button"
@@ -68,7 +68,7 @@ exports[`EuiListGroupItem props isDisabled 1`] = `
 exports[`EuiListGroupItem props parentIsDisabled 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-disabled-hoverStyles-euiListGroupItemExtraAction"
+  class="euiButtonIcon euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiListGroupItemExtraAction-euiTestCss"
   data-test-subj="test subject string"
   disabled=""
   type="button"

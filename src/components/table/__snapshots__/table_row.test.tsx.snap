@@ -1,41 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`isSelected renders true when specified 1`] = `
-<tr
-  class="euiTableRow euiTableRow-isSelected"
->
-  <td
-    class="euiTableRowCell euiTableRowCell--middle"
-  >
-    <div
-      class="euiTableCellContent"
+<table>
+  <tbody>
+    <tr
+      class="euiTableRow euiTableRow-isSelected"
     >
-      <span
-        class="euiTableCellContent__text"
-      />
-    </div>
-  </td>
-</tr>
+      <td
+        class="euiTableRowCell euiTableRowCell--middle"
+      >
+        <div
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 `;
 
 exports[`renders EuiTableRow 1`] = `
-<tr
-  aria-label="aria-label"
-  class="euiTableRow testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <td
-    class="euiTableRowCell euiTableRowCell--middle"
-  >
-    <div
-      class="euiTableCellContent"
+<table>
+  <tbody>
+    <tr
+      aria-label="aria-label"
+      class="euiTableRow testClass1 testClass2 emotion-euiTestCss"
+      data-test-subj="test subject string"
     >
-      <span
-        class="euiTableCellContent__text"
+      <td
+        class="euiTableRowCell euiTableRowCell--middle"
       >
-        hi
-      </span>
-    </div>
-  </td>
-</tr>
+        <div
+          class="euiTableCellContent"
+        >
+          <span
+            class="euiTableCellContent__text"
+          >
+            hi
+          </span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 `;

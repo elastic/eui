@@ -36,7 +36,7 @@ export const paddingSizeToClassNameMap: {
 };
 
 export const POSITIONS = ['static', 'fixed', 'sticky'] as const;
-export type _BottomBarPosition = typeof POSITIONS[number];
+export type _BottomBarPosition = (typeof POSITIONS)[number];
 
 type _BottomBarExclusivePositions = ExclusiveUnion<
   {
@@ -71,7 +71,9 @@ export type EuiBottomBarProps = CommonProps &
      */
     bodyClassName?: string;
     /**
-     * Customize the screen reader heading that helps users find this control. Default is 'Page level controls'.
+     * Customize the screen reader heading that helps users find this control.
+     *
+     * @default Page level controls
      */
     landmarkHeading?: string;
     /**
@@ -238,7 +240,10 @@ export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
     const BottomBar = _EuiBottomBar;
     return (
-      <EuiThemeProvider colorMode={'dark'}>
+      <EuiThemeProvider
+        colorMode={'dark'}
+        wrapperProps={{ cloneElement: true }}
+      >
         <BottomBar ref={ref} {...props} />
       </EuiThemeProvider>
     );

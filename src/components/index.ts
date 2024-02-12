@@ -33,6 +33,7 @@ export * from './card';
 export * from './code';
 
 export * from './collapsible_nav';
+export * from './collapsible_nav_beta';
 
 export * from './color_picker';
 
@@ -43,8 +44,6 @@ export * from './comment_list';
 export * from './context';
 
 export * from './context_menu';
-
-export * from './control_bar';
 
 export * from './copy';
 
@@ -91,6 +90,8 @@ export * from './image';
 
 export * from './inner_text';
 
+export * from './inline_edit';
+
 export * from './i18n';
 
 export * from './loading';
@@ -108,8 +109,6 @@ export * from './mark';
 export * from './modal';
 
 export * from './observer/mutation_observer';
-
-export * from './notification';
 
 export * from './outside_click_detector';
 
@@ -149,8 +148,6 @@ export * from './stat';
 
 export * from './steps';
 
-export * from './suggest';
-
 export * from './table';
 
 export * from './token';
@@ -164,6 +161,8 @@ export * from './tabs';
 export * from './text';
 
 export * from './text_diff';
+
+export * from './text_truncate';
 
 export * from './timeline';
 

@@ -22,15 +22,12 @@ export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiFormControlLayoutClearButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
-    size?: typeof SIZES[number];
+    size?: (typeof SIZES)[number];
   };
 
-export const EuiFormControlLayoutClearButton: FunctionComponent<EuiFormControlLayoutClearButtonProps> = ({
-  className,
-  onClick,
-  size = 'm',
-  ...rest
-}) => {
+export const EuiFormControlLayoutClearButton: FunctionComponent<
+  EuiFormControlLayoutClearButtonProps
+> = ({ className, onClick, size = 'm', ...rest }) => {
   const classes = classNames(
     'euiFormControlLayoutClearButton',
     sizeToClassNameMap[size],

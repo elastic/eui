@@ -1,0 +1,24 @@
+comment:  # Leaving these empty keys here in case we want to add to them in the future
+  header: ''
+  footer: ''
+
+labels:
+  - name: help wanted
+    labeled:
+      issue:
+        body: 👋 Thank you for your suggestion or request! While the EUI team agrees that it's valid, it's unlikely that we will prioritize this issue on our roadmap. We'll leave the issue open if you or anyone else in the community wants to implement it by contributing to EUI. If not, this issue will auto close in one year.
+  - name: breaking change
+    labeled:
+      pr:
+        body: |
+          This PR contains breaking changes. The opener of this pull request is asked to perform the following due diligence steps below, to assist EUI in our next Kibana upgrade:
+          - If this PR contains **prop/API changes**:
+              - [ ] Search through Kibana for `<EuiComponent` usages ([example search](https://github.com/search?q=repo%3Aelastic%2Fkibana+%3CEuiAccordion&type=code))
+              - [ ] In the PR description or in a PR comment, include a count or list with the number of component usages in Kibana that will need to be updated (if that amount is "none", include that information as well)
+          - If this PR contains **CSS changes**:
+              - [ ] Search through Kibana for the changed EUI selectors, e.g. `.euiComponent` ([example search](https://github.com/search?q=repo%3Aelastic%2Fkibana+.euiAccordion&type=code))
+              - [ ] In the PR description or in a PR comment, include a count or list with the number of custom CSS overrides in Kibana that will need to be updated (if that amount is "none", include that information as well)
+          - 🔍 Tip: When searching through Kibana, consider excluding `**/target, **/*.snap, **/*.storyshot` files to reduce noise and only look at source code usages
+          - ⚠️ For extremely risky changes, the EUI team should potentially consider the following precautions:
+              - Using a [pre-release](https://github.com/elastic/eui/blob/main/wiki/eui-team-processes/releasing-versions.md#pre-release-process) release candidate to test Kibana CI ahead of time
+              - Using [`kibana-a-la-carte`](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md#testing-in-the-cloud) for manual QA, and to give other Kibana teams a staging server to quickly test against

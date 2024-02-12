@@ -16,26 +16,46 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiPopoverFooterStyles = (
-  euiThemeContext: UseEuiTheme,
-  panelPadding: EuiPaddingSize
-) => {
+export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  // If the popover's containing panel has padding applied,
-  // ensure the title expands to cover that padding and
-  const panelPaddingSize = euiPaddingSize(euiThemeContext, panelPadding);
 
   return {
     // Base
     euiPopoverFooter: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${logicalCSS('border-top', euiTheme.border.thin)};
-
-      // Negative margins for panel padding
-      ${logicalShorthandCSS(
-        'margin',
-        `${panelPaddingSize} -${panelPaddingSize} -${panelPaddingSize}`
-      )}
+      ${euiFontSize(euiThemeContext, 's')}
+      ${logicalCSS('border-top', euiTheme.border.thin)}
     `,
+    // If the popover's containing panel has padding applied,
+    // ensure the title expands to cover that padding via negative margins
+    panelPaddingSizes: {
+      none: css``,
+      xs: css`
+        ${panelPaddingOffset(euiThemeContext, 'xs')}
+      `,
+      s: css`
+        ${panelPaddingOffset(euiThemeContext, 's')}
+      `,
+      m: css`
+        ${panelPaddingOffset(euiThemeContext, 'm')}
+      `,
+      l: css`
+        ${panelPaddingOffset(euiThemeContext, 'l')}
+      `,
+      xl: css`
+        ${panelPaddingOffset(euiThemeContext, 'xl')}
+      `,
+    },
   };
+};
+
+export const panelPaddingOffset = (
+  euiThemeContext: UseEuiTheme,
+  size: EuiPaddingSize
+) => {
+  const panelPaddingSize = euiPaddingSize(euiThemeContext, size);
+
+  return logicalShorthandCSS(
+    'margin',
+    `${panelPaddingSize} -${panelPaddingSize} -${panelPaddingSize}`
+  );
 };

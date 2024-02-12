@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 
 describe('EuiColorPickerSwatch', () => {
   test('is rendered', () => {
-    const component = render(<EuiColorPickerSwatch {...requiredProps} />);
+    const { container } = render(<EuiColorPickerSwatch {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

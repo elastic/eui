@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiOverlayMask props headerZindexLocation 1`] = `
+<body>
+  <div />
+  <div
+    class="euiOverlayMask emotion-euiOverlayMask-belowHeader"
+    data-euiportal="true"
+    data-relative-to-header="below"
+  >
+    Content
+  </div>
+</body>
+`;
+
+exports[`EuiOverlayMask renders 1`] = `
+<body>
+  <div />
+  <div
+    aria-label="aria-label"
+    class="euiOverlayMask emotion-euiOverlayMask-aboveHeader testClass1 testClass2 emotion-euiTestCss"
+    data-euiportal="true"
+    data-relative-to-header="above"
+    data-test-subj="test subject string"
+  >
+    Content
+  </div>
+</body>
+`;

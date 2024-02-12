@@ -7,12 +7,13 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useMemo, useRef, useState, memo } from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
 } from 'react-window';
 import { useGeneratedHtmlId } from '../../services';
+import { useEuiTablePaginationDefaults } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useMutationObserver } from '../observer/mutation_observer';
@@ -39,11 +40,7 @@ import {
   useInMemoryValues,
   EuiDataGridInMemoryRenderer,
 } from './utils/in_memory';
-import { useHeaderIsInteractive } from './body/header/header_is_interactive';
-import {
-  DataGridCellPopoverContext,
-  useCellPopover,
-} from './body/data_grid_cell_popover';
+import { DataGridCellPopoverContext, useCellPopover } from './body/cell';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
@@ -52,6 +49,7 @@ import {
 } from './utils/data_grid_schema';
 import { useImperativeGridRef } from './utils/ref';
 import {
+  emptyControlColumns,
   EuiDataGridColumn,
   EuiDataGridProps,
   EuiDataGridRefProps,
@@ -102,11 +100,11 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 
-export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
-  (props, ref) => {
+export const EuiDataGrid = memo(
+  forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
     const {
-      leadingControlColumns = [],
-      trailingControlColumns = [],
+      leadingControlColumns = emptyControlColumns,
+      trailingControlColumns = emptyControlColumns,
       columns,
       columnVisibility,
       schemaDetectors,
@@ -117,7 +115,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       className,
       gridStyle,
       toolbarVisibility = true,
-      pagination,
+      pagination: _pagination,
       sorting,
       inMemory,
       onColumnResize,
@@ -126,12 +124,25 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       width,
       rowHeightsOptions: _rowHeightsOptions,
       virtualizationOptions,
+      renderCustomGridBody,
+      renderCustomToolbar,
       ...rest
     } = props;
 
     /**
      * Merge consumer settings with defaults
      */
+    const paginationDefaults = useEuiTablePaginationDefaults();
+    const pagination = useMemo(() => {
+      return _pagination
+        ? {
+            pageSize: paginationDefaults.itemsPerPage,
+            pageSizeOptions: paginationDefaults.itemsPerPageOptions,
+            ..._pagination,
+          }
+        : _pagination;
+    }, [_pagination, paginationDefaults]);
+
     const gridStyleWithDefaults = useMemo(
       () => ({ ...startingStyles, ...gridStyle }),
       [gridStyle]
@@ -189,18 +200,15 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       );
     }, [columns]);
 
-    const [
-      displaySelector,
-      gridStyles,
-      rowHeightsOptions,
-    ] = useDataGridDisplaySelector(
-      checkOrDefaultToolBarDisplayOptions(
-        toolbarVisibility,
-        'showDisplaySelector'
-      ),
-      gridStyleWithDefaults,
-      _rowHeightsOptions
-    );
+    const [displaySelector, gridStyles, rowHeightsOptions] =
+      useDataGridDisplaySelector(
+        checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showDisplaySelector'
+        ),
+        gridStyleWithDefaults,
+        _rowHeightsOptions
+      );
 
     /**
      * Column order & visibility
@@ -257,14 +265,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     /**
      * Focus
      */
-    const {
-      headerIsInteractive,
-      handleHeaderMutation,
-    } = useHeaderIsInteractive(contentRef.current);
-    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus({
-      headerIsInteractive,
-      gridItemsRendered,
-    });
+    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus();
 
     /**
      * Cell popover
@@ -391,6 +392,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     displaySelector={displaySelector}
                     columnSelector={columnSelector}
                     columnSorting={columnSorting}
+                    renderCustomToolbar={renderCustomToolbar}
                   />
                 )}
                 {inMemory ? (
@@ -419,7 +421,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     rowCount,
                     pagination,
                     hasFooter: !!renderFooterCellValue,
-                    headerIsInteractive,
                     focusContext,
                   })}
                   data-test-subj="euiDataGridBody"
@@ -439,8 +440,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     setVisibleColumns={setVisibleColumns}
                     switchColumnPos={switchColumnPos}
                     onColumnResize={onColumnResize}
-                    headerIsInteractive={headerIsInteractive}
-                    handleHeaderMutation={handleHeaderMutation}
                     schemaDetectors={allSchemaDetectors}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
@@ -457,6 +456,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     gridRef={gridRef}
                     gridItemsRendered={gridItemsRendered}
                     wrapperRef={contentRef}
+                    renderCustomGridBody={renderCustomGridBody}
                   />
                 </div>
                 {pagination && props['aria-labelledby'] && (
@@ -486,7 +486,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
         </DataGridCellPopoverContext.Provider>
       </DataGridFocusContext.Provider>
     );
-  }
+  })
 );
 
 EuiDataGrid.displayName = 'EuiDataGrid';

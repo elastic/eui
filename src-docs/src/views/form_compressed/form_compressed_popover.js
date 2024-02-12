@@ -11,9 +11,8 @@ import {
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [granularityIdSelected, setGranularityIdSelected] = useState(
-    'granularityButton1'
-  );
+  const [granularityIdSelected, setGranularityIdSelected] =
+    useState('granularityButton1');
 
   const onButtonClick = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);

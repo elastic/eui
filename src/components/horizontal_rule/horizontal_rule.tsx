@@ -16,8 +16,8 @@ import { euiHorizontalRuleStyles } from './horizontal_rule.styles';
 export const SIZES = ['full', 'half', 'quarter'] as const;
 export const MARGINS = ['none', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as const;
 
-export type EuiHorizontalRuleSize = typeof SIZES[number];
-export type EuiHorizontalRuleMargin = typeof MARGINS[number];
+export type EuiHorizontalRuleSize = (typeof SIZES)[number];
+export type EuiHorizontalRuleMargin = (typeof MARGINS)[number];
 
 export interface EuiHorizontalRuleProps
   extends CommonProps,

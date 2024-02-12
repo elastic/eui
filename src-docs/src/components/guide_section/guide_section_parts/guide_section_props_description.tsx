@@ -17,11 +17,9 @@ export type GuideSectionPropsDescription = {
   component: any;
 };
 
-export const GuideSectionPropsDescription: FunctionComponent<GuideSectionPropsDescription> = ({
-  className,
-  componentName,
-  component,
-}) => {
+export const GuideSectionPropsDescription: FunctionComponent<
+  GuideSectionPropsDescription
+> = ({ className, componentName, component }) => {
   const docgenInfo = Array.isArray(component.__docgenInfo)
     ? component.__docgenInfo[0]
     : component.__docgenInfo;

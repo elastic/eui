@@ -1,84 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHighlight behavior loose matching matches strings with different casing 1`] = `
-<span>
-  different 
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    case
-  </mark>
-   match
-</span>
-`;
-
-exports[`EuiHighlight behavior matching applies to all matches 1`] = `
-<span>
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-   
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-   
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-</span>
-`;
-
-exports[`EuiHighlight behavior matching hasScreenReaderHelpText can be false 1`] = `
-<span>
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-   
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-   
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-</span>
-`;
-
-exports[`EuiHighlight behavior matching only applies to first match 1`] = `
-<span>
-  <mark
-    class="euiMark emotion-euiMarkStyles-EuiMark"
-  >
-    match
-  </mark>
-   match match
-</span>
-`;
-
-exports[`EuiHighlight behavior strict matching doesn't match strings with different casing 1`] = `
-<span>
-  different case match
-</span>
-`;
-
 exports[`EuiHighlight is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
-  value
+  <mark
+    class="euiMark emotion-euiMark-hasScreenReaderHelpText"
+  >
+    va
+  </mark>
+  lue
 </span>
 `;

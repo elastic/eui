@@ -67,17 +67,13 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thick};
     `,
     disabled: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'disabled').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'disabled')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'disabled')}
     `,
     loading: css`
       background: transparent;
     `,
     warning: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'warning').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'warning')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'warning')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -85,9 +81,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     danger: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'danger').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'danger')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'danger')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -95,16 +89,18 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     complete: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'success').color};
-      background-color: ${euiButtonFillColor(euiThemeContext, 'success')
-        .backgroundColor};
+      ${euiButtonFillColor(euiThemeContext, 'success')}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
       }
     `,
-    current: css``,
+    current: css`
+      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.body};
+      box-shadow: 0 0 0 ${euiTheme.border.width.thick}
+        ${euiTheme.colors.primary};
+    `,
   };
 };
 
@@ -117,29 +113,33 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
       inset-block-start: -${euiTheme.border.width.thin};
     `,
     complete: css`
-      // Thicken the checkmark by adding a slight stroke.
+      /* Thicken the checkmark by adding a slight stroke */
       stroke: currentColor;
       stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
     `,
     danger: css`
-      // Thicken the cross by adding a slight stroke.
+      /* Thicken the cross by adding a slight stroke */
       stroke: currentColor;
       stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
     `,
     warning: css`
-      // Slight extra visual offset
+      /* Slight extra visual offset */
       inset-block-start: -${euiTheme.border.width.thick};
     `,
     // Statuses with number content
     euiStepNumber__number: css``,
     incomplete: css`
-      // adjusts position because of thicker border
+      /* Adjusts position because of thicker border */
       display: unset;
       position: relative;
       inset-block-start: -${euiTheme.border.width.thick};
     `,
     loading: css``,
     disabled: css``,
-    current: css``,
+    current: css`
+      /* Transform the step number so it appears in the center of the step circle */
+      display: inline-block;
+      transform: translateY(-${euiTheme.border.width.thick});
+    `,
   };
 };

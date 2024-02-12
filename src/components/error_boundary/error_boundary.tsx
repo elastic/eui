@@ -24,15 +24,20 @@ import { euiErrorBoundaryStyles } from './error_boundary.styles';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
-  error?: string;
+  errorMessage?: string;
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'onError'> & {
     /**
      * ReactNode to render as this component's content
      */
     children: ReactNode;
+
+    /**
+     * Callback that fires when an error is caught. Passes back the full error
+     */
+    onError?: (error: Error) => void;
   };
 
 export class EuiErrorBoundary extends Component<
@@ -44,32 +49,38 @@ export class EuiErrorBoundary extends Component<
 
     const errorState: EuiErrorBoundaryState = {
       hasError: false,
-      error: undefined,
+      errorMessage: undefined,
     };
 
     this.state = errorState;
   }
 
-  componentDidCatch({ message, stack }: Error) {
+  componentDidCatch(error: Error) {
     // Display fallback UI
     // Only Chrome includes the `message` property as part of `stack`.
     // For consistency, rebuild the full error text from the Error subparts.
+    const { message, stack } = error;
     const idx = stack?.indexOf(message) || -1;
-    const stackStr = idx > -1 ? stack?.substr(idx + message.length + 1) : stack;
-    const error = `Error: ${message}
+    const stackStr =
+      idx > -1 ? stack?.substring(idx + message.length + 1) : stack;
+    const errorMessage = `Error: ${message}
 ${stackStr}`;
     this.setState({
       hasError: true,
-      error,
+      errorMessage,
     });
+
+    // Pass back the error to the consumer
+    this.props.onError?.(error);
   }
 
   render() {
     const { children, ...rest } = this.props;
+    const { hasError, errorMessage } = this.state;
 
-    if (this.state.hasError) {
+    if (hasError) {
       // You can render any custom fallback UI
-      return <EuiErrorMessage {...rest} errorMessage={this.state.error} />;
+      return <EuiErrorMessage {...rest} errorMessage={errorMessage} />;
     }
 
     return children;

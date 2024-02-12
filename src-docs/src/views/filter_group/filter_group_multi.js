@@ -63,6 +63,7 @@ export default () => {
   const button = (
     <EuiFilterButton
       iconType="arrowDown"
+      badgeColor="success"
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
       numFilters={items.filter((item) => item.checked !== 'off').length}

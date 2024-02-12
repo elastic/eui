@@ -15,7 +15,11 @@ export const highlightConfig = () => {
     value: 'The quick brown fox jumped over the lazy dog',
   };
 
-  propsToUse.search.value = 'quick';
+  propsToUse.search = {
+    ...propsToUse.search,
+    type: PropTypes.String,
+    value: 'quick',
+  };
 
   return {
     config: {

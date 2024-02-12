@@ -17,13 +17,21 @@ import {
 } from '../data_grid_types';
 import { defaultComparator } from './data_grid_schema';
 
-export const DataGridSortingContext = createContext<
-  DataGridSortingContextShape
->({
-  sorting: undefined,
-  sortedRowMap: [],
-  getCorrectRowIndex: (number) => number,
-});
+export const DataGridSortingContext =
+  createContext<DataGridSortingContextShape>({
+    sorting: undefined,
+    sortedRowMap: [],
+    getCorrectRowIndex: (number) => number,
+  });
+
+export type useSortingArgs = {
+  sorting?: EuiDataGridSorting;
+  inMemory?: EuiDataGridInMemory;
+  inMemoryValues: EuiDataGridInMemoryValues;
+  schema: EuiDataGridSchema;
+  schemaDetectors: EuiDataGridSchemaDetector[];
+  startRow: number;
+};
 
 export const useSorting = ({
   sorting,
@@ -32,14 +40,7 @@ export const useSorting = ({
   schema,
   schemaDetectors,
   startRow,
-}: {
-  sorting?: EuiDataGridSorting;
-  inMemory?: EuiDataGridInMemory;
-  inMemoryValues: EuiDataGridInMemoryValues;
-  schema: EuiDataGridSchema;
-  schemaDetectors: EuiDataGridSchemaDetector[];
-  startRow: number;
-}) => {
+}: useSortingArgs) => {
   const sortingColumns = sorting?.columns;
 
   const sortedRowMap = useMemo(() => {
@@ -81,7 +82,10 @@ export const useSorting = ({
             }
           }
 
-          const result = comparator(aValue, bValue, column.direction);
+          const result = comparator(aValue, bValue, column.direction, {
+            aIndex: a.index,
+            bIndex: b.index,
+          });
           // only return if the columns are unequal, otherwise allow the next sort-by column to run
           if (result !== 0) return result;
         }

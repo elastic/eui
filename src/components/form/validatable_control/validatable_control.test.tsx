@@ -7,26 +7,54 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { render } from '@testing-library/react';
+import { renderHook } from '../../../test/rtl';
 
-import { EuiValidatableControl } from './validatable_control';
+import {
+  EuiValidatableControl,
+  useEuiValidatableControl,
+} from './validatable_control';
 
 describe('EuiValidatableControl', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container, rerender } = render(
+      <EuiValidatableControl isInvalid>
+        <input />
+      </EuiValidatableControl>
+    );
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <input
+        aria-invalid="true"
+      />
+    `);
+
+    rerender(
       <EuiValidatableControl>
         <input />
       </EuiValidatableControl>
     );
+    expect(container.firstChild).toMatchInlineSnapshot('<input />');
+  });
 
-    expect(component).toMatchSnapshot();
+  test('aria-invalid allows falling back to prop set on the child input', () => {
+    const { container } = render(
+      <EuiValidatableControl>
+        <input aria-invalid={true} />
+      </EuiValidatableControl>
+    );
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <input
+        aria-invalid="true"
+      />
+    `);
   });
 
   describe('ref management', () => {
     it('calls a ref function', () => {
       const ref = jest.fn();
 
-      mount(
+      render(
         <EuiValidatableControl>
           <input id="testInput" ref={ref} />
         </EuiValidatableControl>
@@ -41,7 +69,7 @@ describe('EuiValidatableControl', () => {
     it('sets a ref object\'s "current" property', () => {
       const ref = React.createRef<HTMLInputElement>();
 
-      mount(
+      render(
         <EuiValidatableControl>
           <input id="testInput" ref={ref} />
         </EuiValidatableControl>
@@ -60,13 +88,13 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component />);
+      const { rerender } = render(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
 
       // Force re-render
-      wrapper.setProps({});
+      rerender(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
@@ -81,13 +109,13 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component />);
+      const { rerender } = render(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
 
       // Force re-render
-      wrapper.setProps({});
+      rerender(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(3);
 
@@ -108,12 +136,12 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component change={false} />);
+      const { rerender } = render(<Component change={false} />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
 
-      wrapper.setProps({ change: true });
+      rerender(<Component change={true} />);
 
       expect(ref).toHaveBeenCalledTimes(3);
 
@@ -137,14 +165,14 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component change={false} />);
+      const { rerender } = render(<Component change={false} />);
 
       expect(ref.current).not.toBeNull();
       expect(ref.current!.getAttribute('id')).toBe('testInput');
 
       const prevRef = ref.current;
 
-      wrapper.setProps({ change: true });
+      rerender(<Component change={true} />);
 
       expect(ref.current).not.toBeNull();
       expect(ref.current!.getAttribute('id')).toBe('testInput2');
@@ -152,5 +180,29 @@ describe('EuiValidatableControl', () => {
       // Ensure that the child element has changed
       expect(ref.current).not.toBe(prevRef);
     });
+  });
+});
+
+describe('useEuiValidatableControl', () => {
+  const controlEl = document.createElement('input');
+
+  it('sets the validity of the passed control element', () => {
+    const { rerender } = renderHook(useEuiValidatableControl, {
+      initialProps: { isInvalid: true, controlEl },
+    });
+    expect(controlEl.validity.valid).toEqual(false);
+
+    rerender({ isInvalid: false, controlEl });
+    expect(controlEl.validity.valid).toEqual(true);
+  });
+
+  it('sets the `aria-invalid` of the passed control element', () => {
+    const { rerender } = renderHook(useEuiValidatableControl, {
+      initialProps: { isInvalid: true, controlEl },
+    });
+    expect(controlEl.getAttribute('aria-invalid')).toEqual('true');
+
+    rerender({ isInvalid: false, controlEl });
+    expect(controlEl.getAttribute('aria-invalid')).toEqual('false');
   });
 });

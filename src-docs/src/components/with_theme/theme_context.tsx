@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
@@ -45,7 +45,7 @@ interface State {
 
 export const ThemeContext = React.createContext(defaultState);
 
-export class ThemeProvider extends React.Component<object, State> {
+export class ThemeProvider extends React.Component<PropsWithChildren, State> {
   constructor(props: object) {
     super(props);
 
@@ -77,9 +77,9 @@ export class ThemeProvider extends React.Component<object, State> {
     // Otherwise, obtain it from localStorage
     const fromLocalStorage = localStorage.getItem(STYLE_STORAGE_KEY);
 
-    let themeLanguage = (fromUrlParam
-      ? `language--${fromUrlParam}`
-      : fromLocalStorage) as THEME_LANGUAGES['id'];
+    let themeLanguage = (
+      fromUrlParam ? `language--${fromUrlParam}` : fromLocalStorage
+    ) as THEME_LANGUAGES['id'];
 
     // If not set by either param or storage, or an invalid value, use the default
     if (!themeLanguage || !THEME_LANGS.includes(themeLanguage))

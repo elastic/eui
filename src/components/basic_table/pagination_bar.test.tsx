@@ -7,79 +7,106 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme';
+
+import { EuiProvider } from '../provider';
+
 import { PaginationBar } from './pagination_bar';
 
 describe('PaginationBar', () => {
-  test('render', () => {
-    const props = {
-      ...requiredProps,
-      pagination: {
-        pageIndex: 0,
-        pageSize: 5,
-        totalItemCount: 0,
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
+  const props = {
+    ...requiredProps,
+    pagination: {
+      pageIndex: 0,
+      pageSize: 5,
+      totalItemCount: 0,
+    },
+    onPageSizeChange: () => {},
+    onPageChange: () => {},
+  };
 
-    const component = shallow(<PaginationBar {...props} />);
+  it('renders', () => {
+    const { container } = render(<PaginationBar {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - custom page size options', () => {
-    const props = {
-      ...requiredProps,
-      pagination: {
-        pageIndex: 0,
-        pageSize: 5,
-        totalItemCount: 0,
-        pageSizeOptions: [1, 2, 3],
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
+  it('calls onPageChange with the correct off-by-one offset', () => {
+    const onPageChange = jest.fn();
+    const { getByLabelText } = render(
+      <PaginationBar
+        {...props}
+        pagination={{
+          ...props.pagination,
+          totalItemCount: 10,
+        }}
+        onPageChange={onPageChange}
+      />
+    );
 
-    const component = shallow(<PaginationBar {...props} />);
-
-    expect(component).toMatchSnapshot();
+    fireEvent.click(getByLabelText('Page 2 of 2'));
+    expect(onPageChange).toHaveBeenCalledWith(1);
   });
 
-  test('render - hiding per page options', () => {
-    const props = {
-      ...requiredProps,
-      pagination: {
-        pageIndex: 0,
-        pageSize: 5,
-        totalItemCount: 0,
-        showPerPageOptions: false,
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
+  describe('EuiTablePagination component defaults', () => {
+    it('falls back to EuiTablePagination defaults', () => {
+      const { getByText, getByTestSubject } = render(
+        <PaginationBar
+          {...props}
+          pagination={{ pageIndex: 1, totalItemCount: 100 }}
+        />
+      );
 
-    const component = shallow(<PaginationBar {...props} />);
+      expect(getByText('Rows per page: 10')).toBeTruthy();
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      expect(getByTestSubject('tablePagination-10-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-25-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-50-rows')).toBeTruthy();
+    });
 
-    expect(component).toMatchSnapshot();
-  });
+    it('correctly uses configured EuiTablePagination defaults', () => {
+      const { getByText, getByTestSubject } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiTablePagination: {
+              itemsPerPage: 5,
+              itemsPerPageOptions: [5, 15],
+            },
+          }}
+        >
+          <PaginationBar
+            {...props}
+            pagination={{ pageIndex: 1, totalItemCount: 100 }}
+          />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
 
-  test('render - show all pageSize', () => {
-    const props = {
-      ...requiredProps,
-      pagination: {
-        pageIndex: 0,
-        pageSize: 0,
-        pageSizeOptions: [1, 5, 0],
-        totalItemCount: 5,
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
+      expect(getByText('Rows per page: 5')).toBeTruthy();
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      expect(getByTestSubject('tablePagination-5-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-15-rows')).toBeTruthy();
+    });
 
-    const component = shallow(<PaginationBar {...props} />);
+    it('correctly overrides all defaults', () => {
+      const { getByText, getByTestSubject } = render(
+        <PaginationBar
+          {...props}
+          pagination={{
+            pageIndex: 3,
+            totalItemCount: 20,
+            pageSize: 4,
+            pageSizeOptions: [2, 4],
+          }}
+        />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(getByText('Rows per page: 4')).toBeTruthy();
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      expect(getByTestSubject('tablePagination-2-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-4-rows')).toBeTruthy();
+    });
   });
 });

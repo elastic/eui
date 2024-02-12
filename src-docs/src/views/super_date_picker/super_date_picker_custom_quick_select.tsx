@@ -24,9 +24,8 @@ function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] = useState(
-    true
-  );
+  const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] =
+    useState(true);
   const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
   const [showQuickSelectOnly, setShowQuickSelectOnly] = useState(false);
 

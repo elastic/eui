@@ -28,11 +28,10 @@ export const euiBottomBarStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     // Base
-    // Text color needs to be reapplied to properly scope the forced `colorMode`
+    // `color` is inherited from the wrapping `EuiThemeProvider colorMode="dark"`
     euiBottomBar: css`
-      ${euiShadowFlat(euiThemeContext)};
+      ${euiShadowFlat(euiThemeContext)}
       background: ${shade(euiTheme.colors.lightestShade, 0.5)};
-      color: ${euiTheme.colors.text};
       ${euiCanAnimate} {
         animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}
           ${euiTheme.animation.resistance};

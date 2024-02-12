@@ -88,7 +88,6 @@ module.exports = function ({ types }) {
                 savePropValueAsString: true,
               })
               .parseWithProgramProvider(filename, () => program);
-            // eslint-disable-next-line no-empty
           } catch (e) {}
 
           /**
@@ -349,4 +348,5 @@ const intrinsicValuesRaw = [
 const reactElementTypeExpanded =
   'ReactElement<any, string | JSXElementConstructor<any>>';
 
-const reactNodeTypeExpanded = /(string \| number \| boolean \| {} \| ReactElement \| ReactNodeArray \| ReactPortal)( \| \({} & string\).+\(ReactPortal & string\))?/g;
+const reactNodeTypeExpanded =
+  /(string \| number \| boolean \| {} \| ReactElement \| ReactNodeArray \| ReactPortal)( \| \({} & string\).+\(ReactPortal & string\))?/g;

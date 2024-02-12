@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { FunctionComponent } from 'react';
 
-import { EuiProvider } from '../../components/provider';
 import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
 import {
   useIsWithinBreakpoints,
@@ -29,51 +30,34 @@ describe('useIsWithinBreakpoints', () => {
 
   it('returns true if the current breakpoint size is in the passed sizes array', () => {
     cy.viewport(300, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent sizes={['xs', 's', 'm']} />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent sizes={['xs', 's', 'm']} />);
     cy.get('[data-test-subj]').should('exist');
   });
 
   it('returns false if the current breakpoint size is outside the passed sizes array', () => {
     cy.viewport(1400, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent sizes={['xs', 's', 'm']} />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent sizes={['xs', 's', 'm']} />);
     cy.get('[data-test-subj]').should('not.exist');
   });
 
   it('returns false always if isResponsive is passed as false', () => {
     cy.viewport(300, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent sizes={['xs', 's', 'm']} isResponsive={false} />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent sizes={['xs', 's', 'm']} isResponsive={false} />);
     cy.get('[data-test-subj]').should('not.exist');
   });
 
   it('correctly handles custom breakpoint sizes', () => {
+    const customBreakpoints = {
+      xs: 0,
+      s: 500,
+      m: 1000,
+      l: 1500,
+      xl: 2000,
+    };
     cy.viewport(1500, 600);
-    cy.mount(
-      <EuiProvider
-        modify={{
-          breakpoint: {
-            xs: 0,
-            s: 500,
-            m: 1000,
-            l: 1500,
-            xl: 2000,
-          },
-        }}
-      >
-        <MockComponent sizes={['l']} />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent sizes={['l']} />, {
+      providerProps: { modify: { breakpoint: customBreakpoints } },
+    });
     cy.get('[data-test-subj]').should('exist');
   });
 });
@@ -88,39 +72,26 @@ describe('useIsWithinMaxBreakpoint', () => {
 
   it('returns true if the current breakpoint size is smaller than the passed max size', () => {
     cy.viewport(300, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent size="m" />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent size="m" />);
     cy.get('[data-test-subj]').should('exist');
   });
 
   it('returns false if the current breakpoint size is larger than the passed max size', () => {
     cy.viewport(1400, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent size="m" />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent size="m" />);
     cy.get('[data-test-subj]').should('not.exist');
   });
 
   it('correctly handles custom breakpoint sizes', () => {
+    const customBreakpoints = {
+      m: 1500,
+      l: 1800,
+      xl: 2000,
+    };
     cy.viewport(1400, 600);
-    cy.mount(
-      <EuiProvider
-        modify={{
-          breakpoint: {
-            m: 1500,
-            l: 1800,
-            xl: 2000,
-          },
-        }}
-      >
-        <MockComponent size="m" />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent size="m" />, {
+      providerProps: { modify: { breakpoint: customBreakpoints } },
+    });
     cy.get('[data-test-subj]').should('exist');
   });
 });
@@ -135,39 +106,26 @@ describe('useIsWithinMinBreakpoint', () => {
 
   it('returns true if the current breakpoint size is larger than the passed min size', () => {
     cy.viewport(800, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent size="m" />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent size="m" />);
     cy.get('[data-test-subj]').should('exist');
   });
 
   it('returns false if the current breakpoint size is smaller than the passed min size', () => {
     cy.viewport(600, 600);
-    cy.mount(
-      <EuiProvider>
-        <MockComponent size="m" />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent size="m" />);
     cy.get('[data-test-subj]').should('not.exist');
   });
 
   it('correctly handles custom breakpoint sizes', () => {
+    const customBreakpoints = {
+      m: 600,
+      l: 800,
+      xl: 1000,
+    };
     cy.viewport(600, 600);
-    cy.mount(
-      <EuiProvider
-        modify={{
-          breakpoint: {
-            m: 600,
-            l: 800,
-            xl: 1000,
-          },
-        }}
-      >
-        <MockComponent size="m" />
-      </EuiProvider>
-    );
+    cy.mount(<MockComponent size="m" />, {
+      providerProps: { modify: { breakpoint: customBreakpoints } },
+    });
     cy.get('[data-test-subj]').should('exist');
   });
 });

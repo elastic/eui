@@ -9,9 +9,13 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+import { euiScreenReaderOnlyStyles } from '../accessibility/screen_reader_only/screen_reader_only.styles';
+
 import { ToggleOptions } from './resizable_panel';
 import { EuiResizableContainerProps } from './resizable_container';
+import { euiResizableCollapseButtonStyles } from './resizable_collapse_button.styles';
 
 export type EuiResizableCollapseButtonProps = Omit<
   EuiButtonIconPropsForButton,
@@ -31,16 +35,15 @@ export type EuiResizableCollapseButtonProps = Omit<
    * Same direction derived from EuiResizableContainer
    */
   direction?: EuiResizableContainerProps['direction'];
-  /**
-   *
-   */
   isVisible?: boolean;
   isCollapsed?: boolean;
 };
 
-export const EuiResizableCollapseButton: FunctionComponent<EuiResizableCollapseButtonProps> = ({
+export const EuiResizableCollapseButton: FunctionComponent<
+  EuiResizableCollapseButtonProps
+> = ({
   className,
-  externalPosition,
+  externalPosition = 'before',
   internalPosition = 'middle',
   direction = 'horizontal',
   isVisible,
@@ -49,21 +52,31 @@ export const EuiResizableCollapseButton: FunctionComponent<EuiResizableCollapseB
 }) => {
   const isHorizontal = direction === 'horizontal';
 
-  const classes = classNames(
-    'euiResizableToggleButton',
-    `euiResizableToggleButton--${direction}`,
-    `euiResizableToggleButton--${externalPosition}`,
-    `euiResizableToggleButton--${internalPosition}`,
-    {
-      'euiResizableToggleButton-isVisible': isVisible,
-      'euiResizableToggleButton-isCollapsed': isCollapsed,
-    },
-    className
-  );
+  const showOnFocus = !isCollapsed && !isVisible;
+  const screenReaderOnlyStyles =
+    euiScreenReaderOnlyStyles(showOnFocus).euiScreenReaderOnly;
 
-  // Default to simiple grab icon in case there is no externalPosition specified
-  let COLLAPSED_ICON = isHorizontal ? 'grab' : 'grabHorizontal';
-  let NOT_COLLAPSED_ICON = isHorizontal ? 'grab' : 'grabHorizontal';
+  const euiTheme = useEuiTheme();
+  const styles = euiResizableCollapseButtonStyles(euiTheme);
+
+  const collapsedStyles = [
+    styles.collapsed.collapsed,
+    styles.collapsed[direction],
+    styles.collapsed[`${direction}Positions`][internalPosition],
+  ];
+  const collapsibleStyles = [
+    styles.collapsible.collapsible,
+    styles.collapsible[direction][externalPosition],
+    styles.collapsible[direction][internalPosition],
+  ];
+  const cssStyles = [
+    styles.euiResizableCollapseButton,
+    showOnFocus && screenReaderOnlyStyles,
+    ...(isCollapsed ? collapsedStyles : collapsibleStyles),
+  ];
+
+  let COLLAPSED_ICON = '';
+  let NOT_COLLAPSED_ICON = '';
 
   switch (externalPosition) {
     case 'before':
@@ -76,12 +89,15 @@ export const EuiResizableCollapseButton: FunctionComponent<EuiResizableCollapseB
       break;
   }
 
+  const classes = classNames('euiResizableCollapseButton', className);
+
   return (
     <EuiButtonIcon
-      display={isCollapsed ? 'empty' : 'fill'}
-      color={isCollapsed ? 'text' : 'ghost'}
-      {...rest}
+      display={isCollapsed ? 'empty' : 'base'}
+      color="text"
       className={classes}
+      css={cssStyles}
+      {...rest}
       iconType={isCollapsed ? COLLAPSED_ICON : NOT_COLLAPSED_ICON}
     />
   );

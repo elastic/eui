@@ -6,12 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
+import React, {
+  HTMLAttributes,
+  FunctionComponent,
+  ReactNode,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
+
 import { useEuiI18n } from '../i18n';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { euiMarkStyles } from './mark.styles';
+import { euiMarkStyles, euiMarkScreenReaderStyles } from './mark.styles';
+
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
     /**
@@ -31,21 +38,27 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   hasScreenReaderHelpText = true,
   ...rest
 }) => {
-  const useTheme = useEuiTheme();
+  const classes = classNames('euiMark', className);
+  const euiTheme = useEuiTheme();
+  const styles = euiMarkStyles(euiTheme);
+
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',
     'highlight start'
   );
   const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
-  const styles = euiMarkStyles(useTheme, {
-    hasScreenReaderHelpText,
-    highlightStart,
-    highlightEnd,
-  });
-  const classes = classNames('euiMark', className);
+  const screenReaderStyles = useMemo(
+    () => euiMarkScreenReaderStyles(highlightStart, highlightEnd),
+    [highlightStart, highlightEnd]
+  );
+
+  const cssStyles = [
+    styles.euiMark,
+    hasScreenReaderHelpText && screenReaderStyles.hasScreenReaderHelpText,
+  ];
 
   return (
-    <mark css={[styles]} className={classes} {...rest}>
+    <mark css={cssStyles} className={classes} {...rest}>
       {children}
     </mark>
   );

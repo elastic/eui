@@ -21,9 +21,8 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [flyoutSize, setFlyoutSize] = useState<EuiFlyoutProps['size']>('m');
-  const [flyoutMaxWidth, setFlyoutMaxWidth] = useState<
-    EuiFlyoutProps['maxWidth']
-  >(false);
+  const [flyoutMaxWidth, setFlyoutMaxWidth] =
+    useState<EuiFlyoutProps['maxWidth']>(false);
   const maxWidthFlyoutTitleId = useGeneratedHtmlId({
     prefix: 'maxWidthFlyoutTitle',
   });

@@ -37,7 +37,7 @@ interface EuiTabbedContentState {
 }
 
 export type EuiTabbedContentProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'autoFocus'> & {
     /**
      * When tabbing into the tabs, set the focus on `initial` for the first tab,
      * or `selected` for the currently selected tab. Best use case is for inside of
@@ -97,9 +97,8 @@ export class EuiTabbedContent extends Component<
   }
 
   focusTab = () => {
-    const targetTab: HTMLDivElement | null = this.tabsRef.current!.querySelector(
-      `#${this.state.selectedTabId}`
-    );
+    const targetTab: HTMLDivElement | null =
+      this.tabsRef.current!.querySelector(`#${this.state.selectedTabId}`);
     targetTab!.focus();
   };
 

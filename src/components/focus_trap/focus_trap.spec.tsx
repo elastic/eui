@@ -6,11 +6,15 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
-import React, { useRef } from 'react';
-import { EuiFocusTrap } from './focus_trap';
+import React, { ComponentType, useRef, useState } from 'react';
+
 import { EuiPortal } from '../portal';
+
+import { EuiFocusTrap } from './focus_trap';
 
 describe('EuiFocusTrap', () => {
   describe('focus', () => {
@@ -159,78 +163,223 @@ describe('EuiFocusTrap', () => {
   });
 
   describe('outside click handling', () => {
-    const Trap = ({
-      onClickOutside,
-      shards,
-      closeOnMouseup,
-    }: {
-      onClickOutside?: any;
+    // For some reason using FunctionComponent with inline props type
+    // definition here causes cypress to crash
+    let Trap: ComponentType<{
       shards?: boolean;
       closeOnMouseup?: boolean;
-    }) => {
-      const buttonRef = useRef();
-      return (
-        <div>
-          <EuiFocusTrap
-            onClickOutside={onClickOutside}
-            shards={shards ? [buttonRef] : []}
-            closeOnMouseup={closeOnMouseup}
-          >
-            <div data-test-subj="container">
-              <input data-test-subj="input" />
-              <input data-test-subj="input2" />
-            </div>
-          </EuiFocusTrap>
-          <button ref={buttonRef} data-test-subj="outside">
-            outside the focus trap
-          </button>
-          <button data-test-subj="outside2">also outside the focus trap</button>
-        </div>
-      );
-    };
+    }>;
+
+    beforeEach(() => {
+      const onClickOutside = cy.stub().as('onClickOutside');
+
+      Trap = ({ shards, closeOnMouseup }) => {
+        const buttonRef = useRef(null);
+        return (
+          <div>
+            <EuiFocusTrap
+              onClickOutside={onClickOutside}
+              shards={shards ? [buttonRef] : []}
+              closeOnMouseup={closeOnMouseup}
+            >
+              <div data-test-subj="container">
+                <input data-test-subj="input" />
+                <input data-test-subj="input2" />
+              </div>
+            </EuiFocusTrap>
+            <button ref={buttonRef} data-test-subj="outside">
+              outside the focus trap
+            </button>
+            <button data-test-subj="outside2">
+              also outside the focus trap
+            </button>
+          </div>
+        );
+      };
+    });
 
     it('calls the callback on mousedown', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} />);
+      cy.mount(<Trap />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside]').should('be.visible').realMouseDown();
+      cy.get('@onClickOutside').should('be.called');
     });
 
     it('calls the callback on mouseup when using closeOnMouseup', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} closeOnMouseup />);
+      cy.mount(<Trap closeOnMouseup />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.not.be.called;
-        });
-      cy.get('[data-test-subj=outside]')
-        .click() // real events not  working here
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('not.be.called');
+
+      cy.get('[data-test-subj=outside]').click(); // real events not  working here
+      cy.get('@onClickOutside').should('be.called');
     });
 
     it('does not call the callback if the element is a shard', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} shards />);
+      cy.mount(<Trap shards />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.not.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('not.be.called');
+
       // But still calls if the element is not a shard
-      cy.get('[data-test-subj=outside2]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.be.called;
+      cy.get('[data-test-subj=outside2]').realMouseDown();
+      cy.get('@onClickOutside').should('be.called');
+    });
+  });
+
+  describe('scrollLock', () => {
+    // TODO: Use cypress-real-event's `realMouseWheel` API, whenever they release it 🥲
+    const scrollSelector = (selector: string) => {
+      cy.get(selector).realClick({ position: 'topRight' }).realPress('End');
+      cy.wait(500); // Wait a tick to let scroll position update
+    };
+
+    // Control test to ensure Cypress isn't just giving us false positives for actual scrollLock tests
+    it('does not prevent scrolling on the body if not present', () => {
+      cy.realMount(
+        <div style={{ height: 2000 }}>
+          <EuiFocusTrap>Test</EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('body');
+      cy.window().its('scrollY').should('not.equal', 0);
+    });
+
+    it('does not scrollLock if the focus trap is disabled', () => {
+      cy.realMount(
+        <div style={{ height: 2000 }}>
+          <EuiFocusTrap disabled={true} scrollLock={true}>
+            Test
+          </EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('body');
+      cy.window().its('scrollY').should('not.equal', 0);
+    });
+
+    it('prevents scrolling on the page body', () => {
+      cy.realMount(
+        <div style={{ height: 2000 }}>
+          <EuiFocusTrap scrollLock>Test</EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('body');
+      cy.window().its('scrollY').should('equal', 0);
+    });
+
+    it('allows nested portals to be scrolled', () => {
+      cy.realMount(
+        <div>
+          <EuiFocusTrap scrollLock>
+            Test
+            <EuiPortal>
+              <div
+                data-test-subj="scroll"
+                style={{ height: 100, overflow: 'auto' }}
+              >
+                <div style={{ height: 500 }}>Test</div>
+              </div>
+            </EuiPortal>
+          </EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('[data-test-subj="scroll"]');
+      cy.get('[data-test-subj="scroll"]').then(($el) => {
+        expect($el[0].scrollTop).not.to.equal(0);
+      });
+    });
+
+    describe('scrollbar gap', () => {
+      const ToggledFocusTrap = (focusTrapProps: any) => {
+        const [isFocusTrapOpen, setIsFocusTrapOpen] = useState(false);
+
+        return (
+          <div style={{ height: 2000, backgroundColor: '#555' }}>
+            <button
+              data-test-subj="openFocusTrap"
+              onClick={() => setIsFocusTrapOpen(true)}
+            >
+              Toggle focus trap
+            </button>
+            {isFocusTrapOpen && (
+              <EuiFocusTrap scrollLock {...focusTrapProps}>
+                Test
+              </EuiFocusTrap>
+            )}
+          </div>
+        );
+      };
+
+      // Depending on the machine running these tests, scrollbars might not
+      // have a width (e.g. some Mac system settings) - if so, skip them
+      const skipIfNoScrollbars = () => {
+        cy.window().then((win) => {
+          const htmlWidth = Cypress.$('body')[0].scrollWidth;
+          const scrollBarWidth = win.innerWidth - htmlWidth;
+
+          if (scrollBarWidth === 0) {
+            cy.log('Skipping test - no scrollbars detected');
+            // @ts-ignore - this works even if Cypress doesn't type it
+            Cypress.mocha.getRunner().suite.ctx.skip();
+          }
         });
+      };
+
+      it('preserves the scrollbar width when locked', () => {
+        cy.realMount(<ToggledFocusTrap />);
+        skipIfNoScrollbars();
+        cy.get('[data-test-subj="openFocusTrap"]').click();
+
+        cy.get('body').then(($body) => {
+          const styles = window.getComputedStyle($body[0]);
+
+          const padding = parseFloat(styles.getPropertyValue('padding-right'));
+          expect(padding).to.be.gt(0);
+
+          expect(styles.getPropertyValue('margin-right')).to.equal('0px');
+        });
+      });
+
+      it('allows customizing gapMode', () => {
+        cy.realMount(<ToggledFocusTrap gapMode="margin" />);
+        skipIfNoScrollbars();
+        cy.get('[data-test-subj="openFocusTrap"]').click();
+
+        cy.get('body').then(($body) => {
+          const styles = window.getComputedStyle($body[0]);
+
+          const margin = parseFloat(styles.getPropertyValue('margin-right'));
+          expect(margin).to.be.gt(0);
+
+          expect(styles.getPropertyValue('padding-right')).to.equal('0px');
+        });
+      });
+
+      it('allows customizing gapMode via EuiProvider.componentDefaults', () => {
+        cy.mount(<ToggledFocusTrap />, {
+          providerProps: {
+            componentDefaults: { EuiFocusTrap: { gapMode: 'margin' } },
+          },
+        });
+        skipIfNoScrollbars();
+        cy.get('[data-test-subj="openFocusTrap"]').click();
+
+        cy.get('body').then(($body) => {
+          const styles = window.getComputedStyle($body[0]);
+
+          const margin = parseFloat(styles.getPropertyValue('margin-right'));
+          expect(margin).to.be.gt(0);
+
+          expect(styles.getPropertyValue('padding-right')).to.equal('0px');
+        });
+      });
     });
   });
 });

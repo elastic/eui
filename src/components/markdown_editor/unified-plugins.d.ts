@@ -14,7 +14,6 @@ declare module 'remark-emoji' {
 }
 
 declare module 'mdast-util-to-hast/lib/all' {
-  // eslint-disable-next-line import/no-unresolved
   import { Node } from 'unist';
   import { H } from 'mdast-util-to-hast';
 

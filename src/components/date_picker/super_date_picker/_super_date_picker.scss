@@ -1,4 +1,6 @@
-.euiSuperDatePicker__flexWrapper {
+.euiSuperDatePicker {
+  display: flex;
+  gap: $euiSizeS;
   max-width: 100%;
   // Set a sensible min-width for when width is auto
   min-width: MIN(($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS, 100%);
@@ -8,52 +10,49 @@
     width: 100%;
   }
 
-  &.euiSuperDatePicker__flexWrapper--fullWidth {
+  &--isAutoRefreshOnly {
+    min-width: MIN($euiFormMaxWidth / 2, 100%);
+    width: $euiFormMaxWidth;
+  }
+
+  &--noUpdateButton {
+    min-width: MIN($euiFormMaxWidth / 2, 100%);
+    width: $euiSuperDatePickerWidth;
+  }
+
+  &--fullWidth {
     width: 100%;
   }
 
-  &.euiSuperDatePicker__flexWrapper--isQuickSelectOnly {
+  &--isQuickSelectOnly {
     min-width: 0;
   }
 
-  &.euiSuperDatePicker__flexWrapper--autoWidth {
+  &--autoWidth {
     display: inline-flex;
     width: auto;
   }
-}
 
-.euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
-  min-width: MIN($euiFormMaxWidth / 2, 100%);
-  width: $euiFormMaxWidth;
-}
+  .euiDatePickerRange {
+    flex-grow: 1;
+  }
 
-.euiSuperDatePicker__flexWrapper--noUpdateButton {
-  min-width: MIN($euiFormMaxWidth / 2, 100%);
-  width: $euiSuperDatePickerWidth;
-}
+  .euiFormControlLayout {
+    max-width: 100%; // Allow it to always grow to fit the container since the default form max width is too small
+  }
 
-.euiSuperDatePicker {
-  // Allow it to always grow to fit the container since the default form max width is too small
-  // stylelint-disable-next-line declaration-no-important
-  max-width: 100% !important;
-
-  > .euiFormControlLayout__childrenWrapper {
-    flex: 1 1 100%;
+  .euiFormControlLayout__childrenWrapper {
+    display: flex;
+    align-items: center;
     overflow: hidden;
+    background-color: $euiFormBackgroundColor;
 
-    > .euiDatePickerRange {
-      max-width: none;
-      width: auto;
+    &:last-child {
       border-radius: 0 $euiFormControlBorderRadius $euiFormControlBorderRadius 0;
     }
 
-    &:not(:last-child) > .euiDatePickerRange {
-      &,
-      .euiDatePopoverButton--end,
-      .euiSuperDatePicker__prettyFormat {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+    & > .euiFormControlLayoutDelimited__input {
+      flex-grow: 1;
     }
   }
 }
@@ -73,5 +72,24 @@
     background-color: $euiFormBackgroundDisabledColor;
     color: $euiColorDarkShade;
     cursor: not-allowed;
+  }
+}
+
+/**
+* Make the arrow delimiter match the colors of `.euiDatePopoverButton-needsUpdating`
+*/
+.euiSuperDatePicker--needsUpdating {
+  .euiFormControlLayoutDelimited { // Extra specificity needed to override default delimited styles
+    .euiFormControlLayout__childrenWrapper {
+      background-color: $euiSuperDatePickerNeedsUpdatingBackgroundColor;
+    }
+
+    .euiFormControlLayoutDelimited__delimiter {
+      color: $euiSuperDatePickerNeedsUpdatingTextColor;
+    }
+  }
+
+  .euiFormControlLayout__childrenWrapper {
+    transition: background $euiAnimSpeedFast ease-in; // Match @mixin euiSuperDatePickerText / .euiDatePopoverButton
   }
 }

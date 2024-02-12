@@ -13,11 +13,11 @@ import { useEuiTheme } from '../../../services';
 
 import { euiNotificationBadgeStyles } from './badge_notification.styles';
 
-export const COLORS = ['accent', 'subdued'] as const;
-export type BadgeNotificationColor = typeof COLORS[number];
+export const COLORS = ['accent', 'subdued', 'success'] as const;
+export type BadgeNotificationColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
-export type BadgeNotificationSize = typeof SIZES[number];
+export type BadgeNotificationSize = (typeof SIZES)[number];
 
 export interface EuiNotificationBadgeProps
   extends CommonProps,
@@ -30,13 +30,9 @@ export interface EuiNotificationBadgeProps
   color?: BadgeNotificationColor;
 }
 
-export const EuiNotificationBadge: FunctionComponent<EuiNotificationBadgeProps> = ({
-  children,
-  className,
-  size = 's',
-  color = 'accent',
-  ...rest
-}) => {
+export const EuiNotificationBadge: FunctionComponent<
+  EuiNotificationBadgeProps
+> = ({ children, className, size = 's', color = 'accent', ...rest }) => {
   const euiTheme = useEuiTheme();
 
   const styles = euiNotificationBadgeStyles(euiTheme);

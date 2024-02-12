@@ -28,7 +28,7 @@ export const BUTTON_COLORS = [
   'danger',
 ] as const;
 
-export type _EuiButtonColor = typeof BUTTON_COLORS[number];
+export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
 export type _EuiButtonDisplay = 'base' | 'fill' | 'empty';
 
 export interface _EuiButtonOptions {
@@ -90,6 +90,12 @@ export const euiButtonFillColor = (
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
+  const getForegroundColor = (background: string) => {
+    return isColorDark(...hexToRgb(background))
+      ? euiTheme.colors.ghost
+      : euiTheme.colors.ink;
+  };
+
   let background;
   let foreground;
 
@@ -101,15 +107,22 @@ export const euiButtonFillColor = (
     case 'text':
       background =
         colorMode === 'DARK' ? euiTheme.colors.text : euiTheme.colors.darkShade;
-      foreground = isColorDark(...hexToRgb(background))
-        ? euiTheme.colors.ghost
-        : euiTheme.colors.ink;
+      foreground = getForegroundColor(background);
+      break;
+    case 'success':
+    case 'accent':
+      // Success / accent fills are hard to read on light mode even though they pass color contrast ratios
+      // TODO: If WCAG 3 gets adopted (which would calculates luminosity & would allow us to use white text instead),
+      // we can get rid of this case (https://blog.datawrapper.de/color-contrast-check-data-vis-wcag-apca/)
+      background =
+        colorMode === 'LIGHT'
+          ? tint(euiTheme.colors[color], 0.3)
+          : euiTheme.colors[color];
+      foreground = getForegroundColor(background);
       break;
     default:
       background = euiTheme.colors[color];
-      foreground = isColorDark(...hexToRgb(euiTheme.colors[color]))
-        ? euiTheme.colors.ghost
-        : euiTheme.colors.ink;
+      foreground = getForegroundColor(background);
       break;
   }
 
@@ -173,7 +186,7 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
       fill: css`
         ${euiButtonFillColor(euiThemeContext, color)}
 
-        // Use full shade for outline-color except for dark mode text buttons which need to stay currentColor
+        /* Use full shade for outline-color except for dark mode text buttons which need to stay currentColor */
         outline-color: ${euiThemeContext.colorMode === 'DARK' &&
         color === 'text'
           ? 'currentColor'
@@ -199,26 +212,6 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
     warning: css(stylesByDisplay('warning')[options.display || 'base']),
     danger: css(stylesByDisplay('danger')[options.display || 'base']),
     disabled: css(stylesByDisplay('disabled')[options.display || 'base']),
-  };
-};
-
-/**
- * Based on the button size, creates the style properties.
- * @returns An object of button size keys with Emption styles for `border-radius`
- */
-export const useEuiButtonRadiusCSS = () => {
-  const { euiTheme } = useEuiTheme();
-
-  return {
-    xs: css`
-      border-radius: ${euiTheme.border.radius.small};
-    `,
-    s: css`
-      border-radius: ${euiTheme.border.radius.small};
-    `,
-    m: css`
-      border-radius: ${euiTheme.border.radius.medium};
-    `,
   };
 };
 
@@ -249,3 +242,25 @@ export const useEuiButtonFocusCSS = () => {
     }
   `;
 };
+
+/**
+ * Map of `size` props to various sizings/scales
+ * that should remain consistent across all buttons
+ */
+export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
+  xs: {
+    height: euiTheme.size.l,
+    radius: euiTheme.border.radius.small,
+    fontScale: 'xs' as const,
+  },
+  s: {
+    height: euiTheme.size.xl,
+    radius: euiTheme.border.radius.small,
+    fontScale: 's' as const,
+  },
+  m: {
+    height: euiTheme.size.xxl,
+    radius: euiTheme.border.radius.medium,
+    fontScale: 's' as const,
+  },
+});

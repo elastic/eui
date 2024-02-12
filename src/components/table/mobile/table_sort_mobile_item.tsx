@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiContextMenuItem } from '../../context_menu';
 
-export interface EuiTableSortMobileItemProps extends CommonProps {
+export interface EuiTableSortMobileItemProps
+  extends PropsWithChildren,
+    CommonProps {
   /**
    * Callback to know when an item has been clicked
    */
@@ -29,7 +31,9 @@ export interface EuiTableSortMobileItemProps extends CommonProps {
   ariaLabel?: string;
 }
 
-export const EuiTableSortMobileItem: FunctionComponent<EuiTableSortMobileItemProps> = ({
+export const EuiTableSortMobileItem: FunctionComponent<
+  EuiTableSortMobileItemProps
+> = ({
   children,
   onSort,
   isSorted,

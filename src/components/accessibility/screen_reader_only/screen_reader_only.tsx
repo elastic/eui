@@ -9,7 +9,7 @@
 import { ReactElement, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { cloneElementWithCss } from '../../../services/theme/clone_element';
+import { cloneElementWithCss } from '../../../services';
 import { euiScreenReaderOnlyStyles } from './screen_reader_only.styles';
 
 export interface EuiScreenReaderOnlyProps {
@@ -25,11 +25,9 @@ export interface EuiScreenReaderOnlyProps {
   className?: string;
 }
 
-export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = ({
-  children,
-  className,
-  showOnFocus,
-}) => {
+export const EuiScreenReaderOnly: FunctionComponent<
+  EuiScreenReaderOnlyProps
+> = ({ children, className, showOnFocus }) => {
   const classes = classNames(className, children.props.className);
 
   const styles = euiScreenReaderOnlyStyles(showOnFocus);

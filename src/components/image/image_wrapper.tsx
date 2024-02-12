@@ -51,6 +51,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     margin && styles[margin],
     allowFullScreen && styles.allowFullScreen,
     isFullWidth && styles.fullWidth,
+    wrapperProps?.css,
   ];
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
@@ -58,9 +59,9 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   return (
     <figure
       aria-label={optionalCaptionText}
-      css={cssFigureStyles}
       {...wrapperProps}
       className={classes}
+      css={cssFigureStyles}
     >
       {allowFullScreen ? (
         <>

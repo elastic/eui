@@ -7,32 +7,40 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
+import { EuiThemeProvider } from '../../services';
+
 import { EuiPortal } from './portal';
 
 describe('EuiPortal', () => {
-  it('is rendered', () => {
-    const component = mount(
-      <div>
+  it('renders', () => {
+    const { baseElement } = render(<EuiPortal>Content</EuiPortal>);
+
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it('renders portals with a different theme provider from the global theme with the correct base color', () => {
+    const { baseElement } = render(
+      <EuiThemeProvider colorMode="inverse">
         <EuiPortal>Content</EuiPortal>
-      </div>
+      </EuiThemeProvider>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   describe('behavior', () => {
     it('portalRef', () => {
       const portalRef = jest.fn();
 
-      const component = mount(
+      const { unmount } = render(
         <EuiPortal portalRef={portalRef}>Content</EuiPortal>
       );
 
       expect(portalRef).toHaveBeenCalledTimes(1);
       expect(portalRef.mock.calls[0][0]).toBeInstanceOf(HTMLDivElement);
 
-      component.unmount();
+      unmount();
 
       expect(portalRef).toHaveBeenCalledTimes(2);
       expect(portalRef.mock.calls[1][0]).toBeNull();

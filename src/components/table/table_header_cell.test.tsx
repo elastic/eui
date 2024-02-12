@@ -7,83 +7,100 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableHeaderCell } from './table_header_cell';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
 import { WARNING_MESSAGE } from './utils';
 
+const renderInTableHeader = (cell: React.ReactElement) =>
+  render(
+    <table>
+      <thead>
+        <tr>{cell}</tr>
+      </thead>
+    </table>
+  );
+
 test('renders EuiTableHeaderCell', () => {
-  const component = (
+  const { container } = renderInTableHeader(
     <EuiTableHeaderCell {...requiredProps}>children</EuiTableHeaderCell>
   );
 
-  expect(render(component)).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders td when children is null/undefined', () => {
-  const component = render(<EuiTableHeaderCell {...requiredProps} />);
+  const { container } = renderInTableHeader(
+    <EuiTableHeaderCell {...requiredProps} />
+  );
 
-  expect(component).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 describe('align', () => {
   test('defaults to left', () => {
-    const component = <EuiTableHeaderCell />;
+    const { container } = renderInTableHeader(<EuiTableHeaderCell />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders right when specified', () => {
-    const component = <EuiTableHeaderCell align={RIGHT_ALIGNMENT} />;
+    const { container } = renderInTableHeader(
+      <EuiTableHeaderCell align={RIGHT_ALIGNMENT} />
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders center when specified', () => {
-    const component = <EuiTableHeaderCell align={CENTER_ALIGNMENT} />;
+    const { container } = renderInTableHeader(
+      <EuiTableHeaderCell align={CENTER_ALIGNMENT} />
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe('sorting', () => {
   test('is rendered with isSorted', () => {
-    const component = <EuiTableHeaderCell isSorted>Test</EuiTableHeaderCell>;
+    const { container } = renderInTableHeader(
+      <EuiTableHeaderCell isSorted>Test</EuiTableHeaderCell>
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with isSortAscending', () => {
-    const component = (
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell isSorted isSortAscending>
         Test
       </EuiTableHeaderCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders a button with onSort', () => {
-    const component = (
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell isSorted onSort={() => {}}>
         Test
       </EuiTableHeaderCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('does not render a button with readOnly', () => {
-    const component = (
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell readOnly isSorted onSort={() => {}}>
         Test
       </EuiTableHeaderCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
@@ -101,31 +118,35 @@ describe('width and style', () => {
   });
 
   test('accepts style attribute', () => {
-    const component = (
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell style={{ width: '20%' }}>Test</EuiTableHeaderCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('accepts width attribute', () => {
-    const component = <EuiTableHeaderCell width="10%">Test</EuiTableHeaderCell>;
+    const { container } = renderInTableHeader(
+      <EuiTableHeaderCell width="10%">Test</EuiTableHeaderCell>
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('accepts width attribute as number', () => {
-    const component = <EuiTableHeaderCell width={100}>Test</EuiTableHeaderCell>;
+    const { container } = renderInTableHeader(
+      <EuiTableHeaderCell width={100}>Test</EuiTableHeaderCell>
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('resolves style and width attribute', () => {
-    const component = (
+    const { container } = renderInTableHeader(
       <EuiTableHeaderCell width="10%" style={{ width: '20%' }}>
         Test
       </EuiTableHeaderCell>
     );
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

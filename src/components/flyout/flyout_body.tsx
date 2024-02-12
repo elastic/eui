@@ -19,6 +19,16 @@ export type EuiFlyoutBodyProps = FunctionComponent<
        * Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it.
        */
       banner?: ReactNode;
+      /**
+       * [Scrollable regions (or their children) should be focusable](https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable)
+       * to allow keyboard users to scroll the region via arrow keys.
+       *
+       * By default, EuiFlyoutBody's scroll overflow wrapper sets a `tabIndex` of `0`.
+       * If you know your flyout body content already contains focusable children
+       * that satisfy keyboard accessibility requirements, you can use this prop
+       * to override this default.
+       */
+      scrollableTabIndex?: number;
     }
 >;
 
@@ -26,6 +36,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   children,
   className,
   banner,
+  scrollableTabIndex = 0,
   ...rest
 }) => {
   const classes = classNames('euiFlyoutBody', className);
@@ -44,7 +55,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   return (
     <div className={classes} css={cssStyles} {...rest}>
       <div
-        tabIndex={0}
+        tabIndex={scrollableTabIndex}
         className="euiFlyoutBody__overflow"
         css={overflowCssStyles}
       >

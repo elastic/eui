@@ -14,7 +14,7 @@ import { useLoadingAriaLabel } from './_loading_strings';
 import { euiLoadingElasticStyles } from './loading_elastic.styles';
 
 export const SIZES = ['m', 'l', 'xl', 'xxl'] as const;
-export type EuiLoadingElasticSize = typeof SIZES[number];
+export type EuiLoadingElasticSize = (typeof SIZES)[number];
 
 export interface EuiLoadingElasticProps {
   size?: EuiLoadingElasticSize;

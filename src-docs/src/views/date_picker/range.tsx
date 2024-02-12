@@ -10,9 +10,8 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canCompressed={false} canLoading={false}>
+    <DisplayToggles canPrepend={true} canAppend={true}>
       <EuiDatePickerRange
-        isInvalid={startDate > endDate}
         startDateControl={
           <EuiDatePicker
             selected={startDate}

@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
@@ -29,7 +31,7 @@ describe('EuiAccordion', () => {
         <EuiAccordion {...noArrowProps}>
           <EuiPanel color="subdued">
             Any content inside of <strong>EuiAccordion</strong> will appear
-            here. We will include <a href="#">a link</a> to confirm focus.
+            here.
           </EuiPanel>
         </EuiAccordion>
       );

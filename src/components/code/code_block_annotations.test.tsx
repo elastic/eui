@@ -8,17 +8,19 @@
 
 import React from 'react';
 
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/react';
 import { render, waitForEuiPopoverOpen } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test';
 
 import { EuiCodeBlockAnnotation } from './code_block_annotations';
 
 describe('EuiCodeBlockAnnotation', () => {
-  // No `requiredProps` or `shouldRenderCustomStyles` - this is not currently meant to be a highly customizable component
+  shouldRenderCustomStyles(<EuiCodeBlockAnnotation lineNumber={10} />);
 
   it('renders', async () => {
     const { baseElement, getByTestSubject } = render(
-      <EuiCodeBlockAnnotation lineNumber={10}>
+      <EuiCodeBlockAnnotation lineNumber={10} {...requiredProps}>
         <span data-test-subj="popoverContent">Popover content</span>
       </EuiCodeBlockAnnotation>
     );

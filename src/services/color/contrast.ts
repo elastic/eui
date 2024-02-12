@@ -19,67 +19,71 @@ export const wcagContrastMin = 4.5; // WCAG AA minimum contrast ratio for normal
  * *
  * @param themeOrBackground - Color to use as the contrast basis or just pass EuiTheme
  */
-export const makeHighContrastColor = (_foreground: string, ratio = 4.85) => (
-  themeOrBackground:
-    | string
-    | {
-        colors: { body: string };
-        [key: string]: any;
-      }
-) => {
-  const foreground = (typeof themeOrBackground === 'object'
-    ? getOn(themeOrBackground, _foreground) ?? _foreground
-    : _foreground) as string;
-  const background =
-    typeof themeOrBackground === 'object'
-      ? themeOrBackground.colors.body
-      : themeOrBackground;
+export const makeHighContrastColor =
+  (_foreground: string, ratio = 4.85) =>
+  (
+    themeOrBackground:
+      | string
+      | {
+          colors: { body: string };
+          [key: string]: any;
+        }
+  ) => {
+    const foreground = (
+      typeof themeOrBackground === 'object'
+        ? getOn(themeOrBackground, _foreground) ?? _foreground
+        : _foreground
+    ) as string;
+    const background =
+      typeof themeOrBackground === 'object'
+        ? themeOrBackground.colors.body
+        : themeOrBackground;
 
-  if (chroma(foreground).alpha() < 1 || chroma(background).alpha() < 1) {
-    console.warn(
-      `Contrast cannot be accurately calculated when colors have alpha channel opacity. Make sure the provided foreground and background colors have no transparency:
+    if (chroma(foreground).alpha() < 1 || chroma(background).alpha() < 1) {
+      console.warn(
+        `Contrast cannot be accurately calculated when colors have alpha channel opacity. Make sure the provided foreground and background colors have no transparency:
 
 Foreground: ${foreground}
 Background: ${background}`
-    );
-  }
-
-  let contrast = chroma.contrast(foreground, background);
-
-  // Determine the lightness factor of the background color first to
-  // determine whether to shade or tint the foreground.
-  const brightness = getLightness(background);
-
-  let highContrastTextColor = foreground;
-
-  while (contrast < ratio) {
-    if (brightness > 50) {
-      highContrastTextColor = shade(highContrastTextColor, 0.05);
-    } else {
-      highContrastTextColor = tint(highContrastTextColor, 0.05);
-    }
-
-    contrast = chroma.contrast(highContrastTextColor, background);
-
-    const lightness = getLightness(highContrastTextColor);
-
-    if (lightness < 5) {
-      console.warn(
-        'High enough contrast could not be determined. Most likely your background color does not adjust for light mode.'
       );
-      return highContrastTextColor;
     }
 
-    if (lightness > 95) {
-      console.warn(
-        'High enough contrast could not be determined. Most likely your background color does not adjust for dark mode.'
-      );
-      return highContrastTextColor;
-    }
-  }
+    let contrast = chroma.contrast(foreground, background);
 
-  return chroma(highContrastTextColor).hex();
-};
+    // Determine the lightness factor of the background color first to
+    // determine whether to shade or tint the foreground.
+    const brightness = getLightness(background);
+
+    let highContrastTextColor = foreground;
+
+    while (contrast < ratio) {
+      if (brightness > 50) {
+        highContrastTextColor = shade(highContrastTextColor, 0.05);
+      } else {
+        highContrastTextColor = tint(highContrastTextColor, 0.05);
+      }
+
+      contrast = chroma.contrast(highContrastTextColor, background);
+
+      const lightness = getLightness(highContrastTextColor);
+
+      if (lightness < 5) {
+        console.warn(
+          'High enough contrast could not be determined. Most likely your background color does not adjust for light mode.'
+        );
+        return highContrastTextColor;
+      }
+
+      if (lightness > 95) {
+        console.warn(
+          'High enough contrast could not be determined. Most likely your background color does not adjust for dark mode.'
+        );
+        return highContrastTextColor;
+      }
+    }
+
+    return chroma(highContrastTextColor).hex();
+  };
 
 /**
  * Creates a new color with increased contrast
@@ -89,11 +93,14 @@ Background: ${background}`
  * *
  * @param themeOrBackground - Color to use as the contrast basis
  */
-export const makeDisabledContrastColor = (color: string, ratio = 2) => (
-  themeOrBackground:
-    | string
-    | {
-        colors: { body: string };
-        [key: string]: any;
-      }
-) => makeHighContrastColor(color, ratio)(themeOrBackground);
+export const makeDisabledContrastColor =
+  (color: string, ratio = 2) =>
+  (
+    themeOrBackground:
+      | string
+      | {
+          colors: { body: string };
+          [key: string]: any;
+        }
+  ) =>
+    makeHighContrastColor(color, ratio)(themeOrBackground);

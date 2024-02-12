@@ -12,6 +12,9 @@ import { CommonProps } from '../common';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
 import { euiStepsHorizontalStyles } from './steps_horizontal.styles';
 
+export const SIZES = ['s', 'm'] as const;
+export type EuiStepsHorizontalSizes = (typeof SIZES)[number];
+
 export interface EuiStepsHorizontalProps
   extends OlHTMLAttributes<HTMLOListElement>,
     CommonProps {
@@ -19,11 +22,13 @@ export interface EuiStepsHorizontalProps
    * An array of `EuiStepHorizontal` objects excluding the `step` prop
    */
   steps: Array<Omit<EuiStepHorizontalProps, 'step'>>;
+  size?: EuiStepsHorizontalSizes;
 }
 
 export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   className,
   steps,
+  size = 'm',
   ...rest
 }) => {
   const classes = classNames('euiStepsHorizontal', className);
@@ -41,7 +46,7 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
             css={cssItemStyles}
             aria-current={stepProps.status === 'current' ? 'step' : undefined}
           >
-            <EuiStepHorizontal step={index + 1} {...stepProps} />
+            <EuiStepHorizontal step={index + 1} size={size} {...stepProps} />
           </li>
         );
       })}

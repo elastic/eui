@@ -3,7 +3,7 @@
 exports[`EuiMark is rendered 1`] = `
 <mark
   aria-label="aria-label"
-  class="euiMark testClass1 testClass2 emotion-euiMarkStyles-EuiMark"
+  class="euiMark testClass1 testClass2 emotion-euiMark-hasScreenReaderHelpText-euiTestCss"
   data-test-subj="test subject string"
 >
   Marked

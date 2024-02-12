@@ -12,7 +12,5 @@ export { EuiComment } from './comment';
 export type { EuiCommentEventProps } from './comment_event';
 export { EuiCommentEvent } from './comment_event';
 
-export { EuiCommentTimeline } from './comment_timeline';
-
 export type { EuiCommentListProps } from './comment_list';
 export { EuiCommentList } from './comment_list';

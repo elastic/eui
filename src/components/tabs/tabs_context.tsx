@@ -18,6 +18,5 @@ export const contextDefaults: EuiTabsContextValues = {
   size: 'm',
 };
 
-export const EuiTabsContext = createContext<EuiTabsContextValues>(
-  contextDefaults
-);
+export const EuiTabsContext =
+  createContext<EuiTabsContextValues>(contextDefaults);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import {
   EuiBadge,
@@ -19,7 +19,9 @@ import { CodeSandboxLink } from '../../components/codesandbox/link';
 import logoEUI from '../../images/logo-eui.svg';
 import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
-const pkg = require('../../../../package.json');
+import { VersionSwitcher } from './version_switcher';
+
+const GITHUB_URL = 'https://github.com/elastic/eui';
 
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
@@ -32,66 +34,80 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
-  function renderLogo() {
+  const logo = useMemo(() => {
     return (
       <EuiHeaderLogo iconType={logoEUI} href="#/" aria-label="EUI home">
         Elastic UI
       </EuiHeaderLogo>
     );
-  }
+  }, []);
 
-  function renderVersion() {
-    const isLocalDev = window.location.host.includes('803');
+  const environmentBadge = useMemo(() => {
+    const isLocal = window.location.host.includes('803');
+    const isPRStaging = window.location.pathname.startsWith('/pr_');
 
-    return (
-      <EuiBadge
-        href="#/package/changelog"
-        aria-label={`Version ${pkg.version}, View changelog`}
-        color={isLocalDev ? 'accent' : 'default'}
-      >
-        {isLocalDev ? 'Local' : `v${pkg.version}`}
-      </EuiBadge>
-    );
-  }
+    if (isLocal) {
+      return <EuiBadge color="accent">Local</EuiBadge>;
+    }
+    if (isPRStaging) {
+      const prId = window.location.pathname.split('/')[1].split('pr_')[1];
+      return (
+        <EuiBadge
+          color="hollow"
+          iconType="popout"
+          iconSide="right"
+          href={`${GITHUB_URL}/pull/${prId}`}
+          target="_blank"
+        >
+          Staging
+        </EuiBadge>
+      );
+    }
+    return <VersionSwitcher />;
+  }, []);
 
-  function renderGithub() {
-    const href = 'https://github.com/elastic/eui';
+  const github = useMemo(() => {
     const label = 'EUI GitHub repo';
     return isMobileSize ? (
-      <EuiButtonEmpty size="s" flush="both" iconType="logoGithub" href={href}>
+      <EuiButtonEmpty
+        size="s"
+        flush="both"
+        iconType="logoGithub"
+        href={GITHUB_URL}
+      >
         {label}
       </EuiButtonEmpty>
     ) : (
       <EuiToolTip content="Github">
-        <EuiHeaderSectionItemButton aria-label={label} href={href}>
+        <EuiHeaderSectionItemButton aria-label={label} href={GITHUB_URL}>
           <EuiIcon type="logoGithub" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
     );
-  }
+  }, [isMobileSize]);
 
-  function renderCodeSandbox() {
+  const codesandbox = useMemo(() => {
     const label = 'Codesandbox';
     return isMobileSize ? (
-      <CodeSandboxLink key="codesandbox">
+      <CodeSandboxLink type="tsx">
         <EuiButtonEmpty size="s" flush="both" iconType="logoCodesandbox">
           {label}
         </EuiButtonEmpty>
       </CodeSandboxLink>
     ) : (
       <EuiToolTip content="Codesandbox" key="codesandbox">
-        <CodeSandboxLink>
+        <CodeSandboxLink type="tsx">
           <EuiHeaderSectionItemButton aria-label="Codesandbox">
             <EuiIcon type="logoCodesandbox" aria-hidden="true" />
           </EuiHeaderSectionItemButton>
         </CodeSandboxLink>
       </EuiToolTip>
     );
-  }
+  }, [isMobileSize]);
 
   const [mobilePopoverIsOpen, setMobilePopoverIsOpen] = useState(false);
 
-  function renderMobileMenu() {
+  const mobileMenu = useMemo(() => {
     const button = (
       <EuiHeaderSectionItemButton
         aria-label="Open EUI options menu"
@@ -113,15 +129,15 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           gutterSize="none"
           responsive={false}
         >
-          <EuiFlexItem>{renderGithub()}</EuiFlexItem>
+          <EuiFlexItem>{github}</EuiFlexItem>
           <EuiFlexItem>
             <GuideFigmaLink />
           </EuiFlexItem>
-          <EuiFlexItem>{renderCodeSandbox()}</EuiFlexItem>
+          <EuiFlexItem>{codesandbox}</EuiFlexItem>
         </EuiFlexGroup>
       </EuiPopover>
     );
-  }
+  }, [mobilePopoverIsOpen, codesandbox, github]);
 
   const rightSideItems = isMobileSize
     ? [
@@ -129,16 +145,16 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           onToggleLocale={onToggleLocale}
           selectedLocale={selectedLocale}
         />,
-        renderMobileMenu(),
+        mobileMenu,
       ]
     : [
         <GuideThemeSelector
           onToggleLocale={onToggleLocale}
           selectedLocale={selectedLocale}
         />,
-        renderGithub(),
+        github,
         <GuideFigmaLink key="figma" />,
-        renderCodeSandbox(),
+        codesandbox,
       ];
 
   return (
@@ -147,14 +163,8 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         position="fixed"
         theme="dark"
         sections={[
-          {
-            items: [renderLogo(), renderVersion()],
-            borders: 'none',
-          },
-          {
-            items: rightSideItems,
-            borders: 'none',
-          },
+          { items: [logo, environmentBadge] },
+          { items: rightSideItems },
         ]}
       />
     </header>

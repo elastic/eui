@@ -14,7 +14,7 @@ import { useEuiTheme } from '../../../services';
 import { euiBadgeGroupStyles } from './badge_group.styles';
 
 export const GUTTER_SIZES = ['none', 'xs', 's'] as const;
-type BadgeGroupGutterSize = typeof GUTTER_SIZES[number];
+type BadgeGroupGutterSize = (typeof GUTTER_SIZES)[number];
 
 export interface EuiBadgeGroupProps {
   /**

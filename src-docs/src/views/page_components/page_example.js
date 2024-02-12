@@ -173,11 +173,7 @@ export const PageExample = {
 
               <EuiTableRow>
                 <EuiTableRowCell>
-                  <EuiIcon
-                    type="crossInACircleFilled"
-                    color="danger"
-                    title="no"
-                  />
+                  <EuiIcon type="error" color="danger" title="no" />
                 </EuiTableRowCell>
                 <EuiTableRowCell>
                   <EuiIcon
@@ -204,18 +200,10 @@ export const PageExample = {
 
               <EuiTableRow>
                 <EuiTableRowCell>
-                  <EuiIcon
-                    type="crossInACircleFilled"
-                    color="danger"
-                    title="no"
-                  />
+                  <EuiIcon type="error" color="danger" title="no" />
                 </EuiTableRowCell>
                 <EuiTableRowCell>
-                  <EuiIcon
-                    type="crossInACircleFilled"
-                    color="danger"
-                    title="no"
-                  />
+                  <EuiIcon type="error" color="danger" title="no" />
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>

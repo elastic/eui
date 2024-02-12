@@ -50,7 +50,7 @@ interface Explain {
   operator?: any; // It's not really worth specifying this at the moment
 }
 
-const defaultIsClauseMatcher = <T>(
+const defaultIsClauseMatcher = <T extends object>(
   item: T,
   clause: IsClause,
   explain?: Explain[]
@@ -65,7 +65,7 @@ const defaultIsClauseMatcher = <T>(
   return hit;
 };
 
-const fieldClauseMatcher = <T>(
+const fieldClauseMatcher = <T extends object>(
   item: T,
   field: string,
   clauses: FieldClause[] = [],
@@ -104,7 +104,7 @@ const extractStringFieldsFromItem = (item: any) => {
   }, [] as string[]);
 };
 
-const termClauseMatcher = <T>(
+const termClauseMatcher = <T extends object>(
   item: T,
   fields: string[] | undefined,
   clauses: TermClause[] = [],
@@ -215,7 +215,7 @@ interface Options {
   explain?: boolean;
 }
 
-export function executeAst<T>(
+export function executeAst<T extends object>(
   ast: _AST,
   items: T[],
   options: Options = {}

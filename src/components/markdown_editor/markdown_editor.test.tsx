@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount, ReactWrapper } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount, ReactWrapper } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiMarkdownEditor } from './markdown_editor';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
@@ -28,7 +29,7 @@ describe('EuiMarkdownEditor', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         placeholder="placeholder"
@@ -38,13 +39,13 @@ describe('EuiMarkdownEditor', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('height', () => {
       test('is rendered with a custom size', () => {
-        const component = render(
+        const { container } = render(
           <EuiMarkdownEditor
             editorId="editorId"
             height={400}
@@ -54,11 +55,11 @@ describe('EuiMarkdownEditor', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered in full mode', () => {
-        const component = render(
+        const { container } = render(
           <EuiMarkdownEditor
             editorId="editorId"
             height="full"
@@ -68,13 +69,13 @@ describe('EuiMarkdownEditor', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('maxHeight', () => {
       test('is rendered with a custom size', () => {
-        const component = render(
+        const { container } = render(
           <EuiMarkdownEditor
             editorId="editorId"
             maxHeight={600}
@@ -84,13 +85,13 @@ describe('EuiMarkdownEditor', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('autoExpandPreview', () => {
       test('is rendered with false', () => {
-        const component = render(
+        const { container } = render(
           <EuiMarkdownEditor
             editorId="editorId"
             autoExpandPreview={false}
@@ -100,13 +101,13 @@ describe('EuiMarkdownEditor', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('readOnly', () => {
       test('is set to true', () => {
-        const component = render(
+        const { container } = render(
           <EuiMarkdownEditor
             editorId="editorId"
             autoExpandPreview={false}
@@ -117,7 +118,7 @@ describe('EuiMarkdownEditor', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
@@ -159,11 +160,8 @@ describe('EuiMarkdownEditor', () => {
   });
 
   test('custom plugins are excluded and popover is rendered', () => {
-    const {
-      parsingPlugins,
-      processingPlugins,
-      uiPlugins,
-    } = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+    const { parsingPlugins, processingPlugins, uiPlugins } =
+      getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
 
     const component = mount(
       <EuiMarkdownEditor

@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import { mount } from 'enzyme';
 import { EuiResizeObserver, useResizeObserver } from './resize_observer';
 import { sleep } from '../../../test';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 
 export async function waitforResizeObserver(period = 30) {
   // `period` defaults to 30 because its the delay used by the ResizeObserver polyfill
@@ -25,20 +25,23 @@ export async function waitforResizeObserver(period = 30) {
 describe.skip('testResizeObservers', () => {
   // refactor the tests structure to make sure that `EuiResizeObserver` test can get
   // the proper size of the dom element.
-  type GetBoundingClientRect = typeof HTMLElement['prototype']['getBoundingClientRect'];
+  type GetBoundingClientRect =
+    (typeof HTMLElement)['prototype']['getBoundingClientRect'];
   let _originalgetBoundingClientRect: undefined | GetBoundingClientRect;
   beforeAll(() => {
     _originalgetBoundingClientRect =
       HTMLElement.prototype.getBoundingClientRect;
     HTMLElement.prototype.getBoundingClientRect = function () {
       // use the length of the element's HTML to represent its height
-      return { width: 100, height: this.innerHTML.length } as ReturnType<
-        GetBoundingClientRect
-      >;
+      return {
+        width: 100,
+        height: this.innerHTML.length,
+      } as ReturnType<GetBoundingClientRect>;
     };
   });
   afterAll(() => {
-    HTMLElement.prototype.getBoundingClientRect = _originalgetBoundingClientRect!;
+    HTMLElement.prototype.getBoundingClientRect =
+      _originalgetBoundingClientRect!;
   });
 
   describe('EuiResizeObserver', () => {
@@ -46,7 +49,7 @@ describe.skip('testResizeObservers', () => {
       expect.assertions(2);
       const onResize = jest.fn();
 
-      const Wrapper: FunctionComponent<{}> = ({ children }) => {
+      const Wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => {
         return (
           <EuiResizeObserver onResize={onResize}>
             {(resizeRef: (e: HTMLElement | null) => void) => (
@@ -82,11 +85,13 @@ describe.skip('testResizeObservers', () => {
     it('watches for a resize', async () => {
       expect.assertions(2);
 
-      const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
-        const [ref, setRef] = useState<Element | null>(null);
-        useResizeObserver(ref);
-        return <div ref={setRef}>{children}</div>;
-      });
+      const Wrapper: FunctionComponent<PropsWithChildren> = jest.fn(
+        ({ children }) => {
+          const [ref, setRef] = useState<Element | null>(null);
+          useResizeObserver(ref);
+          return <div ref={setRef}>{children}</div>;
+        }
+      );
 
       const component = mount(<Wrapper children={<div>Hello World</div>} />);
 

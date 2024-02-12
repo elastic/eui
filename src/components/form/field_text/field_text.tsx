@@ -78,10 +78,12 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     ...rest
   } = props;
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-  });
+  const numIconsClass = controlOnly
+    ? false
+    : getFormControlClassNameForIconCount({
+        isInvalid,
+        isLoading,
+      });
 
   const classes = classNames('euiFieldText', className, numIconsClass, {
     'euiFieldText--withIcon': icon,

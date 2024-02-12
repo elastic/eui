@@ -6,10 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount, render } from 'enzyme';
+import React, { useState } from 'react';
+import { act } from 'react-dom/test-utils';
+import { fireEvent } from '@testing-library/react';
+import { mount } from 'enzyme';
+
 import { findTestSubject, requiredProps } from '../../test';
-import { shouldRenderCustomStyles } from '../..//test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiResizableContainer } from './resizable_container';
 import { keys } from '../../services';
@@ -28,7 +32,7 @@ describe('EuiResizableContainer', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -40,11 +44,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can be vertical', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps} direction="vertical">
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -56,13 +60,13 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can be controlled externally', () => {
     const panel1 = 50;
     const panel2 = 50;
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -74,11 +78,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have scrollable panels', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -94,11 +98,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have more than two panels', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -112,11 +116,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can adjust panel props', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -132,11 +136,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have toggleable panels', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -152,11 +156,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('toggleable panels can be configurable', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -182,7 +186,7 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('on resize callbacks', () => {
@@ -216,12 +220,7 @@ describe('EuiResizableContainer', () => {
     };
 
     test('onResizeStart and onResizeEnd are called for pointer events', () => {
-      const {
-        container,
-        button,
-        onResizeStart,
-        onResizeEnd,
-      } = mountWithCallbacks();
+      const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
       button.simulate('mousedown', {
         pageX: 0,
         pageY: 0,
@@ -230,7 +229,9 @@ describe('EuiResizableContainer', () => {
       });
       expect(onResizeStart).toHaveBeenCalledTimes(1);
       expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
-      container.simulate('mouseup');
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
       button.simulate('mousedown', {
         pageX: 0,
@@ -240,7 +241,9 @@ describe('EuiResizableContainer', () => {
       });
       expect(onResizeStart).toHaveBeenCalledTimes(2);
       expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
-      container.simulate('mouseleave');
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(2);
       button.simulate('touchstart', {
         touches: [
@@ -252,7 +255,9 @@ describe('EuiResizableContainer', () => {
       });
       expect(onResizeStart).toHaveBeenCalledTimes(3);
       expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
-      container.simulate('touchend');
+      act(() => {
+        window.dispatchEvent(new Event('touchend'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(3);
     });
 
@@ -315,12 +320,7 @@ describe('EuiResizableContainer', () => {
     });
 
     test('onResizeEnd is called before starting a new resize if a keyboard resize is triggered while a pointer resize is in progress', () => {
-      const {
-        container,
-        button,
-        onResizeStart,
-        onResizeEnd,
-      } = mountWithCallbacks();
+      const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
       button.simulate('mousedown', {
         pageX: 0,
         pageY: 0,
@@ -333,7 +333,9 @@ describe('EuiResizableContainer', () => {
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
       expect(onResizeStart).toHaveBeenCalledTimes(2);
       expect(onResizeStart).toHaveBeenLastCalledWith('key');
-      container.simulate('mouseup');
+      act(() => {
+        window.dispatchEvent(new Event('mouseup'));
+      });
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
       button.simulate('keyup', { key: keys.ARROW_RIGHT });
       expect(onResizeEnd).toHaveBeenCalledTimes(2);
@@ -346,6 +348,47 @@ describe('EuiResizableContainer', () => {
       expect(onResizeStart).toHaveBeenLastCalledWith('key');
       button.simulate('blur');
       expect(onResizeEnd).toHaveBeenCalledTimes(1);
+    });
+
+    test('unmemoized consumer onResizeStart/End callbacks do not cause stale closures', () => {
+      const ConsumerUsage = () => {
+        const [rerender, setRerender] = useState(0);
+        // Unmemoized consumer callbacks
+        const onResizeStart = () => {
+          setRerender(rerender + 1);
+        };
+        const onResizeEnd = () => {
+          setRerender(rerender + 1);
+        };
+
+        return (
+          <EuiResizableContainer
+            {...requiredProps}
+            onResizeStart={onResizeStart}
+            onResizeEnd={onResizeEnd}
+          >
+            {(EuiResizablePanel, EuiResizableButton) => (
+              <>
+                <EuiResizablePanel initialSize={50}>Testing</EuiResizablePanel>
+                <EuiResizableButton data-test-subj="euiResizableButton" />
+                <EuiResizablePanel initialSize={50} data-test-subj="rerenders">
+                  {rerender}
+                </EuiResizablePanel>
+              </>
+            )}
+          </EuiResizableContainer>
+        );
+      };
+      const { getByTestSubject } = render(<ConsumerUsage />);
+      expect(getByTestSubject('rerenders')).toHaveTextContent('0');
+
+      fireEvent.mouseDown(getByTestSubject('euiResizableButton'));
+      expect(getByTestSubject('rerenders')).toHaveTextContent('1');
+
+      fireEvent.mouseUp(getByTestSubject('euiResizableButton'));
+      expect(getByTestSubject('rerenders')).toHaveTextContent('2');
+      // Without `useLatest`, the rerender count doesn't correctly update due to `onResizeEnd`
+      // not being memoized and causing a stale `resizeEnd` closure to be called on event end
     });
   });
 });

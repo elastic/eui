@@ -35,9 +35,7 @@ export interface FieldValueToggleGroupFilterProps {
   onChange: (value: Query) => void;
 }
 
-export class FieldValueToggleGroupFilter extends Component<
-  FieldValueToggleGroupFilterProps
-> {
+export class FieldValueToggleGroupFilter extends Component<FieldValueToggleGroupFilterProps> {
   resolveDisplay(
     config: FieldValueToggleGroupFilterConfigType,
     query: Query,

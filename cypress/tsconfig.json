@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../src/**/*.spec.tsx",
+    "../src/**/*.a11y.tsx",
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node", "cypress", "cypress-real-events", "cypress-axe"]
+  },
+  "exclude": ["node_modules"],
+}

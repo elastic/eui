@@ -59,6 +59,7 @@ const iconTypes = [
   'usersRolesApp',
   'visualizeApp',
   'watchesApp',
+  'vulnerabilityManagementApp',
   'workplaceSearchApp',
 ];
 
@@ -68,7 +69,7 @@ export default () => (
       {'<EuiIcon type="addDataApp" size="xl" />'}
     </EuiCodeBlock>
     <EuiSpacer />
-    <EuiFlexGrid direction="column" columns={3}>
+    <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
           <EuiCopy

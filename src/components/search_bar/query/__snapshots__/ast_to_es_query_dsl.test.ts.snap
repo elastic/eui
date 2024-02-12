@@ -6,6 +6,43 @@ Object {
 }
 `;
 
+exports[`astToEsQueryDsl ast - '(john OR -mary)' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "bool": Object {
+          "should": Array [
+            Object {
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "simple_query_string": Object {
+                      "query": "+john",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "bool": Object {
+                "must_not": Array [
+                  Object {
+                    "simple_query_string": Object {
+                      "query": "+mary",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+}
+`;
+
 exports[`astToEsQueryDsl ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
 Object {
   "bool": Object {
@@ -67,7 +104,7 @@ Object {
     "must": Array [
       Object {
         "simple_query_string": Object {
-          "query": "john",
+          "query": "+john",
         },
       },
       Object {
@@ -94,7 +131,7 @@ Object {
     "must": Array [
       Object {
         "simple_query_string": Object {
-          "query": "john",
+          "query": "+john",
         },
       },
       Object {
@@ -133,7 +170,7 @@ Object {
     "must_not": Array [
       Object {
         "simple_query_string": Object {
-          "query": "doe",
+          "query": "+doe",
         },
       },
       Object {
@@ -155,14 +192,14 @@ Object {
     "must": Array [
       Object {
         "simple_query_string": Object {
-          "query": "john",
+          "query": "+john",
         },
       },
     ],
     "must_not": Array [
       Object {
         "simple_query_string": Object {
-          "query": "sales",
+          "query": "+sales",
         },
       },
     ],
@@ -176,7 +213,7 @@ Object {
     "must": Array [
       Object {
         "simple_query_string": Object {
-          "query": "john",
+          "query": "+john",
         },
       },
       Object {
@@ -216,7 +253,7 @@ Object {
     "must": Array [
       Object {
         "simple_query_string": Object {
-          "query": "john",
+          "query": "+john",
         },
       },
       Object {
@@ -498,13 +535,34 @@ Object {
                 "must": Array [
                   Object {
                     "simple_query_string": Object {
-                      "query": "Teacher",
+                      "query": "+Teacher",
                     },
                   },
                 ],
               },
             },
           ],
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`astToEsQueryDsl ast·-·'"john·smith"·-"sales team"' 1`] = `
+Object {
+  "bool": Object {
+    "must": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "+\\"john smith\\"",
+        },
+      },
+    ],
+    "must_not": Array [
+      Object {
+        "simple_query_string": Object {
+          "query": "+\\"sales team\\"",
         },
       },
     ],

@@ -16,8 +16,12 @@ export const parsingPluginList = [
   [PropsLinkMarkdownParser, {}],
 ];
 
-export const processingPluginListWithLinkedProps = getDefaultEuiMarkdownProcessingPlugins();
-processingPluginListWithLinkedProps[1][1].components.propsLinkPlugin = PropsLinkRenderer;
+export const processingPluginListWithLinkedProps =
+  getDefaultEuiMarkdownProcessingPlugins();
+processingPluginListWithLinkedProps[1][1].components.propsLinkPlugin =
+  PropsLinkRenderer;
 
-export const processingPluginListWithBoldProps = getDefaultEuiMarkdownProcessingPlugins();
-processingPluginListWithBoldProps[1][1].components.propsLinkPlugin = PropsBoldRenderer;
+export const processingPluginListWithBoldProps =
+  getDefaultEuiMarkdownProcessingPlugins();
+processingPluginListWithBoldProps[1][1].components.propsLinkPlugin =
+  PropsBoldRenderer;

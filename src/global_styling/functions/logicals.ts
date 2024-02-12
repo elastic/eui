@@ -26,12 +26,12 @@ export const logicalSide = {
   vertical: 'block',
 };
 export const LOGICAL_SIDES = keysOf(logicalSide);
-export type LogicalSides = typeof LOGICAL_SIDES[number];
+export type LogicalSides = (typeof LOGICAL_SIDES)[number];
 
 export const logicals = LOGICALS;
 const { _shorthands, ..._logicals } = LOGICALS;
 export const LOGICAL_PROPERTIES = keysOf(_logicals);
-export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
+export type LogicalProperties = (typeof LOGICAL_PROPERTIES)[number];
 
 /**
  *
@@ -138,7 +138,7 @@ export const logicalText = {
 };
 
 export const LOGICAL_TEXT_ALIGNMENT = keysOf(logicalText['text-align']);
-export type LogicalText = typeof LOGICAL_TEXT_ALIGNMENT[number];
+export type LogicalText = (typeof LOGICAL_TEXT_ALIGNMENT)[number];
 
 /**
  *

@@ -2,6 +2,9 @@
 // stylelint-disable max-nesting-depth
 
 .euiSwitch {
+  $euiSwitchOffDisabledColor: lightOrDarkTheme(transparentize($euiColorLightShade, .5), transparentize($euiColorDarkShade, .4));
+  $euiSwitchDisabledThumbColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .5), $euiColorDarkShade);
+
   position: relative;
   display: inline-flex;
   align-items: flex-start;
@@ -24,30 +27,6 @@
       @include euiCustomControlFocused;
     }
 
-    &:disabled {
-      &:hover,
-      ~ .euiSwitch__label:hover {
-        cursor: not-allowed;
-      }
-
-      .euiSwitch__body {
-        background-color: $euiSwitchOffColor;
-      }
-
-      .euiSwitch__thumb {
-        @include euiCustomControlDisabled;
-        background-color: $euiSwitchOffColor;
-      }
-
-      .euiSwitch__icon {
-        fill: $euiFormCustomControlDisabledIconColor;
-      }
-
-      + .euiSwitch__label {
-        color: $euiFormControlDisabledColor;
-      }
-    }
-
     &[aria-checked='false'] {
       .euiSwitch__body {
         background-color: $euiSwitchOffColor;
@@ -65,6 +44,31 @@
           right: auto;
           left: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
         }
+      }
+    }
+
+    &:disabled {
+      &:hover,
+      ~ .euiSwitch__label:hover {
+        cursor: not-allowed;
+      }
+
+      .euiSwitch__body {
+        background-color: $euiSwitchOffDisabledColor;
+      }
+
+      .euiSwitch__thumb {
+        background-color: rgba(0,0,0,0);
+        border-color: $euiSwitchDisabledThumbColor;
+        box-shadow: none;
+      }
+
+      .euiSwitch__icon {
+        fill: $euiColorDarkShade;
+      }
+
+      + .euiSwitch__label {
+        color: $euiFormControlDisabledColor;
       }
     }
   }
@@ -107,7 +111,7 @@
     width: $euiSwitchWidth - ($euiSwitchThumbSize / 2) + $euiSizeS;
     height: $euiSwitchIconHeight;
     transition: left $euiAnimSpeedNormal $euiAnimSlightBounce, right $euiAnimSpeedNormal $euiAnimSlightBounce;
-    fill: $euiTextColor;
+    fill: $euiColorEmptyShade;
   }
 
   .euiSwitch__icon--checked {
@@ -194,7 +198,7 @@
     .euiSwitch__button[aria-checked='false'],
     .euiSwitch__button[aria-checked='true']:disabled {
       .euiSwitch__thumb {
-        border-color: $euiFormCustomControlBorderColor;
+        border-color: $euiSwitchDisabledThumbColor;
       }
     }
 

@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconTokenNull = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconTokenNull = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5.002 12.412l-.962.962a1 1 0 01-1.414-1.414l.962-.962a5.333 5.333 0 017.41-7.41l.962-.962a1 1 0 111.414 1.414l-.962.962a5.333 5.333 0 01-7.41 7.41zm.966-.966a4 4 0 005.478-5.478l-5.478 5.478zm-1.414-1.414l5.478-5.478a4 4 0 00-5.478 5.478z" />
+    <path d="m5.002 12.412-.962.962a1 1 0 0 1-1.414-1.414l.962-.962a5.333 5.333 0 0 1 7.41-7.41l.962-.962a1 1 0 1 1 1.414 1.414l-.962.962a5.333 5.333 0 0 1-7.41 7.41Zm.966-.966a4 4 0 0 0 5.478-5.478l-5.478 5.478Zm-1.414-1.414 5.478-5.478a4 4 0 0 0-5.478 5.478Z" />
   </svg>
 );
-
 export const icon = EuiIconTokenNull;

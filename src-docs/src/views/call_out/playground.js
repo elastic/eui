@@ -3,6 +3,8 @@ import { EuiCallOut, EuiText } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
+  simulateFunction,
+  dummyFunction,
 } from '../../services/playground';
 
 export default () => {
@@ -29,6 +31,8 @@ export default () => {
     hidden: false,
   };
 
+  propsToUse.onDismiss = simulateFunction(propsToUse.onDismiss);
+
   return {
     config: {
       componentName: 'EuiCallOut',
@@ -41,6 +45,9 @@ export default () => {
         '@elastic/eui': {
           named: ['EuiCallOut', 'EuiText'],
         },
+      },
+      customProps: {
+        onDismiss: dummyFunction,
       },
     },
   };

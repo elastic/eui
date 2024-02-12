@@ -1,0 +1,7 @@
+## 🏠/.buildkite/pipelines/pipeline_pull_request_deploy_docs.yml
+
+steps:
+  - agents:
+      provider: "gcp"
+    command: .buildkite/scripts/pipelines/pipeline_deploy_docs.sh
+    if: build.branch != "main" # We don't want to deploy docs on main, only on manual release

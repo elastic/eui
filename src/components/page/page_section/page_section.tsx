@@ -44,7 +44,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Horizontal and/or vertical alignment of the section contents
      */
-    alignment?: typeof ALIGNMENTS[number];
+    alignment?: (typeof ALIGNMENTS)[number];
     /**
      * When true the panel will grow in height to fill container if parent is a flex group
      */
@@ -100,14 +100,11 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     bottomBorder === true && styles.border,
     alignment.toLowerCase().includes('center') && contentStyles.center,
     restrictWidth && contentStyles.restrictWidth,
-    contentProps?.css && contentProps.css,
+    contentProps?.css,
   ];
 
   return (
     <Component css={cssStyles} {...rest}>
-      {/* `css` must be merged manually after props spread on the content wrapper -
-      Emotion does not automatically correctly merge `css` on non-component JSX */}
-      {/* eslint-disable-next-line local/css_before_spread_props */}
       <div {...contentProps} css={cssContentStyles} style={widthStyles}>
         {children}
       </div>

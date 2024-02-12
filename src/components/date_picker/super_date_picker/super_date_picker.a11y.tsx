@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiSuperDatePicker, OnTimeChangeProps } from './super_date_picker';
@@ -51,7 +53,7 @@ const SuperDatePicker = () => {
 
 beforeEach(() => {
   cy.mount(<SuperDatePicker />);
-  cy.get('div.euiSuperDatePicker__flexWrapper').should('exist');
+  cy.get('div.euiSuperDatePicker').should('exist');
 });
 
 describe('EuiSuperDatePicker', () => {

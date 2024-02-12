@@ -15,7 +15,7 @@ import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 import { euiTimelineStyles } from './timeline.styles';
 
 export const GUTTER_SIZES = ['m', 'l', 'xl'] as const;
-export type EuiTimelineGutterSize = typeof GUTTER_SIZES[number];
+export type EuiTimelineGutterSize = (typeof GUTTER_SIZES)[number];
 
 export interface EuiTimelineProps
   extends HTMLAttributes<HTMLOListElement>,

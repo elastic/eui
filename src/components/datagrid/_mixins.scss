@@ -64,8 +64,8 @@ $euiDataGridStyles: (
     position: absolute;
     top: 0;
     left: 0;
-    border: $euiBorderWidthThick solid $euiFocusRingColor;
-    border-radius: $euiBorderRadiusSmall;
+    border: $euiBorderWidthThick solid var(--euiDataGridCellOutlineColor, $euiFocusRingColor);
+    border-radius: $euiBorderRadius / 2;
     z-index: 2; // We want this to be on top of all the content
     pointer-events: none; // Because we put it with a higher z-index we don't want to make it clickable this way we allow selecting the content behind
   }
@@ -80,20 +80,5 @@ $euiDataGridStyles: (
 @mixin euiDataGridFooterCell {
   .euiDataGridRowCell.euiDataGridFooterCell {
     @content;
-  }
-}
-
-@mixin euiDataGridRowCellActions($definedHeight: false) {
-  @if $definedHeight {
-    // Defined heights are cells with row heights of auto, lineCount, or a static height
-    // that set the __contentByHeight class
-    .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandActions {
-      @content;
-    }
-  } @else {
-    // Otherwise, an undefined height (single flex row) will set __expandContent
-    .euiDataGridRowCell__expandContent + .euiDataGridRowCell__expandActions {
-      @content;
-    }
   }
 }

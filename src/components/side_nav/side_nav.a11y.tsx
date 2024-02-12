@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiSideNav } from './side_nav';
@@ -250,8 +252,7 @@ describe('EuiSideNav', () => {
               isSelected: false,
             },
             {
-              name:
-                'Extremely long title will become truncated when the browser is narrow enough',
+              name: 'Extremely long title will become truncated when the browser is narrow enough',
               id: 'extremely-long-title-1',
               isSelected: false,
             },

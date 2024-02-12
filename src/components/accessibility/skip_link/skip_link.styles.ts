@@ -12,6 +12,7 @@ import { UseEuiTheme } from '../../../services';
 export const euiSkipLinkStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiSkipLink: css`
+      /* stylelint-disable declaration-no-important */
       transition: none !important;
 
       &:focus {
@@ -27,7 +28,7 @@ export const euiSkipLinkStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
     fixed: css`
-      position: fixed !important; // Needs to override euiScreenReaderOnly - prevents scroll jumping in Firefox
+      position: fixed !important; /* Needs to override euiScreenReaderOnly - prevents scroll jumping in Firefox */
 
       &:focus {
         inset-block-start: ${euiTheme.size.xs};

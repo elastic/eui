@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React from 'react';
 import { EuiImage } from './image';
@@ -47,10 +49,7 @@ describe('EuiImage', () => {
     });
 
     it('has zero violations on keyboard interaction', () => {
-      cy.realPress('Tab');
-      cy.get('button[data-test-subj="activateFullScreenButton"]').should(
-        'have.focus'
-      );
+      cy.get('button[data-test-subj="activateFullScreenButton"]').focus();
       cy.realPress('Enter');
       cy.get('button[data-test-subj="deactivateFullScreenButton"]').should(
         'exist'

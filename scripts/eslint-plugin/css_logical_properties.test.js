@@ -2,7 +2,7 @@ import rule from './css_logical_properties.js';
 const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@typescript-eslint/parser'),
 });
 
 const valid = [
@@ -106,8 +106,7 @@ const invalid = [
     errors: [{ messageId: 'preferLogicalShorthand' }],
   },
   {
-    code:
-      'css`padding: ${euiTheme.size.s} ${euiTheme.size.m} ${euiTheme.size.l};`',
+    code: 'css`padding: ${euiTheme.size.s} ${euiTheme.size.m} ${euiTheme.size.l};`',
     errors: [{ messageId: 'preferLogicalShorthand' }],
   },
   {

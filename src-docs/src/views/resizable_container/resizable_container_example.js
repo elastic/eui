@@ -13,7 +13,7 @@ import {
 } from '../../../../src/components';
 // eslint-disable-next-line
 import { EuiResizablePanel } from '../../../../src/components/resizable_container/resizable_panel';
-import { EuiResizableButton } from '../../../../src/components/resizable_container/resizable_button';
+import { EuiResizableButton } from './_props';
 
 // prettier-ignore
 // eslint-disable-next-line
@@ -29,6 +29,8 @@ import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
+import ResizableButtonIndicator from './resizable_button_indicator';
+import ResizableButton from './resizable_button';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
@@ -39,6 +41,8 @@ const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_
 const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
+const ResizableButtonIndicatorSource = require('!!raw-loader!./resizable_button_indicator');
+const ResizableButtonSource = require('!!raw-loader!./resizable_button');
 
 const basicSnippet = `<EuiResizableContainer>
   {(EuiResizablePanel, EuiResizableButton) => (
@@ -501,6 +505,63 @@ export const ResizableContainerExample = {
       ),
       demo: <ResizablePanelCollapsibleExt />,
       snippet: collapsibleExtSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: ResizableButtonIndicatorSource,
+        },
+      ],
+      title: 'Resizable button indicator',
+      text: (
+        <>
+          <p>
+            By default, <strong>EuiResizableButton</strong> shows a grab handle
+            indicator as a UI hint. For use cases where the resize behavior is
+            "nice to have" but not a primary UX focus, or where there are many
+            other busy UI elements on the page, you can set{' '}
+            <EuiCode>indicator="border"</EuiCode> to display a subdued border
+            element instead, which only provides resize affordance on hover or
+            focus.
+          </p>
+        </>
+      ),
+      demo: <ResizableButtonIndicator />,
+      demoPanelProps: { paddingSize: 'none' },
+      props: { EuiResizableButton },
+      snippet: `<EuiResizableButton
+  isHorizontal
+  indicator="border"
+/>`,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: ResizableButtonSource,
+        },
+      ],
+      title: 'Custom resize logic',
+      text: (
+        <>
+          <p>
+            If you want to break out of <strong>EuiResizableContainer</strong>{' '}
+            usage completely, you may import the standalone{' '}
+            <strong>EuiResizableButton</strong> component. You will need to
+            attach your own mouse, touch, and keyboard events and logic to the
+            button - see the example below.
+          </p>
+        </>
+      ),
+      demo: <ResizableButton />,
+      props: { EuiResizableButton },
+      snippet: `<EuiResizableButton
+  isHorizontal
+  onMouseDown={onMouseDown}
+  onTouchStart={onTouchStart}
+  onKeyDown={onKeyDown}
+/>`,
     },
   ],
 };

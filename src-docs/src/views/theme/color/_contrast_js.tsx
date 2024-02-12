@@ -23,7 +23,7 @@ const textVariants = [...brandTextKeys, ...textColors];
 type ColorSection = {
   color: keyof _EuiThemeColorsMode;
   colorValue?: string;
-  minimumContrast: string | number;
+  minimumContrast: number;
   showTextVariants: boolean;
   matchPanelColor?: boolean;
   hookName?: string;
@@ -56,7 +56,12 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
       }}
     >
       <EuiText size="xs">
-        <EuiFlexGrid columns={2} direction="column" gutterSize="s">
+        <EuiFlexGrid
+          css={{ gridTemplateRows: 'auto', gridAutoFlow: 'row' }}
+          columns={2}
+          direction="column"
+          gutterSize="s"
+        >
           {showTextVariants && colorIsCore(colorValue) && (
             <ColorsContrastItem
               foreground={`${color}Text`}
@@ -88,7 +93,7 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
 type ColorsContrastItem = {
   foreground: string;
   background: string;
-  minimumContrast: string | number;
+  minimumContrast: number;
   styleString?: string;
 };
 
@@ -166,6 +171,8 @@ color: $\{euiTheme.colors.${foreground}};`;
               color: foregroundColor,
               borderRadius: euiTheme.border.radius.medium,
             }}
+            // @ts-expect-error - this isn't a valid color type, we mostly just want to disable the default EuiListGroupItem button color from being rendered since we're setting our own via `style`
+            color="inherit"
             label={sanitizeColorName(foreground)}
           />
         )}

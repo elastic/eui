@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
+import { render, screen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -19,7 +19,10 @@ import {
 } from './basic_table';
 
 import { SortDirection } from '../../services';
-import { EuiTableFieldDataColumnType } from './table_types';
+import {
+  EuiTableFieldDataColumnType,
+  EuiTableActionsColumnType,
+} from './table_types';
 
 describe('getItemId', () => {
   it('returns undefined if no itemId prop is given', () => {
@@ -391,24 +394,74 @@ describe('EuiBasicTable', () => {
     expect(container.querySelector('[aria-sort]')).toBeTruthy();
   });
 
-  test('with initial selection', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: basicItems,
-      columns: basicColumns,
-      itemId: 'id',
-      selection: {
-        onSelectionChange: () => {},
-        initialSelected: [basicItems[0]],
-      },
-    };
-    const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+  describe('selection', () => {
+    const getCheckboxAt = (index: number) =>
+      screen.getByTestSubject(`checkboxSelectRow-${index}`) as HTMLInputElement;
 
-    expect(
-      (getByTestSubject('checkboxSelectRow-1') as HTMLInputElement).checked
-    ).toBeTruthy();
-    expect(
-      (getByTestSubject('checkboxSelectRow-2') as HTMLInputElement).checked
-    ).toBeFalsy();
+    test('initialSelected', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: () => {},
+          initialSelected: [basicItems[0]],
+        },
+      };
+      render(<EuiBasicTable {...props} />);
+
+      expect(getCheckboxAt(1).checked).toBeTruthy();
+      expect(getCheckboxAt(2).checked).toBeFalsy();
+    });
+
+    test('selected', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: () => {},
+          selected: [basicItems[1]],
+        },
+      };
+      render(<EuiBasicTable {...props} />);
+
+      expect(getCheckboxAt(1).checked).toBeFalsy();
+      expect(getCheckboxAt(2).checked).toBeTruthy();
+    });
+
+    it('ignores initialSelected if selected is passed', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          initialSelected: [basicItems[0]],
+          selected: [],
+        },
+      };
+      render(<EuiBasicTable {...props} />);
+
+      expect(getCheckboxAt(1).checked).toBeFalsy();
+      expect(getCheckboxAt(2).checked).toBeFalsy();
+    });
+
+    it("checks for selections that don't exist within `items`", () => {
+      const onSelectionChange = jest.fn();
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: basicColumns,
+        itemId: 'id',
+        selection: {
+          onSelectionChange: onSelectionChange,
+          selected: [{ id: 'notvalid', name: 'notInItems' }],
+        },
+      };
+      const { container } = render(<EuiBasicTable {...props} />);
+
+      expect(onSelectionChange).toHaveBeenCalledWith([]);
+      expect(container.querySelectorAll('[checked]')).toHaveLength(0);
+    });
   });
 
   test('footers', () => {
@@ -556,6 +609,51 @@ describe('EuiBasicTable', () => {
   });
 
   describe('actions', () => {
+    const actions: EuiTableActionsColumnType<{ id: string }>['actions'] = [
+      {
+        type: 'icon',
+        name: 'Edit',
+        isPrimary: true,
+        icon: 'pencil',
+        available: ({ id }) => !(Number(id) % 2),
+        description: 'edit',
+        'data-test-subj': 'editAction',
+        onClick: () => {},
+      },
+      {
+        type: 'icon',
+        name: 'Share',
+        icon: 'share',
+        isPrimary: true,
+        available: ({ id }) => id !== '3',
+        description: 'share',
+        onClick: () => {},
+      },
+      // Below actions are not primary and should be hidden behind collapse button
+      {
+        type: 'icon',
+        name: 'Copy',
+        icon: 'copy',
+        description: 'copy',
+        onClick: () => {},
+      },
+      {
+        type: 'icon',
+        name: 'Delete',
+        icon: 'trash',
+        description: 'delete',
+        'data-test-subj': ({ id }) => `deleteAction-${id}`,
+        onClick: () => {},
+      },
+      {
+        type: 'icon',
+        name: 'elastic.co',
+        icon: 'link',
+        description: 'Go to link',
+        onClick: () => {},
+      },
+    ];
+
     test('single action', () => {
       const props: EuiBasicTableProps<BasicItem> = {
         items: basicItems,
@@ -563,20 +661,13 @@ describe('EuiBasicTable', () => {
           ...basicColumns,
           {
             name: 'Actions',
-            actions: [
-              {
-                type: 'button',
-                name: 'Edit',
-                description: 'edit',
-                onClick: () => {},
-              },
-            ],
+            actions: [actions[3]],
           },
         ],
       };
       const { getAllByText } = render(<EuiBasicTable {...props} />);
 
-      expect(getAllByText('Edit')).toHaveLength(basicItems.length);
+      expect(getAllByText('Delete')).toHaveLength(basicItems.length);
     });
 
     test('multiple actions with custom availability', () => {
@@ -586,48 +677,7 @@ describe('EuiBasicTable', () => {
           ...basicColumns,
           {
             name: 'Actions',
-            actions: [
-              {
-                type: 'icon',
-                name: 'Edit',
-                isPrimary: true,
-                icon: 'pencil',
-                available: ({ id }) => !(Number(id) % 2),
-                description: 'edit',
-                onClick: () => {},
-              },
-              {
-                type: 'icon',
-                name: 'Share',
-                icon: 'share',
-                isPrimary: true,
-                available: ({ id }) => id !== '3',
-                description: 'share',
-                onClick: () => {},
-              },
-              // Below actions are not primary and should be hidden behind collapse button
-              {
-                type: 'icon',
-                name: 'Copy',
-                icon: 'copy',
-                description: 'copy',
-                onClick: () => {},
-              },
-              {
-                type: 'icon',
-                name: 'Delete',
-                icon: 'trash',
-                description: 'delete',
-                onClick: () => {},
-              },
-              {
-                type: 'icon',
-                name: 'elastic.co',
-                icon: 'link',
-                description: 'Go to link',
-                onClick: () => {},
-              },
-            ],
+            actions: actions,
           },
         ],
       };
@@ -640,6 +690,54 @@ describe('EuiBasicTable', () => {
       expect(getAllByTestSubject('euiCollapsedItemActionsButton')).toHaveLength(
         4
       );
+    });
+
+    describe('are disabled on selection', () => {
+      test('single action', () => {
+        const props: EuiBasicTableProps<BasicItem> = {
+          items: basicItems,
+          selection: {
+            onSelectionChange: () => {},
+            selected: [basicItems[0]],
+          },
+          columns: [
+            ...basicColumns,
+            {
+              name: 'Actions',
+              actions: [actions[3]],
+            },
+          ],
+        };
+        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+
+        expect(getByTestSubject('deleteAction-1')).toBeDisabled();
+        expect(getByTestSubject('deleteAction-2')).toBeDisabled();
+        expect(getByTestSubject('deleteAction-3')).toBeDisabled();
+      });
+
+      test('multiple actions', () => {
+        const props: EuiBasicTableProps<BasicItem> = {
+          items: basicItems,
+          selection: {
+            onSelectionChange: () => {},
+            selected: [basicItems[0]],
+          },
+          columns: [
+            ...basicColumns,
+            {
+              name: 'Actions',
+              actions: actions,
+            },
+          ],
+        };
+        const { getAllByTestSubject } = render(<EuiBasicTable {...props} />);
+
+        getAllByTestSubject('euiCollapsedItemActionsButton').forEach(
+          (button) => {
+            expect(button).toBeDisabled();
+          }
+        );
+      });
     });
   });
 

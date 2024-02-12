@@ -8,7 +8,6 @@
 
 import {
   createContext,
-  useContext,
   useCallback,
   useEffect,
   useMemo,
@@ -16,9 +15,7 @@ import {
   useState,
   HTMLAttributes,
   KeyboardEvent,
-  MutableRefObject,
 } from 'react';
-import { GridOnItemsRenderedProps } from 'react-window';
 import { tabbable } from 'tabbable';
 import { keys } from '../../../services';
 import {
@@ -40,13 +37,9 @@ type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onKeyUp'>;
 /**
  * Main focus context and overarching focus state management
  */
-export const useFocus = ({
-  headerIsInteractive,
-  gridItemsRendered,
-}: {
-  headerIsInteractive: boolean;
-  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
-}): DataGridFocusContextShape & { focusProps: FocusProps } => {
+export const useFocus = (): DataGridFocusContextShape & {
+  focusProps: FocusProps;
+} => {
   // Maintain a map of focus cell state callbacks
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
@@ -69,19 +62,21 @@ export const useFocus = ({
 
   const setFocusedCell = useCallback(
     (nextFocusedCell: EuiDataGridFocusedCell) => {
-      // If the x/y coordinates remained the same, don't update. This keeps the focusedCell
-      // reference stable, and allows it to be used in places that need reference equality.
-      if (
-        nextFocusedCell[0] === focusedCell?.[0] &&
-        nextFocusedCell[1] === focusedCell?.[1]
-      ) {
-        return;
-      }
-
-      _setFocusedCell(nextFocusedCell);
-      setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
+      _setFocusedCell((prevFocusedCell) => {
+        // If the x/y coordinates remained the same, don't update. This keeps the focusedCell
+        // reference stable, and allows it to be used in places that need reference equality.
+        if (
+          nextFocusedCell[0] === prevFocusedCell?.[0] &&
+          nextFocusedCell[1] === prevFocusedCell?.[1]
+        ) {
+          return prevFocusedCell;
+        } else {
+          setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
+          return nextFocusedCell;
+        }
+      });
     },
-    [focusedCell]
+    []
   );
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
@@ -101,21 +96,8 @@ export const useFocus = ({
   }, [cellsUpdateFocus, focusedCell]);
 
   const focusFirstVisibleInteractiveCell = useCallback(() => {
-    if (headerIsInteractive) {
-      // The header (rowIndex -1) is sticky and will always be in view
-      setFocusedCell([0, -1]);
-    } else if (gridItemsRendered.current) {
-      const {
-        visibleColumnStartIndex,
-        visibleRowStartIndex,
-      } = gridItemsRendered.current;
-
-      setFocusedCell([visibleColumnStartIndex, visibleRowStartIndex]);
-    } else {
-      // If the header is non-interactive and there are no rendered cells,
-      // there's nothing to do - we might as well leave focus on the grid body wrapper
-    }
-  }, [setFocusedCell, headerIsInteractive, gridItemsRendered]);
+    setFocusedCell([0, -1]);
+  }, [setFocusedCell]);
 
   const focusProps = useMemo<FocusProps>(
     () =>
@@ -175,7 +157,6 @@ export const createKeyDownHandler = ({
   rowCount,
   pagination,
   hasFooter,
-  headerIsInteractive,
   focusContext,
 }: {
   gridElement: HTMLDivElement | null;
@@ -183,9 +164,8 @@ export const createKeyDownHandler = ({
   visibleRowCount: number;
   visibleRowStartIndex: number;
   rowCount: EuiDataGridProps['rowCount'];
-  pagination: EuiDataGridProps['pagination'];
+  pagination: Required<EuiDataGridProps['pagination']>;
   hasFooter: boolean;
-  headerIsInteractive: boolean;
   focusContext: DataGridFocusContextShape;
 }) => {
   return (event: KeyboardEvent<HTMLDivElement>) => {
@@ -220,8 +200,7 @@ export const createKeyDownHandler = ({
       }
     } else if (key === keys.ARROW_UP) {
       event.preventDefault();
-      const minimumIndex = headerIsInteractive ? -1 : 0;
-      if (y > minimumIndex) {
+      if (y > -1) {
         setFocusedCell([x, y - 1]);
       }
     } else if (key === keys.ARROW_RIGHT) {
@@ -313,19 +292,4 @@ export const getParentCellContent = (_element: Node | HTMLElement) => {
     element = element.parentElement;
   }
   return element;
-};
-
-/**
- * Focus fixes & workarounds
- */
-
-// If the focus is on the header, and the header is no longer interactive,
-// move the focus down to the first row
-export const useHeaderFocusWorkaround = (headerIsInteractive: boolean) => {
-  const { focusedCell, setFocusedCell } = useContext(DataGridFocusContext);
-  useEffect(() => {
-    if (!headerIsInteractive && focusedCell && focusedCell[1] === -1) {
-      setFocusedCell([focusedCell[0], 0]);
-    }
-  }, [headerIsInteractive, focusedCell, setFocusedCell]);
 };

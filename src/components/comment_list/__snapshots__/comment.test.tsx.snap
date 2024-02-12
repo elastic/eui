@@ -3,7 +3,7 @@
 exports[`EuiComment is rendered 1`] = `
 <li
   aria-label="aria-label"
-  class="euiComment testClass1 testClass2 emotion-euiTimelineItem-center"
+  class="euiComment testClass1 testClass2 emotion-euiTimelineItem-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -14,7 +14,7 @@ exports[`EuiComment is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -29,7 +29,7 @@ exports[`EuiComment is rendered 1`] = `
     class="emotion-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent emotion-euiCommentEvent-custom"
+      class="euiCommentEvent emotion-euiCommentEvent"
       data-type="custom"
     />
   </div>
@@ -48,7 +48,7 @@ exports[`EuiComment props event is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -63,14 +63,14 @@ exports[`EuiComment props event is rendered 1`] = `
     class="emotion-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent emotion-euiCommentEvent-update"
+      class="euiCommentEvent emotion-euiCommentEvent"
       data-type="update"
     >
       <div
         class="euiCommentEvent__header emotion-euiCommentEvent__header"
       >
         <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
+          class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
         >
           <div
             class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -109,7 +109,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -124,14 +124,14 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     class="emotion-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent emotion-euiCommentEvent-update"
+      class="euiCommentEvent emotion-euiCommentEvent"
       data-type="update"
     >
       <div
         class="euiCommentEvent__header emotion-euiCommentEvent__header"
       >
         <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
+          class="euiPanel euiPanel--transparent euiPanel--paddingSmall emotion-euiPanel-grow-m-s-transparent"
         >
           <div
             class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
@@ -172,7 +172,7 @@ exports[`EuiComment renders a body 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -187,7 +187,7 @@ exports[`EuiComment renders a body 1`] = `
     class="emotion-euiTimelineItemEvent-top"
   >
     <div
-      class="euiCommentEvent emotion-euiCommentEvent-custom"
+      class="euiCommentEvent emotion-euiCommentEvent"
       data-type="custom"
     >
       <div
@@ -214,7 +214,7 @@ exports[`EuiComment renders a timeline icon 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -229,7 +229,7 @@ exports[`EuiComment renders a timeline icon 1`] = `
     class="emotion-euiTimelineItemEvent-top"
   >
     <div
-      class="euiCommentEvent emotion-euiCommentEvent-custom"
+      class="euiCommentEvent emotion-euiCommentEvent"
       data-type="custom"
     >
       <div

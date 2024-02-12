@@ -17,7 +17,7 @@ import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
 import { euiSkeletonRectangleStyles } from './skeleton_rectangle.styles';
 
 export const RADIUS = ['s', 'm', 'none'] as const;
-export type SkeletonRectangleBorderRadius = typeof RADIUS[number];
+export type SkeletonRectangleBorderRadius = (typeof RADIUS)[number];
 
 export type EuiSkeletonRectangleProps = HTMLAttributes<HTMLDivElement> &
   CommonProps &
@@ -27,7 +27,9 @@ export type EuiSkeletonRectangleProps = HTMLAttributes<HTMLDivElement> &
     borderRadius?: SkeletonRectangleBorderRadius;
   };
 
-export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> = ({
+export const EuiSkeletonRectangle: FunctionComponent<
+  EuiSkeletonRectangleProps
+> = ({
   isLoading = true,
   borderRadius = 's',
   width = '24px',
@@ -35,6 +37,9 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
   style,
   className,
   contentAriaLabel,
+  announceLoadingStatus,
+  announceLoadedStatus,
+  ariaLiveProps,
   ariaWrapperProps,
   children,
   ...rest
@@ -56,6 +61,9 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
       }
       loadedContent={children || ''}
       contentAriaLabel={contentAriaLabel}
+      announceLoadingStatus={announceLoadingStatus}
+      announceLoadedStatus={announceLoadedStatus}
+      ariaLiveProps={ariaLiveProps}
       {...ariaWrapperProps}
     />
   );

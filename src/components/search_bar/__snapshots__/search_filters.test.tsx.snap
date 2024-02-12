@@ -1,69 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSearchFilters render - no filters 1`] = `<EuiFilterGroup />`;
+exports[`EuiSearchBarFilters render - no filters 1`] = `
+<div
+  class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
+/>
+`;
 
-exports[`EuiSearchFilters render - with filters 1`] = `
-<EuiFilterGroup>
-  <IsFilter
-    config={
-      Object {
-        "field": "open",
-        "name": "Open",
-        "type": "is",
-      }
-    }
-    index={0}
-    onChange={[Function]}
-    query={
-      Query {
-        "ast": _AST {
-          "_clauses": Array [],
-          "_indexedClauses": Object {
-            "field": Object {},
-            "group": Array [],
-            "is": Object {},
-            "term": Array [],
-          },
-        },
-        "syntax": Object {
-          "parse": [Function],
-          "print": [Function],
-          "printClause": [Function],
-        },
-        "text": "",
-      }
-    }
-  />
-  <FieldValueSelectionFilter
-    config={
-      Object {
-        "field": "tag",
-        "name": "Tag",
-        "options": [Function],
-        "type": "field_value_selection",
-      }
-    }
-    index={1}
-    onChange={[Function]}
-    query={
-      Query {
-        "ast": _AST {
-          "_clauses": Array [],
-          "_indexedClauses": Object {
-            "field": Object {},
-            "group": Array [],
-            "is": Object {},
-            "term": Array [],
-          },
-        },
-        "syntax": Object {
-          "parse": [Function],
-          "print": [Function],
-          "printClause": [Function],
-        },
-        "text": "",
-      }
-    }
-  />
-</EuiFilterGroup>
+exports[`EuiSearchBarFilters render - with filters 1`] = `
+<div
+  class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
+>
+  <button
+    aria-pressed="false"
+    class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+    >
+      <span
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="Open"
+        title="Open"
+      >
+        Open
+      </span>
+    </span>
+  </button>
+  <div
+    class="euiPopover emotion-euiPopover-inline-block"
+  >
+    <button
+      class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+      type="button"
+    >
+      <span
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
+      >
+        <span
+          class="euiFilterButton__text emotion-euiFilterButton__text"
+          data-text="Tag"
+          title="Tag"
+        >
+          Tag
+        </span>
+        <span
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </span>
+    </button>
+  </div>
+</div>
 `;

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
-import { useRouteMatch } from 'react-router';
+import { useRouteMatch } from 'react-router-dom';
 
 import {
   EuiSpacer,
@@ -35,6 +35,8 @@ export interface GuideSectionProps
     > {
   id?: string;
   title?: string;
+  isBeta?: boolean;
+  isNew?: boolean;
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
@@ -83,6 +85,8 @@ export const GuideSectionCodeTypesMap = {
 export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   id,
   title,
+  isBeta,
+  isNew,
   text,
   demo,
   fullScreen,
@@ -210,7 +214,13 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       className={classNames('guideSection', className)}
     >
       <EuiSpacer size={(color || title) && isLargeBreakpoint ? 'xxl' : 'xs'} />
-      <GuideSectionExampleText title={title} id={id} wrapText={wrapText}>
+      <GuideSectionExampleText
+        title={title}
+        id={id}
+        isBeta={isBeta}
+        isNew={isNew}
+        wrapText={wrapText}
+      >
         {text}
       </GuideSectionExampleText>
 
@@ -230,7 +240,6 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
           <GuideSectionExample
             example={
               <EuiErrorBoundary>
-                {/* eslint-disable-next-line no-nested-ternary */}
                 {fullScreen == null ? (
                   <div>{demo}</div>
                 ) : demo == null ? (

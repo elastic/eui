@@ -23,7 +23,9 @@ import { euiImageButtonIconStyles } from './image_button.styles';
 
 import { EuiImageCaption } from './image_caption';
 
-export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> = ({
+export const EuiImageFullScreenWrapper: FunctionComponent<
+  EuiImageWrapperProps
+> = ({
   alt,
   hasShadow,
   caption,
@@ -38,7 +40,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
 
   const styles = euiImageFullscreenWrapperStyles(euiTheme);
 
-  const cssStyles = [styles.euiImageFullscreenWrapper];
+  const cssStyles = [styles.euiImageFullscreenWrapper, wrapperProps?.css];
 
   const classes = classNames(
     'euiImageFullScreenWrapper',
@@ -68,13 +70,17 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
 
   return (
     <EuiOverlayMask data-test-subj="fullScreenOverlayMask">
-      <EuiFocusTrap onClickOutside={closeFullScreen}>
+      <EuiFocusTrap
+        scrollLock
+        preventScrollOnFocus
+        onClickOutside={closeFullScreen}
+      >
         <>
           <figure
             aria-label={optionalCaptionText}
-            css={cssStyles}
             {...wrapperProps}
             className={classes}
+            css={cssStyles}
           >
             <EuiImageButton
               hasAlt={!!alt}

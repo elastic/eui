@@ -7,99 +7,133 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableRowCell } from './table_row_cell';
 
-import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services/alignment';
+import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services/alignment';
 import { WARNING_MESSAGE } from './utils';
 
+const renderInTableRow = (cell: React.ReactElement) =>
+  render(
+    <table>
+      <tbody>
+        <tr>{cell}</tr>
+      </tbody>
+    </table>
+  );
+
 test('renders EuiTableRowCell', () => {
-  const component = (
+  const { container } = renderInTableRow(
     <EuiTableRowCell {...requiredProps}>children</EuiTableRowCell>
   );
 
-  expect(render(component)).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 describe('align', () => {
   test('defaults to left', () => {
-    const component = <EuiTableRowCell />;
+    const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders right when specified', () => {
-    const component = <EuiTableRowCell align={RIGHT_ALIGNMENT} />;
+    const { container } = renderInTableRow(
+      <EuiTableRowCell align={RIGHT_ALIGNMENT} />
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders center when specified', () => {
-    const component = <EuiTableRowCell align={CENTER_ALIGNMENT} />;
+    const { container } = renderInTableRow(
+      <EuiTableRowCell align={CENTER_ALIGNMENT} />
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe('valign', () => {
   test('defaults to middle', () => {
-    const component = <EuiTableRowCell />;
+    const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders top when specified', () => {
-    const component = <EuiTableRowCell valign="top" />;
+    const { container } = renderInTableRow(<EuiTableRowCell valign="top" />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders bottom when specified', () => {
-    const component = <EuiTableRowCell valign="bottom" />;
+    const { container } = renderInTableRow(<EuiTableRowCell valign="bottom" />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe('textOnly', () => {
   test('defaults to true', () => {
-    const component = <EuiTableRowCell />;
+    const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered when specified', () => {
-    const component = <EuiTableRowCell textOnly={false} />;
+    const { container } = renderInTableRow(
+      <EuiTableRowCell textOnly={false} />
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe('truncateText', () => {
-  test('defaults to false', () => {
-    const component = <EuiTableRowCell />;
+  it('defaults to false', () => {
+    const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('is rendered when specified', () => {
-    const component = <EuiTableRowCell truncateText={true} />;
+  it('renders true', () => {
+    const { container } = renderInTableRow(
+      <EuiTableRowCell truncateText={true} />
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(
+      container.querySelector('.euiTableCellContent--truncateText')
+    ).toBeInTheDocument();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('renders lines configuration', () => {
+    const { container } = renderInTableRow(
+      <EuiTableRowCell truncateText={{ lines: 2 }} />
+    );
+
+    expect(
+      container.querySelector('.euiTableCellContent--truncateText')
+    ).not.toBeInTheDocument();
+    expect(container.querySelector('.euiTableCellContent__text')).toHaveClass(
+      'euiTextBlockTruncate'
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe("children's className", () => {
   test('merges new classnames into existing ones', () => {
-    const component = (
+    const { container } = renderInTableRow(
       <EuiTableRowCell textOnly={false} showOnHover={true}>
         <div className="testClass" />
       </EuiTableRowCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
@@ -117,32 +151,36 @@ describe('width and style', () => {
   });
 
   test('accepts style attribute', () => {
-    const component = (
+    const { container } = renderInTableRow(
       <EuiTableRowCell style={{ width: '20%' }}>Test</EuiTableRowCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('accepts width attribute', () => {
-    const component = <EuiTableRowCell width="10%">Test</EuiTableRowCell>;
+    const { container } = renderInTableRow(
+      <EuiTableRowCell width="10%">Test</EuiTableRowCell>
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('accepts width attribute as number', () => {
-    const component = <EuiTableRowCell width={100}>Test</EuiTableRowCell>;
+    const { container } = renderInTableRow(
+      <EuiTableRowCell width={100}>Test</EuiTableRowCell>
+    );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('resolves style and width attribute', () => {
-    const component = (
+    const { container } = renderInTableRow(
       <EuiTableRowCell width="10%" style={{ width: '20%' }}>
         Test
       </EuiTableRowCell>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

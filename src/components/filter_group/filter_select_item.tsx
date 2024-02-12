@@ -9,11 +9,13 @@
 import React, { ButtonHTMLAttributes, Component } from 'react';
 import classNames from 'classnames';
 
+import { withEuiTheme, WithEuiThemeProps } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-
 import { EuiIcon } from '../icon';
+
+import { euiFilterSelectItemStyles } from './filter_select_item.styles';
 
 export type FilterChecked = 'on' | 'off';
 export interface EuiFilterSelectItemProps
@@ -39,7 +41,15 @@ const resolveIconAndColor = (checked?: FilterChecked) => {
       };
 };
 
-export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
+/**
+ * TODO: This component should removed in favor of EuiSelectable usage
+ * once EuiComboBox has been converted to dogfood EuiSelectable.
+ *
+ * @deprecated - Use EuiSelectable instead
+ */
+export class EuiFilterSelectItemClass extends Component<
+  WithEuiThemeProps & EuiFilterSelectItemProps
+> {
   static defaultProps = {
     showIcons: true,
   };
@@ -62,6 +72,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
 
   render() {
     const {
+      theme,
       children,
       className,
       disabled,
@@ -70,13 +81,14 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
       showIcons,
       ...rest
     } = this.props;
-    const classes = classNames(
-      'euiFilterSelectItem',
-      {
-        'euiFilterSelectItem-isFocused': isFocused,
-      },
-      className
-    );
+
+    const styles = euiFilterSelectItemStyles(theme);
+    const cssStyles = [
+      styles.euiFilterSelectItem,
+      isFocused && styles.isFocused,
+    ];
+
+    const classes = classNames('euiFilterSelectItem', className);
 
     let iconNode;
     if (showIcons) {
@@ -95,6 +107,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
         type="button"
         aria-selected={isFocused}
         className={classes}
+        css={cssStyles}
         disabled={disabled}
         aria-disabled={disabled}
         {...rest}
@@ -107,7 +120,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
         >
           {iconNode}
           <EuiFlexItem
-            className="euiFilterSelectItem__content"
+            className="euiFilterSelectItem__content eui-textTruncate"
             component="span"
           >
             {children}
@@ -117,3 +130,10 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
     );
   }
 }
+
+/**
+ * @deprecated - Use EuiSelectable instead
+ */
+export const EuiFilterSelectItem = withEuiTheme<EuiFilterSelectItemProps>(
+  EuiFilterSelectItemClass
+);

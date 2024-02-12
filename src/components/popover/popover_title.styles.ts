@@ -22,8 +22,8 @@ export const euiPopoverTitleStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiPopoverTitle: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
-      ${logicalCSS('border-bottom', euiTheme.border.thin)};
+      ${euiTitle(euiThemeContext, 'xxs')}
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
     `,
     // If the popover's containing panel has padding applied,
     // ensure the title expands to cover that padding via negative margins

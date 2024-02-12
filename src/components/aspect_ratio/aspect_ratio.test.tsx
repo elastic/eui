@@ -7,14 +7,14 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiAspectRatio } from './aspect_ratio';
 
 describe('EuiAspectRatio', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiAspectRatio height={4} width={9} {...requiredProps}>
         <iframe
           title="Elastic is a search company"
@@ -28,11 +28,11 @@ describe('EuiAspectRatio', () => {
       </EuiAspectRatio>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('allows overriding with custom styles', () => {
-    const component = render(
+    const { container } = render(
       <EuiAspectRatio
         height={4}
         width={9}
@@ -50,13 +50,26 @@ describe('EuiAspectRatio', () => {
       </EuiAspectRatio>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('inherits child styles', () => {
+    const { getByTestSubject } = render(
+      <EuiAspectRatio height={4} width={9} style={{ color: 'gray' }}>
+        <div data-test-subj="child" style={{ backgroundColor: 'salmon' }} />
+      </EuiAspectRatio>
+    );
+
+    expect(getByTestSubject('child')).toHaveStyle({
+      'background-color': 'salmon',
+      color: 'gray',
+    });
   });
 
   describe('props', () => {
     describe('maxWidth', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAspectRatio
             height={16}
             width={9}
@@ -75,7 +88,7 @@ describe('EuiAspectRatio', () => {
           </EuiAspectRatio>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

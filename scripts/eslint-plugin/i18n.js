@@ -5,24 +5,18 @@
 const path = require('path');
 
 function attributesArrayToLookup(attributesArray) {
-  return attributesArray.reduce(
-    (lookup, attribute) => {
-      lookup[attribute.name.name] = attribute.value;
-      return lookup;
-    },
-    {}
-  );
+  return attributesArray.reduce((lookup, attribute) => {
+    lookup[attribute.name.name] = attribute.value;
+    return lookup;
+  }, {});
 }
 
 function getDefinedValues(valuesNode) {
   if (valuesNode == null || valuesNode.properties == null) return new Set();
-  return valuesNode.properties.reduce(
-    (valueNames, property) => {
-      valueNames.add(property.key.name);
-      return valueNames;
-    },
-    new Set()
-  );
+  return valuesNode.properties.reduce((valueNames, property) => {
+    valueNames.add(property.key.name);
+    return valueNames;
+  }, new Set());
 }
 
 function formatSet(set) {
@@ -34,7 +28,7 @@ function getExpectedValueNames(defaultString) {
   const expectedNames = new Set();
 
   if (matches) {
-    matches.forEach(match => {
+    matches.forEach((match) => {
       expectedNames.add(match.substring(1, match.length - 1));
     });
   }
@@ -55,12 +49,18 @@ function getRenderPropFromChildren(children) {
   if (Array.isArray(children)) {
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
-      if (child.type === 'JSXExpressionContainer' && child.expression.type === 'ArrowFunctionExpression') {
+      if (
+        child.type === 'JSXExpressionContainer' &&
+        child.expression.type === 'ArrowFunctionExpression'
+      ) {
         return child.expression;
       }
     }
   } else {
-    if (children.type === 'JSXExpressionContainer' && children.expression.type === 'ArrowFunctionExpression') {
+    if (
+      children.type === 'JSXExpressionContainer' &&
+      children.expression.type === 'ArrowFunctionExpression'
+    ) {
       return children.expression;
     }
   }
@@ -76,29 +76,42 @@ module.exports = {
     type: 'problem',
 
     docs: {
-      description: 'Enforce EuiI18n token names & variable names in render prop',
+      description:
+        'Enforce EuiI18n token names & variable names in render prop',
     },
 
     messages: {
-      invalidToken: 'token value "{{ tokenValue }}" must be of format {{ tokenNamespace }}.tokenName',
-      mismatchedValues: 'expected values "{{ expected }}" but provided {{ provided }}',
-      mismatchedTokensAndDefaults: 'given {{ tokenLength }} tokens but {{ defaultsLength }} defaults',
-      tokenNamesNotUsedInRenderProp: 'tokens {{ tokenNames }} is not used by render prop params {{ paramNames }}',
-      invalidTokenType: 'token expects a string value, {{ type }} passed instead',
-      invalidTokensType: 'tokens expects an array of strings, {{ type }} passed instead',
-      invalidDefaultType: 'default expects a string or arrow function, {{ type }} passed instead',
-      invalidDefaultsType: 'defaults expects an array of strings or arrow functions, {{ type }} passed instead',
+      invalidToken:
+        'token value "{{ tokenValue }}" must be of format {{ tokenNamespace }}.tokenName',
+      mismatchedValues:
+        'expected values "{{ expected }}" but provided {{ provided }}',
+      mismatchedTokensAndDefaults:
+        'given {{ tokenLength }} tokens but {{ defaultsLength }} defaults',
+      tokenNamesNotUsedInRenderProp:
+        'tokens {{ tokenNames }} is not used by render prop params {{ paramNames }}',
+      invalidTokenType:
+        'token expects a string value, {{ type }} passed instead',
+      invalidTokensType:
+        'tokens expects an array of strings, {{ type }} passed instead',
+      invalidDefaultType:
+        'default expects a string or arrow function, {{ type }} passed instead',
+      invalidDefaultsType:
+        'defaults expects an array of strings or arrow functions, {{ type }} passed instead',
     },
   },
   create: function (context) {
     const filename = context.getFilename();
     const basename = path.basename(filename, path.extname(filename));
-    const expectedTokenNamespace = `eui${basename.replace(/(^|_)([a-z])/g, (match, leading, char) => char.toUpperCase())}`;
+    const expectedTokenNamespace = `eui${basename.replace(
+      /(^|_)([a-z])/g,
+      (match, leading, char) => char.toUpperCase()
+    )}`;
 
     return {
       JSXOpeningElement(node) {
         // only process <EuiI8n/> elements
-        if (node.name.type !== 'JSXIdentifier' || node.name.name !== 'EuiI18n') return;
+        if (node.name.type !== 'JSXIdentifier' || node.name.name !== 'EuiI18n')
+          return;
 
         const jsxElement = node.parent;
         const hasRenderProp = jsxElement.children.length > 0;
@@ -113,7 +126,7 @@ module.exports = {
               node,
               loc: attributes.token.loc,
               messageId: 'invalidTokenType',
-              data: { type: attributes.token.type }
+              data: { type: attributes.token.type },
             });
             return;
           }
@@ -130,7 +143,7 @@ module.exports = {
               node,
               loc: attributes.default.loc,
               messageId: 'invalidDefaultType',
-              data: { type: attributes.default.expression.type }
+              data: { type: attributes.default.expression.type },
             });
             return;
           }
@@ -143,7 +156,7 @@ module.exports = {
               node,
               loc: attributes.tokens.loc,
               messageId: 'invalidTokensType',
-              data: { type: attributes.tokens.type }
+              data: { type: attributes.tokens.type },
             });
             return;
           }
@@ -153,19 +166,26 @@ module.exports = {
               node,
               loc: attributes.tokens.loc,
               messageId: 'invalidTokensType',
-              data: { type: attributes.tokens.expression.type }
+              data: { type: attributes.tokens.expression.type },
             });
             return;
           }
 
-          for (let i = 0; i < attributes.tokens.expression.elements.length; i++) {
+          for (
+            let i = 0;
+            i < attributes.tokens.expression.elements.length;
+            i++
+          ) {
             const tokenNode = attributes.tokens.expression.elements[i];
-            if (tokenNode.type !== 'Literal' || typeof tokenNode.value !== 'string') {
+            if (
+              tokenNode.type !== 'Literal' ||
+              typeof tokenNode.value !== 'string'
+            ) {
               context.report({
                 node,
                 loc: tokenNode.loc,
                 messageId: 'invalidTokensType',
-                data: { type: tokenNode.type }
+                data: { type: tokenNode.type },
               });
               return;
             }
@@ -179,7 +199,7 @@ module.exports = {
               node,
               loc: attributes.defaults.loc,
               messageId: 'invalidDefaultsType',
-              data: { type: attributes.defaults.type }
+              data: { type: attributes.defaults.type },
             });
             return;
           }
@@ -189,19 +209,26 @@ module.exports = {
               node,
               loc: attributes.defaults.loc,
               messageId: 'invalidDefaultsType',
-              data: { type: attributes.defaults.expression.type }
+              data: { type: attributes.defaults.expression.type },
             });
             return;
           }
 
-          for (let i = 0; i < attributes.defaults.expression.elements.length; i++) {
+          for (
+            let i = 0;
+            i < attributes.defaults.expression.elements.length;
+            i++
+          ) {
             const defaultNode = attributes.defaults.expression.elements[i];
-            if (defaultNode.type !== 'Literal' || typeof defaultNode.value !== 'string') {
+            if (
+              defaultNode.type !== 'Literal' ||
+              typeof defaultNode.value !== 'string'
+            ) {
               context.report({
                 node,
                 loc: defaultNode.loc,
                 messageId: 'invalidDefaultsType',
-                data: { type: defaultNode.type }
+                data: { type: defaultNode.type },
               });
               return;
             }
@@ -213,12 +240,18 @@ module.exports = {
         if (!hasMultipleTokens) {
           // validate token format
           const tokenParts = attributes.token.value.split('.');
-          if (tokenParts.length <= 1 || tokenParts[0] !== expectedTokenNamespace) {
+          if (
+            tokenParts.length <= 1 ||
+            tokenParts[0] !== expectedTokenNamespace
+          ) {
             context.report({
               node,
               loc: attributes.token.loc,
               messageId: 'invalidToken',
-              data: { tokenValue: attributes.token.value, tokenNamespace: expectedTokenNamespace }
+              data: {
+                tokenValue: attributes.token.value,
+                tokenNamespace: expectedTokenNamespace,
+              },
             });
           }
 
@@ -229,27 +262,40 @@ module.exports = {
 
           if (attributes.default.type === 'Literal') {
             // default is a string literal
-            const expectedNames = getExpectedValueNames(attributes.default.value);
+            const expectedNames = getExpectedValueNames(
+              attributes.default.value
+            );
             if (areSetsEqual(expectedNames, valueNames) === false) {
               context.report({
                 node,
                 loc: attributes.values.loc,
                 messageId: 'mismatchedValues',
-                data: { expected: formatSet(expectedNames), provided: formatSet(valueNames) }
+                data: {
+                  expected: formatSet(expectedNames),
+                  provided: formatSet(valueNames),
+                },
               });
             }
           } else {
             // default is a function
             // validate the destructured param defined by default function match the values
             const defaultFn = attributes.default.expression;
-            const objProperties = defaultFn.params && defaultFn.params[0] ? defaultFn.params[0].properties : [];
-            const expectedNames = new Set(objProperties.map(property => property.key.name));
+            const objProperties =
+              defaultFn.params && defaultFn.params[0]
+                ? defaultFn.params[0].properties
+                : [];
+            const expectedNames = new Set(
+              objProperties.map((property) => property.key.name)
+            );
             if (areSetsEqual(valueNames, expectedNames) === false) {
               context.report({
                 node,
                 loc: attributes.values.loc,
                 messageId: 'mismatchedValues',
-                data: { expected: formatSet(expectedNames), provided: formatSet(valueNames) }
+                data: {
+                  expected: formatSet(expectedNames),
+                  provided: formatSet(valueNames),
+                },
               });
             }
           }
@@ -260,12 +306,18 @@ module.exports = {
           for (let i = 0; i < tokens.length; i++) {
             const token = tokens[i];
             const tokenParts = token.value.split('.');
-            if (tokenParts.length <= 1 || tokenParts[0] !== expectedTokenNamespace) {
+            if (
+              tokenParts.length <= 1 ||
+              tokenParts[0] !== expectedTokenNamespace
+            ) {
               context.report({
                 node,
                 loc: token.loc,
                 messageId: 'invalidToken',
-                data: { tokenValue: token.value, tokenNamespace: expectedTokenNamespace }
+                data: {
+                  tokenValue: token.value,
+                  tokenNamespace: expectedTokenNamespace,
+                },
               });
             }
           }
@@ -277,7 +329,10 @@ module.exports = {
               node,
               loc: node.loc,
               messageId: 'mismatchedTokensAndDefaults',
-              data: { tokenLength: tokens.length, defaultsLength: defaults.length }
+              data: {
+                tokenLength: tokens.length,
+                defaultsLength: defaults.length,
+              },
             });
           }
         }
@@ -291,22 +346,30 @@ module.exports = {
             const params = renderProp.params[0].elements;
             const tokens = attributes.tokens.expression.elements;
 
-            const paramsSet = new Set(params.map(element => element.name));
-            const tokensSet = new Set(tokens.map(element => getExpectedParamNameFromToken(element.value)));
+            const paramsSet = new Set(params.map((element) => element.name));
+            const tokensSet = new Set(
+              tokens.map((element) =>
+                getExpectedParamNameFromToken(element.value)
+              )
+            );
 
             if (areSetsEqual(paramsSet, tokensSet) === false) {
               context.report({
                 node,
                 loc: node.loc,
                 messageId: 'tokenNamesNotUsedInRenderProp',
-                data: { tokenNames: formatSet(tokensSet), paramNames: formatSet(paramsSet) }
+                data: {
+                  tokenNames: formatSet(tokensSet),
+                  paramNames: formatSet(paramsSet),
+                },
               });
             }
-
           } else {
             // single token, single param should be a matching identifier
             const param = renderProp.params[0];
-            const tokenName = getExpectedParamNameFromToken(attributes.token.value);
+            const tokenName = getExpectedParamNameFromToken(
+              attributes.token.value
+            );
             const paramName = param.name;
 
             if (tokenName !== paramName) {
@@ -314,7 +377,7 @@ module.exports = {
                 node,
                 loc: node.loc,
                 messageId: 'tokenNamesNotUsedInRenderProp',
-                data: { tokenNames: tokenName, paramNames: paramName }
+                data: { tokenNames: tokenName, paramNames: paramName },
               });
             }
           }
@@ -331,14 +394,14 @@ module.exports = {
         )
           return;
 
-        const arguments = node.arguments;
+        const nodeArgs = node.arguments;
 
-        const isSingleToken = arguments[0].type === 'Literal';
+        const isSingleToken = nodeArgs[0].type === 'Literal';
 
         // validate argument types
         if (isSingleToken) {
           // default must be either a Literal of an ArrowFunctionExpression
-          const defaultArg = arguments[1];
+          const defaultArg = nodeArgs[1];
           const isLiteral = defaultArg.type === 'Literal';
           const isArrowExpression =
             defaultArg.type === 'ArrowFunctionExpression';
@@ -352,8 +415,8 @@ module.exports = {
             return;
           }
         } else {
-          const tokensArg = arguments[0];
-          const defaultsArg = arguments[1];
+          const tokensArg = nodeArgs[0];
+          const defaultsArg = nodeArgs[1];
 
           // tokens must be an array of Literals
           if (tokensArg.type !== 'ArrayExpression') {
@@ -376,7 +439,7 @@ module.exports = {
                 node,
                 loc: tokenNode.loc,
                 messageId: 'invalidTokensType',
-                data: { type: tokenNode.type }
+                data: { type: tokenNode.type },
               });
               return;
             }
@@ -388,7 +451,7 @@ module.exports = {
               node,
               loc: defaultsArg.loc,
               messageId: 'invalidDefaultsType',
-              data: { type: defaultsArg.type }
+              data: { type: defaultsArg.type },
             });
             return;
           }
@@ -403,7 +466,7 @@ module.exports = {
                 node,
                 loc: defaultNode.loc,
                 messageId: 'invalidDefaultsType',
-                data: { type: defaultNode.type }
+                data: { type: defaultNode.type },
               });
               return;
             }
@@ -411,9 +474,9 @@ module.exports = {
         }
 
         if (isSingleToken) {
-          const tokenArgument = arguments[0];
-          const defaultArgument = arguments[1];
-          const valuesArgument = arguments[2];
+          const tokenArgument = nodeArgs[0];
+          const defaultArgument = nodeArgs[1];
+          const valuesArgument = nodeArgs[2];
 
           // validate token format
           const tokenParts = tokenArgument.value.split('.');
@@ -458,7 +521,7 @@ module.exports = {
                 ? defaultFn.params[0].properties
                 : [];
             const expectedNames = new Set(
-              objProperties.map(property => property.key.name)
+              objProperties.map((property) => property.key.name)
             );
             if (areSetsEqual(valueNames, expectedNames) === false) {
               context.report({
@@ -474,8 +537,8 @@ module.exports = {
           }
         } else {
           // has multiple tokens
-          const tokensArgument = arguments[0];
-          const defaultsArgument = arguments[1];
+          const tokensArgument = nodeArgs[0];
+          const defaultsArgument = nodeArgs[1];
 
           // validate their names
           const tokens = tokensArgument.elements;
@@ -490,7 +553,10 @@ module.exports = {
                 node,
                 loc: token.loc,
                 messageId: 'invalidToken',
-                data: { tokenValue: token.value, tokenNamespace: expectedTokenNamespace }
+                data: {
+                  tokenValue: token.value,
+                  tokenNamespace: expectedTokenNamespace,
+                },
               });
             }
           }
@@ -512,5 +578,5 @@ module.exports = {
       },
       // callback functions
     };
-  }
+  },
 };

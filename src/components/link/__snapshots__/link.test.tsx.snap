@@ -7,21 +7,6 @@ exports[`EuiLink accent is rendered 1`] = `
 />
 `;
 
-exports[`EuiLink allows for target and external to be controlled independently 1`] = `
-<a
-  class="euiLink emotion-euiLink-primary"
-  href="#"
-  rel="noopener noreferrer"
-  target="_blank"
->
-  <span
-    class="emotion-euiScreenReaderOnly-euiLink__screenReaderText"
-  >
-    (opens in a new tab or window)
-  </span>
-</a>
-`;
-
 exports[`EuiLink button respects the type property 1`] = `
 <button
   class="euiLink emotion-euiLink-primary"
@@ -57,7 +42,7 @@ exports[`EuiLink it is an external link 1`] = `
   rel="noreferrer"
 >
   <span
-    class="emotion-euiLink__externalIcon"
+    class="emotion-EuiExternalLinkIcon"
     data-euiicon-type="popout"
   >
     External link
@@ -68,7 +53,7 @@ exports[`EuiLink it is an external link 1`] = `
 exports[`EuiLink it passes the default props through 1`] = `
 <button
   aria-label="aria-label"
-  class="euiLink testClass1 testClass2 emotion-euiLink-primary"
+  class="euiLink testClass1 testClass2 emotion-euiLink-primary-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 />
@@ -147,13 +132,13 @@ exports[`EuiLink supports target 1`] = `
   target="_blank"
 >
   <span
-    class="emotion-euiLink__externalIcon"
+    class="emotion-EuiExternalLinkIcon"
     data-euiicon-type="popout"
   >
     External link
   </span>
   <span
-    class="emotion-euiScreenReaderOnly-euiLink__screenReaderText"
+    class="emotion-euiScreenReaderOnly"
   >
     (opens in a new tab or window)
   </span>

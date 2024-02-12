@@ -3,7 +3,7 @@
 exports[`EuiTableHeaderMobile is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiTableHeaderMobile testClass1 testClass2"
+  class="euiTableHeaderMobile testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

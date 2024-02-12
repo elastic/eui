@@ -30,7 +30,7 @@ export const ElasticChartsSparklinesExample = {
       title: 'Sparklines',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: sparklinesSource,
         },
       ],
@@ -61,9 +61,7 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
               <EuiCode language="js">Settings.showLegend = false</EuiCode>
             </li>
             <li>
-              <EuiCode language="js">
-                Settings.tooltip = &quot;none&quot;
-              </EuiCode>
+              <EuiCode language="js">Tooltip.type = &quot;none&quot;</EuiCode>
             </li>
           </ul>
         </>

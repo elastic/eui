@@ -51,7 +51,7 @@ const options: EuiSelectableTemplateSitewideOption[] = [
     label: 'Other metas',
     searchableLabel: 'Totally custom with pink metadata',
     icon: {
-      type: 'alert',
+      type: 'warning',
       color: 'accent',
     },
     meta: [

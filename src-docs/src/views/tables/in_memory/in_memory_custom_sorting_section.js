@@ -9,7 +9,7 @@ import {
   Criteria,
   CriteriaWithPagination,
 } from '!!prop-loader!../../../../../src/components/basic_table/basic_table';
-import { Pagination } from '!!prop-loader!../../../../../src/components/basic_table/pagination_bar';
+import { Pagination } from '../paginated/_props';
 import {
   EuiTableFieldDataColumnType,
   EuiTableComputedColumnType,

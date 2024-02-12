@@ -14,7 +14,7 @@ import { useEuiTheme } from '../../services';
 import { euiFlexGroupStyles } from './flex_group.styles';
 
 export const GUTTER_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
-export type EuiFlexGroupGutterSize = typeof GUTTER_SIZES[number];
+export type EuiFlexGroupGutterSize = (typeof GUTTER_SIZES)[number];
 
 export const ALIGN_ITEMS = [
   'stretch',
@@ -23,7 +23,7 @@ export const ALIGN_ITEMS = [
   'center',
   'baseline',
 ] as const;
-export type FlexGroupAlignItems = typeof ALIGN_ITEMS[number];
+export type FlexGroupAlignItems = (typeof ALIGN_ITEMS)[number];
 
 export const JUSTIFY_CONTENTS = [
   'flexStart',
@@ -33,7 +33,7 @@ export const JUSTIFY_CONTENTS = [
   'spaceAround',
   'spaceEvenly',
 ] as const;
-type FlexGroupJustifyContent = typeof JUSTIFY_CONTENTS[number];
+type FlexGroupJustifyContent = (typeof JUSTIFY_CONTENTS)[number];
 
 export const DIRECTIONS = [
   'row',
@@ -41,7 +41,7 @@ export const DIRECTIONS = [
   'column',
   'columnReverse',
 ] as const;
-type FlexGroupDirection = typeof DIRECTIONS[number];
+type FlexGroupDirection = (typeof DIRECTIONS)[number];
 
 type FlexGroupComponentType = 'div' | 'span';
 const isValidElement = (

@@ -218,8 +218,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
         type: 'article',
       },
       {
-        text:
-          'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
+        text: 'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
         highlightSearchString: true,
       },
     ],
@@ -336,7 +335,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
     label: 'Totally custom',
     searchableLabel: 'Totally custom with pink metadata',
     icon: {
-      type: 'alert',
+      type: 'warning',
       color: 'accent',
     },
     meta: [

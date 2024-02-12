@@ -12,10 +12,10 @@ import React, {
   CSSProperties,
   isValidElement,
 } from 'react';
-import { CommonProps } from '../common';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
 
-import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { useEuiTheme, cloneElementWithCss } from '../../services';
+
 import { euiTextColorStyles } from './text_color.styles';
 
 export const COLORS = [
@@ -28,7 +28,7 @@ export const COLORS = [
   'ghost',
   'inherit',
 ] as const;
-export type TextColor = typeof COLORS[number];
+export type TextColor = (typeof COLORS)[number];
 
 export type EuiTextColorProps = CommonProps &
   Omit<

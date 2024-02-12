@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
+import { useMemo } from 'react';
 import { css } from '@emotion/react';
 import {
   shade,
   tint,
+  tintOrShade,
   transparentize,
   useEuiTheme,
   UseEuiTheme,
@@ -26,7 +28,7 @@ export const BACKGROUND_COLORS = [
   'danger',
 ] as const;
 
-export type _EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
+export type _EuiBackgroundColor = (typeof BACKGROUND_COLORS)[number];
 export interface _EuiBackgroundColorOptions {
   /**
    * Use `opaque` for containers of unknown content.
@@ -77,30 +79,85 @@ export const useEuiBackgroundColor = (
 };
 
 export const useEuiBackgroundColorCSS = () => {
-  return {
-    transparent: css`
-      background-color: ${useEuiBackgroundColor('transparent')};
-    `,
-    plain: css`
-      background-color: ${useEuiBackgroundColor('plain')};
-    `,
-    subdued: css`
-      background-color: ${useEuiBackgroundColor('subdued')};
-    `,
-    accent: css`
-      background-color: ${useEuiBackgroundColor('accent')};
-    `,
-    primary: css`
-      background-color: ${useEuiBackgroundColor('primary')};
-    `,
-    success: css`
-      background-color: ${useEuiBackgroundColor('success')};
-    `,
-    warning: css`
-      background-color: ${useEuiBackgroundColor('warning')};
-    `,
-    danger: css`
-      background-color: ${useEuiBackgroundColor('danger')};
-    `,
-  };
+  const euiThemeContext = useEuiTheme();
+
+  return useMemo(
+    () => ({
+      transparent: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'transparent')};
+      `,
+      plain: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
+      `,
+      subdued: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued')};
+      `,
+      accent: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'accent')};
+      `,
+      primary: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'primary')};
+      `,
+      success: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'success')};
+      `,
+      warning: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'warning')};
+      `,
+      danger: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, 'danger')};
+      `,
+    }),
+    [euiThemeContext]
+  );
+};
+
+export const euiBorderColor = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  color: _EuiBackgroundColor
+) => {
+  switch (color) {
+    case 'transparent':
+    case 'plain':
+    case 'subdued':
+      return euiTheme.border.color;
+    case 'warning':
+      return tintOrShade(euiTheme.colors.warning, 0.4, colorMode);
+    default:
+      return tintOrShade(euiTheme.colors[color], 0.6, colorMode);
+  }
+};
+
+export const useEuiBorderColorCSS = () => {
+  const euiThemeContext = useEuiTheme();
+
+  return useMemo(
+    () => ({
+      transparent: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'transparent')};
+      `,
+      plain: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'plain')};
+      `,
+      subdued: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'subdued')};
+      `,
+      accent: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'accent')};
+      `,
+      primary: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'primary')};
+      `,
+      success: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'success')};
+      `,
+      warning: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'warning')};
+      `,
+      danger: css`
+        border-color: ${euiBorderColor(euiThemeContext, 'danger')};
+      `,
+    }),
+    [euiThemeContext]
+  );
 };

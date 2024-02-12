@@ -68,7 +68,10 @@ export const Comparators = Object.freeze({
     };
   },
 
-  property<T>(prop: string, comparator?: Comparator): Comparator<T> {
+  property<T extends object>(
+    prop: string,
+    comparator?: Comparator
+  ): Comparator<T> {
     return this.value((value) => get(value, prop), comparator);
   },
 });

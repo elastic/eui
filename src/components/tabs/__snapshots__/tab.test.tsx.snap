@@ -13,7 +13,7 @@ exports[`EuiTab props append is rendered 1`] = `
     Append
   </span>
   <span
-    class="euiTab__content emotion-euiTab__content-m"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     children
   </span>
@@ -29,7 +29,7 @@ exports[`EuiTab props disabled and selected 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m-selected-disabled"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     Click Me
   </span>
@@ -45,7 +45,7 @@ exports[`EuiTab props disabled is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m-disabled"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     Click Me
   </span>
@@ -56,7 +56,7 @@ exports[`EuiTab props href renders anchor 1`] = `
 <a
   aria-label="aria-label"
   aria-selected="false"
-  class="euiTab testClass1 testClass2 emotion-euiTab"
+  class="euiTab testClass1 testClass2 emotion-euiTab-euiTestCss"
   data-test-subj="test subject string"
   href="/baz/bing"
   rel="noreferrer"
@@ -78,7 +78,7 @@ exports[`EuiTab props isSelected is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m-selected"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     children
   </span>
@@ -89,13 +89,13 @@ exports[`EuiTab props onClick renders button 1`] = `
 <button
   aria-label="aria-label"
   aria-selected="false"
-  class="euiTab testClass1 testClass2 emotion-euiTab"
+  class="euiTab testClass1 testClass2 emotion-euiTab-euiTestCss"
   data-test-subj="test subject string"
   role="tab"
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     children
   </span>
@@ -115,7 +115,7 @@ exports[`EuiTab props prepend is rendered 1`] = `
     Prepend
   </span>
   <span
-    class="euiTab__content emotion-euiTab__content-m"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     children
   </span>

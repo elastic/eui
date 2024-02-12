@@ -18,12 +18,11 @@ import classNames from 'classnames';
 import {
   EuiFormControlLayoutIcons,
   EuiFormControlLayoutIconsProps,
+  IconShape,
 } from './form_control_layout_icons';
 import { CommonProps } from '../../common';
 import { EuiFormLabel } from '../form_label';
 import { FormContext, FormContextValue } from '../eui_form_context';
-
-export { ICON_SIDES } from './form_control_layout_icons';
 
 type StringOrReactElement = string | ReactElement;
 type PrependAppendType = StringOrReactElement | StringOrReactElement[];
@@ -42,6 +41,7 @@ export type EuiFormControlLayoutProps = CommonProps &
     append?: PrependAppendType;
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
+    iconsPosition?: EuiFormControlLayoutIconsProps['iconsPosition'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
     /**
      * Expand to fill 100% of the parent.
@@ -73,6 +73,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     const {
       children,
       icon,
+      iconsPosition,
       clear,
       fullWidth = defaultFullWidth,
       isLoading,
@@ -82,7 +83,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       prepend,
       append,
       readOnly,
-      isInvalid: invalid,
+      isInvalid,
       isDropdown,
       inputId,
       ...rest
@@ -107,21 +108,64 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       <div className={classes} {...rest}>
         {prependNodes}
         <div className="euiFormControlLayout__childrenWrapper">
+          {this.renderLeftIcons()}
           {children}
-
-          <EuiFormControlLayoutIcons
-            icon={icon}
-            clear={clear}
-            compressed={compressed}
-            isLoading={isLoading}
-            isInvalid={invalid}
-            isDropdown={!readOnly && !isDisabled && isDropdown}
-          />
+          {this.renderRightIcons()}
         </div>
         {appendNodes}
       </div>
     );
   }
+
+  renderLeftIcons = () => {
+    const { icon, iconsPosition, compressed } = this.props;
+
+    const leftCustomIcon =
+      icon && (icon as IconShape)?.side !== 'right' ? icon : undefined;
+
+    return leftCustomIcon ? (
+      <EuiFormControlLayoutIcons
+        side="left"
+        icon={leftCustomIcon}
+        iconsPosition={iconsPosition}
+        compressed={compressed}
+      />
+    ) : null;
+  };
+
+  renderRightIcons = () => {
+    const {
+      icon,
+      iconsPosition,
+      clear,
+      compressed,
+      isLoading,
+      isInvalid,
+      isDisabled,
+      readOnly,
+      isDropdown,
+    } = this.props;
+    const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;
+
+    const rightCustomIcon =
+      icon && (icon as IconShape)?.side === 'right' ? icon : undefined;
+
+    const hasRightIcons =
+      rightCustomIcon || clear || isLoading || isInvalid || hasDropdownIcon;
+
+    return hasRightIcons ? (
+      <EuiFormControlLayoutIcons
+        side="right"
+        icon={rightCustomIcon}
+        iconsPosition={iconsPosition}
+        compressed={compressed}
+        clear={clear}
+        isLoading={isLoading}
+        isInvalid={isInvalid}
+        isDropdown={hasDropdownIcon}
+      />
+    ) : null;
+  };
 
   renderSideNode(
     side: 'append' | 'prepend',

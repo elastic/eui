@@ -7,15 +7,18 @@
  */
 
 import React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
 import { render } from '@testing-library/react';
+import { renderHook, renderHookAct } from '../../test/rtl';
 
-import { setEuiDevProviderWarning } from './provider';
+import { EuiProvider } from '../../components/provider';
+
+import { setEuiDevProviderWarning } from './warning';
 import {
   useEuiTheme,
   UseEuiTheme,
   withEuiTheme,
   RenderWithEuiTheme,
+  useEuiThemeCSSVariables,
 } from './hooks';
 
 describe('useEuiTheme', () => {
@@ -43,11 +46,12 @@ describe('useEuiTheme', () => {
 
   it('consecutive calls return a stable object', () => {
     const { result, rerender } = renderHook(useEuiTheme);
-    expect(result.all.length).toEqual(1);
-    rerender({});
-    expect(result.all.length).toEqual(2);
+    const firstResult = result.current;
 
-    expect(result.all[0]).toBe(result.all[1]);
+    rerender({});
+    const secondResult = result.current;
+
+    expect(firstResult).toBe(secondResult);
   });
 });
 
@@ -79,5 +83,23 @@ describe('RenderWithEuiTheme', () => {
     expect(container.firstChild!.textContent).toEqual(
       'euiTheme,colorMode,modifications'
     );
+  });
+});
+
+describe('useEuiThemeCSSVariables', () => {
+  it('returns CSS variable related state setters/getters', () => {
+    const { result } = renderHook(useEuiThemeCSSVariables, {
+      wrapper: EuiProvider,
+    });
+    expect(result.current.globalCSSVariables).toBeUndefined();
+    expect(result.current.themeCSSVariables).toBeUndefined();
+
+    renderHookAct(() => {
+      result.current.setNearestThemeCSSVariables({ '--hello': 'world' });
+    });
+
+    // In this case, the nearest theme is the global one, so it should set both
+    expect(result.current.globalCSSVariables).toEqual({ '--hello': 'world' });
+    expect(result.current.themeCSSVariables).toEqual({ '--hello': 'world' });
   });
 });

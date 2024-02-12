@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React from 'react';
 
@@ -14,10 +16,10 @@ import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
 
 const items = [
-  <EuiContextMenuItem key="A" data-test-subj="itemA">
+  <EuiContextMenuItem key="A" data-test-subj="itemA" href="#">
     Option A
   </EuiContextMenuItem>,
-  <EuiContextMenuItem key="B" data-test-subj="itemB">
+  <EuiContextMenuItem key="B" data-test-subj="itemB" onClick={() => {}}>
     Option B
   </EuiContextMenuItem>,
   <EuiContextMenuItem key="C" data-test-subj="itemC">

@@ -10,9 +10,6 @@ import { defaultSyntax } from './default_syntax';
 import { AST, Clause, FieldClause } from './ast';
 import { Granularity } from './date_format';
 import { DateValue, isDateValue } from './date_value';
-import { Random } from '../../../services';
-
-const random = new Random();
 
 describe('defaultSyntax', () => {
   test('empty query', () => {
@@ -1020,17 +1017,14 @@ describe('defaultSyntax', () => {
 
   test('strict schema - flags - listed as non-boolean field', () => {
     const query = 'is:active';
-    const schema = {
-      strict: true,
-      fields: {
-        active: {
-          type: random.oneOf(['number', 'string', 'date']),
-        },
-      },
-    };
-    expect(() => {
-      defaultSyntax.parse(query, { schema });
-    }).toThrow('Unknown flag `active`');
+    const getSchema = (type: string) => ({
+      schema: { strict: true, fields: { active: { type } } },
+    });
+    ['number', 'string', 'date'].forEach((type) => {
+      expect(() => {
+        defaultSyntax.parse(query, getSchema(type));
+      }).toThrow('Unknown flag `active`');
+    });
   });
 
   test('strict schema - flags - not listed', () => {

@@ -9,6 +9,15 @@
   }
 }
 
+.euiFormControlLayout--euiTextArea {
+  height: auto;
+
+  .euiFormControlLayoutIcons {
+    top: auto;
+    bottom: $euiFormControlPadding;
+  }
+}
+
 // resize modifiers
 $textareaResizing: (
   vertical: 'resizeVertical',

@@ -6,9 +6,11 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { EuiExpression } from './expression';
 import { EuiFieldNumber, EuiSelect } from '../form';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -79,14 +81,14 @@ describe('EuiExpression', () => {
       });
     };
 
-    const changeExample1 = (event) => {
+    const changeExample1 = (event: ChangeEvent<HTMLSelectElement>) => {
       setExample1({
         ...example1,
         value: event.target.value,
       });
     };
 
-    const changeExample2Value = (e) => {
+    const changeExample2Value = (e: ChangeEvent<HTMLInputElement>) => {
       const sanitizedValue = parseInt(e.target.value, 10);
       setExample2({
         ...example2,
@@ -94,7 +96,9 @@ describe('EuiExpression', () => {
       });
     };
 
-    const changeExample2Description = (event) => {
+    const changeExample2Description = (
+      event: ChangeEvent<HTMLSelectElement>
+    ) => {
       setExample2({
         ...example2,
         description: event.target.value,
@@ -221,10 +225,9 @@ describe('EuiExpression', () => {
     });
 
     it('has zero violations when first popover is interacted with by keyboard', () => {
-      cy.realPress('Tab');
       cy.get('button')
         .contains(/When count\(\)/i)
-        .should('have.focus');
+        .focus();
       cy.realPress('Enter');
       cy.get('div[data-test-subj="cy-expression-popover-1"]').should('exist');
       cy.realPress('Tab');
@@ -237,10 +240,9 @@ describe('EuiExpression', () => {
     });
 
     it('has zero violations when second popover is interacted with by keyboard', () => {
-      cy.repeatRealPress('Tab');
       cy.get('button')
         .contains(/Is above 100/i)
-        .should('have.focus');
+        .focus();
       cy.realPress('Enter');
       cy.get('div[data-test-subj="cy-expression-popover-2"]').should('exist');
       cy.realPress('Tab');

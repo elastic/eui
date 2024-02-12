@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context 1`] = `
+<div>
+  <div
+    class="euiText emotion-euiText-m"
+  >
+    <div>
+      <button
+        data-datagrid-interactable="true"
+      >
+        hello
+      </button>
+      <button
+        data-datagrid-interactable="true"
+      >
+        world
+      </button>
+    </div>
+  </div>
+  <div
+    class="euiPopoverFooter emotion-euiPopoverFooter-l-l"
+  >
+    <div
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-s-flexStart-stretch-row"
+    >
+      <div
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
+      >
+        <div>
+          <button />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDataGridCell renders 1`] = `
+<div
+  aria-rowindex="1"
+  class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+  data-gridcell-column-id="someColumn"
+  data-gridcell-column-index="0"
+  data-gridcell-row-index="0"
+  data-gridcell-visible-row-index="0"
+  data-test-subj="dataGridRowCell"
+  role="gridcell"
+  tabindex="-1"
+>
+  <div
+    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+    data-datagrid-cellcontent="true"
+  >
+    <div>
+      <button
+        data-datagrid-interactable="true"
+      >
+        hello
+      </button>
+      <button
+        data-datagrid-interactable="true"
+      >
+        world
+      </button>
+    </div>
+  </div>
+  <p
+    class="emotion-euiScreenReaderOnly"
+    hidden=""
+  >
+    - 
+    someColumn, column 1, row 1
+  </p>
+</div>
+`;

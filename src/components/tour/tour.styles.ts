@@ -7,30 +7,18 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  UseEuiTheme,
-  shade,
-  tint,
-  COLOR_MODES_STANDARD,
-  EuiThemeColorModeStandard,
-} from '../../services';
+import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
 import { openAnimationTiming } from '../popover/popover_panel/_popover_panel.styles';
 import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
 
-const backgroundColor = (color: string, colorMode: EuiThemeColorModeStandard) =>
-  colorMode === COLOR_MODES_STANDARD.dark
-    ? shade(color, 0.45)
-    : tint(color, 0.5);
+import { _tourFooterBgColor } from './_tour_footer.styles';
 
-export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
+export const euiTourStyles = (euiThemeContext: UseEuiTheme) => ({
   // Targets EuiPopoverPanel
   euiTour: css`
     [data-popover-arrow='top']::before {
-      ${logicalCSS(
-        'border-top-color',
-        backgroundColor(euiTheme.colors.lightestShade, colorMode)
-      )};
+      ${logicalCSS('border-top-color', _tourFooterBgColor(euiThemeContext))}
     }
   `,
 });
@@ -52,55 +40,25 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     isOpen: css`
       ${euiCanAnimate} {
-        opacity: 1; // Must alter here otherwise the transition does not occur
+        opacity: 1; /* Must alter here otherwise the transition does not occur */
       }
     `,
     // Positions
     right: css`
-      ${logicalCSS('top', arrowHalfSize)};
-      ${logicalCSS('left', arrowOffset)};
+      ${logicalCSS('top', arrowHalfSize)}
+      ${logicalCSS('left', arrowOffset)}
     `,
     left: css`
-      ${logicalCSS('top', arrowHalfSize)};
-      ${logicalCSS('left', arrowSize)};
+      ${logicalCSS('top', arrowHalfSize)}
+      ${logicalCSS('left', arrowSize)}
     `,
     top: css`
-      ${logicalCSS('top', arrowSize)};
-      ${logicalCSS('left', arrowHalfSize)};
+      ${logicalCSS('top', arrowSize)}
+      ${logicalCSS('left', arrowHalfSize)}
     `,
     bottom: css`
-      ${logicalCSS('top', arrowOffset)};
-      ${logicalCSS('left', arrowHalfSize)};
+      ${logicalCSS('top', arrowOffset)}
+      ${logicalCSS('left', arrowHalfSize)}
     `,
   };
 };
-
-export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiTourHeader: css`
-    ${logicalCSS('border-bottom', 'none')};
-    // Overriding default EuiPopoverTitle styles
-    ${logicalCSS('margin-bottom', euiTheme.size.s)};
-  `,
-  // Elements
-  euiTourHeader__title: css`
-    // Removes extra margin applied to sibling EuiTitle's
-    ${logicalCSS('margin-top', 0)};
-  `,
-  euiTourHeader__subtitle: css`
-    color: ${euiTheme.colors.subduedText};
-    padding-block-end: ${euiTheme.size.xs};
-  `,
-});
-
-export const euiTourFooterStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
-  // Base
-  euiTourFooter: css`
-    background-color: ${backgroundColor(
-      euiTheme.colors.lightestShade,
-      colorMode
-    )};
-    ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.medium)};
-    ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)};
-  `,
-});

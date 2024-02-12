@@ -1,11 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IsFilter render 1`] = `
-<EuiFilterButton
-  aria-pressed={false}
-  hasActiveFilters={false}
-  onClick={[Function]}
+<button
+  aria-pressed="false"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+  type="button"
 >
-  Open
-</EuiFilterButton>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  >
+    <span
+      class="euiFilterButton__text emotion-euiFilterButton__text"
+      data-text="Open"
+      title="Open"
+    >
+      Open
+    </span>
+  </span>
+</button>
 `;

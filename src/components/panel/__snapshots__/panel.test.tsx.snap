@@ -3,7 +3,7 @@
 exports[` 1`] = `
 <button
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -11,7 +11,7 @@ exports[` 1`] = `
 exports[`EuiPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

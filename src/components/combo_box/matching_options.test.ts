@@ -262,7 +262,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
 describe('getMatchingOptions', () => {
   test.each(testCases)(
     '.getMatchingOptions(%o)',
-    (testCase: typeof testCases[number]) => {
+    (testCase: (typeof testCases)[number]) => {
       const { expected, ...rest } = testCase;
       expect(getMatchingOptions(rest)).toMatchObject(expected);
     }

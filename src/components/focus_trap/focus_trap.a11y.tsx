@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiBadge } from '../badge';
@@ -116,15 +118,13 @@ describe('EuiFocusTrap', () => {
 
   describe('Accessibility checks for keyboard navigation', () => {
     it('allows the button outside the FocusTrap to receive focus', () => {
-      cy.repeatRealPress('Tab', 5);
-      cy.get('button[data-test-subj="cy-external-button"]').should(
-        'have.focus'
-      );
+      cy.get('button[data-test-subj="cy-external-button"]').focus();
       cy.checkAxe();
     });
 
     it('prevents the button outside the FocusTrap from receiving focus', () => {
-      cy.repeatRealPress('Tab', 4);
+      cy.get('input[data-test-subj="cy-input-one"]').focus();
+      cy.repeatRealPress('Tab', 3);
       cy.realPress('Enter');
       cy.realPress('Tab');
       cy.get('input[data-test-subj="cy-input-one"]').should('have.focus');

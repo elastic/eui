@@ -1,63 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiFocusTrap accepts className and style 1`] = `
-Array [
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    class="testing"
-    data-focus-lock-disabled="disabled"
-    style="height:100%"
-  >
-    <div />
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
-`;
-
-exports[`EuiFocusTrap can be disabled 1`] = `
-Array [
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <div />
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
-`;
-
-exports[`EuiFocusTrap is rendered 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
-  />,
+  />
+  <div
+    class="testing"
+    data-focus-lock-disabled="false"
+    style="height: 100%;"
+  >
+    <div />
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
+</div>
+`;
+
+exports[`EuiFocusTrap can be disabled 1`] = `
+<div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+  <div
+    data-focus-lock-disabled="disabled"
+  >
+    <div />
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+</div>
+`;
+
+exports[`EuiFocusTrap renders 1`] = `
+<div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="0"
+  />
   <div
     data-focus-lock-disabled="false"
   >
     <div />
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
-  />,
-]
+  />
+</div>
 `;

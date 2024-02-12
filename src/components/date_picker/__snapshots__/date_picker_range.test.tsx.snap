@@ -1,449 +1,1454 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiDatePickerRange disabled is rendered 1`] = `
-<div
-  class="euiDatePickerRange euiDatePickerRange--isDisabled"
->
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
-  >
-    <div
-      class="euiFormControlLayout"
-    >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
-      >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start"
-                disabled=""
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiFormControlLayoutIcons"
-        >
-          <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="calendar"
-            />
-          </span>
-        </div>
-      </div>
-    </div>
-  </span>
-  <span
-    class="euiDatePickerRange__delimeter"
-  >
-    <span
-      color="subdued"
-      data-euiicon-type="sortRight"
-    />
-  </span>
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
-  >
-    <div
-      class="euiFormControlLayout"
-    >
-      <div
-        class="euiFormControlLayout__childrenWrapper"
-      >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiDatePickerRange__end"
-                disabled=""
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </span>
-</div>
-`;
-
 exports[`EuiDatePickerRange is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
-  class="euiDatePickerRange testClass1 testClass2"
+  class="euiDatePickerRange testClass1 testClass2 emotion-euiDatePickerRange-euiTestCss"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
+  <div
+    class="euiFormControlLayout euiFormControlLayoutDelimited"
   >
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
       >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiFormControlLayoutIcons"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="calendar"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
       </div>
-    </div>
-  </span>
-  <span
-    class="euiDatePickerRange__delimeter"
-  >
-    <span
-      color="subdued"
-      data-euiicon-type="sortRight"
-    />
-  </span>
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
-  >
-    <div
-      class="euiFormControlLayout"
-    >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover emotion-euiPopover"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiDatePickerRange__end"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
-  </span>
-</div>
+  </div>
+</span>
 `;
 
-exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
-<div
-  class="euiDatePickerRange euiDatePickerRange--isInvalid"
+exports[`EuiDatePickerRange props compressed 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
 >
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
+  <div
+    class="euiFormControlLayout euiFormControlLayout--compressed euiFormControlLayoutDelimited"
   >
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
       >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon euiFieldText-isInvalid euiDatePickerRange__start"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiFormControlLayoutIcons"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="calendar"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
       </div>
-    </div>
-  </span>
-  <span
-    class="euiDatePickerRange__delimeter"
-  >
-    <span
-      color="danger"
-      data-euiicon-type="alert"
-    />
-  </span>
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
-  >
-    <div
-      class="euiFormControlLayout"
-    >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover emotion-euiPopover"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText-isInvalid euiDatePickerRange__end"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
-  </span>
-</div>
+  </div>
+</span>
 `;
 
-exports[`EuiDatePickerRange readOnly is rendered 1`] = `
-<div
-  class="euiDatePickerRange euiDatePickerRange--readOnly"
+exports[`EuiDatePickerRange props disabled 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
 >
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
+  <div
+    class="euiFormControlLayout euiFormControlLayout-isDisabled euiFormControlLayoutDelimited"
   >
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
       >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start"
-                readonly=""
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiFormControlLayoutIcons"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="calendar"
-            />
-          </span>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            disabled=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            disabled=""
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
-  </span>
-  <span
-    class="euiDatePickerRange__delimeter"
-  >
-    <span
-      color="subdued"
-      data-euiicon-type="sortRight"
-    />
-  </span>
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
+  </div>
+</span>
+`;
+
+exports[`EuiDatePickerRange props fullWidth 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayoutDelimited"
   >
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover emotion-euiPopover"
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiFieldText--fullWidth euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiFieldText--fullWidth euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`EuiDatePickerRange props inline renders 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange-inline-responsive-shadow"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayoutDelimited"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="react-datepicker"
+      >
+        <div
+          class="react-datepicker__triangle"
+        />
+        <button
+          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          type="button"
+        >
+          Previous Month
+        </button>
+        <button
+          class="react-datepicker__navigation react-datepicker__navigation--next"
+          type="button"
+        >
+          Next month
+        </button>
+        <div
+          class="react-datepicker__month-container"
         >
           <div
-            class="euiPopover__anchor css-zih94u-render"
+            class="react-datepicker__header"
           >
             <div
-              class="react-datepicker__input-container"
+              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
             >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiDatePickerRange__end"
-                readonly=""
-                type="text"
-                value=""
-              />
+              January 2000
+            </div>
+            <div
+              class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
+            >
+              <div
+                class="react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--scroll"
+              >
+                <div
+                  aria-label="Button. Open the month selector. January is currently selected."
+                  class="react-datepicker__month-read-view"
+                  style="visibility: visible;"
+                  tabindex="0"
+                >
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                  />
+                  <span
+                    class="react-datepicker__month-read-view--selected-month"
+                  >
+                    January
+                  </span>
+                </div>
+              </div>
+              <div
+                class="react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--scroll"
+              >
+                <div
+                  aria-label="Button. Open the year selector. 2000 is currently selected."
+                  class="react-datepicker__year-read-view"
+                  style="visibility: visible;"
+                  tabindex="0"
+                >
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                  />
+                  <span
+                    class="react-datepicker__year-read-view--selected-year"
+                  >
+                    2000
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="react-datepicker__day-names"
+            >
+              <div
+                class="react-datepicker__day-name"
+              >
+                Su
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Mo
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Tu
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                We
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Th
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Fr
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Sa
+              </div>
+            </div>
+          </div>
+          <div
+            aria-label="January, 2000"
+            class="react-datepicker__month react-datepicker__month--accessible"
+            role="listbox"
+            tabindex="0"
+          >
+            <span
+              class="emotion-euiScreenReaderOnly"
+            />
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-26"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend react-datepicker__day--outside-month"
+                role="option"
+              >
+                26
+              </div>
+              <div
+                aria-label="day-27"
+                class="react-datepicker__day react-datepicker__day--mon react-datepicker__day--outside-month"
+                role="option"
+              >
+                27
+              </div>
+              <div
+                aria-label="day-28"
+                class="react-datepicker__day react-datepicker__day--tue react-datepicker__day--outside-month"
+                role="option"
+              >
+                28
+              </div>
+              <div
+                aria-label="day-29"
+                class="react-datepicker__day react-datepicker__day--wed react-datepicker__day--outside-month"
+                role="option"
+              >
+                29
+              </div>
+              <div
+                aria-label="day-30"
+                class="react-datepicker__day react-datepicker__day--thu react-datepicker__day--outside-month"
+                role="option"
+              >
+                30
+              </div>
+              <div
+                aria-label="day-31"
+                class="react-datepicker__day react-datepicker__day--fri react-datepicker__day--outside-month"
+                role="option"
+              >
+                31
+              </div>
+              <div
+                aria-label="day-1"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--selected react-datepicker__day--weekend"
+                role="option"
+              >
+                1
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-2"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                2
+              </div>
+              <div
+                aria-label="day-3"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                3
+              </div>
+              <div
+                aria-label="day-4"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                4
+              </div>
+              <div
+                aria-label="day-5"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                5
+              </div>
+              <div
+                aria-label="day-6"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                6
+              </div>
+              <div
+                aria-label="day-7"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                7
+              </div>
+              <div
+                aria-label="day-8"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                8
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-9"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                9
+              </div>
+              <div
+                aria-label="day-10"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                10
+              </div>
+              <div
+                aria-label="day-11"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                11
+              </div>
+              <div
+                aria-label="day-12"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                12
+              </div>
+              <div
+                aria-label="day-13"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                13
+              </div>
+              <div
+                aria-label="day-14"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                14
+              </div>
+              <div
+                aria-label="day-15"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                15
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-16"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                16
+              </div>
+              <div
+                aria-label="day-17"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                17
+              </div>
+              <div
+                aria-label="day-18"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                18
+              </div>
+              <div
+                aria-label="day-19"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                19
+              </div>
+              <div
+                aria-label="day-20"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                20
+              </div>
+              <div
+                aria-label="day-21"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                21
+              </div>
+              <div
+                aria-label="day-22"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                22
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-23"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                23
+              </div>
+              <div
+                aria-label="day-24"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                24
+              </div>
+              <div
+                aria-label="day-25"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                25
+              </div>
+              <div
+                aria-label="day-26"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                26
+              </div>
+              <div
+                aria-label="day-27"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                27
+              </div>
+              <div
+                aria-label="day-28"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                28
+              </div>
+              <div
+                aria-label="day-29"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                29
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-30"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                30
+              </div>
+              <div
+                aria-label="day-31"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                31
+              </div>
+              <div
+                aria-label="day-1"
+                class="react-datepicker__day react-datepicker__day--tue react-datepicker__day--outside-month"
+                role="option"
+              >
+                1
+              </div>
+              <div
+                aria-label="day-2"
+                class="react-datepicker__day react-datepicker__day--wed react-datepicker__day--outside-month"
+                role="option"
+              >
+                2
+              </div>
+              <div
+                aria-label="day-3"
+                class="react-datepicker__day react-datepicker__day--thu react-datepicker__day--outside-month"
+                role="option"
+              >
+                3
+              </div>
+              <div
+                aria-label="day-4"
+                class="react-datepicker__day react-datepicker__day--fri react-datepicker__day--outside-month"
+                role="option"
+              >
+                4
+              </div>
+              <div
+                aria-label="day-5"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend react-datepicker__day--outside-month"
+                role="option"
+              >
+                5
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="react-datepicker"
+      >
+        <div
+          class="react-datepicker__triangle"
+        />
+        <button
+          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          type="button"
+        >
+          Previous Month
+        </button>
+        <button
+          class="react-datepicker__navigation react-datepicker__navigation--next"
+          type="button"
+        >
+          Next month
+        </button>
+        <div
+          class="react-datepicker__month-container"
+        >
+          <div
+            class="react-datepicker__header"
+          >
+            <div
+              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
+            >
+              January 2000
+            </div>
+            <div
+              class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
+            >
+              <div
+                class="react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--scroll"
+              >
+                <div
+                  aria-label="Button. Open the month selector. January is currently selected."
+                  class="react-datepicker__month-read-view"
+                  style="visibility: visible;"
+                  tabindex="0"
+                >
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                  />
+                  <span
+                    class="react-datepicker__month-read-view--selected-month"
+                  >
+                    January
+                  </span>
+                </div>
+              </div>
+              <div
+                class="react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--scroll"
+              >
+                <div
+                  aria-label="Button. Open the year selector. 2000 is currently selected."
+                  class="react-datepicker__year-read-view"
+                  style="visibility: visible;"
+                  tabindex="0"
+                >
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                  />
+                  <span
+                    class="react-datepicker__year-read-view--selected-year"
+                  >
+                    2000
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="react-datepicker__day-names"
+            >
+              <div
+                class="react-datepicker__day-name"
+              >
+                Su
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Mo
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Tu
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                We
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Th
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Fr
+              </div>
+              <div
+                class="react-datepicker__day-name"
+              >
+                Sa
+              </div>
+            </div>
+          </div>
+          <div
+            aria-label="January, 2000"
+            class="react-datepicker__month react-datepicker__month--accessible"
+            role="listbox"
+            tabindex="0"
+          >
+            <span
+              class="emotion-euiScreenReaderOnly"
+            />
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-26"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend react-datepicker__day--outside-month"
+                role="option"
+              >
+                26
+              </div>
+              <div
+                aria-label="day-27"
+                class="react-datepicker__day react-datepicker__day--mon react-datepicker__day--outside-month"
+                role="option"
+              >
+                27
+              </div>
+              <div
+                aria-label="day-28"
+                class="react-datepicker__day react-datepicker__day--tue react-datepicker__day--outside-month"
+                role="option"
+              >
+                28
+              </div>
+              <div
+                aria-label="day-29"
+                class="react-datepicker__day react-datepicker__day--wed react-datepicker__day--outside-month"
+                role="option"
+              >
+                29
+              </div>
+              <div
+                aria-label="day-30"
+                class="react-datepicker__day react-datepicker__day--thu react-datepicker__day--outside-month"
+                role="option"
+              >
+                30
+              </div>
+              <div
+                aria-label="day-31"
+                class="react-datepicker__day react-datepicker__day--fri react-datepicker__day--outside-month"
+                role="option"
+              >
+                31
+              </div>
+              <div
+                aria-label="day-1"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                1
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-2"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--selected react-datepicker__day--weekend"
+                role="option"
+              >
+                2
+              </div>
+              <div
+                aria-label="day-3"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                3
+              </div>
+              <div
+                aria-label="day-4"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                4
+              </div>
+              <div
+                aria-label="day-5"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                5
+              </div>
+              <div
+                aria-label="day-6"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                6
+              </div>
+              <div
+                aria-label="day-7"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                7
+              </div>
+              <div
+                aria-label="day-8"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                8
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-9"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                9
+              </div>
+              <div
+                aria-label="day-10"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                10
+              </div>
+              <div
+                aria-label="day-11"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                11
+              </div>
+              <div
+                aria-label="day-12"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                12
+              </div>
+              <div
+                aria-label="day-13"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                13
+              </div>
+              <div
+                aria-label="day-14"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                14
+              </div>
+              <div
+                aria-label="day-15"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                15
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-16"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                16
+              </div>
+              <div
+                aria-label="day-17"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                17
+              </div>
+              <div
+                aria-label="day-18"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                18
+              </div>
+              <div
+                aria-label="day-19"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                19
+              </div>
+              <div
+                aria-label="day-20"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                20
+              </div>
+              <div
+                aria-label="day-21"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                21
+              </div>
+              <div
+                aria-label="day-22"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                22
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-23"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                23
+              </div>
+              <div
+                aria-label="day-24"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                24
+              </div>
+              <div
+                aria-label="day-25"
+                class="react-datepicker__day react-datepicker__day--tue"
+                role="option"
+              >
+                25
+              </div>
+              <div
+                aria-label="day-26"
+                class="react-datepicker__day react-datepicker__day--wed"
+                role="option"
+              >
+                26
+              </div>
+              <div
+                aria-label="day-27"
+                class="react-datepicker__day react-datepicker__day--thu"
+                role="option"
+              >
+                27
+              </div>
+              <div
+                aria-label="day-28"
+                class="react-datepicker__day react-datepicker__day--fri"
+                role="option"
+              >
+                28
+              </div>
+              <div
+                aria-label="day-29"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend"
+                role="option"
+              >
+                29
+              </div>
+            </div>
+            <div
+              class="react-datepicker__week"
+            >
+              <div
+                aria-label="day-30"
+                class="react-datepicker__day react-datepicker__day--sun react-datepicker__day--weekend"
+                role="option"
+              >
+                30
+              </div>
+              <div
+                aria-label="day-31"
+                class="react-datepicker__day react-datepicker__day--mon"
+                role="option"
+              >
+                31
+              </div>
+              <div
+                aria-label="day-1"
+                class="react-datepicker__day react-datepicker__day--tue react-datepicker__day--outside-month"
+                role="option"
+              >
+                1
+              </div>
+              <div
+                aria-label="day-2"
+                class="react-datepicker__day react-datepicker__day--wed react-datepicker__day--outside-month"
+                role="option"
+              >
+                2
+              </div>
+              <div
+                aria-label="day-3"
+                class="react-datepicker__day react-datepicker__day--thu react-datepicker__day--outside-month"
+                role="option"
+              >
+                3
+              </div>
+              <div
+                aria-label="day-4"
+                class="react-datepicker__day react-datepicker__day--fri react-datepicker__day--outside-month"
+                role="option"
+              >
+                4
+              </div>
+              <div
+                aria-label="day-5"
+                class="react-datepicker__day react-datepicker__day--sat react-datepicker__day--weekend react-datepicker__day--outside-month"
+                role="option"
+              >
+                5
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </span>
-</div>
+  </div>
+</span>
+`;
+
+exports[`EuiDatePickerRange props isInvalid 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayoutDelimited euiFormControlLayoutDelimited--isInvalid"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-invalid="true"
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-danger"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-invalid="true"
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
+      >
+        <span
+          color="danger"
+          data-euiicon-type="warning"
+        />
+      </div>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`EuiDatePickerRange props isLoading 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayoutDelimited"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
+      >
+        <span
+          aria-label="Loading"
+          class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+          role="progressbar"
+        />
+      </div>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`EuiDatePickerRange props readOnly 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayoutDelimited"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
 `;
 
 exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
-<div
+<span
   aria-label="aria-label"
-  class="euiDatePickerRange testClass1 testClass2"
+  class="euiDatePickerRange testClass1 testClass2 emotion-euiDatePickerRange-euiTestCss"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
+  <div
+    class="euiFormControlLayout euiFormControlLayoutDelimited"
   >
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
       >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start hello"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiFormControlLayoutIcons"
+        <span
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
-          >
-            <span
-              aria-hidden="true"
-              class="euiFormControlLayoutCustomIcon__icon"
-              data-euiicon-type="calendar"
-            />
-          </span>
-        </div>
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
       </div>
-    </div>
-  </span>
-  <span
-    class="euiDatePickerRange__delimeter"
-  >
-    <span
-      color="subdued"
-      data-euiicon-type="sortRight"
-    />
-  </span>
-  <span
-    class="euiDatePicker euiDatePicker--shadow"
-  >
-    <div
-      class="euiFormControlLayout"
-    >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiPopover emotion-euiPopover-block"
       >
         <div
-          class="euiPopover emotion-euiPopover"
+          class="react-datepicker__input-container"
         >
-          <div
-            class="euiPopover__anchor css-zih94u-render"
-          >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiDatePickerRange__end world"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__start hello euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover-block"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            aria-label="Press the down key to open a popover containing a calendar."
+            class="euiDatePicker euiFieldText euiDatePickerRange__end world euiFormControlLayoutDelimited__input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </div>
-  </span>
-</div>
+  </div>
+</span>
 `;

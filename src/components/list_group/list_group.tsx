@@ -11,14 +11,13 @@ import classNames from 'classnames';
 
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { useEuiTheme, cloneElementWithCss } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
 import { euiListGroupStyles } from './list_group.styles';
 
 export const GUTTER_SIZES = ['none', 's', 'm'] as const;
-export type EuiListGroupGutterSize = typeof GUTTER_SIZES[number];
+export type EuiListGroupGutterSize = (typeof GUTTER_SIZES)[number];
 
 export type EuiListGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {

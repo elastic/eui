@@ -47,7 +47,7 @@ export type IconType = EuiIconType | string | ComponentType;
 export type IconColor = string | NamedColor;
 
 export const SIZES = ['original', 's', 'm', 'l', 'xl', 'xxl'] as const;
-export type IconSize = typeof SIZES[number];
+export type IconSize = (typeof SIZES)[number];
 
 export type EuiIconProps = CommonProps &
   Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {
@@ -153,7 +153,6 @@ export class EuiIconClass extends PureComponent<
     const { type } = this.props;
 
     if (isEuiIconType(type) && this.state.icon == null) {
-      //eslint-disable-next-line react/no-did-mount-set-state
       this.setState({
         neededLoading: true,
         isLoading: true,
@@ -169,14 +168,12 @@ export class EuiIconClass extends PureComponent<
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (isEuiIconType(type)) {
-        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           neededLoading: iconComponentCache.hasOwnProperty(type),
           isLoading: true,
         });
         this.loadIconComponent(type);
       } else {
-        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
           neededLoading: true,
@@ -291,6 +288,7 @@ export class EuiIconClass extends PureComponent<
           src={icon}
           className={classes}
           css={cssStyles}
+          style={style}
           tabIndex={tabIndex}
           {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
         />

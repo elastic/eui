@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiLoadingSpinner custom colors 1`] = `
-Array [
+<div>
   <span
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color:#07C white white white"
-  />,
+    style="border-color: #07c white white white;"
+  />
   <span
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color:black #D3DAE6 #D3DAE6 #D3DAE6"
-  />,
+    style="border-color: black #d3dae6 #d3dae6 #d3dae6;"
+  />
   <span
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="color:red;border-color:black white white white"
-  />,
-]
+    style="color: red; border-color: black white white white;"
+  />
+</div>
 `;
 
 exports[`EuiLoadingSpinner is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingSpinner testClass1 testClass2 emotion-euiLoadingSpinner-m"
+  class="euiLoadingSpinner testClass1 testClass2 emotion-euiLoadingSpinner-m-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
 />

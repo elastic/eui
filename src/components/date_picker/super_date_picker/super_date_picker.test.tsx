@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -28,24 +30,35 @@ const findInternalInstance = (
   const instance = component.instance() as EuiSuperDatePickerInternal;
   return [instance, component];
 };
-const shallowAndDive = (component: React.ReactElement) =>
-  shallow(component).dive().dive();
 
 describe('EuiSuperDatePicker', () => {
+  // RTL doesn't automatically clean up portals/datepicker popovers between tests
+  afterEach(() => {
+    const portals = document.querySelectorAll('[data-euiportal]');
+    portals.forEach((portal) => portal.parentNode?.removeChild(portal));
+  });
+
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
-    skipStyles: true,
+    skip: { style: true },
   });
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
     childProps: ['updateButtonProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
-  test('is rendered', () => {
-    const component = shallowAndDive(
+  it('renders', () => {
+    const { container } = render(
       <EuiSuperDatePicker onTimeChange={noop} {...requiredProps} />
     );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-    expect(component).toMatchSnapshot();
+  it('renders an EuiDatePickerRange', () => {
+    const { container, getByTestSubject } = render(
+      <EuiSuperDatePicker onTimeChange={noop} {...requiredProps} />
+    );
+    fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('refresh is disabled by default', () => {
@@ -76,20 +89,16 @@ describe('EuiSuperDatePicker', () => {
 
     // If we update the prop `isPaused` we expect the interval to be stopped too.
     component.setProps({ isPaused: true });
-    const [
-      instanceUpdatedPaused,
-      componentUpdatedPaused,
-    ] = findInternalInstance(component);
+    const [instanceUpdatedPaused, componentUpdatedPaused] =
+      findInternalInstance(component);
     expect(typeof instanceUpdatedPaused.asyncInterval).toBe('object');
     expect(instanceUpdatedPaused.asyncInterval!.isStopped).toBe(true);
     expect(componentUpdatedPaused.prop('isPaused')).toBe(true);
 
     // Let's start refresh again for a final sanity check.
     component.setProps({ isPaused: false });
-    const [
-      instanceUpdatedRefresh,
-      componentUpdatedRefresh,
-    ] = findInternalInstance(component);
+    const [instanceUpdatedRefresh, componentUpdatedRefresh] =
+      findInternalInstance(component);
     expect(typeof instanceUpdatedRefresh.asyncInterval).toBe('object');
     expect(instanceUpdatedRefresh.asyncInterval!.isStopped).toBe(false);
     expect(componentUpdatedRefresh.prop('isPaused')).toBe(false);
@@ -199,77 +208,106 @@ describe('EuiSuperDatePicker', () => {
 
     describe('showUpdateButton', () => {
       test('can be false', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} showUpdateButton={false} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('can be iconOnly', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} showUpdateButton="iconOnly" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('accepts data-test-subj and passes to EuiFormControlLayout', () => {
-      const component = shallowAndDive(
+      const { container } = render(
         <EuiSuperDatePicker
           onTimeChange={noop}
           data-test-subj="mySuperDatePicker"
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('width', () => {
       test('can be full', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} width="full" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
       test('can be auto', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} width="auto" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('compressed', () => {
       test('is rendered', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} compressed />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isQuickSelectOnly', () => {
       test('is rendered', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker onTimeChange={noop} isQuickSelectOnly />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('isDisabled', () => {
+      test('true', () => {
+        const { container } = render(
+          <EuiSuperDatePicker onTimeChange={noop} isDisabled={true} />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      // TODO: Convert to storybook once EuiSuperDatePicker is on Emotion
+      test('config object', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            isDisabled={{
+              display: (
+                <span data-test-subj="customDisabledDisplay">All time</span>
+              ),
+            }}
+          />
+        );
+        expect(getByTestSubject('customDisabledDisplay').textContent).toEqual(
+          'All time'
+        );
+        expect(
+          getByTestSubject('superDatePickerShowDatesButton')
+        ).toMatchSnapshot();
       });
     });
 
     describe('isAutoRefreshOnly', () => {
       it('is rendered', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker
             onTimeChange={noop}
             onRefreshChange={noop}
             isAutoRefreshOnly
           />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('passes required props', () => {
-        const component = shallowAndDive(
+        const { container } = render(
           <EuiSuperDatePicker
             onTimeChange={noop}
             onRefreshChange={noop}
@@ -278,7 +316,117 @@ describe('EuiSuperDatePicker', () => {
             data-test-subj="autoRefreshOnly"
           />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('refreshInterval and refreshIntervalUnits', () => {
+      it('renders', () => {
+        const { container, getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            onRefreshChange={noop}
+            refreshInterval={3600000}
+            refreshIntervalUnits="m"
+            isPaused={false}
+          />
+        );
+
+        const autoRefreshButton = container.querySelector(
+          '.euiAutoRefreshButton'
+        )!;
+        expect(autoRefreshButton).toHaveTextContent('60 m');
+
+        fireEvent.click(autoRefreshButton);
+        expect(
+          getByTestSubject('superDatePickerRefreshIntervalInput')
+        ).toHaveValue(60);
+        expect(
+          getByTestSubject('superDatePickerRefreshIntervalUnitsSelect')
+        ).toHaveValue('m');
+      });
+    });
+
+    describe('onRefreshChange', () => {
+      it('returns the expected props', () => {
+        const onRefreshChange = jest.fn();
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            onRefreshChange={onRefreshChange}
+          />
+        );
+
+        fireEvent.click(
+          getByTestSubject('superDatePickerToggleQuickMenuButton')
+        );
+        fireEvent.change(
+          getByTestSubject('superDatePickerToggleRefreshButton')
+        );
+        fireEvent.change(
+          getByTestSubject('superDatePickerRefreshIntervalUnitsSelect'),
+          { target: { value: 'h' } }
+        );
+
+        expect(onRefreshChange).toHaveBeenCalledWith({
+          refreshInterval: 3600000,
+          intervalUnits: 'h',
+          isPaused: expect.any(Boolean),
+        });
+      });
+    });
+
+    describe('canRoundRelativeUnits', () => {
+      const props = {
+        onTimeChange: noop,
+        start: 'now-300m',
+        end: 'now',
+      };
+
+      it('defaults to true, which will round relative units up to the next largest unit', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker {...props} canRoundRelativeUnits={true} />
+        );
+        fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
+
+        const startButton = getByTestSubject(
+          'superDatePickerstartDatePopoverButton'
+        );
+        expect(startButton).toHaveTextContent('~ 5 hours ago');
+
+        const countInput = getByTestSubject(
+          'superDatePickerRelativeDateInputNumber'
+        );
+        expect(countInput).toHaveValue(5);
+
+        const unitSelect = getByTestSubject(
+          'superDatePickerRelativeDateInputUnitSelector'
+        );
+        expect(unitSelect).toHaveValue('h');
+
+        fireEvent.change(countInput, { target: { value: 300 } });
+        fireEvent.change(unitSelect, { target: { value: 'd' } });
+        expect(startButton).toHaveTextContent('~ 10 months ago');
+      });
+
+      it('when false, allows preserving the unit set in the start/end time timestamp', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker {...props} canRoundRelativeUnits={false} />
+        );
+        fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
+
+        const startButton = getByTestSubject(
+          'superDatePickerstartDatePopoverButton'
+        );
+        expect(startButton).toHaveTextContent('300 minutes ago');
+
+        const unitSelect = getByTestSubject(
+          'superDatePickerRelativeDateInputUnitSelector'
+        );
+        expect(unitSelect).toHaveValue('m');
+
+        fireEvent.change(unitSelect, { target: { value: 'd' } });
+        expect(startButton).toHaveTextContent('300 days ago');
       });
     });
   });

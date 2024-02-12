@@ -17,7 +17,7 @@ import {
 } from './loading_spinner.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
-export type EuiLoadingSpinnerSize = typeof SIZES[number];
+export type EuiLoadingSpinnerSize = (typeof SIZES)[number];
 
 export type EuiLoadingSpinnerColor = {
   border?: CSSProperties['color'];

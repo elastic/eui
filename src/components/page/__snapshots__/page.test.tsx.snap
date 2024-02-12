@@ -15,7 +15,7 @@ exports[`EuiPage grow can be false 1`] = `
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage testClass1 testClass2 emotion-euiPage-row-grow"
+  class="euiPage testClass1 testClass2 emotion-euiPage-row-grow-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -59,20 +59,20 @@ exports[`EuiPage paddingSize xs is rendered 1`] = `
 exports[`EuiPage restrict width can be set to a custom number 1`] = `
 <div
   class="euiPage emotion-euiPage-row-grow-restrictWidth"
-  style="max-width:1024px"
+  style="max-width: 1024px;"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
   class="euiPage emotion-euiPage-row-grow-restrictWidth"
-  style="color:red;max-width:24rem"
+  style="color: red; max-width: 24rem;"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a default 1`] = `
 <div
   class="euiPage emotion-euiPage-row-grow-restrictWidth"
-  style="max-width:1200px"
+  style="max-width: 1200px;"
 />
 `;

@@ -10,7 +10,7 @@ import React, {
   CSSProperties,
   FunctionComponent,
   HTMLAttributes,
-  useEffect,
+  useLayoutEffect,
   useState,
 } from 'react';
 import { CommonProps } from '../../common';
@@ -80,26 +80,22 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
     ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let updatedStyles = {
       ...style,
       ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
     };
 
     if (sticky) {
-      const euiHeaderFixedCounter = Number(
-        document.body.dataset.fixedHeaders ?? 0
-      );
-
       const offset =
         typeof sticky === 'object'
-          ? sticky?.offset
-          : themeContext.euiTheme.base * 3 * euiHeaderFixedCounter;
+          ? `${sticky?.offset}px`
+          : 'var(--euiFixedHeadersOffset, 0)';
 
       updatedStyles = {
         ...updatedStyles,
         ...logicalStyle('top', offset),
-        ...logicalStyle('max-height', `calc(100vh - ${offset}px)`),
+        ...logicalStyle('max-height', `calc(100vh - ${offset})`),
       };
     }
 

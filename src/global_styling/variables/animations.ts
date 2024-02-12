@@ -33,12 +33,20 @@ export const EuiThemeAnimationSpeeds = [
   'extraSlow',
 ] as const;
 
-export type _EuiThemeAnimationSpeed = typeof EuiThemeAnimationSpeeds[number];
+export type _EuiThemeAnimationSpeed = (typeof EuiThemeAnimationSpeeds)[number];
 
-export type _EuiThemeAnimationSpeeds = Record<
-  _EuiThemeAnimationSpeed,
-  CSSProperties['animationDuration']
->;
+export type _EuiThemeAnimationSpeeds = {
+  /** - Default value: 90ms */
+  extraFast: CSSProperties['animationDuration'];
+  /** - Default value: 150ms */
+  fast: CSSProperties['animationDuration'];
+  /** - Default value: 250ms */
+  normal: CSSProperties['animationDuration'];
+  /** - Default value: 350ms */
+  slow: CSSProperties['animationDuration'];
+  /** - Default value: 500ms */
+  extraSlow: CSSProperties['animationDuration'];
+};
 
 /**
  * Easings / Timing functions
@@ -46,7 +54,8 @@ export type _EuiThemeAnimationSpeeds = Record<
 
 export const EuiThemeAnimationEasings = ['bounce', 'resistance'] as const;
 
-export type _EuiThemeAnimationEasing = typeof EuiThemeAnimationEasings[number];
+export type _EuiThemeAnimationEasing =
+  (typeof EuiThemeAnimationEasings)[number];
 
 export type _EuiThemeAnimationEasings = Record<
   _EuiThemeAnimationEasing,

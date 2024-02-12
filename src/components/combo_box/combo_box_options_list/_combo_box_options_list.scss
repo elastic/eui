@@ -2,13 +2,21 @@
  * 1. Using specificity to override panel shadow
  * 2. Prevent really long input from overflowing the container.
  */
-.euiComboBoxOptionsList {
-  // Remove transforms from popover panel
-  transform: none !important; // stylelint-disable-line declaration-no-important
-  top: 0;
 
-  .euiFilterSelectItem__content {
-    margin-block: 0 !important; // stylelint-disable-line declaration-no-important
+.euiComboBoxOptionsList {
+  max-height: 200px; // Also used/set in the JS file
+  overflow: hidden;
+
+  &__virtualization {
+    @include euiScrollBar;
+  }
+
+  /* Kibana FTR affordance - without this, Selenium complains about the overlaid
+     text intercepting the button click. Since `title` is always present, and
+     users can't highlight or copy combobox options anyway, we might as well
+     disable clicks on text */
+  .euiTextTruncate {
+    pointer-events: none;
   }
 }
 
@@ -17,14 +25,4 @@
   padding: $euiSizeS;
   text-align: center;
   word-wrap: break-word;
-}
-
-.euiComboBoxOptionsList__rowWrap {
-  padding: 0;
-  max-height: 200px; // Also used/set in the JS file
-  overflow: hidden;
-
-  > div { // Targets the element for FixedSizeList that doesn't have a selector
-    @include euiScrollBar;
-  }
 }

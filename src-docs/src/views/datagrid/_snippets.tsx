@@ -11,6 +11,7 @@ inMemory={{ level: 'sorting' }}`,
     id: 'A', // required
     display: <>Column A <EuiIcon type="dot" /></>, // optional column header rendering
     displayAsText: 'Column A', // column header as plain text
+    displayHeaderCellProps: { className: 'eui-textCenter' }, // optional column header cell props
     initialWidth: 150, // starting width of 150px
     isResizable: false, // prevents the user from resizing width
     isExpandable: false, // doesn't allow clicking in to see the content in a popup
@@ -33,16 +34,22 @@ inMemory={{ level: 'sorting' }}`,
   {
     id: 'selection',
     width: 31,
-    headerCellRender: () => <span>Select a Row</span>,
+    headerCellRender: () => <span>Select a row</span>,
+    headerCellProps: { className: 'eui-textCenter' },
     rowCellRender: () => <div><EuiCheckbox ... /></div>,
+    footerCellRender: () => <span>Select a row</span>,
+    footerCellProps: { className: 'eui-textCenter' },
   },
 ]}`,
   trailingControlColumns: `trailingControlColumns={[
   {
     id: 'actions',
     width: 40,
-    headerCellRender: () => null,
+    headerCellRender: () => 'Actions',
+    headerCellProps: { className: 'euiScreenReaderOnly' },
     rowCellRender: MyGridActionsComponent,
+    footerCellRender: () => null,
+    footerCellProps: { data-test-subj: 'emptyFooterCell' },
   },
 ]}`,
   renderCellValue: 'renderCellValue={({ rowIndex, columnId }) => {}}',
@@ -55,10 +62,15 @@ inMemory={{ level: 'sorting' }}`,
 )}`,
   renderFooterCellValue:
     'renderFooterCellValue={({ rowIndex, columnId }) => {}}',
+  renderCustomGridBody: `// Optional; advanced usage only. This render function is an escape hatch for consumers who need to opt out of virtualization or otherwise need total custom control over how data grid cells are rendered.
+
+renderCustomGridBody={({ visibleColumns, visibleRowData, Cell }) => (
+  <Cell colIndex={mappedFromVisibleColumns} visibleRowIndex={mappedFromVisibleRowData} />
+)}`,
   pagination: `pagination={{
   pageIndex: 1,
-  pageSize: 100,
-  pageSizeOptions: [50, 100, 200],
+  pageSize: 100, // If not specified, defaults to EuiTablePagination.itemsPerPage
+  pageSizeOptions: [50, 100, 200], // If not specified, defaults to EuiTablePagination.itemsPerPageOptions
   onChangePage: () => {},
   onChangeItemsPerPage: () => {},
 }}`,

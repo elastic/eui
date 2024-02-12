@@ -3,7 +3,7 @@
 exports[`EuiStat is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStat testClass1 testClass2 emotion-euiStat-left"
+  class="euiStat testClass1 testClass2 emotion-euiStat-left-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -153,7 +153,7 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
   <p
     aria-hidden="true"
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title"
-    style="color:#EB1919"
+    style="color: rgb(235, 25, 25);"
   >
     title
   </p>
@@ -222,7 +222,7 @@ exports[`EuiStat props left is rendered 1`] = `
 exports[`EuiStat props loading is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStat testClass1 testClass2 emotion-euiStat-left"
+  class="euiStat testClass1 testClass2 emotion-euiStat-left-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -320,7 +320,7 @@ exports[`EuiStat props render with custom description element 1`] = `
   <p
     aria-hidden="true"
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title"
-    style="color:#EB1919"
+    style="color: rgb(235, 25, 25);"
   >
     title
   </p>

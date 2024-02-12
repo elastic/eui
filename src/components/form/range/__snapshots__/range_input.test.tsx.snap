@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiRangeInput renders 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <input
+      class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+      max="100"
+      min="0"
+      step="any"
+      style="inline-size: calc(12px + 1ch + 2em + 0px);"
+      type="number"
+      value="0"
+    />
+  </div>
+</div>
+`;

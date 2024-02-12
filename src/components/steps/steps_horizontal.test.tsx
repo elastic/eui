@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import {
   EuiStepsHorizontal,
@@ -44,10 +44,10 @@ describe('EuiStepsHorizontal', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiStepsHorizontal {...requiredProps} steps={steps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

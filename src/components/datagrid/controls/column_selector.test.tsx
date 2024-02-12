@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../../test';
+import { testByReactVersion } from '../../../test/internal';
 
 import { EuiDataGridToolBarVisibilityOptions } from '../data_grid_types';
 
@@ -76,15 +77,18 @@ describe('useDataGridColumnSelector', () => {
       component.setProps({});
     };
 
-    it('renders a toolbar button/popover allowing users to set column visibility and order', () => {
-      const component = mount(<MockComponent showColumnSelector={true} />);
-      openPopover(component);
-      expect(component.render()).toMatchSnapshot();
-      expect(
-        component.find('[data-popover-panel]').first().render()
-      ).toMatchSnapshot();
-      closePopover(component);
-    });
+    testByReactVersion(
+      'renders a toolbar button/popover allowing users to set column visibility and order',
+      () => {
+        const component = mount(<MockComponent showColumnSelector={true} />);
+        openPopover(component);
+        expect(component.render()).toMatchSnapshot();
+        expect(
+          component.find('[data-popover-panel]').first().render()
+        ).toMatchSnapshot();
+        closePopover(component);
+      }
+    );
 
     it('does not render if all valid sub-options are disabled', () => {
       const component = shallow(
@@ -180,6 +184,13 @@ describe('useDataGridColumnSelector', () => {
     describe('column visibility', () => {
       const showColumnSelector = { allowHide: true, allowReorder: false };
 
+      const getButtonText = (component: ReactWrapper) => {
+        return component.find('span.euiDataGridToolbarControl__text').text();
+      };
+      const getBadgeText = (component: ReactWrapper) => {
+        return component.find('span.euiDataGridToolbarControl__badge').text();
+      };
+
       it('shows the number of columns hidden as the toolbar button text', () => {
         const component = mount(
           <MockComponent
@@ -188,7 +199,8 @@ describe('useDataGridColumnSelector', () => {
           />
         );
 
-        expect(component.text()).toEqual('2 columns hidden');
+        expect(getButtonText(component)).toEqual('Columns');
+        expect(getBadgeText(component)).toEqual('0/2');
       });
 
       it('toggles column visibility on switch interaction', () => {
@@ -203,7 +215,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('1 column hidden');
+        expect(getBadgeText(component)).toEqual('1/2');
 
         findTestSubject(
           component,
@@ -211,7 +223,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).not.toEqual('1 column hidden');
+        expect(getBadgeText(component)).toEqual('2');
       });
 
       it('toggles all column visibility with the show/hide all buttons', () => {
@@ -226,7 +238,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('2 columns hidden');
+        expect(getBadgeText(component)).toEqual('0/2');
 
         findTestSubject(
           component,
@@ -234,7 +246,7 @@ describe('useDataGridColumnSelector', () => {
         ).simulate('click');
         forceUpdate(component);
 
-        expect(component.text()).toEqual('Columns');
+        expect(getBadgeText(component)).toEqual('2');
       });
     });
   });

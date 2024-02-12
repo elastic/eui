@@ -22,11 +22,9 @@ interface paletteItem {
   width: string;
 }
 
-export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDisplayFixedProps> = ({
-  palette,
-  title,
-  ...rest
-}) => {
+export const EuiColorPaletteDisplayFixed: FunctionComponent<
+  EuiColorPaletteDisplayFixedProps
+> = ({ palette, title, ...rest }) => {
   const fixedGradient = getFixedLinearGradient(palette);
 
   const paletteStops = fixedGradient.map((item: paletteItem, index: number) => (

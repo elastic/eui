@@ -42,18 +42,3 @@ expect(
   })
 ).toMatchSnapshot();
 ```
-
-### testCustomHook
-
-Use this function to execute a custom hook and access its return value, which can be passed to `expect` for verification. The function also returns a `getUpdatedState` method which will always return the hook's current state, in case some interaction with the react component causes an update.
-
-```js
-const {
-  return: hookReturnValue,
-  getUpdatedState,
-} = testCustomHook(() => useCellPopover());
-
-expect(hookReturnValue).to.equal(myExpectedValue);
-doSomeActions();
-expect(getUpdatedState()).to.equal(myExpectedValue);
-```

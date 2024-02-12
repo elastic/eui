@@ -1,7 +1,6 @@
-/* eslint-disable react/no-multi-comp */
 import React, { useState, useEffect } from 'react';
 
-import { render, unmountComponentAtNode } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { EuiWrappingPopover } from '../../../../src/components';
 
@@ -36,10 +35,11 @@ export default () => {
     // the popover DOM is positioned independently of where the container exists
     const container = document.createElement('div');
     document.body.appendChild(container);
+    const root = createRoot(container);
+    root.render(<PopoverApp anchor={thisAnchor} />);
 
-    render(<PopoverApp anchor={thisAnchor} />, container);
-
-    return () => unmountComponentAtNode(container);
+    // Without the setTimeout, React will error about attempting to synchronously unmount
+    return () => setTimeout(() => root.unmount());
   }, []);
 
   return (

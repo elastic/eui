@@ -7,22 +7,22 @@ import {
   EuiSelectableTemplateSitewideMetaData,
 } from '../../../../src';
 
-export const EuiSelectableOptionProps: FunctionComponent<EuiSelectableOption> = () => (
-  <div />
-);
+export const EuiSelectableOptionProps: FunctionComponent<
+  EuiSelectableOption
+> = () => <div />;
 
-export const EuiSelectableOptionsList: FunctionComponent<EuiSelectableOptionsListProps> = () => (
-  <div />
-);
+export const EuiSelectableOptionsList: FunctionComponent<
+  EuiSelectableOptionsListProps
+> = () => <div />;
 
-export const EuiSelectableSearchProps: FunctionComponent<EuiSelectableSearchableSearchProps<
-  any
->> = () => <div />;
+export const EuiSelectableSearchProps: FunctionComponent<
+  EuiSelectableSearchableSearchProps<any>
+> = () => <div />;
 
-export const Options: FunctionComponent<EuiSelectableTemplateSitewideOption> = () => (
-  <div />
-);
+export const Options: FunctionComponent<
+  EuiSelectableTemplateSitewideOption
+> = () => <div />;
 
-export const MetaData: FunctionComponent<EuiSelectableTemplateSitewideMetaData> = () => (
-  <div />
-);
+export const MetaData: FunctionComponent<
+  EuiSelectableTemplateSitewideMetaData
+> = () => <div />;

@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayout is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout testClass1 testClass2"
+  class="euiFormControlLayout testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -22,7 +22,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <button
         aria-label="Clear input"
@@ -48,7 +48,7 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -56,12 +56,12 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="alert"
+          data-euiicon-type="error"
         />
       </span>
     </div>
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <button
         aria-label="Clear input"
@@ -101,7 +101,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -109,7 +109,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="alert"
+          data-euiicon-type="error"
         />
       </span>
     </div>
@@ -125,7 +125,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon customClass"
@@ -134,7 +134,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="alert"
+          data-euiicon-type="error"
         />
       </span>
     </div>
@@ -150,7 +150,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -158,7 +158,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="alert"
+          data-euiicon-type="error"
         />
       </span>
     </div>
@@ -174,7 +174,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -182,9 +182,48 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
         <span
           aria-hidden="true"
           class="euiFormControlLayoutCustomIcon__icon"
-          data-euiicon-type="alert"
+          data-euiicon-type="error"
         />
       </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props iconsPosition 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFormControlLayout testClass1 testClass2 emotion-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="calendar"
+        />
+      </span>
+    </div>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
+    >
+      <span
+        aria-label="Loading"
+        class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+        role="progressbar"
+      />
+      <span
+        color="danger"
+        data-euiicon-type="warning"
+      />
     </div>
   </div>
 </div>
@@ -198,7 +237,7 @@ exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <span
         class="euiFormControlLayoutCustomIcon"
@@ -222,11 +261,11 @@ exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <span
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="warning"
       />
     </div>
   </div>
@@ -241,7 +280,7 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
     >
       <span
         aria-label="Loading"

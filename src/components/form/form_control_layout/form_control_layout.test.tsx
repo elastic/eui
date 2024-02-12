@@ -7,12 +7,14 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { findTestSubject, requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
-import { EuiFormControlLayout, ICON_SIDES } from './form_control_layout';
+import { EuiFormControlLayout } from './form_control_layout';
+import { ICON_SIDES } from './form_control_layout_icons';
 
 jest.mock('../../', () => ({
   EuiIcon: 'eui_icon',
@@ -21,34 +23,34 @@ jest.mock('../../', () => ({
 
 describe('EuiFormControlLayout', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayout {...requiredProps}>
         <input />
       </EuiFormControlLayout>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('icon', () => {
       describe('is rendered', () => {
         test('as a string', () => {
-          const component = render(<EuiFormControlLayout icon="alert" />);
+          const { container } = render(<EuiFormControlLayout icon="error" />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         test('as an object', () => {
           const icon = {
-            type: 'alert',
+            type: 'error',
             className: 'customClass',
             'data-test-subj': 'myIcon',
           };
 
-          const component = render(<EuiFormControlLayout icon={icon} />);
+          const { container } = render(<EuiFormControlLayout icon={icon} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
@@ -56,13 +58,13 @@ describe('EuiFormControlLayout', () => {
         ICON_SIDES.forEach((side) => {
           test(`${side} is rendered`, () => {
             const icon = {
-              type: 'alert',
+              type: 'error',
               side,
             };
 
-            const component = render(<EuiFormControlLayout icon={icon} />);
+            const { container } = render(<EuiFormControlLayout icon={icon} />);
 
-            expect(component).toMatchSnapshot();
+            expect(container.firstChild).toMatchSnapshot();
           });
         });
       });
@@ -70,7 +72,7 @@ describe('EuiFormControlLayout', () => {
       describe('onClick', () => {
         test('is called when clicked', () => {
           const icon = {
-            type: 'alert',
+            type: 'error',
             onClick: jest.fn(),
             'data-test-subj': 'myIcon',
           };
@@ -93,9 +95,9 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'clearButton',
           };
 
-          const component = render(<EuiFormControlLayout clear={clear} />);
+          const { container } = render(<EuiFormControlLayout clear={clear} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         test('is called when clicked', () => {
@@ -114,120 +116,129 @@ describe('EuiFormControlLayout', () => {
     });
 
     test('isLoading is rendered', () => {
-      const component = render(<EuiFormControlLayout isLoading />);
+      const { container } = render(<EuiFormControlLayout isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isInvalid is rendered', () => {
-      const component = render(<EuiFormControlLayout isInvalid />);
+      const { container } = render(<EuiFormControlLayout isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isDropdown is rendered', () => {
-      const component = render(<EuiFormControlLayout isDropdown />);
+      const { container } = render(<EuiFormControlLayout isDropdown />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('iconsPosition', () => {
+      const { container } = render(
+        <EuiFormControlLayout
+          iconsPosition="static"
+          icon="calendar"
+          isLoading
+          isInvalid
+          {...requiredProps}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('compressed', () => {
       it('renders small-sized icon, clear button, and loading spinner', () => {
-        const component = render(
+        const { container } = render(
           <EuiFormControlLayout
             compressed
-            icon={{ type: 'alert' }}
+            icon={{ type: 'error' }}
             clear={{ onClick: jest.fn() }}
             isLoading
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(<EuiFormControlLayout fullWidth />);
+      const { container } = render(<EuiFormControlLayout fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('readOnly is rendered', () => {
-      const component = render(<EuiFormControlLayout readOnly />);
+      const { container } = render(<EuiFormControlLayout readOnly />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('one prepend node is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormControlLayout prepend={<span>1</span>} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('one prepend node is rendered with className', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormControlLayout prepend={<span className="myClass">1</span>} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('one prepend string is rendered', () => {
-      const component = render(<EuiFormControlLayout prepend="1" />);
+      const { container } = render(<EuiFormControlLayout prepend="1" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('one append node is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormControlLayout append={<span>1</span>} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('one append string is rendered', () => {
-      const component = render(<EuiFormControlLayout append="1" />);
+      const { container } = render(<EuiFormControlLayout append="1" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('multiple prepends are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormControlLayout prepend={[<span>1</span>, <span>2</span>]} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('multiple appends are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFormControlLayout append={[<span>1</span>, <span>2</span>]} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { baseElement } = render(
         <EuiForm fullWidth>
           <EuiFormControlLayout />
         </EuiForm>
       );
 
-      if (
-        !component
-          .find('.euiFormControlLayout')
-          .hasClass('euiFormControlLayout--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiFormControlLayout to inherit fullWidth from EuiForm'
-        );
-      }
+      const layout = baseElement.querySelector('.euiFormControlLayout');
+
+      expect(layout).toBeDefined();
+      expect(layout).toHaveClass('euiFormControlLayout--fullWidth');
     });
   });
 });

@@ -6,10 +6,17 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { ReactNode } from 'react';
-import { EuiDataGrid, EuiDataGridColumn, EuiDataGridProps } from './index';
+import {
+  EuiDataGrid,
+  EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
+  EuiDataGridProps,
+} from './index';
 import { EuiLink } from '../link';
 import { EuiButtonEmpty } from '../button';
 
@@ -72,7 +79,6 @@ describe('EuiDataGrid', () => {
         <EuiDataGrid {...baseProps} renderCellValue={renderCellValue} />
       );
 
-      getGridData();
       cy.get('[data-test-subj=euiDataGridBody]')
         .invoke('outerHeight')
         .then((firstHeight) => {
@@ -103,22 +109,20 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      getGridData();
-
       const virtualizedContainer = cy
         .get('[data-test-subj=euiDataGridBody]')
         .children()
         .first();
 
       // make sure the horizontal scrollbar is present
-      virtualizedContainer.then(([outerContainer]: JQuery<HTMLElement>) => {
+      virtualizedContainer.then(([outerContainer]) => {
         expect(outerContainer.offsetHeight).to.be.greaterThan(
           outerContainer.clientHeight
         );
       });
 
       // make sure the vertical scrollbar is gone
-      virtualizedContainer.then(([outerContainer]: JQuery<HTMLElement>) => {
+      virtualizedContainer.then(([outerContainer]) => {
         expect(outerContainer.offsetWidth).to.equal(outerContainer.clientWidth);
       });
     });
@@ -135,29 +139,24 @@ describe('EuiDataGrid', () => {
       {
         id: 'no_interactive_expandable',
         display: '0 interactive',
-        actions: false,
       },
       {
         id: 'one_interactive',
         display: '1 interactive',
         isExpandable: false,
-        actions: false,
       },
       {
         id: 'one_interactive_expandable',
         display: '1 interactive',
-        actions: false,
       },
       {
         id: 'two_interactives',
         display: '2 interactives',
         isExpandable: false,
-        actions: false,
       },
       {
         id: 'two_interactives_expandable',
         display: '2 interactives',
-        actions: false,
       },
     ];
     const columnVisibility = {
@@ -233,8 +232,6 @@ describe('EuiDataGrid', () => {
     it('focuses a cell when clicked', () => {
       cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
 
-      getGridData();
-
       // starts with body in focus
       cy.focused().should('not.exist');
 
@@ -248,14 +245,12 @@ describe('EuiDataGrid', () => {
 
     describe('cell keyboard interactions', () => {
       it('tabbing to the grid the controls, then the first cell, then off', () => {
-        cy.mount(
+        cy.realMount(
           <>
             <EuiDataGrid {...focusManagementBaseProps} />
             <span tabIndex={0} id="final-tabbable" />
           </>
         );
-
-        getGridData();
 
         // starts with body in focus
         cy.focused().should('not.exist');
@@ -286,20 +281,18 @@ describe('EuiDataGrid', () => {
           'dataGridFullScreenButton'
         );
 
-        // tab into the grid, should focus first cell after a short delay
+        // tab into the grid, should focus first header cell
         cy.realPress('Tab');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')
-          .should('have.attr', 'data-gridcell-row-index', '0');
+          .should('have.attr', 'data-gridcell-row-index', '-1');
 
         cy.realPress('Tab');
         cy.focused().should('have.id', 'final-tabbable');
       });
 
-      it('arrow-keying focuses another cell, unless it has only one interactive element', () => {
+      it('arrow-keying focuses another cell', () => {
         cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
-
-        getGridData();
 
         // first cell is non-interactive and non-expandable = focus cell
         cy.get(
@@ -321,9 +314,11 @@ describe('EuiDataGrid', () => {
           .should('have.attr', 'data-gridcell-column-index', '1')
           .should('have.attr', 'data-gridcell-row-index', '0');
 
-        // arrow right, non-expandable cell with one interactive = focus interactive
+        // arrow right, non-expandable cell with one interactive = focus cell
         cy.focused().type('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '2')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // arrow right, non-expandable cell with two interactives = focus cell
         cy.focused().type('{rightarrow}');
@@ -340,8 +335,6 @@ describe('EuiDataGrid', () => {
 
       it('cell expansion/interaction', () => {
         cy.mount(<EuiDataGrid {...focusManagementBaseProps} />);
-
-        getGridData();
 
         // first cell is non-interactive and non-expandable, enter should have no effect
         cy.get(
@@ -377,7 +370,7 @@ describe('EuiDataGrid', () => {
         // fourth cell is expandable & interactive, click should focus on the popover
         cy.get(
           '[data-gridcell-column-index="3"][data-gridcell-row-index="0"]'
-        ).click();
+        ).realClick({ position: 'right' });
         cy.focused().type('{enter}');
         // focus trap focuses the popover
         cy.focused().should(
@@ -438,12 +431,38 @@ describe('EuiDataGrid', () => {
           .should('have.attr', 'data-gridcell-column-index', '5')
           .should('have.attr', 'data-gridcell-row-index', '0');
       });
+
+      it('column header cells', () => {
+        cy.realMount(<EuiDataGrid {...focusManagementBaseProps} />);
+        cy.repeatRealPress('Tab', 5);
+        cy.realPress('{rightarrow}');
+
+        // Should auto-focus the actions button (over the cell itself)
+        cy.focused()
+          .parent()
+          .should('have.attr', 'data-gridcell-column-index', '1')
+          .should('have.attr', 'data-gridcell-row-index', '-1');
+
+        // Pressing enter should toggle the actions popover
+        cy.realPress('Enter');
+        cy.get(
+          '[data-test-subj="dataGridHeaderCellActionGroup-no_interactive_expandable"]'
+        ).should('be.visible');
+
+        // The actions popover should be fully tabbable/focus trapped with no regressions
+        cy.realPress('Tab');
+        cy.focused().should('have.text', 'Hide column');
+        cy.realPress('Tab');
+        cy.focused().should('have.text', 'Move left');
+        cy.realPress('Tab');
+        cy.focused().should('have.text', 'Move right');
+      });
     });
   });
 
   describe('cell popovers', () => {
     // Props
-    const cellActions = [
+    const cellActions: EuiDataGridColumnCellAction[] = [
       ({ Component }) => (
         <Component iconType="plusInCircle" aria-label="Filter in">
           Filter in

@@ -11,7 +11,7 @@ import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
-import { RowHeightUtils } from './row_heights';
+import { RowHeightUtilsType } from './row_heights';
 import { DataGridSortingContext } from './sorting';
 
 export const useFinalGridDimensions = ({
@@ -37,28 +37,37 @@ export const useFinalGridDimensions = ({
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
   useEffect(() => {
-    const boundingRect = wrapperRef.current!.getBoundingClientRect();
+    if (!wrapperRef.current) return;
+    const wrapperHeight = wrapperRef.current.getBoundingClientRect().height;
 
     if (isFullScreen) {
-      setFullScreenHeight(boundingRect.height);
+      setFullScreenHeight(wrapperHeight);
     } else {
-      if (boundingRect.height !== unconstrainedHeight) {
-        setHeight(boundingRect.height);
+      // NOTE: Math.round() is necessary here to account for browser zoom level
+      // Otherwise, both `wrapperHeight` and `unconstrainedHeight` can return values
+      // that are slightly off by small decimal rounding, which are essentially
+      // equivalent but causes the wrapper height to get set when it shouldn't
+      if (Math.round(wrapperHeight) !== Math.round(unconstrainedHeight)) {
+        setHeight(wrapperHeight);
       }
     }
-    if (boundingRect.width !== unconstrainedWidth) {
-      setWidth(boundingRect.width);
-    }
   }, [
-    // Effects that should cause recalculations
     rowCount,
     isFullScreen,
-    wrapperDimensions,
-    // Dependencies
-    wrapperRef,
+    wrapperDimensions.height,
     unconstrainedHeight,
-    unconstrainedWidth,
+    wrapperRef,
   ]);
+
+  // Set the wrapper width on load and whenever the grid wrapper resizes
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const wrapperWidth = wrapperRef.current.getBoundingClientRect().width;
+
+    if (wrapperWidth !== unconstrainedWidth) {
+      setWidth(wrapperWidth);
+    }
+  }, [wrapperDimensions.width, unconstrainedWidth, wrapperRef]);
 
   const finalHeight = isFullScreen
     ? fullScreenHeight
@@ -87,7 +96,7 @@ export const useUnconstrainedHeight = ({
   scrollBarHeight,
   innerGridRef,
 }: {
-  rowHeightUtils: RowHeightUtils;
+  rowHeightUtils: RowHeightUtilsType;
   startRow: number;
   endRow: number;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;

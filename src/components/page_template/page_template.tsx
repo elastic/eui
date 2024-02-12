@@ -12,8 +12,6 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useContext,
-  useEffect,
-  useState,
 } from 'react';
 import classNames from 'classnames';
 
@@ -37,7 +35,7 @@ import {
 } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
-import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 import { logicalStyle } from '../../global_styling';
 import { CommonProps } from '../common';
 
@@ -91,7 +89,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   paddingSize = 'l',
   grow = true,
   bottomBorder,
-  offset: _offset,
+  offset,
   panelled,
   // Inner props
   contentBorder,
@@ -102,9 +100,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   minHeight = '460px',
   ...rest
 }) => {
-  const { euiTheme } = useEuiTheme();
-
-  const [offset, setOffset] = useState(_offset);
   const templateContext = useContext(TemplateContext);
 
   // Used as a target to insert the bottom bar component
@@ -112,15 +107,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     prefix: 'EuiPageTemplateInner',
     conditionalId: mainProps?.id,
   });
-
-  useEffect(() => {
-    if (_offset === undefined) {
-      const euiHeaderFixedCounter = Number(
-        document.body.dataset.fixedHeaders ?? 0
-      );
-      setOffset(euiTheme.base * 3 * euiHeaderFixedCounter);
-    }
-  }, [_offset, euiTheme.base]);
 
   // Sections include page header
   const sections: React.ReactElement[] = [];
@@ -154,11 +140,11 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getBottomBarProps = () => ({
     restrictWidth,
     paddingSize,
-    parent: `#${pageInnerId}`,
+    // pageInnerId may contain colons that are parsed as pseudo-elements if not escaped
+    parent: `#${CSS.escape(pageInnerId)}`,
   });
 
-  const innerPanelled = () =>
-    panelled === false ? false : Boolean(sidebar.length > 0);
+  const innerPanelled = () => panelled ?? Boolean(sidebar.length > 0);
 
   const innerBordered = () =>
     contentBorder !== undefined ? contentBorder : Boolean(sidebar.length > 0);
@@ -188,7 +174,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const classes = classNames('euiPageTemplate', className);
   const pageStyle = {
     ...logicalStyle('min-height', _minHeight),
-    ...logicalStyle('padding-top', offset),
+    ...logicalStyle('padding-top', offset ?? 'var(--euiFixedHeadersOffset, 0)'),
     ...rest.style,
   };
 

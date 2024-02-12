@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { toggleLocale as _toggleLocale } from '../actions';
@@ -17,49 +16,12 @@ import {
   EuiScreenReaderLive,
 } from '../../../src/components';
 
-import { keys } from '../../../src/services';
-
-export const AppView = ({ children, currentRoute }) => {
+export const AppView = ({ children, currentRoute = {} }) => {
   const dispatch = useDispatch();
   const toggleLocale = (locale) => dispatch(_toggleLocale(locale));
   const locale = useSelector((state) => getLocale(state));
   const routes = useSelector((state) => getRoutes(state));
   const { theme } = useContext(ThemeContext);
-
-  useEffect(() => {
-    const onKeydown = (event) => {
-      if (event.target !== document.body) {
-        return;
-      }
-
-      if (event.metaKey) {
-        return;
-      }
-
-      if (event.key === keys.ARROW_LEFT) {
-        pushRoute(routes.getPreviousRoute);
-        return;
-      }
-
-      if (event.key === keys.ARROW_RIGHT) {
-        pushRoute(routes.getNextRoute);
-      }
-
-      function pushRoute(getRoute) {
-        const route = getRoute(currentRoute.name);
-
-        if (route) {
-          routes.history.push(`/${route.path}`);
-        }
-      }
-    };
-
-    document.addEventListener('keydown', onKeydown);
-
-    return () => {
-      document.removeEventListener('keydown', onKeydown);
-    };
-  }, []); // eslint-disable-line
 
   const portalledHeadingAnchorLinks = useHeadingAnchorLinks();
 
@@ -75,7 +37,6 @@ export const AppView = ({ children, currentRoute }) => {
         {`${hash ? '— ' : ''}${currentRoute.name} — Elastic UI Framework`}
       </EuiScreenReaderLive>
       <EuiSkipLink
-        color="ghost"
         destinationId="start-of-content"
         position="fixed"
         overrideLinkBehavior
@@ -102,13 +63,4 @@ export const AppView = ({ children, currentRoute }) => {
       </EuiPageTemplate>
     </LinkWrapper>
   );
-};
-
-AppView.propTypes = {
-  children: PropTypes.any,
-  currentRoute: PropTypes.object.isRequired,
-};
-
-AppView.defaultProps = {
-  currentRoute: {},
 };

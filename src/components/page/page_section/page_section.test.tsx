@@ -8,13 +8,13 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+import { PADDING_SIZES, BACKGROUND_COLORS } from '../../../global_styling';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPageSection } from './page_section';
 import { ALIGNMENTS } from './page_section.styles';
-import { PADDING_SIZES, BACKGROUND_COLORS } from '../../../global_styling';
 
 describe('EuiPageSection', () => {
   shouldRenderCustomStyles(<EuiPageSection />, {
@@ -22,14 +22,14 @@ describe('EuiPageSection', () => {
   });
 
   test('is rendered', () => {
-    const component = render(<EuiPageSection {...requiredProps} />);
+    const { container } = render(<EuiPageSection {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('component', () => {
-      const component = render(
+      const { container } = render(
         <main>
           <EuiPageSection />
           <EuiPageSection component="div" />
@@ -37,45 +37,47 @@ describe('EuiPageSection', () => {
         </main>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('restrictWidth', () => {
       test('can be true', () => {
-        const component = render(<EuiPageSection restrictWidth />);
+        const { container } = render(<EuiPageSection restrictWidth />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('can be custom', () => {
-        const component = render(<EuiPageSection restrictWidth={1000} />);
+        const { container } = render(<EuiPageSection restrictWidth={1000} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('bottomBorder', () => {
       test('can be true', () => {
-        const component = render(<EuiPageSection bottomBorder />);
+        const { container } = render(<EuiPageSection bottomBorder />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('grow', () => {
       test('can be true', () => {
-        const component = render(<EuiPageSection grow />);
+        const { container } = render(<EuiPageSection grow />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('alignment', () => {
       ALIGNMENTS.forEach((alignment) => {
         test(`${alignment} is rendered`, () => {
-          const component = render(<EuiPageSection alignment={alignment} />);
+          const { container } = render(
+            <EuiPageSection alignment={alignment} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -83,9 +85,9 @@ describe('EuiPageSection', () => {
     describe('color', () => {
       BACKGROUND_COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiPageSection color={color} />);
+          const { container } = render(<EuiPageSection color={color} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -93,27 +95,29 @@ describe('EuiPageSection', () => {
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((padding) => {
         test(`${padding} is rendered`, () => {
-          const component = render(<EuiPageSection paddingSize={padding} />);
+          const { container } = render(
+            <EuiPageSection paddingSize={padding} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('contentProps', () => {
       test('are passed down', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageSection contentProps={requiredProps} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   // Regression test for recurring bug / unintuitive Emotion behavior
   it('correctly merges `css` passed to `contentProps`', () => {
-    const component = render(
+    const { getByTestSubject } = render(
       <EuiPageSection
         contentProps={{
           css: css`
@@ -123,14 +127,14 @@ describe('EuiPageSection', () => {
         }}
       />
     );
-    const content = component.find('[data-test-subj="content"]');
+    const content = getByTestSubject('content');
     expect(content).toMatchInlineSnapshot(`
       <div
         class="emotion-euiPageSection__content-l-css"
         data-test-subj="content"
       />
     `);
-    expect(content.attr('class')).toContain('euiPageSection__content'); // Preserves our CSS
-    expect(content.attr('class').endsWith('-css')).toBeTruthy(); // Concatenates custom CSS
+    expect(content.className).toContain('euiPageSection__content'); // Preserves our CSS
+    expect(content.className.endsWith('-css')).toBeTruthy(); // Concatenates custom CSS
   });
 });

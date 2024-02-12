@@ -67,13 +67,8 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
   };
 
   render() {
-    const {
-      children,
-      textToCopy,
-      beforeMessage,
-      afterMessage,
-      ...rest
-    } = this.props;
+    const { children, textToCopy, beforeMessage, afterMessage, ...rest } =
+      this.props;
 
     return (
       // See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable

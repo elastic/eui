@@ -8,29 +8,25 @@ exports[`_EuiPageEmptyPrompt EuiEmptyPromptProps is rendered 1`] = `
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--horizontal euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-horizontal"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-horizontal-l-l"
       >
         <div
-          class="euiEmptyPrompt__icon"
+          class="euiEmptyPrompt__icon emotion-euiEmptyPrompt__icon-horizontal"
         >
           <span
             color="subdued"
-            data-euiicon-type="alert"
+            data-euiicon-type="warning"
           />
         </div>
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-horizontal"
+        />
       </div>
       <div
-        class="euiEmptyPrompt__footer"
+        class="euiEmptyPrompt__footer emotion-euiEmptyPrompt__footer-l-plain"
       >
         Footer
       </div>
@@ -47,18 +43,14 @@ exports[`_EuiPageEmptyPrompt EuiPageSectionProps is rendered 1`] = `
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -74,19 +66,15 @@ exports[`_EuiPageEmptyPrompt is rendered 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -101,18 +89,14 @@ exports[`_EuiPageEmptyPrompt paddingSize l is rendered 1`] = `
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -127,18 +111,14 @@ exports[`_EuiPageEmptyPrompt paddingSize m is rendered 1`] = `
     class="emotion-euiPageSection__content-m-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingMedium emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-m"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -153,18 +133,14 @@ exports[`_EuiPageEmptyPrompt paddingSize none is rendered 1`] = `
     class="emotion-euiPageSection__content-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -179,18 +155,14 @@ exports[`_EuiPageEmptyPrompt paddingSize s is rendered 1`] = `
     class="emotion-euiPageSection__content-s-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingSmall emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-s"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -205,18 +177,14 @@ exports[`_EuiPageEmptyPrompt paddingSize xl is rendered 1`] = `
     class="emotion-euiPageSection__content-xl-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -231,18 +199,14 @@ exports[`_EuiPageEmptyPrompt paddingSize xs is rendered 1`] = `
     class="emotion-euiPageSection__content-xs-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -257,18 +221,14 @@ exports[`_EuiPageEmptyPrompt panelled is false and color is defined, then the pr
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--warning euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-warning"
+      class="euiPanel euiPanel--warning euiEmptyPrompt emotion-euiPanel-m-warning-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -283,18 +243,14 @@ exports[`_EuiPageEmptyPrompt panelled is false and color is not defined, then th
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -309,18 +265,14 @@ exports[`_EuiPageEmptyPrompt panelled is true and color is defined, then the pro
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--accent euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-accent"
+      class="euiPanel euiPanel--accent euiEmptyPrompt emotion-euiPanel-m-accent-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -335,18 +287,14 @@ exports[`_EuiPageEmptyPrompt panelled is true and color is not defined, then the
     class="emotion-euiPageSection__content-l-center"
   >
     <div
-      class="euiPanel euiPanel--subdued euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-subdued"
+      class="euiPanel euiPanel--subdued euiEmptyPrompt emotion-euiPanel-m-subdued-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -359,21 +307,17 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a custom number 1`] = 
 >
   <div
     class="emotion-euiPageSection__content-l-center-restrictWidth"
-    style="max-width:1024px"
+    style="max-width: 1024px;"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -386,21 +330,17 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a custom value and mea
 >
   <div
     class="emotion-euiPageSection__content-l-center-restrictWidth"
-    style="max-width:24rem"
+    style="max-width: 24rem;"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>
@@ -413,21 +353,17 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a default 1`] = `
 >
   <div
     class="emotion-euiPageSection__content-l-center-restrictWidth"
-    style="max-width:1200px"
+    style="max-width: 1200px;"
   >
     <div
-      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge emotion-euiPanel-m-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiEmptyPrompt emotion-euiPanel-m-plain-hasShadow-euiEmptyPrompt-vertical"
     >
       <div
-        class="euiEmptyPrompt__main"
+        class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
       >
         <div
-          class="euiEmptyPrompt__content"
-        >
-          <div
-            class="euiEmptyPrompt__contentInner"
-          />
-        </div>
+          class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+        />
       </div>
     </div>
   </div>

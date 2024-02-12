@@ -71,6 +71,25 @@ describe('EuiFlyout', () => {
     ).toBeFalsy();
   });
 
+  it('allows setting custom aria-describedby attributes', () => {
+    const { getByTestSubject } = render(
+      <>
+        <EuiFlyout
+          onClose={() => {}}
+          aria-describedby="custom-test-id"
+          data-test-subj="flyout"
+        />
+        <div id="custom-test-id" hidden>
+          This flyout does X, Y, and Z
+        </div>
+      </>
+    );
+    expect(getByTestSubject('flyout')).toHaveAttribute(
+      'aria-describedby',
+      'generated-id custom-test-id'
+    );
+  });
+
   describe('props', () => {
     test('hideCloseButton', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
@@ -120,15 +139,34 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('type=push', () => {
-      test('is rendered', () => {
-        const component = mount(
-          <EuiFlyout onClose={() => {}} type="push" pushMinBreakpoint="xs" />
+    describe('push flyouts', () => {
+      it('renders', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            type="push"
+            pushMinBreakpoint="xs"
+          />
         );
 
-        expect(
-          takeMountedSnapshot(component, { hasArrayOutput: true })
-        ).toMatchSnapshot();
+        expect(getByTestSubject('flyout')).toMatchSnapshot();
+      });
+
+      it('can render with animations', () => {
+        const { getByTestSubject } = render(
+          <EuiFlyout
+            data-test-subj="flyout"
+            onClose={() => {}}
+            type="push"
+            pushMinBreakpoint="xs"
+            pushAnimation={true}
+          />
+        );
+
+        expect(getByTestSubject('flyout').className).not.toContain(
+          'noAnimation'
+        );
       });
     });
 

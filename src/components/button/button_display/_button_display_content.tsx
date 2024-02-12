@@ -15,10 +15,10 @@ import { euiButtonDisplayContentStyles } from './_button_display_content.styles'
 import classNames from 'classnames';
 
 export const ICON_SIZES = ['s', 'm'] as const;
-export type ButtonContentIconSize = typeof ICON_SIZES[number];
+export type ButtonContentIconSize = (typeof ICON_SIZES)[number];
 
 export const ICON_SIDES = ['left', 'right'] as const;
-export type ButtonContentIconSide = typeof ICON_SIDES[number] | undefined;
+export type ButtonContentIconSide = (typeof ICON_SIDES)[number] | undefined;
 
 export type EuiButtonDisplayContentType = HTMLAttributes<HTMLSpanElement>;
 
@@ -37,13 +37,17 @@ export interface EuiButtonDisplayContentProps extends CommonProps {
   iconSide?: ButtonContentIconSide;
   isLoading?: boolean;
   /**
-   * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
+   * Object of props passed to the `<span>` wrapping the content's text/children only (not icon)
+   *
+   * This span wrapper can be removed by passing `textProps={false}`.
    */
-  textProps?: HTMLAttributes<HTMLSpanElement> &
-    CommonProps & {
-      ref?: Ref<HTMLSpanElement>;
-      'data-text'?: string;
-    };
+  textProps?:
+    | (HTMLAttributes<HTMLSpanElement> &
+        CommonProps & {
+          ref?: Ref<HTMLSpanElement>;
+          'data-text'?: string;
+        })
+    | false;
   iconSize?: ButtonContentIconSize;
   isDisabled?: boolean;
 }
@@ -90,11 +94,13 @@ export const EuiButtonDisplayContent: FunctionComponent<
   }
 
   const isText = typeof children === 'string';
+  const doNotRenderTextWrapper = textProps === false;
+  const renderTextWrapper = (isText || textProps) && !doNotRenderTextWrapper;
 
   return (
     <span css={cssStyles} {...contentProps}>
       {iconSide === 'left' && icon}
-      {isText || textProps ? (
+      {renderTextWrapper ? (
         <span
           {...textProps}
           className={classNames('eui-textTruncate', textProps?.className)}

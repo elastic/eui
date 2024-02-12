@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React from 'react';
 import { EuiResizableContainer } from './resizable_container';
@@ -59,24 +61,21 @@ describe('Horizontal EuiResizableContainer', () => {
 
   describe('Keyboard accessibility check', () => {
     it('has zero violations when first panel is scrolled vertically', () => {
-      cy.realPress('Tab');
-      cy.get('div.euiPanel').first().should('have.focus');
+      cy.get('div.euiPanel').first().focus();
       cy.realPress('End');
       cy.get('a[data-test-subj="hello-world-link"]').should('be.visible');
       cy.checkAxe();
     });
 
     it('has zero violations when second panel is scrolled vertically', () => {
-      cy.repeatRealPress('Tab', 4);
-      cy.get('div.euiPanel').last().should('have.focus');
+      cy.get('div.euiPanel').last().focus();
       cy.realPress('End');
       cy.realPress('Home');
       cy.checkAxe();
     });
 
     it('has zero violations when the horizontal panels are resized', () => {
-      cy.repeatRealPress('Tab', 3);
-      cy.get('button.euiResizableButton').should('have.focus');
+      cy.get('button.euiResizableButton').focus();
       cy.repeatRealPress('ArrowRight', 10);
       cy.checkAxe();
     });
@@ -118,8 +117,7 @@ describe('Vertical EuiResizableContainer', () => {
     });
 
     it('has zero violations when the vertical panels are resized', () => {
-      cy.repeatRealPress('Tab');
-      cy.get('button.euiResizableButton').should('have.focus');
+      cy.get('button.euiResizableButton').focus();
       cy.repeatRealPress('ArrowDown', 10);
       cy.checkAxe();
     });

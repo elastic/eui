@@ -15,4 +15,5 @@ export {
   findAllByTestSubject,
   findByTestSubject,
 } from './data_test_subj_queries';
-export { render, screen } from './custom_render';
+export { render, screen, within } from './custom_render';
+export * from './render_hook';

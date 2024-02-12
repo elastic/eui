@@ -8,12 +8,20 @@
 
 import { useEuiI18n } from '../../i18n';
 
-const MS_IN_SECOND = 1000;
-const MS_IN_MINUTE = 60 * MS_IN_SECOND;
-const MS_IN_HOUR = 60 * MS_IN_MINUTE;
-const MS_IN_DAY = 24 * MS_IN_HOUR;
+const MS_INTERVALS = {
+  s: 1000,
+  get m() {
+    return 60 * this.s;
+  },
+  get h() {
+    return 60 * this.m;
+  },
+  get d() {
+    return 24 * this.h;
+  },
+} as const;
 
-type IntervalUnitId = 's' | 'm' | 'h' | 'd';
+type IntervalUnitId = keyof typeof MS_INTERVALS;
 
 /**
  * Pretty interval i18n strings
@@ -61,24 +69,31 @@ const usePrettyIntervalI18n = (interval: number) => ({
 export const usePrettyInterval = (
   isPaused: boolean,
   intervalInMs: number,
-  shortHand: boolean = false
+  options?: { shortHand?: boolean; unit?: IntervalUnitId }
 ) => {
+  const { shortHand = false, unit } = options || {};
+
   let prettyInterval = '';
   let interval: number;
   let unitId: IntervalUnitId;
 
-  if (intervalInMs < MS_IN_MINUTE) {
-    interval = Math.round(intervalInMs / MS_IN_SECOND);
-    unitId = 's';
-  } else if (intervalInMs < MS_IN_HOUR) {
-    interval = Math.round(intervalInMs / MS_IN_MINUTE);
-    unitId = 'm';
-  } else if (intervalInMs < MS_IN_DAY) {
-    interval = Math.round(intervalInMs / MS_IN_HOUR);
-    unitId = 'h';
+  if (unit) {
+    unitId = unit;
+    interval = Math.round(intervalInMs / MS_INTERVALS[unit]);
   } else {
-    interval = Math.round(intervalInMs / MS_IN_DAY);
-    unitId = 'd';
+    if (intervalInMs < MS_INTERVALS.m) {
+      interval = Math.round(intervalInMs / MS_INTERVALS.s);
+      unitId = 's';
+    } else if (intervalInMs < MS_INTERVALS.h) {
+      interval = Math.round(intervalInMs / MS_INTERVALS.m);
+      unitId = 'm';
+    } else if (intervalInMs < MS_INTERVALS.d) {
+      interval = Math.round(intervalInMs / MS_INTERVALS.h);
+      unitId = 'h';
+    } else {
+      interval = Math.round(intervalInMs / MS_INTERVALS.d);
+      unitId = 'd';
+    }
   }
   const prettyIntervalI18n = usePrettyIntervalI18n(interval);
   prettyInterval = shortHand

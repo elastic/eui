@@ -1,0 +1,47 @@
+.euiDataGridFooter {
+  display: flex;
+  width: fit-content;
+}
+
+@include euiDataGridFooterCell {
+  flex: 0 0 auto;
+  position: relative;
+  font-weight: $euiFontWeightBold;
+}
+
+@include euiDataGridStyles(stickyFooter) {
+  .euiDataGridFooter {
+    position: sticky;
+    bottom: 0;
+  }
+}
+
+@include euiDataGridStyles(footerOverline) {
+  @include euiDataGridFooterCell {
+    border-top: $euiBorderThick;
+    // stylelint-disable declaration-no-important
+    border-top-color: $euiTextColor !important;
+    background: $euiColorEmptyShade !important;
+    // stylelint-enable declaration-no-important
+  }
+}
+
+@include euiDataGridStyles(bordersNone) {
+  @include euiDataGridFooterCell {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@include euiDataGridStyles(bordersHorizontal) {
+  @include euiDataGridFooterCell {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@include euiDataGridStyles(footerShade) {
+  @include euiDataGridFooterCell {
+    background: tintOrShade($euiColorLightestShade, 0%, 10%);
+  }
+}

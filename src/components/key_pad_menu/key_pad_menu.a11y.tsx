@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiKeyPadMenu } from './key_pad_menu';
@@ -120,8 +122,9 @@ describe('EuiKeyPadMenu', () => {
     it('has zero violations on item click', () => {
       cy.get('a[data-test-subj="cy-keypad-link-2"]').realClick();
       cy.get('a[data-test-subj="cy-keypad-link-2"]').should(
-        'have.class',
-        'euiKeyPadMenuItem-isSelected'
+        'have.attr',
+        'aria-current',
+        'true'
       );
       cy.checkAxe();
     });
@@ -133,23 +136,24 @@ describe('EuiKeyPadMenu', () => {
       );
       cy.realPress('Space');
       cy.get('button[data-test-subj="cy-keypad-button-3"]').should(
-        'have.class',
-        'euiKeyPadMenuItem-isSelected'
+        'have.attr',
+        'aria-pressed',
+        'true'
       );
       cy.checkAxe();
       cy.realPress(['Shift', 'Tab']);
       cy.get('button[data-test-subj="cy-keypad-button-2"]').should(
-        'have.focus'
+        'have.attr',
+        'aria-pressed',
+        'false'
       );
       cy.realPress('Space');
-      cy.get('button[data-test-subj="cy-keypad-button-2"]').should(
-        'have.class',
-        'euiKeyPadMenuItem-isSelected'
-      );
-      cy.get('button[data-test-subj="cy-keypad-button-3"]').should(
-        'not.have.class',
-        'euiKeyPadMenuItem-isSelected'
-      );
+      cy.get('button[data-test-subj="cy-keypad-button-2"]')
+        .invoke('attr', 'aria-pressed')
+        .should('equal', 'true');
+      cy.get('button[data-test-subj="cy-keypad-button-3"]')
+        .invoke('attr', 'aria-pressed')
+        .should('equal', 'false');
       cy.checkAxe();
     });
   });

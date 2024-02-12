@@ -7,15 +7,17 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
+import moment from 'moment';
 
 import { EuiDatePickerRange } from './date_picker_range';
 import { EuiDatePicker } from './date_picker';
 
 describe('EuiDatePickerRange', () => {
   it('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiDatePickerRange
         startDateControl={<EuiDatePicker />}
         endDateControl={<EuiDatePicker />}
@@ -23,12 +25,36 @@ describe('EuiDatePickerRange', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('readOnly', () => {
-    it('is rendered', () => {
-      const component = render(
+  describe('props', () => {
+    test('fullWidth', () => {
+      const { container } = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          fullWidth
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('compressed', () => {
+      const { container } = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          compressed
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('readOnly', () => {
+      const { container } = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
           endDateControl={<EuiDatePicker />}
@@ -36,13 +62,11 @@ describe('EuiDatePickerRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
-  });
 
-  describe('disabled', () => {
-    it('is rendered', () => {
-      const component = render(
+    test('disabled', () => {
+      const { container } = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
           endDateControl={<EuiDatePicker />}
@@ -50,13 +74,11 @@ describe('EuiDatePickerRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
-  });
 
-  describe('isInvalid', () => {
-    it('is rendered', () => {
-      const component = render(
+    test('isInvalid', () => {
+      const { container } = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
           endDateControl={<EuiDatePicker />}
@@ -64,12 +86,64 @@ describe('EuiDatePickerRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('isLoading', () => {
+      const { container } = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          isLoading
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    describe('inline', () => {
+      it('renders', () => {
+        const selectedStartDate = moment('2000-01-01T00:00:00-0800');
+        const selectedEndDate = moment(selectedStartDate).add(1, 'd');
+
+        const { container } = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker selected={selectedStartDate} />}
+            endDateControl={<EuiDatePicker selected={selectedEndDate} />}
+            inline
+            // All of the below props should be ignored/not render when `inline`
+            iconType={true}
+            fullWidth
+            prepend="test"
+            append="test"
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('allows turning off the default shadow', () => {
+        const { container } = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker />}
+            endDateControl={<EuiDatePicker />}
+            inline
+            shadow={false}
+          />
+        );
+
+        expect((container.firstChild as HTMLElement).className).not.toContain(
+          'shadow'
+        );
+      });
+
+      // TODO: Use storybook to test inline invalid, loading, disabled, & readOnly
+      // visually instead of via DOM
     });
   });
 
   it('uses individual EuiDatePicker props', () => {
-    const component = render(
+    const { container } = render(
       <EuiDatePickerRange
         startDateControl={<EuiDatePicker className="hello" />}
         endDateControl={<EuiDatePicker className="world" />}
@@ -77,7 +151,7 @@ describe('EuiDatePickerRange', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('calls blur and focus handlers for date pickers while also triggering range control handlers', () => {

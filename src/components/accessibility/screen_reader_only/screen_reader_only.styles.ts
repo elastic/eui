@@ -14,20 +14,20 @@ import { logicalCSS, logicalSizeCSS } from '../../../global_styling';
  * See https://github.com/elastic/eui/pull/5130 and https://github.com/elastic/eui/pull/5152 for more info
  */
 export const euiScreenReaderOnly = () => `
-  // Take the element out of the layout
+  /* Take the element out of the layout */
   position: absolute;
-  // Keep it vertically inline
+  /* Keep it vertically inline */
   ${logicalCSS('top', 'auto')}
-  // Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text
+  /* Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text */
   ${logicalCSS('left', '-10000px')}
-  // The element must have a size (for some screen readers)
+  /* The element must have a size (for some screen readers) */
   ${logicalSizeCSS('1px', '1px')}
-  // But reduce the visible size to nothing
+  /* But reduce the visible size to nothing */
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
-  // And ensure no overflows occur
+  /* And ensure no overflows occur */
   overflow: hidden;
-  // Chrome requires the negative margin to not cause overflows of parent containers
+  /* Chrome requires the negative margin to not cause overflows of parent containers */
   margin: -1px;
 `;
 
@@ -37,8 +37,8 @@ export const euiScreenReaderOnly = () => `
 export const euiScreenReaderOnlyStyles = (showOnFocus?: boolean) => ({
   euiScreenReaderOnly: showOnFocus
     ? css`
-        // The :active selector is necessary for Safari which removes :focus when a button is pressed
-        &:not(:focus):not(:active):not(:focus-within) {
+        /* The :active selector is necessary for Safari which removes :focus when a button is pressed */
+        &:not(:focus, :active, :focus-within) {
           ${euiScreenReaderOnly()}
         }
       `

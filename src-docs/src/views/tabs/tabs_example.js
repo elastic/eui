@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,9 +9,9 @@ import {
   EuiTab,
   EuiTabbedContent,
   EuiText,
-  EuiLink,
 } from '../../../../src/components';
 
+import TabsGuidance from './tabs_guidance';
 import { tabsConfig } from './playground';
 
 import Tabs from './tabs';
@@ -32,16 +31,13 @@ const controlledSource = require('!!raw-loader!./controlled');
 
 export const TabsExample = {
   title: 'Tabs',
+  guidelines: <TabsGuidance />,
   intro: (
     <EuiText>
       <p>
-        Use tabs to organize <strong>in-page</strong> navigation, segmenting
-        mutually-exclusive content under a single organizational principle. For
-        more guideline usage see{' '}
-        <EuiLink href="https://www.nngroup.com/articles/tabs-used-right/">
-          NNG&apos;s article &quot;Tabs, Used Right&quot;
-        </EuiLink>
-        .
+        Use tabs to organize related but unique content for a single idea or
+        subject. Tabs show and hide content using <strong>in-page</strong>{' '}
+        navigation UI.
       </p>
     </EuiText>
   ),

@@ -321,17 +321,15 @@ export const FormControlsExample = {
             .
           </p>
           <p>
-            If you need more customization for how the options and/or selected
-            values render, you can use an{' '}
-            <Link to="/forms/super-select">
-              <strong>EuiSuperSelect</strong>
-            </Link>{' '}
-            instead. For long lists of options use an{' '}
-            <Link to="/forms/combo-box">
-              <strong>EuiComboBox</strong>
-            </Link>
-            , which has search and multi-select capabilities, but also has
-            restrictions on how items are rendered.
+            If you need more customization for searching or rendering options,
+            see{' '}
+            <EuiLink
+              href="https://github.com/elastic/eui/discussions/7049"
+              target="_blank"
+            >
+              EUI's guide on selection components
+            </EuiLink>{' '}
+            .
           </p>
         </>
       ),
@@ -367,7 +365,7 @@ export const FormControlsExample = {
       playground: TextAreaConfig,
     },
     {
-      title: 'File Picker',
+      title: 'File picker',
       source: [
         {
           type: GuideSectionTypes.JS,

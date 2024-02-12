@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2"
+  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -15,9 +15,13 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
-      →
+      <span
+        data-euiicon-type="sortRight"
+      >
+        to
+      </span>
     </div>
     <span
       class="euiFormControlLayoutDelimited__input"
@@ -41,10 +45,10 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       />
     </div>
     <span
@@ -69,7 +73,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       +
     </div>

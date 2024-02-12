@@ -28,9 +28,11 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-import { useGeneratedHtmlId } from '../../../../src/services';
+import { useGeneratedHtmlId, useEuiTheme } from '../../../../src/services';
 
 const HeaderUpdates = () => {
+  const { euiTheme } = useEuiTheme();
+
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'newsFeedFlyout' });
@@ -49,8 +51,7 @@ const HeaderUpdates = () => {
     },
     {
       title: 'Kibana 7.0 is turning heads',
-      text:
-        'Simplified navigation, responsive dashboards, dark mode… pick your favorite.',
+      text: 'Simplified navigation, responsive dashboards, dark mode… pick your favorite.',
       action: (
         <EuiLink
           target="_blank"
@@ -65,8 +66,7 @@ const HeaderUpdates = () => {
     },
     {
       title: 'Enter dark mode',
-      text:
-        'Kibana now supports the easy-on-the-eyes theme across the entire UI.',
+      text: 'Kibana now supports the easy-on-the-eyes theme across the entire UI.',
       action: <EuiLink href="">Go to Advanced Settings</EuiLink>,
       date: '10 April 2019',
       badge: <EuiBadge color="hollow">7.0</EuiBadge>,
@@ -103,8 +103,7 @@ const HeaderUpdates = () => {
     },
     {
       title: 'Rollups made simple in Kibana',
-      text:
-        'Save space and preserve the integrity of your data directly in the UI.',
+      text: 'Save space and preserve the integrity of your data directly in the UI.',
       action: (
         <EuiLink
           target="_blank"
@@ -219,7 +218,13 @@ const HeaderUpdates = () => {
       panelPaddingSize="none"
     >
       <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
-      <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
+      <div
+        style={{
+          maxHeight: '40vh',
+          overflowY: 'auto',
+          padding: euiTheme.size.s,
+        }}
+      >
         <EuiSpacer size="s" />
         {alerts.map((alert, i) => (
           <EuiHeaderAlert
@@ -281,14 +286,10 @@ const HeaderUserMenu = () => {
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}
-      panelPaddingSize="none"
+      panelPaddingSize="m"
     >
-      <div style={{ width: 320 }}>
-        <EuiFlexGroup
-          gutterSize="m"
-          className="euiHeaderProfile"
-          responsive={false}
-        >
+      <div style={{ width: 300 }}>
+        <EuiFlexGroup gutterSize="m" responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>
@@ -321,9 +322,8 @@ const HeaderUserMenu = () => {
 };
 
 export default () => {
-  const [position, setPosition] = useState<EuiHeaderProps['position']>(
-    'static'
-  );
+  const [position, setPosition] =
+    useState<EuiHeaderProps['position']>('static');
   const [theme, setTheme] = useState<EuiHeaderProps['theme']>('default');
 
   return (
@@ -349,8 +349,8 @@ export default () => {
       <EuiSpacer />
 
       <EuiHeader position={position} theme={theme}>
-        <EuiHeaderSection grow={false}>
-          <EuiHeaderSectionItem border="right">
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>
             <EuiHeaderLogo>Elastic</EuiHeaderLogo>
           </EuiHeaderSectionItem>
         </EuiHeaderSection>

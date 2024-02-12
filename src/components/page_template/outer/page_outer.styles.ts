@@ -14,7 +14,7 @@ export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageOuter: css`
     display: flex;
     background-color: ${euiTheme.colors.body};
-    flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
+    flex-shrink: 0; /* Ensures Safari doesn't shrink height beyond contents */
     ${logicalCSS(
       'max-width',
       '100%' // Ensures Firefox doesn't expand width beyond bounds

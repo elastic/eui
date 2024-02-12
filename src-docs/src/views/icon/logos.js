@@ -32,6 +32,7 @@ export const iconTypes = [
   'logoSecurity',
   'logoSiteSearch',
   'logoUptime',
+  'logoVulnerabilityManagement',
   'logoWorkplaceSearch',
 ];
 
@@ -70,7 +71,7 @@ export default () => {
             : `<EuiIcon type="logoElasticsearch" size="xl" color="${iconColor}" />`}
         </EuiCodeBlock>
         <EuiSpacer />
-        <EuiFlexGrid direction="column" columns={3}>
+        <EuiFlexGrid direction="row" columns={3}>
           {iconTypes.map((iconType) => (
             <EuiFlexItem key={iconType}>
               <EuiCopy

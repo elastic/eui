@@ -6,8 +6,6 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../"/>
-
 Cypress.Commands.add('repeatRealPress', (keyToPress, count = 2, options) => {
   for (let i = 0; i < count; i++) {
     cy.realPress(keyToPress, options);

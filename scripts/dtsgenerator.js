@@ -34,11 +34,13 @@ const generator = dtsGenerator({
     '**/*.test.{ts,tsx}',
     '**/*.testenv.{ts,tsx}',
     '**/*.spec.{ts,tsx}',
+    '**/*.stories.{ts,tsx}',
     '**/*.mock.{ts,tsx}',
     '**/__mocks__/*',
     'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
     'src/test/**/*', // Separate d.ts files are generated for test utils
     'src-docs/**/*', // Don't include src-docs
+    '**/*.mdx', // Don't include storybook mdx files
   ],
   resolveModuleId(params) {
     if (
@@ -82,7 +84,11 @@ const generator = dtsGenerator({
       } else {
         // importing from a non-index TS source file, keep the import path but re-scope it to '@elastic/eui' namespace
         let importedModuleId = params.importedModuleId;
-        if (importedModuleId.endsWith('/')) importedModuleId = importedModuleId.slice(0, importedModuleId.length - 1);
+        if (importedModuleId.endsWith('/'))
+          importedModuleId = importedModuleId.slice(
+            0,
+            importedModuleId.length - 1
+          );
         return path.join(
           '@elastic/eui',
           path.dirname(params.currentModuleId),

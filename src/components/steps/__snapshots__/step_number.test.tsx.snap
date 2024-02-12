@@ -3,7 +3,7 @@
 exports[`EuiStepNumber is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiStepNumber testClass1 testClass2 emotion-euiStepNumber-s"
+  class="euiStepNumber testClass1 testClass2 emotion-euiStepNumber-s-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -139,7 +139,7 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
 >
   <span
     class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
-    data-euiicon-type="alert"
+    data-euiicon-type="warning"
   >
     Step 1 has warnings
   </span>

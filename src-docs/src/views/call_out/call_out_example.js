@@ -40,7 +40,16 @@ const warningSnippet = [
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
 const dangerSnippet = [
-  `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">
+  `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="error">
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
+
+import OnDismiss from './on_dismiss';
+const onDismissSource = require('!!raw-loader!./on_dismiss');
+const onDismissSnippet = [
+  `<EuiCallOut onDismiss={onDismiss}>
   <p><!-- Content --></p>
 </EuiCallOut>
 `,
@@ -130,6 +139,12 @@ export const CallOutExample = {
       text: (
         <p>
           Use this callout to warn the user against decisions they might regret.
+          You should receive a warning message when the program detects that{' '}
+          <b>
+            something is not behaving right, but it didn&apos;t cause any
+            termination
+          </b>
+          .
         </p>
       ),
       snippet: warningSnippet,
@@ -144,10 +159,37 @@ export const CallOutExample = {
         },
       ],
       text: (
-        <p>Use this callout to let the user know that something went wrong.</p>
+        <p>
+          Use this callout to let the user know that something went wrong. For
+          example if you want to communicate an error. You should receive an
+          error message when the issue is{' '}
+          <b>
+            terminal, this doesn&apos;t always mean that the operation stops
+            completely, but the task is not complete
+          </b>
+          .
+        </p>
       ),
       snippet: dangerSnippet,
       demo: <Danger />,
+    },
+    {
+      title: 'Dismissible callouts',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: onDismissSource,
+        },
+      ],
+      text: (
+        <p>
+          To render a cross icon in the top right hand corner, pass an{' '}
+          <EuiCode>onDismiss</EuiCode> callback that handles conditionally
+          rendering your callout.
+        </p>
+      ),
+      snippet: onDismissSnippet,
+      demo: <OnDismiss />,
     },
   ],
 };

@@ -67,17 +67,16 @@ export const EuiSelectableSearch = <T,>({
 
   const classes = classNames('euiSelectableSearch', className);
 
-  const ariaPropsIfListIsPresent:
-    | Partial<EuiFieldSearchProps>
-    | undefined = listId
-    ? {
-        role: 'combobox',
-        'aria-autocomplete': 'list',
-        'aria-expanded': true,
-        'aria-controls': listId,
-        'aria-owns': listId, // legacy attribute but shims support for nearly everything atm
-      }
-    : undefined;
+  const ariaPropsIfListIsPresent: Partial<EuiFieldSearchProps> | undefined =
+    listId
+      ? {
+          role: 'combobox',
+          'aria-autocomplete': 'list',
+          'aria-expanded': true,
+          'aria-controls': listId,
+          'aria-owns': listId, // legacy attribute but shims support for nearly everything atm
+        }
+      : undefined;
 
   return (
     <EuiFieldSearch

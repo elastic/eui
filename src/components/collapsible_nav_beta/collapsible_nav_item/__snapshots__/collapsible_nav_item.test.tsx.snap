@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collapsed push flyout 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiToolTipAnchor euiCollapsedNavItem euiCollapsibleNavItem testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <button
+    aria-label="Item"
+    class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+    data-test-subj="euiCollapsedNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="link"
+    />
+  </button>
+</span>
+`;
+
+exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
+  >
+    <button
+      aria-controls="generated-id"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      >
+        <span
+          class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+        >
+          <span
+            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+          >
+            Item
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      aria-controls="generated-id"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
+    id="generated-id"
+    inert=""
+    role="group"
+    style="block-size: 0;"
+    tabindex="-1"
+  >
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    >
+      <div
+        class="euiCollapsibleNavItem__items euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavItem__items-isTopItem"
+      >
+        <span
+          aria-label="aria-label"
+          class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
+          data-test-subj="test subject string"
+        >
+          <span
+            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+          >
+            Sub-item
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavItem renders a top level group if items exist and \`isCollapsible\` is set to false 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiCollapsibleNavGroup euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavGroup-isTopItem-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+    id="generated-id"
+  >
+    <span
+      class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+    >
+      Item
+    </span>
+  </span>
+  <div
+    aria-labelledby="generated-id"
+    class="euiCollapsibleNavItem__items euiCollapsibleNavGroup__children emotion-euiCollapsibleNavItem__items-isTopItem"
+    role="group"
+  >
+    <span
+      aria-label="aria-label"
+      class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
+      data-test-subj="test subject string"
+    >
+      <span
+        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      >
+        Sub-item
+      </span>
+    </span>
+  </div>
+</div>
+`;

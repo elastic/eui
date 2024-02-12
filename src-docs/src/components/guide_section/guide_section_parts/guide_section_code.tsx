@@ -12,10 +12,9 @@ export type GuideSectionExampleCode = {
   type?: string;
 };
 
-export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode> = ({
-  code,
-  type = GuideSectionTypes.JS,
-}) => {
+export const GuideSectionExampleCode: FunctionComponent<
+  GuideSectionExampleCode
+> = ({ code, type = GuideSectionTypes.JS }) => {
   const isJavascript = useMemo(
     () => [GuideSectionTypes.JS, GuideSectionTypes.TSX].includes(type),
     [type]

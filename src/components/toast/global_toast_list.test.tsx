@@ -7,21 +7,23 @@
  */
 
 import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { render, mount } from 'enzyme';
+import { act, fireEvent } from '@testing-library/react';
+import { mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
+import { render } from '../../test/rtl';
 
 import {
   EuiGlobalToastList,
   Toast,
   TOAST_FADE_OUT_MS,
+  CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT,
 } from './global_toast_list';
 
 jest.useFakeTimers();
 
 describe('EuiGlobalToastList', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiGlobalToastList
         {...requiredProps}
         dismissToast={() => {}}
@@ -29,7 +31,7 @@ describe('EuiGlobalToastList', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -48,13 +50,13 @@ describe('EuiGlobalToastList', () => {
             title: 'B',
             text: 'b',
             color: 'danger',
-            iconType: 'alert',
+            iconType: 'warning',
             'data-test-subj': 'b',
             id: 'b',
           },
         ];
 
-        const component = render(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -62,7 +64,7 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -81,13 +83,13 @@ describe('EuiGlobalToastList', () => {
             title: 'B',
             text: 'b',
             color: 'danger',
-            iconType: 'alert',
+            iconType: 'warning',
             'data-test-subj': 'b',
             id: 'b',
           },
         ];
 
-        const component = render(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -95,7 +97,7 @@ describe('EuiGlobalToastList', () => {
             side="left"
           />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -184,6 +186,103 @@ describe('EuiGlobalToastList', () => {
         });
         expect(dismissToastSpy).toBeCalled();
       });
+    });
+
+    describe('clear all toasts button', () => {
+      const createMockToasts = (toastCount: number) =>
+        Array.from(new Array(toastCount)).map((_, idx) => ({
+          id: String(idx),
+          'data-test-subj': String(idx),
+        }));
+
+      const sharedProps = {
+        toastLifeTimeMs: 10,
+        dismissToast: jest.fn(),
+        toasts: createMockToasts(CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT),
+      };
+
+      afterEach(() => {
+        sharedProps.dismissToast.mockClear();
+      });
+
+      test('is not visible when the showClearAllButtonAt prop is set to 0', () => {
+        const { queryByTestSubject } = render(
+          <EuiGlobalToastList {...sharedProps} showClearAllButtonAt={0} />
+        );
+
+        expect(
+          queryByTestSubject('euiClearAllToastsButton')
+        ).not.toBeInTheDocument();
+      });
+
+      it('is not visible when the number of toasts to be displayed is below the set toast dismiss threshold', () => {
+        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT - 1;
+
+        const { queryByTestSubject } = render(
+          <EuiGlobalToastList
+            {...sharedProps}
+            toasts={createMockToasts(TOAST_COUNT)}
+          />
+        );
+
+        expect(
+          queryByTestSubject('euiClearAllToastsButton')
+        ).not.toBeInTheDocument();
+      });
+
+      test('is displayed when the number of toasts to be displayed equals the internal default threshold value', () => {
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList {...sharedProps} />
+        );
+
+        expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
+      });
+
+      test('is visible when the number of toasts to be displayed exceeds the threshold value set with the showClearAllButtonAt prop', () => {
+        const TOAST_COUNT = 5;
+
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            {...sharedProps}
+            toasts={createMockToasts(TOAST_COUNT)}
+            showClearAllButtonAt={TOAST_COUNT - 1}
+          />
+        );
+
+        expect(getByTestSubject('euiClearAllToastsButton')).toBeInTheDocument();
+      });
+
+      test('fires the optional onClearAllToasts callback if provided when the clear toast button is clicked', () => {
+        const onClearAllToastsSpy = jest.fn();
+
+        const TOAST_COUNT = 5;
+
+        const { getByTestSubject } = render(
+          <EuiGlobalToastList
+            {...sharedProps}
+            toasts={createMockToasts(TOAST_COUNT)}
+            onClearAllToasts={onClearAllToastsSpy}
+          />
+        );
+
+        fireEvent.click(getByTestSubject('euiClearAllToastsButton'));
+
+        expect(onClearAllToastsSpy).toHaveBeenCalledTimes(1);
+        expect(sharedProps.dismissToast).toHaveBeenCalledTimes(TOAST_COUNT);
+      });
+    });
+
+    test('role', () => {
+      const { queryByRole } = render(
+        <EuiGlobalToastList
+          dismissToast={() => {}}
+          toastLifeTimeMs={5}
+          role="alert"
+        />
+      );
+
+      expect(queryByRole('alert')).toBeInTheDocument();
+      expect(queryByRole('log')).not.toBeInTheDocument();
     });
   });
 });

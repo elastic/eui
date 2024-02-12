@@ -30,6 +30,7 @@ import { EuiRangeWrapper } from './range_wrapper';
 import type { EuiRangeProps } from './types';
 
 import { euiRangeStyles } from './range.styles';
+import { EuiI18n } from '../../i18n';
 
 export class EuiRangeClass extends Component<
   EuiRangeProps & WithEuiThemeProps
@@ -55,6 +56,7 @@ export class EuiRangeClass extends Component<
   state = {
     id: this.props.id || htmlIdGenerator()(),
     isPopoverOpen: false,
+    trackWidth: 0,
   };
 
   handleOnChange = (
@@ -77,6 +79,10 @@ export class EuiRangeClass extends Component<
       this.props.value || ''
     );
   }
+
+  setTrackWidth = ({ width }: { width: number }) => {
+    this.setState({ trackWidth: width });
+  };
 
   onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
@@ -126,6 +132,7 @@ export class EuiRangeClass extends Component<
       step,
       showLabels,
       showInput,
+      inputPopoverProps,
       showTicks,
       tickInterval,
       ticks,
@@ -146,7 +153,6 @@ export class EuiRangeClass extends Component<
 
     const { id } = this.state;
 
-    const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
@@ -155,7 +161,6 @@ export class EuiRangeClass extends Component<
         id={id}
         min={min}
         max={max}
-        digitTolerance={digitTolerance}
         step={step}
         value={value}
         readOnly={readOnly}
@@ -179,6 +184,13 @@ export class EuiRangeClass extends Component<
     const cssStyles = [styles.euiRange, showInput && styles.hasInput];
     const thumbColor = levels && getLevelColor(levels, Number(value));
 
+    const sliderScreenReaderInstructions = (
+      <EuiI18n
+        token="euiRange.sliderScreenReaderInstructions"
+        default="You are in a custom range slider. Use the Up and Down arrow keys to change the value."
+      />
+    );
+
     const theRange = (
       <EuiRangeWrapper
         className={classes}
@@ -192,6 +204,7 @@ export class EuiRangeClass extends Component<
           </EuiRangeLabel>
         )}
         <EuiRangeTrack
+          trackWidth={this.state.trackWidth}
           disabled={disabled}
           compressed={compressed}
           max={max}
@@ -203,59 +216,56 @@ export class EuiRangeClass extends Component<
           levels={levels}
           onChange={this.handleOnChange}
           value={value}
-          aria-hidden={showInput === true}
+          aria-hidden={!!showInput}
           showRange={showRange}
         >
-          {(trackWidth) => (
-            <>
-              <EuiRangeSlider
-                id={showInput ? undefined : id} // Attach id only to the input if there is one
-                name={name}
-                min={min}
-                max={max}
-                step={step}
-                value={value}
-                disabled={disabled}
-                onChange={this.handleOnChange}
-                showTicks={showTicks}
-                showRange={showRange}
-                tabIndex={showInput ? -1 : tabIndex}
-                onMouseDown={
-                  showInputOnly
-                    ? () => (this.preventPopoverClose = true)
-                    : undefined
-                }
-                onFocus={showInput === true ? undefined : onFocus}
-                onBlur={showInputOnly ? this.onInputBlur : onBlur}
-                aria-hidden={showInput === true ? true : false}
-                thumbColor={thumbColor}
-                {...rest}
-              />
+          <EuiRangeSlider
+            id={showInput ? undefined : id} // Attach id only to the input if there is one
+            name={name}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            disabled={disabled}
+            onChange={this.handleOnChange}
+            showTicks={showTicks}
+            showRange={showRange}
+            tabIndex={showInput ? -1 : tabIndex}
+            onMouseDown={
+              showInputOnly
+                ? () => (this.preventPopoverClose = true)
+                : undefined
+            }
+            onFocus={showInput === true ? undefined : onFocus}
+            onBlur={showInputOnly ? this.onInputBlur : onBlur}
+            aria-hidden={!!showInput}
+            thumbColor={thumbColor}
+            {...rest}
+            onResize={this.setTrackWidth}
+          />
 
-              {showRange && this.isValid && (
-                <EuiRangeHighlight
-                  showTicks={showTicks}
-                  min={Number(min)}
-                  max={Number(max)}
-                  lowerValue={Number(min)}
-                  upperValue={Number(value)}
-                  levels={levels}
-                  trackWidth={trackWidth}
-                />
-              )}
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(min)}
+              upperValue={Number(value)}
+              levels={levels}
+              trackWidth={this.state.trackWidth}
+            />
+          )}
 
-              {showValue && !!String(value).length && (
-                <EuiRangeTooltip
-                  value={value}
-                  max={max}
-                  min={min}
-                  name={name}
-                  showTicks={showTicks}
-                  valuePrepend={valuePrepend}
-                  valueAppend={valueAppend}
-                />
-              )}
-            </>
+          {showValue && !!String(value).length && (
+            <EuiRangeTooltip
+              value={value}
+              max={max}
+              min={min}
+              name={name}
+              showTicks={showTicks}
+              valuePrepend={valuePrepend}
+              valueAppend={valueAppend}
+            />
           )}
         </EuiRangeTrack>
         {showLabels && (
@@ -285,12 +295,17 @@ export class EuiRangeClass extends Component<
 
     const thePopover = showInputOnly ? (
       <EuiInputPopover
-        className="euiRange__popover"
+        {...inputPopoverProps}
+        className={classNames(
+          'euiRange__popover',
+          inputPopoverProps?.className
+        )}
         input={theInput!} // `showInputOnly` confirms existence
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         disableFocusTrap={true}
+        popoverScreenReaderText={sliderScreenReaderInstructions}
       >
         {theRange}
       </EuiInputPopover>

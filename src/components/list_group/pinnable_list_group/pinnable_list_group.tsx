@@ -56,19 +56,13 @@ export interface EuiPinnableListGroupProps
   unpinTitle?: (item: EuiPinnableListGroupItemProps) => string;
 }
 
-export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> = ({
-  className,
-  listItems,
-  pinTitle,
-  unpinTitle,
-  onPinClick,
-  ...rest
-}) => {
+export const EuiPinnableListGroup: FunctionComponent<
+  EuiPinnableListGroupProps
+> = ({ className, listItems, pinTitle, unpinTitle, onPinClick, ...rest }) => {
   const classes = classNames('euiPinnableListGroup', className);
   const euiTheme = useEuiTheme();
-  const itemExtraActionStyles = euiPinnableListGroupItemExtraActionStyles(
-    euiTheme
-  );
+  const itemExtraActionStyles =
+    euiPinnableListGroupItemExtraActionStyles(euiTheme);
 
   const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
     iconType: 'pinFilled',

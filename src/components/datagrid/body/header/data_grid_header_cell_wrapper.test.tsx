@@ -7,10 +7,8 @@
  */
 
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
-import { keys } from '../../../../services';
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 
@@ -20,7 +18,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   const requiredProps = {
     id: 'someColumn',
     index: 0,
-    headerIsInteractive: true,
+    hasActionsPopover: true,
     children: <button />,
   };
 
@@ -43,7 +41,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     const component = mountWithContext();
     expect(component).toMatchInlineSnapshot(`
       <EuiDataGridHeaderCellWrapper
-        headerIsInteractive={true}
+        hasActionsPopover={true}
         id="someColumn"
         index={0}
       >
@@ -54,11 +52,34 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           data-gridcell-row-index="-1"
           data-gridcell-visible-row-index="-1"
           data-test-subj="dataGridHeaderCell-someColumn"
+          onFocus={[Function]}
           role="columnheader"
           style={Object {}}
-          tabIndex={-1}
+          tabIndex={0}
         >
-          <button />
+          <HandleInteractiveChildren
+            cellEl={
+              <div
+                class="euiDataGridHeaderCell"
+                data-gridcell-column-id="someColumn"
+                data-gridcell-column-index="0"
+                data-gridcell-row-index="-1"
+                data-gridcell-visible-row-index="-1"
+                data-test-subj="dataGridHeaderCell-someColumn"
+                role="columnheader"
+                tabindex="0"
+              >
+                <button
+                  data-euigrid-tab-managed="true"
+                  tabindex="-1"
+                />
+              </div>
+            }
+            renderFocusTrap={false}
+            updateCellFocusContext={[Function]}
+          >
+            <button />
+          </HandleInteractiveChildren>
         </div>
       </EuiDataGridHeaderCellWrapper>
     `);
@@ -80,201 +101,43 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         data-gridcell-row-index="-1"
         data-gridcell-visible-row-index="-1"
         data-test-subj="dataGridHeaderCell-someColumn"
+        onFocus={[Function]}
         role="columnheader"
         style={
           Object {
             "width": "30px",
           }
         }
-        tabIndex={-1}
+        tabIndex={0}
       >
-        <button />
+        <HandleInteractiveChildren
+          cellEl={
+            <div
+              aria-label="test"
+              class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+              data-gridcell-column-id="someColumn"
+              data-gridcell-column-index="0"
+              data-gridcell-row-index="-1"
+              data-gridcell-visible-row-index="-1"
+              data-test-subj="dataGridHeaderCell-someColumn"
+              role="columnheader"
+              style="width: 30px;"
+              tabindex="0"
+            >
+              <button
+                data-euigrid-tab-managed="true"
+                tabindex="-1"
+              />
+            </div>
+          }
+          renderFocusTrap={false}
+          updateCellFocusContext={[Function]}
+        >
+          <button />
+        </HandleInteractiveChildren>
       </div>
     `);
   });
 
-  describe('focus behavior', () => {
-    // Reusable assertions for DRYness
-    const expectCellFocused = (headerCell: Element) => {
-      expect(document.activeElement).toEqual(headerCell);
-      expect(headerCell.getAttribute('tabIndex')).toEqual('0');
-    };
-    const expectCellChildrenFocused = (headerCell: Element) => {
-      expect(document.activeElement).toEqual(
-        headerCell.querySelector('[data-euigrid-tab-managed]')
-      );
-      expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
-    };
-    const expectCellNotFocused = (headerCell: Element) => {
-      expect(document.activeElement).toBeInstanceOf(HTMLBodyElement);
-      expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
-    };
-
-    // Reset focus between tests
-    beforeEach(() => (document.activeElement as HTMLElement)?.blur());
-
-    describe('isFocused context', () => {
-      describe('when true', () => {
-        it('focuses the interactive cell children when present', () => {
-          const isFocused = true;
-          const headerCell = mountWithContext({}, isFocused).getDOMNode();
-          expectCellChildrenFocused(headerCell);
-        });
-
-        it('focuses the cell when no interactive children are present', () => {
-          const isFocused = true;
-          const headerCell = mountWithContext(
-            { children: <div /> },
-            isFocused
-          ).getDOMNode();
-          expectCellFocused(headerCell);
-        });
-      });
-
-      describe('when false', () => {
-        it('sets isCellEntered to false and disables interactives', () => {
-          const isFocused = false;
-          const headerCell = mountWithContext({}, isFocused).getDOMNode();
-          expectCellNotFocused(headerCell);
-        });
-      });
-    });
-
-    describe('events', () => {
-      describe('keyup', () => {
-        test('enter key sets isCellEntered to true (which focuses the first interactive child in the header cell)', () => {
-          const headerCell = mountWithContext().getDOMNode();
-          act(() => {
-            headerCell.dispatchEvent(
-              new KeyboardEvent('keyup', { key: keys.ENTER })
-            );
-          });
-          expectCellChildrenFocused(headerCell);
-        });
-
-        test('escape key sets isCellEntered to false and focuses the header cell div', () => {
-          const headerCell = mountWithContext().getDOMNode();
-          act(() => {
-            headerCell.dispatchEvent(
-              new KeyboardEvent('keyup', { key: keys.ESCAPE })
-            );
-          });
-          expectCellFocused(headerCell);
-        });
-      });
-
-      describe('focus', () => {
-        // Mock requestAnimationFrame
-        beforeEach(() => {
-          jest
-            .spyOn(window, 'requestAnimationFrame')
-            .mockImplementation((cb: Function) => cb());
-        });
-        afterEach(() => {
-          jest.restoreAllMocks();
-        });
-
-        describe('focusin', () => {
-          describe('when header is not interactive', () => {
-            it('does not focus in on the cell', () => {
-              const headerCell = mountWithContext(
-                { headerIsInteractive: false },
-                false
-              ).getDOMNode();
-              act(() => {
-                headerCell.dispatchEvent(new FocusEvent('focusin'));
-              });
-              expectCellNotFocused(headerCell);
-            });
-          });
-
-          describe('when header is interactive', () => {
-            it('calls setFocusedCell when not already focused', () => {
-              const headerCell = mountWithContext({}, false).getDOMNode();
-              act(() => {
-                headerCell.dispatchEvent(new FocusEvent('focusin'));
-              });
-              expect(mockFocusContext.setFocusedCell).toHaveBeenCalled();
-            });
-
-            it('re-enables and focuses cell interactives when already focused', () => {
-              const headerCell = mountWithContext({}, true).getDOMNode();
-              act(() => {
-                headerCell.dispatchEvent(new FocusEvent('focusin'));
-              });
-              expectCellChildrenFocused(headerCell);
-            });
-          });
-        });
-
-        describe('focus out', () => {
-          it('waits for the cell/children to lose focus first', () => {
-            const headerCell = mountWithContext({}, true).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
-            });
-            expectCellChildrenFocused(headerCell);
-
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusout'));
-            });
-            // Focus hasn't moved away yet
-            expectCellChildrenFocused(headerCell);
-          });
-
-          it('sets isCellEntered to false once the cell/children are no longer focused', () => {
-            const headerCell = mountWithContext({}, false).getDOMNode();
-
-            // Slightly cheating the test setup here; headerCell starts out not focused
-            expectCellNotFocused(headerCell);
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusout'));
-            });
-
-            // Focus is lost & isCellCentered false should set children to tabIndex -1
-            expect(headerCell.querySelector('[tabIndex="-1"]')).not.toBeNull();
-            expect(headerCell.querySelector('[tabIndex="0"]')).toBeNull();
-          });
-        });
-      });
-    });
-
-    describe('multiple interactive children', () => {
-      const children = (
-        <div>
-          <button />
-          <button />
-          <button />
-        </div>
-      );
-
-      let consoleWarnSpy: jest.SpyInstance;
-
-      beforeEach(() => {
-        consoleWarnSpy = jest
-          .spyOn(console, 'warn')
-          .mockImplementation(() => {}); // Silence expected warning
-      });
-      afterEach(() => {
-        consoleWarnSpy.mockRestore();
-      });
-
-      it('emits a console warning', () => {
-        mountWithContext({ children });
-        expect(consoleWarnSpy).toHaveBeenCalledWith(
-          'EuiDataGridHeaderCell expects at most 1 tabbable element, 3 found instead'
-        );
-      });
-
-      it('will still focus in to the first interactable element on cell enter', () => {
-        const headerCell = mountWithContext({ children }).getDOMNode();
-        act(() => {
-          headerCell.dispatchEvent(
-            new KeyboardEvent('keyup', { key: keys.ENTER })
-          );
-        });
-        expectCellChildrenFocused(headerCell);
-      });
-    });
-  });
+  // Focus behavior tested in `focus_utils.spec.tsx`
 });

@@ -84,8 +84,7 @@ export default () => {
           options={[
             {
               value: 'option_one',
-              text:
-                'Option one is very long in order to try justifying the use of fullWidth on a select box',
+              text: 'Option one is very long in order to try justifying the use of fullWidth on a select box',
             },
             { value: 'option_two', text: 'Option two' },
             { value: 'option_three', text: 'Option three' },

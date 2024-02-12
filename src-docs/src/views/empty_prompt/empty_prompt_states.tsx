@@ -29,7 +29,7 @@ export default () => {
     case 'error':
       emptyPromptProps = {
         color: 'danger',
-        iconType: 'alert',
+        iconType: 'error',
         title: <h2>Unable to load your dashboards</h2>,
         body: (
           <p>

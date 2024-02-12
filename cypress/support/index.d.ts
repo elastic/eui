@@ -1,5 +1,7 @@
 import { ContextObject, Result, RunOptions } from 'axe-core';
 import { realPress } from 'cypress-real-events/commands/realPress';
+import type { mountCommand } from './setup/mount';
+import type { realMountCommand } from './setup/realMount';
 
 type KeyOrShortcut = Parameters<typeof realPress>[0];
 type RealPressOptions = Parameters<typeof realPress>[1];
@@ -7,9 +9,6 @@ type RealPressOptions = Parameters<typeof realPress>[1];
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
-      // We are adding `/// <reference types="../../../cypress/support"/>` to
-      // Cypress specs so VSCode will recognize custom command types.
-
       /**
        * Convenience method to run the axe-core accessibility scanner without having to establish
        * `cy.injectAxe()` in a `beforeEach` block. This method also reports axe violations in the
@@ -30,10 +29,15 @@ declare global {
       }): void;
 
       /**
+       * Mounts components with a basic `EuiProvider` wrapper
+       */
+      mount: mountCommand;
+
+      /**
        * This ensures the correct testing window has focus when using Cypress Real Events.
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196
        */
-      realMount(children: React.ReactNode): void;
+      realMount: realMountCommand;
 
       /**
        * Repeat the Real Events `realPress()` method 2 or more times

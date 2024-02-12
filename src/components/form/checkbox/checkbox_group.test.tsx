@@ -7,12 +7,14 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiCheckboxGroup } from './checkbox_group';
 
-jest.mock('./checkbox', () => ({ EuiCheckbox: 'eui_checkbox' }));
+jest.mock('./checkbox', () => ({
+  EuiCheckbox: () => <div data-eui-checkbox="" />,
+}));
 
 const checkboxGroupRequiredProps = {
   options: [],
@@ -22,15 +24,15 @@ const checkboxGroupRequiredProps = {
 
 describe('EuiCheckboxGroup (mocked checkbox)', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckboxGroup {...checkboxGroupRequiredProps} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('options are rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
         options={[
@@ -40,11 +42,11 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('idToSelectedMap is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
         options={[
@@ -58,11 +60,11 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('disabled is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
         options={[
@@ -77,11 +79,11 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('individual disabled is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
         options={[
@@ -95,11 +97,11 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('legend is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckboxGroup
         {...checkboxGroupRequiredProps}
         legend={{
@@ -108,6 +110,6 @@ describe('EuiCheckboxGroup (mocked checkbox)', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

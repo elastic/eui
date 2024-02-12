@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -52,14 +52,6 @@ export default () => {
   const guideHeaderDeploymentPopoverId = useGeneratedHtmlId({
     prefix: 'guideHeaderDeploymentPopover',
   });
-
-  useEffect(() => {
-    document.body.classList.add('euiBody--headerIsFixed--double');
-
-    return () => {
-      document.body.classList.remove('euiBody--headerIsFixed--double');
-    };
-  }, []);
 
   /**
    * Collapsible Nav
@@ -307,11 +299,9 @@ export default () => {
               </EuiHeaderLogo>,
               deploymentMenu,
             ],
-            borders: 'none',
           },
           {
             items: [<EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>],
-            borders: 'none',
           },
           {
             items: [
@@ -325,7 +315,6 @@ export default () => {
               </EuiHeaderSectionItemButton>,
               userMenu,
             ],
-            borders: 'none',
           },
         ]}
       />
@@ -343,7 +332,6 @@ export default () => {
                 text: 'Users',
               },
             ],
-            borders: 'right',
           },
           {
             items: [

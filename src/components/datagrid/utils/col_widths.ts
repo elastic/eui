@@ -88,9 +88,8 @@ export const useColumnWidths = ({
       }, {});
   }, [columns]);
 
-  const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>(
-    computeColumnWidths
-  );
+  const [columnWidths, setColumnWidths] =
+    useState<EuiDataGridColumnWidths>(computeColumnWidths);
 
   useUpdateEffect(() => {
     setColumnWidths(computeColumnWidths());

@@ -40,7 +40,7 @@ export const STATUS = [
   'current',
 ] as const;
 
-export type EuiStepStatus = typeof STATUS[number];
+export type EuiStepStatus = (typeof STATUS)[number];
 
 export interface EuiStepNumberProps
   extends CommonProps,
@@ -109,7 +109,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
       ];
       const iconTypeMap = {
         danger: 'cross',
-        warning: 'alert',
+        warning: 'warning',
         complete: 'check',
       };
 

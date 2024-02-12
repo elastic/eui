@@ -131,7 +131,6 @@ const uiPluginConcepts = [
 
 export const MarkdownPluginExample = {
   title: 'Markdown plugins',
-  beta: true,
   intro: (
     <EuiText>
       <p>
@@ -376,8 +375,6 @@ parsingPlugins.find(([plugin, config]) => {
             compressed
             listItems={pluginConcepts}
             type="responsiveColumn"
-            titleProps={{ style: { width: '20%' } }}
-            descriptionProps={{ style: { width: '80%' } }}
           />
           <EuiHorizontalRule margin="xl" />
           <EuiTitle>
@@ -392,8 +389,6 @@ parsingPlugins.find(([plugin, config]) => {
             compressed
             listItems={uiPluginConcepts}
             type="responsiveColumn"
-            titleProps={{ style: { width: '20%' } }}
-            descriptionProps={{ style: { width: '80%' } }}
           />
           <EuiHorizontalRule margin="xl" />
           <EuiTitle>
@@ -518,10 +513,8 @@ parsingList.push(EmojiMarkdownParser);`}</EuiCodeBlock>
             </p>
           </EuiText>
           <EuiSpacer />
-          <EuiCodeBlock
-            size="s"
-            language="javascript"
-          >{`// example plugin processor
+          <EuiCodeBlock size="s" language="javascript">
+            {`// example plugin processor
 
 // receives the configuration from the parser and renders
 const EmojiMarkdownRenderer = ({ emoji }) => {
@@ -530,8 +523,8 @@ const EmojiMarkdownRenderer = ({ emoji }) => {
 
 // add the renderer for \`emojiPlugin\`
 const processingList = getDefaultEuiMarkdownProcessingPlugins();
-processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}</EuiCodeBlock>
-          ),
+processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}
+          </EuiCodeBlock>
         </>
       ),
     },

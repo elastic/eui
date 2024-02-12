@@ -13,20 +13,20 @@ exports[`_EuiPageInner component renders HTML tag strings 1`] = `
 `;
 
 exports[`_EuiPageInner component renders custom React components 1`] = `
-Array [
+<div>
   <div>
     hello
-  </div>,
+  </div>
   <div>
     world
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`_EuiPageInner is rendered 1`] = `
 <main
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPageInner"
+  class="testClass1 testClass2 emotion-euiPageInner-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

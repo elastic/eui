@@ -26,9 +26,8 @@ import { pageConfig } from './playground';
 export const PageComponentDemo: FunctionComponent = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const [horizontal, setHorizontal] = useState(true);
-  const [restrictWidth, setRestrictWidth] = useState<
-    EuiPageProps['restrictWidth']
-  >(false);
+  const [restrictWidth, setRestrictWidth] =
+    useState<EuiPageProps['restrictWidth']>(false);
   const [grow, setGrow] = useState(true);
 
   const content = (

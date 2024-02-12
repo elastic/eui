@@ -23,3 +23,5 @@ exports[`astToEsQueryString ast - date:'2004-03' -date<'2004-03-10' 1`] = `"+dat
 exports[`astToEsQueryString ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `"+date:>=2004-03 -date:>=2004-03-10"`;
 
 exports[`astToEsQueryString ast - date>='2004-03-22' 1`] = `"+date:>=2004-03-22"`;
+
+exports[`astToEsQueryString ast·-·'"john·smith"·-"sales team"' 1`] = `"+\\"john smith\\" -\\"sales team\\""`;

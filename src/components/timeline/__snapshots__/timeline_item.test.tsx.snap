@@ -12,7 +12,7 @@ exports[`EuiTimelineItem is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -45,7 +45,7 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
     >
       <div
         aria-label="dot"
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title="dot"
       >
@@ -78,7 +78,7 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
     >
       <div
         aria-label="icon aria label"
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title="icon aria label"
       >
@@ -111,7 +111,7 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -144,7 +144,7 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >

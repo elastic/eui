@@ -9,7 +9,6 @@ import {
   EuiLoadingElastic,
   EuiLoadingSpinner,
   EuiLoadingChart,
-  EuiCallOut,
 } from '../../../../src/components';
 
 import {
@@ -22,9 +21,9 @@ import {
 
 import { EuiLoadingSpinnerColor as EuiLoadingSpinnerColorProps } from '../../../../src/components/loading/loading_spinner';
 
-export const EuiLoadingSpinnerColor: FunctionComponent<EuiLoadingSpinnerColorProps> = () => (
-  <div />
-);
+export const EuiLoadingSpinnerColor: FunctionComponent<
+  EuiLoadingSpinnerColorProps
+> = () => <div />;
 
 import LoadingLogo from './loading_kibana';
 const loadingLogoSource = require('!!raw-loader!./loading_kibana');
@@ -136,22 +135,6 @@ export const LoadingExample = {
       demo: <LoadingSpinner />,
       snippet: '<EuiLoadingSpinner size="m" />',
       playground: loadingSpinnerConfig,
-    },
-    {
-      title: 'Text content',
-      text: (
-        <EuiCallOut
-          title="EuiLoadingContent has been deprecated"
-          iconType="symlink"
-        >
-          <p>
-            <strong>EuiLoadingContent</strong> has been deprecated in favor of{' '}
-            <strong>EuiSkeletonText</strong>. Head on over to the{' '}
-            <Link to="/display/skeleton">Skeleton documentation page</Link> to
-            see more loading skeleton usages.
-          </p>
-        </EuiCallOut>
-      ),
     },
   ],
 };

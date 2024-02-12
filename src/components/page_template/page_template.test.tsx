@@ -8,10 +8,10 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
-import { shouldRenderCustomStyles } from '../../test/internal';
 import { PADDING_SIZES } from '../../global_styling';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiPageTemplate } from './page_template';
 
@@ -19,91 +19,103 @@ describe('EuiPageTemplate', () => {
   shouldRenderCustomStyles(<EuiPageTemplate />, { childProps: ['mainProps'] });
 
   test('is rendered', () => {
-    const component = render(<EuiPageTemplate {...requiredProps} />);
+    const { container } = render(<EuiPageTemplate {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('_EuiPageOuterProps is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPageTemplate grow={false} direction="column" responsive={[]} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('_EuiPageInnerProps is rendered', () => {
-    const component = render(
-      <EuiPageTemplate
-        component="div"
-        contentBorder={true}
-        panelled={false}
-        mainProps={{ id: 'customID', className: 'customClassName' }}
-      />
-    );
+  describe('_EuiPageInnerProps', () => {
+    it('is rendered', () => {
+      const { container } = render(
+        <EuiPageTemplate
+          component="div"
+          contentBorder={true}
+          panelled={false}
+          mainProps={{ id: 'customID', className: 'customClassName' }}
+        />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders as panelled', () => {
+      const { container } = render(
+        <EuiPageTemplate component="div" panelled />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
   describe('restrict width', () => {
     test('can be set to a default', () => {
-      const component = render(<EuiPageTemplate restrictWidth={true} />);
+      const { container } = render(<EuiPageTemplate restrictWidth={true} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
-      const component = render(<EuiPageTemplate restrictWidth={1024} />);
+      const { container } = render(<EuiPageTemplate restrictWidth={1024} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can be set to a custom value and measurement', () => {
-      const component = render(<EuiPageTemplate restrictWidth="24rem" />);
+      const { container } = render(<EuiPageTemplate restrictWidth="24rem" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('bottomBorder', () => {
     test('is rendered as true', () => {
-      const component = render(<EuiPageTemplate bottomBorder={true} />);
+      const { container } = render(<EuiPageTemplate bottomBorder={true} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered as extended', () => {
-      const component = render(<EuiPageTemplate bottomBorder={'extended'} />);
+      const { container } = render(
+        <EuiPageTemplate bottomBorder={'extended'} />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   test('minHeight is rendered', () => {
-    const component = render(<EuiPageTemplate minHeight={'40vh'} />);
+    const { container } = render(<EuiPageTemplate minHeight={'40vh'} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('offset is rendered', () => {
-    const component = render(<EuiPageTemplate offset={100} />);
+    const { container } = render(<EuiPageTemplate offset={100} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('paddingSize', () => {
     PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiPageTemplate paddingSize={size} />);
+        const { container } = render(<EuiPageTemplate paddingSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   describe('children', () => {
     it('detects sidebars and does not place them in the main EuiPageInner', () => {
-      const component = render(
+      const { container, getByRole } = render(
         <EuiPageTemplate {...requiredProps}>
           <EuiPageTemplate.Sidebar />
           <EuiPageTemplate.Sidebar
@@ -113,20 +125,20 @@ describe('EuiPageTemplate', () => {
           />
         </EuiPageTemplate>
       );
-      expect(component).toMatchSnapshot();
-      expect(component.find('main').children()).toHaveLength(0);
+      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('main').childElementCount).toEqual(0);
     });
 
     it('renders all other types within the main EuiPageInner', () => {
-      const component = render(
+      const { container, getByRole } = render(
         <EuiPageTemplate {...requiredProps}>
           <EuiPageTemplate.Header>A</EuiPageTemplate.Header>
           <EuiPageTemplate.Section>B</EuiPageTemplate.Section>
           <section>C</section>
         </EuiPageTemplate>
       );
-      expect(component).toMatchSnapshot();
-      expect(component.find('main').children()).toHaveLength(3);
+      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('main').childElementCount).toEqual(3);
     });
   });
 });

@@ -1,186 +1,236 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SearchBar render - box 1`] = `
-<EuiFlexGroup
-  alignItems="center"
-  gutterSize="m"
-  wrap={true}
+<div
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-wrap-m-flexStart-center-row"
 >
-  <EuiFlexItem
-    className="euiSearchBar__searchHolder"
-    grow={true}
+  <div
+    class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
-    <EuiSearchBox
-      aria-label="aria-label"
-      className="testClass1 testClass2"
-      data-test-subj="test subject string"
-      incremental={false}
-      isInvalid={false}
-      onSearch={[Function]}
-      placeholder="find something..."
-      query=""
-    />
-  </EuiFlexItem>
-</EuiFlexGroup>
+    <div
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
+        </div>
+        <input
+          aria-label="aria-label"
+          class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+          data-test-subj="test subject string"
+          placeholder="find something..."
+          type="search"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`SearchBar render - no config, no query 1`] = `
-<EuiFlexGroup
-  alignItems="center"
-  gutterSize="m"
-  wrap={true}
+<div
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-wrap-m-flexStart-center-row"
 >
-  <EuiFlexItem
-    className="euiSearchBar__searchHolder"
-    grow={true}
+  <div
+    class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
-    <EuiSearchBox
-      incremental={false}
-      isInvalid={false}
-      onSearch={[Function]}
-      placeholder="Search..."
-      query=""
-    />
-  </EuiFlexItem>
-</EuiFlexGroup>
+    <div
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
+        </div>
+        <input
+          aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+          class="euiFieldSearch euiFieldSearch--fullWidth"
+          placeholder="Search..."
+          type="search"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`SearchBar render - provided query, filters 1`] = `
-<EuiFlexGroup
-  alignItems="center"
-  gutterSize="m"
-  wrap={true}
+<div
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-wrap-m-flexStart-center-row"
 >
-  <EuiFlexItem
-    className="euiSearchBar__searchHolder"
-    grow={true}
+  <div
+    class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
-    <EuiSearchBox
-      incremental={false}
-      isInvalid={false}
-      onSearch={[Function]}
-      placeholder="Search..."
-      query="this is a query"
-    />
-  </EuiFlexItem>
-  <EuiFlexItem
-    className="euiSearchBar__filtersHolder"
-    grow={false}
+    <div
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
+        </div>
+        <input
+          aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+          class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable"
+          placeholder="Search..."
+          type="search"
+          value="this is a query"
+        />
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        >
+          <button
+            aria-label="Clear input"
+            class="euiFormControlLayoutClearButton"
+            data-test-subj="clearSearchButton"
+            type="button"
+          >
+            <span
+              class="euiFormControlLayoutClearButton__icon"
+              data-euiicon-type="cross"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiSearchBar__filtersHolder emotion-euiFlexItem-growZero-euiSearchBar__filtersHolder"
   >
-    <EuiSearchFilters
-      filters={
-        Array [
-          Object {
-            "field": "open",
-            "name": "Open",
-            "type": "is",
-          },
-          Object {
-            "field": "tag",
-            "name": "Tag",
-            "options": [Function],
-            "type": "field_value_selection",
-          },
-        ]
-      }
-      onChange={[Function]}
-      query={
-        Query {
-          "ast": _AST {
-            "_clauses": Array [
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "this",
-              },
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "is",
-              },
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "a",
-              },
-              Object {
-                "match": "must",
-                "type": "term",
-                "value": "query",
-              },
-            ],
-            "_indexedClauses": Object {
-              "field": Object {},
-              "group": Array [],
-              "is": Object {},
-              "term": Array [
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "this",
-                },
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "is",
-                },
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "a",
-                },
-                Object {
-                  "match": "must",
-                  "type": "term",
-                  "value": "query",
-                },
-              ],
-            },
-          },
-          "syntax": Object {
-            "parse": [Function],
-            "print": [Function],
-            "printClause": [Function],
-          },
-          "text": "this is a query",
-        }
-      }
-    />
-  </EuiFlexItem>
-</EuiFlexGroup>
+    <div
+      class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
+    >
+      <button
+        aria-pressed="false"
+        class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+        >
+          <span
+            class="euiFilterButton__text emotion-euiFilterButton__text"
+            data-text="Open"
+            title="Open"
+          >
+            Open
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiPopover emotion-euiPopover-inline-block"
+      >
+        <button
+          class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+          type="button"
+        >
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
+          >
+            <span
+              class="euiFilterButton__text emotion-euiFilterButton__text"
+              data-text="Tag"
+              title="Tag"
+            >
+              Tag
+            </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`SearchBar render - tools 1`] = `
-<EuiFlexGroup
-  alignItems="center"
-  gutterSize="m"
-  wrap={true}
+<div
+  class="euiFlexGroup emotion-euiFlexGroup-responsive-wrap-m-flexStart-center-row"
 >
-  <EuiFlexItem
-    grow={false}
+  <div
+    class="euiFlexItem emotion-euiFlexItem-growZero"
   >
     <div>
       Left
     </div>
-  </EuiFlexItem>
-  <EuiFlexItem
-    className="euiSearchBar__searchHolder"
-    grow={true}
+  </div>
+  <div
+    class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
-    <EuiSearchBox
-      incremental={false}
-      isInvalid={false}
-      onSearch={[Function]}
-      placeholder="Search..."
-      query=""
-    />
-  </EuiFlexItem>
-  <EuiFlexItem
-    grow={false}
+    <div
+      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
+        </div>
+        <input
+          aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
+          class="euiFieldSearch euiFieldSearch--fullWidth"
+          placeholder="Search..."
+          type="search"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem emotion-euiFlexItem-growZero"
   >
     <div>
       Right
     </div>
-  </EuiFlexItem>
-</EuiFlexGroup>
+  </div>
+</div>
 `;

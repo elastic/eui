@@ -9,7 +9,7 @@
 const chalk = require('chalk');
 const Generator = require('yeoman-generator');
 
-const CHANGELOG_DIRECTORY = 'upcoming_changelogs';
+const CHANGELOG_DIRECTORY = 'changelogs/upcoming';
 
 module.exports = class extends Generator {
   constructor(args, options) {
@@ -50,6 +50,12 @@ module.exports = class extends Generator {
       {
         message: 'Does your PR contain Emotion conversions?',
         name: 'emotionConversions',
+        type: 'confirm',
+        default: false,
+      },
+      {
+        message: 'Does your PR contain dependency updates?',
+        name: 'dependencyUpdates',
         type: 'confirm',
         default: false,
       },

@@ -2,7 +2,12 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSuperSelect } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiSuperSelect,
+  EuiLink,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
@@ -54,6 +59,23 @@ const superSelectStatesSnippet = `<EuiSuperSelect
 
 export const SuperSelectExample = {
   title: 'Super select',
+  intro: (
+    <EuiCallOut
+      iconType="questionInCircle"
+      title="Not sure which selection component to use?"
+    >
+      <p>
+        See{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide to selection components{' '}
+        </EuiLink>{' '}
+        for more information.
+      </p>
+    </EuiCallOut>
+  ),
   sections: [
     {
       source: [
@@ -102,13 +124,21 @@ export const SuperSelectExample = {
         },
       ],
       text: (
-        <p>
-          Both <EuiCode>inputDisplay</EuiCode> and{' '}
-          <EuiCode>dropdownDisplay</EuiCode> accept React nodes. Therefore you
-          can pass some descriptions with each option to show in the dropdown.
-          If your options will most likely be multi-line, add the{' '}
-          <EuiCode>hasDividers</EuiCode> prop to show borders between options.
-        </p>
+        <>
+          <p>
+            Both <EuiCode>inputDisplay</EuiCode> and{' '}
+            <EuiCode>dropdownDisplay</EuiCode> accept React nodes. Therefore you
+            can pass some descriptions with each option to show in the dropdown.
+            If your options will most likely be multi-line, add the{' '}
+            <EuiCode>hasDividers</EuiCode> prop to show borders between options.
+          </p>
+          <p>
+            A <EuiCode>placeholder</EuiCode> prop may also be passed that
+            accepts string as well as React nodes (to match your{' '}
+            <EuiCode>inputDisplay</EuiCode> if necessary). This placeholder will
+            only show when <EuiCode>valueOfSelected</EuiCode> is empty.
+          </p>
+        </>
       ),
       props: {},
       snippet: superSelectComplexSnippet,

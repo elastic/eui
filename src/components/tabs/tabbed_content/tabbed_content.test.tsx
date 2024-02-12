@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiTabbedContent, AUTOFOCUS } from './tabbed_content';
 
@@ -35,10 +36,10 @@ describe('EuiTabbedContent', () => {
   shouldRenderCustomStyles(<EuiTabbedContent tabs={tabs} />);
 
   test('is rendered with required props and tabs', () => {
-    const component = render(
+    const { container } = render(
       <EuiTabbedContent {...requiredProps} tabs={tabs} />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -56,37 +57,37 @@ describe('EuiTabbedContent', () => {
 
     describe('selectedTab', () => {
       test('renders a selected tab', () => {
-        const component = render(
+        const { container } = render(
           <EuiTabbedContent selectedTab={kibanaTab} tabs={tabs} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('initialSelectedTab', () => {
       test('renders a selected tab', () => {
-        const component = render(
+        const { container } = render(
           <EuiTabbedContent initialSelectedTab={kibanaTab} tabs={tabs} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       test('can be small', () => {
-        const component = render(<EuiTabbedContent size="s" tabs={tabs} />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiTabbedContent size="s" tabs={tabs} />);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('autoFocus', () => {
       AUTOFOCUS.forEach((focusType) => {
         test(`${focusType} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiTabbedContent autoFocus={focusType} tabs={tabs} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -94,8 +95,8 @@ describe('EuiTabbedContent', () => {
 
   describe('behavior', () => {
     test("when selected tab state isn't controlled by the owner, select the first tab by default", () => {
-      const component = render(<EuiTabbedContent tabs={tabs} />);
-      expect(component).toMatchSnapshot();
+      const { container } = render(<EuiTabbedContent tabs={tabs} />);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('when uncontrolled, the selected tab should update if it receives new content', () => {

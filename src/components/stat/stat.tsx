@@ -32,7 +32,7 @@ export const COLORS = [
   'danger',
   'accent',
 ] as const;
-type TitleColor = typeof COLORS[number];
+type TitleColor = (typeof COLORS)[number];
 
 export const ALIGNMENTS = ['left', 'center', 'right'] as const;
 
@@ -49,7 +49,7 @@ export interface EuiStatProps {
    * Flips the order of the description and title
    */
   reverse?: boolean;
-  textAlign?: typeof ALIGNMENTS[number];
+  textAlign?: (typeof ALIGNMENTS)[number];
   /**
    * The (value) text
    */

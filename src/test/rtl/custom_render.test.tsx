@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, screen } from './custom_render';
+import { render, screen, within } from './custom_render';
 
 describe('render returns the ByTestSubject custom queries', () => {
   test('queryByTestSubject', () => {
@@ -82,5 +82,79 @@ describe('screen has the ByTestSubject custom queries', () => {
     render(<div data-test-subj="test" />);
 
     await expect(screen.findAllByTestSubject('test')).resolves.toHaveLength(1);
+  });
+});
+
+describe('within has the ByTestSubject custom queries', () => {
+  test('queryByTestSubject', () => {
+    render(
+      <div data-testid="outer">
+        <div data-test-subj="inner" />
+      </div>
+    );
+
+    expect(
+      within(screen.getByTestId('outer')).queryByTestSubject('inner')
+    ).not.toBeNull();
+  });
+
+  test('queryAllByTestSubject', () => {
+    render(
+      <div data-testid="outer">
+        <div data-test-subj="inner" />
+      </div>
+    );
+
+    expect(
+      within(screen.getByTestId('outer')).queryAllByTestSubject('inner')
+    ).toHaveLength(1);
+  });
+
+  test('getByTestSubject', () => {
+    render(
+      <div data-testid="outer">
+        <div data-test-subj="inner" />
+      </div>
+    );
+
+    expect(
+      within(screen.getByTestId('outer')).getByTestSubject('inner')
+    ).toBeTruthy();
+  });
+
+  test('getAllByTestSubject', () => {
+    render(
+      <div data-testid="outer">
+        <div data-test-subj="inner" />
+      </div>
+    );
+
+    expect(
+      within(screen.getByTestId('outer')).getAllByTestSubject('inner')
+    ).toHaveLength(1);
+  });
+
+  test('findByTestSubject', async () => {
+    render(
+      <div data-testid="outer">
+        <div data-test-subj="inner" />
+      </div>
+    );
+
+    await expect(
+      within(screen.getByTestId('outer')).findByTestSubject('inner')
+    ).resolves.toBeTruthy();
+  });
+
+  test('findAllByTestSubject', async () => {
+    render(
+      <div data-testid="outer">
+        <div data-test-subj="inner" />
+      </div>
+    );
+
+    await expect(
+      within(screen.getByTestId('outer')).findAllByTestSubject('inner')
+    ).resolves.toHaveLength(1);
   });
 });

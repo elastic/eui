@@ -3,7 +3,7 @@
 exports[`EuiListGroup is rendered 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault"
+  class="euiListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -46,7 +46,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
+      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
       type="button"
     >
       <span
@@ -145,7 +145,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-primary-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
+      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-primary-euiListGroupItemExtraAction-alwaysShow"
       type="button"
     >
       <span
@@ -245,14 +245,14 @@ exports[`EuiListGroup props gutter size s is rendered 1`] = `
 exports[`EuiListGroup props maxWidth as a number is rendered 1`] = `
 <ul
   class="euiListGroup emotion-euiListGroup-s"
-  style="max-inline-size:300px"
+  style="max-inline-size: 300px;"
 />
 `;
 
 exports[`EuiListGroup props maxWidth as a string is rendered 1`] = `
 <ul
   class="euiListGroup emotion-euiListGroup-s"
-  style="max-inline-size:20em"
+  style="max-inline-size: 20em;"
 />
 `;
 

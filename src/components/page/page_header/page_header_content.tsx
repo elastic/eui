@@ -109,7 +109,7 @@ export interface _EuiPageHeaderContentProps
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages
    */
-  paddingSize?: typeof PADDING_SIZES[number];
+  paddingSize?: (typeof PADDING_SIZES)[number];
   /**
    * Set to false if you don't want the children to stack at small screen sizes.
    * Set to `reverse` to display the right side content first for the sake of hierarchy (like global time)
@@ -119,7 +119,7 @@ export interface _EuiPageHeaderContentProps
    * Vertical alignment of the left and right side content;
    * Default is `center` for custom content, but `top` for when `pageTitle` or `tabs` are included
    */
-  alignItems?: typeof ALIGN_ITEMS[number];
+  alignItems?: (typeof ALIGN_ITEMS)[number];
   /**
    * Pass custom an array of content to this side usually up to 3 buttons.
    * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
@@ -141,7 +141,9 @@ export interface EuiPageHeaderContentProps
     HTMLAttributes<HTMLDivElement>,
     _EuiPageHeaderContentProps {}
 
-export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> = ({
+export const EuiPageHeaderContent: FunctionComponent<
+  EuiPageHeaderContentProps
+> = ({
   className,
   pageTitle,
   pageTitleProps,
@@ -246,13 +248,12 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   let pageTitleNode;
   if (pageTitle) {
+    const iconCssStyles = [
+      contentStyles.euiPageHeaderContent__titleIcon,
+      iconProps?.css,
+    ];
     const icon = iconType ? (
-      <EuiIcon
-        size="xl"
-        css={contentStyles.euiPageHeaderContent__titleIcon}
-        {...iconProps}
-        type={iconType}
-      />
+      <EuiIcon size="xl" {...iconProps} css={iconCssStyles} type={iconType} />
     ) : undefined;
 
     pageTitleNode = (
@@ -344,25 +345,20 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   let rightSideFlexItem;
   if (rightSideItems && rightSideItems.length) {
-    const wrapWithFlex = () => {
-      return rightSideItems.map((item, index) => {
-        return (
-          <EuiFlexItem grow={false} key={index}>
-            {item}
-          </EuiFlexItem>
-        );
-      });
-    };
+    const itemsToRender = isResponsiveBreakpoint
+      ? rightSideItems
+      : [...rightSideItems].reverse();
+
+    const rightSideFlexItems = itemsToRender.map((item, index) => (
+      <EuiFlexItem grow={false} key={index}>
+        {item}
+      </EuiFlexItem>
+    ));
 
     rightSideFlexItem = (
       <EuiFlexItem grow={false}>
-        <EuiFlexGroup
-          wrap
-          responsive={false}
-          direction={isResponsiveBreakpoint ? undefined : 'rowReverse'}
-          {...rightSideGroupProps}
-        >
-          {wrapWithFlex()}
+        <EuiFlexGroup wrap responsive={false} {...rightSideGroupProps}>
+          {rightSideFlexItems}
         </EuiFlexGroup>
       </EuiFlexItem>
     );

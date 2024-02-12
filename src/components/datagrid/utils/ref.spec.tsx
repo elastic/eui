@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState, createRef, forwardRef } from 'react';
 import { EuiDataGrid } from '../';
@@ -67,14 +69,14 @@ describe('useImperativeGridRef', () => {
 
   describe('setIsFullScreen', () => {
     it('allows the consumer to manually toggle fullscreen mode', () => {
-      ref.current.setIsFullScreen(true);
+      ref.current!.setIsFullScreen(true);
       cy.get('[data-test-subj="euiDataGrid"]').should(
         'have.class',
         'euiDataGrid--fullScreen'
       );
       // Has to be a separate .then() block from the above for some Cypress-y reason
       cy.then(() => {
-        ref.current.setIsFullScreen(false);
+        ref.current!.setIsFullScreen(false);
         cy.get('[data-test-subj="euiDataGrid"]').should(
           'not.have.class',
           'euiDataGrid--fullScreen'
@@ -85,21 +87,21 @@ describe('useImperativeGridRef', () => {
 
   describe('setFocusedCell', () => {
     it('allows the consumer to manually focus into a specific grid cell', () => {
-      ref.current.setFocusedCell({ rowIndex: 1, colIndex: 1 });
+      ref.current!.setFocusedCell({ rowIndex: 1, colIndex: 1 });
       cy.focused()
         .should('have.attr', 'data-gridcell-visible-row-index', '1')
         .should('have.attr', 'data-gridcell-column-index', '1');
     });
 
     it('should scroll to cells that are not in view', () => {
-      ref.current.setFocusedCell({ rowIndex: 24, colIndex: 5 });
+      ref.current!.setFocusedCell({ rowIndex: 24, colIndex: 5 });
       cy.focused()
         .should('have.attr', 'data-gridcell-visible-row-index', '24')
         .should('have.attr', 'data-gridcell-column-index', '5');
     });
 
     it('should paginate to cells that are not on the current page', () => {
-      ref.current.setFocusedCell({ rowIndex: 50, colIndex: 0 });
+      ref.current!.setFocusedCell({ rowIndex: 50, colIndex: 0 });
       cy.get('.euiPagination [class*="euiScreenReaderOnly"]').should(
         'have.text',
         'Page 3 of 4'
@@ -113,7 +115,7 @@ describe('useImperativeGridRef', () => {
       cy.get('[data-test-subj="dataGridHeaderCell-A"]').click();
       cy.contains('Sort High-Low').click();
       cy.then(() => {
-        ref.current.setFocusedCell({ rowIndex: 95, colIndex: 0 });
+        ref.current!.setFocusedCell({ rowIndex: 95, colIndex: 0 });
         cy.focused()
           .should('have.attr', 'data-gridcell-visible-row-index', '4')
           .should('have.attr', 'data-gridcell-column-index', '0');
@@ -126,13 +128,13 @@ describe('useImperativeGridRef', () => {
           'Row 150 is not a valid row. The maximum visible row index is 99.'
         );
       });
-      ref.current.setFocusedCell({ rowIndex: 150, colIndex: 0 });
+      ref.current!.setFocusedCell({ rowIndex: 150, colIndex: 0 });
     });
   });
 
   describe('openCellPopover', () => {
     it("allows the consumer to manually open a specific grid cell's popover", () => {
-      ref.current.openCellPopover({ rowIndex: 2, colIndex: 2 });
+      ref.current!.openCellPopover({ rowIndex: 2, colIndex: 2 });
       cy.focused()
         .should('have.attr', 'data-test-subj', 'euiDataGridExpansionPopover')
         .find('.euiText')
@@ -140,7 +142,7 @@ describe('useImperativeGridRef', () => {
     });
 
     it('should scroll to cells that are not in view', () => {
-      ref.current.openCellPopover({ rowIndex: 23, colIndex: 0 });
+      ref.current!.openCellPopover({ rowIndex: 23, colIndex: 0 });
       cy.focused()
         .should('have.attr', 'data-test-subj', 'euiDataGridExpansionPopover')
         .find('.euiText')
@@ -148,7 +150,7 @@ describe('useImperativeGridRef', () => {
     });
 
     it('should paginate to cells that are not on the current page', () => {
-      ref.current.openCellPopover({ rowIndex: 99, colIndex: 5 });
+      ref.current!.openCellPopover({ rowIndex: 99, colIndex: 5 });
       cy.get('.euiPagination [class*="euiScreenReaderOnly"]').should(
         'have.text',
         'Page 4 of 4'
@@ -163,7 +165,7 @@ describe('useImperativeGridRef', () => {
       cy.get('[data-test-subj="dataGridHeaderCell-A"]').click();
       cy.contains('Sort High-Low').click();
       cy.then(() => {
-        ref.current.openCellPopover({ rowIndex: 98, colIndex: 1 });
+        ref.current!.openCellPopover({ rowIndex: 98, colIndex: 1 });
         cy.focused()
           .should('have.attr', 'data-test-subj', 'euiDataGridExpansionPopover')
           .find('.euiText')
@@ -177,20 +179,21 @@ describe('useImperativeGridRef', () => {
           'Column 10 is not a valid column. The maximum visible column index is 5.'
         );
       });
-      ref.current.openCellPopover({ rowIndex: 0, colIndex: 10 });
+      ref.current!.openCellPopover({ rowIndex: 0, colIndex: 10 });
     });
   });
 
   describe('closeCellPopover', () => {
     it('allows the consumer to manually close any open popovers', () => {
-      ref.current.setFocusedCell({ colIndex: 0, rowIndex: 0 });
+      cy.get('[data-gridcell-row-index="0"]').should('exist');
+      ref.current!.setFocusedCell({ colIndex: 0, rowIndex: 0 });
       cy.realPress('Enter');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
         'have.length',
         1
       );
       cy.then(() => {
-        ref.current.closeCellPopover();
+        ref.current!.closeCellPopover();
         cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
           'have.length',
           0
@@ -203,7 +206,7 @@ describe('useImperativeGridRef', () => {
     it('scrolls the grid to a specified position', () => {
       cy.get('.euiDataGrid__virtualized').should('have.prop', 'scrollTop', 0);
       cy.then(() => {
-        ref.current.scrollTo({ scrollTop: 500, scrollLeft: 0 });
+        ref.current!.scrollTo?.({ scrollTop: 500, scrollLeft: 0 });
       });
       cy.get('.euiDataGrid__virtualized').should('have.prop', 'scrollTop', 500);
     });
@@ -211,9 +214,10 @@ describe('useImperativeGridRef', () => {
 
   describe('scrollToItem', () => {
     it('scrolls to a specific cell position, rendering the cell', () => {
+      cy.get('[data-gridcell-row-index="0"]').should('exist');
       cy.get('[data-gridcell-row-index="15"]').should('not.exist');
       cy.then(() => {
-        ref.current.scrollToItem({ rowIndex: 15, columnIndex: 5 });
+        ref.current!.scrollToItem?.({ rowIndex: 15, columnIndex: 5 });
       });
       cy.get('[data-gridcell-row-index="15"]').should('exist');
     });

@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiAvatar } from '../avatar';
@@ -120,10 +122,8 @@ const Header = () => {
   return (
     <EuiHeader>
       <EuiHeaderSection grow={false}>
-        <EuiHeaderSectionItem border="right">
-          {renderLogo()}
-        </EuiHeaderSectionItem>
-        <EuiHeaderSectionItem border="right">
+        <EuiHeaderSectionItem>{renderLogo()}</EuiHeaderSectionItem>
+        <EuiHeaderSectionItem>
           <HeaderSpacesMenu />
         </EuiHeaderSectionItem>
       </EuiHeaderSection>
@@ -404,7 +404,7 @@ describe('EuiHeader', () => {
     });
 
     it('has zero violations when a hidden breadcrumb is expanded', () => {
-      cy.get('button[aria-label="See collapsed breadcrumbs"]').realClick();
+      cy.get('button[title="See collapsed breadcrumbs"]').realClick();
       cy.get('a[data-test-subj="cy-breadcrumb-hidden"]').should('exist');
       cy.checkAxe();
     });

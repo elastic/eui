@@ -324,7 +324,8 @@ export default () => {
                 className={classNames(
                   'guideDemo__emptyPromptPanelPickerThumb',
                   {
-                    'guideDemo__emptyPromptPanelPickerThumb-isSelected': isSidebar,
+                    'guideDemo__emptyPromptPanelPickerThumb-isSelected':
+                      isSidebar,
                   }
                 )}
                 alt="Page with sidebar thumbnail"
@@ -344,7 +345,8 @@ export default () => {
                 className={classNames(
                   'guideDemo__emptyPromptPanelPickerThumb',
                   {
-                    'guideDemo__emptyPromptPanelPickerThumb-isSelected': isEmpty,
+                    'guideDemo__emptyPromptPanelPickerThumb-isSelected':
+                      isEmpty,
                   }
                 )}
                 alt="Empty page thumbnail"
@@ -365,7 +367,8 @@ export default () => {
                   className={classNames(
                     'guideDemo__emptyPromptPanelPickerThumb',
                     {
-                      'guideDemo__emptyPromptPanelPickerThumb-isSelected': isMultiple,
+                      'guideDemo__emptyPromptPanelPickerThumb-isSelected':
+                        isMultiple,
                     }
                   )}
                   alt="Page with multiple panels thumbnail"

@@ -8,3 +8,6 @@
 
 export type { EuiResizableContainerProps } from './resizable_container';
 export { EuiResizableContainer } from './resizable_container';
+
+export type { EuiResizableButtonProps } from './resizable_button';
+export { EuiResizableButton } from './resizable_button';

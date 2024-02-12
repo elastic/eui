@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react';
 
-import { EuiPopoverPanelProps as _EuiPopoverPanelProps } from '../../../../src/components/popover/popover_panel/_popover_panel';
+import { EuiPopoverProps } from '../../../../src/components/popover';
 
-export const EuiPopoverPanelProps: FunctionComponent<_EuiPopoverPanelProps> = () => (
-  <div />
-);
+// For popover `panelProps` documentation, we shouldn't use `EuiPopoverPanelProps` directly
+// as EuiPopover opinionatedly overrides some props that `EuiPopoverPanel` itself allows
+export const EuiPopoverPanelProps: FunctionComponent<
+  EuiPopoverProps['panelProps']
+> = () => <div />;

@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React from 'react';
 import { EuiButton } from '../button';
@@ -14,8 +16,11 @@ import { EuiEmptyPrompt } from './empty_prompt';
 import { EuiLink } from '../link';
 import { EuiTitle } from '../title';
 
-const EmptyPrompt = ({ addCaseSpy, addLinkSpy }) => {
-  return (
+beforeEach(() => {
+  const addCaseSpy = cy.spy().as('addCaseSpy');
+  const addLinkSpy = cy.spy().as('addLinkSpy');
+  cy.viewport(1024, 768); // medium breakpoint
+  cy.realMount(
     <EuiEmptyPrompt
       iconType="logoSecurity"
       title={<h2>Start adding cases</h2>}
@@ -37,13 +42,6 @@ const EmptyPrompt = ({ addCaseSpy, addLinkSpy }) => {
       }
     />
   );
-};
-
-beforeEach(() => {
-  const addCaseSpy = cy.spy().as('addCaseSpy');
-  const addLinkSpy = cy.spy().as('addLinkSpy');
-  cy.viewport(1024, 768); // medium breakpoint
-  cy.realMount(<EmptyPrompt addCaseSpy={addCaseSpy} addLinkSpy={addLinkSpy} />);
 });
 
 describe('EuiEmptyPrompt', () => {

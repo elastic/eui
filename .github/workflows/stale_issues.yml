@@ -7,38 +7,48 @@ permissions:
   contents: read
 
 jobs:
-  stale:
+  stale-prs: # close stale PRs after ~3 months
     permissions:
-      issues: write  # for actions/stale to close stale issues
-      pull-requests: write  # for actions/stale to close stale PRs
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v3
+      - uses: actions/stale@v8
         with:
-          stale-issue-message: '👋 Hey there. This issue hasn''t had any activity for 180 days. We''ll automatically close it if that trend continues for another week. If you feel this issue is still valid and needs attention please let us know with a comment.'
           stale-pr-message: '👋 Hey there. This PR hasn''t had any activity for 90 days. We''ll automatically close it if that trend continues for another week. If you feel this issue is still valid and needs attention please let us know with a comment.'
-          close-issue-message: '❌ We''re automatically closing this issue due to lack of activity. Please comment if you feel this was done in error.'
           close-pr-message: '❌ We''re automatically closing this PR due to lack of activity. Please comment if you feel this was done in error.'
           days-before-pr-stale: 90
-          days-before-issue-stale: 180
           days-before-close: 7
-          stale-issue-label: 'stale-issue'
-          close-issue-label: 'stale-issue-closed'
-          exempt-issue-labels: 'bug,skip-stale-check,meta'
           stale-pr-label: 'stale-pr'
           close-pr-label: 'stale-pr-closed'
-          exempt-pr-labels: 'skip-stale-check,meta'
-          exempt-all-assignees: true
           operations-per-run: 1000
           remove-stale-when-updated: true
           enable-statistics: true
           debug-only: false
-  answered: # automatically close issues labeled as 'answered' if there was no response in 3 days
+  stale-issues: # close stale issues after ~1 year
     permissions:
       issues: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v3
+      - uses: actions/stale@v8
+        with:
+          stale-issue-message: '👋 Hi there - this issue hasn''t had any activity in 6 months. If the EUI team has not explicitly expressed that this is something on our roadmap, it''s unlikely that we''ll pick this issue up. We would sincerely appreciate a PR/community contribution if this is something that matters to you! If not, and there is no further activity on this issue for another 6 months (i.e. it''s stale for over a year), the issue will be auto-closed.'
+          close-issue-message: '❌ Per our previous message, this issue is auto-closing after having been open and inactive for a year. If you strongly feel this is still a high-priority issue, or are interested in contributing, please leave a comment or open a new issue linking to this one for context.'
+          days-before-issue-stale: 180
+          days-before-close: 180
+          stale-issue-label: 'stale-issue'
+          close-issue-label: 'stale-issue-closed'
+          close-issue-reason: 'not_planned'
+          exempt-issue-labels: 'bug,meta,task'
+          operations-per-run: 1000
+          remove-stale-when-updated: true
+          enable-statistics: true
+          debug-only: false
+  answered-issues: # close answered issues after 3 days if no response
+    permissions:
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
         with:
           days-before-stale: -1 # the label should be manually applied
           days-before-close: 3
@@ -47,6 +57,7 @@ jobs:
           remove-stale-when-updated: true
           stale-issue-message: ''
           close-issue-message: '👋 This issue hasn''t seen activity in 3 days, so we''re automatically closing this issue as answered. Please leave a comment if that''s not the case, or if you have any remaining questions or issues.'
+          close-issue-reason: 'completed'
           operations-per-run: 1000
           enable-statistics: true
           debug-only: false

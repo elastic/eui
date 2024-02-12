@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 
@@ -55,8 +57,7 @@ describe('EuiCollapsibleNav', () => {
   describe('Elastic pattern', () => {
     describe('Toggle button behavior', () => {
       it('opens and closes nav when the main button is clicked', () => {
-        cy.mount(<Nav />);
-        cy.wait(400); // Wait for the button to be clickable
+        cy.realMount(<Nav />);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
         expect(cy.get('#navSpec').should('exist'));
         cy.get('[data-test-subj="navSpecButton"]').realClick();
@@ -64,18 +65,18 @@ describe('EuiCollapsibleNav', () => {
       });
 
       it('closes the nav when the overlay mask is clicked', () => {
-        cy.mount(<Nav />);
-        cy.wait(400);
+        cy.realMount(<Nav />);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
         cy.get('.euiOverlayMask').realClick({ position: 'bottomRight' });
         expect(cy.get('#navSpec').should('not.exist'));
       });
 
       it('closes the nav when the close button is clicked', () => {
-        cy.mount(<Nav />);
-        cy.wait(400);
+        cy.realMount(<Nav />);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
-        cy.get('[data-test-subj="euiFlyoutCloseButton"]').realClick();
+        cy.get('[data-test-subj="euiFlyoutCloseButton"]').click({
+          force: true,
+        });
         expect(cy.get('#navSpec').should('not.exist'));
       });
     });

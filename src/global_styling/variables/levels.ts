@@ -36,9 +36,25 @@ export const EuiThemeLevels = [
   'content',
 ] as const;
 
-export type _EuiThemeLevel = typeof EuiThemeLevels[number];
+export type _EuiThemeLevel = (typeof EuiThemeLevels)[number];
 
-export type _EuiThemeLevels = Record<
-  _EuiThemeLevel,
-  NonNullable<CSSProperties['zIndex']>
->;
+export type _EuiThemeLevels = {
+  /** - Default value: 9000 */
+  toast: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 8000 */
+  modal: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 6000 */
+  mask: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 6000 */
+  navigation: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 2000 */
+  menu: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 1000 */
+  header: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 1000 */
+  flyout: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 1000 */
+  maskBelowHeader: NonNullable<CSSProperties['zIndex']>;
+  /** - Default value: 0 */
+  content: NonNullable<CSSProperties['zIndex']>;
+};

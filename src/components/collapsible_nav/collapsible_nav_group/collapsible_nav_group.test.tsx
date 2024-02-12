@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -20,32 +20,32 @@ describe('EuiCollapsibleNavGroup', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCollapsibleNavGroup id="id" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('title is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup title="Title" id="id" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('iconType is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup title="Title" iconType="bolt" id="id" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('iconSize is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup
           title="Title"
           iconSize="s"
@@ -54,11 +54,11 @@ describe('EuiCollapsibleNavGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('iconProps renders data-test-subj', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup
           title="Title"
           iconProps={{
@@ -69,41 +69,41 @@ describe('EuiCollapsibleNavGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('background', () => {
       BACKGROUNDS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCollapsibleNavGroup id="id" background={color} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     test('titleElement can change the rendered element to h2', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup title="Title" titleElement="h2" id="id" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('titleSize can be larger', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup id="id" titleSize="s" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('when isCollapsible is true', () => {
     test('will render an accordion', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup
           isCollapsible={true}
           initialIsOpen={false}
@@ -112,11 +112,11 @@ describe('EuiCollapsibleNavGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts accordion props', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup
           isCollapsible={true}
           initialIsOpen={false}
@@ -127,7 +127,7 @@ describe('EuiCollapsibleNavGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -147,7 +147,7 @@ describe('EuiCollapsibleNavGroup', () => {
     });
 
     test('if iconType is passed without a title', () => {
-      const component = render(
+      const { container } = render(
         <EuiCollapsibleNavGroup iconType="bolt" id="id" />
       );
 
@@ -155,7 +155,7 @@ describe('EuiCollapsibleNavGroup', () => {
       expect(consoleStub.mock.calls[0][0]).toMatch(
         'not render an icon without `title`'
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

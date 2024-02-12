@@ -14,11 +14,8 @@ And the following syntax no longer works.
 !{tooltip[anchor text](Tooltip content)}
 `;
 
-const {
-  parsingPlugins,
-  processingPlugins,
-  uiPlugins,
-} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+const { parsingPlugins, processingPlugins, uiPlugins } =
+  getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
 
 export default () => {
   const [value, setValue] = useState(initialContent);

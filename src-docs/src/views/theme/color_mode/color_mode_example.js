@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 
@@ -17,7 +16,6 @@ const InverseComplexSource = require('!!raw-loader!./inverse_complex');
 export const ColorModeExample = {
   title: 'Color mode',
   notice: <ThemeNotice />,
-  beta: true,
   intro: <Intro />,
   sections: [
     {
@@ -42,25 +40,20 @@ export const ColorModeExample = {
             the current color mode.
           </p>
           <p>
-            When nesting or overriding <strong>EuiThemeProvider</strong> bear in
-            mind that the{' '}
-            <Link to="/display/text">
-              <strong>EuiText</strong>
-            </Link>{' '}
-            inherits the color that is set in the global styles or a parent
-            component. This is why you should change the color of{' '}
-            <strong>EuiText</strong> to <EuiCode>{'"default"'}</EuiCode> when
-            you want it to correctly adapt to the <EuiCode>colorMode</EuiCode>{' '}
-            of the nested <strong>EuiThemeProvider</strong>.
+            When nesting or overriding <strong>EuiThemeProvider</strong>, a
+            wrapping <EuiCode>{'<span>'}</EuiCode> element that sets the correct
+            default text color (normally set at the global{' '}
+            <EuiCode>{'<body>'}</EuiCode> level) will be rendered. You can
+            customize the display of this wrapping element by passing{' '}
+            <EuiCode>wrapperProps</EuiCode>.
           </p>
           <p>
-            <Link to="/display/icons">
-              <strong>EuiIcon</strong>
-            </Link>{' '}
-            behaves similarly. By default, it gets the color of its parent
-            component. Thus, you can override the color to{' '}
-            <EuiCode>{'"text"'}</EuiCode> or wrap it in a{' '}
-            <strong>EuiText</strong> to inherit its color.
+            Alternatively, if a wrapper will significantly impact the DOM
+            layout/flow of your content, and if your child is a single React
+            component, you may pass{' '}
+            <EuiCode>{'wrapperProps={{ cloneElement: true }}'}</EuiCode> to
+            avoid rendering an extra wrapper and to clone the correct color
+            classes onto your child content.
           </p>
         </>
       ),

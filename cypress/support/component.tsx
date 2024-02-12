@@ -13,26 +13,22 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import './commands';
+import '@cypress/code-coverage/support';
+import 'cypress-axe';
+import 'cypress-plugin-tab';
+import 'cypress-real-events';
 
-import React from 'react';
-import { mount } from 'cypress/react';
-import { EuiProvider } from '../../src';
+import './a11y/checkAxe';
+import './keyboard/repeatRealPress';
+import './setup/mount';
+import './setup/realMount';
+
+// @see https://github.com/quasarframework/quasar/issues/2233#issuecomment-492975745
+// @see also https://github.com/cypress-io/cypress/issues/20341
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message.includes('> ResizeObserver loop')) {
+    return false;
+  }
+});
 
 require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
-
-// Augment the Cypress namespace to include type definitions for
-// your custom command.
-// Alternatively, can be defined in cypress/support/component.d.ts
-// with a <reference path="./component" /> at the top of your spec.
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      mount: typeof mount;
-    }
-  }
-}
-
-Cypress.Commands.add('mount', (children) => {
-  return mount(<EuiProvider>{children}</EuiProvider>);
-});

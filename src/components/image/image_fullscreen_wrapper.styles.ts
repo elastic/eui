@@ -23,10 +23,10 @@ export const euiImageFullscreenWrapperStyles = (
   return {
     // Base
     euiImageFullscreenWrapper: css`
-      ${logicalCSS('max-height', '80vh')};
-      ${logicalCSS('max-width', '80vw')};
-      ${logicalTextAlignCSS('center')}; // Aligns both caption and image
-      line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
+      ${logicalCSS('max-height', '80vh')}
+      ${logicalCSS('max-width', '80vw')}
+      ${logicalTextAlignCSS('center')} /* Aligns both caption and image */
+      line-height: 0; /* Fixes cropping when image is resized by forcing its height to be determined by the image not line-height */
 
       ${euiCanAnimate} {
         animation: ${euiAnimSlideInUp(euiTheme.size.xxxxl)}

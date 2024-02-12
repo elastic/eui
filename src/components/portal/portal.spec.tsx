@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
-import { EuiPortal, EuiPortalProps } from './index';
+import React, { useState, useEffect, FunctionComponent } from 'react';
+
+import { EuiPortal, EuiPortalProps } from './portal';
 
 describe('EuiPortal', () => {
   describe('insertion', () => {
@@ -82,9 +85,8 @@ describe('EuiPortal', () => {
     it.skip('insert value can be changed', () => {
       const Wrapper = () => {
         const [siblingRef, setSiblingRef] = useState<HTMLElement | null>(null);
-        const [insert, setInsert] = useState<EuiPortalProps['insert']>(
-          undefined
-        );
+        const [insert, setInsert] =
+          useState<EuiPortalProps['insert']>(undefined);
 
         return (
           <>
@@ -120,6 +122,81 @@ describe('EuiPortal', () => {
           expect(portals).to.have.lengthOf(1);
           expect(siblings).to.have.lengthOf(1);
           expect(siblings.get(0).nextElementSibling).to.equal(portals.get(0));
+        });
+      });
+    });
+
+    describe('`insert` inherited from EuiProvider.componentDefaults', () => {
+      const sibling = document.createElement('div');
+      sibling.id = 'sibling';
+
+      const Wrapper: FunctionComponent = ({ children }) => {
+        const [mounted, setMounted] = useState(false);
+
+        useEffect(() => {
+          document.body.appendChild(sibling);
+          setMounted(true);
+        }, []);
+
+        return <>{mounted && children}</>;
+      };
+
+      it('allows configuring the default `insert` for all EuiPortal components', () => {
+        cy.mount(
+          <Wrapper>
+            <EuiPortal>Hello</EuiPortal>
+            <EuiPortal>World</EuiPortal>
+          </Wrapper>,
+          {
+            providerProps: {
+              componentDefaults: {
+                EuiPortal: { insert: { sibling, position: 'before' } },
+              },
+            },
+          }
+        );
+
+        // verify all portal elements were appended before the sibling
+        cy.get('div[data-euiportal]').then((portals) => {
+          cy.get('div#sibling').then((siblings) => {
+            expect(portals).to.have.lengthOf(2);
+            expect(siblings).to.have.lengthOf(1);
+            const beforeSibling = siblings.get(0).previousElementSibling;
+            expect(beforeSibling).to.equal(portals.get(1));
+            expect(beforeSibling?.previousElementSibling).to.equal(
+              portals.get(0)
+            );
+          });
+        });
+      });
+
+      it('still allows overriding defaults via component props', () => {
+        cy.mount(
+          <Wrapper>
+            <EuiPortal>Hello</EuiPortal>
+            <EuiPortal insert={{ sibling: sibling, position: 'after' }}>
+              World
+            </EuiPortal>
+          </Wrapper>,
+          {
+            providerProps: {
+              componentDefaults: {
+                EuiPortal: { insert: { sibling: sibling, position: 'before' } },
+              },
+            },
+          }
+        );
+
+        // verify portal elements were appended before and after the sibling
+        cy.get('div[data-euiportal]').then((portals) => {
+          cy.get('div#sibling').then((siblings) => {
+            expect(portals).to.have.lengthOf(2);
+            expect(siblings).to.have.lengthOf(1);
+            expect(siblings.get(0).previousElementSibling).to.equal(
+              portals.get(0)
+            );
+            expect(siblings.get(0).nextElementSibling).to.equal(portals.get(1));
+          });
         });
       });
     });

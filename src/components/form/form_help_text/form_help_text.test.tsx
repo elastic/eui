@@ -7,17 +7,17 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiFormHelpText } from './form_help_text';
 
 describe('EuiFormHelpText', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormHelpText {...requiredProps}>This is help text.</EuiFormHelpText>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

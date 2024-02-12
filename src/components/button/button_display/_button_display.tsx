@@ -32,10 +32,9 @@ import {
   EuiButtonDisplayContentType,
 } from './_button_display_content';
 import { validateHref } from '../../../services/security/href_validator';
-import { useEuiButtonRadiusCSS } from '../../../themes/amsterdam/global_styling/mixins';
 
 const SIZES = ['xs', 's', 'm'] as const;
-export type EuiButtonDisplaySizes = typeof SIZES[number];
+export type EuiButtonDisplaySizes = (typeof SIZES)[number];
 
 /**
  * Extends EuiButtonDisplayContentProps which provides
@@ -44,6 +43,7 @@ export type EuiButtonDisplaySizes = typeof SIZES[number];
 export interface EuiButtonDisplayCommonProps
   extends EuiButtonDisplayContentProps,
     CommonProps {
+  element?: 'a' | 'button' | 'span';
   children?: ReactNode;
   size?: EuiButtonDisplaySizes;
   /**
@@ -68,6 +68,7 @@ export interface EuiButtonDisplayCommonProps
    */
   contentProps?: CommonProps & EuiButtonDisplayContentType;
   style?: CSSProperties;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 export type EuiButtonDisplayPropsForAnchor = PropsForAnchor<
@@ -109,6 +110,8 @@ export function isButtonDisabled({
 export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
+      element: _element = 'button',
+      type = 'button',
       children,
       iconType,
       iconSide = 'left',
@@ -125,7 +128,6 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       href,
       target,
       rel,
-      type = 'button',
       style,
       ...rest
     },
@@ -140,14 +142,12 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     const theme = useEuiTheme();
 
     const styles = euiButtonDisplayStyles(theme);
-    const buttonRadiusStyle = useEuiButtonRadiusCSS()[size];
     const cssStyles = [
       styles.euiButtonDisplay,
       styles[size],
       fullWidth && styles.fullWidth,
       minWidth == null && styles.defaultMinWidth,
       buttonIsDisabled && styles.isDisabled,
-      buttonRadiusStyle,
     ];
 
     const innerNode = (
@@ -164,7 +164,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       </EuiButtonDisplayContent>
     );
 
-    const element = href && !buttonIsDisabled ? 'a' : 'button';
+    const element = buttonIsDisabled ? 'button' : href ? 'a' : _element;
     let elementProps = {};
     // Element-specific attributes
     if (element === 'button') {

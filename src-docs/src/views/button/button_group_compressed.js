@@ -59,10 +59,8 @@ export default () => {
     },
   ];
 
-  const [
-    toggleIconIdToSelectedMapIcon,
-    setToggleIconIdToSelectedMapIcon,
-  ] = useState({});
+  const [toggleIconIdToSelectedMapIcon, setToggleIconIdToSelectedMapIcon] =
+    useState({});
   const [toggleCompressedIdSelected, setToggleCompressedIdSelected] = useState(
     `${compressedToggleButtonGroupPrefix}__1`
   );

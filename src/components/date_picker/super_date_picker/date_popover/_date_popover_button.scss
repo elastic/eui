@@ -13,11 +13,8 @@
   }
 
   &-needsUpdating {
-    $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
-    $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
-
-    background-color: $backgroundColor;
-    color: $textColor;
+    background-color: $euiSuperDatePickerNeedsUpdatingBackgroundColor;
+    color: $euiSuperDatePickerNeedsUpdatingTextColor;
 
     &:focus,
     &.euiDatePopoverButton-isSelected {
@@ -38,15 +35,16 @@
 
   &:disabled {
     background-color: $euiFormBackgroundDisabledColor;
+    background-image: none;
     color: $euiColorDarkShade;
     cursor: default;
   }
 }
 
 .euiDatePopoverButton--start {
-  text-align: right;
+  text-align: center;
 }
 
 .euiDatePopoverButton--end {
-  text-align: left;
+  text-align: center;
 }

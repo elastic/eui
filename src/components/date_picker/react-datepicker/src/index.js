@@ -755,6 +755,7 @@ export default class DatePicker extends React.Component {
         updateSelection={this.updateSelection}
         accessibleMode={this.props.accessibleMode}
         enableFocusTrap={this.state.enableFocusTrap}
+        isCalendarInteractive={!(this.props.disabled || this.props.readOnly)}
       >
         {this.props.children}
       </Calendar>

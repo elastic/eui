@@ -1,5 +1,5 @@
-const dedent = require('dedent');
-const { renderJsSourceCode } = require('./_utils.js');
+import dedent from 'dedent';
+import { renderJsSourceCode } from './_utils';
 
 describe('renderJsSourceCode', () => {
   describe('EUI imports', () => {
@@ -41,8 +41,8 @@ describe('renderJsSourceCode', () => {
       expect(
         renderJsSourceCode({
           default: dedent(`
-            import { EuiButton, EuiFlexGroup, EuiFlexItem } from '../../../src/components';
-            import { useGeneratedHtmlId } from '../../../src/services';
+            import { EuiButton, EuiFlexGroup, EuiFlexItem } from '../../src/components';
+            import { useGeneratedHtmlId } from '../../src/services';
   
             export default () => <EuiCode>{useGeneratedHtmlId()}</EuiCode>;`),
         })
