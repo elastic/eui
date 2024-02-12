@@ -296,6 +296,7 @@ export const typeToPathMap = {
   moon: 'moon',
   namespace: 'namespace',
   nested: 'nested',
+  newChat: 'new_chat',
   node: 'node',
   notebookApp: 'app_notebook',
   number: 'number',
