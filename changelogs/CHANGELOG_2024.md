@@ -1,14 +1,15 @@
 ## [`v93.1.0`](https://github.com/elastic/eui/releases/v93.1.0)
 
-- Updated `EuiHighlight` to accept an array of `search` strings, which allows highlighting multiple, separate words within its children. This new type and behavior *only* works if `highlightAll` is also set to true. ([#7496](https://github.com/elastic/eui/pull/7496))
 - Added `index` glyph to `EuiIcon` ([#7498](https://github.com/elastic/eui/pull/7498))
-- Updated `EuiSuperDatePicker` with a new `refreshIntervalUnits` prop. Passing this prop allows controlling and overriding the default unit rounding behavior. ([#7501](https://github.com/elastic/eui/pull/7501))
-- Updated `EuiAutoRefresh` and `EuiRefreshInterval` with a new `intervalUnits` prop. Passing this prop allows controlling and overriding the default unit rounding behavior. ([#7501](https://github.com/elastic/eui/pull/7501))
-- Updated `onRefreshChange` to pass back a new `intervalUnits` key that contains the current interval unit format (seconds, minutes, or hours). ([#7501](https://github.com/elastic/eui/pull/7501))
-- Updated `EuiSuperDatePicker` with a new `canRoundRelativeUnits` prop, which defaults to true (current behavior). To preserve displaying the unit that users select for relative time, set this to false. ([#7502](https://github.com/elastic/eui/pull/7502))
+- Updated `EuiHighlight` to accept an array of `search` strings, which allows highlighting multiple, separate words within its children. This new type and behavior *only* works if `highlightAll` is also set to true. ([#7496](https://github.com/elastic/eui/pull/7496))
 - Updated `EuiContextMenu` with a new `panels.items.renderItem` property, which allows rendering completely custom items next to standard `EuiContextMenuItem` objects ([#7510](https://github.com/elastic/eui/pull/7510))
-- Updated `EuiSuperDatePicker` with a new `refreshMinInterval` prop, which accepts a minimum number in milliseconds ([#7516](https://github.com/elastic/eui/pull/7516))
-- Updated `EuiAutoRefresh` and `EuiRefreshInterval` with a new `minInterval` prop, which accepts a minimum number in milliseconds ([#7516](https://github.com/elastic/eui/pull/7516))
+- `EuiSuperDatePicker` updates:
+  - Updated `EuiSuperDatePicker` with a new `refreshIntervalUnits` prop. Passing this prop allows controlling and overriding the default unit rounding behavior. ([#7501](https://github.com/elastic/eui/pull/7501))
+  - Updated `EuiAutoRefresh` and `EuiRefreshInterval` with a new `intervalUnits` prop. Passing this prop allows controlling and overriding the default unit rounding behavior. ([#7501](https://github.com/elastic/eui/pull/7501))
+  - Updated `onRefreshChange` to pass back a new `intervalUnits` key that contains the current interval unit format (seconds, minutes, or hours). ([#7501](https://github.com/elastic/eui/pull/7501))
+  - Updated `EuiSuperDatePicker` with a new `canRoundRelativeUnits` prop, which defaults to true (current behavior). To preserve displaying the unit that users select for relative time, set this to false. ([#7502](https://github.com/elastic/eui/pull/7502))
+  - Updated `EuiSuperDatePicker` with a new `refreshMinInterval` prop, which accepts a minimum number in milliseconds ([#7516](https://github.com/elastic/eui/pull/7516))
+  - Updated `EuiAutoRefresh` and `EuiRefreshInterval` with a new `minInterval` prop, which accepts a minimum number in milliseconds ([#7516](https://github.com/elastic/eui/pull/7516))
 
 **Bug fixes**
 
