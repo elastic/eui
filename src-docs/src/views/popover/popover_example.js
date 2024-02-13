@@ -10,6 +10,7 @@ import {
   EuiPopoverTitle,
   EuiPopoverFooter,
   EuiCallOut,
+  EuiText,
 } from '../../../../src/components';
 
 import { EuiPopoverPanelProps } from './props';
@@ -157,6 +158,35 @@ const inputPopoverSnippet = `<EuiInputPopover
 
 export const PopoverExample = {
   title: 'Popover',
+  intro: (
+    <EuiText>
+      <p>
+        Use the <strong>EuiPopover</strong> component to hide controls or
+        options behind a clickable element. A popover is temporary so keep tasks
+        simple and narrowly focused.
+      </p>
+
+      <EuiCallOut
+        iconType="accessibility"
+        color="warning"
+        title="Popovers have three accessibility requirements:"
+      >
+        <>
+          <ul>
+            <li>
+              Popover triggers <strong>must</strong> be anchored to elements
+              that accept keyboard focus.
+            </li>
+            <li>
+              Popovers can contain interactive elements. They{' '}
+              <strong>must</strong> be controlled by a click handler.
+            </li>
+            <li>Popovers must not be activated by hover or focus events.</li>
+          </ul>
+        </>
+      </EuiCallOut>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -167,11 +197,6 @@ export const PopoverExample = {
       ],
       text: (
         <>
-          <p>
-            Use the <strong>EuiPopover</strong> component to hide controls or
-            options behind a clickable element. A popover is temporary so keep
-            tasks simple and narrowly focused.
-          </p>
           <p>
             While the visibility of the popover is maintained by the consuming
             application, popovers will automatically close when clicking outside
