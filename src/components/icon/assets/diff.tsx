@@ -28,7 +28,7 @@ const EuiIconDiff = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M3.5 6.5a.5.5 0 1 0 1 0v-2h2a.5.5 0 1 0 0-1h-2v-2a.5.5 0 1 0-1 0v2h-2a.5.5 0 1 0 0 1h2v2Zm11 4.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1ZM3.854 12.854l9-9a.5.5 0 1 0-.707-.707l-9 9a.5.5 0 0 0 .707.707Z" />
+    <path d="M5 1.5a.5.5 0 0 0-1 0V4H1.5a.5.5 0 0 0 0 1H4v2.5a.5.5 0 0 0 1 0V5h2.5a.5.5 0 0 0 0-1H5V1.5Zm3 10a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm4.854-7.646a.5.5 0 0 0-.708-.708l-9 9a.5.5 0 0 0 .708.708l9-9Z" />
   </svg>
 );
 export const icon = EuiIconDiff;
