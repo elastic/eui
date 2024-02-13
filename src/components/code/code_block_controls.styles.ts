@@ -16,13 +16,11 @@
 import { css } from '@emotion/react';
 import { euiPaddingSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { UseEuiCodeSyntaxVariables } from './code_syntax.styles';
+import { euiCodeSyntaxVariables } from './code_syntax.styles';
 
-export const euiCodeBlockControlsStyles = (
-  euiThemeContext: UseEuiTheme,
-  euiCodeSyntaxVariables: UseEuiCodeSyntaxVariables
-) => {
+export const euiCodeBlockControlsStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const codeSyntaxVariables = euiCodeSyntaxVariables(euiThemeContext);
 
   return {
     euiCodeBlock__controls: css`
@@ -30,7 +28,7 @@ export const euiCodeBlockControlsStyles = (
       display: flex;
       flex-direction: column;
       gap: ${euiTheme.size.xs};
-      background: ${euiCodeSyntaxVariables.backgroundColor};
+      background: ${codeSyntaxVariables.backgroundColor};
     `,
     offset: {
       none: css`

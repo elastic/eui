@@ -22,12 +22,10 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-import { UseEuiCodeSyntaxVariables } from './code_syntax.styles';
+import { euiCodeSyntaxVariables } from './code_syntax.styles';
 
-export const euiCodeBlockStyles = (
-  euiThemeContext: UseEuiTheme,
-  euiCodeSyntaxVariables: UseEuiCodeSyntaxVariables
-) => {
+export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
+  const codeSyntaxVariables = euiCodeSyntaxVariables(euiThemeContext);
   const { euiTheme } = euiThemeContext;
 
   return {
@@ -35,9 +33,9 @@ export const euiCodeBlockStyles = (
       max-inline-size: 100%;
       display: block;
       position: relative;
-      background: ${euiCodeSyntaxVariables.backgroundColor};
+      background: ${codeSyntaxVariables.backgroundColor};
 
-      ${euiCodeSyntaxVariables.tokensCss}
+      ${codeSyntaxVariables.tokensCss}
     `,
     // Font size
     s: css`
@@ -134,17 +132,14 @@ export const euiCodeBlockPreStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCodeBlockCodeStyles = (
-  euiThemeContext: UseEuiTheme,
-  euiCodeSyntaxVariables: UseEuiCodeSyntaxVariables
-) => {
+export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
     euiCodeBlock__code: css`
       font-family: ${euiTheme.font.familyCode};
       font-size: inherit;
-      color: ${euiCodeSyntaxVariables.color};
+      color: ${euiTheme.colors.text};
       display: block;
     `,
     isVirtualized: css`
