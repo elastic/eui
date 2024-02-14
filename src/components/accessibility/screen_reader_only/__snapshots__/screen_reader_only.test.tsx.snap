@@ -18,7 +18,7 @@ exports[`EuiScreenReaderOnly adds an accessibility class to a child element when
 
 exports[`EuiScreenReaderOnly will show on focus 1`] = `
 <a
-  class="emotion-euiScreenReaderOnly"
+  class="emotion-euiScreenReaderOnly-showOnFocus"
   href="#"
 >
   Link

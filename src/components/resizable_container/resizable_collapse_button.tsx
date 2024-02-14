@@ -51,10 +51,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
   ...rest
 }) => {
   const isHorizontal = direction === 'horizontal';
-
   const showOnFocus = !isCollapsed && !isVisible;
-  const screenReaderOnlyStyles =
-    euiScreenReaderOnlyStyles(showOnFocus).euiScreenReaderOnly;
 
   const styles = useEuiMemoizedStyles(euiResizableCollapseButtonStyles);
 
@@ -70,7 +67,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
   ];
   const cssStyles = [
     styles.euiResizableCollapseButton,
-    showOnFocus && screenReaderOnlyStyles,
+    showOnFocus && euiScreenReaderOnlyStyles['euiScreenReaderOnly-showOnFocus'],
     ...(isCollapsed ? collapsedStyles : collapsibleStyles),
   ];
 
