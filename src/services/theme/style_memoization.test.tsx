@@ -9,7 +9,8 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { fireEvent } from '@testing-library/react';
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
+import { testOnReactVersion } from '../../test/internal';
 
 import type { UseEuiTheme } from './hooks';
 import { EuiThemeProvider } from './provider';
@@ -70,4 +71,15 @@ describe('useEuiMemoizedStyles', () => {
     );
     expect(componentStyles).toHaveBeenCalledTimes(2);
   });
+
+  testOnReactVersion(['18'])(
+    'throws an error if passed anonymous functions',
+    () => {
+      expect(() =>
+        renderHook(() => useEuiMemoizedStyles(() => ({})))
+      ).toThrowError(
+        'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
+      );
+    }
+  );
 });

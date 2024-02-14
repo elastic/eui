@@ -62,6 +62,11 @@ export const useEuiMemoizedStyles = <
   const euiThemeContext = useEuiTheme();
 
   const memoizedComponentStyles = useMemo(() => {
+    if (!styleGenerator.name) {
+      throw new Error(
+        'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
+      );
+    }
     const existingStyles = memoizedStyles.get(styleGenerator);
     if (existingStyles) {
       return existingStyles;
