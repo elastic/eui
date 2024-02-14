@@ -65,7 +65,6 @@ export const ToolTipExample = {
 
       <EuiCallOut
         iconType="accessibility"
-        color="warning"
         title="Tooltips have three accessibilty requirements:"
       >
         <>
