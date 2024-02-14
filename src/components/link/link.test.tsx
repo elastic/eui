@@ -7,93 +7,98 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps } from '../../test';
-import { shouldRenderCustomStyles } from '../../test/internal';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test';
+
 import { EuiLink, COLORS } from './link';
 
 describe('EuiLink', () => {
-  COLORS.forEach((color) => {
-    test(`${color} is rendered`, () => {
-      const { container } = render(<EuiLink color={color} />);
-      expect(container.firstChild).toMatchSnapshot();
-    });
-  });
-
   shouldRenderCustomStyles(<EuiLink />);
 
-  test('it supports both href and onClick', () => {
+  it('renders', () => {
     const { container } = render(
-      <EuiLink href="/imalink" onClick={() => null} />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('it passes the default props through', () => {
-    const { container } = render(<EuiLink {...requiredProps} />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('supports children', () => {
-    const { container } = render(
-      <EuiLink href="#">
+      <EuiLink href="#" {...requiredProps}>
         <span>Hiya!!!</span>
       </EuiLink>
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('it is an external link', () => {
-    const { container } = render(<EuiLink external href="/baz/bing" />);
-    expect(container.firstChild).toMatchSnapshot();
+  describe('color', () => {
+    COLORS.forEach((color) => {
+      test(`${color} is rendered`, () => {
+        const { container } = render(<EuiLink href="#" color={color} />);
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
   });
 
-  test('supports href', () => {
-    const { container } = render(<EuiLink href="/baz/bing" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('supports target', () => {
-    const { container } = render(<EuiLink href="#" target="_blank" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('supports rel', () => {
-    const { container } = render(<EuiLink href="hoi" rel="stylesheet" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('supports disabled', () => {
-    const { container } = render(
-      <EuiLink disabled onClick={() => 'hello, world!'} />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('if href is not specified, it renders a button of type=button', () => {
-    const { container } = render(<EuiLink />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('button respects the type property', () => {
-    const { container } = render(
-      <EuiLink type="submit" onClick={() => 'hello, world!'} />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('onClick fires for buttons', () => {
+  it('supports both href and onClick', () => {
     const handler = jest.fn();
-    const component = mount(<EuiLink onClick={handler} />);
-    component.find('button').simulate('click');
-    expect(handler.mock.calls.length).toEqual(1);
+    const { container } = render(<EuiLink href="/imalink" onClick={handler} />);
+    fireEvent.click(container.firstChild!);
+
+    expect(container.firstChild).toHaveAttribute('href', '/imalink');
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 
-  test('onClick fires for links', () => {
-    const handler = jest.fn();
-    const component = mount(<EuiLink href="#" onClick={handler} />);
-    component.find('a').simulate('click');
-    expect(handler.mock.calls.length).toEqual(1);
+  it('supports target', () => {
+    const { container } = render(<EuiLink href="#" target="_parent" />);
+    expect(container.firstChild).toHaveAttribute('target', '_parent');
+  });
+
+  it('supports rel', () => {
+    const { container } = render(<EuiLink href="#" rel="stylesheet" />);
+    expect(container.firstChild).toHaveAttribute(
+      'rel',
+      'noreferrer stylesheet'
+    );
+  });
+
+  it('supports disabled', () => {
+    const { container } = render(<EuiLink disabled onClick={() => {}} />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('external links', () => {
+    it('renders an icon and extra rel', () => {
+      const { container } = render(<EuiLink href="#" external />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('is set automatically if `target="_blank"`', () => {
+      const { container } = render(<EuiLink href="#" target="_blank" />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('allows for target and external to be controlled independently', () => {
+      const { container } = render(
+        <EuiLink href="#" target="_blank" external={false} />
+      );
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('button behavior', () => {
+    it('renders a button if href is not specified and onClick is passed', () => {
+      const { container } = render(<EuiLink onClick={() => {}} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('respects the type property', () => {
+      const { container } = render(
+        <EuiLink type="submit" onClick={() => {}} />
+      );
+      expect(container.firstChild).toHaveAttribute('type', 'submit');
+    });
+
+    it('calls onClick', () => {
+      const handler = jest.fn();
+      const { container } = render(<EuiLink onClick={handler} />);
+      fireEvent.click(container.firstChild!);
+      expect(handler).toHaveBeenCalledTimes(1);
+    });
   });
 });
