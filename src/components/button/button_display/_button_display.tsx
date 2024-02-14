@@ -14,10 +14,8 @@ import React, {
   ButtonHTMLAttributes,
 } from 'react';
 
-// @ts-ignore module doesn't export `createElement`
-import { createElement } from '@emotion/react';
 import {
-  getSecureRelForTarget,
+  RenderLinkOrButton,
   validateHref,
   useEuiTheme,
 } from '../../../services';
@@ -113,7 +111,7 @@ export function isButtonDisabled({
 export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
-      element: _element = 'button',
+      element: _element = 'button', // TODO: Not doing anything with this now
       type = 'button',
       children,
       iconType,
@@ -150,60 +148,37 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       styles[size],
       fullWidth && styles.fullWidth,
       minWidth == null && styles.defaultMinWidth,
-      buttonIsDisabled && styles.isDisabled,
     ];
 
-    const innerNode = (
-      <EuiButtonDisplayContent
-        isLoading={isLoading}
+    return (
+      <RenderLinkOrButton
+        componentCss={cssStyles}
+        style={minWidth ? { ...style, minInlineSize: minWidth } : style}
+        fallbackElement="button"
+        elementRef={ref}
+        href={href}
+        target={target}
+        rel={rel}
         isDisabled={buttonIsDisabled}
-        iconType={iconType}
-        iconSide={iconSide}
-        iconSize={iconSize}
-        textProps={textProps}
-        {...contentProps}
+        buttonProps={{
+          type,
+          'aria-pressed': isSelected,
+          css: buttonIsDisabled && styles.isDisabled,
+        }}
+        {...rest}
       >
-        {children}
-      </EuiButtonDisplayContent>
-    );
-
-    const element = buttonIsDisabled ? 'button' : href ? 'a' : _element;
-    let elementProps = {};
-    // Element-specific attributes
-    if (element === 'button') {
-      elementProps = {
-        ...elementProps,
-        disabled: buttonIsDisabled,
-        'aria-pressed': isSelected,
-      };
-    }
-
-    const relObj: {
-      rel?: string;
-      href?: string;
-      type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-      target?: string;
-    } = {};
-
-    if (href && !buttonIsDisabled) {
-      relObj.href = href;
-      relObj.rel = getSecureRelForTarget({ href, target, rel });
-      relObj.target = target;
-    } else {
-      relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
-    }
-
-    return createElement(
-      element,
-      {
-        css: cssStyles,
-        style: minWidth ? { ...style, minInlineSize: minWidth } : style,
-        ref,
-        ...elementProps,
-        ...relObj,
-        ...rest,
-      },
-      innerNode
+        <EuiButtonDisplayContent
+          isLoading={isLoading}
+          isDisabled={buttonIsDisabled}
+          iconType={iconType}
+          iconSide={iconSide}
+          iconSize={iconSize}
+          textProps={textProps}
+          {...contentProps}
+        >
+          {children}
+        </EuiButtonDisplayContent>
+      </RenderLinkOrButton>
     );
   }
 );

@@ -118,90 +118,14 @@ describe('EuiButtonDisplay', () => {
     });
   });
 
-  describe('link vs button behavior', () => {
-    describe('links', () => {
-      it('renders valid links as <a> tags', () => {
-        const { container } = render(<EuiButtonDisplay href="#" />);
-        expect(container.querySelector('a')).toBeTruthy();
-        expect(container.querySelector('button')).toBeFalsy();
-      });
-
-      it('removes the `type` prop from links', () => {
-        const { container } = render(
-          <EuiButtonDisplay href="#" type="button" />
-        );
-        expect(container.querySelector('a')?.getAttribute('type')).toBeNull();
-      });
-
-      it('inserts `rel=noreferrer`', () => {
-        const { queryByTestSubject } = render(
-          <>
-            <EuiButtonDisplay
-              href="https://elastic.co"
-              data-test-subj="rel"
-              rel="noreferrer"
-            />
-            <EuiButtonDisplay
-              href="https://elastic.co"
-              data-test-subj="norel"
-            />
-          </>
-        );
-
-        expect(queryByTestSubject('rel')?.getAttribute('rel')).toEqual(
-          'noreferrer'
-        );
-        expect(queryByTestSubject('norel')?.getAttribute('rel')).toEqual(
-          'noreferrer'
-        );
-      });
-
-      it('inserts `rel=noopener` for all target=_blank links', () => {
-        const { queryByTestSubject } = render(
-          <>
-            <EuiButtonDisplay
-              href="https://elastic.co"
-              target="_blank"
-              data-test-subj="blank"
-            />
-          </>
-        );
-
-        expect(queryByTestSubject('blank')?.getAttribute('rel')).toEqual(
-          'noopener noreferrer'
-        );
-      });
-    });
-
-    describe('buttons', () => {
-      it('removes the `href`, `rel` and `target` props from buttons', () => {
-        const { container } = render(
-          <EuiButtonDisplay
-            isDisabled
-            href="#"
-            rel="noopener"
-            target="_blank"
-          />
-        );
-        expect(container.querySelector('a')).toBeFalsy();
-        const button = container.querySelector('button')!;
-
-        expect(button).toBeTruthy();
-        expect(button.getAttribute('href')).toBeNull();
-        expect(button.getAttribute('rel')).toBeNull();
-        expect(button.getAttribute('target')).toBeNull();
-      });
-
-      it('only sets [disabled] and [aria-pressed] on buttons', () => {
-        const { container } = render(
-          <>
-            <EuiButtonDisplay isDisabled isSelected />
-            <EuiButtonDisplay href="#" isSelected />
-          </>
-        );
-        expect(container.querySelectorAll('[disabled]')).toHaveLength(1);
-        expect(container.querySelectorAll('[aria-pressed]')).toHaveLength(1);
-      });
-    });
+  it('only sets [aria-pressed] and [type] on buttons', () => {
+    const { container } = render(
+      <>
+        <EuiButtonDisplay isSelected type="submit" />
+        <EuiButtonDisplay href="#" isSelected type="submit" />
+      </>
+    );
+    expect(container.querySelectorAll('[aria-pressed]')).toHaveLength(1);
+    expect(container.querySelectorAll('[type="submit"]')).toHaveLength(1);
   });
 });
