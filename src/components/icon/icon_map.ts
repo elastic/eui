@@ -81,6 +81,7 @@ export const typeToPathMap = {
   database: 'database',
   desktop: 'desktop',
   devToolsApp: 'app_devtools',
+  diff: 'diff',
   discoverApp: 'app_discover',
   discuss: 'discuss',
   document: 'document',

@@ -67,6 +67,7 @@ export const iconTypes = [
   'database',
   'desktop',
   'discuss',
+  'diff',
   'document',
   'documents',
   'documentEdit',
