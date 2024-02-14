@@ -1,9 +1,5 @@
 @import '../../../../src/global_styling/mixins/helpers';
 
-.guideSideNav {
-  @include euiSideNavEmbellish;
-}
-
 .guideSideNav__content {
   @include euiYScroll;
   padding: 0 $euiSizeL $euiSizeL;

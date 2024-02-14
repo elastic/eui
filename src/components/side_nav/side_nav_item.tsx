@@ -7,22 +7,26 @@
  */
 
 import React, {
-  cloneElement,
+  HTMLAttributes,
   ReactNode,
   ReactElement,
   MouseEventHandler,
   useState,
   useEffect,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme, getSecureRelForTarget } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
 import { CommonProps } from '../common';
-
+import { EuiInnerText } from '../inner_text';
 import { EuiIcon } from '../icon';
 
-import { getSecureRelForTarget } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
-import { EuiInnerText } from '../inner_text';
+import {
+  euiSideNavItemStyles,
+  euiSideNavItemButtonStyles,
+} from './side_nav_item.styles';
 
 /**
  * The props that are exposed to, or altered for, the consumer
@@ -72,6 +76,10 @@ export interface _EuiSideNavItemProps {
    * Passed to the actual `.euiSideNavItemButton` element
    */
   buttonClassName?: string;
+  /**
+   * className, css, and style are passed to the parent wrapper, not the button
+   */
+  style?: HTMLAttributes<HTMLDivElement>['style'];
   // Exposed as different prop type to consumer
   items?: ReactNode;
   // Not exposed to consumer
@@ -145,7 +153,7 @@ const DefaultRenderItem = ({
   );
 };
 
-export function EuiSideNavItem<
+export const EuiSideNavItem = <
   T extends _EuiSideNavItemButtonProps &
     _EuiSideNavItemProps & { renderItem?: (props: any) => JSX.Element }
 >({
@@ -162,15 +170,18 @@ export function EuiSideNavItem<
   renderItem: RenderItem = DefaultRenderItem,
   depth = 0,
   className,
+  css,
+  style,
   truncate = true,
   emphasize,
   buttonClassName,
   childrenOnly,
   ...rest
-}: EuiSideNavItemProps<T>) {
+}: EuiSideNavItemProps<T>) => {
+  const euiTheme = useEuiTheme();
+
   const isHrefValid = !_href || validateHref(_href);
   const href = isHrefValid ? _href : '';
-  const isClickable = onClick || href;
 
   // Forcing accordion style item if not linked, but has children
   const [itemIsOpen, setItemIsOpen] = useState(isOpen);
@@ -178,85 +189,108 @@ export function EuiSideNavItem<
     setItemIsOpen(isOpen);
   }, [isOpen]);
 
-  const toggleItemOpen = () => {
+  const toggleItemOpen = useCallback(() => {
     setItemIsOpen((isOpen) => !isOpen);
-  };
+  }, []);
 
-  let childItems;
-  if (items && itemIsOpen) {
-    childItems = <div className="euiSideNavItem__items">{items}</div>;
-  }
-
-  let buttonIcon;
-  if (icon) {
-    buttonIcon = cloneElement(icon, {
-      className: classNames('euiSideNavItemButton__icon', icon.props.className),
-    });
-  }
+  const isRoot = depth === 0;
+  const isTrunk = depth === 1;
+  const isBranch = depth > 1;
+  const hasCaret = depth > 0 && childrenOnly;
+  const hasChildItems = items && itemIsOpen;
 
   const classes = classNames(
     'euiSideNavItem',
     {
-      'euiSideNavItem--root': depth === 0,
-      'euiSideNavItem--rootIcon': depth === 0 && icon,
-      'euiSideNavItem--trunk': depth === 1,
-      'euiSideNavItem--branch': depth > 1,
-      'euiSideNavItem--hasChildItems': !!childItems,
+      'euiSideNavItem--root': isRoot,
+      'euiSideNavItem--trunk': isTrunk,
+      'euiSideNavItem--branch': isBranch,
       'euiSideNavItem--emphasized': emphasize,
+      'euiSideNavItem-hasChildItems': hasChildItems,
     },
     className
   );
+  const styles = euiSideNavItemStyles(euiTheme);
+  const cssStyles = [
+    styles.euiSideNavItem,
+    isRoot && styles.root,
+    isTrunk && styles.trunk,
+    isBranch && styles.branch,
+    emphasize && styles.emphasized,
+    css,
+  ];
+  const itemsStyles = hasChildItems && [
+    styles.items.euiSideNavItem__items,
+    isRoot && icon && styles.items.rootWithIcon,
+    isTrunk && styles.items.trunk,
+    isBranch && styles.items.branch,
+  ];
 
   const buttonClasses = classNames(
     'euiSideNavItemButton',
     {
-      'euiSideNavItemButton--isClickable': isClickable,
       'euiSideNavItemButton-isOpen': depth > 0 && itemIsOpen && !isSelected,
       'euiSideNavItemButton-isSelected': isSelected,
     },
     buttonClassName
   );
+  const buttonStyles = euiSideNavItemButtonStyles(euiTheme);
+  const buttonCssStyles = [
+    buttonStyles.euiSideNavItemButton,
+    isSelected && buttonStyles.selected,
+    emphasize && buttonStyles.emphasized,
+    isRoot && buttonStyles.root,
+    isTrunk && buttonStyles.trunk,
+    isBranch && buttonStyles.branch,
+  ];
+  const labelCssStyles = [
+    buttonStyles.label.euiSideNavItemButton__label,
+    isRoot && buttonStyles.label.root,
+  ];
 
-  let caret;
-
-  if (depth > 0 && childrenOnly) {
-    caret = <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />;
-  }
-
-  const buttonContent = (
-    <span className="euiSideNavItemButton__content">
-      {buttonIcon}
-
-      <EuiInnerText>
-        {(ref, innerText) => (
-          <span
-            ref={ref}
-            title={truncate ? innerText : undefined}
-            className={classNames('euiSideNavItemButton__label', {
-              'euiSideNavItemButton__label--truncated': truncate,
-            })}
-          >
-            {children}
-          </span>
-        )}
-      </EuiInnerText>
-
-      {caret}
-    </span>
-  );
-
-  const renderItemProps: _EuiSideNavItemButtonProps = {
-    href,
-    rel,
-    target,
-    onClick: childrenOnly ? toggleItemOpen : onClick,
-    className: buttonClasses,
-    children: buttonContent,
-  };
   return (
-    <div className={classes}>
-      <RenderItem {...renderItemProps} {...rest} />
-      {childItems}
+    <div css={cssStyles} className={classes} style={style}>
+      <RenderItem
+        css={buttonCssStyles}
+        className={buttonClasses}
+        href={href}
+        rel={rel}
+        target={target}
+        onClick={childrenOnly ? toggleItemOpen : onClick}
+        {...rest}
+      >
+        <span
+          css={buttonStyles.euiSideNavItemButton__content}
+          className="euiSideNavItemButton__content"
+        >
+          {icon}
+
+          <EuiInnerText>
+            {(ref, innerText) => (
+              <span
+                ref={ref}
+                title={truncate ? innerText : undefined}
+                css={labelCssStyles}
+                className={classNames('euiSideNavItemButton__label', {
+                  'eui-textTruncate': truncate,
+                })}
+              >
+                {children}
+              </span>
+            )}
+          </EuiInnerText>
+
+          {hasCaret && (
+            <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />
+          )}
+        </span>
+      </RenderItem>
+
+      {hasChildItems && (
+        <div css={itemsStyles} className="euiSideNavItem__items">
+          {items}
+        </div>
+      )}
     </div>
   );
-}
+};
