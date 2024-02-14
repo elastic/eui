@@ -168,7 +168,6 @@ export const PopoverExample = {
 
       <EuiCallOut
         iconType="accessibility"
-        color="warning"
         title="Popovers have three accessibility requirements:"
       >
         <>
