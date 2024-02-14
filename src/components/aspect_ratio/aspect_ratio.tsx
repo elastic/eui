@@ -8,55 +8,51 @@
 
 import React, {
   FunctionComponent,
-  HTMLAttributes,
   ReactElement,
   CSSProperties,
+  useMemo,
 } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
 
-export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * Aspect ratio height. For example 9 would be widescreen video.
-     */
-    height: number;
-    /**
-     * Aspect ratio width. For example 16 would be widescreen video.
-     */
-    width: number;
-    /**
-     * The maximum width you want the child to stretch to.
-     */
-    maxWidth?: CSSProperties['width'];
-    children: ReactElement<any>;
-  };
+import { logicalStyles } from '../../global_styling';
+
+export type EuiAspectRatioProps = {
+  /**
+   * Aspect ratio height. For example 9 would be widescreen video.
+   */
+  height: number;
+  /**
+   * Aspect ratio width. For example 16 would be widescreen video.
+   */
+  width: number;
+  /**
+   * The maximum width you want the child to stretch to.
+   */
+  maxWidth?: CSSProperties['width'];
+  children: ReactElement<any>;
+};
 
 export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
   children,
-  className,
   height,
   width,
   maxWidth,
-  style,
-  ...rest
 }) => {
-  const classes = classNames('euiAspectRatio', className);
+  const classes = classNames('euiAspectRatio', children.props.className);
 
-  const euiAspectRatioStyle = {
-    ...children.props.style,
-    aspectRatio: `${width} / ${height}`,
-    height: 'auto',
-    width: '100%',
-    maxWidth,
-    ...style,
-  };
+  const euiAspectRatioStyle = useMemo(
+    () =>
+      logicalStyles({
+        aspectRatio: `${width} / ${height}`,
+        height: 'auto',
+        width: '100%',
+        maxWidth,
+      }),
+    [height, width, maxWidth]
+  );
 
-  const props = {
+  return React.cloneElement(children, {
     className: classes,
-    style: euiAspectRatioStyle,
-    ...rest,
-  };
-
-  return React.cloneElement(children, props);
+    style: { ...children.props.style, ...euiAspectRatioStyle },
+  });
 };
