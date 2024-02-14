@@ -6,5 +6,9 @@
  * Side Public License, v 1.
  */
 
+export {
+  RenderLinkOrButton,
+  type RenderLinkOrButtonProps,
+} from './render_link_or_button';
 export { getSecureRelForTarget } from './get_secure_rel_for_target';
 export { validateHref } from './href_validator';
