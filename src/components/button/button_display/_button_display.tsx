@@ -44,7 +44,6 @@ export type EuiButtonDisplaySizes = (typeof SIZES)[number];
 export interface EuiButtonDisplayCommonProps
   extends EuiButtonDisplayContentProps,
     CommonProps {
-  element?: 'a' | 'button' | 'span';
   children?: ReactNode;
   size?: EuiButtonDisplaySizes;
   /**
@@ -108,10 +107,12 @@ export function isButtonDisabled({
  * EuiButtonDisplay is an internal-only component used for displaying
  * any element as a button.
  */
-export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
+export const EuiButtonDisplay = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  EuiButtonDisplayProps
+>(
   (
     {
-      element: _element = 'button', // TODO: Not doing anything with this now
       type = 'button',
       children,
       iconType,
@@ -159,7 +160,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
         href={href}
         target={target}
         rel={rel}
-        isDisabled={buttonIsDisabled}
+        isDisabled={disabled || isDisabled || isLoading}
         buttonProps={{
           type,
           'aria-pressed': isSelected,

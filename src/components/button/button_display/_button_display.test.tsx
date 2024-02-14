@@ -54,45 +54,6 @@ describe('EuiButtonDisplay', () => {
     });
   });
 
-  describe('element', () => {
-    const elements = ['a', 'button', 'span'] as const;
-
-    const getButtonElement = (container: HTMLElement) =>
-      container.firstChild!.nodeName.toLowerCase();
-
-    elements.forEach((element) => {
-      test(element, () => {
-        const { container } = render(
-          <EuiButtonDisplay element={element} className="testing">
-            Content
-          </EuiButtonDisplay>
-        );
-
-        expect(getButtonElement(container)).toEqual(element);
-      });
-    });
-
-    it('always renders a `button` element if disabled', () => {
-      const { container } = render(
-        <EuiButtonDisplay element="a" isDisabled>
-          Content
-        </EuiButtonDisplay>
-      );
-
-      expect(getButtonElement(container)).toEqual('button');
-    });
-
-    it('always renders an `a` element if a href is passed', () => {
-      const { container } = render(
-        <EuiButtonDisplay element="span" href="#">
-          Content
-        </EuiButtonDisplay>
-      );
-
-      expect(getButtonElement(container)).toEqual('a');
-    });
-  });
-
   describe('disabled behavior', () => {
     it('disables hrefs with javascript in them and renders a button instead of a link', () => {
       const { container } = render(

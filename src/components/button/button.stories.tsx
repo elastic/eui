@@ -21,7 +21,6 @@ const meta: Meta<EuiButtonProps> = {
   },
   args: {
     // Component defaults
-    element: 'button',
     type: 'button',
     color: 'primary',
     size: 'm',
