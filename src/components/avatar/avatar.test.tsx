@@ -32,7 +32,7 @@ describe('EuiAvatar', () => {
     describe('imageUrl', () => {
       it('is rendered', () => {
         const { container } = render(
-          <EuiAvatar name="name" imageUrl="image url" />
+          <EuiAvatar name="name" imageUrl="image-url.gif" />
         );
 
         expect(container.firstChild).toMatchSnapshot();
