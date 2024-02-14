@@ -17,6 +17,7 @@ import React, {
   useMemo,
 } from 'react';
 import classNames from 'classnames';
+import { CSSInterpolation } from '@emotion/css';
 
 import type { CommonProps } from '../../components/common';
 
@@ -47,9 +48,15 @@ export type RenderLinkOrButtonProps = HTMLAttributes<HTMLElement> &
      */
     buttonProps?: CommonProps &
       Partial<ButtonHTMLAttributes<HTMLButtonElement>>;
+    /**
+     * This props lets us pass css that should always be ordered *before*
+     * `linkProps.css` and `buttonProps.css`, otherwise plain `css` will come after
+     */
+    componentCss?: CSSInterpolation;
   };
 
 export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
+  componentCss,
   children,
   fallbackElement,
   elementRef,
@@ -78,6 +85,8 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
   }, [isDisabled, isValidHref, onClick, fallbackElement]);
 
   if (element === 'button') {
+    const cssStyles = [componentCss, buttonProps?.css, rest.css];
+
     return (
       <button
         {...rest}
@@ -87,6 +96,7 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
         disabled={isDisabled}
         onClick={!isDisabled ? onClick : undefined}
         className={classNames(rest.className, buttonProps?.className)}
+        css={cssStyles}
       >
         {buttonProps?.children || children}
       </button>
@@ -94,6 +104,8 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
   }
 
   if (element === 'a') {
+    const cssStyles = [componentCss, linkProps?.css, rest.css];
+
     return (
       <a
         {...rest}
@@ -104,6 +116,7 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
         target={target}
         onClick={onClick}
         className={classNames(rest.className, linkProps?.className)}
+        css={cssStyles}
       >
         {linkProps?.children || children}
       </a>
@@ -111,8 +124,9 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
   }
 
   const Element = element;
+  const cssStyles = [componentCss, rest.css];
   return (
-    <Element {...rest} ref={elementRef as Ref<HTMLDivElement>}>
+    <Element {...rest} css={cssStyles} ref={elementRef as Ref<HTMLDivElement>}>
       {children}
     </Element>
   );

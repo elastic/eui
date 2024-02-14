@@ -97,6 +97,21 @@ describe('RenderLinkOrButton', () => {
       expect(element).toHaveAttribute('data-test-subj', 'link');
       expect(element).toHaveTextContent('custom that only shows if a link');
     });
+
+    it('correctly orders Emotion css', () => {
+      const { container } = render(
+        <RenderLinkOrButton
+          fallbackElement="span"
+          href="#"
+          componentCss={{ color: 'red', label: 'beginning' }}
+          linkProps={{ css: { color: 'green', label: 'middle' } }}
+          css={{ color: 'blue', label: 'end' }}
+        />
+      );
+      const element = container.firstElementChild!;
+
+      expect(element.className.endsWith('-beginning-middle-end')).toBeTruthy();
+    });
   });
 
   describe('buttons', () => {
@@ -151,6 +166,21 @@ describe('RenderLinkOrButton', () => {
       expect(element).toHaveTextContent('custom that only shows if a button');
       expect(element).toHaveAttribute('type', 'submit');
     });
+
+    it('correctly orders Emotion css', () => {
+      const { container } = render(
+        <RenderLinkOrButton
+          fallbackElement="span"
+          onClick={() => {}}
+          componentCss={{ color: 'red', label: 'beginning' }}
+          buttonProps={{ css: { color: 'green', label: 'middle' } }}
+          css={{ color: 'blue', label: 'end' }}
+        />
+      );
+      const element = container.firstElementChild!;
+
+      expect(element.className.endsWith('-beginning-middle-end')).toBeTruthy();
+    });
   });
 
   describe('fallbackElement', () => {
@@ -195,6 +225,19 @@ describe('RenderLinkOrButton', () => {
       expect(element.nodeName).toEqual('DIV');
       expect(element).toHaveAttribute('data-test-subj', 'test');
       expect(element).toHaveTextContent("I'm a div");
+    });
+
+    it('correctly orders Emotion css', () => {
+      const { container } = render(
+        <RenderLinkOrButton
+          fallbackElement="span"
+          componentCss={{ color: 'red', label: 'beginning' }}
+          css={{ color: 'blue', label: 'end' }}
+        />
+      );
+      const element = container.firstElementChild!;
+
+      expect(element.className.endsWith('-beginning-end')).toBeTruthy();
     });
   });
 });
