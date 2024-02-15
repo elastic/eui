@@ -52,6 +52,42 @@ describe('RenderLinkOrButton', () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
+  describe('href validation', () => {
+    const invalidHref = 'javascript:alert()'; // eslint-disable-line no-script-url
+
+    it('renders a disabled button if the passed href is invalid', () => {
+      const { container } = render(
+        <RenderLinkOrButton fallbackElement="span" href={invalidHref} />
+      );
+      const element = container.firstChild!;
+
+      expect(element.nodeName).toEqual('BUTTON');
+      expect(element).toBeDisabled();
+      expect(element).not.toHaveAttribute('href');
+    });
+
+    it('passes internal isDisabled state to componentCss functions', () => {
+      const disabledStyle = { color: 'gray' };
+
+      const { container, rerender } = render(
+        <RenderLinkOrButton
+          fallbackElement="span"
+          href={invalidHref}
+          componentCss={(isDisabled) => isDisabled && disabledStyle}
+        />
+      );
+      expect(container.firstChild).toHaveStyle({ color: 'gray' });
+
+      rerender(
+        <RenderLinkOrButton
+          fallbackElement="span"
+          componentCss={(isDisabled) => isDisabled && disabledStyle}
+        />
+      );
+      expect(container.firstChild).not.toHaveStyle({ color: 'gray' });
+    });
+  });
+
   describe('links', () => {
     it('renders a link if not disabled and href is passed', () => {
       const onClick = jest.fn();

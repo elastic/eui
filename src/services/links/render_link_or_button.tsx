@@ -51,12 +51,18 @@ export type RenderLinkOrButtonProps = HTMLAttributes<HTMLElement> &
     /**
      * This props lets us pass css that should always be ordered *before*
      * `linkProps.css` and `buttonProps.css`, otherwise plain `css` will come after
+     *
+     * To conditionally render certain styles based on whether the the link is
+     * disabled based on href validity, you may also pass a function which will
+     * receive the internal `isDisabled` state and should pass back css styles
      */
-    componentCss?: CSSInterpolation;
+    componentCss?:
+      | CSSInterpolation
+      | ((isDisabled: boolean) => CSSInterpolation);
   };
 
 export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
-  componentCss,
+  componentCss: _componentCss,
   children,
   fallbackElement,
   elementRef,
@@ -71,6 +77,11 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
 }) => {
   const isValidHref = href ? validateHref(href) : undefined;
   const isDisabled = _isDisabled || isValidHref === false;
+
+  const componentCss =
+    typeof _componentCss === 'function'
+      ? _componentCss(isDisabled)
+      : _componentCss;
 
   const element = useMemo(() => {
     if (isDisabled) return 'button';

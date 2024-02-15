@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { RenderLinkOrButton, validateHref, useEuiTheme } from '../../services';
+import { RenderLinkOrButton, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiExternalLinkIcon } from './external_link_icon';
@@ -61,17 +61,13 @@ export const EuiLink = forwardRef<
       rel,
       type = 'button',
       onClick,
-      disabled: _disabled,
+      disabled,
       ...rest
     },
     ref
   ) => {
     const euiTheme = useEuiTheme();
     const styles = euiLinkStyles(euiTheme);
-    const cssStyles = [styles.euiLink];
-
-    const isHrefValid = !href || validateHref(href);
-    const disabled = _disabled || !isHrefValid;
 
     return (
       <RenderLinkOrButton
@@ -83,13 +79,12 @@ export const EuiLink = forwardRef<
         rel={rel}
         isDisabled={disabled}
         onClick={onClick}
-        componentCss={cssStyles}
-        buttonProps={{
-          type,
-          css: disabled ? styles.disabled : styles[color],
-        }}
+        componentCss={(isDisabled) => [
+          styles.euiLink,
+          isDisabled ? styles.disabled : styles[color],
+        ]}
+        buttonProps={{ type }}
         linkProps={{
-          css: styles[color],
           children: (
             <>
               {children}
