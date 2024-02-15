@@ -78,10 +78,13 @@ export const RenderLinkOrButton: FunctionComponent<RenderLinkOrButtonProps> = ({
   const isValidHref = href ? validateHref(href) : undefined;
   const isDisabled = _isDisabled || isValidHref === false;
 
-  const componentCss =
-    typeof _componentCss === 'function'
-      ? _componentCss(isDisabled)
-      : _componentCss;
+  const componentCss = useMemo(
+    () =>
+      typeof _componentCss === 'function'
+        ? _componentCss(isDisabled)
+        : _componentCss,
+    [_componentCss, isDisabled]
+  );
 
   const element = useMemo(() => {
     if (isDisabled) return 'button';
