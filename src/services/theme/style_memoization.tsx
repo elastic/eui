@@ -30,7 +30,7 @@ export const EuiThemeMemoizedStylesContext = createContext<MemoizedStylesMap>(
   new WeakMap()
 );
 
-export const EuiMemoizedStylesProvider: FunctionComponent<
+export const EuiThemeMemoizedStylesProvider: FunctionComponent<
   PropsWithChildren
 > = ({ children }) => {
   // Note: we *should not* use `useMemo` instead of `useState` here, as useMemo is not guaranteed

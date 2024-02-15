@@ -31,7 +31,7 @@ import {
   EuiColorModeContext,
 } from './context';
 import { EuiEmotionThemeProvider } from './emotion';
-import { EuiMemoizedStylesProvider } from './style_memoization';
+import { EuiThemeMemoizedStylesProvider } from './style_memoization';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
@@ -230,11 +230,11 @@ export const EuiThemeProvider = <T extends {} = {}>({
           <EuiModificationsContext.Provider value={modifications}>
             <EuiThemeContext.Provider value={theme}>
               <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-                <EuiMemoizedStylesProvider>
+                <EuiThemeMemoizedStylesProvider>
                   <EuiEmotionThemeProvider>
                     {renderedChildren}
                   </EuiEmotionThemeProvider>
-                </EuiMemoizedStylesProvider>
+                </EuiThemeMemoizedStylesProvider>
               </EuiNestedThemeContext.Provider>
             </EuiThemeContext.Provider>
           </EuiModificationsContext.Provider>
