@@ -14,12 +14,11 @@ import React, {
   useMemo,
   PropsWithChildren,
 } from 'react';
-import { keys, useEuiTheme } from '../../services';
+import { keys, useEuiMemoizedStyles } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
-import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 import { euiCodeBlockStyles } from './code_block.styles';
 
 /**
@@ -92,7 +91,7 @@ export const useFullScreen = ({
 export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
   PropsWithChildren
 > = ({ children }) => {
-  const styles = euiCodeBlockStyles(useEuiTheme(), useEuiCodeSyntaxVariables());
+  const styles = useEuiMemoizedStyles(euiCodeBlockStyles);
   const cssStyles = [
     styles.euiCodeBlock,
     styles.l, // Force fullscreen to use large font
