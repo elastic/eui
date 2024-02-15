@@ -16,8 +16,6 @@ const visColors = euiPaletteColorBlind();
 
 // These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
 export const euiCodeSyntaxVariables = ({ euiTheme }: UseEuiTheme) => {
-  console.log('euiCodeSyntaxVariables() fired'); // REVERT ME
-
   const backgroundColor = euiTheme.colors.lightestShade;
 
   return {
