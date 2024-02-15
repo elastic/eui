@@ -19,12 +19,15 @@ import type { SerializedStyles, CSSObject } from '@emotion/react';
 import { useUpdateEffect } from '../hooks';
 import { useEuiTheme, UseEuiTheme } from './hooks';
 
-type Styles = SerializedStyles | CSSObject | string | null; // Is this too restrictive?
+type Styles = SerializedStyles | CSSObject | string | null;
 type StylesMaps = Record<string, Styles | Record<string, Styles>>;
-type MemoizedStylesMap = Map<Function, StylesMaps>;
+// NOTE: We're specifically using a WeakMap instead of a Map in order to allow
+// unmounted components to have their styles garbage-collected by the browser
+// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
+type MemoizedStylesMap = WeakMap<Function, StylesMaps>;
 
 export const EuiThemeMemoizedStylesContext = createContext<MemoizedStylesMap>(
-  new Map()
+  new WeakMap()
 );
 
 export const EuiMemoizedStylesProvider: FunctionComponent<
@@ -33,13 +36,13 @@ export const EuiMemoizedStylesProvider: FunctionComponent<
   // Note: we *should not* use `useMemo` instead of `useState` here, as useMemo is not guaranteed
   // and its cache can get thrown away by React (https://react.dev/reference/react/useMemo#caveats)
   const [componentStyles, rerenderStyles] = useState<MemoizedStylesMap>(
-    new Map()
+    new WeakMap()
   );
 
   // On theme update, wipe the map, which causes the below hook to recompute all styles
   const { euiTheme } = useEuiTheme();
   useUpdateEffect(() => {
-    rerenderStyles(new Map());
+    rerenderStyles(new WeakMap());
   }, [euiTheme]);
 
   return (
