@@ -6,56 +6,51 @@
  * Side Public License, v 1.
  */
 
-import { useMemo } from 'react';
 import {
-  useEuiTheme,
+  UseEuiTheme,
   makeHighContrastColor,
   euiPaletteColorBlind,
 } from '../../services';
 
 const visColors = euiPaletteColorBlind();
 
-// These variables are computationally expensive, so it needs
-// to be a hook in order to memoize it per theme
-export const useEuiCodeSyntaxVariables = () => {
-  const { euiTheme } = useEuiTheme();
+// These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
+export const euiCodeSyntaxVariables = ({ euiTheme }: UseEuiTheme) => {
+  const backgroundColor = euiTheme.colors.lightestShade;
 
-  return useMemo(() => {
-    const backgroundColor = euiTheme.colors.lightestShade;
+  return {
+    backgroundColor: backgroundColor,
+    color: makeHighContrastColor(euiTheme.colors.text)(backgroundColor),
+    inlineCodeColor: makeHighContrastColor(visColors[3])(backgroundColor),
+    selectedBackgroundColor: 'inherit',
+    commentColor: makeHighContrastColor(euiTheme.colors.subduedText)(
+      backgroundColor
+    ),
+    selectorTagColor: 'inherit',
+    stringColor: makeHighContrastColor(visColors[2])(backgroundColor),
+    tagColor: makeHighContrastColor(visColors[1])(backgroundColor),
+    nameColor: makeHighContrastColor(visColors[1])(backgroundColor),
+    numberColor: makeHighContrastColor(visColors[0])(backgroundColor),
+    keywordColor: makeHighContrastColor(visColors[3])(backgroundColor),
+    functionTitleColor: 'inherit',
+    typeColor: makeHighContrastColor(visColors[1])(backgroundColor),
+    attributeColor: 'inherit',
+    symbolColor: makeHighContrastColor(visColors[9])(backgroundColor),
+    paramsColor: 'inherit',
+    metaColor: makeHighContrastColor(euiTheme.colors.subduedText)(
+      backgroundColor
+    ),
+    titleColor: makeHighContrastColor(visColors[7])(backgroundColor),
+    sectionColor: makeHighContrastColor(visColors[9])(backgroundColor),
+    additionColor: makeHighContrastColor(visColors[0])(backgroundColor),
+    deletionColor: makeHighContrastColor(euiTheme.colors.danger)(
+      backgroundColor
+    ),
+    selectorClassColor: 'inherit',
+    selectorIdColor: 'inherit',
 
-    return {
-      backgroundColor: backgroundColor,
-      color: makeHighContrastColor(euiTheme.colors.text)(backgroundColor),
-      inlineCodeColor: makeHighContrastColor(visColors[3])(backgroundColor),
-      selectedBackgroundColor: 'inherit',
-      commentColor: makeHighContrastColor(euiTheme.colors.subduedText)(
-        backgroundColor
-      ),
-      selectorTagColor: 'inherit',
-      stringColor: makeHighContrastColor(visColors[2])(backgroundColor),
-      tagColor: makeHighContrastColor(visColors[1])(backgroundColor),
-      nameColor: makeHighContrastColor(visColors[1])(backgroundColor),
-      numberColor: makeHighContrastColor(visColors[0])(backgroundColor),
-      keywordColor: makeHighContrastColor(visColors[3])(backgroundColor),
-      functionTitleColor: 'inherit',
-      typeColor: makeHighContrastColor(visColors[1])(backgroundColor),
-      attributeColor: 'inherit',
-      symbolColor: makeHighContrastColor(visColors[9])(backgroundColor),
-      paramsColor: 'inherit',
-      metaColor: makeHighContrastColor(euiTheme.colors.subduedText)(
-        backgroundColor
-      ),
-      titleColor: makeHighContrastColor(visColors[7])(backgroundColor),
-      sectionColor: makeHighContrastColor(visColors[9])(backgroundColor),
-      additionColor: makeHighContrastColor(visColors[0])(backgroundColor),
-      deletionColor: makeHighContrastColor(euiTheme.colors.danger)(
-        backgroundColor
-      ),
-      selectorClassColor: 'inherit',
-      selectorIdColor: 'inherit',
-
-      get tokensCss() {
-        return `
+    get tokensCss() {
+      return `
   .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']) {
     opacity: .7;
   }
@@ -181,11 +176,6 @@ export const useEuiCodeSyntaxVariables = () => {
   .token.entity {
     cursor: help;
   }`;
-      },
-    };
-  }, [euiTheme]);
+    },
+  };
 };
-
-export type UseEuiCodeSyntaxVariables = ReturnType<
-  typeof useEuiCodeSyntaxVariables
->;

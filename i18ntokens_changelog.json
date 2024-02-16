@@ -1,5 +1,14 @@
 [
   {
+    "version": "93.1.0",
+    "changes": [
+      {
+        "token": "euiTreeView.ariaLabel",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "93.0.0",
     "changes": [
       {

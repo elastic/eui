@@ -19,7 +19,9 @@ export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     li: {
-      euiTreeView__node: css``,
+      euiTreeView__node: css`
+        list-style: none;
+      `,
       default: css`
         ${logicalCSS('max-height', defaultSize)}
         line-height: ${defaultSize};

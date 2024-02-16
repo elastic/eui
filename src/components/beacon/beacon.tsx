@@ -11,7 +11,7 @@ import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 import { logicalStyles } from '../../global_styling';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 
 import { euiBeaconStyles } from './beacon.styles';
 
@@ -48,9 +48,8 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   style,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
+  const styles = useEuiMemoizedStyles(euiBeaconStyles);
   const classes = classNames('euiBeacon', className);
-  const styles = euiBeaconStyles(euiTheme);
   const cssStyles = [styles.euiBeacon, styles[color]];
 
   const beaconStyle = useMemo(
