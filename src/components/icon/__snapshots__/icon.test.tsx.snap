@@ -7744,6 +7744,29 @@ exports[`EuiIcon props type nested is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type newChat is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="newChat"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M1 4a2.5 2.5 0 0 1 2.5-2.5h9A2.5 2.5 0 0 1 15 4v5a2.5 2.5 0 0 1-2.5 2.5H7.707L4.5 14.707V11.5h-1A2.5 2.5 0 0 1 1 9V4Zm2.5-1.5A1.5 1.5 0 0 0 2 4v5a1.5 1.5 0 0 0 1.5 1.5h2v1.793L7.293 10.5H12.5A1.5 1.5 0 0 0 14 9V4a1.5 1.5 0 0 0-1.5-1.5h-9Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type node is rendered 1`] = `
 <svg
   aria-hidden="true"

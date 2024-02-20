@@ -183,6 +183,7 @@ export const iconTypes = [
   'moon',
   'namespace',
   'nested',
+  'newChat',
   'node',
   'number',
   'offline',
