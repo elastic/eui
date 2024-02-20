@@ -10,6 +10,7 @@ import { css, keyframes } from '@emotion/react';
 import {
   logicalCSS,
   logicalTextAlignCSS,
+  euiCanAnimate,
   euiCantAnimate,
   euiFontSize,
   euiTextTruncate,
@@ -105,11 +106,13 @@ export const euiProgressStyles = (
       background-color: ${euiTheme.colors.lightShade};
     }
 
-    /* Note: FF/Mozilla doesn't actually support animating the native progress bar
-       @see https://bugzilla.mozilla.org/show_bug.cgi?id=662351 */
-    ${crossBrowserProgressValue(
-      `transition: width ${euiTheme.animation.normal} linear`
-    )}
+    ${euiCanAnimate} {
+      /* Note: FF/Mozilla doesn't actually support animating the native progress bar
+        @see https://bugzilla.mozilla.org/show_bug.cgi?id=662351 */
+      ${crossBrowserProgressValue(
+        `transition: width ${euiTheme.animation.normal} linear`
+      )}
+    }
   `,
   // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
   // we apply this style to a <div> instead of a <progress> element.
