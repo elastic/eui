@@ -105,6 +105,8 @@ export const euiProgressStyles = (
       background-color: ${euiTheme.colors.lightShade};
     }
 
+    /* Note: FF/Mozilla doesn't actually support animating the native progress bar
+       @see https://bugzilla.mozilla.org/show_bug.cgi?id=662351 */
     ${crossBrowserProgressValue(
       `transition: width ${euiTheme.animation.normal} linear;`
     )}
