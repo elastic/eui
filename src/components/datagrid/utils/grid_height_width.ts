@@ -183,12 +183,14 @@ export const useVirtualizeContainerWidth = (
 
   useEffect(() => {
     // wait for layout to settle, then measure virtualize container
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       if (virtualizeContainer?.clientWidth) {
         const containerWidth = virtualizeContainer.clientWidth;
         setVirtualizeContainerWidth(containerWidth);
       }
     }, 100);
+
+    return () => clearTimeout(timerId);
   }, [pageSize, virtualizeContainer]);
 
   // Use clientWidth of the virtualization container to take scroll bar into account
