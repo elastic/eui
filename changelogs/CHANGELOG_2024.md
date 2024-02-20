@@ -1,3 +1,30 @@
+## [`v93.2.0`](https://github.com/elastic/eui/releases/v93.2.0)
+
+- Added `diff` glyph to `EuiIcon` ([#7520](https://github.com/elastic/eui/pull/7520))
+- Updated `EuiPageSidebar` and `EuiPageTemplate.Sidebar` with a new `hasEmbellish` prop (defaults to false) ([#7521](https://github.com/elastic/eui/pull/7521))
+- Added `newChat` glyph to `EuiIcon` ([#7524](https://github.com/elastic/eui/pull/7524))
+
+**Bug fixes**
+
+- Fixed `EuiSideNav` not correctly typing the `items` prop as required ([#7521](https://github.com/elastic/eui/pull/7521))
+- Fixed the `CSS is not defined` bug in `EuiPageTemplate` when rendering in some SSR environments, particularly Next.js v13 and up ([#7525](https://github.com/elastic/eui/pull/7525))
+- Fixed `EuiDataGrid` component to clean up timer from side effect on unmount ([#7534](https://github.com/elastic/eui/pull/7534))
+
+**Accessibility**
+
+- Fixed `EuiSideNav` to render a fallback aria-label on mobile toggles if no heading or mobile title exists ([#7521](https://github.com/elastic/eui/pull/7521))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSideNav` to Emotion; Removed the following Sass variables: ([#7521](https://github.com/elastic/eui/pull/7521))
+  - `$euiSideNavEmphasizedBackgroundColor`
+  - `$euiSideNavRootTextcolor`
+  - `$euiSideNavBranchTextcolor`
+  - `$euiSideNavSelectedTextcolor`
+  - `$euiSideNavDisabledTextcolor`
+- Removed the `euiSideNavEmbellish` Sass mixin. Use the new `EuiPageSidebar` `hasEmbellish` prop instead ([#7521](https://github.com/elastic/eui/pull/7521))
+- Added a new memoization/performance optimization utility for CSS-in-JS styles ([#7529](https://github.com/elastic/eui/pull/7529))
+
 ## [`v93.1.1`](https://github.com/elastic/eui/releases/v93.2.0)
 
 **This is a patch release primarily intended for use by Kibana.**
