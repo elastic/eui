@@ -1,5 +1,15 @@
 [
   {
+    "version": "93.2.0",
+    "changes": [
+      {
+        "token": "euiSideNav.mobileToggleAriaLabel",
+        "changeType": "added",
+        "value": "Toggle navigation"
+      }
+    ]
+  },
+  {
     "version": "93.1.0",
     "changes": [
       {

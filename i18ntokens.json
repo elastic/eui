@@ -437,14 +437,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 56,
+        "line": 55,
         "column": 49,
-        "index": 1816
+        "index": 1759
       },
       "end": {
-        "line": 62,
+        "line": 61,
         "column": 3,
-        "index": 1971
+        "index": 1914
       }
     },
     "filepath": "src/components/code/code_block_full_screen.tsx"
@@ -455,14 +455,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 56,
+        "line": 55,
         "column": 49,
-        "index": 1816
+        "index": 1759
       },
       "end": {
-        "line": 62,
+        "line": 61,
         "column": 3,
-        "index": 1971
+        "index": 1914
       }
     },
     "filepath": "src/components/code/code_block_full_screen.tsx"
@@ -6226,6 +6226,24 @@
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSideNav.mobileToggleAriaLabel",
+    "defString": "Toggle navigation",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 208,
+        "column": 16,
+        "index": 6304
+      },
+      "end": {
+        "line": 211,
+        "column": 17,
+        "index": 6435
+      }
+    },
+    "filepath": "src/components/side_nav/side_nav.tsx"
   },
   {
     "token": "euiSkeletonLoading.loadedAriaText",
