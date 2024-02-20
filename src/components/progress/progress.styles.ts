@@ -108,7 +108,7 @@ export const euiProgressStyles = (
     /* Note: FF/Mozilla doesn't actually support animating the native progress bar
        @see https://bugzilla.mozilla.org/show_bug.cgi?id=662351 */
     ${crossBrowserProgressValue(
-      `transition: width ${euiTheme.animation.normal} linear;`
+      `transition: width ${euiTheme.animation.normal} linear`
     )}
   `,
   // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
