@@ -10,18 +10,15 @@ import React, {
   forwardRef,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  MouseEventHandler,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { CommonProps, ExclusiveUnion } from '../common';
-import { validateHref } from '../../services/security/href_validator';
+import { RenderLinkOrButton, useEuiMemoizedStyles } from '../../services';
+import { CommonProps } from '../common';
 
 import { EuiExternalLinkIcon } from './external_link_icon';
 import { euiLinkStyles } from './link.styles';
-
-export type EuiLinkType = 'button' | 'reset' | 'submit';
 
 export const COLORS = [
   'primary',
@@ -36,46 +33,24 @@ export const COLORS = [
 
 export type EuiLinkColor = (typeof COLORS)[number];
 
-export interface LinkButtonProps {
-  type?: EuiLinkType;
-  /**
-   * Any of our named colors.
-   */
-  color?: EuiLinkColor;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+export type EuiLinkProps = CommonProps &
+  Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'disabled'> &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color'> & {
+    /**
+     * Any of our named colors.
+     */
+    color?: EuiLinkColor;
+    /**
+     * Set to true to show an icon indicating that it is an external link;
+     * Defaults to true if `target="_blank"`
+     */
+    external?: boolean;
+  };
 
-export interface EuiLinkButtonProps
-  extends CommonProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'color' | 'onClick'>,
-    LinkButtonProps {}
-
-export interface LinkAnchorProps {
-  type?: EuiLinkType;
-  /**
-   * Any of our named colors.
-   */
-  color?: EuiLinkColor;
-  /**
-   * Set to true to show an icon indicating that it is an external link;
-   * Defaults to true if `target="_blank"`
-   */
-  external?: boolean;
-}
-
-export interface EuiLinkAnchorProps
-  extends CommonProps,
-    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type' | 'color' | 'onClick'>,
-    LinkAnchorProps {
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
-}
-
-export type EuiLinkProps = ExclusiveUnion<
-  EuiLinkButtonProps,
-  EuiLinkAnchorProps
->;
-
-const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
+export const EuiLink = forwardRef<
+  HTMLAnchorElement | HTMLButtonElement,
+  EuiLinkProps
+>(
   (
     {
       children,
@@ -87,61 +62,46 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       rel,
       type = 'button',
       onClick,
-      disabled: _disabled,
+      disabled,
       ...rest
     },
     ref
   ) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiLinkStyles(euiTheme);
-    const cssStyles = [styles.euiLink];
-
-    const isHrefValid = !href || validateHref(href);
-    const disabled = _disabled || !isHrefValid;
-
-    if (href === undefined || !isHrefValid) {
-      const buttonProps = {
-        className: classNames('euiLink', className),
-        css: [cssStyles, disabled ? [styles.disabled] : styles[color]],
-        type,
-        onClick,
-        disabled,
-        ...rest,
-      };
-
-      return (
-        <button
-          ref={ref as React.Ref<HTMLButtonElement>}
-          {...(buttonProps as EuiLinkButtonProps)}
-        >
-          {children}
-        </button>
-      );
-    }
-
-    const secureRel = getSecureRelForTarget({ href, target, rel });
-
-    const anchorProps = {
-      className: classNames('euiLink', className),
-      css: [cssStyles, styles[color]],
-      href,
-      target,
-      rel: secureRel,
-      onClick,
-      ...rest,
-    };
+    const styles = useEuiMemoizedStyles(euiLinkStyles);
+    const cssStyles = useCallback(
+      (isDisabled: boolean) => [
+        styles.euiLink,
+        isDisabled ? styles.disabled : styles[color],
+      ],
+      [styles, color]
+    );
 
     return (
-      <a
-        ref={ref as React.Ref<HTMLAnchorElement>}
-        {...(anchorProps as EuiLinkAnchorProps)}
+      <RenderLinkOrButton
+        className={classNames('euiLink', className)}
+        componentCss={cssStyles}
+        fallbackElement="a"
+        elementRef={ref}
+        href={href}
+        target={target}
+        rel={rel}
+        isDisabled={disabled}
+        onClick={onClick}
+        buttonProps={{ type }}
+        linkProps={{
+          children: (
+            <>
+              {children}
+              <EuiExternalLinkIcon external={external} target={target} />
+            </>
+          ),
+        }}
+        {...rest}
       >
         {children}
-        <EuiExternalLinkIcon external={external} target={target} />
-      </a>
+      </RenderLinkOrButton>
     );
   }
 );
 
 EuiLink.displayName = 'EuiLink';
-export { EuiLink };

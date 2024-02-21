@@ -11,7 +11,7 @@ import {
   mutateLinkToText,
   EuiMarkdownLinkValidatorOptions,
 } from './markdown_link_validator';
-import { validateHref } from '../../../services/security/href_validator';
+import { validateHref } from '../../../services';
 
 const defaultValidationOptions: EuiMarkdownLinkValidatorOptions = {
   allowRelative: true,

@@ -19,6 +19,7 @@ import classNames from 'classnames';
 import {
   useEuiTheme,
   getSecureRelForTarget,
+  validateHref,
   useGeneratedHtmlId,
 } from '../../services';
 
@@ -32,7 +33,6 @@ import {
 import { EuiBetaBadge } from '../badge/beta_badge';
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
-import { validateHref } from '../../services/security/href_validator';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 import {

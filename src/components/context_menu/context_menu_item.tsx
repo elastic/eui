@@ -21,9 +21,9 @@ import classNames from 'classnames';
 import {
   useEuiTheme,
   getSecureRelForTarget,
+  validateHref,
   cloneElementWithCss,
 } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';

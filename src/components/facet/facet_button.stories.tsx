@@ -19,7 +19,6 @@ const meta: Meta<EuiFacetButtonProps> = {
   },
   args: {
     // Component defaults
-    element: 'button',
     type: 'button',
     size: 's',
     iconSide: 'left',
