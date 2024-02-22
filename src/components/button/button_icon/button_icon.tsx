@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget, useEuiTheme } from '../../../services';
+import { getSecureRelForTarget, useEuiTheme, useEuiMemoizedStyles } from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -142,7 +142,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     !isDisabled &&
     _emptyHoverStyles(euiThemeContext, color);
 
-  const styles = euiButtonIconStyles(euiThemeContext);
+  const styles = useEuiMemoizedStyles(euiButtonIconStyles);
   const cssStyles = [
     styles.euiButtonIcon,
     styles[size],

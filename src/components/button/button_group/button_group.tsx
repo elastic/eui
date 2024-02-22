@@ -142,15 +142,13 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   type = 'single',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-
   const wrapperStyles = euiButtonGroupStyles();
   const wrapperCssStyles = [
     wrapperStyles.euiButtonGroup,
     isFullWidth && wrapperStyles.fullWidth,
   ];
 
-  const styles = euiButtonGroupButtonsStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     isFullWidth && styles.fullWidth,
