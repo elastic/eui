@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget, useEuiTheme, useEuiMemoizedStyles } from '../../../services';
+import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -118,7 +118,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   isLoading,
   ...rest
 }) => {
-  const euiThemeContext = useEuiTheme();
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
@@ -137,10 +136,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
   const buttonColorStyles = useEuiButtonColorCSS({ display });
   const buttonFocusStyle = useEuiButtonFocusCSS();
-  const emptyHoverStyles =
-    display === 'empty' &&
-    !isDisabled &&
-    _emptyHoverStyles(euiThemeContext, color);
+  const emptyHoverStyles = useEuiMemoizedStyles(_emptyHoverStyles);
 
   const styles = useEuiMemoizedStyles(euiButtonIconStyles);
   const cssStyles = [
@@ -148,7 +144,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     styles[size],
     buttonColorStyles[isDisabled ? 'disabled' : color],
     buttonFocusStyle,
-    emptyHoverStyles,
+    display === 'empty' && !isDisabled && emptyHoverStyles[color],
     isDisabled && styles.isDisabled,
   ];
 
