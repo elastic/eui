@@ -8,7 +8,20 @@
 
 import { renderHook } from '@testing-library/react';
 
-import { useEuiButtonFocusCSS } from './button';
+import {
+  useEuiButtonColorCSS,
+  BUTTON_DISPLAYS,
+  useEuiButtonFocusCSS,
+} from './button';
+
+describe('useEuiButtonColorCSS', () => {
+  BUTTON_DISPLAYS.forEach((display) => {
+    test(display, () => {
+      const { result } = renderHook(() => useEuiButtonColorCSS({ display }));
+      expect(result.current).toMatchSnapshot();
+    });
+  });
+});
 
 test('useEuiButtonFocusCSS', () => {
   const { result } = renderHook(() => useEuiButtonFocusCSS());

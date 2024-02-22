@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes, type SerializedStyles } from '@emotion/react';
 import { euiBackgroundColor, euiCanAnimate } from '../../../../global_styling';
 import {
   hexToRgb,
@@ -15,7 +15,6 @@ import {
   shade,
   tint,
   transparentize,
-  useEuiTheme,
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../../../services';
@@ -28,10 +27,10 @@ export const BUTTON_COLORS = [
   'warning',
   'danger',
 ] as const;
-
 export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
-export type _EuiButtonDisplay = 'base' | 'fill' | 'empty';
 
+export const BUTTON_DISPLAYS = ['base', 'fill', 'empty'] as const;
+export type _EuiButtonDisplay = (typeof BUTTON_DISPLAYS)[number];
 export interface _EuiButtonOptions {
   display?: _EuiButtonDisplay;
 }
@@ -177,43 +176,65 @@ export const euiButtonEmptyColor = (
  * @returns An object of `_EuiButtonColor` keys including `disabled`
  */
 export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
-  const euiThemeContext = useEuiTheme();
+  const { display = 'base' } = options;
 
-  function stylesByDisplay(color: _EuiButtonColor | 'disabled') {
-    return {
-      base: css`
-        ${euiButtonColor(euiThemeContext, color)}
-      `,
-      fill: css`
-        ${euiButtonFillColor(euiThemeContext, color)}
+  const colorsDisplaysMap = useEuiMemoizedStyles(euiButtonDisplaysColors);
+  return colorsDisplaysMap[display];
+};
 
-        /* Use full shade for outline-color except for dark mode text buttons which need to stay currentColor */
-        outline-color: ${euiThemeContext.colorMode === 'DARK' &&
-        color === 'text'
-          ? 'currentColor'
-          : euiThemeContext.euiTheme.colors.fullShade};
-      `,
-      empty: css`
-        color: ${euiButtonEmptyColor(euiThemeContext, color).color};
+const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
+  const COLORS = [...BUTTON_COLORS, 'disabled'] as const;
+  type Colors = (typeof COLORS)[number];
 
-        &:focus,
-        &:active {
-          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-            .backgroundColor};
-        }
-      `,
-    };
-  }
+  const displaysColorsMap = {} as Record<
+    _EuiButtonDisplay,
+    Record<Colors, SerializedStyles>
+  >;
 
-  return {
-    text: css(stylesByDisplay('text')[options.display || 'base']),
-    accent: css(stylesByDisplay('accent')[options.display || 'base']),
-    primary: css(stylesByDisplay('primary')[options.display || 'base']),
-    success: css(stylesByDisplay('success')[options.display || 'base']),
-    warning: css(stylesByDisplay('warning')[options.display || 'base']),
-    danger: css(stylesByDisplay('danger')[options.display || 'base']),
-    disabled: css(stylesByDisplay('disabled')[options.display || 'base']),
-  };
+  BUTTON_DISPLAYS.forEach((display) => {
+    displaysColorsMap[display] = {} as Record<Colors, SerializedStyles>;
+
+    COLORS.forEach((color) => {
+      switch (display) {
+        case 'base':
+          displaysColorsMap[display][color] = css`
+            ${euiButtonColor(euiThemeContext, color)}
+          `;
+          break;
+        case 'fill':
+          displaysColorsMap[display][color] = css`
+            ${euiButtonFillColor(euiThemeContext, color)}
+
+            /* Use full shade for outline-color except for dark mode text buttons which need to stay currentColor */
+            outline-color: ${euiThemeContext.colorMode === 'DARK' &&
+            color === 'text'
+              ? 'currentColor'
+              : euiThemeContext.euiTheme.colors.fullShade};
+          `;
+          break;
+        case 'empty':
+          displaysColorsMap[display][color] = css`
+            color: ${euiButtonEmptyColor(euiThemeContext, color).color};
+
+            &:focus,
+            &:active {
+              background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+                .backgroundColor};
+            }
+          `;
+          break;
+      }
+
+      // Tweak auto-generated Emotion label/className output
+      const emotionOutput = displaysColorsMap[display][color];
+      emotionOutput.styles = emotionOutput.styles.replace(
+        'label:displaysColorsMap-display-color;',
+        `label:${display}-${color};`
+      );
+    });
+  });
+
+  return displaysColorsMap;
 };
 
 /**
