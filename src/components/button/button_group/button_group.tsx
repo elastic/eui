@@ -14,7 +14,7 @@ import React, {
   ReactNode,
 } from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 
@@ -142,10 +142,9 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   type = 'single',
   ...rest
 }) => {
-  const wrapperStyles = euiButtonGroupStyles();
   const wrapperCssStyles = [
-    wrapperStyles.euiButtonGroup,
-    isFullWidth && wrapperStyles.fullWidth,
+    euiButtonGroupStyles.euiButtonGroup,
+    isFullWidth && euiButtonGroupStyles.fullWidth,
   ];
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonsStyles);
