@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useEuiButtonFocusCSS 1`] = `
+Object {
+  "map": undefined,
+  "name": "1s8jae7-focusCSS",
+  "next": Object {
+    "name": "animation-70pju1",
+    "next": undefined,
+    "styles": "@keyframes animation-70pju1{
+  50% {
+    transform: translateY(1px);
+  }
+}",
+  },
+  "styles": "@media screen and (prefers-reduced-motion: no-preference){transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;&:hover:not(:disabled){transform:translateY(-1px);}&:focus{animation:animation-70pju1 250ms cubic-bezier(.34, 1.61, .7, 1);}&:active:not(:disabled){transform:translateY(1px);}};",
+  "toString": [Function],
+}
+`;

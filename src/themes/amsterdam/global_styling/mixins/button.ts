@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { euiBackgroundColor, euiCanAnimate } from '../../../../global_styling';
 import {
   hexToRgb,
@@ -17,6 +17,7 @@ import {
   transparentize,
   useEuiTheme,
   UseEuiTheme,
+  useEuiMemoizedStyles,
 } from '../../../../services';
 
 export const BUTTON_COLORS = [
@@ -219,10 +220,16 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
  * Creates the translate animation when button is in focus.
  * @returns string
  */
-export const useEuiButtonFocusCSS = () => {
-  const { euiTheme } = useEuiTheme();
+export const useEuiButtonFocusCSS = () =>
+  useEuiMemoizedStyles<any>(euiButtonFocusCSS);
 
-  return `
+const euiButtonFocusAnimation = keyframes`
+  50% {
+    transform: translateY(1px);
+  }
+`;
+const euiButtonFocusCSS = ({ euiTheme }: UseEuiTheme) => {
+  const focusCSS = css`
     ${euiCanAnimate} {
       transition: transform ${euiTheme.animation.normal} ease-in-out,
         background-color ${euiTheme.animation.normal} ease-in-out;
@@ -232,7 +239,7 @@ export const useEuiButtonFocusCSS = () => {
       }
 
       &:focus {
-        animation: euiButtonActive ${euiTheme.animation.normal}
+        animation: ${euiButtonFocusAnimation} ${euiTheme.animation.normal}
           ${euiTheme.animation.bounce};
       }
 
@@ -241,6 +248,11 @@ export const useEuiButtonFocusCSS = () => {
       }
     }
   `;
+  // Remove the auto-generated label.
+  // We could typically avoid a label by using a plain string `` instead of css``,
+  // but we need css`` for keyframes`` to work for the focus animation
+  focusCSS.styles = focusCSS.styles.replace('label:focusCSS;', '');
+  return focusCSS;
 };
 
 /**
