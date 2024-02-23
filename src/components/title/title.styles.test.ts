@@ -8,15 +8,17 @@
 
 import { renderHook } from '@testing-library/react';
 
+import { useEuiTheme } from '../../services';
+
 import { TITLE_SIZES } from './title';
-import { useEuiTitle } from './title.styles';
+import { euiTitle } from './title.styles';
 
 describe('euiTitle mixin', () => {
   describe('returns a static object of title font properties for each title size', () => {
     TITLE_SIZES.forEach((size) => {
       it(size, () => {
         expect(
-          renderHook(() => useEuiTitle(size)).result.current
+          renderHook(() => euiTitle(useEuiTheme(), size)).result.current
         ).toMatchSnapshot();
       });
     });
