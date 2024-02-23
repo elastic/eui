@@ -304,20 +304,14 @@ export class EuiIconClass extends PureComponent<
           this.props['aria-labelledby'] ||
           this.props.title
         );
-      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
-
-      let titleId: any;
 
       // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
       //  The svg aria-labelledby attribute gets this titleId
       //  The svg title element gets this titleId as an id
-      if (
-        !this.props['aria-label'] &&
-        !this.props['aria-labelledby'] &&
-        title
-      ) {
-        titleId = { titleId: generateId() };
-      }
+      const titleId =
+        !this.props['aria-label'] && !this.props['aria-labelledby'] && title
+          ? { titleId: generateId() }
+          : undefined;
 
       return (
         <Svg
@@ -327,12 +321,12 @@ export class EuiIconClass extends PureComponent<
           tabIndex={tabIndex}
           role="img"
           title={title}
+          {...titleId}
           data-icon-type={iconTitle}
           data-is-loaded={isLoaded || undefined}
           data-is-loading={isLoading || undefined}
-          {...titleId}
           {...rest}
-          {...hideIconEmpty}
+          aria-hidden={isAriaHidden || undefined}
         />
       );
     }
