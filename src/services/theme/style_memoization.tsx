@@ -13,6 +13,8 @@ import React, {
   useContext,
   useState,
   useMemo,
+  useCallback,
+  forwardRef,
 } from 'react';
 import type { SerializedStyles, CSSObject } from '@emotion/react';
 
@@ -53,33 +55,83 @@ export const EuiThemeMemoizedStylesProvider: FunctionComponent<
 };
 
 /**
+ * Internal util primarily responsible for getting the memoized styles (if they exist)
+ * and if not, generating and setting the styles. DRYed out to facilitate usage
+ * between both hook/function components and HOC/class components
+ */
+const getMemoizedStyles = (
+  stylesGenerator: Function,
+  stylesMap: MemoizedStylesMap,
+  euiThemeContext: UseEuiTheme
+) => {
+  if (!stylesGenerator.name) {
+    throw new Error(
+      'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
+    );
+  }
+  const existingStyles = stylesMap.get(stylesGenerator);
+  if (existingStyles) {
+    return existingStyles;
+  } else {
+    const generatedStyles = stylesGenerator(euiThemeContext);
+    stylesMap.set(stylesGenerator, generatedStyles);
+
+    return generatedStyles;
+  }
+};
+
+/**
  * Hook that memoizes the returned values of components style fns/generators
  * per-theme
  */
 export const useEuiMemoizedStyles = <
   T extends (theme: UseEuiTheme) => StylesMaps
 >(
-  styleGenerator: T
+  stylesGenerator: T
 ): ReturnType<T> => {
   const memoizedStyles = useContext(EuiThemeMemoizedStylesContext);
   const euiThemeContext = useEuiTheme();
 
-  const memoizedComponentStyles = useMemo(() => {
-    if (!styleGenerator.name) {
-      throw new Error(
-        'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
-      );
-    }
-    const existingStyles = memoizedStyles.get(styleGenerator);
-    if (existingStyles) {
-      return existingStyles;
-    } else {
-      const generatedStyles = styleGenerator(euiThemeContext);
-      memoizedStyles.set(styleGenerator, generatedStyles);
-
-      return generatedStyles;
-    }
-  }, [styleGenerator, memoizedStyles, euiThemeContext]);
+  const memoizedComponentStyles = useMemo(
+    () => getMemoizedStyles(stylesGenerator, memoizedStyles, euiThemeContext),
+    [stylesGenerator, memoizedStyles, euiThemeContext]
+  );
 
   return memoizedComponentStyles as ReturnType<T>;
+};
+
+/**
+ * HOC for class components
+ * Syntax is mostly copied from withEuiTheme HOC
+ */
+export interface WithEuiStylesMemoizerProps {
+  stylesMemoizer: typeof useEuiMemoizedStyles; // Type shortcut, we don't actually pass down the hook itself
+}
+export const withEuiStylesMemoizer = <T extends {} = {}>(
+  Component: React.ComponentType<T & WithEuiStylesMemoizerProps>
+) => {
+  const componentName =
+    Component.displayName || Component.name || 'ComponentWithStylesMemoizer';
+
+  const Render = (
+    props: Omit<T, keyof WithEuiStylesMemoizerProps>,
+    ref: React.Ref<Omit<T, keyof WithEuiStylesMemoizerProps>>
+  ) => {
+    const memoizedStyles = useContext(EuiThemeMemoizedStylesContext);
+    const euiThemeContext = useEuiTheme();
+    const stylesMemoizer = useCallback(
+      (stylesGenerator: Function) =>
+        getMemoizedStyles(stylesGenerator, memoizedStyles, euiThemeContext),
+      [memoizedStyles, euiThemeContext]
+    );
+    return (
+      <Component stylesMemoizer={stylesMemoizer} ref={ref} {...(props as T)} />
+    );
+  };
+
+  const WithEuiStylesMemoizer = forwardRef(Render);
+
+  WithEuiStylesMemoizer.displayName = componentName;
+
+  return WithEuiStylesMemoizer;
 };
