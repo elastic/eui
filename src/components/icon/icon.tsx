@@ -23,8 +23,8 @@ import { enqueueStateChange } from '../../services/react';
 
 import {
   htmlIdGenerator,
-  withEuiTheme,
-  WithEuiThemeProps,
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
 } from '../../services';
 export { COLORS } from './named_colors';
 import { isNamedColor, NamedColor } from './named_colors';
@@ -130,11 +130,11 @@ export const appendIconComponentCache = (iconTypeToIconComponentMap: {
 };
 
 export class EuiIconClass extends PureComponent<
-  EuiIconProps & WithEuiThemeProps,
+  EuiIconProps & WithEuiStylesMemoizerProps,
   State
 > {
   isMounted = false;
-  constructor(props: EuiIconProps & WithEuiThemeProps) {
+  constructor(props: EuiIconProps & WithEuiStylesMemoizerProps) {
     super(props);
 
     const { type } = props;
@@ -238,8 +238,8 @@ export class EuiIconClass extends PureComponent<
       tabIndex,
       title,
       onIconLoad,
-      theme,
       style,
+      stylesMemoizer,
       ...rest
     } = this.props;
 
@@ -267,7 +267,7 @@ export class EuiIconClass extends PureComponent<
     const classes = classNames('euiIcon', className);
 
     // Emotion styles
-    const styles = euiIconStyles(theme);
+    const styles = stylesMemoizer(euiIconStyles);
     const cssStyles = [
       styles.euiIcon,
       styles[size],
@@ -339,4 +339,4 @@ export class EuiIconClass extends PureComponent<
   }
 }
 
-export const EuiIcon = withEuiTheme<EuiIconProps>(EuiIconClass);
+export const EuiIcon = withEuiStylesMemoizer<EuiIconProps>(EuiIconClass);
