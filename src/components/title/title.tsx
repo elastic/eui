@@ -8,9 +8,11 @@
 
 import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme, cloneElementWithCss } from '../../services';
-import { euiTitleStyles } from './title.styles';
+
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
 import { CommonProps } from '../common';
+
+import { euiTitleStyles } from './title.styles';
 
 export const TITLE_SIZES = ['xxxs', 'xxs', 'xs', 's', 'm', 'l'] as const;
 export type EuiTitleSize = (typeof TITLE_SIZES)[number];
@@ -35,8 +37,7 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   textTransform,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiTitleStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiTitleStyles);
   const cssStyles = [
     styles.euiTitle,
     textTransform ? styles[textTransform] : undefined,
