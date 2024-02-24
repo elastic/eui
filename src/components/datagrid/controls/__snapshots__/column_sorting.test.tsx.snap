@@ -157,6 +157,7 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
                       aria-pressed="true"
                       class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                      title="Low-High"
                       type="button"
                     >
                       <span
@@ -178,6 +179,7 @@ exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar but
                       aria-pressed="false"
                       class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                      title="High-Low"
                       type="button"
                     >
                       <span
@@ -433,6 +435,7 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
                       aria-pressed="true"
                       class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                      title="Low-High"
                       type="button"
                     >
                       <span
@@ -454,6 +457,7 @@ exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar but
                       aria-pressed="false"
                       class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                      title="High-Low"
                       type="button"
                     >
                       <span
@@ -709,6 +713,7 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
                       aria-pressed="true"
                       class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                      title="Low-High"
                       type="button"
                     >
                       <span
@@ -730,6 +735,7 @@ exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar but
                       aria-pressed="false"
                       class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                      title="High-Low"
                       type="button"
                     >
                       <span

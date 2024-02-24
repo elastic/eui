@@ -94,6 +94,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 16] renders an EuiDraggable co
                 aria-pressed="true"
                 class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
                 data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                title="Low-High"
                 type="button"
               >
                 <span
@@ -115,6 +116,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 16] renders an EuiDraggable co
                 aria-pressed="false"
                 class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
                 data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                title="High-Low"
                 type="button"
               >
                 <span
@@ -246,6 +248,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
                 aria-pressed="true"
                 class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
                 data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                title="Low-High"
                 type="button"
               >
                 <span
@@ -267,6 +270,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
                 aria-pressed="false"
                 class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
                 data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                title="High-Low"
                 type="button"
               >
                 <span
@@ -398,6 +402,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
                 aria-pressed="true"
                 class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
                 data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                title="Low-High"
                 type="button"
               >
                 <span
@@ -419,6 +424,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
                 aria-pressed="false"
                 class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
                 data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                title="High-Low"
                 type="button"
               >
                 <span
