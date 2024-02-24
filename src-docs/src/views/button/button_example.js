@@ -236,6 +236,28 @@ const buttonGroupCompressedSnippet = [
 />`,
 ];
 
+import ButtonGroupToolTips from './button_group_tooltips';
+const buttonGroupToolTipsSource = require('!!raw-loader!./button_group_tooltips');
+const buttonGroupToolTipsSnippet = [
+  `<EuiButtonGroup
+  legend={legend}
+  options={[
+    {
+      id,
+      label,
+      toolTipContent,
+      toolTipProps: {
+        title,
+        delay,
+        position,
+      },
+    },
+  ]}
+  idSelected={idSelected}
+  onChange={(optionId) => {}}
+/>`,
+];
+
 export const ButtonExample = {
   title: 'Button',
   intro: (
@@ -696,6 +718,37 @@ export const ButtonExample = {
       snippet: buttonGroupCompressedSnippet,
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
       demoPanelProps: { color: 'subdued' },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupToolTipsSource,
+        },
+      ],
+
+      text: (
+        <>
+          <h3>Button group tooltips</h3>
+          <p>
+            Buttons within a button group will automatically get a{' '}
+            <EuiCode>title</EuiCode> attribute containing the button{' '}
+            <EuiCode>label</EuiCode>, which displays a default browser tooltip.
+          </p>
+          <p>
+            To instead display an <EuiCode>EuiToolTip</EuiCode> containing
+            custom content, you can add a <EuiCode>toolTipContent</EuiCode> prop
+            to the button options.
+          </p>
+          <p>
+            You can also use <EuiCode>toolTipProps</EuiCode> to customize
+            tooltip placement, title, and other behaviors.
+          </p>
+        </>
+      ),
+      demo: <ButtonGroupToolTips />,
+      snippet: buttonGroupToolTipsSnippet,
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
     },
   ],
   guidelines: <Guidelines />,
