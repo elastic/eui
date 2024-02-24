@@ -55,9 +55,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   value, // Prevent prop from being spread
   size,
   color: _color = 'primary',
-  title,
-  titleDelay = 'long',
-  titlePosition = 'top',
+  toolTipContent,
+  toolTipProps,
   onClick,
   ...rest
 }) => {
@@ -103,28 +102,35 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
    * the base width of the button via the `euiTextShift()` method in SASS.
    */
   const [buttonTextRef, innerText] = useInnerText();
-  const tooltipRef = useRef<EuiToolTip>(null);
+  const toolTipRef = useRef<EuiToolTip>(null);
 
   const onClickOverride: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     // Blur the tooltip so it doesn't stick around after click until rehovered/refocused
-    tooltipRef.current?.onBlur();
+    toolTipRef.current?.onBlur();
     onClick(e);
   };
 
   return (
     <EuiToolTip
-      ref={tooltipRef}
-      content={isIconOnly ? title || innerText : undefined}
-      delay={titleDelay}
-      position={titlePosition}
+      ref={toolTipRef}
+      content={toolTipContent}
+      delay="long"
+      position="top"
+      {...toolTipProps}
       anchorProps={{
-        className: classNames('euiButtonGroupButton__tooltipAnchor', {
-          'euiButtonGroupButton__tooltipAnchor-isSelected': isSelected,
-        }),
+        ...toolTipProps?.anchorProps,
+        className: classNames(
+          'euiButtonGroupButton__tooltipAnchor',
+          {
+            'euiButtonGroupButton__tooltipAnchor-isSelected': isSelected,
+          },
+          toolTipProps?.anchorProps?.className
+        ),
         css: [
           styles.euiButtonGroupButtonTooltipAnchor,
           styles[size!],
           !isCompressed && styles.uncompressed,
+          toolTipProps?.anchorProps?.css,
         ],
       }}
     >
@@ -139,6 +145,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
           ref: buttonTextRef,
           'data-text': innerText,
         }}
+        title={toolTipContent ? undefined : innerText}
         data-test-subj={id}
         isSelected={isSelected}
         onClick={onClickOverride}

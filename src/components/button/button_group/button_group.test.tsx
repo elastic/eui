@@ -233,13 +233,14 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
             },
           ]}
         />
       );
       fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipVisible();
-      expect(getByRole('tooltip')).toHaveTextContent('Option 4');
+      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
     });
 
     it('shows a tooltip on focus', async () => {
@@ -252,17 +253,18 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
             },
           ]}
         />
       );
       fireEvent.focus(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipVisible();
-      expect(getByRole('tooltip')).toHaveTextContent('Option 4');
+      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
     });
 
-    it('allows overriding the default title', async () => {
-      const { getByTestSubject, getByRole } = render(
+    it('should automatically add a title attribute with the provided label if no tooltip is provided', () => {
+      const { getByTestSubject } = render(
         <EuiButtonGroup
           {...requiredMultiProps}
           isIconOnly
@@ -271,14 +273,34 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
-              title: 'I am a tooltip',
             },
           ]}
         />
       );
-      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
-      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
+      expect(getByTestSubject('buttonWithTooltip')).toHaveAttribute(
+        'title',
+        'Option 4'
+      );
+    });
+
+    it('should not add a title attribute if a tooltip is provided', () => {
+      const { getByTestSubject } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
+            },
+          ]}
+        />
+      );
+      expect(getByTestSubject('buttonWithTooltip')).not.toHaveAttribute(
+        'title'
+      );
     });
 
     it('allows customizing the tooltip delay', async () => {
@@ -291,7 +313,10 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
-              title: 'I am a tooltip',
+              toolTipContent: 'I am a tooltip',
+              toolTipProps: {
+                delay: 'long',
+              },
             },
           ]}
         />
@@ -311,8 +336,10 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
-              title: 'I am a tooltip',
-              titleDelay: 'regular',
+              toolTipContent: 'I am a tooltip',
+              toolTipProps: {
+                delay: 'regular',
+              },
             },
           ]}
         />
@@ -334,7 +361,7 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
-              title: 'I am a tooltip',
+              toolTipContent: 'I am a tooltip',
             },
           ]}
         />
@@ -355,8 +382,10 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
-              title: 'I am a tooltip',
-              titlePosition: 'bottom',
+              toolTipContent: 'I am a tooltip',
+              toolTipProps: {
+                position: 'bottom',
+              },
             },
           ]}
         />
@@ -369,27 +398,6 @@ describe('EuiButtonGroup', () => {
       );
     });
 
-    it('does not show a tooltip for buttons with visible text', async () => {
-      const { getByTestSubject, queryByRole } = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-              titleDelay: 'regular',
-            },
-          ]}
-        />
-      );
-      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      });
-      expect(queryByRole('tooltip')).toBeNull();
-    });
-
     it('hides the tooltip on click until rehovered/refocused', async () => {
       const { getByTestSubject, queryByRole } = render(
         <EuiButtonGroup
@@ -400,6 +408,7 @@ describe('EuiButtonGroup', () => {
             {
               id: 'buttonWithTooltip',
               label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
             },
           ]}
         />

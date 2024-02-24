@@ -48,19 +48,13 @@ export interface EuiButtonGroupOptionProps
    */
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /**
-   * Custom title content for the button, only used if isIconOnly is true
+   * Custom tooltip content for the button
    */
-  title?: EuiToolTipProps['content'];
+  toolTipContent?: EuiToolTipProps['content'];
   /**
-   * Custom title delay
-   * @default 'long'
+   * Custom tooltip props for the button
    */
-  titleDelay?: EuiToolTipProps['delay'];
-  /**
-   * Custom title position
-   * @default 'top'
-   */
-  titlePosition?: EuiToolTipProps['position'];
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
 
 export type EuiButtonGroupProps = CommonProps & {
