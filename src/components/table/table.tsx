@@ -25,11 +25,6 @@ export interface EuiTableProps
   tableLayout?: 'fixed' | 'auto';
 }
 
-const tableLayoutToClassMap: { [tableLayout: string]: string | null } = {
-  fixed: null,
-  auto: 'euiTable--auto',
-};
-
 export const EuiTable: FunctionComponent<EuiTableProps> = ({
   children,
   className,
@@ -38,18 +33,13 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   responsive = true,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiTable',
-    className,
-    {
-      'euiTable--compressed': compressed,
-      'euiTable--responsive': responsive,
-    },
-    tableLayoutToClassMap[tableLayout]
-  );
+  const classes = classNames('euiTable', className, {
+    'euiTable--compressed': compressed,
+    'euiTable--responsive': responsive,
+  });
 
   const styles = useEuiMemoizedStyles(euiTableStyles);
-  const cssStyles = [styles.euiTable];
+  const cssStyles = [styles.euiTable, styles.layout[tableLayout]];
 
   return (
     <table tabIndex={-1} css={cssStyles} className={classes} {...rest}>

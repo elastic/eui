@@ -20,10 +20,17 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiNumberFormat(euiThemeContext)}
 
       ${logicalCSS('width', '100%')}
-      table-layout: fixed;
       border: none;
       border-collapse: collapse;
       background-color: ${euiTheme.colors.emptyShade};
     `,
+    layout: {
+      fixed: css`
+        table-layout: fixed;
+      `,
+      auto: css`
+        table-layout: auto;
+      `,
+    },
   };
 };
