@@ -34,3 +34,11 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
     },
   };
 };
+
+// The table caption needs to not be absolutely positioned, because for some reason
+// it causes weird layout issues/double borders when used within a <table>
+// Also needs to be !important to override euiScreenReaderOnly absolute positioning
+export const euiTableCaptionStyles = css`
+  /* stylelint-disable declaration-no-important */
+  position: relative !important;
+`;
