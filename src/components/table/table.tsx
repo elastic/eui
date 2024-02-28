@@ -8,7 +8,11 @@
 
 import React, { FunctionComponent, TableHTMLAttributes } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
+
+import { euiTableStyles } from './table.styles';
 
 export interface EuiTableProps
   extends CommonProps,
@@ -44,8 +48,11 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
     tableLayoutToClassMap[tableLayout]
   );
 
+  const styles = useEuiMemoizedStyles(euiTableStyles);
+  const cssStyles = [styles.euiTable];
+
   return (
-    <table tabIndex={-1} className={classes} {...rest}>
+    <table tabIndex={-1} css={cssStyles} className={classes} {...rest}>
       {children}
     </table>
   );

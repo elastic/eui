@@ -1,0 +1,29 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { css } from '@emotion/react';
+
+import { UseEuiTheme } from '../../services';
+import { euiFontSize, euiNumberFormat, logicalCSS } from '../../global_styling';
+
+export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiTable: css`
+      ${euiFontSize(euiThemeContext, 's')}
+      ${euiNumberFormat(euiThemeContext)}
+
+      ${logicalCSS('width', '100%')}
+      table-layout: fixed;
+      border: none;
+      border-collapse: collapse;
+      background-color: ${euiTheme.colors.emptyShade};
+    `,
+  };
+};

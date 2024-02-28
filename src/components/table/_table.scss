@@ -1,13 +1,4 @@
 .euiTable {
-  @include euiFontSizeS;
-  @include euiNumberFormat;
-
-  width: 100%;
-  table-layout: fixed;
-  border: none;
-  border-collapse: collapse;
-  background-color: $euiColorEmptyShade;
-
   &.euiTable--auto {
     table-layout: auto;
   }
