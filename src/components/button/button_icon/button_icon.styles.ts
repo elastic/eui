@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import { logicalSizeCSS } from '../../../global_styling';
 import {
+  BUTTON_COLORS,
   _EuiButtonColor,
   euiButtonEmptyColor,
   euiButtonSizeMap,
@@ -55,14 +56,16 @@ export const euiButtonIconStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const _emptyHoverStyles = (
-  euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor
-) => {
-  return css`
-    &:hover {
-      background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-        .backgroundColor};
-    }
-  `;
-};
+export const _emptyHoverStyles = (euiThemeContext: UseEuiTheme) =>
+  BUTTON_COLORS.reduce(
+    (styles, color) => ({
+      ...styles,
+      [color]: css`
+        &:hover {
+          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+            .backgroundColor};
+        }
+      `,
+    }),
+    {} as Record<_EuiButtonColor, SerializedStyles>
+  );

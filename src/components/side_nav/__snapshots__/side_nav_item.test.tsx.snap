@@ -2,18 +2,18 @@
 
 exports[`EuiSideNavItem can be disabled 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <button
-    class="euiSideNavItemButton"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
     disabled=""
     type="button"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
         title="Children"
       >
         Children
@@ -25,16 +25,16 @@ exports[`EuiSideNavItem can be disabled 1`] = `
 
 exports[`EuiSideNavItem can be emphasized 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root euiSideNavItem--emphasized"
+  class="euiSideNavItem euiSideNavItem--root euiSideNavItem--emphasized emotion-euiSideNavItem-root-emphasized"
 >
   <div
-    class="euiSideNavItemButton"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-emphasized-root"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
         title="Children"
       >
         Children
@@ -46,16 +46,16 @@ exports[`EuiSideNavItem can be emphasized 1`] = `
 
 exports[`EuiSideNavItem can have truncation turned off 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <div
-    class="euiSideNavItemButton"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label"
+        class="euiSideNavItemButton__label emotion-euiSideNavItemButton__label"
       >
         Children
       </span>
@@ -66,18 +66,18 @@ exports[`EuiSideNavItem can have truncation turned off 1`] = `
 
 exports[`EuiSideNavItem href is rendered 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <a
-    class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
     href="#"
     rel="noreferrer"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
       >
         <button />
       </span>
@@ -88,18 +88,18 @@ exports[`EuiSideNavItem href is rendered 1`] = `
 
 exports[`EuiSideNavItem href is rendered with rel 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <a
-    class="euiSideNavItemButton euiSideNavItemButton--isClickable"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
     href="#"
     rel="noopener noreferrer"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
       >
         <button />
       </span>
@@ -110,16 +110,16 @@ exports[`EuiSideNavItem href is rendered with rel 1`] = `
 
 exports[`EuiSideNavItem is rendered 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <div
-    class="euiSideNavItemButton"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
       >
         <button
           aria-label="aria-label"
@@ -134,16 +134,16 @@ exports[`EuiSideNavItem is rendered 1`] = `
 
 exports[`EuiSideNavItem isSelected defaults to false 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <div
-    class="euiSideNavItemButton"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
       >
         <button />
       </span>
@@ -154,16 +154,16 @@ exports[`EuiSideNavItem isSelected defaults to false 1`] = `
 
 exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <div
-    class="euiSideNavItemButton euiSideNavItemButton-isSelected"
+    class="euiSideNavItemButton euiSideNavItemButton-isSelected emotion-euiSideNavItemButton-selected-root"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
       >
         <button />
       </span>
@@ -174,16 +174,16 @@ exports[`EuiSideNavItem isSelected is rendered when specified as true 1`] = `
 
 exports[`EuiSideNavItem preserves child's classes 1`] = `
 <div
-  class="euiSideNavItem euiSideNavItem--root"
+  class="euiSideNavItem euiSideNavItem--root emotion-euiSideNavItem-root"
 >
   <div
-    class="euiSideNavItemButton"
+    class="euiSideNavItemButton emotion-euiSideNavItemButton-root"
   >
     <span
-      class="euiSideNavItemButton__content"
+      class="euiSideNavItemButton__content emotion-euiSideNavItemButton__content"
     >
       <span
-        class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        class="euiSideNavItemButton__label eui-textTruncate emotion-euiSideNavItemButton__label"
       >
         <button
           class="test"

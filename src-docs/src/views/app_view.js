@@ -50,7 +50,7 @@ export const AppView = ({ children, currentRoute = {} }) => {
         restrictWidth={false}
         mainProps={{ id: 'start-of-content' }}
       >
-        <EuiPageTemplate.Sidebar className="guideSideNav" sticky>
+        <EuiPageTemplate.Sidebar className="guideSideNav" sticky hasEmbellish>
           <GuidePageChrome
             currentRoute={currentRoute}
             navigation={routes.navigation}

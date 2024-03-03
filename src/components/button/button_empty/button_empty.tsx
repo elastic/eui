@@ -15,7 +15,7 @@ import {
   PropsForAnchor,
   PropsForButton,
 } from '../../common';
-import { useEuiTheme, getSecureRelForTarget } from '../../../services';
+import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
 
 import {
   EuiButtonDisplayContent,
@@ -119,8 +119,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     display: 'empty',
   });
 
-  const euiTheme = useEuiTheme();
-  const styles = euiButtonEmptyStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiButtonEmptyStyles);
   const cssStyles = [
     styles.euiButtonEmpty,
     styles[size],

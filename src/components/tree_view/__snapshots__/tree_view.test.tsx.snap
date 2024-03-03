@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTreeView is rendered 1`] = `
-<div
-  class="euiText euiTreeView__wrapper emotion-euiText-m"
->
+<div>
   <p
     class="emotion-euiScreenReaderOnly"
     id="euiTreeView_generated-id--instruction"
@@ -13,29 +11,30 @@ exports[`EuiTreeView is rendered 1`] = `
   <ul
     aria-describedby="euiTreeView_generated-id--instruction"
     aria-label="aria-label"
-    class="euiTreeView testClass1 testClass2 emotion-euiTestCss"
+    class="euiTreeView testClass1 testClass2 emotion-euiTreeView-default-euiTestCss"
     data-test-subj="test subject string"
     id="euiTreeView_generated-id"
+    role="list"
   >
     <li
-      class="euiTreeView__node euiTreeView__node--expanded"
+      class="euiTreeView__node euiTreeView__node--expanded emotion-euiTreeView__node-default-expanded"
     >
       <button
         aria-controls="euiTreeView_generated-id_item_one"
         aria-expanded="true"
-        class="euiTreeView__nodeInner"
+        class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
         data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
         id="item_one"
       >
         <span
-          class="euiTreeView__iconWrapper"
+          class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
         >
           <span
             data-euiicon-type="folderOpen"
           />
         </span>
         <span
-          class="euiTreeView__nodeLabel"
+          class="euiTreeView__nodeLabel eui-textTruncate"
         >
           Item One
         </span>
@@ -43,117 +42,103 @@ exports[`EuiTreeView is rendered 1`] = `
       <div
         id="euiTreeView_generated-id_item_one"
       >
-        <div
-          class="euiText euiTreeView__wrapper emotion-euiText-m"
+        <ul
+          class="euiTreeView emotion-euiTreeView-default"
+          role="list"
         >
-          <ul
-            aria-label="Item One child of aria-label"
-            class="euiTreeView"
+          <li
+            class="euiTreeView__node emotion-euiTreeView__node-default"
           >
-            <li
-              class="euiTreeView__node"
+            <button
+              class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
+              data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+              id="item_a"
             >
-              <button
-                aria-controls="euiTreeView_generated-id_item_a"
-                aria-expanded="false"
-                class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
-                id="item_a"
+              <span
+                class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
-                  class="euiTreeView__iconWrapper"
-                >
-                  <span
-                    data-euiicon-type="document"
-                  />
-                </span>
-                <span
-                  class="euiTreeView__nodeLabel"
-                >
-                  Item A
-                </span>
-              </button>
-              <div
-                id="euiTreeView_generated-id_item_a"
-              />
-            </li>
-            <li
-              class="euiTreeView__node"
+                  data-euiicon-type="document"
+                />
+              </span>
+              <span
+                class="euiTreeView__nodeLabel eui-textTruncate"
+              >
+                Item A
+              </span>
+            </button>
+          </li>
+          <li
+            class="euiTreeView__node emotion-euiTreeView__node-default"
+          >
+            <button
+              aria-controls="euiTreeView_generated-id_item_b"
+              aria-expanded="false"
+              class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
+              data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+              id="item_b"
             >
-              <button
-                aria-controls="euiTreeView_generated-id_item_b"
-                aria-expanded="false"
-                class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
-                id="item_b"
+              <span
+                class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
-                  class="euiTreeView__iconWrapper"
-                >
-                  <span
-                    data-euiicon-type="arrowRight"
-                  />
-                </span>
-                <span
-                  class="euiTreeView__nodeLabel"
-                >
-                  Item B
-                </span>
-              </button>
-              <div
-                id="euiTreeView_generated-id_item_b"
-              />
-            </li>
-            <li
-              class="euiTreeView__node"
+                  data-euiicon-type="arrowRight"
+                />
+              </span>
+              <span
+                class="euiTreeView__nodeLabel eui-textTruncate"
+              >
+                Item B
+              </span>
+            </button>
+            <div
+              id="euiTreeView_generated-id_item_b"
+            />
+          </li>
+          <li
+            class="euiTreeView__node emotion-euiTreeView__node-default"
+          >
+            <button
+              aria-controls="euiTreeView_generated-id_item_c"
+              aria-expanded="false"
+              class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
+              data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
+              id="item_c"
             >
-              <button
-                aria-controls="euiTreeView_generated-id_item_c"
-                aria-expanded="false"
-                class="euiTreeView__nodeInner"
-                data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
-                id="item_c"
+              <span
+                class="euiTreeView__iconWrapper emotion-euiTreeView__iconWrapper-default"
               >
                 <span
-                  class="euiTreeView__iconWrapper"
-                >
-                  <span
-                    data-euiicon-type="arrowRight"
-                  />
-                </span>
-                <span
-                  class="euiTreeView__nodeLabel"
-                >
-                  Item C
-                </span>
-              </button>
-              <div
-                id="euiTreeView_generated-id_item_c"
-              />
-            </li>
-          </ul>
-        </div>
+                  data-euiicon-type="arrowRight"
+                />
+              </span>
+              <span
+                class="euiTreeView__nodeLabel eui-textTruncate"
+              >
+                Item C
+              </span>
+            </button>
+            <div
+              id="euiTreeView_generated-id_item_c"
+            />
+          </li>
+        </ul>
       </div>
     </li>
     <li
-      class="euiTreeView__node"
+      class="euiTreeView__node emotion-euiTreeView__node-default"
     >
       <button
-        aria-controls="euiTreeView_generated-id_item_two"
-        aria-expanded="false"
-        class="euiTreeView__nodeInner"
+        class="euiTreeView__nodeInner emotion-euiTreeView__nodeInner-default"
         data-test-subj="euiTreeViewButton-euiTreeView_generated-id"
         id="item_two"
       >
         <span
-          class="euiTreeView__nodeLabel"
+          class="euiTreeView__nodeLabel eui-textTruncate"
         >
           Item Two
         </span>
       </button>
-      <div
-        id="euiTreeView_generated-id_item_two"
-      />
     </li>
   </ul>
 </div>

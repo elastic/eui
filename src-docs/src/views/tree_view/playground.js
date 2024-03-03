@@ -1,14 +1,17 @@
 import { EuiTreeView, EuiIcon } from '../../../../src/components';
+import { EuiTreeViewClass } from '../../../../src/components/tree_view/tree_view';
 import {
   propUtilityForPlayground,
   generateCustomProps,
 } from '../../services/playground';
 
 export const TreeViewConfig = () => {
-  const docgenInfo = Array.isArray(EuiTreeView.__docgenInfo)
-    ? EuiTreeView.__docgenInfo[0]
-    : EuiTreeView.__docgenInfo;
+  const docgenInfo = Array.isArray(EuiTreeViewClass.__docgenInfo)
+    ? EuiTreeViewClass.__docgenInfo[0]
+    : EuiTreeViewClass.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  delete propsToUse.theme;
 
   propsToUse.display = {
     ...propsToUse.display,

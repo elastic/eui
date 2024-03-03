@@ -28,6 +28,7 @@ const meta: Meta<EuiPageSidebarProps> = {
   args: {
     // Component defaults
     paddingSize: 'm', // The component default is actually 'none', but for nicer visuals in Storybook we'll set it to 'm'
+    hasEmbellish: false,
     sticky: false,
     minWidth: 248,
     responsive: ['xs', 's'],
@@ -70,6 +71,7 @@ export const StickyOffset: Story = {
     ...hideStorybookControls<EuiPageSidebarProps>([
       'minWidth',
       'paddingSize',
+      'hasEmbellish',
       'responsive',
     ]),
   },

@@ -16,7 +16,7 @@ import React, {
 
 // @ts-ignore module doesn't export `createElement`
 import { createElement } from '@emotion/react';
-import { getSecureRelForTarget, useEuiTheme } from '../../../services';
+import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../../services';
 
 import {
   CommonProps,
@@ -139,9 +139,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       isLoading,
     });
 
-    const theme = useEuiTheme();
-
-    const styles = euiButtonDisplayStyles(theme);
+    const styles = useEuiMemoizedStyles(euiButtonDisplayStyles);
     const cssStyles = [
       styles.euiButtonDisplay,
       styles[size],
