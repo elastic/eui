@@ -17,7 +17,7 @@ export GCE_ACCOUNT
 GITHUB_TOKEN=$(retry 5 vault read -field=github_token $GITHUB_ACCOUNT)
 export GITHUB_TOKEN
 
-DOCKER_BASE_IMAGE=docker.elastic.co/eui/ci:6.1
+DOCKER_BASE_IMAGE=docker.elastic.co/eui/ci:6.3
 export DOCKER_BASE_IMAGE
 
 GCE_IMAGE=google/cloud-sdk:slim

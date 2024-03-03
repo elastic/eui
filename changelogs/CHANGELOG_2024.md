@@ -1,3 +1,61 @@
+## [`v93.2.0`](https://github.com/elastic/eui/releases/v93.2.0)
+
+- Added `diff` glyph to `EuiIcon` ([#7520](https://github.com/elastic/eui/pull/7520))
+- Updated `EuiPageSidebar` and `EuiPageTemplate.Sidebar` with a new `hasEmbellish` prop (defaults to false) ([#7521](https://github.com/elastic/eui/pull/7521))
+- Added `newChat` glyph to `EuiIcon` ([#7524](https://github.com/elastic/eui/pull/7524))
+
+**Bug fixes**
+
+- Fixed `EuiSideNav` not correctly typing the `items` prop as required ([#7521](https://github.com/elastic/eui/pull/7521))
+- Fixed the `CSS is not defined` bug in `EuiPageTemplate` when rendering in some SSR environments, particularly Next.js v13 and up ([#7525](https://github.com/elastic/eui/pull/7525))
+- Fixed `EuiDataGrid` component to clean up timer from side effect on unmount ([#7534](https://github.com/elastic/eui/pull/7534))
+
+**Accessibility**
+
+- Fixed `EuiSideNav` to render a fallback aria-label on mobile toggles if no heading or mobile title exists ([#7521](https://github.com/elastic/eui/pull/7521))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSideNav` to Emotion; Removed the following Sass variables: ([#7521](https://github.com/elastic/eui/pull/7521))
+  - `$euiSideNavEmphasizedBackgroundColor`
+  - `$euiSideNavRootTextcolor`
+  - `$euiSideNavBranchTextcolor`
+  - `$euiSideNavSelectedTextcolor`
+  - `$euiSideNavDisabledTextcolor`
+- Removed the `euiSideNavEmbellish` Sass mixin. Use the new `EuiPageSidebar` `hasEmbellish` prop instead ([#7521](https://github.com/elastic/eui/pull/7521))
+- Added a new memoization/performance optimization utility for CSS-in-JS styles ([#7529](https://github.com/elastic/eui/pull/7529))
+
+## [`v93.1.1`](https://github.com/elastic/eui/releases/v93.2.0)
+
+**This is a patch release primarily intended for use by Kibana.**
+
+- Added top-level `EuiTreeView.Item` export ([#7526](https://github.com/elastic/eui/pull/7526))
+
+## [`v93.1.0`](https://github.com/elastic/eui/releases/v93.1.0)
+
+- Added `index` glyph to `EuiIcon` ([#7498](https://github.com/elastic/eui/pull/7498))
+- Updated `EuiHighlight` to accept an array of `search` strings, which allows highlighting multiple, separate words within its children. This new type and behavior *only* works if `highlightAll` is also set to true. ([#7496](https://github.com/elastic/eui/pull/7496))
+- Updated `EuiContextMenu` with a new `panels.items.renderItem` property, which allows rendering completely custom items next to standard `EuiContextMenuItem` objects ([#7510](https://github.com/elastic/eui/pull/7510))
+- `EuiSuperDatePicker` updates:
+  - Updated `EuiSuperDatePicker` with a new `refreshIntervalUnits` prop. Passing this prop allows controlling and overriding the default unit rounding behavior. ([#7501](https://github.com/elastic/eui/pull/7501))
+  - Updated `EuiAutoRefresh` and `EuiRefreshInterval` with a new `intervalUnits` prop. Passing this prop allows controlling and overriding the default unit rounding behavior. ([#7501](https://github.com/elastic/eui/pull/7501))
+  - Updated `onRefreshChange` to pass back a new `intervalUnits` key that contains the current interval unit format (seconds, minutes, or hours). ([#7501](https://github.com/elastic/eui/pull/7501))
+  - Updated `EuiSuperDatePicker` with a new `canRoundRelativeUnits` prop, which defaults to true (current behavior). To preserve displaying the unit that users select for relative time, set this to false. ([#7502](https://github.com/elastic/eui/pull/7502))
+  - Updated `EuiSuperDatePicker` with a new `refreshMinInterval` prop, which accepts a minimum number in milliseconds ([#7516](https://github.com/elastic/eui/pull/7516))
+  - Updated `EuiAutoRefresh` and `EuiRefreshInterval` with a new `minInterval` prop, which accepts a minimum number in milliseconds ([#7516](https://github.com/elastic/eui/pull/7516))
+
+**Bug fixes**
+
+- Fixed `EuiHighlight` to not parse `search` strings as regexes ([#7496](https://github.com/elastic/eui/pull/7496))
+- Fixed `EuiSuperDatePicker` submit bug when used within `<form>` elements ([#7504](https://github.com/elastic/eui/pull/7504))
+- Fixed an `EuiTreeView` bug where `aria-expanded` was being applied to items without expandable children ([#7513](https://github.com/elastic/eui/pull/7513))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiTreeView` to Emotion. Updates as part of the conversion: ([#7513](https://github.com/elastic/eui/pull/7513))
+  - Removed `.euiTreeView__wrapper` div node
+  - Enforced consistent `icon` size based on `display` size
+
 ## [`v93.0.0`](https://github.com/elastic/eui/releases/v93.0.0)
 
 **Bug fixes**

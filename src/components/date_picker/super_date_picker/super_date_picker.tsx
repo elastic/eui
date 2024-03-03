@@ -149,6 +149,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
    */
   refreshInterval?: Milliseconds;
   /**
+   * Minimum refresh interval in milliseconds
+   * @default 0
+   */
+  refreshMinInterval?: Milliseconds;
+  /**
    * By default, refresh interval units will be rounded up to next largest unit of time
    * (for example, 90 seconds will become 2m).
    *
@@ -497,6 +502,7 @@ export class EuiSuperDatePickerInternal extends Component<
       timeOptions,
       dateFormat,
       refreshInterval,
+      refreshMinInterval,
       refreshIntervalUnits,
       isPaused,
       isDisabled,
@@ -511,6 +517,7 @@ export class EuiSuperDatePickerInternal extends Component<
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
       <EuiAutoRefreshButton
         refreshInterval={refreshInterval}
+        minInterval={refreshMinInterval}
         intervalUnits={refreshIntervalUnits}
         isDisabled={!!isDisabled}
         isPaused={isPaused}
@@ -671,6 +678,7 @@ export class EuiSuperDatePickerInternal extends Component<
       isPaused,
       onRefreshChange,
       refreshInterval,
+      refreshMinInterval,
       refreshIntervalUnits,
       showUpdateButton,
       'data-test-subj': dataTestSubj,
@@ -700,6 +708,7 @@ export class EuiSuperDatePickerInternal extends Component<
           <EuiAutoRefresh
             isPaused={isPaused}
             refreshInterval={refreshInterval}
+            minInterval={refreshMinInterval}
             intervalUnits={refreshIntervalUnits}
             onRefreshChange={this.onRefreshChange}
             fullWidth={width === 'full'}

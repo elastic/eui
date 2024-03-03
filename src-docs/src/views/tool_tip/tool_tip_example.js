@@ -65,14 +65,26 @@ export const ToolTipExample = {
 
       <EuiCallOut
         iconType="accessibility"
-        color="warning"
-        title={
-          <>
-            Putting anything other than plain text in a tooltip is lost on
-            screen readers.
-          </>
-        }
-      />
+        title="Tooltips have three accessibilty requirements:"
+      >
+        <>
+          <ul>
+            <li>
+              Tooltips <strong>must</strong> be anchored to elements that accept
+              keyboard focus.
+            </li>
+            <li>
+              Put only plain text in tooltips so the content is accessible to
+              keyboard and screen reader users.
+            </li>
+            <li>
+              {' '}
+              Do not add links, buttons, or other interactive content inside
+              tooltips.
+            </li>
+          </ul>
+        </>
+      </EuiCallOut>
     </EuiText>
   ),
   sections: [
@@ -87,17 +99,6 @@ export const ToolTipExample = {
             will change it if the tooltip gets too close to the edge of the
             screen.
           </p>
-
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <>
-                Anchoring a tooltip to a non-interactive element makes it
-                difficult for keyboard-only and screen reader users to read.
-              </>
-            }
-          />
         </>
       ),
       source: [

@@ -350,6 +350,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
               class="euiFieldNumber euiFieldNumber--fullWidth euiFieldNumber--compressed"
               data-test-subj="superDatePickerRefreshIntervalInput"
               disabled=""
+              min="0"
               step="any"
               type="number"
               value="0"

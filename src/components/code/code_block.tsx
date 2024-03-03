@@ -9,7 +9,12 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import { RefractorNode } from 'refractor';
 import classNames from 'classnames';
-import { useCombinedRefs, useEuiTheme } from '../../services';
+
+import {
+  useCombinedRefs,
+  useEuiTheme,
+  useEuiMemoizedStyles,
+} from '../../services';
 import { ExclusiveUnion } from '../common';
 import {
   EuiCodeSharedProps,
@@ -32,7 +37,6 @@ import {
   euiCodeBlockPreStyles,
   euiCodeBlockCodeStyles,
 } from './code_block.styles';
-import { useEuiCodeSyntaxVariables } from './code_syntax.styles';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -123,7 +127,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const euiCodeSyntaxVariables = useEuiCodeSyntaxVariables();
   const language = useMemo(
     () => checkSupportedLanguage(_language),
     [_language]
@@ -177,7 +180,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   const hasControls = !!(copyButton || fullScreenButton);
   const hasBothControls = !!(copyButton && fullScreenButton);
 
-  const styles = euiCodeBlockStyles(euiTheme, euiCodeSyntaxVariables);
+  const styles = useEuiMemoizedStyles(euiCodeBlockStyles);
   const cssStyles = [
     styles.euiCodeBlock,
     styles[fontSize],
@@ -188,26 +191,26 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
         : styles.hasControls[paddingSize]),
   ];
 
+  const preStyles = useEuiMemoizedStyles(euiCodeBlockPreStyles);
   const [preProps, preFullscreenProps] = useMemo(() => {
     const isWhiteSpacePre = whiteSpace === 'pre' || isVirtualized;
 
-    const styles = euiCodeBlockPreStyles(euiTheme);
     const cssStyles = [
-      styles.euiCodeBlock__pre,
+      preStyles.euiCodeBlock__pre,
       isWhiteSpacePre
-        ? styles.whiteSpace.pre.pre
-        : styles.whiteSpace.preWrap.preWrap,
+        ? preStyles.whiteSpace.pre.pre
+        : preStyles.whiteSpace.preWrap.preWrap,
     ];
 
     const preProps = {
       className: 'euiCodeBlock__pre',
       css: [
         ...cssStyles,
-        styles.padding[paddingSize],
+        preStyles.padding[paddingSize],
         hasControls &&
           (isWhiteSpacePre
-            ? styles.whiteSpace.pre.controlsOffset[paddingSize]
-            : styles.whiteSpace.preWrap.controlsOffset[paddingSize]),
+            ? preStyles.whiteSpace.pre.controlsOffset[paddingSize]
+            : preStyles.whiteSpace.preWrap.controlsOffset[paddingSize]),
       ],
       tabIndex: isVirtualized ? 0 : tabIndex,
     };
@@ -216,11 +219,11 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       css: [
         ...cssStyles,
         // Force fullscreen to use xl padding
-        styles.padding.xl,
+        preStyles.padding.xl,
         hasControls &&
           (isWhiteSpacePre
-            ? styles.whiteSpace.pre.controlsOffset.xl
-            : styles.whiteSpace.preWrap.controlsOffset.xl),
+            ? preStyles.whiteSpace.pre.controlsOffset.xl
+            : preStyles.whiteSpace.preWrap.controlsOffset.xl),
       ],
       tabIndex: 0,
       onKeyDown,
@@ -228,7 +231,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
     return [preProps, preFullscreenProps];
   }, [
-    euiTheme,
+    preStyles,
     whiteSpace,
     isVirtualized,
     hasControls,
@@ -237,11 +240,11 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     tabIndex,
   ]);
 
+  const codeStyles = useEuiMemoizedStyles(euiCodeBlockCodeStyles);
   const codeProps = useMemo(() => {
-    const styles = euiCodeBlockCodeStyles(euiTheme, euiCodeSyntaxVariables);
     const cssStyles = [
-      styles.euiCodeBlock__code,
-      isVirtualized && styles.isVirtualized,
+      codeStyles.euiCodeBlock__code,
+      isVirtualized && codeStyles.isVirtualized,
     ];
 
     return {
@@ -250,7 +253,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       'data-code-language': language,
       ...rest,
     };
-  }, [language, euiTheme, euiCodeSyntaxVariables, isVirtualized, rest]);
+  }, [codeStyles, language, isVirtualized, rest]);
 
   return (
     <div
