@@ -90,7 +90,7 @@ const SelectionRowCell = ({ rowIndex }) => {
   const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
   const isChecked = selectedRows.has(rowIndex);
   return (
-    <div>
+    <>
       <EuiCheckbox
         id={`${rowIndex}`}
         aria-label={`Select row ${rowIndex}, ${data[rowIndex].name}`}
@@ -103,7 +103,7 @@ const SelectionRowCell = ({ rowIndex }) => {
           }
         }}
       />
-    </div>
+    </>
   );
 };
 
@@ -153,20 +153,18 @@ export default () => {
 
   return (
     <SelectionContext.Provider value={rowSelection}>
-      <div>
-        <EuiDataGrid
-          aria-label="Top EUI contributors"
-          columns={columns}
-          columnVisibility={{ visibleColumns, setVisibleColumns }}
-          rowCount={data.length}
-          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-          leadingControlColumns={leadingControlColumns}
-          toolbarVisibility={{
-            additionalControls: <SelectionButton />,
-          }}
-          gridStyle={{ rowClasses, rowHover: 'none' }}
-        />
-      </div>
+      <EuiDataGrid
+        aria-label="Top EUI contributors"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={data.length}
+        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        leadingControlColumns={leadingControlColumns}
+        toolbarVisibility={{
+          additionalControls: <SelectionButton />,
+        }}
+        gridStyle={{ rowClasses, rowHover: 'none' }}
+      />
     </SelectionContext.Provider>
   );
 };
