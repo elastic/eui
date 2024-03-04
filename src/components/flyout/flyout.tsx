@@ -32,6 +32,7 @@ import {
   useGeneratedHtmlId,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
+import { hasResizeObserver } from '../observer/resize_observer/resize_observer';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -221,25 +222,29 @@ export const EuiFlyout = forwardRef(
 
       // We manually set up a resize observer here because useResizeObserver calls getBoundingClientRect
       // which results in layout thrashing when the width changes frequently, such as with a resizable flyout
-      const observer = new ResizeObserver((entries) => {
-        const width = entries[0]?.borderBoxSize?.[0]?.inlineSize;
+      let observer: ResizeObserver | undefined;
 
-        /**
-         * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
-         */
-        if (isPushed) {
-          if (side === 'right') {
-            document.body.style.paddingInlineEnd = `${width}px`;
-          } else if (side === 'left') {
-            document.body.style.paddingInlineStart = `${width}px`;
+      if (hasResizeObserver) {
+        observer = new ResizeObserver((entries) => {
+          const width = entries[0]?.borderBoxSize?.[0]?.inlineSize;
+
+          /**
+           * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
+           */
+          if (isPushed) {
+            if (side === 'right') {
+              document.body.style.paddingInlineEnd = `${width}px`;
+            } else if (side === 'left') {
+              document.body.style.paddingInlineStart = `${width}px`;
+            }
           }
-        }
-      });
+        });
 
-      observer.observe(resizeRef);
+        observer.observe(resizeRef);
+      }
 
       return () => {
-        observer.disconnect();
+        observer?.disconnect();
 
         if (isPushed) {
           if (side === 'right') {

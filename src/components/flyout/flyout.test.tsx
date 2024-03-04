@@ -25,12 +25,6 @@ jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
 }));
 
-global.ResizeObserver = class MockedResizeObserver {
-  observe = jest.fn();
-  unobserve = jest.fn();
-  disconnect = jest.fn();
-};
-
 describe('EuiFlyout', () => {
   shouldRenderCustomStyles(
     <EuiFlyout {...requiredProps} onClose={() => {}} />,
