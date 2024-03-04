@@ -77,3 +77,5 @@ export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = memo(
     );
   }
 );
+
+EuiSkeletonText.displayName = 'EuiSkeletonText';

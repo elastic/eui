@@ -38,3 +38,5 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
       </EuiDataGridHeaderCellWrapper>
     );
   });
+
+EuiDataGridControlHeaderCell.displayName = 'EuiDataGridControlHeaderCell';
