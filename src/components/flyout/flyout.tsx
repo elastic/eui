@@ -38,7 +38,6 @@ import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
-import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -214,29 +213,33 @@ export const EuiFlyout = forwardRef(
       null
     );
     const setRef = useCombinedRefs([setResizeRef, ref]);
-    // TODO: Allow this hook to be conditional
-    const { width } = useResizeObserver(resizeRef);
 
     useEffect(() => {
-      // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
-      document.body.classList.add('euiBody--hasFlyout');
-
-      /**
-       * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
-       */
-      if (isPushed) {
-        if (side === 'right') {
-          document.body.style.paddingInlineEnd = `${width}px`;
-        } else if (side === 'left') {
-          document.body.style.paddingInlineStart = `${width}px`;
-        }
+      if (!resizeRef) {
+        return;
       }
-    }, [side, isPushed, width]);
 
-    // Remove the hasFlyout class and padding when the flyout is unmounted
-    useEffect(() => {
+      // We manually set up a resize observer here because useResizeObserver calls getBoundingClientRect
+      // which results in layout thrashing when the width changes frequently, such as with a resizable flyout
+      const observer = new ResizeObserver((entries) => {
+        const width = entries[0]?.borderBoxSize?.[0]?.inlineSize;
+
+        /**
+         * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
+         */
+        if (isPushed) {
+          if (side === 'right') {
+            document.body.style.paddingInlineEnd = `${width}px`;
+          } else if (side === 'left') {
+            document.body.style.paddingInlineStart = `${width}px`;
+          }
+        }
+      });
+
+      observer.observe(resizeRef);
+
       return () => {
-        document.body.classList.remove('euiBody--hasFlyout');
+        observer.disconnect();
 
         if (isPushed) {
           if (side === 'right') {
@@ -246,7 +249,17 @@ export const EuiFlyout = forwardRef(
           }
         }
       };
-    }, [isPushed, side]);
+    }, [isPushed, resizeRef, side]);
+
+    useEffect(() => {
+      // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
+      document.body.classList.add('euiBody--hasFlyout');
+
+      return () => {
+        // Remove the hasFlyout class when the flyout is unmounted
+        document.body.classList.remove('euiBody--hasFlyout');
+      };
+    }, []);
 
     /**
      * ESC key closes flyout (always?)
