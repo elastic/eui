@@ -119,6 +119,10 @@
   height: auto;
   display: flex;
   align-items: center;
+
+  &.euiDataGridRowCell__content--defaultHeight {
+    height: 100%;
+  }
 }
 
 // Positioning for cell actions & the cell expansion popover
