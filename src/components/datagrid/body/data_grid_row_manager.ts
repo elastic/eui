@@ -82,9 +82,7 @@ export const useRowManager = ({
     if (rowClasses) {
       rowIdToElements.current.forEach((rowElement, rowIndex) => {
         const euiClasses = Array.from(rowElement.classList)
-          .filter((className) =>
-            ['euiDataGridRow', 'euiDataGridRow--striped'].includes(className)
-          )
+          .filter((className) => className.startsWith('euiDataGridRow'))
           .join(' ');
 
         if (rowClasses[rowIndex]) {
