@@ -108,7 +108,7 @@ describe('EuiDataGridHeaderRow', () => {
         data-test-subj="dataGridHeader"
         role="row"
       >
-        <Memo()
+        <EuiDataGridControlHeaderCell
           controlColumn={
             Object {
               "headerCellRender": [Function],
@@ -145,7 +145,7 @@ describe('EuiDataGridHeaderRow', () => {
         data-test-subj="dataGridHeader"
         role="row"
       >
-        <Memo()
+        <EuiDataGridControlHeaderCell
           controlColumn={
             Object {
               "headerCellRender": [Function],
