@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useMemo } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 import { TextSize } from '../text/text';
 
 import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
@@ -45,14 +45,19 @@ export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = ({
   children,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiSkeletonTextStyles(euiTheme);
-  const lineCssStyles = [styles.euiSkeletonText, styles[size]];
+  const styles = useEuiMemoizedStyles(euiSkeletonTextStyles);
+  const cssStyles = useMemo(
+    () => [styles.euiSkeletonText, styles[size]],
+    [styles, size]
+  );
 
-  const lineElements = [];
-  for (let i = 0; i < lines; i++) {
-    lineElements.push(<span key={i} css={lineCssStyles} />);
-  }
+  const lineElements = useMemo(() => {
+    const lineElements = [];
+    for (let i = 0; i < lines; i++) {
+      lineElements.push(<span key={i} css={cssStyles} />);
+    }
+    return lineElements;
+  }, [lines, cssStyles]);
 
   return (
     <EuiSkeletonLoading
