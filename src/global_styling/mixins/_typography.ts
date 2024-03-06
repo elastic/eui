@@ -93,5 +93,3 @@ export const euiTextTruncate = (
 export const euiNumberFormat = ({ euiTheme }: UseEuiTheme) => `
   font-feature-settings: ${euiTheme.font.featureSettings}, 'tnum' 1;
 `;
-export const useEuiNumberFormat = (): string =>
-  useEuiMemoizedStyles<any>(euiNumberFormat);
