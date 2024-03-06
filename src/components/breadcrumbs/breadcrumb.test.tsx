@@ -8,7 +8,11 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render, waitForEuiPopoverOpen } from '../../test/rtl';
+import {
+  render,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../test/rtl';
 
 import { EuiBreadcrumbContent } from './breadcrumb';
 
@@ -35,21 +39,44 @@ describe('EuiBreadcrumbContent', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders breadcrumbs with `popoverContent` with popovers', async () => {
-    const { baseElement, getByTestSubject } = render(
-      <EuiBreadcrumbContent
-        type="page"
-        text="Toggles a popover"
-        data-test-subj="popoverToggle"
-        popoverContent="Hello popover world"
-        popoverProps={{ 'data-test-subj': 'popover' }}
-      />
-    );
-    fireEvent.click(getByTestSubject('popoverToggle'));
-    await waitForEuiPopoverOpen();
+  describe('breadcrumbs with popovers', () => {
+    it('renders with `popoverContent`', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiBreadcrumbContent
+          type="page"
+          text="Toggles a popover"
+          data-test-subj="popoverToggle"
+          popoverContent="Hello popover world"
+          popoverProps={{ 'data-test-subj': 'popover' }}
+        />
+      );
+      fireEvent.click(getByTestSubject('popoverToggle'));
+      await waitForEuiPopoverOpen();
 
-    expect(getByTestSubject('popover')).toBeInTheDocument();
-    expect(baseElement).toMatchSnapshot();
+      expect(getByTestSubject('popover')).toBeInTheDocument();
+      expect(baseElement).toMatchSnapshot();
+    });
+
+    it('passes a popover close callback to `popoverContent` render functions', async () => {
+      const { getByTestSubject } = render(
+        <EuiBreadcrumbContent
+          type="page"
+          text="Controlled breadcrumb popover"
+          data-test-subj="popoverToggle"
+          popoverContent={(closePopover) => (
+            <button onClick={closePopover} data-test-subj="popoverClose">
+              Close popover
+            </button>
+          )}
+        />
+      );
+
+      fireEvent.click(getByTestSubject('popoverToggle'));
+      await waitForEuiPopoverOpen();
+
+      fireEvent.click(getByTestSubject('popoverClose'));
+      await waitForEuiPopoverClose();
+    });
   });
 
   describe('highlightLastBreadcrumb', () => {
