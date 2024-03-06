@@ -17,7 +17,6 @@ import React, {
   memo,
   MutableRefObject,
   ReactNode,
-  useMemo,
 } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -61,7 +60,7 @@ const EuiDataGridCellContent: FunctionComponent<
 > = memo(
   ({
     renderCellValue,
-    renderCellContext,
+    cellContext,
     column,
     setCellContentsRef,
     rowIndex,
@@ -90,17 +89,6 @@ const EuiDataGridCellContent: FunctionComponent<
       }
     );
 
-    const mergedProps = useMemo(() => {
-      if (renderCellContext) {
-        return {
-          ...renderCellContext(),
-          ...rest,
-        };
-      } else {
-        return rest;
-      }
-    }, [rest, renderCellContext]);
-
     let cellContent = (
       <div
         ref={setCellContentsRef}
@@ -113,7 +101,8 @@ const EuiDataGridCellContent: FunctionComponent<
           rowIndex={rowIndex}
           colIndex={colIndex}
           schema={column?.schema || rest.columnType}
-          {...mergedProps}
+          {...cellContext}
+          {...rest}
         />
       </div>
     );
@@ -577,7 +566,7 @@ export class EuiDataGridCell extends Component<
       const {
         renderCellPopover,
         renderCellValue,
-        renderCellContext,
+        cellContext,
         rowIndex,
         colIndex,
         column,
@@ -593,7 +582,6 @@ export class EuiDataGridCell extends Component<
         colIndex,
         columnId,
         schema: column?.schema || columnType,
-        ...renderCellContext?.(),
       };
       const popoverContent = (
         <PopoverElement
@@ -606,6 +594,7 @@ export class EuiDataGridCell extends Component<
           setCellPopoverProps={setCellPopoverProps}
         >
           <CellElement
+            {...cellContext}
             {...sharedProps}
             setCellProps={this.setCellProps}
             isExpandable={true}

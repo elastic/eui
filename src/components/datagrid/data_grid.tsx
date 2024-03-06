@@ -119,7 +119,7 @@ export const EuiDataGrid = memo(
       schemaDetectors,
       rowCount,
       renderCellValue,
-      renderCellContext,
+      cellContext,
       renderCellPopover,
       renderFooterCellValue,
       className,
@@ -467,7 +467,7 @@ export const EuiDataGrid = memo(
                     schemaDetectors={allSchemaDetectors}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
-                    renderCellContext={renderCellContext}
+                    cellContext={cellContext}
                     renderCellPopover={renderCellPopover}
                     renderFooterCellValue={renderFooterCellValue}
                     rowCount={rowCount}

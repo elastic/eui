@@ -26,7 +26,7 @@ export type CellProps = Pick<
   | 'visibleRowIndex'
   | 'style'
   | 'renderCellValue'
-  | 'renderCellContext'
+  | 'cellContext'
   | 'renderCellPopover'
   | 'interactiveCellId'
   | 'rowHeightsOptions'
@@ -68,7 +68,7 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
     columnWidths,
     defaultColumnWidth,
     renderCellValue,
-    renderCellContext,
+    cellContext,
     renderCellPopover,
     interactiveCellId,
     setRowHeight,
@@ -122,7 +122,7 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
         rowManager,
         popoverContext,
         pagination,
-        renderCellContext,
+        cellContext,
       };
     }, [
       colIndex,
@@ -136,7 +136,7 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
       rowManager,
       popoverContext,
       pagination,
-      renderCellContext,
+      cellContext,
       isFirstColumn,
       isLastColumn,
       isLeadingControlColumn,
