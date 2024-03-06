@@ -23,6 +23,13 @@ const meta: Meta<EuiHeaderLinkProps> = {
   },
   // Component defaults
   args: {
+    type: 'button',
+    size: 'm',
+    iconSize: 'm',
+    iconSide: 'left',
+    isDisabled: false,
+    isLoading: false,
+    isSelected: false,
     isActive: false,
   },
 };
