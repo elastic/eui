@@ -8,8 +8,8 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 import { disableStorybookControls } from '../../../../.storybook/utils';
+import { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 
 const meta: Meta<EuiHeaderLinkProps> = {
   title: 'EuiHeaderLink',
