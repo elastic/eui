@@ -24,7 +24,7 @@ import {
 } from '../data_grid_types';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { Cell } from './cell';
+import { CellWrapper } from './cell';
 
 export const EuiDataGridBodyCustomRender: FunctionComponent<
   EuiDataGridBodyProps
@@ -168,7 +168,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
         style,
         ...cellProps,
       };
-      return <Cell {...props} {...rest} />;
+      return <CellWrapper {...props} {...rest} />;
     },
     [cellProps, getRowHeight, rowHeightUtils, rowHeightsOptions]
   );

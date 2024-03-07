@@ -28,7 +28,7 @@ import {
 import { useResizeObserver } from '../../observer/resize_observer';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { Cell } from './cell';
+import { CellWrapper } from './cell';
 import {
   EuiDataGridBodyProps,
   DataGridWrapperRowsContentsShape,
@@ -44,7 +44,7 @@ import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useScrollBars, useScroll } from '../utils/scrolling';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
-export const _Cell: FunctionComponent<GridChildComponentProps> = memo(
+export const Cell: FunctionComponent<GridChildComponentProps> = memo(
   ({ columnIndex, rowIndex, style, data }) => {
     const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
     const cellStyles = useMemo(
@@ -56,7 +56,7 @@ export const _Cell: FunctionComponent<GridChildComponentProps> = memo(
     );
 
     return (
-      <Cell
+      <CellWrapper
         colIndex={columnIndex}
         visibleRowIndex={rowIndex}
         style={cellStyles}
@@ -65,7 +65,7 @@ export const _Cell: FunctionComponent<GridChildComponentProps> = memo(
     );
   }
 );
-_Cell.displayName = '_Cell';
+Cell.displayName = 'Cell';
 
 // Context is required to pass props to react-window's innerElementType
 // @see https://github.com/bvaughn/react-window/issues/404
@@ -377,7 +377,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
               IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
             }
           >
-            {_Cell}
+            {Cell}
           </Grid>
           {scrollBorderOverlay}
         </DataGridWrapperRowsContext.Provider>
