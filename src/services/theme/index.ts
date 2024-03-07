@@ -22,7 +22,11 @@ export {
 } from './hooks';
 export type { EuiThemeProviderProps } from './provider';
 export { EuiThemeProvider } from './provider';
-export { useEuiMemoizedStyles } from './style_memoization';
+export {
+  useEuiMemoizedStyles,
+  withEuiStylesMemoizer,
+  type WithEuiStylesMemoizerProps,
+} from './style_memoization';
 export { getEuiDevProviderWarning, setEuiDevProviderWarning } from './warning';
 export {
   buildTheme,
