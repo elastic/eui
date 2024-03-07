@@ -15,7 +15,7 @@ import { EuiPanel } from '../panel';
 import { EuiAutoSizer, EuiAutoSizerProps, EuiAutoSize } from './auto_sizer';
 
 const meta: Meta<EuiAutoSizerProps> = {
-  title: 'EuiAutoSizer',
+  title: 'Utilities/EuiAutoSizer',
   component: EuiAutoSizer,
   args: {
     // Component defaults

@@ -19,7 +19,7 @@ import { EuiHighlight, EuiMark } from '../../components';
 import { EuiTextTruncate, EuiTextTruncateProps } from './text_truncate';
 
 const meta: Meta<EuiTextTruncateProps> = {
-  title: 'EuiTextTruncate',
+  title: 'Utilities/EuiTextTruncate',
   component: EuiTextTruncate,
   argTypes: {
     truncationOffset: { if: { arg: 'truncation', neq: 'startEnd' } }, // Should also not show on `middle`, but Storybook doesn't currently support multiple if conditions :(

@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiErrorBoundary, EuiErrorBoundaryProps } from './error_boundary';
 
 const meta: Meta<EuiErrorBoundaryProps> = {
-  title: 'EuiErrorBoundary',
+  title: 'Utilities/EuiErrorBoundary',
   component: EuiErrorBoundary,
   parameters: {
     layout: 'fullscreen',
