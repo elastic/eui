@@ -53,6 +53,11 @@ inMemory={{ level: 'sorting' }}`,
   },
 ]}`,
   renderCellValue: 'renderCellValue={({ rowIndex, columnId }) => {}}',
+  cellContext: `cellContext={{
+  // Will be passed to your \`renderCellValue\` function/component as a prop
+  yourData,
+}}
+renderCellValue={({ rowIndex, columnId, yourData }) => {}}`,
   renderCellPopover: `renderCellPopover={({ children, cellActions }) => (
   <>
     <EuiPopoverTitle>I'm a custom popover!</EuiPopoverTitle>
