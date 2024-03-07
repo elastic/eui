@@ -16,7 +16,6 @@ const meta: Meta<EuiHighlightProps> = {
   argTypes: {},
   // Component defaults
   args: {
-    search: 'quick',
     strict: false,
     highlightAll: false,
     hasScreenReaderHelpText: true,
@@ -29,5 +28,14 @@ type Story = StoryObj<EuiHighlightProps>;
 export const Playground: Story = {
   args: {
     children: 'The quick brown fox jumped over the lazy dog.',
+    search: 'Quick',
+  },
+};
+
+export const MultipleSearchStrings: Story = {
+  args: {
+    children: 'The quick brown fox jumped over the lazy dog.',
+    search: ['Fox', 'Dog'],
+    highlightAll: true,
   },
 };
