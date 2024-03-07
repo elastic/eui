@@ -100,6 +100,7 @@ const preview: Preview = {
     options: {
       showPanel: true, // default to showing the controls panel
       storySort: {
+        method: 'alphabetical',
         order: [
           // order option as well as story titles require static content (dynamic values or references don't work)
           // https://storybook.js.org/docs/api/parameters#optionsstorysort
