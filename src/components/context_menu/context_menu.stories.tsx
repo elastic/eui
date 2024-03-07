@@ -17,7 +17,7 @@ import { EuiTitle } from '../title';
 import { EuiContextMenu, EuiContextMenuProps } from './context_menu';
 
 const meta: Meta<EuiContextMenuProps> = {
-  title: 'EuiContextMenu',
+  title: 'Navigation/EuiContextMenu',
   component: EuiContextMenu,
   args: {
     // Component defaults

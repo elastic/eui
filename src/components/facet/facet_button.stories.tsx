@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiFacetButton, EuiFacetButtonProps } from './facet_button';
 
 const meta: Meta<EuiFacetButtonProps> = {
-  title: 'EuiFacetButton',
+  title: 'Navigation/EuiFacetButton',
   component: EuiFacetButton,
   argTypes: {
     // TODO: icon

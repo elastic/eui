@@ -14,7 +14,7 @@ import {
 } from './collapsible_nav_group';
 
 const meta: Meta<EuiCollapsibleNavGroupProps> = {
-  title: 'EuiCollapsibleNavGroup',
+  title: 'Navigation/EuiCollapsibleNavGroup',
   // @ts-ignore This still works for Storybook controls, even though Typescript complains
   component: EuiCollapsibleNavGroup,
   argTypes: {
