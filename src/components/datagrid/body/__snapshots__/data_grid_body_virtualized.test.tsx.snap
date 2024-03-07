@@ -6,7 +6,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
   style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
 >
   <div
-    style="width: 200px; height: 34px;"
+    style="height: 34px; width: 200px;"
   >
     <div
       class="euiDataGridHeader"

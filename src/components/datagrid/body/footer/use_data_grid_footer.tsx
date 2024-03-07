@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { useResizeObserver } from '../../../observer/resize_observer';
 
@@ -35,7 +35,7 @@ export const useDataGridFooter = (props: Props) => {
         {...footerProps}
       />
     );
-  }, [props]);
+  }, Object.values(props)); // eslint-disable-line react-hooks/exhaustive-deps
 
   return { footerRow, footerRowHeight };
 };

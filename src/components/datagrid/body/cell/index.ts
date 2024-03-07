@@ -8,7 +8,7 @@
 
 export { EuiDataGridCell } from './data_grid_cell';
 
-export { CellWrapper } from './data_grid_cell_wrapper';
+export { Cell } from './data_grid_cell_wrapper';
 
 export {
   DataGridCellPopoverContext,

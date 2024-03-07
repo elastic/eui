@@ -7,14 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, {
-  forwardRef,
-  useMemo,
-  useRef,
-  useState,
-  memo,
-  useCallback,
-} from 'react';
+import React, { forwardRef, useMemo, useRef, useState, memo } from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
@@ -106,8 +99,6 @@ const cellPaddingsToClassMap: {
   m: '',
   l: 'euiDataGrid--paddingLarge',
 };
-
-const emptyVirtualizationOptions = {};
 
 export const EuiDataGrid = memo(
   forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
@@ -376,30 +367,6 @@ export const EuiDataGrid = memo(
       delete rest['aria-labelledby'];
     }
 
-    const onKeyDown = useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>) => {
-        createKeyDownHandler({
-          gridElement: contentRef.current,
-          visibleColCount,
-          visibleRowCount,
-          visibleRowStartIndex:
-            gridItemsRendered.current?.visibleRowStartIndex || 0,
-          rowCount,
-          pagination,
-          hasFooter: !!renderFooterCellValue,
-          focusContext,
-        })(event);
-      },
-      [
-        focusContext,
-        visibleColCount,
-        visibleRowCount,
-        rowCount,
-        pagination,
-        renderFooterCellValue,
-      ]
-    );
-
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
@@ -446,7 +413,17 @@ export const EuiDataGrid = memo(
                 ) : null}
                 <div // eslint-disable-line jsx-a11y/interactive-supports-focus
                   ref={contentRef}
-                  onKeyDown={onKeyDown}
+                  onKeyDown={createKeyDownHandler({
+                    gridElement: contentRef.current,
+                    visibleColCount,
+                    visibleRowCount,
+                    visibleRowStartIndex:
+                      gridItemsRendered.current?.visibleRowStartIndex || 0,
+                    rowCount,
+                    pagination,
+                    hasFooter: !!renderFooterCellValue,
+                    focusContext,
+                  })}
                   data-test-subj="euiDataGridBody"
                   className="euiDataGrid__content"
                   role="grid"
@@ -474,9 +451,7 @@ export const EuiDataGrid = memo(
                     visibleRows={visibleRows}
                     interactiveCellId={interactiveCellId}
                     rowHeightsOptions={rowHeightsOptions}
-                    virtualizationOptions={
-                      virtualizationOptions || emptyVirtualizationOptions
-                    }
+                    virtualizationOptions={virtualizationOptions || {}}
                     isFullScreen={isFullScreen}
                     gridStyles={gridStyles}
                     gridWidth={gridWidth}

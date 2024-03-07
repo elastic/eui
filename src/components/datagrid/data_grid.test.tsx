@@ -389,43 +389,6 @@ function setColumnVisibility(
   closeColumnSelector(datagrid);
 }
 
-const renderCellValueRowAndColumnCount: RenderCellValue = ({
-  rowIndex,
-  columnId,
-}) => `${rowIndex}, ${columnId}`;
-
-const RenderCellValueSetCellProps: RenderCellValue = ({
-  rowIndex,
-  columnId,
-  setCellProps,
-}) => {
-  useEffect(() => {
-    setCellProps({
-      className: 'customClass',
-      'data-test-subj': `cell-${rowIndex}-${columnId}`,
-      style: { color: columnId === 'A' ? 'red' : 'blue' },
-    });
-  }, [columnId, rowIndex, setCellProps]);
-
-  return `${rowIndex}, ${columnId}`;
-};
-
-const renderCellBasedOnColumnId: RenderCellValue = ({ columnId }) => {
-  if (columnId === 'A') {
-    return 5.5;
-  } else if (columnId === 'B') {
-    return 'true';
-  } else {
-    return 'asdf';
-  }
-};
-
-const renderCellRowAsValue: RenderCellValue = ({ rowIndex }) => rowIndex;
-
-const renderCellValueALowBHigh: RenderCellValue = ({ rowIndex, columnId }) =>
-  // render A as 0, 1, 0, 1, 0 and B as 9->5
-  columnId === 'A' ? rowIndex % 2 : 9 - rowIndex;
-
 function moveColumnToIndex(
   datagrid: ReactWrapper<EuiDataGridProps>,
   columnId: string,
@@ -512,7 +475,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={3}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
         />
       );
 
@@ -532,7 +497,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={3}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
         />
       );
 
@@ -549,7 +516,17 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={RenderCellValueSetCellProps}
+          renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+            useEffect(() => {
+              setCellProps({
+                className: 'customClass',
+                'data-test-subj': `cell-${rowIndex}-${columnId}`,
+                style: { color: columnId === 'A' ? 'red' : 'blue' },
+              });
+            }, [columnId, rowIndex, setCellProps]);
+
+            return `${rowIndex}, ${columnId}`;
+          }}
         />
       );
 
@@ -671,7 +648,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={3}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
           toolbarVisibility={{ additionalControls: <button>Button</button> }}
         />
       );
@@ -694,7 +673,7 @@ describe('EuiDataGrid', () => {
               width: 50,
               headerCellRender: () => <span>leading heading</span>,
               headerCellProps: { className: 'leadingControlCol' },
-              rowCellRender: renderCellRowAsValue,
+              rowCellRender: ({ rowIndex }) => rowIndex,
             },
           ]}
           trailingControlColumns={[
@@ -703,11 +682,13 @@ describe('EuiDataGrid', () => {
               width: 50,
               headerCellRender: () => <span>trailing heading</span>,
               headerCellProps: { className: 'trailingControlCol' },
-              rowCellRender: renderCellRowAsValue,
+              rowCellRender: ({ rowIndex }) => rowIndex,
             },
           ]}
           rowCount={3}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
           toolbarVisibility={{ additionalControls: <button>Button</button> }}
         />
       );
@@ -780,7 +761,9 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={3}
-            renderCellValue={renderCellValueRowAndColumnCount}
+            renderCellValue={({ rowIndex, columnId }) =>
+              `${rowIndex}, ${columnId}`
+            }
           />
         );
 
@@ -816,7 +799,15 @@ describe('EuiDataGrid', () => {
             }}
             inMemory={{ level: 'pagination' }}
             rowCount={2}
-            renderCellValue={renderCellBasedOnColumnId}
+            renderCellValue={({ columnId }) => {
+              if (columnId === 'A') {
+                return 5.5;
+              } else if (columnId === 'B') {
+                return 'true';
+              } else {
+                return 'asdf';
+              }
+            }}
           />
         );
 
@@ -846,7 +837,9 @@ describe('EuiDataGrid', () => {
             }}
             inMemory={{ level: 'pagination' }}
             rowCount={2}
-            renderCellValue={renderCellBasedOnColumnId}
+            renderCellValue={({ columnId }) =>
+              columnId === 'A' ? 5.5 : 'true'
+            }
           />
         );
 
@@ -873,8 +866,6 @@ describe('EuiDataGrid', () => {
           G: '2019-09-18T12:31:28.234',
           H: '2019-09-18T12:31:28.234+0300',
         };
-        const renderCellValue: RenderCellValue = ({ columnId }) =>
-          values[columnId];
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
@@ -885,7 +876,7 @@ describe('EuiDataGrid', () => {
             }}
             inMemory={{ level: 'pagination' }}
             rowCount={1}
-            renderCellValue={renderCellValue}
+            renderCellValue={({ columnId }) => values[columnId]}
           />
         );
 
@@ -910,8 +901,6 @@ describe('EuiDataGrid', () => {
           A: '-5.80',
           B: '127.0.0.1',
         };
-        const renderCellValue: RenderCellValue = ({ columnId }) =>
-          values[columnId];
         const component = mount(
           <EuiDataGrid
             {...requiredProps}
@@ -936,7 +925,7 @@ describe('EuiDataGrid', () => {
             ]}
             inMemory={{ level: 'pagination' }}
             rowCount={1}
-            renderCellValue={renderCellValue}
+            renderCellValue={({ columnId }) => values[columnId]}
           />
         );
 
@@ -955,13 +944,6 @@ describe('EuiDataGrid', () => {
 
   describe('cell rendering', () => {
     it('supports hooks', () => {
-      const RenderCellValueWithHooks: RenderCellValue = ({
-        rowIndex,
-        columnId,
-      }) => {
-        const [value] = useState(`Hello, Row ${rowIndex}-${columnId}!`);
-        return <span>{value}</span>;
-      };
       const component = mount(
         <EuiDataGrid
           aria-label="test"
@@ -971,7 +953,10 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={RenderCellValueWithHooks}
+          renderCellValue={({ rowIndex, columnId }) => {
+            const [value] = useState(`Hello, Row ${rowIndex}-${columnId}!`);
+            return <span>{value}</span>;
+          }}
         />
       );
       expect(extractGridData(component)).toMatchInlineSnapshot(`
@@ -1042,7 +1027,7 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={10}
-          renderCellValue={renderCellRowAsValue}
+          renderCellValue={({ rowIndex }) => rowIndex}
           pagination={{
             pageIndex: 1,
             pageSize: 6,
@@ -1067,7 +1052,7 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={8}
-            renderCellValue={renderCellRowAsValue}
+            renderCellValue={({ rowIndex }) => rowIndex}
             pagination={{
               pageIndex: 0,
               pageSize: 3,
@@ -1128,7 +1113,7 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={8}
-            renderCellValue={renderCellRowAsValue}
+            renderCellValue={({ rowIndex }) => rowIndex}
             pagination={{
               pageIndex: 0,
               pageSize: 3,
@@ -1192,7 +1177,7 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={8}
-          renderCellValue={renderCellRowAsValue}
+          renderCellValue={({ rowIndex }) => rowIndex}
           pagination={{
             pageIndex: 0,
             pageSize: 3,
@@ -1414,28 +1399,30 @@ describe('EuiDataGrid', () => {
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
           columnVisibility={columnVisibility}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
       expect(extractGridData(component)).toEqual([
         ['ColumnA', 'ColumnB'],
-        ['0, ColumnA', '0, ColumnB'],
-        ['1, ColumnA', '1, ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
       ]);
 
       setColumnVisibility(component, 'ColumnA', false);
       expect(extractGridData(component)).toEqual([
         ['ColumnB'],
-        ['0, ColumnB'],
-        ['1, ColumnB'],
+        ['0-ColumnB'],
+        ['1-ColumnB'],
       ]);
 
       setColumnVisibility(component, 'ColumnA', true);
       expect(extractGridData(component)).toEqual([
         ['ColumnA', 'ColumnB'],
-        ['0, ColumnA', '0, ColumnB'],
-        ['1, ColumnA', '1, ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
       ]);
     });
 
@@ -1454,22 +1441,24 @@ describe('EuiDataGrid', () => {
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
           columnVisibility={columnVisibility}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
       expect(extractGridData(component)).toEqual([
         ['ColumnA', 'ColumnB'],
-        ['0, ColumnA', '0, ColumnB'],
-        ['1, ColumnA', '1, ColumnB'],
+        ['0-ColumnA', '0-ColumnB'],
+        ['1-ColumnA', '1-ColumnB'],
       ]);
 
       moveColumnToIndex(component, 'ColumnB', 0);
 
       expect(extractGridData(component)).toEqual([
         ['ColumnB', 'ColumnA'],
-        ['0, ColumnB', '0, ColumnA'],
-        ['1, ColumnB', '1, ColumnA'],
+        ['0-ColumnB', '0-ColumnA'],
+        ['1-ColumnB', '1-ColumnA'],
       ]);
     });
 
@@ -1482,27 +1471,21 @@ describe('EuiDataGrid', () => {
         },
       };
 
-      const RenderCellValue: RenderCellValue = ({
-        rowIndex,
-        columnId,
-        setCellProps,
-      }) => {
-        useEffect(() => {
-          if (columnId === 'ColumnB') {
-            setCellProps({ style: { color: 'blue' } });
-          }
-        }, [columnId, rowIndex, setCellProps]);
-
-        return `${rowIndex}-${columnId}`;
-      };
-
       const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
           columnVisibility={columnVisibility}
           rowCount={1}
-          renderCellValue={RenderCellValue}
+          renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+            useEffect(() => {
+              if (columnId === 'ColumnB') {
+                setCellProps({ style: { color: 'blue' } });
+              }
+            }, [columnId, rowIndex, setCellProps]);
+
+            return `${rowIndex}-${columnId}`;
+          }}
         />
       );
 
@@ -1538,7 +1521,9 @@ describe('EuiDataGrid', () => {
             },
           ]}
           rowCount={1}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
         />
       );
 
@@ -1590,9 +1575,6 @@ describe('EuiDataGrid', () => {
 
     describe('in-memory sorting', () => {
       it('sorts on initial render', () => {
-        const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
-          // render A 0->4 and B 9->5
-          columnId === 'A' ? rowIndex : 9 - rowIndex;
         const component = mount(
           <EuiDataGrid
             aria-label="test"
@@ -1602,7 +1584,10 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={5}
-            renderCellValue={renderCellValue}
+            renderCellValue={({ rowIndex, columnId }) =>
+              // render A 0->4 and B 9->5
+              columnId === 'A' ? rowIndex : 9 - rowIndex
+            }
             inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [{ id: 'A', direction: 'desc' }],
@@ -1631,7 +1616,10 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={5}
-            renderCellValue={renderCellValueALowBHigh}
+            renderCellValue={({ rowIndex, columnId }) =>
+              // render A as 0, 1, 0, 1, 0 and B as 9->5
+              columnId === 'A' ? rowIndex % 2 : 9 - rowIndex
+            }
             inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [
@@ -1668,7 +1656,10 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={5}
-            renderCellValue={renderCellValueALowBHigh}
+            renderCellValue={({ rowIndex, columnId }) =>
+              // render A as 0, 1, 0, 1, 0 and B as 9->5
+              columnId === 'A' ? rowIndex % 2 : 9 - rowIndex
+            }
             inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [],
@@ -1712,8 +1703,6 @@ describe('EuiDataGrid', () => {
           component.setProps({ sorting: { columns, onSort } });
           component.update();
         });
-        const renderCellValue: RenderCellValue = ({ rowIndex }) =>
-          `1.0.${(rowIndex % 3) + rowIndex}`; // computes as 0,2,4,3,5
 
         const component = mount(
           <EuiDataGrid
@@ -1724,7 +1713,9 @@ describe('EuiDataGrid', () => {
               setVisibleColumns: () => {},
             }}
             rowCount={5}
-            renderCellValue={renderCellValue}
+            renderCellValue={
+              ({ rowIndex }) => `1.0.${(rowIndex % 3) + rowIndex}` // computes as 0,2,4,3,5
+            }
             inMemory={{ level: 'sorting' }}
             sorting={{
               columns: [],
@@ -1757,9 +1748,6 @@ describe('EuiDataGrid', () => {
     });
 
     it('uses schema information to sort', () => {
-      const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
-        // render A 0->4 and B 12->8
-        columnId === 'A' ? rowIndex : 12 - rowIndex;
       const component = mount(
         <EuiDataGrid
           aria-label="test"
@@ -1769,7 +1757,10 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={5}
-          renderCellValue={renderCellValue}
+          renderCellValue={({ rowIndex, columnId }) =>
+            // render A 0->4 and B 12->8
+            columnId === 'A' ? rowIndex : 12 - rowIndex
+          }
           inMemory={{ level: 'sorting' }}
           sorting={{
             columns: [{ id: 'B', direction: 'asc' }],
@@ -1800,14 +1791,16 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
       expect(extractGridData(component)).toEqual([
         ['A', 'B'],
-        ['0, A', '0, B'],
-        ['1, A', '1, B'],
+        ['0-A', '0-B'],
+        ['1-A', '1-B'],
       ]);
 
       component.setProps({
@@ -1820,8 +1813,8 @@ describe('EuiDataGrid', () => {
 
       expect(extractGridData(component)).toEqual([
         ['A', 'C'],
-        ['0, A', '0, C'],
-        ['1, A', '1, C'],
+        ['0-A', '0-C'],
+        ['1-A', '1-C'],
       ]);
     });
 
@@ -1835,7 +1828,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
@@ -1881,7 +1876,9 @@ describe('EuiDataGrid', () => {
             columns: [],
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
@@ -1931,7 +1928,9 @@ describe('EuiDataGrid', () => {
             columns: [],
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
@@ -2020,7 +2019,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
@@ -2067,7 +2068,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
       const arrowA = findTestSubject(
@@ -2110,7 +2113,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
       const arrowC = findTestSubject(
@@ -2134,7 +2139,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
       const arrowD = findTestSubject(
@@ -2197,7 +2204,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
         />
       );
 
@@ -2274,7 +2283,7 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={8}
-          renderCellValue={renderCellRowAsValue}
+          renderCellValue={({ rowIndex }) => rowIndex}
           rowHeightsOptions={{
             defaultHeight: 50,
             rowHeights: {
@@ -2354,7 +2363,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={8}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
           pagination={pagination}
         />
       );
@@ -2552,7 +2563,9 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={3}
-          renderCellValue={renderCellValueRowAndColumnCount}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
         />
       );
 
@@ -2583,33 +2596,6 @@ describe('EuiDataGrid', () => {
       ).toEqual('1, B');
     });
     it.skip('supports arrow navigation through grids with different interactive cells', () => {
-      const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) => {
-        if (columnId === 'A') {
-          return `${rowIndex}, A`;
-        }
-
-        if (columnId === 'B') {
-          return <button>{rowIndex}, B</button>;
-        }
-
-        if (columnId === 'C') {
-          return (
-            <>
-              <button>{rowIndex}</button>, <button>C</button>
-            </>
-          );
-        }
-
-        if (columnId === 'D') {
-          return (
-            <div>
-              {rowIndex}, <button>D</button>
-            </div>
-          );
-        }
-
-        return 'error';
-      };
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
@@ -2619,7 +2605,33 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={2}
-          renderCellValue={renderCellValue}
+          renderCellValue={({ rowIndex, columnId }) => {
+            if (columnId === 'A') {
+              return `${rowIndex}, A`;
+            }
+
+            if (columnId === 'B') {
+              return <button>{rowIndex}, B</button>;
+            }
+
+            if (columnId === 'C') {
+              return (
+                <>
+                  <button>{rowIndex}</button>, <button>C</button>
+                </>
+              );
+            }
+
+            if (columnId === 'D') {
+              return (
+                <div>
+                  {rowIndex}, <button>D</button>
+                </div>
+              );
+            }
+
+            return 'error';
+          }}
         />
       );
 
@@ -2670,11 +2682,6 @@ describe('EuiDataGrid', () => {
       expect(focusableCell.getDOMNode()).toBe(document.activeElement);
     });
     it.skip('allows user to enter and exit grid navigation', async () => {
-      const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) => (
-        <>
-          <button>{rowIndex}</button>, <button>{columnId}</button>
-        </>
-      );
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
@@ -2684,7 +2691,11 @@ describe('EuiDataGrid', () => {
             setVisibleColumns: () => {},
           }}
           rowCount={3}
-          renderCellValue={renderCellValue}
+          renderCellValue={({ rowIndex, columnId }) => (
+            <>
+              <button>{rowIndex}</button>, <button>{columnId}</button>
+            </>
+          )}
         />
       );
 

@@ -37,7 +37,6 @@ import {
   EuiDataGridCellValueProps,
   EuiDataGridCellPopoverElementProps,
   EuiDataGridRowHeightOption,
-  EuiDataGridColumn,
 } from '../../data_grid_types';
 import {
   EuiDataGridCellActions,
@@ -151,104 +150,6 @@ const EuiDataGridCellContent: FunctionComponent<
   }
 );
 EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
-
-export const Cell: React.FunctionComponent<{
-  ariaRowIndex: number;
-  isFocused: boolean;
-  cellRef: React.MutableRefObject<HTMLDivElement | null>;
-  cellProps: EuiDataGridSetCellProps;
-  columnId: string;
-  colIndex: number;
-  rowIndex: number;
-  visibleRowIndex: number;
-  handleCellKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void;
-  onMouseEnter: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onMouseLeave: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  updateCellFocusContext: () => void;
-  isExpandable: boolean;
-  cellContentProps: EuiDataGridCellValueProps & {
-    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-    setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
-    isExpanded: boolean;
-    isControlColumn: boolean;
-    isFocused: boolean;
-    ariaRowIndex: number;
-  };
-  showCellActions: boolean;
-  column?: EuiDataGridColumn;
-  handleCellExpansionClick: () => void;
-  popoverAnchorRef: React.MutableRefObject<HTMLDivElement | null>;
-}> = memo(
-  ({
-    ariaRowIndex,
-    isFocused,
-    cellRef,
-    cellProps,
-    columnId,
-    colIndex,
-    rowIndex,
-    visibleRowIndex,
-    handleCellKeyDown,
-    onMouseEnter,
-    onMouseLeave,
-    updateCellFocusContext,
-    isExpandable,
-    cellContentProps,
-    showCellActions,
-    column,
-    handleCellExpansionClick,
-    popoverAnchorRef,
-  }) => {
-    return (
-      <div
-        role="gridcell"
-        aria-rowindex={ariaRowIndex}
-        tabIndex={isFocused ? 0 : -1}
-        ref={cellRef}
-        {...cellProps}
-        data-test-subj="dataGridRowCell"
-        // Data attributes to help target specific cells by either data or current cell location
-        data-gridcell-column-id={columnId} // Static column ID name, not affected by column order
-        data-gridcell-column-index={colIndex} // Affected by column reordering
-        data-gridcell-row-index={rowIndex} // Index from data, not affected by sorting or pagination
-        data-gridcell-visible-row-index={visibleRowIndex} // Affected by sorting & pagination
-        onKeyDown={handleCellKeyDown}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        <HandleInteractiveChildren
-          cellEl={cellRef.current}
-          updateCellFocusContext={updateCellFocusContext}
-          renderFocusTrap={!isExpandable}
-        >
-          <EuiDataGridCellContent
-            {...cellContentProps}
-            cellActions={
-              showCellActions && (
-                <>
-                  <EuiDataGridCellActions
-                    rowIndex={rowIndex}
-                    colIndex={colIndex}
-                    column={column}
-                    onExpandClick={handleCellExpansionClick}
-                  />
-                  {/* Give the cell expansion popover a separate div/ref - otherwise the
-                extra popover wrappers mess up the absolute positioning and cause
-                animation stuttering */}
-                  <div
-                    ref={popoverAnchorRef}
-                    data-test-subject="cellPopoverAnchor"
-                  />
-                </>
-              )
-            }
-          />
-        </HandleInteractiveChildren>
-      </div>
-    );
-  }
-);
-Cell.displayName = 'Cell';
 
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
@@ -640,12 +541,8 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  onMouseEnter = () => {
-    this.setState({ isHovered: true });
-  };
-  onMouseLeave = () => {
-    this.setState({ isHovered: false });
-  };
+  onMouseEnter = () => this.setState({ isHovered: true });
+  onMouseLeave = () => this.setState({ isHovered: false });
 
   render() {
     const {
@@ -729,56 +626,64 @@ export class EuiDataGridCell extends Component<
       ariaRowIndex,
     };
 
-    return rowManager && !IS_JEST_ENVIRONMENT ? (
-      createPortal(
-        <Cell
-          ariaRowIndex={ariaRowIndex}
-          isFocused={this.state.isFocused}
-          cellRef={this.cellRef}
-          cellProps={cellProps}
-          columnId={rest.columnId}
-          colIndex={colIndex}
-          rowIndex={rowIndex}
-          visibleRowIndex={visibleRowIndex}
-          handleCellKeyDown={this.handleCellKeyDown}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          updateCellFocusContext={this.updateCellFocusContext}
-          isExpandable={isExpandable}
-          cellContentProps={cellContentProps}
-          showCellActions={showCellActions}
-          column={column}
-          handleCellExpansionClick={this.handleCellExpansionClick}
-          popoverAnchorRef={this.popoverAnchorRef}
-        />,
-        rowManager.getRow({
-          rowIndex,
-          visibleRowIndex,
-          top: style!.top as string, // comes in as a `{float}px` string from react-window
-          height: style!.height as number, // comes in as an integer from react-window
-        })
-      )
-    ) : (
-      <Cell
-        ariaRowIndex={ariaRowIndex}
-        isFocused={this.state.isFocused}
-        cellRef={this.cellRef}
-        cellProps={cellProps}
-        columnId={rest.columnId}
-        colIndex={colIndex}
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        handleCellKeyDown={this.handleCellKeyDown}
+    const cell = (
+      <div
+        role="gridcell"
+        aria-rowindex={ariaRowIndex}
+        tabIndex={this.state.isFocused ? 0 : -1}
+        ref={this.cellRef}
+        {...cellProps}
+        data-test-subj="dataGridRowCell"
+        // Data attributes to help target specific cells by either data or current cell location
+        data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
+        data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
+        data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
+        data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
+        onKeyDown={this.handleCellKeyDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        updateCellFocusContext={this.updateCellFocusContext}
-        isExpandable={isExpandable}
-        cellContentProps={cellContentProps}
-        showCellActions={showCellActions}
-        column={column}
-        handleCellExpansionClick={this.handleCellExpansionClick}
-        popoverAnchorRef={this.popoverAnchorRef}
-      />
+      >
+        <HandleInteractiveChildren
+          cellEl={this.cellRef.current}
+          updateCellFocusContext={this.updateCellFocusContext}
+          renderFocusTrap={!isExpandable}
+        >
+          <EuiDataGridCellContent
+            {...cellContentProps}
+            cellActions={
+              showCellActions && (
+                <>
+                  <EuiDataGridCellActions
+                    rowIndex={rowIndex}
+                    colIndex={colIndex}
+                    column={column}
+                    onExpandClick={this.handleCellExpansionClick}
+                  />
+                  {/* Give the cell expansion popover a separate div/ref - otherwise the
+                    extra popover wrappers mess up the absolute positioning and cause
+                    animation stuttering */}
+                  <div
+                    ref={this.popoverAnchorRef}
+                    data-test-subject="cellPopoverAnchor"
+                  />
+                </>
+              )
+            }
+          />
+        </HandleInteractiveChildren>
+      </div>
     );
+
+    return rowManager && !IS_JEST_ENVIRONMENT
+      ? createPortal(
+          cell,
+          rowManager.getRow({
+            rowIndex,
+            visibleRowIndex,
+            top: style!.top as string, // comes in as a `{float}px` string from react-window
+            height: style!.height as number, // comes in as an integer from react-window
+          })
+        )
+      : cell;
   }
 }

@@ -232,10 +232,10 @@ export const useDataGridDisplaySelector = (
     'Reset to default'
   );
 
-  const displaySelector = useMemo(() => {
-    return showDensityControls ||
-      showRowHeightControls ||
-      additionalDisplaySettings ? (
+  const displaySelector =
+    showDensityControls ||
+    showRowHeightControls ||
+    additionalDisplaySettings ? (
       <EuiPopover
         data-test-subj="dataGridDisplaySelectorPopover"
         isOpen={isOpen}
@@ -389,22 +389,6 @@ export const useDataGridDisplaySelector = (
         )}
       </EuiPopover>
     ) : null;
-  }, [
-    additionalDisplaySettings,
-    buttonLabel,
-    isOpen,
-    resetButtonLabel,
-    showDensityControls,
-    showResetButton,
-    showRowHeightControls,
-    gridDensity,
-    rowHeightSelection,
-    lineCountInput,
-    setGridStyles,
-    setRowHeight,
-    setLineCountHeight,
-    resetToInitialState,
-  ]);
 
   return [displaySelector, gridStyles, rowHeightsOptions];
 };

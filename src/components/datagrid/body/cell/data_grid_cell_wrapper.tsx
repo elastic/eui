@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useContext, useMemo, memo } from 'react';
+import React, { FunctionComponent, useContext, useMemo } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -20,7 +20,7 @@ import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
-export type CellProps = Pick<
+type CellProps = Pick<
   EuiDataGridCellProps,
   | 'colIndex'
   | 'visibleRowIndex'
@@ -33,7 +33,6 @@ export type CellProps = Pick<
   | 'rowHeightUtils'
   | 'rowManager'
   | 'setRowHeight'
-  | 'column'
 > &
   Pick<
     EuiDataGridBodyProps,
@@ -53,152 +52,133 @@ export type CellProps = Pick<
  * It grabs context,  determines the type of cell being rendered
  * (e.g. control vs data cell), & sets shared props between all cells
  */
-export const CellWrapper: FunctionComponent<CellProps> = memo(
-  ({
-    colIndex,
+export const Cell: FunctionComponent<CellProps> = ({
+  colIndex,
+  visibleRowIndex,
+  style,
+  schema,
+  schemaDetectors,
+  pagination,
+  columns,
+  leadingControlColumns,
+  trailingControlColumns,
+  visibleColCount,
+  columnWidths,
+  defaultColumnWidth,
+  renderCellValue,
+  cellContext,
+  renderCellPopover,
+  interactiveCellId,
+  setRowHeight,
+  rowHeightsOptions,
+  rowHeightUtils,
+  rowManager,
+  ...rest
+}) => {
+  const popoverContext = useContext(DataGridCellPopoverContext);
+  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+
+  let cellContent;
+
+  const isFirstColumn = colIndex === 0;
+  const isLastColumn = colIndex === visibleColCount - 1;
+
+  const isLeadingControlColumn = colIndex < leadingControlColumns.length;
+  const isTrailingControlColumn =
+    colIndex >= leadingControlColumns.length + columns.length;
+
+  const datacolIndex = colIndex - leadingControlColumns.length;
+  const column = columns[datacolIndex];
+  const columnId = column?.id;
+
+  const textTransform = useMemo(
+    () =>
+      schemaDetectors.filter((row: EuiDataGridSchemaDetector) => {
+        return column?.schema
+          ? column?.schema === row.type
+          : columnId === row.type;
+      })[0]?.textTransform,
+    [columnId, column?.schema, schemaDetectors]
+  );
+
+  const classes = classNames({
+    'euiDataGridRowCell--firstColumn': isFirstColumn,
+    'euiDataGridRowCell--lastColumn': isLastColumn,
+    'euiDataGridRowCell--controlColumn':
+      isLeadingControlColumn || isTrailingControlColumn,
+    [`euiDataGridRowCell--${textTransform}`]: textTransform,
+  });
+
+  const sharedCellProps = {
+    rowIndex: getCorrectRowIndex(visibleRowIndex),
     visibleRowIndex,
-    style,
-    schema,
-    schemaDetectors,
-    pagination,
-    columns,
-    leadingControlColumns,
-    trailingControlColumns,
-    visibleColCount,
-    columnWidths,
-    defaultColumnWidth,
-    renderCellValue,
-    cellContext,
-    renderCellPopover,
+    colIndex,
     interactiveCellId,
-    setRowHeight,
+    className: classes,
+    style,
     rowHeightsOptions,
     rowHeightUtils,
+    setRowHeight: isFirstColumn ? setRowHeight : undefined,
     rowManager,
-    ...rest
-  }) => {
-    const popoverContext = useContext(DataGridCellPopoverContext);
-    const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+    popoverContext,
+    pagination,
+    cellContext,
+  };
 
-    const isFirstColumn = colIndex === 0;
-    const isLastColumn = colIndex === visibleColCount - 1;
+  if (isLeadingControlColumn) {
+    const leadingColumn = leadingControlColumns[colIndex];
+    const { id, rowCellRender } = leadingColumn;
 
-    const isLeadingControlColumn = colIndex < leadingControlColumns.length;
-    const isTrailingControlColumn =
-      colIndex >= leadingControlColumns.length + columns.length;
-
-    const datacolIndex = colIndex - leadingControlColumns.length;
-    const column = columns[datacolIndex];
-    const columnId = column?.id;
-
-    const textTransform = useMemo(
-      () =>
-        schemaDetectors.filter((row: EuiDataGridSchemaDetector) => {
-          return column?.schema
-            ? column?.schema === row.type
-            : columnId === row.type;
-        })[0]?.textTransform,
-      [columnId, column?.schema, schemaDetectors]
+    cellContent = (
+      <EuiDataGridCell
+        {...sharedCellProps}
+        columnId={id}
+        width={leadingColumn.width}
+        renderCellValue={rowCellRender}
+        isExpandable={false}
+        {...rest}
+      />
     );
+  } else if (isTrailingControlColumn) {
+    const columnOffset = columns.length + leadingControlColumns.length;
+    const trailingcolIndex = colIndex - columnOffset;
+    const trailingColumn = trailingControlColumns[trailingcolIndex];
+    const { id, rowCellRender } = trailingColumn;
 
-    const sharedCellProps = useMemo(() => {
-      const classes = classNames({
-        'euiDataGridRowCell--firstColumn': isFirstColumn,
-        'euiDataGridRowCell--lastColumn': isLastColumn,
-        'euiDataGridRowCell--controlColumn':
-          isLeadingControlColumn || isTrailingControlColumn,
-        [`euiDataGridRowCell--${textTransform}`]: textTransform,
-      });
-      return {
-        rowIndex: getCorrectRowIndex(visibleRowIndex),
-        visibleRowIndex,
-        colIndex,
-        interactiveCellId,
-        className: classes,
-        style,
-        rowHeightsOptions,
-        rowHeightUtils,
-        setRowHeight: isFirstColumn ? setRowHeight : undefined,
-        rowManager,
-        popoverContext,
-        pagination,
-        cellContext,
-      };
-    }, [
-      colIndex,
-      setRowHeight,
-      visibleRowIndex,
-      getCorrectRowIndex,
-      interactiveCellId,
-      style,
-      rowHeightsOptions,
-      rowHeightUtils,
-      rowManager,
-      popoverContext,
-      pagination,
-      cellContext,
-      isFirstColumn,
-      isLastColumn,
-      isLeadingControlColumn,
-      isTrailingControlColumn,
-      textTransform,
-    ]);
+    cellContent = (
+      <EuiDataGridCell
+        {...sharedCellProps}
+        columnId={id}
+        width={trailingColumn.width}
+        renderCellValue={rowCellRender}
+        isExpandable={false}
+        {...rest}
+      />
+    );
+  } else {
+    // this is a normal data cell
+    const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
-    if (isLeadingControlColumn) {
-      const leadingColumn = leadingControlColumns[colIndex];
-      const { id, rowCellRender } = leadingColumn;
+    const isExpandable =
+      column.isExpandable !== undefined ? column.isExpandable : true;
 
-      return (
-        <EuiDataGridCell
-          {...sharedCellProps}
-          columnId={id}
-          width={leadingColumn.width}
-          renderCellValue={rowCellRender}
-          isExpandable={false}
-          {...rest}
-        />
-      );
-    } else if (isTrailingControlColumn) {
-      const columnOffset = columns.length + leadingControlColumns.length;
-      const trailingcolIndex = colIndex - columnOffset;
-      const trailingColumn = trailingControlColumns[trailingcolIndex];
-      const { id, rowCellRender } = trailingColumn;
+    const width = columnWidths[columnId] || defaultColumnWidth;
 
-      return (
-        <EuiDataGridCell
-          {...sharedCellProps}
-          columnId={id}
-          width={trailingColumn.width}
-          renderCellValue={rowCellRender}
-          isExpandable={false}
-          {...rest}
-        />
-      );
-    } else {
-      // this is a normal data cell
-      const columnType = schema[columnId] ? schema[columnId].columnType : null;
-
-      const isExpandable =
-        column?.isExpandable !== undefined ? column?.isExpandable : true;
-
-      const width = columnWidths[columnId] || defaultColumnWidth;
-
-      return (
-        <EuiDataGridCell
-          {...sharedCellProps}
-          columnId={columnId}
-          column={column}
-          columnType={columnType}
-          width={width || undefined}
-          renderCellValue={renderCellValue}
-          renderCellPopover={renderCellPopover}
-          interactiveCellId={interactiveCellId}
-          isExpandable={isExpandable}
-          {...rest}
-        />
-      );
-    }
+    cellContent = (
+      <EuiDataGridCell
+        {...sharedCellProps}
+        columnId={columnId}
+        column={column}
+        columnType={columnType}
+        width={width || undefined}
+        renderCellValue={renderCellValue}
+        renderCellPopover={renderCellPopover}
+        interactiveCellId={interactiveCellId}
+        isExpandable={isExpandable}
+        {...rest}
+      />
+    );
   }
-);
 
-CellWrapper.displayName = 'CellWrapper';
+  return cellContent;
+};

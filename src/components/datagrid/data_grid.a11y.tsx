@@ -11,12 +11,7 @@
 /// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
-import {
-  EuiDataGrid,
-  EuiDataGridColumn,
-  EuiDataGridSorting,
-  RenderCellValueWithContext,
-} from './index';
+import { EuiDataGrid, EuiDataGridColumn, EuiDataGridSorting } from './index';
 import { faker } from '@faker-js/faker';
 
 const columns: EuiDataGridColumn[] = [
@@ -78,20 +73,6 @@ const commaSeparateNumbers = (numberString: string) => {
   );
 };
 
-const renderCellValue: RenderCellValueWithContext = ({
-  rowIndex,
-  columnId,
-  schema,
-}) => {
-  let value = storeData[rowIndex][columnId];
-
-  if (schema === 'numeric') {
-    value = commaSeparateNumbers(value);
-  }
-
-  return value;
-};
-
 const DataGrid = () => {
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
@@ -127,7 +108,15 @@ const DataGrid = () => {
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={data.length}
       inMemory={{ level: 'sorting' }}
-      renderCellValue={renderCellValue}
+      renderCellValue={({ rowIndex, columnId, schema }) => {
+        let value = data[rowIndex][columnId];
+
+        if (schema === 'numeric') {
+          value = commaSeparateNumbers(value);
+        }
+
+        return value;
+      }}
       sorting={{ columns: sortingColumns, onSort: setSorting }}
       schemaDetectors={[
         {

@@ -5,7 +5,6 @@ import {
   EuiDataGrid,
   EuiDataGridColumnCellAction,
   EuiDataGridColumn,
-  RenderCellValue as RenderCellValueType,
 } from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
@@ -51,22 +50,6 @@ for (let i = 1; i < 5; i++) {
   });
 }
 
-const RenderCellValue: RenderCellValueType = ({
-  rowIndex,
-  columnId,
-  setCellProps,
-}) => {
-  const value = data[rowIndex][columnId];
-
-  useEffect(() => {
-    if (columnId === 'boolean' && value === 'false') {
-      setCellProps({ isExpandable: false });
-    }
-  }, [columnId, value, setCellProps]);
-
-  return value;
-};
-
 export default () => {
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
@@ -78,7 +61,17 @@ export default () => {
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={data.length}
-      renderCellValue={RenderCellValue}
+      renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+        const value = data[rowIndex][columnId];
+
+        useEffect(() => {
+          if (columnId === 'boolean' && value === 'false') {
+            setCellProps({ isExpandable: false });
+          }
+        }, [columnId, value, setCellProps]);
+
+        return value;
+      }}
     />
   );
 };

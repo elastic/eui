@@ -124,23 +124,14 @@ export const useFocus = (): DataGridFocusContextShape & {
     [isFocusedCellInView, focusFirstVisibleInteractiveCell]
   );
 
-  return useMemo(() => {
-    return {
-      onFocusUpdate,
-      focusedCell,
-      setFocusedCell,
-      setIsFocusedCellInView,
-      focusFirstVisibleInteractiveCell,
-      focusProps,
-    };
-  }, [
+  return {
     onFocusUpdate,
     focusedCell,
     setFocusedCell,
     setIsFocusedCellInView,
     focusFirstVisibleInteractiveCell,
     focusProps,
-  ]);
+  };
 };
 
 export const notifyCellOfFocusState = (

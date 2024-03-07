@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useCallback } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -70,26 +70,6 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
     'Drag handle'
   );
 
-  const removeSort = useCallback(() => {
-    const nextColumns = [...sorting.columns];
-    const columnIndex = nextColumns.map(({ id }) => id).indexOf(id);
-    nextColumns.splice(columnIndex, 1);
-    sorting.onSort(nextColumns);
-  }, [id, sorting]);
-
-  const toggleLegendHandler = useCallback<(id: string, value?: any) => void>(
-    (_, direction) => {
-      const nextColumns = [...sorting.columns];
-      const columnIndex = nextColumns.map(({ id }) => id).indexOf(id);
-      nextColumns.splice(columnIndex, 1, {
-        id,
-        direction,
-      });
-      sorting.onSort(nextColumns);
-    },
-    [id, sorting]
-  );
-
   return (
     <EuiDraggable
       draggableId={id}
@@ -133,7 +113,14 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                     className="euiDataGridColumnSorting__button"
                     aria-label={removeSortLabel}
                     iconType="cross"
-                    onClick={removeSort}
+                    onClick={() => {
+                      const nextColumns = [...sorting.columns];
+                      const columnIndex = nextColumns
+                        .map(({ id }) => id)
+                        .indexOf(id);
+                      nextColumns.splice(columnIndex, 1);
+                      sorting.onSort(nextColumns);
+                    }}
                   />
                 )}
               </EuiI18n>
@@ -185,7 +172,17 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
                     buttonSize="compressed"
                     className="euiDataGridColumnSorting__order"
                     idSelected={direction === 'asc' ? `${id}Asc` : `${id}Desc`}
-                    onChange={toggleLegendHandler}
+                    onChange={(_, direction) => {
+                      const nextColumns = [...sorting.columns];
+                      const columnIndex = nextColumns
+                        .map(({ id }) => id)
+                        .indexOf(id);
+                      nextColumns.splice(columnIndex, 1, {
+                        id,
+                        direction,
+                      });
+                      sorting.onSort(nextColumns);
+                    }}
                   />
                 )}
               </EuiI18n>

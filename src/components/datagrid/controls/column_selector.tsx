@@ -119,6 +119,10 @@ export const useDataGridColumnSelector = (
     'Drag handle'
   );
 
+  const buttonText = (
+    <EuiI18n token="euiColumnSelector.button" default="Columns" />
+  );
+
   const orderedVisibleColumns = useMemo(
     () =>
       visibleColumns
@@ -132,8 +136,8 @@ export const useDataGridColumnSelector = (
     [availableColumns, visibleColumns]
   );
 
-  const columnSelector = useMemo(() => {
-    return allowColumnHiding || allowColumnReorder ? (
+  const columnSelector =
+    allowColumnHiding || allowColumnReorder ? (
       <EuiPopover
         data-test-subj="dataGridColumnSelectorPopover"
         isOpen={isOpen}
@@ -152,7 +156,7 @@ export const useDataGridColumnSelector = (
             data-test-subj="dataGridColumnSelectorButton"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <EuiI18n token="euiColumnSelector.button" default="Columns" />
+            {buttonText}
           </EuiDataGridToolbarControl>
         }
       >
@@ -302,24 +306,6 @@ export const useDataGridColumnSelector = (
         )}
       </EuiPopover>
     ) : null;
-  }, [
-    availableColumns.length,
-    numberOfHiddenFields,
-    orderedVisibleColumns.length,
-    allowColumnHiding,
-    allowColumnReorder,
-    isOpen,
-    columnSearchText,
-    displayValues,
-    visibleColumnIds,
-    sortedColumns,
-    setVisibleColumns,
-    setIsOpen,
-    onDragEnd,
-    isDragEnabled,
-    dragHandleAriaLabel,
-    filteredColumns,
-  ]);
 
   /**
    * Used for moving columns left/right, available in the headers actions menu
@@ -339,17 +325,10 @@ export const useDataGridColumnSelector = (
     [setColumns, sortedColumns]
   );
 
-  return useMemo(() => {
-    return [
-      columnSelector,
-      orderedVisibleColumns,
-      setVisibleColumns,
-      switchColumnPos,
-    ];
-  }, [
+  return [
     columnSelector,
     orderedVisibleColumns,
     setVisibleColumns,
     switchColumnPos,
-  ]);
+  ];
 };

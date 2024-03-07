@@ -12,7 +12,7 @@ import {
   EuiDataGrid,
   EuiDataGridColumnSortingConfig,
   EuiDataGridPaginationProps,
-  RenderCellValue as RenderCellValueType,
+  EuiDataGridProps,
   EuiDataGridSorting,
   formatDate,
 } from '../../../../../src';
@@ -62,7 +62,7 @@ const columns = [
 // instead of loading up front, generate entries on the fly
 const raw_data: DataShape[] = githubData;
 
-const RenderCellValue: RenderCellValueType = ({
+const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
   rowIndex,
   columnId,
   isDetails,

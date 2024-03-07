@@ -587,7 +587,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="width: 200px; height: 202px;"
+            style="height: 202px; width: 200px;"
           >
             <div
               class="euiDataGridHeader"
@@ -1014,7 +1014,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="width: 300px; height: 202px;"
+            style="height: 202px; width: 300px;"
           >
             <div
               class="euiDataGridHeader"
@@ -1632,7 +1632,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="width: 200px; height: 202px;"
+            style="height: 202px; width: 200px;"
           >
             <div
               class="euiDataGridHeader"
@@ -2058,7 +2058,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="width: 200px; height: 202px;"
+            style="height: 202px; width: 200px;"
           >
             <div
               class="euiDataGridHeader"

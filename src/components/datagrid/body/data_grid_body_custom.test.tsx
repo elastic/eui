@@ -10,10 +10,7 @@ import React, { useEffect } from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 
-import {
-  EuiDataGridProps,
-  RenderCellValue as RenderCellValueType,
-} from '../data_grid_types';
+import { EuiDataGridProps } from '../data_grid_types';
 import { dataGridBodyProps } from './data_grid_body.test';
 
 import { EuiDataGridBodyCustomRender } from './data_grid_body_custom';
@@ -24,8 +21,10 @@ describe('EuiDataGridBodyCustomRender', () => {
     { columnA: 'hello', columnB: 'world' },
     { columnA: 'lorem', columnB: 'ipsum' },
   ];
-  const RenderCellValue: RenderCellValueType = ({ rowIndex, columnId }) =>
-    raw_data[rowIndex][columnId as keyof DataType];
+  const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
+    rowIndex,
+    columnId,
+  }) => raw_data[rowIndex][columnId as keyof DataType];
 
   const bodyProps = {
     ...dataGridBodyProps,

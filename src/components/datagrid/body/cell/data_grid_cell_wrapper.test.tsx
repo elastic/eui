@@ -12,7 +12,7 @@ import { shallow } from 'enzyme';
 import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
 import { schemaDetectors } from '../../utils/data_grid_schema';
 
-import { CellWrapper } from './data_grid_cell_wrapper';
+import { Cell } from './data_grid_cell_wrapper';
 
 describe('Cell', () => {
   const requiredProps = {
@@ -33,13 +33,13 @@ describe('Cell', () => {
   };
 
   it('is a light wrapper around EuiDataGridCell', () => {
-    const component = shallow(<CellWrapper {...requiredProps} />);
+    const component = shallow(<Cell {...requiredProps} />);
     expect(component.find('EuiDataGridCell').exists()).toBe(true);
   });
 
   it('renders leading control column cells', () => {
     const component = shallow(
-      <CellWrapper
+      <Cell
         {...requiredProps}
         leadingControlColumns={[
           {
@@ -60,7 +60,7 @@ describe('Cell', () => {
 
   it('renders trailing control column cells', () => {
     const component = shallow(
-      <CellWrapper
+      <Cell
         {...requiredProps}
         colIndex={1}
         visibleColCount={2}
@@ -83,7 +83,7 @@ describe('Cell', () => {
 
   it('renders text transform classes based on schema', () => {
     const component = shallow(
-      <CellWrapper
+      <Cell
         {...requiredProps}
         columns={[{ id: 'b', schema: 'SHOUTING' }]}
         schema={{ b: { columnType: 'SHOUTING' } } as any}
@@ -104,7 +104,7 @@ describe('Cell', () => {
 
   it('allows passing optional EuiDataGridCellProps overrides', () => {
     const component = shallow(
-      <CellWrapper
+      <Cell
         {...requiredProps}
         columns={[{ id: 'a', isExpandable: true }]}
         isExpandable={false}

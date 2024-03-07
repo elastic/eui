@@ -56,7 +56,7 @@ describe('EuiDataGridBodyVirtualized', () => {
         renderFooterCellValue={() => <footer data-test-subj="footer" />}
       />
     );
-    expect(component.find('Cell')).toHaveLength(8);
+    expect(component.find('Cell')).toHaveLength(4);
     expect(component.find('[data-test-subj="footer"]')).toHaveLength(2);
   });
 

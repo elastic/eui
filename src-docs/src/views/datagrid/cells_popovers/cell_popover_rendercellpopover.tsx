@@ -14,7 +14,6 @@ import {
   EuiCopy,
   EuiText,
   EuiImage,
-  RenderCellValue as RenderCellValueType,
 } from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
@@ -164,9 +163,6 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
   );
 };
 
-const renderCellValue: RenderCellValueType = ({ rowIndex, columnId }) =>
-  data[rowIndex][columnId];
-
 export default () => {
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
@@ -178,7 +174,7 @@ export default () => {
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={data.length}
-      renderCellValue={renderCellValue}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
       renderCellPopover={RenderCellPopover}
     />
   );

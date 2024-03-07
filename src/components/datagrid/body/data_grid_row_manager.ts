@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useRef, useCallback, RefObject, useMemo } from 'react';
+import { useRef, useCallback, RefObject } from 'react';
 import { useUpdateEffect } from '../../../services';
 
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
@@ -94,7 +94,5 @@ export const useRowManager = ({
     }
   }, [rowClasses]);
 
-  return useMemo(() => {
-    return { getRow };
-  }, [getRow]);
+  return { getRow };
 };

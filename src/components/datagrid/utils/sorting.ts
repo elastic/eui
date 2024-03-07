@@ -126,11 +126,9 @@ export const useSorting = ({
     [startRow, sortedRowMap]
   );
 
-  return useMemo(() => {
-    return {
-      sorting,
-      sortedRowMap,
-      getCorrectRowIndex,
-    };
-  }, [sorting, sortedRowMap, getCorrectRowIndex]);
+  return {
+    sorting,
+    sortedRowMap,
+    getCorrectRowIndex,
+  };
 };

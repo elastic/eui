@@ -5,7 +5,6 @@ import {
   EuiDataGrid,
   EuiDataGridColumnCellAction,
   EuiDataGridColumn,
-  RenderCellValue as RenderCellValueType,
 } from '../../../../../src/components';
 
 const cellActions1: EuiDataGridColumnCellAction[] = [
@@ -80,9 +79,6 @@ for (let i = 1; i < 5; i++) {
   });
 }
 
-const renderCellValue: RenderCellValueType = ({ rowIndex, columnId }) =>
-  data[rowIndex][columnId];
-
 export default () => {
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
@@ -94,7 +90,7 @@ export default () => {
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={data.length}
-      renderCellValue={renderCellValue}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
     />
   );
 };

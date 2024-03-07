@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { useResizeObserver } from '../../../observer/resize_observer';
 
@@ -22,9 +22,7 @@ export const useDataGridHeader = (props: EuiDataGridHeaderRowProps) => {
 
   const headerRow = useMemo(() => {
     return <EuiDataGridHeaderRow ref={setHeaderRowRef} {...props} />;
-  }, [props]);
+  }, Object.values(props)); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return useMemo(() => {
-    return { headerRow, headerRowHeight };
-  }, [headerRow, headerRowHeight]);
+  return { headerRow, headerRowHeight };
 };

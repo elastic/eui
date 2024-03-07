@@ -10,7 +10,7 @@ import githubData from '../_row_auto_height_data.json';
 
 import {
   EuiDataGrid,
-  RenderCellValue as RenderCellValueType,
+  EuiDataGridProps,
   EuiLink,
   EuiAvatar,
   EuiBadge,
@@ -68,7 +68,7 @@ const columns = [
 // instead of loading up front, generate entries on the fly
 const raw_data: DataShape[] = githubData;
 
-const RenderCellValue: RenderCellValueType = ({
+const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
   rowIndex,
   columnId,
   isDetails,
