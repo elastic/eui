@@ -14,6 +14,7 @@ import React, {
   useContext,
   useEffect,
   useRef,
+  useMemo,
   PropsWithChildren,
 } from 'react';
 import {
@@ -47,14 +48,19 @@ export const _Cell: FunctionComponent<GridChildComponentProps> = ({
   data,
 }) => {
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
+  const cellStyles = useMemo(
+    () => ({
+      ...style,
+      top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+    }),
+    [style, headerRowHeight]
+  );
+
   return (
     <Cell
       colIndex={columnIndex}
       visibleRowIndex={rowIndex}
-      style={{
-        ...style,
-        top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-      }}
+      style={cellStyles}
       {...data}
     />
   );
@@ -82,16 +88,17 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
   const { headerRowHeight, headerRow, footerRow } = useContext(
     DataGridWrapperRowsContext
   );
+  const innerElementStyles = useMemo(
+    () => ({
+      ...style,
+      height: style.height + headerRowHeight,
+    }),
+    [style, headerRowHeight]
+  );
+
   return (
     <>
-      <div
-        ref={ref}
-        style={{
-          ...style,
-          height: style.height + headerRowHeight,
-        }}
-        {...rest}
-      >
+      <div ref={ref} style={innerElementStyles} {...rest}>
         {headerRow}
         {children}
       </div>
@@ -292,12 +299,54 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<
     }
   }, [gridRef, getRowHeight]);
 
+  const itemData = useMemo(() => {
+    return {
+      schemaDetectors,
+      setRowHeight,
+      leadingControlColumns,
+      trailingControlColumns,
+      columns,
+      visibleColCount,
+      schema,
+      columnWidths,
+      defaultColumnWidth,
+      renderCellValue,
+      renderCellPopover,
+      interactiveCellId,
+      rowHeightsOptions,
+      rowHeightUtils,
+      rowManager,
+      pagination,
+      headerRowHeight,
+    };
+  }, [
+    schemaDetectors,
+    setRowHeight,
+    leadingControlColumns,
+    trailingControlColumns,
+    columns,
+    visibleColCount,
+    schema,
+    columnWidths,
+    defaultColumnWidth,
+    renderCellValue,
+    renderCellPopover,
+    interactiveCellId,
+    rowHeightsOptions,
+    rowHeightUtils,
+    rowManager,
+    pagination,
+    headerRowHeight,
+  ]);
+
+  const rowWrapperContextValue = useMemo(() => {
+    return { headerRowHeight, headerRow, footerRow };
+  }, [headerRowHeight, headerRow, footerRow]);
+
   return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
-    <DataGridWrapperRowsContext.Provider
-      value={{ headerRowHeight, headerRow, footerRow }}
-    >
+    <DataGridWrapperRowsContext.Provider value={rowWrapperContextValue}>
       <Grid
-        {...(virtualizationOptions ? virtualizationOptions : {})}
+        {...virtualizationOptions}
         ref={gridRef}
         className={classNames(
           'euiDataGrid__virtualized',
@@ -315,24 +364,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<
         columnWidth={getColumnWidth}
         height={finalHeight}
         rowHeight={getRowHeight}
-        itemData={{
-          schemaDetectors,
-          setRowHeight,
-          leadingControlColumns,
-          trailingControlColumns,
-          columns,
-          visibleColCount,
-          schema,
-          columnWidths,
-          defaultColumnWidth,
-          renderCellValue,
-          renderCellPopover,
-          interactiveCellId,
-          rowHeightsOptions,
-          rowHeightUtils,
-          rowManager,
-          pagination,
-        }}
+        itemData={itemData}
         rowCount={
           IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
         }

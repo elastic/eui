@@ -99,28 +99,46 @@ export const Cell: FunctionComponent<CellProps> = ({
     [columnId, column?.schema, schemaDetectors]
   );
 
-  const classes = classNames({
-    'euiDataGridRowCell--firstColumn': isFirstColumn,
-    'euiDataGridRowCell--lastColumn': isLastColumn,
-    'euiDataGridRowCell--controlColumn':
-      isLeadingControlColumn || isTrailingControlColumn,
-    [`euiDataGridRowCell--${textTransform}`]: textTransform,
-  });
-
-  const sharedCellProps = {
-    rowIndex: getCorrectRowIndex(visibleRowIndex),
-    visibleRowIndex,
+  const sharedCellProps = useMemo(() => {
+    const classes = classNames({
+      'euiDataGridRowCell--firstColumn': isFirstColumn,
+      'euiDataGridRowCell--lastColumn': isLastColumn,
+      'euiDataGridRowCell--controlColumn':
+        isLeadingControlColumn || isTrailingControlColumn,
+      [`euiDataGridRowCell--${textTransform}`]: textTransform,
+    });
+    return {
+      rowIndex: getCorrectRowIndex(visibleRowIndex),
+      visibleRowIndex,
+      colIndex,
+      interactiveCellId,
+      className: classes,
+      style,
+      rowHeightsOptions,
+      rowHeightUtils,
+      setRowHeight: isFirstColumn ? setRowHeight : undefined,
+      rowManager,
+      popoverContext,
+      pagination,
+    };
+  }, [
     colIndex,
+    setRowHeight,
+    visibleRowIndex,
+    getCorrectRowIndex,
     interactiveCellId,
-    className: classes,
     style,
     rowHeightsOptions,
     rowHeightUtils,
-    setRowHeight: isFirstColumn ? setRowHeight : undefined,
     rowManager,
     popoverContext,
     pagination,
-  };
+    isFirstColumn,
+    isLastColumn,
+    isLeadingControlColumn,
+    isTrailingControlColumn,
+    textTransform,
+  ]);
 
   if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[colIndex];
