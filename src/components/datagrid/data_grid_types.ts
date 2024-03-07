@@ -604,18 +604,15 @@ export interface EuiDataGridCellPopoverElementProps
   ) => void;
 }
 
-type CellContext = Record<string, any>;
-
-export type EuiDataGridCellValueElementPropsWithContext =
-  EuiDataGridCellValueElementProps & CellContext;
+type CellContext = Omit<
+  Record<string, any>,
+  keyof EuiDataGridCellValueElementProps
+>;
+type CellPropsWithContext = CellContext & EuiDataGridCellValueElementProps;
 
 export type RenderCellValue =
-  | ((props: EuiDataGridCellValueElementProps) => ReactNode)
-  | ComponentClass<EuiDataGridCellValueElementProps>;
-
-export type RenderCellValueWithContext =
-  | ((props: EuiDataGridCellValueElementPropsWithContext) => ReactNode)
-  | ComponentClass<EuiDataGridCellValueElementPropsWithContext>;
+  | ((props: CellPropsWithContext) => ReactNode)
+  | ComponentClass<CellPropsWithContext>;
 
 export interface EuiDataGridCellProps {
   rowIndex: number;
@@ -629,7 +626,7 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
-  renderCellValue: RenderCellValue | RenderCellValueWithContext;
+  renderCellValue: RenderCellValue;
   cellContext?: CellContext;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>

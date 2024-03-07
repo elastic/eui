@@ -8,8 +8,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
-import { EuiDataGrid, RenderCellValue, RenderCellValueWithContext } from './';
-import { EuiDataGridProps } from './data_grid_types';
+import { EuiDataGrid } from './';
+import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
@@ -988,9 +988,7 @@ describe('EuiDataGrid', () => {
         rowCount: 1,
       };
 
-      const RenderCellValueWithContext: RenderCellValueWithContext = ({
-        someContext,
-      }) => (
+      const RenderCellValueWithContext: RenderCellValue = ({ someContext }) => (
         <div data-test-subj="renderedCell">
           {someContext ? 'hello' : 'world'}
         </div>
