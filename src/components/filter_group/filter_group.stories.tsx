@@ -14,7 +14,7 @@ import { EuiFilterButton } from './filter_button';
 import { EuiFilterGroup, EuiFilterGroupProps } from './filter_group';
 
 const meta: Meta<EuiFilterGroupProps> = {
-  title: 'EuiFilterGroup',
+  title: 'Forms/EuiFilterGroup',
   component: EuiFilterGroup,
   args: {
     // Component defaults

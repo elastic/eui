@@ -16,7 +16,7 @@ import {
 } from './color_palette_picker';
 
 const meta: Meta<EuiColorPalettePickerProps<string>> = {
-  title: 'EuiColorPalettePicker',
+  title: 'Forms/EuiColorPalettePicker',
   component: EuiColorPalettePicker,
   argTypes: {
     placeholder: { control: 'text' },
