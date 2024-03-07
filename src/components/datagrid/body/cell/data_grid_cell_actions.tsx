@@ -37,26 +37,29 @@ export const EuiDataGridCellActions = ({
   // column.cellActions is present (regardless of column.isExpandable).
   // This is because cell actions are not otherwise accessible to keyboard
   // or screen reader users
-  const expandButton = (
-    <EuiI18n
-      key={'expand'}
-      token="euiDataGridCellActions.expandButtonTitle"
-      default="Click or hit enter to interact with cell content"
-    >
-      {(expandButtonTitle: string) => (
-        <EuiButtonIcon
-          className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
-          data-test-subj="euiDataGridCellExpandButton"
-          display="fill"
-          color="primary"
-          iconSize="m"
-          iconType="expandMini"
-          aria-hidden
-          onClick={onExpandClick}
-          title={expandButtonTitle}
-        />
-      )}
-    </EuiI18n>
+  const expandButton = useMemo(
+    () => (
+      <EuiI18n
+        key={'expand'}
+        token="euiDataGridCellActions.expandButtonTitle"
+        default="Click or hit enter to interact with cell content"
+      >
+        {(expandButtonTitle: string) => (
+          <EuiButtonIcon
+            className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
+            data-test-subj="euiDataGridCellExpandButton"
+            display="fill"
+            color="primary"
+            iconSize="m"
+            iconType="expandMini"
+            aria-hidden
+            onClick={onExpandClick}
+            title={expandButtonTitle}
+          />
+        )}
+      </EuiI18n>
+    ),
+    [onExpandClick]
   );
 
   const additionalButtons = useMemo(() => {

@@ -24,5 +24,7 @@ export const useDataGridHeader = (props: EuiDataGridHeaderRowProps) => {
     return <EuiDataGridHeaderRow ref={setHeaderRowRef} {...props} />;
   }, [props]);
 
-  return { headerRow, headerRowHeight };
+  return useMemo(() => {
+    return { headerRow, headerRowHeight };
+  }, [headerRow, headerRowHeight]);
 };

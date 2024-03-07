@@ -227,14 +227,16 @@ export const useSortingUtils = ({
   /**
    * Arrow icon
    */
-  const sortingArrow = isColumnSorted ? (
-    <EuiIcon
-      type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
-      color="text"
-      className="euiDataGridHeaderCell__sortingArrow"
-      data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
-    />
-  ) : null;
+  const sortingArrow = useMemo(() => {
+    return isColumnSorted ? (
+      <EuiIcon
+        type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
+        color="text"
+        className="euiDataGridHeaderCell__sortingArrow"
+        data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
+      />
+    ) : null;
+  }, [id, isColumnSorted, sortedColumn]);
 
   /**
    * aria-sort attribute - should only be used when a single column is being sorted

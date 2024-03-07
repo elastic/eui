@@ -325,10 +325,17 @@ export const useDataGridColumnSelector = (
     [setColumns, sortedColumns]
   );
 
-  return [
+  return useMemo(() => {
+    return [
+      columnSelector,
+      orderedVisibleColumns,
+      setVisibleColumns,
+      switchColumnPos,
+    ];
+  }, [
     columnSelector,
     orderedVisibleColumns,
     setVisibleColumns,
     switchColumnPos,
-  ];
+  ]);
 };
