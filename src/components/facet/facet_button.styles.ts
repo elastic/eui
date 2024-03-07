@@ -14,33 +14,30 @@ import {
   logicalTextAlignCSS,
 } from '../../global_styling';
 
-import { euiLinkFocusCSS } from '../link/link.styles';
-
 export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiFacetButton: css`
     ${logicalTextAlignCSS('left')}
 
-    &:hover,
-    &:focus {
-      /* Make sure the quantity doesn't get an underline on hover */
-      &:not(:disabled) [class*='euiFacetButton__text'] {
-        text-decoration: underline;
-      }
-    }
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        /* Make sure the quantity doesn't get an underline on hover */
+        text-decoration: none;
 
-    &:focus:not(:disabled) [class*='euiFacetButton__text'] {
-      ${euiLinkFocusCSS(euiTheme)}
+        .euiFacetButton__text {
+          text-decoration: underline;
+        }
+      }
+
+      &:focus .euiFacetButton__text {
+        text-decoration-thickness: ${euiTheme.border.width.thick};
+      }
     }
 
     &:disabled {
       color: ${euiTheme.colors.disabledText};
       pointer-events: none;
-
-      &:hover,
-      &:focus {
-        text-decoration: none;
-      }
     }
   `,
 });

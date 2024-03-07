@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiTextStyles } from './text.styles';
 
 import { TextColor, EuiTextColor } from './text_color';
@@ -44,8 +44,7 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   className,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiTextStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiTextStyles);
   const cssStyles = [
     styles.euiText,
     !grow ? styles.constrainedWidth : undefined,

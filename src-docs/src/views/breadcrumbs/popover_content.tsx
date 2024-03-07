@@ -41,37 +41,34 @@ export default () => {
   const breadcrumbs: EuiBreadcrumb[] = [
     {
       text: 'My deployment',
-      popoverContent: (
-        <>
-          <EuiPopoverTitle paddingSize="s">Select a deployment</EuiPopoverTitle>
-          <EuiContextMenuPanel
-            size="s"
-            items={[
-              <EuiContextMenuItem
-                key="A"
-                href="#"
-                onClick={(e) => e.preventDefault()}
-              >
-                Go to Deployment A
-              </EuiContextMenuItem>,
-              <EuiContextMenuItem
-                key="B"
-                href="#"
-                onClick={(e) => e.preventDefault()}
-              >
-                Go to Deployment B
-              </EuiContextMenuItem>,
-              <EuiContextMenuItem
-                key="C"
-                href="#"
-                onClick={(e) => e.preventDefault()}
-              >
-                Go to all deployments
-              </EuiContextMenuItem>,
-            ]}
-          />
-        </>
-      ),
+      // Passing a render function allows closing the breadcrumb popover from within your content
+      popoverContent: (closePopover) => {
+        const onClick = (e: React.MouseEvent) => {
+          e.preventDefault();
+          closePopover();
+        };
+        return (
+          <>
+            <EuiPopoverTitle paddingSize="s">
+              Select a deployment
+            </EuiPopoverTitle>
+            <EuiContextMenuPanel
+              size="s"
+              items={[
+                <EuiContextMenuItem key="A" href="#" onClick={onClick}>
+                  Go to Deployment A
+                </EuiContextMenuItem>,
+                <EuiContextMenuItem key="B" href="#" onClick={onClick}>
+                  Go to Deployment B
+                </EuiContextMenuItem>,
+                <EuiContextMenuItem key="C" href="#" onClick={onClick}>
+                  Go to all deployments
+                </EuiContextMenuItem>,
+              ]}
+            />
+          </>
+        );
+      },
       popoverProps: { panelPaddingSize: 'none' },
     },
     {

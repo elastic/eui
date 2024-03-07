@@ -11,17 +11,15 @@ import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 import { euiFormVariables } from '../../form/form.styles';
 
-export const euiButtonGroupStyles = () => {
-  return {
-    euiButtonGroup: css`
-      display: inline-block;
-      ${logicalCSS('max-width', '100%')}
-      position: relative; /* Ensures the EuiScreenReaderOnly component is positioned relative to this component */
-    `,
-    fullWidth: css`
-      display: block;
-    `,
-  };
+export const euiButtonGroupStyles = {
+  euiButtonGroup: css`
+    display: inline-block;
+    ${logicalCSS('max-width', '100%')}
+    position: relative; /* Ensures the EuiScreenReaderOnly component is positioned relative to this component */
+  `,
+  fullWidth: css`
+    display: block;
+  `,
 };
 
 export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {

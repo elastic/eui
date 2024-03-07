@@ -23,8 +23,8 @@ import { enqueueStateChange } from '../../services/react';
 
 import {
   htmlIdGenerator,
-  withEuiTheme,
-  WithEuiThemeProps,
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
 } from '../../services';
 export { COLORS } from './named_colors';
 import { isNamedColor, NamedColor } from './named_colors';
@@ -130,11 +130,11 @@ export const appendIconComponentCache = (iconTypeToIconComponentMap: {
 };
 
 export class EuiIconClass extends PureComponent<
-  EuiIconProps & WithEuiThemeProps,
+  EuiIconProps & WithEuiStylesMemoizerProps,
   State
 > {
   isMounted = false;
-  constructor(props: EuiIconProps & WithEuiThemeProps) {
+  constructor(props: EuiIconProps & WithEuiStylesMemoizerProps) {
     super(props);
 
     const { type } = props;
@@ -238,8 +238,8 @@ export class EuiIconClass extends PureComponent<
       tabIndex,
       title,
       onIconLoad,
-      theme,
       style,
+      stylesMemoizer,
       ...rest
     } = this.props;
 
@@ -267,7 +267,7 @@ export class EuiIconClass extends PureComponent<
     const classes = classNames('euiIcon', className);
 
     // Emotion styles
-    const styles = euiIconStyles(theme);
+    const styles = stylesMemoizer(euiIconStyles);
     const cssStyles = [
       styles.euiIcon,
       styles[size],
@@ -304,20 +304,14 @@ export class EuiIconClass extends PureComponent<
           this.props['aria-labelledby'] ||
           this.props.title
         );
-      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
-
-      let titleId: any;
 
       // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
       //  The svg aria-labelledby attribute gets this titleId
       //  The svg title element gets this titleId as an id
-      if (
-        !this.props['aria-label'] &&
-        !this.props['aria-labelledby'] &&
-        title
-      ) {
-        titleId = { titleId: generateId() };
-      }
+      const titleId =
+        !this.props['aria-label'] && !this.props['aria-labelledby'] && title
+          ? { titleId: generateId() }
+          : undefined;
 
       return (
         <Svg
@@ -327,16 +321,16 @@ export class EuiIconClass extends PureComponent<
           tabIndex={tabIndex}
           role="img"
           title={title}
+          {...titleId}
           data-icon-type={iconTitle}
           data-is-loaded={isLoaded || undefined}
           data-is-loading={isLoading || undefined}
-          {...titleId}
           {...rest}
-          {...hideIconEmpty}
+          aria-hidden={isAriaHidden || undefined}
         />
       );
     }
   }
 }
 
-export const EuiIcon = withEuiTheme<EuiIconProps>(EuiIconClass);
+export const EuiIcon = withEuiStylesMemoizer<EuiIconProps>(EuiIconClass);
