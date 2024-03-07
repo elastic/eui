@@ -14,7 +14,9 @@ import { EuiHealth, EuiHealthProps } from './health';
 const meta: Meta<EuiHealthProps> = {
   title: 'EuiHealth',
   component: EuiHealth,
-  argTypes: {},
+  argTypes: {
+    color: { control: 'text' },
+  },
   // Component defaults
   args: {
     textSize: 's',
@@ -28,5 +30,6 @@ export const Playground: Story = {
   argTypes: hideStorybookControls(['aria-label']),
   args: {
     children: 'Status',
+    color: 'success',
   },
 };
