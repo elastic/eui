@@ -149,6 +149,11 @@ const EuiDataGridCellContent: FunctionComponent<
 );
 EuiDataGridCellContent.displayName = 'EuiDataGridCellContent';
 
+const RenderCellInRow: FunctionComponent<{
+  children: ReactNode;
+  row?: HTMLElement;
+}> = ({ row, children }) => <>{row ? createPortal(children, row) : children}</>;
+
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
@@ -622,64 +627,64 @@ export class EuiDataGridCell extends Component<
       ariaRowIndex,
     };
 
-    const cell = (
-      <div
-        role="gridcell"
-        aria-rowindex={ariaRowIndex}
-        tabIndex={this.state.isFocused ? 0 : -1}
-        ref={this.cellRef}
-        {...cellProps}
-        data-test-subj="dataGridRowCell"
-        // Data attributes to help target specific cells by either data or current cell location
-        data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
-        data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
-        data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
-        data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
-        onKeyDown={this.handleCellKeyDown}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-      >
-        <HandleInteractiveChildren
-          cellEl={this.cellRef.current}
-          updateCellFocusContext={this.updateCellFocusContext}
-          renderFocusTrap={!isExpandable}
-        >
-          <EuiDataGridCellContent
-            {...cellContentProps}
-            cellActions={
-              showCellActions && (
-                <>
-                  <EuiDataGridCellActions
-                    rowIndex={rowIndex}
-                    colIndex={colIndex}
-                    column={column}
-                    onExpandClick={this.handleCellExpansionClick}
-                  />
-                  {/* Give the cell expansion popover a separate div/ref - otherwise the
-                    extra popover wrappers mess up the absolute positioning and cause
-                    animation stuttering */}
-                  <div
-                    ref={this.popoverAnchorRef}
-                    data-test-subject="cellPopoverAnchor"
-                  />
-                </>
-              )
-            }
-          />
-        </HandleInteractiveChildren>
-      </div>
-    );
-
-    return rowManager && !IS_JEST_ENVIRONMENT
-      ? createPortal(
-          cell,
-          rowManager.getRow({
+    const row =
+      rowManager && !IS_JEST_ENVIRONMENT
+        ? rowManager.getRow({
             rowIndex,
             visibleRowIndex,
             top: style!.top as string, // comes in as a `{float}px` string from react-window
             height: style!.height as number, // comes in as an integer from react-window
           })
-        )
-      : cell;
+        : undefined;
+
+    return (
+      <RenderCellInRow row={row}>
+        <div
+          role="gridcell"
+          aria-rowindex={ariaRowIndex}
+          tabIndex={this.state.isFocused ? 0 : -1}
+          ref={this.cellRef}
+          {...cellProps}
+          data-test-subj="dataGridRowCell"
+          // Data attributes to help target specific cells by either data or current cell location
+          data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
+          data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
+          data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
+          data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
+          onKeyDown={this.handleCellKeyDown}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          <HandleInteractiveChildren
+            cellEl={this.cellRef.current}
+            updateCellFocusContext={this.updateCellFocusContext}
+            renderFocusTrap={!isExpandable}
+          >
+            <EuiDataGridCellContent
+              {...cellContentProps}
+              cellActions={
+                showCellActions && (
+                  <>
+                    <EuiDataGridCellActions
+                      rowIndex={rowIndex}
+                      colIndex={colIndex}
+                      column={column}
+                      onExpandClick={this.handleCellExpansionClick}
+                    />
+                    {/* Give the cell expansion popover a separate div/ref - otherwise the
+                  extra popover wrappers mess up the absolute positioning and cause
+                  animation stuttering */}
+                    <div
+                      ref={this.popoverAnchorRef}
+                      data-test-subject="cellPopoverAnchor"
+                    />
+                  </>
+                )
+              }
+            />
+          </HandleInteractiveChildren>
+        </div>
+      </RenderCellInRow>
+    );
   }
 }

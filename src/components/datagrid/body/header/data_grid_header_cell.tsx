@@ -10,6 +10,8 @@ import classnames from 'classnames';
 import React, {
   AriaAttributes,
   FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
   useContext,
   useState,
   useRef,
@@ -35,6 +37,19 @@ import {
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
+
+const CellContent: FunctionComponent<
+  PropsWithChildren & { title: string; arrow?: ReactNode }
+> = ({ children, title, arrow }) => {
+  return (
+    <>
+      <div title={title} className="euiDataGridHeaderCell__content">
+        {children}
+      </div>
+      {arrow}
+    </>
+  );
+};
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
   memo(
@@ -110,18 +125,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         suffix: 'actions',
       });
 
-      const cellContent = (
-        <>
-          <div
-            title={displayAsText || id}
-            className="euiDataGridHeaderCell__content"
-          >
-            {display || displayAsText || id}
-          </div>
-          {sortingArrow}
-        </>
-      );
-
       const classes = classnames(
         {
           [`euiDataGridHeaderCell--${columnType}`]: columnType,
@@ -130,6 +133,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         },
         displayHeaderCellProps?.className
       );
+
+      const title = displayAsText || id;
+      const children = display || displayAsText || id;
 
       return (
         <EuiDataGridHeaderCellWrapper
@@ -153,7 +159,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
           {!showColumnActions ? (
             <>
-              {cellContent}
+              <CellContent title={title} arrow={sortingArrow}>
+                {children}
+              </CellContent>
               {sortingScreenReaderText && (
                 <EuiScreenReaderOnly>
                   <p>{sortingScreenReaderText}</p>
@@ -173,7 +181,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 ref={actionsButtonRef}
                 data-test-subj={`dataGridHeaderCellActionButton-${id}`}
               >
-                {cellContent}
+                <CellContent title={title} arrow={sortingArrow}>
+                  {children}
+                </CellContent>
                 <EuiPopover
                   display="block"
                   panelPaddingSize="none"
