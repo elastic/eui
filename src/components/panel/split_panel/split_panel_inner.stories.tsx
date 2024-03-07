@@ -14,7 +14,7 @@ import { COLORS } from '../panel';
 import { EuiSplitPanel, _EuiSplitPanelInnerProps } from './split_panel';
 
 const meta: Meta<_EuiSplitPanelInnerProps> = {
-  title: 'EuiSplitPanel',
+  title: 'Layout/EuiSplitPanel',
   component: EuiSplitPanel.Inner,
   argTypes: {
     color: { control: 'select', options: COLORS },

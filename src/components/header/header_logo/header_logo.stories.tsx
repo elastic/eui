@@ -13,7 +13,7 @@ import { EuiHeader, EuiHeaderSectionItem } from '../';
 import { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
 
 const meta: Meta<EuiHeaderLogoProps> = {
-  title: 'EuiHeaderLogo',
+  title: 'Layout/EuiHeaderLogo',
   component: EuiHeaderLogo,
   args: {
     // Not default props, set for demo purposes

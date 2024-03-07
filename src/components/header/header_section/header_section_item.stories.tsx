@@ -17,7 +17,7 @@ import {
 } from './header_section_item';
 
 const meta: Meta<EuiHeaderSectionItemProps> = {
-  title: 'EuiHeaderSectionItem',
+  title: 'Layout/EuiHeaderSectionItem',
   component: EuiHeaderSectionItem,
 };
 

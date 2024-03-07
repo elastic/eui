@@ -13,7 +13,7 @@ import { EuiFlexItem } from './flex_item';
 import { EuiFlexGrid, EuiFlexGridProps } from './flex_grid';
 
 const meta: Meta<EuiFlexGridProps> = {
-  title: 'EuiFlexGrid',
+  title: 'Layout/EuiFlexGrid',
   component: EuiFlexGrid,
   argTypes: {
     component: { control: 'text' },

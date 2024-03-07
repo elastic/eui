@@ -20,7 +20,7 @@ import {
 } from './flyout_resizable';
 
 const meta: Meta<EuiFlyoutResizableProps> = {
-  title: 'EuiFlyoutResizable',
+  title: 'Layout/EuiFlyoutResizable',
   component: EuiFlyoutResizable as any,
   argTypes: {
     // TODO: `size` control isn't working correctly for whatever reason (appears to be a Storybook bug
