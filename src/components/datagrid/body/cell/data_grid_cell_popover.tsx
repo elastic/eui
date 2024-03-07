@@ -92,6 +92,26 @@ export const useCellPopover = (): {
     [popoverAnchor, closeCellPopover]
   );
 
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event.key === keys.F2 || event.key === keys.ESCAPE) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeCellPopover();
+        const cell = popoverAnchor?.parentElement?.parentElement?.parentElement;
+
+        // Prevent cell animation flash while focus is being shifted between popover and cell
+        cell?.setAttribute('data-keyboard-closing', 'true');
+        // Ensure focus is returned to the parent cell, and remove animation stopgap
+        requestAnimationFrame(() => {
+          popoverAnchor?.parentElement!.focus();
+          cell?.removeAttribute('data-keyboard-closing');
+        });
+      }
+    },
+    [popoverAnchor, closeCellPopover]
+  );
+
   return useMemo(() => {
     const cellPopoverContext = {
       popoverIsOpen,
@@ -129,23 +149,7 @@ export const useCellPopover = (): {
           }px, 400px))`,
           maxBlockSize: '50vh',
         }}
-        onKeyDown={(event) => {
-          if (event.key === keys.F2 || event.key === keys.ESCAPE) {
-            event.preventDefault();
-            event.stopPropagation();
-            closeCellPopover();
-            const cell =
-              popoverAnchor.parentElement?.parentElement?.parentElement;
-
-            // Prevent cell animation flash while focus is being shifted between popover and cell
-            cell?.setAttribute('data-keyboard-closing', 'true');
-            // Ensure focus is returned to the parent cell, and remove animation stopgap
-            requestAnimationFrame(() => {
-              popoverAnchor.parentElement!.focus();
-              cell?.removeAttribute('data-keyboard-closing');
-            });
-          }
-        }}
+        onKeyDown={onKeyDown}
         button={popoverAnchor}
         closePopover={closeCellPopover}
       >
@@ -161,6 +165,7 @@ export const useCellPopover = (): {
     cellPopoverProps,
     closeCellPopover,
     onClickOutside,
+    onKeyDown,
     openCellPopover,
     popoverAnchorPosition,
   ]);

@@ -11,6 +11,7 @@ import React, {
   forwardRef,
   FunctionComponent,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -21,6 +22,7 @@ import {
   GridChildComponentProps,
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
+  GridOnItemsRenderedProps,
 } from 'react-window';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { useDataGridHeader } from './header';
@@ -299,6 +301,14 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<
     }
   }, [gridRef, getRowHeight]);
 
+  const onItemsRendered = useCallback(
+    (itemsRendered: GridOnItemsRenderedProps) => {
+      gridItemsRendered.current = itemsRendered;
+      virtualizationOptions?.onItemsRendered?.(itemsRendered);
+    },
+    [gridItemsRendered, virtualizationOptions]
+  );
+
   const itemData = useMemo(() => {
     return {
       schemaDetectors,
@@ -352,10 +362,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<
           'euiDataGrid__virtualized',
           virtualizationOptions?.className
         )}
-        onItemsRendered={(itemsRendered) => {
-          gridItemsRendered.current = itemsRendered;
-          virtualizationOptions?.onItemsRendered?.(itemsRendered);
-        }}
+        onItemsRendered={onItemsRendered}
         innerElementType={InnerElement}
         outerRef={outerGridRef}
         innerRef={innerGridRef}
