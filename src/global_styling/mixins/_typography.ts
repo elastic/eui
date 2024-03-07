@@ -12,8 +12,15 @@ import {
   euiFontSizeFromScale,
   _FontScaleOptions,
 } from '../functions/typography';
-import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
-import { _EuiThemeFontScale } from '../variables/typography';
+import {
+  useEuiMemoizedStyles,
+  useEuiTheme,
+  UseEuiTheme,
+} from '../../services/theme';
+import {
+  _EuiThemeFontScale,
+  EuiThemeFontScales,
+} from '../variables/typography';
 import { logicalCSS } from '../functions';
 
 export type EuiThemeFontSize = {
@@ -39,7 +46,22 @@ export const useEuiFontSize = (
   options?: _FontScaleOptions
 ): EuiThemeFontSize => {
   const euiTheme = useEuiTheme();
-  return euiFontSize(euiTheme, scale, options);
+  const memoizedFontSizes = useEuiMemoizedStyles(euiFontSizes);
+
+  return !options
+    ? memoizedFontSizes[scale]
+    : euiFontSize(euiTheme, scale, options);
+};
+// Memomize a basic set of font sizes. We unfortunately can't
+// memoize all possible options, there's too many permutations
+const euiFontSizes = (euiThemeContext: UseEuiTheme) => {
+  return EuiThemeFontScales.reduce(
+    (map, scale) => ({
+      ...map,
+      [scale]: euiFontSize(euiThemeContext, scale),
+    }),
+    {} as Record<_EuiThemeFontScale, EuiThemeFontSize>
+  );
 };
 
 /**
@@ -71,7 +93,3 @@ export const euiTextTruncate = (
 export const euiNumberFormat = ({ euiTheme }: UseEuiTheme) => `
   font-feature-settings: ${euiTheme.font.featureSettings}, 'tnum' 1;
 `;
-export const useEuiNumberFormat = (): string => {
-  const euiTheme = useEuiTheme();
-  return euiNumberFormat(euiTheme);
-};

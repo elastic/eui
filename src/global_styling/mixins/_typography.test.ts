@@ -8,12 +8,13 @@
 
 import { renderHook } from '@testing-library/react';
 
+import { useEuiTheme } from '../../services';
 import { EuiThemeFontScales, EuiThemeFontUnits } from '../variables/typography';
 import {
   useEuiFontSize,
   euiTextBreakWord,
   euiTextTruncate,
-  useEuiNumberFormat,
+  euiNumberFormat,
 } from './_typography';
 
 describe('euiFontSize', () => {
@@ -66,7 +67,7 @@ describe('euiTextTruncate', () => {
 describe('euiNumberFormat', () => {
   it('returns a string of CSS text', () => {
     expect(
-      renderHook(() => useEuiNumberFormat()).result.current
+      renderHook(() => euiNumberFormat(useEuiTheme())).result.current
     ).toMatchSnapshot();
   });
 });
