@@ -22,7 +22,7 @@ export const useDataGridHeader = (props: EuiDataGridHeaderRowProps) => {
 
   const headerRow = useMemo(() => {
     return <EuiDataGridHeaderRow ref={setHeaderRowRef} {...props} />;
-  }, Object.values(props)); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props]);
 
   return { headerRow, headerRowHeight };
 };
