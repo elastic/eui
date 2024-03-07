@@ -14,22 +14,8 @@ import { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 const meta: Meta<EuiHeaderLinkProps> = {
   title: 'EuiHeaderLink',
   component: EuiHeaderLink,
-  argTypes: {
-    flush: {
-      options: [undefined, 'left', 'right', 'both'],
-    },
-    iconType: { control: 'text' },
-    target: { control: 'text' },
-  },
   // Component defaults
   args: {
-    type: 'button',
-    size: 'm',
-    iconSize: 'm',
-    iconSide: 'left',
-    isDisabled: false,
-    isLoading: false,
-    isSelected: false,
     isActive: false,
   },
 };
