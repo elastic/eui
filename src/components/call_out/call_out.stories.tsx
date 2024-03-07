@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCallOut, EuiCallOutProps } from './call_out';
 
 const meta: Meta<EuiCallOutProps> = {
-  title: 'EuiCallOut',
+  title: 'Display/EuiCallOut',
   component: EuiCallOut,
   argTypes: {
     iconType: { control: 'text' },

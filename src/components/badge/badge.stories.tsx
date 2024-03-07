@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiBadge, EuiBadgeProps } from './badge';
 
 const meta: Meta<EuiBadgeProps> = {
-  title: 'EuiBadge',
+  title: 'Display/EuiBadge',
   component: EuiBadge,
   argTypes: {
     iconType: { control: 'text' },

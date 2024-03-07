@@ -53,7 +53,7 @@ export const _actionsExampleArgType = {
  */
 
 const meta: Meta<EuiCommentProps> = {
-  title: 'EuiComment',
+  title: 'Display/EuiComment',
   component: EuiComment,
   argTypes: {
     eventColor: _eventColorArgType,

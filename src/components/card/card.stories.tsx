@@ -16,7 +16,7 @@ import { EuiIcon } from '../icon';
 import { EuiCard, EuiCardProps } from './card';
 
 const meta: Meta<EuiCardProps> = {
-  title: 'EuiCard',
+  title: 'Display/EuiCard',
   component: EuiCard,
   argTypes: {
     display: { options: [undefined, ...BACKGROUND_COLORS] },
