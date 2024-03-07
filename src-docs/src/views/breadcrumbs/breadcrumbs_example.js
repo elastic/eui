@@ -294,6 +294,14 @@ export const BreadcrumbsExample = {
             accepted as they are controlled automatically by{' '}
             <strong>EuiBreadcrumbs</strong>.
           </p>
+          <p>
+            If you need the ability to close the breadcrumb popover from within
+            your popover content, <EuiCode>popoverContent</EuiCode> accepts a
+            render function that will be passed a{' '}
+            <EuiCode>closePopover</EuiCode> callback, which you can invoke to
+            close the popover. See the Deployment breadcrumb below for example
+            usage.
+          </p>
           <EuiCallOut
             color="warning"
             iconType="accessibility"

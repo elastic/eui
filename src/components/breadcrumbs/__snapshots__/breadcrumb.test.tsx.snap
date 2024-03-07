@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with popovers 1`] = `
+exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverContent\` 1`] = `
 <body>
   <div>
     <div
