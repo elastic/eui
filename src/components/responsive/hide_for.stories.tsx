@@ -21,6 +21,7 @@ type Story = StoryObj<EuiHideForProps>;
 export const Playground: Story = {
   args: {
     sizes: ['xs'],
-    children: 'Hidden message: The quick brown fox jumped over the lazy dog.',
+    children:
+      'Try changing the Storybook viewport, or adding the `l` size, to see how it affects the visibility of this text.',
   },
 };
