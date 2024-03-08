@@ -46,4 +46,21 @@ describe('useDeepEqual', () => {
 
     expect(first).not.toBe(second);
   });
+
+  it('also works for arrays', () => {
+    const { result, rerender } = renderHook(useDeepEqual, {
+      initialProps: ['bar', 'baz'],
+    });
+    const first = result.current;
+
+    rerender(['bar', 'baz']);
+    const second = result.current;
+
+    expect(first).toBe(second);
+
+    rerender(['foo', 'bar', 'baz']);
+    const third = result.current;
+
+    expect(second).not.toBe(third);
+  });
 });

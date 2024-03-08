@@ -10,11 +10,13 @@ import { useRef } from 'react';
 import isEqual from 'lodash/isEqual';
 
 /**
- * This hook is mostly a performance concern for third-party objects that EUI
+ * This hook is mostly a performance concern for third-party objs/arrays that EUI
  * has no control over and may not be correctly memoized (i.e., will create a new
  * reference on every rerender unless passed through this hook).
  */
-export const useDeepEqual = <T = Record<string, any>>(object: T): T => {
+export const useDeepEqual = <T = Record<string, any> | any[] | undefined>(
+  object: T
+): T => {
   const ref = useRef(object);
 
   if (!isEqual(object, ref.current)) {
