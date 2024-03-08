@@ -275,7 +275,30 @@ export const EuiDataGrid = memo(
     /**
      * Focus
      */
-    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus();
+    const {
+      focusProps: wrappingDivFocusProps,
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+    } = useFocus();
+
+    const focusContext = useMemo(() => {
+      return {
+        onFocusUpdate,
+        focusedCell,
+        setFocusedCell,
+        setIsFocusedCellInView,
+        focusFirstVisibleInteractiveCell,
+      };
+    }, [
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+    ]);
 
     /**
      * Cell popover
