@@ -25,6 +25,7 @@ import {
   VariableSizeGridProps,
   GridOnItemsRenderedProps,
 } from 'react-window';
+import { useDeepEqual } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
@@ -46,14 +47,14 @@ import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = memo(
   ({ columnIndex, rowIndex, style, data }) => {
-    const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
-    const cellStyles = useMemo(
-      () => ({
-        ...style,
-        top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-      }),
-      [style, headerRowHeight]
-    );
+    const memoizedStyles = useDeepEqual(style);
+    const cellStyles = useMemo(() => {
+      const { headerRowHeight } = data;
+      return {
+        ...memoizedStyles,
+        top: `${parseFloat(memoizedStyles.top as string) + headerRowHeight}px`,
+      };
+    }, [memoizedStyles, data]);
 
     return (
       <CellWrapper
@@ -88,13 +89,13 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = memo(
       const { headerRowHeight, headerRow, footerRow } = useContext(
         DataGridWrapperRowsContext
       );
-      const innerElementStyles = useMemo(
-        () => ({
-          ...style,
-          height: style.height + headerRowHeight,
-        }),
-        [style, headerRowHeight]
-      );
+      const memoizedStyles = useDeepEqual(style);
+      const innerElementStyles = useMemo(() => {
+        return {
+          ...memoizedStyles,
+          height: memoizedStyles.height + headerRowHeight,
+        };
+      }, [memoizedStyles, headerRowHeight]);
 
       return (
         <>
