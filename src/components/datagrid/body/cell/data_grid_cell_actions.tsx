@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { JSXElementConstructor, useMemo, useCallback } from 'react';
+import React, { JSXElementConstructor, Ref, useMemo, useCallback } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
@@ -24,11 +24,13 @@ import { EuiPopoverFooter } from '../../../popover';
 
 export const EuiDataGridCellActions = ({
   onExpandClick,
+  popoverAnchorRef,
   column,
   rowIndex,
   colIndex,
 }: {
   onExpandClick: () => void;
+  popoverAnchorRef: Ref<HTMLDivElement>;
   column?: EuiDataGridColumn;
   rowIndex: number;
   colIndex: number;
@@ -102,9 +104,15 @@ export const EuiDataGridCellActions = ({
   }, [column, colIndex, rowIndex]);
 
   return (
-    <div className="euiDataGridRowCell__actions">
-      {[...additionalButtons, expandButton]}
-    </div>
+    <>
+      <div className="euiDataGridRowCell__actions">
+        {[...additionalButtons, expandButton]}
+      </div>
+      {/* The cell expansion popover needs a separate div/ref - otherwise the
+          extra popover wrappers mess up the absolute positioning and cause
+          animation stuttering on the cell actions */}
+      <div ref={popoverAnchorRef} data-test-subject="cellPopoverAnchor" />
+    </>
   );
 };
 
