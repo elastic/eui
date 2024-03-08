@@ -12,8 +12,10 @@ Array [
   >
     <div
       aria-label="aria-label"
+      aria-modal="true"
       class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
+      role="dialog"
       tabindex="0"
     >
       <button
@@ -110,8 +112,10 @@ Array [
   >
     <div
       aria-label="aria-label"
+      aria-modal="true"
       class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
+      role="dialog"
       tabindex="0"
     >
       <button
