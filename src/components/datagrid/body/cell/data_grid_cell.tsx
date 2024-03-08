@@ -392,6 +392,7 @@ export class EuiDataGridCell extends Component<
       if (nextProps.style.width !== this.props.style.width) return true;
     }
 
+    if (nextProps.cellContext !== this.props.cellContext) return true;
     if (nextState.cellProps !== this.state.cellProps) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
     if (nextState.isHovered !== this.state.isHovered) return true;
