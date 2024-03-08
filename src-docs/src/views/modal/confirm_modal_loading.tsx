@@ -41,6 +41,7 @@ export default () => {
   if (isModalVisible) {
     modal = (
       <EuiConfirmModal
+        aria-label="EuiModal confirm loading"
         title="Delete the EUI repo?"
         onCancel={closeModal}
         onConfirm={() => {

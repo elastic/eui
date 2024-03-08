@@ -113,7 +113,11 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
+      <EuiModal
+        aria-label="EuiModal form example"
+        onClose={closeModal}
+        initialFocus="[name=popswitch]"
+      >
         <EuiModalHeader>
           <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
         </EuiModalHeader>

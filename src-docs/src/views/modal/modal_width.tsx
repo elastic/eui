@@ -21,7 +21,11 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiModal style={{ width: 800 }} onClose={closeModal}>
+      <EuiModal
+        aria-label="EuiModal modal width"
+        style={{ width: 800 }}
+        onClose={closeModal}
+      >
         <EuiModalHeader>
           <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
         </EuiModalHeader>

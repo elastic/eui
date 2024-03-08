@@ -22,6 +22,7 @@ export default () => {
   if (isModalVisible) {
     modal = (
       <EuiConfirmModal
+        aria-label="EuiModal confirm example"
         style={{ width: 600 }}
         title="Update subscription to Platinum?"
         onCancel={closeModal}
@@ -44,6 +45,7 @@ export default () => {
   if (isDestroyModalVisible) {
     destroyModal = (
       <EuiConfirmModal
+        aria-label="EuiModal confirm example two"
         title="Discard dashboard changes?"
         onCancel={closeDestroyModal}
         onConfirm={closeDestroyModal}
