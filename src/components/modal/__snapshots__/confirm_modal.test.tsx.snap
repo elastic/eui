@@ -15,7 +15,7 @@ Array [
       aria-modal="true"
       class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
-      role="dialog"
+      role="alertdialog"
       tabindex="0"
     >
       <button
@@ -115,7 +115,7 @@ Array [
       aria-modal="true"
       class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
-      role="dialog"
+      role="alertdialog"
       tabindex="0"
     >
       <button
