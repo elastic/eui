@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 import { logicalTextAlignCSS } from '../../global_styling';
 
-export const euiTextAlignStyles = () => ({
+export const euiTextAlignStyles = {
   euiTextAlign: css``,
   left: css`
     ${logicalTextAlignCSS('left')}
@@ -20,4 +20,4 @@ export const euiTextAlignStyles = () => ({
   center: css`
     ${logicalTextAlignCSS('center')}
   `,
-});
+};

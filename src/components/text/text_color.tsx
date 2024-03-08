@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 
 import { CommonProps } from '../common';
-import { useEuiTheme, cloneElementWithCss } from '../../services';
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
 
 import { euiTextColorStyles } from './text_color.styles';
 
@@ -60,8 +60,7 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
 }) => {
   const isNamedColor = COLORS.includes(color as TextColor);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiTextColorStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiTextColorStyles);
   const cssStyles = [
     styles.euiTextColor,
     isNamedColor ? styles[color as TextColor] : styles.customColor,
