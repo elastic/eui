@@ -43,6 +43,11 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
    */
   initialFocus?: HTMLElement | (() => HTMLElement) | string;
+  /**
+   * Identifies a modal dialog to screen readers. Modal dialogs that confirm destructive actions
+   * or need a user's attention should use "alertdialog".
+   */
+  ariaRole?: 'dialog' | 'alertdialog';
 }
 
 export const EuiModal: FunctionComponent<EuiModalProps> = ({
@@ -51,6 +56,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   initialFocus,
   onClose,
   maxWidth = true,
+  ariaRole = 'dialog',
   style,
   ...rest
 }) => {
@@ -88,6 +94,8 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           onKeyDown={onKeyDown}
           tabIndex={0}
           style={newStyle}
+          role={ariaRole}
+          aria-modal={true}
           {...rest}
         >
           <EuiI18n
