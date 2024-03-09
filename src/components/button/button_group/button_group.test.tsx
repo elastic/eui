@@ -281,27 +281,10 @@ describe('EuiButtonGroup', () => {
       );
     });
 
-    it('should automatically add a title attribute with the provided label if no tooltip is provided', () => {
-      const { getByTestSubject } = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          isIconOnly
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-            },
-          ]}
-        />
-      );
-      expect(getByTestSubject('buttonWithTooltip')).toHaveAttribute(
-        'title',
-        'Option 4'
-      );
-    });
+    it('allows consumers to unset the `title` in favor of a tooltip', () => {
+      const reallyLongLabel =
+        'This is a really long label that we know will be truncated, so we show a tooltip instead and hide the title';
 
-    it('should not add a title attribute if a tooltip is provided', () => {
       const { getByTestSubject } = render(
         <EuiButtonGroup
           {...requiredMultiProps}
@@ -310,14 +293,19 @@ describe('EuiButtonGroup', () => {
             ...options,
             {
               id: 'buttonWithTooltip',
-              label: 'Option 4',
-              toolTipContent: 'I am a tooltip',
+              label: reallyLongLabel,
+              toolTipContent: reallyLongLabel,
+              title: undefined,
             },
           ]}
         />
       );
       expect(getByTestSubject('buttonWithTooltip')).not.toHaveAttribute(
         'title'
+      );
+      expect(getByTestSubject('button01')).toHaveAttribute(
+        'title',
+        'Option two'
       );
     });
 

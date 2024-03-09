@@ -48,6 +48,12 @@ export interface EuiButtonGroupOptionProps
    */
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /**
+   * By default, will use the button text for the native browser title.
+   *
+   * This can be either customized or unset via `title: ''` if necessary.
+   */
+  title?: ButtonHTMLAttributes<HTMLButtonElement>['title'];
+  /**
    * Optional custom tooltip content for the button
    */
   toolTipContent?: EuiToolTipProps['content'];

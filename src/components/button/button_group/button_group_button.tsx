@@ -142,7 +142,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
           ref: buttonTextRef,
           'data-text': innerText,
         }}
-        title={toolTipContent ? undefined : innerText}
+        title={innerText}
         data-test-subj={id}
         isSelected={isSelected}
         onClick={onClickOverride}
