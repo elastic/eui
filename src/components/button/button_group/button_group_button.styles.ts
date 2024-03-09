@@ -42,30 +42,24 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const uncompressedBorderRadii = (
     radiusSize: CSSProperties['borderRadius']
   ) => `
-    & > .euiButtonGroupButton {
-      border-radius: 0;
-    }
+    border-radius: 0;
 
-    &:first-child > .euiButtonGroupButton {
+    &:first-child {
       ${logicalShorthandCSS('border-radius', `${radiusSize} 0 0 ${radiusSize}`)}
     }
 
-    &:last-child > .euiButtonGroupButton {
+    &:last-child {
       ${logicalShorthandCSS('border-radius', `0 ${radiusSize} ${radiusSize} 0`)}
     }
   `;
 
   return {
     // Base
-    euiButtonGroupButtonTooltipAnchor: css`
+    euiButtonGroupButton: css`
       /* Allow button to shrink and truncate */
       ${logicalCSS('min-width', 0)}
       flex-shrink: 1;
       flex-grow: 0;
-    `,
-    euiButtonGroupButton: css`
-      ${logicalCSS('width', '100%')}
-      ${logicalCSS('min-width', 0)}
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
@@ -76,53 +70,64 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       padding-inline: ${euiTheme.size.s};
     `,
     // Sizes
-    s: css`
-      ${uncompressedBorderRadii(euiTheme.border.radius.small)}
-    `,
-    m: css`
-      ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
-    `,
-    uncompressed: css`
-      & > .euiButtonGroupButton:is(.euiButtonGroupButton-isSelected) {
-        font-weight: ${euiTheme.font.weight.bold};
-      }
-
-      /* "Borders" between buttons - should be present between two of the same colored buttons,
-         and absent between selected vs non-selected buttons (different colors) */
-
-      &:not(.euiButtonGroupButton__tooltipAnchor-isSelected)
-        + .euiButtonGroupButton__tooltipAnchor:not(
-          .euiButtonGroupButton__tooltipAnchor-isSelected
-        )
-        > .euiButtonGroupButton {
-        box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.fullShade, 0.1)};
-      }
-
-      &:is(.euiButtonGroupButton__tooltipAnchor-isSelected)
-        + .euiButtonGroupButton__tooltipAnchor-isSelected
-        > .euiButtonGroupButton {
-        box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.emptyShade, 0.2)};
-      }
-    `,
-    compressed: css`
-      & > .euiButtonGroupButton {
-        ${logicalCSS('height', compressedButtonHeight)}
-        line-height: ${compressedButtonHeight};
-
-        /* Offset the background color from the border by clipping background to before the padding starts */
-        padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
-        background-clip: content-box;
-        /* Tweak border radius to account for the padding & background-clip */
-        border-radius: ${mathWithUnits(
-          [controlCompressedBorderRadius, euiTheme.border.width.thin],
-          (x, y) => x + y
-        )};
-
-        font-weight: ${euiTheme.font.weight.regular};
-
+    uncompressed: {
+      uncompressed: css`
         &:is(.euiButtonGroupButton-isSelected) {
-          font-weight: ${euiTheme.font.weight.semiBold};
+          font-weight: ${euiTheme.font.weight.bold};
         }
+      `,
+      get borders() {
+        const selectors =
+          '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
+        const selectedColor = transparentize(euiTheme.colors.emptyShade, 0.2);
+        const unselectedColor = transparentize(euiTheme.colors.fullShade, 0.1);
+        const borderWidth = euiTheme.border.width.thin;
+
+        // "Borders" between buttons should be present between two of the same colored buttons,
+        // and absent between selected vs non-selected buttons (different colors)
+        return `
+          &:not(${selectors}) + *:not(${selectors}) {
+            box-shadow: -${borderWidth} 0 0 0 ${unselectedColor};
+          }
+          &:is(${selectors}) + *:is(${selectors}) {
+            box-shadow: -${borderWidth} 0 0 0 ${selectedColor};
+          }
+        `;
+      },
+      get s() {
+        return css`
+          ${this.borders}
+          ${uncompressedBorderRadii(euiTheme.border.radius.small)}
+        `;
+      },
+      get m() {
+        return css`
+          ${this.borders}
+          ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
+        `;
+      },
+      hasToolTip: css`
+        /* Set the border-radius on the tooltip anchor element instead and inherit from that */
+        border-radius: inherit;
+      `,
+    },
+    compressed: css`
+      ${logicalCSS('height', compressedButtonHeight)}
+      line-height: ${compressedButtonHeight};
+
+      /* Offset the background color from the border by clipping background to before the padding starts */
+      padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
+      background-clip: content-box;
+      /* Tweak border radius to account for the padding & background-clip */
+      border-radius: ${mathWithUnits(
+        [controlCompressedBorderRadius, euiTheme.border.width.thin],
+        (x, y) => x + y
+      )};
+
+      font-weight: ${euiTheme.font.weight.regular};
+
+      &:is(.euiButtonGroupButton-isSelected) {
+        font-weight: ${euiTheme.font.weight.semiBold};
       }
     `,
     // States
@@ -131,6 +136,11 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.colors.disabled
       )};
       background-color: ${euiTheme.colors.disabled};
+    `,
+    // Tooltip anchor wrapper
+    tooltipWrapper: css`
+      /* Without this on the tooltip anchor, button text truncation doesn't work */
+      overflow: hidden;
     `,
     // Content wrapper
     content: {

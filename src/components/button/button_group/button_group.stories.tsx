@@ -36,9 +36,6 @@ const meta: Meta<EuiButtonGroupProps> = {
     options: {
       control: 'array',
     },
-    buttonSize: {
-      control: 'select',
-    },
   },
   args: {
     // Component defaults
@@ -109,7 +106,6 @@ const EuiButtonGroupMulti = (props: any) => {
     <EuiButtonGroup
       type="multi"
       {...props}
-      options={options}
       onChange={onChange}
       idToSelectedMap={idToSelectedMap}
     />
@@ -121,6 +117,37 @@ export const MultiSelection: Story = {
   args: {
     legend: 'EuiButtonGroup - multiple selections',
     options,
+    type: 'multi',
+    idToSelectedMap: { button1: true },
+  },
+  argTypes: disableStorybookControls(['type']),
+};
+
+export const WithToolTips: Story = {
+  render: ({ ...args }) => <EuiButtonGroupMulti {...args} />,
+  args: {
+    legend: 'EuiButtonGroup - tooltip UI testing',
+    options: [
+      {
+        id: 'button1',
+        label: 'No tooltip',
+      },
+      {
+        id: 'button2',
+        label: 'Standard tooltip',
+        toolTipContent: 'Hello world',
+      },
+      {
+        id: 'button3',
+        label: 'Custom tooltip',
+        toolTipContent: 'Short delay and custom tooltip position',
+        toolTipProps: {
+          position: 'right',
+          delay: 'regular',
+          title: 'Hello world',
+        },
+      },
+    ],
     type: 'multi',
     idToSelectedMap: { button1: true },
   },

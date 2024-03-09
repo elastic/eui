@@ -7,7 +7,13 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, MouseEventHandler, useRef } from 'react';
+import React, {
+  FunctionComponent,
+  MouseEventHandler,
+  ReactElement,
+  useRef,
+} from 'react';
+import { CSSInterpolation } from '@emotion/css';
 
 import { useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
@@ -34,7 +40,7 @@ type Props = EuiButtonGroupOptionProps & {
   /**
    * Inherit from EuiButtonGroup
    */
-  size: EuiButtonGroupProps['buttonSize'];
+  size: NonNullable<EuiButtonGroupProps['buttonSize']>;
   /**
    * Inherit from EuiButtonGroup
    */
@@ -63,6 +69,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
   const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
+  const hasToolTip = !!toolTipContent;
 
   const euiTheme = useEuiTheme();
   const buttonColorStyles = useEuiButtonColorCSS({ display })[color];
@@ -74,8 +81,15 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   const cssStyles = [
     styles.euiButtonGroupButton,
     isIconOnly && styles.iconOnly,
+    !isCompressed &&
+      (hasToolTip ? styles.uncompressed.hasToolTip : styles.uncompressed[size]),
+    isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
     !isDisabled && focusColorStyles,
+  ];
+  const tooltipWrapperStyles = [
+    styles.tooltipWrapper,
+    !isCompressed && styles.uncompressed[size],
   ];
   const contentStyles = [
     styles.content.euiButtonGroupButton__content,
@@ -111,28 +125,11 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   };
 
   return (
-    <EuiToolTip
-      ref={toolTipRef}
-      content={toolTipContent}
-      delay="long"
-      position="top"
-      {...toolTipProps}
-      anchorProps={{
-        ...toolTipProps?.anchorProps,
-        className: classNames(
-          'euiButtonGroupButton__tooltipAnchor',
-          {
-            'euiButtonGroupButton__tooltipAnchor-isSelected': isSelected,
-          },
-          toolTipProps?.anchorProps?.className
-        ),
-        css: [
-          styles.euiButtonGroupButtonTooltipAnchor,
-          styles[size!],
-          !isCompressed && styles.uncompressed,
-          toolTipProps?.anchorProps?.css,
-        ],
-      }}
+    <EuiButtonGroupButtonWithToolTip
+      toolTipContent={toolTipContent}
+      toolTipProps={toolTipProps}
+      wrapperCss={tooltipWrapperStyles}
+      isSelected={isSelected}
     >
       <EuiButtonDisplay
         css={cssStyles}
@@ -153,6 +150,36 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       >
         {label}
       </EuiButtonDisplay>
+    </EuiButtonGroupButtonWithToolTip>
+  );
+};
+
+const EuiButtonGroupButtonWithToolTip: FunctionComponent<
+  Pick<Props, 'toolTipContent' | 'toolTipProps'> & {
+    children: ReactElement;
+    wrapperCss: CSSInterpolation;
+    isSelected: boolean;
+  }
+> = ({ toolTipContent, toolTipProps, wrapperCss, isSelected, children }) => {
+  return toolTipContent ? (
+    <EuiToolTip
+      content={toolTipContent}
+      delay="long"
+      position="top"
+      {...toolTipProps}
+      anchorProps={{
+        ...toolTipProps?.anchorProps,
+        className: classNames(
+          'euiButtonGroup__tooltipWrapper',
+          { 'euiButtonGroup__tooltipWrapper-isSelected': isSelected },
+          toolTipProps?.anchorProps?.className
+        ),
+        css: [wrapperCss, toolTipProps?.anchorProps?.css],
+      }}
+    >
+      {children}
     </EuiToolTip>
+  ) : (
+    children
   );
 };

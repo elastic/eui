@@ -87,50 +87,42 @@ exports[`EuiDataGridColumnSortingDraggable [React 16] renders an EuiDraggable co
           <div
             class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
           >
-            <span
-              class="euiToolTipAnchor euiButtonGroupButton__tooltipAnchor euiButtonGroupButton__tooltipAnchor-isSelected emotion-euiToolTipAnchor-inlineBlock-euiButtonGroupButtonTooltipAnchor-compressed"
+            <button
+              aria-pressed="true"
+              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+              data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+              title="Low-High"
+              type="button"
             >
-              <button
-                aria-pressed="true"
-                class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
-                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                title="Low-High"
-                type="button"
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="Low-High"
                 >
-                  <span
-                    class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                    data-text="Low-High"
-                  >
-                    Low-High
-                  </span>
+                  Low-High
                 </span>
-              </button>
-            </span>
-            <span
-              class="euiToolTipAnchor euiButtonGroupButton__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock-euiButtonGroupButtonTooltipAnchor-compressed"
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+              data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+              title="High-Low"
+              type="button"
             >
-              <button
-                aria-pressed="false"
-                class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
-                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                title="High-Low"
-                type="button"
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="High-Low"
                 >
-                  <span
-                    class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                    data-text="High-Low"
-                  >
-                    High-Low
-                  </span>
+                  High-Low
                 </span>
-              </button>
-            </span>
+              </span>
+            </button>
           </div>
         </fieldset>
       </div>
@@ -241,50 +233,42 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
           <div
             class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
           >
-            <span
-              class="euiToolTipAnchor euiButtonGroupButton__tooltipAnchor euiButtonGroupButton__tooltipAnchor-isSelected emotion-euiToolTipAnchor-inlineBlock-euiButtonGroupButtonTooltipAnchor-compressed"
+            <button
+              aria-pressed="true"
+              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+              data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+              title="Low-High"
+              type="button"
             >
-              <button
-                aria-pressed="true"
-                class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
-                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                title="Low-High"
-                type="button"
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="Low-High"
                 >
-                  <span
-                    class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                    data-text="Low-High"
-                  >
-                    Low-High
-                  </span>
+                  Low-High
                 </span>
-              </button>
-            </span>
-            <span
-              class="euiToolTipAnchor euiButtonGroupButton__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock-euiButtonGroupButtonTooltipAnchor-compressed"
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+              data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+              title="High-Low"
+              type="button"
             >
-              <button
-                aria-pressed="false"
-                class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
-                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                title="High-Low"
-                type="button"
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="High-Low"
                 >
-                  <span
-                    class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                    data-text="High-Low"
-                  >
-                    High-Low
-                  </span>
+                  High-Low
                 </span>
-              </button>
-            </span>
+              </span>
+            </button>
           </div>
         </fieldset>
       </div>
@@ -395,50 +379,42 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
           <div
             class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
           >
-            <span
-              class="euiToolTipAnchor euiButtonGroupButton__tooltipAnchor euiButtonGroupButton__tooltipAnchor-isSelected emotion-euiToolTipAnchor-inlineBlock-euiButtonGroupButtonTooltipAnchor-compressed"
+            <button
+              aria-pressed="true"
+              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+              data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+              title="Low-High"
+              type="button"
             >
-              <button
-                aria-pressed="true"
-                class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-fill-text"
-                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                title="Low-High"
-                type="button"
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="Low-High"
                 >
-                  <span
-                    class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                    data-text="Low-High"
-                  >
-                    Low-High
-                  </span>
+                  Low-High
                 </span>
-              </button>
-            </span>
-            <span
-              class="euiToolTipAnchor euiButtonGroupButton__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock-euiButtonGroupButtonTooltipAnchor-compressed"
+              </span>
+            </button>
+            <button
+              aria-pressed="false"
+              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+              data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+              title="High-Low"
+              type="button"
             >
-              <button
-                aria-pressed="false"
-                class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-empty-text"
-                data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                title="High-Low"
-                type="button"
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
               >
                 <span
-                  class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="High-Low"
                 >
-                  <span
-                    class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                    data-text="High-Low"
-                  >
-                    High-Low
-                  </span>
+                  High-Low
                 </span>
-              </button>
-            </span>
+              </span>
+            </button>
           </div>
         </fieldset>
       </div>
