@@ -675,7 +675,7 @@ export const ButtonExample = {
       ],
       text: (
         <>
-          <h3>Icon only button groups</h3>
+          <h3 id="buttonGroup-isIconOnly">Icon only button groups</h3>
           <p>
             If you&apos;re just displaying a group of icons, add the prop{' '}
             <EuiCode>isIconOnly</EuiCode>.
@@ -694,10 +694,9 @@ export const ButtonExample = {
           code: buttonGroupCompressedSource,
         },
       ],
-
       text: (
         <>
-          <h3>Button groups in forms</h3>
+          <h3 id="buttonGroup-compressed">Button groups in forms</h3>
           <p>
             When using button groups within compressed forms, match the form
             elements by adding <EuiCode>{'buttonSize="compressed"'}</EuiCode>.
@@ -726,29 +725,30 @@ export const ButtonExample = {
           code: buttonGroupToolTipsSource,
         },
       ],
-
       text: (
         <>
-          <h3>Button group tooltips</h3>
+          <h3 id="buttonGroup-toolTipContent">Button group tooltips</h3>
           <p>
-            Buttons within a button group will automatically get a{' '}
-            <EuiCode>title</EuiCode> attribute containing the button{' '}
-            <EuiCode>label</EuiCode>, which displays a default browser tooltip.
+            Buttons within a button group will automatically display a default
+            browser tooltip containing the button <EuiCode>label</EuiCode> text.
+            This can be customized or unset via the <EuiCode>title</EuiCode>{' '}
+            property in your <EuiCode>options</EuiCode> button configuration.
           </p>
           <p>
-            To instead display an <EuiCode>EuiToolTip</EuiCode> containing
-            custom content, you can add a <EuiCode>toolTipContent</EuiCode> prop
-            to the button options.
-          </p>
-          <p>
-            You can also use <EuiCode>toolTipProps</EuiCode> to customize
-            tooltip placement, title, and other behaviors.
+            To instead display an <EuiCode>EuiToolTip</EuiCode> around your
+            button(s), pass the <EuiCode>toolTipContent</EuiCode> property. You
+            can also use <EuiCode>toolTipProps</EuiCode> to customize tooltip
+            placement, title, and any other prop that{' '}
+            <Link to="/#/display/tooltip">
+              <strong>EuiToolTip</strong>
+            </Link>{' '}
+            accepts.
           </p>
         </>
       ),
       demo: <ButtonGroupToolTips />,
       snippet: buttonGroupToolTipsSnippet,
-      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      props: { EuiButtonGroupOptionProps },
     },
   ],
   guidelines: <Guidelines />,
