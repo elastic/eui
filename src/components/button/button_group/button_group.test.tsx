@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
+import { act, fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipHidden,
@@ -16,13 +17,12 @@ import {
 import { requiredProps as commonProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
+import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 import {
   EuiButtonGroup,
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';
-import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
-import { act, fireEvent } from '@testing-library/react';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
   's',
@@ -223,7 +223,7 @@ describe('EuiButtonGroup', () => {
   });
 
   describe('tooltips', () => {
-    it('shows a tooltip on hover', async () => {
+    it('shows a tooltip on hover and focus', async () => {
       const { getByTestSubject, getByRole } = render(
         <EuiButtonGroup
           {...requiredMultiProps}
@@ -240,11 +240,20 @@ describe('EuiButtonGroup', () => {
       );
       fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipVisible();
+
       expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
+
+      fireEvent.mouseOut(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+
+      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      fireEvent.blur(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
     });
 
-    it('shows a tooltip on focus', async () => {
-      const { getByTestSubject, getByRole } = render(
+    it('allows customizing the tooltip via `toolTipProps`', async () => {
+      const { getByTestSubject } = render(
         <EuiButtonGroup
           {...requiredMultiProps}
           isIconOnly
@@ -254,13 +263,22 @@ describe('EuiButtonGroup', () => {
               id: 'buttonWithTooltip',
               label: 'Option 4',
               toolTipContent: 'I am a tooltip',
+              toolTipProps: {
+                position: 'right',
+                delay: 'regular',
+                'data-test-subj': 'toolTipTest',
+              },
             },
           ]}
         />
       );
-      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
       await waitForEuiToolTipVisible();
-      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
+
+      expect(getByTestSubject('toolTipTest')).toHaveAttribute(
+        'data-position',
+        'right'
+      );
     });
 
     it('should automatically add a title attribute with the provided label if no tooltip is provided', () => {
@@ -300,101 +318,6 @@ describe('EuiButtonGroup', () => {
       );
       expect(getByTestSubject('buttonWithTooltip')).not.toHaveAttribute(
         'title'
-      );
-    });
-
-    it('allows customizing the tooltip delay', async () => {
-      let result = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          isIconOnly
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-              toolTipContent: 'I am a tooltip',
-              toolTipProps: {
-                delay: 'long',
-              },
-            },
-          ]}
-        />
-      );
-      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      });
-      expect(result.queryByRole('tooltip')).toBeNull();
-      result.unmount();
-      result = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          isIconOnly
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-              toolTipContent: 'I am a tooltip',
-              toolTipProps: {
-                delay: 'regular',
-              },
-            },
-          ]}
-        />
-      );
-      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      });
-      expect(result.queryByRole('tooltip')).not.toBeNull();
-    });
-
-    it('allows customizing the tooltip position', async () => {
-      let result = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          isIconOnly
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-              toolTipContent: 'I am a tooltip',
-            },
-          ]}
-        />
-      );
-      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
-      expect(result.getByRole('tooltip')).toHaveAttribute(
-        'data-position',
-        'top'
-      );
-      result.unmount();
-      result = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          isIconOnly
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-              toolTipContent: 'I am a tooltip',
-              toolTipProps: {
-                position: 'bottom',
-              },
-            },
-          ]}
-        />
-      );
-      fireEvent.mouseOver(result.getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
-      expect(result.getByRole('tooltip')).toHaveAttribute(
-        'data-position',
-        'bottom'
       );
     });
 

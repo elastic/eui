@@ -48,11 +48,11 @@ export interface EuiButtonGroupOptionProps
    */
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /**
-   * Custom tooltip content for the button
+   * Optional custom tooltip content for the button
    */
   toolTipContent?: EuiToolTipProps['content'];
   /**
-   * Custom tooltip props for the button
+   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
    */
   toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
