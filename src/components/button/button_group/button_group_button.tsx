@@ -11,7 +11,6 @@ import React, {
   FunctionComponent,
   MouseEventHandler,
   ReactElement,
-  useRef,
 } from 'react';
 import { CSSInterpolation } from '@emotion/css';
 
@@ -63,7 +62,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   color: _color = 'primary',
   toolTipContent,
   toolTipProps,
-  onClick,
   ...rest
 }) => {
   const isCompressed = size === 'compressed';
@@ -116,13 +114,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
    * the base width of the button via the `euiTextShift()` method in SASS.
    */
   const [buttonTextRef, innerText] = useInnerText();
-  const toolTipRef = useRef<EuiToolTip>(null);
-
-  const onClickOverride: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    // Blur the tooltip so it doesn't stick around after click until rehovered/refocused
-    toolTipRef.current?.onBlur();
-    onClick(e);
-  };
 
   return (
     <EuiButtonGroupButtonWithToolTip
@@ -145,7 +136,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         title={innerText}
         data-test-subj={id}
         isSelected={isSelected}
-        onClick={onClickOverride}
         {...rest}
       >
         {label}

@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { act, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipHidden,
@@ -307,39 +307,6 @@ describe('EuiButtonGroup', () => {
         'title',
         'Option two'
       );
-    });
-
-    it('hides the tooltip on click until rehovered/refocused', async () => {
-      const { getByTestSubject, queryByRole } = render(
-        <EuiButtonGroup
-          {...requiredMultiProps}
-          isIconOnly
-          options={[
-            ...options,
-            {
-              id: 'buttonWithTooltip',
-              label: 'Option 4',
-              toolTipContent: 'I am a tooltip',
-            },
-          ]}
-        />
-      );
-      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
-      fireEvent.click(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipHidden();
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      });
-      expect(queryByRole('tooltip')).toBeNull();
-      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipVisible();
-      fireEvent.click(getByTestSubject('buttonWithTooltip'));
-      await waitForEuiToolTipHidden();
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      });
-      expect(queryByRole('tooltip')).toBeNull();
     });
   });
 });
