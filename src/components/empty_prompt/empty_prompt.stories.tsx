@@ -19,7 +19,7 @@ import { EuiPageTemplate } from '../page_template';
 import { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
 
 const meta: Meta<EuiEmptyPromptProps> = {
-  title: 'Templates/EuiEmptyPrompt',
+  title: 'Layout/EuiEmptyPrompt',
   component: EuiEmptyPrompt,
   args: {
     // Component defaults

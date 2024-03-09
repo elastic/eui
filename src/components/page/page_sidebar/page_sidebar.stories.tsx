@@ -17,7 +17,7 @@ import { EuiPage } from '../page';
 import { EuiPageSidebar, EuiPageSidebarProps } from './page_sidebar';
 
 const meta: Meta<EuiPageSidebarProps> = {
-  title: 'Templates/EuiPageSidebar',
+  title: 'Layout/EuiPageSidebar',
   component: EuiPageSidebar,
   parameters: {
     layout: 'fullscreen',
