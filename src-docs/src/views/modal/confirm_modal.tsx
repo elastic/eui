@@ -18,13 +18,15 @@ export default () => {
   const showDestroyModal = () => setIsDestroyModalVisible(true);
 
   let modal;
+  const confirmTitleProps = { id: 'euiModal-confirmModalExample' };
 
   if (isModalVisible) {
     modal = (
       <EuiConfirmModal
-        aria-label="EuiModal confirm example"
+        aria-labelledby="euiModal-confirmModalExample"
         style={{ width: 600 }}
         title="Update subscription to Platinum?"
+        titleProps={confirmTitleProps}
         onCancel={closeModal}
         onConfirm={closeModal}
         cancelButtonText="Cancel"
@@ -41,12 +43,14 @@ export default () => {
   }
 
   let destroyModal;
+  const destroyTitleProps = { id: 'euiModal-destroyModalExample' };
 
   if (isDestroyModalVisible) {
     destroyModal = (
       <EuiConfirmModal
-        aria-label="EuiModal confirm example two"
+        aria-labelledby="euiModal-destroyModalExample"
         title="Discard dashboard changes?"
+        titleProps={destroyTitleProps}
         onCancel={closeDestroyModal}
         onConfirm={closeDestroyModal}
         cancelButtonText="Keep editing"

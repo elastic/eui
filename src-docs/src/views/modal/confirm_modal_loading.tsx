@@ -37,12 +37,14 @@ export default () => {
   };
 
   let modal;
+  const confirmTitleProps = { id: 'euiModal-confirmLoadingExample' };
 
   if (isModalVisible) {
     modal = (
       <EuiConfirmModal
-        aria-label="EuiModal confirm loading"
+        aria-labelledby="euiModal-confirmLoadingExample"
         title="Delete the EUI repo?"
+        titleProps={confirmTitleProps}
         onCancel={closeModal}
         onConfirm={() => {
           closeModal();

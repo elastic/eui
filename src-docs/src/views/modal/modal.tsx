@@ -21,9 +21,11 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiModal aria-label="EuiModal example" onClose={closeModal}>
+      <EuiModal aria-labelledby="euiModal-example" onClose={closeModal}>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle id="euiModal-example">
+            Modal title
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>
