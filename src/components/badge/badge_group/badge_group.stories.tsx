@@ -13,7 +13,7 @@ import { EuiBadge } from '../badge';
 import { EuiBadgeGroup, EuiBadgeGroupProps } from './badge_group';
 
 const meta: Meta<EuiBadgeGroupProps> = {
-  title: 'Display/EuiBadgeGroup',
+  title: 'Display/EuiBadge/EuiBadgeGroup',
   component: EuiBadgeGroup,
   args: {
     // Component defaults

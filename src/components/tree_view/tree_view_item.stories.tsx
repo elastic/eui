@@ -15,7 +15,7 @@ import { EuiTreeView } from './tree_view';
 import type { EuiTreeViewItemProps } from './tree_view_item';
 
 const meta: Meta<EuiTreeViewItemProps> = {
-  title: 'Navigation/EuiTreeView.Item',
+  title: 'Navigation/EuiTreeView/EuiTreeView.Item',
   component: EuiTreeView.Item,
   args: {
     // Component defaults

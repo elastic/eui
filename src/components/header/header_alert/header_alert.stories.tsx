@@ -38,7 +38,7 @@ import {
 import { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
 
 const meta: Meta<EuiHeaderAlertProps> = {
-  title: 'Layout/EuiHeaderAlert',
+  title: 'Layout/EuiHeader/EuiHeaderAlert',
   component: EuiHeaderAlert,
   args: {
     // Not default props, set for demo purposes

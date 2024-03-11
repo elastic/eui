@@ -15,7 +15,7 @@ import {
 } from './context_menu_item';
 
 const meta: Meta<EuiContextMenuItemProps> = {
-  title: 'Navigation/EuiContextMenuItem',
+  title: 'Navigation/EuiContextMenu/EuiContextMenuItem',
   component: EuiContextMenuItem,
   argTypes: {
     ...disableStorybookControls(['buttonRef']),

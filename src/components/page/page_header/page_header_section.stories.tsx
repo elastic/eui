@@ -17,7 +17,7 @@ import {
 } from '../page_header';
 
 const meta: Meta<EuiPageHeaderSectionProps> = {
-  title: 'Layout/EuiPageHeaderSection',
+  title: 'Layout/EuiPage/EuiPageHeader/EuiPageHeaderSection',
   component: EuiPageHeaderSection,
 };
 

@@ -17,7 +17,7 @@ import {
 } from './context_menu_panel';
 
 const meta: Meta<EuiContextMenuPanelProps> = {
-  title: 'Navigation/EuiContextMenuPanel',
+  title: 'Navigation/EuiContextMenu/EuiContextMenuPanel',
   component: EuiContextMenuPanel,
   args: {
     // Component defaults

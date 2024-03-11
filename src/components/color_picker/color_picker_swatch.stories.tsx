@@ -14,7 +14,7 @@ import {
 } from './color_picker_swatch';
 
 const meta: Meta<EuiColorPickerSwatchProps> = {
-  title: 'Forms/EuiColorPickerSwatch',
+  title: 'Forms/EuiColorPicker/EuiColorPickerSwatch',
   component: EuiColorPickerSwatch,
 };
 

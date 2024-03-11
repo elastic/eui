@@ -12,7 +12,7 @@ import { _eventColorArgType, _actionsExampleArgType } from './comment.stories';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 
 const meta: Meta<EuiCommentEventProps> = {
-  title: 'Display/EuiCommentEvent',
+  title: 'Display/EuiComment/EuiCommentEvent',
   component: EuiCommentEvent,
   args: {
     username: 'janed',

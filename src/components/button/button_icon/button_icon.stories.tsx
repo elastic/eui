@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiButtonIcon, EuiButtonIconProps } from './button_icon';
 
 const meta: Meta<EuiButtonIconProps> = {
-  title: 'Navigation/EuiButtonIcon',
+  title: 'Navigation/EuiButton/EuiButtonIcon',
   component: EuiButtonIcon,
   args: {
     // Component defaults

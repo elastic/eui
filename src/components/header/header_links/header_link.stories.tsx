@@ -12,7 +12,7 @@ import { disableStorybookControls } from '../../../../.storybook/utils';
 import { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 
 const meta: Meta<EuiHeaderLinkProps> = {
-  title: 'EuiHeaderLink',
+  title: 'Layout/EuiHeader/EuiHeaderLink',
   component: EuiHeaderLink,
   // Component defaults
   args: {

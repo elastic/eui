@@ -14,7 +14,7 @@ import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody, EuiFlyoutBodyProps } from './flyout_body';
 
 const meta: Meta<EuiFlyoutBodyProps> = {
-  title: 'Layout/EuiFlyoutBody',
+  title: 'Layout/EuiFlyout/EuiFlyoutBody',
   component: EuiFlyoutBody,
   argTypes: {
     // TODO: editable banner JSX

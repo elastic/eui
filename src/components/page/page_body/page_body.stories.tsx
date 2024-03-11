@@ -16,7 +16,7 @@ import { EuiPage } from '../page';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 
 const meta: Meta<EuiPageBodyProps & Pick<EuiPanelProps, 'borderRadius'>> = {
-  title: 'Layout/EuiPageBody',
+  title: 'Layout/EuiPage/EuiPageBody',
   component: EuiPageBody,
   argTypes: {
     borderRadius: { control: 'radio', options: BORDER_RADII },

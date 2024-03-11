@@ -15,7 +15,7 @@ import { EuiHeaderLink } from './header_link';
 import { EuiHeaderLinks, EuiHeaderLinksProps } from './header_links';
 
 const meta: Meta<EuiHeaderLinksProps> = {
-  title: 'Layout/EuiHeaderLinks',
+  title: 'Layout/EuiHeader/EuiHeaderLinks',
   component: EuiHeaderLinks,
   args: {
     // Component defaults
