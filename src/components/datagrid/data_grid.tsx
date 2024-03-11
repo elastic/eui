@@ -36,7 +36,7 @@ import {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
-import { DataGridSortingContext, useSorting } from './utils/sorting';
+import { DataGridSortedContext, useSorting } from './utils/sorting';
 import {
   DataGridFocusContext,
   useFocus,
@@ -263,7 +263,7 @@ export const EuiDataGrid = memo(
       displayValues
     );
 
-    const sortingContext = useSorting({
+    const sortedContext = useSorting({
       sorting,
       inMemory,
       inMemoryValues,
@@ -328,7 +328,7 @@ export const EuiDataGrid = memo(
       setIsFullScreen,
       focusContext,
       cellPopoverContext,
-      sortingContext,
+      sortedContext,
       pagination,
       rowCount,
       visibleColCount,
@@ -426,7 +426,7 @@ export const EuiDataGrid = memo(
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
-          <DataGridSortingContext.Provider value={sortingContext}>
+          <DataGridSortedContext.Provider value={sortedContext}>
             <EuiFocusTrap
               disabled={!isFullScreen}
               className="euiDataGrid__focusWrap"
@@ -488,6 +488,7 @@ export const EuiDataGrid = memo(
                     switchColumnPos={switchColumnPos}
                     onColumnResize={onColumnResize}
                     schemaDetectors={allSchemaDetectors}
+                    sorting={sorting}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
                     cellContext={cellContext}
@@ -531,7 +532,7 @@ export const EuiDataGrid = memo(
                 </p>
               </div>
             </EuiFocusTrap>
-          </DataGridSortingContext.Provider>
+          </DataGridSortedContext.Provider>
           {cellPopover}
         </DataGridCellPopoverContext.Provider>
       </DataGridFocusContext.Provider>

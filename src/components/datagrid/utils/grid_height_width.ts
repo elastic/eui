@@ -18,7 +18,7 @@ import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 import { RowHeightUtilsType } from './row_heights';
-import { DataGridSortingContext } from './sorting';
+import { DataGridSortedContext } from './sorting';
 
 export const useFinalGridDimensions = ({
   unconstrainedHeight,
@@ -112,7 +112,7 @@ export const useUnconstrainedHeight = ({
   scrollBarHeight: number;
   innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
-  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+  const { getCorrectRowIndex } = useContext(DataGridSortedContext);
   // watch the inner element for a change to its width
   // which may cause the horizontal scrollbar to be added or removed
   const { width: innerWidth } = useResizeObserver(

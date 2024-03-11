@@ -15,7 +15,7 @@ import {
   EuiDataGridHeaderRowProps,
   EuiDataGridSchemaDetector,
 } from '../../data_grid_types';
-import { DataGridSortingContext } from '../../utils/sorting';
+import { DataGridSortedContext } from '../../utils/sorting';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 
 import { EuiDataGridCell } from './data_grid_cell';
@@ -78,7 +78,7 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
     ...rest
   }) => {
     const popoverContext = useContext(DataGridCellPopoverContext);
-    const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+    const { getCorrectRowIndex } = useContext(DataGridSortedContext);
 
     const isFirstColumn = colIndex === 0;
     const isLastColumn = colIndex === visibleColCount - 1;
