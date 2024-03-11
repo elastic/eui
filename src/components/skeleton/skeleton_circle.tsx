@@ -9,8 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 
 import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
 import { euiSkeletonCircleStyles } from './skeleton_circle.styles';
@@ -36,8 +36,7 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
   children,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiSkeletonCircleStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiSkeletonCircleStyles);
   const cssStyles = [styles.euiSkeletonCircle, styles[size]];
 
   return (

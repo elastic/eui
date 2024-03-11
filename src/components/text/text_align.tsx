@@ -14,7 +14,7 @@ import React, {
 import { CommonProps } from '../common';
 import { cloneElementWithCss } from '../../services';
 
-import { euiTextAlignStyles } from './text_align.styles';
+import { euiTextAlignStyles as styles } from './text_align.styles';
 
 export const ALIGNMENTS = ['left', 'right', 'center'] as const;
 export type TextAlignment = (typeof ALIGNMENTS)[number];
@@ -35,7 +35,6 @@ export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   cloneElement = false,
   ...rest
 }) => {
-  const styles = euiTextAlignStyles();
   const cssStyles = [styles.euiTextAlign, styles[textAlign]];
 
   const props = { css: cssStyles, ...rest };

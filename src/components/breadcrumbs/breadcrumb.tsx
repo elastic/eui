@@ -56,12 +56,14 @@ export type EuiBreadcrumbProps = Omit<
      */
     'aria-current'?: AriaAttributes['aria-current'];
     /**
-     * Creates a breadcrumb that toggles a popover dialog
+     * Creates a breadcrumb that toggles a popover dialog. Takes any rendered node(s),
+     * or a render function that will pass callback allowing you to close the
+     * breadcrumb popover from within your popover content.
      *
      * If passed, both `href` and `onClick` will be ignored - the breadcrumb's
      * click behavior should only trigger a popover.
      */
-    popoverContent?: ReactNode;
+    popoverContent?: ReactNode | ((closePopover: () => void) => ReactNode);
     /**
      * Allows customizing the popover if necessary. Accepts any props that
      * [EuiPopover](/#/layout/popover) accepts, except for props that control state.
@@ -166,11 +168,12 @@ export const EuiBreadcrumbContent: FunctionComponent<
         const styleProps = { className: classes, css: cssStyles };
 
         if (isPopoverBreadcrumb) {
+          const closePopover = () => setIsPopoverOpen(false);
           return (
             <EuiPopover
               {...popoverProps}
               isOpen={isPopoverOpen}
-              closePopover={() => setIsPopoverOpen(false)}
+              closePopover={closePopover}
               css={!isLastBreadcrumb && styles.euiBreadcrumb__popoverWrapper}
               button={
                 <EuiLink
@@ -190,7 +193,9 @@ export const EuiBreadcrumbContent: FunctionComponent<
                 </EuiLink>
               }
             >
-              {popoverContent}
+              {typeof popoverContent === 'function'
+                ? popoverContent(closePopover)
+                : popoverContent}
             </EuiPopover>
           );
         } else if (isInteractiveBreadcrumb) {

@@ -1,3 +1,14 @@
+## [`v93.3.0`](https://github.com/elastic/eui/releases/v93.3.0)
+
+- Added new `EuiDataGrid` new prop: `cellContext`, an optional object of additional props passed to the cell render function. ([#7374](https://github.com/elastic/eui/pull/7374))
+- `EuiBreadcrumbs`'s `popoverContent` API now accepts a render function that will be passed a `closePopover` callback, allowing consumers to close the breadcrumb popover from their popover content ([#7555](https://github.com/elastic/eui/pull/7555))
+
+**Bug fixes**
+
+- Fixed missing animation on native `EuiProgress` bar update ([#7538](https://github.com/elastic/eui/pull/7538))
+- Fixed an `EuiDataGrid` bug with `gridStyle.rowClasses`, where custom consumer classes that began with `euiDataGridRow` would not be correctly removed/reapplied ([#7549](https://github.com/elastic/eui/pull/7549))
+- Fixed a visual `EuiDataGrid` bug where `EuiCheckbox`es within control columns were not vertically centered within single height rows ([#7549](https://github.com/elastic/eui/pull/7549))
+
 ## [`v93.2.0`](https://github.com/elastic/eui/releases/v93.2.0)
 
 - Added `diff` glyph to `EuiIcon` ([#7520](https://github.com/elastic/eui/pull/7520))

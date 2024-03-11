@@ -29,6 +29,19 @@ export const DataGridPropsTable: FunctionComponent<{
     .filter((i) => !exclude?.includes(i))
     .sort();
 
+  // Manually move the cellContext prop after renderCellValue
+  const cellContext = gridPropsKeys.splice(
+    gridPropsKeys.findIndex((prop) => prop === 'cellContext'),
+    1
+  )[0];
+  if (cellContext) {
+    gridPropsKeys.splice(
+      gridPropsKeys.findIndex((prop) => prop === 'renderCellValue') + 1,
+      0,
+      cellContext
+    );
+  }
+
   const items: BasicItem[] = gridPropsKeys.map((prop) => {
     return {
       id: prop,

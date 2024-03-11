@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { EuiDataGrid } from './';
-import { EuiDataGridProps } from './data_grid_types';
+import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
@@ -975,6 +975,42 @@ describe('EuiDataGrid', () => {
           ],
         ]
       `);
+    });
+
+    it('passes `cellContext` as props to the renderCellValue component', () => {
+      const dataGridProps = {
+        'aria-label': 'test',
+        columns: [{ id: 'Column' }],
+        columnVisibility: {
+          visibleColumns: ['Column'],
+          setVisibleColumns: () => {},
+        },
+        rowCount: 1,
+      };
+
+      const RenderCellValueWithContext: RenderCellValue = ({ someContext }) => (
+        <div data-test-subj="renderedCell">
+          {someContext ? 'hello' : 'world'}
+        </div>
+      );
+
+      const { getByTestSubject, rerender } = render(
+        <EuiDataGrid
+          {...dataGridProps}
+          renderCellValue={RenderCellValueWithContext}
+          cellContext={{ someContext: true }}
+        />
+      );
+      expect(getByTestSubject('renderedCell')).toHaveTextContent('hello');
+
+      rerender(
+        <EuiDataGrid
+          {...dataGridProps}
+          renderCellValue={RenderCellValueWithContext}
+          cellContext={{ someContext: false }}
+        />
+      );
+      expect(getByTestSubject('renderedCell')).toHaveTextContent('world');
     });
   });
 

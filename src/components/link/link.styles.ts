@@ -10,29 +10,6 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFocusRing, logicalTextAlignCSS } from '../../global_styling';
 
-const _colorCSS = (color: string) => {
-  return `
-    color: ${color};
-
-    &:target {
-      color: darken(${color}, 10%);
-    }
-  `;
-};
-
-export const euiLinkHoverCSS = () => {
-  return `
-    text-decoration: underline;
-  `;
-};
-
-export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
-  return `
-    text-decoration: underline;
-    text-decoration-thickness: ${euiTheme.border.width.thick};
-  `;
-};
-
 export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return `
@@ -40,12 +17,13 @@ export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
     ${logicalTextAlignCSS('left')}
 
     &:hover {
-      ${euiLinkHoverCSS()}
+      text-decoration: underline;
     }
 
     &:focus {
       ${euiFocusRing(euiThemeContext, 'outset')}
-      ${euiLinkFocusCSS(euiTheme)}
+      text-decoration: underline;
+      text-decoration-thickness: ${euiTheme.border.width.thick};
     }
   `;
 };
@@ -84,4 +62,14 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     ghost: css(_colorCSS(euiTheme.colors.ghost)),
     text: css(_colorCSS(euiTheme.colors.text)),
   };
+};
+
+const _colorCSS = (color: string) => {
+  return `
+    color: ${color};
+
+    &:target {
+      color: darken(${color}, 10%);
+    }
+  `;
 };

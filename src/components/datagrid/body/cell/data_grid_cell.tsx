@@ -59,6 +59,7 @@ const EuiDataGridCellContent: FunctionComponent<
 > = memo(
   ({
     renderCellValue,
+    cellContext,
     column,
     setCellContentsRef,
     rowIndex,
@@ -99,6 +100,7 @@ const EuiDataGridCellContent: FunctionComponent<
           rowIndex={rowIndex}
           colIndex={colIndex}
           schema={column?.schema || rest.columnType}
+          {...cellContext}
           {...rest}
         />
       </div>
@@ -465,6 +467,7 @@ export class EuiDataGridCell extends Component<
       const {
         renderCellPopover,
         renderCellValue,
+        cellContext,
         rowIndex,
         colIndex,
         column,
@@ -492,6 +495,7 @@ export class EuiDataGridCell extends Component<
           setCellPopoverProps={setCellPopoverProps}
         >
           <CellElement
+            {...cellContext}
             {...sharedProps}
             setCellProps={this.setCellProps}
             isExpandable={true}

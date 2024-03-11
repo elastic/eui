@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "93.2.0",
+  "version": "93.3.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -109,7 +109,7 @@
     "@cypress/react": "^7.0.3",
     "@cypress/react18": "^2.0.0",
     "@cypress/webpack-dev-server": "^1.7.0",
-    "@elastic/charts": "^64.0.0",
+    "@elastic/charts": "^64.0.1",
     "@elastic/datemath": "^5.0.3",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/cache": "^11.11.0",

@@ -7,12 +7,14 @@ import {
   EuiTextAlign,
   EuiFlexGrid,
   EuiFlexItem,
-  useEuiNumberFormat,
+  useEuiTheme,
+  euiNumberFormat,
 } from '../../../../../src';
 import { css } from '@emotion/react';
 import { ThemeExample } from '../_components/_theme_example';
 
 export default () => {
+  const euiTheme = useEuiTheme();
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
@@ -22,8 +24,8 @@ export default () => {
       {/* Mixin */}
       {!showSass ? (
         <ThemeExample
-          title={<code>useEuiNumberFormat()</code>}
-          type="hook"
+          title={<code>euiNumberFormat(euiTheme)</code>}
+          type="function"
           description={
             <p>
               Applies{' '}
@@ -49,7 +51,7 @@ export default () => {
                 <EuiFlexItem>
                   <p
                     css={css`
-                      ${useEuiNumberFormat()}
+                      ${euiNumberFormat(euiTheme)}
                     `}
                   >
                     <strong>With function</strong>
@@ -62,7 +64,7 @@ export default () => {
               </EuiFlexGrid>
             </EuiTextAlign>
           }
-          snippet={'${useEuiNumberFormat()}'}
+          snippet={'${euiNumberFormat(useEuiTheme())}'}
           snippetLanguage="emotion"
         />
       ) : (
@@ -84,7 +86,7 @@ export default () => {
         type="className"
         description={
           <p>
-            Applies the <EuiCode>useEuiNumberFormat()</EuiCode> styles as an
+            Applies the <EuiCode>euiNumberFormat()</EuiCode> styles as an
             overriding CSS utility class.
           </p>
         }
