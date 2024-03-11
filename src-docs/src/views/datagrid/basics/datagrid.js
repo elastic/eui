@@ -84,7 +84,7 @@ const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
   }, [rowIndex, columnId, setCellProps, data]);
 
   function getFormatted() {
-    return data[rowIndex][columnId].formatted
+    return data[rowIndex][columnId]?.formatted
       ? data[rowIndex][columnId].formatted
       : data[rowIndex][columnId];
   }
@@ -209,6 +209,25 @@ const columns = [
     initialWidth: 70,
     isResizable: false,
     actions: false,
+  },
+  {
+    id: 'test',
+    displayAsText: 'Long long long field name',
+  },
+  {
+    id: 'test1',
+  },
+  {
+    id: 'test2',
+  },
+  {
+    id: 'test3',
+  },
+  {
+    id: 'test4',
+  },
+  {
+    id: 'test5',
   },
 ];
 
