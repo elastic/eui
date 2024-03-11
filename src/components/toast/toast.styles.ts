@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
+import { euiTextBreakWord, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
@@ -26,6 +26,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', euiTheme.size.base)}
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('width', '100%')}
+
+      ${euiTextBreakWord()} /* Prevent long lines from overflowing */
 
       &:hover,
       &:focus {
@@ -90,10 +92,3 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   };
 };
-
-export const euiToastBodyStyles = () => ({
-  // Base
-  euiToastBody: css`
-    word-wrap: break-word; /* Prevent long lines from overflowing */
-  `,
-});

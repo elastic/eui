@@ -22,11 +22,7 @@ import { EuiI18n } from '../i18n';
 import { IconType, EuiIcon } from '../icon';
 import { EuiText } from '../text';
 
-import {
-  euiToastStyles,
-  euiToastBodyStyles,
-  euiToastHeaderStyles,
-} from './toast.styles';
+import { euiToastStyles, euiToastHeaderStyles } from './toast.styles';
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 
@@ -53,7 +49,6 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   const euiTheme = useEuiTheme();
   const baseStyles = euiToastStyles(euiTheme);
   const baseCss = [baseStyles.euiToast, color && baseStyles[color]];
-  const bodyStyles = euiToastBodyStyles();
   const headerStyles = euiToastHeaderStyles(euiTheme);
   const headerCss = [
     headerStyles.euiToastHeader,
@@ -99,11 +94,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
 
   if (children) {
     optionalBody = (
-      <EuiText
-        css={bodyStyles.euiToastBody}
-        size="s"
-        data-test-subj="euiToastBody"
-      >
+      <EuiText size="s" data-test-subj="euiToastBody">
         {children}
       </EuiText>
     );
