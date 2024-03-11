@@ -20,7 +20,6 @@ export type EuiModalHeaderTitleProps = FunctionComponent<
        * @default h1
        */
       component?: ElementType;
-      id?: String;
     }
 >;
 
