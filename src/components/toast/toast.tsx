@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -56,51 +51,9 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
 
   const classes = classNames('euiToast', className);
 
-  let headerIcon: ReactElement;
-
-  if (iconType) {
-    headerIcon = (
-      <EuiIcon
-        css={headerStyles.euiToastHeader__icon}
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
-    );
-  }
-
-  let closeButton;
-
-  if (onClose) {
-    closeButton = (
-      <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
-        {(dismissToast: string) => (
-          <EuiButtonIcon
-            css={baseStyles.euiToast__closeButton}
-            iconType="cross"
-            color="text"
-            size="xs"
-            aria-label={dismissToast}
-            onClick={onClose}
-            data-test-subj="toastCloseButton"
-          />
-        )}
-      </EuiI18n>
-    );
-  }
-
-  let optionalBody;
-
-  if (children) {
-    optionalBody = (
-      <EuiText size="s" data-test-subj="euiToastBody">
-        {children}
-      </EuiText>
-    );
-  }
-
   return (
     <div css={baseCss} className={classes} {...rest}>
+      {/* Screen reader announcement */}
       <EuiScreenReaderOnly>
         <p>
           <EuiI18n
@@ -110,6 +63,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
         </p>
       </EuiScreenReaderOnly>
 
+      {/* Header */}
       <EuiI18n token="euiToast.notification" default="Notification">
         {(notification: string) => (
           <div
@@ -117,7 +71,14 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
             aria-label={notification}
             data-test-subj="euiToastHeader"
           >
-            {headerIcon}
+            {iconType && (
+              <EuiIcon
+                css={headerStyles.euiToastHeader__icon}
+                type={iconType}
+                size="m"
+                aria-hidden="true"
+              />
+            )}
 
             <span
               css={headerStyles.euiToastHeader__title}
@@ -129,8 +90,29 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
         )}
       </EuiI18n>
 
-      {closeButton}
-      {optionalBody}
+      {/* Close button */}
+      {onClose && (
+        <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
+          {(dismissToast: string) => (
+            <EuiButtonIcon
+              css={baseStyles.euiToast__closeButton}
+              iconType="cross"
+              color="text"
+              size="xs"
+              aria-label={dismissToast}
+              onClick={onClose}
+              data-test-subj="toastCloseButton"
+            />
+          )}
+        </EuiI18n>
+      )}
+
+      {/* Body */}
+      {children && (
+        <EuiText size="s" data-test-subj="euiToastBody">
+          {children}
+        </EuiText>
+      )}
     </div>
   );
 };
