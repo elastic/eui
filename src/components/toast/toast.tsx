@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiButtonIcon } from '../button';
@@ -46,10 +46,9 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   className,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const baseStyles = euiToastStyles(euiTheme);
+  const baseStyles = useEuiMemoizedStyles(euiToastStyles);
   const baseCss = [baseStyles.euiToast, color && baseStyles[color]];
-  const headerStyles = euiToastHeaderStyles(euiTheme);
+  const headerStyles = useEuiMemoizedStyles(euiToastHeaderStyles);
   const headerCss = [
     headerStyles.euiToastHeader,
     children && headerStyles.withBody,
