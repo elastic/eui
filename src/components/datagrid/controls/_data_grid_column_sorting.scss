@@ -10,14 +10,27 @@
   padding-top: $euiSizeXS;
   padding-bottom: $euiSizeXS;
   max-height: 300px;
+
+  // Workaround for scrollbar clipping into text longer than the popover min width
+  @supports (scrollbar-gutter: stable) {
+    scrollbar-gutter: stable;
+  }
+  @supports not (scrollbar-gutter: stable) {
+    padding-right: 10px; // Safari :|
+  }
 }
 
 .euiDataGridColumnSorting__field {
   @include euiInteractiveStates;
+  @include euiTextTruncate;
   display: block;
   padding: $euiSizeXS $euiSizeS;
   width: 100%;
   outline-offset: -$euiFocusRingSize;
+
+  @supports not (scrollbar-gutter: stable) {
+    min-width: fit-content;
+  }
 }
 
 .euiDataGridColumnSorting__name {
