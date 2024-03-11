@@ -8,8 +8,9 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiCodeBlock,
-} from '../../../../src/components';
-import { EuiSpacer } from '../../../../src/components/spacer';
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -17,24 +18,27 @@ export default () => {
   const closeModal = () => setIsModalVisible(false);
   const showModal = () => setIsModalVisible(true);
 
-  let modal;
+  const modalTitleId = useGeneratedHtmlId();
 
-  if (isModalVisible) {
-    modal = (
-      <EuiModal aria-labelledby="euiModal-example" onClose={closeModal}>
-        <EuiModalHeader>
-          <EuiModalHeaderTitle id="euiModal-example">
-            Modal title
-          </EuiModalHeaderTitle>
-        </EuiModalHeader>
+  return (
+    <>
+      <EuiButton onClick={showModal}>Show modal</EuiButton>
 
-        <EuiModalBody>
-          This modal has the following setup:
-          <EuiSpacer />
-          <EuiCodeBlock language="html" isCopyable>
-            {`<EuiModal onClose={closeModal}>
+      {isModalVisible && (
+        <EuiModal aria-labelledby={modalTitleId} onClose={closeModal}>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Modal title
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            This modal has the following setup:
+            <EuiSpacer />
+            <EuiCodeBlock language="html" isCopyable>
+              {`<EuiModal aria-labelledby={titleId} onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle title={titleId}><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
@@ -47,22 +51,16 @@ export default () => {
     </EuiButton>
   </EuiModalFooter>
 </EuiModal>`}
-          </EuiCodeBlock>
-        </EuiModalBody>
+            </EuiCodeBlock>
+          </EuiModalBody>
 
-        <EuiModalFooter>
-          <EuiButton onClick={closeModal} fill>
-            Close
-          </EuiButton>
-        </EuiModalFooter>
-      </EuiModal>
-    );
-  }
-
-  return (
-    <div>
-      <EuiButton onClick={showModal}>Show modal</EuiButton>
-      {modal}
-    </div>
+          <EuiModalFooter>
+            <EuiButton onClick={closeModal} fill>
+              Close
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
   );
 };

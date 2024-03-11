@@ -5,6 +5,7 @@ import {
   EuiConfirmModal,
   EuiFormRow,
   EuiFieldText,
+  useGeneratedHtmlId,
 } from '../../../../src';
 
 export default () => {
@@ -36,43 +37,39 @@ export default () => {
     setValue(e.target.value);
   };
 
-  let modal;
-  const confirmTitleProps = { id: 'euiModal-confirmLoadingExample' };
-
-  if (isModalVisible) {
-    modal = (
-      <EuiConfirmModal
-        aria-labelledby="euiModal-confirmLoadingExample"
-        title="Delete the EUI repo?"
-        titleProps={confirmTitleProps}
-        onCancel={closeModal}
-        onConfirm={() => {
-          closeModal();
-          window.alert('Shame on you!');
-        }}
-        confirmButtonText="Delete"
-        cancelButtonText="Cancel"
-        buttonColor="danger"
-        initialFocus="[name=delete]"
-        confirmButtonDisabled={value.toLowerCase() !== 'delete'}
-        isLoading={isLoading}
-      >
-        <EuiFormRow label="Type the word 'delete' to confirm">
-          <EuiFieldText
-            name="delete"
-            isLoading={isLoading}
-            value={value}
-            onChange={onChange}
-          />
-        </EuiFormRow>
-      </EuiConfirmModal>
-    );
-  }
+  const modalTitleId = useGeneratedHtmlId();
 
   return (
-    <div>
+    <>
       <EuiButton onClick={showModal}>Show loading confirm modal</EuiButton>
-      {modal}
-    </div>
+
+      {isModalVisible && (
+        <EuiConfirmModal
+          aria-labelledby={modalTitleId}
+          title="Delete the EUI repo?"
+          titleProps={{ id: modalTitleId }}
+          onCancel={closeModal}
+          onConfirm={() => {
+            closeModal();
+            window.alert('Shame on you!');
+          }}
+          confirmButtonText="Delete"
+          cancelButtonText="Cancel"
+          buttonColor="danger"
+          initialFocus="[name=delete]"
+          confirmButtonDisabled={value.toLowerCase() !== 'delete'}
+          isLoading={isLoading}
+        >
+          <EuiFormRow label="Type the word 'delete' to confirm">
+            <EuiFieldText
+              name="delete"
+              isLoading={isLoading}
+              value={value}
+              onChange={onChange}
+            />
+          </EuiFormRow>
+        </EuiConfirmModal>
+      )}
+    </>
   );
 };
