@@ -9,8 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 import { EuiTitleSize } from '../title';
 
 import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
@@ -37,8 +37,7 @@ export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
   children,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiSkeletonTitleStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiSkeletonTitleStyles);
   const cssStyles = [styles.euiSkeletonTitle, styles[size]];
 
   return (
