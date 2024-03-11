@@ -236,38 +236,25 @@ export const useDataGridColumnSorting = (
                                   sorting.onSort(nextColumns);
                                 }}
                               >
-                                <EuiFlexGroup
-                                  alignItems="center"
-                                  gutterSize="s"
-                                  component="span"
-                                  responsive={false}
-                                >
-                                  <EuiFlexItem grow={false}>
-                                    <EuiToken
-                                      iconType={
-                                        schemaDetails(id) != null
-                                          ? getDetailsForSchema(
-                                              schemaDetectors,
-                                              schema[id].columnType
-                                            ).icon
-                                          : 'tokenString'
-                                      }
-                                      color={
-                                        schemaDetails(id) != null
-                                          ? getDetailsForSchema(
-                                              schemaDetectors,
-                                              schema[id].columnType
-                                            ).color
-                                          : undefined
-                                      }
-                                    />
-                                  </EuiFlexItem>
-                                  <EuiFlexItem grow={false}>
-                                    <EuiText size="xs">
-                                      {displayValues[id]}
-                                    </EuiText>
-                                  </EuiFlexItem>
-                                </EuiFlexGroup>
+                                <EuiToken
+                                  iconType={
+                                    schemaDetails(id) != null
+                                      ? getDetailsForSchema(
+                                          schemaDetectors,
+                                          schema[id].columnType
+                                        ).icon
+                                      : 'tokenString'
+                                  }
+                                  color={
+                                    schemaDetails(id) != null
+                                      ? getDetailsForSchema(
+                                          schemaDetectors,
+                                          schema[id].columnType
+                                        ).color
+                                      : undefined
+                                  }
+                                />
+                                <EuiText size="xs">{displayValues[id]}</EuiText>
                               </button>
                             );
                           }

@@ -23,7 +23,9 @@
 .euiDataGridColumnSorting__field {
   @include euiInteractiveStates;
   @include euiTextTruncate;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: $euiSizeS;
   padding: $euiSizeXS $euiSizeS;
   width: 100%;
   outline-offset: -$euiFocusRingSize;
