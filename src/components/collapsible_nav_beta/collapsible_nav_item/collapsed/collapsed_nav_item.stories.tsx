@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCollapsedNavItem } from './collapsed_nav_item';
 
 const meta: Meta<typeof EuiCollapsedNavItem> = {
-  title: 'EuiCollapsedNavItem',
+  title: 'Navigation/EuiCollapsibleNav/EuiCollapsedNavItem',
   component: EuiCollapsedNavItem,
   argTypes: {
     icon: { control: 'text' },

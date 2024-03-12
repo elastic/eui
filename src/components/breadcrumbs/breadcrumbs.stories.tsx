@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from './breadcrumbs';
 
 const meta: Meta<EuiBreadcrumbsProps> = {
-  title: 'EuiBreadcrumbs',
+  title: 'Navigation/EuiBreadcrumbs',
   component: EuiBreadcrumbs,
   args: {
     // Component defaults

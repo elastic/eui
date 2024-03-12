@@ -14,7 +14,7 @@ import { useEuiI18n, EuiI18n, EuiI18nNumber } from '../i18n';
 import { EuiContext, EuiContextProps, EuiI18nConsumer } from './context';
 
 const meta: Meta<EuiContextProps> = {
-  title: 'EuiContext',
+  title: 'Utilities/EuiContext',
   component: EuiContext,
 };
 

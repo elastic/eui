@@ -15,7 +15,7 @@ import {
 } from './screen_reader_only';
 
 const meta: Meta<EuiScreenReaderOnlyProps> = {
-  title: 'EuiScreenReaderOnly',
+  title: 'Utilities/EuiScreenReaderOnly',
   component: EuiScreenReaderOnly,
   args: {
     // Component defaults

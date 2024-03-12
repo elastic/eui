@@ -17,7 +17,7 @@ import {
 } from './text_block_truncate';
 
 const meta: Meta<EuiTextBlockTruncateProps> = {
-  title: 'EuiTextBlockTruncate',
+  title: 'Utilities/EuiTextBlockTruncate',
   component: EuiTextBlockTruncate,
   decorators: [
     (Story) => (

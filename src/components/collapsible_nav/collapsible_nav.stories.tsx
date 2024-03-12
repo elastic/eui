@@ -15,7 +15,7 @@ import { EuiButton } from '../button';
 import { EuiCollapsibleNav, EuiCollapsibleNavProps } from './collapsible_nav';
 
 const meta: Meta<EuiCollapsibleNavProps> = {
-  title: 'EuiCollapsibleNav',
+  title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNav',
   component: EuiCollapsibleNav,
   argTypes: {
     ...disableStorybookControls(['button']),

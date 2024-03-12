@@ -13,7 +13,7 @@ import { EuiFlexItem } from './flex_item';
 import { EuiFlexGroup, EuiFlexGroupProps } from './flex_group';
 
 const meta: Meta<EuiFlexGroupProps> = {
-  title: 'EuiFlexGroup',
+  title: 'Layout/EuiFlexGroup',
   component: EuiFlexGroup,
   argTypes: {
     justifyContent: { control: 'radio' },

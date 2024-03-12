@@ -12,7 +12,7 @@ import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
 
 const meta: Meta<EuiSkipLinkProps> = {
-  title: 'EuiSkipLink',
+  title: 'Utilities/EuiSkipLink',
   component: EuiSkipLink,
   args: {
     // Component defaults

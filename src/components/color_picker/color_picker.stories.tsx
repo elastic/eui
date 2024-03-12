@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiColorPicker, EuiColorPickerProps } from './color_picker';
 
 const meta: Meta<EuiColorPickerProps> = {
-  title: 'EuiColorPicker',
+  title: 'Forms/EuiColorPicker/EuiColorPicker',
   component: EuiColorPicker,
   argTypes: {
     color: { control: 'color' },

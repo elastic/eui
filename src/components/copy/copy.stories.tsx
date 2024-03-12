@@ -14,7 +14,7 @@ import { EuiButton } from '../button';
 import { EuiCopy, EuiCopyProps } from './copy';
 
 const meta: Meta<EuiCopyProps> = {
-  title: 'EuiCopy',
+  title: 'Utilities/EuiCopy',
   component: EuiCopy,
   argTypes: {
     afterMessage: { control: 'text' },

@@ -19,7 +19,7 @@ import { EuiProvider } from '../provider';
 import { EuiFocusTrap, EuiFocusTrapProps } from './focus_trap';
 
 const meta: Meta<EuiFocusTrapProps> = {
-  title: 'EuiFocusTrap',
+  title: 'Utilities/EuiFocusTrap',
   // @ts-ignore This still works for Storybook controls, even though Typescript complains
   component: EuiFocusTrap,
   argTypes: {

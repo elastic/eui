@@ -15,7 +15,7 @@ import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutFooter, EuiFlyoutFooterProps } from './flyout_footer';
 
 const meta: Meta<EuiFlyoutFooterProps> = {
-  title: 'EuiFlyoutFooter',
+  title: 'Layout/EuiFlyout/EuiFlyoutFooter',
   component: EuiFlyoutFooter,
   argTypes: {
     // TODO: editable children

@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiHighlight, EuiHighlightProps } from './highlight';
 
 const meta: Meta<EuiHighlightProps> = {
-  title: 'EuiHighlight',
+  title: 'Utilities/EuiHighlight',
   component: EuiHighlight,
   argTypes: {},
   // Component defaults

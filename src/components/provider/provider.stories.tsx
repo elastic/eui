@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiProvider, EuiProviderProps } from './provider';
 
 const meta: Meta<EuiProviderProps<{}>> = {
-  title: 'EuiProvider',
+  title: 'Theming/EuiProvider',
   component: EuiProvider,
   argTypes: {
     colorMode: {

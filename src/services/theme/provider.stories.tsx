@@ -13,7 +13,7 @@ import { useEuiThemeCSSVariables } from './hooks';
 import { EuiThemeProvider, EuiThemeProviderProps } from './provider';
 
 const meta: Meta<EuiThemeProviderProps<{}>> = {
-  title: 'EuiThemeProvider',
+  title: 'Theming/EuiThemeProvider',
   component: EuiThemeProvider,
 };
 

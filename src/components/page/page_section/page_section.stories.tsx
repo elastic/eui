@@ -14,7 +14,7 @@ import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection, EuiPageSectionProps } from '../page_section';
 
 const meta: Meta<EuiPageSectionProps> = {
-  title: 'EuiPageSection',
+  title: 'Layout/EuiPage/EuiPageSection',
   component: EuiPageSection,
   argTypes: {
     bottomBorder: { control: 'select', options: [true, false, 'extended'] },

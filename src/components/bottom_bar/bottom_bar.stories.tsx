@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiBottomBar, EuiBottomBarProps } from './bottom_bar';
 
 const meta: Meta<EuiBottomBarProps> = {
-  title: 'EuiBottomBar',
+  title: 'Layout/EuiBottomBar',
   component: EuiBottomBar,
   argTypes: {
     top: { control: 'number' },

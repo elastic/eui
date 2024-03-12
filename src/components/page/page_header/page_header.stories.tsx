@@ -13,7 +13,7 @@ import { EuiButton } from '../../button';
 import { EuiPageHeader, EuiPageHeaderProps } from '../page_header';
 
 const meta: Meta<EuiPageHeaderProps> = {
-  title: 'EuiPageHeader',
+  title: 'Layout/EuiPage/EuiPageHeader/EuiPageHeader',
   component: EuiPageHeader,
   argTypes: {
     alignItems: {

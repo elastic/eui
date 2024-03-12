@@ -13,7 +13,7 @@ import { EuiFacetButton } from './facet_button';
 import { EuiFacetGroup, EuiFacetGroupProps } from './facet_group';
 
 const meta: Meta<EuiFacetGroupProps> = {
-  title: 'EuiFacetGroup',
+  title: 'Navigation/EuiFacetGroup',
   component: EuiFacetGroup,
   args: {
     // Component defaults
