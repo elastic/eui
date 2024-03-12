@@ -16,7 +16,7 @@ import {
 } from './color_palette_display';
 
 const meta: Meta<EuiColorPaletteDisplayProps> = {
-  title: 'Forms/EuiColorPaletteDisplay',
+  title: 'Forms/EuiColorPalettePicker/EuiColorPaletteDisplay',
   component: EuiColorPaletteDisplay,
   args: {
     // Component defaults
