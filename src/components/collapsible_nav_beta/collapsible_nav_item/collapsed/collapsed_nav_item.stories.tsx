@@ -9,7 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { moveStorybookControlsToCategory } from '../../../../../.storybook/utils';
+import { hideStorybookControls } from '../../../../../.storybook/utils';
 import { EuiCollapsedNavItem } from './collapsed_nav_item';
 
 const meta: Meta<typeof EuiCollapsedNavItem> = {
@@ -28,11 +28,7 @@ export const Link: Story = {
       <EuiCollapsedNavItem {...args} />
     </div>
   ),
-  argTypes: moveStorybookControlsToCategory([
-    'accordionProps',
-    'isCollapsible',
-    'items',
-  ]),
+  argTypes: hideStorybookControls(['accordionProps', 'isCollapsible', 'items']),
   args: {
     title: 'Collapsed nav item',
     icon: 'home',
@@ -47,7 +43,7 @@ export const Accordion: Story = {
       <EuiCollapsedNavItem {...args} />
     </div>
   ),
-  argTypes: moveStorybookControlsToCategory(['href', 'linkProps']),
+  argTypes: hideStorybookControls(['href', 'linkProps']),
   args: {
     title: 'Collapsed nav item',
     icon: 'home',
