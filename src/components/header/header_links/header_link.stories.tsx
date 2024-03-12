@@ -8,12 +8,37 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { disableStorybookControls } from '../../../../.storybook/utils';
+import {
+  disableStorybookControls,
+  moveStorybookControlsToCategory,
+} from '../../../../.storybook/utils';
 import { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 
 const meta: Meta<EuiHeaderLinkProps> = {
   title: 'Layout/EuiHeader/EuiHeaderLink',
   component: EuiHeaderLink,
+  argTypes: {
+    ...moveStorybookControlsToCategory([
+      'aria-label',
+      'buttonRef',
+      'color',
+      'contentProps',
+      'flush',
+      'href',
+      'iconSide',
+      'iconSize',
+      'iconType',
+      'isDisabled',
+      'isLoading',
+      'isSelected',
+      'onClick',
+      'rel',
+      'size',
+      'target',
+      'textProps',
+      'type',
+    ]),
+  },
   // Component defaults
   args: {
     isActive: false,
