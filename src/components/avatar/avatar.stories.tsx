@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiAvatar, EuiAvatarProps } from './avatar';
 
 const meta: Meta<EuiAvatarProps> = {
-  title: 'EuiAvatar',
+  title: 'Display/EuiAvatar',
   component: EuiAvatar,
   argTypes: {
     initialsLength: {

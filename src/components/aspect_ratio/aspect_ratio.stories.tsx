@@ -13,7 +13,7 @@ import { disableStorybookControls } from '../../../.storybook/utils';
 import { EuiAspectRatio, EuiAspectRatioProps } from './aspect_ratio';
 
 const meta: Meta<EuiAspectRatioProps> = {
-  title: 'EuiAspectRatio',
+  title: 'Display/EuiAspectRatio',
   component: EuiAspectRatio,
 };
 

@@ -13,7 +13,7 @@ import { EuiFlexGroup } from './flex_group';
 import { EuiFlexItem, EuiFlexItemProps } from './flex_item';
 
 const meta: Meta<EuiFlexItemProps> = {
-  title: 'EuiFlexItem',
+  title: 'Layout/EuiFlexItem',
   component: EuiFlexItem,
   argTypes: {
     grow: {

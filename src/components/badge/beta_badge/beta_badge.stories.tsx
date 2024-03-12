@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiBetaBadge, EuiBetaBadgeProps } from './beta_badge';
 
 const meta: Meta<EuiBetaBadgeProps> = {
-  title: 'EuiBetaBadge',
+  title: 'Display/EuiBetaBadge',
   component: EuiBetaBadge,
   argTypes: {
     iconType: { control: 'text' },

@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiFieldNumber, EuiFieldNumberProps } from './field_number';
 
 const meta: Meta<EuiFieldNumberProps> = {
-  title: 'EuiFieldNumber',
+  title: 'Forms/EuiFieldNumber',
   component: EuiFieldNumber,
   argTypes: {
     step: { control: 'number' },

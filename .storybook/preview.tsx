@@ -18,6 +18,7 @@ import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
  */
 import { typeToPathMap } from '../src/components/icon/icon_map';
 import { appendIconComponentCache } from '../src/components/icon/icon';
+
 const iconCache: Record<string, React.FC> = {};
 
 Object.entries(typeToPathMap).forEach(async ([iconType, iconFileName]) => {
@@ -96,7 +97,27 @@ const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: { disable: true }, // Use colorMode instead
-    options: { showPanel: true }, // default to showing the controls panel
+    options: {
+      showPanel: true, // default to showing the controls panel
+      storySort: {
+        method: 'alphabetical',
+        order: [
+          // order option as well as story titles require static content (dynamic values or references don't work)
+          // https://storybook.js.org/docs/api/parameters#optionsstorysort
+          // https://storybook.js.org/docs/writing-stories#default-export
+          'Theming',
+          'Templates',
+          'Layout',
+          'Navigation',
+          'Display',
+          'Forms',
+          'Tabular Content',
+          'Editors & Syntax',
+          'Utilities',
+          '*',
+        ],
+      },
+    },
     controls: {
       expanded: true,
       sort: 'requiredFirst',

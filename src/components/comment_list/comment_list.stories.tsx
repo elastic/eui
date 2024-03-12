@@ -17,7 +17,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiCommentList, EuiCommentListProps } from './comment_list';
 
 const meta: Meta<EuiCommentListProps> = {
-  title: 'EuiCommentList',
+  title: 'Display/EuiComment/EuiCommentList',
   component: EuiCommentList,
   args: {
     // Component defaults

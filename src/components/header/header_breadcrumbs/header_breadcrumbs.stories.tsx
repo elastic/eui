@@ -12,7 +12,7 @@ import { EuiBreadcrumbsProps } from '../../breadcrumbs';
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 const meta: Meta<EuiBreadcrumbsProps> = {
-  title: 'EuiHeaderBreadcrumbs',
+  title: 'Layout/EuiHeader/EuiHeaderBreadcrumbs',
   component: EuiHeaderBreadcrumbs,
   args: {
     // Component defaults

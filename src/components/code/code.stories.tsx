@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCode, EuiCodeProps } from './code';
 
 const meta: Meta<EuiCodeProps> = {
-  title: 'EuiCode',
+  title: 'Editors & Syntax/EuiCode',
   component: EuiCode,
   args: {
     // Component defaults

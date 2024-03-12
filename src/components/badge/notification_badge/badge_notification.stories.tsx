@@ -14,7 +14,7 @@ import {
 } from './badge_notification';
 
 const meta: Meta<EuiNotificationBadgeProps> = {
-  title: 'EuiNotificationBadge',
+  title: 'Display/EuiNotificationBadge',
   component: EuiNotificationBadge,
   args: {
     // Component defaults

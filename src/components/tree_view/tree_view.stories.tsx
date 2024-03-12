@@ -15,7 +15,7 @@ import { EuiToken } from '../token';
 import { EuiTreeView, EuiTreeViewProps } from './tree_view';
 
 const meta: Meta<EuiTreeViewProps> = {
-  title: 'EuiTreeView',
+  title: 'Navigation/EuiTreeView/EuiTreeView',
   component: EuiTreeView,
   argTypes: {
     'aria-label': {

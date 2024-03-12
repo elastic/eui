@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCheckableCard, EuiCheckableCardProps } from './checkable_card';
 
 const meta: Meta<EuiCheckableCardProps> = {
-  title: 'EuiCheckableCard',
+  title: 'Display/EuiCheckableCard',
   component: EuiCheckableCard,
   // NOTE: Storybook isn't correctly inheriting certain props due to the exclusive union,
   // so we have to do some manual polyfilling

@@ -12,7 +12,7 @@ import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiHorizontalRule, EuiHorizontalRuleProps } from './horizontal_rule';
 
 const meta: Meta<EuiHorizontalRuleProps> = {
-  title: 'EuiHorizontalRule',
+  title: 'Layout/EuiHorizontalRule',
   component: EuiHorizontalRule,
   argTypes: {},
   // Component defaults

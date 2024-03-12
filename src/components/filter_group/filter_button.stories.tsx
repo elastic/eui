@@ -15,7 +15,7 @@ import { EuiFilterGroup } from './filter_group';
 import { EuiFilterButton, EuiFilterButtonProps } from './filter_button';
 
 const meta: Meta<EuiFilterButtonProps> = {
-  title: 'EuiFilterButton',
+  title: 'Forms/EuiFilterButton',
   component: EuiFilterButton as any,
   argTypes: {
     color: { control: 'select', options: BUTTON_COLORS },

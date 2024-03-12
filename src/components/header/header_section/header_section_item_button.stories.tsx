@@ -22,7 +22,7 @@ import {
 } from './header_section_item_button';
 
 const meta: Meta<EuiHeaderSectionItemButtonProps> = {
-  title: 'EuiHeaderSectionItemButton',
+  title: 'Layout/EuiHeader/EuiHeaderSection/EuiHeaderSectionItemButton',
   // Exclude `component` here - it inherits too many props/controls from EuiButtonEmpty
 };
 

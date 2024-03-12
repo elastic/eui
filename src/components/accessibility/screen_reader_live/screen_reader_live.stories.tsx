@@ -14,7 +14,7 @@ import {
 } from './screen_reader_live';
 
 const meta: Meta<EuiScreenReaderLiveProps> = {
-  title: 'EuiScreenReaderLive',
+  title: 'Utilities/EuiScreenReaderLive',
   component: EuiScreenReaderLive,
   args: {
     // Component defaults

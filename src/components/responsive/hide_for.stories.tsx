@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiHideFor, EuiHideForProps } from './hide_for';
 
 const meta: Meta<EuiHideForProps> = {
-  title: 'EuiHideFor',
+  title: 'Utilities/EuiHideFor',
   component: EuiHideFor,
 };
 

@@ -18,7 +18,7 @@ import { EuiPageSection } from './page_section';
 import { EuiPage, EuiPageProps } from './page';
 
 const meta: Meta<EuiPageProps> = {
-  title: 'EuiPage',
+  title: 'Layout/EuiPage/EuiPage',
   component: EuiPage,
   argTypes: {
     restrictWidth: { control: 'boolean' },

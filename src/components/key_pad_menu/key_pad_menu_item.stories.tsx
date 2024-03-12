@@ -14,7 +14,7 @@ import { EuiIcon } from '../icon';
 import { EuiKeyPadMenuItem, EuiKeyPadMenuItemProps } from './key_pad_menu_item';
 
 const meta: Meta<EuiKeyPadMenuItemProps> = {
-  title: 'EuiKeyPadMenuItem',
+  title: 'Navigation/EuiKeyPadMenuItem',
   component: EuiKeyPadMenuItem as any,
   argTypes: {
     checkable: { options: [undefined, 'multi', 'single'] },

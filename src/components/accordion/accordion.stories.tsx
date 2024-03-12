@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiAccordion, EuiAccordionProps } from './accordion';
 
 const meta: Meta<EuiAccordionProps> = {
-  title: 'EuiAccordion',
+  title: 'Layout/EuiAccordion',
   component: EuiAccordion,
   argTypes: {
     forceState: {

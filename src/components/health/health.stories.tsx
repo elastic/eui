@@ -12,7 +12,7 @@ import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiHealth, EuiHealthProps } from './health';
 
 const meta: Meta<EuiHealthProps> = {
-  title: 'EuiHealth',
+  title: 'Display/EuiHealth',
   component: EuiHealth,
   argTypes: {
     color: { control: 'text' },

@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiExpression, EuiExpressionProps } from './expression';
 
 const meta: Meta<EuiExpressionProps> = {
-  title: 'EuiExpression',
+  title: 'Forms/EuiExpression',
   component: EuiExpression,
   args: {
     // Component defaults

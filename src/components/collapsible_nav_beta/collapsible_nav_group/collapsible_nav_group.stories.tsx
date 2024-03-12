@@ -19,7 +19,7 @@ import {
 } from './collapsible_nav_group';
 
 const meta: Meta<EuiCollapsibleNavGroupProps> = {
-  title: 'EuiCollapsibleNavBeta.Group',
+  title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNavBeta.Group',
   component: EuiCollapsibleNavGroup,
   parameters: {
     layout: 'fullscreen',

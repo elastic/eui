@@ -7,7 +7,14 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, useMemo, useRef, useState, memo } from 'react';
+import React, {
+  forwardRef,
+  useMemo,
+  useRef,
+  useState,
+  memo,
+  useCallback,
+} from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
@@ -29,7 +36,7 @@ import {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
-import { DataGridSortingContext, useSorting } from './utils/sorting';
+import { DataGridSortedContext, useSorting } from './utils/sorting';
 import {
   DataGridFocusContext,
   useFocus,
@@ -99,6 +106,8 @@ const cellPaddingsToClassMap: {
   m: '',
   l: 'euiDataGrid--paddingLarge',
 };
+
+const emptyVirtualizationOptions = {};
 
 export const EuiDataGrid = memo(
   forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
@@ -246,15 +255,15 @@ export const EuiDataGrid = memo(
     /**
      * Sorting
      */
-    const columnSorting = useDataGridColumnSorting(
-      orderedVisibleColumns,
+    const columnSorting = useDataGridColumnSorting({
       sorting,
-      mergedSchema,
-      allSchemaDetectors,
-      displayValues
-    );
+      columns: orderedVisibleColumns,
+      displayValues,
+      schema: mergedSchema,
+      schemaDetectors: allSchemaDetectors,
+    });
 
-    const sortingContext = useSorting({
+    const sortedContext = useSorting({
       sorting,
       inMemory,
       inMemoryValues,
@@ -266,7 +275,30 @@ export const EuiDataGrid = memo(
     /**
      * Focus
      */
-    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus();
+    const {
+      focusProps: wrappingDivFocusProps,
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+    } = useFocus();
+
+    const focusContext = useMemo(() => {
+      return {
+        onFocusUpdate,
+        focusedCell,
+        setFocusedCell,
+        setIsFocusedCellInView,
+        focusFirstVisibleInteractiveCell,
+      };
+    }, [
+      onFocusUpdate,
+      focusedCell,
+      setFocusedCell,
+      setIsFocusedCellInView,
+      focusFirstVisibleInteractiveCell,
+    ]);
 
     /**
      * Cell popover
@@ -296,7 +328,7 @@ export const EuiDataGrid = memo(
       setIsFullScreen,
       focusContext,
       cellPopoverContext,
-      sortingContext,
+      sortedContext,
       pagination,
       rowCount,
       visibleColCount,
@@ -367,10 +399,34 @@ export const EuiDataGrid = memo(
       delete rest['aria-labelledby'];
     }
 
+    const onKeyDown = useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
+        createKeyDownHandler({
+          gridElement: contentRef.current,
+          visibleColCount,
+          visibleRowCount,
+          visibleRowStartIndex:
+            gridItemsRendered.current?.visibleRowStartIndex || 0,
+          rowCount,
+          pagination,
+          hasFooter: !!renderFooterCellValue,
+          focusContext,
+        })(event);
+      },
+      [
+        focusContext,
+        visibleColCount,
+        visibleRowCount,
+        rowCount,
+        pagination,
+        renderFooterCellValue,
+      ]
+    );
+
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
-          <DataGridSortingContext.Provider value={sortingContext}>
+          <DataGridSortedContext.Provider value={sortedContext}>
             <EuiFocusTrap
               disabled={!isFullScreen}
               className="euiDataGrid__focusWrap"
@@ -413,17 +469,7 @@ export const EuiDataGrid = memo(
                 ) : null}
                 <div // eslint-disable-line jsx-a11y/interactive-supports-focus
                   ref={contentRef}
-                  onKeyDown={createKeyDownHandler({
-                    gridElement: contentRef.current,
-                    visibleColCount,
-                    visibleRowCount,
-                    visibleRowStartIndex:
-                      gridItemsRendered.current?.visibleRowStartIndex || 0,
-                    rowCount,
-                    pagination,
-                    hasFooter: !!renderFooterCellValue,
-                    focusContext,
-                  })}
+                  onKeyDown={onKeyDown}
                   data-test-subj="euiDataGridBody"
                   className="euiDataGrid__content"
                   role="grid"
@@ -442,6 +488,7 @@ export const EuiDataGrid = memo(
                     switchColumnPos={switchColumnPos}
                     onColumnResize={onColumnResize}
                     schemaDetectors={allSchemaDetectors}
+                    sorting={sorting}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
                     cellContext={cellContext}
@@ -451,7 +498,9 @@ export const EuiDataGrid = memo(
                     visibleRows={visibleRows}
                     interactiveCellId={interactiveCellId}
                     rowHeightsOptions={rowHeightsOptions}
-                    virtualizationOptions={virtualizationOptions || {}}
+                    virtualizationOptions={
+                      virtualizationOptions || emptyVirtualizationOptions
+                    }
                     isFullScreen={isFullScreen}
                     gridStyles={gridStyles}
                     gridWidth={gridWidth}
@@ -483,7 +532,7 @@ export const EuiDataGrid = memo(
                 </p>
               </div>
             </EuiFocusTrap>
-          </DataGridSortingContext.Provider>
+          </DataGridSortedContext.Provider>
           {cellPopover}
         </DataGridCellPopoverContext.Provider>
       </DataGridFocusContext.Provider>
