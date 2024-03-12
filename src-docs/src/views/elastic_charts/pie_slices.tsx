@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
 import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
-
-import {
   EuiSpacer,
   EuiFlexGrid,
   EuiFlexItem,
@@ -23,17 +18,12 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { useEuiTheme } from '../../../../src/services';
-
 import { ChartCard } from './shared';
 import { BROWSER_DATA_2019 } from './data';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
-  const isDarkTheme = colorMode === 'DARK';
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
+  const chartBaseTheme = useChartBaseTheme();
 
   const sliceOrderRadiosIdPrefix = 'colorType';
   const sliceOrderRadios = [
@@ -146,7 +136,8 @@ export default () => {
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
           <Settings
-            theme={[themeOverrides, euiChartTheme.theme]}
+            baseTheme={chartBaseTheme}
+            theme={themeOverrides}
             showLegend={showLegend}
             showLegendExtra
           />
@@ -162,7 +153,7 @@ export default () => {
                 groupByRollup: (d: (typeof BROWSER_DATA_2019)[0]) => d.browser,
                 shape: {
                   fillColor: (_, sortIndex) =>
-                    euiChartTheme.theme.colors!.vizColors![sortIndex],
+                    chartBaseTheme.colors.vizColors![sortIndex],
                 },
               },
             ]}
@@ -274,7 +265,8 @@ export default () => {
 </EuiTitle>
 <Chart size={{ height: 200 }}>
   <Settings${showLegend ? '\nshowLegend' : ''}
-    theme={[themeOverrides, euiChartTheme.theme]}
+    baseTheme={chartBaseTheme}
+    theme={themeOverrides}
   />
   <Partition
     id={chartID}
@@ -300,7 +292,7 @@ export default () => {
       {
         groupByRollup: d => d.browser,
         shape: {
-          fillColor: (key, sortIndex) => euiChartTheme.theme.colors.vizColors[sortIndex],
+          fillColor: (key, sortIndex) => chartBaseTheme.colors.vizColors[sortIndex],
         },
       },
     ]}

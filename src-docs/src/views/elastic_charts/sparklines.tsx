@@ -9,11 +9,7 @@ import {
   AreaSeries,
 } from '@elastic/charts';
 
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-  EUI_SPARKLINE_THEME_PARTIAL,
-} from '../../../../src/themes/charts/themes';
+import { EUI_SPARKLINE_THEME_PARTIAL } from '../../../../src/themes/charts/themes';
 
 import {
   EuiPanel,
@@ -30,6 +26,7 @@ import {
   euiPaletteForLightBackground,
   useEuiTheme,
 } from '../../../../src/services';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export const TIME_DATA_SMALL = [
   [1551438630000, 8.515625],
@@ -49,13 +46,9 @@ TIME_DATA_MAJOR[lastIndex] = [...TIME_DATA_MAJOR[lastIndex]];
 TIME_DATA_MAJOR[lastIndex][1] = -100;
 
 export default () => {
+  const chartBaseTheme = useChartBaseTheme();
   const { colorMode } = useEuiTheme();
   const isDarkTheme = colorMode === 'DARK';
-
-  const theme = [
-    EUI_SPARKLINE_THEME_PARTIAL,
-    isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme,
-  ];
 
   return (
     <>
@@ -65,7 +58,11 @@ export default () => {
             <EuiStat title="" description="Number of things" textAlign="right">
               <EuiSpacer size="s" />
               <Chart size={{ height: 64 }}>
-                <Settings theme={theme} showLegend={false} />
+                <Settings
+                  baseTheme={chartBaseTheme}
+                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  showLegend={false}
+                />
                 <Tooltip type="none" />
                 <BarSeries
                   id="numbers"
@@ -92,7 +89,11 @@ export default () => {
             >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
-                <Settings theme={theme} showLegend={false} />
+                <Settings
+                  baseTheme={chartBaseTheme}
+                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  showLegend={false}
+                />
                 <Tooltip type="none" />
                 <LineSeries
                   id="increase"
@@ -127,7 +128,11 @@ export default () => {
             >
               <EuiSpacer size="s" />
               <Chart size={{ height: 16 }}>
-                <Settings theme={theme} showLegend={false} />
+                <Settings
+                  baseTheme={chartBaseTheme}
+                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  showLegend={false}
+                />
                 <Tooltip type="none" />
                 <LineSeries
                   id="major"
@@ -154,7 +159,11 @@ export default () => {
             >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
-                <Settings theme={theme} showLegend={false} />
+                <Settings
+                  baseTheme={chartBaseTheme}
+                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  showLegend={false}
+                />
                 <Tooltip type="none" />
                 <AreaSeries
                   id="subtle"

@@ -6,12 +6,9 @@ import {
   Axis,
   BarSeries,
   DataGenerator,
+  LIGHT_THEME,
+  DARK_THEME,
 } from '@elastic/charts';
-
-import {
-  EUI_CHARTS_THEME_LIGHT,
-  EUI_CHARTS_THEME_DARK,
-} from '../../../../src/themes/charts/themes';
 
 import {
   getDefaultEuiMarkdownParsingPlugins,
@@ -235,6 +232,7 @@ function ChartMarkdownParser() {
 // receives the configuration from the parser and renders
 const ChartMarkdownRenderer = ({ palette, categories }) => {
   const { colorMode } = useEuiTheme();
+  const chartBaseTheme = colorMode === 'DARK' ? DARK_THEME : LIGHT_THEME;
   const customColors = {
     colors: {
       vizColors: paletteData[paletteNames[palette - 1]](categories),
@@ -243,12 +241,8 @@ const ChartMarkdownRenderer = ({ palette, categories }) => {
   return (
     <Chart size={{ height: 320 }}>
       <Settings
-        theme={[
-          customColors,
-          colorMode === 'DARK'
-            ? EUI_CHARTS_THEME_DARK.theme
-            : EUI_CHARTS_THEME_LIGHT.theme,
-        ]}
+        baseTheme={chartBaseTheme}
+        theme={[customColors]}
         showLegend={false}
         showLegendDisplayValue={false}
       />

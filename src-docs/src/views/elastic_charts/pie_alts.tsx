@@ -8,11 +8,6 @@ import sumBy from 'lodash/sumBy';
 import { Chart, Settings, Axis, BarSeries } from '@elastic/charts';
 
 import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
-
-import {
   EuiSwitch,
   EuiSpacer,
   EuiTitle,
@@ -31,9 +26,12 @@ import {
 
 import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
 import { ChartCard } from './shared';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
   const { colorMode } = useEuiTheme();
+  const isDarkTheme = colorMode === 'DARK';
+  const chartBaseTheme = useChartBaseTheme();
 
   const [stacked, setStacked] = useState(true);
   const [rotated, setRotated] = useState(true);
@@ -41,11 +39,6 @@ export default () => {
   const [formatted, setFormatted] = useState(false);
   const [formattedData, setFormattedData] = useState(false);
   const [grouped, setGrouped] = useState(false);
-
-  const isDarkTheme = colorMode === 'DARK';
-  const theme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK.theme
-    : EUI_CHARTS_THEME_LIGHT.theme;
 
   let color = euiPaletteColorBlind({ rotations: 2, order: 'group' }).slice(
     18,
@@ -135,7 +128,7 @@ export default () => {
           <EuiSpacer size="s" />
 
           <Chart size={{ height: 300 }}>
-            <Settings theme={theme} rotation={rotated ? 90 : 0} />
+            <Settings baseTheme={chartBaseTheme} rotation={rotated ? 90 : 0} />
             <BarSeries
               id="rain"
               name="Rain"
@@ -169,7 +162,7 @@ export default () => {
 
           <Chart size={{ height: 300 }}>
             <Settings
-              theme={theme}
+              baseTheme={chartBaseTheme}
               showLegend={true}
               legendPosition="right"
               rotation={rotated ? 90 : 0}
@@ -262,7 +255,7 @@ export default () => {
         <EuiCopy
           textToCopy={`<Chart size={{height: 300}}>
   <Settings
-    theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
+    baseTheme={isDarkTheme ? DARK_THEME : LIGHT_THEME}
     rotation={${rotated ? 90 : 0}}
     showLegend={${usesRainData ? 'false' : 'true'}}
     ${usesRainData ? '' : 'legendPosition="right"'}

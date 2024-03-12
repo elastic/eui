@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { PartialTheme, LineAnnotationSpec } from '@elastic/charts';
+import {
+  PartialTheme,
+  LineAnnotationSpec,
+  LineAnnotationStyle,
+} from '@elastic/charts';
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
@@ -206,18 +210,27 @@ const builtTheme = buildTheme({}, KEY) as typeof EuiThemeAmsterdam;
 const lightColors = getComputed(EuiThemeAmsterdam, builtTheme, 'LIGHT').colors;
 const darkColors = getComputed(EuiThemeAmsterdam, builtTheme, 'DARK').colors;
 
+/**
+ * @deprecated use `LIGHT_THEME` theme from `@elastic/charts`
+ */
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme({
   ...lightColors,
   chartLines: shade(lightColors.lightestShade, 0.03),
   chartBand: lightColors.lightestShade,
 });
 
+/**
+ * @deprecated use `DARK_THEME` theme from `@elastic/charts`
+ */
 export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme({
   ...darkColors,
   chartLines: darkColors.lightShade,
   chartBand: tint(darkColors.lightestShade, 0.025),
 });
 
+/**
+ * @deprecated use `sparkline` theme from the kibana `charts` plugin `theme` service
+ */
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {
     point: {
@@ -232,5 +245,27 @@ export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
       strokeWidth: 1,
       radius: 1,
     },
+  },
+};
+
+/**
+ * @deprecated use `lineAnnotation` styles from the kibana `charts` plugin `theme` service
+ */
+export const LINE_ANNOTATION_DARK_THEME: LineAnnotationStyle = {
+  line: {
+    strokeWidth: 1,
+    stroke: darkColors.darkShade,
+    opacity: 1,
+  },
+};
+
+/**
+ * @deprecated use `lineAnnotation` styles from the kibana `charts` plugin `theme` service
+ */
+export const LINE_ANNOTATION_LIGHT_THEME: LineAnnotationStyle = {
+  line: {
+    strokeWidth: 1,
+    stroke: lightColors.darkShade,
+    opacity: 1,
   },
 };

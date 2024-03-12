@@ -3,29 +3,14 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiRange,
-  useEuiTheme,
 } from '../../../../../src';
-import {
-  Chart,
-  DARK_THEME,
-  LIGHT_THEME,
-  Metric,
-  Settings,
-} from '@elastic/charts';
+import { Chart, Metric, Settings } from '@elastic/charts';
 import React, { useState } from 'react';
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../../src/themes/charts/themes';
+import { useChartBaseTheme } from '../utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
-  const isDarkTheme = colorMode === 'DARK';
+  const chartBaseTheme = useChartBaseTheme();
 
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
-  const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
   const customTicks = [
     { label: '', value: 0 },
     { label: '', value: 1 },
@@ -75,7 +60,7 @@ export default () => {
       <EuiFlexItem grow={0}>
         <EuiPanel paddingSize="none" style={{ overflow: 'hidden', width: 200 }}>
           <Chart size={[200, 200]}>
-            <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
+            <Settings baseTheme={chartBaseTheme} />
             <Metric
               id="1"
               data={[

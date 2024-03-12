@@ -8,13 +8,13 @@ describe('renderJsSourceCode', () => {
         renderJsSourceCode({
           default: dedent(`
             import { EuiButton } from '../src/components';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
       ).toEqual(
         dedent(`
             import { EuiButton } from '@elastic/eui';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`)
       );
     });
@@ -26,13 +26,13 @@ describe('renderJsSourceCode', () => {
             import { EuiCode } from '../../../src/components/code';
             import { EuiCallOut } from '../../../src/components/callout';
             import { useGeneratedHtmlId } from '../../../src/services';
-  
+
             export default () => <EuiCode>{useGeneratedHtmlId()}</EuiCode>;`),
         })
       ).toEqual(
         dedent(`
             import { EuiCode, EuiCallOut, useGeneratedHtmlId } from '@elastic/eui';
-  
+
             export default () => <EuiCode>{useGeneratedHtmlId()}</EuiCode>;`)
       );
     });
@@ -43,7 +43,7 @@ describe('renderJsSourceCode', () => {
           default: dedent(`
             import { EuiButton, EuiFlexGroup, EuiFlexItem } from '../../src/components';
             import { useGeneratedHtmlId } from '../../src/services';
-  
+
             export default () => <EuiCode>{useGeneratedHtmlId()}</EuiCode>;`),
         })
       ).toEqual(
@@ -54,7 +54,7 @@ describe('renderJsSourceCode', () => {
               EuiFlexItem,
               useGeneratedHtmlId,
             } from '@elastic/eui';
-  
+
             export default () => <EuiCode>{useGeneratedHtmlId()}</EuiCode>;`)
       );
     });
@@ -63,14 +63,14 @@ describe('renderJsSourceCode', () => {
       expect(
         renderJsSourceCode({
           default: dedent(`
-            import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
-  
+            import { SOME_RANDOM_IMPORT } from '@elastic/eui';
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
-          import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
-  
+          import { SOME_RANDOM_IMPORT } from '@elastic/eui';
+
           export default () => 'Hello world!';`)
       );
     });
@@ -80,13 +80,13 @@ describe('renderJsSourceCode', () => {
         renderJsSourceCode({
           default: dedent(`
             import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
           import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui';
-  
+
           export default () => 'Hello world!';`)
       );
     });
@@ -99,14 +99,14 @@ describe('renderJsSourceCode', () => {
           default: dedent(`
             import { EuiButton } from '../../src/components';
             import React, { useState } from 'react';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
       ).toEqual(
         dedent(`
             import React, { useState } from 'react';
             import { EuiButton } from '@elastic/eui';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`)
       );
     });
@@ -129,7 +129,7 @@ describe('renderJsSourceCode', () => {
               _mockDepMultiline,
               mockDepMultiline,
             } from 'fakeDep000';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
       ).toEqual(
@@ -146,7 +146,7 @@ describe('renderJsSourceCode', () => {
               _mockDepMultiline,
               mockDepMultiline,
             } from 'fakeDep000';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`)
       );
     });
@@ -159,7 +159,7 @@ describe('renderJsSourceCode', () => {
             import { EuiButton } from '@elastic/eui';
             // @ts-ignore no types definitions
             import hello from 'world';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
       ).toEqual(
@@ -180,15 +180,15 @@ describe('renderJsSourceCode', () => {
         renderJsSourceCode({
           default: dedent(`
             import React, { useState } from 'react';
-  
+
             import { EuiButton } from '../../src/components';
-  
+
             import { useGeneratedHtmlId } from '../../../src/services';
-  
+
             import hello from 'world';
-  
+
             import { data } from '../data_store';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
       ).toEqual(
@@ -197,7 +197,7 @@ describe('renderJsSourceCode', () => {
             import { EuiButton, useGeneratedHtmlId } from '@elastic/eui';
             import hello from 'world';
             import { data } from '../data_store';
-  
+
             export default () => <EuiButton>Hello world!</EuiButton>;`)
       );
     });
@@ -211,13 +211,13 @@ describe('renderJsSourceCode', () => {
         renderJsSourceCode({
           default: dedent(`
             import { EuiButton } from '@elastic/eui';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
             import { EuiButton } from '@elastic/eui';
-  
+
             export default () => 'Hello world!';`)
       );
     });
@@ -227,13 +227,13 @@ describe('renderJsSourceCode', () => {
         renderJsSourceCode({
           default: dedent(`
             import React from 'react';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
             import React from 'react';
-  
+
             export default () => 'Hello world!';`)
       );
     });
@@ -243,13 +243,13 @@ describe('renderJsSourceCode', () => {
         renderJsSourceCode({
           default: dedent(`
             import hello from 'world';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
             import hello from 'world';
-  
+
             export default () => 'Hello world!';`)
       );
     });
@@ -260,14 +260,14 @@ describe('renderJsSourceCode', () => {
           default: dedent(`
             import React from 'react';
             import hello from 'world';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
             import React from 'react';
             import hello from 'world';
-  
+
             export default () => 'Hello world!';`)
       );
     });
@@ -278,14 +278,14 @@ describe('renderJsSourceCode', () => {
           default: dedent(`
             import { is } from '@elastic/eui';
             import hello from 'world';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
         dedent(`
             import { is } from '@elastic/eui';
             import hello from 'world';
-  
+
             export default () => 'Hello world!';`)
       );
     });
@@ -301,7 +301,7 @@ describe('renderJsSourceCode', () => {
               EuiButton,
               EuiCode,
             } from '@elastic/eui';
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
@@ -326,7 +326,7 @@ describe('renderJsSourceCode', () => {
             const jsCode = \`/* I'm an example of JS */
             import React from 'react';
             const hello = 'world';\`;
-  
+
             export default () => 'Hello world!';`),
         })
       ).toEqual(
@@ -337,7 +337,7 @@ describe('renderJsSourceCode', () => {
             const jsCode = \`/* I'm an example of JS */
             import React from 'react';
             const hello = 'world';\`;
-  
+
             export default () => 'Hello world!';`)
       );
     });
