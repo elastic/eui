@@ -1,13 +1,3 @@
-## [`v93.4.0`](https://github.com/elastic/eui/releases/v93.4.0)
-
-- Deprecated all charts theme exports in favor of `@elastic/charts` exports
-
-**Deprecations**
-
-- Deprecated `EUI_CHARTS_THEME_<DARK|LIGHT>` in favor of `THEME_<DARK|LIGHT>` from `@elastic/charts`. ([#7572](https://github.com/elastic/eui/pull/7572))
-- Deprecated `EUI_SPARKLINE_THEME_PARTIAL` in favor of `sparkline` theme from the kibana `charts` plugin `theme` service. ([#7572](https://github.com/elastic/eui/pull/7572))
-- Exposes temporary deprecated `LINE_ANNOTATION_DARK_THEME` to replace `EUI_CHARTS_THEME_<DARK|LIGHT>.lineAnnotation`, instead use `lineAnnotation` styles from the kibana `charts` plugin `theme` service. ([#7572](https://github.com/elastic/eui/pull/7572))
-
 ## [`v93.3.0`](https://github.com/elastic/eui/releases/v93.3.0)
 
 - Added new `EuiDataGrid` new prop: `cellContext`, an optional object of additional props passed to the cell render function. ([#7374](https://github.com/elastic/eui/pull/7374))
