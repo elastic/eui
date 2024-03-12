@@ -173,7 +173,7 @@ exports[`EuiToast is rendered 1`] = `
     </span>
   </div>
   <div
-    class="euiText emotion-euiText-s-euiToastBody"
+    class="euiText emotion-euiText-s"
     data-test-subj="euiToastBody"
   >
     <p>
