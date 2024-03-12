@@ -13,7 +13,7 @@ import {
   EuiDataGridProps,
   DataGridFocusContextShape,
   DataGridCellPopoverContextShape,
-  DataGridSortingContextShape,
+  DataGridSortedContextShape,
 } from '../data_grid_types';
 
 interface Dependencies {
@@ -22,7 +22,7 @@ interface Dependencies {
   setIsFullScreen: EuiDataGridRefProps['setIsFullScreen'];
   focusContext: DataGridFocusContextShape;
   cellPopoverContext: DataGridCellPopoverContextShape;
-  sortingContext: DataGridSortingContextShape;
+  sortedContext: DataGridSortedContextShape;
   pagination: Required<EuiDataGridProps['pagination']>;
   rowCount: number;
   visibleColCount: number;
@@ -34,7 +34,7 @@ export const useImperativeGridRef = ({
   setIsFullScreen,
   focusContext,
   cellPopoverContext,
-  sortingContext: { sortedRowMap },
+  sortedContext: { sortedRowMap },
   pagination,
   rowCount,
   visibleColCount,
@@ -145,7 +145,7 @@ export const useCellLocationCheck = (rowCount: number, colCount: number) => {
  */
 export const useSortPageCheck = (
   pagination: Required<EuiDataGridProps['pagination']>,
-  sortedRowMap: DataGridSortingContextShape['sortedRowMap']
+  sortedRowMap: DataGridSortedContextShape['sortedRowMap']
 ) => {
   const findVisibleRowIndex = useCallback(
     (rowIndex: number): number => {

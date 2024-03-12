@@ -6,319 +6,284 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { act } from '@testing-library/react';
-import { mount, ReactWrapper } from 'enzyme';
-import { findTestSubject } from '../../../test';
-import { testByReactVersion } from '../../../test/internal';
+import React, { useState } from 'react';
+import { fireEvent } from '@testing-library/react';
+import {
+  renderHook,
+  render,
+  screen,
+  waitForEuiPopoverOpen,
+} from '../../../test/rtl';
+import { testOnReactVersion } from '../../../test/internal';
 
 import { schemaDetectors } from '../utils/data_grid_schema';
+import type { EuiDataGridColumnSortingConfig } from '../data_grid_types';
 
-import { useDataGridColumnSorting } from './column_sorting';
-describe('useDataGridColumnSorting', () => {
-  const onSort = jest.fn();
-  const defaultSort = [{ id: 'columnA', direction: 'asc' as 'asc' | 'desc' }];
-  const sorting = { onSort, columns: defaultSort };
-  onSort.mockImplementation((newColumns) => (sorting.columns = newColumns));
-  const columns = [{ id: 'columnA' }, { id: 'columnB' }, { id: 'columnC' }];
-  const schema = {
+import {
+  useDataGridColumnSorting,
+  DataGridSortingControl,
+  type ColumnSortingProps,
+} from './column_sorting';
+
+const requiredArgs: Omit<ColumnSortingProps, 'sorting'> = {
+  columns: [{ id: 'columnA' }, { id: 'columnB' }, { id: 'columnC' }],
+  displayValues: {
+    columnA: 'Column A',
+    columnB: 'Column B',
+    columnC: 'Column C',
+  },
+  schema: {
     columnA: { columnType: 'numeric' },
     columnC: { columnType: 'boolean' },
-  };
-  const displayValues = { columnA: 'Column A' };
+  },
+  schemaDetectors,
+};
 
-  const requiredArgs = [
-    columns,
-    sorting,
-    schema,
-    schemaDetectors,
-    displayValues,
-  ] as const;
+describe('useDataGridColumnSorting', () => {
+  it('returns null if sorting is undefined', () => {
+    const { result } = renderHook(() =>
+      useDataGridColumnSorting({ ...requiredArgs, sorting: undefined })
+    );
+    expect(result.current).toEqual(null);
+  });
+
+  it('returns a React toolbar control element if sorting is defined', () => {
+    const { result } = renderHook(() =>
+      useDataGridColumnSorting({
+        ...requiredArgs,
+        sorting: { onSort: () => {}, columns: [] },
+      })
+    );
+    expect(result.current).not.toEqual(null);
+  });
+});
+
+describe('DataGridSortingControl', () => {
+  const onSort = jest.fn();
+  const defaultSort = [{ id: 'columnA', direction: 'asc' as 'asc' | 'desc' }];
+  const sorting = { columns: defaultSort, onSort };
 
   beforeEach(() => {
     jest.clearAllMocks();
     sorting.columns = defaultSort;
   });
 
-  describe('columnSorting', () => {
-    // Hooks can only be called inside function components
-    const MockComponent = ({
-      columns = requiredArgs[0],
-      sorting = requiredArgs[1],
-      schema = requiredArgs[2],
-      schemaDetectors = requiredArgs[3],
-      displayValues = requiredArgs[4],
-    }) => {
-      const columnSorting = useDataGridColumnSorting(
-        columns,
-        sorting,
-        schema,
-        schemaDetectors,
-        displayValues
-      );
-      return <>{columnSorting}</>;
-    };
-    const openPopover = (component: ReactWrapper) => {
-      findTestSubject(component, 'dataGridColumnSortingButton').simulate(
-        'click'
-      );
-    };
-    const closePopover = (component: ReactWrapper) => {
-      const closeFn = component
-        .find('[data-test-subj="dataGridColumnSortingPopover"]')
-        .first()
-        .prop('closePopover') as Function;
-      act(() => closeFn());
-    };
-    const forceUpdate = (component: ReactWrapper) => {
-      component.setProps({});
-    };
-
-    testByReactVersion(
-      'renders a toolbar button/popover allowing users to set column sorting',
-      () => {
-        const component = mount(<MockComponent />);
-        openPopover(component);
-        expect(component.render()).toMatchSnapshot();
-        expect(
-          component.find('[data-popover-panel]').first().render()
-        ).toMatchSnapshot();
-        closePopover(component);
-        expect(component.text()).toEqual('Sort fields1');
+  const ControlWithState = ({
+    sorting,
+    ...rest
+  }: Partial<ColumnSortingProps>) => {
+    const [sortingColumns, setSortingColumns] = useState(
+      sorting?.columns || defaultSort
+    );
+    onSort.mockImplementation(
+      (sortingColumns: EuiDataGridColumnSortingConfig[]) => {
+        setSortingColumns(sortingColumns);
       }
     );
+    const sortingWithState = {
+      columns: sortingColumns,
+      onSort,
+    };
+    return (
+      <DataGridSortingControl
+        {...requiredArgs}
+        {...rest}
+        sorting={sortingWithState}
+      />
+    );
+  };
+  const openPopover = () => {
+    fireEvent.click(screen.getByTestSubject('dataGridColumnSortingButton'));
+    waitForEuiPopoverOpen();
+  };
+  const getButtonText = () =>
+    screen.getByTestSubject('dataGridColumnSortingButton').textContent;
 
-    it('returns null if sorting is not defined', () => {
-      // @ts-ignore - normally this would be undefined vs. null, but we have = fallbacks up above for testing QOL
-      const component = mount(<MockComponent sorting={null} />);
-      expect(component.isEmptyRender()).toEqual(true);
+  testOnReactVersion(['18'])(
+    'renders a toolbar button/popover allowing users to set column sorting',
+    () => {
+      const { baseElement } = render(<ControlWithState />);
+      expect(getButtonText()).toEqual('Sort fields1');
+      openPopover();
+      expect(baseElement).toMatchSnapshot();
+    }
+  );
+
+  it('handles updates when sorting/columns change outside the popover (e.g. from the grid itself)', () => {
+    const { rerender } = render(<ControlWithState />);
+    rerender(<ControlWithState columns={[{ id: 'columnB' }]} />);
+    expect(onSort).toHaveBeenCalledWith([]);
+  });
+
+  describe('sort order', () => {
+    const mockDrag = (handle: HTMLElement, moveEvent: Partial<MouseEvent>) => {
+      fireEvent.mouseDown(handle);
+      fireEvent.mouseMove(handle, moveEvent);
+      fireEvent.mouseUp(handle);
+    };
+
+    it('reorders sort on drag', () => {
+      const { getByLabelText } = render(<ControlWithState />);
+      openPopover();
+
+      mockDrag(getByLabelText('Drag handle'), { clientX: 0, clientY: 5 });
+      expect(onSort).toHaveBeenCalledWith(defaultSort);
     });
 
-    it('handles updates when sorting/columns change outside the popover (e.g. from the grid itself)', () => {
-      const component = mount(<MockComponent />);
-      component.setProps({ columns: [{ id: 'columnB' }] });
-      expect(onSort).toHaveBeenCalledWith([]);
+    it('handles invalid drags outside the valid droppable area', () => {
+      const { getByLabelText } = render(<ControlWithState />);
+      openPopover();
+
+      mockDrag(getByLabelText('Drag handle'), {});
+      expect(onSort).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('popover footer', () => {
+    it('does not render a footer if no columns are visible', () => {
+      const { container } = render(<ControlWithState columns={[]} />);
+      openPopover();
+      expect(container.querySelector('.euiPopoverFooter')).toBe(null);
     });
 
-    describe('sort order', () => {
-      it('reorders sort on drag', () => {
-        const component = mount(<MockComponent />);
-        openPopover(component);
+    describe('clear sorting button', () => {
+      it('renders a button which removes all active sorts', () => {
+        const { getByTestSubject, getByRole } = render(<ControlWithState />);
+        openPopover();
 
-        act(() => {
-          (component.find('EuiDragDropContext').prop('onDragEnd') as Function)({
-            source: { index: 0 },
-            destination: { index: 1 },
-          });
-        });
-        forceUpdate(component);
+        fireEvent.click(getByTestSubject('dataGridColumnSortingClearButton'));
+        expect(onSort).toHaveBeenCalledWith([]);
 
-        expect(onSort).toHaveBeenCalledWith(defaultSort);
+        expect(getByRole('alert')).toHaveTextContent(
+          'Currently no fields are sorted'
+        );
+        expect(getButtonText()).toEqual('Sort fields');
       });
 
-      it('handles invalid drags outside the valid droppable area', () => {
-        const component = mount(<MockComponent />);
-        openPopover(component);
+      it('does not render the button if there are no active sorts', () => {
+        const { queryByTestSubject } = render(
+          <ControlWithState sorting={{ columns: [], onSort }} />
+        );
+        openPopover();
 
-        act(() => {
-          (component.find('EuiDragDropContext').prop('onDragEnd') as Function)({
-            source: { index: 0 },
-            destination: null,
-          });
-        });
-        forceUpdate(component);
-
-        expect(onSort).not.toHaveBeenCalled();
+        expect(
+          queryByTestSubject('dataGridColumnSortingClearButton')
+        ).not.toBeInTheDocument();
       });
     });
 
-    describe('popover footer', () => {
-      it('does not render a footer if no columns are visible', () => {
-        const component = mount(<MockComponent columns={[]} />);
-        openPopover(component);
+    describe('pick sort fields selection popover', () => {
+      const openSelectionPopover = () =>
+        fireEvent.click(
+          screen.getByTestSubject('dataGridColumnSortingSelectionButton')
+        );
+      const getUnsortedColumns = () =>
+        document.querySelectorAll(
+          '[data-test-subj^="dataGridColumnSortingPopoverColumnSelection-"]'
+        );
 
-        expect(component.find('EuiPopoverFooter')).toHaveLength(0);
+      it('renders a nested popover with a list of fields that are not being actively sorted', () => {
+        render(<ControlWithState />);
+        openPopover();
+        openSelectionPopover();
+
+        expect(getUnsortedColumns()).toHaveLength(2);
       });
 
-      describe('clear sorting button', () => {
-        it('renders a button which removes all active sorts', () => {
-          const component = mount(<MockComponent />);
-          openPopover(component);
+      it('does not render fields that are marked as isSortable: false at the column level', () => {
+        render(
+          <ControlWithState
+            columns={[
+              { id: 'columnB', isSortable: false } as any,
+              { id: 'columnC' },
+            ]}
+          />
+        );
+        openPopover();
+        openSelectionPopover();
 
-          const clearButton = findTestSubject(
-            component,
-            'dataGridColumnSortingClearButton'
-          );
-          clearButton.simulate('click');
-          forceUpdate(component);
-
-          expect(onSort).toHaveBeenCalledWith([]);
-
-          expect(component.find('EuiText').text()).toContain(
-            'Currently no fields are sorted'
-          );
-          expect(component.text()).toEqual('Sort fields');
-        });
-
-        it('does not render the button if there are no active sorts', () => {
-          const component = mount(
-            <MockComponent sorting={{ ...sorting, columns: [] }} />
-          );
-          openPopover(component);
-
-          const clearButton = findTestSubject(
-            component,
-            'dataGridColumnSortingClearButton'
-          );
-
-          expect(clearButton).toHaveLength(0);
-        });
+        expect(getUnsortedColumns()).toHaveLength(1);
       });
 
-      describe('pick sort fields selection popover', () => {
-        const openSelectionPopover = (component: ReactWrapper) => {
-          findTestSubject(
-            component,
-            'dataGridColumnSortingSelectionButton'
-          ).simulate('click');
-        };
-        const closeSelectionPopover = (component: ReactWrapper) => {
-          const closeFn = component
-            .find(
-              '[data-test-subj="dataGridColumnSortingPopoverColumnSelection"]'
+      it('does not render fields that are marked as isSortable: false at the schema level', () => {
+        render(
+          <ControlWithState
+            columns={[{ id: 'columnB' }, { id: 'columnC' }]}
+            schema={{ columnB: { columnType: 'test' } } as any}
+            schemaDetectors={[
+              { ...schemaDetectors[0], type: 'test', isSortable: false },
+            ]}
+          />
+        );
+        openPopover();
+        openSelectionPopover();
+
+        expect(getUnsortedColumns()).toHaveLength(1);
+      });
+
+      it('does not render the popover or button if all fields are already being actively sorted', () => {
+        const { queryByTestSubject } = render(
+          <ControlWithState columns={[{ id: 'columnA' }]} />
+        );
+        openPopover();
+
+        expect(
+          queryByTestSubject('dataGridColumnSortingSelectionButton')
+        ).not.toBeInTheDocument();
+      });
+
+      describe('field click behavior', () => {
+        const noActiveSorts = { ...sorting, columns: [] };
+
+        const openPopoversAndSortByColumnB = () => {
+          openPopover();
+          openSelectionPopover();
+          fireEvent.click(
+            screen.getByTestSubject(
+              'dataGridColumnSortingPopoverColumnSelection-columnB'
             )
-            .first()
-            .prop('closePopover') as Function;
-          act(() => closeFn());
+          );
         };
 
-        it('renders a nested popover with a list of fields that are not being actively sorted', () => {
-          const component = mount(<MockComponent />);
-          openPopover(component);
-          openSelectionPopover(component);
-
-          const unsortedColumns = findTestSubject(
-            component,
-            'dataGridColumnSortingPopoverColumnSelection-',
-            '^='
-          );
-          expect(unsortedColumns).toHaveLength(2);
-
-          closeSelectionPopover(component);
+        it('adds the field to the active sort list when clicked, with a default sort direction of `asc`', () => {
+          render(<ControlWithState sorting={noActiveSorts} />);
+          openPopoversAndSortByColumnB();
+          expect(onSort).toHaveBeenCalledWith([
+            { id: 'columnB', direction: 'asc' },
+          ]);
         });
 
-        it('does not render fields that are marked as isSortable: false at the column level', () => {
-          const component = mount(
-            <MockComponent
-              columns={[
-                { id: 'columnB', isSortable: false } as any,
-                { id: 'columnC' },
-              ]}
-            />
-          );
-          openPopover(component);
-          openSelectionPopover(component);
-
-          const unsortedColumns = findTestSubject(
-            component,
-            'dataGridColumnSortingPopoverColumnSelection-',
-            '^='
-          );
-          expect(unsortedColumns).toHaveLength(1);
-        });
-
-        it('does not render fields that are marked as isSortable: false at the schema level', () => {
-          const component = mount(
-            <MockComponent
-              columns={[{ id: 'columnB' }, { id: 'columnC' }]}
+        it('uses the default sort direction configured at the schema level', () => {
+          render(
+            <ControlWithState
+              sorting={noActiveSorts}
+              columns={[{ id: 'columnB', defaultSortDirection: 'desc' } as any]}
               schema={{ columnB: { columnType: 'test' } } as any}
               schemaDetectors={[
-                { ...schemaDetectors[0], type: 'test', isSortable: false },
+                ...schemaDetectors,
+                { ...schemaDetectors[0], defaultSortDirection: 'desc' },
               ]}
             />
           );
-          openPopover(component);
-          openSelectionPopover(component);
+          openPopoversAndSortByColumnB();
 
-          const unsortedColumns = findTestSubject(
-            component,
-            'dataGridColumnSortingPopoverColumnSelection-',
-            '^='
-          );
-          expect(unsortedColumns).toHaveLength(1);
+          expect(onSort).toHaveBeenCalledWith([
+            { id: 'columnB', direction: 'desc' },
+          ]);
         });
 
-        it('does not render the popover or button if all fields are already being actively sorted', () => {
-          const component = mount(
-            <MockComponent columns={[{ id: 'columnA' }]} />
+        it('uses the default sort direction configured at the column level', () => {
+          render(
+            <ControlWithState
+              sorting={noActiveSorts}
+              columns={[{ id: 'columnB', defaultSortDirection: 'desc' } as any]}
+            />
           );
-          openPopover(component);
+          openPopoversAndSortByColumnB();
 
-          const popoverButton = findTestSubject(
-            component,
-            'dataGridColumnSortingSelectionButton'
-          );
-
-          expect(popoverButton).toHaveLength(0);
-        });
-
-        describe('field click behavior', () => {
-          const noActiveSorts = { ...sorting, columns: [] };
-
-          const openPopoversAndSortByColumnB = (component: ReactWrapper) => {
-            openPopover(component);
-            openSelectionPopover(component);
-            findTestSubject(
-              component,
-              'dataGridColumnSortingPopoverColumnSelection-columnB'
-            ).simulate('click');
-          };
-
-          it('adds the field to the active sort list when clicked, with a default sort direction of `asc`', () => {
-            const component = mount(<MockComponent sorting={noActiveSorts} />);
-            openPopoversAndSortByColumnB(component);
-
-            expect(onSort).toHaveBeenCalledWith([
-              { id: 'columnB', direction: 'asc' },
-            ]);
-          });
-
-          it('uses the default sort direction configured at the schema level', () => {
-            const component = mount(
-              <MockComponent
-                sorting={noActiveSorts}
-                columns={[
-                  { id: 'columnB', defaultSortDirection: 'desc' } as any,
-                ]}
-                schema={{ columnB: { columnType: 'test' } } as any}
-                schemaDetectors={[
-                  ...schemaDetectors,
-                  { ...schemaDetectors[0], defaultSortDirection: 'desc' },
-                ]}
-              />
-            );
-            openPopoversAndSortByColumnB(component);
-
-            expect(onSort).toHaveBeenCalledWith([
-              { id: 'columnB', direction: 'desc' },
-            ]);
-          });
-
-          it('uses the default sort direction configured at the column level', () => {
-            const component = mount(
-              <MockComponent
-                sorting={noActiveSorts}
-                columns={[
-                  { id: 'columnB', defaultSortDirection: 'desc' } as any,
-                ]}
-              />
-            );
-            openPopoversAndSortByColumnB(component);
-
-            expect(onSort).toHaveBeenCalledWith([
-              { id: 'columnB', direction: 'desc' },
-            ]);
-          });
+          expect(onSort).toHaveBeenCalledWith([
+            { id: 'columnB', direction: 'desc' },
+          ]);
         });
       });
     });

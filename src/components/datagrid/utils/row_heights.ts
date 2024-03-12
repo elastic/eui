@@ -26,7 +26,7 @@ import {
   EuiDataGridStyleCellPaddings,
   ImperativeGridApi,
 } from '../data_grid_types';
-import { DataGridSortingContext } from './sorting';
+import { DataGridSortedContext } from './sorting';
 
 // TODO: Once JS variables are available, use them here instead of hard-coded maps
 export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
@@ -399,7 +399,7 @@ export const useDefaultRowHeight = ({
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtilsType;
 }) => {
-  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+  const { getCorrectRowIndex } = useContext(DataGridSortedContext);
 
   // `minRowHeight` is primarily used by undefined & lineCount heights
   // and ignored by auto & static heights (unless the static height is < the min)

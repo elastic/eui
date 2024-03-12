@@ -22,6 +22,7 @@ const MockAction: EuiDataGridColumnCellAction = ({ Component }) => (
 describe('EuiDataGridCellActions', () => {
   const requiredProps = {
     onExpandClick: jest.fn(),
+    popoverAnchorRef: () => {},
     rowIndex: 0,
     colIndex: 0,
     cellHeightType: 'default',
@@ -31,17 +32,22 @@ describe('EuiDataGridCellActions', () => {
     const component = shallow(<EuiDataGridCellActions {...requiredProps} />);
 
     expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridRowCell__actions"
-      >
-        <EuiI18n
-          default="Click or hit enter to interact with cell content"
-          key="expand"
-          token="euiDataGridCellActions.expandButtonTitle"
+      <Fragment>
+        <div
+          className="euiDataGridRowCell__actions"
         >
-          <Component />
-        </EuiI18n>
-      </div>
+          <EuiI18n
+            default="Click or hit enter to interact with cell content"
+            key="expand"
+            token="euiDataGridCellActions.expandButtonTitle"
+          >
+            <Component />
+          </EuiI18n>
+        </div>
+        <div
+          data-test-subject="cellPopoverAnchor"
+        />
+      </Fragment>
     `);
 
     const button: Function = component.find('EuiI18n').renderProp('children');
@@ -68,7 +74,7 @@ describe('EuiDataGridCellActions', () => {
       />
     );
 
-    const button = component.childAt(0).renderProp('Component');
+    const button = component.childAt(0).childAt(0).renderProp('Component');
     expect(button({ iconType: 'eye' })).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
@@ -91,25 +97,30 @@ describe('EuiDataGridCellActions', () => {
     );
 
     expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridRowCell__actions"
-      >
-        <MockAction
-          Component={[Function]}
-          colIndex={0}
-          columnId="someId"
-          isExpanded={false}
-          key="0"
-          rowIndex={0}
-        />
-        <EuiI18n
-          default="Click or hit enter to interact with cell content"
-          key="expand"
-          token="euiDataGridCellActions.expandButtonTitle"
+      <Fragment>
+        <div
+          className="euiDataGridRowCell__actions"
         >
-          <Component />
-        </EuiI18n>
-      </div>
+          <MockAction
+            Component={[Function]}
+            colIndex={0}
+            columnId="someId"
+            isExpanded={false}
+            key="0"
+            rowIndex={0}
+          />
+          <EuiI18n
+            default="Click or hit enter to interact with cell content"
+            key="expand"
+            token="euiDataGridCellActions.expandButtonTitle"
+          >
+            <Component />
+          </EuiI18n>
+        </div>
+        <div
+          data-test-subject="cellPopoverAnchor"
+        />
+      </Fragment>
     `);
   });
 
