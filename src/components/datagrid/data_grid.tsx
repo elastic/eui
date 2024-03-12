@@ -255,13 +255,13 @@ export const EuiDataGrid = memo(
     /**
      * Sorting
      */
-    const columnSorting = useDataGridColumnSorting(
-      orderedVisibleColumns,
+    const columnSorting = useDataGridColumnSorting({
       sorting,
-      mergedSchema,
-      allSchemaDetectors,
-      displayValues
-    );
+      columns: orderedVisibleColumns,
+      displayValues,
+      schema: mergedSchema,
+      schemaDetectors: allSchemaDetectors,
+    });
 
     const sortedContext = useSorting({
       sorting,

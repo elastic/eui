@@ -1,811 +1,306 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar button/popover allowing users to set column sorting 1`] = `
-<div
-  class="euiPopover emotion-euiPopover-inline-block"
-  data-test-subj="dataGridColumnSortingPopover"
->
-  <button
-    class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
-    data-test-subj="dataGridColumnSortingButton"
-    type="button"
-  >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-    >
-      <span
-        color="inherit"
-        data-euiicon-type="sortable"
-      />
-      <span
-        class="euiDataGridToolbarControl__text eui-textTruncate"
-      >
-        Sort fields
-      </span>
-      <span
-        aria-label="- Active: 1"
-        class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
-        role="marquee"
-      >
-        1
-      </span>
-    </span>
-  </button>
-</div>
-`;
-
-exports[`useDataGridColumnSorting columnSorting [React 16] renders a toolbar button/popover allowing users to set column sorting 2`] = `
-<div
-  aria-describedby="generated-id"
-  aria-live="off"
-  aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
-  data-autofocus="true"
-  data-popover-panel="true"
-  role="dialog"
-  style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
-  tabindex="0"
->
-  <div
-    class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
-    data-popover-arrow="bottom"
-    style="left: 10px; top: 0px;"
-  />
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id"
-  >
-    You are in a dialog. Press Escape, or tap/click outside the dialog to close.
-  </p>
+exports[`DataGridSortingControl renders a toolbar button/popover allowing users to set column sorting 1`] = `
+<body>
   <div>
     <div
-      class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
-      data-rfd-droppable-context-id="0"
-      data-rfd-droppable-id="columnSorting"
-      data-test-subj="droppable"
+      class="euiPopover emotion-euiPopover-inline-block"
+      data-test-subj="dataGridColumnSortingPopover"
+    >
+      <button
+        class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+        data-test-subj="dataGridColumnSortingButton"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        >
+          <span
+            color="inherit"
+            data-euiicon-type="sortable"
+          />
+          <span
+            class="euiDataGridToolbarControl__text eui-textTruncate"
+          >
+            Sort fields
+          </span>
+          <span
+            aria-label="- Active: 1"
+            class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+            role="marquee"
+          >
+            1
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
     >
       <div
-        class="euiDraggable emotion-euiDraggable"
-        data-rfd-draggable-context-id="0"
-        data-rfd-draggable-id="columnA"
-        data-test-subj="draggable"
-        role="group"
+        aria-describedby="generated-id"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
+        data-autofocus="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        tabindex="0"
       >
         <div
-          class="euiDataGridColumnSorting__item euiDraggable__item emotion-euiDraggable__item"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
+          data-popover-arrow="bottom"
+          style="left: 10px; top: 0px;"
+        />
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
         >
-          <p
-            class="emotion-euiScreenReaderOnly"
-          >
-            Column A is sorting this data grid
-          </p>
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+        </p>
+        <div>
           <div
-            class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
+            class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
+            data-rfd-droppable-context-id=":r0:"
+            data-rfd-droppable-id="columnSorting"
+            data-test-subj="droppable"
           >
             <div
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-            >
-              <button
-                aria-label="Remove Column A from data grid sort"
-                class="euiButtonIcon euiDataGridColumnSorting__button emotion-euiButtonIcon-xs-empty-text"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
-            <div
-              aria-describedby="rfd-hidden-text-0-hidden-text-0"
-              aria-hidden="true"
-              class="euiFlexItem euiDataGridColumnSorting__name emotion-euiFlexItem-grow-1"
-              data-rfd-drag-handle-context-id="0"
-              data-rfd-drag-handle-draggable-id="columnA"
-              draggable="false"
-              role="button"
-              tabindex="-1"
+              class="euiDraggable emotion-euiDraggable"
+              data-rfd-draggable-context-id=":r0:"
+              data-rfd-draggable-id="columnA"
+              data-test-subj="draggable"
+              role="group"
             >
               <div
-                class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+                class="euiDataGridColumnSorting__item euiDraggable__item emotion-euiDraggable__item"
               >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
+                <p
+                  class="emotion-euiScreenReaderOnly"
                 >
-                  <span
-                    class="euiToken emotion-euiToken-square-light-s-euiColorVis0"
-                  >
-                    <span
-                      data-euiicon-type="tokenNumber"
-                    />
-                  </span>
-                </div>
+                  Column A is sorting this data grid
+                </p>
                 <div
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
+                  class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+                  data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
                 >
                   <div
-                    class="euiText emotion-euiText-xs"
+                    class="euiFlexItem emotion-euiFlexItem-growZero"
                   >
-                    <p>
-                      Column A
-                    </p>
+                    <button
+                      aria-label="Remove Column A from data grid sort"
+                      class="euiButtonIcon euiDataGridColumnSorting__button emotion-euiButtonIcon-xs-empty-text"
+                      type="button"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="euiButtonIcon__icon"
+                        color="inherit"
+                        data-euiicon-type="cross"
+                      />
+                    </button>
+                  </div>
+                  <div
+                    aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+                    aria-hidden="true"
+                    class="euiFlexItem euiDataGridColumnSorting__name emotion-euiFlexItem-grow-1"
+                    data-rfd-drag-handle-context-id=":r0:"
+                    data-rfd-drag-handle-draggable-id="columnA"
+                    draggable="false"
+                    role="button"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+                    >
+                      <div
+                        class="euiFlexItem emotion-euiFlexItem-growZero"
+                      >
+                        <span
+                          class="euiToken emotion-euiToken-square-light-s-euiColorVis0"
+                        >
+                          <span
+                            data-euiicon-type="tokenNumber"
+                          />
+                        </span>
+                      </div>
+                      <div
+                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                      >
+                        <div
+                          class="euiText emotion-euiText-xs"
+                        >
+                          <p>
+                            Column A
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="euiFlexItem emotion-euiFlexItem-grow-1"
+                  >
+                    <fieldset
+                      class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth"
+                    >
+                      <legend
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        Select sorting method for Column A
+                      </legend>
+                      <div
+                        class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+                      >
+                        <button
+                          aria-pressed="true"
+                          class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+                          data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                          title="Low-High"
+                          type="button"
+                        >
+                          <span
+                            class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                          >
+                            <span
+                              class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                              data-text="Low-High"
+                            >
+                              Low-High
+                            </span>
+                          </span>
+                        </button>
+                        <button
+                          aria-pressed="false"
+                          class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                          data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                          title="High-Low"
+                          type="button"
+                        >
+                          <span
+                            class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                          >
+                            <span
+                              class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                              data-text="High-Low"
+                            >
+                              High-Low
+                            </span>
+                          </span>
+                        </button>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div
+                    aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+                    aria-label="Drag handle"
+                    class="euiFlexItem emotion-euiFlexItem-growZero"
+                    data-rfd-drag-handle-context-id=":r0:"
+                    data-rfd-drag-handle-draggable-id="columnA"
+                    draggable="false"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      color="subdued"
+                      data-euiicon-type="grab"
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="euiFlexItem emotion-euiFlexItem-grow-1"
-            >
-              <fieldset
-                class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth"
-              >
-                <legend
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Select sorting method for Column A
-                </legend>
-                <div
-                  class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
-                >
-                  <button
-                    aria-pressed="true"
-                    class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                    title="Low-High"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="Low-High"
-                      >
-                        Low-High
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                    title="High-Low"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="High-Low"
-                      >
-                        High-Low
-                      </span>
-                    </span>
-                  </button>
-                </div>
-              </fieldset>
-            </div>
-            <div
-              aria-describedby="rfd-hidden-text-0-hidden-text-0"
-              aria-label="Drag handle"
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-              data-rfd-drag-handle-context-id="0"
-              data-rfd-drag-handle-draggable-id="columnA"
-              draggable="false"
-              role="button"
-              tabindex="0"
-            >
-              <span
-                color="subdued"
-                data-euiicon-type="grab"
-              />
-            </div>
+              class="euiDroppable__placeholder"
+            />
           </div>
-        </div>
-      </div>
-      <div
-        class="euiDroppable__placeholder"
-      />
-    </div>
-    <div
-      class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-m-spaceBetween-stretch-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
           <div
-            class="euiPopover emotion-euiPopover-inline-block"
-            data-test-subj="dataGridColumnSortingPopoverColumnSelection"
-          >
-            <button
-              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
-              data-test-subj="dataGridColumnSortingSelectionButton"
-              type="button"
-            >
-              <span
-                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-              >
-                <span
-                  class="eui-textTruncate euiButtonEmpty__text"
-                >
-                  Pick fields to sort by
-                </span>
-                <span
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-              </span>
-            </button>
-          </div>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button
-            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
-            data-test-subj="dataGridColumnSortingClearButton"
-            type="button"
-          >
-            <span
-              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-            >
-              <span
-                class="eui-textTruncate euiButtonEmpty__text"
-              >
-                Clear sorting
-              </span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar button/popover allowing users to set column sorting 1`] = `
-<div
-  class="euiPopover emotion-euiPopover-inline-block"
-  data-test-subj="dataGridColumnSortingPopover"
->
-  <button
-    class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
-    data-test-subj="dataGridColumnSortingButton"
-    type="button"
-  >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-    >
-      <span
-        color="inherit"
-        data-euiicon-type="sortable"
-      />
-      <span
-        class="euiDataGridToolbarControl__text eui-textTruncate"
-      >
-        Sort fields
-      </span>
-      <span
-        aria-label="- Active: 1"
-        class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
-        role="marquee"
-      >
-        1
-      </span>
-    </span>
-  </button>
-</div>
-`;
-
-exports[`useDataGridColumnSorting columnSorting [React 17] renders a toolbar button/popover allowing users to set column sorting 2`] = `
-<div
-  aria-describedby="generated-id"
-  aria-live="off"
-  aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
-  data-autofocus="true"
-  data-popover-panel="true"
-  role="dialog"
-  style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
-  tabindex="0"
->
-  <div
-    class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
-    data-popover-arrow="bottom"
-    style="left: 10px; top: 0px;"
-  />
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id"
-  >
-    You are in a dialog. Press Escape, or tap/click outside the dialog to close.
-  </p>
-  <div>
-    <div
-      class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
-      data-rfd-droppable-context-id="0"
-      data-rfd-droppable-id="columnSorting"
-      data-test-subj="droppable"
-    >
-      <div
-        class="euiDraggable emotion-euiDraggable"
-        data-rfd-draggable-context-id="0"
-        data-rfd-draggable-id="columnA"
-        data-test-subj="draggable"
-        role="group"
-      >
-        <div
-          class="euiDataGridColumnSorting__item euiDraggable__item emotion-euiDraggable__item"
-        >
-          <p
-            class="emotion-euiScreenReaderOnly"
-          >
-            Column A is sorting this data grid
-          </p>
-          <div
-            class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
+            class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
           >
             <div
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-            >
-              <button
-                aria-label="Remove Column A from data grid sort"
-                class="euiButtonIcon euiDataGridColumnSorting__button emotion-euiButtonIcon-xs-empty-text"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
-            <div
-              aria-describedby="rfd-hidden-text-0-hidden-text-0"
-              aria-hidden="true"
-              class="euiFlexItem euiDataGridColumnSorting__name emotion-euiFlexItem-grow-1"
-              data-rfd-drag-handle-context-id="0"
-              data-rfd-drag-handle-draggable-id="columnA"
-              draggable="false"
-              role="button"
-              tabindex="-1"
+              class="euiFlexGroup emotion-euiFlexGroup-m-spaceBetween-stretch-row"
             >
               <div
-                class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
+                  class="euiPopover emotion-euiPopover-inline-block"
+                  data-test-subj="dataGridColumnSortingPopoverColumnSelection"
                 >
-                  <span
-                    class="euiToken emotion-euiToken-square-light-s-euiColorVis0"
+                  <button
+                    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
+                    data-test-subj="dataGridColumnSortingSelectionButton"
+                    type="button"
                   >
                     <span
-                      data-euiicon-type="tokenNumber"
-                    />
-                  </span>
-                </div>
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                >
-                  <div
-                    class="euiText emotion-euiText-xs"
-                  >
-                    <p>
-                      Column A
-                    </p>
-                  </div>
+                      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                    >
+                      <span
+                        class="eui-textTruncate euiButtonEmpty__text"
+                      >
+                        Pick fields to sort by
+                      </span>
+                      <span
+                        color="inherit"
+                        data-euiicon-type="arrowDown"
+                      />
+                    </span>
+                  </button>
                 </div>
               </div>
-            </div>
-            <div
-              class="euiFlexItem emotion-euiFlexItem-grow-1"
-            >
-              <fieldset
-                class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth"
-              >
-                <legend
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Select sorting method for Column A
-                </legend>
-                <div
-                  class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
-                >
-                  <button
-                    aria-pressed="true"
-                    class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                    title="Low-High"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="Low-High"
-                      >
-                        Low-High
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                    title="High-Low"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="High-Low"
-                      >
-                        High-Low
-                      </span>
-                    </span>
-                  </button>
-                </div>
-              </fieldset>
-            </div>
-            <div
-              aria-describedby="rfd-hidden-text-0-hidden-text-0"
-              aria-label="Drag handle"
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-              data-rfd-drag-handle-context-id="0"
-              data-rfd-drag-handle-draggable-id="columnA"
-              draggable="false"
-              role="button"
-              tabindex="0"
-            >
-              <span
-                color="subdued"
-                data-euiicon-type="grab"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiDroppable__placeholder"
-      />
-    </div>
-    <div
-      class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-m-spaceBetween-stretch-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <div
-            class="euiPopover emotion-euiPopover-inline-block"
-            data-test-subj="dataGridColumnSortingPopoverColumnSelection"
-          >
-            <button
-              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
-              data-test-subj="dataGridColumnSortingSelectionButton"
-              type="button"
-            >
-              <span
-                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-              >
-                <span
-                  class="eui-textTruncate euiButtonEmpty__text"
-                >
-                  Pick fields to sort by
-                </span>
-                <span
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-              </span>
-            </button>
-          </div>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button
-            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
-            data-test-subj="dataGridColumnSortingClearButton"
-            type="button"
-          >
-            <span
-              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-            >
-              <span
-                class="eui-textTruncate euiButtonEmpty__text"
-              >
-                Clear sorting
-              </span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar button/popover allowing users to set column sorting 1`] = `
-<div
-  class="euiPopover emotion-euiPopover-inline-block"
-  data-test-subj="dataGridColumnSortingPopover"
->
-  <button
-    class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
-    data-test-subj="dataGridColumnSortingButton"
-    type="button"
-  >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-    >
-      <span
-        color="inherit"
-        data-euiicon-type="sortable"
-      />
-      <span
-        class="euiDataGridToolbarControl__text eui-textTruncate"
-      >
-        Sort fields
-      </span>
-      <span
-        aria-label="- Active: 1"
-        class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
-        role="marquee"
-      >
-        1
-      </span>
-    </span>
-  </button>
-</div>
-`;
-
-exports[`useDataGridColumnSorting columnSorting [React 18] renders a toolbar button/popover allowing users to set column sorting 2`] = `
-<div
-  aria-describedby="generated-id"
-  aria-live="off"
-  aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
-  data-autofocus="true"
-  data-popover-panel="true"
-  role="dialog"
-  style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
-  tabindex="0"
->
-  <div
-    class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
-    data-popover-arrow="bottom"
-    style="left: 10px; top: 0px;"
-  />
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id"
-  >
-    You are in a dialog. Press Escape, or tap/click outside the dialog to close.
-  </p>
-  <div>
-    <div
-      class="euiDroppable euiDataGrid__controlScroll emotion-euiDroppable-noGrow"
-      data-rfd-droppable-context-id=":r0:"
-      data-rfd-droppable-id="columnSorting"
-      data-test-subj="droppable"
-    >
-      <div
-        class="euiDraggable emotion-euiDraggable"
-        data-rfd-draggable-context-id=":r0:"
-        data-rfd-draggable-id="columnA"
-        data-test-subj="draggable"
-        role="group"
-      >
-        <div
-          class="euiDataGridColumnSorting__item euiDraggable__item emotion-euiDraggable__item"
-        >
-          <p
-            class="emotion-euiScreenReaderOnly"
-          >
-            Column A is sorting this data grid
-          </p>
-          <div
-            class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
-            data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
-          >
-            <div
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-            >
-              <button
-                aria-label="Remove Column A from data grid sort"
-                class="euiButtonIcon euiDataGridColumnSorting__button emotion-euiButtonIcon-xs-empty-text"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
-            <div
-              aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-              aria-hidden="true"
-              class="euiFlexItem euiDataGridColumnSorting__name emotion-euiFlexItem-grow-1"
-              data-rfd-drag-handle-context-id=":r0:"
-              data-rfd-drag-handle-draggable-id="columnA"
-              draggable="false"
-              role="button"
-              tabindex="-1"
-            >
               <div
-                class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-growZero"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
+                  data-test-subj="dataGridColumnSortingClearButton"
+                  type="button"
                 >
                   <span
-                    class="euiToken emotion-euiToken-square-light-s-euiColorVis0"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      data-euiicon-type="tokenNumber"
-                    />
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Clear sorting
+                    </span>
                   </span>
-                </div>
-                <div
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
-                >
-                  <div
-                    class="euiText emotion-euiText-xs"
-                  >
-                    <p>
-                      Column A
-                    </p>
-                  </div>
-                </div>
+                </button>
               </div>
             </div>
-            <div
-              class="euiFlexItem emotion-euiFlexItem-grow-1"
-            >
-              <fieldset
-                class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth"
-              >
-                <legend
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Select sorting method for Column A
-                </legend>
-                <div
-                  class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
-                >
-                  <button
-                    aria-pressed="true"
-                    class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                    title="Low-High"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="Low-High"
-                      >
-                        Low-High
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                    title="High-Low"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="High-Low"
-                      >
-                        High-Low
-                      </span>
-                    </span>
-                  </button>
-                </div>
-              </fieldset>
-            </div>
-            <div
-              aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
-              aria-label="Drag handle"
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-              data-rfd-drag-handle-context-id=":r0:"
-              data-rfd-drag-handle-draggable-id="columnA"
-              draggable="false"
-              role="button"
-              tabindex="0"
-            >
-              <span
-                color="subdued"
-                data-euiicon-type="grab"
-              />
-            </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="euiDroppable__placeholder"
-      />
-    </div>
-    <div
-      class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-m-spaceBetween-stretch-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <div
-            class="euiPopover emotion-euiPopover-inline-block"
-            data-test-subj="dataGridColumnSortingPopoverColumnSelection"
-          >
-            <button
-              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
-              data-test-subj="dataGridColumnSortingSelectionButton"
-              type="button"
-            >
-              <span
-                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-              >
-                <span
-                  class="eui-textTruncate euiButtonEmpty__text"
-                >
-                  Pick fields to sort by
-                </span>
-                <span
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-              </span>
-            </button>
-          </div>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button
-            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
-            data-test-subj="dataGridColumnSortingClearButton"
-            type="button"
-          >
-            <span
-              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-            >
-              <span
-                class="eui-textTruncate euiButtonEmpty__text"
-              >
-                Clear sorting
-              </span>
-            </span>
-          </button>
         </div>
       </div>
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
   </div>
-</div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    id="rfd-announcement-:r0:"
+    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+  />
+  <div
+    id="rfd-hidden-text-:r0:-hidden-text-:r1:"
+    style="display: none;"
+  >
+    
+  Press space bar to start a drag.
+  When dragging you can use the arrow keys to move the item around and escape to cancel.
+  Some screen readers may require you to be in focus mode or to use your pass through key
+
+  </div>
+</body>
 `;
