@@ -5,6 +5,7 @@ import {
   EuiButtonEmpty,
   EuiFieldText,
   EuiForm,
+  type EuiFormProps,
   EuiFormRow,
   EuiModal,
   EuiModalBody,
@@ -15,66 +16,62 @@ import {
   EuiSwitch,
   EuiSuperSelect,
   EuiText,
+  useGeneratedHtmlId,
 } from '../../../../src';
 
-import { useGeneratedHtmlId } from '../../../../src/services';
+const superSelectOptions = [
+  {
+    value: 'option_one',
+    inputDisplay: 'Option one',
+    dropdownDisplay: (
+      <>
+        <strong>Option one</strong>
+        <EuiText size="s" color="subdued">
+          <p>Has a short description giving more detail to the option.</p>
+        </EuiText>
+      </>
+    ),
+  },
+  {
+    value: 'option_two',
+    inputDisplay: 'Option two',
+    dropdownDisplay: (
+      <>
+        <strong>Option two</strong>
+        <EuiText size="s" color="subdued">
+          <p>Has a short description giving more detail to the option.</p>
+        </EuiText>
+      </>
+    ),
+  },
+  {
+    value: 'option_three',
+    inputDisplay: 'Option three',
+    dropdownDisplay: (
+      <>
+        <strong>Option three</strong>
+        <EuiText size="s" color="subdued">
+          <p>Has a short description giving more detail to the option.</p>
+        </EuiText>
+      </>
+    ),
+  },
+];
 
-export default () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isSwitchChecked, setIsSwitchChecked] = useState(true);
-  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
-
-  const modalFormId = useGeneratedHtmlId({ prefix: 'modalForm' });
+const ExampleForm = ({ id }: Partial<EuiFormProps>) => {
   const modalFormSwitchId = useGeneratedHtmlId({ prefix: 'modalFormSwitch' });
 
+  const [isSwitchChecked, setIsSwitchChecked] = useState(true);
   const onSwitchChange = () =>
     setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
 
-  const closeModal = () => setIsModalVisible(false);
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
+  const onSuperSelectChange = (value: string) => {
+    setSuperSelectValue(value);
+  };
 
-  const showModal = () => setIsModalVisible(true);
-
-  const superSelectOptions = [
-    {
-      value: 'option_one',
-      inputDisplay: 'Option one',
-      dropdownDisplay: (
-        <>
-          <strong>Option one</strong>
-          <EuiText size="s" color="subdued">
-            <p>Has a short description giving more detail to the option.</p>
-          </EuiText>
-        </>
-      ),
-    },
-    {
-      value: 'option_two',
-      inputDisplay: 'Option two',
-      dropdownDisplay: (
-        <>
-          <strong>Option two</strong>
-          <EuiText size="s" color="subdued">
-            <p>Has a short description giving more detail to the option.</p>
-          </EuiText>
-        </>
-      ),
-    },
-    {
-      value: 'option_three',
-      inputDisplay: 'Option three',
-      dropdownDisplay: (
-        <>
-          <strong>Option three</strong>
-          <EuiText size="s" color="subdued">
-            <p>Has a short description giving more detail to the option.</p>
-          </EuiText>
-        </>
-      ),
-    },
-  ];
-
-  const formSample = (
-    <EuiForm id={modalFormId} component="form">
+  return (
+    <EuiForm id={id} component="form">
       <EuiFormRow>
         <EuiSwitch
           id={modalFormSwitchId}
@@ -104,36 +101,50 @@ export default () => {
       </EuiFormRow>
     </EuiForm>
   );
+};
 
-  const onSuperSelectChange = (value: string) => {
-    setSuperSelectValue(value);
-  };
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
 
-  let modal;
+  const modalFormId = useGeneratedHtmlId({ prefix: 'modalForm' });
+  const modalTitleId = useGeneratedHtmlId();
 
-  if (isModalVisible) {
-    modal = (
-      <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
-        <EuiModalHeader>
-          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
-        </EuiModalHeader>
-
-        <EuiModalBody>{formSample}</EuiModalBody>
-
-        <EuiModalFooter>
-          <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
-
-          <EuiButton type="submit" form={modalFormId} onClick={closeModal} fill>
-            Save
-          </EuiButton>
-        </EuiModalFooter>
-      </EuiModal>
-    );
-  }
   return (
-    <div>
+    <>
       <EuiButton onClick={showModal}>Show form modal</EuiButton>
-      {modal}
-    </div>
+
+      {isModalVisible && (
+        <EuiModal
+          aria-labelledby={modalTitleId}
+          onClose={closeModal}
+          initialFocus="[name=popswitch]"
+        >
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Modal title
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            <ExampleForm id={modalFormId} />
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
+
+            <EuiButton
+              type="submit"
+              form={modalFormId}
+              onClick={closeModal}
+              fill
+            >
+              Save
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
   );
 };

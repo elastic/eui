@@ -138,7 +138,13 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   }
 
   return (
-    <EuiModal className={classes} css={cssStyles} onClose={onCancel} {...rest}>
+    <EuiModal
+      className={classes}
+      css={cssStyles}
+      onClose={onCancel}
+      role="alertdialog"
+      {...rest}
+    >
       {modalTitle}
 
       {message && (

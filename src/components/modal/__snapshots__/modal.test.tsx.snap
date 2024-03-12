@@ -18,8 +18,10 @@ exports[`EuiModal renders 1`] = `
     >
       <div
         aria-label="aria-label"
+        aria-modal="true"
         class="euiModal testClass1 testClass2 emotion-euiModal-defaultMaxWidth-euiTestCss"
         data-test-subj="test subject string"
+        role="dialog"
         tabindex="0"
       >
         <button
