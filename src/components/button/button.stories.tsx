@@ -12,7 +12,7 @@ import { disableStorybookControls } from '../../../.storybook/utils';
 import { EuiButton, Props as EuiButtonProps } from './button';
 
 const meta: Meta<EuiButtonProps> = {
-  title: 'Navigation/EuiButton/EuiButton',
+  title: 'Navigation/EuiButton',
   component: EuiButton,
   argTypes: {
     iconType: { control: 'text' },

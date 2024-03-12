@@ -12,7 +12,7 @@ import { disableStorybookControls } from '../../../../.storybook/utils';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';
 
 const meta: Meta<EuiButtonEmptyProps> = {
-  title: 'Navigation/EuiButton/EuiButtonEmpty',
+  title: 'Navigation/EuiButtonEmpty',
   component: EuiButtonEmpty,
   argTypes: {
     flush: {

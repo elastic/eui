@@ -17,7 +17,7 @@ import {
 } from './button_group';
 
 const meta: Meta<EuiButtonGroupProps> = {
-  title: 'Navigation/EuiButton/EuiButtonGroup',
+  title: 'Navigation/EuiButtonGroup',
   // @ts-ignore This still works for Storybook controls, even though Typescript complains
   component: EuiButtonGroup,
   argTypes: {
