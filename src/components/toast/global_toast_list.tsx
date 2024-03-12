@@ -12,13 +12,14 @@ import React, {
   ReactNode,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
@@ -107,11 +108,10 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
   const listElement = useRef<HTMLDivElement | null>(null);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiGlobalToastListStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiGlobalToastListStyles);
   const cssStyles = [styles.euiGlobalToastList, styles[side]];
 
-  const startScrollingToBottom = () => {
+  const startScrollingToBottom = useCallback(() => {
     isScrollingToBottom.current = true;
 
     const scrollToBottom = () => {
@@ -143,9 +143,9 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
     startScrollingAnimationFrame.current =
       window.requestAnimationFrame(scrollToBottom);
-  };
+  }, []);
 
-  const onMouseEnter = () => {
+  const onMouseEnter = useCallback(() => {
     // Stop scrolling to bottom if we're in mid-scroll, because the user wants to interact with
     // the list.
     isScrollingToBottom.current = false;
@@ -158,9 +158,9 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         timer.pause();
       }
     }
-  };
+  }, []);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
     isUserInteracting.current = false;
     for (const toastId in toastIdToTimerMap.current) {
       if (toastIdToTimerMap.current.hasOwnProperty(toastId)) {
@@ -168,9 +168,9 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         timer.resume();
       }
     }
-  };
+  }, []);
 
-  const onScroll = () => {
+  const onScroll = useCallback(() => {
     // Given that this method also gets invoked by the synthetic scroll that happens when a new toast gets added,
     // we want to evaluate if the scroll bottom has been reached only when the user is interacting with the toast,
     // this way we always retain the scroll position the user has set despite adding in new toasts.
@@ -180,7 +180,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         listElement.current.scrollHeight - listElement.current.scrollTop ===
         listElement.current.clientHeight;
     }
-  };
+  }, []);
 
   const dismissToast = useCallback((toast: Toast) => {
     // Remove the toast after it's done fading out.
@@ -215,35 +215,28 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     });
   }, [scheduleToastForDismissal, toasts]);
 
-  const addListeners = () => {
-    if (listElement.current) {
-      listElement.current.addEventListener('scroll', onScroll);
-      listElement.current.addEventListener('mouseenter', onMouseEnter);
-      listElement.current.addEventListener('mouseleave', onMouseLeave);
-    }
-  };
-
-  const removeListeners = () => {
-    if (listElement.current) {
-      listElement.current.removeEventListener('scroll', onScroll);
-      listElement.current.removeEventListener('mouseenter', onMouseEnter);
-      listElement.current.removeEventListener('mouseleave', onMouseLeave);
-    }
-  };
-
   // componentDidMount
   useEffect(() => {
-    addListeners();
+    const listenerEl = listElement.current;
+    if (listenerEl) {
+      listenerEl.addEventListener('scroll', onScroll);
+      listenerEl.addEventListener('mouseenter', onMouseEnter);
+      listenerEl.addEventListener('mouseleave', onMouseLeave);
+    }
 
     // componentWillUnmount
     return () => {
+      if (listenerEl) {
+        listenerEl.removeEventListener('scroll', onScroll);
+        listenerEl.removeEventListener('mouseenter', onMouseEnter);
+        listenerEl.removeEventListener('mouseleave', onMouseLeave);
+      }
       if (isScrollingAnimationFrame.current !== 0) {
         window.cancelAnimationFrame(isScrollingAnimationFrame.current);
       }
       if (startScrollingAnimationFrame.current !== 0) {
         window.cancelAnimationFrame(startScrollingAnimationFrame.current);
       }
-      removeListeners();
       dismissTimeoutIds.current.forEach(clearTimeout); // eslint-disable-line react-hooks/exhaustive-deps
       for (const toastId in toastIdToTimerMap.current) {
         if (toastIdToTimerMap.current.hasOwnProperty(toastId)) {
@@ -252,7 +245,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
         }
       }
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [onMouseEnter, onMouseLeave, onScroll]);
 
   // componentDidUpdate
   useEffect(() => {
@@ -268,7 +261,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       }
     }
     prevToasts.current = toasts;
-  }, [toasts, scheduleAllToastsForDismissal]);
+  }, [toasts, scheduleAllToastsForDismissal, startScrollingToBottom]);
 
   // Toast dismissal side effect
   // Ensure the callback has correct state by not enclosing it in `setTimeout`
@@ -294,62 +287,76 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     }
   }, [toastToDismiss, dismissToastProp]);
 
-  const renderedToasts = toasts.map((toast) => {
-    const { text, toastLifeTimeMs, ...rest } = toast;
-    const onClose = () => dismissToast(toast);
+  const renderedToasts = useMemo(
+    () =>
+      toasts.map((toast) => {
+        const { text, toastLifeTimeMs, ...rest } = toast;
+        const onClose = () => dismissToast(toast);
 
-    return (
-      <EuiGlobalToastListItem
-        key={toast.id}
-        isDismissed={toastIdToDismissedMap[toast.id]}
-      >
-        <EuiToast
-          onClose={onClose}
-          onFocus={onMouseEnter}
-          onBlur={onMouseLeave}
-          {...rest}
-        >
-          {text}
-        </EuiToast>
-      </EuiGlobalToastListItem>
-    );
-  });
-
-  if (showClearAllButtonAt && toasts.length >= showClearAllButtonAt) {
-    const dismissAllToasts = () => {
-      toasts.forEach((toast) => dismissToastProp(toast));
-      onClearAllToasts?.();
-    };
-
-    renderedToasts.push(
-      <EuiI18n
-        key="euiClearAllToasts"
-        tokens={[
-          'euiGlobalToastList.clearAllToastsButtonAriaLabel',
-          'euiGlobalToastList.clearAllToastsButtonDisplayText',
-        ]}
-        defaults={['Clear all toast notifications', 'Clear all']}
-      >
-        {([
-          clearAllToastsButtonAriaLabel,
-          clearAllToastsButtonDisplayText,
-        ]: string[]) => (
-          <EuiGlobalToastListItem isDismissed={false}>
-            <EuiButton
-              fill
-              color="text"
-              onClick={dismissAllToasts}
-              css={[styles.euiGlobalToastListDismissButton]}
-              aria-label={clearAllToastsButtonAriaLabel}
-              data-test-subj="euiClearAllToastsButton"
+        return (
+          <EuiGlobalToastListItem
+            key={toast.id}
+            isDismissed={toastIdToDismissedMap[toast.id]}
+          >
+            <EuiToast
+              onClose={onClose}
+              onFocus={onMouseEnter}
+              onBlur={onMouseLeave}
+              {...rest}
             >
-              {clearAllToastsButtonDisplayText}
-            </EuiButton>
+              {text}
+            </EuiToast>
           </EuiGlobalToastListItem>
-        )}
-      </EuiI18n>
-    );
-  }
+        );
+      }),
+    [toasts, toastIdToDismissedMap, dismissToast, onMouseEnter, onMouseLeave]
+  );
+
+  const clearAllButton = useMemo(() => {
+    if (
+      toasts.length &&
+      showClearAllButtonAt &&
+      toasts.length >= showClearAllButtonAt
+    ) {
+      return (
+        <EuiI18n
+          key="euiClearAllToasts"
+          tokens={[
+            'euiGlobalToastList.clearAllToastsButtonAriaLabel',
+            'euiGlobalToastList.clearAllToastsButtonDisplayText',
+          ]}
+          defaults={['Clear all toast notifications', 'Clear all']}
+        >
+          {([
+            clearAllToastsButtonAriaLabel,
+            clearAllToastsButtonDisplayText,
+          ]: string[]) => (
+            <EuiGlobalToastListItem isDismissed={false}>
+              <EuiButton
+                fill
+                color="text"
+                onClick={() => {
+                  toasts.forEach((toast) => dismissToastProp(toast));
+                  onClearAllToasts?.();
+                }}
+                css={styles.euiGlobalToastListDismissButton}
+                aria-label={clearAllToastsButtonAriaLabel}
+                data-test-subj="euiClearAllToastsButton"
+              >
+                {clearAllToastsButtonDisplayText}
+              </EuiButton>
+            </EuiGlobalToastListItem>
+          )}
+        </EuiI18n>
+      );
+    }
+  }, [
+    showClearAllButtonAt,
+    onClearAllToasts,
+    toasts,
+    dismissToastProp,
+    styles,
+  ]);
 
   const classes = classNames('euiGlobalToastList', className);
 
@@ -363,6 +370,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       {...rest}
     >
       {renderedToasts}
+      {clearAllButton}
     </div>
   );
 };
