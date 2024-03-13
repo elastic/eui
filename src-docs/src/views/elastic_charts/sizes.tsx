@@ -18,11 +18,6 @@ import {
 } from '@elastic/charts';
 
 import {
-  LINE_ANNOTATION_DARK_THEME,
-  LINE_ANNOTATION_LIGHT_THEME,
-} from '../../../../src/themes/charts/themes';
-
-import {
   EuiSpacer,
   EuiTitle,
   EuiFlexGrid,
@@ -172,9 +167,6 @@ class Sizes extends Component<WithEuiThemeProps, State> {
     } = this.state;
     const isDarkTheme = this.props.theme.colorMode === 'DARK';
     const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
-    const lineAnnotationStyle = isDarkTheme
-      ? LINE_ANNOTATION_DARK_THEME
-      : LINE_ANNOTATION_LIGHT_THEME;
 
     let annotation;
     if (width < this.xsmallSize) {
@@ -184,7 +176,6 @@ class Sizes extends Component<WithEuiThemeProps, State> {
           domainType="yDomain"
           dataValues={[{ dataValue: 22, details: 'Threshold' }]}
           marker={'22'}
-          style={lineAnnotationStyle}
         />
       );
     }
@@ -338,10 +329,6 @@ class Sizes extends Component<WithEuiThemeProps, State> {
     domainType="yDomain"
     dataValues={[{ dataValue: 1.2, details: 'Threshold' }]}
     marker={'1.2'}
-    style={isDarkTheme
-      ? LINE_ANNOTATION_DARK_THEME
-      : LINE_ANNOTATION_LIGHT_THEME
-    }
   />`
       : ''
   }

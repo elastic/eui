@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
-  PartialTheme,
-  LineAnnotationSpec,
-  LineAnnotationStyle,
-} from '@elastic/charts';
+import { PartialTheme, LineAnnotationSpec } from '@elastic/charts';
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
@@ -28,6 +24,9 @@ export interface EuiChartThemeType {
 
 function createTheme(colors: any): EuiChartThemeType {
   return {
+    /**
+     * @deprecated use `<DARK|LIGHT>_THEME.lineAnnotation` theme from `@elastic/charts`
+     */
     lineAnnotation: {
       line: {
         strokeWidth: 1,
@@ -35,6 +34,9 @@ function createTheme(colors: any): EuiChartThemeType {
         opacity: 1,
       },
     },
+    /**
+     * @deprecated use `<DARK|LIGHT>_THEME` theme from `@elastic/charts`
+     */
     theme: {
       background: {
         color: colors.emptyShade,
@@ -211,7 +213,7 @@ const lightColors = getComputed(EuiThemeAmsterdam, builtTheme, 'LIGHT').colors;
 const darkColors = getComputed(EuiThemeAmsterdam, builtTheme, 'DARK').colors;
 
 /**
- * @deprecated use `LIGHT_THEME` theme from `@elastic/charts`
+ * @deprecated use `LIGHT_THEME`  & `LIGHT_THEME.lineAnnotation`
  */
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme({
   ...lightColors,
@@ -220,7 +222,7 @@ export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme({
 });
 
 /**
- * @deprecated use `DARK_THEME` theme from `@elastic/charts`
+ * @deprecated use `DARK_THEME` & `DARK_THEME.lineAnnotation` theme from `@elastic/charts`
  */
 export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme({
   ...darkColors,
@@ -245,27 +247,5 @@ export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
       strokeWidth: 1,
       radius: 1,
     },
-  },
-};
-
-/**
- * @deprecated use `lineAnnotation` styles from the kibana `charts` plugin `theme` service
- */
-export const LINE_ANNOTATION_DARK_THEME: LineAnnotationStyle = {
-  line: {
-    strokeWidth: 1,
-    stroke: darkColors.darkShade,
-    opacity: 1,
-  },
-};
-
-/**
- * @deprecated use `lineAnnotation` styles from the kibana `charts` plugin `theme` service
- */
-export const LINE_ANNOTATION_LIGHT_THEME: LineAnnotationStyle = {
-  line: {
-    strokeWidth: 1,
-    stroke: lightColors.darkShade,
-    opacity: 1,
   },
 };
