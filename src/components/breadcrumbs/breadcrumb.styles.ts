@@ -71,6 +71,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: center;
       vertical-align: baseline;
     `,
+
+    // Truncation styles
     isTruncated: css`
       ${euiTextTruncate(mathWithUnits(euiTheme.size.base, (x) => x * 10))}
     `,
@@ -78,21 +80,6 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       /* This removes the default breadcrumb max-width while ensuring that the last breadcrumb
          still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
-    `,
-
-    // Popover styles
-    euiBreadcrumb__popoverButton: css`
-      max-inline-size: 100%;
-      display: inline-flex;
-      align-items: center;
-      gap: ${euiTheme.size.xs};
-    `,
-    euiBreadcrumb__popoverWrapper: css`
-      /* At small container widths, the popover anchor needs to leave room for the breadcrumb separator,
-         which is weird to get an exact width for because it's transformed at an angle */
-      max-inline-size: calc(
-        100% - ${mathWithUnits(euiTheme.size.base, (x) => x + 1)}
-      );
     `,
 
     // Types
@@ -170,6 +157,29 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         );
         ${logicalCSS('padding-right', euiTheme.size.m)}
       `,
+    },
+  };
+};
+
+export const euiBreadcrumbPopoverStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiBreadcrumb__popoverButton: css`
+      max-inline-size: 100%;
+      display: inline-flex;
+      align-items: center;
+      gap: ${euiTheme.size.xs};
+    `,
+    euiBreadcrumb__popoverTruncation: css``,
+    popoverWrapper: {
+      euiBreadcrumb__popoverWrapper: css``,
+      page: css`
+        /* At small container widths, the popover anchor needs to leave room for the breadcrumb separator,
+         which is weird to get an exact width for because it's transformed at an angle */
+        max-inline-size: calc(
+          100% - ${mathWithUnits(euiTheme.size.base, (x) => x + 1)}
+        );
+      `,
+      application: null,
     },
   };
 };

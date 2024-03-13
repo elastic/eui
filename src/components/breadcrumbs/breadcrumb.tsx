@@ -7,14 +7,17 @@
  */
 
 import React, {
+  PropsWithChildren,
   FunctionComponent,
   HTMLAttributes,
   AriaAttributes,
   MouseEventHandler,
   ReactNode,
   useState,
-  PropsWithChildren,
+  useCallback,
+  forwardRef,
 } from 'react';
+import { ArrayCSSInterpolation } from '@emotion/css';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -29,6 +32,7 @@ import { useEuiI18n } from '../i18n';
 import {
   euiBreadcrumbStyles,
   euiBreadcrumbContentStyles,
+  euiBreadcrumbPopoverStyles,
 } from './breadcrumb.styles';
 
 export type EuiBreadcrumbProps = Omit<
@@ -129,12 +133,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const classes = classNames('euiBreadcrumb__content', className);
 
   const styles = useEuiMemoizedStyles(euiBreadcrumbContentStyles);
-  const cssStyles = [
-    styles.euiBreadcrumb__content,
-    styles[type],
-    truncate && !truncateLastBreadcrumb && styles.isTruncated,
-    truncateLastBreadcrumb && styles.isTruncatedLast,
-  ];
+  const cssStyles = [styles.euiBreadcrumb__content, styles[type]];
   if (type === 'application') {
     if (isOnlyBreadcrumb) {
       cssStyles.push(styles.applicationStyles.onlyChild);
@@ -144,63 +143,50 @@ export const EuiBreadcrumbContent: FunctionComponent<
       cssStyles.push(styles.applicationStyles.lastChild);
     }
   }
+  const truncationStyles = [
+    truncate && !truncateLastBreadcrumb && styles.isTruncated,
+    truncateLastBreadcrumb && styles.isTruncatedLast,
+  ];
 
+  const isBreadcrumbWithPopover = !!popoverContent;
   const isInteractiveBreadcrumb = href || onClick;
   const linkColor = color || (highlightLastBreadcrumb ? 'text' : 'subdued');
   const plainTextColor = highlightLastBreadcrumb ? 'default' : 'subdued'; // Does not inherit `color` prop
   const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
 
-  const isPopoverBreadcrumb = !!popoverContent;
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const popoverAriaLabel = useEuiI18n(
-    'euiBreadcrumb.popoverAriaLabel',
-    'Clicking this button will toggle a popover dialog.'
-  );
-
   return (
     <EuiInnerText>
       {(ref, innerText) => {
         const title = innerText === '' ? undefined : innerText;
+        const baseProps = {
+          ref,
+          title,
+          'aria-current': ariaCurrent,
+          className: classes,
+          css: [...cssStyles, ...truncationStyles],
+        };
 
-        const baseProps = { ref, title, 'aria-current': ariaCurrent };
-        const styleProps = { className: classes, css: cssStyles };
-
-        if (isPopoverBreadcrumb) {
-          const closePopover = () => setIsPopoverOpen(false);
+        if (isBreadcrumbWithPopover) {
+          const { css: _, ...popoverButtonProps } = baseProps;
           return (
-            <EuiPopover
-              {...popoverProps}
-              isOpen={isPopoverOpen}
-              closePopover={closePopover}
-              css={!isLastBreadcrumb && styles.euiBreadcrumb__popoverWrapper}
-              button={
-                <EuiLink
-                  {...baseProps}
-                  color={linkColor}
-                  css={styles.euiBreadcrumb__popoverButton}
-                  // Avoid passing href and onClick - should only toggle the popover
-                  onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
-                  {...rest}
-                >
-                  <span {...styleProps}>{text}</span>
-                  <EuiIcon
-                    type="arrowDown"
-                    size="s"
-                    aria-label={` - ${popoverAriaLabel}`}
-                  />
-                </EuiLink>
-              }
+            <EuiBreadcrumbPopover
+              {...popoverButtonProps}
+              breadcrumbCss={cssStyles}
+              truncationCss={truncationStyles}
+              isLastBreadcrumb={isLastBreadcrumb}
+              type={type}
+              color={linkColor}
+              popoverContent={popoverContent}
+              popoverProps={popoverProps}
+              {...rest}
             >
-              {typeof popoverContent === 'function'
-                ? popoverContent(closePopover)
-                : popoverContent}
-            </EuiPopover>
+              {text}
+            </EuiBreadcrumbPopover>
           );
         } else if (isInteractiveBreadcrumb) {
           return (
             <EuiLink
               {...baseProps}
-              {...styleProps}
               color={linkColor}
               onClick={onClick}
               href={href}
@@ -213,7 +199,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
         } else {
           return (
             <EuiTextColor color={plainTextColor} cloneElement>
-              <span {...baseProps} {...styleProps} {...rest}>
+              <span {...baseProps} {...rest}>
                 {text}
               </span>
             </EuiTextColor>
@@ -223,6 +209,94 @@ export const EuiBreadcrumbContent: FunctionComponent<
     </EuiInnerText>
   );
 };
+
+type EuiBreadcrumbPopoverProps = HTMLAttributes<HTMLElement> &
+  Pick<EuiBreadcrumbProps, 'popoverProps' | 'popoverContent' | 'color'> &
+  Pick<_EuiBreadcrumbProps, 'type' | 'isLastBreadcrumb'> & {
+    breadcrumbCss: ArrayCSSInterpolation;
+    truncationCss: ArrayCSSInterpolation;
+  };
+const EuiBreadcrumbPopover = forwardRef<
+  HTMLButtonElement,
+  EuiBreadcrumbPopoverProps
+>(
+  (
+    {
+      popoverContent,
+      popoverProps,
+      color,
+      type,
+      title,
+      'aria-current': ariaCurrent,
+      className,
+      isLastBreadcrumb,
+      breadcrumbCss,
+      truncationCss,
+      children,
+      ...rest
+    },
+    ref
+  ) => {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const closePopover = useCallback(() => setIsPopoverOpen(false), []);
+    const togglePopover = useCallback(
+      () => setIsPopoverOpen((isOpen) => !isOpen),
+      []
+    );
+
+    const popoverAriaLabel = useEuiI18n(
+      'euiBreadcrumb.popoverAriaLabel',
+      'Clicking this button will toggle a popover dialog.'
+    );
+
+    const styles = useEuiMemoizedStyles(euiBreadcrumbPopoverStyles);
+    const wrapperStyles = [
+      styles.popoverWrapper.euiBreadcrumb__popoverWrapper,
+      !isLastBreadcrumb && styles.popoverWrapper[type],
+    ];
+    const buttonStyles = [
+      styles.euiBreadcrumb__popoverButton,
+      ...breadcrumbCss,
+    ];
+    const truncationStyles = [
+      styles.euiBreadcrumb__popoverTruncation,
+      ...truncationCss,
+    ];
+
+    return (
+      <EuiPopover
+        {...popoverProps}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        css={wrapperStyles}
+        button={
+          <EuiLink
+            ref={ref}
+            title={title}
+            aria-current={ariaCurrent}
+            className={className}
+            css={buttonStyles}
+            color={color}
+            onClick={togglePopover}
+            {...rest}
+          >
+            <span css={truncationStyles}>{children}</span>
+            <EuiIcon
+              type="arrowDown"
+              size="s"
+              aria-label={` - ${popoverAriaLabel}`}
+            />
+          </EuiLink>
+        }
+      >
+        {typeof popoverContent === 'function'
+          ? popoverContent(closePopover)
+          : popoverContent}
+      </EuiPopover>
+    );
+  }
+);
+EuiBreadcrumbPopover.displayName = 'EuiBreadcrumbPopover';
 
 export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
   children,
