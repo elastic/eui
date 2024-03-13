@@ -18,7 +18,10 @@ const meta: Meta<EuiSkipLinkProps> = {
   title: 'Utilities/EuiSkipLink',
   component: EuiSkipLink,
   argTypes: {
-    ...moveStorybookControlsToCategory(['color', 'fill', 'size']),
+    ...moveStorybookControlsToCategory(
+      ['color', 'fill', 'size'],
+      'EuiButton props'
+    ),
   },
   args: {
     // Component defaults

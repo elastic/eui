@@ -17,19 +17,22 @@ const meta: Meta<EuiFacetButtonProps> = {
   argTypes: {
     // TODO: icon
     // TODO: minWidth has multiple types
-    ...moveStorybookControlsToCategory([
-      'contentProps',
-      'element',
-      'fullWidth',
-      'iconSide',
-      'iconSize',
-      'iconType',
-      'minWidth',
-      'size',
-      'style',
-      'textProps',
-      'type',
-    ]),
+    ...moveStorybookControlsToCategory(
+      [
+        'contentProps',
+        'element',
+        'fullWidth',
+        'iconSide',
+        'iconSize',
+        'iconType',
+        'minWidth',
+        'size',
+        'style',
+        'textProps',
+        'type',
+      ],
+      'EuiButtonEmpty props'
+    ),
   },
   args: {
     // Component defaults

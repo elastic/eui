@@ -16,7 +16,18 @@ const meta: Meta<EuiBreadcrumbsProps> = {
   title: 'Layout/EuiHeader/EuiHeaderBreadcrumbs',
   component: EuiHeaderBreadcrumbs,
   argTypes: {
-    ...moveStorybookControlsToCategory(['aria-label', 'type']),
+    ...moveStorybookControlsToCategory(
+      [
+        'aria-label',
+        'breadcrumbs',
+        'lastBreadcrumbIsCurrentPage',
+        'max',
+        'responsive',
+        'truncate',
+        'type',
+      ],
+      'EuiBreadcrumbs props'
+    ),
   },
   args: {
     // Component defaults
@@ -24,6 +35,7 @@ const meta: Meta<EuiBreadcrumbsProps> = {
     truncate: true,
     responsive: { xs: 1, s: 2, m: 4 },
     lastBreadcrumbIsCurrentPage: true,
+    type: 'application',
   },
 };
 
