@@ -49,7 +49,7 @@ describe('EuiSuperUpdateButton', () => {
   });
 
   describe('props', () => {
-    it('needsUpdate', () => {
+    test('needsUpdate', () => {
       const { getByRole } = render(
         <EuiSuperUpdateButton needsUpdate onClick={noop} />
       );
@@ -57,7 +57,7 @@ describe('EuiSuperUpdateButton', () => {
       expect(getByRole('button')).toHaveTextContent('Update');
     });
 
-    it('isDisabled', () => {
+    test('isDisabled', () => {
       const { getByRole } = render(
         <EuiSuperUpdateButton isDisabled onClick={noop} />
       );
@@ -65,7 +65,7 @@ describe('EuiSuperUpdateButton', () => {
       expect(getByRole('button')).toBeDisabled();
     });
 
-    it('isLoading', () => {
+    test('isLoading', () => {
       const { getByRole } = render(
         <EuiSuperUpdateButton isLoading onClick={noop} />
       );
@@ -76,7 +76,7 @@ describe('EuiSuperUpdateButton', () => {
       expect(icon).toHaveAccessibleName('Loading');
     });
 
-    it('iconOnly', () => {
+    test('iconOnly', () => {
       const { getByText, container } = render(
         <EuiSuperUpdateButton iconOnly onClick={noop} />
       );
@@ -90,7 +90,7 @@ describe('EuiSuperUpdateButton', () => {
       expect(text).toHaveClass('euiScreenReaderOnly');
     });
 
-    it('showTooltip', () => {
+    test('showTooltip', () => {
       const { container } = render(
         <EuiSuperUpdateButton showTooltip onClick={noop} />
       );
@@ -99,7 +99,7 @@ describe('EuiSuperUpdateButton', () => {
       expect(tooltipWrapper).toBeInTheDocument();
     });
 
-    it('children', () => {
+    test('children', () => {
       const { getByRole } = render(
         <EuiSuperUpdateButton onClick={noop}>
           <span data-test-subj="custom-children" />
