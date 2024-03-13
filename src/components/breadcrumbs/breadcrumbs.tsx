@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { useEuiI18n } from '../i18n';
 import {
-  useEuiTheme,
+  useEuiMemoizedStyles,
   EuiBreakpointSize,
   useCurrentEuiBreakpoint,
 } from '../../services';
@@ -95,8 +95,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
 
-  const euiTheme = useEuiTheme();
-  const breadcrumbsListStyles = euiBreadcrumbsListStyles(euiTheme);
+  const breadcrumbsListStyles = useEuiMemoizedStyles(euiBreadcrumbsListStyles);
   const cssBreadcrumbsListStyles = [
     breadcrumbsListStyles.euiBreadcrumbs__list,
     truncate && breadcrumbsListStyles.isTruncated,

@@ -17,7 +17,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiTextColor } from '../text';
@@ -87,8 +87,7 @@ export const EuiBreadcrumb: FunctionComponent<
 > = ({ children, className, type, truncate, ...rest }) => {
   const classes = classNames('euiBreadcrumb', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiBreadcrumbStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiBreadcrumbStyles);
   const cssStyles = [
     styles.euiBreadcrumb,
     styles[type],
@@ -129,8 +128,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
 }) => {
   const classes = classNames('euiBreadcrumb__content', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiBreadcrumbContentStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiBreadcrumbContentStyles);
   const cssStyles = [
     styles.euiBreadcrumb__content,
     styles[type],
@@ -231,8 +229,7 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
   isFirstBreadcrumb,
   type,
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiBreadcrumbStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiBreadcrumbStyles);
   const cssStyles = [styles.isCollapsed];
 
   const ariaLabel = useEuiI18n(
