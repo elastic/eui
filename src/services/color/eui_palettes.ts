@@ -215,7 +215,6 @@ export const euiPaletteGreen = function (steps: number): EuiPalette {
 
   return euiPalette(['white', greenColor], steps);
 };
-
 /**
  * @deprecated - use `euiPaletteGreen` instead
  */
