@@ -5,6 +5,7 @@ import {
   EuiConfirmModal,
   EuiFlexGroup,
   EuiFlexItem,
+  useGeneratedHtmlId,
 } from '../../../../src';
 
 export default () => {
@@ -17,48 +18,11 @@ export default () => {
   const closeDestroyModal = () => setIsDestroyModalVisible(false);
   const showDestroyModal = () => setIsDestroyModalVisible(true);
 
-  let modal;
-
-  if (isModalVisible) {
-    modal = (
-      <EuiConfirmModal
-        style={{ width: 600 }}
-        title="Update subscription to Platinum?"
-        onCancel={closeModal}
-        onConfirm={closeModal}
-        cancelButtonText="Cancel"
-        confirmButtonText="Update subscription"
-        defaultFocusedButton="confirm"
-      >
-        <p>
-          Your subscription and benefits increase immediately. If you change to
-          a lower subscription later, it will not take affect until the next
-          billing cycle.
-        </p>
-      </EuiConfirmModal>
-    );
-  }
-
-  let destroyModal;
-
-  if (isDestroyModalVisible) {
-    destroyModal = (
-      <EuiConfirmModal
-        title="Discard dashboard changes?"
-        onCancel={closeDestroyModal}
-        onConfirm={closeDestroyModal}
-        cancelButtonText="Keep editing"
-        confirmButtonText="Discard changes"
-        buttonColor="danger"
-        defaultFocusedButton="confirm"
-      >
-        <p>You will lose all unsaved changes made to this dashboard.</p>
-      </EuiConfirmModal>
-    );
-  }
+  const modalTitleId = useGeneratedHtmlId();
+  const destroyModalTitleId = useGeneratedHtmlId();
 
   return (
-    <div>
+    <>
       <EuiFlexGroup responsive={false} wrap gutterSize="xs">
         <EuiFlexItem grow={false}>
           <EuiButton onClick={showModal}>Show confirm modal</EuiButton>
@@ -69,8 +33,42 @@ export default () => {
           </EuiButton>
         </EuiFlexItem>
       </EuiFlexGroup>
-      {modal}
-      {destroyModal}
-    </div>
+
+      {isModalVisible && (
+        <EuiConfirmModal
+          aria-labelledby={modalTitleId}
+          style={{ width: 600 }}
+          title="Update subscription to Platinum?"
+          titleProps={{ id: modalTitleId }}
+          onCancel={closeModal}
+          onConfirm={closeModal}
+          cancelButtonText="Cancel"
+          confirmButtonText="Update subscription"
+          defaultFocusedButton="confirm"
+        >
+          <p>
+            Your subscription and benefits increase immediately. If you change
+            to a lower subscription later, it will not take affect until the
+            next billing cycle.
+          </p>
+        </EuiConfirmModal>
+      )}
+
+      {isDestroyModalVisible && (
+        <EuiConfirmModal
+          aria-labelledby={destroyModalTitleId}
+          title="Discard dashboard changes?"
+          titleProps={{ id: destroyModalTitleId }}
+          onCancel={closeDestroyModal}
+          onConfirm={closeDestroyModal}
+          cancelButtonText="Keep editing"
+          confirmButtonText="Discard changes"
+          buttonColor="danger"
+          defaultFocusedButton="confirm"
+        >
+          <p>You will lose all unsaved changes made to this dashboard.</p>
+        </EuiConfirmModal>
+      )}
+    </>
   );
 };

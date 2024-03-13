@@ -6,13 +6,19 @@
  * Side Public License, v 1.
  */
 
-import { useEffect, useState, useContext, MutableRefObject } from 'react';
+import {
+  useEffect,
+  useState,
+  useContext,
+  MutableRefObject,
+  useMemo,
+} from 'react';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 import { RowHeightUtilsType } from './row_heights';
-import { DataGridSortingContext } from './sorting';
+import { DataGridSortedContext } from './sorting';
 
 export const useFinalGridDimensions = ({
   unconstrainedHeight,
@@ -106,34 +112,7 @@ export const useUnconstrainedHeight = ({
   scrollBarHeight: number;
   innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
-  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
-
-  let knownHeight = 0; // tracks the pixel height of rows we know the size of
-  let knownRowCount = 0; // how many rows we know the size of
-  for (let i = startRow; i < endRow; i++) {
-    const correctRowIndex = getCorrectRowIndex(i); // map visible row to logical row
-
-    // lookup the height configuration of this row
-    const rowHeightOption = rowHeightUtils.getRowHeightOption(
-      correctRowIndex,
-      rowHeightsOptions
-    );
-
-    if (rowHeightOption) {
-      // this row's height is known
-      knownRowCount++;
-      knownHeight += rowHeightUtils.getCalculatedHeight(
-        rowHeightOption,
-        defaultRowHeight,
-        correctRowIndex,
-        rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
-      );
-    }
-  }
-
-  // how many rows to provide space for on the screen
-  const rowCountToAffordFor = endRow - startRow;
-
+  const { getCorrectRowIndex } = useContext(DataGridSortedContext);
   // watch the inner element for a change to its width
   // which may cause the horizontal scrollbar to be added or removed
   const { width: innerWidth } = useResizeObserver(
@@ -143,14 +122,52 @@ export const useUnconstrainedHeight = ({
   const forceRender = useForceRender();
   useUpdateEffect(forceRender, [innerWidth]);
 
-  const unconstrainedHeight =
-    defaultRowHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
-    knownHeight + // computed pixel height of the known rows
-    headerRowHeight + // account for header
-    footerRowHeight + // account for footer
-    scrollBarHeight; // account for horizontal scrollbar
+  return useMemo(() => {
+    let knownHeight = 0; // tracks the pixel height of rows we know the size of
+    let knownRowCount = 0; // how many rows we know the size of
+    for (let i = startRow; i < endRow; i++) {
+      const correctRowIndex = getCorrectRowIndex(i); // map visible row to logical row
 
-  return unconstrainedHeight;
+      // lookup the height configuration of this row
+      const rowHeightOption = rowHeightUtils.getRowHeightOption(
+        correctRowIndex,
+        rowHeightsOptions
+      );
+
+      if (rowHeightOption) {
+        // this row's height is known
+        knownRowCount++;
+        knownHeight += rowHeightUtils.getCalculatedHeight(
+          rowHeightOption,
+          defaultRowHeight,
+          correctRowIndex,
+          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+        );
+      }
+    }
+
+    // how many rows to provide space for on the screen
+    const rowCountToAffordFor = endRow - startRow;
+
+    const unconstrainedHeight =
+      defaultRowHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
+      knownHeight + // computed pixel height of the known rows
+      headerRowHeight + // account for header
+      footerRowHeight + // account for footer
+      scrollBarHeight; // account for horizontal scrollbar
+
+    return unconstrainedHeight;
+  }, [
+    defaultRowHeight,
+    endRow,
+    footerRowHeight,
+    headerRowHeight,
+    startRow,
+    getCorrectRowIndex,
+    rowHeightUtils,
+    rowHeightsOptions,
+    scrollBarHeight,
+  ]);
 };
 
 /**

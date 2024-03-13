@@ -35,7 +35,7 @@ export const useDataGridFooter = (props: Props) => {
         {...footerProps}
       />
     );
-  }, Object.values(props)); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props]);
 
   return { footerRow, footerRowHeight };
 };

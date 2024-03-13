@@ -21,6 +21,9 @@ import { DataGridCellPopoverExample } from './datagrid_cell_popover_example';
 import DataGridFocus from './focus';
 const dataGridFocusSource = require('!!raw-loader!./focus');
 
+import CellContext from './cell_context';
+const cellContextSource = require('!!raw-loader!./cell_context');
+
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
@@ -217,6 +220,33 @@ export const DataGridCellsExample = {
         </>
       ),
       demo: <DataGridFocus />,
+    },
+    {
+      title: 'Cell context',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: cellContextSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            The <EuiCode>cellContext</EuiCode> prop is an easy way of passing
+            your custom data or context from the top level of{' '}
+            <strong>EuiDataGrid</strong> down to the cell content rendered by
+            your <EuiCode>renderCellValue</EuiCode> function component.
+          </p>
+          <p>
+            The primary use of the cell context API is performance: if your data
+            relies on state from your app, it allows you to more easily define
+            your <EuiCode>renderCellValue</EuiCode> function statically, instead
+            of within your app, which in turn reduces the number of rerenders
+            within your data grid.
+          </p>
+        </>
+      ),
+      demo: <CellContext />,
     },
   ],
 };

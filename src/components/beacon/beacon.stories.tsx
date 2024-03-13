@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiBeacon, EuiBeaconProps } from './beacon';
 
 const meta: Meta<EuiBeaconProps> = {
-  title: 'EuiBeacon',
+  title: 'Utilities/EuiBeacon',
   component: EuiBeacon,
   args: {
     // Component defaults

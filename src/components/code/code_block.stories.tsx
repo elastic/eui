@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCodeBlock, EuiCodeBlockProps } from './code_block';
 
 const meta: Meta<EuiCodeBlockProps> = {
-  title: 'EuiCodeBlock',
+  title: 'Editors & Syntax/EuiCodeBlock',
   component: EuiCodeBlock,
   argTypes: {
     lineNumbers: { control: 'boolean' },

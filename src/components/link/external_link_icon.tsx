@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, AnchorHTMLAttributes } from 'react';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles, UseEuiTheme } from '../../services';
 import { logicalStyle } from '../../global_styling';
 import { EuiIcon, EuiIconProps } from '../icon';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -28,10 +28,13 @@ export type EuiExternalLinkIconProps = {
   external?: boolean;
 };
 
+const iconStyle = ({ euiTheme }: UseEuiTheme) =>
+  logicalStyle('margin-left', euiTheme.size.xs);
+
 export const EuiExternalLinkIcon: FunctionComponent<
   EuiExternalLinkIconProps & Partial<EuiIconProps>
 > = ({ target, external, ...rest }) => {
-  const { euiTheme } = useEuiTheme();
+  const iconCssStyle = useEuiMemoizedStyles(iconStyle);
 
   const showExternalLinkIcon =
     (target === '_blank' && external !== false) || external === true;
@@ -45,7 +48,7 @@ export const EuiExternalLinkIcon: FunctionComponent<
     <>
       {showExternalLinkIcon && (
         <EuiIcon
-          css={logicalStyle('margin-left', euiTheme.size.xs)}
+          css={iconCssStyle}
           aria-label={iconAriaLabel}
           size="s"
           type="popout"

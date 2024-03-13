@@ -139,6 +139,7 @@ export interface EuiDataGridSchemaDetector {
 }
 
 export interface EuiDataGridHeaderRowPropsSpecificProps {
+  sorting?: EuiDataGridSorting;
   leadingControlColumns?: EuiDataGridControlColumn[];
   trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
@@ -200,7 +201,7 @@ export interface EuiDataGridVisibleRows {
   visibleRowCount: number;
 }
 
-export interface DataGridSortingContextShape {
+export interface DataGridSortedContextShape {
   sorting?: EuiDataGridSorting;
   sortedRowMap: number[];
   getCorrectRowIndex: (visibleRowIndex: number) => number;
@@ -268,6 +269,12 @@ export type CommonGridProps = CommonProps &
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    /**
+     * An optional object of props passed to the `renderCellValue` component.
+     * This API exists to make it easier to define your `renderCellValue` function
+     * component statically, and not rerender due to other dependent state.
+     */
+    cellContext?: EuiDataGridCellProps['cellContext'];
     /**
      * An optional function that can be used to completely customize the rendering of cell popovers.
      *
@@ -453,10 +460,12 @@ export interface EuiDataGridBodyProps {
   rowCount: number;
   visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
+  cellContext?: EuiDataGridCellProps['cellContext'];
   renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
+  sorting?: EuiDataGridSorting;
   pagination?: Required<EuiDataGridPaginationProps>;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
@@ -597,6 +606,16 @@ export interface EuiDataGridCellPopoverElementProps
   ) => void;
 }
 
+type CellContext = Omit<
+  Record<string, any>,
+  keyof EuiDataGridCellValueElementProps
+>;
+type CellPropsWithContext = CellContext & EuiDataGridCellValueElementProps;
+
+export type RenderCellValue =
+  | ((props: CellPropsWithContext) => ReactNode)
+  | ComponentClass<CellPropsWithContext>;
+
 export interface EuiDataGridCellProps {
   rowIndex: number;
   visibleRowIndex: number;
@@ -609,9 +628,8 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
-  renderCellValue:
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode)
-    | ComponentClass<EuiDataGridCellValueElementProps>;
+  renderCellValue: RenderCellValue;
+  cellContext?: CellContext;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);

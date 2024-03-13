@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useRef, useCallback, RefObject } from 'react';
+import { useRef, useCallback, RefObject, useMemo } from 'react';
 import { useUpdateEffect } from '../../../services';
 
 import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
@@ -82,7 +82,9 @@ export const useRowManager = ({
     if (rowClasses) {
       rowIdToElements.current.forEach((rowElement, rowIndex) => {
         const euiClasses = Array.from(rowElement.classList)
-          .filter((className) => className.startsWith('euiDataGridRow'))
+          .filter((className) =>
+            ['euiDataGridRow', 'euiDataGridRow--striped'].includes(className)
+          )
           .join(' ');
 
         if (rowClasses[rowIndex]) {
@@ -94,5 +96,7 @@ export const useRowManager = ({
     }
   }, [rowClasses]);
 
-  return { getRow };
+  return useMemo(() => {
+    return { getRow };
+  }, [getRow]);
 };

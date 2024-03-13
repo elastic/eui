@@ -21,7 +21,7 @@ const options = [
 ];
 
 const meta: Meta<EuiComboBoxProps<{}>> = {
-  title: 'EuiComboBox',
+  title: 'Forms/EuiComboBox',
   // @ts-ignore typescript shenanigans
   component: EuiComboBox,
   argTypes: {

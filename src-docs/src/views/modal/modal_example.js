@@ -30,9 +30,9 @@ const confirmModalLoadingSource = require('!!raw-loader!./confirm_modal_loading'
 import ModalWidth from './modal_width';
 const modalWidthSource = require('!!raw-loader!./modal_width');
 
-const modalSnippet = `<EuiModal onClose={closeModal}>
+const modalSnippet = `<EuiModal aria-labelledby={titleId} onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle id={titleId}><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
@@ -44,9 +44,9 @@ const modalSnippet = `<EuiModal onClose={closeModal}>
   </EuiModalFooter>
 </EuiModal>`;
 
-const modalWidthSnippet = `<EuiModal style={{ width: 800 }} onClose={closeModal}>
+const modalWidthSnippet = `<EuiModal style={{ width: 800 }} aria-labelledby={titleId} onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle id={titleId}><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
@@ -58,9 +58,9 @@ const modalWidthSnippet = `<EuiModal style={{ width: 800 }} onClose={closeModal}
   </EuiModalFooter>
 </EuiModal>`;
 
-const modalFormSnippet = `<EuiModal onClose={closeModal}>
+const modalFormSnippet = `<EuiModal aria-labelledby={titleId} onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle id={titleId><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
@@ -75,7 +75,9 @@ const modalFormSnippet = `<EuiModal onClose={closeModal}>
 
 const confirmModalSnippet = [
   `<EuiConfirmModal
+  aria-labelledby={titleId}
   title={title}
+  titleProps={{ id: titleId }}
   onCancel={closeModal}
   onConfirm={closeModal}
   cancelButtonText={cancelText}
@@ -95,7 +97,9 @@ const confirmModalSnippet = [
 
 const confirmModalLoadingSnippet = [
   `<EuiConfirmModal
+  aria-labelledby={titleId}
   title={title}
+  id={{ id: titleId }}
   onCancel={closeModal}
   onConfirm={closeModal}
   cancelButtonText={cancelText}

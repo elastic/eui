@@ -8,7 +8,7 @@
 
 import { CSSProperties } from 'react';
 import { css } from '@emotion/react';
-import { UseEuiTheme, useEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   euiTextBreakWord,
   euiFontSize,
@@ -54,15 +54,6 @@ export const euiTitle = (
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
     color: euiTheme.colors.title,
   };
-};
-
-// Hook version
-export const useEuiTitle = (
-  scale: EuiTitleSize,
-  options?: _FontScaleOptions
-): EuiThemeTitle => {
-  const euiTheme = useEuiTheme();
-  return euiTitle(euiTheme, scale, options);
 };
 
 /**

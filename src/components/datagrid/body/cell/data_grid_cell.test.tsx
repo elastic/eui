@@ -175,6 +175,10 @@ describe('EuiDataGridCell', () => {
             style: { top: 0, left: 0, width: 50, height: 10 },
           });
         });
+        it('cellContext', () => {
+          component.setProps({ cellContext: { someData: true } });
+          component.setProps({ cellContext: { someData: false } });
+        });
       });
 
       describe('when state changes:', () => {

@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiSplitPanel, _EuiSplitPanelOuterProps } from './split_panel';
 
 const meta: Meta<_EuiSplitPanelOuterProps> = {
-  title: 'EuiSplitPanel',
+  title: 'Layout/EuiSplitPanel',
   component: EuiSplitPanel.Outer,
   args: {
     // Component defaults

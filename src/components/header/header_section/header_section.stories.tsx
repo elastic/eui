@@ -13,7 +13,7 @@ import { EuiHeader } from '../header';
 import { EuiHeaderSection, EuiHeaderSectionProps } from './header_section';
 
 const meta: Meta<EuiHeaderSectionProps> = {
-  title: 'EuiHeaderSection',
+  title: 'Layout/EuiHeader/EuiHeaderSection/EuiHeaderSection',
   component: EuiHeaderSection,
 };
 

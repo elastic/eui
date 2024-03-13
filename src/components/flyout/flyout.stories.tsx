@@ -22,7 +22,7 @@ import {
 } from './index';
 
 const meta: Meta<EuiFlyoutProps> = {
-  title: 'EuiFlyout',
+  title: 'Layout/EuiFlyout/EuiFlyout',
   component: EuiFlyout,
   argTypes: {
     as: { control: 'text' },

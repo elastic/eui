@@ -14,7 +14,7 @@ import { EuiFlyout } from './flyout';
 import { EuiFlyoutHeader, EuiFlyoutHeaderProps } from './flyout_header';
 
 const meta: Meta<EuiFlyoutHeaderProps> = {
-  title: 'EuiFlyoutHeader',
+  title: 'Layout/EuiFlyout/EuiFlyoutHeader',
   component: EuiFlyoutHeader,
   argTypes: {
     // TODO: editable children JSX

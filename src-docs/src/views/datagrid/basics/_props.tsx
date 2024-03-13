@@ -24,6 +24,7 @@ const gridLinks = {
   ref: '/tabular-content/data-grid-advanced#ref-methods',
   renderCustomGridBody:
     '/tabular-content/data-grid-advanced#custom-body-renderer',
+  cellContext: '/tabular-content/data-grid-cells-popovers#cell-context',
 };
 
 export const DataGridTopProps = () => {

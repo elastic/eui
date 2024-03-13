@@ -9,8 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 import { logicalStyles } from '../../global_styling';
 
 import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
@@ -44,8 +44,7 @@ export const EuiSkeletonRectangle: FunctionComponent<
   children,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiSkeletonRectangleStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiSkeletonRectangleStyles);
   const cssStyles = [styles.euiSkeletonRectangle, styles[borderRadius]];
 
   return (

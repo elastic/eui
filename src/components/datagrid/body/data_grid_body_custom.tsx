@@ -24,30 +24,32 @@ import {
 } from '../data_grid_types';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { Cell } from './cell';
+import { CellWrapper } from './cell';
 
 export const EuiDataGridBodyCustomRender: FunctionComponent<
   EuiDataGridBodyProps
 > = ({
   renderCustomGridBody,
-  leadingControlColumns,
-  trailingControlColumns,
-  columns,
-  visibleColCount,
-  schema,
-  schemaDetectors,
-  visibleRows,
   renderCellValue,
+  cellContext,
   renderCellPopover,
   renderFooterCellValue,
   interactiveCellId,
+  visibleRows,
+  visibleColCount,
+  leadingControlColumns,
+  trailingControlColumns,
+  columns,
   setVisibleColumns,
   switchColumnPos,
   onColumnResize,
-  gridWidth,
-  gridStyles,
+  schema,
+  schemaDetectors,
+  sorting,
   pagination,
   rowHeightsOptions,
+  gridWidth,
+  gridStyles,
 }) => {
   /**
    * Columns & widths
@@ -90,14 +92,15 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
    * Header & footer
    */
   const { headerRow } = useDataGridHeader({
-    switchColumnPos,
-    setVisibleColumns,
     leadingControlColumns,
     trailingControlColumns,
     columns,
     columnWidths,
     defaultColumnWidth,
     setColumnWidth,
+    setVisibleColumns,
+    switchColumnPos,
+    sorting,
     schema,
     schemaDetectors,
   });
@@ -119,7 +122,26 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   /**
    * Cell render fn
    */
-  const cellProps = {
+  const cellProps = useMemo(() => {
+    return {
+      schema,
+      schemaDetectors,
+      pagination,
+      columns,
+      leadingControlColumns,
+      trailingControlColumns,
+      visibleColCount,
+      columnWidths,
+      defaultColumnWidth,
+      renderCellValue,
+      cellContext,
+      renderCellPopover,
+      interactiveCellId,
+      setRowHeight,
+      rowHeightsOptions,
+      rowHeightUtils,
+    };
+  }, [
     schema,
     schemaDetectors,
     pagination,
@@ -130,14 +152,15 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     columnWidths,
     defaultColumnWidth,
     renderCellValue,
+    cellContext,
     renderCellPopover,
     interactiveCellId,
     setRowHeight,
     rowHeightsOptions,
     rowHeightUtils,
-  };
+  ]);
 
-  const _Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
+  const Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
     ({ colIndex, visibleRowIndex, ...rest }) => {
       const style = {
         height: rowHeightUtils.isAutoHeight(visibleRowIndex, rowHeightsOptions)
@@ -150,9 +173,9 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
         style,
         ...cellProps,
       };
-      return <Cell {...props} {...rest} />;
+      return <CellWrapper {...props} {...rest} />;
     },
-    [...Object.values(cellProps), getRowHeight] // eslint-disable-line react-hooks/exhaustive-deps
+    [cellProps, getRowHeight, rowHeightUtils, rowHeightsOptions]
   );
 
   // Allow consumers to pass custom props/attributes/listeners etc. to the wrapping div
@@ -171,7 +194,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
       {renderCustomGridBody!({
         visibleColumns,
         visibleRowData: visibleRows,
-        Cell: _Cell,
+        Cell,
         setCustomGridBodyProps,
       })}
       {footerRow}

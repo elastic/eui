@@ -19,7 +19,7 @@ import { EuiText } from '../text';
 import { EuiSideNav, EuiSideNavProps } from './side_nav';
 
 const meta: Meta<EuiSideNavProps> = {
-  title: 'EuiSideNav',
+  title: 'Navigation/EuiSideNav',
   component: EuiSideNav,
   argTypes: disableStorybookControls(['children']),
   args: {

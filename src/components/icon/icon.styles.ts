@@ -7,15 +7,8 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { logicalCSS, euiCanAnimate } from '../../global_styling';
+import { logicalSizeCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-
-const iconSize = (size: string) => {
-  return `
-    ${logicalCSS('width', size)};
-    ${logicalCSS('height', size)};
-  `;
-};
 
 export const iconLoadingOpacity = 0.05;
 
@@ -100,11 +93,11 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   // Sizes
   original: css``,
-  s: css(iconSize(euiTheme.size.m)),
-  m: css(iconSize(euiTheme.size.base)),
-  l: css(iconSize(euiTheme.size.l)),
-  xl: css(iconSize(euiTheme.size.xl)),
-  xxl: css(iconSize(euiTheme.size.xxl)),
+  s: css(logicalSizeCSS(euiTheme.size.m)),
+  m: css(logicalSizeCSS(euiTheme.size.base)),
+  l: css(logicalSizeCSS(euiTheme.size.l)),
+  xl: css(logicalSizeCSS(euiTheme.size.xl)),
+  xxl: css(logicalSizeCSS(euiTheme.size.xxl)),
   // Variants
   // App icons are two-toned. This provides the base color.
   app: css`

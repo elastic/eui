@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { validateHref } from '../../services/security/href_validator';
 
@@ -92,8 +92,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     },
     ref
   ) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiLinkStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiLinkStyles);
     const cssStyles = [styles.euiLink];
 
     const isHrefValid = !href || validateHref(href);

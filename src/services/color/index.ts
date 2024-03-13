@@ -31,6 +31,8 @@ export {
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplementary,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteCool,

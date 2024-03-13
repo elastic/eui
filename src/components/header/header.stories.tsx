@@ -24,7 +24,7 @@ import {
 import { EuiHeader, EuiHeaderProps } from './header';
 
 const meta: Meta<EuiHeaderProps> = {
-  title: 'EuiHeader',
+  title: 'Layout/EuiHeader/EuiHeader',
   component: EuiHeader,
   args: {
     // Component defaults
