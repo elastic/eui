@@ -32,13 +32,13 @@ import {
   useGeneratedHtmlId,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
-import { hasResizeObserver } from '../observer/resize_observer/resize_observer';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
+import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -214,52 +214,28 @@ export const EuiFlyout = forwardRef(
       null
     );
     const setRef = useCombinedRefs([setResizeRef, ref]);
+    const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
     useEffect(() => {
-      if (!resizeRef) {
-        return;
+      /**
+       * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
+       */
+      if (isPushed) {
+        const paddingSide =
+          side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+
+        document.body.style[paddingSide] = `${width}px`;
+        return () => {
+          document.body.style[paddingSide] = '';
+        };
       }
+    }, [isPushed, side, width]);
 
-      // We manually set up a resize observer here because useResizeObserver calls getBoundingClientRect
-      // which results in layout thrashing when the width changes frequently, such as with a resizable flyout
-      let observer: ResizeObserver | undefined;
-
-      if (hasResizeObserver) {
-        observer = new ResizeObserver((entries) => {
-          const width = entries[0]?.borderBoxSize?.[0]?.inlineSize;
-
-          /**
-           * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
-           */
-          if (isPushed) {
-            if (side === 'right') {
-              document.body.style.paddingInlineEnd = `${width}px`;
-            } else if (side === 'left') {
-              document.body.style.paddingInlineStart = `${width}px`;
-            }
-          }
-        });
-
-        observer.observe(resizeRef);
-      }
-
-      return () => {
-        observer?.disconnect();
-
-        if (isPushed) {
-          if (side === 'right') {
-            document.body.style.paddingInlineEnd = '';
-          } else if (side === 'left') {
-            document.body.style.paddingInlineStart = '';
-          }
-        }
-      };
-    }, [isPushed, resizeRef, side]);
-
+    /**
+     * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
+     */
     useEffect(() => {
-      // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
       document.body.classList.add('euiBody--hasFlyout');
-
       return () => {
         // Remove the hasFlyout class when the flyout is unmounted
         document.body.classList.remove('euiBody--hasFlyout');
