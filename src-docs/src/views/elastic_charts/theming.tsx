@@ -23,8 +23,8 @@ import {
   euiPaletteForTemperature,
   euiPaletteCool,
   euiPaletteWarm,
-  euiPaletteNegative,
-  euiPalettePositive,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteGray,
 } from '../../../../src/services';
 import { useChartBaseTheme } from './utils/use_chart_base_theme';
@@ -34,8 +34,8 @@ const paletteData = {
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplementary,
-  euiPaletteNegative,
-  euiPalettePositive,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,

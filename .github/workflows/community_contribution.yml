@@ -19,7 +19,7 @@ jobs:
         # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#example-of-writing-an-environment-variable-to-github_env
         run: |
           DATA=$(
-            curl -L -i -w "%{http_code}" \
+            curl -L -i -g -w "%{http_code}" \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.EUI_COMMUNITY_PR }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \

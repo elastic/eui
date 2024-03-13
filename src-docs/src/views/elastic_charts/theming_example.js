@@ -89,15 +89,22 @@ const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
 
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
             {`import { DARK_THEME, LIGHT_THEME } from '@elastic/charts';
-import { euiPalettePositive } from '../../../../src/services';
+import { euiPaletteGreen } from '../../../../src/services';
 
-const customColors = {
-  colors: {
-    vizColors: euiPalettePositive(5),
-  },
-};
-
-<Settings baseTheme={colorMode === 'DARK' ? DARK_THEME : LIGHT_THEME} theme={[customColors]} />`}
+const MyChart = () => {
+  const customColors = {
+    colors: {
+      vizColors: euiPaletteGreen(5),
+    },
+  };
+  const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
+  return (
+    <Chart>
+      <Settings baseTheme={chartBaseTheme} theme={customColors} />
+      //...
+    </Chart>
+  );
+};`}
           </EuiCodeBlock>
           <p>You&apos;ll find an example of these in the demo below.</p>
         </>
@@ -135,8 +142,7 @@ const customColors = {
             a single color that spans from light colors for low amounts to dark
             colors for high amounts. If the data signifies{' '}
             <strong>trends</strong>, use a two-color divergent scheme, with the
-            darkest colors at the extremes. Remember that red means bad/negative
-            and green is good/positive.
+            darkest colors at the extremes.
           </p>
           <p>
             Whan signifying quantities, group values into intervals instead of a

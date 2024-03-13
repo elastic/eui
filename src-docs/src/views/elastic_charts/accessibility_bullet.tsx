@@ -3,7 +3,7 @@ import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import {
   htmlIdGenerator,
-  euiPalettePositive,
+  euiPaletteGreen,
   colorPalette,
   euiPaletteGray,
   useEuiTheme,
@@ -19,8 +19,8 @@ export default () => {
   const bandLabels = ['freezing', 'cold', 'brisk', 'warm', 'hot'];
   const bands = [0, 100, 125, 150, 250];
 
-  let spectrum = euiPalettePositive(5);
-  // For dark theme, start with the brightest positive color and create a palette that goes to dark gray instead of light
+  let spectrum = euiPaletteGreen(5);
+  // For dark theme, start with the brightest green color and create a palette that goes to dark gray instead of light
   if (isDarkTheme) {
     spectrum = colorPalette([spectrum[4], euiPaletteGray(5)[4]], 5).reverse();
   }

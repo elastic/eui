@@ -112,8 +112,10 @@ export default () => {
 
   const selection: EuiTableSelectionType<User> = {
     selectable: (user: User) => user.online,
-    selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : '',
+    selectableMessage: (selectable: boolean, user: User) =>
+      !selectable
+        ? `${user.firstName} ${user.lastName} is currently offline`
+        : `Select ${user.firstName} ${user.lastName}`,
     onSelectionChange,
     initialSelected: onlineUsers,
   };
