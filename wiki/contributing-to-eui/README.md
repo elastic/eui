@@ -6,7 +6,7 @@ If there isn't an associated feature request or bug report in EUI's backlog yet,
 
 ## Process
 
-### How we assign work and define our roadmap
+### How we assign work and how we define our roadmap
 
 EUI is built primarily by employees of Elastic. We try to do this in the open as much as possible, but do utilize closed meetings and other planning tools to dictate our longer term roadmap. We try to transcribe the decisions from these discussions in the form of specifications to Github issues for transparency. In general, once on Github, any issue can be worked on by the community. We usually reserve larger projects or ones that are core to our roadmap or design to be done internally. In these cases we mark these issues as `assigned` to a person using Github. We do not, as a policy, assign issues to community members. If you find an issue that is not assigned, assume that you are welcome to work on it and can submit a pull request. Feel free to leave a comment to mark intent and avoid conflict.
 
