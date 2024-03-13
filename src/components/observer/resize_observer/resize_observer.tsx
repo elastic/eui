@@ -91,14 +91,6 @@ export const useResizeObserver = (
 
   useEffect(() => {
     if (container != null) {
-      // ResizeObserver's first call to the observation callback is scheduled in the future
-      // so find the container's initial dimensions now
-      const boundingRect = container.getBoundingClientRect();
-      setSize({
-        width: boundingRect.width,
-        height: boundingRect.height,
-      });
-
       const observer = makeResizeObserver(container, ([entry]) => {
         const { inlineSize, blockSize } = entry.borderBoxSize[0];
         setSize({
