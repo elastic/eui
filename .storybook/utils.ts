@@ -51,14 +51,11 @@ export const moveStorybookControlsToCategory = <Props>(
   category = 'Additional'
 ): Record<keyof Props, ControlCategory> | {} => {
   return propNames.reduce(
-    (obj, name) => ({ ...obj, [name]: setControlCategory(category) }),
+    (obj, name) => ({ ...obj, [name]: { table: { category } } }),
     {}
   );
 };
 type ControlCategory = { table: { category: string } };
-const setControlCategory = (name: string): ControlCategory => ({
-  table: { category: name },
-});
 
 /**
  * parameters configurations

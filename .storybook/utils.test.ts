@@ -53,31 +53,26 @@ describe('disableStorybookControls', () => {
 });
 
 describe('moveStorybookControlsToCategory', () => {
-  it('outputs expected `argTypes` object when passed prop name strings', () => {
-    const expectedConfig = { table: { category: 'Additional' } };
-
-    expect(
-      moveStorybookControlsToCategory(['isDisabled', 'isLoading', 'isInvalid'])
-    ).toEqual({
-      isDisabled: expectedConfig,
-      isLoading: expectedConfig,
-      isInvalid: expectedConfig,
-    });
-  });
-
   it('outputs expected `argTypes` object when passed prop name strings and a custom category', () => {
-    const category = 'New category';
-    const expectedConfig = { table: { category: category } };
-
     expect(
       moveStorybookControlsToCategory(
         ['isDisabled', 'isLoading', 'isInvalid'],
-        category
+        'New category'
       )
     ).toEqual({
-      isDisabled: expectedConfig,
-      isLoading: expectedConfig,
-      isInvalid: expectedConfig,
+      isDisabled: { table: { category: 'New category' } },
+      isLoading: { table: { category: 'New category' } },
+      isInvalid: { table: { category: 'New category' } },
+    });
+  });
+
+  it('sets a default category if none is passed', () => {
+    expect(
+      moveStorybookControlsToCategory(['isDisabled', 'isLoading', 'isInvalid'])
+    ).toEqual({
+      isDisabled: { table: { category: 'Additional' } },
+      isLoading: { table: { category: 'Additional' } },
+      isInvalid: { table: { category: 'Additional' } },
     });
   });
 
