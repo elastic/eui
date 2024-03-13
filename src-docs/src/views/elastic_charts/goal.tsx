@@ -5,7 +5,7 @@ import {
   htmlIdGenerator,
   useEuiTheme,
   useIsWithinBreakpoints,
-  euiPalettePositive,
+  euiPaletteGreen,
 } from '../../../../src/services';
 import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
 
@@ -27,7 +27,7 @@ export const GoalChart = () => {
   const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
   const bands = [-10, 0, 15, 25, 40];
 
-  const spectrum = euiPalettePositive(5);
+  const spectrum = euiPaletteGreen(5);
   const opacityMapHex: Record<number, string> = {
     '-10': spectrum[0],
     '0': spectrum[1],
