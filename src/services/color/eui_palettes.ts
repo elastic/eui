@@ -203,6 +203,10 @@ export const euiPaletteRed = function (steps: number): EuiPalette {
 
   return euiPalette(['white', redColor], steps);
 };
+/**
+ * @deprecated - use `euiPaletteRed` instead
+ */
+export const euiPaletteNegative = euiPaletteRed;
 
 export const euiPaletteGreen = function (steps: number): EuiPalette {
   if (steps === 1) {
@@ -211,6 +215,11 @@ export const euiPaletteGreen = function (steps: number): EuiPalette {
 
   return euiPalette(['white', greenColor], steps);
 };
+
+/**
+ * @deprecated - use `euiPaletteGreen` instead
+ */
+export const euiPalettePositive = euiPaletteGreen;
 
 export const euiPaletteCool = function (steps: number): EuiPalette {
   if (steps === 1) {
