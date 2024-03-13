@@ -50,10 +50,17 @@ export const ElasticChartsSparklinesExample = {
           </p>
           <EuiCodeBlock language="javascript" isCopyable>
             {`import { DARK_THEME, LIGHT_THEME } from '@elastic/charts';
-import { EUI_SPARKLINE_THEME_PARTIAL } from '@elastic/eui/dist/eui_charts_theme';
 
-const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
-<Settings baseTheme={chartBaseTheme} theme={EUI_SPARKLINE_THEME_PARTIAL} />`}
+const MyChart = () => {
+  const sparklineOverrides = chartsPlugin.theme.useSparklineOverrides(); // requires kibana charts plugin
+  const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
+  return (
+    <Chart>
+      <Settings baseTheme={chartBaseTheme} theme={sparklineOverrides} />
+      //...
+    </Chart>
+  );
+};`}
           </EuiCodeBlock>
           <p>
             <strong>Other key configurations</strong>

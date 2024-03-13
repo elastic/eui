@@ -231,7 +231,7 @@ export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme({
 });
 
 /**
- * @deprecated use `sparkline` theme from the kibana `charts` plugin `theme` service
+ * @deprecated use `useSparklineOverrides` hook from the kibana `charts` plugin `theme` service
  */
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {
