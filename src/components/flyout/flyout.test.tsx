@@ -279,29 +279,20 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('"euiBody--hasFlyout" class', () => {
-      beforeEach(() => {
-        jest.clearAllMocks();
+    describe('body class', () => {
+      it('adds `.euiBody--hasFlyout` class on mount', () => {
+        render(<EuiFlyout onClose={() => {}} />);
+        expect(document.body).toHaveClass('euiBody--hasFlyout');
       });
 
-      it('should add "euiBody--hasFlyout" class on mount', () => {
-        const add = jest.spyOn(document.body.classList, 'add');
-
-        render(<EuiFlyout onClose={() => {}} size={500} />);
-        expect(add).toHaveBeenCalledTimes(1);
-        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
-      });
-
-      it('should remove "euiBody--hasFlyout" class on unmount', () => {
-        const remove = jest.spyOn(document.body.classList, 'remove');
-        const { unmount } = render(<EuiFlyout onClose={() => {}} size={500} />);
-        expect(remove).not.toHaveBeenCalled();
+      it('removes `.euiBody--hasFlyout` class on unmount', () => {
+        const { unmount } = render(<EuiFlyout onClose={() => {}} />);
         unmount();
-        expect(remove).toHaveBeenCalledTimes(1);
-        expect(remove).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+        expect(document.body).not.toHaveClass('euiBody--hasFlyout');
       });
 
-      it('should not remove and re-add "euiBody--hasFlyout" class on resize', async () => {
+      // Regression testing
+      it('should not remove and re-add `.euiBody--hasFlyout` class on resize', async () => {
         const add = jest.spyOn(document.body.classList, 'add');
         const remove = jest.spyOn(document.body.classList, 'remove');
         const { rerender } = render(
@@ -312,6 +303,7 @@ describe('EuiFlyout', () => {
         expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
 
         rerender(<EuiFlyout onClose={() => {}} size={600} />);
+        expect(add).toHaveBeenCalledTimes(1);
         expect(remove).not.toHaveBeenCalled();
       });
     });
