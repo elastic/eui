@@ -139,47 +139,6 @@ export class EuiSuperUpdateButton extends Component<
 
     const classes = classNames('euiSuperUpdateButton', className);
 
-    let buttonContent = children;
-
-    if (buttonContent === undefined) {
-      buttonContent = (
-        <EuiI18n
-          token="euiSuperUpdateButton.refreshButtonLabel"
-          default="Refresh"
-        />
-      );
-      if (needsUpdate || isLoading) {
-        buttonContent = isLoading ? (
-          <EuiI18n
-            token="euiSuperUpdateButton.updatingButtonLabel"
-            default="Updating"
-          />
-        ) : (
-          <EuiI18n
-            token="euiSuperUpdateButton.updateButtonLabel"
-            default="Update"
-          />
-        );
-      }
-    }
-
-    let tooltipContent;
-    if (isDisabled) {
-      tooltipContent = (
-        <EuiI18n
-          token="euiSuperUpdateButton.cannotUpdateTooltip"
-          default="Cannot update"
-        />
-      );
-    } else if (needsUpdate && !isLoading) {
-      tooltipContent = (
-        <EuiI18n
-          token="euiSuperUpdateButton.clickToApplyTooltip"
-          default="Click to apply"
-        />
-      );
-    }
-
     const sharedButtonProps = {
       color: needsUpdate || isLoading ? 'success' : 'primary',
       iconType: needsUpdate || isLoading ? 'kqlFunction' : 'refresh',
@@ -188,10 +147,12 @@ export class EuiSuperUpdateButton extends Component<
       isLoading: isLoading,
     };
 
+    const buttonContent = this.renderButtonContent();
+
     return (
       <EuiToolTip
         ref={this.setTootipRef}
-        content={tooltipContent}
+        content={this.renderTooltipContent()}
         position="bottom"
         {...toolTipProps}
       >
@@ -229,5 +190,58 @@ export class EuiSuperUpdateButton extends Component<
         </>
       </EuiToolTip>
     );
+  }
+
+  private renderButtonContent(): ReactNode {
+    const { children, isLoading, needsUpdate } = this.props;
+
+    if (children) {
+      return children;
+    }
+
+    if (isLoading) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.updatingButtonLabel"
+          default="Updating"
+        />
+      );
+    }
+
+    if (needsUpdate) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.updateButtonLabel"
+          default="Update"
+        />
+      );
+    }
+
+    return (
+      <EuiI18n
+        token="euiSuperUpdateButton.refreshButtonLabel"
+        default="Refresh"
+      />
+    );
+  }
+
+  private renderTooltipContent(): ReactNode {
+    if (this.props.isDisabled) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.cannotUpdateTooltip"
+          default="Cannot update"
+        />
+      );
+    }
+
+    if (this.props.needsUpdate && !this.props.isLoading) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.clickToApplyTooltip"
+          default="Click to apply"
+        />
+      );
+    }
   }
 }
