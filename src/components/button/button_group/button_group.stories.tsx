@@ -6,11 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
-import { useEuiTheme } from '../../../services';
 import {
   EuiButtonGroup,
   EuiButtonGroupProps,
@@ -125,37 +124,7 @@ export const MultiSelection: Story = {
 };
 
 export const WithTooltips: Story = {
-  render: function Render({ options, ...args }: EuiButtonGroupProps) {
-    const { euiTheme } = useEuiTheme();
-    const [toolTipHidden, forceToolTipHidden] = useState(false);
-    const forceHiddenToolTip = useCallback(() => forceToolTipHidden(true), []);
-    const resetVisibility = useCallback(() => forceToolTipHidden(false), []);
-
-    if (options[2].toolTipProps) {
-      options[2].toolTipProps = {
-        ...options[2].toolTipProps,
-        // Example of how a consumer could force hiding the tooltip
-        // via `toolTipProps`, state, and custom CSS
-        anchorProps: {
-          onClick: forceHiddenToolTip,
-          onBlurCapture: resetVisibility,
-          onMouseEnter: resetVisibility,
-          onMouseLeave: forceHiddenToolTip,
-        },
-        css: [
-          {
-            transition: `opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance}`,
-            animationFillMode: 'none !important',
-          },
-          toolTipHidden
-            ? { opacity: '0 !important', pointerEvents: 'none' }
-            : { opacity: '1' },
-        ],
-      };
-    }
-
-    return <EuiButtonGroupMulti options={options} {...args} />;
-  },
+  render: ({ ...args }) => <EuiButtonGroupMulti {...args} />,
   args: {
     legend: 'EuiButtonGroup - tooltip UI testing',
     isIconOnly: true, // Start example with icons to demonstrate usefulness of tooltips
@@ -175,9 +144,10 @@ export const WithTooltips: Story = {
         id: 'customToolTipProps',
         iconType: 'securitySignalDetected',
         label: 'Custom tooltip',
-        toolTipContent: 'Custom tooltip position and click behavior',
+        toolTipContent: 'Custom tooltip position and delay',
         toolTipProps: {
           position: 'right',
+          delay: 'regular',
           title: 'Hello world',
         },
         // Consumers could also opt to hide titles if preferred
