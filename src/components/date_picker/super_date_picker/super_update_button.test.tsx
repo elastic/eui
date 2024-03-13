@@ -7,13 +7,12 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
-import { waitForEuiToolTipVisible } from '../../../test/rtl';
+import { render, waitForEuiToolTipVisible, within } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiSuperUpdateButton } from './super_update_button';
-import { EuiButton, EuiButtonProps } from '../../button';
+import { EuiButtonProps } from '../../button';
 
 const noop = () => {};
 
@@ -37,109 +36,116 @@ describe('EuiSuperUpdateButton', () => {
     }
   );
 
-  test('is rendered', () => {
-    const component = shallow(<EuiSuperUpdateButton onClick={noop} />);
+  it('is rendered', () => {
+    const { container } = render(<EuiSuperUpdateButton onClick={noop} />);
 
-    expect(component).toMatchSnapshot();
+    const tooltipWrapper = container.querySelector('.euiToolTipAnchor');
+    expect(tooltipWrapper).toBeInTheDocument();
+
+    const button = within(tooltipWrapper as HTMLElement).getByRole('button');
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveClass('euiSuperUpdateButton');
+    expect(button).toHaveTextContent('Refresh');
   });
 
-  test('needsUpdate', () => {
-    const component = shallow(
-      <EuiSuperUpdateButton needsUpdate onClick={noop} />
-    );
+  describe('props', () => {
+    it('needsUpdate', () => {
+      const { getByRole } = render(
+        <EuiSuperUpdateButton needsUpdate onClick={noop} />
+      );
 
-    expect(component).toMatchSnapshot();
-  });
-
-  test('isDisabled', () => {
-    const component = shallow(
-      <EuiSuperUpdateButton isDisabled onClick={noop} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('isLoading', () => {
-    const component = shallow(
-      <EuiSuperUpdateButton isLoading onClick={noop} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('iconOnly', () => {
-    const component = shallow(<EuiSuperUpdateButton iconOnly onClick={noop} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('showTooltip', () => {
-    const component = shallow(
-      <EuiSuperUpdateButton showTooltip onClick={noop} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('responsive can be all', () => {
-    const component = shallow(
-      <EuiSuperUpdateButton
-        responsive={['xs', 's', 'm', 'l', 'xl']}
-        onClick={noop}
-      />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('responsive can be false', () => {
-    const component = shallow(
-      <EuiSuperUpdateButton responsive={false} onClick={noop} />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('forwards props to EuiButton', () => {
-    const speciallyHandledProps = {
-      className: 'testClass',
-      textProps: {
-        className: 'textPropsTestClass',
-        id: 'test',
-      },
-    };
-    const extraProps: Partial<EuiButtonProps> = {
-      fill: false,
-      size: 's',
-      contentProps: { id: 'contentSpan' },
-    };
-
-    const component = mount(
-      <EuiSuperUpdateButton
-        onClick={() => {}}
-        {...speciallyHandledProps}
-        {...extraProps}
-      />
-    );
-
-    const {
-      // props not passed through
-      isDisabled,
-      isLoading,
-      onClick,
-
-      // props with special handling
-      className,
-      textProps,
-
-      ...forwardedProps
-    } = component.find(EuiButton).props();
-
-    expect(className).toBe('euiSuperUpdateButton testClass');
-    expect(textProps).toEqual({
-      className: 'textPropsTestClass',
-      id: 'test',
+      expect(getByRole('button')).toHaveTextContent('Update');
     });
-    expect(forwardedProps).toMatchObject(extraProps);
+
+    it('isDisabled', () => {
+      const { getByRole } = render(
+        <EuiSuperUpdateButton isDisabled onClick={noop} />
+      );
+
+      expect(getByRole('button')).toBeDisabled();
+    });
+
+    it('isLoading', () => {
+      const { getByRole } = render(
+        <EuiSuperUpdateButton isLoading onClick={noop} />
+      );
+
+      expect(getByRole('button')).toHaveTextContent('Updating');
+
+      const icon = getByRole('progressbar');
+      expect(icon).toHaveAccessibleName('Loading');
+    });
+
+    it('iconOnly', () => {
+      const { getByText, container } = render(
+        <EuiSuperUpdateButton iconOnly onClick={noop} />
+      );
+
+      const icon = container.querySelector('[data-euiicon-type]');
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveAttribute('data-euiicon-type', 'refresh');
+
+      const text = getByText('Refresh');
+      expect(text).toBeInTheDocument();
+      expect(text).toHaveClass('euiScreenReaderOnly');
+    });
+
+    it('showTooltip', () => {
+      const { container } = render(
+        <EuiSuperUpdateButton showTooltip onClick={noop} />
+      );
+
+      const tooltipWrapper = container.querySelector('.euiToolTipAnchor');
+      expect(tooltipWrapper).toBeInTheDocument();
+    });
+
+    it('children', () => {
+      const { getByRole } = render(
+        <EuiSuperUpdateButton onClick={noop}>
+          <span data-test-subj="custom-children" />
+        </EuiSuperUpdateButton>
+      );
+
+      const button = getByRole('button');
+      expect(button).toHaveTextContent('');
+
+      const customChildren = within(button).getByTestSubject('custom-children');
+      expect(customChildren).toBeInTheDocument();
+    });
+
+    it('forwards props to EuiButton', () => {
+      const speciallyHandledProps = {
+        className: 'testClass',
+        textProps: {
+          className: 'textPropsTestClass',
+          id: 'test',
+          'data-test-subj': 'text',
+        },
+      };
+      const extraProps: Partial<EuiButtonProps> = {
+        fill: false,
+        size: 's',
+        contentProps: { id: 'contentSpan', 'data-test-subj': 'content' },
+      };
+
+      const { getByRole, getByTestSubject } = render(
+        <EuiSuperUpdateButton
+          onClick={() => {}}
+          {...speciallyHandledProps}
+          {...extraProps}
+        />
+      );
+
+      const button = getByRole('button');
+      expect(button).toHaveClass('testClass');
+
+      const text = getByTestSubject('text');
+      expect(text).toBeInTheDocument();
+      expect(text).toHaveAttribute('id', 'test');
+      expect(text).toHaveClass('textPropsTestClass');
+
+      const buttonContent = within(button).getByTestSubject('content');
+      expect(buttonContent).toBeInTheDocument();
+    });
   });
 });
