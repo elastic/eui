@@ -42,18 +42,6 @@ exports[`EuiFlexGroup props alignItems stretch is rendered 1`] = `
 />
 `;
 
-exports[`EuiFlexGroup props component div is rendered 1`] = `
-<div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
-/>
-`;
-
-exports[`EuiFlexGroup props component span is rendered 1`] = `
-<span
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
-/>
-`;
-
 exports[`EuiFlexGroup props direction column is rendered 1`] = `
 <div
   class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-column"
