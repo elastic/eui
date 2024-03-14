@@ -6,12 +6,16 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
-import { useEuiTheme, UseEuiTheme } from '../../services/theme';
+import { css, SerializedStyles } from '@emotion/react';
+import { useEuiMemoizedStyles, UseEuiTheme } from '../../services/theme';
 import { logicalSide, LogicalSides } from '../functions';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiPaddingSize = (typeof PADDING_SIZES)[number];
+
+/**
+ * Get a single padding size
+ */
 
 export const euiPaddingSize = (
   { euiTheme }: UseEuiTheme,
@@ -27,38 +31,54 @@ export const euiPaddingSize = (
   }
 };
 
-export const euiPaddingSizeCSS = (
-  euiThemeContext: UseEuiTheme,
-  side?: LogicalSides
-) => {
-  const property = side ? `padding-${logicalSide[side]}` : 'padding';
-
-  return {
-    none: null,
-    xs: css`
-      ${property}: ${euiPaddingSize(euiThemeContext, 'xs')};
-    `,
-    s: css`
-      ${property}: ${euiPaddingSize(euiThemeContext, 's')};
-    `,
-    m: css`
-      ${property}: ${euiPaddingSize(euiThemeContext, 'm')};
-    `,
-    l: css`
-      ${property}: ${euiPaddingSize(euiThemeContext, 'l')};
-    `,
-    xl: css`
-      ${property}: ${euiPaddingSize(euiThemeContext, 'xl')};
-    `,
-  };
-};
+const _getEuiPaddingSize = (euiThemeContext: UseEuiTheme) =>
+  PADDING_SIZES.reduce(
+    (stylesAcc, size) => ({
+      ...stylesAcc,
+      [size]: size === 'none' ? null : euiPaddingSize(euiThemeContext, size),
+    }),
+    {} as Record<EuiPaddingSize, string>
+  );
 
 export const useEuiPaddingSize = (size: EuiPaddingSize) => {
-  const euiTheme = useEuiTheme();
-  return euiPaddingSize(euiTheme, size);
+  const sizes = useEuiMemoizedStyles(_getEuiPaddingSize);
+  return sizes[size];
 };
 
+/**
+ * Get an object of all padding sizes for all possible padding properties
+ */
+
+type PaddingStyles = Record<EuiPaddingSize, SerializedStyles>;
+type PaddingGenerator = (euiTheme: UseEuiTheme) => PaddingStyles;
+
+const paddingCSSProperties = Object.entries(logicalSide).reduce(
+  (acc, [key, property]) => ({ ...acc, [key]: `padding-${property}` }),
+  { all: 'padding' }
+);
+const paddingCSSGenerators = Object.entries(paddingCSSProperties).reduce(
+  (acc, [key, property]) => {
+    // Use a `_` prefix to stop Emotion from auto-applying the fn name as a label
+    const _euiPaddingGenerator = (euiThemeContext: UseEuiTheme) =>
+      PADDING_SIZES.reduce(
+        (stylesAcc, size) => ({
+          ...stylesAcc,
+          [size]:
+            size === 'none'
+              ? null
+              : css`
+                  ${property}: ${euiPaddingSize(euiThemeContext, size)};
+                  label: ${size};
+                `,
+        }),
+        {} as PaddingStyles
+      );
+
+    return { ...acc, [key]: _euiPaddingGenerator };
+  },
+  {} as Record<LogicalSides | 'all', PaddingGenerator>
+);
+
 export const useEuiPaddingCSS = (side?: LogicalSides) => {
-  const euiTheme = useEuiTheme();
-  return euiPaddingSizeCSS(euiTheme, side);
+  return useEuiMemoizedStyles(paddingCSSGenerators[side || 'all']);
 };
