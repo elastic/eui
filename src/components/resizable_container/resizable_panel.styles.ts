@@ -11,19 +11,16 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   euiScrollBarStyles,
-  euiPaddingSizeCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiResizablePanelStyles = (euiThemeContext: UseEuiTheme) => {
-  return {
-    euiResizablePanel: css`
-      position: relative;
-    `,
-    collapsed: css`
-      overflow: hidden;
-    `,
-  };
+export const euiResizablePanelStyles = {
+  euiResizablePanel: css`
+    position: relative;
+  `,
+  collapsed: css`
+    overflow: hidden;
+  `,
 };
 
 export const euiResizablePanelContentStyles = (
