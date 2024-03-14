@@ -18,7 +18,11 @@ import React, {
 import classNames from 'classnames';
 
 import { useGeneratedHtmlId, useEuiTheme } from '../../services';
-import { logicalSizeStyle, euiPaddingSize } from '../../global_styling';
+import {
+  logicalSizeStyle,
+  useEuiPaddingSize,
+  useEuiPaddingCSS,
+} from '../../global_styling';
 import { CommonProps } from '../common';
 
 import { useEuiResizableContainerContext } from './context';
@@ -239,7 +243,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const cssStyles = [
     styles.euiResizablePanel,
     isCollapsed && styles.collapsed,
-    styles.paddingSizes[wrapperPadding],
+    useEuiPaddingCSS()[wrapperPadding],
     wrapperProps?.css,
   ];
   const contentStyles = euiResizablePanelContentStyles(euiTheme);
@@ -261,7 +265,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       : logicalSizeStyle('100%', `${size || innerSize}%`)),
   };
 
-  const padding = euiPaddingSize(euiTheme, paddingSize) || '0px';
+  const padding = useEuiPaddingSize(paddingSize) || '0px';
 
   useEffect(() => {
     if (!registration) return;

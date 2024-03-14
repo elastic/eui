@@ -23,9 +23,6 @@ export const euiResizablePanelStyles = (euiThemeContext: UseEuiTheme) => {
     collapsed: css`
       overflow: hidden;
     `,
-    paddingSizes: {
-      ...euiPaddingSizeCSS(euiThemeContext),
-    },
   };
 };
 
