@@ -247,6 +247,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       <ul
         aria-labelledby="generated-id"
         class="euiFlexGrid emotion-euiFlexGrid-s-column-stretch-2"
+        style="grid-template-rows: repeat(1, 1fr);"
       >
         <li
           class="euiFlexItem euiQuickSelectPopover__sectionItem emotion-euiFlexItem-grow-1"
