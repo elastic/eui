@@ -147,7 +147,7 @@ export const WithTooltips: Story = {
         toolTipContent: 'Custom tooltip position and delay',
         toolTipProps: {
           position: 'right',
-          delay: 'regular',
+          delay: 'long',
           title: 'Hello world',
         },
         // Consumers could also opt to hide titles if preferred

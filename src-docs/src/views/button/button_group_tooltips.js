@@ -19,7 +19,6 @@ export default () => {
       toolTipContent: 'This is another custom tooltip',
       toolTipProps: {
         title: 'My custom title',
-        delay: 'regular',
         position: 'right',
       },
     },

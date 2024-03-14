@@ -154,7 +154,6 @@ const EuiButtonGroupButtonWithToolTip: FunctionComponent<
   return toolTipContent ? (
     <EuiToolTip
       content={toolTipContent}
-      delay="long"
       position="top"
       {...toolTipProps}
       anchorProps={{
