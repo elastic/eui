@@ -39,7 +39,7 @@ const meta: Meta<EuiHeaderLinkProps> = {
         'textProps',
         'type',
       ],
-      'EuiLink props'
+      'EuiButtonEmpty props'
     ),
   },
   // Component defaults

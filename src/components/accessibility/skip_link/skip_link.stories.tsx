@@ -17,12 +17,10 @@ import { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
 const meta: Meta<EuiSkipLinkProps> = {
   title: 'Utilities/EuiSkipLink',
   component: EuiSkipLink,
-  argTypes: {
-    ...moveStorybookControlsToCategory(
-      ['color', 'fill', 'size'],
-      'EuiButton props'
-    ),
-  },
+  argTypes: moveStorybookControlsToCategory(
+    ['color', 'fill', 'size'],
+    'EuiButton props'
+  ),
   args: {
     // Component defaults
     position: 'static',
