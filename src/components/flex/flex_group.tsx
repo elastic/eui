@@ -10,7 +10,7 @@ import React, { HTMLAttributes, Ref, forwardRef } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiFlexGroupStyles } from './flex_group.styles';
 
 export const GUTTER_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
@@ -81,8 +81,7 @@ export const EuiFlexGroup = forwardRef<
     },
     ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
   ) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiFlexGroupStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiFlexGroupStyles);
     const cssStyles = [
       styles.euiFlexGroup,
       responsive && !direction.includes('column') && styles.responsive,
