@@ -6,8 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useMemo } from 'react';
-import { css } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 import {
   shade,
   tint,
@@ -15,6 +14,7 @@ import {
   transparentize,
   useEuiTheme,
   UseEuiTheme,
+  useEuiMemoizedStyles,
 } from '../../services';
 
 export const BACKGROUND_COLORS = [
@@ -36,6 +36,10 @@ export interface _EuiBackgroundColorOptions {
    */
   method?: 'opaque' | 'transparent';
 }
+
+/**
+ * Get a single background color with optional alpha transparency
+ */
 
 export const euiBackgroundColor = (
   { euiTheme, colorMode }: UseEuiTheme,
@@ -70,6 +74,7 @@ export const euiBackgroundColor = (
   }
 };
 
+// TODO: This isn't actually used anywhere in EUI and is hard to memoize. Should we deprecate it?
 export const useEuiBackgroundColor = (
   color: _EuiBackgroundColor,
   { method }: _EuiBackgroundColorOptions = {}
@@ -78,39 +83,28 @@ export const useEuiBackgroundColor = (
   return euiBackgroundColor(euiTheme, color, { method });
 };
 
-export const useEuiBackgroundColorCSS = () => {
-  const euiThemeContext = useEuiTheme();
+/**
+ * Get a memoized object of non-alpha background colors
+ */
 
-  return useMemo(
-    () => ({
-      transparent: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'transparent')};
-      `,
-      plain: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
-      `,
-      subdued: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued')};
-      `,
-      accent: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'accent')};
-      `,
-      primary: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'primary')};
-      `,
-      success: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'success')};
-      `,
-      warning: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'warning')};
-      `,
-      danger: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, 'danger')};
+const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
+  BACKGROUND_COLORS.reduce(
+    (acc, color) => ({
+      ...acc,
+      [color]: css`
+        background-color: ${euiBackgroundColor(euiThemeContext, color)};
+        label: ${color};
       `,
     }),
-    [euiThemeContext]
+    {} as Record<_EuiBackgroundColor, SerializedStyles>
   );
-};
+
+export const useEuiBackgroundColorCSS = () =>
+  useEuiMemoizedStyles(_euiBackgroundColors);
+
+/**
+ * Border colors
+ */
 
 export const euiBorderColor = (
   { euiTheme, colorMode }: UseEuiTheme,
@@ -128,36 +122,17 @@ export const euiBorderColor = (
   }
 };
 
-export const useEuiBorderColorCSS = () => {
-  const euiThemeContext = useEuiTheme();
-
-  return useMemo(
-    () => ({
-      transparent: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'transparent')};
-      `,
-      plain: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'plain')};
-      `,
-      subdued: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'subdued')};
-      `,
-      accent: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'accent')};
-      `,
-      primary: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'primary')};
-      `,
-      success: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'success')};
-      `,
-      warning: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'warning')};
-      `,
-      danger: css`
-        border-color: ${euiBorderColor(euiThemeContext, 'danger')};
+const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
+  BACKGROUND_COLORS.reduce(
+    (acc, color) => ({
+      ...acc,
+      [color]: css`
+        border-color: ${euiBorderColor(euiThemeContext, color)};
+        label: ${color};
       `,
     }),
-    [euiThemeContext]
+    {} as Record<_EuiBackgroundColor, SerializedStyles>
   );
-};
+
+export const useEuiBorderColorCSS = () =>
+  useEuiMemoizedStyles(_euiBorderColors);
