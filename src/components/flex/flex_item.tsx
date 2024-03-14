@@ -10,7 +10,7 @@ import React, { HTMLAttributes, FunctionComponent, ElementType } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { euiFlexItemStyles } from './flex_item.styles';
+import { euiFlexItemStyles as styles } from './flex_item.styles';
 
 export interface EuiFlexItemProps {
   grow?: boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | null; // Leave this as an inline string enum so the props table properly parses it
@@ -33,7 +33,6 @@ export const EuiFlexItem: FunctionComponent<
 }) => {
   validateGrowValue(grow);
 
-  const styles = euiFlexItemStyles();
   const cssStyles = [
     styles.euiFlexItem,
     !grow ? styles.growZero : styles.grow,
