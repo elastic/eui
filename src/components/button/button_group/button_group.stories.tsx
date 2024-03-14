@@ -36,9 +36,6 @@ const meta: Meta<EuiButtonGroupProps> = {
     options: {
       control: 'array',
     },
-    buttonSize: {
-      control: 'select',
-    },
   },
   args: {
     // Component defaults
@@ -109,7 +106,6 @@ const EuiButtonGroupMulti = (props: any) => {
     <EuiButtonGroup
       type="multi"
       {...props}
-      options={options}
       onChange={onChange}
       idToSelectedMap={idToSelectedMap}
     />
@@ -121,6 +117,43 @@ export const MultiSelection: Story = {
   args: {
     legend: 'EuiButtonGroup - multiple selections',
     options,
+    type: 'multi',
+    idToSelectedMap: { button1: true },
+  },
+  argTypes: disableStorybookControls(['type']),
+};
+
+export const WithTooltips: Story = {
+  render: ({ ...args }) => <EuiButtonGroupMulti {...args} />,
+  args: {
+    legend: 'EuiButtonGroup - tooltip UI testing',
+    isIconOnly: true, // Start example with icons to demonstrate usefulness of tooltips
+    options: [
+      {
+        id: 'button1',
+        iconType: 'securitySignal',
+        label: 'No tooltip',
+      },
+      {
+        id: 'button2',
+        iconType: 'securitySignalResolved',
+        label: 'Standard tooltip',
+        toolTipContent: 'Hello world',
+      },
+      {
+        id: 'customToolTipProps',
+        iconType: 'securitySignalDetected',
+        label: 'Custom tooltip',
+        toolTipContent: 'Custom tooltip position and delay',
+        toolTipProps: {
+          position: 'right',
+          delay: 'long',
+          title: 'Hello world',
+        },
+        // Consumers could also opt to hide titles if preferred
+        title: '',
+      },
+    ],
     type: 'multi',
     idToSelectedMap: { button1: true },
   },

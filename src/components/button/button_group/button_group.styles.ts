@@ -41,8 +41,10 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     fullWidth: css`
       ${logicalCSS('width', '100%')}
 
-      .euiButtonGroupButton {
+      .euiButtonGroupButton,
+      .euiButtonGroup__tooltipWrapper {
         flex: 1;
+        ${logicalCSS('width', '100%')}
       }
     `,
     // Sizes

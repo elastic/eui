@@ -278,5 +278,34 @@ describe('EuiFlyout', () => {
         ).toMatchSnapshot();
       });
     });
+
+    describe('body class', () => {
+      it('adds `.euiBody--hasFlyout` class on mount', () => {
+        render(<EuiFlyout onClose={() => {}} />);
+        expect(document.body).toHaveClass('euiBody--hasFlyout');
+      });
+
+      it('removes `.euiBody--hasFlyout` class on unmount', () => {
+        const { unmount } = render(<EuiFlyout onClose={() => {}} />);
+        unmount();
+        expect(document.body).not.toHaveClass('euiBody--hasFlyout');
+      });
+
+      // Regression testing
+      it('should not remove and re-add `.euiBody--hasFlyout` class on resize', async () => {
+        const add = jest.spyOn(document.body.classList, 'add');
+        const remove = jest.spyOn(document.body.classList, 'remove');
+        const { rerender } = render(
+          <EuiFlyout onClose={() => {}} size={500} />
+        );
+
+        expect(add).toHaveBeenCalledTimes(1);
+        expect(add).toHaveBeenLastCalledWith('euiBody--hasFlyout');
+
+        rerender(<EuiFlyout onClose={() => {}} size={600} />);
+        expect(add).toHaveBeenCalledTimes(1);
+        expect(remove).not.toHaveBeenCalled();
+      });
+    });
   });
 });

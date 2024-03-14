@@ -236,6 +236,28 @@ const buttonGroupCompressedSnippet = [
 />`,
 ];
 
+import ButtonGroupToolTips from './button_group_tooltips';
+const buttonGroupToolTipsSource = require('!!raw-loader!./button_group_tooltips');
+const buttonGroupToolTipsSnippet = [
+  `<EuiButtonGroup
+  legend={legend}
+  options={[
+    {
+      id,
+      label,
+      toolTipContent,
+      toolTipProps: {
+        title,
+        delay,
+        position,
+      },
+    },
+  ]}
+  idSelected={idSelected}
+  onChange={(optionId) => {}}
+/>`,
+];
+
 export const ButtonExample = {
   title: 'Button',
   intro: (
@@ -653,7 +675,7 @@ export const ButtonExample = {
       ],
       text: (
         <>
-          <h3>Icon only button groups</h3>
+          <h3 id="buttonGroup-isIconOnly">Icon only button groups</h3>
           <p>
             If you&apos;re just displaying a group of icons, add the prop{' '}
             <EuiCode>isIconOnly</EuiCode>.
@@ -672,10 +694,9 @@ export const ButtonExample = {
           code: buttonGroupCompressedSource,
         },
       ],
-
       text: (
         <>
-          <h3>Button groups in forms</h3>
+          <h3 id="buttonGroup-compressed">Button groups in forms</h3>
           <p>
             When using button groups within compressed forms, match the form
             elements by adding <EuiCode>{'buttonSize="compressed"'}</EuiCode>.
@@ -696,6 +717,38 @@ export const ButtonExample = {
       snippet: buttonGroupCompressedSnippet,
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
       demoPanelProps: { color: 'subdued' },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupToolTipsSource,
+        },
+      ],
+      text: (
+        <>
+          <h3 id="buttonGroup-toolTipContent">Button group tooltips</h3>
+          <p>
+            Buttons within a button group will automatically display a default
+            browser tooltip containing the button <EuiCode>label</EuiCode> text.
+            This can be customized or unset via the <EuiCode>title</EuiCode>{' '}
+            property in your <EuiCode>options</EuiCode> button configuration.
+          </p>
+          <p>
+            To instead display an <EuiCode>EuiToolTip</EuiCode> around your
+            button(s), pass the <EuiCode>toolTipContent</EuiCode> property. You
+            can also use <EuiCode>toolTipProps</EuiCode> to customize tooltip
+            placement, title, and any other prop that{' '}
+            <Link to="/#/display/tooltip">
+              <strong>EuiToolTip</strong>
+            </Link>{' '}
+            accepts.
+          </p>
+        </>
+      ),
+      demo: <ButtonGroupToolTips />,
+      snippet: buttonGroupToolTipsSnippet,
+      props: { EuiButtonGroupOptionProps },
     },
   ],
   guidelines: <Guidelines />,

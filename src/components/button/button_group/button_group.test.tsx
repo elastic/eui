@@ -8,16 +8,21 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { render } from '../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForEuiToolTipHidden,
+  waitForEuiToolTipVisible,
+} from '../../../test/rtl';
 import { requiredProps as commonProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
+import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 import {
   EuiButtonGroup,
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';
-import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
   's',
@@ -215,5 +220,93 @@ describe('EuiButtonGroup', () => {
     expect(getByTestSubject('buttonWithCss')).toHaveStyle(
       'text-transform: uppercase'
     );
+  });
+
+  describe('tooltips', () => {
+    it('shows a tooltip on hover and focus', async () => {
+      const { getByTestSubject, getByRole } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+
+      expect(getByRole('tooltip')).toHaveTextContent('I am a tooltip');
+
+      fireEvent.mouseOut(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+
+      fireEvent.focus(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+      fireEvent.blur(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipHidden();
+    });
+
+    it('allows customizing the tooltip via `toolTipProps`', async () => {
+      const { getByTestSubject } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: 'Option 4',
+              toolTipContent: 'I am a tooltip',
+              toolTipProps: {
+                position: 'right',
+                delay: 'regular',
+                'data-test-subj': 'toolTipTest',
+              },
+            },
+          ]}
+        />
+      );
+      fireEvent.mouseOver(getByTestSubject('buttonWithTooltip'));
+      await waitForEuiToolTipVisible();
+
+      expect(getByTestSubject('toolTipTest')).toHaveAttribute(
+        'data-position',
+        'right'
+      );
+    });
+
+    it('allows consumers to unset the `title` in favor of a tooltip', () => {
+      const reallyLongLabel =
+        'This is a really long label that we know will be truncated, so we show a tooltip instead and hide the title';
+
+      const { getByTestSubject } = render(
+        <EuiButtonGroup
+          {...requiredMultiProps}
+          isIconOnly
+          options={[
+            ...options,
+            {
+              id: 'buttonWithTooltip',
+              label: reallyLongLabel,
+              toolTipContent: reallyLongLabel,
+              title: undefined,
+            },
+          ]}
+        />
+      );
+      expect(getByTestSubject('buttonWithTooltip')).not.toHaveAttribute(
+        'title'
+      );
+      expect(getByTestSubject('button01')).toHaveAttribute(
+        'title',
+        'Option two'
+      );
+    });
   });
 });

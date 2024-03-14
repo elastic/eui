@@ -214,36 +214,33 @@ export const EuiFlyout = forwardRef(
       null
     );
     const setRef = useCombinedRefs([setResizeRef, ref]);
-    // TODO: Allow this hook to be conditional
-    const dimensions = useResizeObserver(resizeRef);
+    const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
     useEffect(() => {
-      // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
-      document.body.classList.add('euiBody--hasFlyout');
-
       /**
        * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
        */
       if (isPushed) {
-        if (side === 'right') {
-          document.body.style.paddingInlineEnd = `${dimensions.width}px`;
-        } else if (side === 'left') {
-          document.body.style.paddingInlineStart = `${dimensions.width}px`;
-        }
+        const paddingSide =
+          side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+
+        document.body.style[paddingSide] = `${width}px`;
+        return () => {
+          document.body.style[paddingSide] = '';
+        };
       }
+    }, [isPushed, side, width]);
 
+    /**
+     * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
+     */
+    useEffect(() => {
+      document.body.classList.add('euiBody--hasFlyout');
       return () => {
+        // Remove the hasFlyout class when the flyout is unmounted
         document.body.classList.remove('euiBody--hasFlyout');
-
-        if (isPushed) {
-          if (side === 'right') {
-            document.body.style.paddingInlineEnd = '';
-          } else if (side === 'left') {
-            document.body.style.paddingInlineStart = '';
-          }
-        }
       };
-    }, [side, dimensions, isPushed]);
+    }, []);
 
     /**
      * ESC key closes flyout (always?)
