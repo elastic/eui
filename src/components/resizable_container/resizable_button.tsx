@@ -18,7 +18,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
-import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 
 import { useEuiResizableContainerContext } from './context';
 import {
@@ -75,8 +75,7 @@ export const EuiResizableButton = forwardRef<
 
     const resizeDirection = isHorizontal ? 'horizontal' : 'vertical';
 
-    const euiTheme = useEuiTheme();
-    const styles = euiResizableButtonStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiResizableButtonStyles);
     const cssStyles = [
       styles.euiResizableButton,
       styles[indicator],
