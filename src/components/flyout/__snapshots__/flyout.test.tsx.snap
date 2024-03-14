@@ -1070,7 +1070,7 @@ Array [
 
 exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeaders headers exist on the page 1`] = `
 <body
-  class="euiBody--headerIsFixed euiBody--hasFlyout"
+  class="euiBody--hasFlyout euiBody--headerIsFixed"
 >
   <div>
     <div
