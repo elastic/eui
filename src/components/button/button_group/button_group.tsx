@@ -19,6 +19,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 
 import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
+import { EuiToolTipProps } from '../../../components/tool_tip';
 import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
 import { EuiButtonGroupButton } from './button_group_button';
 import {
@@ -46,6 +47,20 @@ export interface EuiButtonGroupOptionProps
    * The type of the underlying HTML button
    */
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  /**
+   * By default, will use the button text for the native browser title.
+   *
+   * This can be either customized or unset via `title: ''` if necessary.
+   */
+  title?: ButtonHTMLAttributes<HTMLButtonElement>['title'];
+  /**
+   * Optional custom tooltip content for the button
+   */
+  toolTipContent?: EuiToolTipProps['content'];
+  /**
+   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
 
 export type EuiButtonGroupProps = CommonProps & {
@@ -174,10 +189,10 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
       </EuiScreenReaderOnly>
 
       <div css={cssStyles} className="euiButtonGroup__buttons">
-        {options.map((option, index) => {
+        {options.map((option) => {
           return (
             <EuiButtonGroupButton
-              key={index}
+              key={option.id}
               isDisabled={isDisabled}
               {...(option as EuiButtonGroupOptionProps)}
               onClick={
