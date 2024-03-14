@@ -7,13 +7,20 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../../.storybook/utils';
 
+import {
+  hideStorybookControls,
+  moveStorybookControlsToCategory,
+} from '../../../../.storybook/utils';
 import { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
 
 const meta: Meta<EuiSkipLinkProps> = {
   title: 'Utilities/EuiSkipLink',
   component: EuiSkipLink,
+  argTypes: moveStorybookControlsToCategory(
+    ['color', 'fill', 'size'],
+    'EuiButton props'
+  ),
   args: {
     // Component defaults
     position: 'static',

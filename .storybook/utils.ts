@@ -41,6 +41,23 @@ export const disableStorybookControls = <Props>(
 const DISABLE_CONTROL = { control: false };
 
 /**
+ * Configure provided args to be listed under a specified
+ * category in the props table.
+ *
+ * Should be passed or spread to `argTypes`
+ */
+export const moveStorybookControlsToCategory = <Props>(
+  propNames: Array<keyof Props>,
+  category = 'Additional'
+): Record<keyof Props, ControlCategory> | {} => {
+  return propNames.reduce(
+    (obj, name) => ({ ...obj, [name]: { table: { category } } }),
+    {}
+  );
+};
+type ControlCategory = { table: { category: string } };
+
+/**
  * parameters configurations
  */
 

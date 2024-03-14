@@ -8,19 +8,34 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { moveStorybookControlsToCategory } from '../../../../.storybook/utils';
 import { EuiBreadcrumbsProps } from '../../breadcrumbs';
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 const meta: Meta<EuiBreadcrumbsProps> = {
   title: 'Layout/EuiHeader/EuiHeaderBreadcrumbs',
   component: EuiHeaderBreadcrumbs,
+  argTypes: {
+    ...moveStorybookControlsToCategory(
+      [
+        'aria-label',
+        'breadcrumbs',
+        'lastBreadcrumbIsCurrentPage',
+        'max',
+        'responsive',
+        'truncate',
+        'type',
+      ],
+      'EuiBreadcrumbs props'
+    ),
+  },
   args: {
     // Component defaults
-    type: 'application',
     max: 4,
     truncate: true,
     responsive: { xs: 1, s: 2, m: 4 },
     lastBreadcrumbIsCurrentPage: true,
+    type: 'application',
   },
 };
 
