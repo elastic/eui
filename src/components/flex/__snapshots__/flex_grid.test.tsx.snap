@@ -69,6 +69,7 @@ exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
 exports[`EuiFlexGrid props direction column is rendered 1`] = `
 <div
   class="euiFlexGrid emotion-euiFlexGrid-l-column-stretch-1-responsive"
+  style="grid-template-rows: repeat(0, 1fr);"
 />
 `;
 

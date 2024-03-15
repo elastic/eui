@@ -10,13 +10,7 @@ import { css } from '@emotion/react';
 import { euiMaxBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-// Note: the only way to get column direction working with `display: grid`
-// the same way `display: flex` works is to manually set `grid-template-rows`,
-// calculated based on the number of children in the grid
-export const euiFlexGridStyles = (
-  euiThemeContext: UseEuiTheme,
-  gridTemplateRows = 0
-) => {
+export const euiFlexGridStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiFlexGrid: css`
@@ -30,9 +24,12 @@ export const euiFlexGridStyles = (
     `,
     direction: {
       row: css``,
+      // Note: the only way to get column direction working with `display: grid`
+      // the same way `display: flex` works is to manually set `grid-template-rows`,
+      // calculated based on the number of children in the grid
       column: css`
         grid-auto-flow: column;
-        grid-template-rows: repeat(${gridTemplateRows}, 1fr);
+        /* grid-template-rows set via inline style */
       `,
     },
     columnCount: {

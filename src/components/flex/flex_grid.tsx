@@ -11,11 +11,12 @@ import React, {
   ReactNode,
   FunctionComponent,
   ElementType,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiFlexGridStyles } from './flex_grid.styles';
 
 export const DIRECTIONS = ['row', 'column'] as const;
@@ -72,6 +73,7 @@ export const EuiFlexGrid: FunctionComponent<
 > = ({
   children,
   className,
+  style,
   gutterSize = 'l',
   direction = 'row',
   alignItems = 'stretch',
@@ -80,13 +82,9 @@ export const EuiFlexGrid: FunctionComponent<
   component: Component = 'div',
   ...rest
 }) => {
-  const gridTemplateRows =
-    direction === 'column'
-      ? Math.ceil(React.Children.count(children) / columns)
-      : 0;
+  const classes = classNames('euiFlexGrid', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiFlexGridStyles(euiTheme, gridTemplateRows);
+  const styles = useEuiMemoizedStyles(euiFlexGridStyles);
   const cssStyles = [
     styles.euiFlexGrid,
     styles.gutterSizes[gutterSize],
@@ -96,10 +94,22 @@ export const EuiFlexGrid: FunctionComponent<
     responsive && styles.responsive,
   ];
 
-  const classes = classNames('euiFlexGrid', className);
+  const columnDirectionStyles = useMemo(() => {
+    if (direction === 'column') {
+      const rowsToRender = Math.ceil(React.Children.count(children) / columns);
+      return { gridTemplateRows: `repeat(${rowsToRender}, 1fr)` };
+    }
+  }, [direction, columns, children]);
 
   return (
-    <Component css={cssStyles} className={classes} {...rest}>
+    <Component
+      css={cssStyles}
+      className={classes}
+      style={
+        columnDirectionStyles ? { ...style, ...columnDirectionStyles } : style
+      }
+      {...rest}
+    >
       {children}
     </Component>
   );

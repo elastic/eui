@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, Ref, forwardRef } from 'react';
+import React, { HTMLAttributes, Ref, forwardRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiFlexGroupStyles } from './flex_group.styles';
 
 export const GUTTER_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
@@ -43,12 +43,8 @@ export const DIRECTIONS = [
 ] as const;
 type FlexGroupDirection = (typeof DIRECTIONS)[number];
 
-type FlexGroupComponentType = 'div' | 'span';
-const isValidElement = (
-  component: string
-): component is FlexGroupComponentType => {
-  return ['div', 'span'].includes(component);
-};
+export const COMPONENT_TYPES = ['div', 'span'] as const;
+type FlexGroupComponentType = (typeof COMPONENT_TYPES)[number];
 
 export interface EuiFlexGroupProps
   extends CommonProps,
@@ -81,8 +77,7 @@ export const EuiFlexGroup = forwardRef<
     },
     ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
   ) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiFlexGroupStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiFlexGroupStyles);
     const cssStyles = [
       styles.euiFlexGroup,
       responsive && !direction.includes('column') && styles.responsive,
@@ -95,11 +90,13 @@ export const EuiFlexGroup = forwardRef<
 
     const classes = classNames('euiFlexGroup', className);
 
-    if (!isValidElement(component)) {
-      throw new Error(
-        `${component} is not a valid element type. Use \`div\` or \`span\`.`
-      );
-    }
+    useEffect(() => {
+      if (!COMPONENT_TYPES.includes(component)) {
+        throw new Error(
+          `${component} is not a valid element type. Use \`div\` or \`span\`.`
+        );
+      }
+    }, [component]);
 
     return component === 'span' ? (
       <span
