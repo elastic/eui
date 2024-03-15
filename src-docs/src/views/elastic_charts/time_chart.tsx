@@ -12,11 +12,6 @@ import {
 } from '@elastic/charts';
 
 import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
-
-import {
   EuiSpacer,
   EuiTitle,
   EuiFlexGrid,
@@ -25,11 +20,7 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import {
-  formatDate,
-  dateFormatAliases,
-  useEuiTheme,
-} from '../../../../src/services';
+import { formatDate, dateFormatAliases } from '../../../../src/services';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 import {
@@ -39,18 +30,14 @@ import {
   MultiChartCard,
   ChartCard,
 } from './shared';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
 
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
   const [chartType, setChartType] = useState<ChartType | 'Mixed'>('BarSeries');
-
-  const isDarkTheme = colorMode === 'DARK';
-  const theme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK.theme
-    : EUI_CHARTS_THEME_LIGHT.theme;
 
   const ChartType =
     chartType === 'Mixed' ? BarSeries : CHART_COMPONENTS[chartType];
@@ -71,7 +58,11 @@ export default () => {
       <EuiSpacer size="s" />
 
       <Chart size={{ height: 200 }}>
-        <Settings theme={theme} showLegend={multi} legendPosition="right" />
+        <Settings
+          baseTheme={chartBaseTheme}
+          showLegend={multi}
+          legendPosition="right"
+        />
         <Tooltip type="cross" />
         <ChartType
           id="financial"
@@ -143,7 +134,7 @@ export default () => {
         <EuiCopy
           textToCopy={`<Chart size={{height: 200}}>
   <Settings
-    theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
+    baseTheme={isDarkTheme ? DARK_THEME : LIGHT_THEME}
     showLegend={${multi}}
     ${multi ? 'legendPosition="right"' : ''}
   />

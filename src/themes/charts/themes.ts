@@ -24,6 +24,9 @@ export interface EuiChartThemeType {
 
 function createTheme(colors: any): EuiChartThemeType {
   return {
+    /**
+     * @deprecated use `<DARK|LIGHT>_THEME.lineAnnotation` theme from `@elastic/charts`
+     */
     lineAnnotation: {
       line: {
         strokeWidth: 1,
@@ -31,6 +34,9 @@ function createTheme(colors: any): EuiChartThemeType {
         opacity: 1,
       },
     },
+    /**
+     * @deprecated use `<DARK|LIGHT>_THEME` theme from `@elastic/charts`
+     */
     theme: {
       background: {
         color: colors.emptyShade,
@@ -206,18 +212,27 @@ const builtTheme = buildTheme({}, KEY) as typeof EuiThemeAmsterdam;
 const lightColors = getComputed(EuiThemeAmsterdam, builtTheme, 'LIGHT').colors;
 const darkColors = getComputed(EuiThemeAmsterdam, builtTheme, 'DARK').colors;
 
+/**
+ * @deprecated use `LIGHT_THEME`  & `LIGHT_THEME.lineAnnotation`
+ */
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme({
   ...lightColors,
   chartLines: shade(lightColors.lightestShade, 0.03),
   chartBand: lightColors.lightestShade,
 });
 
+/**
+ * @deprecated use `DARK_THEME` & `DARK_THEME.lineAnnotation` theme from `@elastic/charts`
+ */
 export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme({
   ...darkColors,
   chartLines: darkColors.lightShade,
   chartBand: tint(darkColors.lightestShade, 0.025),
 });
 
+/**
+ * @deprecated use `useSparklineOverrides` hook from the kibana `charts` plugin `theme` service
+ */
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {
     point: {

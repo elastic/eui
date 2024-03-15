@@ -1,29 +1,21 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
 import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
-import { euiPaletteColorBlind, useEuiTheme } from '../../../../src/services';
+import { euiPaletteColorBlind } from '../../../../src/services';
 
 import { GITHUB_DATASET_MOD } from './data';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 type DataType = (typeof GITHUB_DATASET_MOD)[0];
 
 export default () => {
-  const { colorMode } = useEuiTheme();
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = colorMode === 'DARK';
+  const chartBaseTheme = useChartBaseTheme();
 
   /**
    * Create a 3 rotation palette (one for each level)
@@ -33,11 +25,6 @@ export default () => {
     order: 'group',
     sortBy: 'natural',
   });
-
-  const euiChartTheme = useMemo(
-    () => (isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIGHT),
-    [isDarkTheme]
-  );
 
   return (
     <>
@@ -49,7 +36,7 @@ export default () => {
         <EuiFlexItem>
           <Chart size={{ height: 240 }}>
             <Settings
-              theme={euiChartTheme.theme}
+              baseTheme={chartBaseTheme}
               showLegend
               legendMaxDepth={2}
             />
@@ -62,7 +49,7 @@ export default () => {
                 {
                   groupByRollup: (d: DataType) => d.total,
                   shape: {
-                    fillColor: euiChartTheme.theme.partition!.sectorLineStroke!,
+                    fillColor: chartBaseTheme.partition.sectorLineStroke!,
                   },
                 },
                 {
@@ -87,7 +74,7 @@ export default () => {
         <EuiFlexItem>
           <Chart size={{ height: 240 }}>
             <Settings
-              theme={euiChartTheme.theme}
+              baseTheme={chartBaseTheme}
               showLegend
               legendMaxDepth={1}
             />

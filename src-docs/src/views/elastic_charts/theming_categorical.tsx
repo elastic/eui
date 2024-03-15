@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Chart, Settings, Axis, DataGenerator } from '@elastic/charts';
 
 import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
-
-import {
   EuiSpacer,
   EuiFlexGrid,
   EuiFlexGroup,
@@ -27,12 +22,12 @@ import {
   euiPaletteGreen,
   euiPaletteForStatus,
   euiPaletteGray,
-  useEuiTheme,
 } from '../../../../src/services';
 import type { EuiPalette } from '../../../../src/services/color/eui_palettes';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
   const highlightColor = euiPaletteColorBlind()[2];
 
   const idPrefix = 'colorType';
@@ -73,11 +68,6 @@ export default () => {
   useEffect(() => {
     createCategoryChart(3);
   }, []);
-
-  const isDarkTheme = colorMode === 'DARK';
-  const theme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK.theme
-    : EUI_CHARTS_THEME_LIGHT.theme;
 
   const updateCorrectChart = (numCharts: number, chartType: string) => {
     switch (chartType) {
@@ -213,20 +203,13 @@ export default () => {
       </EuiTitle>
     ) : undefined;
 
-  const customTheme = vizColors
+  const themeOverrides = vizColors
     ? [
         {
           colors: { vizColors },
         },
-        theme,
       ]
-    : theme;
-  const customColorsString = vizColors
-    ? `[
-  { colors: { vizColors: ${vizColorsString} }},
-  isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme
-]`
-    : 'isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme';
+    : [];
 
   const charts = [];
   let customLegend;
@@ -307,7 +290,8 @@ export default () => {
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
           <Settings
-            theme={customTheme}
+            baseTheme={chartBaseTheme}
+            theme={themeOverrides}
             showLegend={showLegend}
             legendPosition="right"
             showLegendExtra={false}
@@ -425,7 +409,14 @@ export default () => {
           }
 <Chart size={{height: 200}}>
   <Settings
-    theme={${customColorsString}}
+    baseTheme={isDarkTheme ? DARK_THEME : LIGHT_THEME}${`${
+      vizColors
+        ? `
+    theme={[
+      { colors: { vizColors: ${vizColorsString} }},
+    ]}`
+        : ''
+    }`}
     showLegend={${showLegend}}
     legendPosition="right"
     showLegendExtra={false}

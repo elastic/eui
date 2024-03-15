@@ -13,12 +13,9 @@ import {
   LineAnnotation,
   BarSeries,
   type PointerValue,
+  DARK_THEME,
+  LIGHT_THEME,
 } from '@elastic/charts';
-
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
 
 import {
   EuiSpacer,
@@ -168,14 +165,8 @@ class Sizes extends Component<WithEuiThemeProps, State> {
       yAxisStyle,
       changeDescription,
     } = this.state;
-
     const isDarkTheme = this.props.theme.colorMode === 'DARK';
-    const theme = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.theme
-      : EUI_CHARTS_THEME_LIGHT.theme;
-    const lineAnnotationStyle = isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.lineAnnotation
-      : EUI_CHARTS_THEME_LIGHT.lineAnnotation;
+    const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
 
     let annotation;
     if (width < this.xsmallSize) {
@@ -185,7 +176,6 @@ class Sizes extends Component<WithEuiThemeProps, State> {
           domainType="yDomain"
           dataValues={[{ dataValue: 22, details: 'Threshold' }]}
           marker={'22'}
-          style={lineAnnotationStyle}
         />
       );
     }
@@ -210,7 +200,7 @@ class Sizes extends Component<WithEuiThemeProps, State> {
 
             <Chart size={{ height: 200 }}>
               <Settings
-                theme={theme}
+                baseTheme={chartBaseTheme}
                 showLegend={multi}
                 legendPosition={legendPosition}
               />
@@ -302,11 +292,11 @@ class Sizes extends Component<WithEuiThemeProps, State> {
 
 <Chart size={{height: 200}}>
   <Settings
-    theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
+    baseTheme={isDarkTheme ? DARK_THEME : LIGHT_THEME}
     showLegend={${multi}}
     legendPosition="${legendPosition}"
   />
-  <Tooltip 
+  <Tooltip
     headerFormatter={(tooltipData) => {
       return \`\${formatDate(
         tooltipData.value,
@@ -339,10 +329,6 @@ class Sizes extends Component<WithEuiThemeProps, State> {
     domainType="yDomain"
     dataValues={[{ dataValue: 1.2, details: 'Threshold' }]}
     marker={'1.2'}
-    style={isDarkTheme
-      ? EUI_CHARTS_THEME_DARK.lineAnnotation
-      : EUI_CHARTS_THEME_LIGHT.lineAnnotation
-    }
   />`
       : ''
   }

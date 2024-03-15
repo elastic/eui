@@ -17,11 +17,6 @@ import {
 } from '../../../../src/components';
 
 import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
-
-import {
   euiPaletteColorBlind,
   euiPaletteComplementary,
   euiPaletteForStatus,
@@ -31,8 +26,8 @@ import {
   euiPaletteRed,
   euiPaletteGreen,
   euiPaletteGray,
-  useEuiTheme,
 } from '../../../../src/services';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 const paletteData = {
   euiPaletteColorBlind,
@@ -59,7 +54,7 @@ const palettes = Object.entries(paletteData).map(([paletteName, palette]) => {
 });
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
 
   const [barPalette, setBarPalette] = useState('euiPaletteColorBlind');
 
@@ -70,15 +65,7 @@ export default () => {
   const data1 = dg.generateGroupedSeries(20, 1);
   const data2 = dg.generateGroupedSeries(20, 5);
 
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = colorMode === 'DARK';
-  const theme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK.theme
-    : EUI_CHARTS_THEME_LIGHT.theme;
-
-  const customTheme =
+  const themeOverrides =
     barPalette !== 'euiPaletteColorBlind'
       ? [
           {
@@ -86,14 +73,17 @@ export default () => {
               vizColors: paletteData[barPalette as keyof typeof paletteData](5),
             },
           },
-          theme,
         ]
-      : theme;
+      : [];
 
   return (
     <>
       <Chart size={{ height: 200 }}>
-        <Settings theme={customTheme} showLegend={false} />
+        <Settings
+          baseTheme={chartBaseTheme}
+          theme={themeOverrides}
+          showLegend={false}
+        />
         <BarSeries
           id="status"
           name="Status"

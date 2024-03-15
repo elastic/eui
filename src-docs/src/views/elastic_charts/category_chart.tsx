@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import orderBy from 'lodash/orderBy';
 import round from 'lodash/round';
 
-import { Chart, Settings, Axis } from '@elastic/charts';
-
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
+import { Chart, Settings, Axis, PartialTheme } from '@elastic/charts';
 
 import {
   EuiSwitch,
@@ -20,8 +15,6 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import { useEuiTheme } from '../../../../src/services';
-
 import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
 import {
   ChartTypeCard,
@@ -30,9 +23,10 @@ import {
   type ChartType,
   ChartCard,
 } from './shared';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
 
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
@@ -42,11 +36,6 @@ export default () => {
   const [chartType, setChartType] = useState<ChartType>('BarSeries');
   const [valueLabels, setValueLabels] = useState(false);
 
-  const isDarkTheme = colorMode === 'DARK';
-  const theme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK.theme
-    : EUI_CHARTS_THEME_LIGHT.theme;
-
   const ChartType = CHART_COMPONENTS[chartType];
 
   const DATASET = multi ? GITHUB_DATASET : SIMPLE_GITHUB_DATASET;
@@ -55,11 +44,9 @@ export default () => {
     showValueLabel: true,
   };
 
-  const customTheme = {
-    ...theme,
+  const themeOverrides: PartialTheme = {
     barSeriesStyle: {
       displayValue: {
-        ...theme.barSeriesStyle?.displayValue,
         offsetX: rotated ? 4 : 0,
         offsetY: rotated ? 0 : -4,
         ...(multi && stacked
@@ -97,15 +84,13 @@ export default () => {
         horizontal: 'center',
       }`;
 
-  const chartVariablesForValueLabels = `const theme = isDarkTheme
-  ? EUI_CHARTS_THEME_DARK.theme
-  : EUI_CHARTS_THEME_LIGHT.theme;
+  const chartVariablesForValueLabels = `const baseTheme = isDarkTheme
+  ? DARK_THEME
+  : LIGHT_THEME;
 
-const customTheme = {
-  ...theme,
+const themeOverrides = {
   barSeriesStyle: {
     displayValue: {
-      ...theme.barSeriesStyle.displayValue,
       offsetX: ${rotated ? '4' : '0'},
       offsetY: ${rotated ? '0' : '-4'},
       ${multi && stacked ? defaultAlignmentToCopy : alignmentRotatedToCopy},
@@ -125,7 +110,7 @@ const customTheme = {
 
   const chartConfigurationToCopy = `<Chart size={{height: 300}}>
   <Settings
-    theme={${valueLabels ? 'customTheme' : 'theme'}}
+    baseTheme={baseTheme}${valueLabels ? '\n    theme={themeOverrides}' : ''}
     rotation={${rotated ? 90 : 0}}
     showLegend={${multi}}
     ${multi ? 'legendPosition="right"' : ''}
@@ -176,7 +161,8 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
 
       <Chart size={{ height: 400 }}>
         <Settings
-          theme={customTheme}
+          baseTheme={chartBaseTheme}
+          theme={themeOverrides}
           showLegend={multi}
           legendPosition="right"
           rotation={rotated ? 90 : 0}

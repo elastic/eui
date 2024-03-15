@@ -55,11 +55,11 @@ export const ElasticChartsThemingExample = {
             and pass the correct one to the Settings.theme property.
           </p>
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
-            {`import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
+            {`import { DARK_THEME, LIGHT_THEME } from '@elastic/charts';
 
-const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme;
+const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
 
-<Settings theme={euiTheme} />`}
+<Settings baseTheme={chartBaseTheme} />`}
           </EuiCodeBlock>
           <EuiCallOut title="Kibana engineers" iconType="logoKibana">
             <p>
@@ -88,15 +88,23 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
           </p>
 
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
-            {`import { euiPaletteGreen } from '../../../../src/services';
+            {`import { DARK_THEME, LIGHT_THEME } from '@elastic/charts';
+import { euiPaletteGreen } from '../../../../src/services';
 
-const customColors = {
-  colors: {
-    vizColors: euiPaletteGreen(5),
-  },
-};
-
-<Settings theme={[customColors, euiTheme]} />`}
+const MyChart = () => {
+  const customColors = {
+    colors: {
+      vizColors: euiPaletteGreen(5),
+    },
+  };
+  const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
+  return (
+    <Chart>
+      <Settings baseTheme={chartBaseTheme} theme={customColors} />
+      //...
+    </Chart>
+  );
+};`}
           </EuiCodeBlock>
           <p>You&apos;ll find an example of these in the demo below.</p>
         </>

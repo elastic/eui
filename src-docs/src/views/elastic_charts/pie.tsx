@@ -9,16 +9,13 @@ import {
 } from '@elastic/charts';
 
 import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
-import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
-import { htmlIdGenerator, useEuiTheme } from '../../../../src/services';
+import { htmlIdGenerator } from '../../../../src/services';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 const STATUS_DATA = [
   {
@@ -47,18 +44,10 @@ const LANGUAGE_DATA = [
 ];
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
   const htmlId = htmlIdGenerator();
   const exampleOne = htmlId();
   const exampleTwo = htmlId();
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = colorMode === 'DARK';
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
 
   const themeOverrides: PartialTheme = {
     partition: { emptySizeRatio: 0.4 },
@@ -74,7 +63,8 @@ export default () => {
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
             <Settings
-              theme={[themeOverrides, euiChartTheme.theme]}
+              baseTheme={chartBaseTheme}
+              theme={themeOverrides}
               ariaLabelledBy={exampleOne}
             />
             <Partition
@@ -87,7 +77,7 @@ export default () => {
                   groupByRollup: (d: (typeof STATUS_DATA)[0]) => d.status,
                   shape: {
                     fillColor: (_, sortIndex) =>
-                      euiChartTheme.theme.colors!.vizColors![sortIndex],
+                      chartBaseTheme.colors.vizColors![sortIndex],
                   },
                 },
               ]}
@@ -101,7 +91,7 @@ export default () => {
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
-            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleTwo} />
+            <Settings baseTheme={chartBaseTheme} ariaLabelledBy={exampleTwo} />
             <Partition
               id="donutByLanguage"
               data={LANGUAGE_DATA}
@@ -113,7 +103,7 @@ export default () => {
                   groupByRollup: (d: (typeof LANGUAGE_DATA)[0]) => d.language,
                   shape: {
                     fillColor: (_, sortIndex) =>
-                      euiChartTheme.theme.colors!.vizColors![sortIndex],
+                      chartBaseTheme.colors.vizColors![sortIndex],
                   },
                 },
               ]}

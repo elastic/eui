@@ -8,12 +8,9 @@ import {
   Position,
 } from '@elastic/charts';
 
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
-import { htmlIdGenerator, useEuiTheme } from '../../../../src/services';
+import { htmlIdGenerator } from '../../../../src/services';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export const SAMPLE_SMALL_DATA = [
   { x: 0, y: 10.934269 },
@@ -42,13 +39,7 @@ export const SAMPLE_SMALL_DATA_2 = [
 
 export default () => {
   const id = htmlIdGenerator()();
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const { colorMode } = useEuiTheme();
-  const euiChartTheme =
-    colorMode === 'DARK' ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIGHT;
+  const chartBaseTheme = useChartBaseTheme();
 
   return (
     <>
@@ -59,7 +50,7 @@ export default () => {
       <EuiSpacer size="s" />
       <Chart size={{ height: 200 }}>
         <Settings
-          theme={euiChartTheme.theme}
+          baseTheme={chartBaseTheme}
           ariaLabelledBy={id}
           ariaDescription="This chart has two series with texture fills. The bar series has squares and the area series is comprised of circles."
           ariaUseDefaultSummary={false}

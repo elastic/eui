@@ -1,17 +1,7 @@
 import React from 'react';
-import { EuiIcon, EuiPanel, useEuiTheme } from '../../../../../src';
-import {
-  Chart,
-  DARK_THEME,
-  LIGHT_THEME,
-  Metric,
-  MetricSpec,
-  Settings,
-} from '@elastic/charts';
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../../src/themes/charts/themes';
+import { EuiIcon, EuiPanel } from '../../../../../src';
+import { Chart, Metric, MetricSpec, Settings } from '@elastic/charts';
+import { useChartBaseTheme } from '../utils/use_chart_base_theme';
 
 const osTrend = Array.from({ length: 30 }).map((d, i) => ({
   x: i,
@@ -141,16 +131,11 @@ const DATA: MetricSpec['data'] = [
 ];
 
 export default () => {
-  const { colorMode } = useEuiTheme();
-  const isDarkTheme = colorMode === 'DARK';
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
-  const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
+  const chartBaseTheme = useChartBaseTheme();
   return (
     <EuiPanel paddingSize="none" style={{ overflow: 'hidden', width: 800 }}>
       <Chart size={[800, 300]}>
-        <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
+        <Settings baseTheme={chartBaseTheme} />
         <Metric id="1" data={DATA} />
       </Chart>
     </EuiPanel>

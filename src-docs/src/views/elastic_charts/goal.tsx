@@ -3,25 +3,15 @@ import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import {
   htmlIdGenerator,
-  useEuiTheme,
   useIsWithinBreakpoints,
   euiPaletteGreen,
 } from '../../../../src/services';
 import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
-
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export const GoalChart = () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
   const id = htmlIdGenerator('goal')();
-
-  const isDarkTheme = colorMode === 'DARK';
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
 
   const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
   const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
@@ -51,10 +41,10 @@ export const GoalChart = () => {
         <EuiSpacer />
         <Chart size={{ height: 200 }}>
           <Settings
+            baseTheme={chartBaseTheme}
             ariaLabelledBy={id}
             ariaDescription="This goal chart has a target of 22."
             ariaUseDefaultSummary={false}
-            theme={euiChartTheme.theme}
           />
           <Goal
             id="goalId"

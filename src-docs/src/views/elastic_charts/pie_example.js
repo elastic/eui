@@ -198,12 +198,12 @@ export const ElasticChartsPieExample = {
         </>
       ),
       demo: <PieChart />,
-      snippet: `import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
+      snippet: `import { DARK_THEME, LIGHT_THEME } from '@elastic/charts';
 
-const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIGHT;
+const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
 
 <Chart size={{ height: 200 }}>
-  <Settings theme={euiChartTheme.theme} />
+  <Settings baseTheme={chartBaseTheme} />
   <Partition
     data={[
       {
@@ -217,7 +217,7 @@ const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIG
       {
         groupByRollup: d => d.category,
         shape: {
-          fillColor: (key, sortIndex) => euiChartTheme.theme.colors.vizColors[sortIndex],
+          fillColor: (key, sortIndex) => chartTheme.colors.vizColors[sortIndex],
         },
       },
     ]}

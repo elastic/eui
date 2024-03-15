@@ -1,25 +1,15 @@
 import React from 'react';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
 import { EuiTitle, EuiSpacer } from '../../../../src/components';
-import { useEuiTheme, htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator } from '../../../../src/services';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const chartBaseTheme = useChartBaseTheme();
   const id = htmlIdGenerator()();
 
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = colorMode === 'DARK';
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
-  const { vizColors } = euiChartTheme.theme.colors!;
+  const { vizColors } = chartBaseTheme.colors;
 
   type Data = { fruit: string; count: number };
   const data: Data[] = [
@@ -49,7 +39,7 @@ export default () => {
       <EuiSpacer />
       <Chart size={{ height: 200 }}>
         <Settings
-          theme={euiChartTheme.theme}
+          baseTheme={chartBaseTheme}
           ariaLabelledBy={id}
           ariaDescription="There is a great variety of reported favorite fruit"
           ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"

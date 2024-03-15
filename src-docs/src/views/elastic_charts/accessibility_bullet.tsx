@@ -8,22 +8,13 @@ import {
   euiPaletteGray,
   useEuiTheme,
 } from '../../../../src/services';
-import {
-  EUI_CHARTS_THEME_DARK,
-  EUI_CHARTS_THEME_LIGHT,
-} from '../../../../src/themes/charts/themes';
+import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
   const id = htmlIdGenerator()();
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
+  const { colorMode } = useEuiTheme();
   const isDarkTheme = colorMode === 'DARK';
-  const euiChartTheme = isDarkTheme
-    ? EUI_CHARTS_THEME_DARK
-    : EUI_CHARTS_THEME_LIGHT;
+  const chartBaseTheme = useChartBaseTheme();
 
   const bandLabels = ['freezing', 'cold', 'brisk', 'warm', 'hot'];
   const bands = [0, 100, 125, 150, 250];
@@ -50,7 +41,7 @@ export default () => {
       <EuiSpacer />
       <Chart size={{ height: 200 }}>
         <Settings
-          theme={euiChartTheme.theme}
+          baseTheme={chartBaseTheme}
           ariaLabelledBy={id}
           ariaDescription="This goal chart has a target of 260."
           ariaUseDefaultSummary={false}
