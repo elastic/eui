@@ -65,7 +65,7 @@
     "@types/refractor": "^3.0.2",
     "@types/resize-observer-browser": "^0.1.7",
     "chroma-js": "^2.4.2",
-    "classnames": "^2.3.2",
+    "classnames": "^2.5.1",
     "lodash": "^4.17.21",
     "mdast-util-to-hast": "^10.2.0",
     "numeral": "^2.0.6",
