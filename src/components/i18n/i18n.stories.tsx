@@ -10,7 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
-import { EuiI18n, EuiI18nProps } from './i18n';
+import { EuiI18n, EuiI18nProps, I18nTokensShape } from './i18n';
 import { EuiCard } from '../card';
 
 type Props = EuiI18nProps<any, any, string[]>;
@@ -51,11 +51,12 @@ export const MultipleTokens: Story = {
     ...hideStorybookControls(['token', 'default']),
   },
   args: {
-    tokens: ['euiI18nMulti.title', 'euiI18nMulti.description'],
+    tokens: ['euiI18n.title', 'euiI18n.description'],
     defaults: ['Card title', 'Card description'],
   },
-  render: ({ ...args }: Props) => (
-    <EuiI18n {...args}>
+  render: ({ tokens, defaults }: I18nTokensShape<string[]>) => (
+    // eslint-disable-next-line local/i18n
+    <EuiI18n tokens={tokens} defaults={defaults}>
       {([title, description]: string[]) => (
         <EuiCard title={title} description={description} />
       )}
@@ -75,8 +76,9 @@ export const MultipleTokenInterpolation: Story = {
     ],
     values: { name: 'cat', count: 3 },
   },
-  render: ({ ...args }: Props) => (
-    <EuiI18n {...args}>
+  render: ({ tokens, defaults, values }: I18nTokensShape<string[]>) => (
+    // eslint-disable-next-line local/i18n
+    <EuiI18n tokens={tokens} defaults={defaults} values={values}>
       {([title, description]: string[]) => (
         <EuiCard title={title} description={description} />
       )}

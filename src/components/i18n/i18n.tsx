@@ -97,7 +97,7 @@ interface I18nTokenShape<T, DEFAULT extends Renderable<T>> {
   values?: T;
 }
 
-interface I18nTokensShape<T extends any[]> {
+export interface I18nTokensShape<T extends any[]> {
   tokens: string[];
   defaults: T;
   /**
