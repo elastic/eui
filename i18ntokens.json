@@ -275,17 +275,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 157,
-        "column": 27,
-        "index": 4839
+        "line": 167,
+        "column": 29,
+        "index": 4882
       },
       "end": {
-        "line": 160,
-        "column": 3,
-        "index": 4949
+        "line": 173,
+        "column": 5,
+        "index": 5215
       }
     },
-    "filepath": "src/components/breadcrumbs/breadcrumb.tsx"
+    "filepath": "src/components/breadcrumbs/_breadcrumb_content.tsx"
   },
   {
     "token": "euiBreadcrumb.collapsedBadge.ariaLabel",
@@ -293,14 +293,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 238,
+        "line": 56,
         "column": 20,
-        "index": 7303
+        "index": 1691
       },
       "end": {
-        "line": 241,
+        "line": 59,
         "column": 3,
-        "index": 7396
+        "index": 1784
       }
     },
     "filepath": "src/components/breadcrumbs/breadcrumb.tsx"
@@ -311,14 +311,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 96,
+        "line": 42,
         "column": 20,
-        "index": 2734
+        "index": 1274
       },
       "end": {
-        "line": 96,
+        "line": 42,
         "column": 77,
-        "index": 2791
+        "index": 1331
       }
     },
     "filepath": "src/components/breadcrumbs/breadcrumbs.tsx"
@@ -923,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 41,
-        "column": 4,
-        "index": 1369
+        "line": 44,
+        "column": 6,
+        "index": 1456
       },
       "end": {
-        "line": 45,
-        "column": 5,
-        "index": 1524
+        "line": 48,
+        "column": 7,
+        "index": 1619
       }
     },
     "filepath": "src/components/datagrid/body/cell/data_grid_cell_actions.tsx"
@@ -941,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 121,
-        "column": 10,
-        "index": 3572
-      },
-      "end": {
-        "line": 129,
+        "line": 130,
         "column": 12,
         "index": 3863
+      },
+      "end": {
+        "line": 138,
+        "column": 14,
+        "index": 4170
       }
     },
     "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
@@ -959,14 +959,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 133,
-        "column": 14,
-        "index": 3942
+        "line": 142,
+        "column": 16,
+        "index": 4261
       },
       "end": {
-        "line": 136,
-        "column": 16,
-        "index": 4095
+        "line": 145,
+        "column": 18,
+        "index": 4420
       }
     },
     "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
@@ -1085,14 +1085,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 197,
-        "column": 12,
-        "index": 6252
+        "line": 225,
+        "column": 16,
+        "index": 7475
       },
       "end": {
-        "line": 200,
-        "column": 14,
-        "index": 6393
+        "line": 228,
+        "column": 18,
+        "index": 7628
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1103,14 +1103,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 264,
+        "line": 296,
         "column": 16,
-        "index": 8238
+        "index": 9645
       },
       "end": {
-        "line": 268,
+        "line": 300,
         "column": 18,
-        "index": 8412
+        "index": 9819
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1121,14 +1121,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
+        "line": 304,
         "column": 16,
-        "index": 8490
+        "index": 9897
       },
       "end": {
-        "line": 276,
+        "line": 308,
         "column": 18,
-        "index": 8666
+        "index": 10073
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1139,14 +1139,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 282,
+        "line": 314,
         "column": 16,
-        "index": 8812
+        "index": 10219
       },
       "end": {
-        "line": 287,
+        "line": 319,
         "column": 18,
-        "index": 9040
+        "index": 10447
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1157,14 +1157,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 291,
+        "line": 323,
         "column": 16,
-        "index": 9118
+        "index": 10525
       },
       "end": {
-        "line": 296,
+        "line": 328,
         "column": 18,
-        "index": 9348
+        "index": 10755
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1175,14 +1175,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 302,
+        "line": 334,
         "column": 16,
-        "index": 9477
+        "index": 10884
       },
       "end": {
-        "line": 307,
+        "line": 339,
         "column": 18,
-        "index": 9715
+        "index": 11122
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1193,14 +1193,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 311,
+        "line": 343,
         "column": 16,
-        "index": 9793
+        "index": 11200
       },
       "end": {
-        "line": 316,
+        "line": 348,
         "column": 18,
-        "index": 10033
+        "index": 11440
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1211,14 +1211,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 381,
+        "line": 413,
         "column": 6,
-        "index": 11879
+        "index": 13286
       },
       "end": {
-        "line": 384,
+        "line": 416,
         "column": 8,
-        "index": 12072
+        "index": 13479
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1247,14 +1247,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 123,
-        "column": 4,
-        "index": 3663
+        "line": 155,
+        "column": 12,
+        "index": 4781
       },
       "end": {
-        "line": 123,
-        "column": 66,
-        "index": 3725
+        "line": 155,
+        "column": 74,
+        "index": 4843
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1265,14 +1265,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 161,
         "column": 12,
-        "index": 4996
+        "index": 4973
       },
       "end": {
-        "line": 171,
+        "line": 167,
         "column": 13,
-        "index": 5208
+        "index": 5185
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1283,14 +1283,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 161,
         "column": 12,
-        "index": 4996
+        "index": 4973
       },
       "end": {
-        "line": 171,
+        "line": 167,
         "column": 13,
-        "index": 5208
+        "index": 5185
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1301,14 +1301,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 285,
+        "line": 281,
         "column": 18,
-        "index": 10055
+        "index": 10032
       },
       "end": {
-        "line": 288,
+        "line": 284,
         "column": 20,
-        "index": 10179
+        "index": 10156
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1319,14 +1319,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 298,
+        "line": 294,
         "column": 18,
-        "index": 10539
+        "index": 10516
       },
       "end": {
-        "line": 301,
+        "line": 297,
         "column": 20,
-        "index": 10661
+        "index": 10638
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1339,12 +1339,12 @@
       "start": {
         "line": 24,
         "column": 2,
-        "index": 1020
+        "index": 1033
       },
       "end": {
         "line": 24,
         "column": 76,
-        "index": 1094
+        "index": 1107
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1357,12 +1357,12 @@
       "start": {
         "line": 27,
         "column": 2,
-        "index": 1138
+        "index": 1151
       },
       "end": {
         "line": 27,
         "column": 77,
-        "index": 1213
+        "index": 1226
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1375,12 +1375,12 @@
       "start": {
         "line": 68,
         "column": 30,
-        "index": 2177
+        "index": 2190
       },
       "end": {
         "line": 71,
         "column": 3,
-        "index": 2263
+        "index": 2276
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1391,14 +1391,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 109,
         "column": 14,
-        "index": 2684
+        "index": 3319
       },
       "end": {
-        "line": 93,
+        "line": 113,
         "column": 15,
-        "index": 2873
+        "index": 3508
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1409,14 +1409,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 105,
+        "line": 125,
         "column": 14,
-        "index": 3265
+        "index": 3900
       },
       "end": {
-        "line": 109,
+        "line": 129,
         "column": 15,
-        "index": 3455
+        "index": 4090
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1427,14 +1427,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 161,
+        "line": 174,
         "column": 14,
-        "index": 5360
+        "index": 5666
       },
       "end": {
-        "line": 165,
+        "line": 178,
         "column": 15,
-        "index": 5546
+        "index": 5852
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1445,50 +1445,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 61,
-        "column": 28,
-        "index": 2300
+        "line": 62,
+        "column": 30,
+        "index": 1986
       },
       "end": {
-        "line": 64,
-        "column": 3,
-        "index": 2364
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.emptySorting",
-    "defString": "Currently no fields are sorted",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 168,
-        "column": 12,
-        "index": 5308
-      },
-      "end": {
-        "line": 171,
-        "column": 14,
-        "index": 5438
-      }
-    },
-    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
-  },
-  {
-    "token": "euiColumnSorting.pickFields",
-    "defString": "Pick fields to sort by",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 201,
-        "column": 22,
-        "index": 6601
-      },
-      "end": {
-        "line": 204,
-        "column": 24,
-        "index": 6751
+        "line": 65,
+        "column": 5,
+        "index": 2056
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
@@ -1499,14 +1463,50 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 208,
-        "column": 18,
-        "index": 6846
+        "line": 66,
+        "column": 31,
+        "index": 2089
       },
       "end": {
-        "line": 211,
-        "column": 19,
-        "index": 6978
+        "line": 69,
+        "column": 5,
+        "index": 2169
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.emptySorting",
+    "defString": "Currently no fields are sorted",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 215,
+        "column": 14,
+        "index": 6750
+      },
+      "end": {
+        "line": 218,
+        "column": 16,
+        "index": 6886
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiColumnSorting.pickFields",
+    "defString": "Pick fields to sort by",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 248,
+        "column": 24,
+        "index": 8109
+      },
+      "end": {
+        "line": 251,
+        "column": 26,
+        "index": 8265
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
@@ -1517,14 +1517,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 289,
-        "column": 18,
-        "index": 10731
+        "line": 321,
+        "column": 20,
+        "index": 11473
       },
       "end": {
-        "line": 292,
-        "column": 20,
-        "index": 10858
+        "line": 324,
+        "column": 22,
+        "index": 11606
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
@@ -1591,12 +1591,12 @@
       "start": {
         "line": 260,
         "column": 10,
-        "index": 8285
+        "index": 8312
       },
       "end": {
         "line": 268,
         "column": 11,
-        "index": 8606
+        "index": 8633
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1609,12 +1609,12 @@
       "start": {
         "line": 260,
         "column": 10,
-        "index": 8285
+        "index": 8312
       },
       "end": {
         "line": 268,
         "column": 11,
-        "index": 8606
+        "index": 8633
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1627,12 +1627,12 @@
       "start": {
         "line": 260,
         "column": 10,
-        "index": 8285
+        "index": 8312
       },
       "end": {
         "line": 268,
         "column": 11,
-        "index": 8606
+        "index": 8633
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1645,12 +1645,12 @@
       "start": {
         "line": 260,
         "column": 10,
-        "index": 8285
+        "index": 8312
       },
       "end": {
         "line": 268,
         "column": 11,
-        "index": 8606
+        "index": 8633
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1663,12 +1663,12 @@
       "start": {
         "line": 303,
         "column": 10,
-        "index": 9713
+        "index": 9740
       },
       "end": {
         "line": 318,
         "column": 11,
-        "index": 10186
+        "index": 10213
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1681,12 +1681,12 @@
       "start": {
         "line": 303,
         "column": 10,
-        "index": 9713
+        "index": 9740
       },
       "end": {
         "line": 318,
         "column": 11,
-        "index": 10186
+        "index": 10213
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1699,12 +1699,12 @@
       "start": {
         "line": 303,
         "column": 10,
-        "index": 9713
+        "index": 9740
       },
       "end": {
         "line": 318,
         "column": 11,
-        "index": 10186
+        "index": 10213
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1717,12 +1717,12 @@
       "start": {
         "line": 303,
         "column": 10,
-        "index": 9713
+        "index": 9740
       },
       "end": {
         "line": 318,
         "column": 11,
-        "index": 10186
+        "index": 10213
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1735,12 +1735,12 @@
       "start": {
         "line": 303,
         "column": 10,
-        "index": 9713
+        "index": 9740
       },
       "end": {
         "line": 318,
         "column": 11,
-        "index": 10186
+        "index": 10213
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -2273,14 +2273,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 343,
+        "line": 375,
         "column": 22,
-        "index": 9585
+        "index": 10168
       },
       "end": {
-        "line": 347,
+        "line": 379,
         "column": 5,
-        "index": 9757
+        "index": 10340
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2291,14 +2291,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 348,
+        "line": 380,
         "column": 27,
-        "index": 9786
+        "index": 10369
       },
       "end": {
-        "line": 352,
+        "line": 384,
         "column": 5,
-        "index": 9927
+        "index": 10510
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2309,14 +2309,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 478,
+        "line": 527,
         "column": 18,
-        "index": 15428
+        "index": 16306
       },
       "end": {
-        "line": 481,
+        "line": 530,
         "column": 20,
-        "index": 15581
+        "index": 16459
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -3762,37 +3762,19 @@
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/recently_used.tsx"
   },
   {
-    "token": "euiSuperUpdateButton.refreshButtonLabel",
-    "defString": "Refresh",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 126,
-        "column": 6,
-        "index": 3158
-      },
-      "end": {
-        "line": 129,
-        "column": 8,
-        "index": 3257
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
-  },
-  {
     "token": "euiSuperUpdateButton.updatingButtonLabel",
     "defString": "Updating",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 133,
+        "line": 204,
         "column": 8,
-        "index": 3342
+        "index": 5149
       },
       "end": {
-        "line": 136,
+        "line": 207,
         "column": 10,
-        "index": 3449
+        "index": 5256
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
@@ -3803,14 +3785,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 138,
+        "line": 213,
         "column": 8,
-        "index": 3470
+        "index": 5319
       },
       "end": {
-        "line": 141,
+        "line": 216,
         "column": 10,
-        "index": 3573
+        "index": 5422
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiSuperUpdateButton.refreshButtonLabel",
+    "defString": "Refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 221,
+        "column": 6,
+        "index": 5458
+      },
+      "end": {
+        "line": 224,
+        "column": 8,
+        "index": 5557
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
@@ -3821,14 +3821,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 148,
+        "line": 231,
         "column": 8,
-        "index": 3669
+        "index": 5672
       },
       "end": {
-        "line": 151,
+        "line": 234,
         "column": 10,
-        "index": 3781
+        "index": 5784
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
@@ -3839,14 +3839,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 155,
+        "line": 240,
         "column": 8,
-        "index": 3868
+        "index": 5883
       },
       "end": {
-        "line": 158,
+        "line": 243,
         "column": 10,
-        "index": 3981
+        "index": 5996
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
@@ -4595,14 +4595,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 311,
+        "line": 308,
         "column": 8,
-        "index": 9897
+        "index": 9762
       },
       "end": {
-        "line": 311,
+        "line": 308,
         "column": 78,
-        "index": 9967
+        "index": 9832
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4613,14 +4613,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 385,
+        "line": 382,
         "column": 12,
-        "index": 12453
+        "index": 12318
       },
       "end": {
-        "line": 388,
+        "line": 385,
         "column": 14,
-        "index": 12662
+        "index": 12527
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4631,14 +4631,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 390,
+        "line": 387,
         "column": 12,
-        "index": 12691
+        "index": 12556
       },
       "end": {
-        "line": 393,
+        "line": 390,
         "column": 14,
-        "index": 12863
+        "index": 12728
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4649,14 +4649,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 396,
+        "line": 393,
         "column": 12,
-        "index": 12934
+        "index": 12799
       },
       "end": {
-        "line": 399,
+        "line": 396,
         "column": 14,
-        "index": 13121
+        "index": 12986
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -5459,14 +5459,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 93,
+        "line": 101,
         "column": 10,
-        "index": 2736
+        "index": 3007
       },
       "end": {
-        "line": 96,
+        "line": 104,
         "column": 11,
-        "index": 2843
+        "index": 3114
       }
     },
     "filepath": "src/components/modal/modal.tsx"
@@ -6701,14 +6701,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
-        "column": 6,
-        "index": 10877
+        "line": 322,
+        "column": 8,
+        "index": 10937
       },
       "end": {
-        "line": 332,
-        "column": 7,
-        "index": 11146
+        "line": 329,
+        "column": 9,
+        "index": 11220
       }
     },
     "filepath": "src/components/toast/global_toast_list.tsx"
@@ -6719,35 +6719,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
-        "column": 6,
-        "index": 10877
+        "line": 322,
+        "column": 8,
+        "index": 10937
       },
       "end": {
-        "line": 332,
-        "column": 7,
-        "index": 11146
+        "line": 329,
+        "column": 9,
+        "index": 11220
       }
     },
     "filepath": "src/components/toast/global_toast_list.tsx"
-  },
-  {
-    "token": "euiToast.dismissToast",
-    "defString": "Dismiss toast",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 82,
-        "column": 6,
-        "index": 2046
-      },
-      "end": {
-        "line": 82,
-        "column": 69,
-        "index": 2109
-      }
-    },
-    "filepath": "src/components/toast/toast.tsx"
   },
   {
     "token": "euiToast.newNotification",
@@ -6755,14 +6737,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 116,
+        "line": 59,
         "column": 10,
-        "index": 2805
+        "index": 1823
       },
       "end": {
-        "line": 119,
+        "line": 62,
         "column": 12,
-        "index": 2920
+        "index": 1938
       }
     },
     "filepath": "src/components/toast/toast.tsx"
@@ -6773,14 +6755,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 123,
+        "line": 67,
         "column": 6,
-        "index": 2970
+        "index": 2009
       },
       "end": {
-        "line": 123,
+        "line": 67,
         "column": 68,
-        "index": 3032
+        "index": 2071
+      }
+    },
+    "filepath": "src/components/toast/toast.tsx"
+  },
+  {
+    "token": "euiToast.dismissToast",
+    "defString": "Dismiss toast",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 95,
+        "column": 8,
+        "index": 2760
+      },
+      "end": {
+        "line": 95,
+        "column": 71,
+        "index": 2823
       }
     },
     "filepath": "src/components/toast/toast.tsx"

@@ -1,3 +1,28 @@
+## [`v93.4.0`](https://github.com/elastic/eui/releases/v93.4.0)
+
+- Added the following properties to `EuiButtonGroup`'s `options` configs: `toolTipContent`, `toolTipProps`, and `title`. These new properties allow wrapping buttons in `EuiToolTips`, and additionally customizing or disabling the native browser `title` tooltip. ([#7461](https://github.com/elastic/eui/pull/7461))
+- Enhanced `EuiResizeObserver` and `useResizeObserver`'s performance to not trigger page reflows on resize event ([#7575](https://github.com/elastic/eui/pull/7575))
+- Updated `EuiSuperUpdateButton` to support custom button text via an optional `children` prop ([#7576](https://github.com/elastic/eui/pull/7576))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` to not repeatedly remove/add a body class on resize ([#7462](https://github.com/elastic/eui/pull/7462))
+- Fixed `EuiToast` title text to wrap instead of overflowing out of the container ([#7568](https://github.com/elastic/eui/pull/7568))
+- Fixed a visual bug with `EuiHeaderBreadcrumbs` with popovers ([#7580](https://github.com/elastic/eui/pull/7580))
+
+**Deprecations**
+
+- Deprecated `euiPalettePositive` and `euiPaletteNegative` in favour of a more culturally inclusive `euiPaletteGreen` and `euiPaletteRed` ([#7570](https://github.com/elastic/eui/pull/7570))
+- Deprecated all charts theme exports in favor of `@elastic/charts` exports: ([#7572](https://github.com/elastic/eui/pull/7572))
+  - Deprecated `EUI_CHARTS_THEME_<DARK|LIGHT>` in favor of `<DARK|LIGHT>_THEME` from `@elastic/charts`. ([#7572](https://github.com/elastic/eui/pull/7572))
+  - Deprecated `EUI_SPARKLINE_THEME_PARTIAL` in favor of `useSparklineOverrides` theme from the kibana `charts` plugin `theme` service.
+
+**Accessibility**
+
+- Updated `EuiModal` to set an `aria-modal` attribute and a default `dialog` role ([#7564](https://github.com/elastic/eui/pull/7564))
+- Updated `EuiConfirmModal` to set a default `alertdialog` role ([#7564](https://github.com/elastic/eui/pull/7564))
+- Fixed `EuiModal` and `EuiConfirmModal` to properly trap Safari+VoiceOver's virtual cursor ([#7564](https://github.com/elastic/eui/pull/7564))
+
 ## [`v93.3.0`](https://github.com/elastic/eui/releases/v93.3.0)
 
 - Added new `EuiDataGrid` new prop: `cellContext`, an optional object of additional props passed to the cell render function. ([#7374](https://github.com/elastic/eui/pull/7374))

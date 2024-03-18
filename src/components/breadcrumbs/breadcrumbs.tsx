@@ -9,73 +9,19 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import { ExclusiveUnion } from '../common';
 import { useEuiI18n } from '../i18n';
-import {
-  useEuiTheme,
-  EuiBreakpointSize,
-  useCurrentEuiBreakpoint,
-} from '../../services';
+import { useEuiMemoizedStyles, useCurrentEuiBreakpoint } from '../../services';
 
-import {
-  EuiBreadcrumb,
-  EuiBreadcrumbContent,
-  EuiBreadcrumbCollapsed,
+import type {
+  EuiBreadcrumbResponsiveMaxCount,
+  EuiBreadcrumbsProps,
   EuiBreadcrumbProps,
-} from './breadcrumb';
+} from './types';
+import { EuiBreadcrumb, EuiBreadcrumbCollapsed } from './breadcrumb';
+import { EuiBreadcrumbContent } from './_breadcrumb_content';
 
 import { euiBreadcrumbsListStyles } from './breadcrumbs.styles';
-
-export type EuiBreadcrumbResponsiveMaxCount = {
-  /**
-   * Any of the following keys are allowed: `'xs' | 's' | 'm' | 'l' | 'xl'`
-   * Omitting a key will display all breadcrumbs at that breakpoint
-   */
-  [key in EuiBreakpointSize]?: number;
-};
-
-export type EuiBreadcrumbsProps = CommonProps & {
-  /**
-   * Hides extra (above the max) breadcrumbs under a collapsed item as the window gets smaller.
-   * Pass a custom #EuiBreadcrumbResponsiveMaxCount object to change the number of breadcrumbs to show at the particular breakpoints.
-   *
-   * Pass `false` to turn this behavior off.
-   *
-   * Default: `{ xs: 1, s: 2, m: 4 }`
-   */
-  responsive?: boolean | EuiBreadcrumbResponsiveMaxCount;
-
-  /**
-   * Forces all breadcrumbs to single line and
-   * truncates each breadcrumb to a particular width,
-   * except for the last item
-   */
-  truncate?: boolean;
-
-  /**
-   * Collapses the inner items past the maximum set here
-   * into a single ellipses item.
-   * Omitting or passing a `0` value will show all breadcrumbs.
-   */
-  max?: number | null;
-
-  /**
-   * The array of individual #EuiBreadcrumb items
-   */
-  breadcrumbs: EuiBreadcrumbProps[];
-
-  /**
-   * Determines breadcrumbs appearance, with `page` being the default styling.
-   * Application breadcrumbs should only be once per page, in (e.g.) EuiHeader
-   */
-  type?: 'page' | 'application';
-
-  /**
-   * Whether the last breadcrumb should visually (and accessibly, to screen readers)
-   * be highlighted as the current page. Defaults to true.
-   */
-  lastBreadcrumbIsCurrentPage?: boolean;
-};
 
 const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   xs: 1,
@@ -95,8 +41,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
 
-  const euiTheme = useEuiTheme();
-  const breadcrumbsListStyles = euiBreadcrumbsListStyles(euiTheme);
+  const breadcrumbsListStyles = useEuiMemoizedStyles(euiBreadcrumbsListStyles);
   const cssBreadcrumbsListStyles = [
     breadcrumbsListStyles.euiBreadcrumbs__list,
     truncate && breadcrumbsListStyles.isTruncated,
