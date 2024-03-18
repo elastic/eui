@@ -16,7 +16,6 @@ import { EuiIcon } from '../icon';
 const meta: Meta<EuiKeyPadMenuProps> = {
   title: 'Navigation/EuiKeyPadMenu/EuiKeyPadMenu',
   component: EuiKeyPadMenu,
-  // Component defaults
 };
 
 export default meta;

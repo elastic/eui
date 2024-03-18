@@ -18,7 +18,6 @@ type Props = EuiI18nProps<any, any, string[]>;
 const meta: Meta<Props> = {
   title: 'Utilities/EuiI18n',
   component: EuiI18n,
-  // Component defaults
 };
 
 export default meta;
@@ -57,7 +56,7 @@ export const MultipleTokens: Story = {
   },
   render: ({ ...args }: Props) => (
     <EuiI18n {...args}>
-      {([title, description]) => (
+      {([title, description]: string[]) => (
         <EuiCard title={title} description={description} />
       )}
     </EuiI18n>
@@ -78,7 +77,7 @@ export const MultipleTokenInterpolation: Story = {
   },
   render: ({ ...args }: Props) => (
     <EuiI18n {...args}>
-      {([title, description]) => (
+      {([title, description]: string[]) => (
         <EuiCard title={title} description={description} />
       )}
     </EuiI18n>
