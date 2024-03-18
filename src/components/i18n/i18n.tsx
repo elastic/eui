@@ -90,6 +90,9 @@ type ResolvedType<T> = T extends (...args: any[]) => any ? ReturnType<T> : T;
 interface I18nTokenShape<T, DEFAULT extends Renderable<T>> {
   token: string;
   default: DEFAULT;
+  /**
+   * Render function that returns a ReactElement
+   */
   children?: (x: ResolvedType<DEFAULT>) => ReactChild;
   values?: T;
 }
@@ -97,6 +100,9 @@ interface I18nTokenShape<T, DEFAULT extends Renderable<T>> {
 interface I18nTokensShape<T extends any[]> {
   tokens: string[];
   defaults: T;
+  /**
+   * Render function that returns a ReactElement
+   */
   children: (x: Array<T[number]>) => ReactChild;
   values?: Record<string, ReactChild>;
 }
