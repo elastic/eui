@@ -9,9 +9,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 import { euiHeaderBreadcrumbsStyles } from './header_breadcrumbs.styles';
-import { useEuiTheme } from '../../../services';
 
 export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   className,
@@ -20,9 +20,7 @@ export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 }) => {
   const classes = classNames('euiHeaderBreadcrumbs', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiHeaderBreadcrumbsStyles(euiTheme);
-  const cssHeaderBreadcrumbStyles = [styles.euiHeaderBreadcrumbs];
+  const styles = useEuiMemoizedStyles(euiHeaderBreadcrumbsStyles);
 
   return (
     <EuiBreadcrumbs
@@ -30,7 +28,7 @@ export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       truncate
       breadcrumbs={breadcrumbs}
       className={classes}
-      css={cssHeaderBreadcrumbStyles}
+      css={styles.euiHeaderBreadcrumbs}
       type="application"
       {...rest}
     />
