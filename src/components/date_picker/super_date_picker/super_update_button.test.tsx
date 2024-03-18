@@ -37,15 +37,19 @@ describe('EuiSuperUpdateButton', () => {
   );
 
   it('is rendered', () => {
-    const { container } = render(<EuiSuperUpdateButton onClick={noop} />);
+    const { container, getByRole } = render(
+      <EuiSuperUpdateButton onClick={noop} />
+    );
 
     const tooltipWrapper = container.querySelector('.euiToolTipAnchor');
     expect(tooltipWrapper).toBeInTheDocument();
 
-    const button = within(tooltipWrapper as HTMLElement).getByRole('button');
+    const button = getByRole('button');
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass('euiSuperUpdateButton');
     expect(button).toHaveTextContent('Refresh');
+
+    expect(container).toMatchSnapshot();
   });
 
   describe('props', () => {

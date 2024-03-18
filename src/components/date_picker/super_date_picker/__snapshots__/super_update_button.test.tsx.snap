@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSuperUpdateButton is rendered 1`] = `
+<div>
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  >
+    <button
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      style="min-inline-size: 118px;"
+      type="button"
+    >
+      <span
+        class="emotion-euiButtonDisplayContent"
+      >
+        <span
+          color="inherit"
+          data-euiicon-type="refresh"
+        />
+        Refresh
+      </span>
+    </button>
+  </span>
+</div>
+`;
