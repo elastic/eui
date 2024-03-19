@@ -15046,20 +15046,6 @@ mdast-util-definitions@^4.0.0:
   dependencies:
     unist-util-visit "^2.0.0"
 
-mdast-util-to-hast@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-10.0.0.tgz#744dfe7907bac0263398a68af5aba16d104a9a08"
-  integrity sha512-dRyAC5S4eDcIOdkz4jg0wXbUdlf+5YFu7KppJNHOsMaD7ql5bKIqVcvXYYkcrKjzUkfX8JsKFVMthsU8OWxQ+w==
-  dependencies:
-    "@types/mdast" "^3.0.0"
-    "@types/unist" "^2.0.0"
-    mdast-util-definitions "^4.0.0"
-    mdurl "^1.0.0"
-    unist-builder "^2.0.0"
-    unist-util-generated "^1.0.0"
-    unist-util-position "^3.0.0"
-    unist-util-visit "^2.0.0"
-
 mdast-util-to-hast@^10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-10.2.0.tgz#61875526a017d8857b71abc9333942700b2d3604"
@@ -18906,12 +18892,12 @@ remark-parse-no-trim@^8.0.4:
     vfile-location "^3.0.0"
     xtend "^4.0.1"
 
-remark-rehype@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-8.0.0.tgz#5a8afc8262a59d205fba21dafb27a673fb3b92fa"
-  integrity sha512-gVvOH02TMFqXOWoL6iXU7NXMsDJguNkNuMrzfkQeA4V6WCyHQnOKptn+IQBVVPuIH2sMJBwo8hlrmtn1MLTh9w==
+remark-rehype@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/remark-rehype/-/remark-rehype-8.1.0.tgz#610509a043484c1e697437fa5eb3fd992617c945"
+  integrity sha512-EbCu9kHgAxKmW1yEYjx3QafMyGY3q8noUbNUI5xyKbaFP89wbhDrKxyIQNukNYthzjNHZu6J7hwFg7hRm1svYA==
   dependencies:
-    mdast-util-to-hast "^10.0.0"
+    mdast-util-to-hast "^10.2.0"
 
 remark-slug@^6.0.0:
   version "6.1.0"

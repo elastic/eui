@@ -83,7 +83,7 @@
     "remark-breaks": "^2.0.2",
     "remark-emoji": "^2.1.0",
     "remark-parse-no-trim": "^8.0.4",
-    "remark-rehype": "^8.0.0",
+    "remark-rehype": "^8.1.0",
     "tabbable": "^5.3.3",
     "text-diff": "^1.0.1",
     "unified": "^9.2.2",
