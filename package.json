@@ -58,7 +58,7 @@
     "test-staged"
   ],
   "dependencies": {
-    "@hello-pangea/dnd": "^16.3.0",
+    "@hello-pangea/dnd": "^16.5.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
     "@types/react-window": "^1.8.8",
