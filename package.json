@@ -68,7 +68,7 @@
     "lodash": "^4.17.21",
     "mdast-util-to-hast": "^10.2.0",
     "numeral": "^2.0.6",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.8.1",
     "react-dropzone": "^11.7.1",
     "react-element-to-jsx-string": "^15.0.0",
     "react-focus-on": "^3.9.1",
