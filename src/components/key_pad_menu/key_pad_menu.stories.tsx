@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { EuiKeyPadMenu, EuiKeyPadMenuProps } from './key_pad_menu';
-import { EuiKeyPadMenuItem } from './key_pad_menu_item';
+import { EuiKeyPadMenuItem, EuiKeyPadMenuItemProps } from './key_pad_menu_item';
 import { EuiIcon } from '../icon';
 
 const meta: Meta<EuiKeyPadMenuProps> = {
@@ -20,6 +21,55 @@ const meta: Meta<EuiKeyPadMenuProps> = {
 
 export default meta;
 type Story = StoryObj<EuiKeyPadMenuProps>;
+
+const onChange = action('onChange');
+
+const StatefulKeyPadMenu = (
+  props: EuiKeyPadMenuProps & { checkableType: 'single' | 'multi' }
+) => {
+  const { children, checkableType, ...rest } = props;
+  const firstItem = Array.isArray(children) ? children[0] : children;
+  const firstItemId: string = firstItem.props?.id ?? '';
+
+  const [selectedItem, setSelectedItem] = useState(firstItemId);
+  const [selectedItems, setSelectedItems] = useState([firstItemId]);
+
+  const handleOnChange = (id: string) => {
+    if (checkableType === 'single') {
+      setSelectedItem(id);
+    } else {
+      setSelectedItems((selectedItems): string[] => {
+        if (selectedItems.includes(id)) {
+          return selectedItems.filter((itemId) => itemId !== id);
+        }
+
+        return [...selectedItems, id];
+      });
+    }
+  };
+
+  return (
+    <EuiKeyPadMenu {...rest}>
+      {React.Children.map(children, (child) => {
+        if (!child) return null;
+
+        return (
+          React.isValidElement(child) &&
+          React.cloneElement(child, {
+            onChange: (args: any) => {
+              handleOnChange(child.props.id);
+              onChange(args);
+            },
+            isSelected:
+              checkableType === 'single'
+                ? selectedItem === child.props.id
+                : selectedItems.includes(child.props.id),
+          } as Partial<EuiKeyPadMenuItemProps>)
+        );
+      })}
+    </EuiKeyPadMenu>
+  );
+};
 
 export const Playground: Story = {
   args: {
@@ -50,51 +100,58 @@ export const CheckableSingle: Story = {
   args: {
     children: [
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-0"
         label="Dashboard"
         checkable="single"
         name="single-checkable-radio"
-        onChange={() => {}}
+        onChange={onChange}
       >
         <EuiIcon type="dashboardApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-1"
         label="Canvas"
         checkable="single"
         name="single-checkable-radio"
-        onChange={() => {}}
+        onChange={onChange}
         isSelected
       >
         <EuiIcon type="canvasApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-2"
         label="Lens"
         checkable="single"
         name="single-checkable-radio"
-        onChange={() => {}}
+        onChange={onChange}
       >
         <EuiIcon type="lensApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-3"
         label="Visualize"
         checkable="single"
         name="single-checkable-radio"
-        onChange={() => {}}
+        isDisabled
+        onChange={onChange}
       >
         <EuiIcon type="visualizeApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-4"
         label="Graph"
         checkable="single"
         name="single-checkable-radio"
-        onChange={() => {}}
+        onChange={onChange}
       >
         <EuiIcon type="graphApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-5"
         label="Advanced Settings"
         checkable="single"
         name="single-checkable-radio"
-        onChange={() => {}}
+        onChange={onChange}
       >
         <EuiIcon type="advancedSettingsApp" size="l" />
       </EuiKeyPadMenuItem>,
@@ -103,43 +160,61 @@ export const CheckableSingle: Story = {
       legend: 'Single checkable EuiKeyPadMenu',
     },
   },
+  render: ({ ...args }) => (
+    <StatefulKeyPadMenu {...args} checkableType="single" />
+  ),
 };
 
 export const CheckableMulti: Story = {
   args: {
     children: [
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-0"
         label="Dashboard"
         checkable="multi"
-        onChange={() => {}}
+        onChange={onChange}
       >
         <EuiIcon type="dashboardApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-1"
         label="Canvas"
         checkable="multi"
-        onChange={() => {}}
+        onChange={onChange}
         isSelected
       >
         <EuiIcon type="canvasApp" size="l" />
       </EuiKeyPadMenuItem>,
-      <EuiKeyPadMenuItem label="Lens" checkable="multi" onChange={() => {}}>
+      <EuiKeyPadMenuItem
+        id="keyPadMenuItem-2"
+        label="Lens"
+        checkable="multi"
+        onChange={onChange}
+      >
         <EuiIcon type="lensApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-3"
         label="Visualize"
         checkable="multi"
-        onChange={() => {}}
+        isDisabled
+        onChange={onChange}
       >
         <EuiIcon type="visualizeApp" size="l" />
       </EuiKeyPadMenuItem>,
-      <EuiKeyPadMenuItem label="Graph" checkable="multi" onChange={() => {}}>
+      <EuiKeyPadMenuItem
+        id="keyPadMenuItem-4"
+        label="Graph"
+        checkable="multi"
+        onChange={onChange}
+      >
         <EuiIcon type="graphApp" size="l" />
       </EuiKeyPadMenuItem>,
       <EuiKeyPadMenuItem
+        id="keyPadMenuItem-5"
         label="Advanced Settings"
         checkable="multi"
-        onChange={() => {}}
+        onChange={onChange}
       >
         <EuiIcon type="advancedSettingsApp" size="l" />
       </EuiKeyPadMenuItem>,
@@ -148,4 +223,7 @@ export const CheckableMulti: Story = {
       legend: 'Multi checkable EuiKeyPadMenu',
     },
   },
+  render: ({ ...args }) => (
+    <StatefulKeyPadMenu {...args} checkableType="multi" />
+  ),
 };
