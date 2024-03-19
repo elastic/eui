@@ -75,7 +75,7 @@
     "react-is": "^17.0.2",
     "react-remove-scroll-bar": "^2.3.4",
     "react-virtualized-auto-sizer": "^1.0.20",
-    "react-window": "^1.8.9",
+    "react-window": "^1.8.10",
     "refractor": "^3.6.0",
     "rehype-raw": "^5.1.0",
     "rehype-react": "^6.2.1",
