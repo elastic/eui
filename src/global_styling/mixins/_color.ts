@@ -38,9 +38,8 @@ export interface _EuiBackgroundColorOptions {
 }
 
 /**
- * Get a single background color with optional alpha transparency
+ * @returns A single background color with optional alpha transparency
  */
-
 export const euiBackgroundColor = (
   { euiTheme, colorMode }: UseEuiTheme,
   color: _EuiBackgroundColor,
@@ -84,9 +83,9 @@ export const useEuiBackgroundColor = (
 };
 
 /**
- * Get a memoized object of non-alpha background colors
+ * @returns An object map of color keys to CSS,
+ * e.g. { danger: css``, success: css``, ... }
  */
-
 const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
   BACKGROUND_COLORS.reduce(
     (acc, color) => ({
@@ -122,6 +121,10 @@ export const euiBorderColor = (
   }
 };
 
+/**
+ * @returns An object map of color keys to CSS,
+ * e.g. { danger: css``, success: css``, ... }
+ */
 const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
   BACKGROUND_COLORS.reduce(
     (acc, color) => ({

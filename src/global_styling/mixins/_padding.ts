@@ -31,6 +31,10 @@ export const euiPaddingSize = (
   }
 };
 
+/**
+ * @returns An object map of padding size keys to padding values,
+ * e.g. { s: '8px', m: '16px', ... }
+ */
 const _getEuiPaddingSize = (euiThemeContext: UseEuiTheme) =>
   PADDING_SIZES.reduce(
     (stylesAcc, size) => ({
