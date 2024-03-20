@@ -90,5 +90,5 @@ const StatefulPlayground = (props: EuiResizeObserverProps) => {
 };
 
 export const Playground: Story = {
-  render: ({ ...args }) => <StatefulPlayground {...args} />,
+  render: (args) => <StatefulPlayground {...args} />,
 };
