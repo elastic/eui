@@ -160,9 +160,7 @@ export const CheckableSingle: Story = {
       legend: 'Single checkable EuiKeyPadMenu',
     },
   },
-  render: ({ ...args }) => (
-    <StatefulKeyPadMenu {...args} checkableType="single" />
-  ),
+  render: (args) => <StatefulKeyPadMenu {...args} checkableType="single" />,
 };
 
 export const CheckableMulti: Story = {
@@ -223,7 +221,5 @@ export const CheckableMulti: Story = {
       legend: 'Multi checkable EuiKeyPadMenu',
     },
   },
-  render: ({ ...args }) => (
-    <StatefulKeyPadMenu {...args} checkableType="multi" />
-  ),
+  render: (args) => <StatefulKeyPadMenu {...args} checkableType="multi" />,
 };

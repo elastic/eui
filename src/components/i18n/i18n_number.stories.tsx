@@ -26,7 +26,7 @@ export const SingleValue: Story = {
   args: {
     value: 99,
   },
-  render: ({ ...args }: EuiI18nNumberProps) => (
+  render: (args: EuiI18nNumberProps) => (
     <EuiText>
       <span>Formatted number:</span> <EuiI18nNumber {...args} />
     </EuiText>
