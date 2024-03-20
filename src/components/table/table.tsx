@@ -9,7 +9,7 @@
 import React, { FunctionComponent, TableHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useIsWithinMaxBreakpoint } from '../../services';
 import { CommonProps } from '../common';
 
 import { euiTableStyles } from './table.styles';
@@ -33,13 +33,20 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   responsive = true,
   ...rest
 }) => {
+  // TODO: Make the table responsive breakpoint customizable via prop
+  const isResponsive = useIsWithinMaxBreakpoint('s') && responsive;
+
   const classes = classNames('euiTable', className, {
-    'euiTable--compressed': compressed,
     'euiTable--responsive': responsive,
   });
 
   const styles = useEuiMemoizedStyles(euiTableStyles);
-  const cssStyles = [styles.euiTable, styles.layout[tableLayout]];
+  const cssStyles = [
+    styles.euiTable,
+    styles.layout[tableLayout],
+    (!compressed || isResponsive) && styles.uncompressed,
+    compressed && !isResponsive && styles.compressed,
+  ];
 
   return (
     <table tabIndex={-1} css={cssStyles} className={classes} {...rest}>
