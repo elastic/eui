@@ -12,7 +12,6 @@ import {
   tint,
   tintOrShade,
   transparentize,
-  useEuiTheme,
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../services';
@@ -73,13 +72,39 @@ export const euiBackgroundColor = (
   }
 };
 
-// TODO: This isn't actually used anywhere in EUI and is hard to memoize. Should we deprecate it?
+/**
+ * @returns An object map of color keys to color values, categorized by
+ * opaque (default) vs transparency (hover/focus states) methods.
+ * e.g. {
+ *  opaque: { danger: '#000', success: '#fff', ... },
+ *  transparent: { danger: 'rgba(0,0,0,0.1)', success: 'rgba(255,255,255,0.1)', ... },
+ * }
+ */
+const _euiBackgroundColorMap = (euiThemeContext: UseEuiTheme) => ({
+  opaque: BACKGROUND_COLORS.reduce(
+    (acc, color) => ({
+      ...acc,
+      [color]: euiBackgroundColor(euiThemeContext, color),
+    }),
+    {} as Record<_EuiBackgroundColor, string>
+  ),
+  transparent: BACKGROUND_COLORS.reduce(
+    (acc, color) => ({
+      ...acc,
+      [color]: euiBackgroundColor(euiThemeContext, color, {
+        method: 'transparent',
+      }),
+    }),
+    {} as Record<_EuiBackgroundColor, string>
+  ),
+});
+
 export const useEuiBackgroundColor = (
   color: _EuiBackgroundColor,
   { method }: _EuiBackgroundColorOptions = {}
 ) => {
-  const euiTheme = useEuiTheme();
-  return euiBackgroundColor(euiTheme, color, { method });
+  const backgroundColorMap = useEuiMemoizedStyles(_euiBackgroundColorMap);
+  return backgroundColorMap[method || 'opaque'][color];
 };
 
 /**
