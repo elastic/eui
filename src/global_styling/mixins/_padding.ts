@@ -8,7 +8,7 @@
 
 import { css, SerializedStyles } from '@emotion/react';
 import { useEuiMemoizedStyles, UseEuiTheme } from '../../services/theme';
-import { logicalSide, LogicalSides } from '../functions';
+import { LogicalSides } from '../functions';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiPaddingSize = (typeof PADDING_SIZES)[number];
@@ -50,39 +50,45 @@ export const useEuiPaddingSize = (size: EuiPaddingSize) => {
 };
 
 /**
- * Get an object of all padding sizes for all possible padding properties
+ * @returns An object map of all padding sizes for all padding sides properties
+ * e.g., {
+ *   padding: { s: css`padding-size: 8px`, ... }
+ *   left: { s: css`padding-inline-start: 8px`, ... }
+ * }
  */
+const _euiPaddingSidesAndSizes = (euiThemeContext: UseEuiTheme) => {
+  const sizesMap = _getEuiPaddingSize(euiThemeContext);
 
-type PaddingStyles = Record<EuiPaddingSize, SerializedStyles>;
-type PaddingGenerator = (euiTheme: UseEuiTheme) => PaddingStyles;
+  type SizeStylesMap = Record<EuiPaddingSize, SerializedStyles>;
 
-const paddingCSSProperties = Object.entries(logicalSide).reduce(
-  (acc, [key, property]) => ({ ...acc, [key]: `padding-${property}` }),
-  { all: 'padding' }
-);
-const paddingCSSGenerators = Object.entries(paddingCSSProperties).reduce(
-  (acc, [key, property]) => {
-    // Use a `_` prefix to stop Emotion from auto-applying the fn name as a label
-    const _euiPaddingGenerator = (euiThemeContext: UseEuiTheme) =>
-      PADDING_SIZES.reduce(
-        (stylesAcc, size) => ({
-          ...stylesAcc,
-          [size]:
-            size === 'none'
-              ? null
-              : css`
-                  ${property}: ${euiPaddingSize(euiThemeContext, size)};
-                  label: ${size};
-                `,
-        }),
-        {} as PaddingStyles
-      );
+  // The `_` prefix stops Emotion from applying the function name as a label
+  const _generateSizeStyles = (cssProperty: string) =>
+    Object.fromEntries(
+      Object.entries(sizesMap).map(([sizeKey, sizeValue]) => [
+        sizeKey,
+        sizeValue === null
+          ? null
+          : css`
+              ${cssProperty}: ${sizeValue};
+              label: ${sizeKey};
+            `,
+      ])
+    ) as SizeStylesMap;
 
-    return { ...acc, [key]: _euiPaddingGenerator };
-  },
-  {} as Record<LogicalSides | 'all', PaddingGenerator>
-);
+  const sidesMap: Record<LogicalSides | 'padding', SizeStylesMap> = {
+    padding: _generateSizeStyles('padding'),
+    vertical: _generateSizeStyles('padding-block'),
+    top: _generateSizeStyles('padding-block-start'),
+    bottom: _generateSizeStyles('padding-block-end'),
+    horizontal: _generateSizeStyles('padding-inline'),
+    left: _generateSizeStyles('padding-inline-start'),
+    right: _generateSizeStyles('padding-inline-end'),
+  };
+
+  return sidesMap;
+};
 
 export const useEuiPaddingCSS = (side?: LogicalSides) => {
-  return useEuiMemoizedStyles(paddingCSSGenerators[side || 'all']);
+  const memoizedSideMap = useEuiMemoizedStyles(_euiPaddingSidesAndSizes);
+  return memoizedSideMap[side || 'padding'];
 };
