@@ -32,7 +32,9 @@ export const Playground: Story = {
     fallback: { control: { type: 'text' } },
   },
   args: {
-    children: 'Simple text' as unknown as any, // overwrite the type to allow for a useable playground
+    // overwrite the type to allow for an useable playground because
+    // so far storybook can't handle displaying function as control input
+    children: 'Simple text' as unknown as any,
   },
   render: ({ children, fallback }) => {
     const content = children as unknown as string;
