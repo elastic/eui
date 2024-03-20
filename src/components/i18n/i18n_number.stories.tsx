@@ -28,7 +28,7 @@ export const SingleValue: Story = {
   },
   render: ({ ...args }: EuiI18nNumberProps) => (
     <EuiText>
-      <span>Formated number:</span> <EuiI18nNumber {...args} />
+      <span>Formatted number:</span> <EuiI18nNumber {...args} />
     </EuiText>
   ),
 };
@@ -41,7 +41,7 @@ export const MultipleValues: Story = {
       <>
         {values.map((value) => (
           <EuiText>
-            <span>Formated number: {value}</span>
+            <span>Formatted number: {value}</span>
           </EuiText>
         ))}
       </>

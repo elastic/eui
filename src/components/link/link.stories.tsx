@@ -14,7 +14,7 @@ const meta: Meta<EuiLinkProps> = {
   title: 'Navigation/EuiLink',
   component: EuiLink,
   argTypes: {
-    // setting up nativ HTML attributes to ensure they show up as control
+    // setting up native HTML attributes to ensure they show up as control
     target: { control: { type: 'text' } },
     rel: { control: { type: 'text' } },
     disabled: { control: { type: 'boolean' } },
