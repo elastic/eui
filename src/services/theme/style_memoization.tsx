@@ -20,7 +20,7 @@ import React, {
 import { useUpdateEffect } from '../hooks';
 import { useEuiTheme, UseEuiTheme } from './hooks';
 
-type StylesMap = unknown; // Typically an object of serialized css`` styles, but can have any amount of nesting, so it's not worth it to try and strictly type this
+type StylesMap = Record<string, any>; // Typically an object of serialized css`` styles, but can have any amount of nesting, so it's not worth it to try and strictly type this
 type MemoizedStylesMap = WeakMap<Function, StylesMap>;
 
 export const EuiThemeMemoizedStylesContext = createContext<MemoizedStylesMap>(
