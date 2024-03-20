@@ -52,5 +52,5 @@ const StatefulPlayground = (props: EuiOverlayMaskProps) => {
 };
 
 export const Playground: Story = {
-  render: ({ ...args }) => <StatefulPlayground {...args} />,
+  render: (args) => <StatefulPlayground {...args} />,
 };

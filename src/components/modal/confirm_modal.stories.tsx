@@ -84,5 +84,5 @@ export const Playground: Story = {
     onCancel,
     onConfirm,
   },
-  render: ({ ...args }) => <StatefulConfirmModal {...args} />,
+  render: (args) => <StatefulConfirmModal {...args} />,
 };

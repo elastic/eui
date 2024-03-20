@@ -73,5 +73,5 @@ export const Playground: Story = {
       </>
     ),
   },
-  render: ({ ...args }) => <StatefulModal {...args} />,
+  render: (args) => <StatefulModal {...args} />,
 };
