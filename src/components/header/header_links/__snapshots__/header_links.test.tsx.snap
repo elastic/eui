@@ -56,18 +56,7 @@ exports[`EuiHeaderLinks is rendered 1`] = `
 </nav>
 `;
 
-exports[`EuiHeaderLinks popover props is never rendered with "none" 1`] = `
-<nav
-  aria-label="App menu"
-  class="euiHeaderLinks emotion-euiHeaderLinks"
->
-  <div
-    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-s-EuiHeaderLinks"
-  />
-</nav>
-`;
-
-exports[`EuiHeaderLinks popover props is rendered 1`] = `
+exports[`EuiHeaderLinks mobile menu/popover renders various popover props 1`] = `
 <nav
   aria-label="App menu"
   class="euiHeaderLinks emotion-euiHeaderLinks"

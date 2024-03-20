@@ -7,6 +7,7 @@
  */
 
 import React, {
+  ReactNode,
   HTMLAttributes,
   FunctionComponent,
   useState,
@@ -39,7 +40,14 @@ type EuiHeaderLinksPopoverButtonProps =
   };
 
 export type EuiHeaderLinksProps = CommonProps &
-  HTMLAttributes<HTMLElement> & {
+  Omit<HTMLAttributes<HTMLElement>, 'children'> & {
+    /**
+     * Takes any rendered node(s), typically of `EuiHeaderLink`s.
+     *
+     * Optionally takes a render function that will pass a callback allowing you
+     * to close the mobile popover from within your popover content.
+     */
+    children?: ReactNode | ((closeMobilePopover: () => void) => ReactNode);
     /**
      * Spacing between direct children
      */
@@ -116,6 +124,9 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
     </EuiI18n>
   );
 
+  const renderedChildren =
+    typeof children === 'function' ? children(closeMenu) : children;
+
   return (
     <EuiI18n token="euiHeaderLinks.appNavigation" default="App menu">
       {(appNavigation: string) => (
@@ -133,7 +144,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
                 styles.gutterSizes[gutterSize],
               ]}
             >
-              {children}
+              {renderedChildren}
             </div>
           </EuiHideFor>
 
@@ -151,7 +162,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
                 className="euiHeaderLinks__mobileList"
                 css={styles.euiHeaderLinks__mobileList}
               >
-                {children}
+                {renderedChildren}
               </div>
             </EuiPopover>
           </EuiShowFor>
