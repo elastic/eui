@@ -48,6 +48,8 @@ const meta: Meta<EuiButtonGroupProps> = {
   },
 };
 
+disableStorybookControls(meta, ['type']);
+
 export default meta;
 type Story = StoryObj<EuiButtonGroupProps>;
 
@@ -86,7 +88,6 @@ export const SingleSelection: Story = {
     type: 'single',
     idSelected: 'button1',
   },
-  argTypes: disableStorybookControls(['type']),
 };
 
 const EuiButtonGroupMulti = (props: any) => {
@@ -120,7 +121,6 @@ export const MultiSelection: Story = {
     type: 'multi',
     idToSelectedMap: { button1: true },
   },
-  argTypes: disableStorybookControls(['type']),
 };
 
 export const WithTooltips: Story = {
@@ -157,5 +157,4 @@ export const WithTooltips: Story = {
     type: 'multi',
     idToSelectedMap: { button1: true },
   },
-  argTypes: disableStorybookControls(['type']),
 };

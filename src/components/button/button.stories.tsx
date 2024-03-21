@@ -39,8 +39,9 @@ export default meta;
 type Story = StoryObj<EuiButtonProps>;
 
 export const Playground: Story = {
-  argTypes: disableStorybookControls(['buttonRef']),
   args: {
     children: 'Button',
   },
 };
+
+disableStorybookControls(Playground, ['buttonRef']);

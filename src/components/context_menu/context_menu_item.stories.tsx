@@ -18,7 +18,6 @@ const meta: Meta<EuiContextMenuItemProps> = {
   title: 'Navigation/EuiContextMenu/EuiContextMenuItem',
   component: EuiContextMenuItem,
   argTypes: {
-    ...disableStorybookControls(['buttonRef']),
     icon: { control: 'text' },
   },
   args: {
@@ -29,6 +28,8 @@ const meta: Meta<EuiContextMenuItemProps> = {
     disabled: false,
   },
 };
+
+disableStorybookControls(meta, ['buttonRef']);
 
 export default meta;
 type Story = StoryObj<EuiContextMenuItemProps>;

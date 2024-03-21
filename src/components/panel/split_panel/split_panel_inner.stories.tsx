@@ -18,7 +18,6 @@ const meta: Meta<_EuiSplitPanelInnerProps> = {
   component: EuiSplitPanel.Inner,
   argTypes: {
     color: { control: 'select', options: COLORS },
-    ...disableStorybookControls<_EuiSplitPanelInnerProps>(['panelRef']),
   },
   args: {
     // Component defaults
@@ -27,6 +26,8 @@ const meta: Meta<_EuiSplitPanelInnerProps> = {
     grow: true,
   },
 };
+
+disableStorybookControls(meta, ['panelRef']);
 
 export default meta;
 type Story = StoryObj<_EuiSplitPanelInnerProps>;
