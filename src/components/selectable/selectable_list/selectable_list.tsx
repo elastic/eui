@@ -609,10 +609,12 @@ export class EuiSelectableList<T> extends Component<
       ...rest
     } = this.props;
 
+    const heightIsFull = forcedHeight === 'full';
+
     const classes = classNames(
       'euiSelectableList',
       {
-        'euiSelectableList-fullHeight': forcedHeight === 'full',
+        'euiSelectableList-fullHeight': heightIsFull,
         'euiSelectableList-bordered': bordered,
       },
       className
@@ -625,6 +627,7 @@ export class EuiSelectableList<T> extends Component<
         ) : (
           <div
             className="euiSelectableList__list"
+            style={!heightIsFull ? { blockSize: forcedHeight } : undefined}
             ref={this.removeScrollableTabStop}
           >
             <ul ref={this.setListBoxRef}>
