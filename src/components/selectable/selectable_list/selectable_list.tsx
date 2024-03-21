@@ -244,7 +244,8 @@ export class EuiSelectableList<T> extends Component<
   };
 
   componentDidUpdate(prevProps: EuiSelectableListProps<T>) {
-    const { activeOptionIndex, visibleOptions, options } = this.props;
+    const { isVirtualized, activeOptionIndex, visibleOptions, options } =
+      this.props;
 
     if (this.listBoxRef && this.props.searchable !== true) {
       this.listBoxRef.setAttribute(
@@ -253,8 +254,16 @@ export class EuiSelectableList<T> extends Component<
       );
     }
 
-    if (this.listRef && typeof activeOptionIndex !== 'undefined') {
-      this.listRef.scrollToItem(activeOptionIndex, 'auto');
+    if (typeof activeOptionIndex !== 'undefined') {
+      if (isVirtualized) {
+        this.listRef?.scrollToItem(activeOptionIndex, 'auto');
+      } else {
+        const activeOptionId = `#${this.props.makeOptionId(activeOptionIndex)}`;
+        const activeOptionEl = this.listBoxRef?.querySelector(activeOptionId);
+        if (activeOptionEl) {
+          activeOptionEl.scrollIntoView({ block: 'nearest' });
+        }
+      }
     }
 
     if (
