@@ -17,43 +17,44 @@ import { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
 const meta: Meta<EuiHeaderLinkProps> = {
   title: 'Layout/EuiHeader/EuiHeaderLink',
   component: EuiHeaderLink,
-  argTypes: {
-    ...moveStorybookControlsToCategory(
-      [
-        'aria-label',
-        'buttonRef',
-        'color',
-        'contentProps',
-        'flush',
-        'href',
-        'iconSide',
-        'iconSize',
-        'iconType',
-        'isDisabled',
-        'isLoading',
-        'isSelected',
-        'onClick',
-        'rel',
-        'size',
-        'target',
-        'textProps',
-        'type',
-      ],
-      'EuiButtonEmpty props'
-    ),
-  },
   // Component defaults
   args: {
     isActive: false,
   },
 };
 
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'aria-label',
+    'buttonRef',
+    'color',
+    'contentProps',
+    'flush',
+    'href',
+    'iconSide',
+    'iconSize',
+    'iconType',
+    'isDisabled',
+    'isLoading',
+    'isSelected',
+    'onClick',
+    'rel',
+    'size',
+    'target',
+    'textProps',
+    'type',
+  ],
+  'EuiButtonEmpty props'
+);
+
 export default meta;
 type Story = StoryObj<EuiHeaderLinkProps>;
 
 export const Playground: Story = {
-  argTypes: disableStorybookControls(['buttonRef']),
   args: {
     children: 'Header link',
   },
 };
+
+disableStorybookControls(Playground, ['buttonRef']);
