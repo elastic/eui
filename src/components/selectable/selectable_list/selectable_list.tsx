@@ -247,21 +247,25 @@ export class EuiSelectableList<T> extends Component<
     const { isVirtualized, activeOptionIndex, visibleOptions, options } =
       this.props;
 
-    if (this.listBoxRef && this.props.searchable !== true) {
-      this.listBoxRef.setAttribute(
-        'aria-activedescendant',
-        `${this.props.makeOptionId(activeOptionIndex)}`
-      );
-    }
+    if (prevProps.activeOptionIndex !== activeOptionIndex) {
+      const { makeOptionId } = this.props;
 
-    if (typeof activeOptionIndex !== 'undefined') {
-      if (isVirtualized) {
-        this.listRef?.scrollToItem(activeOptionIndex, 'auto');
-      } else {
-        const activeOptionId = `#${this.props.makeOptionId(activeOptionIndex)}`;
-        const activeOptionEl = this.listBoxRef?.querySelector(activeOptionId);
-        if (activeOptionEl) {
-          activeOptionEl.scrollIntoView({ block: 'nearest' });
+      if (this.listBoxRef && this.props.searchable !== true) {
+        this.listBoxRef.setAttribute(
+          'aria-activedescendant',
+          makeOptionId(activeOptionIndex)
+        );
+      }
+
+      if (typeof activeOptionIndex !== 'undefined') {
+        if (isVirtualized) {
+          this.listRef?.scrollToItem(activeOptionIndex, 'auto');
+        } else {
+          const activeOptionId = `#${makeOptionId(activeOptionIndex)}`;
+          const activeOptionEl = this.listBoxRef?.querySelector(activeOptionId);
+          if (activeOptionEl) {
+            activeOptionEl.scrollIntoView({ block: 'nearest' });
+          }
         }
       }
     }
