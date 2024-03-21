@@ -10,52 +10,75 @@
  * argTypes configurations
  */
 
+import type { ArgTypes, Meta, Preview, StoryObj } from '@storybook/react';
+
+type StorybookConfig<T> = Meta<T> | StoryObj<T> | Preview;
+
 /**
  * Completely hide props from Storybook's controls panel.
- * Should be passed or spread to `argTypes`
+ *
+ * Can be used for preview (Preview), component (Meta) or story (Story)
+ * context by passing the config object for either. Use after defining
+ * the specific config to be able to pass the config to this util.
+ *
+ * @returns the mutated config
  */
 export const hideStorybookControls = <Props>(
+  config: StorybookConfig<Props>,
   propNames: Array<keyof Props>
-): Record<keyof Props, typeof HIDE_CONTROL> | {} => {
-  return propNames.reduce(
-    (obj, name) => ({ ...obj, [name]: HIDE_CONTROL }),
-    {}
-  );
+): StorybookConfig<Props> => {
+  const updatedConfig = _updateArgTypes(config, propNames, {
+    key: 'table',
+    value: { disable: true },
+  });
+
+  return updatedConfig;
 };
-const HIDE_CONTROL = { table: { disable: true } };
 
 /**
  * Leave props visible in Storybook's controls panel, but disable them
  * from being controllable (renders a `-`).
  *
- * Should be passed or spread to `argTypes`
+ * Can be used for preview (Preview), component (Meta) or story (Story)
+ * context by passing the config object for either. Use after defining
+ * the specific config to be able to pass the config to this util.
+ *
+ * @returns the mutated config
  */
 export const disableStorybookControls = <Props>(
+  config: StorybookConfig<Props>,
   propNames: Array<keyof Props>
-): Record<keyof Props, typeof DISABLE_CONTROL> | {} => {
-  return propNames.reduce(
-    (obj, name) => ({ ...obj, [name]: DISABLE_CONTROL }),
-    {}
-  );
+): StorybookConfig<Props> => {
+  const updatedConfig = _updateArgTypes(config, propNames, {
+    key: 'control',
+    value: false,
+  });
+
+  return updatedConfig;
 };
-const DISABLE_CONTROL = { control: false };
 
 /**
  * Configure provided args to be listed under a specified
  * category in the props table.
  *
- * Should be passed or spread to `argTypes`
+ * Can be used for preview (Preview), component (Meta) or story (Story)
+ * context by passing the config object for either. Use after defining
+ * the specific config to be able to pass the config to this util.
+ *
+ * @returns the mutated config
  */
 export const moveStorybookControlsToCategory = <Props>(
+  config: StorybookConfig<Props>,
   propNames: Array<keyof Props>,
   category = 'Additional'
-): Record<keyof Props, ControlCategory> | {} => {
-  return propNames.reduce(
-    (obj, name) => ({ ...obj, [name]: { table: { category } } }),
-    {}
-  );
+): StorybookConfig<Props> => {
+  const updatedConfig = _updateArgTypes(config, propNames, {
+    key: 'table',
+    value: { category },
+  });
+
+  return updatedConfig;
 };
-type ControlCategory = { table: { category: string } };
 
 /**
  * parameters configurations
@@ -78,4 +101,36 @@ export const hideAllStorybookControls = {
  */
 export const hidePanel = {
   options: { showPanel: false },
+};
+
+/**
+ * Internal helper function to merge `argTypes` objects into
+ * a Storybook story config object
+ *
+ * @returns the mutated config
+ */
+const _updateArgTypes = <Props>(
+  config: StorybookConfig<Props>,
+  propNames: Array<keyof Props>,
+  { key, value }: { key: string; value: Record<string, any> | boolean | string }
+): StorybookConfig<Props> => {
+  if (!Array.isArray(propNames)) return config;
+
+  const currentArgTypes = config.argTypes as Partial<ArgTypes<Props>>;
+  const newArgTypes = { ...currentArgTypes };
+
+  for (const propName of propNames) {
+    const currentValue = newArgTypes?.[propName] ?? {};
+    const newValue =
+      typeof value === 'object' ? { ...currentValue?.[key], ...value } : value;
+
+    newArgTypes[propName] = {
+      ...currentValue,
+      [key]: newValue,
+    };
+  }
+
+  config.argTypes = newArgTypes;
+
+  return config;
 };

@@ -13,74 +13,188 @@ import {
 } from './utils';
 
 describe('hideStorybookControls', () => {
-  it('outputs the expected `argTypes` object when passed prop name strings', () => {
+  it('updates the provided config with the expected `argTypes` object when passed prop name strings', () => {
     expect(
-      hideStorybookControls(['isDisabled', 'isLoading', 'isInvalid'])
+      hideStorybookControls({ argTypes: {} }, [
+        'isDisabled',
+        'isLoading',
+        'isInvalid',
+      ])
     ).toEqual({
-      isDisabled: { table: { disable: true } },
-      isLoading: { table: { disable: true } },
-      isInvalid: { table: { disable: true } },
+      argTypes: {
+        isDisabled: { table: { disable: true } },
+        isLoading: { table: { disable: true } },
+        isInvalid: { table: { disable: true } },
+      },
+    });
+  });
+
+  it('merges existing and new `argTypes` objects correctly', () => {
+    expect(
+      hideStorybookControls(
+        {
+          argTypes: {
+            isDisabled: {
+              control: { type: 'boolean' },
+              table: { category: 'Additional' },
+            },
+          },
+        },
+        ['isDisabled']
+      )
+    ).toEqual({
+      argTypes: {
+        isDisabled: {
+          control: { type: 'boolean' },
+          table: { category: 'Additional', disable: true },
+        },
+      },
     });
   });
 
   it('throws a typescript error if a generic is passed and the prop names do not match', () => {
     type TestComponentProps = { hello: boolean; world: boolean };
+
     // No typescript error
-    hideStorybookControls<TestComponentProps>(['hello', 'world']);
-    // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
-    hideStorybookControls<TestComponentProps>(['hello', 'world', 'error']);
+    hideStorybookControls<TestComponentProps>({ argTypes: {} }, [
+      'hello',
+      'world',
+    ]);
+    hideStorybookControls<TestComponentProps>({ argTypes: {} }, [
+      'hello',
+      'world',
+      // @ts-expect-error  - will fail `yarn lint` if a TS error is *not* produced
+      'error',
+    ]);
   });
 });
 
 describe('disableStorybookControls', () => {
-  it('outputs the expected `argTypes` object when passed prop name strings', () => {
+  it('updates the provided config with the expected `argTypes` object when passed prop name strings', () => {
     expect(
-      disableStorybookControls(['isDisabled', 'isLoading', 'isInvalid'])
+      disableStorybookControls({ argTypes: {} }, [
+        'isDisabled',
+        'isLoading',
+        'isInvalid',
+      ])
     ).toEqual({
-      isDisabled: { control: false },
-      isLoading: { control: false },
-      isInvalid: { control: false },
+      argTypes: {
+        isDisabled: { control: false },
+        isLoading: { control: false },
+        isInvalid: { control: false },
+      },
+    });
+  });
+
+  it('merges existing and new `argTypes` objects correctly', () => {
+    expect(
+      disableStorybookControls(
+        {
+          argTypes: {
+            isDisabled: {
+              control: { type: 'boolean' },
+              table: { category: 'Additional' },
+            },
+          },
+        },
+        ['isDisabled']
+      )
+    ).toEqual({
+      argTypes: {
+        isDisabled: {
+          table: { category: 'Additional' },
+          control: false,
+        },
+      },
     });
   });
 
   it('throws a typescript error if a generic is passed and the prop names do not match', () => {
     type TestComponentProps = { hello: boolean; world: boolean };
+
     // No typescript error
-    disableStorybookControls<TestComponentProps>(['hello', 'world']);
-    // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
-    disableStorybookControls<TestComponentProps>(['hello', 'world', 'error']);
+    disableStorybookControls<TestComponentProps>({ argTypes: {} }, [
+      'hello',
+      'world',
+    ]);
+    disableStorybookControls<TestComponentProps>({ argTypes: {} }, [
+      'hello',
+      'world',
+      // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
+      'error',
+    ]);
   });
 });
 
 describe('moveStorybookControlsToCategory', () => {
-  it('outputs expected `argTypes` object when passed prop name strings and a custom category', () => {
+  it('updates the provided config with the expected `argTypes` object when passed prop name strings and a custom category', () => {
     expect(
       moveStorybookControlsToCategory(
+        { argTypes: {} },
         ['isDisabled', 'isLoading', 'isInvalid'],
         'New category'
       )
     ).toEqual({
-      isDisabled: { table: { category: 'New category' } },
-      isLoading: { table: { category: 'New category' } },
-      isInvalid: { table: { category: 'New category' } },
+      argTypes: {
+        isDisabled: { table: { category: 'New category' } },
+        isLoading: { table: { category: 'New category' } },
+        isInvalid: { table: { category: 'New category' } },
+      },
     });
   });
 
   it('sets a default category if none is passed', () => {
     expect(
-      moveStorybookControlsToCategory(['isDisabled', 'isLoading', 'isInvalid'])
+      moveStorybookControlsToCategory({ argTypes: {} }, [
+        'isDisabled',
+        'isLoading',
+        'isInvalid',
+      ])
     ).toEqual({
-      isDisabled: { table: { category: 'Additional' } },
-      isLoading: { table: { category: 'Additional' } },
-      isInvalid: { table: { category: 'Additional' } },
+      argTypes: {
+        isDisabled: { table: { category: 'Additional' } },
+        isLoading: { table: { category: 'Additional' } },
+        isInvalid: { table: { category: 'Additional' } },
+      },
+    });
+  });
+
+  it('merges existing and new `argTypes` objects correctly', () => {
+    expect(
+      moveStorybookControlsToCategory(
+        {
+          argTypes: {
+            isDisabled: {
+              control: { type: 'boolean' },
+              table: { disable: true },
+            },
+          },
+        },
+        ['isDisabled']
+      )
+    ).toEqual({
+      argTypes: {
+        isDisabled: {
+          control: { type: 'boolean' },
+          table: { disable: true, category: 'Additional' },
+        },
+      },
     });
   });
 
   it('throws a typescript error if a generic is passed and the prop names do not match', () => {
     type TestProps = { hello: boolean; world: boolean };
+
     // No typescript error
-    moveStorybookControlsToCategory<TestProps>(['hello', 'world']);
-    // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
-    moveStorybookControlsToCategory<TestProps>(['hello', 'world', 'error']);
+    moveStorybookControlsToCategory<TestProps>({ argTypes: {} }, [
+      'hello',
+      'world',
+    ]);
+    moveStorybookControlsToCategory<TestProps>({ argTypes: {} }, [
+      'hello',
+      'world',
+      // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
+      'error',
+    ]);
   });
 });
