@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, MouseEventHandler, ElementRef } from 'react';
+import React, {
+  Component,
+  MouseEventHandler,
+  ElementRef,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { EuiButton, EuiButtonProps } from '../../button';
@@ -25,6 +30,15 @@ type EuiSuperUpdateButtonInternalProps = {
 };
 
 export type EuiSuperUpdateButtonProps = {
+  /**
+   * Overrides the default button label with a custom React node.
+   *
+   * When defined, you're responsible for updating the custom label
+   * when the data needs updating (the `needsUpdate` prop)
+   * or is loading (the `isLoading` prop).
+   */
+  children?: ReactNode;
+
   /**
    * Show the "Click to apply" tooltip
    */
@@ -45,7 +59,9 @@ export type EuiSuperUpdateButtonProps = {
    * Remove completely with `false` or provide your own list of breakpoints.
    */
   responsive?: false | EuiBreakpointSize[];
-} & Partial<Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick'>>;
+} & Partial<
+  Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick' | 'children'>
+>;
 
 export class EuiSuperUpdateButton extends Component<
   EuiSuperUpdateButtonInternalProps & EuiSuperUpdateButtonProps
@@ -104,6 +120,7 @@ export class EuiSuperUpdateButton extends Component<
 
   render() {
     const {
+      children,
       className,
       needsUpdate,
       isLoading,
@@ -122,43 +139,6 @@ export class EuiSuperUpdateButton extends Component<
 
     const classes = classNames('euiSuperUpdateButton', className);
 
-    let buttonText = (
-      <EuiI18n
-        token="euiSuperUpdateButton.refreshButtonLabel"
-        default="Refresh"
-      />
-    );
-    if (needsUpdate || isLoading) {
-      buttonText = isLoading ? (
-        <EuiI18n
-          token="euiSuperUpdateButton.updatingButtonLabel"
-          default="Updating"
-        />
-      ) : (
-        <EuiI18n
-          token="euiSuperUpdateButton.updateButtonLabel"
-          default="Update"
-        />
-      );
-    }
-
-    let tooltipContent;
-    if (isDisabled) {
-      tooltipContent = (
-        <EuiI18n
-          token="euiSuperUpdateButton.cannotUpdateTooltip"
-          default="Cannot update"
-        />
-      );
-    } else if (needsUpdate && !isLoading) {
-      tooltipContent = (
-        <EuiI18n
-          token="euiSuperUpdateButton.clickToApplyTooltip"
-          default="Click to apply"
-        />
-      );
-    }
-
     const sharedButtonProps = {
       color: needsUpdate || isLoading ? 'success' : 'primary',
       iconType: needsUpdate || isLoading ? 'kqlFunction' : 'refresh',
@@ -167,10 +147,12 @@ export class EuiSuperUpdateButton extends Component<
       isLoading: isLoading,
     };
 
+    const buttonContent = this.renderButtonContent();
+
     return (
       <EuiToolTip
         ref={this.setTootipRef}
-        content={tooltipContent}
+        content={this.renderTooltipContent()}
         position="bottom"
         {...toolTipProps}
       >
@@ -190,7 +172,7 @@ export class EuiSuperUpdateButton extends Component<
               }}
               {...rest}
             >
-              {buttonText}
+              {buttonContent}
             </EuiButton>
           </EuiShowFor>
           <EuiHideFor sizes={responsive || 'none'}>
@@ -202,11 +184,64 @@ export class EuiSuperUpdateButton extends Component<
               textProps={restTextProps}
               {...rest}
             >
-              {buttonText}
+              {buttonContent}
             </EuiButton>
           </EuiHideFor>
         </>
       </EuiToolTip>
     );
+  }
+
+  private renderButtonContent(): ReactNode {
+    const { children, isLoading, needsUpdate } = this.props;
+
+    if (children) {
+      return children;
+    }
+
+    if (isLoading) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.updatingButtonLabel"
+          default="Updating"
+        />
+      );
+    }
+
+    if (needsUpdate) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.updateButtonLabel"
+          default="Update"
+        />
+      );
+    }
+
+    return (
+      <EuiI18n
+        token="euiSuperUpdateButton.refreshButtonLabel"
+        default="Refresh"
+      />
+    );
+  }
+
+  private renderTooltipContent(): ReactNode {
+    if (this.props.isDisabled) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.cannotUpdateTooltip"
+          default="Cannot update"
+        />
+      );
+    }
+
+    if (this.props.needsUpdate && !this.props.isLoading) {
+      return (
+        <EuiI18n
+          token="euiSuperUpdateButton.clickToApplyTooltip"
+          default="Click to apply"
+        />
+      );
+    }
   }
 }

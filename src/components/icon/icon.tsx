@@ -296,14 +296,12 @@ export class EuiIconClass extends PureComponent<
     } else {
       const Svg = icon;
 
-      // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
-      const isAriaHidden =
-        icon === empty ||
-        !(
-          this.props['aria-label'] ||
-          this.props['aria-labelledby'] ||
-          this.props.title
-        );
+      // If there is no aria-label, aria-labelledby, or title it gets aria-hidden true
+      const isAriaHidden = !(
+        this.props['aria-label'] ||
+        this.props['aria-labelledby'] ||
+        this.props.title
+      );
 
       // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
       //  The svg aria-labelledby attribute gets this titleId
@@ -326,7 +324,7 @@ export class EuiIconClass extends PureComponent<
           data-is-loaded={isLoaded || undefined}
           data-is-loading={isLoading || undefined}
           {...rest}
-          aria-hidden={isAriaHidden || undefined}
+          aria-hidden={isAriaHidden || rest['aria-hidden']}
         />
       );
     }

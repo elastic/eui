@@ -53,7 +53,7 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
       >
         <span
           aria-current="page"
-          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-isTruncatedLast-onlyChild-euiTextColor-default"
+          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild-isTruncatedLast-euiTextColor-default"
           title="Breadcrumb"
         >
           Breadcrumb

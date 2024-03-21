@@ -77,6 +77,11 @@ export const superUpdateButtonConfig = () => {
 
   propsToUse.onClick = simulateFunction(propsToUse.onClick, true);
 
+  propsToUse.children = {
+    ...propsToUse.children,
+    type: PropTypes.String,
+  };
+
   return {
     config: {
       componentName: 'EuiSuperUpdateButton',
