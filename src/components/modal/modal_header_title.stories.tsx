@@ -6,8 +6,12 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
+import { EuiModal } from './modal';
+import { EuiModalHeader } from './modal_header';
 import {
   EuiModalHeaderTitle,
   EuiModalHeaderTitleProps,
@@ -23,6 +27,15 @@ const meta: Meta<EuiModalHeaderTitleProps> = {
   args: {
     component: 'h1',
   },
+  decorators: [
+    (Story) => (
+      <EuiModal onClose={action('onClose')}>
+        <EuiModalHeader>
+          <Story />
+        </EuiModalHeader>
+      </EuiModal>
+    ),
+  ],
 };
 
 export default meta;

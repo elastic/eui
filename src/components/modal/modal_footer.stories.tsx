@@ -6,13 +6,23 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
+import { EuiModal } from './modal';
 import { EuiModalFooter, EuiModalFooterProps } from './modal_footer';
 
 const meta: Meta<EuiModalFooterProps> = {
   title: 'Layout/EuiModal/EuiModalFooter',
   component: EuiModalFooter,
+  decorators: [
+    (Story) => (
+      <EuiModal onClose={action('onClose')}>
+        <Story />
+      </EuiModal>
+    ),
+  ],
 };
 
 export default meta;

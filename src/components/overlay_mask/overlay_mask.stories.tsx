@@ -6,19 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { disableStorybookControls } from '../../../.storybook/utils';
-import { EuiButton } from '../button';
-import { EuiHeader } from '../header';
-import { EuiSpacer } from '../spacer';
 import { EuiOverlayMask, EuiOverlayMaskProps } from './overlay_mask';
+import { EuiHeader } from '../header';
 
 const meta: Meta<EuiOverlayMaskProps> = {
   title: 'Utilities/EuiOverlayMask',
   component: EuiOverlayMask,
-  argTypes: disableStorybookControls(['maskRef']),
+  argTypes: {
+    children: { control: { type: 'text' } },
+    ...disableStorybookControls(['maskRef']),
+  },
   // Component defaults
   args: {
     headerZindexLocation: 'above',
@@ -28,29 +29,11 @@ const meta: Meta<EuiOverlayMaskProps> = {
 export default meta;
 type Story = StoryObj<EuiOverlayMaskProps>;
 
-const StatefulPlayground = (props: EuiOverlayMaskProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  return (
+export const Playground: Story = {
+  render: (args) => (
     <div>
       <EuiHeader position="fixed" />
-      <EuiSpacer size="xxl" />
-      <EuiButton size="s" onClick={() => setIsOpen(!isOpen)}>
-        Toggle Overlay
-      </EuiButton>
-      {isOpen && (
-        <EuiOverlayMask {...props}>
-          {props.children ?? (
-            <EuiButton onClick={() => setIsOpen(false)}>
-              Close Overlay
-            </EuiButton>
-          )}
-        </EuiOverlayMask>
-      )}
+      <EuiOverlayMask {...args} />
     </div>
-  );
-};
-
-export const Playground: Story = {
-  render: (args) => <StatefulPlayground {...args} />,
+  ),
 };

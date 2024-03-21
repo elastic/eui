@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -18,8 +18,6 @@ import {
   EuiConfirmModal,
   EuiConfirmModalProps,
 } from './confirm_modal';
-
-import { EuiButton } from '../button';
 
 const meta: Meta<EuiConfirmModalProps> = {
   title: 'Layout/EuiConfirmModal',
@@ -52,37 +50,14 @@ type Story = StoryObj<EuiConfirmModalProps>;
 const onCancel = action('onCancel');
 const onConfirm = action('onConfirm');
 
-const StatefulConfirmModal = (props: EuiConfirmModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-  return (
-    <>
-      <EuiButton size="s" onClick={() => setIsOpen(!isOpen)}>
-        Toggle ConfirmModal
-      </EuiButton>
-      {isOpen && (
-        <EuiConfirmModal
-          {...props}
-          onConfirm={(...args) => {
-            setIsOpen(false);
-            onConfirm(...args);
-          }}
-          onCancel={(...args) => {
-            setIsOpen(false);
-            onCancel(...args);
-          }}
-        />
-      )}
-    </>
-  );
-};
-
 export const Playground: Story = {
   args: {
     title: 'Confirm modal title',
     children: 'Confirm modal content',
     confirmButtonText: 'Confirm',
+    cancelButtonText: 'Cancel',
     onCancel,
     onConfirm,
   },
-  render: (args) => <StatefulConfirmModal {...args} />,
+  render: (args) => <EuiConfirmModal {...args} />,
 };

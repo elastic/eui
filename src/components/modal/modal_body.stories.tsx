@@ -6,13 +6,23 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
+import { EuiModal } from './modal';
 import { EuiModalBody, EuiModalBodyProps } from './modal_body';
 
 const meta: Meta<EuiModalBodyProps> = {
   title: 'Layout/EuiModal/EuiModalBody',
   component: EuiModalBody,
+  decorators: [
+    (Story) => (
+      <EuiModal onClose={action('onClose')}>
+        <Story />
+      </EuiModal>
+    ),
+  ],
 };
 
 export default meta;
