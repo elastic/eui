@@ -13,7 +13,7 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import {
   useEuiBackgroundColorCSS,
   useEuiPaddingCSS,
@@ -107,12 +107,11 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   element,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
   // Shadows are only allowed when there's a white background (plain)
   const canHaveShadow = !hasBorder && color === 'plain';
   const canHaveBorder = color === 'plain' || color === 'transparent';
 
-  const styles = euiPanelStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPanelStyles);
   const cssStyles = [
     styles.euiPanel,
     grow && styles.grow,
