@@ -10,7 +10,7 @@
  * argTypes configurations
  */
 
-import type { ArgTypes, Meta, Preview, StoryObj } from '@storybook/react';
+import type { Args, ArgTypes, Meta, Preview, StoryObj } from '@storybook/react';
 
 type StorybookConfig<T> = Meta<T> | StoryObj<T> | Preview;
 
@@ -120,12 +120,18 @@ const _updateArgTypes = <Props>(
   const newArgTypes = { ...currentArgTypes };
 
   for (const propName of propNames) {
-    const currentValue = newArgTypes?.[propName] ?? {};
+    const currentArgTypeValue = newArgTypes?.[propName] ?? ({} as Args);
+    const currentControlValue = currentArgTypeValue.hasOwnProperty(key)
+      ? currentArgTypeValue[key]
+      : ({} as Record<string, any>);
+
     const newValue =
-      typeof value === 'object' ? { ...currentValue?.[key], ...value } : value;
+      typeof value === 'object' && typeof currentArgTypeValue[key] === 'object'
+        ? { ...currentControlValue, ...value }
+        : value;
 
     newArgTypes[propName] = {
-      ...currentValue,
+      ...currentArgTypeValue,
       [key]: newValue,
     };
   }
