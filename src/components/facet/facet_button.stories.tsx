@@ -38,7 +38,6 @@ const meta: Meta<EuiFacetButtonProps> = {
 moveStorybookControlsToCategory(
   meta,
   [
-    'buttonRef',
     'contentProps',
     'element',
     'fullWidth',
