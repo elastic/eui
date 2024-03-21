@@ -431,8 +431,13 @@ export const CollapsedStateInLocalStorage: Story = {
       </>
     );
   },
-  argTypes: hideStorybookControls(['aria-label', 'side', 'width']),
 };
+
+hideStorybookControls(CollapsedStateInLocalStorage, [
+  'aria-label',
+  'side',
+  'width',
+]);
 
 export const GlobalCSSVariable: Story = {
   render: ({ side, ...args }) => (
@@ -451,12 +456,13 @@ export const GlobalCSSVariable: Story = {
       </EuiBottomBar>
     </>
   ),
-  argTypes: hideStorybookControls([
-    'aria-label',
-    'initialIsCollapsed',
-    'onCollapseToggle',
-  ]),
 };
+
+hideStorybookControls(GlobalCSSVariable, [
+  'aria-label',
+  'initialIsCollapsed',
+  'onCollapseToggle',
+]);
 
 const MockConsumerFlyout: FunctionComponent = () => {
   const [flyoutIsOpen, setFlyoutOpen] = useState(false);

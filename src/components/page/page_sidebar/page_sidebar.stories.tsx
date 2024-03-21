@@ -67,13 +67,6 @@ export const StickyOffset: Story = {
     sticky: {
       control: 'object',
     },
-    // This story demos the sticky functionality; removing other props to prevent confusion
-    ...hideStorybookControls<EuiPageSidebarProps>([
-      'minWidth',
-      'paddingSize',
-      'hasEmbellish',
-      'responsive',
-    ]),
   },
   render: ({ ...args }) => (
     <EuiPage
@@ -105,3 +98,11 @@ export const StickyOffset: Story = {
     </EuiPage>
   ),
 };
+
+// This story demos the sticky functionality; removing other props to prevent confusion
+hideStorybookControls(StickyOffset, [
+  'minWidth',
+  'paddingSize',
+  'hasEmbellish',
+  'responsive',
+]);

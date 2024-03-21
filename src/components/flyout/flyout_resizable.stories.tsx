@@ -26,23 +26,6 @@ const meta: Meta<EuiFlyoutResizableProps> = {
     // TODO: `size` control isn't working correctly for whatever reason (appears to be a Storybook bug
     // as manually adding `&args=size:s` to the URL gets erased by Storybook)
     as: { control: 'text' },
-    // Stateful flyouts are already tested via default EuiFlyout stories, hide non-relevant props
-    // so that focus remains on the props of this component that affect resizing
-    ...hideStorybookControls([
-      'onClose',
-      'outsideClickCloses',
-      'closeButtonPosition',
-      'hideCloseButton',
-      'closeButtonProps',
-      'focusTrapProps',
-      'includeFixedHeadersInFocusTrap',
-      'ownFocus',
-      'maskProps',
-      'pushAnimation',
-      'pushMinBreakpoint',
-      'paddingSize',
-      'style',
-    ]),
     onResize: { action: 'onResize' },
   },
   args: {
@@ -52,6 +35,24 @@ const meta: Meta<EuiFlyoutResizableProps> = {
     minWidth: 200,
   },
 };
+
+// Stateful flyouts are already tested via default EuiFlyout stories, hide non-relevant props
+// so that focus remains on the props of this component that affect resizing
+hideStorybookControls(meta, [
+  'onClose',
+  'outsideClickCloses',
+  'closeButtonPosition',
+  'hideCloseButton',
+  'closeButtonProps',
+  'focusTrapProps',
+  'includeFixedHeadersInFocusTrap',
+  'ownFocus',
+  'maskProps',
+  'pushAnimation',
+  'pushMinBreakpoint',
+  'paddingSize',
+  'style',
+]);
 
 export default meta;
 type Story = StoryObj<EuiFlyoutResizableProps>;

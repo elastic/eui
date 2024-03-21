@@ -8,13 +8,12 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../.storybook/utils';
 
+import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiButton } from '../button';
 import { EuiFieldText } from '../form';
 import { EuiSpacer } from '../spacer';
 import { EuiPanel } from '../panel';
-
 import { EuiProvider } from '../provider';
 import { EuiFocusTrap, EuiFocusTrapProps } from './focus_trap';
 
@@ -24,7 +23,6 @@ const meta: Meta<EuiFocusTrapProps> = {
   component: EuiFocusTrap,
   argTypes: {
     returnFocus: { type: 'boolean' },
-    ...hideStorybookControls(['style']),
   },
   args: {
     // Component defaults
@@ -38,6 +36,8 @@ const meta: Meta<EuiFocusTrapProps> = {
     scrollLock: false,
   },
 };
+
+hideStorybookControls(meta, ['style']);
 
 export default meta;
 type Story = StoryObj<EuiFocusTrapProps>;

@@ -14,7 +14,6 @@ import { EuiHorizontalRule, EuiHorizontalRuleProps } from './horizontal_rule';
 const meta: Meta<EuiHorizontalRuleProps> = {
   title: 'Layout/EuiHorizontalRule',
   component: EuiHorizontalRule,
-  argTypes: {},
   // Component defaults
   args: {
     size: 'full',
@@ -25,6 +24,6 @@ const meta: Meta<EuiHorizontalRuleProps> = {
 export default meta;
 type Story = StoryObj<EuiHorizontalRuleProps>;
 
-export const Playground: Story = {
-  argTypes: hideStorybookControls(['aria-label']),
-};
+export const Playground: Story = {};
+
+hideStorybookControls(Playground, ['aria-label']);

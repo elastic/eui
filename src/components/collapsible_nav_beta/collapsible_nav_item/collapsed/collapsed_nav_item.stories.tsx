@@ -28,7 +28,6 @@ export const Link: Story = {
       <EuiCollapsedNavItem {...args} />
     </div>
   ),
-  argTypes: hideStorybookControls(['accordionProps', 'isCollapsible', 'items']),
   args: {
     title: 'Collapsed nav item',
     icon: 'home',
@@ -37,13 +36,14 @@ export const Link: Story = {
   },
 };
 
+hideStorybookControls(Link, ['accordionProps', 'isCollapsible', 'items']);
+
 export const Accordion: Story = {
   render: ({ ...args }) => (
     <div className="eui-displayInlineBlock">
       <EuiCollapsedNavItem {...args} />
     </div>
   ),
-  argTypes: hideStorybookControls(['href', 'linkProps']),
   args: {
     title: 'Collapsed nav item',
     icon: 'home',
@@ -54,3 +54,5 @@ export const Accordion: Story = {
     ],
   },
 };
+
+hideStorybookControls(Accordion, ['href', 'linkProps']);

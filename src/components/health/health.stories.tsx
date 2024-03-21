@@ -27,9 +27,10 @@ export default meta;
 type Story = StoryObj<EuiHealthProps>;
 
 export const Playground: Story = {
-  argTypes: hideStorybookControls(['aria-label']),
   args: {
     children: 'Status',
     color: 'success',
   },
 };
+
+hideStorybookControls(Playground, ['aria-label']);
