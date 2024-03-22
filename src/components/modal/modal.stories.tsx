@@ -6,19 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { useGeneratedHtmlId } from '../../services';
 import { EuiButton, EuiButtonEmpty } from '../button';
-import {
-  EuiFieldText,
-  EuiForm,
-  EuiFormProps,
-  EuiFormRow,
-  EuiSwitch,
-} from '../form';
+import { EuiFieldText, EuiForm, EuiFormRow } from '../form';
 
 import { EuiModalHeader } from './modal_header';
 import { EuiModalHeaderTitle } from './modal_header_title';
@@ -62,13 +55,6 @@ export const Playground: Story = {
   },
 };
 
-export const InitialFocus: Story = {
-  args: {
-    initialFocus: '[name=popswitch]',
-  },
-  render: (args) => <StatefulFormModal {...args} />,
-};
-
 export const ToggleExample: Story = {
   args: {
     children: (
@@ -88,6 +74,48 @@ export const ToggleExample: Story = {
     ),
   },
   render: (args) => <StatefulModal {...args} />,
+};
+
+export const InitialFocus: Story = {
+  args: {
+    initialFocus: '[name=popfirst]',
+  },
+  render: (args) => {
+    const handleOnSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      action('onSubmit')();
+    };
+    return (
+      <StatefulModal aria-labelledby="modalTitleId" {...args}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle id="modalTitleId">
+            Modal title
+          </EuiModalHeaderTitle>
+        </EuiModalHeader>
+
+        <EuiModalBody>
+          <EuiForm id="modalFormId" component="form">
+            <EuiFormRow label="A text field">
+              <EuiFieldText name="popfirst" />
+            </EuiFormRow>
+          </EuiForm>
+        </EuiModalBody>
+
+        <EuiModalFooter>
+          <EuiButtonEmpty onClick={action('onCancel')}>Cancel</EuiButtonEmpty>
+
+          <EuiButton
+            type="submit"
+            form="modalFormId"
+            fill
+            onClick={handleOnSubmit}
+          >
+            Save
+          </EuiButton>
+        </EuiModalFooter>
+      </StatefulModal>
+    );
+  },
 };
 
 /* Story content components */
@@ -110,80 +138,5 @@ const StatefulModal = (props: EuiModalProps) => {
         />
       )}
     </>
-  );
-};
-
-const StatefulFormModal = (props: EuiModalProps) => {
-  const { children, ...rest } = props;
-  const [isOpen, setIsOpen] = useState(true);
-  const modalFormId = useGeneratedHtmlId({ prefix: 'modalForm' });
-  const modalTitleId = useGeneratedHtmlId();
-
-  const handleOnClose = () => setIsOpen(false);
-
-  return (
-    <>
-      <EuiButton size="s" onClick={() => setIsOpen(!isOpen)}>
-        Toggle Modal
-      </EuiButton>
-      {isOpen && (
-        <EuiModal
-          {...rest}
-          onClose={(...args) => {
-            setIsOpen(false);
-            onClose(...args);
-          }}
-        >
-          <EuiModalHeader>
-            <EuiModalHeaderTitle id={modalTitleId}>
-              Modal title
-            </EuiModalHeaderTitle>
-          </EuiModalHeader>
-
-          <EuiModalBody>
-            <ExampleForm id={modalFormId} />
-          </EuiModalBody>
-
-          <EuiModalFooter>
-            <EuiButtonEmpty onClick={handleOnClose}>Cancel</EuiButtonEmpty>
-
-            <EuiButton
-              type="submit"
-              form={modalFormId}
-              onClick={handleOnClose}
-              fill
-            >
-              Save
-            </EuiButton>
-          </EuiModalFooter>
-        </EuiModal>
-      )}
-    </>
-  );
-};
-
-const ExampleForm = ({ id }: Partial<EuiFormProps>) => {
-  const modalFormSwitchId = useGeneratedHtmlId({ prefix: 'modalFormSwitch' });
-
-  const [isSwitchChecked, setIsSwitchChecked] = useState(true);
-  const onSwitchChange = () =>
-    setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
-
-  return (
-    <EuiForm id={id} component="form">
-      <EuiFormRow>
-        <EuiSwitch
-          id={modalFormSwitchId}
-          name="popswitch"
-          label="Cool modal form"
-          checked={isSwitchChecked}
-          onChange={onSwitchChange}
-        />
-      </EuiFormRow>
-
-      <EuiFormRow label="A text field">
-        <EuiFieldText name="popfirst" />
-      </EuiFormRow>
-    </EuiForm>
   );
 };

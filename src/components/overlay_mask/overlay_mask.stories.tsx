@@ -31,9 +31,9 @@ type Story = StoryObj<EuiOverlayMaskProps>;
 
 export const Playground: Story = {
   render: (args) => (
-    <div>
+    <>
       <EuiHeader position="fixed" />
       <EuiOverlayMask {...args} />
-    </div>
+    </>
   ),
 };
