@@ -7,9 +7,14 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
-import { render } from '../../../test/rtl';
 
 import { EuiHeaderLinks, GUTTER_SIZES } from './header_links';
 
@@ -36,8 +41,8 @@ describe('EuiHeaderLinks', () => {
     });
   });
 
-  describe('popover props', () => {
-    test('is rendered', () => {
+  describe('mobile menu/popover', () => {
+    it('renders various popover props', () => {
       const { container } = render(
         <EuiHeaderLinks
           popoverBreakpoints={['xs', 's', 'm', 'l', 'xl']}
@@ -52,12 +57,29 @@ describe('EuiHeaderLinks', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('is never rendered with "none"', () => {
+    it('never renders a popover with "none" breakpoint', () => {
       const { container } = render(
-        <EuiHeaderLinks popoverBreakpoints={'none'} />
+        <EuiHeaderLinks popoverBreakpoints="none" />
       );
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(container.querySelector('.euiPopover')).toBeNull();
+    });
+
+    it('passes a callback that closes the menu/popover to children render props', () => {
+      const { getByLabelText, getByText } = render(
+        <EuiHeaderLinks popoverBreakpoints="all">
+          {(closePopover) => (
+            <a href="#" onClick={closePopover}>
+              This link should close the popover
+            </a>
+          )}
+        </EuiHeaderLinks>
+      );
+
+      fireEvent.click(getByLabelText('Open menu'));
+      waitForEuiPopoverOpen();
+      fireEvent.click(getByText('This link should close the popover'));
+      waitForEuiPopoverClose();
     });
   });
 });

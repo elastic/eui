@@ -9,7 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { euiScreenReaderOnlyStyles } from '../accessibility/screen_reader_only/screen_reader_only.styles';
 
@@ -56,8 +56,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
   const screenReaderOnlyStyles =
     euiScreenReaderOnlyStyles(showOnFocus).euiScreenReaderOnly;
 
-  const euiTheme = useEuiTheme();
-  const styles = euiResizableCollapseButtonStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiResizableCollapseButtonStyles);
 
   const collapsedStyles = [
     styles.collapsed.collapsed,

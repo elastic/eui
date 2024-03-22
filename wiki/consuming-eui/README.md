@@ -11,7 +11,7 @@ yarn add @elastic/eui
 Note that EUI has [several `peerDependencies` requirements](../../package.json) that will also need to be installed if starting with a blank project.
 
 ```bash
-yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/css moment prop-types
+yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/css moment
 ```
 
 ## Requirements and dependencies
