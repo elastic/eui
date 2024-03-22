@@ -227,16 +227,33 @@ describe('EuiSelectableListItem', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('isVirtualized can be false', () => {
-      const { container } = render(
-        <EuiSelectableList
-          options={options}
-          isVirtualized={false}
-          {...selectableListRequiredProps}
-        />
-      );
+    describe('isVirtualized={false}', () => {
+      it('renders', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            isVirtualized={false}
+          />
+        );
 
-      expect(container.firstChild).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('maintains the passed height when false', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            isVirtualized={false}
+            height={300}
+          />
+        );
+
+        expect(container.querySelector('.euiSelectableList__list')).toHaveStyle(
+          'block-size: 300px'
+        );
+      });
     });
 
     test('searchable enables correct screen reader instructions', () => {
