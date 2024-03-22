@@ -44,6 +44,7 @@ const meta: Meta<EuiMarkdownFormatProps> = {
       control: { type: 'radio' },
       options: [undefined, ...ALIGNMENTS],
     },
+    ...hideStorybookControls(['aria-label']),
   },
   // Component defaults
   args: {
@@ -63,7 +64,6 @@ export const Playground: Story = {
       ['textAlign', 'color', 'grow'],
       'EuiText props'
     ),
-    ...hideStorybookControls(['aria-label']),
   },
   args: {
     children: initialContent,

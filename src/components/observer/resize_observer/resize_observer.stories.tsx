@@ -25,8 +25,7 @@ const meta: Meta<EuiResizeObserverProps> = {
 export default meta;
 type Story = StoryObj<EuiResizeObserverProps>;
 
-const StatefulPlayground = (props: EuiResizeObserverProps) => {
-  const { onResize, ...rest } = props;
+const StatefulPlayground = ({ onResize, ...rest }: EuiResizeObserverProps) => {
   const [paddingSize, setPaddingSize] = useState<EuiPaddingSize>('s');
   const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
   const [height, setHeight] = useState(0);
