@@ -16,17 +16,12 @@ import React, {
   useCallback,
   forwardRef,
 } from 'react';
-import type { SerializedStyles, CSSObject } from '@emotion/react';
 
 import { useUpdateEffect } from '../hooks';
 import { useEuiTheme, UseEuiTheme } from './hooks';
 
-type Styles = SerializedStyles | CSSObject | string | null;
-type StylesMaps = Record<string, Styles | Record<string, Styles>>;
-// NOTE: We're specifically using a WeakMap instead of a Map in order to allow
-// unmounted components to have their styles garbage-collected by the browser
-// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
-type MemoizedStylesMap = WeakMap<Function, StylesMaps>;
+type StylesMap = Record<string, any>; // Typically an object of serialized css`` styles, but can have any amount of nesting, so it's not worth it to try and strictly type this
+type MemoizedStylesMap = WeakMap<Function, StylesMap>;
 
 export const EuiThemeMemoizedStylesContext = createContext<MemoizedStylesMap>(
   new WeakMap()
@@ -85,7 +80,7 @@ const getMemoizedStyles = (
  * per-theme
  */
 export const useEuiMemoizedStyles = <
-  T extends (theme: UseEuiTheme) => StylesMaps
+  T extends (theme: UseEuiTheme) => StylesMap
 >(
   stylesGenerator: T
 ): ReturnType<T> => {
@@ -97,7 +92,7 @@ export const useEuiMemoizedStyles = <
     [stylesGenerator, memoizedStyles, euiThemeContext]
   );
 
-  return memoizedComponentStyles as ReturnType<T>;
+  return memoizedComponentStyles;
 };
 
 /**

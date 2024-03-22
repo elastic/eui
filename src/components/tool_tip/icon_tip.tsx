@@ -9,6 +9,7 @@
 import React, { FunctionComponent } from 'react';
 
 import { PropsOf } from '../common';
+import { useEuiI18n } from '../i18n';
 import { EuiIcon, IconSize, IconType } from '../icon';
 import { EuiToolTip, EuiToolTipProps } from './tool_tip';
 
@@ -53,22 +54,26 @@ type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &
 
 export const EuiIconTip: FunctionComponent<Props> = ({
   type = 'questionInCircle',
-  'aria-label': ariaLabel = 'Info',
+  'aria-label': ariaLabel,
   color,
   size,
   iconProps,
   position = 'top',
   delay = 'regular',
   ...rest
-}) => (
-  <EuiToolTip position={position} delay={delay} {...rest}>
-    <EuiIcon
-      tabIndex={0}
-      type={type}
-      color={color}
-      size={size}
-      aria-label={ariaLabel}
-      {...iconProps}
-    />
-  </EuiToolTip>
-);
+}) => {
+  const defaultAriaLabel = useEuiI18n('euiIconTip.defaultAriaLabel', 'Info');
+
+  return (
+    <EuiToolTip position={position} delay={delay} {...rest}>
+      <EuiIcon
+        tabIndex={0}
+        type={type}
+        color={color}
+        size={size}
+        aria-label={ariaLabel || defaultAriaLabel}
+        {...iconProps}
+      />
+    </EuiToolTip>
+  );
+};

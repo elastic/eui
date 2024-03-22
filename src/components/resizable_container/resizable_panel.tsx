@@ -17,8 +17,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useGeneratedHtmlId, useEuiTheme } from '../../services';
-import { logicalSizeStyle, euiPaddingSize } from '../../global_styling';
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../services';
+import {
+  logicalSizeStyle,
+  useEuiPaddingSize,
+  useEuiPaddingCSS,
+} from '../../global_styling';
 import { CommonProps } from '../common';
 
 import { useEuiResizableContainerContext } from './context';
@@ -33,7 +37,7 @@ import {
 } from './types';
 import { EuiResizableCollapseButton } from './resizable_collapse_button';
 import {
-  euiResizablePanelStyles,
+  euiResizablePanelStyles as styles,
   euiResizablePanelContentStyles,
 } from './resizable_panel.styles';
 
@@ -233,16 +237,13 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const axis = isHorizontal ? 'horizontal' : 'vertical';
 
-  const euiTheme = useEuiTheme();
-
-  const styles = euiResizablePanelStyles(euiTheme);
   const cssStyles = [
     styles.euiResizablePanel,
     isCollapsed && styles.collapsed,
-    styles.paddingSizes[wrapperPadding],
+    useEuiPaddingCSS()[wrapperPadding],
     wrapperProps?.css,
   ];
-  const contentStyles = euiResizablePanelContentStyles(euiTheme);
+  const contentStyles = useEuiMemoizedStyles(euiResizablePanelContentStyles);
   const contentCssStyles = [
     contentStyles.euiResizablePanel__content,
     scrollable && contentStyles.scrollable,
@@ -261,7 +262,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       : logicalSizeStyle('100%', `${size || innerSize}%`)),
   };
 
-  const padding = euiPaddingSize(euiTheme, paddingSize) || '0px';
+  const padding = useEuiPaddingSize(paddingSize) || '0px';
 
   useEffect(() => {
     if (!registration) return;
