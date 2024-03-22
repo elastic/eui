@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { EuiText } from '../text';
 import {
@@ -18,6 +19,9 @@ import {
 const meta: Meta<EuiOutsideClickDetectorProps> = {
   title: 'Utilities/EuiOutsideClickDetector',
   component: EuiOutsideClickDetector,
+  argTypes: {
+    children: { control: { type: 'text' } },
+  },
 };
 
 export default meta;
@@ -25,14 +29,23 @@ type Story = StoryObj<EuiOutsideClickDetectorProps>;
 
 export const Playground: Story = {
   args: {
-    children: (
-      <EuiText>
-        <p>Click anywhere outside of this text to trigger an alert</p>
-      </EuiText>
-    ),
-    onOutsideClick: () => {
+    children:
+      // cast type here to ensure the control table and output are connected and useful
+      // TODO: remove once the control table can handle more complex types
+      'Click anywhere outside of this text to trigger an alert' as unknown as any,
+    onOutsideClick: (e: Event) => {
+      action('onOutsideClick')(e);
       window.alert('Clicked outside');
     },
   },
-  render: (args) => <EuiOutsideClickDetector {...args} />,
+  render: ({ children, ...rest }: EuiOutsideClickDetectorProps) => {
+    const content = (
+      <EuiText>
+        <p>{children}</p>
+      </EuiText>
+    );
+    return (
+      <EuiOutsideClickDetector {...rest}>{content}</EuiOutsideClickDetector>
+    );
+  },
 };

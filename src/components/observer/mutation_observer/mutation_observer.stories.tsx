@@ -27,9 +27,10 @@ const meta: Meta<EuiMutationObserverProps> = {
 export default meta;
 type Story = StoryObj<EuiMutationObserverProps>;
 
-const StatefulPlayground = (
-  props: Omit<EuiMutationObserverProps, 'onMutation'>
-) => {
+const StatefulPlayground = ({
+  onMutation,
+  ...rest
+}: EuiMutationObserverProps) => {
   const [lastMutation, setLastMutation] = useState('no changes detected');
   const [buttonColor, setButtonColor] = useState<_EuiButtonColor>('primary');
   const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
@@ -42,10 +43,15 @@ const StatefulPlayground = (
     setItems([...items, `Item ${items.length + 1}`]);
   };
 
-  const handleOnMutation = ([{ type }]: MutationRecord[]) => {
+  const handleOnMutation = (
+    mutationRecords: MutationRecord[],
+    mutationObserver: MutationObserver
+  ) => {
+    const [{ type }] = mutationRecords;
     setLastMutation(
       type === 'attributes' ? 'button class name changed' : 'DOM tree changed'
     );
+    onMutation(mutationRecords, mutationObserver);
   };
 
   return (
@@ -57,7 +63,7 @@ const StatefulPlayground = (
       <EuiMutationObserver
         observerOptions={{ subtree: true, attributes: true, childList: true }}
         onMutation={handleOnMutation}
-        {...props}
+        {...rest}
       >
         {(mutationRef) => (
           <div ref={mutationRef}>
