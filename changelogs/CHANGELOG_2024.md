@@ -17,7 +17,7 @@
 - Updated `@types/numeral` to v2.0.5 ([#7594](https://github.com/elastic/eui/pull/7594))
 - Updated `@types/react-window` to 1.8.8 ([#7597](https://github.com/elastic/eui/pull/7597))
 - Updated `prop-types` to v15.18.1 ([#7602](https://github.com/elastic/eui/pull/7602))
-- Removed `prop-types` as a peer depedency, per package recommendation ([#7602](https://github.com/elastic/eui/pull/7602))
+- Removed `prop-types` as a peer dependency, per package recommendation ([#7602](https://github.com/elastic/eui/pull/7602))
 
 **Accessibility**
 
