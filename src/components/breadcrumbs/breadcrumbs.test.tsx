@@ -132,7 +132,7 @@ describe('EuiBreadcrumbs', () => {
             />
           );
           expect(getBreadcrumbClass(getByTestSubject('last'))).toEqual(
-            'emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default'
+            'emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued'
           );
         });
       });
@@ -149,7 +149,7 @@ describe('EuiBreadcrumbs', () => {
             />
           );
           expect(getBreadcrumbClass(getByTestSubject('last'))).toEqual(
-            'emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-default'
+            'emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued'
           );
         });
 
@@ -164,7 +164,7 @@ describe('EuiBreadcrumbs', () => {
             />
           );
           expect(getBreadcrumbClass(getByTestSubject('last'))).toEqual(
-            'emotion-euiBreadcrumb__content-page-euiTextColor-default'
+            'emotion-euiBreadcrumb__content-page-euiTextColor-subdued'
           );
         });
       });
