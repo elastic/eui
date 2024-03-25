@@ -23,8 +23,8 @@ describe('useEuiPaddingSize returns a static padding value', () => {
 });
 
 describe('useEuiPaddingCSS hook returns an object of Emotion padding properties', () => {
-  LOGICAL_SIDES.forEach((side) => {
-    describe(`for side: ${side},`, () => {
+  [...LOGICAL_SIDES, undefined].forEach((side) => {
+    describe(side ? `for side: ${side},` : 'for all sides,', () => {
       const sizes = renderHook(() => useEuiPaddingCSS(side)).result.current;
 
       describe('for each size:', () => {

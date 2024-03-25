@@ -244,17 +244,30 @@ export class EuiSelectableList<T> extends Component<
   };
 
   componentDidUpdate(prevProps: EuiSelectableListProps<T>) {
-    const { activeOptionIndex, visibleOptions, options } = this.props;
+    const { isVirtualized, activeOptionIndex, visibleOptions, options } =
+      this.props;
 
-    if (this.listBoxRef && this.props.searchable !== true) {
-      this.listBoxRef.setAttribute(
-        'aria-activedescendant',
-        `${this.props.makeOptionId(activeOptionIndex)}`
-      );
-    }
+    if (prevProps.activeOptionIndex !== activeOptionIndex) {
+      const { makeOptionId } = this.props;
 
-    if (this.listRef && typeof activeOptionIndex !== 'undefined') {
-      this.listRef.scrollToItem(activeOptionIndex, 'auto');
+      if (this.listBoxRef && this.props.searchable !== true) {
+        this.listBoxRef.setAttribute(
+          'aria-activedescendant',
+          makeOptionId(activeOptionIndex)
+        );
+      }
+
+      if (typeof activeOptionIndex !== 'undefined') {
+        if (isVirtualized) {
+          this.listRef?.scrollToItem(activeOptionIndex, 'auto');
+        } else {
+          const activeOptionId = `#${makeOptionId(activeOptionIndex)}`;
+          const activeOptionEl = this.listBoxRef?.querySelector(activeOptionId);
+          if (activeOptionEl) {
+            activeOptionEl.scrollIntoView({ block: 'nearest' });
+          }
+        }
+      }
     }
 
     if (
@@ -609,10 +622,12 @@ export class EuiSelectableList<T> extends Component<
       ...rest
     } = this.props;
 
+    const heightIsFull = forcedHeight === 'full';
+
     const classes = classNames(
       'euiSelectableList',
       {
-        'euiSelectableList-fullHeight': forcedHeight === 'full',
+        'euiSelectableList-fullHeight': heightIsFull,
         'euiSelectableList-bordered': bordered,
       },
       className
@@ -625,6 +640,7 @@ export class EuiSelectableList<T> extends Component<
         ) : (
           <div
             className="euiSelectableList__list"
+            style={!heightIsFull ? { blockSize: forcedHeight } : undefined}
             ref={this.removeScrollableTabStop}
           >
             <ul ref={this.setListBoxRef}>

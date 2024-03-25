@@ -9,15 +9,13 @@
 import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 
-export const euiResizableContainerStyles = () => {
-  return {
-    euiResizableContainer: css`
-      display: flex;
-      ${logicalCSS('width', '100%')}
-    `,
-    horizontal: css``,
-    vertical: css`
-      flex-direction: column;
-    `,
-  };
+export const euiResizableContainerStyles = {
+  euiResizableContainer: css`
+    display: flex;
+    ${logicalCSS('width', '100%')}
+  `,
+  horizontal: css``,
+  vertical: css`
+    flex-direction: column;
+  `,
 };

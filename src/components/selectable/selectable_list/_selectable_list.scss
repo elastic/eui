@@ -20,6 +20,8 @@
 .euiSelectableList__list {
   @include euiOverflowShadow;
   @include euiScrollBar;
+  overflow: auto;
+  position: relative; // Chrome/Edge loses its mind without this and doesn't render `mask-image` correctly
 
   &:focus,
   & > ul:focus {
