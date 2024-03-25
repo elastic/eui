@@ -1,3 +1,9 @@
+## [`v93.5.1`](https://github.com/elastic/eui/releases/v93.5.1)
+
+**Bug fixes**
+
+- Fixed unvirtualized `EuiSelectable`s to not cause Jest/jsdom errors on active option change ([#7618](https://github.com/elastic/eui/pull/7618))
+
 ## [`v93.5.0`](https://github.com/elastic/eui/releases/v93.5.0)
 
 - `EuiHeaderLinks` now accepts a `children` render function that will be passed a `closeMobilePopover` callback, allowing consumers to close the mobile popover by its content ([#7603](https://github.com/elastic/eui/pull/7603))
