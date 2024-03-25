@@ -61,7 +61,7 @@
     "@hello-pangea/dnd": "^16.3.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
-    "@types/react-window": "^1.8.5",
+    "@types/react-window": "^1.8.8",
     "@types/refractor": "^3.4.0",
     "chroma-js": "^2.4.2",
     "classnames": "^2.5.1",
