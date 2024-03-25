@@ -77,7 +77,7 @@ exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverCo
 exports[`EuiBreadcrumbContent renders interactive breadcrumbs with href or onClick 1`] = `
 <div>
   <a
-    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isUnderlined-isInteractive"
     href="#"
     rel="noreferrer"
     title="Link"
@@ -85,7 +85,7 @@ exports[`EuiBreadcrumbContent renders interactive breadcrumbs with href or onCli
     Link
   </a>
   <button
-    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isUnderlined-isInteractive"
     title="Button"
     type="button"
   >

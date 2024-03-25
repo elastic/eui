@@ -84,41 +84,5 @@ describe('EuiBreadcrumbContent', () => {
       );
       expect(getByText('Home')).toHaveAttribute('aria-current', 'page');
     });
-
-    it('colors both interactive and non-interactive breadcrumbs text-colored', () => {
-      const { getByTestSubject } = render(
-        <>
-          <EuiBreadcrumbContent
-            type="page"
-            text="Home"
-            data-test-subj="control" // Not the last breadcrumb / not highlighted
-          />
-          <EuiBreadcrumbContent
-            type="page"
-            text="Home"
-            data-test-subj="text"
-            highlightLastBreadcrumb
-          />
-          <EuiBreadcrumbContent
-            type="page"
-            text="Home"
-            data-test-subj="link"
-            href="#"
-            highlightLastBreadcrumb
-          />
-          <EuiBreadcrumbContent
-            type="page"
-            text="Home"
-            data-test-subj="popover"
-            popoverContent="popover"
-            highlightLastBreadcrumb
-          />
-        </>
-      );
-      expect(getByTestSubject('control')).toHaveStyleRule('color', '#646a77');
-      expect(getByTestSubject('text')).toHaveStyleRule('color', '#343741');
-      expect(getByTestSubject('link')).toHaveStyleRule('color', '#343741');
-      expect(getByTestSubject('popover')).toHaveStyleRule('color', '#343741');
-    });
   });
 });
