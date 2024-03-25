@@ -29,9 +29,6 @@ const truncateSingleSource = require('!!raw-loader!./truncate_single');
 import Max from './max';
 const maxSource = require('!!raw-loader!./max');
 
-import Color from './color';
-const colorSource = require('!!raw-loader!./color');
-
 import PopoverContent from './popover_content';
 const popoverContentSource = require('!!raw-loader!./popover_content');
 
@@ -332,35 +329,6 @@ export const BreadcrumbsExample = {
         {
           type: GuideSectionTypes.TSX,
           code: popoverContentSource,
-        },
-      ],
-    },
-    {
-      title: 'Color for emphasis',
-      text: (
-        <>
-          <p>
-            Each breadcrumb extends the color options from{' '}
-            <Link to="/navigation/link">
-              <strong>EuiLink</strong>
-            </Link>{' '}
-            when either an <EuiCode>href</EuiCode> or <EuiCode>onClick</EuiCode>{' '}
-            is applied . You can change the default color of a breadcrumb to add
-            emphasis or indicate state like <EuiCode>{"'danger'"}</EuiCode> for
-            an error. However, use caution not to use color alone.
-          </p>
-          <p>
-            Please also note that link colors cannot be overriden for{' '}
-            <EuiCode>type={'"application"'}</EuiCode> breadcrumbs.
-          </p>
-        </>
-      ),
-      props,
-      demo: <Color />,
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: colorSource,
         },
       ],
     },
