@@ -66,8 +66,9 @@ export type EuiBreadcrumbsProps = CommonProps & {
   type?: 'page' | 'application';
 
   /**
-   * Whether the last breadcrumb should visually (and accessibly, to screen readers)
-   * be highlighted as the current page. Defaults to true.
+   * Whether the last breadcrumb should be semantically highlighted as the
+   * current page. (improves accessibility for screen readers users)
+   * Defaults to true.
    */
   lastBreadcrumbIsCurrentPage?: boolean;
 };
@@ -89,7 +90,7 @@ export type EuiBreadcrumbProps = Omit<
      */
     truncate?: boolean;
     /**
-     * Accepts any EuiLink `color` when rendered as one (has `href`, `onClick`, or `popoverContent`)
+     * @deprecated - if a custom color is wanted, use the `css` prop to pass custom css
      */
     color?: EuiLinkColor;
     /**

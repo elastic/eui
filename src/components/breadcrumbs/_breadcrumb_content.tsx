@@ -70,9 +70,13 @@ export const EuiBreadcrumbContent: FunctionComponent<
 
   const isBreadcrumbWithPopover = !!popoverContent;
   const isInteractiveBreadcrumb = href || onClick;
-  const linkColor = color || (highlightLastBreadcrumb ? 'text' : 'subdued');
-  const plainTextColor = highlightLastBreadcrumb ? 'default' : 'subdued'; // Does not inherit `color` prop
+  const linkColor = color || 'subdued';
   const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
+
+  const interactionStyles = [
+    isInteractiveBreadcrumb && styles.isUnderlined,
+    isInteractiveBreadcrumb && !color && styles.isInteractive,
+  ];
 
   return (
     <EuiInnerText>
@@ -83,7 +87,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           title,
           'aria-current': ariaCurrent,
           className: classes,
-          css: [...cssStyles, ...truncationStyles],
+          css: [...cssStyles, ...truncationStyles, ...interactionStyles],
         };
 
         if (isBreadcrumbWithPopover) {
@@ -91,7 +95,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           return (
             <EuiBreadcrumbPopover
               {...popoverButtonProps}
-              breadcrumbCss={cssStyles}
+              breadcrumbCss={[...cssStyles]}
               truncationCss={truncationStyles}
               isLastBreadcrumb={isLastBreadcrumb}
               type={type}
@@ -118,7 +122,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           );
         } else {
           return (
-            <EuiTextColor color={plainTextColor} cloneElement>
+            <EuiTextColor color="subdued" cloneElement>
               <span {...baseProps} {...rest}>
                 {text}
               </span>

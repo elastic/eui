@@ -7,6 +7,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import type { EuiBreadcrumbsProps } from './types';
 import { EuiBreadcrumbs } from './breadcrumbs';
@@ -36,11 +37,17 @@ export const Playground: Story = {
       },
       {
         text: 'Breadcrumb 2',
+        onClick: action('onClick'),
+      },
+      {
+        text: 'Breadcrumb 3',
         href: '#',
       },
       {
+        text: 'Breadcrumb 4',
+      },
+      {
         text: 'Current',
-        href: '#',
       },
     ],
   },

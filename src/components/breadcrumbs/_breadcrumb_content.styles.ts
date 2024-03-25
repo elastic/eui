@@ -25,7 +25,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumb__content: css`
-      font-weight: ${euiTheme.font.weight.medium};
+      font-weight: ${euiTheme.font.weight.regular};
       text-align: center;
       vertical-align: baseline;
     `,
@@ -38,6 +38,24 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       /* This removes the default breadcrumb max-width while ensuring that the last breadcrumb
          still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
+    `,
+    // TODO: combine styles of isUnderlined and isInteractive once `color` prop is removed
+    isUnderlined: css`
+      &:not(:disabled) {
+        text-decoration: underline;
+      }
+    `,
+    isInteractive: css`
+      &:not(:disabled) {
+        &:hover,
+        &:focus {
+          color: ${euiTheme.colors.text};
+        }
+      }
+
+      &:disabled {
+        color: ${euiTheme.colors.subduedText};
+      }
     `,
 
     // Types
