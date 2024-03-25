@@ -4901,14 +4901,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 106,
+        "line": 114,
         "column": 4,
-        "index": 3070
+        "index": 3416
       },
       "end": {
-        "line": 106,
+        "line": 114,
         "column": 75,
-        "index": 3141
+        "index": 3487
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
@@ -4919,14 +4919,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 120,
+        "line": 131,
         "column": 4,
-        "index": 3472
+        "index": 3915
       },
       "end": {
-        "line": 120,
+        "line": 131,
         "column": 69,
-        "index": 3537
+        "index": 3980
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
@@ -5765,14 +5765,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 88,
         "column": 6,
-        "index": 2724
+        "index": 2709
       },
       "end": {
-        "line": 98,
+        "line": 97,
         "column": 7,
-        "index": 3053
+        "index": 3038
       }
     },
     "filepath": "src/components/resizable_container/resizable_button.tsx"
@@ -5783,14 +5783,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 88,
         "column": 6,
-        "index": 2724
+        "index": 2709
       },
       "end": {
-        "line": 98,
+        "line": 97,
         "column": 7,
-        "index": 3053
+        "index": 3038
       }
     },
     "filepath": "src/components/resizable_container/resizable_button.tsx"
@@ -5801,14 +5801,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 320,
+        "line": 321,
         "column": 32,
-        "index": 9679
+        "index": 9643
       },
       "end": {
-        "line": 323,
+        "line": 324,
         "column": 3,
-        "index": 9774
+        "index": 9738
       }
     },
     "filepath": "src/components/resizable_container/resizable_panel.tsx"
@@ -6784,6 +6784,24 @@
       }
     },
     "filepath": "src/components/toast/toast.tsx"
+  },
+  {
+    "token": "euiIconTip.defaultAriaLabel",
+    "defString": "Info",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 65,
+        "column": 27,
+        "index": 1855
+      },
+      "end": {
+        "line": 65,
+        "column": 76,
+        "index": 1904
+      }
+    },
+    "filepath": "src/components/tool_tip/icon_tip.tsx"
   },
   {
     "token": "euiTourFooter.endTour",
