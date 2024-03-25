@@ -17,20 +17,22 @@ import {
 const meta: Meta<EuiPinnableListGroupProps> = {
   title: 'Display/EuiPinnableListGroup',
   component: EuiPinnableListGroup,
-  argTypes: moveStorybookControlsToCategory(
-    [
-      'bordered',
-      'color',
-      'flush',
-      'gutterSize',
-      'maxWidth',
-      'showToolTips',
-      'size',
-      'wrapText',
-    ],
-    'EuiListGroup props'
-  ),
 };
+
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'bordered',
+    'color',
+    'flush',
+    'gutterSize',
+    'maxWidth',
+    'showToolTips',
+    'size',
+    'wrapText',
+  ],
+  'EuiListGroup props'
+);
 
 export default meta;
 type Story = StoryObj<EuiPinnableListGroupProps>;

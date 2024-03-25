@@ -44,7 +44,6 @@ const meta: Meta<EuiMarkdownFormatProps> = {
       control: { type: 'radio' },
       options: [undefined, ...ALIGNMENTS],
     },
-    ...hideStorybookControls(['aria-label']),
   },
   // Component defaults
   args: {
@@ -54,17 +53,18 @@ const meta: Meta<EuiMarkdownFormatProps> = {
   },
 };
 
+moveStorybookControlsToCategory(
+  meta,
+  ['textAlign', 'color', 'grow'],
+  'EuiText props'
+);
+
+hideStorybookControls(meta, ['aria-label']);
+
 export default meta;
 type Story = StoryObj<EuiMarkdownFormatProps>;
 
 export const Playground: Story = {
-  // TODO: move this to the component level once utils are updated to fully support merged configs (#7583)
-  argTypes: {
-    ...moveStorybookControlsToCategory(
-      ['textAlign', 'color', 'grow'],
-      'EuiText props'
-    ),
-  },
   args: {
     children: initialContent,
   },

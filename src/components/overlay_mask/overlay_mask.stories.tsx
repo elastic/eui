@@ -18,13 +18,14 @@ const meta: Meta<EuiOverlayMaskProps> = {
   component: EuiOverlayMask,
   argTypes: {
     children: { control: { type: 'text' } },
-    ...disableStorybookControls(['maskRef']),
   },
   // Component defaults
   args: {
     headerZindexLocation: 'above',
   },
 };
+
+disableStorybookControls(meta, ['maskRef']);
 
 export default meta;
 type Story = StoryObj<EuiOverlayMaskProps>;

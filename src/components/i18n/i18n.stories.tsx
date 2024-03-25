@@ -26,7 +26,6 @@ type Story = StoryObj<Props>;
 export const SingleToken: Story = {
   argTypes: {
     default: { control: { type: 'text' } },
-    ...hideStorybookControls(['children', 'tokens', 'defaults']),
   },
   args: {
     token: 'euiI18nBasic.basicexample',
@@ -35,10 +34,9 @@ export const SingleToken: Story = {
   },
 };
 
+hideStorybookControls(SingleToken, ['children', 'tokens', 'defaults']);
+
 export const Interpolation: Story = {
-  argTypes: {
-    ...hideStorybookControls(['children', 'tokens', 'defaults']),
-  },
   args: {
     token: 'euiI18nInterpolation.clickedCount',
     default: 'Clicked on button {count} times.',
@@ -46,10 +44,9 @@ export const Interpolation: Story = {
   },
 };
 
+hideStorybookControls(Interpolation, ['children', 'tokens', 'defaults']);
+
 export const MultipleTokens: Story = {
-  argTypes: {
-    ...hideStorybookControls(['token', 'default']),
-  },
   args: {
     tokens: ['euiI18n.title', 'euiI18n.description'],
     defaults: ['Card title', 'Card description'],
@@ -64,10 +61,9 @@ export const MultipleTokens: Story = {
   ),
 };
 
+hideStorybookControls(MultipleTokens, ['token', 'default']);
+
 export const MultipleTokenInterpolation: Story = {
-  argTypes: {
-    ...hideStorybookControls(['token', 'default']),
-  },
   args: {
     tokens: ['euiI18nMulti.title', 'euiI18nMulti.description'],
     defaults: [
@@ -85,3 +81,5 @@ export const MultipleTokenInterpolation: Story = {
     </EuiI18n>
   ),
 };
+
+hideStorybookControls(MultipleTokenInterpolation, ['token', 'default']);

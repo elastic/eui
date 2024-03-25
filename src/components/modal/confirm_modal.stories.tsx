@@ -31,10 +31,6 @@ const meta: Meta<EuiConfirmModalProps> = {
       options: [undefined, CONFIRM_BUTTON, CANCEL_BUTTON],
     },
     buttonColor: { control: { type: 'select' }, options: BUTTON_COLORS },
-    ...moveStorybookControlsToCategory(
-      ['role', 'maxWidth', 'initialFocus'],
-      'EuiModal props'
-    ),
   },
   args: {
     buttonColor: 'primary',
@@ -42,6 +38,12 @@ const meta: Meta<EuiConfirmModalProps> = {
     maxWidth: true,
   },
 };
+
+moveStorybookControlsToCategory(
+  meta,
+  ['role', 'maxWidth', 'initialFocus'],
+  'EuiModal props'
+);
 
 export default meta;
 type Story = StoryObj<EuiConfirmModalProps>;

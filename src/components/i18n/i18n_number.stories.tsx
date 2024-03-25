@@ -22,7 +22,6 @@ export default meta;
 type Story = StoryObj<EuiI18nNumberProps>;
 
 export const SingleValue: Story = {
-  argTypes: hideStorybookControls(['children', 'values']),
   args: {
     value: 99,
   },
@@ -33,8 +32,9 @@ export const SingleValue: Story = {
   ),
 };
 
+hideStorybookControls(SingleValue, ['children', 'values']);
+
 export const MultipleValues: Story = {
-  argTypes: hideStorybookControls(['value']),
   args: {
     values: [0, 1, 2],
     children: (values: ReactChild[]) => (
@@ -48,3 +48,5 @@ export const MultipleValues: Story = {
     ),
   },
 };
+
+hideStorybookControls(MultipleValues, ['value']);
