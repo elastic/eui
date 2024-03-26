@@ -264,7 +264,9 @@ export class EuiSelectableList<T> extends Component<
           const activeOptionId = `#${makeOptionId(activeOptionIndex)}`;
           const activeOptionEl = this.listBoxRef?.querySelector(activeOptionId);
           if (activeOptionEl) {
-            activeOptionEl.scrollIntoView({ block: 'nearest' });
+            // TODO: we can remove scrollIntoView's conditional chaining once jsdom stubs it
+            // @see https://github.com/jsdom/jsdom/issues/1695
+            activeOptionEl.scrollIntoView?.({ block: 'nearest' });
           }
         }
       }
