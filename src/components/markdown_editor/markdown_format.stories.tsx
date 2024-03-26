@@ -52,13 +52,11 @@ const meta: Meta<EuiMarkdownFormatProps> = {
     processingPluginList: defaultProcessingPlugins,
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   ['textAlign', 'color', 'grow'],
   'EuiText props'
 );
-
 hideStorybookControls(meta, ['aria-label']);
 
 export default meta;

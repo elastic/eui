@@ -36,7 +36,6 @@ const meta: Meta<EuiSideNavProps> = {
     ),
   ],
 };
-
 disableStorybookControls(meta, ['children']);
 
 export default meta;
@@ -157,7 +156,6 @@ export const MobileSideNav: Story = {
     },
   },
 };
-
 // This story demos the side nav on smaller screens; removing other props to streamline controls
 hideStorybookControls(MobileSideNav, [
   'aria-label',
@@ -204,7 +202,6 @@ export const RenderItem: Story = {
     ],
   },
 };
-
 // This story demos the renderItem prop; removing other props to streamline controls
 hideStorybookControls(RenderItem, [
   'aria-label',

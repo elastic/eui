@@ -32,5 +32,4 @@ export const Playground: Story = {
     color: 'success',
   },
 };
-
 hideStorybookControls(Playground, ['aria-label']);

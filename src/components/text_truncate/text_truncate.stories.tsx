@@ -72,7 +72,6 @@ export const ResizeObserver: Story = {
     onResize: console.log,
   },
 };
-
 disableStorybookControls(ResizeObserver, ['width']);
 
 export const StartEndAnchorForSearch: Story = {
@@ -122,7 +121,6 @@ export const StartEndAnchorForSearch: Story = {
     truncationPosition: 30,
   },
 };
-
 hideStorybookControls(StartEndAnchorForSearch, [
   // Disable uncontrollable props
   'truncation',

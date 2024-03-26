@@ -25,5 +25,4 @@ export default meta;
 type Story = StoryObj<EuiHorizontalRuleProps>;
 
 export const Playground: Story = {};
-
 hideStorybookControls(Playground, ['aria-label']);

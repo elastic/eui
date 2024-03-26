@@ -43,5 +43,4 @@ export const Playground: Story = {
     children: 'Button',
   },
 };
-
 disableStorybookControls(Playground, ['buttonRef']);

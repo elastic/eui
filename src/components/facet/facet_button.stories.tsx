@@ -34,7 +34,6 @@ const meta: Meta<EuiFacetButtonProps> = {
     isSelected: false,
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   [
@@ -52,7 +51,6 @@ moveStorybookControlsToCategory(
   ],
   'EuiButtonEmpty props'
 );
-
 disableStorybookControls(meta, ['buttonRef']);
 
 export default meta;

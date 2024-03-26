@@ -41,7 +41,6 @@ const meta: Meta<EuiCollapsibleNavProps> = {
   // TODO: Improve props inherited from EuiFlyout, ideally through
   // a DRY import from `flyout.stories.tsx` once that's created
 };
-
 disableStorybookControls(meta, ['button']);
 
 export default meta;

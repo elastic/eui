@@ -36,7 +36,6 @@ const meta: Meta<EuiFocusTrapProps> = {
     scrollLock: false,
   },
 };
-
 hideStorybookControls(meta, ['style']);
 
 export default meta;

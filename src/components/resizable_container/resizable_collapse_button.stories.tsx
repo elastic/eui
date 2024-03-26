@@ -87,7 +87,6 @@ export const ProductionUsage: Story = {
     </EuiResizableContainer>
   ),
 };
-
 // Not testable via `EuiResizableContainer`, so hide these props from the controls
 hideStorybookControls(ProductionUsage, [
   'externalPosition',

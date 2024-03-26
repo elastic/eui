@@ -25,7 +25,6 @@ const meta: Meta<EuiListGroupItemProps> = {
     showToolTip: false,
   },
 };
-
 disableStorybookControls(meta, ['buttonRef']);
 
 export default meta;

@@ -131,7 +131,6 @@ const preview: Preview = {
     },
   },
 };
-
 // Due to CommonProps, these props appear on almost every Story, but generally
 // aren't super useful to test - let's disable them by default and (if needed)
 // individual stories can re-enable them, e.g. by passing

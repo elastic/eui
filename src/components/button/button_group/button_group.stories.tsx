@@ -47,7 +47,6 @@ const meta: Meta<EuiButtonGroupProps> = {
     isIconOnly: false,
   },
 };
-
 disableStorybookControls(meta, ['type']);
 
 export default meta;

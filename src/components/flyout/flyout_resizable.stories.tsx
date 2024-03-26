@@ -35,7 +35,6 @@ const meta: Meta<EuiFlyoutResizableProps> = {
     minWidth: 200,
   },
 };
-
 // Stateful flyouts are already tested via default EuiFlyout stories, hide non-relevant props
 // so that focus remains on the props of this component that affect resizing
 hideStorybookControls(meta, [

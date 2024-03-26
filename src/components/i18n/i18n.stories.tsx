@@ -33,7 +33,6 @@ export const SingleToken: Story = {
       'This is the English copy that would be replaced by a translation defined by the euiI18nBasic.basicexample token.',
   },
 };
-
 hideStorybookControls(SingleToken, ['children', 'tokens', 'defaults']);
 
 export const Interpolation: Story = {
@@ -43,7 +42,6 @@ export const Interpolation: Story = {
     values: { count: 3 },
   },
 };
-
 hideStorybookControls(Interpolation, ['children', 'tokens', 'defaults']);
 
 export const MultipleTokens: Story = {
@@ -60,7 +58,6 @@ export const MultipleTokens: Story = {
     </EuiI18n>
   ),
 };
-
 hideStorybookControls(MultipleTokens, ['token', 'default']);
 
 export const MultipleTokenInterpolation: Story = {
@@ -81,5 +78,4 @@ export const MultipleTokenInterpolation: Story = {
     </EuiI18n>
   ),
 };
-
 hideStorybookControls(MultipleTokenInterpolation, ['token', 'default']);

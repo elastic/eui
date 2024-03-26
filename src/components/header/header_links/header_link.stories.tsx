@@ -22,7 +22,6 @@ const meta: Meta<EuiHeaderLinkProps> = {
     isActive: false,
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   [
@@ -56,5 +55,4 @@ export const Playground: Story = {
     children: 'Header link',
   },
 };
-
 disableStorybookControls(Playground, ['buttonRef']);

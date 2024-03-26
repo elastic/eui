@@ -28,7 +28,6 @@ const meta: Meta<EuiContextMenuItemProps> = {
     disabled: false,
   },
 };
-
 disableStorybookControls(meta, ['buttonRef']);
 
 export default meta;

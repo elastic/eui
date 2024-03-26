@@ -31,7 +31,6 @@ export const SingleValue: Story = {
     </EuiText>
   ),
 };
-
 hideStorybookControls(SingleValue, ['children', 'values']);
 
 export const MultipleValues: Story = {
@@ -48,5 +47,4 @@ export const MultipleValues: Story = {
     ),
   },
 };
-
 hideStorybookControls(MultipleValues, ['value']);

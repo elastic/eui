@@ -24,7 +24,6 @@ const meta: Meta<EuiBreadcrumbsProps> = {
     type: 'application',
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   [

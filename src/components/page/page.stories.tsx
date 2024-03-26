@@ -56,7 +56,6 @@ export const RestrictWidth: Story = {
   },
   render: ({ ...args }) => <EuiPage {...args}>{_pageContent}</EuiPage>,
 };
-
 // This story displays the restrictWidth functionality; removing other props to prevent confusion
 hideStorybookControls(RestrictWidth, ['grow', 'direction', 'paddingSize']);
 

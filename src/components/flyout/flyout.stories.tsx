@@ -122,7 +122,6 @@ export const PushFlyouts: Story = {
     pushMinBreakpoint: 'xs',
   },
 };
-
 hideStorybookControls(PushFlyouts, [
   'onClose',
   'aria-label',

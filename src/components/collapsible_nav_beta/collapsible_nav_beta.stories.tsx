@@ -432,7 +432,6 @@ export const CollapsedStateInLocalStorage: Story = {
     );
   },
 };
-
 hideStorybookControls(CollapsedStateInLocalStorage, [
   'aria-label',
   'side',
@@ -457,7 +456,6 @@ export const GlobalCSSVariable: Story = {
     </>
   ),
 };
-
 hideStorybookControls(GlobalCSSVariable, [
   'aria-label',
   'initialIsCollapsed',

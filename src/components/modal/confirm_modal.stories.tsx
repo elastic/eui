@@ -38,7 +38,6 @@ const meta: Meta<EuiConfirmModalProps> = {
     maxWidth: true,
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   ['role', 'maxWidth', 'initialFocus'],

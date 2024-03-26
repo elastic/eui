@@ -18,7 +18,6 @@ const meta: Meta<EuiPinnableListGroupProps> = {
   title: 'Display/EuiPinnableListGroup',
   component: EuiPinnableListGroup,
 };
-
 moveStorybookControlsToCategory(
   meta,
   [

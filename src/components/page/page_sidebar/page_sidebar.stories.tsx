@@ -98,7 +98,6 @@ export const StickyOffset: Story = {
     </EuiPage>
   ),
 };
-
 // This story demos the sticky functionality; removing other props to prevent confusion
 hideStorybookControls(StickyOffset, [
   'minWidth',

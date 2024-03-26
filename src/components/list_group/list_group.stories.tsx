@@ -25,7 +25,6 @@ const meta: Meta<EuiListGroupProps> = {
     showToolTips: false,
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   ['color', 'size'],

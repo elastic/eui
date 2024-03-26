@@ -26,7 +26,6 @@ const meta: Meta<EuiSkipLinkProps> = {
     overrideLinkBehavior: true,
   },
 };
-
 moveStorybookControlsToCategory(
   meta,
   ['color', 'fill', 'size'],
@@ -41,7 +40,6 @@ export const Playground: Story = {
     children: 'Skip to content',
   },
 };
-
 // Hide certain irrelevent EuiButton props for better DX
 hideStorybookControls(Playground, [
   'aria-label',

@@ -35,7 +35,6 @@ export const Link: Story = {
     linkProps: { target: '_blank' },
   },
 };
-
 hideStorybookControls(Link, ['accordionProps', 'isCollapsible', 'items']);
 
 export const Accordion: Story = {
@@ -54,5 +53,4 @@ export const Accordion: Story = {
     ],
   },
 };
-
 hideStorybookControls(Accordion, ['href', 'linkProps']);

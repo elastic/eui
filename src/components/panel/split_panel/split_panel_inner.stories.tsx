@@ -26,7 +26,6 @@ const meta: Meta<_EuiSplitPanelInnerProps> = {
     grow: true,
   },
 };
-
 disableStorybookControls(meta, ['panelRef']);
 
 export default meta;
