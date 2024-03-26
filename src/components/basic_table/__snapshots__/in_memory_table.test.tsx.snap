@@ -24,7 +24,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
     </label>
   </div>
   <div
-    class="euiTableSortMobile"
+    class="euiTableSortMobile emotion-euiTableSortMobile"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
