@@ -18,7 +18,6 @@ import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { EuiInnerText } from '../inner_text';
-import { EuiTextColor } from '../text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
@@ -74,7 +73,6 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
 
   const interactionStyles = [
-    isInteractiveBreadcrumb && styles.isUnderlined,
     isInteractiveBreadcrumb && !color && styles.isInteractive,
   ];
 
@@ -122,11 +120,9 @@ export const EuiBreadcrumbContent: FunctionComponent<
           );
         } else {
           return (
-            <EuiTextColor color="subdued" cloneElement>
-              <span {...baseProps} {...rest}>
-                {text}
-              </span>
-            </EuiTextColor>
+            <span {...baseProps} {...rest}>
+              {text}
+            </span>
           );
         }
       }}
