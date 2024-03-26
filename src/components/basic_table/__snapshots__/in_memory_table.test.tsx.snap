@@ -118,12 +118,12 @@ exports[`EuiInMemoryTable empty array 1`] = `
       </div>
     </div>
     <table
-      class="euiTable css-0 euiTable--responsive"
+      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
       id="__table_generated-id"
       tabindex="-1"
     >
       <caption
-        class="euiTableCaption emotion-euiScreenReaderOnly"
+        class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
       />
       <thead>
         <tr>
@@ -227,12 +227,12 @@ exports[`EuiInMemoryTable with items 1`] = `
       </div>
     </div>
     <table
-      class="euiTable css-0 euiTable--responsive"
+      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
       id="__table_generated-id"
       tabindex="-1"
     >
       <caption
-        class="euiTableCaption emotion-euiScreenReaderOnly"
+        class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
       />
       <thead>
         <tr>

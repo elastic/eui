@@ -1,32 +1,3 @@
-.euiTable {
-  @include euiFontSizeS;
-  @include euiNumberFormat;
-
-  width: 100%;
-  table-layout: fixed;
-  border: none;
-  border-collapse: collapse;
-  background-color: $euiColorEmptyShade;
-
-  &.euiTable--auto {
-    table-layout: auto;
-  }
-}
-
-.euiTableCaption {
-  position: relative;
-}
-
-// Compressed styles not for mobile
-@include euiBreakpoint('m', 'l', 'xl') {
-  .euiTable--compressed {
-    .euiTableCellContent {
-      @include euiFontSizeXS;
-      padding: $euiTableCellContentPaddingCompressed;
-    }
-  }
-}
-
 .euiTableFooterCell,
 .euiTableHeaderCell {
   @include euiTableCell;
@@ -146,8 +117,6 @@
 
 /**
  * 1. Vertically align all children.
- * 2. The padding on this div allows the ellipsis to show if the content is truncated. If
- *    the padding was on the cell, the ellipsis would be cropped.
  * 4. Prevent very long single words (e.g. the name of a field in a document) from overflowing
  *    the cell.
  */
@@ -155,7 +124,6 @@
   overflow: hidden; /* 4 */
   display: flex;
   align-items: center; /* 1 */
-  padding: $euiTableCellContentPadding; /* 2 */
 }
 
 .euiTableCellContent__text {
