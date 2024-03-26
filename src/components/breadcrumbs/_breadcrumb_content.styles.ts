@@ -28,6 +28,12 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.regular};
       text-align: center;
       vertical-align: baseline;
+
+      /* TODO: Remove this ':not()' selector and simply have this be
+      baseline CSS once the 'color' prop is removed */
+      &:not(.euiLink) {
+        color: ${euiTheme.colors.subduedText};
+      }
     `,
 
     // Truncation styles
@@ -39,22 +45,14 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
          still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
     `,
-    // TODO: combine styles of isUnderlined and isInteractive once `color` prop is removed
-    isUnderlined: css`
-      &:not(:disabled) {
-        text-decoration: underline;
-      }
-    `,
     isInteractive: css`
       &:not(:disabled) {
+        text-decoration: underline;
+
         &:hover,
         &:focus {
           color: ${euiTheme.colors.text};
         }
-      }
-
-      &:disabled {
-        color: ${euiTheme.colors.subduedText};
       }
     `,
 
