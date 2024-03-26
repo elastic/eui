@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiInMemoryTable behavior mobile header 1`] = `
+<div
+  class="euiTableHeaderMobile emotion-euiTableHeaderMobile"
+>
+  <div
+    class="euiCheckbox emotion-euiCheckbox"
+  >
+    <input
+      aria-label="Select all rows"
+      class="euiCheckbox__input"
+      id="_selection_column-checkbox_generated-id_mobile"
+      type="checkbox"
+    />
+    <div
+      class="euiCheckbox__square"
+    />
+    <label
+      class="euiCheckbox__label"
+      for="_selection_column-checkbox_generated-id_mobile"
+    >
+      Select all rows
+    </label>
+  </div>
+  <div
+    class="euiTableSortMobile"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        >
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            Sorting
+          </span>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiInMemoryTable behavior pagination 1`] = `
 <nav
   aria-label="Pagination for table: "
@@ -103,20 +155,6 @@ exports[`EuiInMemoryTable empty array 1`] = `
   data-test-subj="test subject string"
 >
   <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-      </div>
-    </div>
     <table
       class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
       id="__table_generated-id"
@@ -212,20 +250,6 @@ exports[`EuiInMemoryTable with items 1`] = `
   data-test-subj="test subject string"
 >
   <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-      </div>
-    </div>
     <table
       class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
       id="__table_generated-id"

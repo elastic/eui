@@ -30,7 +30,6 @@ import {
 import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiCheckbox } from '../form';
 
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
@@ -564,15 +563,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
     } = this.props;
 
     const mobileHeader = responsive ? (
-      <EuiTableHeaderMobile>
-        <EuiFlexGroup
-          responsive={false}
-          justifyContent="spaceBetween"
-          alignItems="baseline"
-        >
-          <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
-        </EuiFlexGroup>
+      <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
+        {this.renderSelectAll(true)}
+        {this.renderTableMobileSort()}
       </EuiTableHeaderMobile>
     ) : undefined;
     const caption = this.renderTableCaption();
