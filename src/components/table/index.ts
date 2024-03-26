@@ -15,8 +15,6 @@ export type { EuiTableFooterCellProps } from './table_footer_cell';
 export { EuiTableFooterCell } from './table_footer_cell';
 export type { EuiTableHeaderProps } from './table_header';
 export { EuiTableHeader } from './table_header';
-export type { EuiTableHeaderButtonProps } from './table_header_button';
-export { EuiTableHeaderButton } from './table_header_button';
 export type { EuiTableHeaderCellProps } from './table_header_cell';
 export { EuiTableHeaderCell } from './table_header_cell';
 export type { EuiTableHeaderCellCheckboxProps } from './table_header_cell_checkbox';
