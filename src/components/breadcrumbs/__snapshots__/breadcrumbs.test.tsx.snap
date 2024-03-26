@@ -14,7 +14,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -28,7 +28,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Metazoans"
       >
         Metazoans
@@ -68,7 +68,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         title="Reptiles"
         type="button"
       >
@@ -80,7 +80,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -94,7 +94,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -118,7 +118,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -132,7 +132,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Metazoans"
       >
         Metazoans
@@ -172,7 +172,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -185,7 +185,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Edit"
       >
         Edit
@@ -197,7 +197,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     >
       <a
         aria-current="page"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncatedLast-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncatedLast-isInteractive"
         href="#"
         rel="noreferrer"
         title="test"
@@ -222,7 +222,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -236,7 +236,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Metazoans"
       >
         Metazoans
@@ -247,7 +247,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Chordates"
       >
         Chordates
@@ -258,7 +258,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Nebulosa subspecies is also a real mouthful, especially for creatures without mouths"
       >
         Nebulosa subspecies is also a real mouthful, especially for creatures without mouths
@@ -269,7 +269,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Tetrapods"
       >
         Tetrapods
@@ -280,7 +280,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         title="Reptiles"
         type="button"
       >
@@ -292,7 +292,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -306,7 +306,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -359,7 +359,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -382,7 +382,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -396,7 +396,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Metazoans"
       >
         Metazoans
@@ -407,7 +407,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Chordates"
       >
         Chordates
@@ -418,7 +418,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Nebulosa subspecies is also a real mouthful, especially for creatures without mouths"
       >
         Nebulosa subspecies is also a real mouthful, especially for creatures without mouths
@@ -429,7 +429,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Tetrapods"
       >
         Tetrapods
@@ -440,7 +440,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         title="Reptiles"
         type="button"
       >
@@ -452,7 +452,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -466,7 +466,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -489,7 +489,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -503,7 +503,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Metazoans"
       >
         Metazoans
@@ -543,7 +543,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         title="Reptiles"
         type="button"
       >
@@ -555,7 +555,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -569,7 +569,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -592,7 +592,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -606,7 +606,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
         title="Metazoans"
       >
         Metazoans
@@ -646,7 +646,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         title="Reptiles"
         type="button"
       >
@@ -658,7 +658,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isUnderlined-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -672,7 +672,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -725,7 +725,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -748,7 +748,7 @@ exports[`EuiBreadcrumbs truncation setting truncate on breadcrumbs parents casca
       data-test-subj="euiBreadcrumb"
     >
       <span
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
         title="A"
       >
         A
@@ -760,7 +760,7 @@ exports[`EuiBreadcrumbs truncation setting truncate on breadcrumbs parents casca
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
         title="B"
       >
         B

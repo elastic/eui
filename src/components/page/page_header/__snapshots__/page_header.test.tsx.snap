@@ -258,7 +258,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           data-test-subj="euiBreadcrumb"
         >
           <a
-            class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isUnderlined"
+            class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated-isInteractive"
             data-test-subj="breadcrumbsAnimals"
             href="#"
             rel="noreferrer"
@@ -273,7 +273,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-subdued"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast"
             title="Edit"
           >
             Edit
