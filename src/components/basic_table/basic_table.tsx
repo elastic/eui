@@ -50,6 +50,7 @@ import {
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
 } from '../table';
+import { euiTableCaptionStyles } from '../table/table.styles';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
@@ -694,7 +695,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     }
     return (
       <EuiScreenReaderOnly>
-        <caption className="euiTableCaption">
+        <caption css={euiTableCaptionStyles} className="euiTableCaption">
           <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
