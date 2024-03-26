@@ -262,10 +262,6 @@ interface BasicTableProps<T extends object>
    */
   pagination?: undefined;
   /**
-   * If true, will convert table to cards in mobile view
-   */
-  responsive?: boolean;
-  /**
    * Applied to `EuiTableRow`
    */
   rowProps?: object | RowPropsCallback<T>;
@@ -529,6 +525,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       compressed,
       itemIdToExpandedRowMap,
       responsive,
+      responsiveBreakpoint,
       isSelectable,
       isExpandable,
       hasActions,
@@ -558,7 +555,13 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsive, tableLayout, loading } = this.props;
+    const {
+      compressed,
+      responsive,
+      responsiveBreakpoint,
+      tableLayout,
+      loading,
+    } = this.props;
 
     const mobileHeader = responsive ? (
       <EuiTableHeaderMobile>
@@ -582,6 +585,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         <EuiTable
           id={this.tableId}
           tableLayout={tableLayout}
+          responsiveBreakpoint={responsiveBreakpoint}
           responsive={responsive}
           compressed={compressed}
           css={loading && safariLoadingWorkaround}
