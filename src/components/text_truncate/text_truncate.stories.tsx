@@ -71,8 +71,8 @@ export const ResizeObserver: Story = {
   args: {
     onResize: console.log,
   },
-  argTypes: disableStorybookControls<EuiTextTruncateProps>(['width']),
 };
+disableStorybookControls(ResizeObserver, ['width']);
 
 export const StartEndAnchorForSearch: Story = {
   render: (props) => {
@@ -120,13 +120,13 @@ export const StartEndAnchorForSearch: Story = {
     truncation: 'startEnd',
     truncationPosition: 30,
   },
-  argTypes: hideStorybookControls<EuiTextTruncateProps>([
-    // Disable uncontrollable props
-    'truncation',
-    'truncationPosition',
-    // Disable props that aren't useful for this this demo
-    'truncationOffset',
-    'children',
-    'onResize',
-  ]),
 };
+hideStorybookControls(StartEndAnchorForSearch, [
+  // Disable uncontrollable props
+  'truncation',
+  'truncationPosition',
+  // Disable props that aren't useful for this this demo
+  'truncationOffset',
+  'children',
+  'onResize',
+]);

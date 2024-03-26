@@ -16,10 +16,6 @@ import { EuiListGroupItem } from './list_group_item';
 const meta: Meta<EuiListGroupProps> = {
   title: 'Display/EuiListGroup/EuiListGroup',
   component: EuiListGroup,
-  argTypes: moveStorybookControlsToCategory(
-    ['color', 'size'],
-    'EuiListGroupItem props'
-  ),
   args: {
     flush: false,
     bordered: false,
@@ -29,6 +25,11 @@ const meta: Meta<EuiListGroupProps> = {
     showToolTips: false,
   },
 };
+moveStorybookControlsToCategory(
+  meta,
+  ['color', 'size'],
+  'EuiListGroupItem props'
+);
 
 export default meta;
 type Story = StoryObj<EuiListGroupProps>;

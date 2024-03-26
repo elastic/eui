@@ -15,20 +15,6 @@ import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 const meta: Meta<EuiBreadcrumbsProps> = {
   title: 'Layout/EuiHeader/EuiHeaderBreadcrumbs',
   component: EuiHeaderBreadcrumbs,
-  argTypes: {
-    ...moveStorybookControlsToCategory(
-      [
-        'aria-label',
-        'breadcrumbs',
-        'lastBreadcrumbIsCurrentPage',
-        'max',
-        'responsive',
-        'truncate',
-        'type',
-      ],
-      'EuiBreadcrumbs props'
-    ),
-  },
   args: {
     // Component defaults
     max: 4,
@@ -38,6 +24,19 @@ const meta: Meta<EuiBreadcrumbsProps> = {
     type: 'application',
   },
 };
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'aria-label',
+    'breadcrumbs',
+    'lastBreadcrumbIsCurrentPage',
+    'max',
+    'responsive',
+    'truncate',
+    'type',
+  ],
+  'EuiBreadcrumbs props'
+);
 
 export default meta;
 type Story = StoryObj<EuiBreadcrumbsProps>;

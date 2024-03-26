@@ -18,7 +18,6 @@ const meta: Meta<EuiCollapsibleNavProps> = {
   title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNav',
   component: EuiCollapsibleNav,
   argTypes: {
-    ...disableStorybookControls(['button']),
     as: { options: ['nav', 'div'], control: 'radio' },
     maxWidth: { control: 'number' }, // TODO: also accepts bool | string
   },
@@ -42,6 +41,7 @@ const meta: Meta<EuiCollapsibleNavProps> = {
   // TODO: Improve props inherited from EuiFlyout, ideally through
   // a DRY import from `flyout.stories.tsx` once that's created
 };
+disableStorybookControls(meta, ['button']);
 
 export default meta;
 type Story = StoryObj<EuiCollapsibleNavProps>;

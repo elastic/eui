@@ -28,7 +28,6 @@ export const Link: Story = {
       <EuiCollapsedNavItem {...args} />
     </div>
   ),
-  argTypes: hideStorybookControls(['accordionProps', 'isCollapsible', 'items']),
   args: {
     title: 'Collapsed nav item',
     icon: 'home',
@@ -36,6 +35,7 @@ export const Link: Story = {
     linkProps: { target: '_blank' },
   },
 };
+hideStorybookControls(Link, ['accordionProps', 'isCollapsible', 'items']);
 
 export const Accordion: Story = {
   render: ({ ...args }) => (
@@ -43,7 +43,6 @@ export const Accordion: Story = {
       <EuiCollapsedNavItem {...args} />
     </div>
   ),
-  argTypes: hideStorybookControls(['href', 'linkProps']),
   args: {
     title: 'Collapsed nav item',
     icon: 'home',
@@ -54,3 +53,4 @@ export const Accordion: Story = {
     ],
   },
 };
+hideStorybookControls(Accordion, ['href', 'linkProps']);

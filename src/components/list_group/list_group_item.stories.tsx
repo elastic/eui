@@ -15,7 +15,6 @@ const meta: Meta<EuiListGroupItemProps> = {
   title: 'Display/EuiListGroup/EuiListGroupItem',
   component: EuiListGroupItem,
   argTypes: {
-    ...disableStorybookControls(['buttonRef']),
     iconType: {
       control: { type: 'text' },
     },
@@ -26,6 +25,7 @@ const meta: Meta<EuiListGroupItemProps> = {
     showToolTip: false,
   },
 };
+disableStorybookControls(meta, ['buttonRef']);
 
 export default meta;
 type Story = StoryObj<EuiListGroupItemProps>;

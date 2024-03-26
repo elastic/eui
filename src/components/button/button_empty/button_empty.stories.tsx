@@ -38,8 +38,8 @@ export default meta;
 type Story = StoryObj<EuiButtonEmptyProps>;
 
 export const Playground: Story = {
-  argTypes: disableStorybookControls(['buttonRef']),
   args: {
     children: 'Tertiary action',
   },
 };
+disableStorybookControls(Playground, ['buttonRef']);

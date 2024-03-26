@@ -38,5 +38,5 @@ export const Playground: Story = {
       </div>
     ),
   },
-  argTypes: disableStorybookControls(['children']),
 };
+disableStorybookControls(Playground, ['children']);
