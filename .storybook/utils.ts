@@ -112,10 +112,11 @@ export const hidePanel = {
 const _updateArgTypes = <Props>(
   config: StorybookConfig<Props>,
   propNames: Array<keyof Props>,
-  { key, value }: { key: string; value: Record<string, any> | boolean | string }
+  {
+    key,
+    value,
+  }: { key: string; value: Record<string, string | boolean> | boolean }
 ): StorybookConfig<Props> => {
-  if (!Array.isArray(propNames)) return config;
-
   const currentArgTypes = config.argTypes as Partial<ArgTypes<Props>>;
   const newArgTypes = { ...currentArgTypes };
 
