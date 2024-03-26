@@ -72,9 +72,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const linkColor = color || 'subdued';
   const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
 
-  const interactionStyles = [
-    isInteractiveBreadcrumb && !color && styles.isInteractive,
-  ];
+  const interactionStyles = [isInteractiveBreadcrumb && styles.isInteractive];
 
   return (
     <EuiInnerText>
