@@ -22,8 +22,6 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    // Not allowing compressed styles in mobile view (for now)
-
     thead {
       display: none; // Use mobile versions of selecting and filtering instead
     }
