@@ -49,9 +49,12 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       &:not(:disabled) {
         text-decoration: underline;
 
-        &:hover,
-        &:focus {
-          color: ${euiTheme.colors.text};
+        /* TODO: Remove this 'class*=' selector once the 'color' prop is removed */
+        [class*='euiLink-subdued'] {
+          &:hover,
+          &:focus {
+            color: ${euiTheme.colors.text};
+          }
         }
       }
     `,
