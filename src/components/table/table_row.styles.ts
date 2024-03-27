@@ -23,7 +23,10 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
 
   const cellContentPadding = euiTheme.size.s;
   const mobileColumns = {
-    actions: {}, // TODO
+    actions: {
+      width: euiTheme.size.xxl,
+      offset: mathWithUnits(cellContentPadding, (x) => x * 2),
+    },
     checkbox: {
       width: mathWithUnits(
         [euiTheme.size.xl, euiTheme.size.xs],
@@ -100,6 +103,56 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('left', mobileColumns.checkbox.offset)}
         }
       `,
+      /**
+       * Right column styles + border
+       * Used for cell actions and row expander arrow
+       */
+      hasRightColumn: css`
+        ${logicalCSS('padding-right', mobileColumns.actions.width)}
+
+        &::after {
+          content: '';
+          position: absolute;
+          ${logicalCSS('vertical', 0)}
+          ${logicalCSS('right', mobileColumns.actions.width)}
+          ${logicalCSS('width', euiTheme.border.width.thin)}
+          background-color: ${euiTheme.border.color};
+        }
+      `,
+      rightColumnContent: `
+        position: absolute;
+        ${logicalCSS('right', 0)}
+        ${logicalCSS('min-width', 0)}
+        ${logicalCSS('width', mobileColumns.actions.width)}
+
+        .euiTableCellContent {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: ${euiTheme.size.s};
+          padding: 0;
+        }
+      `,
+      get actions() {
+        return css`
+          .euiTableRowCell--hasActions {
+            ${this.rightColumnContent}
+            ${logicalCSS('top', mobileColumns.actions.offset)}
+          }
+        `;
+      },
+      get expandable() {
+        return css`
+          .euiTableRowCell--isExpander {
+            ${this.rightColumnContent}
+            ${logicalCSS('bottom', mobileColumns.actions.offset)}
+          }
+        `;
+      },
+      /**
+       * TODO: next
+       */
+      expanded: css``,
     },
   };
 };

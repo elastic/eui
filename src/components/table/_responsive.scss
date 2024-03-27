@@ -25,35 +25,6 @@
     }
 
     .euiTableRow {
-      &.euiTableRow-isExpandable,
-      &.euiTableRow-hasActions {
-        @include euiTableActionsBackgroundMobile;
-        padding-right: $euiSizeXXL;
-        position: relative;
-      }
-
-      &.euiTableRow-isExpandable .euiTableRowCell--isExpander,
-      &.euiTableRow-hasActions .euiTableRowCell--hasActions {
-        min-width: 0;
-        width: $euiSizeL;
-        position: absolute;
-        top: $euiTableCellContentPadding + (($euiTableCellContentPadding * $euiLineHeight) - $euiTableCellContentPadding) + $euiSizeXS; // same as row padding-top + cell padding + 1/2 line height
-        right: $euiTableCellContentPadding;
-
-        &::before {
-          display: none; // Don't display table headers
-        }
-
-        .euiTableCellContent {
-          flex-direction: column;
-          padding: 0;
-
-          .euiLink {
-            padding: $euiSizeXS;
-          }
-        }
-      }
-
       // Custom actions
       &:not(.euiTableRow-hasActions) .euiTableRowCell--hasActions:last-child {
         width: 100%;
@@ -64,7 +35,7 @@
           left: 0;
           right: 0;
           height: $euiBorderWidthThin;
-          background-color: $euiTableActionsBorderColor;
+          background-color: $euiBorderColor;
         }
 
         .euiTableCellContent {
@@ -73,16 +44,7 @@
         }
       }
 
-      &.euiTableRow-hasActions.euiTableRow-isExpandable {
-        .euiTableRowCell--isExpander {
-          top: auto;
-          bottom: $euiSize; // same as row padding-bottom
-          right: 0;
-        }
-      }
-
       &.euiTableRow-isExpandedRow {
-        @include euiTableActionsBackgroundMobile;
         margin-top: -$euiTableCellContentPadding * 2;
         position: relative;
         z-index: 2; // on top of its parent/previous row
