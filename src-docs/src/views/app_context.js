@@ -7,7 +7,10 @@ import { translateUsingPseudoLocale } from '../services';
 import { getLocale } from '../store';
 
 import { EuiContext, EuiProvider } from '../../../src/components';
-import { euiStylisPrefixer } from '../../../src/services';
+import {
+  setEuiDevProviderWarning,
+  euiStylisPrefixer,
+} from '../../../src/services';
 import { EUI_THEMES } from '../../../src/themes';
 
 import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
@@ -44,6 +47,7 @@ export const AppContext = ({ children }) => {
   };
 
   const isLocalDev = window.location.host.includes('803');
+  setEuiDevProviderWarning(isLocalDev ? 'error' : 'warn'); // Note: this can't be in a useEffect, otherwise it fires too late for style memoization warnings to error on page reload
 
   return (
     <EuiProvider

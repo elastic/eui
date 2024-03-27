@@ -40,6 +40,12 @@ import { writingModeStyles } from './writing_mode.styles';
 import '../dist/eui_theme_light.css';
 
 /**
+ * Ensure that any provider errors throw & warn us early
+ */
+import { setEuiDevProviderWarning } from '../src/services';
+setEuiDevProviderWarning('error');
+
+/**
  * Prop controls
  */
 
@@ -51,7 +57,7 @@ const preview: Preview = {
     (Story, context) => (
       <EuiProvider
         colorMode={context.globals.colorMode}
-        {...(context.componentId === 'euiprovider' && context.args)}
+        {...(context.componentId === 'theming-euiprovider' && context.args)}
       >
         <div
           css={[

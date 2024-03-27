@@ -14,6 +14,7 @@ import { testOnReactVersion } from '../../test/internal';
 
 import type { UseEuiTheme } from './hooks';
 import { EuiThemeProvider } from './provider';
+import { setEuiDevProviderWarning } from './warning';
 
 import {
   useEuiMemoizedStyles,
@@ -79,11 +80,15 @@ describe('useEuiMemoizedStyles', () => {
   testOnReactVersion(['18'])(
     'throws an error if passed anonymous functions',
     () => {
+      setEuiDevProviderWarning('error');
       expect(() =>
-        renderHook(() => useEuiMemoizedStyles(() => ({})))
+        renderHook(() => useEuiMemoizedStyles(() => ({})), {
+          wrapper: EuiThemeProvider,
+        })
       ).toThrowError(
         'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
       );
+      setEuiDevProviderWarning(undefined);
     }
   );
 });
