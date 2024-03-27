@@ -24,22 +24,7 @@
       @include euiFontSizeM;
     }
 
-    // Make each row a Panel
-    @include euiPanel($selector: '.euiTableRow');
-
     .euiTableRow {
-      @include euiBottomShadowSmall;
-      background-color: map-get($euiPanelBackgroundColorModifiers, 'plain');
-      border-radius: $euiBorderRadius;
-      display: flex;
-      flex-wrap: wrap;
-      padding: $euiTableCellContentPadding;
-      margin-bottom: $euiTableCellContentPadding;
-
-      &:hover {
-        background-color: map-get($euiPanelBackgroundColorModifiers, 'plain');
-      }
-
       &.euiTableRow-isExpandable,
       &.euiTableRow-hasActions {
         @include euiTableActionsBackgroundMobile;
@@ -109,7 +94,6 @@
 
       &.euiTableRow-isExpandedRow {
         @include euiTableActionsBackgroundMobile;
-        @include euiBottomShadowSmall;
         margin-top: -$euiTableCellContentPadding * 2;
         position: relative;
         z-index: 2; // on top of its parent/previous row

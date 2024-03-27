@@ -9,11 +9,19 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, tint, shade, transparentize } from '../../services';
+import {
+  euiBackgroundColor,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
+import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const rowColors = _rowColorVariables(euiThemeContext);
+
+  const cellContentPadding = euiTheme.size.s;
 
   return {
     euiTableRow: css``,
@@ -51,7 +59,18 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     mobile: {
-      mobile: css``,
+      mobile: css`
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        padding: ${cellContentPadding};
+        ${logicalCSS('margin-bottom', cellContentPadding)}
+
+        /* EuiPanel styling */
+        ${euiShadow(euiThemeContext, 's')}
+        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
+        border-radius: ${euiTheme.border.radius.medium};
+      `,
       selected: css`
         &,
         & + .euiTableRow-isExpandedRow {
