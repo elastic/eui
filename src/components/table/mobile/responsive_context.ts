@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { createContext, useContext } from 'react';
 import {
   useIsWithinMinBreakpoint,
   type EuiBreakpointSize,
@@ -32,3 +33,12 @@ export const useIsEuiTableResponsive = (
   const isResponsive = !useIsWithinMinBreakpoint(isBoolean ? '' : breakpoint);
   return isBoolean ? breakpoint : isResponsive;
 };
+
+/**
+ * Context set by parent table components
+ * Hook used by cells to fetch parent isResponsive state
+ */
+export const EuiTableIsResponsiveContext = createContext<boolean>(false);
+
+export const useEuiTableIsResponsive = () =>
+  useContext(EuiTableIsResponsiveContext);

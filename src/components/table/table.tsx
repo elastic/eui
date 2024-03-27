@@ -12,7 +12,10 @@ import classNames from 'classnames';
 import { useEuiMemoizedStyles, type EuiBreakpointSize } from '../../services';
 import { CommonProps } from '../common';
 
-import { useIsEuiTableResponsive } from './mobile/responsive_context';
+import {
+  useIsEuiTableResponsive,
+  EuiTableIsResponsiveContext,
+} from './mobile/responsive_context';
 import { euiTableStyles } from './table.styles';
 
 export interface EuiTableProps
@@ -66,7 +69,9 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
 
   return (
     <table tabIndex={-1} css={cssStyles} className={classes} {...rest}>
-      {children}
+      <EuiTableIsResponsiveContext.Provider value={isResponsive}>
+        {children}
+      </EuiTableIsResponsiveContext.Provider>
     </table>
   );
 };
