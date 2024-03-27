@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { euiFontSize, logicalCSS } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
 
@@ -30,6 +30,9 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
     mobile: {
       mobile: css`
         ${logicalCSS('min-width', '50%')}
+      `,
+      enlarge: css`
+        ${euiFontSize(euiThemeContext, 'm')}
       `,
       rightColumnContent: `
         position: absolute;

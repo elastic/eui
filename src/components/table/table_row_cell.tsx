@@ -140,6 +140,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     ...(isResponsive
       ? [
           styles.mobile.mobile,
+          mobileOptions.enlarge && styles.mobile.enlarge,
           hasActions === 'custom' && styles.mobile.customActions,
           hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
@@ -151,7 +152,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only,
-    'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge,
     [`euiTableRowCell--${valign}`]: valign,
   });
 
