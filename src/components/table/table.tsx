@@ -52,7 +52,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
     useIsEuiTableResponsive(responsiveBreakpoint) && responsive;
 
   const classes = classNames('euiTable', className, {
-    'euiTable--responsive': isResponsive,
+    'euiTable--responsive': responsive,
   });
 
   const styles = useEuiMemoizedStyles(euiTableStyles);
@@ -61,6 +61,7 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
     styles.layout[tableLayout],
     (!compressed || isResponsive) && styles.uncompressed,
     compressed && !isResponsive && styles.compressed,
+    isResponsive ? styles.mobile : styles.desktop,
   ];
 
   return (

@@ -156,7 +156,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
 >
   <div>
     <table
-      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
+      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
       id="__table_generated-id"
       tabindex="-1"
     >
@@ -251,7 +251,7 @@ exports[`EuiInMemoryTable with items 1`] = `
 >
   <div>
     <table
-      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
+      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
       id="__table_generated-id"
       tabindex="-1"
     >

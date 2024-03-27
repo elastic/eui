@@ -37,20 +37,20 @@ describe('EuiTable', () => {
       </EuiTable>
     );
     expect(container.firstChild).toMatchSnapshot();
-    expect(container.firstChild).not.toHaveClass('euiTable--responsive');
   });
 
   describe('responsive/mobile context', () => {
     it('renders responsive styles if below the default m breakpoint', () => {
       window.innerWidth = 767;
       const { container } = render(<EuiTable />);
-      expect(container.firstChild).toHaveClass('euiTable--responsive');
+
+      expect(container.firstElementChild!.className).toContain('-mobile');
     });
 
     it('allows customizing responsiveBreakpoint', () => {
       const { container } = render(<EuiTable responsiveBreakpoint="xl" />);
 
-      expect(container.firstChild).toHaveClass('euiTable--responsive');
+      expect(container.firstElementChild!.className).toContain('-mobile');
     });
 
     it('allows customizing responsiveBreakpoint via EuiProvider.componentDefaults', () => {
@@ -65,7 +65,7 @@ describe('EuiTable', () => {
         { wrapper: undefined }
       );
 
-      expect(container.firstChild).toHaveClass('euiTable--responsive');
+      expect(container.firstElementChild!.className).toContain('-mobile');
     });
   });
 
@@ -73,13 +73,13 @@ describe('EuiTable', () => {
     window.innerWidth = 2000;
     const { container } = render(<EuiTable responsiveBreakpoint={true} />);
 
-    expect(container.firstChild).toHaveClass('euiTable--responsive');
+    expect(container.firstElementChild!.className).toContain('-mobile');
   });
 
   it('allows never rendering responsive tables if set to `false`', () => {
     window.innerWidth = 320;
     const { container } = render(<EuiTable responsiveBreakpoint={false} />);
 
-    expect(container.firstChild).not.toHaveClass('euiTable--responsive');
+    expect(container.firstElementChild!.className).toContain('-desktop');
   });
 });
