@@ -17,10 +17,6 @@ import { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
 const meta: Meta<EuiSkipLinkProps> = {
   title: 'Utilities/EuiSkipLink',
   component: EuiSkipLink,
-  argTypes: moveStorybookControlsToCategory(
-    ['color', 'fill', 'size'],
-    'EuiButton props'
-  ),
   args: {
     // Component defaults
     position: 'static',
@@ -30,6 +26,11 @@ const meta: Meta<EuiSkipLinkProps> = {
     overrideLinkBehavior: true,
   },
 };
+moveStorybookControlsToCategory(
+  meta,
+  ['color', 'fill', 'size'],
+  'EuiButton props'
+);
 
 export default meta;
 type Story = StoryObj<EuiSkipLinkProps>;
@@ -38,12 +39,12 @@ export const Playground: Story = {
   args: {
     children: 'Skip to content',
   },
-  // Hide certain irrelevent EuiButton props for better DX
-  argTypes: hideStorybookControls([
-    'aria-label',
-    'buttonRef',
-    'isDisabled',
-    'onClick',
-    'href',
-  ]),
 };
+// Hide certain irrelevent EuiButton props for better DX
+hideStorybookControls(Playground, [
+  'aria-label',
+  'buttonRef',
+  'isDisabled',
+  'onClick',
+  'href',
+]);

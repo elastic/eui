@@ -8,10 +8,10 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { HeightAndWidthProps } from 'react-virtualized-auto-sizer';
+
 import { disableStorybookControls } from '../../../.storybook/utils';
-
 import { EuiPanel } from '../panel';
-
 import { EuiAutoSizer, EuiAutoSizerProps, EuiAutoSize } from './auto_sizer';
 
 const meta: Meta<EuiAutoSizerProps> = {
@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<EuiAutoSizerProps>;
 
 export const Playground: Story = {
-  render: ({ ...args }) => (
+  render: (args: HeightAndWidthProps) => (
     <div
       // Inherit Storybook demo viewport if no other height/width specified
       style={{
@@ -44,5 +44,5 @@ export const Playground: Story = {
       </EuiAutoSizer>
     </div>
   ),
-  argTypes: disableStorybookControls(['children']),
 };
+disableStorybookControls(Playground, ['children']);

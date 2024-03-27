@@ -1,3 +1,34 @@
+## [`v93.5.1`](https://github.com/elastic/eui/releases/v93.5.1)
+
+**Bug fixes**
+
+- Fixed unvirtualized `EuiSelectable`s to not cause Jest/jsdom errors on active option change ([#7618](https://github.com/elastic/eui/pull/7618))
+
+## [`v93.5.0`](https://github.com/elastic/eui/releases/v93.5.0)
+
+- `EuiHeaderLinks` now accepts a `children` render function that will be passed a `closeMobilePopover` callback, allowing consumers to close the mobile popover by its content ([#7603](https://github.com/elastic/eui/pull/7603))
+- Updated `EuiSelectable` to support scrolling list containers when `listProps.isVirtualization` is set to `false` ([#7609](https://github.com/elastic/eui/pull/7609))
+
+**Bug fixes**
+
+- Fixed `EuiIconTip`'s default `aria-label` text to be i18n tokenizable ([#7606](https://github.com/elastic/eui/pull/7606))
+- Fixed `EuiTextArea`'s CSS box model to no longer render a few extra pixels of strut height ([#7607](https://github.com/elastic/eui/pull/7607))
+
+**Dependency updates**
+
+- Updated `@types/refractor` to v3.4.0 ([#7590](https://github.com/elastic/eui/pull/7590))
+- Updated `@types/lodash` to v4.14.202 ([#7591](https://github.com/elastic/eui/pull/7591))
+- Removed `@types/resize-observer-browser` dependency. `ResizeObserver` types should already be baked in to Typescript as of 4.2+ ([#7592](https://github.com/elastic/eui/pull/7592))
+- Updated `classnames` to v2.5.1 ([#7593](https://github.com/elastic/eui/pull/7593))
+- Updated `@types/numeral` to v2.0.5 ([#7594](https://github.com/elastic/eui/pull/7594))
+- Updated `@types/react-window` to 1.8.8 ([#7597](https://github.com/elastic/eui/pull/7597))
+- Updated `prop-types` to v15.18.1 ([#7602](https://github.com/elastic/eui/pull/7602))
+- Removed `prop-types` as a peer dependency, per package recommendation ([#7602](https://github.com/elastic/eui/pull/7602))
+
+**Accessibility**
+
+- `EuiIcons` no longer apply `aria-hidden` to empty icons, as long as a valid title or label is provided to the icon. In particular, this is intended to improve the accessibility of loading `EuiIconTip`s. ([#7606](https://github.com/elastic/eui/pull/7606))
+
 ## [`v93.4.0`](https://github.com/elastic/eui/releases/v93.4.0)
 
 - Added the following properties to `EuiButtonGroup`'s `options` configs: `toolTipContent`, `toolTipProps`, and `title`. These new properties allow wrapping buttons in `EuiToolTips`, and additionally customizing or disabling the native browser `title` tooltip. ([#7461](https://github.com/elastic/eui/pull/7461))

@@ -30,19 +30,29 @@ jest.mock('./icon', () => {
 
 beforeEach(() => clearIconComponentCache());
 
-const testIcon = (props: PropsOf<typeof EuiIcon>) => async () => {
-  act(() => {
-    render(<EuiIcon {...props} />);
-  });
-  await waitFor(
-    () => {
-      const icon = document.querySelector(`[data-icon-type=${props.type}]`);
-      expect(icon).toHaveAttribute('data-is-loaded', 'true');
-      expect(icon).toMatchSnapshot();
-    },
-    { timeout: 3000 } // CI will sometimes time out if the icon doesn't load fast enough
-  );
-};
+const testIcon =
+  (
+    props: PropsOf<typeof EuiIcon>,
+    assertion?: (icon: Element | null) => void
+  ) =>
+  async () => {
+    act(() => {
+      render(<EuiIcon {...props} />);
+    });
+    await waitFor(
+      () => {
+        const icon = document.querySelector(`[data-icon-type=${props.type}]`);
+        expect(icon).toHaveAttribute('data-is-loaded', 'true');
+
+        if (assertion) {
+          assertion(icon);
+        } else {
+          expect(icon).toMatchSnapshot();
+        }
+      },
+      { timeout: 3000 } // CI will sometimes time out if the icon doesn't load fast enough
+    );
+  };
 
 describe('EuiIcon', () => {
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
@@ -128,6 +138,35 @@ describe('EuiIcon', () => {
       it(
         'renders focusable="true" when 0',
         testIcon({ type: 'search', tabIndex: 0 })
+      );
+    });
+
+    describe('aria-hidden', () => {
+      it(
+        'enforces aria-hidden if no title or label has been passed',
+        testIcon({ type: 'empty', 'aria-hidden': false }, (icon) => {
+          expect(icon).toHaveAttribute('aria-hidden', 'true');
+        })
+      );
+
+      it(
+        'does not set aria-hidden if a title/label is passed',
+        testIcon(
+          { type: 'empty', title: 'Anything', 'aria-label': 'Anything' },
+          (icon) => {
+            expect(icon).not.toHaveAttribute('aria-hidden');
+          }
+        )
+      );
+
+      it(
+        'allows consumers to override aria-hidden even if a title/label exists',
+        testIcon(
+          { type: 'empty', title: 'Anything', 'aria-hidden': true },
+          (icon) => {
+            expect(icon).toHaveAttribute('aria-hidden', 'true');
+          }
+        )
       );
     });
   });

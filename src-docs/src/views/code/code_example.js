@@ -91,7 +91,7 @@ export const CodeExample = {
           or want to print long code (e.g., printing JSON from an API), we
           recommend installing a version of Monaco. If you are building within
           the Kibana platform, you can use their{' '}
-          <EuiLink href="https://github.com/elastic/kibana/tree/main/src/plugins/kibana_react/public/code_editor">
+          <EuiLink href="https://github.com/elastic/kibana/tree/main/packages/shared-ux/code_editor/impl">
             <strong>CodeEditor</strong>
           </EuiLink>
           .

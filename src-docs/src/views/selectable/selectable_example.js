@@ -479,11 +479,14 @@ export const SelectableExample = {
           </p>
           <p>
             If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
-            <EuiCode>false</EuiCode>, each row will fit its contents and removes
-            all scrolling. Therefore, we recommend having a large enough
-            container to accommodate all options. You can also remove truncation
-            by setting <EuiCode>{'textWrap="wrap"'}</EuiCode> when
-            virtualization is off.
+            <EuiCode>false</EuiCode>, each row will fit its content. You can
+            also remove truncation by setting{' '}
+            <EuiCode>{'textWrap="wrap"'}</EuiCode> when virtualization is off.
+            Note that while this is useful for dynamic options, it can also be
+            computationally expensive as <em>all</em> off-screen options will be
+            rendered to the DOM. We do not recommend turning off virtualization
+            for high numbers of options, but if you absolutely must do so, we
+            suggest using methods such as async loading more options.
           </p>
           <h3>Custom content</h3>
           <p>

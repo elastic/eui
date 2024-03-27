@@ -17,11 +17,19 @@ export default () => {
 
       <EuiHeaderSectionItem>
         <EuiHeaderLinks aria-label="App navigation links example">
-          <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+          {(closeMobilePopover) => (
+            <>
+              <EuiHeaderLink isActive onClick={closeMobilePopover}>
+                Docs
+              </EuiHeaderLink>
 
-          <EuiHeaderLink>Code</EuiHeaderLink>
+              <EuiHeaderLink onClick={closeMobilePopover}>Code</EuiHeaderLink>
 
-          <EuiHeaderLink iconType="help">Help</EuiHeaderLink>
+              <EuiHeaderLink iconType="help" onClick={closeMobilePopover}>
+                Help
+              </EuiHeaderLink>
+            </>
+          )}
         </EuiHeaderLinks>
       </EuiHeaderSectionItem>
     </EuiHeader>

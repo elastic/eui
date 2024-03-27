@@ -8,7 +8,10 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
+import {
+  disableStorybookControls,
+  moveStorybookControlsToCategory,
+} from '../../../.storybook/utils';
 import { EuiFacetButton, EuiFacetButtonProps } from './facet_button';
 
 const meta: Meta<EuiFacetButtonProps> = {
@@ -17,22 +20,6 @@ const meta: Meta<EuiFacetButtonProps> = {
   argTypes: {
     // TODO: icon
     // TODO: minWidth has multiple types
-    ...moveStorybookControlsToCategory(
-      [
-        'contentProps',
-        'element',
-        'fullWidth',
-        'iconSide',
-        'iconSize',
-        'iconType',
-        'minWidth',
-        'size',
-        'style',
-        'textProps',
-        'type',
-      ],
-      'EuiButtonEmpty props'
-    ),
   },
   args: {
     // Component defaults
@@ -47,6 +34,24 @@ const meta: Meta<EuiFacetButtonProps> = {
     isSelected: false,
   },
 };
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'contentProps',
+    'element',
+    'fullWidth',
+    'iconSide',
+    'iconSize',
+    'iconType',
+    'minWidth',
+    'size',
+    'style',
+    'textProps',
+    'type',
+  ],
+  'EuiButtonEmpty props'
+);
+disableStorybookControls(meta, ['buttonRef']);
 
 export default meta;
 type Story = StoryObj<EuiFacetButtonProps>;

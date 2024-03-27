@@ -21,7 +21,6 @@ import { EuiSideNav, EuiSideNavProps } from './side_nav';
 const meta: Meta<EuiSideNavProps> = {
   title: 'Navigation/EuiSideNav',
   component: EuiSideNav,
-  argTypes: disableStorybookControls(['children']),
   args: {
     // Component defaults
     mobileBreakpoints: ['xs', 's'],
@@ -37,6 +36,7 @@ const meta: Meta<EuiSideNavProps> = {
     ),
   ],
 };
+disableStorybookControls(meta, ['children']);
 
 export default meta;
 type Story = StoryObj<EuiSideNavProps>;
@@ -149,21 +149,22 @@ export const MobileSideNav: Story = {
     mobileTitle: 'Toggle isOpenOnMobile in the controls panel',
     headingProps: { size: 'xxs' },
   },
-  // This story demos the side nav on smaller screens; removing other props to streamline controls
-  argTypes: hideStorybookControls<EuiSideNavProps>([
-    'aria-label',
-    'children',
-    'heading',
-    'items',
-    'renderItem',
-    'truncate',
-  ]),
+
   parameters: {
     viewport: {
       defaultViewport: 'mobile1',
     },
   },
 };
+// This story demos the side nav on smaller screens; removing other props to streamline controls
+hideStorybookControls(MobileSideNav, [
+  'aria-label',
+  'children',
+  'heading',
+  'items',
+  'renderItem',
+  'truncate',
+]);
 
 export const RenderItem: Story = {
   args: {
@@ -200,15 +201,15 @@ export const RenderItem: Story = {
       },
     ],
   },
-  // This story demos the renderItem prop; removing other props to streamline controls
-  argTypes: hideStorybookControls<EuiSideNavProps>([
-    'aria-label',
-    'heading',
-    'headingProps',
-    'toggleOpenOnMobile',
-    'isOpenOnMobile',
-    'mobileBreakpoints',
-    'mobileTitle',
-    'truncate',
-  ]),
 };
+// This story demos the renderItem prop; removing other props to streamline controls
+hideStorybookControls(RenderItem, [
+  'aria-label',
+  'heading',
+  'headingProps',
+  'toggleOpenOnMobile',
+  'isOpenOnMobile',
+  'mobileBreakpoints',
+  'mobileTitle',
+  'truncate',
+]);

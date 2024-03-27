@@ -253,6 +253,22 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('isVirtualization={false}', () => {
+    it('correctly scrolls keyboard navigated elements into view', () => {
+      cy.realMount(
+        <EuiSelectableListboxOnly
+          listProps={{ isVirtualized: false }}
+          height={50}
+        />
+      );
+      cy.get('.euiSelectableList__list').invoke('scrollTop').should('eq', 0);
+
+      cy.realPress('Tab');
+      cy.realPress('ArrowUp');
+      cy.get('.euiSelectableList__list').invoke('scrollTop').should('eq', 48);
+    });
+  });
+
   describe('truncation', () => {
     const sharedProps = {
       style: { width: 240 },

@@ -53,12 +53,6 @@ export const Playground: Story = {
 };
 
 export const ProductionUsage: Story = {
-  // Not testable via `EuiResizableContainer`, so hide these props from the controls
-  argTypes: hideStorybookControls<EuiResizableCollapseButtonProps>([
-    'externalPosition',
-    'isVisible',
-    'isCollapsed',
-  ]),
   render: ({ direction, internalPosition }) => (
     <EuiResizableContainer direction={direction} css={{ blockSize: 500 }}>
       {(EuiResizablePanel, EuiResizableButton) => (
@@ -93,3 +87,9 @@ export const ProductionUsage: Story = {
     </EuiResizableContainer>
   ),
 };
+// Not testable via `EuiResizableContainer`, so hide these props from the controls
+hideStorybookControls(ProductionUsage, [
+  'externalPosition',
+  'isVisible',
+  'isCollapsed',
+]);

@@ -242,7 +242,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
  * @returns string
  */
 export const useEuiButtonFocusCSS = () =>
-  useEuiMemoizedStyles<any>(euiButtonFocusCSS);
+  useEuiMemoizedStyles(euiButtonFocusCSS);
 
 const euiButtonFocusAnimation = keyframes`
   50% {

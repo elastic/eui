@@ -43,7 +43,7 @@ import {
   ResizeTrigger,
 } from './types';
 
-import { euiResizableContainerStyles } from './resizable_container.styles';
+import { euiResizableContainerStyles as styles } from './resizable_container.styles';
 
 export interface EuiResizableContainerProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>,
@@ -108,8 +108,6 @@ export const EuiResizableContainer: FunctionComponent<
   const isHorizontal = direction === 'horizontal';
 
   const classes = classNames('euiResizableContainer', className);
-
-  const styles = euiResizableContainerStyles();
   const cssStyles = [styles.euiResizableContainer, styles[direction]];
 
   const [actions, reducerState] = useContainerCallbacks({

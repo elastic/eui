@@ -1,5 +1,15 @@
 [
   {
+    "version": "93.5.0",
+    "changes": [
+      {
+        "token": "euiIconTip.defaultAriaLabel",
+        "changeType": "added",
+        "value": "Info"
+      }
+    ]
+  },
+  {
     "version": "93.2.0",
     "changes": [
       {

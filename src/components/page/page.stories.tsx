@@ -54,14 +54,10 @@ export const RestrictWidth: Story = {
   args: {
     restrictWidth: '80vw',
   },
-  // This story displays the restrictWidth functionality; removing other props to prevent confusion
-  argTypes: hideStorybookControls<EuiPageProps>([
-    'grow',
-    'direction',
-    'paddingSize',
-  ]),
   render: ({ ...args }) => <EuiPage {...args}>{_pageContent}</EuiPage>,
 };
+// This story displays the restrictWidth functionality; removing other props to prevent confusion
+hideStorybookControls(RestrictWidth, ['grow', 'direction', 'paddingSize']);
 
 // Shared page children
 const _pageContent = (
