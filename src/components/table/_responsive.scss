@@ -81,17 +81,6 @@
         }
       }
 
-      &.euiTableRow-isSelectable {
-        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding / 2);
-        position: relative;
-
-        .euiTableRowCellCheckbox {
-          position: absolute;
-          left: $euiTableCellContentPadding / 2;
-          top: $euiSizeS;
-        }
-      }
-
       &.euiTableRow-isExpandedRow {
         @include euiTableActionsBackgroundMobile;
         margin-top: -$euiTableCellContentPadding * 2;

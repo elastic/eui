@@ -69,6 +69,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         styles.euiTableRow,
         styles.mobile.mobile,
         isSelected && styles.mobile.selected,
+        isSelectable && styles.mobile.selectable,
       ]
     : [
         styles.euiTableRow,

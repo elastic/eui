@@ -22,6 +22,16 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const rowColors = _rowColorVariables(euiThemeContext);
 
   const cellContentPadding = euiTheme.size.s;
+  const mobileColumns = {
+    actions: {}, // TODO
+    checkbox: {
+      width: mathWithUnits(
+        [euiTheme.size.xl, euiTheme.size.xs],
+        (x, y) => x + y
+      ),
+      offset: mathWithUnits(cellContentPadding, (x) => x / 2),
+    },
+  };
 
   return {
     euiTableRow: css``,
@@ -75,6 +85,19 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         &,
         & + .euiTableRow-isExpandedRow {
           background-color: ${rowColors.selected.color};
+        }
+      `,
+      /**
+       * Left column offset (no border)
+       * Used for selection checkbox
+       */
+      selectable: css`
+        ${logicalCSS('padding-left', mobileColumns.checkbox.width)}
+
+        .euiTableRowCellCheckbox {
+          position: absolute;
+          ${logicalCSS('top', cellContentPadding)}
+          ${logicalCSS('left', mobileColumns.checkbox.offset)}
         }
       `,
     },
