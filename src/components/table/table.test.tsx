@@ -73,7 +73,7 @@ describe('EuiTable', () => {
     window.innerWidth = 2000;
     const { container } = render(<EuiTable responsiveBreakpoint={true} />);
 
-    expect(container.firstElementChild!.className).toContain('-mobile');
+    expect(container.firstChild).toHaveClass('euiTable--responsive');
   });
 
   it('allows never rendering responsive tables if set to `false`', () => {

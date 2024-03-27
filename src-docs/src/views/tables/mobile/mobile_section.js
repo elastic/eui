@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../../components';
 
 import Table from './mobile';
@@ -32,14 +33,26 @@ export const section = {
   text: (
     <>
       <p>
-        Allowing a table to be responsive means breaking each row down into its
-        own section and individually displaying each table header above the cell
-        contents. There are few times when you may want to exclude this behavior
-        from your table, for instance, when the table has very few columns or
-        the table does not break down easily into this format. For these use
-        cases, you may set <EuiCode language="js">responsive=false</EuiCode>.
+        Tables will be mobile-responsive by default, breaking down each row into
+        its own card section and individually displaying each table header above
+        the cell contents. The default breakpoint at which the table will
+        responsively shift into cards is the{' '}
+        <Link to="/theming/breakpoints/values">
+          <EuiCode>m</EuiCode> window size
+        </Link>
+        , which can be customized with the{' '}
+        <EuiCode>responsiveBreakpoint</EuiCode> prop (e.g.,{' '}
+        <EuiCode language="js">{'responsiveBreakpoint="s"'}</EuiCode>).
       </p>
       <p>
+        To never render your table responsively (e.g. for tables with very few
+        columns), you may set{' '}
+        <EuiCode language="js">{'responsiveBreakpoint={false}'}</EuiCode>.
+        Inversely, if you always want your table to render in a mobile-friendly
+        manner, pass <EuiCode>true</EuiCode>.
+      </p>
+      <p>
+        {/* TODO: This shouldn't be true by the end of the Emotion conversion */}
         To make your table work responsively, please make sure you add the
         following <EuiTextColor color="danger">additional</EuiTextColor> props
         to the top level table component (<strong>EuiBasicTable</strong> or{' '}
