@@ -562,19 +562,15 @@ export class EuiBasicTable<T extends object = any> extends Component<
       loading,
     } = this.props;
 
-    const mobileHeader = responsive ? (
-      <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
-        {this.renderSelectAll(true)}
-        {this.renderTableMobileSort()}
-      </EuiTableHeaderMobile>
-    ) : undefined;
-    const caption = this.renderTableCaption();
-    const head = this.renderTableHead();
-    const body = this.renderTableBody();
-    const footer = this.renderTableFooter();
     return (
-      <div>
-        {mobileHeader}
+      <>
+        {/* TODO: Remove conditional once `responsive` prop is deprecated */}
+        {responsive && (
+          <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
+            {this.renderSelectAll(true)}
+            {this.renderTableMobileSort()}
+          </EuiTableHeaderMobile>
+        )}
         <EuiTable
           id={this.tableId}
           tableLayout={tableLayout}
@@ -583,12 +579,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
           compressed={compressed}
           css={loading && safariLoadingWorkaround}
         >
-          {caption}
-          {head}
-          {body}
-          {footer}
+          {this.renderTableCaption()}
+          {this.renderTableHead()}
+          {this.renderTableBody()}
+          {this.renderTableFooter()}
         </EuiTable>
-      </div>
+      </>
     );
   }
 
