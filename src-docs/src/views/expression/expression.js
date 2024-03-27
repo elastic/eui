@@ -8,6 +8,7 @@ import {
   EuiSelect,
   EuiFieldNumber,
   EuiExpression,
+  EuiSelectable,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -17,6 +18,14 @@ const POPOVER_STYLE = { zIndex: '200' };
 export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
+    options: [
+      { label: 'count()', checked: 'on' },
+      { label: 'average()' },
+      { label: 'sum()' },
+      { label: 'median()' },
+      { label: 'min()' },
+      { label: 'max()' },
+    ],
     value: 'count()',
   });
 
@@ -70,10 +79,11 @@ export default () => {
     });
   };
 
-  const changeExample1 = (event) => {
+  const changeExample1 = (options) => {
     setExample1({
-      ...example1,
-      value: event.target.value,
+      options: options,
+      isOpen: false,
+      value: options.filter((option) => option.checked === 'on')[0]?.label,
     });
   };
 
@@ -93,22 +103,34 @@ export default () => {
   };
 
   const renderPopover1 = () => (
-    <div style={POPOVER_STYLE}>
-      <EuiPopoverTitle>When</EuiPopoverTitle>
-      <EuiSelect
-        compressed
-        value={example1.value}
-        onChange={changeExample1}
-        options={[
-          { value: 'count()', text: 'count()' },
-          { value: 'average()', text: 'average()' },
-          { value: 'sum()', text: 'sum()' },
-          { value: 'median()', text: 'median()' },
-          { value: 'min()', text: 'min()' },
-          { value: 'max()', text: 'max()' },
-        ]}
-      />
-    </div>
+    <EuiSelectable
+      singleSelection="always"
+      options={example1.options}
+      onChange={changeExample1}
+    >
+      {(list) => (
+        <div style={{ width: 240 }}>
+          <EuiPopoverTitle>When</EuiPopoverTitle>
+          {list}
+        </div>
+      )}
+    </EuiSelectable>
+    // <div style={POPOVER_STYLE}>
+    //   <EuiPopoverTitle>When</EuiPopoverTitle>
+    //   <EuiSelect
+    //     compressed
+    //     value={example1.value}
+    //     onChange={changeExample1}
+    //     options={[
+    //       { value: 'count()', text: 'count()' },
+    //       { value: 'average()', text: 'average()' },
+    //       { value: 'sum()', text: 'sum()' },
+    //       { value: 'median()', text: 'median()' },
+    //       { value: 'min()', text: 'min()' },
+    //       { value: 'max()', text: 'max()' },
+    //     ]}
+    //   />
+    // </div>
   );
 
   const renderPopover2 = () => (
