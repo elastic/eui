@@ -638,7 +638,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -667,7 +669,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -700,7 +704,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 2')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -741,7 +747,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -784,7 +792,7 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText, getByPlaceholderText } = render(
-      <EuiInMemoryTable {...props} />
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
     );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
@@ -881,7 +889,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { container, queryByText } = render(<EuiInMemoryTable {...props} />);
+    const { container, queryByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(queryByText('Page 1 of 1')).toBeTruthy();
     expect(queryByText('Select all rows')).toBeTruthy();
@@ -1088,6 +1098,38 @@ describe('EuiInMemoryTable', () => {
   });
 
   describe('behavior', () => {
+    test('mobile header', () => {
+      const props: EuiInMemoryTableProps<BasicItem> = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+        ],
+        itemId: 'id',
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        pagination: true,
+        sorting: true,
+        selection: {
+          onSelectionChange: () => undefined,
+        },
+      };
+      const { container } = render(
+        <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      );
+
+      expect(
+        container.querySelector('.euiTableHeaderMobile')
+      ).toMatchSnapshot();
+    });
+
     test('pagination', async () => {
       const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,

@@ -22,11 +22,11 @@ import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   CENTER_ALIGNMENT,
-  useIsWithinBreakpoints,
 } from '../../services';
 import { isObject } from '../../services/predicate';
 import { EuiTextBlockTruncate } from '../text_truncate';
 
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
 
 interface EuiTableRowCellSharedPropsShape {
@@ -170,7 +170,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   });
 
   const widthValue =
-    useIsWithinBreakpoints(['xs', 's']) && mobileOptions.width
+    useEuiTableIsResponsive() && mobileOptions.width
       ? mobileOptions.width
       : width;
 

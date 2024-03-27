@@ -9,10 +9,12 @@
 import React, { Component, ReactNode, Key } from 'react';
 import classNames from 'classnames';
 
+import { CommonProps } from '../../common';
 import { EuiButtonEmpty } from '../../button/button_empty';
 import { EuiPopover, PopoverAnchorPosition } from '../../popover';
 import { EuiContextMenuPanel } from '../../context_menu';
 import { EuiI18n } from '../../i18n';
+
 import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
 interface ItemProps {
@@ -23,8 +25,7 @@ interface ItemProps {
   isSortAscending?: boolean;
 }
 
-export interface EuiTableSortMobileProps {
-  className?: string;
+export interface EuiTableSortMobileProps extends CommonProps {
   anchorPosition?: PopoverAnchorPosition;
   items?: ItemProps[];
 }
@@ -51,6 +52,12 @@ export class EuiTableSortMobile extends Component<
     this.setState({
       isPopoverOpen: false,
     });
+  };
+
+  // Aligns the button to the right even when it's the only element present
+  euiTableSortMobileStyles = {
+    marginInlineStart: 'auto',
+    label: 'euiTableSortMobile',
   };
 
   render() {
@@ -101,6 +108,10 @@ export class EuiTableSortMobile extends Component<
       </EuiPopover>
     );
 
-    return <div className={classes}>{mobileSortPopover}</div>;
+    return (
+      <div className={classes} css={this.euiTableSortMobileStyles}>
+        {mobileSortPopover}
+      </div>
+    );
   }
 }

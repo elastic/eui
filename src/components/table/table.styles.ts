@@ -56,6 +56,29 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
         padding: ${compressedCellContentPadding};
       }
     `,
+    /**
+     * Responsive/mobile vs desktop styles
+     */
+    desktop: css`
+      .euiTableHeaderCell--hideForDesktop,
+      .euiTableRowCell--hideForDesktop,
+      .euiTableRowCell__mobileHeader {
+        display: none;
+      }
+    `,
+    mobile: css`
+      .euiTableRowCell--hideForMobile {
+        display: none;
+      }
+
+      thead {
+        display: none; /* Use mobile versions of selecting and filtering instead */
+      }
+
+      tfoot {
+        display: none; /* Not supporting responsive footer content */
+      }
+    `,
   };
 };
 

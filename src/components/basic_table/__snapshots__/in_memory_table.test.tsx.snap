@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiInMemoryTable behavior mobile header 1`] = `
+<div
+  class="euiTableHeaderMobile emotion-euiTableHeaderMobile"
+>
+  <div
+    class="euiCheckbox emotion-euiCheckbox"
+  >
+    <input
+      aria-label="Select all rows"
+      class="euiCheckbox__input"
+      id="_selection_column-checkbox_generated-id_mobile"
+      type="checkbox"
+    />
+    <div
+      class="euiCheckbox__square"
+    />
+    <label
+      class="euiCheckbox__label"
+      for="_selection_column-checkbox_generated-id_mobile"
+    >
+      Select all rows
+    </label>
+  </div>
+  <div
+    class="euiTableSortMobile emotion-euiTableSortMobile"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        >
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            Sorting
+          </span>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiInMemoryTable behavior pagination 1`] = `
 <nav
   aria-label="Pagination for table: "
@@ -102,79 +154,63 @@ exports[`EuiInMemoryTable empty array 1`] = `
   class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
-  <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-      </div>
-    </div>
-    <table
-      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
-      id="__table_generated-id"
-      tabindex="-1"
-    >
-      <caption
-        class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
-      />
-      <thead>
-        <tr>
-          <th
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_name_0"
-            role="columnheader"
-            scope="col"
+  <table
+    class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
+    id="__table_generated-id"
+    tabindex="-1"
+  >
+    <caption
+      class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
+    />
+    <thead>
+      <tr>
+        <th
+          class="euiTableHeaderCell"
+          data-test-subj="tableHeaderCell_name_0"
+          role="columnheader"
+          scope="col"
+        >
+          <span
+            class="euiTableCellContent"
           >
             <span
-              class="euiTableCellContent"
+              class="euiTableCellContent__text"
+              title="Name; description"
             >
-              <span
-                class="euiTableCellContent__text"
-                title="Name; description"
-              >
-                Name
-              </span>
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                description
-              </span>
+              Name
             </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="css-0"
-      >
-        <tr
-          class="euiTableRow"
-        >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-            colspan="1"
-          >
-            <div
-              class="euiTableCellContent euiTableCellContent--alignCenter"
+            <span
+              class="emotion-euiScreenReaderOnly"
             >
-              <span
-                class="euiTableCellContent__text"
-              >
-                No items found
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              description
+            </span>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="euiTableRow"
+      >
+        <td
+          class="euiTableRowCell euiTableRowCell--middle"
+          colspan="1"
+        >
+          <div
+            class="euiTableCellContent euiTableCellContent--alignCenter"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              No items found
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
@@ -211,126 +247,110 @@ exports[`EuiInMemoryTable with items 1`] = `
   class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
-  <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-      </div>
-    </div>
-    <table
-      class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed"
-      id="__table_generated-id"
-      tabindex="-1"
-    >
-      <caption
-        class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
-      />
-      <thead>
-        <tr>
-          <th
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_name_0"
-            role="columnheader"
-            scope="col"
+  <table
+    class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
+    id="__table_generated-id"
+    tabindex="-1"
+  >
+    <caption
+      class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
+    />
+    <thead>
+      <tr>
+        <th
+          class="euiTableHeaderCell"
+          data-test-subj="tableHeaderCell_name_0"
+          role="columnheader"
+          scope="col"
+        >
+          <span
+            class="euiTableCellContent"
           >
             <span
-              class="euiTableCellContent"
+              class="euiTableCellContent__text"
+              title="Name; description"
             >
-              <span
-                class="euiTableCellContent__text"
-                title="Name; description"
-              >
-                Name
-              </span>
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                description
-              </span>
+              Name
             </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="css-0"
+            <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              description
+            </span>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="euiTableRow"
       >
-        <tr
-          class="euiTableRow"
+        <td
+          class="euiTableRowCell euiTableRowCell--middle"
         >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
+          <div
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
           >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            Name
+          </div>
+          <div
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
             >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name1
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
+              name1
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow"
+      >
+        <td
+          class="euiTableRowCell euiTableRowCell--middle"
         >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
+          <div
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
           >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            Name
+          </div>
+          <div
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
             >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name2
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
+              name2
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow"
+      >
+        <td
+          class="euiTableRowCell euiTableRowCell--middle"
         >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
+          <div
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
           >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            Name
+          </div>
+          <div
+            class="euiTableCellContent"
+          >
+            <span
+              class="euiTableCellContent__text"
             >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name3
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              name3
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;

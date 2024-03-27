@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTableHeaderMobile is rendered 1`] = `
+exports[`EuiTableHeaderMobile renders when below the responsive breakpoint 1`] = `
 <div
   aria-label="aria-label"
-  class="euiTableHeaderMobile testClass1 testClass2 emotion-euiTestCss"
+  class="euiTableHeaderMobile testClass1 testClass2 emotion-euiTableHeaderMobile-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
