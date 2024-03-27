@@ -9,12 +9,10 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme, tint, shade, transparentize } from '../../services';
-import {
-  euiBackgroundColor,
-  logicalCSS,
-  mathWithUnits,
-} from '../../global_styling';
+import { euiBackgroundColor, logicalCSS } from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+
+import { euiTableVariables } from './table.styles';
 
 export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -22,20 +20,8 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const rowColors = _rowColorVariables(euiThemeContext);
   const expandedAnimationCss = _expandedRowAnimation(euiThemeContext);
 
-  const cellContentPadding = euiTheme.size.s;
-  const mobileColumns = {
-    actions: {
-      width: euiTheme.size.xxl,
-      offset: mathWithUnits(cellContentPadding, (x) => x * 2),
-    },
-    checkbox: {
-      width: mathWithUnits(
-        [euiTheme.size.xl, euiTheme.size.xs],
-        (x, y) => x + y
-      ),
-      offset: mathWithUnits(cellContentPadding, (x) => x / 2),
-    },
-  };
+  const { cellContentPadding, mobileSizes } =
+    euiTableVariables(euiThemeContext);
 
   return {
     euiTableRow: css``,
@@ -97,12 +83,12 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
        * Used for selection checkbox
        */
       selectable: css`
-        ${logicalCSS('padding-left', mobileColumns.checkbox.width)}
+        ${logicalCSS('padding-left', mobileSizes.checkbox.width)}
 
         .euiTableRowCellCheckbox {
           position: absolute;
           ${logicalCSS('top', cellContentPadding)}
-          ${logicalCSS('left', mobileColumns.checkbox.offset)}
+          ${logicalCSS('left', mobileSizes.checkbox.offset)}
         }
       `,
       /**
@@ -110,13 +96,13 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
        * Used for cell actions and row expander arrow
        */
       hasRightColumn: css`
-        ${logicalCSS('padding-right', mobileColumns.actions.width)}
+        ${logicalCSS('padding-right', mobileSizes.actions.width)}
 
         &::after {
           content: '';
           position: absolute;
           ${logicalCSS('vertical', 0)}
-          ${logicalCSS('right', mobileColumns.actions.width)}
+          ${logicalCSS('right', mobileSizes.actions.width)}
           ${logicalCSS('width', euiTheme.border.width.thin)}
           background-color: ${euiTheme.border.color};
         }
@@ -126,7 +112,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('right', 0)}
         /* TODO: remove !important once euiTableRowCell is converted to Emotion */
         ${logicalCSS('min-width', '0 !important')}
-        ${logicalCSS('width', mobileColumns.actions.width)}
+        ${logicalCSS('width', mobileSizes.actions.width)}
 
         .euiTableCellContent {
           display: flex;
@@ -140,7 +126,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         return css`
           .euiTableRowCell--hasActions {
             ${this.rightColumnContent}
-            ${logicalCSS('top', mobileColumns.actions.offset)}
+            ${logicalCSS('top', mobileSizes.actions.offset)}
           }
         `;
       },
@@ -148,7 +134,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         return css`
           .euiTableRowCell--isExpander {
             ${this.rightColumnContent}
-            ${logicalCSS('bottom', mobileColumns.actions.offset)}
+            ${logicalCSS('bottom', mobileSizes.actions.offset)}
           }
         `;
       },
@@ -156,7 +142,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
        * Bottom of card - expanded rows
        */
       expanded: css`
-        ${logicalCSS('margin-top', `-${mobileColumns.actions.offset}`)}
+        ${logicalCSS('margin-top', `-${mobileSizes.actions.offset}`)}
         /* Padding accounting for the checkbox is already applied via the content */
         ${logicalCSS('padding-left', cellContentPadding)}
 
