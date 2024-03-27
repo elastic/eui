@@ -29,7 +29,8 @@ export const useIsEuiTableResponsive = (
 
   const isBoolean = typeof breakpoint === 'boolean';
 
-  // We use ! and minBreakpoint to more accurately reflect the single point at which tables collapse
+  // Note: we're using `!useIsWithinMinBreakpoint` here instead of `useIsWithinMaxBreakpoint`
+  // because it more accurately reflects the single breakpoint at which tables collapse
   const isResponsive = !useIsWithinMinBreakpoint(isBoolean ? '' : breakpoint);
   return isBoolean ? breakpoint : isResponsive;
 };
