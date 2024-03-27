@@ -1,41 +1,13 @@
 // TODO: Address nesting during Emotion conversion, if possible
 // stylelint-disable max-nesting-depth
 
-.euiTableRowCell__mobileHeader {
-  // Don't display by default unless table is responsive
-  display: none;
-}
-
-@include euiBreakpoint('xs', 's') {
-  .euiTableRowCell--hideForMobile { // must come last to override any special cases
-    // stylelint-disable-next-line declaration-no-important
-    display: none !important;
-  }
-}
-
-@include euiBreakpoint('m', 'l', 'xl') {
-  .euiTableRowCell--hideForDesktop { // must come last to override any special cases
-    // stylelint-disable-next-line declaration-no-important
-    display: none !important;
-  }
-}
-
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    thead {
-      display: none; // Use mobile versions of selecting and filtering instead
-    }
-
-    tfoot {
-      display: none; // Not supporting responsive footer content
-    }
-
     .euiTableRowCell__mobileHeader {
       // Always truncate
       @include euiTextTruncate;
       @include fontSize($euiFontSize * .6875);
 
-      display: block;
       color: $euiColorDarkShade;
       padding: $euiSizeS;
       padding-bottom: 0;

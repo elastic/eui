@@ -101,10 +101,6 @@
   &--baseline {
     vertical-align: baseline;
   }
-
-  &.euiTableRowCell--isMobileHeader {
-    display: none; // Hide if not mobile breakpoint
-  }
 }
 
 .euiTableRowCellCheckbox {

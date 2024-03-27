@@ -12,6 +12,7 @@ export const EuiComponentDefaultsProps: FunctionComponent<
 // Exported in one place for DRYness
 export const euiProviderComponentDefaultsSnippet = `<EuiProvider
   componentDefaults={{
+    EuiTable: { responsiveBreakpoint: 's', },
     EuiTablePagination: { itemsPerPage: 20, },
     EuiFocusTrap: { crossFrame: true },
     EuiPortal: { insert },
