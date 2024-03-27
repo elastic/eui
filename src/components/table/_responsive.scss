@@ -107,16 +107,6 @@
         }
       }
 
-      // override hover & selected colors
-      &.euiTableRow-isSelected {
-        &,
-        &:hover,
-        + .euiTableRow.euiTableRow-isExpandedRow,
-        &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-          background-color: $euiTableSelectedColor;
-        }
-      }
-
       &.euiTableRow-isExpandedRow {
         @include euiTableActionsBackgroundMobile;
         @include euiBottomShadowSmall;

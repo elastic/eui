@@ -68,10 +68,14 @@ export const EuiTableRow: FunctionComponent<Props> = ({
     ? [
         styles.euiTableRow,
         styles.mobile.mobile,
+        isSelected && styles.mobile.selected,
       ]
     : [
         styles.euiTableRow,
         styles.desktop.desktop,
+        isSelected && styles.desktop.selected,
+        isExpandedRow && styles.desktop.expanded,
+        onClick && styles.desktop.clickable,
       ];
 
   const classes = classNames('euiTableRow', className, {

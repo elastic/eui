@@ -4,7 +4,7 @@ exports[`isSelected renders true when specified 1`] = `
 <table>
   <tbody>
     <tr
-      class="euiTableRow euiTableRow-isSelected emotion-euiTableRow-desktop"
+      class="euiTableRow euiTableRow-isSelected emotion-euiTableRow-desktop-selected"
     >
       <td
         class="euiTableRowCell euiTableRowCell--middle"

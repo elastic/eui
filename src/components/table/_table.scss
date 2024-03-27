@@ -48,41 +48,9 @@
   border: none;
 }
 
-.euiTableRow {
-  &:hover {
-    background-color: $euiTableHoverColor;
-  }
-
-  &.euiTableRow-isClickable {
-    &:hover {
-      background-color: $euiTableHoverClickableColor;
-      cursor: pointer;
-    }
-
-    &:focus {
-      background-color: $euiTableFocusClickableColor;
-    }
-  }
-
-  &.euiTableRow-isExpandedRow {
-    background-color: $euiTableHoverColor;
-
-    &.euiTableRow-isSelectable .euiTableCellContent {
-      padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
-    }
-  }
-
-  &.euiTableRow-isSelected {
-    background-color: $euiTableSelectedColor;
-
-    + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-      background-color: $euiTableSelectedColor;
-    }
-
-    &:hover,
-    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-      background-color: $euiTableHoverSelectedColor;
-    }
+.euiTableRow-isExpandedRow {
+  &.euiTableRow-isSelectable .euiTableCellContent {
+    padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
   }
 }
 
