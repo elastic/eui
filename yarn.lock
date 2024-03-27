@@ -18443,7 +18443,7 @@ react-view@^2.3.2:
     prism-react-renderer "^1.2.0"
     react-simple-code-editor "^0.11.0"
 
-react-virtualized-auto-sizer@^1.0.23:
+react-virtualized-auto-sizer@^1.0.24:
   version "1.0.24"
   resolved "https://registry.yarnpkg.com/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.24.tgz#3ebdc92f4b05ad65693b3cc8e7d8dd54924c0227"
   integrity sha512-3kCn7N9NEb3FlvJrSHWGQ4iVl+ydQObq2fHMn12i5wbtm74zHOPhz/i64OL3c1S1vi9i2GXtZqNqUJTQ+BnNfg==

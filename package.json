@@ -74,7 +74,7 @@
     "react-focus-on": "^3.9.1",
     "react-is": "^17.0.2",
     "react-remove-scroll-bar": "^2.3.4",
-    "react-virtualized-auto-sizer": "^1.0.23",
+    "react-virtualized-auto-sizer": "^1.0.24",
     "react-window": "^1.8.9",
     "refractor": "^3.6.0",
     "rehype-raw": "^5.1.0",
