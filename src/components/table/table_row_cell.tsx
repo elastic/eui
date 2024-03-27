@@ -137,6 +137,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
   const cssStyles = [
     styles.euiTableRowCell,
+    styles[valign],
     ...(isResponsive
       ? [
           styles.mobile.mobile,
@@ -152,7 +153,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only,
-    [`euiTableRowCell--${valign}`]: valign,
   });
 
   const contentClasses = classNames('euiTableCellContent', {

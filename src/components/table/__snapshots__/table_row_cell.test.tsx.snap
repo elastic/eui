@@ -5,7 +5,7 @@ exports[`align defaults to left 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -25,7 +25,7 @@ exports[`align renders center when specified 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent euiTableCellContent--alignCenter"
@@ -45,7 +45,7 @@ exports[`align renders right when specified 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent euiTableCellContent--alignRight"
@@ -65,7 +65,7 @@ exports[`children's className merges new classnames into existing ones 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
@@ -86,7 +86,7 @@ exports[`renders EuiTableRowCell 1`] = `
     <tr>
       <td
         aria-label="aria-label"
-        class="euiTableRowCell testClass1 testClass2 euiTableRowCell--middle emotion-euiTableRowCell-desktop-euiTestCss"
+        class="euiTableRowCell testClass1 testClass2 emotion-euiTableRowCell-middle-desktop-euiTestCss"
         data-test-subj="test subject string"
       >
         <div
@@ -109,7 +109,7 @@ exports[`textOnly defaults to true 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -129,7 +129,7 @@ exports[`textOnly is rendered when specified 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent euiTableCellContent--overflowingContent"
@@ -145,7 +145,7 @@ exports[`truncateText defaults to false 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -165,7 +165,7 @@ exports[`truncateText renders lines configuration 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -185,7 +185,7 @@ exports[`truncateText renders true 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent euiTableCellContent--truncateText"
@@ -205,7 +205,7 @@ exports[`valign defaults to middle 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -225,7 +225,7 @@ exports[`valign renders bottom when specified 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--bottom emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-bottom-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -245,7 +245,7 @@ exports[`valign renders top when specified 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--top emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-top-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -265,7 +265,7 @@ exports[`width and style accepts style attribute 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         style="width: 20%;"
       >
         <div
@@ -288,7 +288,7 @@ exports[`width and style accepts width attribute 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         style="width: 10%;"
       >
         <div
@@ -311,7 +311,7 @@ exports[`width and style accepts width attribute as number 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         style="width: 100px;"
       >
         <div
@@ -334,7 +334,7 @@ exports[`width and style resolves style and width attribute 1`] = `
   <tbody>
     <tr>
       <td
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         style="width: 10%;"
       >
         <div

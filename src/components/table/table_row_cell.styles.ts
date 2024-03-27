@@ -23,6 +23,20 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.text};
     `,
 
+    // valign
+    middle: css`
+      vertical-align: middle;
+    `,
+    baseline: css`
+      vertical-align: baseline;
+    `,
+    top: css`
+      vertical-align: top;
+    `,
+    bottom: css`
+      vertical-align: top;
+    `,
+
     desktop: css`
       ${logicalCSS('border-vertical', euiTheme.border.thin)}
     `,

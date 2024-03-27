@@ -54,20 +54,6 @@
   }
 }
 
-.euiTableRowCell {
-  &--top {
-    vertical-align: top;
-  }
-
-  &--bottom {
-    vertical-align: bottom;
-  }
-
-  &--baseline {
-    vertical-align: baseline;
-  }
-}
-
 .euiTableRowCellCheckbox {
   @include euiTableCellCheckbox;
 }
