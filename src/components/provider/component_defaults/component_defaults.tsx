@@ -40,7 +40,7 @@ export type EuiComponentDefaults = {
   /**
    * Provide a global configuration for EuiTable's `responsiveBreakpoint` prop. Defaults to `'s'`.
    *
-   * Defaults will be inherited all `EuiBasicTable`s and `EuiInMemoryTable`s.
+   * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
    */
   EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint'>;
 };
