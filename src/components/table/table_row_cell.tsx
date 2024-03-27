@@ -18,6 +18,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import {
+  useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
@@ -28,6 +29,7 @@ import { EuiTextBlockTruncate } from '../text_truncate';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
+import { euiTableRowCellStyles } from './table_row_cell.styles';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -132,6 +134,17 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
+  const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
+  const cssStyles = [
+    styles.euiTableRowCell,
+    ...(isResponsive
+      ? [
+          styles.mobile.mobile,
+          hasActions && styles.mobile.actions,
+          isExpander && styles.mobile.expander,
+        ]
+      : [styles.desktop]),
+  ];
 
   const cellClasses = classNames('euiTableRowCell', {
     'euiTableRowCell--hasActions': hasActions,
@@ -217,6 +230,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
     style: styleObj,
+    css: cssStyles,
     ...rest,
   };
   if (mobileOptions.show === false) {

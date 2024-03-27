@@ -107,37 +107,6 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           background-color: ${euiTheme.border.color};
         }
       `,
-      rightColumnContent: `
-        position: absolute;
-        ${logicalCSS('right', 0)}
-        /* TODO: remove !important once euiTableRowCell is converted to Emotion */
-        ${logicalCSS('min-width', '0 !important')}
-        ${logicalCSS('width', mobileSizes.actions.width)}
-
-        .euiTableCellContent {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: ${euiTheme.size.s};
-          padding: 0;
-        }
-      `,
-      get actions() {
-        return css`
-          .euiTableRowCell--hasActions {
-            ${this.rightColumnContent}
-            ${logicalCSS('top', mobileSizes.actions.offset)}
-          }
-        `;
-      },
-      get expandable() {
-        return css`
-          .euiTableRowCell--isExpander {
-            ${this.rightColumnContent}
-            ${logicalCSS('bottom', mobileSizes.actions.offset)}
-          }
-        `;
-      },
       /**
        * Bottom of card - expanded rows
        */

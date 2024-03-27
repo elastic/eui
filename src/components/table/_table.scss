@@ -55,9 +55,6 @@
 }
 
 .euiTableRowCell {
-  @include euiTableCell;
-  color: $euiTextColor;
-
   &--top {
     vertical-align: top;
   }
