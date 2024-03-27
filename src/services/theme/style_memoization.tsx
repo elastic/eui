@@ -19,6 +19,7 @@ import React, {
 
 import { useUpdateEffect } from '../hooks';
 import { useEuiTheme, UseEuiTheme } from './hooks';
+import { emitEuiProviderWarning } from './warning';
 
 type StylesMap = Record<string, any>; // Typically an object of serialized css`` styles, but can have any amount of nesting, so it's not worth it to try and strictly type this
 type MemoizedStylesMap = WeakMap<Function, StylesMap>;
@@ -60,7 +61,7 @@ const getMemoizedStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   if (!stylesGenerator.name) {
-    throw new Error(
+    emitEuiProviderWarning(
       'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
     );
   }
