@@ -43,28 +43,6 @@
           top: $euiSizeXS;
         }
       }
-
-      &.euiTableRow-isExpandedRow {
-        margin-top: -$euiTableCellContentPadding * 2;
-        position: relative;
-        z-index: 2; // on top of its parent/previous row
-        border-top: none;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        padding-left: $euiSizeS; // override selectable as the padding is already applied via the contents
-
-        &:hover {
-          background-color: $euiColorEmptyShade; // keep white background to cover triggering row's border
-        }
-
-        .euiTableRowCell {
-          width: calc(100% - #{$euiSizeXXL});
-
-          &::before {
-            display: none;
-          }
-        }
-      }
     }
 
     .euiTableRowCell {

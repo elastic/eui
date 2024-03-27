@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme, tint, shade, transparentize } from '../../services';
 import {
@@ -20,6 +20,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const rowColors = _rowColorVariables(euiThemeContext);
+  const expandedAnimationCss = _expandedRowAnimation(euiThemeContext);
 
   const cellContentPadding = euiTheme.size.s;
   const mobileColumns = {
@@ -47,6 +48,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       expanded: css`
         background-color: ${rowColors.hover};
+        ${expandedAnimationCss}
       `,
       clickable: css`
         &:hover {
@@ -150,11 +152,48 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         `;
       },
       /**
-       * TODO: next
+       * Bottom of card - expanded rows
        */
-      expanded: css``,
+      expanded: css`
+        ${logicalCSS('margin-top', `-${mobileColumns.actions.offset}`)}
+        /* Padding accounting for the checkbox is already applied via the content */
+        ${logicalCSS('padding-left', cellContentPadding)}
+
+        ${logicalCSS('border-top', euiTheme.border.thin)}
+        ${logicalCSS('border-top-left-radius', 0)}
+        ${logicalCSS('border-top-right-radius', 0)}
+
+        .euiTableRowCell {
+          ${logicalCSS('width', '100%')}
+        }
+
+        ${expandedAnimationCss}
+      `,
     },
   };
+};
+
+const _expandedRowAnimation = ({ euiTheme }: UseEuiTheme) => {
+  // Do not attempt to animate to height auto - down that road dragons lie
+  // @see https://github.com/elastic/eui/pull/6826
+  const expandRow = keyframes`
+    0% {
+      opacity: 0;
+      transform: translateY(-${euiTheme.size.m});
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  `;
+
+  // Animation must be on the contents div inside, not the row itself
+  return css`
+    .euiTableCellContent {
+      animation: ${euiTheme.animation.fast} ${euiTheme.animation.resistance} 1
+        normal none ${expandRow};
+    }
+  `;
 };
 
 const _rowColorVariables = ({ euiTheme, colorMode }: UseEuiTheme) => ({
