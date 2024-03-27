@@ -44,7 +44,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
       class="css-0"
     >
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
@@ -66,7 +66,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         </td>
       </tr>
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
@@ -88,7 +88,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         </td>
       </tr>
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
@@ -251,7 +251,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
       class="css-0"
     >
       <tr
-        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions"
+        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCellCheckbox"
@@ -372,7 +372,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         </td>
       </tr>
       <tr
-        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions"
+        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCellCheckbox"
@@ -493,7 +493,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         </td>
       </tr>
       <tr
-        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions"
+        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCellCheckbox"
