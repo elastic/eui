@@ -124,7 +124,8 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       rightColumnContent: `
         position: absolute;
         ${logicalCSS('right', 0)}
-        ${logicalCSS('min-width', 0)}
+        /* TODO: remove !important once euiTableRowCell is converted to Emotion */
+        ${logicalCSS('min-width', '0 !important')}
         ${logicalCSS('width', mobileColumns.actions.width)}
 
         .euiTableCellContent {
