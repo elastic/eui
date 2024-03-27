@@ -86,11 +86,11 @@ exports[`renders EuiTableRowCell 1`] = `
     <tr>
       <td
         aria-label="aria-label"
-        class="euiTableRowCell euiTableRowCell--middle emotion-euiTableRowCell-desktop"
+        class="euiTableRowCell testClass1 testClass2 euiTableRowCell--middle emotion-euiTableRowCell-desktop-euiTestCss"
         data-test-subj="test subject string"
       >
         <div
-          class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
+          class="euiTableCellContent"
         >
           <span
             class="euiTableCellContent__text"

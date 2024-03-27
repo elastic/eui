@@ -146,7 +146,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       : [styles.desktop]),
   ];
 
-  const cellClasses = classNames('euiTableRowCell', {
+  const cellClasses = classNames('euiTableRowCell', className, {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only,
@@ -154,7 +154,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     [`euiTableRowCell--${valign}`]: valign,
   });
 
-  const contentClasses = classNames('euiTableCellContent', className, {
+  const contentClasses = classNames('euiTableCellContent', {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
     'euiTableCellContent--showOnHover': showOnHover,
@@ -164,7 +164,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--overflowingContent': textOnly !== true,
   });
 
-  const mobileContentClasses = classNames('euiTableCellContent', className, {
+  const mobileContentClasses = classNames('euiTableCellContent', {
     'euiTableCellContent--alignRight':
       mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter':
