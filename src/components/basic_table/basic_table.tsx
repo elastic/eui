@@ -30,7 +30,6 @@ import {
 import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiCheckbox } from '../form';
 
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
@@ -261,10 +260,6 @@ interface BasicTableProps<T extends object>
    * Configures #Pagination
    */
   pagination?: undefined;
-  /**
-   * If true, will convert table to cards in mobile view
-   */
-  responsive?: boolean;
   /**
    * Applied to `EuiTableRow`
    */
@@ -529,6 +524,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       compressed,
       itemIdToExpandedRowMap,
       responsive,
+      responsiveBreakpoint,
       isSelectable,
       isExpandable,
       hasActions,
@@ -558,40 +554,37 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsive, tableLayout, loading } = this.props;
+    const {
+      compressed,
+      responsive,
+      responsiveBreakpoint,
+      tableLayout,
+      loading,
+    } = this.props;
 
-    const mobileHeader = responsive ? (
-      <EuiTableHeaderMobile>
-        <EuiFlexGroup
-          responsive={false}
-          justifyContent="spaceBetween"
-          alignItems="baseline"
-        >
-          <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiTableHeaderMobile>
-    ) : undefined;
-    const caption = this.renderTableCaption();
-    const head = this.renderTableHead();
-    const body = this.renderTableBody();
-    const footer = this.renderTableFooter();
     return (
-      <div>
-        {mobileHeader}
+      <>
+        {/* TODO: Remove conditional once `responsive` prop is deprecated */}
+        {responsive && (
+          <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
+            {this.renderSelectAll(true)}
+            {this.renderTableMobileSort()}
+          </EuiTableHeaderMobile>
+        )}
         <EuiTable
           id={this.tableId}
           tableLayout={tableLayout}
+          responsiveBreakpoint={responsiveBreakpoint}
           responsive={responsive}
           compressed={compressed}
           css={loading && safariLoadingWorkaround}
         >
-          {caption}
-          {head}
-          {body}
-          {footer}
+          {this.renderTableCaption()}
+          {this.renderTableHead()}
+          {this.renderTableBody()}
+          {this.renderTableFooter()}
         </EuiTable>
-      </div>
+      </>
     );
   }
 

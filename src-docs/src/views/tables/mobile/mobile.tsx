@@ -302,7 +302,7 @@ export default () => {
         selection={selection}
         isSelectable={true}
         hasActions={true}
-        responsive={isResponsive}
+        responsiveBreakpoint={isResponsive}
         onChange={onTableChange}
       />
     </>
