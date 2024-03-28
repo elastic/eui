@@ -1,3 +1,11 @@
+## [`v93.5.1-rc.0`](https://github.com/elastic/eui/releases/v93.5.1-rc.0)
+
+**This is a prerelease candidate not intended for public use.**
+
+**Dependency updates**
+
+- Updated `react-window` to 1.8.10 ([#7600](https://github.com/elastic/eui/pull/7600))
+
 ## [`v93.5.1`](https://github.com/elastic/eui/releases/v93.5.1)
 
 **Bug fixes**
