@@ -3,23 +3,6 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    .euiTableRowCell__mobileHeader {
-      // Always truncate
-      @include euiTextTruncate;
-      @include fontSize($euiFontSize * .6875);
-
-      color: $euiColorDarkShade;
-      padding: $euiSizeS;
-      padding-bottom: 0;
-      margin-bottom: -$euiSizeS; // pull up cell content closer
-      min-height: $euiSizeL; // aligns contents of cells if header doesn't exist
-
-      // Remove min-height of cell header if it's the only cell
-      .euiTableRowCell:only-child & {
-        min-height: 0;
-      }
-    }
-
     .euiTableRowCellCheckbox {
       border: none;
     }

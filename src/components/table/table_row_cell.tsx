@@ -249,6 +249,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
         {/* Mobile-only header */}
         {mobileOptions.header && (
           <div
+            css={styles.euiTableRowCell__mobileHeader}
             className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}
           >
             {mobileOptions.header}

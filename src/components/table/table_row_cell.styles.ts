@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, logicalCSS } from '../../global_styling';
+import { euiFontSize, euiTextTruncate, logicalCSS } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
 
@@ -100,5 +100,25 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+
+    euiTableRowCell__mobileHeader: css`
+      /* Always truncate */
+      ${euiTextTruncate()}
+      font-size: ${euiFontSize(euiThemeContext, 's', {
+        customScale: 'xxs',
+      }).fontSize};
+
+      display: block;
+      color: ${euiTheme.colors.darkShade};
+      padding: ${euiTheme.size.s};
+      /* Pull up cell content closer */
+      padding-block-end: 0;
+      margin-block-end: -${euiTheme.size.s};
+
+      /* Aligns contents of cells if header is empty */
+      .euiTableRowCell:not(:only-child) & {
+        ${logicalCSS('min-height', euiTheme.size.l)}
+      }
+    `,
   };
 };
