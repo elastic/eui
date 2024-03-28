@@ -23,10 +23,6 @@ export interface EuiTableProps
     TableHTMLAttributes<HTMLTableElement> {
   compressed?: boolean;
   /**
-   * @deprecated - use `responsiveBreakpoint` instead
-   */
-  responsive?: boolean;
-  /**
    * Named breakpoint. Below this size, the table will collapse
    * into responsive cards.
    *
@@ -48,11 +44,9 @@ export const EuiTable: FunctionComponent<EuiTableProps> = ({
   compressed,
   tableLayout = 'fixed',
   responsiveBreakpoint, // Default handled by `useIsEuiTableResponsive`
-  responsive = true,
   ...rest
 }) => {
-  const isResponsive =
-    useIsEuiTableResponsive(responsiveBreakpoint) && responsive;
+  const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
 
   const classes = classNames('euiTable', className, {
     'euiTable--responsive': responsive,
