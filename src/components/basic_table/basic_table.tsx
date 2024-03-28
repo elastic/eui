@@ -241,7 +241,6 @@ interface BasicTableProps<T extends object>
    * Indicates which column should be used as the identifying cell in each row. Should match a "field" prop in FieldDataColumn
    */
   rowHeader?: string;
-  hasActions?: boolean;
   isExpandable?: boolean;
   /**
    * Provides an infinite loading indicator
@@ -523,7 +522,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       itemIdToExpandedRowMap,
       responsiveBreakpoint,
       isExpandable,
-      hasActions,
       rowProps,
       cellProps,
       tableCaption,
@@ -966,7 +964,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
     const {
       columns,
       selection,
-      hasActions,
       rowHeader,
       itemIdToExpandedRowMap = {},
       isExpandable,
@@ -998,7 +995,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       rowSelectionDisabled = !!isDisabled;
     }
 
-    let calculatedHasActions;
+    let hasActions;
     columns.forEach((column: EuiBasicTableColumn<T>, columnIndex: number) => {
       if ((column as EuiTableActionsColumnType<T>).actions) {
         cells.push(
@@ -1009,7 +1006,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             columnIndex
           )
         );
-        calculatedHasActions = true;
+        hasActions = true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
         const fieldDataColumn = column as EuiTableFieldDataColumnType<T>;
         cells.push(
@@ -1069,7 +1066,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         hasSelection={!!selection}
         isSelectable={!rowSelectionDisabled}
         isSelected={selected}
-        hasActions={hasActions == null ? calculatedHasActions : hasActions}
+        hasActions={hasActions}
         isExpandable={isExpandable}
         {...rowProps}
       >

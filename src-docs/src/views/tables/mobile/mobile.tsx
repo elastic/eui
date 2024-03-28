@@ -300,7 +300,6 @@ export default () => {
         pagination={pagination}
         sorting={sorting}
         selection={selection}
-        hasActions={true}
         responsiveBreakpoint={isResponsive}
         onChange={onTableChange}
       />
