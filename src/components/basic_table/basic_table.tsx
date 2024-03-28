@@ -1185,15 +1185,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       });
     }
 
-    const tools = (
-      <ExpandedItemActions
-        actions={actualActions}
-        actionsDisabled={allDisabled}
-        itemId={itemId}
-        item={item}
-      />
-    );
-
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
       <EuiTableRowCell
@@ -1204,7 +1195,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
         hasActions={hasCustomActions ? 'custom' : true}
         css={euiBasicTableActionsWrapper}
       >
-        {tools}
+        <ExpandedItemActions
+          actions={actualActions}
+          actionsDisabled={allDisabled}
+          itemId={itemId}
+          item={item}
+        />
       </EuiTableRowCell>
     );
   }
