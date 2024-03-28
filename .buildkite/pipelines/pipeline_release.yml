@@ -11,4 +11,4 @@ steps:
     command: .buildkite/scripts/release/step_update_version.sh
     if: 'build.env("RELEASE_TYPE") == "release"'
   - wait
-  - echo "TODO: release to npmjs"
+  - command: "echo 'TODO: release to npmjs'"
