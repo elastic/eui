@@ -5,9 +5,3 @@
   font-weight: inherit;
   text-align: left;
 }
-
-@mixin euiTableCellCheckbox {
-  @include euiTableCell;
-  width: $euiTableCellCheckboxWidth;
-  vertical-align: middle;
-}

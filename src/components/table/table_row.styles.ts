@@ -80,16 +80,10 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       /**
        * Left column offset (no border)
-       * Used for selection checkbox
+       * Used for selection checkbox, which will be absolutely positioned
        */
       selectable: css`
         ${logicalCSS('padding-left', mobileSizes.checkbox.width)}
-
-        .euiTableRowCellCheckbox {
-          position: absolute;
-          ${logicalCSS('top', cellContentPadding)}
-          ${logicalCSS('left', mobileSizes.checkbox.offset)}
-        }
       `,
       /**
        * Right column styles + border

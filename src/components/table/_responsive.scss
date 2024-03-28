@@ -3,10 +3,6 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    .euiTableRowCellCheckbox {
-      border: none;
-    }
-
     // never show hidden items and always show hover items on mobile,
     .euiTableRow-hasActions .euiTableCellContent--showOnHover {
       > * {

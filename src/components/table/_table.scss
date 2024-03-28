@@ -43,19 +43,10 @@
   }
 }
 
-.euiTableHeaderCellCheckbox {
-  @include euiTableCellCheckbox;
-  border: none;
-}
-
 .euiTableRow-isExpandedRow {
   &.euiTableRow-isSelectable .euiTableCellContent {
     padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
   }
-}
-
-.euiTableRowCellCheckbox {
-  @include euiTableCellCheckbox;
 }
 
 .euiTableFooterCell {
