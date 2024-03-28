@@ -58,6 +58,30 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('bottom', mobileSizes.actions.offset)}
         `;
       },
+      /**
+       * Custom actions may not be icons and therefore may not fit in a column
+       * If they're the last cell, we can create a pseudo "row"/"border-top"
+       * that mimicks the visual separation that the right column has
+       */
+      customActions: css`
+        &:last-child {
+          ${logicalCSS('width', '100%')}
+
+          &::before {
+            content: '';
+            position: absolute;
+            ${logicalCSS('horizontal', 0)}
+            ${logicalCSS('height', euiTheme.border.width.thin)}
+            background-color: ${euiTheme.border.color};
+          }
+
+          /* Minor vertical alignment of cell content */
+          .euiTableCellContent {
+            position: relative;
+            ${logicalCSS('top', euiTheme.size.xs)}
+          }
+        }
+      `,
     },
   };
 };

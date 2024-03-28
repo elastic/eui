@@ -98,7 +98,7 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    * Indicates if the column is dedicated to icon-only actions (currently
    * affects mobile only)
    */
-  hasActions?: boolean;
+  hasActions?: boolean | 'custom';
   /**
    * Indicates if the column is dedicated as the expandable row toggle
    */
@@ -140,7 +140,8 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     ...(isResponsive
       ? [
           styles.mobile.mobile,
-          hasActions && styles.mobile.actions,
+          hasActions === 'custom' && styles.mobile.customActions,
+          hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
         ]
       : [styles.desktop]),

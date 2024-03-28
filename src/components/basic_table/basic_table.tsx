@@ -61,7 +61,7 @@ import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 
 import { htmlIdGenerator } from '../../services/accessibility';
-import { Action } from './action_types';
+import { Action, CustomItemAction } from './action_types';
 import {
   EuiTableActionsColumnType,
   EuiTableComputedColumnType,
@@ -1147,6 +1147,10 @@ export class EuiBasicTable<T extends object = any> extends Component<
     // Disable all actions if any row(s) are selected
     const allDisabled = this.state.selection.length > 0;
 
+    const hasCustomActions = column.actions.some(
+      (action: Action<T>) => !!(action as CustomItemAction<T>).render
+    );
+
     let actualActions = column.actions.filter(
       (action: Action<T>) => !action.available || action.available(item)
     );
@@ -1197,7 +1201,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         key={key}
         align="right"
         textOnly={false}
-        hasActions={true}
+        hasActions={hasCustomActions ? 'custom' : true}
         css={euiBasicTableActionsWrapper}
       >
         {tools}
