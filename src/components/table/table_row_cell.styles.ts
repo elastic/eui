@@ -23,6 +23,12 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.text};
     `,
 
+    hasActions: css`
+      /* Unsets the extra strut caused by inline-block display of buttons/icons/tooltips.
+         Without this, the row height jumps whenever actions are disabled. */
+      line-height: 1;
+    `,
+
     // valign
     middle: css`
       vertical-align: middle;

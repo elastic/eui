@@ -78,7 +78,6 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 import {
   euiBasicTableBodyLoading,
   safariLoadingWorkaround,
-  euiBasicTableActionsWrapper,
 } from './basic_table.styles';
 
 type DataTypeProfiles = Record<
@@ -1174,7 +1173,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
         align="right"
         textOnly={false}
         hasActions={hasCustomActions ? 'custom' : true}
-        css={euiBasicTableActionsWrapper}
       >
         <ExpandedItemActions
           actions={actualActions}
