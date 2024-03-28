@@ -181,6 +181,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         {onSort && !readOnly ? (
           <button
             type="button"
+            css={styles.euiTableHeaderCell__button}
             className={buttonClasses}
             onClick={onSort}
             data-test-subj="tableHeaderSortButton"

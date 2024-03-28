@@ -218,7 +218,7 @@ exports[`sorting renders a button with onSort 1`] = `
         scope="col"
       >
         <button
-          class="euiTableHeaderButton euiTableHeaderButton-isSorted"
+          class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
           data-test-subj="tableHeaderSortButton"
           type="button"
         >

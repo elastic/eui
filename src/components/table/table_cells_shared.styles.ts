@@ -35,6 +35,19 @@ export const euiTableHeaderFooterCellStyles = (
         gap: ${euiTheme.size.xs};
       }
     `,
+    euiTableHeaderCell__button: css`
+      ${logicalCSS('width', '100%')}
+      font-weight: inherit;
+
+      &:hover,
+      &:focus {
+        color: ${euiTheme.colors.primaryText};
+
+        .euiTableCellContent__text {
+          text-decoration: underline;
+        }
+      }
+    `,
     euiTableFooterCell: css`
       ${sharedStyles}
       background-color: ${euiTheme.colors.lightestShade};

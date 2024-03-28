@@ -1,30 +1,3 @@
-.euiTableHeaderButton {
-  @include euiFontSizeS;
-  color: inherit;
-  width: 100%;
-
-  &:hover,
-  &:focus {
-    .euiTableCellContent__text {
-      text-decoration: underline;
-      color: $euiColorPrimary;
-    }
-
-    .euiTableSortIcon {
-      fill: $euiColorPrimary;
-    }
-  }
-}
-
-.euiTableSortIcon {
-  margin-left: $euiSizeXS;
-  flex-shrink: 0; // makes sure the icon doesn't change size because the text is long
-
-  .euiTableHeaderButton-isSorted & {
-    fill: $euiTitleColor;
-  }
-}
-
 .euiTableRow-isExpandedRow {
   &.euiTableRow-isSelectable .euiTableCellContent {
     padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
