@@ -48,41 +48,9 @@
   border: none;
 }
 
-.euiTableRow {
-  &:hover {
-    background-color: $euiTableHoverColor;
-  }
-
-  &.euiTableRow-isClickable {
-    &:hover {
-      background-color: $euiTableHoverClickableColor;
-      cursor: pointer;
-    }
-
-    &:focus {
-      background-color: $euiTableFocusClickableColor;
-    }
-  }
-
-  &.euiTableRow-isExpandedRow {
-    background-color: $euiTableHoverColor;
-
-    &.euiTableRow-isSelectable .euiTableCellContent {
-      padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
-    }
-  }
-
-  &.euiTableRow-isSelected {
-    background-color: $euiTableSelectedColor;
-
-    + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-      background-color: $euiTableSelectedColor;
-    }
-
-    &:hover,
-    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
-      background-color: $euiTableHoverSelectedColor;
-    }
+.euiTableRow-isExpandedRow {
+  &.euiTableRow-isSelectable .euiTableCellContent {
+    padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
   }
 }
 
@@ -182,24 +150,5 @@
       opacity: 1;
       filter: grayscale(0%);
     }
-  }
-}
-
-// Animate expanded row must be on the contents div inside
-// This adds a quick pop in animation, but does not attempt to animate to height auto
-// - down that road dragons lie. @see https://github.com/elastic/eui/issues/6770
-.euiTableRow-isExpandedRow .euiTableCellContent {
-  animation: $euiAnimSpeedFast $euiAnimSlightResistance 1 normal none growExpandedRow;
-}
-
-@keyframes growExpandedRow {
-  0% {
-    opacity: 0;
-    transform: translateY(-$euiSizeM);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
