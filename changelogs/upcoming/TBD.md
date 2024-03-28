@@ -1,6 +1,9 @@
 **CSS-in-JS conversions**
 
 - Removed the following `EuiTable` Sass variables:
+  - `$euiTableCellContentPadding`
+  - `$euiTableCellContentPaddingCompressed`
+  - `$euiTableCellCheckboxWidth`
   - `$euiTableHoverColor`
   - `$euiTableSelectedColor`
   - `$euiTableHoverSelectedColor`
