@@ -265,7 +265,6 @@ export default () => {
       columns={columnsWithExpandingRowToggle}
       pagination={pagination}
       sorting={sorting}
-      isSelectable={true}
       selection={selection}
       onChange={onTableChange}
     />
