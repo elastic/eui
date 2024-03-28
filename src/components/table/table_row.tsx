@@ -69,10 +69,10 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         styles.euiTableRow,
         styles.mobile.mobile,
         isSelected && styles.mobile.selected,
-        isSelectable && styles.mobile.selectable,
         isExpandedRow && styles.mobile.expanded,
         (hasActions || isExpandable || isExpandedRow) &&
           styles.mobile.hasRightColumn,
+        isSelectable && styles.mobile.hasLeftColumn,
       ]
     : [
         styles.euiTableRow,
@@ -80,6 +80,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         isSelected && styles.desktop.selected,
         isExpandedRow && styles.desktop.expanded,
         onClick && styles.desktop.clickable,
+        isExpandedRow && isSelectable && styles.desktop.checkboxOffset,
       ];
 
   const classes = classNames('euiTableRow', className, {
