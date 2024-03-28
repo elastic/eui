@@ -241,7 +241,6 @@ interface BasicTableProps<T extends object>
    * Indicates which column should be used as the identifying cell in each row. Should match a "field" prop in FieldDataColumn
    */
   rowHeader?: string;
-  isExpandable?: boolean;
   /**
    * Provides an infinite loading indicator
    */
@@ -521,7 +520,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       compressed,
       itemIdToExpandedRowMap,
       responsiveBreakpoint,
-      isExpandable,
       rowProps,
       cellProps,
       tableCaption,
@@ -961,13 +959,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderItemRow(item: T, rowIndex: number) {
-    const {
-      columns,
-      selection,
-      rowHeader,
-      itemIdToExpandedRowMap = {},
-      isExpandable,
-    } = this.props;
+    const { columns, selection, rowHeader, itemIdToExpandedRowMap } =
+      this.props;
 
     const cells = [];
 
@@ -1042,7 +1035,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
 
     // We'll use the ID to associate the expanded row with the original.
-    const hasExpandedRow = itemIdToExpandedRowMap.hasOwnProperty(itemId);
+    const hasExpandedRow = itemIdToExpandedRowMap?.hasOwnProperty(itemId);
     const expandedRowId = hasExpandedRow
       ? `row_${itemId}_expansion`
       : undefined;
@@ -1053,7 +1046,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         hasSelection={!!selection}
       >
         <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
-          {itemIdToExpandedRowMap[itemId]}
+          {itemIdToExpandedRowMap![itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
     ) : undefined;
@@ -1067,7 +1060,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         isSelectable={!rowSelectionDisabled}
         isSelected={selected}
         hasActions={hasActions}
-        isExpandable={isExpandable}
+        isExpandable={hasExpandedRow}
         {...rowProps}
       >
         {cells}

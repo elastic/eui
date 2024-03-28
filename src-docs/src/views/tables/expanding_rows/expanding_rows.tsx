@@ -260,7 +260,6 @@ export default () => {
       items={pageOfItems}
       itemId="id"
       itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-      isExpandable={true}
       columns={columnsWithExpandingRowToggle}
       pagination={pagination}
       sorting={sorting}
