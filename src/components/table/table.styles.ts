@@ -9,13 +9,43 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, euiNumberFormat, logicalCSS } from '../../global_styling';
+import {
+  euiFontSize,
+  euiNumberFormat,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
+
+export const euiTableVariables = ({ euiTheme }: UseEuiTheme) => {
+  const cellContentPadding = euiTheme.size.s;
+  const compressedCellContentPadding = euiTheme.size.xs;
+
+  const mobileSizes = {
+    actions: {
+      width: euiTheme.size.xxl,
+      offset: mathWithUnits(cellContentPadding, (x) => x * 2),
+    },
+    checkbox: {
+      width: mathWithUnits(
+        [euiTheme.size.xl, euiTheme.size.xs],
+        (x, y) => x + y
+      ),
+      offset: mathWithUnits(cellContentPadding, (x) => x / 2),
+    },
+  };
+
+  return {
+    cellContentPadding,
+    compressedCellContentPadding,
+    mobileSizes,
+  };
+};
 
 export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const cellContentPadding = euiTheme.size.s;
-  const compressedCellContentPadding = euiTheme.size.xs;
+  const { cellContentPadding, compressedCellContentPadding } =
+    euiTableVariables(euiThemeContext);
 
   return {
     euiTable: css`

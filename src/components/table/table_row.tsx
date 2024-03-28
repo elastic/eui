@@ -15,7 +15,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { keys } from '../../services';
+import { keys, useEuiMemoizedStyles } from '../../services';
+
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
+import { euiTableRowStyles } from './table_row.styles';
 
 export interface EuiTableRowProps {
   /**
@@ -59,6 +62,28 @@ export const EuiTableRow: FunctionComponent<Props> = ({
   onClick,
   ...rest
 }) => {
+  const isResponsive = useEuiTableIsResponsive();
+  const styles = useEuiMemoizedStyles(euiTableRowStyles);
+  const cssStyles = isResponsive
+    ? [
+        styles.euiTableRow,
+        styles.mobile.mobile,
+        isSelected && styles.mobile.selected,
+        isSelectable && styles.mobile.selectable,
+        hasActions && styles.mobile.actions,
+        isExpandable && styles.mobile.expandable,
+        isExpandedRow && styles.mobile.expanded,
+        (hasActions || isExpandable || isExpandedRow) &&
+          styles.mobile.hasRightColumn,
+      ]
+    : [
+        styles.euiTableRow,
+        styles.desktop.desktop,
+        isSelected && styles.desktop.selected,
+        isExpandedRow && styles.desktop.expanded,
+        onClick && styles.desktop.clickable,
+      ];
+
   const classes = classNames('euiTableRow', className, {
     'euiTableRow-isSelectable': isSelectable,
     'euiTableRow-isSelected': isSelected,
@@ -70,7 +95,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
 
   if (!onClick) {
     return (
-      <tr className={classes} {...rest}>
+      <tr css={cssStyles} className={classes} {...rest}>
         {children}
       </tr>
     );
@@ -90,6 +115,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
 
   return (
     <tr
+      css={cssStyles}
       className={classes}
       onClick={onClick}
       onKeyDown={onKeyDown}

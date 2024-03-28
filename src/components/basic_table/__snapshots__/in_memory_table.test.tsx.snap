@@ -192,7 +192,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
       class="css-0"
     >
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
@@ -285,7 +285,7 @@ exports[`EuiInMemoryTable with items 1`] = `
       class="css-0"
     >
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
@@ -307,7 +307,7 @@ exports[`EuiInMemoryTable with items 1`] = `
         </td>
       </tr>
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
@@ -329,7 +329,7 @@ exports[`EuiInMemoryTable with items 1`] = `
         </td>
       </tr>
       <tr
-        class="euiTableRow"
+        class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell euiTableRowCell--middle"
