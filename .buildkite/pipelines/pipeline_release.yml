@@ -1,7 +1,14 @@
+agents:
+  provider: gcp
+
 steps:
-  - command: "echo 'This pipeline is currently a no-op'"
-    label: ':shrug: noop'
-    agents:
-      provider: gcp
-    # TODO: remove the test-automatic-releases condition when the pipeline is production-ready
-    if: build.branch == "main" || build.branch == "build/test-automatic-releases"
+  # Define two (almost) equal update version steps to explicitly label them
+  # prerelease or release depending on passed RELEASE_TYPE argument
+  - label: ':git: Update package version number - prerelease'
+    command: .buildkite/scripts/release/step_update_version.sh
+    if: 'build.env("RELEASE_TYPE") != "release"'
+  - label: ':git: Update package version number - release'
+    command: .buildkite/scripts/release/step_update_version.sh
+    if: 'build.env("RELEASE_TYPE") == "release"'
+  - wait
+  - echo "TODO: release to npmjs"
