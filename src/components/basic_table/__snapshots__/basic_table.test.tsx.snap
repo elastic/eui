@@ -17,7 +17,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
     <thead>
       <tr>
         <th
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_name_0"
           role="columnheader"
           scope="col"
@@ -47,10 +47,10 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -69,10 +69,10 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -91,10 +91,10 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -129,7 +129,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
     <thead>
       <tr>
         <th
-          class="euiTableHeaderCellCheckbox"
+          class="euiTableHeaderCellCheckbox emotion-euiTableHeaderCellCheckbox"
           scope="col"
         >
           <div
@@ -154,13 +154,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <th
           aria-live="polite"
           aria-sort="ascending"
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_name_0"
           role="columnheader"
           scope="col"
         >
           <button
-            class="euiTableHeaderButton euiTableHeaderButton-isSorted"
+            class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
             data-test-subj="tableHeaderSortButton"
             type="button"
           >
@@ -186,7 +186,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </button>
         </th>
         <th
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_id_1"
           role="columnheader"
           scope="col"
@@ -208,7 +208,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </span>
         </th>
         <th
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_age_2"
           role="columnheader"
           scope="col"
@@ -230,7 +230,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </span>
         </th>
         <th
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           role="columnheader"
           scope="col"
         >
@@ -254,7 +254,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCellCheckbox"
+          class="euiTableRowCellCheckbox emotion-euiTableRowCellCheckbox-desktop"
         >
           <div
             class="euiTableCellContent"
@@ -277,10 +277,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -291,10 +291,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             ID
           </div>
@@ -309,10 +309,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Age
           </div>
@@ -327,10 +327,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--hasActions euiTableRowCell--middle"
+          class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-middle-desktop-euiBasicTableActionsWrapper"
         >
           <div
-            class="euiTableCellContent emotion-euiBasicTableActionsWrapper euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
+            class="euiTableCellContent euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -375,7 +375,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCellCheckbox"
+          class="euiTableRowCellCheckbox emotion-euiTableRowCellCheckbox-desktop"
         >
           <div
             class="euiTableCellContent"
@@ -398,10 +398,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -412,10 +412,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             ID
           </div>
@@ -430,10 +430,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Age
           </div>
@@ -448,10 +448,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--hasActions euiTableRowCell--middle"
+          class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-middle-desktop-euiBasicTableActionsWrapper"
         >
           <div
-            class="euiTableCellContent emotion-euiBasicTableActionsWrapper euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
+            class="euiTableCellContent euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -496,7 +496,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCellCheckbox"
+          class="euiTableRowCellCheckbox emotion-euiTableRowCellCheckbox-desktop"
         >
           <div
             class="euiTableCellContent"
@@ -519,10 +519,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -533,10 +533,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             ID
           </div>
@@ -551,10 +551,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Age
           </div>
@@ -569,10 +569,10 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableRowCell euiTableRowCell--hasActions euiTableRowCell--middle"
+          class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-middle-desktop-euiBasicTableActionsWrapper"
         >
           <div
-            class="euiTableCellContent emotion-euiBasicTableActionsWrapper euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
+            class="euiTableCellContent euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -617,7 +617,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
     <tfoot>
       <tr>
         <td
-          class="euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
             class="euiTableCellContent"
@@ -628,7 +628,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
             class="euiTableCellContent"
@@ -639,7 +639,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
             class="euiTableCellContent"
@@ -655,7 +655,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
             class="euiTableCellContent"
@@ -666,7 +666,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </td>
         <td
-          class="euiTableFooterCell"
+          class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
             class="euiTableCellContent"

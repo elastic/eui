@@ -8,15 +8,28 @@
 
 import React, { FunctionComponent, TdHTMLAttributes } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
+
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
+import { euiTableCellCheckboxStyles } from './table_cells_shared.styles';
 
 export const EuiTableRowCellCheckbox: FunctionComponent<
   CommonProps & TdHTMLAttributes<HTMLTableCellElement>
 > = ({ children, className, ...rest }) => {
+  const isResponsive = useEuiTableIsResponsive();
+
+  const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
+  const cssStyles = [
+    styles.euiTableRowCellCheckbox,
+    isResponsive ? styles.mobile : styles.desktop,
+  ];
+
   const classes = classNames('euiTableRowCellCheckbox', className);
 
   return (
-    <td className={classes} {...rest}>
+    <td css={cssStyles} className={classes} {...rest}>
       <div className="euiTableCellContent">{children}</div>
     </td>
   );

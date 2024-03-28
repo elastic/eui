@@ -165,7 +165,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
     <thead>
       <tr>
         <th
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_name_0"
           role="columnheader"
           scope="col"
@@ -195,7 +195,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
           colspan="1"
         >
           <div
@@ -258,7 +258,7 @@ exports[`EuiInMemoryTable with items 1`] = `
     <thead>
       <tr>
         <th
-          class="euiTableHeaderCell"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_name_0"
           role="columnheader"
           scope="col"
@@ -288,10 +288,10 @@ exports[`EuiInMemoryTable with items 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -310,10 +310,10 @@ exports[`EuiInMemoryTable with items 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>
@@ -332,10 +332,10 @@ exports[`EuiInMemoryTable with items 1`] = `
         class="euiTableRow emotion-euiTableRow-desktop"
       >
         <td
-          class="euiTableRowCell euiTableRowCell--middle"
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
           >
             Name
           </div>

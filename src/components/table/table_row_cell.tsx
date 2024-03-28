@@ -18,6 +18,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import {
+  useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
@@ -28,6 +29,7 @@ import { EuiTextBlockTruncate } from '../text_truncate';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
+import { euiTableRowCellStyles } from './table_row_cell.styles';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -96,7 +98,7 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    * Indicates if the column is dedicated to icon-only actions (currently
    * affects mobile only)
    */
-  hasActions?: boolean;
+  hasActions?: boolean | 'custom';
   /**
    * Indicates if the column is dedicated as the expandable row toggle
    */
@@ -132,16 +134,28 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
+  const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
+  const cssStyles = [
+    styles.euiTableRowCell,
+    styles[valign],
+    ...(isResponsive
+      ? [
+          styles.mobile.mobile,
+          mobileOptions.enlarge && styles.mobile.enlarge,
+          hasActions === 'custom' && styles.mobile.customActions,
+          hasActions === true && styles.mobile.actions,
+          isExpander && styles.mobile.expander,
+        ]
+      : [styles.desktop]),
+  ];
 
-  const cellClasses = classNames('euiTableRowCell', {
+  const cellClasses = classNames('euiTableRowCell', className, {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only,
-    'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge,
-    [`euiTableRowCell--${valign}`]: valign,
   });
 
-  const contentClasses = classNames('euiTableCellContent', className, {
+  const contentClasses = classNames('euiTableCellContent', {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
     'euiTableCellContent--showOnHover': showOnHover,
@@ -151,7 +165,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--overflowingContent': textOnly !== true,
   });
 
-  const mobileContentClasses = classNames('euiTableCellContent', className, {
+  const mobileContentClasses = classNames('euiTableCellContent', {
     'euiTableCellContent--alignRight':
       mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter':
@@ -217,6 +231,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
     style: styleObj,
+    css: cssStyles,
     ...rest,
   };
   if (mobileOptions.show === false) {
@@ -234,6 +249,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
         {/* Mobile-only header */}
         {mobileOptions.header && (
           <div
+            css={styles.euiTableRowCell__mobileHeader}
             className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}
           >
             {mobileOptions.header}

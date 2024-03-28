@@ -1,82 +1,7 @@
-.euiTableFooterCell,
-.euiTableHeaderCell {
-  @include euiTableCell;
-  @include euiTitle('xxs');
-  font-weight: $euiFontWeightMedium;
-  border: none;
-
-  .euiTableHeaderButton {
-    text-align: left;
-    font-weight: $euiFontWeightMedium;
-  }
-
-  .euiTableCellContent__text {
-    @include euiFontSizeXS;
-    font-weight: $euiFontWeightSemiBold;
-  }
-}
-
-.euiTableHeaderButton {
-  @include euiFontSizeS;
-  color: inherit;
-  width: 100%;
-
-  &:hover,
-  &:focus {
-    .euiTableCellContent__text {
-      text-decoration: underline;
-      color: $euiColorPrimary;
-    }
-
-    .euiTableSortIcon {
-      fill: $euiColorPrimary;
-    }
-  }
-}
-
-.euiTableSortIcon {
-  margin-left: $euiSizeXS;
-  flex-shrink: 0; // makes sure the icon doesn't change size because the text is long
-
-  .euiTableHeaderButton-isSorted & {
-    fill: $euiTitleColor;
-  }
-}
-
-.euiTableHeaderCellCheckbox {
-  @include euiTableCellCheckbox;
-  border: none;
-}
-
 .euiTableRow-isExpandedRow {
   &.euiTableRow-isSelectable .euiTableCellContent {
     padding-left: $euiTableCellCheckboxWidth + $euiTableCellContentPadding;
   }
-}
-
-.euiTableRowCell {
-  @include euiTableCell;
-  color: $euiTextColor;
-
-  &--top {
-    vertical-align: top;
-  }
-
-  &--bottom {
-    vertical-align: bottom;
-  }
-
-  &--baseline {
-    vertical-align: baseline;
-  }
-}
-
-.euiTableRowCellCheckbox {
-  @include euiTableCellCheckbox;
-}
-
-.euiTableFooterCell {
-  background-color: $euiColorLightestShade;
 }
 
 /**
@@ -106,6 +31,7 @@
   text-align: center;
 }
 
+// TODO: Address this in upcoming EuiTableCellContent PR
 .euiTableHeaderCell,
 .euiTableFooterCell,
 .euiTableCellContent--truncateText {

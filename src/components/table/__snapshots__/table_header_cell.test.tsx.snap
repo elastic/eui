@@ -5,7 +5,7 @@ exports[`align defaults to left 1`] = `
   <thead>
     <tr>
       <td
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
       >
         <span
@@ -26,7 +26,7 @@ exports[`align renders center when specified 1`] = `
   <thead>
     <tr>
       <td
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
       >
         <span
@@ -47,7 +47,7 @@ exports[`align renders right when specified 1`] = `
   <thead>
     <tr>
       <td
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
       >
         <span
@@ -69,7 +69,7 @@ exports[`renders EuiTableHeaderCell 1`] = `
     <tr>
       <th
         aria-label="aria-label"
-        class="euiTableHeaderCell testClass1 testClass2 emotion-euiTestCss"
+        class="euiTableHeaderCell testClass1 testClass2 emotion-euiTableHeaderCell-euiTestCss"
         data-test-subj="test subject string"
         role="columnheader"
         scope="col"
@@ -96,7 +96,7 @@ exports[`renders td when children is null/undefined 1`] = `
     <tr>
       <td
         aria-label="aria-label"
-        class="euiTableHeaderCell testClass1 testClass2 emotion-euiTestCss"
+        class="euiTableHeaderCell testClass1 testClass2 emotion-euiTableHeaderCell-euiTestCss"
         data-test-subj="test subject string"
         role="columnheader"
       >
@@ -120,7 +120,7 @@ exports[`sorting does not render a button with readOnly 1`] = `
       <th
         aria-live="polite"
         aria-sort="descending"
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
@@ -151,7 +151,7 @@ exports[`sorting is rendered with isSortAscending 1`] = `
       <th
         aria-live="polite"
         aria-sort="ascending"
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
@@ -182,7 +182,7 @@ exports[`sorting is rendered with isSorted 1`] = `
       <th
         aria-live="polite"
         aria-sort="descending"
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
@@ -213,12 +213,12 @@ exports[`sorting renders a button with onSort 1`] = `
       <th
         aria-live="polite"
         aria-sort="descending"
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
         <button
-          class="euiTableHeaderButton euiTableHeaderButton-isSorted"
+          class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
           data-test-subj="tableHeaderSortButton"
           type="button"
         >
@@ -248,7 +248,7 @@ exports[`width and style accepts style attribute 1`] = `
   <thead>
     <tr>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
         style="width: 20%;"
@@ -274,7 +274,7 @@ exports[`width and style accepts width attribute 1`] = `
   <thead>
     <tr>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
         style="width: 10%;"
@@ -300,7 +300,7 @@ exports[`width and style accepts width attribute as number 1`] = `
   <thead>
     <tr>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
         style="width: 100px;"
@@ -326,7 +326,7 @@ exports[`width and style resolves style and width attribute 1`] = `
   <thead>
     <tr>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
         style="width: 10%;"
