@@ -131,6 +131,8 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   },
   ...rest
 }) => {
+  const isResponsive = useEuiTableIsResponsive();
+
   const cellClasses = classNames('euiTableRowCell', {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
@@ -169,10 +171,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     euiTableCellContent__hoverItem: showOnHover,
   });
 
-  const widthValue =
-    useEuiTableIsResponsive() && mobileOptions.width
-      ? mobileOptions.width
-      : width;
+  const widthValue = isResponsive
+    ? hasActions || isExpander
+      ? undefined // On mobile, actions are shifted to a right column via CSS
+      : mobileOptions.width
+    : width;
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
 

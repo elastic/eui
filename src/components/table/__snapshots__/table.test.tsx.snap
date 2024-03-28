@@ -45,7 +45,7 @@ exports[`EuiTable renders 1`] = `
   </thead>
   <tbody>
     <tr
-      class="euiTableRow"
+      class="euiTableRow emotion-euiTableRow-desktop"
     >
       <td
         class="euiTableRowCell euiTableRowCell--middle"
@@ -62,7 +62,7 @@ exports[`EuiTable renders 1`] = `
       </td>
     </tr>
     <tr
-      class="euiTableRow"
+      class="euiTableRow emotion-euiTableRow-desktop"
     >
       <td
         class="euiTableRowCell euiTableRowCell--middle"
