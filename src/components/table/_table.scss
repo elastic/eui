@@ -1,21 +1,3 @@
-.euiTableFooterCell,
-.euiTableHeaderCell {
-  @include euiTableCell;
-  @include euiTitle('xxs');
-  font-weight: $euiFontWeightMedium;
-  border: none;
-
-  .euiTableHeaderButton {
-    text-align: left;
-    font-weight: $euiFontWeightMedium;
-  }
-
-  .euiTableCellContent__text {
-    @include euiFontSizeXS;
-    font-weight: $euiFontWeightSemiBold;
-  }
-}
-
 .euiTableHeaderButton {
   @include euiFontSizeS;
   color: inherit;
@@ -49,10 +31,6 @@
   }
 }
 
-.euiTableFooterCell {
-  background-color: $euiColorLightestShade;
-}
-
 /**
  * 1. Vertically align all children.
  * 4. Prevent very long single words (e.g. the name of a field in a document) from overflowing
@@ -80,6 +58,7 @@
   text-align: center;
 }
 
+// TODO: Address this in upcoming EuiTableCellContent PR
 .euiTableHeaderCell,
 .euiTableFooterCell,
 .euiTableCellContent--truncateText {

@@ -9,9 +9,38 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { euiFontSize, logicalCSS } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
+
+export const euiTableHeaderFooterCellStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+
+  // euiFontSize returns an object, so we keep object notation here to merge into css``
+  const sharedStyles = {
+    ...euiFontSize(euiThemeContext, 'xs'),
+    fontWeight: euiTheme.font.weight.semiBold,
+    color: euiTheme.colors.title,
+    verticalAlign: 'middle',
+  };
+
+  return {
+    euiTableHeaderCell: css`
+      ${sharedStyles}
+
+      .euiTableCellContent {
+        /* Spacing between text and sort icon */
+        gap: ${euiTheme.size.xs};
+      }
+    `,
+    euiTableFooterCell: css`
+      ${sharedStyles}
+      background-color: ${euiTheme.colors.lightestShade};
+    `,
+  };
+};
 
 export const euiTableCellCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
