@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../../components';
 
 import Table from './mobile';
-import { EuiTextColor } from '../../../../../src/components/text';
 import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
 import { EuiTableRowCellMobileOptionsShape } from '../props/props';
@@ -51,26 +50,6 @@ export const section = {
         Inversely, if you always want your table to render in a mobile-friendly
         manner, pass <EuiCode>true</EuiCode>.
       </p>
-      <p>
-        {/* TODO: This shouldn't be true by the end of the Emotion conversion */}
-        To make your table work responsively, please make sure you add the
-        following <EuiTextColor color="danger">additional</EuiTextColor> props
-        to the top level table component (<strong>EuiBasicTable</strong> or{' '}
-        <strong>EuiInMemoryTable</strong>):
-      </p>
-      <ul>
-        <li>
-          <EuiCode>isSelectable</EuiCode>: if the table has a single column of
-          checkboxes for selecting rows
-        </li>
-        <li>
-          <EuiCode>isExpandable</EuiCode>: if the table has rows that can expand
-        </li>
-        <li>
-          <EuiCode>hasActions</EuiCode>: if the table has a column for actions
-          which may/may not be hidden in hover
-        </li>
-      </ul>
       <p>
         The <EuiCode>mobileOptions</EuiCode> object can be passed to the{' '}
         <strong>EuiTableRowCell</strong> directly or with each column item
