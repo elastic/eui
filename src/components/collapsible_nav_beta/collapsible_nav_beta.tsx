@@ -19,7 +19,7 @@ import React, {
 import classNames from 'classnames';
 
 import {
-  useEuiTheme,
+  useEuiMemoizedStyles,
   useEuiThemeCSSVariables,
   useGeneratedHtmlId,
   throttle,
@@ -94,8 +94,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   ...rest
 }) => {
   const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
-  const euiTheme = useEuiTheme();
-  const headerHeight = euiHeaderVariables(euiTheme).height;
+  const { height: headerHeight } = useEuiMemoizedStyles(euiHeaderVariables);
 
   /**
    * Collapsed state
@@ -179,7 +178,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
     'euiCollapsibleNavBeta',
     className
   );
-  const styles = euiCollapsibleNavBetaStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavBetaStyles);
   const cssStyles = [
     styles.euiCollapsibleNavBeta,
     styles[side],

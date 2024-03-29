@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, useState, useCallback } from 'react';
 
-import { useEuiTheme } from '../../../../services';
+import { useEuiMemoizedStyles } from '../../../../services';
 
 import { EuiPopover, EuiPopoverTitle } from '../../../popover';
 
@@ -34,8 +34,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   isSelected,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsedNavPopoverStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsedNavPopoverStyles);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const togglePopover = useCallback(

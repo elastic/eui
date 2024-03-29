@@ -9,7 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 
 import {
   type _SharedEuiCollapsibleNavItemProps,
@@ -47,8 +47,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
 }) => {
   const classes = classNames('euiCollapsibleNavGroup', className);
 
-  const euiTheme = useEuiTheme();
-  const sharedStyles = euiCollapsibleNavItemVariables(euiTheme);
+  const sharedStyles = useEuiMemoizedStyles(euiCollapsibleNavItemVariables);
   const cssStyles = !isSubItem
     ? {
         css: {
