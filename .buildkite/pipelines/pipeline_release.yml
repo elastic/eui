@@ -2,13 +2,12 @@ agents:
   provider: gcp
 
 steps:
-  # Define two (almost) equal update version steps to explicitly label them
-  # prerelease or release depending on passed RELEASE_TYPE argument
-  - label: ':git: Update package version number - prerelease'
-    command: .buildkite/scripts/release/step_update_version.sh
-    if: 'build.env("RELEASE_TYPE") != "release"'
-  - label: ':git: Update package version number - release'
-    command: .buildkite/scripts/release/step_update_version.sh
-    if: 'build.env("RELEASE_TYPE") == "release"'
+  - label: ':docker: Build agent image'
+    key: 'build-agent-image'
+    command: '.buildkite/scripts/drivah.sh .'
+    agents:
+      image: 'docker.elastic.co/ci-agent-images/drivah:0.24.4'
+      ephemeralStorage: '10G'
+      memory: '2G'
   - wait
-  - command: "echo 'TODO: release to npmjs'"
+  - command: "echo 'TODO: push agent image'"
