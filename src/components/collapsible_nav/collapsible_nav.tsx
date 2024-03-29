@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import {
-  useEuiTheme,
+  useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useIsWithinMinBreakpoint,
   useCombinedRefs,
@@ -90,8 +90,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   const flyoutType = navIsDocked ? 'push' : 'overlay';
 
   const classes = classNames('euiCollapsibleNav', className);
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavStyles);
   const cssStyles = [styles.euiCollapsibleNav, styles[flyoutType]];
 
   // Show a trigger button if one was passed but
