@@ -9,13 +9,8 @@
 import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
-import { keysOf } from '../common';
 
-import {
-  EuiBottomBar,
-  paddingSizeToClassNameMap,
-  POSITIONS,
-} from './bottom_bar';
+import { EuiBottomBar, PADDING_SIZES, POSITIONS } from './bottom_bar';
 
 describe('EuiBottomBar', () => {
   test('is rendered', () => {
@@ -28,7 +23,7 @@ describe('EuiBottomBar', () => {
 
   describe('props', () => {
     describe('paddingSize', () => {
-      keysOf(paddingSizeToClassNameMap).forEach((paddingSize) => {
+      PADDING_SIZES.forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
           const { baseElement } = render(
             <EuiBottomBar paddingSize={paddingSize} />
