@@ -160,18 +160,16 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-export const euiExpressionValueStyles = ({}: UseEuiTheme) => {
-  return {
-    euiExpression__value: css``,
-    truncate: css`
-      ${euiTextTruncate()}
-      display: inline-block;
-      vertical-align: bottom;
-    `,
-    columns: css`
-      flex-grow: 1;
-    `,
-  };
+export const euiExpressionValueStyles = {
+  euiExpression__value: css``,
+  truncate: css`
+    ${euiTextTruncate()}
+    display: inline-block;
+    vertical-align: bottom;
+  `,
+  columns: css`
+    flex-grow: 1;
+  `,
 };
 
 export const euiExpressionIconStyles = ({ euiTheme }: UseEuiTheme) => {
