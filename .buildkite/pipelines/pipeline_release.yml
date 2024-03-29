@@ -10,6 +10,7 @@ steps:
       image: 'docker.elastic.co/ci-agent-images/drivah:0.24.4'
       ephemeralStorage: '10G'
       cpu: '2000m'
-      memory: '3G'
+      # running yarn install requires plenty of memory
+      memory: '6G'
   - wait
   - command: "echo 'TODO: push agent image'"
