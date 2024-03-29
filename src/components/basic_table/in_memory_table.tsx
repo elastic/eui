@@ -299,7 +299,6 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
   static contextType = EuiComponentDefaultsContext;
 
   static defaultProps = {
-    responsive: true,
     tableLayout: 'fixed',
     searchFormat: 'eql',
   };

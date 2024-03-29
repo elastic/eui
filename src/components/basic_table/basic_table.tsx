@@ -324,7 +324,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
 
   static defaultProps = {
-    responsive: true,
     tableLayout: 'fixed',
     noItemsMessage: (
       <EuiI18n token="euiBasicTable.noItemsMessage" default="No items found" />
@@ -523,7 +522,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       noItemsMessage,
       compressed,
       itemIdToExpandedRowMap,
-      responsive,
       responsiveBreakpoint,
       isSelectable,
       isExpandable,
@@ -554,28 +552,19 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTable() {
-    const {
-      compressed,
-      responsive,
-      responsiveBreakpoint,
-      tableLayout,
-      loading,
-    } = this.props;
+    const { compressed, responsiveBreakpoint, tableLayout, loading } =
+      this.props;
 
     return (
       <>
-        {/* TODO: Remove conditional once `responsive` prop is deprecated */}
-        {responsive && (
-          <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
-            {this.renderSelectAll(true)}
-            {this.renderTableMobileSort()}
-          </EuiTableHeaderMobile>
-        )}
+        <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
+          {this.renderSelectAll(true)}
+          {this.renderTableMobileSort()}
+        </EuiTableHeaderMobile>
         <EuiTable
           id={this.tableId}
           tableLayout={tableLayout}
           responsiveBreakpoint={responsiveBreakpoint}
-          responsive={responsive}
           compressed={compressed}
           css={loading && safariLoadingWorkaround}
         >

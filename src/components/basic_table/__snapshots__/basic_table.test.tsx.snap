@@ -7,7 +7,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
   data-test-subj="test subject string"
 >
   <table
-    class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >
@@ -119,7 +119,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
   class="euiBasicTable"
 >
   <table
-    class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >

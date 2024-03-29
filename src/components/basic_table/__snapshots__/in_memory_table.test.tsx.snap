@@ -155,7 +155,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
   data-test-subj="test subject string"
 >
   <table
-    class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >
@@ -236,7 +236,6 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
     />
   }
   onChange={[Function]}
-  responsive={true}
   tableLayout="fixed"
 />
 `;
@@ -248,7 +247,7 @@ exports[`EuiInMemoryTable with items 1`] = `
   data-test-subj="test subject string"
 >
   <table
-    class="euiTable euiTable--responsive emotion-euiTable-fixed-uncompressed-desktop"
+    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
     tabindex="-1"
   >
