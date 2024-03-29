@@ -34,10 +34,13 @@ export const euiTableVariables = ({ euiTheme }: UseEuiTheme) => {
     },
   };
 
+  const checkboxSize = euiTheme.size.xl;
+
   return {
     cellContentPadding,
     compressedCellContentPadding,
     mobileSizes,
+    checkboxSize,
   };
 };
 

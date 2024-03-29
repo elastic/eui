@@ -9,3 +9,5 @@
   - `$euiTableFocusClickableColor`
 - Removed the following `EuiTable` Sass mixins:
   - `euiTableActionsBackgroundMobile`
+  - `euiTableCellCheckbox`
+  - `euiTableCell`

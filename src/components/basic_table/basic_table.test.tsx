@@ -692,6 +692,40 @@ describe('EuiBasicTable', () => {
       );
     });
 
+    test('custom item actions', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: [
+          ...basicColumns,
+          {
+            name: 'Actions',
+            actions: [
+              {
+                render: ({ id }) => (
+                  <button data-test-subj={`customAction-${id}`}>
+                    Custom action
+                  </button>
+                ),
+                available: ({ id }) => id !== '3',
+              },
+            ],
+          },
+        ],
+        responsiveBreakpoint: true, // Needs to be in mobile to render customAction cell CSS
+      };
+      const { queryByTestSubject, container } = render(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(queryByTestSubject('customAction-1')).toBeInTheDocument();
+      expect(queryByTestSubject('customAction-2')).toBeInTheDocument();
+      expect(queryByTestSubject('customAction-3')).not.toBeInTheDocument();
+
+      expect(
+        container.querySelector('.euiTableRowCell--hasActions')!.className
+      ).toContain('-customActions');
+    });
+
     describe('are disabled on selection', () => {
       test('single action', () => {
         const props: EuiBasicTableProps<BasicItem> = {
