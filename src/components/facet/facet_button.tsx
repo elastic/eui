@@ -11,7 +11,7 @@ import React, {
   HTMLAttributes,
   ReactNode,
   RefCallback,
-  ReactElement,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -20,13 +20,11 @@ import { EuiNotificationBadge } from '../badge';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiInnerText } from '../inner_text';
 
-import { useEuiTheme, cloneElementWithCss } from '../../services';
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
 import {
   euiFacetButtonStyles,
   euiFacetButtonTextStyles,
-  euiFacetButtonIconStyles,
-  euiFacetButtonQuantityStyles,
-  euiFacetButtonLoadingSpinnerStyles,
+  euiFacetButton__disabled,
 } from './facet_button.styles';
 import {
   EuiButtonDisplay,
@@ -79,63 +77,49 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
 
   const classes = classNames('euiFacetButton', className);
 
-  const theme = useEuiTheme();
-
-  const styles = euiFacetButtonStyles(theme);
+  const styles = useEuiMemoizedStyles(euiFacetButtonStyles);
   const cssStyles = [styles.euiFacetButton];
 
-  const textStyles = euiFacetButtonTextStyles(theme);
+  const textStyles = useEuiMemoizedStyles(euiFacetButtonTextStyles);
   const cssTextStyles = [
     textStyles.euiFacetButton__text,
     textStyles[selection],
   ];
 
-  const quantityStyles = euiFacetButtonQuantityStyles();
-  const cssQuantityStyles = [
-    quantityStyles.euiFacetButton__quantity,
-    isDisabled && quantityStyles.isDisabled,
-  ];
-
-  const iconStyles = euiFacetButtonIconStyles();
-  const cssIconStyles = [
-    iconStyles.euiFacetButton__icon,
-    isDisabled && quantityStyles.isDisabled,
-  ];
-
-  const loadingSpinnerStyles = euiFacetButtonLoadingSpinnerStyles();
-  const cssLoadingSpinnerStyles = [
-    loadingSpinnerStyles.euiFacetButton__loadingSpinner,
-  ];
+  // Spreading an obj/conditionally passing the `css` prop makes it so
+  // an empty `css-0` className isn't rendered in the DOM
+  const disabledStyles = useMemo(
+    () => (isDisabled ? { css: euiFacetButton__disabled } : undefined),
+    [isDisabled]
+  );
 
   // Add quantity number if provided or loading indicator
-  let buttonQuantity: ReactElement;
-
-  if (isLoading) {
-    buttonQuantity = (
-      <EuiLoadingSpinner css={cssLoadingSpinnerStyles} size="m" />
-    );
-  } else if (typeof quantity === 'number') {
-    buttonQuantity = (
-      <EuiNotificationBadge
-        css={cssQuantityStyles}
-        className="euiFacetButton__quantity"
-        size="m"
-        color={!isSelected || isDisabled ? 'subdued' : 'accent'}
-      >
-        {quantity}
-      </EuiNotificationBadge>
-    );
-  }
+  const buttonQuantity = useMemo(() => {
+    if (isLoading) {
+      return <EuiLoadingSpinner size="m" />;
+    } else if (typeof quantity === 'number') {
+      return (
+        <EuiNotificationBadge
+          {...disabledStyles}
+          className="euiFacetButton__quantity"
+          size="m"
+          color={!isSelected || isDisabled ? 'subdued' : 'accent'}
+        >
+          {quantity}
+        </EuiNotificationBadge>
+      );
+    }
+  }, [quantity, isLoading, isDisabled, disabledStyles, isSelected]);
 
   // Add an icon to the button if one exists.
-  let buttonIcon: ReactElement;
-
-  if (React.isValidElement<{ className?: string }>(icon)) {
-    buttonIcon = cloneElementWithCss(icon, {
-      css: cssIconStyles,
-      className: 'euiFacetButton__icon',
-    });
-  }
+  const buttonIcon = useMemo(() => {
+    if (React.isValidElement(icon)) {
+      return cloneElementWithCss(icon, {
+        className: 'euiFacetButton__icon',
+        ...disabledStyles,
+      });
+    }
+  }, [icon, disabledStyles]);
 
   return (
     <EuiInnerText>

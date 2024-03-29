@@ -54,20 +54,7 @@ export const euiFacetButtonTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   unSelected: css``,
 });
 
-export const euiFacetButtonIconStyles = () => ({
-  euiFacetButton__icon: css``,
-  isDisabled: css`
-    opacity: 0.5;
-  `,
-});
-
-export const euiFacetButtonLoadingSpinnerStyles = () => ({
-  euiFacetButton__loadingSpinner: css``,
-});
-
-export const euiFacetButtonQuantityStyles = () => ({
-  euiFacetButton__quantity: css``,
-  isDisabled: css`
-    opacity: 0.5;
-  `,
-});
+// Used by both icon and quantity siblings
+export const euiFacetButton__disabled = css`
+  opacity: 0.5;
+`;
