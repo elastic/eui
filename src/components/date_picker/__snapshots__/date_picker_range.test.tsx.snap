@@ -266,7 +266,7 @@ exports[`EuiDatePickerRange props fullWidth 1`] = `
 
 exports[`EuiDatePickerRange props inline renders 1`] = `
 <span
-  class="euiDatePickerRange emotion-euiDatePickerRange-inline-responsive-shadow"
+  class="euiDatePickerRange emotion-euiDatePickerRange-inline-shadow-responsive"
 >
   <div
     class="euiFormControlLayout euiFormControlLayoutDelimited"
