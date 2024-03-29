@@ -13,19 +13,21 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { EuiScreenReaderOnly } from '../accessibility';
-import { CommonProps, NoArgCallback } from '../common';
-import { EuiIcon } from '../icon';
-import { resolveWidthAsStyle } from './utils';
-import { EuiInnerText } from '../inner_text';
-
 import {
+  useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   CENTER_ALIGNMENT,
 } from '../../services';
 import { EuiI18n } from '../i18n';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { CommonProps, NoArgCallback } from '../common';
+import { EuiIcon } from '../icon';
+import { EuiInnerText } from '../inner_text';
+
+import { resolveWidthAsStyle } from './utils';
+import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 
 export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
@@ -127,6 +129,8 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   description,
   ...rest
 }) => {
+  const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
+
   const classes = classNames('euiTableHeaderCell', className, {
     'euiTableHeaderCell--hideForDesktop': mobileOptions.only,
     'euiTableHeaderCell--hideForMobile': !mobileOptions.show,
@@ -137,7 +141,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
   });
 
-  const styleObj = resolveWidthAsStyle(style, width);
+  const inlineStyles = resolveWidthAsStyle(style, width);
 
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
@@ -165,17 +169,19 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
     return (
       <CellComponent
+        css={styles.euiTableHeaderCell}
         className={classes}
         scope={cellScope}
         role="columnheader"
         aria-sort={ariaSortValue}
         aria-live="polite"
-        style={styleObj}
+        style={inlineStyles}
         {...rest}
       >
         {onSort && !readOnly ? (
           <button
             type="button"
+            css={styles.euiTableHeaderCell__button}
             className={buttonClasses}
             onClick={onSort}
             data-test-subj="tableHeaderSortButton"
@@ -191,10 +197,11 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   return (
     <CellComponent
+      css={styles.euiTableHeaderCell}
       className={classes}
       scope={cellScope}
       role="columnheader"
-      style={styleObj}
+      style={inlineStyles}
       {...rest}
     >
       <CellContents

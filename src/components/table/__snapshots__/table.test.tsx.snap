@@ -10,7 +10,7 @@ exports[`EuiTable renders 1`] = `
   <thead>
     <tr>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
@@ -26,7 +26,7 @@ exports[`EuiTable renders 1`] = `
         </span>
       </th>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
@@ -48,7 +48,7 @@ exports[`EuiTable renders 1`] = `
       class="euiTableRow emotion-euiTableRow-desktop"
     >
       <td
-        class="euiTableRowCell euiTableRowCell--middle"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"
@@ -65,7 +65,7 @@ exports[`EuiTable renders 1`] = `
       class="euiTableRow emotion-euiTableRow-desktop"
     >
       <td
-        class="euiTableRowCell euiTableRowCell--middle"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
           class="euiTableCellContent"

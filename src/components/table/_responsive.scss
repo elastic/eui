@@ -3,57 +3,6 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    .euiTableRowCell__mobileHeader {
-      // Always truncate
-      @include euiTextTruncate;
-      @include fontSize($euiFontSize * .6875);
-
-      color: $euiColorDarkShade;
-      padding: $euiSizeS;
-      padding-bottom: 0;
-      margin-bottom: -$euiSizeS; // pull up cell content closer
-      min-height: $euiSizeL; // aligns contents of cells if header doesn't exist
-
-      // Remove min-height of cell header if it's the only cell
-      .euiTableRowCell:only-child & {
-        min-height: 0;
-      }
-    }
-
-    .euiTableRowCell--enlargeForMobile {
-      @include euiFontSizeM;
-    }
-
-    .euiTableRow {
-      // Custom actions
-      &:not(.euiTableRow-hasActions) .euiTableRowCell--hasActions:last-child {
-        width: 100%;
-
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          right: 0;
-          height: $euiBorderWidthThin;
-          background-color: $euiBorderColor;
-        }
-
-        .euiTableCellContent {
-          position: relative;
-          top: $euiSizeXS;
-        }
-      }
-    }
-
-    .euiTableRowCell {
-      min-width: 50%;
-      border: none;
-    }
-
-    .euiTableRowCellCheckbox {
-      border: none;
-    }
-
     // never show hidden items and always show hover items on mobile,
     .euiTableRow-hasActions .euiTableCellContent--showOnHover {
       > * {
