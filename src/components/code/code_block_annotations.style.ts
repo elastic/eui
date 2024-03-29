@@ -14,9 +14,7 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiCodeBlockAnnotationsStyles = (
-  euiTheme: UseEuiTheme['euiTheme']
-) => {
+export const euiCodeBlockAnnotationsStyles = ({ euiTheme }: UseEuiTheme) => {
   const buttonIconSize = mathWithUnits(euiTheme.size.base, (x) => x - 1.5);
 
   return {
