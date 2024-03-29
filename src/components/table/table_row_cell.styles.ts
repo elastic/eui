@@ -34,7 +34,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: top;
     `,
     bottom: css`
-      vertical-align: top;
+      vertical-align: bottom;
     `,
 
     desktop: css`
