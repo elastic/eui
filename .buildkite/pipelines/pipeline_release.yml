@@ -6,6 +6,7 @@ steps:
     key: 'build-agent-image'
     command: '.buildkite/scripts/drivah.sh .'
     agents:
+      provider: k8s
       image: 'docker.elastic.co/ci-agent-images/drivah:0.24.4'
       ephemeralStorage: '10G'
       memory: '2G'
