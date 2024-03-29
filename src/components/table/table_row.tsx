@@ -70,8 +70,6 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         styles.mobile.mobile,
         isSelected && styles.mobile.selected,
         isSelectable && styles.mobile.selectable,
-        hasActions && styles.mobile.actions,
-        isExpandable && styles.mobile.expandable,
         isExpandedRow && styles.mobile.expanded,
         (hasActions || isExpandable || isExpandedRow) &&
           styles.mobile.hasRightColumn,

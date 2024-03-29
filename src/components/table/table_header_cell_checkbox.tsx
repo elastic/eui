@@ -8,9 +8,12 @@
 
 import React, { FunctionComponent, ThHTMLAttributes } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 
 import { resolveWidthAsStyle } from './utils';
+import { euiTableCellCheckboxStyles } from './table_cells_shared.styles';
 
 export type EuiTableHeaderCellCheckboxScope =
   | 'col'
@@ -29,10 +32,17 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
     EuiTableHeaderCellCheckboxProps
 > = ({ children, className, scope = 'col', style, width, ...rest }) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
-  const styleObj = resolveWidthAsStyle(style, width);
+  const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
+  const inlineStyles = resolveWidthAsStyle(style, width);
 
   return (
-    <th className={classes} scope={scope} style={styleObj} {...rest}>
+    <th
+      css={styles.euiTableHeaderCellCheckbox}
+      className={classes}
+      scope={scope}
+      style={inlineStyles}
+      {...rest}
+    >
       <div className="euiTableCellContent">{children}</div>
     </th>
   );
