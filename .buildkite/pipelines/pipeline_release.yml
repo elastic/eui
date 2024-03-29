@@ -9,6 +9,7 @@ steps:
       provider: k8s
       image: 'docker.elastic.co/ci-agent-images/drivah:0.24.4'
       ephemeralStorage: '10G'
-      memory: '2G'
+      cpu: '2000m'
+      memory: '3G'
   - wait
   - command: "echo 'TODO: push agent image'"
