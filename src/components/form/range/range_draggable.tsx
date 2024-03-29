@@ -14,7 +14,11 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useMouseMove, useEuiTheme } from '../../../services';
+import {
+  useMouseMove,
+  useEuiTheme,
+  useEuiMemoizedStyles,
+} from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
 import type { EuiDualRangeProps } from './types';
@@ -48,7 +52,6 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-
   const outerStyle: React.CSSProperties = useMemo(() => {
     return logicalStyles({
       left: lowerPosition,
@@ -67,13 +70,13 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 
   const classes = classNames('euiRangeDraggable', className);
 
-  const styles = euiRangeDraggableStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeDraggableStyles);
   const cssStyles = [
     styles.euiRangeDraggable,
     showTicks && styles.hasTicks,
     disabled && styles.disabled,
   ];
-  const innerStyles = euiRangeDraggableInnerStyles(euiTheme);
+  const innerStyles = useEuiMemoizedStyles(euiRangeDraggableInnerStyles);
   const cssInnerStyles = [
     innerStyles.euiRangeDraggable__inner,
     disabled ? styles.disabled : innerStyles.enabled,
