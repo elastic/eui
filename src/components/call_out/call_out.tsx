@@ -6,22 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactNode, useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
-
 import { EuiButtonIcon } from '../button';
 import { EuiText } from '../text';
-import { useEuiTheme } from '../../services';
 import { EuiPanel } from '../panel';
 import { EuiSpacer } from '../spacer';
 import { EuiTitle } from '../title';
 import { EuiI18n } from '../i18n';
 
-import { euiCallOutStyles, euiCallOutHeadingStyles } from './call_out.styles';
+import { euiCallOutStyles, euiCallOutHeaderStyles } from './call_out.styles';
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 export type Color = (typeof COLORS)[number];
@@ -63,21 +62,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     },
     ref
   ) => {
-    const theme = useEuiTheme();
-    const styles = euiCallOutStyles(theme);
+    const styles = useEuiMemoizedStyles(euiCallOutStyles);
     const cssStyles = [
       styles.euiCallOut,
       onDismiss && styles.hasDismissButton.hasDimissButton,
       onDismiss && styles.hasDismissButton[size],
-    ];
-    const cssDismissButtonStyles = [
-      styles.dismissButton.euiCallOut__dismissButton,
-      styles.dismissButton[size],
-    ];
-    const headerStyles = euiCallOutHeadingStyles(theme);
-    const cssHeaderStyles = [
-      headerStyles.euiCallOutHeader,
-      headerStyles[color],
     ];
 
     const classes = classNames(
@@ -88,66 +77,63 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className
     );
 
-    const dismissButton = onDismiss && (
-      <EuiI18n
-        token="euiCallOut.dismissAriaLabel"
-        default="Dismiss this callout"
-      >
-        {(dismissAriaLabel: string) => (
-          <EuiButtonIcon
-            iconType="cross"
-            onClick={onDismiss}
-            aria-label={dismissAriaLabel}
-            css={cssDismissButtonStyles}
-            color={color}
-            data-test-subj="euiDismissCalloutButton"
-          />
-        )}
-      </EuiI18n>
-    );
+    const dismissButton = useMemo(() => {
+      if (!onDismiss) return;
 
-    const headerIcon = iconType && (
-      <EuiIcon
-        css={styles.euiCallOut__icon}
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-        color="inherit"
-      />
-    );
-    const H: Heading = heading;
-    const header = title && (
-      <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssHeaderStyles}>
-        <H className="euiCallOutHeader__title">
-          {headerIcon}
-          {title}
-        </H>
-      </EuiTitle>
-    );
+      const cssStyles = [
+        styles.dismissButton.euiCallOut__dismissButton,
+        styles.dismissButton[size],
+      ];
+
+      return (
+        <EuiI18n
+          token="euiCallOut.dismissAriaLabel"
+          default="Dismiss this callout"
+        >
+          {(dismissAriaLabel: string) => (
+            <EuiButtonIcon
+              iconType="cross"
+              onClick={onDismiss}
+              aria-label={dismissAriaLabel}
+              css={cssStyles}
+              color={color}
+              data-test-subj="euiDismissCalloutButton"
+            />
+          )}
+        </EuiI18n>
+      );
+    }, [onDismiss, styles, color, size]);
+
+    const headerStyles = useEuiMemoizedStyles(euiCallOutHeaderStyles);
+    const header = useMemo(() => {
+      if (!title) return;
+
+      const H: Heading = heading;
+      const cssStyles = [headerStyles.euiCallOutHeader, headerStyles[color]];
+
+      return (
+        <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssStyles}>
+          <H className="euiCallOutHeader__title">
+            {iconType && (
+              <EuiIcon
+                css={headerStyles.euiCallOut__icon}
+                type={iconType}
+                size="m"
+                aria-hidden="true"
+                color="inherit"
+              />
+            )}
+            {title}
+          </H>
+        </EuiTitle>
+      );
+    }, [title, heading, iconType, size, color, headerStyles]);
 
     const optionalChildren = children && (
       <EuiText size={size === 's' ? 'xs' : 's'} color="default">
         {children}
       </EuiText>
     );
-
-    // Note: the DOM position of the dismiss button matters to screen reader users.
-    // We generally want them to have some context of _what_ they're dismissing,
-    // instead of navigating to the dismiss button first before the callout content
-    const calloutContent =
-      header && optionalChildren ? (
-        <>
-          {header}
-          {dismissButton}
-          <EuiSpacer size="s" />
-          {optionalChildren}
-        </>
-      ) : (
-        <>
-          {header || optionalChildren}
-          {dismissButton}
-        </>
-      );
 
     return (
       <EuiPanel
@@ -160,7 +146,24 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         grow={false}
         {...rest}
       >
-        {calloutContent}
+        {
+          // Note: the DOM position of the dismiss button matters to screen reader users.
+          // We generally want them to have some context of _what_ they're dismissing,
+          // instead of navigating to the dismiss button first before the callout content
+          header && optionalChildren ? (
+            <>
+              {header}
+              {dismissButton}
+              <EuiSpacer size="s" />
+              {optionalChildren}
+            </>
+          ) : (
+            <>
+              {header || optionalChildren}
+              {dismissButton}
+            </>
+          )
+        }
       </EuiPanel>
     );
   }
