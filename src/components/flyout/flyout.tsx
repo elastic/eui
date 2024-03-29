@@ -17,7 +17,6 @@ import React, {
   CSSProperties,
   ElementType,
   FunctionComponent,
-  MouseEvent as ReactMouseEvent,
   MutableRefObject,
 } from 'react';
 import classnames from 'classnames';
@@ -36,13 +35,14 @@ import { logicalStyle } from '../../global_styling';
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
-import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
+import { EuiFlyoutCloseButton } from './_flyout_close_button';
+import { euiFlyoutStyles } from './flyout.styles';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
@@ -287,52 +287,6 @@ export const EuiFlyout = forwardRef(
 
     const classes = classnames('euiFlyout', className);
 
-    const closeButton = useMemo(() => {
-      if (hideCloseButton || !onClose) return null;
-
-      const closeButtonClasses = classnames(
-        'euiFlyout__closeButton',
-        closeButtonProps?.className
-      );
-
-      const closeButtonStyles = euiFlyoutCloseButtonStyles(euiTheme);
-      const closeButtonCssStyles = [
-        closeButtonStyles.euiFlyout__closeButton,
-        closeButtonStyles[closeButtonPosition],
-        closeButtonPosition === 'outside' &&
-          closeButtonStyles.outsideSide[side],
-        closeButtonProps?.css,
-      ];
-
-      return (
-        <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
-          {(closeAriaLabel: string) => (
-            <EuiButtonIcon
-              display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
-              iconType="cross"
-              color="text"
-              aria-label={closeAriaLabel}
-              data-test-subj="euiFlyoutCloseButton"
-              {...closeButtonProps}
-              className={closeButtonClasses}
-              css={closeButtonCssStyles}
-              onClick={(e: ReactMouseEvent<HTMLButtonElement>) => {
-                onClose(e.nativeEvent);
-                closeButtonProps?.onClick?.(e);
-              }}
-            />
-          )}
-        </EuiI18n>
-      );
-    }, [
-      onClose,
-      hideCloseButton,
-      closeButtonPosition,
-      closeButtonProps,
-      side,
-      euiTheme,
-    ]);
-
     /*
      * If not disabled, automatically add fixed EuiHeaders as shards
      * to EuiFlyout focus traps, to prevent focus fighting
@@ -448,7 +402,14 @@ export const EuiFlyout = forwardRef(
           data-autofocus={!isPushed || undefined}
         >
           {!isPushed && screenReaderDescription}
-          {closeButton}
+          {!hideCloseButton && onClose && (
+            <EuiFlyoutCloseButton
+              {...closeButtonProps}
+              onClose={onClose}
+              closeButtonPosition={closeButtonPosition}
+              side={side}
+            />
+          )}
           {children}
         </Element>
       </EuiFocusTrap>
