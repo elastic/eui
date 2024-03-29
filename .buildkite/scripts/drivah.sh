@@ -10,4 +10,4 @@ if [[ "${BUILDKITE_PULL_REQUEST}" == "false" ]]; then
     DRIVAH_PARAMETERS="--changed-since=HEAD^"
 fi
 
-drivah build ${DRIVAH_PARAMETERS:-} --push "${BUILD_DIR}"
+drivah build ${DRIVAH_PARAMETERS:-} "${BUILD_DIR}"
