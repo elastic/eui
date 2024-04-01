@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import { CSSInterpolation } from '@emotion/css';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { useInnerText } from '../../inner_text';
 
@@ -22,8 +22,7 @@ import { EuiButtonDisplay } from '../button_display/_button_display';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import {
   euiButtonGroupButtonStyles,
-  _compressedButtonFocusColor,
-  _uncompressedButtonFocus,
+  _compressedButtonFocusColors,
 } from './button_group_button.styles';
 import { EuiToolTip } from '../../../components/tool_tip';
 
@@ -69,13 +68,10 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
   const hasToolTip = !!toolTipContent;
 
-  const euiTheme = useEuiTheme();
+  const styles = useEuiMemoizedStyles(euiButtonGroupButtonStyles);
+  const focusColorStyles = useEuiMemoizedStyles(_compressedButtonFocusColors);
   const buttonColorStyles = useEuiButtonColorCSS({ display })[color];
-  const focusColorStyles = isCompressed
-    ? _compressedButtonFocusColor(euiTheme, color)
-    : _uncompressedButtonFocus(euiTheme);
 
-  const styles = euiButtonGroupButtonStyles(euiTheme);
   const cssStyles = [
     styles.euiButtonGroupButton,
     isIconOnly && styles.iconOnly,
@@ -83,7 +79,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       (hasToolTip ? styles.uncompressed.hasToolTip : styles.uncompressed[size]),
     isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
-    !isDisabled && focusColorStyles,
+    !isDisabled && isCompressed && focusColorStyles[color],
   ];
   const tooltipWrapperStyles = [
     styles.tooltipWrapper,

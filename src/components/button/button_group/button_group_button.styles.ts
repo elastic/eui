@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 import { CSSProperties } from 'react';
 
 import {
@@ -25,6 +25,7 @@ import {
 import {
   euiButtonFillColor,
   _EuiButtonColor,
+  BUTTON_COLORS,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { euiScreenReaderOnly } from '../../accessibility';
 import { euiFormVariables } from '../../form/form.styles';
@@ -74,6 +75,10 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       uncompressed: css`
         &:is(.euiButtonGroupButton-isSelected) {
           font-weight: ${euiTheme.font.weight.bold};
+        }
+
+        &:focus-visible {
+          ${euiOutline(euiThemeContext, 'inset', euiTheme.colors.fullShade)}
         }
       `,
       get borders() {
@@ -161,29 +166,23 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const _compressedButtonFocusColor = (
-  euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled'
-) => {
-  const { backgroundColor } = euiButtonFillColor(euiThemeContext, color);
+export const _compressedButtonFocusColors = (euiThemeContext: UseEuiTheme) => {
+  const colors = [...BUTTON_COLORS, 'disabled'] as const;
 
-  return css`
-    &:focus-visible {
-      ${euiOutline(euiThemeContext, 'center', backgroundColor)}
+  return colors.reduce((acc, color) => {
+    const { backgroundColor } = euiButtonFillColor(euiThemeContext, color);
 
-      &:is(.euiButtonGroupButton-isSelected) {
-        outline-offset: 0;
-      }
-    }
-  `;
-};
+    return {
+      ...acc,
+      [color]: css`
+        &:focus-visible {
+          ${euiOutline(euiThemeContext, 'center', backgroundColor)}
 
-export const _uncompressedButtonFocus = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
-  return css`
-    &:focus-visible {
-      ${euiOutline(euiThemeContext, 'inset', euiTheme.colors.fullShade)}
-    }
-  `;
+          &:is(.euiButtonGroupButton-isSelected) {
+            outline-offset: 0;
+          }
+        }
+      `,
+    };
+  }, {} as Record<_EuiButtonColor | 'disabled', SerializedStyles>);
 };
