@@ -5,24 +5,39 @@ import {
   EuiFlexItem,
   EuiFlexGroup,
   EuiPopover,
-  EuiSelect,
   EuiFieldNumber,
   EuiExpression,
+  EuiSelectable,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
-
-// Rise the popovers above GuidePageSideNav
-const POPOVER_STYLE = { zIndex: '200' };
 
 export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
+    options: [
+      { label: 'count()', checked: 'on' },
+      { label: 'average()' },
+      { label: 'sum()' },
+      { label: 'median()' },
+      { label: 'min()' },
+      { label: 'max()' },
+    ],
     value: 'count()',
   });
 
   const [example2, setExample2] = useState({
+    isOpen: false,
+    options: [
+      { label: 'Is above', checked: 'on' },
+      { label: 'Is below' },
+      { label: 'Is exactly' },
+    ],
+    value: 'Is above',
+  });
+
+  const [example3, setExample3] = useState({
+    isOpen: false,
     value: 100,
-    description: 'Is above',
   });
 
   const expressionPopoverId__1 = useGeneratedHtmlId({
@@ -34,6 +49,11 @@ export default () => {
     suffix: 'second',
   });
 
+  const expressionPopoverId__3 = useGeneratedHtmlId({
+    prefix: 'expressionPopover',
+    suffix: 'third',
+  });
+
   const openExample1 = () => {
     setExample1({
       ...example1,
@@ -43,11 +63,8 @@ export default () => {
       ...example2,
       isOpen: false,
     });
-  };
-
-  const closeExample1 = () => {
-    setExample1({
-      ...example1,
+    setExample3({
+      ...example3,
       isOpen: false,
     });
   };
@@ -61,6 +78,32 @@ export default () => {
       ...example2,
       isOpen: true,
     });
+    setExample3({
+      ...example3,
+      isOpen: false,
+    });
+  };
+
+  const openExample3 = () => {
+    setExample1({
+      ...example1,
+      isOpen: false,
+    });
+    setExample2({
+      ...example2,
+      isOpen: false,
+    });
+    setExample3({
+      ...example3,
+      isOpen: true,
+    });
+  };
+
+  const closeExample1 = () => {
+    setExample1({
+      ...example1,
+      isOpen: false,
+    });
   };
 
   const closeExample2 = () => {
@@ -70,72 +113,64 @@ export default () => {
     });
   };
 
-  const changeExample1 = (event) => {
+  const closeExample3 = () => {
+    setExample3({
+      ...example3,
+      isOpen: false,
+    });
+  };
+
+  const changeExample1 = (options) => {
     setExample1({
-      ...example1,
-      value: event.target.value,
+      options: options,
+      isOpen: false,
+      value: options.filter((option) => option.checked === 'on')[0]?.label,
     });
   };
 
-  const changeExample2Value = (e) => {
-    const sanitizedValue = parseInt(e.target.value, 10);
+  const changeExample2 = (options) => {
     setExample2({
-      ...example2,
-      value: isNaN(sanitizedValue) ? '' : sanitizedValue,
+      options: options,
+      isOpen: false,
+      value: options.filter((option) => option.checked === 'on')[0]?.label,
     });
   };
 
-  const changeExample2Description = (event) => {
-    setExample2({
-      ...example2,
-      description: event.target.value,
+  const changeExample3 = (e) => {
+    setExample3({
+      ...example3,
+      value: e.target.value,
     });
   };
 
   const renderPopover1 = () => (
-    <div style={POPOVER_STYLE}>
-      <EuiPopoverTitle>When</EuiPopoverTitle>
-      <EuiSelect
-        compressed
-        value={example1.value}
-        onChange={changeExample1}
-        options={[
-          { value: 'count()', text: 'count()' },
-          { value: 'average()', text: 'average()' },
-          { value: 'sum()', text: 'sum()' },
-          { value: 'median()', text: 'median()' },
-          { value: 'min()', text: 'min()' },
-          { value: 'max()', text: 'max()' },
-        ]}
-      />
-    </div>
+    <EuiSelectable
+      singleSelection="always"
+      options={example1.options}
+      onChange={changeExample1}
+    >
+      {(list) => (
+        <div style={{ width: 240 }}>
+          <EuiPopoverTitle>When</EuiPopoverTitle>
+          {list}
+        </div>
+      )}
+    </EuiSelectable>
   );
 
   const renderPopover2 = () => (
-    <div style={POPOVER_STYLE}>
-      <EuiFlexGroup gutterSize="s">
-        <EuiFlexItem grow={false} style={{ width: 150 }}>
-          <EuiSelect
-            compressed
-            value={example2.description}
-            onChange={changeExample2Description}
-            options={[
-              { value: 'Is above', text: 'Is above' },
-              { value: 'Is below', text: 'Is below' },
-              { value: 'Is exactly', text: 'Is exactly' },
-            ]}
-          />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false} style={{ width: 100 }}>
-          <EuiFieldNumber
-            compressed
-            value={example2.value}
-            onChange={changeExample2Value}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </div>
+    <EuiSelectable
+      singleSelection="always"
+      options={example2.options}
+      onChange={changeExample2}
+    >
+      {(list) => (
+        <div style={{ width: 240 }}>
+          <EuiPopoverTitle>When</EuiPopoverTitle>
+          {list}
+        </div>
+      )}
+    </EuiSelectable>
   );
 
   return (
@@ -166,8 +201,7 @@ export default () => {
           panelPaddingSize="s"
           button={
             <EuiExpression
-              description={example2.description}
-              value={example2.value}
+              description={example2.value}
               isActive={example2.isOpen}
               onClick={openExample2}
             />
@@ -177,6 +211,30 @@ export default () => {
           anchorPosition="downLeft"
         >
           {renderPopover2()}
+        </EuiPopover>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          id={expressionPopoverId__3}
+          panelPaddingSize="s"
+          button={
+            <EuiExpression
+              description=""
+              value={example3.value}
+              isActive={example3.isOpen}
+              onClick={openExample3}
+            />
+          }
+          isOpen={example3.isOpen}
+          closePopover={closeExample3}
+          anchorPosition="downLeft"
+        >
+          <EuiFieldNumber
+            compressed
+            value={example3.value}
+            onChange={changeExample3}
+          />
         </EuiPopover>
       </EuiFlexItem>
     </EuiFlexGroup>
