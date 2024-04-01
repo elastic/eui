@@ -35,15 +35,6 @@ const multiLineSource = require('!!raw-loader!./multi_line');
 
 export const TextTruncateExample = {
   title: 'Text truncation',
-  isBeta: true,
-  notice: (
-    <EuiCallOut iconType="beta" title="Beta development" color="warning">
-      <strong>EuiTextTruncate</strong> is a beta component that is still
-      undergoing <Link to="#performance">performance investigation</Link>. We
-      would particularly caution in high-usage scenarios (e.g. over 500 usages
-      per page).
-    </EuiCallOut>
-  ),
   pages: [
     {
       title: 'Single line',
