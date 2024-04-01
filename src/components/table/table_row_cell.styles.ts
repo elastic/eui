@@ -27,6 +27,13 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       /* Unsets the extra strut caused by inline-block display of buttons/icons/tooltips.
          Without this, the row height jumps whenever actions are disabled. */
       line-height: 1;
+
+      /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
+      .euiTableCellContent {
+        display: flex;
+        align-items: center;
+        gap: ${euiTheme.size.s};
+      }
     `,
 
     // valign
@@ -43,9 +50,17 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: bottom;
     `,
 
-    desktop: css`
-      ${logicalCSS('border-vertical', euiTheme.border.thin)}
-    `,
+    desktop: {
+      desktop: css`
+        ${logicalCSS('border-vertical', euiTheme.border.thin)}
+      `,
+      actions: css`
+        /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
+        .euiTableCellContent {
+          flex-wrap: wrap;
+        }
+      `,
+    },
 
     mobile: {
       mobile: css`

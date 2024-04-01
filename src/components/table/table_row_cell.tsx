@@ -95,8 +95,8 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    */
   setScopeRow?: boolean;
   /**
-   * Indicates if the column is dedicated to icon-only actions (currently
-   * affects mobile only)
+   * Indicates if the cell is dedicated to row actions
+   * (used for mobile styling and desktop action hover behavior)
    */
   hasActions?: boolean | 'custom';
   /**
@@ -147,7 +147,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
         ]
-      : [styles.desktop]),
+      : [styles.desktop.desktop, hasActions && styles.desktop.actions]),
   ];
 
   const cellClasses = classNames('euiTableRowCell', className, {

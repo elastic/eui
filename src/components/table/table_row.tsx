@@ -35,8 +35,8 @@ export interface EuiTableRowProps {
    */
   isSelected?: boolean;
   /**
-   * Indicates if the table has a dedicated column for icon-only actions
-   * (used for mobile styling)
+   * Indicates if the table has a dedicated column for actions
+   * (used for mobile styling and desktop action hover behavior)
    */
   hasActions?: boolean;
   /**

@@ -43,12 +43,6 @@
   word-break: break-word;
 }
 
-.euiTableCellContent--showOnHover {
-  > *:not(:first-child) {
-    margin-left: $euiSizeS;
-  }
-}
-
 .euiTableRow-hasActions {
   .euiTableCellContent--showOnHover {
     .euiTableCellContent__hoverItem {
