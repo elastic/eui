@@ -1,28 +1,15 @@
 /**
- * 1. Vertically align all children.
  * 4. Prevent very long single words (e.g. the name of a field in a document) from overflowing
  *    the cell.
  */
 .euiTableCellContent {
   overflow: hidden; /* 4 */
-  display: flex;
-  align-items: center; /* 1 */
 }
 
 .euiTableCellContent__text {
   @include euiTextBreakWord; /* 4 */
   min-width: 0;
   text-overflow: ellipsis;
-}
-
-.euiTableCellContent--alignRight {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.euiTableCellContent--alignCenter {
-  justify-content: center;
-  text-align: center;
 }
 
 // TODO: Address this in upcoming EuiTableCellContent PR

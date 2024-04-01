@@ -3,13 +3,5 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    // force all content back to left side
-    .euiTableCellContent--alignRight {
-      justify-content: flex-start;
-    }
-
-    .euiTableCellContent--alignCenter {
-      justify-content: flex-start;
-    }
   }
 }
