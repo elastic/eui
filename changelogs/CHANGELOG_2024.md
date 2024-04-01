@@ -1,3 +1,14 @@
+## [`v93.5.2`](https://github.com/elastic/eui/releases/v93.5.2)
+
+**Dependency updates**
+
+- Updated `react-virtualized-auto-sizer` to 1.0.24 ([#7598](https://github.com/elastic/eui/pull/7598))
+- Updated `react-window` to 1.8.10 ([#7600](https://github.com/elastic/eui/pull/7600))
+
+**CSS-in-JS conversions**
+
+- Updated EUI's internal style memoization/performance utility to have configurable error/warning levels via `setEuiDevProviderWarning` ([#7626](https://github.com/elastic/eui/pull/7626))
+
 ## [`v93.5.1`](https://github.com/elastic/eui/releases/v93.5.1)
 
 **Bug fixes**
