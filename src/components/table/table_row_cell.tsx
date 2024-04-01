@@ -171,6 +171,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     align,
     textOnly,
     truncateText,
+    hasActions: hasActions || isExpander,
   };
 
   if (mobileOptions.show === false) {

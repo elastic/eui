@@ -10,17 +10,20 @@ import React, { FunctionComponent, HTMLAttributes, useMemo } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
-import { LEFT_ALIGNMENT } from '../../services';
+import { LEFT_ALIGNMENT, useEuiMemoizedStyles } from '../../services';
 import { isObject } from '../../services/predicate';
 import { EuiTextBlockTruncate } from '../text_truncate';
 
 import type { EuiTableRowCellProps } from './table_row_cell';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
-import { euiTableCellContentStyles as styles } from './_table_cell_content.styles';
+import { euiTableCellContentStyles } from './_table_cell_content.styles';
 
 export type EuiTableCellContentProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
-  Pick<EuiTableRowCellProps, 'align' | 'textOnly' | 'truncateText'>;
+  Pick<
+    EuiTableRowCellProps,
+    'align' | 'hasActions' | 'textOnly' | 'truncateText'
+  >;
 
 export const EuiTableCellContent: FunctionComponent<
   EuiTableCellContentProps
@@ -30,15 +33,20 @@ export const EuiTableCellContent: FunctionComponent<
   align = LEFT_ALIGNMENT,
   textOnly,
   truncateText = false,
+  hasActions,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
 
+  const styles = useEuiMemoizedStyles(euiTableCellContentStyles);
   const cssStyles = [
     styles.euiTableCellContent,
     !isResponsive && styles[align], // On mobile, always align cells to the left
     truncateText === true && styles.truncateText,
     truncateText === false && styles.wrapText,
+    hasActions && styles.hasActions.actions,
+    hasActions &&
+      (isResponsive ? styles.hasActions.mobile : styles.hasActions.desktop),
   ];
 
   const classes = classNames('euiTableCellContent', className);

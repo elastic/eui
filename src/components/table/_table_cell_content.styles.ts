@@ -8,13 +8,14 @@
 
 import { css } from '@emotion/react';
 
+import { UseEuiTheme } from '../../services';
 import {
   euiTextTruncate,
   euiTextBreakWord,
   logicalTextAlignCSS,
 } from '../../global_styling';
 
-export const euiTableCellContentStyles = {
+export const euiTableCellContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTableCellContent: css`
     display: flex;
     align-items: center; /* Vertically align all children */
@@ -44,4 +45,18 @@ export const euiTableCellContentStyles = {
   wrapText: css`
     ${euiTextBreakWord()}
   `,
-};
+
+  // Action cells
+  hasActions: {
+    actions: css`
+      gap: ${euiTheme.size.s};
+    `,
+    desktop: css`
+      flex-wrap: wrap;
+    `,
+    mobile: css`
+      flex-direction: column;
+      padding: 0;
+    `,
+  },
+});
