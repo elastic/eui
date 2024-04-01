@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 
-import { logicalTextAlignCSS } from '../../global_styling';
+import {
+  euiTextTruncate,
+  euiTextBreakWord,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 export const euiTableCellContentStyles = {
   euiTableCellContent: css`
@@ -25,5 +29,19 @@ export const euiTableCellContentStyles = {
   center: css`
     justify-content: center;
     text-align: center;
+  `,
+
+  // Text wrapping
+  truncateText: css`
+    ${euiTextTruncate()}
+
+    /* Text truncation on flex parents doesn't work - this wrapper + extra CSS is required */
+    .euiTableCellContent__text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  `,
+  wrapText: css`
+    ${euiTextBreakWord()}
   `,
 };

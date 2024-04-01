@@ -8,7 +8,7 @@ exports[`align defaults to left 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -28,7 +28,7 @@ exports[`align renders center when specified 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent-center"
+          class="euiTableCellContent emotion-euiTableCellContent-center-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -48,7 +48,7 @@ exports[`align renders right when specified 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent-right"
+          class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -68,7 +68,7 @@ exports[`children's className merges new classnames into existing ones 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent euiTableCellContent--overflowingContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <div
             class="testClass"
@@ -90,7 +90,7 @@ exports[`renders EuiTableRowCell 1`] = `
         data-test-subj="test subject string"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -112,7 +112,7 @@ exports[`textOnly defaults to true 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -132,7 +132,7 @@ exports[`textOnly is rendered when specified 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent euiTableCellContent--overflowingContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         />
       </td>
     </tr>
@@ -148,7 +148,7 @@ exports[`truncateText defaults to false 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -168,7 +168,7 @@ exports[`truncateText renders lines configuration 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent"
         >
           <span
             class="euiTableCellContent__text euiTextBlockTruncate emotion-euiTextBlockTruncate"
@@ -188,7 +188,7 @@ exports[`truncateText renders true 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent euiTableCellContent--truncateText emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -208,7 +208,7 @@ exports[`valign defaults to middle 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -228,7 +228,7 @@ exports[`valign renders bottom when specified 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-bottom-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -248,7 +248,7 @@ exports[`valign renders top when specified 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-top-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -269,7 +269,7 @@ exports[`width and style accepts style attribute 1`] = `
         style="width: 20%;"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -292,7 +292,7 @@ exports[`width and style accepts width attribute 1`] = `
         style="width: 10%;"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -315,7 +315,7 @@ exports[`width and style accepts width attribute as number 1`] = `
         style="width: 100px;"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -338,7 +338,7 @@ exports[`width and style resolves style and width attribute 1`] = `
         style="width: 10%;"
       >
         <div
-          class="euiTableCellContent euiTableCellContent emotion-euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"

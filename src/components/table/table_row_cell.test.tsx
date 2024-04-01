@@ -97,6 +97,9 @@ describe('truncateText', () => {
     const { container } = renderInTableRow(<EuiTableRowCell />);
 
     expect(container.firstChild).toMatchSnapshot();
+    expect(
+      container.querySelector('.euiTableCellContent')!.className
+    ).toContain('euiTableCellContent-wrapText');
   });
 
   it('renders true', () => {
@@ -104,10 +107,10 @@ describe('truncateText', () => {
       <EuiTableRowCell truncateText={true} />
     );
 
-    expect(
-      container.querySelector('.euiTableCellContent--truncateText')
-    ).toBeInTheDocument();
     expect(container.firstChild).toMatchSnapshot();
+    expect(
+      container.querySelector('.euiTableCellContent')!.className
+    ).toContain('euiTableCellContent-truncateText');
   });
 
   test('renders lines configuration', () => {
@@ -115,13 +118,10 @@ describe('truncateText', () => {
       <EuiTableRowCell truncateText={{ lines: 2 }} />
     );
 
-    expect(
-      container.querySelector('.euiTableCellContent--truncateText')
-    ).not.toBeInTheDocument();
+    expect(container.firstChild).toMatchSnapshot();
     expect(container.querySelector('.euiTableCellContent__text')).toHaveClass(
       'euiTextBlockTruncate'
     );
-    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
