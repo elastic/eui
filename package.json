@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "93.5.1",
+  "version": "93.5.2",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
