@@ -1168,7 +1168,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
       <EuiTableRowCell
-        showOnHover={true}
         key={key}
         align="right"
         textOnly={false}

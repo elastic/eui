@@ -128,7 +128,7 @@ describe('truncateText', () => {
 describe("children's className", () => {
   test('merges new classnames into existing ones', () => {
     const { container } = renderInTableRow(
-      <EuiTableRowCell textOnly={false} showOnHover={true}>
+      <EuiTableRowCell textOnly={false}>
         <div className="testClass" />
       </EuiTableRowCell>
     );

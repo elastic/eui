@@ -37,10 +37,6 @@ interface EuiTableRowCellSharedPropsShape {
    */
   align?: HorizontalAlignment;
   /**
-   * _Should only be used for action cells_
-   */
-  showOnHover?: boolean;
-  /**
    * Creates a text wrapper around cell content that helps word break or truncate
    * long text correctly.
    */
@@ -121,7 +117,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   className,
   truncateText,
   setScopeRow,
-  showOnHover,
   textOnly = true,
   hasActions,
   isExpander,
@@ -159,7 +154,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const contentClasses = classNames('euiTableCellContent', {
     'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
-    'euiTableCellContent--showOnHover': showOnHover,
     'euiTableCellContent--truncateText': truncateText === true,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
@@ -171,8 +165,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter':
       mobileOptions.align === CENTER_ALIGNMENT || align === CENTER_ALIGNMENT,
-    'euiTableCellContent--showOnHover':
-      mobileOptions.showOnHover ?? showOnHover,
     'euiTableCellContent--truncateText':
       mobileOptions.truncateText ?? truncateText,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
@@ -183,7 +175,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
   const childClasses = classNames({
     euiTableCellContent__text: textOnly === true,
-    euiTableCellContent__hoverItem: showOnHover,
   });
 
   const widthValue = isResponsive
