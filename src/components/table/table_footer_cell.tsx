@@ -13,12 +13,11 @@ import {
   useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
 } from '../../services';
 import { CommonProps } from '../common';
 
 import { resolveWidthAsStyle } from './utils';
+import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 
 export type EuiTableFooterCellProps = CommonProps &
@@ -36,10 +35,6 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiTableFooterCell', className);
-  const contentClasses = classNames('euiTableCellContent', className, {
-    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
-  });
   const inlineStyles = resolveWidthAsStyle(style, width);
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
 
@@ -50,9 +45,9 @@ export const EuiTableFooterCell: FunctionComponent<EuiTableFooterCellProps> = ({
       style={inlineStyles}
       {...rest}
     >
-      <div className={contentClasses}>
-        <span className="euiTableCellContent__text">{children}</span>
-      </div>
+      <EuiTableCellContent align={align} truncateText={true} textOnly={true}>
+        {children}
+      </EuiTableCellContent>
     </td>
   );
 };

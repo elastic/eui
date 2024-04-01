@@ -1,6 +1,5 @@
 // TODO: Address this in upcoming EuiTableCellContent PR
-.euiTableHeaderCell,
-.euiTableFooterCell {
+.euiTableHeaderCell {
   @include euiTextTruncate;
 
   .euiTableCellContent__text {
