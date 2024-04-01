@@ -3,24 +3,6 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTable.euiTable--responsive {
-    // never show hidden items and always show hover items on mobile,
-    .euiTableRow-hasActions .euiTableCellContent--showOnHover {
-      > * {
-        margin-left: 0;
-      }
-
-      .expandedItemActions__completelyHide {
-        display: none;
-      }
-
-      .euiTableCellContent__hoverItem {
-        opacity: 1;
-        filter: none;
-        margin-left: 0;
-        margin-bottom: $euiSizeS;
-      }
-    }
-
     // force all content back to left side
     .euiTableCellContent--alignRight {
       justify-content: flex-start;

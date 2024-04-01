@@ -59,6 +59,19 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         .euiTableCellContent {
           flex-wrap: wrap;
         }
+
+        .euiBasicTableAction-showOnHover {
+          opacity: 0;
+          transition: opacity ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance};
+        }
+
+        &:focus-within,
+        .euiTableRow-hasActions:hover & {
+          .euiBasicTableAction-showOnHover {
+            opacity: 1;
+          }
+        }
       `,
     },
 
@@ -85,6 +98,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       get actions() {
+        // Note: Visible-on-hover actions on desktop always show on mobile
         return css`
           ${this.rightColumnContent}
           ${logicalCSS('top', mobileSizes.actions.offset)}

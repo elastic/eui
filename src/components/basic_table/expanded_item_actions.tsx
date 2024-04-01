@@ -48,7 +48,7 @@ export const ExpandedItemActions = <T extends {}>({
         const key = `item_action_${itemId}_${index}`;
 
         const classes = classNames(className, {
-          expandedItemActions__completelyHide: moreThanThree && index < 2,
+          'euiBasicTableAction-showOnHover': moreThanThree && index < 2,
         });
 
         if (isCustomItemAction<T>(action)) {
