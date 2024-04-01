@@ -23,7 +23,11 @@ import { euiTableRowStyles } from './table_row.styles';
 export interface EuiTableRowProps {
   /**
    * Indicates if the table has a single column of checkboxes for selecting
-   * rows (affects mobile only)
+   * rows (used for mobile styling)
+   */
+  hasSelection?: boolean;
+  /**
+   * Indicates that the current row's checkbox is selectable / not disabled
    */
   isSelectable?: boolean;
   /**
@@ -32,7 +36,7 @@ export interface EuiTableRowProps {
   isSelected?: boolean;
   /**
    * Indicates if the table has a dedicated column for icon-only actions
-   * (affects mobile only)
+   * (used for mobile styling)
    */
   hasActions?: boolean;
   /**
@@ -54,6 +58,7 @@ type Props = CommonProps &
 export const EuiTableRow: FunctionComponent<Props> = ({
   children,
   className,
+  hasSelection,
   isSelected,
   isSelectable,
   hasActions,
@@ -69,10 +74,10 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         styles.euiTableRow,
         styles.mobile.mobile,
         isSelected && styles.mobile.selected,
-        isSelectable && styles.mobile.selectable,
         isExpandedRow && styles.mobile.expanded,
         (hasActions || isExpandable || isExpandedRow) &&
           styles.mobile.hasRightColumn,
+        hasSelection && styles.mobile.hasLeftColumn,
       ]
     : [
         styles.euiTableRow,
@@ -80,6 +85,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         isSelected && styles.desktop.selected,
         isExpandedRow && styles.desktop.expanded,
         onClick && styles.desktop.clickable,
+        isExpandedRow && hasSelection && styles.desktop.checkboxOffset,
       ];
 
   const classes = classNames('euiTableRow', className, {

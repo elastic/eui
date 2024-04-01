@@ -241,9 +241,6 @@ interface BasicTableProps<T extends object>
    * Indicates which column should be used as the identifying cell in each row. Should match a "field" prop in FieldDataColumn
    */
   rowHeader?: string;
-  hasActions?: boolean;
-  isExpandable?: boolean;
-  isSelectable?: boolean;
   /**
    * Provides an infinite loading indicator
    */
@@ -523,9 +520,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       compressed,
       itemIdToExpandedRowMap,
       responsiveBreakpoint,
-      isSelectable,
-      isExpandable,
-      hasActions,
       rowProps,
       cellProps,
       tableCaption,
@@ -965,15 +959,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderItemRow(item: T, rowIndex: number) {
-    const {
-      columns,
-      selection,
-      isSelectable,
-      hasActions,
-      rowHeader,
-      itemIdToExpandedRowMap = {},
-      isExpandable,
-    } = this.props;
+    const { columns, selection, rowHeader, itemIdToExpandedRowMap } =
+      this.props;
 
     const cells = [];
 
@@ -990,13 +977,18 @@ export class EuiBasicTable<T extends object = any> extends Component<
             getItemId(selectedItem, itemIdCallback) === itemId
         );
 
-    let calculatedHasSelection;
+    let rowSelectionDisabled = false;
     if (selection) {
-      cells.push(this.renderItemSelectionCell(itemId, item, selected));
-      calculatedHasSelection = true;
+      const [checkboxCell, isDisabled] = this.renderItemSelectionCell(
+        itemId,
+        item,
+        selected
+      );
+      cells.push(checkboxCell);
+      rowSelectionDisabled = !!isDisabled;
     }
 
-    let calculatedHasActions;
+    let hasActions;
     columns.forEach((column: EuiBasicTableColumn<T>, columnIndex: number) => {
       if ((column as EuiTableActionsColumnType<T>).actions) {
         cells.push(
@@ -1007,7 +999,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             columnIndex
           )
         );
-        calculatedHasActions = true;
+        hasActions = true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
         const fieldDataColumn = column as EuiTableFieldDataColumnType<T>;
         cells.push(
@@ -1043,7 +1035,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
 
     // We'll use the ID to associate the expanded row with the original.
-    const hasExpandedRow = itemIdToExpandedRowMap.hasOwnProperty(itemId);
+    const hasExpandedRow = itemIdToExpandedRowMap?.hasOwnProperty(itemId);
     const expandedRowId = hasExpandedRow
       ? `row_${itemId}_expansion`
       : undefined;
@@ -1051,10 +1043,10 @@ export class EuiBasicTable<T extends object = any> extends Component<
       <EuiTableRow
         id={expandedRowId}
         isExpandedRow={true}
-        isSelectable={isSelectable}
+        hasSelection={!!selection}
       >
         <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
-          {itemIdToExpandedRowMap[itemId]}
+          {itemIdToExpandedRowMap![itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
     ) : undefined;
@@ -1064,12 +1056,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
     const row = (
       <EuiTableRow
         aria-owns={expandedRowId}
-        isSelectable={
-          isSelectable == null ? calculatedHasSelection : isSelectable
-        }
+        hasSelection={!!selection}
+        isSelectable={!rowSelectionDisabled}
         isSelected={selected}
-        hasActions={hasActions == null ? calculatedHasActions : hasActions}
-        isExpandable={isExpandable}
+        hasActions={hasActions}
+        isExpandable={hasExpandedRow}
         {...rowProps}
       >
         {cells}
@@ -1107,7 +1098,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         );
       }
     };
-    return (
+    return [
       <EuiTableRowCellCheckbox key={key}>
         <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
           {(selectThisRow: string) => (
@@ -1123,8 +1114,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
             />
           )}
         </EuiI18n>
-      </EuiTableRowCellCheckbox>
-    );
+      </EuiTableRowCellCheckbox>,
+      disabled,
+    ];
   }
 
   renderItemActionsCell(

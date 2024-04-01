@@ -20,7 +20,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const rowColors = _rowColorVariables(euiThemeContext);
   const expandedAnimationCss = _expandedRowAnimation(euiThemeContext);
 
-  const { cellContentPadding, mobileSizes } =
+  const { cellContentPadding, mobileSizes, checkboxSize } =
     euiTableVariables(euiThemeContext);
 
   return {
@@ -57,6 +57,13 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           background-color: ${rowColors.selected.hover};
         }
       `,
+      // Offset expanded & selectable rows by the checkbox width to line up content with the 2nd column
+      // Set on the `<td>` because padding can't be applied to `<tr>` elements directly
+      checkboxOffset: css`
+        .euiTableRowCell:first-child {
+          ${logicalCSS('padding-left', checkboxSize)}
+        }
+      `,
     },
 
     mobile: {
@@ -82,7 +89,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
        * Left column offset (no border)
        * Used for selection checkbox, which will be absolutely positioned
        */
-      selectable: css`
+      hasLeftColumn: css`
         ${logicalCSS('padding-left', mobileSizes.checkbox.width)}
       `,
       /**

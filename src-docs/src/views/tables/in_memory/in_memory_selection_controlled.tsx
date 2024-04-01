@@ -258,7 +258,6 @@ export default () => {
         pagination={pagination}
         sorting={true}
         selection={selectionValue}
-        isSelectable={true}
       />
     </>
   );

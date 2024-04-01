@@ -677,8 +677,6 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
       message,
       error,
       selection,
-      isSelectable,
-      hasActions,
       compressed,
       pagination: hasPagination,
       sorting: hasSorting,
@@ -747,8 +745,6 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
         pagination={pagination}
         sorting={sorting}
         selection={selection}
-        isSelectable={isSelectable}
-        hasActions={hasActions}
         onChange={this.onTableChange}
         error={error}
         loading={loading}
