@@ -121,9 +121,12 @@ export interface EuiTableComputedColumnType<T>
    */
   width?: string;
   /**
-   * Indicates whether this column should truncate its content when it doesn't fit
+   * Indicates whether this column should truncate overflowing text content.
+   * - Set to `true` to enable single-line truncation.
+   * - To enable multi-line truncation, use a configuration object with `lines`
+   * set to a number of lines to truncate to.
    */
-  truncateText?: boolean;
+  truncateText?: EuiTableRowCellProps['truncateText'];
   isExpander?: boolean;
   align?: HorizontalAlignment;
   /**

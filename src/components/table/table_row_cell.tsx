@@ -34,6 +34,7 @@ interface EuiTableRowCellSharedPropsShape {
   /**
    * Creates a text wrapper around cell content that helps word break or truncate
    * long text correctly.
+   * @default true
    */
   textOnly?: boolean;
   /**
@@ -41,6 +42,7 @@ interface EuiTableRowCellSharedPropsShape {
    * - Set to `true` to enable single-line truncation.
    * - To enable multi-line truncation, use a configuration object with `lines`
    * set to a number of lines to truncate to.
+   * @default false
    */
   truncateText?: boolean | { lines: number };
   width?: CSSProperties['width'];
