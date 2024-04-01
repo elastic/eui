@@ -564,7 +564,7 @@ describe('EuiBasicTable', () => {
 
       // Numbers should be right aligned
       expect(
-        container.querySelectorAll('.euiTableCellContent--alignRight')
+        container.querySelectorAll('[class*="euiTableCellContent-right"]')
       ).toHaveLength(3);
 
       // Booleans should output as Yes or No

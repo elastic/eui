@@ -21,14 +21,13 @@ import {
   useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
 } from '../../services';
 import { isObject } from '../../services/predicate';
 import { EuiTextBlockTruncate } from '../text_truncate';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
+import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableRowCellStyles } from './table_row_cell.styles';
 
 interface EuiTableRowCellSharedPropsShape {
@@ -153,8 +152,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   });
 
   const contentClasses = classNames('euiTableCellContent', {
-    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
     'euiTableCellContent--truncateText': truncateText === true,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
@@ -162,10 +159,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   });
 
   const mobileContentClasses = classNames('euiTableCellContent', {
-    'euiTableCellContent--alignRight':
-      mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter':
-      mobileOptions.align === CENTER_ALIGNMENT || align === CENTER_ALIGNMENT,
     'euiTableCellContent--truncateText':
       mobileOptions.truncateText ?? truncateText,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
@@ -227,13 +220,20 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     css: cssStyles,
     ...rest,
   };
+  const sharedContentProps = {
+    align,
+    className: isResponsive ? mobileContentClasses : contentClasses,
+  };
+
   if (mobileOptions.show === false) {
     return (
       <Element
         className={`${cellClasses} ${hideForMobileClasses}`}
         {...sharedProps}
       >
-        <div className={contentClasses}>{childrenNode}</div>
+        <EuiTableCellContent {...sharedContentProps}>
+          {childrenNode}
+        </EuiTableCellContent>
       </Element>
     );
   } else {
@@ -252,15 +252,23 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
         {/* Content depending on mobile render existing */}
         {mobileOptions.render ? (
           <>
-            <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
+            <EuiTableCellContent
+              className={showForMobileClasses}
+              align={mobileOptions.align ?? align}
+            >
               {modifyChildren(mobileOptions.render)}
-            </div>
-            <div className={`${contentClasses} ${hideForMobileClasses}`}>
+            </EuiTableCellContent>
+            <EuiTableCellContent
+              {...sharedContentProps}
+              className={hideForMobileClasses}
+            >
               {childrenNode}
-            </div>
+            </EuiTableCellContent>
           </>
         ) : (
-          <div className={contentClasses}>{childrenNode}</div>
+          <EuiTableCellContent {...sharedContentProps}>
+            {childrenNode}
+          </EuiTableCellContent>
         )}
       </Element>
     );
