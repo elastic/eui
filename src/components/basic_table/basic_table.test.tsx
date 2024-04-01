@@ -224,7 +224,6 @@ describe('EuiBasicTable', () => {
       itemIdToExpandedRowMap: {
         '1': <div>Expanded row</div>,
       },
-      isExpandable: true,
     };
     const { getByText } = render(<EuiBasicTable {...props} />);
 

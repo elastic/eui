@@ -396,7 +396,6 @@ export default () => {
         pagination={pagination}
         sorting={sorting}
         selection={selection}
-        hasActions={customAction ? false : true}
         onChange={onTableChange}
       />
     </>

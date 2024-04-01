@@ -686,7 +686,7 @@ export default class extends Component<{}, State> {
         <EuiTableRow
           key={item.id}
           isSelected={this.isItemSelected(item.id)}
-          isSelectable={true}
+          hasSelection={true}
           hasActions={true}
         >
           {cells}

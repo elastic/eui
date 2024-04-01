@@ -44,7 +44,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
       class="css-0"
     >
       <tr
-        class="euiTableRow emotion-euiTableRow-desktop"
+        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -66,7 +66,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         </td>
       </tr>
       <tr
-        class="euiTableRow emotion-euiTableRow-desktop"
+        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -88,7 +88,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         </td>
       </tr>
       <tr
-        class="euiTableRow emotion-euiTableRow-desktop"
+        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
       >
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
