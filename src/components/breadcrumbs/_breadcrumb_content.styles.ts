@@ -25,7 +25,6 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumb__content: css`
-      font-weight: ${euiTheme.font.weight.regular};
       text-align: center;
       vertical-align: baseline;
 
@@ -50,7 +49,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
 
         /* TODO: Remove this 'class*=' selector once the 'color' prop is removed */
-        [class*='euiLink-subdued'] {
+        &[class*='euiLink-subdued'] {
           &:hover,
           &:focus {
             color: ${euiTheme.colors.text};
