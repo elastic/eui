@@ -50,7 +50,6 @@ export const Playground: Story = {
       },
       {
         text: 'Breadcrumb 2',
-        href: '#',
       },
       {
         text: 'Current',

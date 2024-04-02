@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { transparentize } from '../../services/color';
+import { tintOrShade } from '../../services/color';
 import {
   euiFontSize,
   euiTextTruncate,
@@ -17,12 +17,23 @@ import {
   logicalBorderRadiusCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
 /**
  * Styles cast to inner <a>, <button>, <span> elements
  */
 export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
+  const breadcrumbButtonColor = euiButtonColor(euiThemeContext, 'primary');
+  const breadcrumbTextColors = {
+    backgroundColor: tintOrShade(
+      euiTheme.colors.darkestShade,
+      colorMode === 'DARK' ? 0.7 : 0.85,
+      colorMode
+    ),
+    color: tintOrShade(euiTheme.colors.darkestShade, 0.2, colorMode),
+  };
+
   return {
     euiBreadcrumb__content: css`
       /* Unset EuiLink's bolder font weight */
@@ -72,7 +83,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     application: css`
       ${euiFontSize(euiThemeContext, 'xs')}
-      background-color: ${transparentize(euiTheme.colors.darkestShade, 0.2)};
+      background-color: ${breadcrumbTextColors.backgroundColor};
       clip-path: polygon(
         0 0,
         calc(100% - ${euiTheme.size.s}) 0,
@@ -81,15 +92,15 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         0 100%,
         ${euiTheme.size.s} 50%
       );
-      color: ${euiTheme.colors.darkestShade};
+      color: ${breadcrumbTextColors.color};
       line-height: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
       &:is(a),
       &:is(button) {
-        background-color: ${transparentize(euiTheme.colors.primary, 0.2)};
-        color: ${euiTheme.colors.link};
+        background-color: ${breadcrumbButtonColor.backgroundColor};
+        color: ${breadcrumbButtonColor.color};
 
         :focus {
           ${euiFocusRing(euiThemeContext, 'inset')}
