@@ -8,7 +8,7 @@ steps:
     agents:
       provider: k8s
       image: 'docker.elastic.co/ci-agent-images/drivah:0.24.4'
-      ephemeralStorage: '10G'
+      ephemeralStorage: '20G'
       cpu: '2000m'
       # running yarn install requires plenty of memory
       memory: '8G'
