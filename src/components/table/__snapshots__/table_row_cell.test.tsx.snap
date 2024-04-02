@@ -68,10 +68,10 @@ exports[`children's className merges new classnames into existing ones 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
+          class="euiTableCellContent euiTableCellContent--overflowingContent"
         >
           <div
-            class="testClass euiTableCellContent__hoverItem"
+            class="testClass"
           />
         </div>
       </td>

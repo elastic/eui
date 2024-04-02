@@ -39,8 +39,21 @@ export interface DefaultItemActionBase<T extends object> {
    * A callback function that determines whether the action is enabled
    */
   enabled?: (item: T) => boolean;
-  isPrimary?: boolean;
   'data-test-subj'?: string | ((item: T) => string);
+  /**
+   * If more than 3 actions are passed, 2 primary actions will show (on hover)
+   * next to an expansion menu of all actions.
+   *
+   * On mobile, primary actions will be tucked away in the expansion menu for space.
+   */
+  isPrimary?: boolean;
+  /**
+   * Allows only showing the action on mouse hover or keyboard focus.
+   * If more than 3 actions are passed, this will always be true for `isPrimary` actions.
+   *
+   * Has no effect on mobile, or if `hasActions` is not set.
+   */
+  showOnHover?: boolean;
 }
 
 export interface DefaultItemEmptyButtonAction<T extends object>
@@ -70,7 +83,7 @@ export type DefaultItemAction<T extends object> = ExclusiveUnion<
   DefaultItemIconButtonAction<T>
 >;
 
-export interface CustomItemAction<T> {
+export type CustomItemAction<T> = {
   /**
    * Allows rendering a totally custom action
    */
@@ -83,8 +96,7 @@ export interface CustomItemAction<T> {
    * A callback that defines whether the action is enabled
    */
   enabled?: (item: T) => boolean;
-  isPrimary?: boolean;
-}
+} & Pick<DefaultItemActionBase<{}>, 'isPrimary' | 'showOnHover'>;
 
 export type Action<T extends object> =
   | DefaultItemAction<T>

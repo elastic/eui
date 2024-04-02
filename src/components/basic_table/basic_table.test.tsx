@@ -664,9 +664,12 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { getAllByText } = render(<EuiBasicTable {...props} />);
+      const { getAllByText, container } = render(<EuiBasicTable {...props} />);
 
       expect(getAllByText('Delete')).toHaveLength(basicItems.length);
+      expect(
+        container.querySelector('.euiBasicTableAction-showOnHover')
+      ).not.toBeInTheDocument();
     });
 
     test('multiple actions with custom availability', () => {
@@ -680,7 +683,7 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { getAllByText, getAllByTestSubject } = render(
+      const { getAllByText, getAllByTestSubject, container } = render(
         <EuiBasicTable {...props} />
       );
 
@@ -689,6 +692,12 @@ describe('EuiBasicTable', () => {
       expect(getAllByTestSubject('euiCollapsedItemActionsButton')).toHaveLength(
         4
       );
+      expect(
+        container.querySelector('.euiBasicTable__collapsedActions')
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('.euiBasicTableAction-showOnHover')
+      ).toBeInTheDocument();
     });
 
     test('custom item actions', () => {

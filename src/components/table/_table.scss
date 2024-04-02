@@ -42,33 +42,3 @@
   // /* 4 */ overflow-wrap is not supported on flex parents
   word-break: break-word;
 }
-
-.euiTableCellContent--showOnHover {
-  > *:not(:first-child) {
-    margin-left: $euiSizeS;
-  }
-}
-
-.euiTableRow-hasActions {
-  .euiTableCellContent--showOnHover {
-    .euiTableCellContent__hoverItem {
-      flex-shrink: 0;
-      opacity: .7;
-      filter: grayscale(100%);
-      transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance, filter $euiAnimSpeedNormal $euiAnimSlightResistance;
-    }
-
-    .expandedItemActions__completelyHide {
-      filter: grayscale(0%);
-      opacity: 0;
-    }
-  }
-
-  &:hover .euiTableCellContent--showOnHover,
-  .euiTableCellContent--showOnHover:focus-within {
-    .euiTableCellContent__hoverItem {
-      opacity: 1;
-      filter: grayscale(0%);
-    }
-  }
-}

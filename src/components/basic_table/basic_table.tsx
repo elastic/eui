@@ -78,7 +78,6 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 import {
   euiBasicTableBodyLoading,
   safariLoadingWorkaround,
-  euiBasicTableActionsWrapper,
 } from './basic_table.styles';
 
 type DataTypeProfiles = Record<
@@ -1140,9 +1139,15 @@ export class EuiBasicTable<T extends object = any> extends Component<
         // If all actions are disabled, do not show any actions but the popover toggle
         actualActions = [];
       } else {
-        // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-        const primaryActions = actualActions.filter((o) => o.isPrimary);
-        actualActions = primaryActions.slice(0, 2);
+        // if any of the actions `isPrimary`, add them inline as well, but only the first 2,
+        // which we'll force to only show on hover for desktop views
+        const primaryActions = actualActions.filter(
+          (action) => action.isPrimary
+        );
+        actualActions = primaryActions.slice(0, 2).map((action) => ({
+          ...action,
+          showOnHover: true,
+        }));
       }
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
@@ -1153,28 +1158,25 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       actualActions.push({
         name: 'All actions',
-        render: (item: T) => {
-          return (
-            <CollapsedItemActions
-              actions={column.actions}
-              actionsDisabled={allDisabled}
-              itemId={itemId}
-              item={item}
-            />
-          );
-        },
+        render: (item: T) => (
+          <CollapsedItemActions
+            className="euiBasicTable__collapsedActions"
+            actions={column.actions}
+            actionsDisabled={allDisabled}
+            itemId={itemId}
+            item={item}
+          />
+        ),
       });
     }
 
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
       <EuiTableRowCell
-        showOnHover={true}
         key={key}
         align="right"
         textOnly={false}
         hasActions={hasCustomActions ? 'custom' : true}
-        css={euiBasicTableActionsWrapper}
       >
         <ExpandedItemActions
           actions={actualActions}
