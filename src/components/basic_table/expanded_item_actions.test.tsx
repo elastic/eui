@@ -7,14 +7,15 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../test/rtl';
+
 import {
   ExpandedItemActions,
   ExpandedItemActionsProps,
 } from './expanded_item_actions';
 
 describe('ExpandedItemActions', () => {
-  test('render', () => {
+  it('renders', () => {
     const props: ExpandedItemActionsProps<{ id: string }> = {
       actions: [
         {
@@ -27,14 +28,19 @@ describe('ExpandedItemActions', () => {
           description: 'custom 1',
           render: (_item) => <></>,
         },
+        {
+          name: 'showOnHover',
+          description: 'show on hover',
+          href: '#',
+          showOnHover: true,
+        },
       ],
       itemId: 'xyz',
       item: { id: 'xyz' },
       actionsDisabled: false,
     };
+    const { container } = render(<ExpandedItemActions {...props} />);
 
-    const component = shallow(<ExpandedItemActions {...props} />);
-
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

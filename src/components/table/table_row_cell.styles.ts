@@ -18,9 +18,26 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
 
   const { mobileSizes } = euiTableVariables(euiThemeContext);
 
+  // Unsets the extra strut caused by inline-block display of buttons/icons/tooltips.
+  // Without this, the row height jumps whenever actions are disabled.
+  const hasIcons = `line-height: 1;`;
+
   return {
     euiTableRowCell: css`
       color: ${euiTheme.colors.text};
+    `,
+    isExpander: css`
+      ${hasIcons}
+    `,
+    hasActions: css`
+      ${hasIcons}
+
+      /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
+      .euiTableCellContent {
+        display: flex;
+        align-items: center;
+        gap: ${euiTheme.size.s};
+      }
     `,
 
     // valign
@@ -37,9 +54,30 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: bottom;
     `,
 
-    desktop: css`
-      ${logicalCSS('border-vertical', euiTheme.border.thin)}
-    `,
+    desktop: {
+      desktop: css`
+        ${logicalCSS('border-vertical', euiTheme.border.thin)}
+      `,
+      actions: css`
+        /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
+        .euiTableCellContent {
+          flex-wrap: wrap;
+        }
+
+        .euiBasicTableAction-showOnHover {
+          opacity: 0;
+          transition: opacity ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance};
+        }
+
+        &:focus-within,
+        .euiTableRow-hasActions:hover & {
+          .euiBasicTableAction-showOnHover {
+            opacity: 1;
+          }
+        }
+      `,
+    },
 
     mobile: {
       mobile: css`
@@ -64,6 +102,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       get actions() {
+        // Note: Visible-on-hover actions on desktop always show on mobile
         return css`
           ${this.rightColumnContent}
           ${logicalCSS('top', mobileSizes.actions.offset)}

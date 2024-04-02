@@ -163,6 +163,11 @@ export default () => {
       if (multiAction) {
         actions = [
           {
+            ...actions[0],
+            isPrimary: true,
+            showOnHover: true,
+          },
+          {
             render: (user: User) => {
               return (
                 <EuiLink color="success" onClick={() => cloneUser(user)}>
@@ -176,7 +181,6 @@ export default () => {
               return <EuiLink onClick={() => {}}>Edit</EuiLink>;
             },
           },
-          ...actions,
         ];
       }
       return actions;
