@@ -22,11 +22,11 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           role="columnheader"
           scope="col"
         >
-          <span
-            class="euiTableCellContent"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="Name; description"
             >
               Name
@@ -36,7 +36,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
             >
               description
             </span>
-          </span>
+          </div>
         </th>
       </tr>
     </thead>
@@ -55,7 +55,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
             Name
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -77,7 +77,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
             Name
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -99,7 +99,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
             Name
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -164,11 +164,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             data-test-subj="tableHeaderSortButton"
             type="button"
           >
-            <span
-              class="euiTableCellContent"
+            <div
+              class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
             >
               <span
-                class="euiTableCellContent__text"
+                class="eui-textTruncate"
                 title="Name; your name"
               >
                 Name
@@ -182,7 +182,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiTableSortIcon"
                 data-euiicon-type="sortUp"
               />
-            </span>
+            </div>
           </button>
         </th>
         <th
@@ -191,11 +191,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           role="columnheader"
           scope="col"
         >
-          <span
-            class="euiTableCellContent"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="ID; your id"
             >
               ID
@@ -205,7 +205,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             >
               your id
             </span>
-          </span>
+          </div>
         </th>
         <th
           class="euiTableHeaderCell emotion-euiTableHeaderCell"
@@ -213,11 +213,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           role="columnheader"
           scope="col"
         >
-          <span
-            class="euiTableCellContent euiTableCellContent--alignRight"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="Age; your age"
             >
               Age
@@ -227,23 +227,23 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             >
               your age
             </span>
-          </span>
+          </div>
         </th>
         <th
           class="euiTableHeaderCell emotion-euiTableHeaderCell"
           role="columnheader"
           scope="col"
         >
-          <span
-            class="euiTableCellContent euiTableCellContent--alignRight"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="Actions"
             >
               Actions
             </span>
-          </span>
+          </div>
         </th>
       </tr>
     </thead>
@@ -285,7 +285,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             Name
           </div>
           <div
-            class="euiTableCellContent euiTableCellContent--overflowingContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             NAME1
           </div>
@@ -299,7 +299,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             ID
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -317,7 +317,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             Age
           </div>
           <div
-            class="euiTableCellContent euiTableCellContent--alignRight"
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -330,7 +330,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
         >
           <div
-            class="euiTableCellContent euiTableCellContent--alignRight euiTableCellContent--overflowingContent"
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -406,7 +406,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             Name
           </div>
           <div
-            class="euiTableCellContent euiTableCellContent--overflowingContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             NAME2
           </div>
@@ -420,7 +420,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             ID
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -438,7 +438,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             Age
           </div>
           <div
-            class="euiTableCellContent euiTableCellContent--alignRight"
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -451,7 +451,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
         >
           <div
-            class="euiTableCellContent euiTableCellContent--alignRight euiTableCellContent--overflowingContent"
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -527,7 +527,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             Name
           </div>
           <div
-            class="euiTableCellContent euiTableCellContent--overflowingContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             NAME3
           </div>
@@ -541,7 +541,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             ID
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -559,7 +559,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             Age
           </div>
           <div
-            class="euiTableCellContent euiTableCellContent--alignRight"
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -572,7 +572,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
         >
           <div
-            class="euiTableCellContent euiTableCellContent--alignRight euiTableCellContent--overflowingContent"
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
           >
             <span
               class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -620,7 +620,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
             <span
               class="euiTableCellContent__text"
@@ -631,7 +631,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
             <span
               class="euiTableCellContent__text"
@@ -642,7 +642,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
             <span
               class="euiTableCellContent__text"
@@ -658,7 +658,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
             <span
               class="euiTableCellContent__text"
@@ -669,7 +669,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableFooterCell emotion-euiTableFooterCell"
         >
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
             <span
               class="euiTableCellContent__text"

@@ -1438,7 +1438,7 @@ describe('EuiInMemoryTable', () => {
       const columns = [{ field: 'title', name: 'Title' }];
       const query = Query.parse('baz');
 
-      const component = mount(
+      const { container } = render(
         <EuiInMemoryTable
           items={items}
           search={{ query }}
@@ -1447,12 +1447,12 @@ describe('EuiInMemoryTable', () => {
         />
       );
 
-      const tableContent = component.find(
+      const tableContent = container.querySelectorAll(
         '.euiTableRowCell .euiTableCellContent'
       );
 
       expect(tableContent.length).toBe(1); // only 1 match
-      expect(tableContent.at(0).text()).toBe('baz');
+      expect(tableContent[0]).toHaveTextContent('baz');
     });
 
     it('does not execute the Query and renders the items passed as is', () => {
@@ -1460,7 +1460,7 @@ describe('EuiInMemoryTable', () => {
       const columns = [{ field: 'title', name: 'Title' }];
       const query = Query.parse('baz');
 
-      const component = mount(
+      const { container } = render(
         <EuiInMemoryTable
           items={items}
           search={{ query }}
@@ -1469,14 +1469,14 @@ describe('EuiInMemoryTable', () => {
         />
       );
 
-      const tableContent = component.find(
+      const tableContent = container.querySelectorAll(
         '.euiTableRowCell .euiTableCellContent'
       );
 
       expect(tableContent.length).toBe(3);
-      expect(tableContent.at(0).text()).toBe('foo');
-      expect(tableContent.at(1).text()).toBe('bar');
-      expect(tableContent.at(2).text()).toBe('baz');
+      expect(tableContent[0]).toHaveTextContent('foo');
+      expect(tableContent[1]).toHaveTextContent('bar');
+      expect(tableContent[2]).toHaveTextContent('baz');
     });
   });
 
