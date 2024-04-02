@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, logicalCSS } from '../../global_styling';
+import {
+  euiFontSize,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
 
@@ -64,6 +68,10 @@ export const euiTableCellCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiTableHeaderCellCheckbox: css`
       ${sharedCheckboxStyles}
+
+      /* Without this the visually hidden checkbox doesn't line up properly with the custom render 🙃
+         TODO: Could be removed if we use inset: 0 on checkboxes once they're converted to Emotion */
+      ${logicalTextAlignCSS('left')}
     `,
     euiTableRowCellCheckbox: css`
       ${sharedCheckboxStyles}
