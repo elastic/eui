@@ -11,6 +11,6 @@ steps:
       ephemeralStorage: '10G'
       cpu: '2000m'
       # running yarn install requires plenty of memory
-      memory: '6G'
+      memory: '8G'
   - wait
   - command: "echo 'TODO: push agent image'"
