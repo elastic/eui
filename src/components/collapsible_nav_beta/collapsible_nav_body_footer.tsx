@@ -9,7 +9,7 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import {
   EuiFlyoutBody,
   EuiFlyoutBodyProps,
@@ -63,8 +63,7 @@ export const EuiCollapsibleNavFooter: EuiFlyoutFooterProps = ({
   const classes = classNames('euiCollapsibleNav__footer', className);
 
   const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavFooterStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavFooterStyles);
   const cssStyles = styles.euiCollapsibleNav__footer;
   const overflowWrapperStyles = [
     styles.euiFlyoutFooter__overflow,

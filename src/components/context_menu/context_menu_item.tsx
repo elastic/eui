@@ -19,7 +19,7 @@ import React, {
 import classNames from 'classnames';
 
 import {
-  useEuiTheme,
+  useEuiMemoizedStyles,
   getSecureRelForTarget,
   cloneElementWithCss,
 } from '../../services';
@@ -104,8 +104,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
 
   const classes = classNames('euiContextMenuItem', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiContextMenuItemStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiContextMenuItemStyles);
   const cssStyles = [
     styles.euiContextMenuItem,
     styles.sizes[size],

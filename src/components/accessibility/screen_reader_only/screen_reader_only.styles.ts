@@ -34,13 +34,13 @@ export const euiScreenReaderOnly = () => `
 /*
  * Styles
  */
-export const euiScreenReaderOnlyStyles = (showOnFocus?: boolean) => ({
-  euiScreenReaderOnly: showOnFocus
-    ? css`
-        /* The :active selector is necessary for Safari which removes :focus when a button is pressed */
-        &:not(:focus, :active, :focus-within) {
-          ${euiScreenReaderOnly()}
-        }
-      `
-    : css(euiScreenReaderOnly()),
-});
+export const euiScreenReaderOnlyStyles = {
+  euiScreenReaderOnly: css(euiScreenReaderOnly()),
+
+  'euiScreenReaderOnly-showOnFocus': css`
+    /* The :active selector is necessary for Safari which removes :focus when a button is pressed */
+    &:not(:focus, :active, :focus-within) {
+      ${euiScreenReaderOnly()}
+    }
+  `,
+};

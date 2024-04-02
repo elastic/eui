@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
@@ -14,11 +14,12 @@ import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
 import {
   euiPaletteColorBlindBehindText,
   toInitials,
-  useEuiTheme,
+  useEuiMemoizedStyles,
 } from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 import { euiAvatarStyles } from './avatar.styles';
+const visColors = euiPaletteColorBlindBehindText();
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type EuiAvatarSize = (typeof SIZES)[number];
@@ -123,15 +124,12 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   style,
   ...props
 }) => {
+  checkValidInitials(initials);
   const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
-
-  const euiTheme = useEuiTheme();
-  const styles = euiAvatarStyles(euiTheme);
-
-  const visColors = euiPaletteColorBlindBehindText();
 
   const isPlain = color === 'plain';
   const isSubdued = color === 'subdued';
+  const isNamedColor = isPlain || isSubdued || color === null;
 
   const classes = classNames(
     'euiAvatar',
@@ -143,6 +141,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     className
   );
 
+  const styles = useEuiMemoizedStyles(euiAvatarStyles);
   const cssStyles = [
     styles.euiAvatar,
     styles[type],
@@ -153,63 +152,60 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     isDisabled && styles.isDisabled,
   ];
 
-  checkValidInitials(initials);
+  const avatarStyle = useMemo(() => {
+    if (imageUrl) {
+      return {
+        backgroundImage: `url(${imageUrl})`,
+      };
+    }
+    if (!isNamedColor) {
+      checkValidColor(color);
 
-  const avatarStyle = { ...style };
+      const assignedColor =
+        color || visColors[Math.floor(name.length % visColors.length)];
+      const textColor = isColorDark(...hexToRgb(assignedColor))
+        ? '#FFFFFF'
+        : '#000000';
 
-  let iconCustomColor = iconColor;
+      return {
+        backgroundColor: assignedColor,
+        color: textColor,
+      };
+    }
+  }, [imageUrl, color, isNamedColor, name.length]);
 
-  const isNamedColor =
-    color === 'plain' || color === 'subdued' || color === null;
-
-  if (!isNamedColor) {
-    checkValidColor(color);
-
-    const assignedColor =
-      color || visColors[Math.floor(name.length % visColors.length)];
-    const textColor = isColorDark(...hexToRgb(assignedColor))
-      ? '#FFFFFF'
-      : '#000000';
-
-    avatarStyle.backgroundColor = assignedColor;
-    avatarStyle.color = textColor;
-
-    // Allow consumers to let the icons keep their default color (like app icons)
-    // when passing `iconColor = null`, otherwise continue to pass on `iconColor` or adjust with textColor
-    iconCustomColor = iconColor || iconColor === null ? iconColor : textColor;
-  }
-
-  if (imageUrl) {
-    avatarStyle.backgroundImage = `url(${imageUrl})`;
-  }
-
-  let content;
-  if (!imageUrl && !iconType) {
-    // Create the initials
-    const calculatedInitials = toInitials(name, initialsLength, initials);
-    content = <span aria-hidden="true">{calculatedInitials}</span>;
-  } else if (iconType) {
-    content = (
-      <EuiIcon
-        className="euiAvatar__icon"
-        size={iconSize || size}
-        type={iconType}
-        color={iconCustomColor === null ? undefined : iconCustomColor}
-      />
-    );
-  }
+  const iconCustomColor = useMemo(() => {
+    // `null` allows icons to keep their default color (e.g. app icons)
+    if (iconColor === null) return undefined;
+    // Otherwise continue to pass on `iconColor`
+    if (iconColor) return iconColor;
+    // Fall back to the adjusted text color if it exists
+    return avatarStyle?.color;
+  }, [iconColor, avatarStyle?.color]);
 
   return (
     <div
       css={cssStyles}
       className={classes}
-      style={avatarStyle}
+      style={{ ...style, ...avatarStyle }}
       aria-label={isDisabled ? undefined : name}
       role={isDisabled ? 'presentation' : 'img'}
       title={name}
       {...rest}
     >
-      {content}
+      {!imageUrl &&
+        (iconType ? (
+          <EuiIcon
+            className="euiAvatar__icon"
+            size={iconSize || size}
+            type={iconType}
+            color={iconCustomColor}
+          />
+        ) : (
+          <span aria-hidden="true">
+            {toInitials(name, initialsLength, initials)}
+          </span>
+        ))}
     </div>
   );
 };

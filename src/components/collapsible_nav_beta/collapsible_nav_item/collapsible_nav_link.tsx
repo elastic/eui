@@ -9,7 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiLink, EuiLinkProps } from '../../link';
 
 import type {
@@ -58,8 +58,7 @@ export const EuiCollapsibleNavLink: FunctionComponent<
     className,
     isInteractive && linkProps?.className
   );
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavLinkStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavLinkStyles);
   const cssStyles = [
     styles.euiCollapsibleNavLink,
     isSelected && styles.isSelected,

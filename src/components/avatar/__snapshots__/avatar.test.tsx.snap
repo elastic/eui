@@ -227,7 +227,7 @@ exports[`EuiAvatar props imageUrl is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-image: url(image-url.gif);"
   title="name"
 />
 `;

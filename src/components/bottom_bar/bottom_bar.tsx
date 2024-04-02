@@ -14,26 +14,22 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useCombinedRefs, useEuiTheme } from '../../services';
+
+import {
+  useCombinedRefs,
+  useEuiMemoizedStyles,
+  EuiThemeProvider,
+} from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal, EuiPortalProps } from '../portal';
+
 import { euiBottomBarStyles } from './bottom_bar.styles';
-import { EuiThemeProvider } from '../../services/theme/provider';
 
-type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
-
-// Exported for testing
-export const paddingSizeToClassNameMap: {
-  [value in BottomBarPaddingSize]: string | null;
-} = {
-  none: null,
-  s: 'euiBottomBar--paddingSmall',
-  m: 'euiBottomBar--paddingMedium',
-  l: 'euiBottomBar--paddingLarge',
-};
+export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
+type BottomBarPaddingSize = (typeof PADDING_SIZES)[number];
 
 export const POSITIONS = ['static', 'fixed', 'sticky'] as const;
 export type _BottomBarPosition = (typeof POSITIONS)[number];
@@ -123,8 +119,7 @@ const _EuiBottomBar = forwardRef<
     },
     ref
   ) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiBottomBarStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiBottomBarStyles);
 
     // Force some props if `fixed` position, but not if the user has supplied these
     affordForDisplacement =
@@ -159,7 +154,6 @@ const _EuiBottomBar = forwardRef<
     const classes = classNames(
       'euiBottomBar',
       `euiBottomBar--${position}`,
-      paddingSizeToClassNameMap[paddingSize],
       className
     );
 
@@ -167,7 +161,6 @@ const _EuiBottomBar = forwardRef<
       styles.euiBottomBar,
       styles[position],
       styles[paddingSize],
-      { position },
     ];
 
     const newStyle = {
@@ -240,10 +233,7 @@ export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
     const BottomBar = _EuiBottomBar;
     return (
-      <EuiThemeProvider
-        colorMode={'dark'}
-        wrapperProps={{ cloneElement: true }}
-      >
+      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
         <BottomBar ref={ref} {...props} />
       </EuiThemeProvider>
     );

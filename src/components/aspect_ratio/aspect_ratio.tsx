@@ -11,9 +11,12 @@ import React, {
   HTMLAttributes,
   ReactElement,
   CSSProperties,
+  useMemo,
 } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
+import { logicalStyles } from '../../global_styling';
 
 export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -35,28 +38,32 @@ export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
 export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
   children,
   className,
+  style,
   height,
   width,
   maxWidth,
-  style,
   ...rest
 }) => {
-  const classes = classNames('euiAspectRatio', className);
+  const classes = classNames(
+    'euiAspectRatio',
+    className,
+    children.props.className
+  );
 
-  const euiAspectRatioStyle = {
-    ...children.props.style,
-    aspectRatio: `${width} / ${height}`,
-    height: 'auto',
-    width: '100%',
-    maxWidth,
-    ...style,
-  };
+  const euiAspectRatioStyle = useMemo(
+    () =>
+      logicalStyles({
+        aspectRatio: `${width} / ${height}`,
+        height: 'auto',
+        width: '100%',
+        maxWidth,
+      }),
+    [height, width, maxWidth]
+  );
 
-  const props = {
-    className: classes,
-    style: euiAspectRatioStyle,
+  return React.cloneElement(children, {
     ...rest,
-  };
-
-  return React.cloneElement(children, props);
+    className: classes,
+    style: { ...children.props.style, ...euiAspectRatioStyle, ...style },
+  });
 };

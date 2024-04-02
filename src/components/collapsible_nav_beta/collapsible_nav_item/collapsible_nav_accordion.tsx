@@ -9,7 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { EuiAccordion } from '../../accordion';
 
 import {
@@ -51,8 +51,7 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
   const classes = classNames('euiCollapsibleNavAccordion', className);
   const groupID = useGeneratedHtmlId({ conditionalId: id });
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavAccordionStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavAccordionStyles);
   const cssStyles = [
     styles.euiCollapsibleNavAccordion,
     isSubItem ? styles.isSubItem : styles.isTopItem,
