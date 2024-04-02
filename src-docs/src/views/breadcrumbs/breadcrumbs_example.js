@@ -9,7 +9,7 @@ import {
   EuiText,
   EuiCallOut,
 } from '../../../../src/components';
-import { BreadcrumbProps, BreadcrumbResponsiveMaxCount } from './props';
+import { BreadcrumbProps } from './props';
 
 import { breadcrumbsConfig } from './playground';
 
@@ -35,7 +35,6 @@ const popoverContentSource = require('!!raw-loader!./popover_content');
 const props = {
   EuiBreadcrumbs,
   EuiBreadcrumb: BreadcrumbProps,
-  EuiBreadcrumbResponsiveMaxCount: BreadcrumbResponsiveMaxCount,
 };
 
 export const BreadcrumbsExample = {

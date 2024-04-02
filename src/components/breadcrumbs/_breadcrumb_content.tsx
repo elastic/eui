@@ -182,7 +182,6 @@ const EuiBreadcrumbPopover = forwardRef<
       styles.euiBreadcrumb__popoverButton,
       ...breadcrumbCss,
     ];
-    console.log(buttonStyles);
     const truncationStyles = [
       styles.euiBreadcrumb__popoverTruncation,
       ...truncationCss,
