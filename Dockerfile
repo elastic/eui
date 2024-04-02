@@ -1,5 +1,7 @@
 FROM node:20-alpine AS build-env
 WORKDIR /app
+# Buildkite needs bash for environment setup script
+RUN apk add --no-cache bash
 COPY package.json yarn.lock ./
 RUN chown node:node ./
 USER node
