@@ -74,11 +74,6 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
@@ -96,11 +91,6 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
@@ -117,11 +107,6 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
@@ -304,11 +289,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             NAME1
@@ -317,11 +297,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            ID
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
@@ -335,11 +310,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Age
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
           >
@@ -425,11 +395,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             NAME2
@@ -438,11 +403,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            ID
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
@@ -456,11 +416,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Age
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
           >
@@ -546,11 +501,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             NAME3
@@ -559,11 +509,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            ID
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
@@ -577,11 +522,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Age
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
           >
