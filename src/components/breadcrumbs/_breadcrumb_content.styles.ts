@@ -25,6 +25,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumb__content: css`
+      /* Unset EuiLink's bolder font weight */
       font-weight: ${euiTheme.font.weight.regular};
       text-align: center;
       vertical-align: baseline;
