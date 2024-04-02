@@ -272,13 +272,6 @@ interface BasicTableProps<T extends object>
    * Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.
    */
   tableLayout?: 'fixed' | 'auto';
-  /**
-   * Applied to table cells. Any cell using a render function will set this to be false.
-   *
-   * Creates a text wrapper around cell content that helps word break or truncate
-   * long text correctly.
-   */
-  textOnly?: boolean;
 }
 
 type BasicTableWithPaginationProps<T extends object> = Omit<
