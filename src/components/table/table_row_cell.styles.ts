@@ -18,15 +18,19 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
 
   const { mobileSizes } = euiTableVariables(euiThemeContext);
 
+  // Unsets the extra strut caused by inline-block display of buttons/icons/tooltips.
+  // Without this, the row height jumps whenever actions are disabled.
+  const hasIcons = `line-height: 1;`;
+
   return {
     euiTableRowCell: css`
       color: ${euiTheme.colors.text};
     `,
-
+    isExpander: css`
+      ${hasIcons}
+    `,
     hasActions: css`
-      /* Unsets the extra strut caused by inline-block display of buttons/icons/tooltips.
-         Without this, the row height jumps whenever actions are disabled. */
-      line-height: 1;
+      ${hasIcons}
 
       /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
       .euiTableCellContent {
