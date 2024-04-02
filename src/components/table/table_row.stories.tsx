@@ -24,12 +24,6 @@ import { EuiTableRow, EuiTableRowProps } from './table_row';
 const meta: Meta<EuiTableRowProps> = {
   title: 'Tabular Content/EuiTable/EuiTableRow',
   component: EuiTableRow,
-  argTypes: {
-    hasActions: {
-      control: 'select',
-      options: [false, true, 'custom'],
-    },
-  },
 };
 
 export default meta;
@@ -39,6 +33,10 @@ export const Playground: Story = {
   argTypes: {
     // For quicker/easier testing
     onClick: { control: 'boolean' },
+    hasActions: {
+      control: 'select',
+      options: [false, true, 'custom'],
+    },
   },
   args: {
     // @ts-ignore - using a switch for easiser testing

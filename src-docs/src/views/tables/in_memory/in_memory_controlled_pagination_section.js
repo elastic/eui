@@ -41,10 +41,10 @@ export const controlledPaginationSection = {
       <p>
         By default <EuiCode>EuiInMemoryTable</EuiCode> resets its page index
         when receiving a new <EuiCode>EuiInMemoryTable</EuiCode> array. To avoid
-        this behavior the pagination object optionally takes a
+        this behavior the pagination object optionally takes a{' '}
         <EuiCode>pageIndex</EuiCode> value to control this yourself.
         Additionally, <EuiCode>pageSize</EuiCode> can also be controlled the
-        same way. Both of these are provided to your app during the
+        same way. Both of these are provided to your app during the{' '}
         <EuiCode>onTableChange</EuiCode> callback.
       </p>
       <p>
