@@ -10,7 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { EuiButtonIcon } from '../button';
+import { EuiButtonIcon, EuiButtonEmpty } from '../button';
 import { EuiCheckbox } from '../form';
 import {
   EuiTable,
@@ -24,6 +24,12 @@ import { EuiTableRow, EuiTableRowProps } from './table_row';
 const meta: Meta<EuiTableRowProps> = {
   title: 'Tabular Content/EuiTable/EuiTableRow',
   component: EuiTableRow,
+  argTypes: {
+    hasActions: {
+      control: 'select',
+      options: [false, true, 'custom'],
+    },
+  },
 };
 
 export default meta;
@@ -41,6 +47,7 @@ export const Playground: Story = {
     hasActions: false,
     isExpandable: false,
     isExpandedRow: false,
+    hasSelection: false,
     isSelectable: false,
     isSelected: false,
   },
@@ -75,8 +82,14 @@ export const Playground: Story = {
           <EuiTableRowCell>Last name</EuiTableRowCell>
           <EuiTableRowCell>Some other data</EuiTableRowCell>
           {hasActions && (
-            <EuiTableRowCell width="1%" hasActions={true}>
-              <EuiButtonIcon iconType="copy" />
+            <EuiTableRowCell width="1%" hasActions={hasActions}>
+              {hasActions === 'custom' ? (
+                <EuiButtonEmpty size="s" css={{ height: 'auto' }}>
+                  Copy
+                </EuiButtonEmpty>
+              ) : (
+                <EuiButtonIcon iconType="copy" />
+              )}
             </EuiTableRowCell>
           )}
           {isExpandable && (
