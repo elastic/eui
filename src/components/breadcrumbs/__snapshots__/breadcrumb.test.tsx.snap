@@ -20,7 +20,7 @@ exports[`EuiBreadcrumbCollapsed renders a ... breadcrumb with collapsed content 
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-application"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-application-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >

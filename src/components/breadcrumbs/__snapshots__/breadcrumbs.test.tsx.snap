@@ -42,7 +42,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >
@@ -146,7 +146,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >
@@ -332,7 +332,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >
@@ -517,7 +517,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >
@@ -620,7 +620,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >
@@ -698,7 +698,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
         class="euiPopover emotion-euiPopover-inline-block-euiBreadcrumb__popoverWrapper-page"
       >
         <button
-          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
           title="See collapsed breadcrumbs"
           type="button"
         >
