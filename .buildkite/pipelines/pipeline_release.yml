@@ -13,4 +13,8 @@ steps:
       # running yarn install requires plenty of memory
       memory: '8G'
   - wait
-  - command: "echo 'TODO: push agent image'"
+  - label: 'Check image contents'
+    command: 'ls -la; yarn list'
+    agents:
+      provider: k8s
+      image: 'docker.elastic.co/eui/ci-images/eui:${BUILDKITE_COMMIT}'
