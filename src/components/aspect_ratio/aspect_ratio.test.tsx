@@ -31,21 +31,36 @@ describe('EuiAspectRatio', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('merges child styles', () => {
+  it('merges all styles', () => {
     const { getByTestSubject } = render(
-      <EuiAspectRatio height={4} width={9}>
+      <EuiAspectRatio height={4} width={9} style={{ color: 'bronze' }}>
         <div data-test-subj="child" style={{ backgroundColor: 'salmon' }} />
       </EuiAspectRatio>
     );
 
     expect(getByTestSubject('child')).toHaveStyle({
+      color: 'bronze',
       'background-color': 'salmon',
+      'inline-size': '100%', // jsdom doesn't know how to interpret `aspect-ratio` CSS, so we just check for something it does know how to render
     });
+  });
+
+  it('merges all classNames', () => {
+    const { getByTestSubject } = render(
+      <EuiAspectRatio height={4} width={9} className="hello">
+        <div data-test-subj="child" className="world" />
+      </EuiAspectRatio>
+    );
+
+    const finalDiv = getByTestSubject('child');
+    expect(finalDiv).toHaveClass('euiAspectRatio');
+    expect(finalDiv).toHaveClass('hello');
+    expect(finalDiv).toHaveClass('world');
   });
 
   test('maxWidth', () => {
     const { getByTestSubject } = render(
-      <EuiAspectRatio height={16} width={9} maxWidth={500} {...requiredProps}>
+      <EuiAspectRatio height={16} width={9} maxWidth={500}>
         <div data-test-subj="child" />
       </EuiAspectRatio>
     );

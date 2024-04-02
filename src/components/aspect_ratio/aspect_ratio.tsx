@@ -8,37 +8,47 @@
 
 import React, {
   FunctionComponent,
+  HTMLAttributes,
   ReactElement,
   CSSProperties,
   useMemo,
 } from 'react';
 import classNames from 'classnames';
 
+import { CommonProps } from '../common';
 import { logicalStyles } from '../../global_styling';
 
-export type EuiAspectRatioProps = {
-  /**
-   * Aspect ratio height. For example 9 would be widescreen video.
-   */
-  height: number;
-  /**
-   * Aspect ratio width. For example 16 would be widescreen video.
-   */
-  width: number;
-  /**
-   * The maximum width you want the child to stretch to.
-   */
-  maxWidth?: CSSProperties['width'];
-  children: ReactElement<any>;
-};
+export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    /**
+     * Aspect ratio height. For example 9 would be widescreen video.
+     */
+    height: number;
+    /**
+     * Aspect ratio width. For example 16 would be widescreen video.
+     */
+    width: number;
+    /**
+     * The maximum width you want the child to stretch to.
+     */
+    maxWidth?: CSSProperties['width'];
+    children: ReactElement<any>;
+  };
 
 export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
   children,
+  className,
+  style,
   height,
   width,
   maxWidth,
+  ...rest
 }) => {
-  const classes = classNames('euiAspectRatio', children.props.className);
+  const classes = classNames(
+    'euiAspectRatio',
+    className,
+    children.props.className
+  );
 
   const euiAspectRatioStyle = useMemo(
     () =>
@@ -52,7 +62,8 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
   );
 
   return React.cloneElement(children, {
+    ...rest,
     className: classes,
-    style: { ...children.props.style, ...euiAspectRatioStyle },
+    style: { ...children.props.style, ...euiAspectRatioStyle, ...style },
   });
 };
