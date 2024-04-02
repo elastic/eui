@@ -146,7 +146,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const cellClasses = classNames('euiTableRowCell', className, {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
-    'euiTableRowCell--hideForDesktop': mobileOptions.only,
   });
 
   const widthValue = isResponsive
@@ -156,9 +155,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     : width;
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
-
-  const hideForMobileClasses = 'euiTableRowCell--hideForMobile';
-  const showForMobileClasses = 'euiTableRowCell--hideForDesktop';
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
@@ -174,54 +170,42 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     hasActions: hasActions || isExpander,
   };
 
-  if (mobileOptions.show === false) {
-    return (
-      <Element
-        className={`${cellClasses} ${hideForMobileClasses}`}
-        {...sharedProps}
-      >
-        <EuiTableCellContent {...sharedContentProps}>
-          {children}
-        </EuiTableCellContent>
-      </Element>
-    );
-  } else {
-    return (
-      <Element className={cellClasses} {...sharedProps}>
-        {/* Mobile-only header */}
-        {mobileOptions.header && (
-          <div
-            css={styles.euiTableRowCell__mobileHeader}
-            className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}
+  if (isResponsive) {
+    if (mobileOptions.show === false) {
+      return null;
+    } else {
+      return (
+        <Element className={cellClasses} {...sharedProps}>
+          {mobileOptions.header && (
+            <div
+              className="euiTableRowCell__mobileHeader"
+              css={styles.euiTableRowCell__mobileHeader}
+            >
+              {mobileOptions.header}
+            </div>
+          )}
+          <EuiTableCellContent
+            {...sharedContentProps}
+            align={mobileOptions.align ?? 'left'} // Default to left aligned mobile cells, unless consumers specifically set an alignment for mobile
+            truncateText={mobileOptions.truncateText ?? truncateText}
+            textOnly={mobileOptions.textOnly ?? textOnly}
           >
-            {mobileOptions.header}
-          </div>
-        )}
-
-        {/* Content depending on mobile render existing */}
-        {mobileOptions.render ? (
-          <>
-            <EuiTableCellContent
-              className={showForMobileClasses}
-              align={mobileOptions.align ?? align}
-              truncateText={mobileOptions.truncateText ?? truncateText}
-              textOnly={mobileOptions.textOnly ?? textOnly}
-            >
-              {mobileOptions.render}
-            </EuiTableCellContent>
-            <EuiTableCellContent
-              {...sharedContentProps}
-              className={hideForMobileClasses}
-            >
-              {children}
-            </EuiTableCellContent>
-          </>
-        ) : (
+            {mobileOptions.render || children}
+          </EuiTableCellContent>
+        </Element>
+      );
+    }
+  } else {
+    if (mobileOptions.only) {
+      return null;
+    } else {
+      return (
+        <Element className={cellClasses} {...sharedProps}>
           <EuiTableCellContent {...sharedContentProps}>
             {children}
           </EuiTableCellContent>
-        )}
-      </Element>
-    );
+        </Element>
+      );
+    }
   }
 };

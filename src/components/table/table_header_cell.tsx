@@ -25,6 +25,7 @@ import { EuiIcon } from '../icon';
 import { EuiInnerText } from '../inner_text';
 
 import { resolveWidthAsStyle } from './utils';
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 
@@ -137,11 +138,12 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
 
-  const classes = classNames('euiTableHeaderCell', className, {
-    'euiTableHeaderCell--hideForDesktop': mobileOptions.only,
-    'euiTableHeaderCell--hideForMobile': !mobileOptions.show,
-  });
+  const isResponsive = useEuiTableIsResponsive();
+  const hideForDesktop = !isResponsive && mobileOptions?.only;
+  const hideForMobile = isResponsive && !mobileOptions?.show;
+  if (hideForDesktop || hideForMobile) return null;
 
+  const classes = classNames('euiTableHeaderCell', className);
   const inlineStyles = resolveWidthAsStyle(style, width);
 
   const CellComponent = children ? 'th' : 'td';

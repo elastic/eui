@@ -91,19 +91,10 @@ export const euiTableStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     /**
      * Responsive/mobile vs desktop styles
+     * Individual row/cells handle their own desktop vs mobile styles
      */
-    desktop: css`
-      .euiTableHeaderCell--hideForDesktop,
-      .euiTableRowCell--hideForDesktop,
-      .euiTableRowCell__mobileHeader {
-        display: none;
-      }
-    `,
+    desktop: css``,
     mobile: css`
-      .euiTableRowCell--hideForMobile {
-        display: none;
-      }
-
       thead {
         display: none; /* Use mobile versions of selecting and filtering instead */
       }

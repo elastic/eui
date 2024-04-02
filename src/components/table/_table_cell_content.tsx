@@ -40,7 +40,7 @@ export const EuiTableCellContent: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiTableCellContentStyles);
   const cssStyles = [
     styles.euiTableCellContent,
-    !isResponsive && styles[align], // On mobile, always align cells to the left
+    styles[align],
     truncateText === true && styles.truncateText,
     truncateText === false && styles.wrapText,
     ...(hasActions
