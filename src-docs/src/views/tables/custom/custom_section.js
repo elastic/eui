@@ -29,7 +29,7 @@ export const section = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         As an alternative to <strong>EuiBasicTable</strong> you can instead
         construct a table from individual{' '}
@@ -58,7 +58,7 @@ export const section = {
         &nbsp;and <strong>EuiTableSortMobileItem</strong> components to supply
         mobile sorting. See demo below.
       </p>
-    </div>
+    </>
   ),
   components: { EuiTable },
   props: {

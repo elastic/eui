@@ -52,9 +52,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     truncateText: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,
@@ -169,10 +169,10 @@ export default () => {
       <EuiSwitch
         checked={!showPerPageOptions}
         label={
-          <span>
+          <>
             Hide per page options with{' '}
             <EuiCode>pagination.showPerPageOptions = false</EuiCode>
-          </span>
+          </>
         }
         onChange={togglePerPageOptions}
       />

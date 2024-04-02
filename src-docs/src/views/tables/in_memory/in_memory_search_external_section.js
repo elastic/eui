@@ -36,12 +36,10 @@ export const searchExternalSection = {
     },
   ],
   text: (
-    <div>
-      <p>
-        The example shows how to configure <strong>EuiInMemoryTable</strong>{' '}
-        when both external and internal search/filter states are in use.
-      </p>
-    </div>
+    <p>
+      The example shows how to configure <strong>EuiInMemoryTable</strong> when
+      both external and internal search/filter states are in use.
+    </p>
   ),
   props: {
     EuiInMemoryTable,

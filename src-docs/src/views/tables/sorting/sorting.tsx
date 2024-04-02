@@ -56,9 +56,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     truncateText: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,
@@ -78,7 +78,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'github',
     name: (
       <EuiToolTip content="Their mascot is the Octokitty">
-        <span>
+        <>
           Github{' '}
           <EuiIcon
             size="s"
@@ -86,7 +86,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
             type="questionInCircle"
             className="eui-alignTop"
           />
-        </span>
+        </>
       </EuiToolTip>
     ),
     render: (username: User['github']) => (
@@ -99,7 +99,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'dateOfBirth',
     name: (
       <EuiToolTip content="Colloquially known as a 'birthday'">
-        <span>
+        <>
           Date of Birth{' '}
           <EuiIcon
             size="s"
@@ -107,7 +107,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
             type="questionInCircle"
             className="eui-alignTop"
           />
-        </span>
+        </>
       </EuiToolTip>
     ),
     render: (dateOfBirth: User['dateOfBirth']) =>
@@ -117,7 +117,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'location',
     name: (
       <EuiToolTip content="The city and country in which this person resides">
-        <span>
+        <>
           Nationality{' '}
           <EuiIcon
             size="s"
@@ -125,7 +125,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
             type="questionInCircle"
             className="eui-alignTop"
           />
-        </span>
+        </>
       </EuiToolTip>
     ),
     render: (location: User['location']) => {
@@ -138,7 +138,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'online',
     name: (
       <EuiToolTip content="Free to talk or busy with business">
-        <span>
+        <>
           Online{' '}
           <EuiIcon
             size="s"
@@ -146,7 +146,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
             type="questionInCircle"
             className="eui-alignTop"
           />
-        </span>
+        </>
       </EuiToolTip>
     ),
     render: (online: User['online']) => {

@@ -74,9 +74,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     sortable: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,
@@ -202,7 +202,7 @@ export default () => {
       if (multiAction) {
         actions = [
           {
-            name: <span>Clone</span>,
+            name: <>Clone</>,
             description: 'Clone this user',
             icon: 'copy',
             type: 'icon',

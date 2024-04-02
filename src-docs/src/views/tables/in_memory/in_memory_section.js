@@ -36,7 +36,7 @@ export const section = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         The <strong>EuiInMemoryTable</strong> is a higher level component
         wrapper around <strong>EuiBasicTable</strong> aimed at displaying tables
@@ -57,7 +57,7 @@ export const section = {
           and preserved between renders.
         </p>
       </EuiCallOut>
-    </div>
+    </>
   ),
   props: {
     EuiInMemoryTable,

@@ -79,9 +79,9 @@ export default () => {
       mobileOptions: {
         render: customHeader
           ? (user: User) => (
-              <span>
+              <>
                 {user.firstName} {user.lastName}
-              </span>
+              </>
             )
           : undefined,
         header: customHeader ? false : true,

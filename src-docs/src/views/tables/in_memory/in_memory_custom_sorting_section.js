@@ -37,16 +37,14 @@ export const customSortingSection = {
     },
   ],
   text: (
-    <div>
-      <p>
-        Sometimes the value displayed in a column is not appropriate to use for
-        sorting, such as pre-formatting values to be human-readable. In these
-        cases it&apos;s possible to pass the <EuiCode>sortable</EuiCode> prop as
-        a function instead of <EuiCode>true</EuiCode> or{' '}
-        <EuiCode>false</EuiCode>. The function is used to extract or calculate
-        the intended sort value for each <EuiCode>item</EuiCode>.
-      </p>
-    </div>
+    <p>
+      Sometimes the value displayed in a column is not appropriate to use for
+      sorting, such as pre-formatting values to be human-readable. In these
+      cases it&apos;s possible to pass the <EuiCode>sortable</EuiCode> prop as a
+      function instead of <EuiCode>true</EuiCode> or <EuiCode>false</EuiCode>.
+      The function is used to extract or calculate the intended sort value for
+      each <EuiCode>item</EuiCode>.
+    </p>
   ),
   props: {
     EuiInMemoryTable,

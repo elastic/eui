@@ -37,7 +37,7 @@ export const controlledPaginationSection = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         By default <EuiCode>EuiInMemoryTable</EuiCode> resets its page index
         when receiving a new <EuiCode>EuiInMemoryTable</EuiCode> array. To avoid
@@ -52,7 +52,7 @@ export const controlledPaginationSection = {
         toggling their online status. Pagination state is maintained by the app,
         preventing it from being reset by the updates.
       </p>
-    </div>
+    </>
   ),
   props: {
     EuiInMemoryTable,
