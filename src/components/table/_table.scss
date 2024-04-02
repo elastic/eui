@@ -1,8 +1,0 @@
-// TODO: Address this in upcoming EuiTableCellContent PR
-.euiTableHeaderCell {
-  @include euiTextTruncate;
-
-  .euiTableCellContent__text {
-    overflow: hidden;
-  }
-}

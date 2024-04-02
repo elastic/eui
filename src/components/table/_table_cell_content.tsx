@@ -20,10 +20,9 @@ import { euiTableCellContentStyles } from './_table_cell_content.styles';
 
 export type EuiTableCellContentProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
-  Pick<
-    EuiTableRowCellProps,
-    'align' | 'hasActions' | 'textOnly' | 'truncateText'
-  >;
+  Pick<EuiTableRowCellProps, 'align' | 'hasActions' | 'textOnly'> & {
+    truncateText?: EuiTableRowCellProps['truncateText'] | null;
+  };
 
 export const EuiTableCellContent: FunctionComponent<
   EuiTableCellContentProps

@@ -29,11 +29,10 @@ export const euiTableHeaderFooterCellStyles = (
   return {
     euiTableHeaderCell: css`
       ${sharedStyles}
-
-      .euiTableCellContent {
-        /* Spacing between text and sort icon */
-        gap: ${euiTheme.size.xs};
-      }
+    `,
+    euiTableHeaderCell__content: css`
+      /* Spacing between text and sort icon */
+      gap: ${euiTheme.size.xs};
     `,
     euiTableHeaderCell__button: css`
       ${logicalCSS('width', '100%')}
@@ -42,10 +41,7 @@ export const euiTableHeaderFooterCellStyles = (
       &:hover,
       &:focus {
         color: ${euiTheme.colors.primaryText};
-
-        .euiTableCellContent__text {
-          text-decoration: underline;
-        }
+        text-decoration: underline;
       }
     `,
     euiTableFooterCell: css`
