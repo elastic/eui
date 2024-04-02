@@ -131,6 +131,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
   const cssStyles = [
     styles.euiTableRowCell,
+    setScopeRow && styles.rowHeader,
     isExpander && styles.isExpander,
     hasActions && styles.hasActions,
     styles[valign],

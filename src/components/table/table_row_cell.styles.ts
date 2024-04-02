@@ -26,6 +26,10 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
     euiTableRowCell: css`
       color: ${euiTheme.colors.text};
     `,
+    rowHeader: css`
+      /* Unset the automatic browser bolding applied to [th] elements */
+      font-weight: ${euiTheme.font.weight.regular};
+    `,
     isExpander: css`
       ${hasIcons}
     `,
