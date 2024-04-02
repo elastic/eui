@@ -24,8 +24,13 @@ import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/but
  */
 export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
-  const breadcrumbButtonColor = euiButtonColor(euiThemeContext, 'primary');
-  const breadcrumbTextColors = {
+
+  // Reuse button colors for `type="application`" clickable breadcrumbs
+  const applicationButtonColors = euiButtonColor(euiThemeContext, 'primary');
+
+  // Create custom darker gray colors for non-clickable application breadcrumbs
+  // The numbers/ratios are fairly specific here to pass WCAG AA contrast minimums
+  const applicationTextColors = {
     backgroundColor: tintOrShade(
       euiTheme.colors.darkestShade,
       colorMode === 'DARK' ? 0.7 : 0.85,
@@ -83,7 +88,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     application: css`
       ${euiFontSize(euiThemeContext, 'xs')}
-      background-color: ${breadcrumbTextColors.backgroundColor};
+      background-color: ${applicationTextColors.backgroundColor};
       clip-path: polygon(
         0 0,
         calc(100% - ${euiTheme.size.s}) 0,
@@ -92,15 +97,15 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         0 100%,
         ${euiTheme.size.s} 50%
       );
-      color: ${breadcrumbTextColors.color};
+      color: ${applicationTextColors.color};
       line-height: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
       &:is(a),
       &:is(button) {
-        background-color: ${breadcrumbButtonColor.backgroundColor};
-        color: ${breadcrumbButtonColor.color};
+        background-color: ${applicationButtonColors.backgroundColor};
+        color: ${applicationButtonColors.color};
 
         :focus {
           ${euiFocusRing(euiThemeContext, 'inset')}
