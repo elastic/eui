@@ -52,10 +52,12 @@ export interface EuiTableRowCellMobileOptionsShape
   extends EuiTableRowCellSharedPropsShape {
   /**
    * If false, will not render the cell at all for mobile
+   * @default true
    */
   show?: boolean;
   /**
    * Only show for mobile? If true, will not render the column at all for desktop
+   * @default false
    */
   only?: boolean;
   /**
@@ -70,10 +72,12 @@ export interface EuiTableRowCellMobileOptionsShape
   header?: ReactNode | boolean;
   /**
    * Increase text size compared to rest of cells
+   * @default false
    */
   enlarge?: boolean;
   /**
    * Applies the value to the width of the cell in mobile view (typically 50%)
+   * @default 50%
    */
   width?: CSSProperties['width'];
 }
@@ -120,9 +124,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   style,
   width,
   valign = 'middle',
-  mobileOptions = {
-    show: true,
-  },
+  mobileOptions,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
@@ -135,7 +137,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     ...(isResponsive
       ? [
           styles.mobile.mobile,
-          mobileOptions.enlarge && styles.mobile.enlarge,
+          mobileOptions?.enlarge && styles.mobile.enlarge,
           hasActions === 'custom' && styles.mobile.customActions,
           hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
@@ -151,7 +153,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const widthValue = isResponsive
     ? hasActions || isExpander
       ? undefined // On mobile, actions are shifted to a right column via CSS
-      : mobileOptions.width
+      : mobileOptions?.width
     : width;
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
@@ -171,12 +173,12 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   };
 
   if (isResponsive) {
-    if (mobileOptions.show === false) {
+    if (mobileOptions?.show === false) {
       return null;
     } else {
       return (
         <Element className={cellClasses} {...sharedProps}>
-          {mobileOptions.header && (
+          {mobileOptions?.header && (
             <div
               className="euiTableRowCell__mobileHeader"
               css={styles.euiTableRowCell__mobileHeader}
@@ -186,17 +188,17 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           )}
           <EuiTableCellContent
             {...sharedContentProps}
-            align={mobileOptions.align ?? 'left'} // Default to left aligned mobile cells, unless consumers specifically set an alignment for mobile
-            truncateText={mobileOptions.truncateText ?? truncateText}
-            textOnly={mobileOptions.textOnly ?? textOnly}
+            align={mobileOptions?.align ?? 'left'} // Default to left aligned mobile cells, unless consumers specifically set an alignment for mobile
+            truncateText={mobileOptions?.truncateText ?? truncateText}
+            textOnly={mobileOptions?.textOnly ?? textOnly}
           >
-            {mobileOptions.render || children}
+            {mobileOptions?.render || children}
           </EuiTableCellContent>
         </Element>
       );
     }
   } else {
-    if (mobileOptions.only) {
+    if (mobileOptions?.only) {
       return null;
     } else {
       return (
