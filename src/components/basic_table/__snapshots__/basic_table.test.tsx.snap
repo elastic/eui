@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiBasicTable actions custom item actions 1`] = `
+<tr
+  class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-mobile"
+>
+  <td
+    class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-mobile-customActions"
+  >
+    <div
+      class="euiTableCellContent emotion-euiTableCellContent-wrapText-actions"
+    >
+      <div
+        class=""
+      >
+        <button
+          data-test-subj="customAction-1"
+        >
+          Custom action
+        </button>
+      </div>
+    </div>
+  </td>
+</tr>
+`;
+
 exports[`EuiBasicTable renders (bare-bones) 1`] = `
 <div
   aria-label="aria-label"

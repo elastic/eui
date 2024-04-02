@@ -43,9 +43,13 @@ export const EuiTableCellContent: FunctionComponent<
     !isResponsive && styles[align], // On mobile, always align cells to the left
     truncateText === true && styles.truncateText,
     truncateText === false && styles.wrapText,
-    hasActions && styles.hasActions.actions,
-    hasActions &&
-      (isResponsive ? styles.hasActions.mobile : styles.hasActions.desktop),
+    ...(hasActions
+      ? [
+          styles.hasActions.actions,
+          !isResponsive && styles.hasActions.desktop,
+          isResponsive && hasActions !== 'custom' && styles.hasActions.mobile,
+        ]
+      : []),
   ];
 
   const classes = classNames('euiTableCellContent', className);
