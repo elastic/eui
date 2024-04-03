@@ -13,8 +13,8 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 import { euiTabsStyles } from './tabs.styles';
 import { EuiTabsContext } from './tabs_context';
 
@@ -58,12 +58,9 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
     }: EuiTabsProps,
     ref
   ) => {
-    const euiTheme = useEuiTheme();
-
     const classes = classNames('euiTabs', className);
 
-    const styles = euiTabsStyles(euiTheme);
-
+    const styles = useEuiMemoizedStyles(euiTabsStyles);
     const cssStyles = [
       styles.euiTabs,
       styles[size],
