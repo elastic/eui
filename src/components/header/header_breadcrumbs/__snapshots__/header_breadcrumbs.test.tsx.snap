@@ -14,7 +14,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-firstChild-isTruncated"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-firstChild-isTruncated-isInteractive"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -28,7 +28,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-isInteractive"
         title="Reptiles"
         type="button"
       >
@@ -40,7 +40,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-isInteractive"
         href="#"
         rel="noreferrer"
         title="Boa constrictor"
@@ -54,7 +54,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-lastChild-isTruncatedLast-euiTextColor-default"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-lastChild-isTruncatedLast"
         title="Edit"
       >
         Edit
@@ -79,7 +79,7 @@ exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corne
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild-isTruncatedLast-euiTextColor-default"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild-isTruncatedLast"
         title="Home"
       >
         Home

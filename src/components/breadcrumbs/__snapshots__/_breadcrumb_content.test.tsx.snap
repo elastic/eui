@@ -8,7 +8,7 @@ exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverCo
       data-test-subj="popover"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__popoverButton-euiBreadcrumb__content-page-isInteractive"
         data-test-subj="popoverToggle"
         title="Toggles a popover - Clicking this button will toggle a popover dialog."
         type="button"
@@ -77,7 +77,7 @@ exports[`EuiBreadcrumbContent breadcrumbs with popovers renders with \`popoverCo
 exports[`EuiBreadcrumbContent renders interactive breadcrumbs with href or onClick 1`] = `
 <div>
   <a
-    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isInteractive"
     href="#"
     rel="noreferrer"
     title="Link"
@@ -85,7 +85,7 @@ exports[`EuiBreadcrumbContent renders interactive breadcrumbs with href or onCli
     Link
   </a>
   <button
-    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isInteractive"
     title="Button"
     type="button"
   >
@@ -96,7 +96,7 @@ exports[`EuiBreadcrumbContent renders interactive breadcrumbs with href or onCli
 
 exports[`EuiBreadcrumbContent renders plain uninteractive breadcrumb text 1`] = `
 <span
-  class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
+  class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
   title="Text"
 >
   Text

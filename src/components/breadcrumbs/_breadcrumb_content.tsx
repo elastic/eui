@@ -18,7 +18,6 @@ import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { EuiInnerText } from '../inner_text';
-import { EuiTextColor } from '../text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
@@ -70,9 +69,12 @@ export const EuiBreadcrumbContent: FunctionComponent<
 
   const isBreadcrumbWithPopover = !!popoverContent;
   const isInteractiveBreadcrumb = href || onClick;
-  const linkColor = color || (highlightLastBreadcrumb ? 'text' : 'subdued');
-  const plainTextColor = highlightLastBreadcrumb ? 'default' : 'subdued'; // Does not inherit `color` prop
+  const linkColor = color || 'subdued';
   const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
+
+  const interactionStyles =
+    (isInteractiveBreadcrumb || isBreadcrumbWithPopover) &&
+    styles.isInteractive;
 
   return (
     <EuiInnerText>
@@ -83,7 +85,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           title,
           'aria-current': ariaCurrent,
           className: classes,
-          css: [...cssStyles, ...truncationStyles],
+          css: [...cssStyles, ...truncationStyles, interactionStyles],
         };
 
         if (isBreadcrumbWithPopover) {
@@ -91,7 +93,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           return (
             <EuiBreadcrumbPopover
               {...popoverButtonProps}
-              breadcrumbCss={cssStyles}
+              breadcrumbCss={[...cssStyles, interactionStyles]}
               truncationCss={truncationStyles}
               isLastBreadcrumb={isLastBreadcrumb}
               type={type}
@@ -118,11 +120,9 @@ export const EuiBreadcrumbContent: FunctionComponent<
           );
         } else {
           return (
-            <EuiTextColor color={plainTextColor} cloneElement>
-              <span {...baseProps} {...rest}>
-                {text}
-              </span>
-            </EuiTextColor>
+            <span {...baseProps} {...rest}>
+              {text}
+            </span>
           );
         }
       }}

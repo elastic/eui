@@ -25,9 +25,16 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumb__content: css`
-      font-weight: ${euiTheme.font.weight.medium};
+      /* Unset EuiLink's bolder font weight */
+      font-weight: ${euiTheme.font.weight.regular};
       text-align: center;
       vertical-align: baseline;
+
+      /* TODO: Remove this ':not()' selector and simply have this be
+      baseline CSS once the 'color' prop is removed */
+      &:not(.euiLink) {
+        color: ${euiTheme.colors.subduedText};
+      }
     `,
 
     // Truncation styles
@@ -38,6 +45,19 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       /* This removes the default breadcrumb max-width while ensuring that the last breadcrumb
          still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
+    `,
+    isInteractive: css`
+      &:not(:disabled) {
+        text-decoration: underline;
+
+        /* TODO: Remove this 'class*=' selector once the 'color' prop is removed */
+        &[class*='euiLink-subdued'] {
+          &:hover,
+          &:focus {
+            color: ${euiTheme.colors.text};
+          }
+        }
+      }
     `,
 
     // Types
