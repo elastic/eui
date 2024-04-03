@@ -15,6 +15,8 @@ set -eo pipefail
 npm_version_prerelease_prefix="next"
 git_remote_name="origin"
 git_branch="${BUILDKITE_BRANCH}"
+git_user_name="elasticmachine"
+git_user_email="eui-team+elasticmachine@elastic.co"
 # TODO: Remove --dry-run flag after testing
 git_push_flags="--dry-run"
 
@@ -99,6 +101,8 @@ echo "+++ :git: Committing the version update"
 echo "Fetching OIDC token to sign the commit"
 SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
 
+git config --local user.name "${git_user_name}"
+git config --local user.email "${git_user_email}"
 git config --local commit.gpgsign true
 git config --local tag.gpgsign true
 git config --local gpg.x509.program gitsign
