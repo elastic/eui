@@ -72,10 +72,9 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const linkColor = color || 'subdued';
   const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
 
-  const interactionStyles = [
+  const interactionStyles =
     (isInteractiveBreadcrumb || isBreadcrumbWithPopover) &&
-      styles.isInteractive,
-  ];
+    styles.isInteractive;
 
   return (
     <EuiInnerText>
@@ -86,7 +85,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           title,
           'aria-current': ariaCurrent,
           className: classes,
-          css: [...cssStyles, ...truncationStyles, ...interactionStyles],
+          css: [...cssStyles, ...truncationStyles, interactionStyles],
         };
 
         if (isBreadcrumbWithPopover) {
@@ -94,7 +93,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
           return (
             <EuiBreadcrumbPopover
               {...popoverButtonProps}
-              breadcrumbCss={[...cssStyles, ...interactionStyles]}
+              breadcrumbCss={[...cssStyles, interactionStyles]}
               truncationCss={truncationStyles}
               isLastBreadcrumb={isLastBreadcrumb}
               type={type}
