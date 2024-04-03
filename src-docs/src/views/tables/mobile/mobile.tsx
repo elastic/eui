@@ -193,7 +193,7 @@ export default () => {
    * Pagination & sorting
    */
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(3);
   const [sortField, setSortField] = useState<keyof User>('firstName');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
