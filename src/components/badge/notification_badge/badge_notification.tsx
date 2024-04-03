@@ -8,8 +8,9 @@
 
 import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
-import { useEuiTheme } from '../../../services';
 
 import { euiNotificationBadgeStyles } from './badge_notification.styles';
 
@@ -33,12 +34,10 @@ export interface EuiNotificationBadgeProps
 export const EuiNotificationBadge: FunctionComponent<
   EuiNotificationBadgeProps
 > = ({ children, className, size = 's', color = 'accent', ...rest }) => {
-  const euiTheme = useEuiTheme();
-
-  const styles = euiNotificationBadgeStyles(euiTheme);
-  const cssStyles = [styles.euiNotificationBadge, styles[size], styles[color]];
-
   const classes = classNames('euiNotificationBadge', className);
+
+  const styles = useEuiMemoizedStyles(euiNotificationBadgeStyles);
+  const cssStyles = [styles.euiNotificationBadge, styles[size], styles[color]];
 
   return (
     <span css={cssStyles} className={classes} {...rest}>
