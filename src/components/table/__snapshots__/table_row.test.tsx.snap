@@ -10,7 +10,7 @@ exports[`isSelected renders true when specified 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -34,7 +34,7 @@ exports[`renders EuiTableRow 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"

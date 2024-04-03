@@ -987,18 +987,26 @@ export class EuiBasicTable<T extends object = any> extends Component<
       rowSelectionDisabled = !!isDisabled;
     }
 
-    let hasActions;
+    let hasActions: 'custom' | boolean = false;
     columns.forEach((column: EuiBasicTableColumn<T>, columnIndex: number) => {
-      if ((column as EuiTableActionsColumnType<T>).actions) {
+      const columnActions = (column as EuiTableActionsColumnType<T>).actions;
+
+      if (columnActions) {
+        const hasCustomActions = columnActions.some(
+          (action) => !!(action as CustomItemAction<T>).render
+        );
         cells.push(
           this.renderItemActionsCell(
             itemId,
             item,
             column as EuiTableActionsColumnType<T>,
-            columnIndex
+            columnIndex,
+            hasCustomActions
           )
         );
-        hasActions = true;
+        // A table theoretically could have both custom and default action items
+        // If it has both, default action mobile row styles take precedence over custom
+        hasActions = !hasActions && hasCustomActions ? 'custom' : true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
         const fieldDataColumn = column as EuiTableFieldDataColumnType<T>;
         cells.push(
@@ -1122,14 +1130,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
     itemId: ItemIdResolved,
     item: T,
     column: EuiTableActionsColumnType<T>,
-    columnIndex: number
+    columnIndex: number,
+    hasCustomActions: boolean
   ) {
     // Disable all actions if any row(s) are selected
     const allDisabled = this.state.selection.length > 0;
-
-    const hasCustomActions = column.actions.some(
-      (action: Action<T>) => !!(action as CustomItemAction<T>).render
-    );
 
     let actualActions = column.actions.filter(
       (action: Action<T>) => !action.available || action.available(item)

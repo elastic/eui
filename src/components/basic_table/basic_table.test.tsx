@@ -564,7 +564,7 @@ describe('EuiBasicTable', () => {
 
       // Numbers should be right aligned
       expect(
-        container.querySelectorAll('.euiTableCellContent--alignRight')
+        container.querySelectorAll('[class*="euiTableCellContent-right"]')
       ).toHaveLength(3);
 
       // Booleans should output as Yes or No
@@ -704,7 +704,6 @@ describe('EuiBasicTable', () => {
       const props: EuiBasicTableProps<BasicItem> = {
         items: basicItems,
         columns: [
-          ...basicColumns,
           {
             name: 'Actions',
             actions: [
@@ -729,9 +728,21 @@ describe('EuiBasicTable', () => {
       expect(queryByTestSubject('customAction-2')).toBeInTheDocument();
       expect(queryByTestSubject('customAction-3')).not.toBeInTheDocument();
 
+      // TODO: These assertions should ideally be visual regression snapshots instead
       expect(
         container.querySelector('.euiTableRowCell--hasActions')!.className
       ).toContain('-customActions');
+      expect(
+        container.querySelector(
+          '.euiTableRowCell--hasActions .euiTableCellContent'
+        )!.className
+      ).not.toContain('-actions-mobile');
+      expect(
+        container.querySelector('.euiTableRow-hasActions')!.className
+      ).not.toContain('-hasRightColumn');
+      expect(
+        container.querySelector('.euiTableRow-hasActions')
+      ).toMatchSnapshot();
     });
 
     describe('are disabled on selection', () => {

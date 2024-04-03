@@ -38,7 +38,7 @@ export interface EuiTableRowProps {
    * Indicates if the table has a dedicated column for actions
    * (used for mobile styling and desktop action hover behavior)
    */
-  hasActions?: boolean;
+  hasActions?: boolean | 'custom';
   /**
    * Indicates if the row will have an expanded row
    */
@@ -75,7 +75,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         styles.mobile.mobile,
         isSelected && styles.mobile.selected,
         isExpandedRow && styles.mobile.expanded,
-        (hasActions || isExpandable || isExpandedRow) &&
+        (hasActions === true || isExpandable || isExpandedRow) &&
           styles.mobile.hasRightColumn,
         hasSelection && styles.mobile.hasLeftColumn,
       ]

@@ -9,10 +9,8 @@
 import React, {
   CSSProperties,
   FunctionComponent,
-  ReactElement,
   ReactNode,
   TdHTMLAttributes,
-  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -21,14 +19,11 @@ import {
   useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
 } from '../../services';
-import { isObject } from '../../services/predicate';
-import { EuiTextBlockTruncate } from '../text_truncate';
 
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
+import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableRowCellStyles } from './table_row_cell.styles';
 
 interface EuiTableRowCellSharedPropsShape {
@@ -39,6 +34,7 @@ interface EuiTableRowCellSharedPropsShape {
   /**
    * Creates a text wrapper around cell content that helps word break or truncate
    * long text correctly.
+   * @default true
    */
   textOnly?: boolean;
   /**
@@ -46,6 +42,7 @@ interface EuiTableRowCellSharedPropsShape {
    * - Set to `true` to enable single-line truncation.
    * - To enable multi-line truncation, use a configuration object with `lines`
    * set to a number of lines to truncate to.
+   * @default false
    */
   truncateText?: boolean | { lines: number };
   width?: CSSProperties['width'];
@@ -152,32 +149,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--hideForDesktop': mobileOptions.only,
   });
 
-  const contentClasses = classNames('euiTableCellContent', {
-    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
-    'euiTableCellContent--truncateText': truncateText === true,
-    // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
-    // purposes for the time-being.
-    'euiTableCellContent--overflowingContent': textOnly !== true,
-  });
-
-  const mobileContentClasses = classNames('euiTableCellContent', {
-    'euiTableCellContent--alignRight':
-      mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter':
-      mobileOptions.align === CENTER_ALIGNMENT || align === CENTER_ALIGNMENT,
-    'euiTableCellContent--truncateText':
-      mobileOptions.truncateText ?? truncateText,
-    // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
-    // purposes for the time-being.
-    'euiTableCellContent--overflowingContent':
-      mobileOptions.textOnly !== true || textOnly !== true,
-  });
-
-  const childClasses = classNames({
-    euiTableCellContent__text: textOnly === true,
-  });
-
   const widthValue = isResponsive
     ? hasActions || isExpander
       ? undefined // On mobile, actions are shifted to a right column via CSS
@@ -185,37 +156,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     : width;
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
-
-  const modifyChildren = useCallback(
-    (children: ReactNode) => {
-      let modifiedChildren = children;
-
-      if (textOnly === true) {
-        modifiedChildren = <span className={childClasses}>{children}</span>;
-      } else if (React.isValidElement(children)) {
-        modifiedChildren = React.Children.map(children, (child: ReactElement) =>
-          React.cloneElement(child, {
-            className: classNames(
-              (child.props as CommonProps).className,
-              childClasses
-            ),
-          })
-        );
-      }
-      if (isObject(truncateText) && truncateText.lines) {
-        modifiedChildren = (
-          <EuiTextBlockTruncate lines={truncateText.lines} cloneElement>
-            {modifiedChildren}
-          </EuiTextBlockTruncate>
-        );
-      }
-
-      return modifiedChildren;
-    },
-    [childClasses, textOnly, truncateText]
-  );
-
-  const childrenNode = modifyChildren(children);
 
   const hideForMobileClasses = 'euiTableRowCell--hideForMobile';
   const showForMobileClasses = 'euiTableRowCell--hideForDesktop';
@@ -227,13 +167,22 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     css: cssStyles,
     ...rest,
   };
+  const sharedContentProps = {
+    align,
+    textOnly,
+    truncateText,
+    hasActions: hasActions || isExpander,
+  };
+
   if (mobileOptions.show === false) {
     return (
       <Element
         className={`${cellClasses} ${hideForMobileClasses}`}
         {...sharedProps}
       >
-        <div className={contentClasses}>{childrenNode}</div>
+        <EuiTableCellContent {...sharedContentProps}>
+          {children}
+        </EuiTableCellContent>
       </Element>
     );
   } else {
@@ -252,15 +201,25 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
         {/* Content depending on mobile render existing */}
         {mobileOptions.render ? (
           <>
-            <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
-              {modifyChildren(mobileOptions.render)}
-            </div>
-            <div className={`${contentClasses} ${hideForMobileClasses}`}>
-              {childrenNode}
-            </div>
+            <EuiTableCellContent
+              className={showForMobileClasses}
+              align={mobileOptions.align ?? align}
+              truncateText={mobileOptions.truncateText ?? truncateText}
+              textOnly={mobileOptions.textOnly ?? textOnly}
+            >
+              {mobileOptions.render}
+            </EuiTableCellContent>
+            <EuiTableCellContent
+              {...sharedContentProps}
+              className={hideForMobileClasses}
+            >
+              {children}
+            </EuiTableCellContent>
           </>
         ) : (
-          <div className={contentClasses}>{childrenNode}</div>
+          <EuiTableCellContent {...sharedContentProps}>
+            {children}
+          </EuiTableCellContent>
         )}
       </Element>
     );

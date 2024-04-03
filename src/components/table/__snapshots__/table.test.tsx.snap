@@ -14,32 +14,32 @@ exports[`EuiTable renders 1`] = `
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Hi Title"
           >
             Hi Title
           </span>
-        </span>
+        </div>
       </th>
       <th
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Bye Title"
           >
             Bye Title
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -51,7 +51,7 @@ exports[`EuiTable renders 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -68,7 +68,7 @@ exports[`EuiTable renders 1`] = `
         class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
