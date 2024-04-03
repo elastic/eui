@@ -10,6 +10,14 @@ set -eo pipefail
 
 # TODO: It's possible to release non-HEAD commits but we'd need to skip committing the version update back to the repo
 
+##
+# Install gitsign
+# TODO: Move to agent image
+##
+
+wget https://github.com/sigstore/gitsign/releases/download/v0.10.1/gitsign_0.10.1_linux_amd64.deb -O /tmp/gitsign.deb
+dpkg -i /tmp/gitsign.deb
+
 # Begin configuration
 
 npm_version_prerelease_prefix="next"
@@ -26,6 +34,7 @@ if [[ -z "${git_branch}" ]]; then
   >&2 echo "BUILDKITE_BRANCH is not set. This usually means you're trying to execute this script from the outside of Buildkite pipeline which is unsupported."
   exit 1
 fi
+
 
 ##
 # Check release type (prerelease or regular release)
