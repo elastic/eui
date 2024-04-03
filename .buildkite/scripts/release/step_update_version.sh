@@ -120,18 +120,17 @@ git config --local gpg.format x509
 
 echo "Adding and committing package.json"
 git add package.json
-git commit -m "release: @elastic/eui v${new_version} [skip-ci]"
+git commit -m "release: @elastic/eui ${new_version} [skip-ci]"
 
 echo "Pushing commit to ${git_branch}"
 # This will be rejected by remote if there are any new commits
 git push --dry-run "${git_remote_name}" HEAD:"${git_branch}"
 
 if [[ "${release_type}" == "release" ]]; then
-  tag_name="v${new_version}"
-  echo "Creating and pushing release tag ${tag_name}"
-  git tag --annotate "${tag_name}"
-  git push --dry-run "${git_remote_name}" "${tag_name}"
-  echo "Pushed release tag - https://github.com/elastic/eui/tree/${tag_name}"
+  echo "Creating and pushing release tag ${new_version}"
+  git tag --annotate "${new_version}"
+  git push --dry-run "${git_remote_name}" "${new_version}"
+  echo "Pushed release tag - https://github.com/elastic/eui/tree/${new_version}"
 fi
 
 ##
