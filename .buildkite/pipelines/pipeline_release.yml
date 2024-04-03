@@ -2,6 +2,21 @@ agents:
   provider: gcp
 
 steps:
+  - group: ':hammer: Run tests'
+    key: 'tests'
+    steps:
+      - label: ':cypress: Cypress tests on React 18'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'cypress:18'
+        artifact_paths:
+          - 'cypress/screenshots/**/*.png'
+          - 'cypress/videos/**/*.mp4'
+        agents:
+          provider: gcp
+          machineType: 'n2-standard-2'
+          preemptible: true
+  - wait
   - label: ':npm: Update package version'
     key: 'update-package-version'
     command: '.buildkite/scripts/release/step_update_version.sh'
