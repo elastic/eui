@@ -1,6 +1,14 @@
 #!/bin/bash
+# Update version number and commit it back to the repository.
+#
+# Supported configuration via environment variables:
+#  * RELEASE_TYPE (optional) - Type of release that should be performed. Defaults to prerelease (possible values: "release", "prerelease")
+#  * RELEASE_VERSION (required when RELEASE_TYPE="release") - The new package.json version string. Must follow semver notation.
+#
 
 set -eo pipefail
+
+# TODO: It's possible to release non-HEAD commits but we'd need to skip committing the version update back to the repo
 
 # Begin configuration
 
@@ -12,70 +20,108 @@ git_push_flags="--dry-run"
 
 # End configuration
 
+if [[ -z "${git_branch}" ]]; then
+  >&2 echo "BUILDKITE_BRANCH is not set. This usually means you're trying to execute this script from the outside of Buildkite pipeline which is unsupported."
+  exit 1
+fi
+
+##
 # Check release type (prerelease or regular release)
+##
 
 release_type="prerelease"
-
 if [[ "${RELEASE_TYPE}" == "release" ]]; then
   release_type="release"
 fi
 
+##
 # Check version number
+##
 
 if [[ "${release_type}" == "release" ]] && [[ -z "${RELEASE_VERSION}" ]]; then
   >&2 echo "RELEASE_VERSION must be set when RELEASE_TYPE is 'release'"
   exit 1
 fi
 
-echo "--- Updating version on branch ${git_branch}"
+##
+# Print run's configuration
+##
+
+echo "+++ Updating version on branch ${git_branch}"
 echo "release type: ${release_type}"
+echo "release version: ${RELEASE_VERSION}"
 echo "npm version prerelease prefix: ${npm_version_prerelease_prefix}"
 echo "git branch: ${git_branch}"
 echo "git push flags: ${git_push_flags}"
 
-# Configure yarn
-# Unnecessary output on stdout is redirected to /dev/null
+##
+# Check if version isn't already published if RELEASE_VERSION is set
+##
 
-echo "--- Updating @elastic/eui version string"
+if [[ -n "${RELEASE_VERSION}" ]]; then
+  echo "+++ :npm: Checking npm registry"
+  if [[ "$(npm show @elastic/eui versions --json | jq 'index("${RELEASE_VERSION}")')" != "null" ]]; then
+    >&2 echo "Version ${RELEASE_VERSION} has already been published to npm and can't be overridden:"
+    >&2 echo "https://www.npmjs.com/package/@elastic/eui/v/${RELEASE_VERSION}"
+    exit 2
+  fi
 
-# disable 'yarn version' calling 'git commit' and 'git tag' automatically
-yarn config set version-git-tag false 1> /dev/null
-
-if [[ "${release_type}" == "release" ]]; then
-  # RELEASE_VERSION is always defined at this stage for "release" release type
-  yarn version --new-version "${RELEASE_VERSION}"
-else
-  yarn version --prerelease --preid "${npm_version_prerelease_prefix}"
+  echo "Version ${RELEASE_VERSION} hasn't been published to npm yet"
 fi
 
-new_version="$(node --print 'require("./package.json").version')"
-echo "Version string updated to ${new_version}"
+##
+# Update package.json version string
+##
 
-# Commit
+echo "+++ Updating @elastic/eui version string"
 
-echo "--- fetching OIDC token to sign commit"
+npm_version_args=(
+  --git-tag-version=false # disable tagging the new version
+  --sign-git-tag=false # disable signing the git tag
+  --commit-hooks=false # disable all git commit hooks
+)
 
+new_version=""
+if [[ "${release_type}" == "release" ]]; then
+  new_version=$(npm version "${npm_version_args[@]}" "${RELEASE_VERSION}")
+else
+  new_version=$(npm version "${npm_version_args[@]}" --preid=${npm_version_prerelease_prefix} prerelease)
+fi
+
+echo "Updated @elastic/eui version string to ${new_version}"
+
+##
+# Commit package.json
+##
+
+echo "+++ :git: Committing the version update"
+
+echo "Fetching OIDC token to sign the commit"
 SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
-
-echo "--- Committing version update"
 
 git config --local commit.gpgsign true
 git config --local tag.gpgsign true
 git config --local gpg.x509.program gitsign
 git config --local gpg.format x509
 
+echo "Adding and committing package.json"
 git add package.json
 git commit -m "release: @elastic/eui v${new_version} [skip-ci]"
 
-# Push to a branch from a detached head
-git push "${git_push_flags}" "${git_remote_name}" HEAD:"${git_branch}"
+echo "Pushing commit to ${git_branch}"
+# This will be rejected by remote if there are any new commits
+git push --dry-run "${git_remote_name}" "${git_branch}"
 
-echo "Pushed version update commit to '${git_branch}'"
-
-# Create a tag if release type is "release"
 if [[ "${release_type}" == "release" ]]; then
   tag_name="v${new_version}"
+  echo "Creating and pushing release tag ${tag_name}"
   git tag --annotate "${tag_name}"
-  git push "${git_push_flags}" "${git_remote_name}" "${tag_name}"
-  echo "Created and pushed release tag '${tag_name}'"
+  git push --dry-run "${git_remote_name}" "${tag_name}"
+  echo "Pushed release tag - https://github.com/elastic/eui/tree/${tag_name}"
 fi
+
+##
+# Success!
+##
+
+echo "+++ :white_check_mark: Version successfully updated"
