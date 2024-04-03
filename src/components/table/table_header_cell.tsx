@@ -17,8 +17,6 @@ import {
   useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
 } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -27,6 +25,7 @@ import { EuiIcon } from '../icon';
 import { EuiInnerText } from '../inner_text';
 
 import { resolveWidthAsStyle } from './utils';
+import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 
 export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
@@ -62,13 +61,15 @@ export type EuiTableHeaderCellProps = CommonProps &
 
 const CellContents = ({
   className,
+  align,
   description,
   children,
   isSorted,
   isSortAscending,
   showSortMsg,
 }: {
-  className: string;
+  className?: string;
+  align: HorizontalAlignment;
   description: EuiTableHeaderCellProps['description'];
   children: EuiTableHeaderCellProps['children'];
   isSorted: EuiTableHeaderCellProps['isSorted'];
@@ -76,7 +77,12 @@ const CellContents = ({
   showSortMsg: boolean;
 }) => {
   return (
-    <span className={className}>
+    <EuiTableCellContent
+      className={className}
+      align={align}
+      textOnly={false}
+      truncateText={null}
+    >
       <EuiInnerText>
         {(ref, innerText) => (
           <EuiI18n
@@ -88,7 +94,7 @@ const CellContents = ({
               <span
                 title={description ? titleTextWithDesc : innerText}
                 ref={ref}
-                className="euiTableCellContent__text"
+                className="eui-textTruncate"
               >
                 {children}
               </span>
@@ -108,7 +114,7 @@ const CellContents = ({
           size="m"
         />
       )}
-    </span>
+    </EuiTableCellContent>
   );
 };
 
@@ -136,15 +142,23 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     'euiTableHeaderCell--hideForMobile': !mobileOptions.show,
   });
 
-  const contentClasses = classNames('euiTableCellContent', className, {
-    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
-  });
-
   const inlineStyles = resolveWidthAsStyle(style, width);
 
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
+
+  const cellContents = (
+    <CellContents
+      css={styles.euiTableHeaderCell__content}
+      align={align}
+      description={description}
+      showSortMsg={true}
+      isSorted={isSorted}
+      isSortAscending={isSortAscending}
+    >
+      {children}
+    </CellContents>
+  );
 
   if (onSort || isSorted) {
     const buttonClasses = classNames('euiTableHeaderButton', {
@@ -155,17 +169,6 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     if (isSorted) {
       ariaSortValue = isSortAscending ? 'ascending' : 'descending';
     }
-
-    const cellContents = (
-      <CellContents
-        className={contentClasses}
-        description={description}
-        showSortMsg={true}
-        children={children}
-        isSorted={isSorted}
-        isSortAscending={isSortAscending}
-      />
-    );
 
     return (
       <CellComponent
@@ -204,14 +207,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       style={inlineStyles}
       {...rest}
     >
-      <CellContents
-        className={contentClasses}
-        description={description}
-        showSortMsg={false}
-        children={children}
-        isSorted={isSorted}
-        isSortAscending={isSortAscending}
-      />
+      {cellContents}
     </CellComponent>
   );
 };

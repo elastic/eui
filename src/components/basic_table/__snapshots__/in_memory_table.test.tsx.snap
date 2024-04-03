@@ -170,11 +170,11 @@ exports[`EuiInMemoryTable empty array 1`] = `
           role="columnheader"
           scope="col"
         >
-          <span
-            class="euiTableCellContent"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="Name; description"
             >
               Name
@@ -184,7 +184,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
             >
               description
             </span>
-          </span>
+          </div>
         </th>
       </tr>
     </thead>
@@ -199,7 +199,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
           colspan="1"
         >
           <div
-            class="euiTableCellContent euiTableCellContent--alignCenter"
+            class="euiTableCellContent emotion-euiTableCellContent-center-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -262,11 +262,11 @@ exports[`EuiInMemoryTable with items 1`] = `
           role="columnheader"
           scope="col"
         >
-          <span
-            class="euiTableCellContent"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="Name; description"
             >
               Name
@@ -276,7 +276,7 @@ exports[`EuiInMemoryTable with items 1`] = `
             >
               description
             </span>
-          </span>
+          </div>
         </th>
       </tr>
     </thead>
@@ -295,7 +295,7 @@ exports[`EuiInMemoryTable with items 1`] = `
             Name
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -317,7 +317,7 @@ exports[`EuiInMemoryTable with items 1`] = `
             Name
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"
@@ -339,7 +339,7 @@ exports[`EuiInMemoryTable with items 1`] = `
             Name
           </div>
           <div
-            class="euiTableCellContent"
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
               class="euiTableCellContent__text"

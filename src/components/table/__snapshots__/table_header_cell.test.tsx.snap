@@ -8,13 +8,13 @@ exports[`align defaults to left 1`] = `
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
           />
-        </span>
+        </div>
       </td>
     </tr>
   </thead>
@@ -29,13 +29,13 @@ exports[`align renders center when specified 1`] = `
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
       >
-        <span
-          class="euiTableCellContent euiTableCellContent--alignCenter"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-center-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
           />
-        </span>
+        </div>
       </td>
     </tr>
   </thead>
@@ -50,13 +50,13 @@ exports[`align renders right when specified 1`] = `
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
       >
-        <span
-          class="euiTableCellContent euiTableCellContent--alignRight"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-right-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
           />
-        </span>
+        </div>
       </td>
     </tr>
   </thead>
@@ -74,16 +74,16 @@ exports[`renders EuiTableHeaderCell 1`] = `
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="children"
           >
             children
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -100,13 +100,13 @@ exports[`renders td when children is null/undefined 1`] = `
         data-test-subj="test subject string"
         role="columnheader"
       >
-        <span
-          class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
           />
-        </span>
+        </div>
       </td>
     </tr>
   </thead>
@@ -124,11 +124,11 @@ exports[`sorting does not render a button with readOnly 1`] = `
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
@@ -137,7 +137,7 @@ exports[`sorting does not render a button with readOnly 1`] = `
             class="euiTableSortIcon"
             data-euiicon-type="sortDown"
           />
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -155,11 +155,11 @@ exports[`sorting is rendered with isSortAscending 1`] = `
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
@@ -168,7 +168,7 @@ exports[`sorting is rendered with isSortAscending 1`] = `
             class="euiTableSortIcon"
             data-euiicon-type="sortUp"
           />
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -186,11 +186,11 @@ exports[`sorting is rendered with isSorted 1`] = `
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
@@ -199,7 +199,7 @@ exports[`sorting is rendered with isSorted 1`] = `
             class="euiTableSortIcon"
             data-euiicon-type="sortDown"
           />
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -222,11 +222,11 @@ exports[`sorting renders a button with onSort 1`] = `
           data-test-subj="tableHeaderSortButton"
           type="button"
         >
-          <span
-            class="euiTableCellContent"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent__text"
+              class="eui-textTruncate"
               title="Test"
             >
               Test
@@ -235,7 +235,7 @@ exports[`sorting renders a button with onSort 1`] = `
               class="euiTableSortIcon"
               data-euiicon-type="sortDown"
             />
-          </span>
+          </div>
         </button>
       </th>
     </tr>
@@ -253,16 +253,16 @@ exports[`width and style accepts style attribute 1`] = `
         scope="col"
         style="width: 20%;"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -279,16 +279,16 @@ exports[`width and style accepts width attribute 1`] = `
         scope="col"
         style="width: 10%;"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -305,16 +305,16 @@ exports[`width and style accepts width attribute as number 1`] = `
         scope="col"
         style="width: 100px;"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
@@ -331,16 +331,16 @@ exports[`width and style resolves style and width attribute 1`] = `
         scope="col"
         style="width: 10%;"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Test"
           >
             Test
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>

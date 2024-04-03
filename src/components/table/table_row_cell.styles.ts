@@ -31,13 +31,6 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     hasActions: css`
       ${hasIcons}
-
-      /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
-      .euiTableCellContent {
-        display: flex;
-        align-items: center;
-        gap: ${euiTheme.size.s};
-      }
     `,
 
     // valign
@@ -59,11 +52,6 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('border-vertical', euiTheme.border.thin)}
       `,
       actions: css`
-        /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
-        .euiTableCellContent {
-          flex-wrap: wrap;
-        }
-
         .euiBasicTableAction-showOnHover {
           opacity: 0;
           transition: opacity ${euiTheme.animation.normal}
@@ -91,15 +79,6 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('right', 0)}
         ${logicalCSS('min-width', '0')}
         ${logicalCSS('width', mobileSizes.actions.width)}
-
-        /* TODO: Move this to EuiTableCellContent, once we're further along in the Emotion conversion */
-        .euiTableCellContent {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: ${euiTheme.size.s};
-          padding: 0;
-        }
       `,
       get actions() {
         // Note: Visible-on-hover actions on desktop always show on mobile
