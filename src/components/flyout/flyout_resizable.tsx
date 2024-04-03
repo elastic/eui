@@ -15,7 +15,7 @@ import React, {
   useCallback,
 } from 'react';
 
-import { keys, useCombinedRefs, useEuiTheme } from '../../services';
+import { keys, useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import { EuiResizableButton } from '../resizable_container';
 import { getPosition } from '../resizable_container/helpers';
 
@@ -45,8 +45,7 @@ export const EuiFlyoutResizable = forwardRef(
     }: EuiFlyoutResizableProps,
     ref
   ) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiFlyoutResizableButtonStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiFlyoutResizableButtonStyles);
     const cssStyles = [styles.euiFlyoutResizableButton, styles[type][side]];
 
     const getFlyoutMinMaxWidth = useCallback(
