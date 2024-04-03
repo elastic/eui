@@ -7,6 +7,7 @@
 #
 
 set -eo pipefail
+set +x
 
 # TODO: It's possible to release non-HEAD commits but we'd need to skip committing the version update back to the repo
 
@@ -123,7 +124,7 @@ git commit -m "release: @elastic/eui v${new_version} [skip-ci]"
 
 echo "Pushing commit to ${git_branch}"
 # This will be rejected by remote if there are any new commits
-git push --dry-run "${git_remote_name}" "${git_branch}"
+git push --dry-run "${git_remote_name}" HEAD:"${git_branch}"
 
 if [[ "${release_type}" == "release" ]]; then
   tag_name="v${new_version}"
