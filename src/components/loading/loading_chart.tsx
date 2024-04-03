@@ -8,15 +8,16 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 
+import { useEuiMemoizedStyles } from '../../services';
+import { CommonProps } from '../common';
+
+import { useLoadingAriaLabel } from './_loading_strings';
 import {
   euiLoadingChartStyles,
   euiLoadingChartBarStyles,
-  _barIndex,
+  BARS_COUNT,
 } from './loading_chart.styles';
-import { useEuiI18n } from '../i18n';
 
 export const SIZES = ['m', 'l', 'xl'] as const;
 export type EuiLoadingChartSize = (typeof SIZES)[number];
@@ -34,30 +35,19 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   'aria-label': ariaLabel,
   ...rest
 }) => {
-  const defaultAriaLabel = useEuiI18n('euiLoadingChart.ariaLabel', 'Loading');
-  const euiTheme = useEuiTheme();
-  const styles = euiLoadingChartStyles(euiTheme);
-  const barStyles = euiLoadingChartBarStyles(euiTheme);
+  const classes = classNames('euiLoadingChart', className);
 
-  const classes = classNames(
-    'euiLoadingChart',
-    { 'euiLoadingChart--mono': mono },
-    className
-  );
-
+  const styles = useEuiMemoizedStyles(euiLoadingChartStyles);
   const cssStyles = [styles.euiLoadingChart, styles[size]];
-  const cssBarStyles = (index: number) => {
-    return [
-      barStyles.euiLoadingChart__bar,
-      barStyles[size],
-      _barIndex(index, mono, euiTheme),
-    ];
-  };
 
-  const bars = [];
-  for (let index = 0; index < 4; index++) {
-    bars.push(<span key={index} css={cssBarStyles(index)} />);
-  }
+  const barStyles = useEuiMemoizedStyles(euiLoadingChartBarStyles);
+  const barCssStyles = [
+    barStyles.euiLoadingChart__bar,
+    mono ? barStyles.mono : barStyles.nonmono,
+    barStyles[size],
+  ];
+
+  const defaultAriaLabel = useLoadingAriaLabel();
 
   return (
     <span
@@ -67,7 +57,9 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
       aria-label={ariaLabel || defaultAriaLabel}
       {...rest}
     >
-      {bars}
+      {Array.from({ length: BARS_COUNT }, (_, index) => (
+        <span key={index} css={barCssStyles} />
+      ))}
     </span>
   );
 };
