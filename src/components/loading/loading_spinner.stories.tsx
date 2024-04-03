@@ -22,3 +22,9 @@ export default meta;
 type Story = StoryObj<EuiLoadingSpinnerProps>;
 
 export const Playground: Story = {};
+
+export const CustomColor: Story = {
+  args: {
+    color: { border: 'pink', highlight: 'purple' },
+  },
+};
