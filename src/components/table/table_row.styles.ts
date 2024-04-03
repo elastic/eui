@@ -9,7 +9,11 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme, tint, shade, transparentize } from '../../services';
-import { euiBackgroundColor, logicalCSS } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiBackgroundColor,
+  logicalCSS,
+} from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 import { euiTableVariables } from './table.styles';
@@ -146,9 +150,11 @@ const _expandedRowAnimation = ({ euiTheme }: UseEuiTheme) => {
 
   // Animation must be on the contents div inside, not the row itself
   return css`
-    .euiTableCellContent {
-      animation: ${euiTheme.animation.fast} ${euiTheme.animation.resistance} 1
-        normal none ${expandRow};
+    ${euiCanAnimate} {
+      .euiTableCellContent {
+        animation: ${euiTheme.animation.fast} ${euiTheme.animation.resistance} 1
+          normal none ${expandRow};
+      }
     }
   `;
 };
