@@ -88,6 +88,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     application: css`
       ${euiFontSize(euiThemeContext, 'xs')}
+      font-weight: ${euiTheme.font.weight.medium};
       background-color: ${applicationTextColors.backgroundColor};
       clip-path: polygon(
         0 0,
