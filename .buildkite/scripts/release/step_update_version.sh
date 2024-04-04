@@ -26,7 +26,6 @@ git_remote_name="origin"
 git_branch="${BUILDKITE_BRANCH}"
 git_user_name="elasticmachine"
 git_user_email="eui-team+elasticmachine@elastic.co"
-git_push_flags=""
 
 # End configuration
 
@@ -124,12 +123,12 @@ git commit -m "release: @elastic/eui ${new_version} [skip-ci]"
 
 echo "Pushing commit to ${git_branch}"
 # This will be rejected by remote if there are any new commits
-git push "${git_push_flags}" "${git_remote_name}" HEAD:"${git_branch}"
+git push "${git_remote_name}" HEAD:"${git_branch}"
 
 if [[ "${release_type}" == "release" ]]; then
   echo "Creating and pushing release tag ${new_version}"
   git tag --annotate "${new_version}"
-  git push "${git_push_flags}" "${git_remote_name}" "${new_version}"
+  git push "${git_remote_name}" "${new_version}"
   echo "Pushed release tag - https://github.com/elastic/eui/tree/${new_version}"
 fi
 
