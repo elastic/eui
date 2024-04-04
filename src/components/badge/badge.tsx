@@ -16,15 +16,17 @@ import React, {
   useMemo,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
+
 import {
   useEuiTheme,
+  useEuiMemoizedStyles,
   getSecureRelForTarget,
   wcagContrastMin,
 } from '../../services';
+import { validateHref } from '../../services/security/href_validator';
+import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
-import { validateHref } from '../../services/security/href_validator';
 
 import { getTextColor, getColorContrast, getIsValidColor } from './color_utils';
 import { euiBadgeStyles } from './badge.styles';
@@ -124,12 +126,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   style,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
   const isNamedColor = COLORS.includes(color as BadgeColor);
 
+  const euiTheme = useEuiTheme();
   const customColorStyles = useMemo(() => {
     // Named colors set their styles via Emotion CSS and not inline styles
     if (isNamedColor) return style;
@@ -165,7 +166,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     }
   }, [color, isNamedColor, style, euiTheme]);
 
-  const styles = euiBadgeStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiBadgeStyles);
   const cssStyles = [
     styles.euiBadge,
     isNamedColor && styles[color as BadgeColor],

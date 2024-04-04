@@ -14,12 +14,10 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+
+import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
-
-import { getSecureRelForTarget, useEuiTheme } from '../../../services';
-
 import { EuiToolTip, EuiToolTipProps, ToolTipPositions } from '../../tool_tip';
-
 import { EuiIcon, IconType } from '../../icon';
 
 import { euiBetaBadgeStyles } from './beta_badge.styles';
@@ -146,14 +144,12 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   alignment = 'baseline',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-
   const singleLetter = !!(typeof label === 'string' && label.length === 1);
   const isCircular = iconType || singleLetter;
 
   const classes = classNames('euiBetaBadge', className);
 
-  const styles = euiBetaBadgeStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiBetaBadgeStyles);
   const cssStyles = [
     styles.euiBetaBadge,
     styles[color],

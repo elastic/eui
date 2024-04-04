@@ -21,7 +21,7 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
     </div>
     <div>
       <hr
-        class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall emotion-euiHorizontalRule-half-s"
+        class="euiHorizontalRule emotion-euiHorizontalRule-half-s"
       />
     </div>
   </div>
@@ -168,7 +168,7 @@ exports[`EuiContextMenu renders isSeparator items 1`] = `
         </span>
       </div>
       <hr
-        class="euiHorizontalRule euiHorizontalRule--full emotion-euiHorizontalRule-full"
+        class="euiHorizontalRule emotion-euiHorizontalRule-full"
       />
       <div
         class="euiContextMenuItem emotion-euiContextMenuItem-m-center"
