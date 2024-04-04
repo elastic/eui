@@ -104,6 +104,22 @@ describe('EuiSuperSelect', () => {
     cy.focused().should('have.text', 'Option #1');
   });
 
+  it('does not allow keyboard navigating past first or last options', () => {
+    cy.realMount(<EuiSuperSelect options={options} />);
+
+    cy.realPress('Tab');
+    cy.realPress('Enter');
+    dropdownIsOpen();
+
+    cy.focused().should('have.text', 'Option #1');
+    cy.realPress('ArrowUp');
+    cy.focused().should('have.text', 'Option #1');
+    cy.realPress('ArrowDown');
+    cy.focused().should('have.text', 'Option #2');
+    cy.realPress('ArrowDown');
+    cy.focused().should('have.text', 'Option #2');
+  });
+
   it('retains form row focus state on dropdown navigation', () => {
     cy.realMount(
       <EuiFormRow label="test">

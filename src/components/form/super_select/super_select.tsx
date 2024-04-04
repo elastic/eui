@@ -252,12 +252,12 @@ export class EuiSuperSelect<T = string> extends Component<
       // somehow the select options has lost focus
       targetElementIndex = 0;
     } else {
+      // Note: this component purposely does not cycle arrow key navigation
+      // to match native <select> elements
       if (direction === ShiftDirection.BACK) {
-        targetElementIndex =
-          currentIndex === 0 ? this.itemNodes.length - 1 : currentIndex - 1;
+        targetElementIndex = currentIndex - 1;
       } else {
-        targetElementIndex =
-          currentIndex === this.itemNodes.length - 1 ? 0 : currentIndex + 1;
+        targetElementIndex = currentIndex + 1;
       }
     }
 
