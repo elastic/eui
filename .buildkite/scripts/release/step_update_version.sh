@@ -7,7 +7,7 @@
 #
 
 set -eo pipefail
-set +x
+set -x
 
 # TODO: It's possible to release non-HEAD commits but we'd need to skip committing the version update back to the repo
 
