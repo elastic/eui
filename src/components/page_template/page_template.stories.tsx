@@ -13,8 +13,8 @@ import {
   hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { PAGE_DIRECTIONS } from './outer/page_outer';
 import { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
+import { PAGE_DIRECTIONS } from './outer/page_outer';
 import { EuiButton } from '../button';
 import { EuiText } from '../text';
 

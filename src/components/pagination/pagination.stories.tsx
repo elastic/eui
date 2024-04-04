@@ -26,8 +26,7 @@ enableFunctionToggleControls(meta, ['onPageClick']);
 export default meta;
 type Story = StoryObj<EuiPaginationProps>;
 
-export const Playground: Story = {};
-export const PageCount: Story = {
+export const Playground: Story = {
   args: {
     activePage: 5,
     pageCount: 10,
