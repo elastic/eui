@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent, ReactNode } from 'react';
+import React, { Component, FocusEvent, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -104,6 +104,7 @@ export class EuiSuperSelect<T = string> extends Component<
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
   private _isMounted: boolean = false;
+  private controlButtonRef = createRef<HTMLButtonElement>();
 
   describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
 
@@ -171,6 +172,11 @@ export class EuiSuperSelect<T = string> extends Component<
   closePopover = () => {
     this.setState({
       isPopoverOpen: false,
+    });
+
+    // Refocus back to the toggling control button on popover close
+    requestAnimationFrame(() => {
+      this.controlButtonRef.current?.focus();
     });
 
     if (this.props.onBlur) {
@@ -310,6 +316,7 @@ export class EuiSuperSelect<T = string> extends Component<
         isInvalid={isInvalid}
         compressed={compressed}
         {...rest}
+        buttonRef={this.controlButtonRef}
       />
     );
 
@@ -345,6 +352,7 @@ export class EuiSuperSelect<T = string> extends Component<
         isOpen={isOpen || this.state.isPopoverOpen}
         input={button}
         fullWidth={fullWidth}
+        disableFocusTrap // This component handles its own focus manually
       >
         <EuiScreenReaderOnly>
           <p id={this.describedById}>

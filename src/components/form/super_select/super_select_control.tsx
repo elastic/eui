@@ -7,6 +7,7 @@
  */
 
 import React, {
+  Ref,
   FunctionComponent,
   ButtonHTMLAttributes,
   ReactNode,
@@ -37,6 +38,7 @@ export interface EuiSuperSelectOption<T> {
 export interface EuiSuperSelectControlProps<T>
   extends CommonProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value' | 'placeholder'> {
+  buttonRef?: Ref<HTMLButtonElement>;
   /**
    * @default false
    */
@@ -81,6 +83,7 @@ export const EuiSuperSelectControl: <T = string>(
 ) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
+    buttonRef,
     className,
     options,
     id,
@@ -180,6 +183,7 @@ export const EuiSuperSelectControl: <T = string>(
           // @ts-ignore Using as a selector only for mixin use
           readOnly={readOnly}
           {...rest}
+          ref={buttonRef}
         >
           {showPlaceholder ? (
             <span className="euiSuperSelectControl__placeholder">
