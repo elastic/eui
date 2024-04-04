@@ -120,6 +120,33 @@ describe('EuiSuperSelect', () => {
     cy.focused().should('have.text', 'Option #2');
   });
 
+  it('navigates past disabled options', () => {
+    cy.realMount(
+      <EuiSuperSelect
+        options={[
+          { value: 'disabled1', inputDisplay: 'disabled', disabled: true },
+          { value: 'enabled1', inputDisplay: 'enabled 1' },
+          { value: 'disabled2', inputDisplay: 'disabled 2', disabled: true },
+          { value: 'disabled2', inputDisplay: 'disabled 3', disabled: true },
+          { value: 'enabled2', inputDisplay: 'enabled 2' },
+          { value: 'disabled3', inputDisplay: 'disabled 4', disabled: true },
+        ]}
+      />
+    );
+
+    cy.realPress('Tab');
+    cy.realPress('Enter');
+    dropdownIsOpen();
+
+    cy.focused().should('have.text', 'enabled 1');
+    cy.realPress('ArrowDown');
+    cy.focused().should('have.text', 'enabled 2');
+    cy.realPress('ArrowDown');
+    cy.focused().should('have.text', 'enabled 2');
+    cy.realPress('ArrowUp');
+    cy.focused().should('have.text', 'enabled 1');
+  });
+
   it('retains form row focus state on dropdown navigation', () => {
     cy.realMount(
       <EuiFormRow label="test">

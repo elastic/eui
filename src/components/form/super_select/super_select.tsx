@@ -147,17 +147,10 @@ export class EuiSuperSelect<T = string> extends Component<
           return;
         }
 
-        if (this.props.valueOfSelected != null) {
-          if (indexOfSelected != null) {
-            this.focusItemAt(indexOfSelected);
-          } else {
-            focusSelected();
-          }
+        if (this.props.valueOfSelected != null && indexOfSelected != null) {
+          this.focusItemAt(indexOfSelected);
         } else {
-          const firstFocusableOption = this.props.options.findIndex(
-            ({ disabled }) => disabled !== true
-          );
-          this.focusItemAt(firstFocusableOption);
+          this.focusItemAt(0);
         }
 
         if (this.props.onFocus) {
@@ -235,11 +228,14 @@ export class EuiSuperSelect<T = string> extends Component<
     }
   };
 
-  focusItemAt(index: number) {
-    const targetElement = this.itemNodes[index];
-    if (targetElement != null) {
-      targetElement.focus();
+  focusItemAt(index: number, direction?: ShiftDirection) {
+    let targetElement = this.itemNodes[index];
+    // If the current index is disabled, find the next non-disabled element
+    while (targetElement && targetElement.disabled) {
+      direction === ShiftDirection.BACK ? index-- : index++;
+      targetElement = this.itemNodes[index];
     }
+    targetElement?.focus();
   }
 
   shiftFocus(direction: ShiftDirection) {
@@ -261,7 +257,7 @@ export class EuiSuperSelect<T = string> extends Component<
       }
     }
 
-    this.focusItemAt(targetElementIndex);
+    this.focusItemAt(targetElementIndex, direction);
   }
 
   render() {
