@@ -64,6 +64,7 @@ echo "release version: ${RELEASE_VERSION}"
 echo "npm version prerelease prefix: ${npm_version_prerelease_prefix}"
 echo "git branch: ${git_branch}"
 echo "git push flags: ${git_push_flags}"
+echo "git remote URL: $(git remote get-url "${git_branch}")"
 
 ##
 # Check if version isn't already published if RELEASE_VERSION is set
