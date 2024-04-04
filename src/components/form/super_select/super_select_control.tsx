@@ -10,6 +10,8 @@ import React, {
   FunctionComponent,
   ButtonHTMLAttributes,
   ReactNode,
+  useEffect,
+  useState,
   useMemo,
 } from 'react';
 import classNames from 'classnames';
@@ -127,6 +129,25 @@ export const EuiSuperSelectControl: <T = string>(
 
   const showPlaceholder = !!placeholder && !selectedValue;
 
+  // An extra screen reader workaround is required here to make sure `id`s
+  // passed from EuiFormRow are inherited by the targetable <button> element
+  const [formLabelId, setFormLabelId] = useState('');
+  const hasFormLabel = !!formLabelId;
+  useEffect(() => {
+    if (id) {
+      const formRowLabel = `${id}-label`;
+      const hasFormLabel = !!document.getElementById(formRowLabel);
+      if (hasFormLabel) {
+        setFormLabelId(formRowLabel);
+      }
+    }
+  }, [id]);
+
+  const buttonId = hasFormLabel ? `${id}-button` : undefined;
+  const ariaLabelledBy = hasFormLabel
+    ? `${buttonId} ${formLabelId}`
+    : undefined;
+
   return (
     <>
       <input
@@ -152,6 +173,8 @@ export const EuiSuperSelectControl: <T = string>(
           type="button"
           className={classes}
           aria-haspopup="listbox"
+          aria-labelledby={ariaLabelledBy}
+          id={buttonId}
           disabled={disabled || readOnly}
           // @ts-ignore Using as a selector only for mixin use
           readOnly={readOnly}

@@ -12,6 +12,8 @@ import { render, screen, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
+import { EuiFormRow } from '../form_row';
+
 import { EuiSuperSelect } from './super_select';
 
 const options = [
@@ -57,6 +59,22 @@ describe('EuiSuperSelect', () => {
     expect(queryByTestSubject('rendered')).toBeInTheDocument();
 
     restoreErrors();
+  });
+
+  it('applies the correct label IDs when wrapped in an EuiFormRow', () => {
+    const { getByTestSubject } = render(
+      <EuiFormRow label="Label" helpText="Description" id="test">
+        <EuiSuperSelect options={options} data-test-subj="controlButton" />
+      </EuiFormRow>
+    );
+    const control = getByTestSubject('controlButton');
+
+    expect(control).toHaveAttribute('id', 'test-button');
+    expect(control).toHaveAttribute(
+      'aria-labelledby',
+      'test-button test-label'
+    );
+    expect(control).toHaveAttribute('aria-describedby', 'test-help-0');
   });
 
   describe('props', () => {
