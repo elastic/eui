@@ -187,7 +187,12 @@ export class EuiSuperSelect<T = string> extends Component<
   };
 
   onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === keys.ARROW_UP || event.key === keys.ARROW_DOWN) {
+    // Mimic the ways native `<select>`s can be opened via keypress
+    if (
+      event.key === keys.ARROW_UP ||
+      event.key === keys.ARROW_DOWN ||
+      event.key === keys.SPACE
+    ) {
       event.preventDefault();
       event.stopPropagation();
       this.openPopover();
@@ -204,9 +209,10 @@ export class EuiSuperSelect<T = string> extends Component<
         break;
 
       case keys.TAB:
-        // no-op
+        // Mimic native `<select>` behavior, which selects an item on tab press
         event.preventDefault();
         event.stopPropagation();
+        (event.target as HTMLButtonElement).click();
         break;
 
       case keys.ARROW_UP:
