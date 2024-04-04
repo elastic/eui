@@ -107,13 +107,39 @@ export const enableFunctionToggleControls = <Props>(
     false: undefined,
   });
 
-  const updatedConfig = _updateArgTypes(config, propNames, [
+  /* Sets the default value for the passed function prop.
+  This is needed to ensure the coolean control is set and
+  to prevent additional clicks.
+  NOTE: This ahs to happen before the argTypes are updated */
+  config.args = propNames.reduce(
+    (acc, propName) => ({
+      ...acc,
+      [propName]: false,
+    }),
+    config.args
+  );
+
+  let updatedConfig = _updateArgTypes(config, propNames, [
     { key: 'control', value: 'boolean' },
     {
       key: 'mapping',
       value: setAction,
     },
   ]);
+
+  updatedConfig = {
+    ...updatedConfig,
+    /* Overwrites global parameters.actions setting in preview.tsx which enables
+    actions on function props starting with "on[Name]" by default. This is needed
+    to ensure the default "false" state is actually false. */
+    parameters: {
+      ...updatedConfig.parameters,
+      actions: {
+        ...updatedConfig.parameters?.actions,
+        argTypesRegex: null,
+      },
+    },
+  };
 
   return updatedConfig;
 };
