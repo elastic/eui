@@ -17,6 +17,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
+import { EuiScreenReaderOnly } from '../../accessibility';
 
 import {
   EuiFormControlLayout,
@@ -186,6 +187,13 @@ export const EuiSuperSelectControl: <T = string>(
             </span>
           ) : (
             selectedValue
+          )}
+          {hasFormLabel && (
+            // Add a slight pause between reading out the multiple aria-labelledby elements,
+            // mimicking how screen readers handle native <select> elements
+            <EuiScreenReaderOnly>
+              <span>, </span>
+            </EuiScreenReaderOnly>
           )}
         </button>
       </EuiFormControlLayout>
