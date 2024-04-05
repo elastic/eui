@@ -74,6 +74,9 @@ const comboContent = (
 const meta: Meta<EuiPageTemplateProps> = {
   title: 'Templates/EuiPageTemplate',
   component: EuiPageTemplate,
+  parameters: {
+    layout: 'fullscreen',
+  },
   argTypes: {
     bottomBorder: {
       control: 'radio',
