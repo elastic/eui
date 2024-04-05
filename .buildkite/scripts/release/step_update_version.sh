@@ -7,7 +7,6 @@
 #
 
 set -eo pipefail
-set -x
 
 # TODO: It's possible to release non-HEAD commits but we'd need to skip committing the version update back to the repo
 
@@ -63,21 +62,6 @@ echo "git push flags: ${git_push_flags}"
 echo "git remote URL: $(git remote get-url "${git_remote_name}")"
 
 ##
-# Check if version isn't already published if RELEASE_VERSION is set
-##
-
-if [[ -n "${RELEASE_VERSION}" ]]; then
-  echo "+++ :npm: Checking npm registry"
-  if [[ "$(npm show @elastic/eui versions --json | jq 'index("${RELEASE_VERSION}")')" != "null" ]]; then
-    >&2 echo "Version ${RELEASE_VERSION} has already been published to npm and can't be overridden:"
-    >&2 echo "https://www.npmjs.com/package/@elastic/eui/v/${RELEASE_VERSION}"
-    exit 2
-  fi
-
-  echo "Version ${RELEASE_VERSION} hasn't been published to npm yet"
-fi
-
-##
 # Update package.json version string
 ##
 
@@ -96,7 +80,23 @@ else
   new_version=$(npm version "${npm_version_args[@]}" --preid=${npm_version_prerelease_prefix} prerelease)
 fi
 
+# npm version output prefixes the new version with 'v'
+new_version="${new_version:1}"
+
 echo "Updated @elastic/eui version string to ${new_version}"
+
+##
+# Check if version isn't already published if RELEASE_VERSION is set
+##
+
+echo "+++ :npm: Checking npm registry"
+if [[ "$(npm show @elastic/eui versions --json | jq 'index("${new_version}")')" != "null" ]]; then
+  >&2 echo "Version ${new_version} has already been published to npm and can't be overridden:"
+  >&2 echo "https://www.npmjs.com/package/@elastic/eui/v/${new_version}"
+  exit 2
+fi
+
+echo "Version ${new_version} hasn't been published to npm yet"
 
 ##
 # Commit package.json
@@ -118,7 +118,7 @@ git config --local gpg.format x509
 
 echo "Adding and committing package.json"
 git add package.json
-git commit -m "release: @elastic/eui ${new_version} [skip-ci]"
+git commit -m "release: @elastic/eui v${new_version} [skip-ci]"
 
 echo "Pushing commit to ${git_branch}"
 
@@ -138,10 +138,11 @@ if ! git push "${git_remote_name}" HEAD:"${git_branch}"; then
 fi
 
 if [[ "${release_type}" == "release" ]]; then
-  echo "Creating and pushing release tag ${new_version}"
-  git tag --annotate "${new_version}"
-  git push "${git_remote_name}" "${new_version}"
-  echo "Pushed release tag - https://github.com/elastic/eui/tree/${new_version}"
+  tag_name="v${new_version}"
+  echo "Creating and pushing release tag ${tag_name}"
+  git tag --annotate "${tag_name}"
+  git push "${git_remote_name}" "${tag_name}"
+  echo "Pushed release tag - https://github.com/elastic/eui/tree/${tag_name}"
 fi
 
 ##
