@@ -7,9 +7,11 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { useEuiTheme } from '../..//services';
+
+import { useEuiTheme, useEuiMemoizedStyles } from '../../services';
+import { CommonProps } from '../common';
+
 import { useLoadingAriaLabel } from './_loading_strings';
 import {
   euiLoadingSpinnerStyles,
@@ -43,14 +45,17 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   style,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiLoadingSpinnerStyles(euiTheme);
-  const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
-  const defaultLabel = useLoadingAriaLabel();
+
+  const styles = useEuiMemoizedStyles(euiLoadingSpinnerStyles);
+  const cssStyles = [styles.euiLoadingSpinner, styles[size]];
+
+  const euiTheme = useEuiTheme();
   const customColorStyle = color
     ? { ...style, borderColor: euiSpinnerBorderColorsCSS(euiTheme, color) }
     : style;
+
+  const defaultLabel = useLoadingAriaLabel();
 
   return (
     <span

@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
+import { useEuiMemoizedStyles, useIsWithinBreakpoints } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiDescriptionListProps } from './description_list_types';
@@ -45,8 +45,7 @@ export const EuiDescriptionList: FunctionComponent<
     }
   }, [_type, showResponsiveColumns]);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiDescriptionListStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiDescriptionListStyles);
 
   const cssStyles = [
     styles.euiDescriptionList,
@@ -74,26 +73,24 @@ export const EuiDescriptionList: FunctionComponent<
 
   const classes = classNames('euiDescriptionList', className);
 
-  let childrenOrListItems = null;
+  const renderedListItems = useMemo(() => {
+    if (listItems) {
+      return listItems.map((item, index) => {
+        return [
+          <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
+            {item.title}
+          </EuiDescriptionListTitle>,
 
-  if (listItems) {
-    childrenOrListItems = listItems.map((item, index) => {
-      return [
-        <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
-          {item.title}
-        </EuiDescriptionListTitle>,
-
-        <EuiDescriptionListDescription
-          key={`description-${index}`}
-          {...descriptionProps}
-        >
-          {item.description}
-        </EuiDescriptionListDescription>,
-      ];
-    });
-  } else {
-    childrenOrListItems = children;
-  }
+          <EuiDescriptionListDescription
+            key={`description-${index}`}
+            {...descriptionProps}
+          >
+            {item.description}
+          </EuiDescriptionListDescription>,
+        ];
+      });
+    }
+  }, [listItems, descriptionProps, titleProps]);
 
   return (
     <EuiDescriptionListContext.Provider
@@ -106,7 +103,7 @@ export const EuiDescriptionList: FunctionComponent<
         {...rest}
         data-type={_type}
       >
-        {childrenOrListItems}
+        {listItems ? renderedListItems : children}
       </dl>
     </EuiDescriptionListContext.Provider>
   );

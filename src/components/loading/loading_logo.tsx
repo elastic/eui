@@ -8,14 +8,13 @@
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiIcon, IconType } from '../icon';
-import { useEuiTheme } from '../../services';
+
 import { useLoadingAriaLabel } from './_loading_strings';
-import {
-  euiLoadingLogoStyles,
-  euiLoadingLogoIconStyles,
-} from './loading_logo.styles';
+import { euiLoadingLogoStyles } from './loading_logo.styles';
 
 export const SIZES = ['m', 'l', 'xl'] as const;
 export type EuiLoadingLogoSize = (typeof SIZES)[number];
@@ -36,16 +35,12 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   className,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const defaultLabel = useLoadingAriaLabel();
+  const classes = classNames('euiLoadingLogo', className);
 
-  const styles = euiLoadingLogoStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiLoadingLogoStyles);
   const cssStyles = [styles.euiLoadingLogo, styles[size]];
 
-  const iconStyles = euiLoadingLogoIconStyles(euiTheme);
-  const iconCssStyles = [iconStyles.euiLoadingLogo__icon];
-
-  const classes = classNames('euiLoadingLogo', className);
+  const defaultLabel = useLoadingAriaLabel();
 
   return (
     <span
@@ -55,7 +50,7 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
       aria-label={ariaLabel || defaultLabel}
       {...rest}
     >
-      <span css={iconCssStyles}>
+      <span css={styles.euiLoadingLogo__icon}>
         <EuiIcon type={logo} size={size} />
       </span>
     </span>

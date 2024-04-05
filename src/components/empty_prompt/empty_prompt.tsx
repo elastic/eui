@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -97,8 +97,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiEmptyPrompt', className);
-  const euiTheme = useEuiTheme();
-  const styles = useMemo(() => euiEmptyPromptStyles(euiTheme), [euiTheme]);
+  const styles = useEuiMemoizedStyles(euiEmptyPromptStyles);
   const cssStyles = [styles.euiEmptyPrompt, styles[layout]];
   const mainStyles = [
     styles.main.euiEmptyPrompt__main,
