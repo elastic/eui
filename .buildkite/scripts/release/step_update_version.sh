@@ -136,3 +136,4 @@ fi
 ##
 
 echo "+++ :white_check_mark: Version successfully updated"
+
