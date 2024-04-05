@@ -48,9 +48,9 @@ export default () => {
       'data-test-subj': 'firstNameCell',
       mobileOptions: {
         render: (user: User) => (
-          <span>
+          <>
             {user.firstName} {user.lastName}
-          </span>
+          </>
         ),
         header: false,
         truncateText: false,

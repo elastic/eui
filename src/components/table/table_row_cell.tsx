@@ -52,10 +52,12 @@ export interface EuiTableRowCellMobileOptionsShape
   extends EuiTableRowCellSharedPropsShape {
   /**
    * If false, will not render the cell at all for mobile
+   * @default true
    */
   show?: boolean;
   /**
    * Only show for mobile? If true, will not render the column at all for desktop
+   * @default false
    */
   only?: boolean;
   /**
@@ -70,10 +72,12 @@ export interface EuiTableRowCellMobileOptionsShape
   header?: ReactNode | boolean;
   /**
    * Increase text size compared to rest of cells
+   * @default false
    */
   enlarge?: boolean;
   /**
    * Applies the value to the width of the cell in mobile view (typically 50%)
+   * @default 50%
    */
   width?: CSSProperties['width'];
 }
@@ -120,22 +124,21 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   style,
   width,
   valign = 'middle',
-  mobileOptions = {
-    show: true,
-  },
+  mobileOptions,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
   const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
   const cssStyles = [
     styles.euiTableRowCell,
+    setScopeRow && styles.rowHeader,
     isExpander && styles.isExpander,
     hasActions && styles.hasActions,
     styles[valign],
     ...(isResponsive
       ? [
           styles.mobile.mobile,
-          mobileOptions.enlarge && styles.mobile.enlarge,
+          mobileOptions?.enlarge && styles.mobile.enlarge,
           hasActions === 'custom' && styles.mobile.customActions,
           hasActions === true && styles.mobile.actions,
           isExpander && styles.mobile.expander,
@@ -146,19 +149,15 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   const cellClasses = classNames('euiTableRowCell', className, {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
-    'euiTableRowCell--hideForDesktop': mobileOptions.only,
   });
 
   const widthValue = isResponsive
     ? hasActions || isExpander
       ? undefined // On mobile, actions are shifted to a right column via CSS
-      : mobileOptions.width
+      : mobileOptions?.width
     : width;
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
-
-  const hideForMobileClasses = 'euiTableRowCell--hideForMobile';
-  const showForMobileClasses = 'euiTableRowCell--hideForDesktop';
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
@@ -174,54 +173,44 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     hasActions: hasActions || isExpander,
   };
 
-  if (mobileOptions.show === false) {
-    return (
-      <Element
-        className={`${cellClasses} ${hideForMobileClasses}`}
-        {...sharedProps}
-      >
-        <EuiTableCellContent {...sharedContentProps}>
-          {children}
-        </EuiTableCellContent>
-      </Element>
-    );
-  } else {
-    return (
-      <Element className={cellClasses} {...sharedProps}>
-        {/* Mobile-only header */}
-        {mobileOptions.header && (
-          <div
-            css={styles.euiTableRowCell__mobileHeader}
-            className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}
+  if (isResponsive) {
+    // Mobile view
+    if (mobileOptions?.show === false) {
+      return null;
+    } else {
+      return (
+        <Element className={cellClasses} {...sharedProps}>
+          {mobileOptions?.header && (
+            <div
+              className="euiTableRowCell__mobileHeader"
+              css={styles.euiTableRowCell__mobileHeader}
+            >
+              {mobileOptions.header}
+            </div>
+          )}
+          <EuiTableCellContent
+            {...sharedContentProps}
+            align={mobileOptions?.align ?? 'left'} // Default to left aligned mobile cells, unless consumers specifically set an alignment for mobile
+            truncateText={mobileOptions?.truncateText ?? truncateText}
+            textOnly={mobileOptions?.textOnly ?? textOnly}
           >
-            {mobileOptions.header}
-          </div>
-        )}
-
-        {/* Content depending on mobile render existing */}
-        {mobileOptions.render ? (
-          <>
-            <EuiTableCellContent
-              className={showForMobileClasses}
-              align={mobileOptions.align ?? align}
-              truncateText={mobileOptions.truncateText ?? truncateText}
-              textOnly={mobileOptions.textOnly ?? textOnly}
-            >
-              {mobileOptions.render}
-            </EuiTableCellContent>
-            <EuiTableCellContent
-              {...sharedContentProps}
-              className={hideForMobileClasses}
-            >
-              {children}
-            </EuiTableCellContent>
-          </>
-        ) : (
+            {mobileOptions?.render || children}
+          </EuiTableCellContent>
+        </Element>
+      );
+    }
+  } else {
+    // Desktop view
+    if (mobileOptions?.only) {
+      return null;
+    } else {
+      return (
+        <Element className={cellClasses} {...sharedProps}>
           <EuiTableCellContent {...sharedContentProps}>
             {children}
           </EuiTableCellContent>
-        )}
-      </Element>
-    );
+        </Element>
+      );
+    }
   }
 };

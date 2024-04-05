@@ -290,11 +290,6 @@ exports[`EuiInMemoryTable with items 1`] = `
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
@@ -312,11 +307,6 @@ exports[`EuiInMemoryTable with items 1`] = `
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
           <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
-          <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
             <span
@@ -333,11 +323,6 @@ exports[`EuiInMemoryTable with items 1`] = `
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <div
-            class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop emotion-euiTableRowCell__mobileHeader"
-          >
-            Name
-          </div>
           <div
             class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >

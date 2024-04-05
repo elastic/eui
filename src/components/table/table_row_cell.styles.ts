@@ -9,7 +9,12 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, euiTextTruncate, logicalCSS } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiFontSize,
+  euiTextTruncate,
+  logicalCSS,
+} from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
 
@@ -25,6 +30,10 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiTableRowCell: css`
       color: ${euiTheme.colors.text};
+    `,
+    rowHeader: css`
+      /* Unset the automatic browser bolding applied to [th] elements */
+      font-weight: ${euiTheme.font.weight.regular};
     `,
     isExpander: css`
       ${hasIcons}
@@ -54,8 +63,11 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       actions: css`
         .euiBasicTableAction-showOnHover {
           opacity: 0;
-          transition: opacity ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance};
+
+          ${euiCanAnimate} {
+            transition: opacity ${euiTheme.animation.normal}
+              ${euiTheme.animation.resistance};
+          }
         }
 
         &:focus-within,

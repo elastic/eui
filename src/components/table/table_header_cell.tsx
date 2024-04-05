@@ -24,7 +24,9 @@ import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiInnerText } from '../inner_text';
 
+import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
 import { resolveWidthAsStyle } from './utils';
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 
@@ -35,20 +37,7 @@ export type EuiTableHeaderCellProps = CommonProps &
     align?: HorizontalAlignment;
     isSortAscending?: boolean;
     isSorted?: boolean;
-    /**
-     * Mobile options for displaying differently at small screens
-     */
-    mobileOptions?: {
-      /**
-       * If false, will not render the column at all for mobile
-       */
-      show?: boolean;
-      /**
-       * Only show for mobile? If true, will not render the column at all
-       * for desktop
-       */
-      only?: boolean;
-    };
+    mobileOptions?: Pick<EuiTableRowCellMobileOptionsShape, 'only' | 'show'>;
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
@@ -126,9 +115,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   isSortAscending,
   className,
   scope,
-  mobileOptions = {
-    show: true,
-  },
+  mobileOptions,
   width,
   style,
   readOnly,
@@ -137,11 +124,12 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
 
-  const classes = classNames('euiTableHeaderCell', className, {
-    'euiTableHeaderCell--hideForDesktop': mobileOptions.only,
-    'euiTableHeaderCell--hideForMobile': !mobileOptions.show,
-  });
+  const isResponsive = useEuiTableIsResponsive();
+  const hideForDesktop = !isResponsive && mobileOptions?.only;
+  const hideForMobile = isResponsive && mobileOptions?.show === false;
+  if (hideForDesktop || hideForMobile) return null;
 
+  const classes = classNames('euiTableHeaderCell', className);
   const inlineStyles = resolveWidthAsStyle(style, width);
 
   const CellComponent = children ? 'th' : 'td';

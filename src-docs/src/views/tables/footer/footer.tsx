@@ -51,9 +51,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     truncateText: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,
@@ -72,7 +72,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'github',
     name: 'Github',
-    footer: ({ items }: { items: User[] }) => <span>{items.length} users</span>,
+    footer: ({ items }: { items: User[] }) => <>{items.length} users</>,
     render: (username: User['github']) => (
       <EuiLink href="#" target="_blank">
         {username}
@@ -96,7 +96,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
       const uniqueCountries = new Set(
         items.map((user) => user.location.country)
       );
-      return <span>{uniqueCountries.size} countries</span>;
+      return <>{uniqueCountries.size} countries</>;
     },
     render: (location: User['location']) => {
       return `${location.city}, ${location.country}`;
@@ -106,9 +106,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'online',
     name: 'Online',
     footer: ({ items }: { items: User[] }) => {
-      return (
-        <span>{items.filter((user: User) => !!user.online).length} online</span>
-      );
+      return <>{items.filter((user: User) => !!user.online).length} online</>;
     },
     dataType: 'boolean',
     render: (online: User['online']) => {

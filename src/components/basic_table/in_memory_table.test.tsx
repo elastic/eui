@@ -1325,8 +1325,8 @@ describe('EuiInMemoryTable', () => {
 
       // ensure table is on 2nd page (pageIndex=1)
       expect(getByTestSubject('pagination-button-1')).toBeDisabled();
-      expect(container.querySelectorAll('td')[0]).toHaveTextContent('Index2');
-      expect(container.querySelectorAll('td')[1]).toHaveTextContent('Index3');
+      expect(container.querySelectorAll('td')[0]).toHaveTextContent('2');
+      expect(container.querySelectorAll('td')[1]).toHaveTextContent('3');
 
       // click the first pagination button
       fireEvent.click(getByTestSubject('pagination-button-0'));
@@ -1341,8 +1341,8 @@ describe('EuiInMemoryTable', () => {
 
       // ensure table is still on the 2nd page (pageIndex=1)
       expect(getByTestSubject('pagination-button-1')).toBeDisabled();
-      expect(container.querySelectorAll('td')[0]).toHaveTextContent('Index2');
-      expect(container.querySelectorAll('td')[1]).toHaveTextContent('Index3');
+      expect(container.querySelectorAll('td')[0]).toHaveTextContent('2');
+      expect(container.querySelectorAll('td')[1]).toHaveTextContent('3');
 
       // re-render with an updated `pageIndex` value
       rerender(
@@ -1356,8 +1356,8 @@ describe('EuiInMemoryTable', () => {
 
       // ensure table is on 3rd page (pageIndex=2)
       expect(getByTestSubject('pagination-button-2')).toBeDisabled();
-      expect(container.querySelectorAll('td')[0]).toHaveTextContent('Index4');
-      expect(container.querySelectorAll('td')[1]).toHaveTextContent('Index5');
+      expect(container.querySelectorAll('td')[0]).toHaveTextContent('4');
+      expect(container.querySelectorAll('td')[1]).toHaveTextContent('5');
     });
 
     it('respects pageSize', () => {
@@ -1381,7 +1381,7 @@ describe('EuiInMemoryTable', () => {
         },
       ];
       const onTableChange = jest.fn();
-      const component = mount(
+      const { container, getByTestSubject, rerender } = render(
         <EuiInMemoryTable
           items={items}
           columns={columns}
@@ -1391,18 +1391,14 @@ describe('EuiInMemoryTable', () => {
       );
 
       // check that the first 2 items rendered
-      expect(component.find('td').length).toBe(2);
-      expect(component.find('td').at(0).text()).toBe('Index0');
-      expect(component.find('td').at(1).text()).toBe('Index1');
+      let cells = container.querySelectorAll('td');
+      expect(cells.length).toBe(2);
+      expect(cells[0]).toHaveTextContent('0');
+      expect(cells[1]).toHaveTextContent('1');
 
       // change the page size
-      component
-        .find('button[data-test-subj="tablePaginationPopoverButton"]')
-        .simulate('click');
-      component.update();
-      component
-        .find('button[data-test-subj="tablePagination-4-rows"]')
-        .simulate('click');
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      fireEvent.click(getByTestSubject('tablePagination-4-rows'));
 
       // check callback
       expect(onTableChange).toHaveBeenCalledTimes(1);
@@ -1415,20 +1411,28 @@ describe('EuiInMemoryTable', () => {
       });
 
       // verify still only rendering the first 2 rows
-      expect(component.find('td').length).toBe(2);
-      expect(component.find('td').at(0).text()).toBe('Index0');
-      expect(component.find('td').at(1).text()).toBe('Index1');
+      cells = container.querySelectorAll('td');
+      expect(cells.length).toBe(2);
+      expect(cells[0]).toHaveTextContent('0');
+      expect(cells[1]).toHaveTextContent('1');
 
       // update the controlled page size
-      pagination.pageSize = 4;
-      component.setProps({ pagination });
+      rerender(
+        <EuiInMemoryTable
+          items={items}
+          columns={columns}
+          pagination={{ ...pagination, pageSize: 4 }}
+          onTableChange={onTableChange}
+        />
+      );
 
       // verify it now renders 4 rows
-      expect(component.find('td').length).toBe(4);
-      expect(component.find('td').at(0).text()).toBe('Index0');
-      expect(component.find('td').at(1).text()).toBe('Index1');
-      expect(component.find('td').at(2).text()).toBe('Index2');
-      expect(component.find('td').at(3).text()).toBe('Index3');
+      cells = container.querySelectorAll('td');
+      expect(cells.length).toBe(4);
+      expect(cells[0]).toHaveTextContent('0');
+      expect(cells[1]).toHaveTextContent('1');
+      expect(cells[2]).toHaveTextContent('2');
+      expect(cells[3]).toHaveTextContent('3');
     });
   });
 

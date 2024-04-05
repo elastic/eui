@@ -46,9 +46,9 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
     truncateText: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,

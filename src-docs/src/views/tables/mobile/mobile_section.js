@@ -2,22 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../../components';
 
+import { EuiCode } from '../../../../../src/components/code';
+
 import Table from './mobile';
-import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
 import { EuiTableRowCellMobileOptionsShape } from '../props/props';
 
 /* eslint-disable local/css-logical-properties */
-const exampleItem = `{
+const exampleColumnSnippet = `{
   field: 'firstName',
   name: 'First Name',
   truncateText: true,
   mobileOptions: {
-    render: (item) => (<span>{item.firstName} {item.lastName}</span>), // Custom renderer for mobile view only
-    header: false,   // Won't show inline header in mobile view
+    render: (item) => (<>{item.firstName} {item.lastName}</>), // Custom renderer for mobile view only
+    header: false, // Won't show inline header in mobile view
     width: '100%', // Applies a specific width
-    enlarge: true,   // Increase text size compared to rest of cells
-    truncateText: false, // Only works if a 'render()' is also provided
+    enlarge: true, // Increase text size compared to rest of cells
+    truncateText: false, // Text will wrap instead of truncating to one line
   }
 }`;
 
@@ -48,22 +49,21 @@ export const section = {
         columns), you may set{' '}
         <EuiCode language="js">{'responsiveBreakpoint={false}'}</EuiCode>.
         Inversely, if you always want your table to render in a mobile-friendly
-        manner, pass <EuiCode>true</EuiCode>.
+        manner, pass <EuiCode>true</EuiCode>. The below example table switches
+        between <EuiCode>true/false</EuiCode> for quick/easy preview between
+        mobile and desktop table UIs at all breakpoints.
       </p>
       <p>
-        The <EuiCode>mobileOptions</EuiCode> object can be passed to the{' '}
-        <strong>EuiTableRowCell</strong> directly or with each column item
-        provided to <strong>EuiBasicTable</strong>.
-      </p>
-      <EuiCodeBlock language="js">{exampleItem}</EuiCodeBlock>
-      <p>
-        <strong>Note:</strong> You can also change basic table row cell props
-        like <EuiCode>truncateText</EuiCode> and <EuiCode>textOnly</EuiCode> for
-        mobile layouts, though you must also be passing a mobile specific render
-        function.
+        To customize your cell's appearance/rendering in mobile vs. desktop
+        view, use the <EuiCode>mobileOptions</EuiCode> configuration. This
+        object can be passed to each column item in{' '}
+        <strong>EuiBasicTable</strong> or to <strong>EuiTableRowCell</strong>{' '}
+        directly. See the "Snippet" tab in the below example, or the "Props" tab
+        for a full list of configuration options.
       </p>
     </>
   ),
   props: { EuiTableRowCellMobileOptionsShape },
+  snippet: exampleColumnSnippet,
   demo: <Table />,
 };

@@ -113,10 +113,10 @@ export default class extends Component<{}, State> {
     {
       id: 2,
       title: (
-        <span>
+        <>
           A very long line in an ELEMENT which will wrap on narrower screens and
           NOT become truncated and replaced by an ellipsis
-        </span>
+        </>
       ),
       type: 'user',
       dateCreated: 'Tue Dec 01 2016',
@@ -127,11 +127,11 @@ export default class extends Component<{}, State> {
       id: 3,
       title: {
         value: (
-          <span>
+          <>
             A very long line in an ELEMENT which will not wrap on narrower
             screens and instead will become truncated and replaced by an
             ellipsis
-          </span>
+          </>
         ),
         truncateText: true,
       },
@@ -290,14 +290,14 @@ export default class extends Component<{}, State> {
         width: '100%',
       },
       render: (title: DataItem['title'], item: DataItem) => (
-        <span>
+        <>
           <EuiIcon
             type={item.type}
             size="m"
             style={{ verticalAlign: 'text-top' }}
           />{' '}
           {title as ReactNode}
-        </span>
+        </>
       ),
     },
     {

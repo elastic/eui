@@ -33,7 +33,7 @@ export interface EuiTableFooterProps<T> {
 }
 export interface EuiTableFieldDataColumnType<T>
   extends CommonProps,
-    TdHTMLAttributes<HTMLTableDataCellElement> {
+    Omit<TdHTMLAttributes<HTMLTableCellElement>, 'width' | 'align'> {
   /**
    * A field of the item (may be a nested field)
    */
@@ -60,16 +60,22 @@ export interface EuiTableFieldDataColumnType<T>
    * Defines whether the user can sort on this column. If a function is provided, this function returns the value to sort against
    */
   sortable?: boolean | ((item: T) => Primitive);
-  isExpander?: boolean;
+  /**
+   * Disables the user's ability to change the sort, but will still
+   * show the current sort direction in the column header
+   */
+  readOnly?: boolean;
+  /**
+   * Defines the horizontal alignment of the column
+   * @default left
+   */
+  align?: HorizontalAlignment;
   /**
    * Creates a text wrapper around cell content that helps word break or truncate
    * long text correctly.
+   * @default true
    */
   textOnly?: boolean;
-  /**
-   * Defines the horizontal alignment of the column
-   */
-  align?: HorizontalAlignment;
   /**
    * Indicates whether this column should truncate overflowing text content.
    * - Set to `true` to enable single-line truncation.
@@ -77,6 +83,10 @@ export interface EuiTableFieldDataColumnType<T>
    * set to a number of lines to truncate to.
    */
   truncateText?: EuiTableRowCellProps['truncateText'];
+  /**
+   * Allows configuring custom render options or appearances for column cells
+   * when the table responsively collapses into a mobile-friendly view
+   */
   mobileOptions?: Omit<EuiTableRowCellMobileOptionsShape, 'render'> & {
     render?: (item: T) => ReactNode;
   };
@@ -92,50 +102,37 @@ export interface EuiTableFieldDataColumnType<T>
     | ReactElement
     | ((props: EuiTableFooterProps<T>) => ReactNode);
   /**
-   * Disables the user's ability to change the sort but still shows the current direction
+   * If passing `itemIdToExpandedRowMap` to your table, set this flag to `true`
+   * for the custom column or cell used to toggle the expanded row.
    */
-  readOnly?: boolean;
-}
-
-export interface EuiTableComputedColumnType<T>
-  extends CommonProps,
-    TdHTMLAttributes<HTMLTableDataCellElement> {
-  /**
-   * A function that computes the value for each item and renders it
-   */
-  render: (record: T) => ReactNode;
-  /**
-   * The display name of the column
-   */
-  name?: ReactNode;
-  /**
-   * A description of the column (will be presented as a title over the column header
-   */
-  description?: string;
-  /**
-   * If provided, allows this column to be sorted on. Must return the value to sort against.
-   */
-  sortable?: (item: T) => Primitive;
-  /**
-   * A CSS width property. Hints for the required width of the column
-   */
-  width?: string;
-  /**
-   * Indicates whether this column should truncate overflowing text content.
-   * - Set to `true` to enable single-line truncation.
-   * - To enable multi-line truncation, use a configuration object with `lines`
-   * set to a number of lines to truncate to.
-   */
-  truncateText?: EuiTableRowCellProps['truncateText'];
   isExpander?: boolean;
-  align?: HorizontalAlignment;
-  /**
-   * Disables the user's ability to change the sort but still shows the current direction
-   */
-  readOnly?: boolean;
 }
 
-export interface EuiTableActionsColumnType<T extends object> {
+export type EuiTableComputedColumnType<T> = CommonProps &
+  Omit<TdHTMLAttributes<HTMLTableCellElement>, 'width' | 'align'> & {
+    /**
+     * A function that computes the value for each item and renders it
+     */
+    render: (record: T) => ReactNode;
+    /**
+     * The display name of the column
+     */
+    name?: ReactNode;
+    /**
+     * If provided, allows this column to be sorted on. Must return the value to sort against.
+     */
+    sortable?: (item: T) => Primitive;
+  } & Pick<
+    EuiTableFieldDataColumnType<T>,
+    | 'readOnly'
+    | 'description'
+    | 'width'
+    | 'align'
+    | 'truncateText'
+    | 'isExpander'
+  >;
+
+export type EuiTableActionsColumnType<T extends object> = {
   /**
    * An array of one of the objects: #DefaultItemAction or #CustomItemAction
    */
@@ -144,15 +141,7 @@ export interface EuiTableActionsColumnType<T extends object> {
    * The display name of the column
    */
   name?: ReactNode;
-  /**
-   * A description of the column (will be presented as a title over the column header
-   */
-  description?: string;
-  /**
-   * A CSS width property. Hints for the required width of the column
-   */
-  width?: string;
-}
+} & Pick<EuiTableFieldDataColumnType<T>, 'description' | 'width'>;
 
 export interface EuiTableSortingType<T> {
   /**
