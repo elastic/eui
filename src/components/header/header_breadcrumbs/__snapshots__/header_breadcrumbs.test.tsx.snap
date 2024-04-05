@@ -14,7 +14,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-firstChild-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-firstChild-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -28,7 +28,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
         title="Reptiles"
         type="button"
       >
@@ -40,7 +40,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       data-test-subj="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-isInteractive"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor"

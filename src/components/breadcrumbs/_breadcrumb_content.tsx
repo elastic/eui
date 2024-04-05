@@ -49,11 +49,13 @@ export const EuiBreadcrumbContent: FunctionComponent<
   truncateLastBreadcrumb,
   ...rest
 }) => {
+  const isApplication = type === 'application';
+
   const classes = classNames('euiBreadcrumb__content', className);
 
   const styles = useEuiMemoizedStyles(euiBreadcrumbContentStyles);
   const cssStyles = [styles.euiBreadcrumb__content, styles[type]];
-  if (type === 'application') {
+  if (isApplication) {
     if (isOnlyBreadcrumb) {
       cssStyles.push(styles.applicationStyles.onlyChild);
     } else if (isFirstBreadcrumb) {
@@ -74,6 +76,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
 
   const interactionStyles =
     (isInteractiveBreadcrumb || isBreadcrumbWithPopover) &&
+    !isApplication &&
     styles.isInteractive;
 
   return (
