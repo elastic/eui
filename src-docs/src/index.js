@@ -65,9 +65,14 @@ root.render(
                   from,
                   to,
                 }) => {
+                  const isLocal = window.location.host.includes('803');
+                  const isStaging = window.location.pathname.startsWith('/pr_');
                   const meta = (
                     <Helmet>
                       <title>{`${name} - Elastic UI Framework`}</title>
+                      {(isLocal || isStaging) && (
+                        <meta name="robots" content="noindex,nofollow" />
+                      )}
                     </Helmet>
                   );
                   const mainComponent = (
