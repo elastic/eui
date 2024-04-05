@@ -100,13 +100,13 @@ const CellContents = ({
         <EuiIcon
           className="euiTableSortIcon"
           type={isSortAscending ? 'sortUp' : 'sortDown'}
-          size="m"
+          size="s"
         />
       ) : canSort ? (
         <EuiIcon
           className="euiTableSortIcon euiTableSortIcon--sortable"
           type="sortable"
-          size="m"
+          size="s"
           color="subdued" // Tinted a bit further via CSS
         />
       ) : null}
