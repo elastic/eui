@@ -24,8 +24,6 @@ dpkg -i /tmp/gitsign.deb
 npm_version_prerelease_prefix="next"
 git_remote_name="origin"
 git_branch="${BUILDKITE_BRANCH}"
-git_user_name="elasticmachine"
-git_user_email="eui-team+elasticmachine@elastic.co"
 
 # End configuration
 
@@ -33,7 +31,6 @@ if [[ -z "${git_branch}" ]]; then
   >&2 echo "BUILDKITE_BRANCH is not set. This usually means you're trying to execute this script from the outside of Buildkite pipeline which is unsupported."
   exit 1
 fi
-
 
 ##
 # Check release type (prerelease or regular release)
@@ -110,8 +107,10 @@ echo "+++ :git: Committing the version update"
 echo "Fetching OIDC token to sign the commit"
 SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
 
-git config --local user.name "${git_user_name}"
-git config --local user.email "${git_user_email}"
+github_user_vault="secret/ci/elastic-eui/github_machine_user"
+
+git config --local user.name "$(vault read -field=name "${github_user_vault}")"
+git config --local user.email "$(vault read -field=email "${github_user_vault}")"
 git config --local commit.gpgsign true
 git config --local tag.gpgsign true
 git config --local gpg.x509.program gitsign
