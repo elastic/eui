@@ -9,10 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-  hideStorybookControls,
-  moveStorybookControlsToCategory,
-} from '../../../../.storybook/utils';
+import { moveStorybookControlsToCategory } from '../../../../.storybook/utils';
 import { EuiButton } from '../../button';
 import { EuiPageHeader, EuiPageHeaderProps } from '../page_header';
 
@@ -27,6 +24,10 @@ const meta: Meta<EuiPageHeaderProps> = {
     pageTitleProps: { control: 'object' },
     breadcrumbProps: { control: 'object' },
     tabsProps: { control: 'object' },
+    restrictWidth: {
+      control: 'select',
+      options: [true, false, 500, 900, 1800, '25%', '50%', '75%'],
+    },
   },
   args: {
     // Component defaults
@@ -100,36 +101,3 @@ export const Playground: Story = {
     breadcrumbs,
   },
 };
-
-export const RestrictWidth: Story = {
-  args: {
-    pageTitle: 'Page title',
-    iconType: 'logoKibana',
-    description: 'Example of a description.',
-    bottomBorder: 'extended',
-    rightSideItems: [
-      <EuiButton fill>Add something</EuiButton>,
-      <EuiButton>Do something</EuiButton>,
-    ],
-    tabs,
-    breadcrumbs,
-    restrictWidth: 500,
-  },
-};
-// This story displays the restrictWidth functionality; removing other content props to prevent confusion
-hideStorybookControls(RestrictWidth, [
-  'pageTitle',
-  'pageTitleProps',
-  'iconType',
-  'iconProps',
-  'breadcrumbs',
-  'breadcrumbProps',
-  'tabs',
-  'tabsProps',
-  'description',
-  'responsive',
-  'alignItems',
-  'rightSideItems',
-  'rightSideGroupProps',
-  'children',
-]);

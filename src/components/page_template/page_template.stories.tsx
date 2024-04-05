@@ -13,12 +13,14 @@ import {
   hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
-import { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
-import { PAGE_DIRECTIONS } from './outer/page_outer';
 import { EuiButton } from '../button';
 import { EuiText } from '../text';
+import { EuiPageHeaderProps } from '../page/page_header';
+import { EuiPageSectionProps } from '../page/page_section';
+import { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
+import { PAGE_DIRECTIONS } from './outer/page_outer';
 
-const headerContent = (
+const headerContent = (props?: EuiPageHeaderProps) => (
   <EuiPageTemplate.Header
     iconType="logoElastic"
     pageTitle="Page title"
@@ -30,13 +32,14 @@ const headerContent = (
         label: 'Tab 2',
       },
     ]}
+    {...props}
   />
 );
-const sectionContent = (
-  <EuiPageTemplate.Section>Section content</EuiPageTemplate.Section>
+const sectionContent = (props?: EuiPageSectionProps) => (
+  <EuiPageTemplate.Section {...props}>Section content</EuiPageTemplate.Section>
 );
-const sidebarContent = (
-  <EuiPageTemplate.Sidebar>Sidebar content</EuiPageTemplate.Sidebar>
+const sidebarContent = (props?: Partial<EuiPageTemplateProps>) => (
+  <EuiPageTemplate.Sidebar {...props}>Sidebar content</EuiPageTemplate.Sidebar>
 );
 const bottomBarContent = (
   <EuiPageTemplate.BottomBar paddingSize="s">
@@ -62,8 +65,8 @@ const comboContent = (
         </strong>
       </EuiText>
     </EuiPageTemplate.Section>
-    {headerContent}
-    {sectionContent}
+    {headerContent()}
+    {sectionContent()}
     {bottomBarContent}
   </>
 );
@@ -83,6 +86,10 @@ const meta: Meta<EuiPageTemplateProps> = {
     },
     component: { control: 'text' },
     contentBorder: { control: 'radio', options: [undefined, true, false] },
+    restrictWidth: {
+      control: 'select',
+      options: [true, false, 500, 900, 1800, '25%', '50%', '75%'],
+    },
     children: {
       control: 'select',
       options: [
@@ -134,3 +141,52 @@ export const Playground: Story = {
   // using render() over args to ensure dynamic update on prop changes
   render: (args) => <EuiPageTemplate {...args}></EuiPageTemplate>,
 };
+
+export const WithSidebar: Story = {
+  render: (args) => (
+    <EuiPageTemplate {...args}>
+      {sidebarContent(args)}
+      {headerContent(args)}
+      <EuiPageTemplate.Section grow={false} bottomBorder>
+        <EuiText textAlign="center">
+          <strong>
+            Stack EuiPageTemplate sections and headers to create your custom
+            content order.
+          </strong>
+        </EuiText>
+      </EuiPageTemplate.Section>
+      {sectionContent(args)}
+      {bottomBarContent}
+    </EuiPageTemplate>
+  ),
+};
+hideStorybookControls<EuiPageTemplateProps>(WithSidebar, [
+  'children',
+  'direction',
+  'grow',
+  'minHeight',
+  'responsive',
+  'component',
+  'contentBorder',
+  'mainProps',
+]);
+
+export const WithEmptyPrompt: Story = {
+  render: (args) => (
+    <EuiPageTemplate {...args}>
+      {sidebarContent(args)}
+      {headerContent(args)}
+      {emptyPromptContent}
+    </EuiPageTemplate>
+  ),
+};
+hideStorybookControls<EuiPageTemplateProps>(WithEmptyPrompt, [
+  'children',
+  'direction',
+  'grow',
+  'minHeight',
+  'responsive',
+  'component',
+  'contentBorder',
+  'mainProps',
+]);
