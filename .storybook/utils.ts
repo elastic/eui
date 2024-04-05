@@ -114,7 +114,7 @@ export const enableFunctionToggleControls = <Props>(
   config.args = propNames.reduce(
     (acc, propName) => ({
       ...acc,
-      [propName]: false,
+      [propName]: true,
     }),
     config.args
   );

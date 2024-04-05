@@ -207,7 +207,7 @@ describe('enableFunctionToggleControls', () => {
     expect(enableFunctionToggleControls({ argTypes: {} }, ['onClick'])).toEqual(
       {
         args: {
-          onClick: false,
+          onClick: true,
         },
         argTypes: {
           onClick: {
@@ -236,7 +236,7 @@ describe('enableFunctionToggleControls', () => {
     ).toEqual({
       args: {
         hello: true,
-        onHello: false,
+        onHello: true,
       },
       argTypes: {
         isDisabled: { control: { type: 'boolean' } },
