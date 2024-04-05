@@ -121,8 +121,21 @@ git add package.json
 git commit -m "release: @elastic/eui ${new_version} [skip-ci]"
 
 echo "Pushing commit to ${git_branch}"
-# This will be rejected by remote if there are any new commits
-git push "${git_remote_name}" HEAD:"${git_branch}"
+
+# git push will be rejected by remote if there are any new commits or other
+# changes made to the branch between the start of this build and now.
+if ! git push "${git_remote_name}" HEAD:"${git_branch}"; then
+  # fetch remote objects and refs without changing the local state
+  git fetch upstream
+
+  latest_commit_on_branch=$(git rev-parse "${git_remote_name}/${git_branch}")
+  latest_commit_on_branch_subject=$(git rev-list --max-count=1 --no-commit-header --format=%s "${latest_commit_on_branch}")
+  expected_commit_on_branch_subject=$(git rev-list --max-count=1 --no-commit-header --format=%s "${BUILDKITE_COMMIT}")
+
+  >&2 echo "Git push failed. This usually means the remote branch (${git_branch}) has changed since this build started."
+  >&2 echo "This script expected commit ${BUILDKITE_COMMIT} (${expected_commit_on_branch_subject}) to be the HEAD of branch ${git_branch} but instead it's ${latest_commit_on_branch} (${latest_commit_on_branch_subject})"
+  exit 3
+fi
 
 if [[ "${release_type}" == "release" ]]; then
   echo "Creating and pushing release tag ${new_version}"
@@ -136,4 +149,3 @@ fi
 ##
 
 echo "+++ :white_check_mark: Version successfully updated"
-
