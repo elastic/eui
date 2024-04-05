@@ -92,7 +92,15 @@ describe('EuiTableHeaderCell', () => {
   });
 
   describe('sorting', () => {
-    it('is rendered with isSorted', () => {
+    it('renders with a sortable icon if `onSort` is passed', () => {
+      const { container } = renderInTableHeader(
+        <EuiTableHeaderCell onSort={() => {}}>Test</EuiTableHeaderCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders a sort arrow with isSorted', () => {
       const { container } = renderInTableHeader(
         <EuiTableHeaderCell isSorted>Test</EuiTableHeaderCell>
       );
@@ -100,7 +108,7 @@ describe('EuiTableHeaderCell', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    it('is rendered with isSortAscending', () => {
+    it('renders a sort arrow upwards isSortAscending', () => {
       const { container } = renderInTableHeader(
         <EuiTableHeaderCell isSorted isSortAscending>
           Test

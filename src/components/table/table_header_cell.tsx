@@ -53,17 +53,17 @@ const CellContents = ({
   align,
   description,
   children,
+  canSort,
   isSorted,
   isSortAscending,
-  showSortMsg,
 }: {
   className?: string;
   align: HorizontalAlignment;
   description: EuiTableHeaderCellProps['description'];
   children: EuiTableHeaderCellProps['children'];
+  canSort?: boolean;
   isSorted: EuiTableHeaderCellProps['isSorted'];
   isSortAscending?: EuiTableHeaderCellProps['isSortAscending'];
-  showSortMsg: boolean;
 }) => {
   return (
     <EuiTableCellContent
@@ -96,13 +96,20 @@ const CellContents = ({
           <span>{description}</span>
         </EuiScreenReaderOnly>
       )}
-      {showSortMsg && isSorted && (
+      {isSorted ? (
         <EuiIcon
           className="euiTableSortIcon"
           type={isSortAscending ? 'sortUp' : 'sortDown'}
           size="m"
         />
-      )}
+      ) : canSort ? (
+        <EuiIcon
+          className="euiTableSortIcon"
+          type="sortable"
+          size="m"
+          color="subdued"
+        />
+      ) : null}
     </EuiTableCellContent>
   );
 };
@@ -140,7 +147,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       css={styles.euiTableHeaderCell__content}
       align={align}
       description={description}
-      showSortMsg={true}
+      canSort={onSort && !readOnly}
       isSorted={isSorted}
       isSortAscending={isSortAscending}
     >

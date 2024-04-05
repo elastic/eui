@@ -115,7 +115,44 @@ exports[`EuiTableHeaderCell sorting does not render a button with readOnly 1`] =
 </table>
 `;
 
-exports[`EuiTableHeaderCell sorting is rendered with isSortAscending 1`] = `
+exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-live="polite"
+        aria-sort="descending"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+      >
+        <button
+          class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
+          data-test-subj="tableHeaderSortButton"
+          type="button"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+          >
+            <span
+              class="eui-textTruncate"
+              title="Test"
+            >
+              Test
+            </span>
+            <span
+              class="euiTableSortIcon"
+              data-euiicon-type="sortDown"
+            />
+          </div>
+        </button>
+      </th>
+    </tr>
+  </thead>
+</table>
+`;
+
+exports[`EuiTableHeaderCell sorting renders a sort arrow upwards isSortAscending 1`] = `
 <table>
   <thead>
     <tr>
@@ -146,7 +183,7 @@ exports[`EuiTableHeaderCell sorting is rendered with isSortAscending 1`] = `
 </table>
 `;
 
-exports[`EuiTableHeaderCell sorting is rendered with isSorted 1`] = `
+exports[`EuiTableHeaderCell sorting renders a sort arrow with isSorted 1`] = `
 <table>
   <thead>
     <tr>
@@ -177,19 +214,19 @@ exports[`EuiTableHeaderCell sorting is rendered with isSorted 1`] = `
 </table>
 `;
 
-exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
+exports[`EuiTableHeaderCell sorting renders with a sortable icon if \`onSort\` is passed 1`] = `
 <table>
   <thead>
     <tr>
       <th
         aria-live="polite"
-        aria-sort="descending"
+        aria-sort="none"
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
         <button
-          class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
+          class="euiTableHeaderButton emotion-euiTableHeaderCell__button"
           data-test-subj="tableHeaderSortButton"
           type="button"
         >
@@ -204,7 +241,8 @@ exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
             </span>
             <span
               class="euiTableSortIcon"
-              data-euiicon-type="sortDown"
+              color="subdued"
+              data-euiicon-type="sortable"
             />
           </div>
         </button>
