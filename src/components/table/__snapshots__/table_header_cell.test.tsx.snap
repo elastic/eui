@@ -89,7 +89,6 @@ exports[`EuiTableHeaderCell sorting does not render a button with readOnly 1`] =
   <thead>
     <tr>
       <th
-        aria-live="polite"
         aria-sort="descending"
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
@@ -120,7 +119,6 @@ exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
   <thead>
     <tr>
       <th
-        aria-live="polite"
         aria-sort="descending"
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
@@ -157,7 +155,6 @@ exports[`EuiTableHeaderCell sorting renders a sort arrow upwards isSortAscending
   <thead>
     <tr>
       <th
-        aria-live="polite"
         aria-sort="ascending"
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
@@ -188,7 +185,6 @@ exports[`EuiTableHeaderCell sorting renders a sort arrow with isSorted 1`] = `
   <thead>
     <tr>
       <th
-        aria-live="polite"
         aria-sort="descending"
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
@@ -219,7 +215,6 @@ exports[`EuiTableHeaderCell sorting renders with a sortable icon if \`onSort\` i
   <thead>
     <tr>
       <th
-        aria-live="polite"
         aria-sort="none"
         class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"

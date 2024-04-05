@@ -142,56 +142,23 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
 
-  const cellContents = (
-    <CellContents
-      css={styles.euiTableHeaderCell__content}
-      align={align}
-      description={description}
-      canSort={onSort && !readOnly}
-      isSorted={isSorted}
-      isSortAscending={isSortAscending}
-    >
-      {children}
-    </CellContents>
-  );
-
-  if (onSort || isSorted) {
-    const buttonClasses = classNames('euiTableHeaderButton', {
-      'euiTableHeaderButton-isSorted': isSorted,
-    });
-
-    let ariaSortValue: HTMLAttributes<any>['aria-sort'] = 'none';
-    if (isSorted) {
-      ariaSortValue = isSortAscending ? 'ascending' : 'descending';
-    }
-
-    return (
-      <CellComponent
-        css={styles.euiTableHeaderCell}
-        className={classes}
-        scope={cellScope}
-        role="columnheader"
-        aria-sort={ariaSortValue}
-        aria-live="polite"
-        style={inlineStyles}
-        {...rest}
-      >
-        {onSort && !readOnly ? (
-          <button
-            type="button"
-            css={styles.euiTableHeaderCell__button}
-            className={buttonClasses}
-            onClick={onSort}
-            data-test-subj="tableHeaderSortButton"
-          >
-            {cellContents}
-          </button>
-        ) : (
-          cellContents
-        )}
-      </CellComponent>
-    );
+  const canSort = !!(onSort && !readOnly);
+  let ariaSortValue: HTMLAttributes<HTMLTableCellElement>['aria-sort'];
+  if (isSorted) {
+    ariaSortValue = isSortAscending ? 'ascending' : 'descending';
+  } else if (canSort) {
+    ariaSortValue = 'none';
   }
+
+  const cellContentsProps = {
+    css: styles.euiTableHeaderCell__content,
+    align,
+    description,
+    canSort,
+    isSorted,
+    isSortAscending,
+    children,
+  };
 
   return (
     <CellComponent
@@ -199,10 +166,26 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       className={classes}
       scope={cellScope}
       role="columnheader"
+      aria-sort={ariaSortValue}
+      // aria-live="polite" TODO: this doesn't seem to do anything - ask Trevor
       style={inlineStyles}
       {...rest}
     >
-      {cellContents}
+      {canSort ? (
+        <button
+          type="button"
+          css={styles.euiTableHeaderCell__button}
+          className={classNames('euiTableHeaderButton', {
+            'euiTableHeaderButton-isSorted': isSorted,
+          })}
+          onClick={onSort}
+          data-test-subj="tableHeaderSortButton"
+        >
+          <CellContents {...cellContentsProps} />
+        </button>
+      ) : (
+        <CellContents {...cellContentsProps} />
+      )}
     </CellComponent>
   );
 };
