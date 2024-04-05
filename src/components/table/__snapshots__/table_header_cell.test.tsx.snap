@@ -240,7 +240,7 @@ exports[`EuiTableHeaderCell sorting renders with a sortable icon if \`onSort\` i
               Test
             </span>
             <span
-              class="euiTableSortIcon"
+              class="euiTableSortIcon euiTableSortIcon--sortable"
               color="subdued"
               data-euiicon-type="sortable"
             />

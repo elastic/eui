@@ -104,10 +104,10 @@ const CellContents = ({
         />
       ) : canSort ? (
         <EuiIcon
-          className="euiTableSortIcon"
+          className="euiTableSortIcon euiTableSortIcon--sortable"
           type="sortable"
           size="m"
-          color="subdued"
+          color="subdued" // Tinted a bit further via CSS
         />
       ) : null}
     </EuiTableCellContent>

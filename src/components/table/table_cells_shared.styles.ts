@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import {
+  UseEuiTheme,
+  makeHighContrastColor,
+  tintOrShade,
+} from '../../services';
 import {
   euiFontSize,
   logicalCSS,
@@ -20,7 +24,7 @@ import { euiTableVariables } from './table.styles';
 export const euiTableHeaderFooterCellStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   // euiFontSize returns an object, so we keep object notation here to merge into css``
   const sharedStyles = {
@@ -42,10 +46,23 @@ export const euiTableHeaderFooterCellStyles = (
       ${logicalCSS('width', '100%')}
       font-weight: inherit;
 
+      /* Tint the sortable icon a bit further */
+      .euiTableSortIcon--sortable {
+        color: ${makeHighContrastColor(
+          // Tint it arbitrarily high, the contrast util will take care of lowering back down to WCAG
+          tintOrShade(euiTheme.colors.subduedText, 0.9, colorMode),
+          3 // 3:1 ratio from https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
+        )(euiTheme.colors.emptyShade)};
+      }
+
       &:hover,
       &:focus {
         color: ${euiTheme.colors.primaryText};
         text-decoration: underline;
+
+        .euiTableSortIcon--sortable {
+          color: ${euiTheme.colors.primaryText};
+        }
       }
     `,
     euiTableFooterCell: css`
