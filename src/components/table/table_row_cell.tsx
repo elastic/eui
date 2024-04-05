@@ -174,6 +174,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   };
 
   if (isResponsive) {
+    // Mobile view
     if (mobileOptions?.show === false) {
       return null;
     } else {
@@ -199,6 +200,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       );
     }
   } else {
+    // Desktop view
     if (mobileOptions?.only) {
       return null;
     } else {
