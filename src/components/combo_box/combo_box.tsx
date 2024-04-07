@@ -331,11 +331,9 @@ export class EuiComboBox<T> extends Component<
       singleSelection,
     } = this.props;
 
-    const { matchingOptions } = this.state;
-
-    if (this.doesSearchMatchOnlyOption()) {
-      this.onAddOption(matchingOptions[0], isContainerBlur);
-      return;
+    const matchedOption = this.doesSearchMatchOnlyOption();
+    if (matchedOption) {
+      return this.onAddOption(matchedOption, isContainerBlur);
     }
 
     if (!onCreateOption) {
@@ -378,19 +376,28 @@ export class EuiComboBox<T> extends Component<
   };
 
   doesSearchMatchOnlyOption = () => {
-    const { searchValue } = this.state;
-    if (this.state.matchingOptions.length !== 1) {
-      return false;
-    }
+    const { isCaseSensitive } = this.props;
+    const { matchingOptions, searchValue } = this.state;
+    if (!matchingOptions.length) return;
+
+    const isMatchWithGroup = matchingOptions[0].isGroupLabelOption;
+    const isOnlyOption = matchingOptions.length === (isMatchWithGroup ? 2 : 1);
+    if (!isOnlyOption) return;
+
+    const matchedOption = matchingOptions[isMatchWithGroup ? 1 : 0];
+
     const normalizedSearchSubject = transformForCaseSensitivity(
-      this.state.matchingOptions[0].label,
-      this.props.isCaseSensitive
+      matchedOption.label,
+      isCaseSensitive
     );
     const normalizedSearchValue = transformForCaseSensitivity(
       searchValue,
-      this.props.isCaseSensitive
+      isCaseSensitive
     );
-    return normalizedSearchSubject === normalizedSearchValue;
+
+    if (normalizedSearchSubject === normalizedSearchValue) {
+      return matchedOption;
+    }
   };
 
   areAllOptionsSelected = () => {

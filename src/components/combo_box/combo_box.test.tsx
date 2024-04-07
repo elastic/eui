@@ -377,40 +377,73 @@ describe('EuiComboBox', () => {
 
   describe('behavior', () => {
     describe('hitting "Enter"', () => {
-      it('calls the onCreateOption callback when there is input', () => {
-        const onCreateOptionHandler = jest.fn();
+      describe('when the search input matches a value', () => {
+        it('selects the option', () => {
+          const onChange = jest.fn();
+          const { getByTestSubject } = render(
+            <EuiComboBox options={[{ label: 'Red' }]} onChange={onChange} />
+          );
 
-        const { getByTestSubject } = render(
-          <EuiComboBox
-            options={options}
-            selectedOptions={[options[2]]}
-            onCreateOption={onCreateOptionHandler}
-          />
-        );
-        const input = getByTestSubject('comboBoxSearchInput');
+          const input = getByTestSubject('comboBoxSearchInput');
+          fireEvent.change(input, { target: { value: 'red' } });
+          fireEvent.keyDown(input, { key: 'Enter' });
 
-        fireEvent.change(input, { target: { value: 'foo' } });
-        fireEvent.keyDown(input, { key: 'Enter' });
+          expect(onChange).toHaveBeenCalledWith([{ label: 'Red' }]);
+        });
 
-        expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
-        expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
+        it('accounts for group labels', () => {
+          const onChange = jest.fn();
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={[{ label: 'Group', options: [{ label: 'Blue' }] }]}
+              onChange={onChange}
+            />
+          );
+
+          const input = getByTestSubject('comboBoxSearchInput');
+          fireEvent.change(input, { target: { value: 'blue' } });
+          fireEvent.keyDown(input, { key: 'Enter' });
+
+          expect(onChange).toHaveBeenCalledWith([{ label: 'Blue' }]);
+        });
       });
 
-      it('does not call onCreateOption when there is no input', () => {
-        const onCreateOptionHandler = jest.fn();
+      describe('when `onCreateOption` is passed', () => {
+        it('fires the callback when there is input', () => {
+          const onCreateOptionHandler = jest.fn();
 
-        const { getByTestSubject } = render(
-          <EuiComboBox
-            options={options}
-            selectedOptions={[options[2]]}
-            onCreateOption={onCreateOptionHandler}
-          />
-        );
-        const input = getByTestSubject('comboBoxSearchInput');
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[2]]}
+              onCreateOption={onCreateOptionHandler}
+            />
+          );
+          const input = getByTestSubject('comboBoxSearchInput');
 
-        fireEvent.keyDown(input, { key: 'Enter' });
+          fireEvent.change(input, { target: { value: 'foo' } });
+          fireEvent.keyDown(input, { key: 'Enter' });
 
-        expect(onCreateOptionHandler).not.toHaveBeenCalled();
+          expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
+          expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
+        });
+
+        it('does not fire the callback when there is no input', () => {
+          const onCreateOptionHandler = jest.fn();
+
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[2]]}
+              onCreateOption={onCreateOptionHandler}
+            />
+          );
+          const input = getByTestSubject('comboBoxSearchInput');
+
+          fireEvent.keyDown(input, { key: 'Enter' });
+
+          expect(onCreateOptionHandler).not.toHaveBeenCalled();
+        });
       });
     });
 
