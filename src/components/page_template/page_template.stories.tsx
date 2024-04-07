@@ -13,49 +13,28 @@ import {
   hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
+import { EuiSkeletonText } from '../skeleton';
 import { EuiButton } from '../button';
 import { EuiText } from '../text';
-import { EuiPageHeaderProps } from '../page/page_header';
-import { EuiPageSectionProps } from '../page/page_section';
+
 import { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
 import { PAGE_DIRECTIONS } from './outer/page_outer';
 
-const headerContent = (props?: EuiPageHeaderProps) => (
+const headerContent = (
   <EuiPageTemplate.Header
     iconType="logoElastic"
     pageTitle="Page title"
     rightSideItems={[<EuiButton>Button</EuiButton>]}
-    description="header description"
-    tabs={[
-      { label: 'Tab 1', isSelected: true },
-      {
-        label: 'Tab 2',
-      },
-    ]}
-    {...props}
+    description={
+      <EuiSkeletonText
+        lines={1}
+        contentAriaLabel="Page header example description"
+      />
+    }
+    tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
   />
 );
-const sectionContent = (props?: EuiPageSectionProps) => (
-  <EuiPageTemplate.Section {...props}>Section content</EuiPageTemplate.Section>
-);
-const sidebarContent = (props?: Partial<EuiPageTemplateProps>) => (
-  <EuiPageTemplate.Sidebar {...props}>Sidebar content</EuiPageTemplate.Sidebar>
-);
-const bottomBarContent = (
-  <EuiPageTemplate.BottomBar paddingSize="s">
-    BottomBar content
-  </EuiPageTemplate.BottomBar>
-);
-const emptyPromptContent = (
-  <EuiPageTemplate.EmptyPrompt
-    title={<span>Empty prompt!</span>}
-    footer={<EuiButton>Button</EuiButton>}
-  >
-    EmptyPromp content
-  </EuiPageTemplate.EmptyPrompt>
-);
-
-const comboContent = (
+const sectionContent = (
   <>
     <EuiPageTemplate.Section grow={false}>
       <EuiText textAlign="center">
@@ -65,10 +44,31 @@ const comboContent = (
         </strong>
       </EuiText>
     </EuiPageTemplate.Section>
-    {headerContent()}
-    {sectionContent()}
-    {bottomBarContent}
+    <EuiPageTemplate.Section>
+      <EuiSkeletonText
+        lines={10}
+        contentAriaLabel="Page section example text"
+      />
+    </EuiPageTemplate.Section>
   </>
+);
+const sidebarContent = (
+  <EuiPageTemplate.Sidebar>
+    <EuiSkeletonText lines={10} contentAriaLabel="Page sidebar example text" />
+  </EuiPageTemplate.Sidebar>
+);
+const bottomBarContent = (
+  <EuiPageTemplate.BottomBar paddingSize="s">
+    <EuiSkeletonText lines={1} contentAriaLabel="Bottom bar example text" />
+  </EuiPageTemplate.BottomBar>
+);
+const emptyPromptContent = (
+  <EuiPageTemplate.EmptyPrompt
+    title={<span>Empty prompt!</span>}
+    footer={<EuiButton>Button</EuiButton>}
+  >
+    <EuiSkeletonText lines={3} contentAriaLabel="Empty prompt example text" />
+  </EuiPageTemplate.EmptyPrompt>
 );
 
 const meta: Meta<EuiPageTemplateProps> = {
@@ -89,29 +89,6 @@ const meta: Meta<EuiPageTemplateProps> = {
     },
     component: { control: 'text' },
     contentBorder: { control: 'radio', options: [undefined, true, false] },
-    restrictWidth: {
-      control: 'select',
-      options: [true, false, 500, 900, 1800, '25%', '50%', '75%'],
-    },
-    children: {
-      control: 'select',
-      options: [
-        'Combo',
-        'Header',
-        'Section',
-        'Sidebar',
-        'BottomBar',
-        'EmptyPrompt',
-      ],
-      mapping: {
-        Combo: comboContent,
-        Header: headerContent,
-        Section: sectionContent,
-        Sidebar: sidebarContent,
-        BottomBar: bottomBarContent,
-        EmptyPrompt: emptyPromptContent,
-      },
-    },
   },
   args: {
     minHeight: '460px',
@@ -139,57 +116,44 @@ type Story = StoryObj<EuiPageTemplateProps>;
 
 export const Playground: Story = {
   args: {
-    children: 'Combo',
+    children: 'With everything',
+  },
+  argTypes: {
+    restrictWidth: {
+      control: 'select',
+      options: [true, false, 500, 900, 1800, '25%', '50%', '75%'],
+    },
+    children: {
+      control: 'select',
+      description:
+        'For quicker testing, use the selection control to the right to select several examples of common EuiPageTemplate layouts',
+      options: [
+        'With everything',
+        'Without sidebar',
+        'Without header',
+        'Without bottom bar',
+        'With empty prompt content',
+      ],
+      mapping: {
+        'With everything': [
+          sidebarContent,
+          headerContent,
+          sectionContent,
+          bottomBarContent,
+        ],
+        'Without sidebar': [headerContent, sectionContent, bottomBarContent],
+        'Without header': [sidebarContent, sectionContent, bottomBarContent],
+        'Without bottom bar': [sidebarContent, headerContent, sectionContent],
+        'With empty prompt content': [
+          sidebarContent,
+          headerContent,
+          emptyPromptContent,
+          bottomBarContent,
+        ],
+      },
+    },
   },
   // using render() over args to ensure dynamic update on prop changes
-  render: (args) => <EuiPageTemplate {...args}></EuiPageTemplate>,
+  // Cee TODO: This doesn't appear to work for the `paddingSize` and `bottomBorder` props
+  // render: ({ ...args }) => <EuiPageTemplate {...args} />,
 };
-
-export const WithSidebar: Story = {
-  render: (args) => (
-    <EuiPageTemplate {...args}>
-      {sidebarContent(args)}
-      {headerContent(args)}
-      <EuiPageTemplate.Section grow={false} bottomBorder>
-        <EuiText textAlign="center">
-          <strong>
-            Stack EuiPageTemplate sections and headers to create your custom
-            content order.
-          </strong>
-        </EuiText>
-      </EuiPageTemplate.Section>
-      {sectionContent(args)}
-      {bottomBarContent}
-    </EuiPageTemplate>
-  ),
-};
-hideStorybookControls<EuiPageTemplateProps>(WithSidebar, [
-  'children',
-  'direction',
-  'grow',
-  'minHeight',
-  'responsive',
-  'component',
-  'contentBorder',
-  'mainProps',
-]);
-
-export const WithEmptyPrompt: Story = {
-  render: (args) => (
-    <EuiPageTemplate {...args}>
-      {sidebarContent(args)}
-      {headerContent(args)}
-      {emptyPromptContent}
-    </EuiPageTemplate>
-  ),
-};
-hideStorybookControls<EuiPageTemplateProps>(WithEmptyPrompt, [
-  'children',
-  'direction',
-  'grow',
-  'minHeight',
-  'responsive',
-  'component',
-  'contentBorder',
-  'mainProps',
-]);
