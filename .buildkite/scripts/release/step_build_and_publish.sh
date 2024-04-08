@@ -3,13 +3,17 @@
 
 set -eo pipefail
 
-echo "+++ :npm: Building @elastic/eui"
-
-echo "Installing dependencies"
+echo "+++ :yarn: Installing dependencies"
 yarn
 
-echo "Building @elastic/eui"
+echo ":yarn: Building @elastic/eui"
 yarn build
+
+echo "+++ :npm: Authenticating to npm"
+
+npm_vault="secret/ci/elastic-eui/npm"
+NPM_TOKEN=$(retry 5 vault read -field=token "${npm_vault}")
+npm config set "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
 
 echo "+++ :npm: Publishing @elastic/eui"
 
