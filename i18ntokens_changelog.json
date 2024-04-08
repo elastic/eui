@@ -1,5 +1,23 @@
 [
   {
+    "version": "93.6.0",
+    "changes": [
+      {
+        "token": "euiFlyout.closeAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiLoadingChart.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFlyoutCloseButton.ariaLabel",
+        "changeType": "added",
+        "value": "Close this dialog"
+      }
+    ]
+  },
+  {
     "version": "93.5.0",
     "changes": [
       {
