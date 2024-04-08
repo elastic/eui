@@ -3,6 +3,9 @@
 
 set -eo pipefail
 
+# include utils
+source .buildkite/scripts/common/utils.sh
+
 echo "+++ :yarn: Installing dependencies"
 yarn
 
