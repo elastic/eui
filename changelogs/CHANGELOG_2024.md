@@ -1,3 +1,23 @@
+## [`v93.6.0`](https://github.com/elastic/eui/releases/v93.6.0)
+
+- Updated `EuiBreadcrumb` styles to improve visual distinction of clickable breadcrumbs ([#7615](https://github.com/elastic/eui/pull/7615))
+
+**Deprecations**
+
+- Deprecated `color` prop on `EuiBreadcrumb` ([#7615](https://github.com/elastic/eui/pull/7615))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` to correctly select full matches within groups via the `Enter` key ([#7658](https://github.com/elastic/eui/pull/7658))
+
+**Accessibility**
+
+- Updated `EuiHeaderBreadcrumb` styles to ensure min. required color contrast ([#7643](https://github.com/elastic/eui/pull/7643))
+- `EuiSuperSelect` now correctly reads out parent `EuiFormRow` labels to screen readers ([#7650](https://github.com/elastic/eui/pull/7650))
+- `EuiSuperSelect` now more closely mimics native `<select>` behavior in its keyboard behavior and navigation ([#7650](https://github.com/elastic/eui/pull/7650))
+- `EuiSuperSelect` no longer strands keyboard focus on close ([#7650](https://github.com/elastic/eui/pull/7650))
+- `EuiSuperSelect` now correctly allows keyboard navigating past disabled options in the middle of the options list ([#7650](https://github.com/elastic/eui/pull/7650))
+
 ## [`v93.5.2`](https://github.com/elastic/eui/releases/v93.5.2)
 
 **Dependency updates**
