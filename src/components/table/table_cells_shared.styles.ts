@@ -45,6 +45,7 @@ export const euiTableHeaderFooterCellStyles = (
     euiTableHeaderCell__button: css`
       ${logicalCSS('width', '100%')}
       font-weight: inherit;
+      line-height: inherit;
 
       /* Tint the sortable icon a bit further */
       .euiTableSortIcon--sortable {
