@@ -9,14 +9,6 @@ set -eo pipefail
 
 # TODO: Support releasing non-HEAD commits when FORCE_SKIP_GIT_UPDATES=true
 
-##
-# Install gitsign
-# TODO: Move to agent image
-##
-
-wget https://github.com/sigstore/gitsign/releases/download/v0.10.1/gitsign_0.10.1_linux_amd64.deb -O /tmp/gitsign.deb
-dpkg -i /tmp/gitsign.deb
-
 # Begin configuration
 
 npm_version_prerelease_prefix="next"
@@ -59,6 +51,7 @@ echo "npm version prerelease prefix: ${npm_version_prerelease_prefix}"
 echo "git branch: ${git_branch}"
 echo "git push flags: ${git_push_flags}"
 echo "git remote URL: $(git remote get-url "${git_remote_name}")"
+echo "node version: $(node -v)"
 
 ##
 # Update package.json version string

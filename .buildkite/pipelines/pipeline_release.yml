@@ -100,6 +100,7 @@ steps:
     key: 'update-package-version'
     command: '.buildkite/scripts/release/step_update_version.sh'
     agents:
+      image: 'docker.elastic.co/ci-agent-images/eui/basic-buildkite-agent:latest'
       provider: k8s
       ephemeralStorage: '10G'
       cpu: '1000m'
