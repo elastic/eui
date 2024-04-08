@@ -100,10 +100,7 @@ steps:
     key: 'update-package-version'
     command: '.buildkite/scripts/release/step_update_version.sh'
     agents:
-      provider: k8s
-      ephemeralStorage: '10G'
-      cpu: '1000m'
-      memory: '1G'
+      preemptible: false
     if: build.branch != "main"
 #  - label: ':docker: Build agent image'
 #    key: 'build-agent-image'
