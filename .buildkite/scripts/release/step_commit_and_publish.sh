@@ -45,7 +45,7 @@ echo "Version ${npm_version} hasn't been published to npm yet"
 
 echo "+++ :git: Adding and committing package.json"
 git add package.json
-git commit -m "release: @elastic/eui v${npm_version} [skip-ci]"
+git commit -m "release: @elastic/eui v${npm_version} [skip-ci]" --no-verify
 
 echo "+++ :git: Pushing commit to ${git_branch}"
 
