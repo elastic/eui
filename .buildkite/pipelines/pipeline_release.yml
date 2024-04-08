@@ -1,7 +1,109 @@
+agents:
+  provider: gcp
+  machineType: 'n2-standard-2'
+  preemptible: true
+
 steps:
-  - command: "echo 'This pipeline is currently a no-op'"
-    label: ':shrug: noop'
+  - group: ':hammer: Unit and static tests'
+    key: 'unit-static-tests'
+    steps:
+      - label: ':typescript: Linting'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'lint'
+        agents:
+          machineType: 'n1-standard-1'
+        timeout_in_minutes: 15
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+      - label: ':jest: TS unit tests'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'unit:ts'
+        agents:
+          machineType: 'n1-standard-1'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+      - label: ':jest: TSX unit tests on React 16'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'unit:tsx:16'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+      - label: ':jest: TSX unit tests on React 17'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'unit:tsx:17'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+      - label: ':jest: TSX unit tests on React 18'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'unit:tsx'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+  - group: ':hammer: E2E component tests'
+    key: 'e2e-tests'
+    steps:
+      - label: ':cypress: Cypress tests on React 16'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'cypress:16'
+        artifact_paths:
+          - 'cypress/screenshots/**/*.png'
+          - 'cypress/videos/**/*.mp4'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+      - label: ':cypress: Cypress tests on React 17'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'cypress:17'
+        artifact_paths:
+          - 'cypress/screenshots/**/*.png'
+          - 'cypress/videos/**/*.mp4'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+      - label: ':cypress: Cypress tests on React 18'
+        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
+        env:
+          TEST_TYPE: 'cypress:18'
+        artifact_paths:
+          - 'cypress/screenshots/**/*.png'
+          - 'cypress/videos/**/*.mp4'
+        timeout_in_minutes: 60
+        retry:
+          automatic:
+            - exit_status: '-1'
+              limit: 1
+  - wait
+  - label: ':npm: Update package version'
+    key: 'update-package-version'
+    command: '.buildkite/scripts/release/step_update_version.sh'
     agents:
-      provider: gcp
-    # TODO: remove the test-automatic-releases condition when the pipeline is production-ready
-    if: build.branch == "main" || build.branch == "build/test-automatic-releases"
+      image: 'docker.elastic.co/ci-agent-images/eui/basic-buildkite-agent:latest'
+      provider: k8s
+      ephemeralStorage: '10G'
+      cpu: '1000m'
+      memory: '1G'
+    # TODO: Remove when tested using build/test-automatic-releases branch
+    if: build.branch != "main"
