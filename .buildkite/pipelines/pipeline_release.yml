@@ -96,11 +96,16 @@ steps:
 #            - exit_status: '-1'
 #              limit: 1
 #  - wait
-  - label: ':npm: Update package version'
+  - label: ':npm: Update package version and release'
     key: 'update-package-version'
-    command: '.buildkite/scripts/release/step_update_version.sh'
+    commands:
+      - .buildkite/scripts/release/step_update_version.sh
+      - .buildkite/scripts/release/step_build_and_publish.sh
     agents:
-      preemptible: false
+      provider: k8s
+      ephemeralStorage: '20G'
+      cpu: '4000m'
+      memory: '8G'
     if: build.branch != "main"
 #  - label: ':docker: Build agent image'
 #    key: 'build-agent-image'

@@ -15,8 +15,8 @@ set -eo pipefail
 # TODO: Move to agent image
 ##
 
-#wget https://github.com/sigstore/gitsign/releases/download/v0.10.1/gitsign_0.10.1_linux_amd64.deb -O /tmp/gitsign.deb
-#dpkg -i /tmp/gitsign.deb
+wget https://github.com/sigstore/gitsign/releases/download/v0.10.1/gitsign_0.10.1_linux_amd64.deb -O /tmp/gitsign.deb
+dpkg -i /tmp/gitsign.deb
 
 # Begin configuration
 
@@ -113,10 +113,10 @@ github_user_vault="secret/ci/elastic-eui/github_machine_user"
 
 git config --local user.name "$(vault read -field=name "${github_user_vault}")"
 git config --local user.email "$(vault read -field=email "${github_user_vault}")"
-#git config --local commit.gpgsign true
-#git config --local tag.gpgsign true
-#git config --local gpg.x509.program gitsign
-#git config --local gpg.format x509
+git config --local commit.gpgsign true
+git config --local tag.gpgsign true
+git config --local gpg.x509.program gitsign
+git config --local gpg.format x509
 
 echo "Adding and committing package.json"
 git add package.json
