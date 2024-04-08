@@ -99,6 +99,7 @@ steps:
   - label: ':npm: Update package version and release'
     key: 'update-package-version'
     commands:
+      - .buildkite/scripts/common/utils.sh
       - .buildkite/scripts/release/step_update_version.sh
       - .buildkite/scripts/release/step_build_and_publish.sh
     agents:
