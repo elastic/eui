@@ -44,7 +44,24 @@ echo "Version ${npm_version} hasn't been published to npm yet"
 ##
 
 echo "+++ :git: Adding and committing package.json"
+
+# Always stage package.json
 git add package.json
+
+# Stage additional build artifacts
+
+if [[ "$(git ls-files -m | grep "i18ntokens" -c)" -gt 0 ]]; then
+  echo "Found i18ntokens.json changes to stage"
+  git add i18ntokens.json i18ntokens_changelog.json
+fi
+
+if [[ "$(git ls-files -m | wc -l)" -gt 0 ]]; then
+  >&2 echo "Found unexpected additional build artifacts:"
+  git ls-files -m
+  >&2 echo "eui-release doesn't know what to do with these files, exiting..."
+  exit 5
+fi
+
 git commit -m "release: @elastic/eui v${npm_version} [skip-ci]" --no-verify
 
 echo "+++ :git: Pushing commit to ${git_branch}"
