@@ -108,11 +108,11 @@ git config --local tag.gpgsign true
 git config --local gpg.x509.program gitsign
 git config --local gpg.format x509
 
-echo "Adding and committing package.json"
+echo "+++ :git: Adding and committing package.json"
 git add package.json
 git commit -m "release: @elastic/eui v${new_version} [skip-ci]"
 
-echo "Pushing commit to ${git_branch}"
+echo "+++ :git: Pushing commit to ${git_branch}"
 
 # git push will be rejected by remote if there are any new commits or other
 # changes made to the branch between the start of this build and now.
@@ -134,7 +134,7 @@ if [[ "${release_type}" == "release" ]]; then
   echo "Creating and pushing release tag ${tag_name}"
   git tag --annotate "${tag_name}"
   git push "${git_remote_name}" "${tag_name}"
-  echo "Pushed release tag - https://github.com/elastic/eui/tree/${tag_name}"
+  echo "+++ :git: Pushed release tag - https://github.com/elastic/eui/tree/${tag_name}"
 fi
 
 ##
