@@ -15,8 +15,8 @@ set -eo pipefail
 # TODO: Move to agent image
 ##
 
-wget https://github.com/sigstore/gitsign/releases/download/v0.10.1/gitsign_0.10.1_linux_amd64.deb -O /tmp/gitsign.deb
-dpkg -i /tmp/gitsign.deb
+#wget https://github.com/sigstore/gitsign/releases/download/v0.10.1/gitsign_0.10.1_linux_amd64.deb -O /tmp/gitsign.deb
+#dpkg -i /tmp/gitsign.deb
 
 # Begin configuration
 
@@ -60,6 +60,8 @@ echo "npm version prerelease prefix: ${npm_version_prerelease_prefix}"
 echo "git branch: ${git_branch}"
 echo "git push flags: ${git_push_flags}"
 echo "git remote URL: $(git remote get-url "${git_remote_name}")"
+echo "node version: $(node -v)"
+echo "user: $(whoami)"
 
 ##
 # Update package.json version string
@@ -105,16 +107,16 @@ echo "Version ${new_version} hasn't been published to npm yet"
 echo "+++ :git: Committing the version update"
 
 echo "Fetching OIDC token to sign the commit"
-SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
+#SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
 
 github_user_vault="secret/ci/elastic-eui/github_machine_user"
 
 git config --local user.name "$(vault read -field=name "${github_user_vault}")"
 git config --local user.email "$(vault read -field=email "${github_user_vault}")"
-git config --local commit.gpgsign true
-git config --local tag.gpgsign true
-git config --local gpg.x509.program gitsign
-git config --local gpg.format x509
+#git config --local commit.gpgsign true
+#git config --local tag.gpgsign true
+#git config --local gpg.x509.program gitsign
+#git config --local gpg.format x509
 
 echo "Adding and committing package.json"
 git add package.json
