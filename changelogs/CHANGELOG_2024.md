@@ -2,13 +2,13 @@
 
 - Updated `EuiBreadcrumb` styles to improve visual distinction of clickable breadcrumbs ([#7615](https://github.com/elastic/eui/pull/7615))
 
-**Bug fixes**
-
-- Fixed `EuiComboBox` to correctly select full matches within groups via the `Enter` key ([#7658](https://github.com/elastic/eui/pull/7658))
-
 **Deprecations**
 
 - Deprecated `color` prop on `EuiBreadcrumb` ([#7615](https://github.com/elastic/eui/pull/7615))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` to correctly select full matches within groups via the `Enter` key ([#7658](https://github.com/elastic/eui/pull/7658))
 
 **Accessibility**
 
