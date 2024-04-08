@@ -8,6 +8,9 @@
 
 set -eo pipefail
 
+# include utils
+source .buildkite/scripts/common/utils.sh
+
 # TODO: It's possible to release non-HEAD commits but we'd need to skip committing the version update back to the repo
 
 # Begin configuration
@@ -99,12 +102,12 @@ echo "Version ${new_version} hasn't been published to npm yet"
 echo "+++ :git: Committing the version update"
 
 echo "Fetching OIDC token to sign the commit"
-#SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
+SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
 
 github_user_vault="secret/ci/elastic-eui/github_machine_user"
 
-git config --local user.name "$(vault read -field=name "${github_user_vault}")"
-git config --local user.email "$(vault read -field=email "${github_user_vault}")"
+git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
+git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
 git config --local commit.gpgsign true
 git config --local tag.gpgsign true
 git config --local gpg.x509.program gitsign
