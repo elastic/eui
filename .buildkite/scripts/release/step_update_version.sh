@@ -7,6 +7,8 @@
 
 set -eo pipefail
 
+source .buildkite/scripts/common/utils.sh
+
 # TODO: Support releasing non-HEAD commits when FORCE_SKIP_GIT_UPDATES=true
 
 # Begin configuration
@@ -101,8 +103,8 @@ SIGSTORE_ID_TOKEN="$(buildkite-agent oidc request-token --audience sigstore)"
 
 github_user_vault="secret/ci/elastic-eui/github_machine_user"
 
-git config --local user.name "$(vault read -field=name "${github_user_vault}")"
-git config --local user.email "$(vault read -field=email "${github_user_vault}")"
+git config --local user.name "$(retry 5 vault read -field=name "${github_user_vault}")"
+git config --local user.email "$(retry 5 vault read -field=email "${github_user_vault}")"
 git config --local commit.gpgsign true
 git config --local tag.gpgsign true
 git config --local gpg.x509.program gitsign
