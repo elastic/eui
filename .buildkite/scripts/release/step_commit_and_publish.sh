@@ -3,6 +3,9 @@
 
 set -eo pipefail
 
+# include utils
+source .buildkite/scripts/common/utils.sh
+
 git_remote_name="origin"
 git_branch="${BUILDKITE_BRANCH}"
 npm_version=$(jq -r '.version' package.json)
