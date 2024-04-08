@@ -17,8 +17,8 @@ import React, {
   CSSProperties,
   ElementType,
   FunctionComponent,
-  MouseEvent as ReactMouseEvent,
   MutableRefObject,
+  ReactNode,
 } from 'react';
 import classnames from 'classnames';
 
@@ -28,7 +28,7 @@ import {
   useCombinedRefs,
   EuiBreakpointSize,
   useIsWithinMinBreakpoint,
-  useEuiTheme,
+  useEuiMemoizedStyles,
   useGeneratedHtmlId,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
@@ -36,13 +36,14 @@ import { logicalStyle } from '../../global_styling';
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
-import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+import type { EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
+import { EuiFlyoutCloseButton } from './_flyout_close_button';
+import { euiFlyoutStyles } from './flyout.styles';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
@@ -271,9 +272,7 @@ export const EuiFlyout = forwardRef(
       };
     }, [style, maxWidth, size]);
 
-    const euiTheme = useEuiTheme();
-    const styles = euiFlyoutStyles(euiTheme);
-
+    const styles = useEuiMemoizedStyles(euiFlyoutStyles);
     const cssStyles = [
       styles.euiFlyout,
       styles.paddingSizes[paddingSize],
@@ -286,52 +285,6 @@ export const EuiFlyout = forwardRef(
     ];
 
     const classes = classnames('euiFlyout', className);
-
-    const closeButton = useMemo(() => {
-      if (hideCloseButton || !onClose) return null;
-
-      const closeButtonClasses = classnames(
-        'euiFlyout__closeButton',
-        closeButtonProps?.className
-      );
-
-      const closeButtonStyles = euiFlyoutCloseButtonStyles(euiTheme);
-      const closeButtonCssStyles = [
-        closeButtonStyles.euiFlyout__closeButton,
-        closeButtonStyles[closeButtonPosition],
-        closeButtonPosition === 'outside' &&
-          closeButtonStyles.outsideSide[side],
-        closeButtonProps?.css,
-      ];
-
-      return (
-        <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
-          {(closeAriaLabel: string) => (
-            <EuiButtonIcon
-              display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
-              iconType="cross"
-              color="text"
-              aria-label={closeAriaLabel}
-              data-test-subj="euiFlyoutCloseButton"
-              {...closeButtonProps}
-              className={closeButtonClasses}
-              css={closeButtonCssStyles}
-              onClick={(e: ReactMouseEvent<HTMLButtonElement>) => {
-                onClose(e.nativeEvent);
-                closeButtonProps?.onClick?.(e);
-              }}
-            />
-          )}
-        </EuiI18n>
-      );
-    }, [
-      onClose,
-      hideCloseButton,
-      closeButtonPosition,
-      closeButtonProps,
-      side,
-      euiTheme,
-    ]);
 
     /*
      * If not disabled, automatically add fixed EuiHeaders as shards
@@ -375,28 +328,31 @@ export const EuiFlyout = forwardRef(
     const descriptionId = useGeneratedHtmlId();
     const ariaDescribedBy = classnames(descriptionId, _ariaDescribedBy);
 
-    const screenReaderDescription = (
-      <EuiScreenReaderOnly>
-        <p id={descriptionId}>
-          {hasOverlayMask ? (
-            <EuiI18n
-              token="euiFlyout.screenReaderModalDialog"
-              default="You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
-            />
-          ) : (
-            <EuiI18n
-              token="euiFlyout.screenReaderNonModalDialog"
-              default="You are in a non-modal dialog. To close the dialog, press Escape."
-            />
-          )}{' '}
-          {fixedHeaders.length > 0 && (
-            <EuiI18n
-              token="euiFlyout.screenReaderFixedHeaders"
-              default="You can still continue tabbing through the page headers in addition to the dialog."
-            />
-          )}
-        </p>
-      </EuiScreenReaderOnly>
+    const screenReaderDescription = useMemo(
+      () => (
+        <EuiScreenReaderOnly>
+          <p id={descriptionId}>
+            {hasOverlayMask ? (
+              <EuiI18n
+                token="euiFlyout.screenReaderModalDialog"
+                default="You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+              />
+            ) : (
+              <EuiI18n
+                token="euiFlyout.screenReaderNonModalDialog"
+                default="You are in a non-modal dialog. To close the dialog, press Escape."
+              />
+            )}{' '}
+            {fixedHeaders.length > 0 && (
+              <EuiI18n
+                token="euiFlyout.screenReaderFixedHeaders"
+                default="You can still continue tabbing through the page headers in addition to the dialog."
+              />
+            )}
+          </p>
+        </EuiScreenReaderOnly>
+      ),
+      [hasOverlayMask, descriptionId, fixedHeaders.length]
     );
 
     /*
@@ -428,53 +384,47 @@ export const EuiFlyout = forwardRef(
       [onClose, hasOverlayMask, outsideClickCloses]
     );
 
-    let flyout = (
-      <EuiFocusTrap
-        disabled={isPushed}
-        scrollLock={hasOverlayMask}
-        clickOutsideDisables={!ownFocus}
-        onClickOutside={onClickOutside}
-        {...focusTrapProps}
-      >
-        <Element
-          className={classes}
-          css={cssStyles}
-          style={inlineStyles}
-          ref={setRef}
-          {...(rest as ComponentPropsWithRef<T>)}
-          role={!isPushed ? 'dialog' : rest.role}
-          tabIndex={!isPushed ? 0 : rest.tabIndex}
-          aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
-          data-autofocus={!isPushed || undefined}
-        >
-          {!isPushed && screenReaderDescription}
-          {closeButton}
-          {children}
-        </Element>
-      </EuiFocusTrap>
-    );
-
-    // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
-    const mergedMaskProps = {
-      ...maskProps,
-      maskRef: useCombinedRefs([maskProps?.maskRef, maskRef]),
-    };
-    if (hasOverlayMask) {
-      flyout = (
-        <EuiOverlayMask headerZindexLocation="below" {...mergedMaskProps}>
-          {flyout}
-        </EuiOverlayMask>
-      );
-    } else if (!isPushed) {
-      // Otherwise still wrap within an EuiPortal so it appends (unless it is the push style)
-      flyout = <EuiPortal>{flyout}</EuiPortal>;
-    }
-
     return (
-      <>
+      <EuiFlyoutWrapper
+        hasOverlayMask={hasOverlayMask}
+        maskProps={{
+          ...maskProps,
+          maskRef: useCombinedRefs([maskProps?.maskRef, maskRef]),
+        }}
+        isPortalled={!isPushed}
+      >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
-        {flyout}
-      </>
+        <EuiFocusTrap
+          disabled={isPushed}
+          scrollLock={hasOverlayMask}
+          clickOutsideDisables={!ownFocus}
+          onClickOutside={onClickOutside}
+          {...focusTrapProps}
+        >
+          <Element
+            className={classes}
+            css={cssStyles}
+            style={inlineStyles}
+            ref={setRef}
+            {...(rest as ComponentPropsWithRef<T>)}
+            role={!isPushed ? 'dialog' : rest.role}
+            tabIndex={!isPushed ? 0 : rest.tabIndex}
+            aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
+            data-autofocus={!isPushed || undefined}
+          >
+            {!isPushed && screenReaderDescription}
+            {!hideCloseButton && onClose && (
+              <EuiFlyoutCloseButton
+                {...closeButtonProps}
+                onClose={onClose}
+                closeButtonPosition={closeButtonPosition}
+                side={side}
+              />
+            )}
+            {children}
+          </Element>
+        </EuiFocusTrap>
+      </EuiFlyoutWrapper>
     );
   }
   // React.forwardRef interferes with the inferred element type
@@ -485,3 +435,28 @@ export const EuiFlyout = forwardRef(
 ) => JSX.Element;
 // Recast to allow `displayName`
 (EuiFlyout as FunctionComponent).displayName = 'EuiFlyout';
+
+/**
+ * Light wrapper for conditionally rendering portals or overlay masks:
+ *  - If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
+ *  - Otherwise still wrap within an EuiPortal so it appends to the bottom of the window.
+ * Push flyouts have no overlay OR portal behavior.
+ */
+const EuiFlyoutWrapper: FunctionComponent<{
+  children: ReactNode;
+  hasOverlayMask: boolean;
+  maskProps: EuiFlyoutProps['maskProps'];
+  isPortalled: boolean;
+}> = ({ children, hasOverlayMask, maskProps, isPortalled }) => {
+  if (hasOverlayMask) {
+    return (
+      <EuiOverlayMask headerZindexLocation="below" {...maskProps}>
+        {children}
+      </EuiOverlayMask>
+    );
+  } else if (isPortalled) {
+    return <EuiPortal>{children}</EuiPortal>;
+  } else {
+    return <>{children}</>;
+  }
+};

@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiFlyoutFooterStyles } from './flyout_footer.styles';
 
 export type EuiFlyoutFooterProps = FunctionComponent<
@@ -23,13 +23,10 @@ export const EuiFlyoutFooter: EuiFlyoutFooterProps = ({
 }) => {
   const classes = classNames('euiFlyoutFooter', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiFlyoutFooterStyles(euiTheme);
-
-  const cssStyles = [styles.euiFlyoutFooter];
+  const styles = useEuiMemoizedStyles(euiFlyoutFooterStyles);
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div className={classes} css={styles.euiFlyoutFooter} {...rest}>
       {children}
     </div>
   );

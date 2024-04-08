@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { transparentize } from '../../services/color';
+import { tintOrShade } from '../../services/color';
 import {
   euiFontSize,
   euiTextTruncate,
@@ -17,17 +17,40 @@ import {
   logicalBorderRadiusCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
 /**
  * Styles cast to inner <a>, <button>, <span> elements
  */
 export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  // Reuse button colors for `type="application`" clickable breadcrumbs
+  const applicationButtonColors = euiButtonColor(euiThemeContext, 'primary');
+
+  // Create custom darker gray colors for non-clickable application breadcrumbs
+  // The numbers/ratios are fairly specific here to pass WCAG AA contrast minimums
+  const applicationTextColors = {
+    backgroundColor: tintOrShade(
+      euiTheme.colors.darkestShade,
+      colorMode === 'DARK' ? 0.7 : 0.85,
+      colorMode
+    ),
+    color: tintOrShade(euiTheme.colors.darkestShade, 0.2, colorMode),
+  };
+
   return {
     euiBreadcrumb__content: css`
-      font-weight: ${euiTheme.font.weight.medium};
+      /* Unset EuiLink's bolder font weight */
+      font-weight: ${euiTheme.font.weight.regular};
       text-align: center;
       vertical-align: baseline;
+
+      /* TODO: Remove this ':not()' selector and simply have this be
+      baseline CSS once the 'color' prop is removed */
+      &:not(.euiLink) {
+        color: ${euiTheme.colors.subduedText};
+      }
     `,
 
     // Truncation styles
@@ -38,6 +61,19 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       /* This removes the default breadcrumb max-width while ensuring that the last breadcrumb
          still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
+    `,
+    isInteractive: css`
+      &:not(:disabled) {
+        text-decoration: underline;
+
+        /* TODO: Remove this 'class*=' selector once the 'color' prop is removed */
+        &[class*='euiLink-subdued'] {
+          &:hover,
+          &:focus {
+            color: ${euiTheme.colors.text};
+          }
+        }
+      }
     `,
 
     // Types
@@ -52,7 +88,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     application: css`
       ${euiFontSize(euiThemeContext, 'xs')}
-      background-color: ${transparentize(euiTheme.colors.darkestShade, 0.2)};
+      font-weight: ${euiTheme.font.weight.medium};
+      background-color: ${applicationTextColors.backgroundColor};
       clip-path: polygon(
         0 0,
         calc(100% - ${euiTheme.size.s}) 0,
@@ -61,15 +98,15 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         0 100%,
         ${euiTheme.size.s} 50%
       );
-      color: ${euiTheme.colors.darkestShade};
+      color: ${applicationTextColors.color};
       line-height: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
       &:is(a),
       &:is(button) {
-        background-color: ${transparentize(euiTheme.colors.primary, 0.2)};
-        color: ${euiTheme.colors.link};
+        background-color: ${applicationButtonColors.backgroundColor};
+        color: ${applicationButtonColors.color};
 
         :focus {
           ${euiFocusRing(euiThemeContext, 'inset')}

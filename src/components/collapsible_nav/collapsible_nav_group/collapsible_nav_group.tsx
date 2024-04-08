@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 import {
   EuiThemeProvider,
-  useEuiTheme,
+  useEuiMemoizedStyles,
   useGeneratedHtmlId,
 } from '../../../services';
 
@@ -115,8 +115,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   const groupID = useGeneratedHtmlId({ conditionalId: id });
   const titleID = `${groupID}__title`;
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavGroupStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavGroupStyles);
   const cssStyles = [
     styles.euiCollapsibleNavGroup,
     isCollapsible ? styles.isCollapsible : styles.notCollapsible,

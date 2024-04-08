@@ -8,7 +8,13 @@
 
 import { css, keyframes } from '@emotion/react';
 import { euiPaletteColorBlind, shadeOrTint, UseEuiTheme } from '../../services';
-import { euiCanAnimate, logicalCSS } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiCantAnimate,
+  logicalCSS,
+} from '../../global_styling';
+
+const nonMonoColors = euiPaletteColorBlind();
 
 export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiLoadingChart: css`
@@ -29,10 +35,37 @@ export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const BARS_COUNT = 4;
+
+export const euiLoadingChartBarStyles = ({
+  euiTheme,
+  colorMode,
+}: UseEuiTheme) => ({
   euiLoadingChart__bar: css`
     ${logicalCSS('height', '100%')}
     display: inline-block;
+
+    ${euiCanAnimate} {
+      animation: ${barAnimation} 1s infinite;
+
+      ${outputNthChildCss((index) => `animation-delay: 0.${index}s;`)}
+    }
+    ${euiCantAnimate} {
+      ${outputNthChildCss((index) => `transform: translateY(${22 * index}%);`)}
+    }
+  `,
+  nonmono: css`
+    ${outputNthChildCss((index) => `background-color: ${nonMonoColors[index]}`)}
+  `,
+  mono: css`
+    ${outputNthChildCss(
+      (index) =>
+        `background-color: ${shadeOrTint(
+          euiTheme.colors.lightShade,
+          index * 0.04,
+          colorMode
+        )}`
+    )}
   `,
   m: css`
     ${logicalCSS('width', euiTheme.size.xxs)}
@@ -48,6 +81,18 @@ export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
+/**
+ * Small utility helper for generating nth-child CSS for each bar
+ */
+const outputNthChildCss = (css: (index: number) => string) =>
+  Array.from(
+    { length: BARS_COUNT },
+    (_, index) => `
+  &:nth-child(${index + 1}) {
+    ${css(index)}
+  }`
+  ).join();
+
 const barAnimation = keyframes`
   0% {
     transform: translateY(0);
@@ -61,24 +106,3 @@ const barAnimation = keyframes`
     transform: translateY(0);
   }
 `;
-
-export const _barIndex = (
-  index: number,
-  mono: boolean,
-  { euiTheme, colorMode }: UseEuiTheme
-) => {
-  const backgroundColor = mono
-    ? shadeOrTint(euiTheme.colors.lightShade, index * 0.04, colorMode)
-    : euiPaletteColorBlind()[index];
-
-  return css`
-    background-color: ${backgroundColor};
-    /* Without the animation, the bars are all the same height,
-       so we apply transforms which are overridden by the animation if animations are allowed */
-    transform: translateY(${22 * index}%);
-
-    ${euiCanAnimate} {
-      animation: ${barAnimation} 1s ${`.${index}s`} infinite;
-    }
-  `;
-};

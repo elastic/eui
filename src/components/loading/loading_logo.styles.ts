@@ -86,6 +86,13 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
         }
       }
     `,
+    euiLoadingLogo__icon: css`
+      display: inline-block;
+
+      ${euiCanAnimate} {
+        animation: 1s ${loadingBounce} ${euiTheme.animation.resistance} infinite;
+      }
+    `,
 
     /**
      * 1. Requires pixel math for animation
@@ -127,18 +134,6 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
       &::after {
         block-size: ${euiTheme.base * 0.5}px; /* 1 */
         inset-block-end: -${euiTheme.size.m};
-      }
-    `,
-  };
-};
-
-export const euiLoadingLogoIconStyles = ({ euiTheme }: UseEuiTheme) => {
-  return {
-    euiLoadingLogo__icon: css`
-      display: inline-block;
-
-      ${euiCanAnimate} {
-        animation: 1s ${loadingBounce} ${euiTheme.animation.resistance} infinite;
       }
     `,
   };

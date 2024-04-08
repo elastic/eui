@@ -37,11 +37,13 @@ export const euiBottomBarStyles = (euiThemeContext: UseEuiTheme) => {
           ${euiTheme.animation.resistance};
       }
     `,
-    static: css``,
+    static: css``, // Default
     fixed: css`
+      position: fixed;
       z-index: ${Number(euiTheme.levels.header) - 2};
     `,
     sticky: css`
+      position: sticky;
       z-index: ${Number(euiTheme.levels.header) - 2};
     `,
     // Padding

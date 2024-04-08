@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent, ReactNode } from 'react';
+import React, { Component, FocusEvent, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -104,6 +104,7 @@ export class EuiSuperSelect<T = string> extends Component<
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
   private _isMounted: boolean = false;
+  private controlButtonRef = createRef<HTMLButtonElement>();
 
   describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
 
@@ -146,17 +147,10 @@ export class EuiSuperSelect<T = string> extends Component<
           return;
         }
 
-        if (this.props.valueOfSelected != null) {
-          if (indexOfSelected != null) {
-            this.focusItemAt(indexOfSelected);
-          } else {
-            focusSelected();
-          }
+        if (this.props.valueOfSelected != null && indexOfSelected != null) {
+          this.focusItemAt(indexOfSelected);
         } else {
-          const firstFocusableOption = this.props.options.findIndex(
-            ({ disabled }) => disabled !== true
-          );
-          this.focusItemAt(firstFocusableOption);
+          this.focusItemAt(0);
         }
 
         if (this.props.onFocus) {
@@ -173,6 +167,11 @@ export class EuiSuperSelect<T = string> extends Component<
       isPopoverOpen: false,
     });
 
+    // Refocus back to the toggling control button on popover close
+    requestAnimationFrame(() => {
+      this.controlButtonRef.current?.focus();
+    });
+
     if (this.props.onBlur) {
       this.props.onBlur();
     }
@@ -187,7 +186,12 @@ export class EuiSuperSelect<T = string> extends Component<
   };
 
   onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === keys.ARROW_UP || event.key === keys.ARROW_DOWN) {
+    // Mimic the ways native `<select>`s can be opened via keypress
+    if (
+      event.key === keys.ARROW_UP ||
+      event.key === keys.ARROW_DOWN ||
+      event.key === keys.SPACE
+    ) {
       event.preventDefault();
       event.stopPropagation();
       this.openPopover();
@@ -204,9 +208,10 @@ export class EuiSuperSelect<T = string> extends Component<
         break;
 
       case keys.TAB:
-        // no-op
+        // Mimic native `<select>` behavior, which selects an item on tab press
         event.preventDefault();
         event.stopPropagation();
+        (event.target as HTMLButtonElement).click();
         break;
 
       case keys.ARROW_UP:
@@ -223,11 +228,14 @@ export class EuiSuperSelect<T = string> extends Component<
     }
   };
 
-  focusItemAt(index: number) {
-    const targetElement = this.itemNodes[index];
-    if (targetElement != null) {
-      targetElement.focus();
+  focusItemAt(index: number, direction?: ShiftDirection) {
+    let targetElement = this.itemNodes[index];
+    // If the current index is disabled, find the next non-disabled element
+    while (targetElement && targetElement.disabled) {
+      direction === ShiftDirection.BACK ? index-- : index++;
+      targetElement = this.itemNodes[index];
     }
+    targetElement?.focus();
   }
 
   shiftFocus(direction: ShiftDirection) {
@@ -240,16 +248,16 @@ export class EuiSuperSelect<T = string> extends Component<
       // somehow the select options has lost focus
       targetElementIndex = 0;
     } else {
+      // Note: this component purposely does not cycle arrow key navigation
+      // to match native <select> elements
       if (direction === ShiftDirection.BACK) {
-        targetElementIndex =
-          currentIndex === 0 ? this.itemNodes.length - 1 : currentIndex - 1;
+        targetElementIndex = currentIndex - 1;
       } else {
-        targetElementIndex =
-          currentIndex === this.itemNodes.length - 1 ? 0 : currentIndex + 1;
+        targetElementIndex = currentIndex + 1;
       }
     }
 
-    this.focusItemAt(targetElementIndex);
+    this.focusItemAt(targetElementIndex, direction);
   }
 
   render() {
@@ -304,6 +312,7 @@ export class EuiSuperSelect<T = string> extends Component<
         isInvalid={isInvalid}
         compressed={compressed}
         {...rest}
+        buttonRef={this.controlButtonRef}
       />
     );
 
@@ -339,6 +348,7 @@ export class EuiSuperSelect<T = string> extends Component<
         isOpen={isOpen || this.state.isPopoverOpen}
         input={button}
         fullWidth={fullWidth}
+        disableFocusTrap // This component handles its own focus manually
       >
         <EuiScreenReaderOnly>
           <p id={this.describedById}>

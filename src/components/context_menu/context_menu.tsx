@@ -16,7 +16,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { withEuiTheme, WithEuiThemeProps } from '../../services';
+import {
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
+} from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiHorizontalRule, EuiHorizontalRuleProps } from '../horizontal_rule';
 
@@ -173,7 +176,7 @@ interface State {
 }
 
 export class EuiContextMenuClass extends Component<
-  WithEuiThemeProps & EuiContextMenuProps,
+  WithEuiStylesMemoizerProps & EuiContextMenuProps,
   State
 > {
   static defaultProps: Partial<EuiContextMenuProps> = {
@@ -199,7 +202,7 @@ export class EuiContextMenuClass extends Component<
     return null;
   }
 
-  constructor(props: WithEuiThemeProps & EuiContextMenuProps) {
+  constructor(props: WithEuiStylesMemoizerProps & EuiContextMenuProps) {
     super(props);
 
     this.state = {
@@ -429,7 +432,7 @@ export class EuiContextMenuClass extends Component<
 
   render() {
     const {
-      theme,
+      stylesMemoizer,
       panels,
       onPanelChange,
       className,
@@ -453,12 +456,11 @@ export class EuiContextMenuClass extends Component<
 
     const classes = classNames('euiContextMenu', className);
 
-    const styles = euiContextMenuStyles(theme);
-    const cssStyles = [styles.euiContextMenu];
+    const styles = stylesMemoizer(euiContextMenuStyles);
 
     return (
       <div
-        css={cssStyles}
+        css={styles.euiContextMenu}
         className={classes}
         style={{ height: this.state.height, width: width }}
         {...rest}
@@ -471,4 +473,4 @@ export class EuiContextMenuClass extends Component<
 }
 
 export const EuiContextMenu =
-  withEuiTheme<EuiContextMenuProps>(EuiContextMenuClass);
+  withEuiStylesMemoizer<EuiContextMenuProps>(EuiContextMenuClass);

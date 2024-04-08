@@ -17,7 +17,11 @@ import React, {
 import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
 
-import { withEuiTheme, WithEuiThemeProps, keys } from '../../services';
+import {
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
+  keys,
+} from '../../services';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -74,7 +78,7 @@ interface State {
 }
 
 export class EuiContextMenuPanelClass extends Component<
-  WithEuiThemeProps & Props,
+  WithEuiStylesMemoizerProps & Props,
   State
 > {
   static defaultProps: Partial<Props> = {
@@ -86,7 +90,7 @@ export class EuiContextMenuPanelClass extends Component<
   private panel?: HTMLElement | null = null;
   private initialPopoverParent?: HTMLElement | null = null;
 
-  constructor(props: WithEuiThemeProps & Props) {
+  constructor(props: WithEuiStylesMemoizerProps & Props) {
     super(props);
 
     this.state = {
@@ -394,7 +398,7 @@ export class EuiContextMenuPanelClass extends Component<
 
   render() {
     const {
-      theme,
+      stylesMemoizer,
       children,
       className,
       onClose,
@@ -414,7 +418,7 @@ export class EuiContextMenuPanelClass extends Component<
 
     const classes = classNames('euiContextMenuPanel', className);
 
-    const styles = euiContextMenuPanelStyles(theme);
+    const styles = stylesMemoizer(euiContextMenuPanelStyles);
     const cssStyles = [
       styles.euiContextMenuPanel,
       transitionDirection &&
@@ -472,6 +476,5 @@ export class EuiContextMenuPanelClass extends Component<
   }
 }
 
-export const EuiContextMenuPanel = withEuiTheme<EuiContextMenuPanelProps>(
-  EuiContextMenuPanelClass
-);
+export const EuiContextMenuPanel =
+  withEuiStylesMemoizer<EuiContextMenuPanelProps>(EuiContextMenuPanelClass);

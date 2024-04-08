@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { ReactElement, FunctionComponent } from 'react';
+import { ReactElement, FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { cloneElementWithCss } from '../../../services';
-import { euiScreenReaderOnlyStyles } from './screen_reader_only.styles';
+import { euiScreenReaderOnlyStyles as styles } from './screen_reader_only.styles';
 
 export interface EuiScreenReaderOnlyProps {
   /**
@@ -30,13 +30,15 @@ export const EuiScreenReaderOnly: FunctionComponent<
 > = ({ children, className, showOnFocus }) => {
   const classes = classNames(className, children.props.className);
 
-  const styles = euiScreenReaderOnlyStyles(showOnFocus);
-  const cssStyles = [styles.euiScreenReaderOnly];
-
-  const props = {
-    className: classes.length ? classes : undefined,
-    css: cssStyles,
-  };
+  const props = useMemo(
+    () => ({
+      className: classes.length ? classes : undefined,
+      css: showOnFocus
+        ? styles['euiScreenReaderOnly-showOnFocus']
+        : styles.euiScreenReaderOnly,
+    }),
+    [classes, showOnFocus]
+  );
 
   return cloneElementWithCss(children, props);
 };

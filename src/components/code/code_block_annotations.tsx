@@ -13,12 +13,12 @@ import React, {
   useState,
 } from 'react';
 
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useEuiMemoizedStyles } from '../../services';
+import { useEuiButtonFocusCSS } from '../../themes/amsterdam/global_styling/mixins/button';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { useEuiButtonFocusCSS } from '../../themes/amsterdam/global_styling/mixins/button';
 
 import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
 
@@ -40,15 +40,16 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
     { lineNumber }
   );
 
-  const { euiTheme, colorMode } = useEuiTheme();
-  const styles = euiCodeBlockAnnotationsStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCodeBlockAnnotationsStyles);
   const buttonIconFocusStyle = useEuiButtonFocusCSS();
   const cssButtonIconStyles = [
     styles.euiCodeBlockAnnotation__buttonIcon,
     buttonIconFocusStyle,
   ];
 
+  const { euiTheme, colorMode } = useEuiTheme();
   const isDarkMode = colorMode === 'DARK';
+  const iconColor = isDarkMode ? euiTheme.colors.ink : 'ghost';
 
   return (
     <EuiPopover
@@ -63,11 +64,7 @@ export const EuiCodeBlockAnnotation: FunctionComponent<
           css={cssButtonIconStyles}
           data-test-subj="euiCodeBlockAnnotationIcon"
         >
-          <EuiIcon
-            type={AnnotationInfoIcon}
-            size="s"
-            color={isDarkMode ? euiTheme.colors.ink : 'ghost'}
-          />
+          <EuiIcon type={AnnotationInfoIcon} size="s" color={iconColor} />
         </button>
       }
       zIndex={Number(euiTheme.levels.mask) + 1} // Ensure fullscreen annotation popovers sit above the mask

@@ -8,7 +8,7 @@
 
 import React, { forwardRef, useContext } from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
@@ -28,8 +28,7 @@ export const EuiCollapsibleNavButton = forwardRef<
     EuiCollapsibleNavContext
   );
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavButtonWrapperStyles);
   const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side]];
 
   const buttonStyles = [styles.euiCollapsibleNavButton, css];

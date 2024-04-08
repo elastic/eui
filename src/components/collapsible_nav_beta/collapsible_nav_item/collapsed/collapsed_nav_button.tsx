@@ -9,7 +9,7 @@
 import React, { FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../../services';
+import { useEuiMemoizedStyles } from '../../../../services';
 import {
   EuiButtonIcon,
   EuiButtonIconPropsForAnchor,
@@ -43,10 +43,9 @@ export const EuiCollapsedNavButton: FunctionComponent<
   titleElement, // Extracted to avoid spreading to ...rest
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
   const { side } = useContext(EuiCollapsibleNavContext);
 
-  const buttonStyles = euiCollapsedNavButtonStyles(euiTheme);
+  const buttonStyles = useEuiMemoizedStyles(euiCollapsedNavButtonStyles);
   const buttonCssStyles = [
     buttonStyles.euiCollapsedNavButton,
     isSelected && buttonStyles.isSelected,
@@ -57,7 +56,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
     linkProps?.className
   );
 
-  const tooltipStyles = euiCollapsedNavItemTooltipStyles(euiTheme);
+  const tooltipStyles = useEuiMemoizedStyles(euiCollapsedNavItemTooltipStyles);
   const tooltipCssStyles = [
     tooltipStyles.euiCollapsedNavItemTooltip,
     tooltipStyles[side],

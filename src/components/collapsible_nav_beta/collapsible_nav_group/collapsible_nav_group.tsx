@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { EuiCollapsibleNavContext } from '../context';
@@ -50,8 +50,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     wrapperProps?.className
   );
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavGroupStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavGroupStyles);
   const cssStyles = [
     styles.euiCollapsibleNavGroup,
     isPush && isCollapsed

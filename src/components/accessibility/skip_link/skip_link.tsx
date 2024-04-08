@@ -9,7 +9,7 @@
 import React, { FunctionComponent, Ref, useCallback } from 'react';
 import classNames from 'classnames';
 import { isTabbable } from 'tabbable';
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor } from '../../common';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
@@ -69,11 +69,9 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   onClick: _onClick,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiSkipLinkStyles(euiTheme);
-
   const classes = classNames('euiSkipLink', className);
 
+  const styles = useEuiMemoizedStyles(euiSkipLinkStyles);
   const cssStyles = [
     styles.euiSkipLink,
     position !== 'static' ? styles[position] : undefined,

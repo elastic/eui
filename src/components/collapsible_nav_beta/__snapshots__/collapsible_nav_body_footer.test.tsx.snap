@@ -7,7 +7,7 @@ exports[`EuiCollapsibleNavBody renders 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlyoutBody__overflow css-18yrfj9-noBanner"
+    class="euiFlyoutBody__overflow emotion-euiFlyoutBody__overflow-noBanner"
     tabindex="-1"
   >
     <div

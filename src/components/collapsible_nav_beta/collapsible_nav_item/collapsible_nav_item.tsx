@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 import { EuiIcon, IconType, EuiIconProps } from '../../icon';
@@ -247,8 +247,7 @@ export const EuiCollapsibleNavSubItems: FunctionComponent<
 > = ({ items, isSubItem, isGroup, className, ...rest }) => {
   const classes = classNames('euiCollapsibleNavItem__items', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiCollapsibleNavSubItemsStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavSubItemsStyles);
   const cssStyles = [
     styles.euiCollapsibleNavItem__items,
     isGroup ? styles.isGroup : isSubItem ? styles.isSubItem : styles.isTopItem,

@@ -9,7 +9,7 @@
 import React, { FunctionComponent, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { useEuiBorderColorCSS } from '../../global_styling';
 import { CommonProps } from '../common';
 import { IconType } from '../icon';
@@ -118,24 +118,23 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   /**
    * Styles
    */
-  const euiTheme = useEuiTheme();
   const borderStyles = useEuiBorderColorCSS();
 
-  const styles = euiCommentEventStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiCommentEventStyles);
   const cssStyles = [
     styles.euiCommentEvent,
     showEventBorders && styles.border,
     showEventBorders && borderStyles[eventColor!],
   ];
 
-  const headerStyles = euiCommentEventHeaderStyles(euiTheme);
+  const headerStyles = useEuiMemoizedStyles(euiCommentEventHeaderStyles);
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
     showEventBorders && headerStyles.border,
     showEventBorders && borderStyles[eventColor!],
   ];
 
-  const bodyStyles = euiCommentEventBodyStyles(euiTheme);
+  const bodyStyles = useEuiMemoizedStyles(euiCommentEventBodyStyles);
   const cssBodyStyles = [bodyStyles.euiCommentEvent__body, bodyStyles[type]];
 
   return (
