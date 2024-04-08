@@ -167,7 +167,6 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       scope={cellScope}
       role="columnheader"
       aria-sort={ariaSortValue}
-      // aria-live="polite" TODO: this doesn't seem to do anything - ask Trevor
       style={inlineStyles}
       {...rest}
     >
