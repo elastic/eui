@@ -16,7 +16,7 @@ import React, {
 
 import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
-import type { EuiTablePaginationProps } from '../../table';
+import type { EuiTablePaginationProps, EuiTableProps } from '../../table';
 
 export type EuiComponentDefaults = {
   /**
@@ -37,6 +37,12 @@ export type EuiComponentDefaults = {
     EuiTablePaginationProps,
     'itemsPerPage' | 'itemsPerPageOptions' | 'showPerPageOptions'
   >;
+  /**
+   * Provide a global configuration for EuiTable's `responsiveBreakpoint` prop. Defaults to `'s'`.
+   *
+   * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
+   */
+  EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint'>;
 };
 
 // Declaring as a static const for reference integrity/reducing rerenders

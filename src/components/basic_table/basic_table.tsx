@@ -30,7 +30,6 @@ import {
 import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
 import { get } from '../../services/objects';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiCheckbox } from '../form';
 
 import { EuiComponentDefaultsContext } from '../provider/component_defaults';
@@ -50,6 +49,7 @@ import {
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
 } from '../table';
+import { euiTableCaptionStyles } from '../table/table.styles';
 
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
@@ -61,7 +61,7 @@ import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 
 import { htmlIdGenerator } from '../../services/accessibility';
-import { Action } from './action_types';
+import { Action, CustomItemAction } from './action_types';
 import {
   EuiTableActionsColumnType,
   EuiTableComputedColumnType,
@@ -78,7 +78,6 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 import {
   euiBasicTableBodyLoading,
   safariLoadingWorkaround,
-  euiBasicTableActionsWrapper,
 } from './basic_table.styles';
 
 type DataTypeProfiles = Record<
@@ -241,9 +240,6 @@ interface BasicTableProps<T extends object>
    * Indicates which column should be used as the identifying cell in each row. Should match a "field" prop in FieldDataColumn
    */
   rowHeader?: string;
-  hasActions?: boolean;
-  isExpandable?: boolean;
-  isSelectable?: boolean;
   /**
    * Provides an infinite loading indicator
    */
@@ -261,10 +257,6 @@ interface BasicTableProps<T extends object>
    */
   pagination?: undefined;
   /**
-   * If true, will convert table to cards in mobile view
-   */
-  responsive?: boolean;
-  /**
    * Applied to `EuiTableRow`
    */
   rowProps?: object | RowPropsCallback<T>;
@@ -280,13 +272,6 @@ interface BasicTableProps<T extends object>
    * Sets the table-layout CSS property. Note that auto tableLayout prevents truncateText from working properly.
    */
   tableLayout?: 'fixed' | 'auto';
-  /**
-   * Applied to table cells. Any cell using a render function will set this to be false.
-   *
-   * Creates a text wrapper around cell content that helps word break or truncate
-   * long text correctly.
-   */
-  textOnly?: boolean;
 }
 
 type BasicTableWithPaginationProps<T extends object> = Omit<
@@ -328,7 +313,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
   declare context: ContextType<typeof EuiComponentDefaultsContext>;
 
   static defaultProps = {
-    responsive: true,
     tableLayout: 'fixed',
     noItemsMessage: (
       <EuiI18n token="euiBasicTable.noItemsMessage" default="No items found" />
@@ -527,10 +511,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       noItemsMessage,
       compressed,
       itemIdToExpandedRowMap,
-      responsive,
-      isSelectable,
-      isExpandable,
-      hasActions,
+      responsiveBreakpoint,
       rowProps,
       cellProps,
       tableCaption,
@@ -557,40 +538,28 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsive, tableLayout, loading } = this.props;
+    const { compressed, responsiveBreakpoint, tableLayout, loading } =
+      this.props;
 
-    const mobileHeader = responsive ? (
-      <EuiTableHeaderMobile>
-        <EuiFlexGroup
-          responsive={false}
-          justifyContent="spaceBetween"
-          alignItems="baseline"
-        >
-          <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
-          <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiTableHeaderMobile>
-    ) : undefined;
-    const caption = this.renderTableCaption();
-    const head = this.renderTableHead();
-    const body = this.renderTableBody();
-    const footer = this.renderTableFooter();
     return (
-      <div>
-        {mobileHeader}
+      <>
+        <EuiTableHeaderMobile responsiveBreakpoint={responsiveBreakpoint}>
+          {this.renderSelectAll(true)}
+          {this.renderTableMobileSort()}
+        </EuiTableHeaderMobile>
         <EuiTable
           id={this.tableId}
           tableLayout={tableLayout}
-          responsive={responsive}
+          responsiveBreakpoint={responsiveBreakpoint}
           compressed={compressed}
           css={loading && safariLoadingWorkaround}
         >
-          {caption}
-          {head}
-          {body}
-          {footer}
+          {this.renderTableCaption()}
+          {this.renderTableHead()}
+          {this.renderTableBody()}
+          {this.renderTableFooter()}
         </EuiTable>
-      </div>
+      </>
     );
   }
 
@@ -694,7 +663,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     }
     return (
       <EuiScreenReaderOnly>
-        <caption className="euiTableCaption">
+        <caption css={euiTableCaptionStyles} className="euiTableCaption">
           <EuiDelayRender>{captionElement}</EuiDelayRender>
         </caption>
       </EuiScreenReaderOnly>
@@ -982,15 +951,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
   }
 
   renderItemRow(item: T, rowIndex: number) {
-    const {
-      columns,
-      selection,
-      isSelectable,
-      hasActions,
-      rowHeader,
-      itemIdToExpandedRowMap = {},
-      isExpandable,
-    } = this.props;
+    const { columns, selection, rowHeader, itemIdToExpandedRowMap } =
+      this.props;
 
     const cells = [];
 
@@ -1007,24 +969,37 @@ export class EuiBasicTable<T extends object = any> extends Component<
             getItemId(selectedItem, itemIdCallback) === itemId
         );
 
-    let calculatedHasSelection;
+    let rowSelectionDisabled = false;
     if (selection) {
-      cells.push(this.renderItemSelectionCell(itemId, item, selected));
-      calculatedHasSelection = true;
+      const [checkboxCell, isDisabled] = this.renderItemSelectionCell(
+        itemId,
+        item,
+        selected
+      );
+      cells.push(checkboxCell);
+      rowSelectionDisabled = !!isDisabled;
     }
 
-    let calculatedHasActions;
+    let hasActions: 'custom' | boolean = false;
     columns.forEach((column: EuiBasicTableColumn<T>, columnIndex: number) => {
-      if ((column as EuiTableActionsColumnType<T>).actions) {
+      const columnActions = (column as EuiTableActionsColumnType<T>).actions;
+
+      if (columnActions) {
+        const hasCustomActions = columnActions.some(
+          (action) => !!(action as CustomItemAction<T>).render
+        );
         cells.push(
           this.renderItemActionsCell(
             itemId,
             item,
             column as EuiTableActionsColumnType<T>,
-            columnIndex
+            columnIndex,
+            hasCustomActions
           )
         );
-        calculatedHasActions = true;
+        // A table theoretically could have both custom and default action items
+        // If it has both, default action mobile row styles take precedence over custom
+        hasActions = !hasActions && hasCustomActions ? 'custom' : true;
       } else if ((column as EuiTableFieldDataColumnType<T>).field) {
         const fieldDataColumn = column as EuiTableFieldDataColumnType<T>;
         cells.push(
@@ -1060,7 +1035,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     expandedRowColSpan = expandedRowColSpan - mobileOnlyCols;
 
     // We'll use the ID to associate the expanded row with the original.
-    const hasExpandedRow = itemIdToExpandedRowMap.hasOwnProperty(itemId);
+    const hasExpandedRow = itemIdToExpandedRowMap?.hasOwnProperty(itemId);
     const expandedRowId = hasExpandedRow
       ? `row_${itemId}_expansion`
       : undefined;
@@ -1068,10 +1043,10 @@ export class EuiBasicTable<T extends object = any> extends Component<
       <EuiTableRow
         id={expandedRowId}
         isExpandedRow={true}
-        isSelectable={isSelectable}
+        hasSelection={!!selection}
       >
         <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
-          {itemIdToExpandedRowMap[itemId]}
+          {itemIdToExpandedRowMap![itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
     ) : undefined;
@@ -1081,12 +1056,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
     const row = (
       <EuiTableRow
         aria-owns={expandedRowId}
-        isSelectable={
-          isSelectable == null ? calculatedHasSelection : isSelectable
-        }
+        hasSelection={!!selection}
+        isSelectable={!rowSelectionDisabled}
         isSelected={selected}
-        hasActions={hasActions == null ? calculatedHasActions : hasActions}
-        isExpandable={isExpandable}
+        hasActions={hasActions}
+        isExpandable={hasExpandedRow}
         {...rowProps}
       >
         {cells}
@@ -1124,7 +1098,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         );
       }
     };
-    return (
+    return [
       <EuiTableRowCellCheckbox key={key}>
         <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
           {(selectThisRow: string) => (
@@ -1140,15 +1114,17 @@ export class EuiBasicTable<T extends object = any> extends Component<
             />
           )}
         </EuiI18n>
-      </EuiTableRowCellCheckbox>
-    );
+      </EuiTableRowCellCheckbox>,
+      disabled,
+    ];
   }
 
   renderItemActionsCell(
     itemId: ItemIdResolved,
     item: T,
     column: EuiTableActionsColumnType<T>,
-    columnIndex: number
+    columnIndex: number,
+    hasCustomActions: boolean
   ) {
     // Disable all actions if any row(s) are selected
     const allDisabled = this.state.selection.length > 0;
@@ -1161,9 +1137,15 @@ export class EuiBasicTable<T extends object = any> extends Component<
         // If all actions are disabled, do not show any actions but the popover toggle
         actualActions = [];
       } else {
-        // if any of the actions `isPrimary`, add them inline as well, but only the first 2
-        const primaryActions = actualActions.filter((o) => o.isPrimary);
-        actualActions = primaryActions.slice(0, 2);
+        // if any of the actions `isPrimary`, add them inline as well, but only the first 2,
+        // which we'll force to only show on hover for desktop views
+        const primaryActions = actualActions.filter(
+          (action) => action.isPrimary
+        );
+        actualActions = primaryActions.slice(0, 2).map((action) => ({
+          ...action,
+          showOnHover: true,
+        }));
       }
 
       // if we have more than 1 action, we don't show them all in the cell, instead we
@@ -1174,39 +1156,32 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       actualActions.push({
         name: 'All actions',
-        render: (item: T) => {
-          return (
-            <CollapsedItemActions
-              actions={column.actions}
-              actionsDisabled={allDisabled}
-              itemId={itemId}
-              item={item}
-            />
-          );
-        },
+        render: (item: T) => (
+          <CollapsedItemActions
+            className="euiBasicTable__collapsedActions"
+            actions={column.actions}
+            actionsDisabled={allDisabled}
+            itemId={itemId}
+            item={item}
+          />
+        ),
       });
     }
-
-    const tools = (
-      <ExpandedItemActions
-        actions={actualActions}
-        actionsDisabled={allDisabled}
-        itemId={itemId}
-        item={item}
-      />
-    );
 
     const key = `record_actions_${itemId}_${columnIndex}`;
     return (
       <EuiTableRowCell
-        showOnHover={true}
         key={key}
         align="right"
         textOnly={false}
-        hasActions={true}
-        css={euiBasicTableActionsWrapper}
+        hasActions={hasCustomActions ? 'custom' : true}
       >
-        {tools}
+        <ExpandedItemActions
+          actions={actualActions}
+          actionsDisabled={allDisabled}
+          itemId={itemId}
+          item={item}
+        />
       </EuiTableRowCell>
     );
   }

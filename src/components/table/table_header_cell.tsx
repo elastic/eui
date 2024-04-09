@@ -13,19 +13,22 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import {
+  useEuiMemoizedStyles,
+  HorizontalAlignment,
+  LEFT_ALIGNMENT,
+} from '../../services';
+import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
-import { resolveWidthAsStyle } from './utils';
 import { EuiInnerText } from '../inner_text';
 
-import {
-  HorizontalAlignment,
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
-} from '../../services';
-import { EuiI18n } from '../i18n';
+import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
+import { resolveWidthAsStyle } from './utils';
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
+import { EuiTableCellContent } from './_table_cell_content';
+import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 
 export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 
@@ -34,20 +37,7 @@ export type EuiTableHeaderCellProps = CommonProps &
     align?: HorizontalAlignment;
     isSortAscending?: boolean;
     isSorted?: boolean;
-    /**
-     * Mobile options for displaying differently at small screens
-     */
-    mobileOptions?: {
-      /**
-       * If false, will not render the column at all for mobile
-       */
-      show?: boolean;
-      /**
-       * Only show for mobile? If true, will not render the column at all
-       * for desktop
-       */
-      only?: boolean;
-    };
+    mobileOptions?: Pick<EuiTableRowCellMobileOptionsShape, 'only' | 'show'>;
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
@@ -60,13 +50,15 @@ export type EuiTableHeaderCellProps = CommonProps &
 
 const CellContents = ({
   className,
+  align,
   description,
   children,
   isSorted,
   isSortAscending,
   showSortMsg,
 }: {
-  className: string;
+  className?: string;
+  align: HorizontalAlignment;
   description: EuiTableHeaderCellProps['description'];
   children: EuiTableHeaderCellProps['children'];
   isSorted: EuiTableHeaderCellProps['isSorted'];
@@ -74,7 +66,12 @@ const CellContents = ({
   showSortMsg: boolean;
 }) => {
   return (
-    <span className={className}>
+    <EuiTableCellContent
+      className={className}
+      align={align}
+      textOnly={false}
+      truncateText={null}
+    >
       <EuiInnerText>
         {(ref, innerText) => (
           <EuiI18n
@@ -86,7 +83,7 @@ const CellContents = ({
               <span
                 title={description ? titleTextWithDesc : innerText}
                 ref={ref}
-                className="euiTableCellContent__text"
+                className="eui-textTruncate"
               >
                 {children}
               </span>
@@ -106,7 +103,7 @@ const CellContents = ({
           size="m"
         />
       )}
-    </span>
+    </EuiTableCellContent>
   );
 };
 
@@ -118,29 +115,38 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   isSortAscending,
   className,
   scope,
-  mobileOptions = {
-    show: true,
-  },
+  mobileOptions,
   width,
   style,
   readOnly,
   description,
   ...rest
 }) => {
-  const classes = classNames('euiTableHeaderCell', className, {
-    'euiTableHeaderCell--hideForDesktop': mobileOptions.only,
-    'euiTableHeaderCell--hideForMobile': !mobileOptions.show,
-  });
+  const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
 
-  const contentClasses = classNames('euiTableCellContent', className, {
-    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
-  });
+  const isResponsive = useEuiTableIsResponsive();
+  const hideForDesktop = !isResponsive && mobileOptions?.only;
+  const hideForMobile = isResponsive && mobileOptions?.show === false;
+  if (hideForDesktop || hideForMobile) return null;
 
-  const styleObj = resolveWidthAsStyle(style, width);
+  const classes = classNames('euiTableHeaderCell', className);
+  const inlineStyles = resolveWidthAsStyle(style, width);
 
   const CellComponent = children ? 'th' : 'td';
   const cellScope = CellComponent === 'th' ? scope ?? 'col' : undefined; // `scope` is only valid on `th` elements
+
+  const cellContents = (
+    <CellContents
+      css={styles.euiTableHeaderCell__content}
+      align={align}
+      description={description}
+      showSortMsg={true}
+      isSorted={isSorted}
+      isSortAscending={isSortAscending}
+    >
+      {children}
+    </CellContents>
+  );
 
   if (onSort || isSorted) {
     const buttonClasses = classNames('euiTableHeaderButton', {
@@ -152,30 +158,21 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       ariaSortValue = isSortAscending ? 'ascending' : 'descending';
     }
 
-    const cellContents = (
-      <CellContents
-        className={contentClasses}
-        description={description}
-        showSortMsg={true}
-        children={children}
-        isSorted={isSorted}
-        isSortAscending={isSortAscending}
-      />
-    );
-
     return (
       <CellComponent
+        css={styles.euiTableHeaderCell}
         className={classes}
         scope={cellScope}
         role="columnheader"
         aria-sort={ariaSortValue}
         aria-live="polite"
-        style={styleObj}
+        style={inlineStyles}
         {...rest}
       >
         {onSort && !readOnly ? (
           <button
             type="button"
+            css={styles.euiTableHeaderCell__button}
             className={buttonClasses}
             onClick={onSort}
             data-test-subj="tableHeaderSortButton"
@@ -191,20 +188,14 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
 
   return (
     <CellComponent
+      css={styles.euiTableHeaderCell}
       className={classes}
       scope={cellScope}
       role="columnheader"
-      style={styleObj}
+      style={inlineStyles}
       {...rest}
     >
-      <CellContents
-        className={contentClasses}
-        description={description}
-        showSortMsg={false}
-        children={children}
-        isSorted={isSorted}
-        isSortAscending={isSortAscending}
-      />
+      {cellContents}
     </CellComponent>
   );
 };

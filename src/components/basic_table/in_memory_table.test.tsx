@@ -638,7 +638,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -667,7 +669,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -700,7 +704,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 2')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -741,7 +747,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { getByText } = render(<EuiInMemoryTable {...props} />);
+    const { getByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
     expect(getByText('Select all rows')).toBeTruthy();
@@ -784,7 +792,7 @@ describe('EuiInMemoryTable', () => {
       },
     };
     const { getByText, getByPlaceholderText } = render(
-      <EuiInMemoryTable {...props} />
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
     );
 
     expect(getByText('Page 1 of 1')).toBeTruthy();
@@ -881,7 +889,9 @@ describe('EuiInMemoryTable', () => {
         onSelectionChange: () => undefined,
       },
     };
-    const { container, queryByText } = render(<EuiInMemoryTable {...props} />);
+    const { container, queryByText } = render(
+      <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+    );
 
     expect(queryByText('Page 1 of 1')).toBeTruthy();
     expect(queryByText('Select all rows')).toBeTruthy();
@@ -1088,6 +1098,38 @@ describe('EuiInMemoryTable', () => {
   });
 
   describe('behavior', () => {
+    test('mobile header', () => {
+      const props: EuiInMemoryTableProps<BasicItem> = {
+        ...requiredProps,
+        items: [
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+          { id: '3', name: 'name3' },
+        ],
+        itemId: 'id',
+        columns: [
+          {
+            field: 'name',
+            name: 'Name',
+            description: 'description',
+            sortable: true,
+          },
+        ],
+        pagination: true,
+        sorting: true,
+        selection: {
+          onSelectionChange: () => undefined,
+        },
+      };
+      const { container } = render(
+        <EuiInMemoryTable responsiveBreakpoint={true} {...props} />
+      );
+
+      expect(
+        container.querySelector('.euiTableHeaderMobile')
+      ).toMatchSnapshot();
+    });
+
     test('pagination', async () => {
       const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
@@ -1283,8 +1325,8 @@ describe('EuiInMemoryTable', () => {
 
       // ensure table is on 2nd page (pageIndex=1)
       expect(getByTestSubject('pagination-button-1')).toBeDisabled();
-      expect(container.querySelectorAll('td')[0]).toHaveTextContent('Index2');
-      expect(container.querySelectorAll('td')[1]).toHaveTextContent('Index3');
+      expect(container.querySelectorAll('td')[0]).toHaveTextContent('2');
+      expect(container.querySelectorAll('td')[1]).toHaveTextContent('3');
 
       // click the first pagination button
       fireEvent.click(getByTestSubject('pagination-button-0'));
@@ -1299,8 +1341,8 @@ describe('EuiInMemoryTable', () => {
 
       // ensure table is still on the 2nd page (pageIndex=1)
       expect(getByTestSubject('pagination-button-1')).toBeDisabled();
-      expect(container.querySelectorAll('td')[0]).toHaveTextContent('Index2');
-      expect(container.querySelectorAll('td')[1]).toHaveTextContent('Index3');
+      expect(container.querySelectorAll('td')[0]).toHaveTextContent('2');
+      expect(container.querySelectorAll('td')[1]).toHaveTextContent('3');
 
       // re-render with an updated `pageIndex` value
       rerender(
@@ -1314,8 +1356,8 @@ describe('EuiInMemoryTable', () => {
 
       // ensure table is on 3rd page (pageIndex=2)
       expect(getByTestSubject('pagination-button-2')).toBeDisabled();
-      expect(container.querySelectorAll('td')[0]).toHaveTextContent('Index4');
-      expect(container.querySelectorAll('td')[1]).toHaveTextContent('Index5');
+      expect(container.querySelectorAll('td')[0]).toHaveTextContent('4');
+      expect(container.querySelectorAll('td')[1]).toHaveTextContent('5');
     });
 
     it('respects pageSize', () => {
@@ -1339,7 +1381,7 @@ describe('EuiInMemoryTable', () => {
         },
       ];
       const onTableChange = jest.fn();
-      const component = mount(
+      const { container, getByTestSubject, rerender } = render(
         <EuiInMemoryTable
           items={items}
           columns={columns}
@@ -1349,18 +1391,14 @@ describe('EuiInMemoryTable', () => {
       );
 
       // check that the first 2 items rendered
-      expect(component.find('td').length).toBe(2);
-      expect(component.find('td').at(0).text()).toBe('Index0');
-      expect(component.find('td').at(1).text()).toBe('Index1');
+      let cells = container.querySelectorAll('td');
+      expect(cells.length).toBe(2);
+      expect(cells[0]).toHaveTextContent('0');
+      expect(cells[1]).toHaveTextContent('1');
 
       // change the page size
-      component
-        .find('button[data-test-subj="tablePaginationPopoverButton"]')
-        .simulate('click');
-      component.update();
-      component
-        .find('button[data-test-subj="tablePagination-4-rows"]')
-        .simulate('click');
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      fireEvent.click(getByTestSubject('tablePagination-4-rows'));
 
       // check callback
       expect(onTableChange).toHaveBeenCalledTimes(1);
@@ -1373,20 +1411,28 @@ describe('EuiInMemoryTable', () => {
       });
 
       // verify still only rendering the first 2 rows
-      expect(component.find('td').length).toBe(2);
-      expect(component.find('td').at(0).text()).toBe('Index0');
-      expect(component.find('td').at(1).text()).toBe('Index1');
+      cells = container.querySelectorAll('td');
+      expect(cells.length).toBe(2);
+      expect(cells[0]).toHaveTextContent('0');
+      expect(cells[1]).toHaveTextContent('1');
 
       // update the controlled page size
-      pagination.pageSize = 4;
-      component.setProps({ pagination });
+      rerender(
+        <EuiInMemoryTable
+          items={items}
+          columns={columns}
+          pagination={{ ...pagination, pageSize: 4 }}
+          onTableChange={onTableChange}
+        />
+      );
 
       // verify it now renders 4 rows
-      expect(component.find('td').length).toBe(4);
-      expect(component.find('td').at(0).text()).toBe('Index0');
-      expect(component.find('td').at(1).text()).toBe('Index1');
-      expect(component.find('td').at(2).text()).toBe('Index2');
-      expect(component.find('td').at(3).text()).toBe('Index3');
+      cells = container.querySelectorAll('td');
+      expect(cells.length).toBe(4);
+      expect(cells[0]).toHaveTextContent('0');
+      expect(cells[1]).toHaveTextContent('1');
+      expect(cells[2]).toHaveTextContent('2');
+      expect(cells[3]).toHaveTextContent('3');
     });
   });
 
@@ -1396,7 +1442,7 @@ describe('EuiInMemoryTable', () => {
       const columns = [{ field: 'title', name: 'Title' }];
       const query = Query.parse('baz');
 
-      const component = mount(
+      const { container } = render(
         <EuiInMemoryTable
           items={items}
           search={{ query }}
@@ -1405,12 +1451,12 @@ describe('EuiInMemoryTable', () => {
         />
       );
 
-      const tableContent = component.find(
+      const tableContent = container.querySelectorAll(
         '.euiTableRowCell .euiTableCellContent'
       );
 
       expect(tableContent.length).toBe(1); // only 1 match
-      expect(tableContent.at(0).text()).toBe('baz');
+      expect(tableContent[0]).toHaveTextContent('baz');
     });
 
     it('does not execute the Query and renders the items passed as is', () => {
@@ -1418,7 +1464,7 @@ describe('EuiInMemoryTable', () => {
       const columns = [{ field: 'title', name: 'Title' }];
       const query = Query.parse('baz');
 
-      const component = mount(
+      const { container } = render(
         <EuiInMemoryTable
           items={items}
           search={{ query }}
@@ -1427,14 +1473,14 @@ describe('EuiInMemoryTable', () => {
         />
       );
 
-      const tableContent = component.find(
+      const tableContent = container.querySelectorAll(
         '.euiTableRowCell .euiTableCellContent'
       );
 
       expect(tableContent.length).toBe(3);
-      expect(tableContent.at(0).text()).toBe('foo');
-      expect(tableContent.at(1).text()).toBe('bar');
-      expect(tableContent.at(2).text()).toBe('baz');
+      expect(tableContent[0]).toHaveTextContent('foo');
+      expect(tableContent[1]).toHaveTextContent('bar');
+      expect(tableContent[2]).toHaveTextContent('baz');
     });
   });
 

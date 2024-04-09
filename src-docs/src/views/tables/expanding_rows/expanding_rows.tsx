@@ -52,9 +52,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     truncateText: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,
@@ -134,9 +134,10 @@ export default () => {
       isExpander: true,
       name: (
         <EuiScreenReaderOnly>
-          <span>Expand rows</span>
+          <span>Expand row</span>
         </EuiScreenReaderOnly>
       ),
+      mobileOptions: { header: false },
       render: (user: User) => {
         const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
 
@@ -260,12 +261,9 @@ export default () => {
       items={pageOfItems}
       itemId="id"
       itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-      isExpandable={true}
-      hasActions={true}
       columns={columnsWithExpandingRowToggle}
       pagination={pagination}
       sorting={sorting}
-      isSelectable={true}
       selection={selection}
       onChange={onTableChange}
     />

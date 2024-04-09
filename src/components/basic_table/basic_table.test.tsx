@@ -224,7 +224,6 @@ describe('EuiBasicTable', () => {
       itemIdToExpandedRowMap: {
         '1': <div>Expanded row</div>,
       },
-      isExpandable: true,
     };
     const { getByText } = render(<EuiBasicTable {...props} />);
 
@@ -565,7 +564,7 @@ describe('EuiBasicTable', () => {
 
       // Numbers should be right aligned
       expect(
-        container.querySelectorAll('.euiTableCellContent--alignRight')
+        container.querySelectorAll('[class*="euiTableCellContent-right"]')
       ).toHaveLength(3);
 
       // Booleans should output as Yes or No
@@ -665,9 +664,12 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { getAllByText } = render(<EuiBasicTable {...props} />);
+      const { getAllByText, container } = render(<EuiBasicTable {...props} />);
 
       expect(getAllByText('Delete')).toHaveLength(basicItems.length);
+      expect(
+        container.querySelector('.euiBasicTableAction-showOnHover')
+      ).not.toBeInTheDocument();
     });
 
     test('multiple actions with custom availability', () => {
@@ -681,7 +683,7 @@ describe('EuiBasicTable', () => {
           },
         ],
       };
-      const { getAllByText, getAllByTestSubject } = render(
+      const { getAllByText, getAllByTestSubject, container } = render(
         <EuiBasicTable {...props} />
       );
 
@@ -690,6 +692,57 @@ describe('EuiBasicTable', () => {
       expect(getAllByTestSubject('euiCollapsedItemActionsButton')).toHaveLength(
         4
       );
+      expect(
+        container.querySelector('.euiBasicTable__collapsedActions')
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('.euiBasicTableAction-showOnHover')
+      ).toBeInTheDocument();
+    });
+
+    test('custom item actions', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: [
+          {
+            name: 'Actions',
+            actions: [
+              {
+                render: ({ id }) => (
+                  <button data-test-subj={`customAction-${id}`}>
+                    Custom action
+                  </button>
+                ),
+                available: ({ id }) => id !== '3',
+              },
+            ],
+          },
+        ],
+        responsiveBreakpoint: true, // Needs to be in mobile to render customAction cell CSS
+      };
+      const { queryByTestSubject, container } = render(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(queryByTestSubject('customAction-1')).toBeInTheDocument();
+      expect(queryByTestSubject('customAction-2')).toBeInTheDocument();
+      expect(queryByTestSubject('customAction-3')).not.toBeInTheDocument();
+
+      // TODO: These assertions should ideally be visual regression snapshots instead
+      expect(
+        container.querySelector('.euiTableRowCell--hasActions')!.className
+      ).toContain('-customActions');
+      expect(
+        container.querySelector(
+          '.euiTableRowCell--hasActions .euiTableCellContent'
+        )!.className
+      ).not.toContain('-actions-mobile');
+      expect(
+        container.querySelector('.euiTableRow-hasActions')!.className
+      ).not.toContain('-hasRightColumn');
+      expect(
+        container.querySelector('.euiTableRow-hasActions')
+      ).toMatchSnapshot();
     });
 
     describe('are disabled on selection', () => {

@@ -11,13 +11,13 @@ import {
 import { Pagination } from '../paginated/_props';
 import {
   EuiTableFieldDataColumnType,
-  EuiTableComputedColumnType,
-  EuiTableActionsColumnType,
   EuiTableSelectionType,
   EuiTableSortingType,
 } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
 import { CustomItemAction } from '!!prop-loader!../../../../../src/components/basic_table/action_types';
 import {
+  EuiTableComputedColumnType,
+  EuiTableActionsColumnType,
   DefaultItemActionProps as DefaultItemAction,
   SearchProps as Search,
   SearchFilterConfigProps as SearchFilterConfig,
@@ -36,12 +36,10 @@ export const searchExternalSection = {
     },
   ],
   text: (
-    <div>
-      <p>
-        The example shows how to configure <strong>EuiInMemoryTable</strong>{' '}
-        when both external and internal search/filter states are in use.
-      </p>
-    </div>
+    <p>
+      The example shows how to configure <strong>EuiInMemoryTable</strong> when
+      both external and internal search/filter states are in use.
+    </p>
   ),
   props: {
     EuiInMemoryTable,

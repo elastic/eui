@@ -9,25 +9,22 @@
 import React, {
   CSSProperties,
   FunctionComponent,
-  ReactElement,
   ReactNode,
   TdHTMLAttributes,
-  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import {
+  useEuiMemoizedStyles,
   HorizontalAlignment,
   LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
-  useIsWithinBreakpoints,
 } from '../../services';
-import { isObject } from '../../services/predicate';
-import { EuiTextBlockTruncate } from '../text_truncate';
 
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { resolveWidthAsStyle } from './utils';
+import { EuiTableCellContent } from './_table_cell_content';
+import { euiTableRowCellStyles } from './table_row_cell.styles';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -35,12 +32,9 @@ interface EuiTableRowCellSharedPropsShape {
    */
   align?: HorizontalAlignment;
   /**
-   * _Should only be used for action cells_
-   */
-  showOnHover?: boolean;
-  /**
    * Creates a text wrapper around cell content that helps word break or truncate
    * long text correctly.
+   * @default true
    */
   textOnly?: boolean;
   /**
@@ -48,6 +42,7 @@ interface EuiTableRowCellSharedPropsShape {
    * - Set to `true` to enable single-line truncation.
    * - To enable multi-line truncation, use a configuration object with `lines`
    * set to a number of lines to truncate to.
+   * @default false
    */
   truncateText?: boolean | { lines: number };
   width?: CSSProperties['width'];
@@ -57,10 +52,12 @@ export interface EuiTableRowCellMobileOptionsShape
   extends EuiTableRowCellSharedPropsShape {
   /**
    * If false, will not render the cell at all for mobile
+   * @default true
    */
   show?: boolean;
   /**
    * Only show for mobile? If true, will not render the column at all for desktop
+   * @default false
    */
   only?: boolean;
   /**
@@ -75,10 +72,12 @@ export interface EuiTableRowCellMobileOptionsShape
   header?: ReactNode | boolean;
   /**
    * Increase text size compared to rest of cells
+   * @default false
    */
   enlarge?: boolean;
   /**
    * Applies the value to the width of the cell in mobile view (typically 50%)
+   * @default 50%
    */
   width?: CSSProperties['width'];
 }
@@ -93,10 +92,10 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    */
   setScopeRow?: boolean;
   /**
-   * Indicates if the column is dedicated to icon-only actions (currently
-   * affects mobile only)
+   * Indicates if the cell is dedicated to row actions
+   * (used for mobile styling and desktop action hover behavior)
    */
-  hasActions?: boolean;
+  hasActions?: boolean | 'custom';
   /**
    * Indicates if the column is dedicated as the expandable row toggle
    */
@@ -119,138 +118,99 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   className,
   truncateText,
   setScopeRow,
-  showOnHover,
   textOnly = true,
   hasActions,
   isExpander,
   style,
   width,
   valign = 'middle',
-  mobileOptions = {
-    show: true,
-  },
+  mobileOptions,
   ...rest
 }) => {
-  const cellClasses = classNames('euiTableRowCell', {
+  const isResponsive = useEuiTableIsResponsive();
+  const styles = useEuiMemoizedStyles(euiTableRowCellStyles);
+  const cssStyles = [
+    styles.euiTableRowCell,
+    setScopeRow && styles.rowHeader,
+    isExpander && styles.isExpander,
+    hasActions && styles.hasActions,
+    styles[valign],
+    ...(isResponsive
+      ? [
+          styles.mobile.mobile,
+          mobileOptions?.enlarge && styles.mobile.enlarge,
+          hasActions === 'custom' && styles.mobile.customActions,
+          hasActions === true && styles.mobile.actions,
+          isExpander && styles.mobile.expander,
+        ]
+      : [styles.desktop.desktop, hasActions && styles.desktop.actions]),
+  ];
+
+  const cellClasses = classNames('euiTableRowCell', className, {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
-    'euiTableRowCell--hideForDesktop': mobileOptions.only,
-    'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge,
-    [`euiTableRowCell--${valign}`]: valign,
   });
 
-  const contentClasses = classNames('euiTableCellContent', className, {
-    'euiTableCellContent--alignRight': align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter': align === CENTER_ALIGNMENT,
-    'euiTableCellContent--showOnHover': showOnHover,
-    'euiTableCellContent--truncateText': truncateText === true,
-    // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
-    // purposes for the time-being.
-    'euiTableCellContent--overflowingContent': textOnly !== true,
-  });
-
-  const mobileContentClasses = classNames('euiTableCellContent', className, {
-    'euiTableCellContent--alignRight':
-      mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
-    'euiTableCellContent--alignCenter':
-      mobileOptions.align === CENTER_ALIGNMENT || align === CENTER_ALIGNMENT,
-    'euiTableCellContent--showOnHover':
-      mobileOptions.showOnHover ?? showOnHover,
-    'euiTableCellContent--truncateText':
-      mobileOptions.truncateText ?? truncateText,
-    // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
-    // purposes for the time-being.
-    'euiTableCellContent--overflowingContent':
-      mobileOptions.textOnly !== true || textOnly !== true,
-  });
-
-  const childClasses = classNames({
-    euiTableCellContent__text: textOnly === true,
-    euiTableCellContent__hoverItem: showOnHover,
-  });
-
-  const widthValue =
-    useIsWithinBreakpoints(['xs', 's']) && mobileOptions.width
-      ? mobileOptions.width
-      : width;
+  const widthValue = isResponsive
+    ? hasActions || isExpander
+      ? undefined // On mobile, actions are shifted to a right column via CSS
+      : mobileOptions?.width
+    : width;
 
   const styleObj = resolveWidthAsStyle(style, widthValue);
-
-  const modifyChildren = useCallback(
-    (children: ReactNode) => {
-      let modifiedChildren = children;
-
-      if (textOnly === true) {
-        modifiedChildren = <span className={childClasses}>{children}</span>;
-      } else if (React.isValidElement(children)) {
-        modifiedChildren = React.Children.map(children, (child: ReactElement) =>
-          React.cloneElement(child, {
-            className: classNames(
-              (child.props as CommonProps).className,
-              childClasses
-            ),
-          })
-        );
-      }
-      if (isObject(truncateText) && truncateText.lines) {
-        modifiedChildren = (
-          <EuiTextBlockTruncate lines={truncateText.lines} cloneElement>
-            {modifiedChildren}
-          </EuiTextBlockTruncate>
-        );
-      }
-
-      return modifiedChildren;
-    },
-    [childClasses, textOnly, truncateText]
-  );
-
-  const childrenNode = modifyChildren(children);
-
-  const hideForMobileClasses = 'euiTableRowCell--hideForMobile';
-  const showForMobileClasses = 'euiTableRowCell--hideForDesktop';
 
   const Element = setScopeRow ? 'th' : 'td';
   const sharedProps = {
     scope: setScopeRow ? 'row' : undefined,
     style: styleObj,
+    css: cssStyles,
     ...rest,
   };
-  if (mobileOptions.show === false) {
-    return (
-      <Element
-        className={`${cellClasses} ${hideForMobileClasses}`}
-        {...sharedProps}
-      >
-        <div className={contentClasses}>{childrenNode}</div>
-      </Element>
-    );
-  } else {
-    return (
-      <Element className={cellClasses} {...sharedProps}>
-        {/* Mobile-only header */}
-        {mobileOptions.header && (
-          <div
-            className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}
-          >
-            {mobileOptions.header}
-          </div>
-        )}
+  const sharedContentProps = {
+    align,
+    textOnly,
+    truncateText,
+    hasActions: hasActions || isExpander,
+  };
 
-        {/* Content depending on mobile render existing */}
-        {mobileOptions.render ? (
-          <>
-            <div className={`${mobileContentClasses} ${showForMobileClasses}`}>
-              {modifyChildren(mobileOptions.render)}
+  if (isResponsive) {
+    // Mobile view
+    if (mobileOptions?.show === false) {
+      return null;
+    } else {
+      return (
+        <Element className={cellClasses} {...sharedProps}>
+          {mobileOptions?.header && (
+            <div
+              className="euiTableRowCell__mobileHeader"
+              css={styles.euiTableRowCell__mobileHeader}
+            >
+              {mobileOptions.header}
             </div>
-            <div className={`${contentClasses} ${hideForMobileClasses}`}>
-              {childrenNode}
-            </div>
-          </>
-        ) : (
-          <div className={contentClasses}>{childrenNode}</div>
-        )}
-      </Element>
-    );
+          )}
+          <EuiTableCellContent
+            {...sharedContentProps}
+            align={mobileOptions?.align ?? 'left'} // Default to left aligned mobile cells, unless consumers specifically set an alignment for mobile
+            truncateText={mobileOptions?.truncateText ?? truncateText}
+            textOnly={mobileOptions?.textOnly ?? textOnly}
+          >
+            {mobileOptions?.render || children}
+          </EuiTableCellContent>
+        </Element>
+      );
+    }
+  } else {
+    // Desktop view
+    if (mobileOptions?.only) {
+      return null;
+    } else {
+      return (
+        <Element className={cellClasses} {...sharedProps}>
+          <EuiTableCellContent {...sharedContentProps}>
+            {children}
+          </EuiTableCellContent>
+        </Element>
+      );
+    }
   }
 };

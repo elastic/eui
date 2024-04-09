@@ -1,57 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders EuiTable 1`] = `
+exports[`EuiTable renders 1`] = `
 <table
   aria-label="aria-label"
-  class="euiTable testClass1 testClass2 emotion-euiTestCss euiTable--responsive"
+  class="euiTable testClass1 testClass2 emotion-euiTable-fixed-uncompressed-desktop-euiTestCss"
   data-test-subj="test subject string"
   tabindex="-1"
 >
   <thead>
     <tr>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Hi Title"
           >
             Hi Title
           </span>
-        </span>
+        </div>
       </th>
       <th
-        class="euiTableHeaderCell"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
-        <span
-          class="euiTableCellContent"
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
         >
           <span
-            class="euiTableCellContent__text"
+            class="eui-textTruncate"
             title="Bye Title"
           >
             Bye Title
           </span>
-        </span>
+        </div>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr
-      class="euiTableRow"
+      class="euiTableRow emotion-euiTableRow-desktop"
     >
       <td
-        class="euiTableRowCell euiTableRowCell--middle"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
@@ -62,13 +62,13 @@ exports[`renders EuiTable 1`] = `
       </td>
     </tr>
     <tr
-      class="euiTableRow"
+      class="euiTableRow emotion-euiTableRow-desktop"
     >
       <td
-        class="euiTableRowCell euiTableRowCell--middle"
+        class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-wrapText"
         >
           <span
             class="euiTableCellContent__text"
