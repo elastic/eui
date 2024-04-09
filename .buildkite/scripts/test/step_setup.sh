@@ -19,5 +19,7 @@ else
   echo "Build-time yarn cache not found. This is a no-op."
 fi
 
+yarn cache list
+
 echo "+++ :yarn: Installing dependencies"
 yarn
