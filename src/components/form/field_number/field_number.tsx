@@ -25,7 +25,10 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import {
+  getFormControlClassNameForIconCount,
+  isRightSideIcon,
+} from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldNumberProps = Omit<
@@ -133,15 +136,17 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     }
   }, [value, min, max, step, checkNativeValidity]);
 
+  const hasRightSideIcon = isRightSideIcon(icon);
   const numIconsClass = controlOnly
     ? false
     : getFormControlClassNameForIconCount({
         isInvalid: isInvalid || isNativelyInvalid,
         isLoading,
+        icon: hasRightSideIcon,
       });
 
   const classes = classNames('euiFieldNumber', className, numIconsClass, {
-    'euiFieldNumber--withIcon': icon,
+    'euiFieldNumber--withIcon': icon && !hasRightSideIcon,
     'euiFieldNumber--fullWidth': fullWidth,
     'euiFieldNumber--compressed': compressed,
     'euiFieldNumber--inGroup': prepend || append,
