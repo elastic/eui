@@ -92,10 +92,12 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
       });
 
   const classes = classNames('euiFieldText', className, numIconsClass, {
-    'euiFieldText--withIcon': icon && !hasRightSideIcon,
     'euiFieldText--fullWidth': fullWidth,
     'euiFieldText--compressed': compressed,
-    'euiFieldText--inGroup': prepend || append,
+    ...(!controlOnly && {
+      'euiFieldText--withIcon': icon && !hasRightSideIcon,
+      'euiFieldText--inGroup': prepend || append,
+    }),
     'euiFieldText-isLoading': isLoading,
   });
 

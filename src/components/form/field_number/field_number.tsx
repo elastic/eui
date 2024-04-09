@@ -146,10 +146,12 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       });
 
   const classes = classNames('euiFieldNumber', className, numIconsClass, {
-    'euiFieldNumber--withIcon': icon && !hasRightSideIcon,
     'euiFieldNumber--fullWidth': fullWidth,
     'euiFieldNumber--compressed': compressed,
-    'euiFieldNumber--inGroup': prepend || append,
+    ...(!controlOnly && {
+      'euiFieldNumber--inGroup': prepend || append,
+      'euiFieldNumber--withIcon': icon && !hasRightSideIcon,
+    }),
     'euiFieldNumber-isLoading': isLoading,
   });
 
