@@ -12,6 +12,14 @@ steps:
       imageProject: elastic-images-qa
       image: 'family/eui-ubuntu-2204'
       machineType: 'n2-standard-8'
+  - label: ':cypress: Run jest tests on a custom vm image'
+    commands:
+      - .buildkite/scripts/test/step_setup.sh
+      - .buildkite/scripts/test/step_jest.sh
+    agents:
+      imageProject: elastic-images-qa
+      image: 'family/eui-ubuntu-2204'
+      machineType: 'n2-standard-4'
   - wait
   - group: ':hammer: Unit and static tests'
     key: 'unit-static-tests'
