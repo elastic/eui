@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eo pipefail
 
+cat ~/.bash_profile
+source ~/.bash_profile
+
 whoami
 pwd
 
