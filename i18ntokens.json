@@ -23,14 +23,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 334,
+        "line": 318,
         "column": 6,
-        "index": 8507
+        "index": 8077
       },
       "end": {
-        "line": 334,
+        "line": 318,
         "column": 79,
-        "index": 8580
+        "index": 8150
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -41,14 +41,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 657,
+        "line": 626,
         "column": 10,
-        "index": 16964
+        "index": 16143
       },
       "end": {
-        "line": 661,
+        "line": 630,
         "column": 12,
-        "index": 17167
+        "index": 16346
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -59,14 +59,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 670,
+        "line": 639,
         "column": 12,
-        "index": 17364
+        "index": 16543
       },
       "end": {
-        "line": 674,
+        "line": 643,
         "column": 14,
-        "index": 17643
+        "index": 16822
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -77,14 +77,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 678,
+        "line": 647,
         "column": 12,
-        "index": 17715
+        "index": 16894
       },
       "end": {
-        "line": 682,
+        "line": 651,
         "column": 14,
-        "index": 17955
+        "index": 17134
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -95,14 +95,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 687,
+        "line": 656,
         "column": 10,
-        "index": 18031
+        "index": 17210
       },
       "end": {
-        "line": 691,
+        "line": 660,
         "column": 12,
-        "index": 18215
+        "index": 17394
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -113,14 +113,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 733,
+        "line": 702,
         "column": 6,
-        "index": 19213
+        "index": 18420
       },
       "end": {
-        "line": 733,
+        "line": 702,
         "column": 77,
-        "index": 19284
+        "index": 18491
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -131,14 +131,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1129,
+        "line": 1103,
         "column": 8,
-        "index": 31095
+        "index": 30673
       },
       "end": {
-        "line": 1129,
+        "line": 1103,
         "column": 79,
-        "index": 31166
+        "index": 30744
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -149,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1354,
+        "line": 1329,
         "column": 8,
-        "index": 37741
+        "index": 37489
       },
       "end": {
-        "line": 1358,
+        "line": 1333,
         "column": 9,
-        "index": 37900
+        "index": 37648
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -6575,14 +6575,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 69,
+        "line": 76,
         "column": 8,
-        "index": 1743
+        "index": 1963
       },
       "end": {
-        "line": 69,
+        "line": 76,
         "column": 72,
-        "index": 1807
+        "index": 2027
       }
     },
     "filepath": "src/components/table/mobile/table_sort_mobile.tsx"
@@ -6593,14 +6593,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 80,
+        "line": 77,
         "column": 10,
-        "index": 2237
+        "index": 2366
       },
       "end": {
-        "line": 84,
+        "line": 81,
         "column": 11,
-        "index": 2411
+        "index": 2540
       }
     },
     "filepath": "src/components/table/table_header_cell.tsx"
