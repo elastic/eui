@@ -33,11 +33,11 @@ export type IconShape = DistributiveOmit<
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
 
-function isIconShape(
+export const isIconShape = (
   icon: EuiFormControlLayoutIconsProps['icon']
-): icon is IconShape {
+): icon is IconShape => {
   return !!icon && icon.hasOwnProperty('type');
-}
+};
 
 export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;

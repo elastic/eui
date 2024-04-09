@@ -6,6 +6,11 @@
  * Side Public License, v 1.
  */
 
+import {
+  isIconShape,
+  type EuiFormControlLayoutIconsProps,
+} from './form_control_layout_icons';
+
 /**
  * The `getFormControlClassNameForIconCount` function helps setup the className appendum
  * depending on the form control's current settings/state.
@@ -26,17 +31,23 @@ export type _EuiFormControlLayoutNumIcons = {
   isDropdown?: boolean;
 };
 
-export function getFormControlClassNameForIconCount({
+export const getFormControlClassNameForIconCount = ({
   icon,
   clear,
   isLoading,
   isInvalid,
   isDropdown,
-}: _EuiFormControlLayoutNumIcons): string | undefined {
+}: _EuiFormControlLayoutNumIcons): string | undefined => {
   const numIcons = [icon, clear, isInvalid, isLoading, isDropdown].filter(
     (item) => item === true
   ).length;
 
   // This className is also specifically used in `src/global_styling/mixins/_form.scss`
   return numIcons > 0 ? `euiFormControlLayout--${numIcons}icons` : undefined;
-}
+};
+
+export const isRightSideIcon = (
+  icon?: EuiFormControlLayoutIconsProps['icon']
+): boolean => {
+  return !!icon && isIconShape(icon) && icon.side === 'right';
+};
