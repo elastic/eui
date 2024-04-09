@@ -13,7 +13,7 @@ echo "+++ :yarn: Using build-time yarn cache"
 
 YARN_CACHE_FOLDER="${HOME}/.yarn-cache"
 if [[ -d "${YARN_CACHE_FOLDER}" ]]; then
-  yarn config set --global cache-folder "$HOME/.yarn-cache"
+  yarn config set cache-folder "$HOME/.yarn-cache"
   echo "Using build-time yarn cache from ${YARN_CACHE_FOLDER}"
 else
   echo "Build-time yarn cache not found. This is a no-op."
