@@ -14,7 +14,6 @@ import React, {
   ReactElement,
 } from 'react';
 
-import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
@@ -69,12 +68,9 @@ export const CollapsedItemActions = <T extends {}>({
           </EuiContextMenuItem>
         );
       } else {
-        const buttonIcon = action.icon;
-        let icon;
-        if (buttonIcon) {
-          icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
-        }
-
+        const icon = action.icon
+          ? callWithItemIfFunction(item)(action.icon)
+          : undefined;
         const buttonContent = callWithItemIfFunction(item)(action.name);
         const toolTipContent = callWithItemIfFunction(item)(action.description);
         const href = callWithItemIfFunction(item)(action.href);

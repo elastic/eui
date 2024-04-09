@@ -8,7 +8,6 @@
 
 import React, { ReactElement, ReactNode, MouseEvent, useCallback } from 'react';
 
-import { isString } from '../../services/predicate';
 import {
   EuiButtonEmpty,
   EuiButtonIcon,
@@ -51,19 +50,12 @@ export const DefaultItemAction = <T extends object>({
     [action.onClick, item]
   );
 
-  const buttonColor = action.color;
-  let color: EuiButtonIconProps['color'] = 'primary';
-  if (buttonColor) {
-    color = isString(buttonColor) ? buttonColor : buttonColor(item);
-  }
-
-  const buttonIcon = action.icon;
-  let icon;
-  if (buttonIcon) {
-    icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
-  }
-
-  let button;
+  const color: EuiButtonIconProps['color'] = action.color
+    ? callWithItemIfFunction(item)(action.color)
+    : 'primary';
+  const icon = action.icon
+    ? callWithItemIfFunction(item)(action.icon)
+    : undefined;
   const actionContent = callWithItemIfFunction(item)(action.name);
   const tooltipContent = callWithItemIfFunction(item)(action.description);
   const href = callWithItemIfFunction(item)(action.href);
@@ -71,6 +63,7 @@ export const DefaultItemAction = <T extends object>({
 
   const ariaLabelId = useGeneratedHtmlId();
   let ariaLabelledBy: ReactNode;
+  let button;
 
   if (action.type === 'icon') {
     if (!icon) {
