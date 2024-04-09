@@ -4,6 +4,11 @@ agents:
   preemptible: true
 
 steps:
+  - command: .buildkite/scripts/test/step_setup.sh
+    agents:
+      imageProject: elastic-images-qa
+      image: 'family/eui-ubuntu-2204'
+  - wait
   - group: ':hammer: Unit and static tests'
     key: 'unit-static-tests'
     steps:
