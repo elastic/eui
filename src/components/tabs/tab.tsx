@@ -15,8 +15,9 @@ import React, {
   useContext,
 } from 'react';
 import classNames from 'classnames';
+
+import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
 import { euiTabStyles, euiTabContentStyles } from './tab.styles';
@@ -63,7 +64,6 @@ export const EuiTab: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const { size, expand } = useContext(EuiTabsContext);
-  const euiTheme = useEuiTheme();
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
 
@@ -72,7 +72,7 @@ export const EuiTab: FunctionComponent<Props> = ({
     'euiTab-isSelected': isSelected,
   });
 
-  const tabStyles = euiTabStyles(euiTheme);
+  const tabStyles = useEuiMemoizedStyles(euiTabStyles);
   const cssTabStyles = [
     tabStyles.euiTab,
     expand && tabStyles.expanded,
@@ -80,7 +80,7 @@ export const EuiTab: FunctionComponent<Props> = ({
     isSelected && (disabled ? tabStyles.disabled.selected : tabStyles.selected),
   ];
 
-  const tabContentStyles = euiTabContentStyles(euiTheme);
+  const tabContentStyles = useEuiMemoizedStyles(euiTabContentStyles);
   const cssTabContentStyles = [
     tabContentStyles.euiTab__content,
     size && tabContentStyles[size],

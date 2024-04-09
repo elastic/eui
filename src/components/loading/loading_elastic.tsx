@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
 import { useLoadingAriaLabel } from './_loading_strings';
-import { euiLoadingElasticStyles } from './loading_elastic.styles';
+import { euiLoadingElasticStyles as styles } from './loading_elastic.styles';
 
 export const SIZES = ['m', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingElasticSize = (typeof SIZES)[number];
@@ -23,16 +23,13 @@ export interface EuiLoadingElasticProps {
 export const EuiLoadingElastic: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps
 > = ({ size = 'm', className, 'aria-label': ariaLabel, ...rest }) => {
-  const styles = euiLoadingElasticStyles();
-  const cssStyles = [styles.euiLoadingElastic];
-  const defaultLabel = useLoadingAriaLabel();
-
   const classes = classNames('euiLoadingElastic', className);
+  const defaultLabel = useLoadingAriaLabel();
 
   return (
     <span
       className={classes}
-      css={cssStyles}
+      css={styles.euiLoadingElastic}
       role="progressbar"
       aria-label={ariaLabel || defaultLabel}
       {...rest}

@@ -8,16 +8,26 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 
+import type { EuiTableProps } from '../table';
+import { useIsEuiTableResponsive } from './responsive_context';
+import { euiTableHeaderMobileStyles } from './table_header_mobile.styles';
+
 export const EuiTableHeaderMobile: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement>
-> = ({ children, className, ...rest }) => {
+  CommonProps &
+    HTMLAttributes<HTMLDivElement> &
+    Pick<EuiTableProps, 'responsiveBreakpoint'>
+> = ({ children, className, responsiveBreakpoint, ...rest }) => {
+  const isResponsive = useIsEuiTableResponsive(responsiveBreakpoint);
+  const styles = useEuiMemoizedStyles(euiTableHeaderMobileStyles);
   const classes = classNames('euiTableHeaderMobile', className);
 
-  return (
-    <div className={classes} {...rest}>
+  return isResponsive ? (
+    <div className={classes} css={styles.euiTableHeaderMobile} {...rest}>
       {children}
     </div>
-  );
+  ) : null;
 };

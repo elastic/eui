@@ -1,4 +1,8 @@
 import React, { FunctionComponent } from 'react';
+import {
+  EuiTableComputedColumnType as _EuiTableComputedColumnType,
+  EuiTableActionsColumnType as _EuiTableActionsColumnType,
+} from '../../../../../src/components/basic_table/table_types';
 import { DefaultItemAction } from '../../../../../src/components/basic_table/action_types';
 import { Search } from '../../../../../src/components/basic_table/in_memory_table';
 import { SearchFilterConfig } from '../../../../../src/components/search_bar/filters';
@@ -19,4 +23,12 @@ export const SearchFilterConfigProps: FunctionComponent<
 
 export const EuiTableRowCellMobileOptionsShape: FunctionComponent<
   _EuiTableRowCellMobileOptionsShape
+> = () => <div />;
+
+export const EuiTableComputedColumnType: FunctionComponent<
+  _EuiTableComputedColumnType<T>
+> = () => <div />;
+
+export const EuiTableActionsColumnType: FunctionComponent<
+  _EuiTableActionsColumnType<T>
 > = () => <div />;

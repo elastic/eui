@@ -58,9 +58,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     truncateText: true,
     mobileOptions: {
       render: (user: User) => (
-        <span>
+        <>
           {user.firstName} {user.lastName}
-        </span>
+        </>
       ),
       header: false,
       truncateText: false,
@@ -226,7 +226,6 @@ export default () => {
         columns={columns}
         pagination={pagination}
         sorting={sorting}
-        isSelectable={true}
         selection={selection}
         onChange={onTableChange}
         rowHeader="firstName"

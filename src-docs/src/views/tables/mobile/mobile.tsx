@@ -79,9 +79,9 @@ export default () => {
       mobileOptions: {
         render: customHeader
           ? (user: User) => (
-              <span>
+              <>
                 {user.firstName} {user.lastName}
-              </span>
+              </>
             )
           : undefined,
         header: customHeader ? false : true,
@@ -193,7 +193,7 @@ export default () => {
    * Pagination & sorting
    */
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(3);
   const [sortField, setSortField] = useState<keyof User>('firstName');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
@@ -300,9 +300,7 @@ export default () => {
         pagination={pagination}
         sorting={sorting}
         selection={selection}
-        isSelectable={true}
-        hasActions={true}
-        responsive={isResponsive}
+        responsiveBreakpoint={isResponsive}
         onChange={onTableChange}
       />
     </>

@@ -9,13 +9,38 @@
 import React from 'react';
 import { requiredProps } from '../../../test';
 import { render } from '../../../test/rtl';
+import { EuiProvider } from '../../provider';
 
 import { EuiTableHeaderMobile } from './table_header_mobile';
 
 describe('EuiTableHeaderMobile', () => {
-  test('is rendered', () => {
-    const { container } = render(<EuiTableHeaderMobile {...requiredProps} />);
+  it('does not render if window size is above the default m breakpoint', () => {
+    const { container } = render(<EuiTableHeaderMobile />);
 
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it('renders when below the responsive breakpoint', () => {
+    const { container } = render(
+      <EuiTableHeaderMobile responsiveBreakpoint="xl" {...requiredProps} />
+    );
+
+    expect(container).not.toBeEmptyDOMElement();
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('respects EuiProvider.componentDefaults', () => {
+    const { container } = render(
+      <EuiProvider
+        componentDefaults={{
+          EuiTable: { responsiveBreakpoint: 'xl' },
+        }}
+      >
+        <EuiTableHeaderMobile />
+      </EuiProvider>,
+      { wrapper: undefined }
+    );
+
+    expect(container).not.toBeEmptyDOMElement();
   });
 });

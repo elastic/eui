@@ -15,12 +15,19 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { keys } from '../../services';
+import { keys, useEuiMemoizedStyles } from '../../services';
+
+import { useEuiTableIsResponsive } from './mobile/responsive_context';
+import { euiTableRowStyles } from './table_row.styles';
 
 export interface EuiTableRowProps {
   /**
    * Indicates if the table has a single column of checkboxes for selecting
-   * rows (affects mobile only)
+   * rows (used for mobile styling)
+   */
+  hasSelection?: boolean;
+  /**
+   * Indicates that the current row's checkbox is selectable / not disabled
    */
   isSelectable?: boolean;
   /**
@@ -28,10 +35,10 @@ export interface EuiTableRowProps {
    */
   isSelected?: boolean;
   /**
-   * Indicates if the table has a dedicated column for icon-only actions
-   * (affects mobile only)
+   * Indicates if the table has a dedicated column for actions
+   * (used for mobile styling and desktop action hover behavior)
    */
-  hasActions?: boolean;
+  hasActions?: boolean | 'custom';
   /**
    * Indicates if the row will have an expanded row
    */
@@ -51,6 +58,7 @@ type Props = CommonProps &
 export const EuiTableRow: FunctionComponent<Props> = ({
   children,
   className,
+  hasSelection,
   isSelected,
   isSelectable,
   hasActions,
@@ -59,6 +67,27 @@ export const EuiTableRow: FunctionComponent<Props> = ({
   onClick,
   ...rest
 }) => {
+  const isResponsive = useEuiTableIsResponsive();
+  const styles = useEuiMemoizedStyles(euiTableRowStyles);
+  const cssStyles = isResponsive
+    ? [
+        styles.euiTableRow,
+        styles.mobile.mobile,
+        isSelected && styles.mobile.selected,
+        isExpandedRow && styles.mobile.expanded,
+        (hasActions === true || isExpandable || isExpandedRow) &&
+          styles.mobile.hasRightColumn,
+        hasSelection && styles.mobile.hasLeftColumn,
+      ]
+    : [
+        styles.euiTableRow,
+        styles.desktop.desktop,
+        isSelected && styles.desktop.selected,
+        isExpandedRow && styles.desktop.expanded,
+        onClick && styles.desktop.clickable,
+        isExpandedRow && hasSelection && styles.desktop.checkboxOffset,
+      ];
+
   const classes = classNames('euiTableRow', className, {
     'euiTableRow-isSelectable': isSelectable,
     'euiTableRow-isSelected': isSelected,
@@ -70,7 +99,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
 
   if (!onClick) {
     return (
-      <tr className={classes} {...rest}>
+      <tr css={cssStyles} className={classes} {...rest}>
         {children}
       </tr>
     );
@@ -90,6 +119,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
 
   return (
     <tr
+      css={cssStyles}
       className={classes}
       onClick={onClick}
       onKeyDown={onKeyDown}

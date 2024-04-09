@@ -45,15 +45,10 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
         ${logicalCSS('right', euiTheme.size.s)}
       `,
     },
-    euiCallOut__icon: css`
-      position: relative;
-      ${logicalCSS('top', '-1px')}
-      ${logicalCSS('margin-right', euiTheme.size.s)}
-    `,
   };
 };
 
-export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiCallOutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCallOutHeader: css`
       font-weight: ${euiTheme.font.weight.medium};
@@ -74,6 +69,11 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     danger: css`
       color: ${euiTheme.colors.dangerText};
+    `,
+    euiCallOut__icon: css`
+      position: relative;
+      ${logicalCSS('top', '-1px')}
+      ${logicalCSS('margin-right', euiTheme.size.s)}
     `,
   };
 };

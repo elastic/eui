@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-import { EuiSuperSelect, EuiHealth } from '../../../../src/components';
+import {
+  EuiSuperSelect,
+  EuiHealth,
+  EuiFormRow,
+} from '../../../../src/components';
 
 export default () => {
   const options = [
@@ -40,10 +44,15 @@ export default () => {
   };
 
   return (
-    <EuiSuperSelect
-      options={options}
-      valueOfSelected={value}
-      onChange={(value) => onChange(value)}
-    />
+    <EuiFormRow
+      label="Status"
+      helpText="This super select is inside a form row."
+    >
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected={value}
+        onChange={(value) => onChange(value)}
+      />
+    </EuiFormRow>
   );
 };

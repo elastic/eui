@@ -38,10 +38,8 @@ const soundGroup = {
   ],
 };
 
-const allOptionsStatic = [colorGroup, soundGroup];
-
 export default () => {
-  const [allOptions, setAllOptions] = useState(allOptionsStatic);
+  const [allOptions, setAllOptions] = useState([colorGroup, soundGroup]);
   const [selectedOptions, setSelected] = useState([
     colorGroup.options[2],
     soundGroup.options[3],
@@ -51,46 +49,23 @@ export default () => {
     setSelected(selectedOptions);
   };
 
-  const onCreateOption = (searchValue, flattenedOptions = []) => {
-    if (!searchValue) {
-      return;
-    }
-
-    const normalizedSearchValue = searchValue.trim().toLowerCase();
-
-    if (!normalizedSearchValue) {
-      return;
-    }
-
+  const onCreateOption = (searchValue) => {
     const newOption = {
       label: searchValue,
     };
 
-    // Create the option if it doesn't exist.
-    if (
-      flattenedOptions.findIndex(
-        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
-      ) === -1
-    ) {
-      if (allOptions[allOptions.length - 1].label !== 'Custom') {
-        setAllOptions([
-          ...allOptions,
-          {
-            label: 'Custom',
-            options: [],
-          },
-        ]);
-      }
-      const [colors, sounds, custom] = allOptions;
-      setAllOptions([
+    setAllOptions((allOptions) => {
+      const [colors, sounds, custom = { label: 'Custom', options: [] }] =
+        allOptions;
+      return [
         colors,
         sounds,
         {
           ...custom,
           options: [...custom.options, newOption],
         },
-      ]);
-    }
+      ];
+    });
 
     // Select the option.
     setSelected([...selectedOptions, newOption]);
@@ -98,7 +73,7 @@ export default () => {
 
   return (
     <EuiComboBox
-      aria-label="Accessible screen reader label"
+      aria-label="EuiComboBox example with groups"
       placeholder="These options are grouped"
       options={allOptions}
       selectedOptions={selectedOptions}

@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiHorizontalRuleStyles } from './horizontal_rule.styles';
 
 export const SIZES = ['full', 'half', 'quarter'] as const;
@@ -29,37 +29,15 @@ export interface EuiHorizontalRuleProps
   margin?: EuiHorizontalRuleMargin;
 }
 
-const marginToClassNameMap: {
-  [value in EuiHorizontalRuleMargin]: string | null;
-} = {
-  none: null,
-  xs: 'marginXSmall',
-  s: 'marginSmall',
-  m: 'marginMedium',
-  l: 'marginLarge',
-  xl: 'marginXLarge',
-  xxl: 'marginXXLarge',
-};
-
 export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   className,
   size = 'full',
   margin = 'l',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiHorizontalRuleStyles(euiTheme);
+  const classes = classNames('euiHorizontalRule', className);
 
-  const classes = classNames(
-    'euiHorizontalRule',
-    {
-      [`euiHorizontalRule--${size}`]: size,
-      [`euiHorizontalRule--${marginToClassNameMap[margin]}`]:
-        margin && margin !== 'none',
-    },
-    className
-  );
-
+  const styles = useEuiMemoizedStyles(euiHorizontalRuleStyles);
   const cssStyles = [styles.euiHorizontalRule, styles[size], styles[margin]];
 
   return <hr css={cssStyles} className={classes} {...rest} />;

@@ -1,132 +1,125 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiBasicTable actions custom item actions 1`] = `
+<tr
+  class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-mobile"
+>
+  <td
+    class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-mobile-customActions"
+  >
+    <div
+      class="euiTableCellContent emotion-euiTableCellContent-wrapText-actions"
+    >
+      <div
+        class=""
+      >
+        <button
+          data-test-subj="customAction-1"
+        >
+          Custom action
+        </button>
+      </div>
+    </div>
+  </td>
+</tr>
+`;
+
 exports[`EuiBasicTable renders (bare-bones) 1`] = `
 <div
   aria-label="aria-label"
   class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
-  <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-      </div>
-    </div>
-    <table
-      class="euiTable css-0 euiTable--responsive"
-      id="__table_generated-id"
-      tabindex="-1"
-    >
-      <caption
-        class="euiTableCaption emotion-euiScreenReaderOnly"
-      />
-      <thead>
-        <tr>
-          <th
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_name_0"
-            role="columnheader"
-            scope="col"
+  <table
+    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
+    id="__table_generated-id"
+    tabindex="-1"
+  >
+    <caption
+      class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
+    />
+    <thead>
+      <tr>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          data-test-subj="tableHeaderCell_name_0"
+          role="columnheader"
+          scope="col"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
           >
             <span
-              class="euiTableCellContent"
+              class="eui-textTruncate"
+              title="Name; description"
             >
-              <span
-                class="euiTableCellContent__text"
-                title="Name; description"
-              >
-                Name
-              </span>
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                description
-              </span>
+              Name
             </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="css-0"
+            <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              description
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
       >
-        <tr
-          class="euiTableRow"
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            <span
+              class="euiTableCellContent__text"
             >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name1
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
+              name1
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
+      >
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            <span
+              class="euiTableCellContent__text"
             >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name2
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
+              name2
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow euiTableRow-isSelectable emotion-euiTableRow-desktop"
+      >
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            <span
+              class="euiTableCellContent__text"
             >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name3
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              name3
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
@@ -134,47 +127,210 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
 <div
   class="euiBasicTable"
 >
-  <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
+  <table
+    class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
+    id="__table_generated-id"
+    tabindex="-1"
+  >
+    <caption
+      class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
+    />
+    <thead>
+      <tr>
+        <th
+          class="euiTableHeaderCellCheckbox emotion-euiTableHeaderCellCheckbox"
+          scope="col"
         >
           <div
-            class="euiCheckbox emotion-euiCheckbox"
+            class="euiTableCellContent"
           >
-            <input
-              aria-label="Select all rows"
-              class="euiCheckbox__input"
-              id="_selection_column-checkbox_generated-id_mobile"
-              type="checkbox"
-            />
             <div
-              class="euiCheckbox__square"
-            />
-            <label
-              class="euiCheckbox__label"
-              for="_selection_column-checkbox_generated-id_mobile"
+              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
             >
-              Select all rows
-            </label>
+              <input
+                aria-label="Select all rows"
+                class="euiCheckbox__input"
+                data-test-subj="checkboxSelectAll"
+                id="_selection_column-checkbox_generated-id_desktop"
+                type="checkbox"
+              />
+              <div
+                class="euiCheckbox__square"
+              />
+            </div>
           </div>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
+        </th>
+        <th
+          aria-live="polite"
+          aria-sort="ascending"
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          data-test-subj="tableHeaderCell_name_0"
+          role="columnheader"
+          scope="col"
         >
-          <div
-            class="euiTableSortMobile"
+          <button
+            class="euiTableHeaderButton euiTableHeaderButton-isSorted emotion-euiTableHeaderCell__button"
+            data-test-subj="tableHeaderSortButton"
+            type="button"
           >
             <div
-              class="euiPopover emotion-euiPopover-inline-block"
+              class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+            >
+              <span
+                class="eui-textTruncate"
+                title="Name; your name"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-euiScreenReaderOnly"
+              >
+                your name
+              </span>
+              <span
+                class="euiTableSortIcon"
+                data-euiicon-type="sortUp"
+              />
+            </div>
+          </button>
+        </th>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          data-test-subj="tableHeaderCell_id_1"
+          role="columnheader"
+          scope="col"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+          >
+            <span
+              class="eui-textTruncate"
+              title="ID; your id"
+            >
+              ID
+            </span>
+            <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              your id
+            </span>
+          </div>
+        </th>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          data-test-subj="tableHeaderCell_age_2"
+          role="columnheader"
+          scope="col"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-euiTableHeaderCell__content"
+          >
+            <span
+              class="eui-textTruncate"
+              title="Age; your age"
+            >
+              Age
+            </span>
+            <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              your age
+            </span>
+          </div>
+        </th>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          role="columnheader"
+          scope="col"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-euiTableHeaderCell__content"
+          >
+            <span
+              class="eui-textTruncate"
+              title="Actions"
+            >
+              Actions
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="css-0"
+    >
+      <tr
+        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
+      >
+        <td
+          class="euiTableRowCellCheckbox emotion-euiTableRowCellCheckbox-desktop"
+        >
+          <div
+            class="euiTableCellContent"
+          >
+            <div
+              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+            >
+              <input
+                aria-label="Select this row"
+                class="euiCheckbox__input"
+                data-test-subj="checkboxSelectRow-1"
+                id="__table_generated-id_selection_column_1-checkbox"
+                title="Select this row"
+                type="checkbox"
+              />
+              <div
+                class="euiCheckbox__square"
+              />
+            </div>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+          >
+            NAME1
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              1
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              20
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
+          >
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
               <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                 type="button"
               >
                 <span
@@ -183,581 +339,310 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                   <span
                     class="eui-textTruncate euiButtonEmpty__text"
                   >
-                    Sorting
+                    Edit
                   </span>
-                  <span
-                    color="inherit"
-                    data-euiicon-type="arrowDown"
-                  />
                 </span>
               </button>
+            </span>
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <button
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                type="button"
+              >
+                <span
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                >
+                  <span
+                    class="eui-textTruncate euiButtonEmpty__text"
+                  >
+                    Delete
+                  </span>
+                </span>
+              </button>
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
+      >
+        <td
+          class="euiTableRowCellCheckbox emotion-euiTableRowCellCheckbox-desktop"
+        >
+          <div
+            class="euiTableCellContent"
+          >
+            <div
+              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+            >
+              <input
+                aria-label="Select this row"
+                class="euiCheckbox__input"
+                data-test-subj="checkboxSelectRow-2"
+                id="__table_generated-id_selection_column_2-checkbox"
+                title="Select this row"
+                type="checkbox"
+              />
+              <div
+                class="euiCheckbox__square"
+              />
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <table
-      class="euiTable css-0 euiTable--responsive"
-      id="__table_generated-id"
-      tabindex="-1"
-    >
-      <caption
-        class="euiTableCaption emotion-euiScreenReaderOnly"
-      />
-      <thead>
-        <tr>
-          <th
-            class="euiTableHeaderCellCheckbox"
-            scope="col"
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <div
-              class="euiTableCellContent"
-            >
-              <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
-              >
-                <input
-                  aria-label="Select all rows"
-                  class="euiCheckbox__input"
-                  data-test-subj="checkboxSelectAll"
-                  id="_selection_column-checkbox_generated-id_desktop"
-                  type="checkbox"
-                />
-                <div
-                  class="euiCheckbox__square"
-                />
-              </div>
-            </div>
-          </th>
-          <th
-            aria-live="polite"
-            aria-sort="ascending"
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_name_0"
-            role="columnheader"
-            scope="col"
+            NAME2
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <button
-              class="euiTableHeaderButton euiTableHeaderButton-isSorted"
-              data-test-subj="tableHeaderSortButton"
-              type="button"
+            <span
+              class="euiTableCellContent__text"
             >
-              <span
-                class="euiTableCellContent"
+              2
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              21
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
+          >
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <button
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                type="button"
               >
                 <span
-                  class="euiTableCellContent__text"
-                  title="Name; your name"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
-                  Name
+                  <span
+                    class="eui-textTruncate euiButtonEmpty__text"
+                  >
+                    Edit
+                  </span>
                 </span>
+              </button>
+            </span>
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <button
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                type="button"
+              >
                 <span
-                  class="emotion-euiScreenReaderOnly"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
-                  your name
+                  <span
+                    class="eui-textTruncate euiButtonEmpty__text"
+                  >
+                    Delete
+                  </span>
                 </span>
-                <span
-                  class="euiTableSortIcon"
-                  data-euiicon-type="sortUp"
-                />
-              </span>
-            </button>
-          </th>
-          <th
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_id_1"
-            role="columnheader"
-            scope="col"
-          >
-            <span
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-                title="ID; your id"
-              >
-                ID
-              </span>
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                your id
-              </span>
+              </button>
             </span>
-          </th>
-          <th
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_age_2"
-            role="columnheader"
-            scope="col"
-          >
-            <span
-              class="euiTableCellContent euiTableCellContent--alignRight"
-            >
-              <span
-                class="euiTableCellContent__text"
-                title="Age; your age"
-              >
-                Age
-              </span>
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                your age
-              </span>
-            </span>
-          </th>
-          <th
-            class="euiTableHeaderCell"
-            role="columnheader"
-            scope="col"
-          >
-            <span
-              class="euiTableCellContent euiTableCellContent--alignRight"
-            >
-              <span
-                class="euiTableCellContent__text"
-                title="Actions"
-              >
-                Actions
-              </span>
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="css-0"
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions emotion-euiTableRow-desktop"
       >
-        <tr
-          class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions"
+        <td
+          class="euiTableRowCellCheckbox emotion-euiTableRowCellCheckbox-desktop"
         >
-          <td
-            class="euiTableRowCellCheckbox"
+          <div
+            class="euiTableCellContent"
           >
             <div
-              class="euiTableCellContent"
+              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
             >
+              <input
+                aria-label="Select this row"
+                class="euiCheckbox__input"
+                data-test-subj="checkboxSelectRow-3"
+                id="__table_generated-id_selection_column_3-checkbox"
+                title="Select this row"
+                type="checkbox"
+              />
               <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
-              >
-                <input
-                  aria-label="Select this row"
-                  class="euiCheckbox__input"
-                  data-test-subj="checkboxSelectRow-1"
-                  id="__table_generated-id_selection_column_1-checkbox"
-                  title="Select this row"
-                  type="checkbox"
-                />
-                <div
-                  class="euiCheckbox__square"
-                />
-              </div>
+                class="euiCheckbox__square"
+              />
             </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent euiTableCellContent--overflowingContent"
-            >
-              NAME1
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              ID
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                1
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Age
-            </div>
-            <div
-              class="euiTableCellContent euiTableCellContent--alignRight"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                20
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--hasActions euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableCellContent emotion-euiBasicTableActionsWrapper euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
-            >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              >
-                <button
-                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Edit
-                    </span>
-                  </span>
-                </button>
-              </span>
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              >
-                <button
-                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Delete
-                    </span>
-                  </span>
-                </button>
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions"
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <td
-            class="euiTableRowCellCheckbox"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <div
-              class="euiTableCellContent"
-            >
-              <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
-              >
-                <input
-                  aria-label="Select this row"
-                  class="euiCheckbox__input"
-                  data-test-subj="checkboxSelectRow-2"
-                  id="__table_generated-id_selection_column_2-checkbox"
-                  title="Select this row"
-                  type="checkbox"
-                />
-                <div
-                  class="euiCheckbox__square"
-                />
-              </div>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent euiTableCellContent--overflowingContent"
-            >
-              NAME2
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              ID
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                2
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Age
-            </div>
-            <div
-              class="euiTableCellContent euiTableCellContent--alignRight"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                21
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--hasActions euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableCellContent emotion-euiBasicTableActionsWrapper euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
-            >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              >
-                <button
-                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Edit
-                    </span>
-                  </span>
-                </button>
-              </span>
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              >
-                <button
-                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                  type="button"
-                >
-                  <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-                  >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Delete
-                    </span>
-                  </span>
-                </button>
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow euiTableRow-isSelectable euiTableRow-hasActions"
+            NAME3
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
         >
-          <td
-            class="euiTableRowCellCheckbox"
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-wrapText"
           >
-            <div
-              class="euiTableCellContent"
+            <span
+              class="euiTableCellContent__text"
             >
-              <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+              3
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText"
+          >
+            <span
+              class="euiTableCellContent__text"
+            >
+              22
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
+          >
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <button
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                type="button"
               >
-                <input
-                  aria-label="Select this row"
-                  class="euiCheckbox__input"
-                  data-test-subj="checkboxSelectRow-3"
-                  id="__table_generated-id_selection_column_3-checkbox"
-                  title="Select this row"
-                  type="checkbox"
-                />
-                <div
-                  class="euiCheckbox__square"
-                />
-              </div>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent euiTableCellContent--overflowingContent"
-            >
-              NAME3
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              ID
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                3
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Age
-            </div>
-            <div
-              class="euiTableCellContent euiTableCellContent--alignRight"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                22
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableRowCell euiTableRowCell--hasActions euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableCellContent emotion-euiBasicTableActionsWrapper euiTableCellContent--alignRight euiTableCellContent--showOnHover euiTableCellContent--overflowingContent"
-            >
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-              >
-                <button
-                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                  type="button"
+                <span
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Edit
-                    </span>
+                    Edit
                   </span>
-                </button>
-              </span>
-              <span
-                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+                </span>
+              </button>
+            </span>
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <button
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                type="button"
               >
-                <button
-                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                  type="button"
+                <span
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
-                    <span
-                      class="eui-textTruncate euiButtonEmpty__text"
-                    >
-                      Delete
-                    </span>
+                    Delete
                   </span>
-                </button>
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td
-            class="euiTableFooterCell"
+                </span>
+              </button>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td
+          class="euiTableFooterCell emotion-euiTableFooterCell"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              />
-            </div>
-          </td>
-          <td
-            class="euiTableFooterCell"
+            <span
+              class="euiTableCellContent__text"
+            />
+          </div>
+        </td>
+        <td
+          class="euiTableFooterCell emotion-euiTableFooterCell"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              />
-            </div>
-          </td>
-          <td
-            class="euiTableFooterCell"
+            <span
+              class="euiTableCellContent__text"
+            />
+          </div>
+        </td>
+        <td
+          class="euiTableFooterCell emotion-euiTableFooterCell"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
-            <div
-              class="euiTableCellContent"
+            <span
+              class="euiTableCellContent__text"
             >
-              <span
-                class="euiTableCellContent__text"
-              >
-                <strong>
-                  Total items: 
-                  5
-                </strong>
-              </span>
-            </div>
-          </td>
-          <td
-            class="euiTableFooterCell"
+              <strong>
+                Total items: 
+                5
+              </strong>
+            </span>
+          </div>
+        </td>
+        <td
+          class="euiTableFooterCell emotion-euiTableFooterCell"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              />
-            </div>
-          </td>
-          <td
-            class="euiTableFooterCell"
+            <span
+              class="euiTableCellContent__text"
+            />
+          </div>
+        </td>
+        <td
+          class="euiTableFooterCell emotion-euiTableFooterCell"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-truncateText"
           >
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              />
-            </div>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+            <span
+              class="euiTableCellContent__text"
+            />
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
   <div>
     <div
       class="euiSpacer euiSpacer--m emotion-euiSpacer-m"

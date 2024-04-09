@@ -17,8 +17,9 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
-import { transparentize } from '../../services/color';
 import { euiFormVariables } from '../form/form.styles';
+
+export const FLYOUT_BREAKPOINT = 'm' as const;
 
 export const euiFlyoutSlideInRight = keyframes`
   0% {
@@ -42,56 +43,6 @@ export const euiFlyoutSlideInLeft = keyframes`
   }
 `;
 
-export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
-
-  return {
-    euiFlyout__closeButton: css`
-      position: absolute;
-      ${logicalCSS('right', euiTheme.size.s)}
-      ${logicalCSS('top', euiTheme.size.s)}
-      z-index: 3;
-    `,
-    inside: css`
-      background-color: ${transparentize(euiTheme.colors.emptyShade, 0.9)};
-    `,
-    outside: css`
-      /* Match dropshadow */
-      ${euiShadowXLarge(euiThemeContext)}
-      /* Override the hover and focus transitions of buttons */
-      animation: none !important; /* stylelint-disable-line declaration-no-important */
-    `,
-    outsideSide: {
-      // `transforms` pull in close buttons a little
-      // `!important` is necessary here to override the hover/focus transitions of buttons
-      right: css`
-        /* stylelint-disable declaration-no-important */
-        ${logicalCSS('left', 0)}
-
-        ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-          transform: translateX(calc(-100% - ${euiTheme.size.xs})) !important;
-        }
-        ${euiMinBreakpoint(euiThemeContext, 'm')} {
-          transform: translateX(calc(-100% - ${euiTheme.size.l})) !important;
-        }
-        /* stylelint-enable declaration-no-important */
-      `,
-      left: css`
-        /* stylelint-disable declaration-no-important */
-        ${logicalCSS('right', 0)}
-
-        ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-          transform: translateX(calc(100% + ${euiTheme.size.xs})) !important;
-        }
-        ${euiMinBreakpoint(euiThemeContext, 'm')} {
-          transform: translateX(calc(100% + ${euiTheme.size.l})) !important;
-        }
-        /* stylelint-enable declaration-no-important */
-      `,
-    },
-  };
-};
-
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
@@ -112,7 +63,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
+      ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
         /* 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
            2. If a custom maxWidth is set, we need to override it. */
         ${logicalCSS('max-width', '90vw !important')}
@@ -226,11 +177,11 @@ const composeFlyoutSizing = (
   return `
     ${logicalCSS('max-width', flyoutSizes[size].max)}
 
-    ${euiMaxBreakpoint(euiThemeContext, 'm')} {
+    ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
       ${logicalCSS('min-width', 0)}
       ${logicalCSS('width', flyoutSizes[size].min)}
     }
-    ${euiMinBreakpoint(euiThemeContext, 'm')} {
+    ${euiMinBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
       ${logicalCSS('min-width', flyoutSizes[size].min)}
       ${logicalCSS('width', flyoutSizes[size].width)}
     }

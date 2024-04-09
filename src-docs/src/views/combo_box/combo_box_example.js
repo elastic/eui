@@ -496,8 +496,8 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          You can group options together. The groups <em>won&rsquo;t</em> match
-          against the search value.
+          You can group options together. The group labels <em>won&rsquo;t</em>{' '}
+          match against the search value.
         </p>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },

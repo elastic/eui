@@ -9,8 +9,8 @@
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 
 import { EuiDescriptionListContext } from './description_list_context';
 import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
@@ -27,8 +27,7 @@ export const EuiDescriptionListDescription: FunctionComponent<
     EuiDescriptionListContext
   );
 
-  const theme = useEuiTheme();
-  const styles = euiDescriptionListDescriptionStyles(theme);
+  const styles = useEuiMemoizedStyles(euiDescriptionListDescriptionStyles);
 
   let conditionalStyles =
     compressed && textStyle === 'reverse'

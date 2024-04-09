@@ -12,13 +12,13 @@ import {
 import { Pagination } from '../paginated/_props';
 import {
   EuiTableFieldDataColumnType,
-  EuiTableComputedColumnType,
-  EuiTableActionsColumnType,
   EuiTableSelectionType,
   EuiTableSortingType,
 } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
 import { CustomItemAction } from '!!prop-loader!../../../../../src/components/basic_table/action_types';
 import {
+  EuiTableComputedColumnType,
+  EuiTableActionsColumnType,
   DefaultItemActionProps as DefaultItemAction,
   SearchProps as Search,
   SearchFilterConfigProps as SearchFilterConfig,
@@ -37,14 +37,14 @@ export const controlledPaginationSection = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         By default <EuiCode>EuiInMemoryTable</EuiCode> resets its page index
         when receiving a new <EuiCode>EuiInMemoryTable</EuiCode> array. To avoid
-        this behavior the pagination object optionally takes a
+        this behavior the pagination object optionally takes a{' '}
         <EuiCode>pageIndex</EuiCode> value to control this yourself.
         Additionally, <EuiCode>pageSize</EuiCode> can also be controlled the
-        same way. Both of these are provided to your app during the
+        same way. Both of these are provided to your app during the{' '}
         <EuiCode>onTableChange</EuiCode> callback.
       </p>
       <p>
@@ -52,7 +52,7 @@ export const controlledPaginationSection = {
         toggling their online status. Pagination state is maintained by the app,
         preventing it from being reset by the updates.
       </p>
-    </div>
+    </>
   ),
   props: {
     EuiInMemoryTable,

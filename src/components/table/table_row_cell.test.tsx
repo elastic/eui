@@ -10,10 +10,11 @@ import React from 'react';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
-import { EuiTableRowCell } from './table_row_cell';
-
 import { CENTER_ALIGNMENT, RIGHT_ALIGNMENT } from '../../services/alignment';
 import { WARNING_MESSAGE } from './utils';
+import { EuiTableIsResponsiveContext } from './mobile/responsive_context';
+
+import { EuiTableRowCell } from './table_row_cell';
 
 const renderInTableRow = (cell: React.ReactElement) =>
   render(
@@ -24,163 +25,210 @@ const renderInTableRow = (cell: React.ReactElement) =>
     </table>
   );
 
-test('renders EuiTableRowCell', () => {
-  const { container } = renderInTableRow(
-    <EuiTableRowCell {...requiredProps}>children</EuiTableRowCell>
-  );
-
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-describe('align', () => {
-  test('defaults to left', () => {
-    const { container } = renderInTableRow(<EuiTableRowCell />);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('renders right when specified', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell align={RIGHT_ALIGNMENT} />
+describe('EuiTableRowCell', () => {
+  it('renders', () => {
+    const { getByRole } = renderInTableRow(
+      <EuiTableRowCell {...requiredProps}>children</EuiTableRowCell>
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(getByRole('cell')).toMatchSnapshot();
   });
 
-  test('renders center when specified', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell align={CENTER_ALIGNMENT} />
+  it('renders mobile views', () => {
+    const { getByRole } = renderInTableRow(
+      // Context provider mocks mobile state
+      <EuiTableIsResponsiveContext.Provider value={true}>
+        <EuiTableRowCell
+          mobileOptions={{
+            header: 'mobile header',
+            render: 'mobile render',
+            enlarge: true,
+            truncateText: true,
+          }}
+        >
+          children
+        </EuiTableRowCell>
+      </EuiTableIsResponsiveContext.Provider>
     );
 
-    expect(container.firstChild).toMatchSnapshot();
-  });
-});
-
-describe('valign', () => {
-  test('defaults to middle', () => {
-    const { container } = renderInTableRow(<EuiTableRowCell />);
-
-    expect(container.firstChild).toMatchSnapshot();
+    expect(getByRole('cell')).toMatchSnapshot();
+    expect(getByRole('cell')).toHaveTextContent('mobile headermobile render');
   });
 
-  test('renders top when specified', () => {
-    const { container } = renderInTableRow(<EuiTableRowCell valign="top" />);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('renders bottom when specified', () => {
-    const { container } = renderInTableRow(<EuiTableRowCell valign="bottom" />);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-});
-
-describe('textOnly', () => {
-  test('defaults to true', () => {
-    const { container } = renderInTableRow(<EuiTableRowCell />);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('is rendered when specified', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell textOnly={false} />
+  it('does not render if on desktop and mobileOptions.only is set to true', () => {
+    const { queryByRole } = renderInTableRow(
+      <EuiTableRowCell mobileOptions={{ only: true }}>children</EuiTableRowCell>
     );
 
-    expect(container.firstChild).toMatchSnapshot();
-  });
-});
-
-describe('truncateText', () => {
-  it('defaults to false', () => {
-    const { container } = renderInTableRow(<EuiTableRowCell />);
-
-    expect(container.firstChild).toMatchSnapshot();
+    expect(queryByRole('cell')).not.toBeInTheDocument();
   });
 
-  it('renders true', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell truncateText={true} />
+  it('does not render if on mobile and mobileOptions.show is set to false', () => {
+    const { queryByRole } = renderInTableRow(
+      // Context provider mocks mobile state
+      <EuiTableIsResponsiveContext.Provider value={true}>
+        <EuiTableRowCell mobileOptions={{ show: false }}>
+          children
+        </EuiTableRowCell>
+      </EuiTableIsResponsiveContext.Provider>
     );
 
-    expect(
-      container.querySelector('.euiTableCellContent--truncateText')
-    ).toBeInTheDocument();
-    expect(container.firstChild).toMatchSnapshot();
+    expect(queryByRole('cell')).not.toBeInTheDocument();
   });
 
-  test('renders lines configuration', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell truncateText={{ lines: 2 }} />
-    );
+  // TODO: These should likely be visual snapshots instead
+  describe('align', () => {
+    it('defaults to left', () => {
+      const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(
-      container.querySelector('.euiTableCellContent--truncateText')
-    ).not.toBeInTheDocument();
-    expect(container.querySelector('.euiTableCellContent__text')).toHaveClass(
-      'euiTextBlockTruncate'
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-});
+      expect(container.firstChild).toMatchSnapshot();
+    });
 
-describe("children's className", () => {
-  test('merges new classnames into existing ones', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell textOnly={false} showOnHover={true}>
-        <div className="testClass" />
-      </EuiTableRowCell>
-    );
+    it('renders right when specified', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell align={RIGHT_ALIGNMENT} />
+      );
 
-    expect(container.firstChild).toMatchSnapshot();
-  });
-});
+      expect(container.firstChild).toMatchSnapshot();
+    });
 
-describe('width and style', () => {
-  const _consoleWarn = console.warn;
-  beforeAll(() => {
-    console.warn = (...args: [any?, ...any[]]) => {
-      // Suppress an expected warning
-      if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
-      _consoleWarn.apply(console, args);
-    };
-  });
-  afterAll(() => {
-    console.warn = _consoleWarn;
+    it('renders center when specified', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell align={CENTER_ALIGNMENT} />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
-  test('accepts style attribute', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell style={{ width: '20%' }}>Test</EuiTableRowCell>
-    );
+  describe('valign', () => {
+    it('defaults to middle', () => {
+      const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(container.firstChild).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders top when specified', () => {
+      const { container } = renderInTableRow(<EuiTableRowCell valign="top" />);
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders bottom when specified', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell valign="bottom" />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
-  test('accepts width attribute', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell width="10%">Test</EuiTableRowCell>
-    );
+  describe('textOnly', () => {
+    it('defaults to true', () => {
+      const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(container.firstChild).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('is rendered when specified', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell textOnly={false} />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
-  test('accepts width attribute as number', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell width={100}>Test</EuiTableRowCell>
-    );
+  describe('truncateText', () => {
+    it('defaults to false', () => {
+      const { container } = renderInTableRow(<EuiTableRowCell />);
 
-    expect(container.firstChild).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        container.querySelector('.euiTableCellContent')!.className
+      ).toContain('euiTableCellContent-wrapText');
+    });
+
+    it('renders true', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell truncateText={true} />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        container.querySelector('.euiTableCellContent')!.className
+      ).toContain('euiTableCellContent-truncateText');
+    });
+
+    it('renders lines configuration', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell truncateText={{ lines: 2 }} />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(container.querySelector('.euiTableCellContent__text')).toHaveClass(
+        'euiTextBlockTruncate'
+      );
+    });
   });
 
-  test('resolves style and width attribute', () => {
-    const { container } = renderInTableRow(
-      <EuiTableRowCell width="10%" style={{ width: '20%' }}>
-        Test
-      </EuiTableRowCell>
-    );
+  describe("children's className", () => {
+    it('merges new classnames into existing ones', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell textOnly={false}>
+          <div className="testClass" />
+        </EuiTableRowCell>
+      );
 
-    expect(container.firstChild).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('width and style', () => {
+    const _consoleWarn = console.warn;
+    beforeAll(() => {
+      console.warn = (...args: [any?, ...any[]]) => {
+        // Suppress an expected warning
+        if (args.length === 1 && args[0] === WARNING_MESSAGE) return;
+        _consoleWarn.apply(console, args);
+      };
+    });
+    afterAll(() => {
+      console.warn = _consoleWarn;
+    });
+
+    it('accepts style attribute', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell style={{ width: '20%' }}>Test</EuiTableRowCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('accepts width attribute', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell width="10%">Test</EuiTableRowCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('accepts width attribute as number', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell width={100}>Test</EuiTableRowCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('resolves style and width attribute', () => {
+      const { container } = renderInTableRow(
+        <EuiTableRowCell width="10%" style={{ width: '20%' }}>
+          Test
+        </EuiTableRowCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 });

@@ -5,10 +5,10 @@ exports[`EuiTableFooterCell align defaults to left 1`] = `
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -25,10 +25,10 @@ exports[`EuiTableFooterCell align renders center when specified 1`] = `
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
       >
         <div
-          class="euiTableCellContent euiTableCellContent--alignCenter"
+          class="euiTableCellContent emotion-euiTableCellContent-center-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -45,10 +45,10 @@ exports[`EuiTableFooterCell align renders right when specified 1`] = `
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
       >
         <div
-          class="euiTableCellContent euiTableCellContent--alignRight"
+          class="euiTableCellContent emotion-euiTableCellContent-right-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -66,11 +66,11 @@ exports[`EuiTableFooterCell is rendered 1`] = `
     <tr>
       <td
         aria-label="aria-label"
-        class="euiTableFooterCell testClass1 testClass2 emotion-euiTestCss"
+        class="euiTableFooterCell testClass1 testClass2 emotion-euiTableFooterCell-euiTestCss"
         data-test-subj="test subject string"
       >
         <div
-          class="euiTableCellContent testClass1 testClass2 emotion-euiTestCss"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -89,11 +89,11 @@ exports[`EuiTableFooterCell width and style accepts style attribute 1`] = `
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
         style="width: 20%;"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -112,11 +112,11 @@ exports[`EuiTableFooterCell width and style accepts width attribute 1`] = `
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
         style="width: 10%;"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -135,11 +135,11 @@ exports[`EuiTableFooterCell width and style accepts width attribute as number 1`
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
         style="width: 100px;"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"
@@ -158,11 +158,11 @@ exports[`EuiTableFooterCell width and style resolves style and width attribute 1
   <tfoot>
     <tr>
       <td
-        class="euiTableFooterCell"
+        class="euiTableFooterCell emotion-euiTableFooterCell"
         style="width: 10%;"
       >
         <div
-          class="euiTableCellContent"
+          class="euiTableCellContent emotion-euiTableCellContent-truncateText"
         >
           <span
             class="euiTableCellContent__text"

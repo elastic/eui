@@ -1,3 +1,74 @@
+## [`v94.0.0`](https://github.com/elastic/eui/releases/v94.0.0)
+
+- Updated `EuiTable`, `EuiBasicTable`, and `EuiInMemoryTable` with a new `responsiveBreakpoint` prop, which allows customizing the point at which the table collapses into a mobile-friendly view with cards ([#7625](https://github.com/elastic/eui/pull/7625))
+- Updated `EuiProvider`'s `componentDefaults` prop to allow configuring `EuiTable.responsiveBreakpoint` ([#7625](https://github.com/elastic/eui/pull/7625))
+
+**Bug fixes**
+
+- `EuiBasicTable` & `EuiInMemoryTable` `isPrimary` actions are now correctly shown on mobile views ([#7640](https://github.com/elastic/eui/pull/7640))
+- Table `mobileOptions`: ([#7642](https://github.com/elastic/eui/pull/7642))
+  - `mobileOptions.align` is now respected instead of all cells being forced to left alignment
+  - `textTruncate` and `textOnly` are now respected even if a `render` function is not passed
+
+**Breaking changes**
+
+- Removed unused `EuiTableHeaderButton` component ([#7621](https://github.com/elastic/eui/pull/7621))
+- Removed the `responsive` prop from `EuiTable`, `EuiBasicTable`, and `EuiInMemoryTable`. Use the new `responsiveBreakpoint` prop instead ([#7625](https://github.com/elastic/eui/pull/7625))
+- The following props are no longer needed by `EuiBasicTable` or `EuiInMemoryTable` for responsive table behavior to work correctly, and can be removed: ([#7632](https://github.com/elastic/eui/pull/7632))
+  - `isSelectable`
+  - `isExpandable`
+  - `hasActions`
+- Removed the `showOnHover` prop from `EuiTableRowCell` / `EuiBasicTable`/`EuiInMemoryTable`'s `columns` API. Use the new actions `columns[].actions[].showOnHover` API instead. ([#7640](https://github.com/elastic/eui/pull/7640))
+- Removed top-level `textOnly` prop from `EuiBasicTable` and `EuiInMemoryTable`. Use `columns[].textOnly` instead. ([#7642](https://github.com/elastic/eui/pull/7642))
+
+**DOM changes**
+
+- `EuiTable` mobile headers no longer render in the DOM when not visible (previously rendered with `display: none`). This may affect DOM testing assertions. ([#7625](https://github.com/elastic/eui/pull/7625))
+- `EuiTableRowCell` now applies passed `className`s to the parent `<td>` element, instead of to the inner cell content `<div>`. ([#7631](https://github.com/elastic/eui/pull/7631))
+- `EuiTableRow`s rendered by basic and memory tables now only render a `.euiTableRow-isSelectable` className if the selection checkbox is not disabled ([#7632](https://github.com/elastic/eui/pull/7632))
+- `EuiTableRowCell`s with `textOnly` set to `false` will no longer attempt to apply the `.euiTableCellContent__text` className to child elements. ([#7641](https://github.com/elastic/eui/pull/7641))
+- `EuiTableRowCell` no longer renders mobile headers to the DOM unless the current table is displaying its responsive view. ([#7642](https://github.com/elastic/eui/pull/7642))
+- `EuiTableHeaderCell` and `EuiTableRowCell` will no longer render in the DOM at all on mobile if their columns' `mobileOptions.show` is set to `false`. ([#7642](https://github.com/elastic/eui/pull/7642))
+- `EuiTableHeaderCell` and `EuiTableRowCell` will no longer render in the DOM at all on desktop if their columns' `mobileOptions.only` is set to `true`. ([#7642](https://github.com/elastic/eui/pull/7642))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiTable`, `EuiTableRow`, `EuiTableRowCell`, and all other table subcomponents to Emotion ([#7654](https://github.com/elastic/eui/pull/7654))
+- Removed the following `EuiTable` Sass variables: ([#7654](https://github.com/elastic/eui/pull/7654))
+  - `$euiTableCellContentPadding`
+  - `$euiTableCellContentPaddingCompressed`
+  - `$euiTableCellCheckboxWidth`
+  - `$euiTableHoverColor`
+  - `$euiTableSelectedColor`
+  - `$euiTableHoverSelectedColor`
+  - `$euiTableActionsBorderColor`
+  - `$euiTableHoverClickableColor`
+  - `$euiTableFocusClickableColor`
+- Removed the following `EuiTable` Sass mixins: ([#7654](https://github.com/elastic/eui/pull/7654))
+  - `euiTableActionsBackgroundMobile`
+  - `euiTableCellCheckbox`
+  - `euiTableCell`
+
+## [`v93.6.0`](https://github.com/elastic/eui/releases/v93.6.0)
+
+- Updated `EuiBreadcrumb` styles to improve visual distinction of clickable breadcrumbs ([#7615](https://github.com/elastic/eui/pull/7615))
+
+**Deprecations**
+
+- Deprecated `color` prop on `EuiBreadcrumb` ([#7615](https://github.com/elastic/eui/pull/7615))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` to correctly select full matches within groups via the `Enter` key ([#7658](https://github.com/elastic/eui/pull/7658))
+
+**Accessibility**
+
+- Updated `EuiHeaderBreadcrumb` styles to ensure min. required color contrast ([#7643](https://github.com/elastic/eui/pull/7643))
+- `EuiSuperSelect` now correctly reads out parent `EuiFormRow` labels to screen readers ([#7650](https://github.com/elastic/eui/pull/7650))
+- `EuiSuperSelect` now more closely mimics native `<select>` behavior in its keyboard behavior and navigation ([#7650](https://github.com/elastic/eui/pull/7650))
+- `EuiSuperSelect` no longer strands keyboard focus on close ([#7650](https://github.com/elastic/eui/pull/7650))
+- `EuiSuperSelect` now correctly allows keyboard navigating past disabled options in the middle of the options list ([#7650](https://github.com/elastic/eui/pull/7650))
+
 ## [`v93.5.2`](https://github.com/elastic/eui/releases/v93.5.2)
 
 **Dependency updates**
