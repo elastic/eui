@@ -11,6 +11,7 @@ steps:
     agents:
       imageProject: elastic-images-qa
       image: 'family/eui-ubuntu-2204'
+      machineType: 'n2-standard-8'
   - wait
   - group: ':hammer: Unit and static tests'
     key: 'unit-static-tests'

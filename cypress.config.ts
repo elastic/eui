@@ -2,11 +2,15 @@ import { defineConfig } from 'cypress';
 import { unlinkSync } from 'fs';
 import webpackConfig from './cypress/webpack.config';
 
+const enableCodeCoverage = process.env.CYPRESS_CODE_COVERAGE !== 'false';
+
 export default defineConfig({
   retries: {
     runMode: 2,
     openMode: 2,
   },
+
+  experimentalMemoryManagement: true,
 
   component: {
     devServer: {
@@ -15,8 +19,10 @@ export default defineConfig({
       webpackConfig,
     },
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config);
-      on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+      if (enableCodeCoverage) {
+        require('@cypress/code-coverage/task')(on, config);
+        on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+      }
 
       on('task', {
         log(message) {

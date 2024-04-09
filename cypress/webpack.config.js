@@ -21,10 +21,12 @@ if (['16', '17'].includes(reactVersion)) {
   alias['react-dom'] = `react-dom-${reactVersion}`;
 }
 
-module.exports = {
-  mode: 'development',
+const isCI = process.env.CYPRESS_CI === 'true';
 
-  devtool: 'cheap-module-source-map',
+module.exports = {
+  mode: isCI ? 'production' : 'development',
+
+  devtool: isCI ? false : 'cheap-module-source-map',
 
   stats: 'minimal',
 
