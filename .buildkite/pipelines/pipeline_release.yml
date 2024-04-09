@@ -4,7 +4,10 @@ agents:
   preemptible: true
 
 steps:
-  - command: .buildkite/scripts/test/step_setup.sh
+  - label: ':cypress: Run cypress tests on a custom vm image'
+    commands:
+      - .buildkite/scripts/test/step_setup.sh
+      - .buildkite/scripts/test/step_run.sh
     agents:
       imageProject: elastic-images-qa
       image: 'family/eui-ubuntu-2204'

@@ -1,9 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 
-pwd
-ls -la
+echo "+++ :information_source: Running tests on branch $(BUILDKITE_BRANCH) ($(BUILDKITE_COMMIT))"
+echo "Node.js version: $(node -v)"
 
-echo package.json
-
-git log
+echo "+++ :yarn: Installing dependencies"
+yarn
