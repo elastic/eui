@@ -270,13 +270,7 @@ export const PageTemplateExample = () => (
             iconType="warning"
             color="warning"
             title="Sidebars must be direct children declared in the same component."
-          >
-            <p>
-              In order for the template configurations to properly account for
-              the existence of a sidebar, it needs to clone the element which
-              can only be performed on direct children.
-            </p>
-          </EuiCallOut>
+          />
           <PageDemo
             slug="sidebar"
             toggle={{

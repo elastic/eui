@@ -11,7 +11,10 @@ import React, {
   CSSProperties,
   FunctionComponent,
   HTMLAttributes,
+  ReactNode,
   useContext,
+  useEffect,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 
@@ -32,19 +35,72 @@ import {
   EuiPageSection,
   EuiPageSectionProps,
   EuiPageSidebar,
+  EuiPageSidebarProps,
 } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useGeneratedHtmlId } from '../../services';
 import { logicalStyle } from '../../global_styling';
 import { CommonProps } from '../common';
+import { isEqual } from 'lodash';
 
-export const TemplateContext = createContext({
+interface PageTemplateComponentProps {
+  sidebar: Partial<EuiPageSidebarProps>;
+  section: Partial<EuiPageSectionProps>;
+  header: Partial<EuiPageHeaderProps>;
+  emptyPrompt: Partial<_EuiPageEmptyPromptProps>;
+  bottomBar: Partial<_EuiPageBottomBarProps>;
+}
+
+interface PageTemplateContext extends PageTemplateComponentProps {
+  setContext: (context: Partial<PageTemplateComponentProps>) => void;
+}
+
+const initialComponentProps: PageTemplateComponentProps = {
+  sidebar: {},
   section: {},
   header: {},
   emptyPrompt: {},
   bottomBar: {},
+};
+
+export const TemplateContext = createContext<PageTemplateContext>({
+  ...initialComponentProps,
+  setContext: () => {},
 });
+
+/**
+ * Wrapper to attach state and undate function to the page context
+ */
+const TemplateContextProvider: FunctionComponent<{
+  children: ReactNode;
+}> = ({ children }) => {
+  const [context, setContext] = useState<PageTemplateComponentProps>(
+    initialComponentProps
+  );
+
+  const updateContext = (
+    nextContext: Partial<PageTemplateComponentProps>
+  ): void => {
+    if (isEqual(nextContext, context)) return;
+
+    setContext((currentContext) => ({
+      ...currentContext,
+      ...nextContext,
+    }));
+  };
+
+  return (
+    <TemplateContext.Provider
+      value={{
+        ...context,
+        setContext: updateContext,
+      }}
+    >
+      {children}
+    </TemplateContext.Provider>
+  );
+};
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
   // We re-define the `border` prop below to be named more appropriately
@@ -77,7 +133,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     component?: ComponentTypes;
   };
 
-/**
+/*
  * Consumed via `EuiPageTemplate`,
  * it controls and propogates most of the shared props per direct child
  */
@@ -149,21 +205,14 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const innerBordered = () =>
     contentBorder !== undefined ? contentBorder : Boolean(sidebar.length > 0);
 
-  React.Children.toArray(children).forEach((child, index) => {
+  React.Children.toArray(children).forEach((child) => {
     if (!React.isValidElement(child)) return; // Skip non-components
 
     if (
-      child.type === EuiPageSidebar ||
-      child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === EuiPageSidebar
+      child.type === _EuiPageSidebar ||
+      child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === _EuiPageSidebar
     ) {
-      sidebar.push(
-        React.cloneElement(child, {
-          key: `sidebar${index}`,
-          ...getSideBarProps(),
-          // Allow their props overridden by appending the child props spread at the end
-          ...child.props,
-        })
-      );
+      sidebar.push(child);
     } else {
       sections.push(child);
     }
@@ -178,57 +227,80 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     ...rest.style,
   };
 
-  templateContext.header = getHeaderProps();
-  templateContext.section = getSectionProps();
-  templateContext.emptyPrompt = {
-    panelled: innerPanelled() ? true : panelled,
-    grow: true,
-  };
-  templateContext.bottomBar = getBottomBarProps();
+  // using useEffect without dependencies to run on every render while ensuring functionality
+  // of context state update when used outside of the Provider (e.g. in tests)
+  useEffect(() => {
+    templateContext.setContext({
+      sidebar: getSideBarProps(),
+      header: getHeaderProps(),
+      section: getSectionProps(),
+      emptyPrompt: {
+        panelled: innerPanelled() ? true : panelled,
+        grow: true,
+      },
+      bottomBar: getBottomBarProps(),
+    });
+  });
 
   return (
-    <TemplateContext.Provider value={templateContext}>
-      <EuiPageOuter
-        {...rest}
-        responsive={responsive}
-        style={pageStyle}
-        className={classes}
-      >
-        {sidebar}
+    <EuiPageOuter
+      {...rest}
+      responsive={responsive}
+      style={pageStyle}
+      className={classes}
+    >
+      {sidebar}
 
-        <EuiPageInner
-          {...mainProps}
-          component={component}
-          id={pageInnerId}
-          border={innerBordered()}
-          panelled={innerPanelled()}
-          responsive={responsive}
-        >
-          {sections}
-        </EuiPageInner>
-      </EuiPageOuter>
-    </TemplateContext.Provider>
+      <EuiPageInner
+        {...mainProps}
+        component={component}
+        id={pageInnerId}
+        border={innerBordered()}
+        panelled={innerPanelled()}
+        responsive={responsive}
+      >
+        {sections}
+      </EuiPageInner>
+    </EuiPageOuter>
   );
 };
 
-const _EuiPageSection: FunctionComponent<EuiPageSectionProps> = (props) => {
-  const templateContext = useContext(TemplateContext);
+const _EuiPageTemplateComponent: FunctionComponent<EuiPageTemplateProps> = (
+  props
+) => {
+  const Component = _EuiPageTemplate;
 
-  return <EuiPageSection {...templateContext.section} grow {...props} />;
+  return (
+    <TemplateContextProvider>
+      <Component {...props} />
+    </TemplateContextProvider>
+  );
+};
+
+const _EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = (props) => {
+  const { sidebar } = useContext(TemplateContext);
+
+  return <EuiPageSidebar {...sidebar} {...props} />;
+};
+
+const _EuiPageSection: FunctionComponent<EuiPageSectionProps> = (props) => {
+  const { section } = useContext(TemplateContext);
+
+  return <EuiPageSection {...section} grow {...props} />;
 };
 
 const _EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = (props) => {
-  const templateContext = useContext(TemplateContext);
+  const { header } = useContext(TemplateContext);
 
-  return <EuiPageHeader {...templateContext.header} {...props} />;
+  return <EuiPageHeader {...header} {...props} />;
 };
 
 const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
   props
 ) => {
-  const templateContext = useContext(TemplateContext);
+  const { emptyPrompt } = useContext(TemplateContext);
 
-  return <EuiPageEmptyPrompt {...templateContext.emptyPrompt} {...props} />;
+  return <EuiPageEmptyPrompt {...emptyPrompt} {...props} />;
 };
 
 const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
@@ -239,8 +311,8 @@ const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
   return <EuiPageBottomBar {...bottomBar} {...props} />;
 };
 
-export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
-  Sidebar: EuiPageSidebar,
+export const EuiPageTemplate = Object.assign(_EuiPageTemplateComponent, {
+  Sidebar: _EuiPageSidebar,
   Header: _EuiPageHeader,
   Section: _EuiPageSection,
   BottomBar: _EuiPageBottomBar,
