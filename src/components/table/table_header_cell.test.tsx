@@ -108,7 +108,7 @@ describe('EuiTableHeaderCell', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    it('renders a sort arrow upwards isSortAscending', () => {
+    it('renders a sort arrow upwards with isSortAscending', () => {
       const { container } = renderInTableHeader(
         <EuiTableHeaderCell isSorted isSortAscending>
           Test
