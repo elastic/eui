@@ -150,7 +150,7 @@ exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
 </table>
 `;
 
-exports[`EuiTableHeaderCell sorting renders a sort arrow upwards isSortAscending 1`] = `
+exports[`EuiTableHeaderCell sorting renders a sort arrow upwards with isSortAscending 1`] = `
 <table>
   <thead>
     <tr>
