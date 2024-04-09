@@ -19,7 +19,6 @@ import classNames from 'classnames';
 
 import { useCombinedRefs } from '../../../services';
 import { CommonProps } from '../../common';
-import { IconType } from '../../icon';
 
 import { EuiValidatableControl } from '../validatable_control';
 import {
@@ -34,7 +33,7 @@ export type EuiFieldNumberProps = Omit<
   'min' | 'max' | 'readOnly' | 'step'
 > &
   CommonProps & {
-    icon?: IconType;
+    icon?: EuiFormControlLayoutProps['icon'];
     isInvalid?: boolean;
     /**
      * Expand to fill 100% of the parent.
