@@ -122,4 +122,30 @@ describe('DefaultItemAction', () => {
     await waitForEuiToolTipVisible();
     expect(getByText('goodbye tooltip')).toBeInTheDocument();
   });
+
+  it('passes back the original click event as well as the row item to onClick', () => {
+    const onClick = jest.fn((item, event) => {
+      event.preventDefault();
+    });
+
+    const action: EmptyButtonAction<Item> = {
+      name: 'onClick',
+      description: 'test',
+      onClick,
+      'data-test-subj': 'onClick',
+    };
+    const props = {
+      action,
+      enabled: true,
+      item: { id: 'xyz' },
+    };
+
+    const { getByTestSubject } = render(<DefaultItemAction {...props} />);
+
+    fireEvent.click(getByTestSubject('onClick'));
+    expect(onClick).toHaveBeenCalledWith(
+      props.item,
+      expect.objectContaining({ preventDefault: expect.any(Function) })
+    );
+  });
 });

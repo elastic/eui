@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, MouseEvent, useCallback } from 'react';
 
 import { isString } from '../../services/predicate';
 import {
@@ -42,7 +42,14 @@ export const DefaultItemAction = <T extends object>({
       or 'href' string. If you want to provide a custom action control, make sure to define the 'render' callback`);
   }
 
-  const onClick = action.onClick ? () => action.onClick!(item) : undefined;
+  const onClick = useCallback(
+    (event: MouseEvent) => {
+      if (!action.onClick) return;
+      event.persist(); // TODO: Remove once React 16 support is dropped
+      action.onClick!(item, event);
+    },
+    [action.onClick, item]
+  );
 
   const buttonColor = action.color;
   let color: EuiButtonIconProps['color'] = 'primary';
