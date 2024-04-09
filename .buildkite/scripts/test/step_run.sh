@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eo pipefail
 
+# Load nvm
+source ~/.bash_profile
+
 echo "+++ :cypress: Installing cypress"
 
 yarn cypress install
