@@ -12,7 +12,6 @@ Automated testing can't replace manual testing, but it's an important baseline f
 ## How to run the Cypress accessibility tests?
 
 * `test-cypress-a11y` runs the accessibility test suite in a local headless Cypress environment.
-* `test-a11y-docker` runs the test suite in the EUI team's CI Docker container.
 * `test-cypress-dev` runs the test suite using your dev server (assumed to be `http://localhost:8030`) and the Cypress test runner.
 
 ### How to run accessibility tests against 1 component?
