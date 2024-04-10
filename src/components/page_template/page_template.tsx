@@ -37,7 +37,7 @@ import {
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useGeneratedHtmlId } from '../../services';
-import { logicalStyle } from '../../global_styling';
+import { logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 
 export const TemplateContext = createContext({
@@ -99,6 +99,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   // Outer props
   className,
   minHeight = '460px',
+  style,
   ...rest
 }) => {
   // Used as a target to insert the bottom bar component
@@ -133,14 +134,16 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     }
   });
 
-  const _minHeight = grow ? `max(${minHeight}, 100vh)` : minHeight;
-
   const classes = classNames('euiPageTemplate', className);
-  const pageStyle = {
-    ...logicalStyle('min-height', _minHeight),
-    ...logicalStyle('padding-top', offset ?? 'var(--euiFixedHeadersOffset, 0)'),
-    ...rest.style,
-  };
+  const pageStyle = useMemo(
+    () =>
+      logicalStyles({
+        minHeight: grow ? `max(${minHeight}, 100vh)` : minHeight,
+        paddingTop: offset ?? 'var(--euiFixedHeadersOffset, 0)',
+        ...style,
+      }),
+    [minHeight, grow, offset, style]
+  );
 
   const innerPanelled = panelled ?? Boolean(sidebar.length > 0);
   const innerBordered = contentBorder ?? Boolean(sidebar.length > 0);
