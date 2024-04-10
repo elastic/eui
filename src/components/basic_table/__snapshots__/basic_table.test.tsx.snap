@@ -161,7 +161,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </div>
         </th>
         <th
-          aria-live="polite"
           aria-sort="ascending"
           class="euiTableHeaderCell emotion-euiTableHeaderCell"
           data-test-subj="tableHeaderCell_name_0"
