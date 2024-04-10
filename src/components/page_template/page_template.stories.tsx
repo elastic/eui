@@ -53,9 +53,7 @@ const sidebarContent = (
   </EuiPageTemplate.Sidebar>
 );
 const bottomBarContent = (
-  // adding parent="" here to prevent using a portal and to ensure the
-  // last position on changes when the parent does not change
-  <EuiPageTemplate.BottomBar paddingSize="s" parent="">
+  <EuiPageTemplate.BottomBar>
     <EuiSkeletonText lines={1} contentAriaLabel="Bottom bar example text" />
   </EuiPageTemplate.BottomBar>
 );
