@@ -144,7 +144,8 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   const innerPanelled = panelled ?? Boolean(sidebar.length > 0);
   const innerBordered = contentBorder ?? Boolean(sidebar.length > 0);
-  const headerBottomBorder = bottomBorder ?? sidebar.length ? true : 'extended';
+  const headerBottomBorder =
+    bottomBorder ?? (sidebar.length ? true : 'extended');
 
   const templateContext = useMemo(() => {
     return {
