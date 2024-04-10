@@ -33,6 +33,7 @@ import {
   EuiPageSection,
   EuiPageSectionProps,
   EuiPageSidebar,
+  EuiPageSidebarProps,
 } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
@@ -41,6 +42,7 @@ import { logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 
 export const TemplateContext = createContext({
+  sidebar: {},
   section: {},
   header: {},
   emptyPrompt: {},
@@ -112,23 +114,14 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const sections: React.ReactElement[] = [];
   const sidebar: React.ReactElement[] = [];
 
-  React.Children.toArray(children).forEach((child, index) => {
+  React.Children.toArray(children).forEach((child) => {
     if (!React.isValidElement(child)) return; // Skip non-components
 
     if (
-      child.type === EuiPageSidebar ||
-      child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === EuiPageSidebar
+      child.type === _EuiPageSidebar ||
+      child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === _EuiPageSidebar
     ) {
-      const sidebarProps = { paddingSize, responsive };
-
-      sidebar.push(
-        React.cloneElement(child, {
-          key: `sidebar${index}`,
-          ...sidebarProps,
-          // Allow their props overridden by appending the child props spread at the end
-          ...child.props,
-        })
-      );
+      sidebar.push(child);
     } else {
       sections.push(child);
     }
@@ -151,6 +144,10 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   const templateContext = useMemo(() => {
     return {
+      sidebar: {
+        paddingSize,
+        responsive,
+      },
       header: {
         restrictWidth,
         paddingSize,
@@ -176,6 +173,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   }, [
     pageInnerId,
     restrictWidth,
+    responsive,
     paddingSize,
     panelled,
     innerPanelled,
@@ -207,6 +205,12 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   );
 };
 
+const _EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = (props) => {
+  const { sidebar } = useContext(TemplateContext);
+
+  return <EuiPageSidebar {...sidebar} {...props} />;
+};
+
 const _EuiPageSection: FunctionComponent<EuiPageSectionProps> = (props) => {
   const { section } = useContext(TemplateContext);
 
@@ -236,7 +240,7 @@ const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
 };
 
 export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
-  Sidebar: EuiPageSidebar,
+  Sidebar: _EuiPageSidebar,
   Header: _EuiPageHeader,
   Section: _EuiPageSection,
   BottomBar: _EuiPageBottomBar,
