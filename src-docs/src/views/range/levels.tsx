@@ -31,11 +31,11 @@ export default () => {
   ];
 
   const customTicks = [
-    { label: 'low', value: 0 },
-    { label: 'intermediate', value: 15 },
-    { label: 'moderate', value: 35 },
-    { label: 'high', value: 65 },
-    { label: 'severe', value: 85 },
+    { label: 'low', value: 0, accessibleLabel: 'low' },
+    { label: 'intermediate', value: 15, accessibleLabel: 'intermediate' },
+    { label: 'moderate', value: 35, accessibleLabel: 'moderate' },
+    { label: 'high', value: 65, accessibleLabel: 'high' },
+    { label: 'severe', value: 85, accessibleLabel: 'severe' },
   ];
 
   const customColorsLevels = [
