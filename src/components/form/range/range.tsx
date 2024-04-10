@@ -27,7 +27,7 @@ import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 
-import type { EuiRangeProps } from './types';
+import type { EuiRangeProps, EuiRangeTick } from './types';
 
 import { euiRangeStyles } from './range.styles';
 import { EuiI18n } from '../../i18n';
@@ -114,6 +114,23 @@ export class EuiRangeClass extends Component<
     this.setState({
       isPopoverOpen: false,
     });
+  };
+
+  handleAriaValueText = (
+    ticks: EuiRangeTick[],
+    currentVal: string | number
+  ): string | undefined => {
+    let ariaValueText;
+    let target = ticks.find(
+      (tick) => tick.value.toString() === currentVal.toString()
+    );
+
+    if (target) {
+      ariaValueText = target.value.toString();
+      return ariaValueText;
+    } else {
+      return ariaValueText; // undefined
+    }
   };
 
   render() {
@@ -220,6 +237,9 @@ export class EuiRangeClass extends Component<
           showRange={showRange}
         >
           <EuiRangeSlider
+            ariaValueText={
+              ticks ? this.handleAriaValueText(ticks, value) : undefined
+            }
             id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
             min={min}
