@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, MouseEvent } from 'react';
 import { EuiIconType } from '../icon/icon';
 import { EuiButtonIconProps } from '../button/button_icon/button_icon';
 import { EuiButtonEmptyProps } from '../button/button_empty';
@@ -26,9 +26,11 @@ export interface DefaultItemActionBase<T extends object> {
    */
   description: string | ((item: T) => string);
   /**
-   * A handler function to execute the action
+   * A handler function to execute the action. Passes back the current row
+   * item as the first argument, and the originating React click event
+   * as a second argument.
    */
-  onClick?: (item: T) => void;
+  onClick?: (item: T, event: MouseEvent) => void;
   href?: string | ((item: T) => string);
   target?: string;
   /**
