@@ -167,14 +167,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 115,
+        "line": 110,
         "column": 4,
-        "index": 3600
+        "index": 3586
       },
       "end": {
-        "line": 124,
+        "line": 119,
         "column": 5,
-        "index": 3867
+        "index": 3853
       }
     },
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
@@ -185,14 +185,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 115,
+        "line": 110,
         "column": 4,
-        "index": 3600
+        "index": 3586
       },
       "end": {
-        "line": 124,
+        "line": 119,
         "column": 5,
-        "index": 3867
+        "index": 3853
       }
     },
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
@@ -203,14 +203,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
+        "line": 136,
         "column": 4,
-        "index": 4427
+        "index": 4413
       },
       "end": {
-        "line": 141,
+        "line": 136,
         "column": 78,
-        "index": 4501
+        "index": 4487
       }
     },
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
@@ -6595,12 +6595,12 @@
       "start": {
         "line": 77,
         "column": 10,
-        "index": 2366
+        "index": 2359
       },
       "end": {
         "line": 81,
         "column": 11,
-        "index": 2540
+        "index": 2533
       }
     },
     "filepath": "src/components/table/table_header_cell.tsx"
