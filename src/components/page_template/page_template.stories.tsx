@@ -25,12 +25,7 @@ const headerContent = (
     iconType="logoElastic"
     pageTitle="Page title"
     rightSideItems={[<EuiButton>Button</EuiButton>]}
-    description={
-      <EuiSkeletonText
-        lines={1}
-        contentAriaLabel="Page header example description"
-      />
-    }
+    description="Page header example description"
     tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
   />
 );
@@ -58,7 +53,9 @@ const sidebarContent = (
   </EuiPageTemplate.Sidebar>
 );
 const bottomBarContent = (
-  <EuiPageTemplate.BottomBar paddingSize="s">
+  // adding parent="" here to prevent using a portal and to ensure the
+  // last position on changes when the parent does not change
+  <EuiPageTemplate.BottomBar paddingSize="s" parent="">
     <EuiSkeletonText lines={1} contentAriaLabel="Bottom bar example text" />
   </EuiPageTemplate.BottomBar>
 );
