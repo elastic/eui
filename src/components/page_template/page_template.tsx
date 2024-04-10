@@ -111,21 +111,25 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   });
 
   // Sections include page header
-  const sections: React.ReactElement[] = [];
-  const sidebar: React.ReactElement[] = [];
+  const [sidebar, sections] = useMemo(() => {
+    const sidebar: React.ReactElement[] = [];
+    const sections: React.ReactElement[] = [];
 
-  React.Children.toArray(children).forEach((child) => {
-    if (!React.isValidElement(child)) return; // Skip non-components
+    React.Children.toArray(children).forEach((child) => {
+      if (!React.isValidElement(child)) return; // Skip non-components
 
-    if (
-      child.type === _EuiPageSidebar ||
-      child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === _EuiPageSidebar
-    ) {
-      sidebar.push(child);
-    } else {
-      sections.push(child);
-    }
-  });
+      if (
+        child.type === _EuiPageSidebar ||
+        child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === _EuiPageSidebar
+      ) {
+        sidebar.push(child);
+      } else {
+        sections.push(child);
+      }
+    });
+
+    return [sidebar, sections];
+  }, [children]);
 
   const classes = classNames('euiPageTemplate', className);
   const pageStyle = useMemo(
