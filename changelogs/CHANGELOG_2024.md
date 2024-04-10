@@ -1,3 +1,8 @@
+## [`v94.1.0`](https://github.com/elastic/eui/releases/v94.1.0)
+
+- Updated `EuiTableHeaderCell` to show a subdued `sortable` icon for columns that are not currently sorted but can be ([#7656](https://github.com/elastic/eui/pull/7656))
+- Updated `EuiBasicTable` and `EuiInMemoryTable`'s `columns[].actions[]`'s to pass back click events to `onClick` callbacks as the second callback ([#7667](https://github.com/elastic/eui/pull/7667))
+
 ## [`v94.0.0`](https://github.com/elastic/eui/releases/v94.0.0)
 
 - Updated `EuiTable`, `EuiBasicTable`, and `EuiInMemoryTable` with a new `responsiveBreakpoint` prop, which allows customizing the point at which the table collapses into a mobile-friendly view with cards ([#7625](https://github.com/elastic/eui/pull/7625))
