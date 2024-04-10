@@ -30,8 +30,6 @@ Find all instances of `docker.elastic.co/eui/ci:` in EUI. You will want to chang
 
 For non-major Node upgrades, you will likely only need to follow the [Build a new image](https://github.com/elastic/eui/tree/main/scripts/docker-ci#build-a-new-image) step and [Publish a built image](https://github.com/elastic/eui/tree/main/scripts/docker-ci#publish-a-built-image) step.
 
-Skipping the "Test a new image step" allows you to save some time running tests locally and instead have CI run tests for you.
-
 #### When upgrading to major Node versions
 
 For major Node upgrades, where it's possible that either that our local environment or CI will break, we strongly recommend ensuring the following steps pass locally first before publishing the Docker image:
@@ -39,7 +37,6 @@ For major Node upgrades, where it's possible that either that our local environm
 - `yarn && yarn start`
 - `yarn build-pack`
 - `yarn test`
-- [Test a new image locally](https://github.com/elastic/eui/tree/main/scripts/docker-ci#test-a-new-image-locally)
 
 #### Confirming the published Docker image
 
