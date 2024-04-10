@@ -125,12 +125,17 @@ export class EuiRangeClass extends Component<
       (tick) => tick.value.toString() === currentVal.toString()
     );
 
-    if (target) {
+    if (target && !target.accessibleLabel) {
       ariaValueText = target.value.toString();
       return ariaValueText;
-    } else {
-      return ariaValueText; // undefined
     }
+
+    if (target && target.accessibleLabel) {
+      ariaValueText = `${target.value.toString()}, (${target.accessibleLabel})`;
+      return ariaValueText;
+    }
+
+    return ariaValueText; // undefined
   };
 
   render() {
