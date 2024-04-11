@@ -455,6 +455,17 @@ export class EuiPopover extends Component<Props, State> {
       this.onOpenPopover();
     }
 
+    // ensure recalculation of panel position on prop updates
+    if (
+      this.props.isOpen &&
+      (prevProps.anchorPosition !== this.props.anchorPosition ||
+        prevProps.buffer !== this.props.buffer ||
+        prevProps.offset !== this.props.offset ||
+        prevProps.panelPaddingSize !== this.props.panelPaddingSize)
+    ) {
+      this.positionPopoverFluid();
+    }
+
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
