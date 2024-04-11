@@ -60,7 +60,7 @@ const markdownEditorNoPluginsSnippet = `const {
   parsingPlugins,
   processingPlugins,
   uiPlugins,
-} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip', 'line-breaks'] });
 
   <EuiMarkdownEditor
     value={value}
