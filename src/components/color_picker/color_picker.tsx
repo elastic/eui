@@ -28,6 +28,7 @@ import {
   EuiRange,
   EuiRangeProps,
 } from '../form';
+import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
@@ -286,9 +287,19 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
-  const inputClasses = classNames('euiColorPicker__input', {
-    'euiColorPicker__input--inGroup': prepend || append,
+
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isDropdown: true,
+    clear: isClearable,
+    isInvalid,
   });
+  const inputClasses = classNames(
+    'euiColorPicker__input',
+    { 'euiColorPicker__input--inGroup': prepend || append },
+    // Manually account for input padding, since `controlOnly` disables that logic
+    'euiFieldText--withIcon',
+    numIconsClass
+  );
 
   const handleOnChange = (text: string) => {
     const output = getOutput(text, showAlpha);

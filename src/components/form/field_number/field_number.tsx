@@ -19,14 +19,16 @@ import classNames from 'classnames';
 
 import { useCombinedRefs } from '../../../services';
 import { CommonProps } from '../../common';
-import { IconType } from '../../icon';
 
 import { EuiValidatableControl } from '../validatable_control';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import {
+  getFormControlClassNameForIconCount,
+  isRightSideIcon,
+} from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldNumberProps = Omit<
@@ -34,7 +36,7 @@ export type EuiFieldNumberProps = Omit<
   'min' | 'max' | 'readOnly' | 'step'
 > &
   CommonProps & {
-    icon?: IconType;
+    icon?: EuiFormControlLayoutProps['icon'];
     isInvalid?: boolean;
     /**
      * Expand to fill 100% of the parent.
@@ -134,18 +136,22 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     }
   }, [value, min, max, step, checkNativeValidity]);
 
+  const hasRightSideIcon = isRightSideIcon(icon);
   const numIconsClass = controlOnly
     ? false
     : getFormControlClassNameForIconCount({
         isInvalid: isInvalid || isNativelyInvalid,
         isLoading,
+        icon: hasRightSideIcon,
       });
 
   const classes = classNames('euiFieldNumber', className, numIconsClass, {
-    'euiFieldNumber--withIcon': icon,
     'euiFieldNumber--fullWidth': fullWidth,
     'euiFieldNumber--compressed': compressed,
-    'euiFieldNumber--inGroup': prepend || append,
+    ...(!controlOnly && {
+      'euiFieldNumber--inGroup': prepend || append,
+      'euiFieldNumber--withIcon': icon && !hasRightSideIcon,
+    }),
     'euiFieldNumber-isLoading': isLoading,
   });
 
