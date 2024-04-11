@@ -116,6 +116,20 @@ export class EuiRangeClass extends Component<
     });
   };
 
+  handleAriaValueNow = (currentVal: string | number): number | undefined => {
+    if (!currentVal) return;
+
+    let ariaValueNow;
+    let target = Number(currentVal); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number#return_value
+
+    if (!Number.isNaN(target)) {
+      ariaValueNow = target;
+      return ariaValueNow;
+    }
+
+    return ariaValueNow; // undefined
+  };
+
   handleAriaValueText = (
     ticks: EuiRangeTick[],
     currentVal: string | number
@@ -245,6 +259,7 @@ export class EuiRangeClass extends Component<
             ariaValueText={
               ticks ? this.handleAriaValueText(ticks, value) : undefined
             }
+            ariaValueNow={this.handleAriaValueNow(value)}
             id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
             min={min}

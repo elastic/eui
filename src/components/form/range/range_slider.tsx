@@ -52,6 +52,7 @@ export interface EuiRangeSliderProps
   thumbColor?: EuiRangeLevel['color'];
   onResize: EuiResizeObserverProps['onResize'];
   ariaValueText?: string;
+  ariaValueNow?: number;
 }
 
 export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
@@ -71,6 +72,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
   thumbColor,
   onResize,
   ariaValueText,
+  ariaValueNow,
   ...rest
 }) => {
   const classes = classNames('euiRangeSlider', className);
@@ -97,6 +99,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
       {(resizeRef) => (
         <input
           aria-valuetext={ariaValueText}
+          aria-valuenow={ariaValueNow}
           ref={resizeRef}
           type="range"
           id={id}
