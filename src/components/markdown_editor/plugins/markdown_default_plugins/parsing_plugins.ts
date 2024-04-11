@@ -37,13 +37,14 @@ export type DefaultEuiMarkdownParsingPlugins = PluggableList;
 
 export const getDefaultEuiMarkdownParsingPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownParsingPlugins => {
+}: {
+  exclude?: Array<'tooltip' | 'line-breaks'>;
+} = {}): DefaultEuiMarkdownParsingPlugins => {
   const excludeSet = new Set(exclude);
   const parsingPlugins: PluggableList = [
     [markdown, {}],
     [highlight, {}],
     [emoji, { emoticon: false }],
-    [breaks, {}],
     [
       euiMarkdownLinkValidator,
       {
@@ -56,6 +57,10 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
 
   if (!excludeSet.has('tooltip'))
     parsingPlugins.push([MarkdownTooltip.parser, {}]);
+
+  if (!excludeSet.has('line-breaks')) {
+    parsingPlugins.push([breaks, {}]);
+  }
 
   return parsingPlugins;
 };

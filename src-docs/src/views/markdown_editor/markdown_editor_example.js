@@ -133,16 +133,17 @@ export const MarkdownEditorExample = {
       title: 'Unregistering plugins',
       text: (
         <p>
-          The <strong>EuiMarkdownEditor</strong> comes with a default plugin for{' '}
-          <EuiCode>tooltip</EuiCode> support. However, this may be unfamiliar or
-          unnecessary in some contexts, and you can unregister this plugin by
-          excluding it from the
+          The <strong>EuiMarkdownEditor</strong> comes with default plugins such
+          as <EuiCode>tooltip</EuiCode> and <EuiCode>line-breaks</EuiCode>.{' '}
+          However, these may be unfamiliar or unnecessary in some contexts, and
+          you can unregister these plugins by excluding them from the
           <EuiCode>parsingPlugins</EuiCode>,{' '}
           <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
           options with a single <EuiCode>exclude</EuiCode> parameter passed to{' '}
           <EuiCode>getDefaultEuiMarkdownPlugins()</EuiCode>. This will ensure
           the syntax won&apos;t be identified or rendered and no additional UI,
-          like the button and help syntax, will be displayed.
+          like the button and help syntax, will be displayed by the unregistered
+          plugins.
         </p>
       ),
       props: {

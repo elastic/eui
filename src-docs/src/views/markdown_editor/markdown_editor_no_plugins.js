@@ -7,15 +7,25 @@ import {
 
 const initialContent = `## This is how we do it :smile:
 
-In this example, we unregistered the built in **tooltip** plugin. So the button in the toolbar and the help syntax won't be displayed.
+In this example, we unregistered the built in **tooltip** and **line-breaks** plugins.
 
+### tooltip
+
+The button in the toolbar and the help syntax won't be displayed.  
 And the following syntax no longer works.
 
 !{tooltip[anchor text](Tooltip content)}
+
+### line-breaks
+
+More than two trailing spaces break consecutive lines,
+but not otherwise.
+
+A blank line separates sections as usual.
 `;
 
 const { parsingPlugins, processingPlugins, uiPlugins } =
-  getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+  getDefaultEuiMarkdownPlugins({ exclude: ['tooltip', 'line-breaks'] });
 
 export default () => {
   const [value, setValue] = useState(initialContent);
