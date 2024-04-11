@@ -41,8 +41,8 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     readOnly: css`
-      > .euiFormControlLayout {
-        background: ${backgroundReadOnlyColor} !important;
+      && > .euiFormControlLayout {
+        background: ${backgroundReadOnlyColor};
       }
     `,
   };
