@@ -127,18 +127,18 @@
   },
   {
     "token": "euiBasicTable.selectThisRow",
-    "defString": "Select this row",
+    "defString": "Select row {index}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1103,
+        "line": 1109,
         "column": 8,
-        "index": 30673
+        "index": 30781
       },
       "end": {
-        "line": 1103,
-        "column": 79,
-        "index": 30744
+        "line": 1113,
+        "column": 9,
+        "index": 30936
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -149,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1329,
+        "line": 1339,
         "column": 8,
-        "index": 37489
+        "index": 37663
       },
       "end": {
-        "line": 1333,
+        "line": 1343,
         "column": 9,
-        "index": 37648
+        "index": 37822
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
