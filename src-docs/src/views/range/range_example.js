@@ -238,6 +238,16 @@ export const RangeControlExample = {
             <EuiCode>label</EuiCode>. The value must be included in the range of
             values (min-max), though the label may be anything you choose.
           </p>
+          <p>
+            The <EuiCode>EuiRangeTick</EuiCode> interface now includes an
+            optional <EuiCode>accessibleLabel</EuiCode>. This property is
+            combined with the current <EuiCode>value</EuiCode> to render an{' '}
+            <EuiCode>aria-valuetext</EuiCode> attribute. If the accessible label
+            is not included, <EuiCode>aria-valuetext</EuiCode> will be the
+            computed current value. This attribute is announced to screen reader
+            users and is useful when values are defined differently than tick
+            labels.
+          </p>
           <EuiCallOut
             color="warning"
             title="Minimum of 5px width per tick allowed"
