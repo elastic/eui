@@ -120,7 +120,7 @@ export class EuiRangeClass extends Component<
     if (!currentVal) return;
 
     let ariaValueNow;
-    let target = Number(currentVal); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number#return_value
+    const target = Number(currentVal); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number#return_value
 
     if (!Number.isNaN(target)) {
       ariaValueNow = target;
@@ -135,7 +135,7 @@ export class EuiRangeClass extends Component<
     currentVal: string | number
   ): string | undefined => {
     let ariaValueText;
-    let target = ticks.find(
+    const target = ticks.find(
       (tick) => tick.value.toString() === currentVal.toString()
     );
 
