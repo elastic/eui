@@ -12,6 +12,9 @@ import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { _EuiThemeBreakpoint } from '../../../global_styling';
 import { euiPageOuterStyles } from './page_outer.styles';
 
+export const PAGE_DIRECTIONS = ['row', 'column'] as const;
+type PageDirections = (typeof PAGE_DIRECTIONS)[number];
+
 export interface _EuiPageOuterProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
@@ -24,7 +27,7 @@ export interface _EuiPageOuterProps
    * Changes the `flex-direction` property.
    * Flip to `column` when not including a sidebar.
    */
-  direction?: 'row' | 'column';
+  direction?: PageDirections;
   /**
    * When direction is `row`, it will flip to `column` when within these breakpoints.
    */
