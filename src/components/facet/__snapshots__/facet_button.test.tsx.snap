@@ -31,7 +31,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__icon emotion-euiFacetButton__icon"
+      class="euiFacetButton__icon"
       data-euiicon-type="dot"
     />
     <span
@@ -55,7 +55,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__icon emotion-euiFacetButton__icon-isDisabled"
+      class="euiFacetButton__icon emotion-euiFacetButton__disabled"
       color="success"
       data-euiicon-type="dot"
     />
@@ -66,7 +66,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiNotificationBadge euiFacetButton__quantity emotion-euiNotificationBadge-m-subdued-euiFacetButton__quantity-isDisabled"
+      class="euiNotificationBadge euiFacetButton__quantity emotion-euiNotificationBadge-m-subdued-euiFacetButton__disabled"
     >
       6
     </span>
@@ -92,7 +92,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
     </span>
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner emotion-euiLoadingSpinner-m-euiFacetButton__loadingSpinner"
+      class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
       role="progressbar"
     />
   </span>
@@ -134,7 +134,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiNotificationBadge euiFacetButton__quantity emotion-euiNotificationBadge-m-subdued-euiFacetButton__quantity"
+      class="euiNotificationBadge euiFacetButton__quantity emotion-euiNotificationBadge-m-subdued"
     >
       60
     </span>

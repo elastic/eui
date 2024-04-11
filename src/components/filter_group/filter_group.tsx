@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 
 import { euiFilterGroupStyles } from './filter_group.styles';
@@ -34,8 +34,7 @@ export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   compressed,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiFilterGroupStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiFilterGroupStyles);
   const cssStyles = [
     styles.euiFilterGroup,
     fullWidth && styles.fullWidth,

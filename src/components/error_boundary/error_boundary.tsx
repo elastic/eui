@@ -15,10 +15,10 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiTitle } from '../title';
 import { EuiCodeBlock } from '../code';
 import { EuiI18n } from '../i18n';
-import { useEuiTheme } from '../../services';
 
 import { euiErrorBoundaryStyles } from './error_boundary.styles';
 
@@ -94,8 +94,7 @@ ${stackStr}`;
 export const EuiErrorMessage: FunctionComponent<
   CommonProps & { errorMessage?: string }
 > = ({ errorMessage, className, 'data-test-subj': dataTestSubj, ...rest }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiErrorBoundaryStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiErrorBoundaryStyles);
 
   return (
     <div

@@ -7,66 +7,56 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, useEuiTheme } from '../../services';
-import { EuiFacetGroupLayout } from './facet_group';
+import { UseEuiTheme } from '../../services';
+import { mathWithUnits } from '../../global_styling';
 
-const _facetGroupGutterSize = ({
-  gutterSize,
-  layout,
-}: {
-  gutterSize: string;
-  layout: EuiFacetGroupLayout;
-}) => {
-  const { euiTheme } = useEuiTheme();
-  const isHorizontalLayout = layout === 'horizontal';
-  const gutterHorizontal = `calc(${euiTheme.size.m} + ${gutterSize})`;
-  const gutterVertical = gutterSize;
+import type { EuiFacetGroupGutterSizes } from './facet_group';
 
-  return isHorizontalLayout
-    ? `gap: ${gutterVertical} ${gutterHorizontal};`
-    : `gap: ${gutterVertical} 0;`;
+export const euiFacetGroupStyles = ({ euiTheme }: UseEuiTheme) => {
+  const gutterSizesMap = {
+    none: 0,
+    s: euiTheme.size.xs,
+    m: euiTheme.size.s,
+    l: euiTheme.size.m,
+  };
+  const _getVerticalGutters = (sizeKey: EuiFacetGroupGutterSizes) => {
+    const size = gutterSizesMap[sizeKey];
+    return `gap: ${size} 0;`;
+  };
+  const _getHorizontalGutters = (sizeKey: EuiFacetGroupGutterSizes) => {
+    const size = gutterSizesMap[sizeKey];
+    return `
+      gap: ${size} ${mathWithUnits([size, euiTheme.size.m], (x, y) => x + y)};
+    `;
+  };
+
+  return {
+    // Base
+    euiFacetGroup: css`
+      display: flex;
+      flex-grow: 1;
+    `,
+    // layouts
+    horizontal: css`
+      flex-direction: row;
+      flex-wrap: wrap;
+    `,
+    vertical: css`
+      flex-direction: column;
+    `,
+    gutterSizes: {
+      vertical: {
+        none: css(_getVerticalGutters('none')),
+        s: css(_getVerticalGutters('s')),
+        m: css(_getVerticalGutters('m')),
+        l: css(_getVerticalGutters('l')),
+      },
+      horizontal: {
+        none: css(_getHorizontalGutters('none')),
+        s: css(_getHorizontalGutters('s')),
+        m: css(_getHorizontalGutters('m')),
+        l: css(_getHorizontalGutters('l')),
+      },
+    },
+  };
 };
-
-export const euiFacetGroupStyles = (
-  { euiTheme }: UseEuiTheme,
-  layout: EuiFacetGroupLayout
-) => ({
-  // Base
-  euiFacetGroup: css`
-    display: flex;
-    flex-grow: 1;
-  `,
-  // Gutter sizes
-  none: css(
-    _facetGroupGutterSize({
-      gutterSize: '0',
-      layout,
-    })
-  ),
-  s: css(
-    _facetGroupGutterSize({
-      gutterSize: euiTheme.size.xs,
-      layout,
-    })
-  ),
-  m: css(
-    _facetGroupGutterSize({
-      gutterSize: euiTheme.size.s,
-      layout,
-    })
-  ),
-  l: css(
-    _facetGroupGutterSize({
-      gutterSize: euiTheme.size.m,
-      layout,
-    })
-  ),
-  // layouts
-  horizontal: css`
-    flex-direction: row;
-    flex-wrap: wrap;
-  `,
-  vertical: css`
-    flex-direction: column;
-  `,
-});
