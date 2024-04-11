@@ -10,6 +10,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
       id="generated-id"
       max="100"
@@ -67,6 +68,7 @@ exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
     >
       <input
         aria-hidden="false"
+        aria-valuenow="20"
         class="euiRangeSlider emotion-euiRangeSlider"
         id="generated-id"
         max="100"
@@ -91,6 +93,7 @@ exports[`EuiRange is rendered 1`] = `
     <input
       aria-hidden="false"
       aria-label="aria-label"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
       data-test-subj="test subject string"
       id="id"
@@ -115,6 +118,7 @@ exports[`EuiRange props compressed should render 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
       id="generated-id"
       max="100"
@@ -166,6 +170,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
     </div>
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider-hasTicks"
       id="generated-id"
       max="100"
@@ -188,6 +193,7 @@ exports[`EuiRange props disabled should render 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
       disabled=""
       id="generated-id"
@@ -211,7 +217,113 @@ exports[`EuiRange props fullWidth should render 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+      value="8"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props input should include aria-valuetext when value equals tick[value] 1`] = `
+<div
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack emotion-euiRangeTrack-hasTicks"
+  >
+    <div
+      class="euiRangeTicks emotion-euiRangeTicks-regular-isCustom"
+    >
+      <button
+        class="euiRangeTick emotion-euiRangeTick-isCustom-hasPseudoTickMark-regular"
+        style="inset-inline-start: calc(-Infinity% + 8px);"
+        tabindex="-1"
+        title="20kb"
+        type="button"
+        value="20"
+      >
+        20kb
+      </button>
+      <button
+        class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-regular"
+        style="inset-inline-end: 0%; margin-inline-end: -1.25em;"
+        tabindex="-1"
+        title="100kb"
+        type="button"
+        value="100"
+      >
+        <span
+          aria-hidden="true"
+          class="euiRangeTick__pseudo emotion-euiRangeTick__pseudo"
+          style="margin-inline-end: calc(1.25em + 4px);"
+        />
+        100kb
+      </button>
+    </div>
+    <input
+      aria-hidden="false"
+      aria-valuenow="20"
+      aria-valuetext="20, (twenty kilobytes)"
+      class="euiRangeSlider emotion-euiRangeSlider-hasTicks"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+      value="20"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props input should not include aria-valuetext when values are different 1`] = `
+<div
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack emotion-euiRangeTrack-hasTicks"
+  >
+    <div
+      class="euiRangeTicks emotion-euiRangeTicks-regular-isCustom"
+    >
+      <button
+        class="euiRangeTick emotion-euiRangeTick-isCustom-hasPseudoTickMark-regular"
+        style="inset-inline-start: calc(-Infinity% + 8px);"
+        tabindex="-1"
+        title="20kb"
+        type="button"
+        value="20"
+      >
+        20kb
+      </button>
+      <button
+        class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-regular"
+        style="inset-inline-end: 0%; margin-inline-end: -1.25em;"
+        tabindex="-1"
+        title="100kb"
+        type="button"
+        value="100"
+      >
+        <span
+          aria-hidden="true"
+          class="euiRangeTick__pseudo emotion-euiRangeTick__pseudo"
+          style="margin-inline-end: calc(1.25em + 4px);"
+        />
+        100kb
+      </button>
+    </div>
+    <input
+      aria-hidden="false"
+      aria-valuenow="8"
+      class="euiRangeSlider emotion-euiRangeSlider-hasTicks"
       id="generated-id"
       max="100"
       min="0"
@@ -234,6 +346,7 @@ exports[`EuiRange props input should render 1`] = `
     <input
       aria-hidden="true"
       aria-label="aria-label"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
       data-test-subj="test subject string"
       max="100"
@@ -287,6 +400,7 @@ exports[`EuiRange props labels should render 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider"
       id="generated-id"
       max="100"
@@ -326,6 +440,7 @@ exports[`EuiRange props levels should render 1`] = `
     </div>
     <input
       aria-hidden="false"
+      aria-valuenow="20"
       class="euiRangeSlider emotion-euiRangeSlider-thumb"
       id="generated-id"
       max="100"
@@ -385,6 +500,7 @@ exports[`EuiRange props range should render 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider-hasRange"
       id="generated-id"
       max="100"
@@ -480,6 +596,7 @@ exports[`EuiRange props slider should display in popover 1`] = `
                 <input
                   aria-hidden="true"
                   aria-label="aria-label"
+                  aria-valuenow="8"
                   class="euiRangeSlider emotion-euiRangeSlider"
                   data-test-subj="test subject string"
                   max="100"
@@ -584,6 +701,7 @@ exports[`EuiRange props ticks should render 1`] = `
     </div>
     <input
       aria-hidden="false"
+      aria-valuenow="8"
       class="euiRangeSlider emotion-euiRangeSlider-hasTicks"
       id="generated-id"
       max="100"
@@ -606,6 +724,7 @@ exports[`EuiRange props value should render 1`] = `
   >
     <input
       aria-hidden="false"
+      aria-valuenow="200"
       class="euiRangeSlider emotion-euiRangeSlider"
       id="generated-id"
       max="100"

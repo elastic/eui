@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, getByRole } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
@@ -139,6 +139,67 @@ describe('EuiRange', () => {
           {...requiredProps}
         />
       );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('input should include aria-valuetext when value equals tick[value]', () => {
+      const { container } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            {
+              label: '20kb',
+              value: 20,
+              accessibleLabel: 'twenty kilobytes',
+            },
+            {
+              label: '100kb',
+              value: 100,
+              accessibleLabel: 'one-hundred kilobytes',
+            },
+          ]}
+          value={20}
+        />
+      );
+
+      const input = getByRole(container, 'slider');
+
+      expect(input).toBeInTheDocument();
+      expect(input.getAttribute('aria-valuenow')).toEqual('20');
+      expect(input.getAttribute('aria-valuetext')).toEqual(
+        '20, (twenty kilobytes)'
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('input should not include aria-valuetext when values are different', () => {
+      const { container } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            {
+              label: '20kb',
+              value: 20,
+              accessibleLabel: 'twenty kilobytes',
+            },
+            {
+              label: '100kb',
+              value: 100,
+              accessibleLabel: 'one-hundred kilobytes',
+            },
+          ]}
+        />
+      );
+
+      const input = getByRole(container, 'slider');
+
+      expect(input).toBeInTheDocument();
+      expect(input.getAttribute('aria-valuenow')).toEqual('8');
+      expect(input.getAttribute('aria-valuetext')).toBeFalsy();
 
       expect(container.firstChild).toMatchSnapshot();
     });
