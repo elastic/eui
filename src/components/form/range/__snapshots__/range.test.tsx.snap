@@ -180,7 +180,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
 
 exports[`EuiRange props disabled should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-disabled-euiRange"
 >
   <div
     aria-hidden="false"

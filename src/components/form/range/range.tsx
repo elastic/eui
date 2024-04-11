@@ -197,6 +197,8 @@ export class EuiRangeClass extends Component<
         css={cssStyles}
         fullWidth={fullWidth}
         compressed={compressed}
+        disabled={disabled}
+        readOnly={readOnly}
       >
         {showLabels && (
           <EuiRangeLabel side="min" disabled={disabled}>

@@ -19,7 +19,10 @@ import { euiRangeWrapperStyles } from './range_wrapper.styles';
 export interface EuiRangeWrapperProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement>,
-    Pick<_SharedRangeInputProps, 'fullWidth' | 'compressed'> {}
+    Pick<
+      _SharedRangeInputProps,
+      'fullWidth' | 'compressed' | 'disabled' | 'readOnly'
+    > {}
 
 export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
   (props, ref) => {
@@ -29,6 +32,8 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       className,
       fullWidth = defaultFullWidth,
       compressed,
+      disabled,
+      readOnly,
       ...rest
     } = props;
 
@@ -41,6 +46,8 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       !compressed && styles.regular,
       compressed && styles.compressed,
       fullWidth && styles.fullWidth,
+      disabled && styles.disabled,
+      readOnly && styles.readOnly,
     ];
 
     return (
