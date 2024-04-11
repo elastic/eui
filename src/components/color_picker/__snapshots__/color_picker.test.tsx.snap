@@ -27,7 +27,7 @@ exports[`renders EuiColorPicker 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
@@ -77,7 +77,7 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--2icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
@@ -137,7 +137,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFFFFF"
@@ -187,7 +187,7 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         placeholder="Auto"
         type="text"
@@ -238,7 +238,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         placeholder="Transparent"
         type="text"
@@ -289,7 +289,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         placeholder="Transparent"
         type="text"
@@ -345,7 +345,7 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiColorPicker__input--inGroup euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiColorPicker__input--inGroup euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
@@ -400,7 +400,7 @@ exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
@@ -450,7 +450,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--compressed"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons euiFieldText--compressed"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
@@ -500,7 +500,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         disabled=""
         type="text"
@@ -538,7 +538,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFieldText--fullWidth"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons euiFieldText--fullWidth"
         data-test-subj="euiColorPickerAnchor test subject string"
         type="text"
         value="#FFEEDD"
@@ -760,7 +760,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
       <input
         aria-label="Press the down key to open a popover containing color options"
         autocomplete="off"
-        class="euiFieldText euiColorPicker__input euiFieldText--withIcon"
+        class="euiFieldText euiColorPicker__input euiFieldText--withIcon euiFormControlLayout--1icons"
         data-test-subj="euiColorPickerAnchor test subject string"
         readonly=""
         type="text"

@@ -16,7 +16,10 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import {
+  isRightSideIcon,
+  getFormControlClassNameForIconCount,
+} from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
@@ -78,18 +81,23 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     ...rest
   } = props;
 
+  const hasRightSideIcon = isRightSideIcon(icon);
+
   const numIconsClass = controlOnly
     ? false
     : getFormControlClassNameForIconCount({
         isInvalid,
         isLoading,
+        icon: hasRightSideIcon,
       });
 
   const classes = classNames('euiFieldText', className, numIconsClass, {
-    'euiFieldText--withIcon': icon,
     'euiFieldText--fullWidth': fullWidth,
     'euiFieldText--compressed': compressed,
-    'euiFieldText--inGroup': prepend || append,
+    ...(!controlOnly && {
+      'euiFieldText--withIcon': icon && !hasRightSideIcon,
+      'euiFieldText--inGroup': prepend || append,
+    }),
     'euiFieldText-isLoading': isLoading,
   });
 

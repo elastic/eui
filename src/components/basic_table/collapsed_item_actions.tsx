@@ -14,7 +14,6 @@ import React, {
   ReactElement,
 } from 'react';
 
-import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
@@ -45,11 +44,7 @@ export const CollapsedItemActions = <T extends {}>({
   className,
 }: CollapsedItemActionsProps<T>) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
-
-  const onClickItem = useCallback((onClickAction?: () => void) => {
-    setPopoverOpen(false);
-    onClickAction?.();
-  }, []);
+  const closePopover = useCallback(() => setPopoverOpen(false), []);
 
   const controls = useMemo(() => {
     return actions.reduce<ReactElement[]>((controls, action, index) => {
@@ -69,16 +64,13 @@ export const CollapsedItemActions = <T extends {}>({
             key={index}
             className="euiBasicTable__collapsedCustomAction"
           >
-            <span onClick={() => onClickItem()}>{actionControl}</span>
+            <span onClick={closePopover}>{actionControl}</span>
           </EuiContextMenuItem>
         );
       } else {
-        const buttonIcon = action.icon;
-        let icon;
-        if (buttonIcon) {
-          icon = isString(buttonIcon) ? buttonIcon : buttonIcon(item);
-        }
-
+        const icon = action.icon
+          ? callWithItemIfFunction(item)(action.icon)
+          : undefined;
         const buttonContent = callWithItemIfFunction(item)(action.name);
         const toolTipContent = callWithItemIfFunction(item)(action.description);
         const href = callWithItemIfFunction(item)(action.href);
@@ -97,9 +89,12 @@ export const CollapsedItemActions = <T extends {}>({
             target={target}
             icon={icon}
             data-test-subj={dataTestSubj}
-            onClick={() =>
-              onClickItem(onClick ? () => onClick(item) : undefined)
-            }
+            onClick={(event) => {
+              event.persist();
+              onClick?.(item, event);
+              // Allow consumer events to prevent the popover from closing if necessary
+              if (!event.isPropagationStopped()) closePopover();
+            }}
             toolTipContent={toolTipContent}
             toolTipProps={{ delay: 'long' }}
           >
@@ -109,7 +104,7 @@ export const CollapsedItemActions = <T extends {}>({
       }
       return controls;
     }, []);
-  }, [actions, actionsDisabled, item, onClickItem]);
+  }, [actions, actionsDisabled, item, closePopover]);
 
   const popoverButton = (
     <EuiI18n
@@ -153,7 +148,7 @@ export const CollapsedItemActions = <T extends {}>({
       id={`${itemId}-actions`}
       isOpen={popoverOpen}
       button={withTooltip || popoverButton}
-      closePopover={() => setPopoverOpen(false)}
+      closePopover={closePopover}
       panelPaddingSize="none"
       anchorPosition="leftCenter"
     >

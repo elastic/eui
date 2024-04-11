@@ -84,6 +84,48 @@ describe('CollapsedItemActions', () => {
     await waitForEuiPopoverClose();
   });
 
+  test('default actions - passes back the original click event as well as the row item to onClick', async () => {
+    const onClick = jest.fn();
+    const onClickStopPropagation = jest.fn((item, event) => {
+      event.stopPropagation();
+    });
+
+    const props = {
+      actions: [
+        {
+          name: '1',
+          description: '',
+          onClick,
+          'data-test-subj': 'onClick',
+        },
+        {
+          name: '2',
+          description: '',
+          onClick: onClickStopPropagation,
+          'data-test-subj': 'onClickStopPropagation',
+        },
+      ],
+      itemId: 'id',
+      item: { id: 'xyz' },
+      actionsDisabled: false,
+    };
+
+    const { getByTestSubject } = render(<CollapsedItemActions {...props} />);
+    fireEvent.click(getByTestSubject('euiCollapsedItemActionsButton'));
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('onClickStopPropagation'));
+    expect(onClickStopPropagation).toHaveBeenCalledWith(
+      props.item,
+      expect.objectContaining({ stopPropagation: expect.any(Function) })
+    );
+    // Popover should still be open if propagation was stopped
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('onClick'));
+    await waitForEuiPopoverClose();
+  });
+
   test('custom actions', async () => {
     const props = {
       actions: [

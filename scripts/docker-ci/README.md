@@ -5,9 +5,6 @@ Built containers can be published to the [Elastic Docker Registry](https://conta
 
 ## Getting started
 
-### `test-docker` script
-The [`test-docker`](../test-docker.js) script is the primary user of this container. Specifically, the [`a11y-testing`](../a11y-testing.js) script therein uses the headless Chromium environment to run EUI's automated axe accessibility testing suite.
-
 ### Generic node application
 Run the container by passing `node -e "<yourscript.js content as a string>"` as the command:
 
@@ -36,10 +33,6 @@ docker build [--no-cache] [--tag ci:x.x] .
 
 > :warning: If you receive a `Cannot connect to Docker daemon` error, you can use [Docker Desktop](https://docs.docker.com/desktop/#download-and-install) (without signing in). Simply starting the app will create the Docker engine/daemon needed.
 
-
-### Test a new image locally
-
-To run the [`test-docker`](../test-docker.js) script with the new image locally, you'll need to replace the image name line in the `docker run ...` command (`docker.elastic.co/eui/ci:x.x`) with the new image ID or tag name (if set during the build with `--tag`).
 
 ### Publish a built image
 
@@ -76,5 +69,3 @@ docker pull docker.elastic.co/eui/ci:x.x
 
 docker run [...]
 ```
-
-See the [`test-docker`](../test-docker.js) script as an example.
