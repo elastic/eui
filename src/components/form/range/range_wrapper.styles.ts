@@ -7,13 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFormControlSize, euiFormVariables } from '../form.styles';
+import { euiFormControlSize } from '../form.styles';
 import { UseEuiTheme } from '../../../services';
 
 export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
-  const { backgroundColor, backgroundDisabledColor, backgroundReadOnlyColor } =
-    euiFormVariables(euiThemeContext);
-
   return {
     euiRangeWrapper: css`
       display: flex;
@@ -23,7 +20,6 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
         /* There's no way to target the layout of the extra input, so we must
          * use the descendant selector to allow the width to shrink. */
         inline-size: auto;
-        background-color: ${backgroundColor};
       }
     `,
     regular: css`
@@ -34,16 +30,6 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     fullWidth: css`
       max-inline-size: 100%;
-    `,
-    disabled: css`
-      > .euiFormControlLayout {
-        background-color: ${backgroundDisabledColor};
-      }
-    `,
-    readOnly: css`
-      && > .euiFormControlLayout {
-        background-color: ${backgroundReadOnlyColor};
-      }
     `,
   };
 };
