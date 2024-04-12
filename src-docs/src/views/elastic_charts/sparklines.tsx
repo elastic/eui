@@ -7,9 +7,8 @@ import {
   Tooltip,
   LineSeries,
   AreaSeries,
+  PartialTheme,
 } from '@elastic/charts';
-
-import { EUI_SPARKLINE_THEME_PARTIAL } from '../../../../src/themes/charts/themes';
 
 import {
   EuiPanel,
@@ -27,6 +26,28 @@ import {
   useEuiTheme,
 } from '../../../../src/services';
 import { useChartBaseTheme } from './utils/use_chart_base_theme';
+
+/**
+ * Example sparkline styles to match `ThemeService.useSparklineOverrides` from kibana `charts` plugin
+ *
+ * See https://github.com/elastic/kibana/blob/82fdf0414d61a1419038eed395bcdf941d72a58c/src/plugins/charts/public/services/theme/theme.ts#L55-L77
+ */
+const sparklineOverrides: PartialTheme = {
+  lineSeriesStyle: {
+    point: {
+      visible: false,
+      strokeWidth: 1,
+      radius: 1,
+    },
+  },
+  areaSeriesStyle: {
+    point: {
+      visible: false,
+      strokeWidth: 1,
+      radius: 1,
+    },
+  },
+};
 
 export const TIME_DATA_SMALL = [
   [1551438630000, 8.515625],
@@ -60,7 +81,7 @@ export default () => {
               <Chart size={{ height: 64 }}>
                 <Settings
                   baseTheme={chartBaseTheme}
-                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  theme={sparklineOverrides}
                   showLegend={false}
                 />
                 <Tooltip type="none" />
@@ -91,7 +112,7 @@ export default () => {
               <Chart size={{ height: 48 }}>
                 <Settings
                   baseTheme={chartBaseTheme}
-                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  theme={sparklineOverrides}
                   showLegend={false}
                 />
                 <Tooltip type="none" />
@@ -130,7 +151,7 @@ export default () => {
               <Chart size={{ height: 16 }}>
                 <Settings
                   baseTheme={chartBaseTheme}
-                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  theme={sparklineOverrides}
                   showLegend={false}
                 />
                 <Tooltip type="none" />
@@ -161,7 +182,7 @@ export default () => {
               <Chart size={{ height: 48 }}>
                 <Settings
                   baseTheme={chartBaseTheme}
-                  theme={EUI_SPARKLINE_THEME_PARTIAL}
+                  theme={sparklineOverrides}
                   showLegend={false}
                 />
                 <Tooltip type="none" />

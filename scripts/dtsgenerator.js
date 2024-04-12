@@ -37,7 +37,6 @@ const generator = dtsGenerator({
     '**/*.stories.{ts,tsx}',
     '**/*.mock.{ts,tsx}',
     '**/__mocks__/*',
-    'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
     'src/test/**/*', // Separate d.ts files are generated for test utils
     'src-docs/**/*', // Don't include src-docs
     '**/*.mdx', // Don't include storybook mdx files
