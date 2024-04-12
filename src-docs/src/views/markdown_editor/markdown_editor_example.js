@@ -60,7 +60,15 @@ const markdownEditorNoPluginsSnippet = `const {
   parsingPlugins,
   processingPlugins,
   uiPlugins,
-} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip', 'line-breaks'] });
+} = getDefaultEuiMarkdownPlugins({
+  exclude: [
+    'tooltip',
+    'checkbox',
+    'linkValidator',
+    'lineBreaks',
+    'emoji',
+  ],
+});
 
   <EuiMarkdownEditor
     value={value}
@@ -133,16 +141,15 @@ export const MarkdownEditorExample = {
       title: 'Unregistering plugins',
       text: (
         <p>
-          The <strong>EuiMarkdownEditor</strong> comes with default plugins such
-          as <EuiCode>tooltip</EuiCode> and <EuiCode>line-breaks</EuiCode>.{' '}
-          However, these may be unfamiliar or unnecessary in some contexts, and
-          you can unregister these plugins by excluding them from the
-          <EuiCode>parsingPlugins</EuiCode>,{' '}
+          The <strong>EuiMarkdownEditor</strong> comes with several default
+          plugins, demo'd below. If these defaults are unnecessary for your
+          use-case or context, you can unregister these plugins by excluding
+          them from the <EuiCode>parsingPlugins</EuiCode>,{' '}
           <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
           options with a single <EuiCode>exclude</EuiCode> parameter passed to{' '}
           <EuiCode>getDefaultEuiMarkdownPlugins()</EuiCode>. This will ensure
-          the syntax won&apos;t be identified or rendered and no additional UI,
-          like the button and help syntax, will be displayed by the unregistered
+          the syntax won't be identified or rendered, and no additional UI (like
+          toolbar buttons or help syntax) will be displayed by the unregistered
           plugins.
         </p>
       ),
