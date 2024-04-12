@@ -217,6 +217,7 @@ export default () => {
         tableCaption="Demo of EuiBasicTable's table layout options"
         items={users}
         columns={columns}
+        rowHeader="firstName"
         tableLayout={tableLayout === 'tableLayoutAuto' ? 'auto' : 'fixed'}
       />
     </>
