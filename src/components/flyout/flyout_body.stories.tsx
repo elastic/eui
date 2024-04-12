@@ -12,6 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiCallOut } from '../call_out';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody, EuiFlyoutBodyProps } from './flyout_body';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutBodyProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutBody',
@@ -22,6 +23,12 @@ const meta: Meta<EuiFlyoutBodyProps> = {
   args: {
     // Component defaults
     scrollableTabIndex: 0,
+  },
+  parameters: {
+    loki: {
+      // Flyout content is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 

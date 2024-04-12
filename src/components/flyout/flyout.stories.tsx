@@ -20,6 +20,7 @@ import {
   EuiFlyoutHeader,
   EuiFlyoutFooter,
 } from './index';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutProps> = {
   title: 'Layout/EuiFlyout/EuiFlyout',
@@ -40,6 +41,12 @@ const meta: Meta<EuiFlyoutProps> = {
     closeButtonPosition: 'inside',
     hideCloseButton: false,
     ownFocus: true,
+  },
+  parameters: {
+    loki: {
+      // Flyout content is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 
@@ -120,6 +127,11 @@ export const PushFlyouts: Story = {
     type: 'push',
     pushAnimation: false,
     pushMinBreakpoint: 'xs',
+  },
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.default,
+    },
   },
 };
 hideStorybookControls(PushFlyouts, [

@@ -18,6 +18,7 @@ import {
   EuiFlyoutResizable,
   EuiFlyoutResizableProps,
 } from './flyout_resizable';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutResizableProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutResizable',
@@ -33,6 +34,12 @@ const meta: Meta<EuiFlyoutResizableProps> = {
     ...(defaultFlyoutMeta.args as any),
     // Component defaults
     minWidth: 200,
+  },
+  parameters: {
+    loki: {
+      // Flyout content is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 // Stateful flyouts are already tested via default EuiFlyout stories, hide non-relevant props
