@@ -6,79 +6,57 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import breaks from 'remark-breaks';
-
-import * as MarkdownTooltip from '../markdown_tooltip';
 import { getDefaultEuiMarkdownPlugins } from './plugins';
 
-import type { Pluggable, PluginTuple, Settings } from 'unified';
-import type { EuiMarkdownEditorUiPlugin } from '../../markdown_types';
-
-const excludableDefaultPlugins: Array<
-  [
-    'tooltip' | 'line-breaks',
-    Pluggable<any[], Settings> | null,
-    React.ComponentType<any> | null,
-    EuiMarkdownEditorUiPlugin | null
-  ]
-> = [
-  [
-    'tooltip',
-    MarkdownTooltip.parser,
-    MarkdownTooltip.renderer,
-    MarkdownTooltip.plugin,
-  ],
-  ['line-breaks', breaks, null, null],
-];
-
-describe('opt out of default plugins', () => {
-  it('exclude nothing', () => {
+describe('default plugins', () => {
+  test('no exclusions', () => {
     const { parsingPlugins, processingPlugins, uiPlugins } =
-      getDefaultEuiMarkdownPlugins({});
+      getDefaultEuiMarkdownPlugins();
 
-    excludableDefaultPlugins.forEach(
-      ([, parsingPlugin, processingPlugin, uiPlugin]) => {
-        if (parsingPlugin !== null) {
-          expect(
-            parsingPlugins.find((p) => (p as PluginTuple)[0] === parsingPlugin)
-          ).not.toBeUndefined();
-        }
+    expect(parsingPlugins).toHaveLength(7);
+    expect(Object.keys(processingPlugins[1][1].components)).toHaveLength(8);
+    expect(uiPlugins).toHaveLength(1);
 
-        if (processingPlugin !== null) {
-          expect(Object.values(processingPlugins[1][1].components)).toContain(
-            processingPlugin
-          );
-        }
-
-        if (uiPlugin !== null) {
-          expect(uiPlugins).toContain(uiPlugin);
-        }
-      }
-    );
+    expect(processingPlugins[1][1].components.tooltipPlugin).toBeDefined();
+    expect(processingPlugins[1][1].components.checkboxPlugin).toBeDefined();
   });
 
-  test.each(excludableDefaultPlugins)(
-    'exclude %s',
-    (plugin, parsingPlugin, processingPlugin, uiPlugin) => {
-      const { parsingPlugins, processingPlugins, uiPlugins } =
-        getDefaultEuiMarkdownPlugins({ exclude: [plugin] });
+  test('exclude tooltips', () => {
+    const { parsingPlugins, processingPlugins, uiPlugins } =
+      getDefaultEuiMarkdownPlugins({
+        exclude: ['tooltip'],
+      });
 
-      if (parsingPlugin !== null) {
-        expect(
-          parsingPlugins.find((p) => (p as PluginTuple)[0] === parsingPlugin)
-        ).toBeUndefined();
-      }
+    expect(parsingPlugins).toHaveLength(6);
+    expect(processingPlugins[1][1].components.tooltipPlugin).toBeUndefined();
+    expect(uiPlugins).toHaveLength(0);
+  });
 
-      if (processingPlugin !== null) {
-        expect(Object.values(processingPlugins[1][1].components)).not.toContain(
-          processingPlugin
-        );
-      }
+  test('exclude checkboxes', () => {
+    const { parsingPlugins, processingPlugins, uiPlugins } =
+      getDefaultEuiMarkdownPlugins({
+        exclude: ['checkbox'],
+      });
 
-      if (uiPlugin !== null) {
-        expect(uiPlugins).not.toContain(uiPlugin);
-      }
-    }
-  );
+    expect(parsingPlugins).toHaveLength(6);
+    expect(processingPlugins[1][1].components.checkboxPlugin).toBeUndefined();
+    expect(uiPlugins).toHaveLength(1);
+  });
+
+  test('all exclusions', () => {
+    const { parsingPlugins, processingPlugins, uiPlugins } =
+      getDefaultEuiMarkdownPlugins({
+        exclude: [
+          'tooltip',
+          'checkbox',
+          'lineBreaks',
+          'linkValidator',
+          'emoji',
+        ],
+      });
+
+    expect(parsingPlugins).toHaveLength(2);
+    expect(Object.keys(processingPlugins[1][1].components)).toHaveLength(6);
+    expect(uiPlugins).toHaveLength(0);
+  });
 });
