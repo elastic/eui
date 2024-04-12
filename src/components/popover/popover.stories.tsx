@@ -9,9 +9,11 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
-import { disableStorybookControls } from '../../../.storybook/utils';
+import {
+  disableStorybookControls,
+  enableFunctionToggleControls,
+} from '../../../.storybook/utils';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
 import { EuiPopover, EuiPopoverProps } from './popover';
@@ -39,6 +41,7 @@ const meta: Meta<EuiPopoverProps> = {
     popoverScreenReaderText: '',
   },
 };
+enableFunctionToggleControls(meta, ['closePopover', 'onPositionChange']);
 disableStorybookControls(meta, ['panelRef', 'popoverRef']);
 
 export default meta;
@@ -49,9 +52,6 @@ export const Playground: Story = {
     children: 'This is a popover',
     button: 'popover trigger',
     isOpen: true,
-    // TODO: update function props to use enableFunctionToggleControl util
-    closePopover: action('closePopover'),
-    onPositionChange: action('onPositionChange'),
   },
   render: (args) => <StatefulPopover {...args} />,
 };

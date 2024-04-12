@@ -31,6 +31,14 @@ const meta: Meta<typeof EuiProgress> = {
 export default meta;
 type Story = StoryObj<typeof EuiProgress>;
 
+export const Determinate: Story = {
+  args: {
+    label: '',
+    value: 70,
+    max: 100,
+  },
+};
+
 export const Indeterminate: Story = {};
 hideStorybookControls(Indeterminate, [
   'max',
@@ -39,11 +47,3 @@ hideStorybookControls(Indeterminate, [
   'label',
   'labelProps',
 ]);
-
-export const Determinate: Story = {
-  args: {
-    label: '',
-    value: 70,
-    max: 100,
-  },
-};

@@ -8,10 +8,10 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import {
   disableStorybookControls,
+  enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
 import { EuiFieldText } from '../form';
@@ -36,11 +36,13 @@ const meta: Meta<EuiInputPopoverProps> = {
     hasDragDrop: false,
     panelClassName: '',
     popoverScreenReaderText: '',
-    // TODO: update function props to use enableFunctionToggleControl util
-    closePopover: action('closePopover'),
-    onPositionChange: action('onPositionChange'),
   },
 };
+enableFunctionToggleControls(meta, [
+  'closePopover',
+  'onPanelResize',
+  'onPositionChange',
+]);
 moveStorybookControlsToCategory(
   meta,
   [

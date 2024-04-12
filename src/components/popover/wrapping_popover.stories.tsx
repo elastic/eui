@@ -9,9 +9,9 @@
 import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import {
+  enableFunctionToggleControls,
   hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
@@ -48,11 +48,9 @@ const meta: Meta<EuiWrappingPopoverProps> = {
     // TODO: remove once props are properly resolved
     offset: 16,
     buffer: 16,
-    // TODO: update function props to use enableFunctionToggleControl util
-    closePopover: action('closePopover'),
-    onPositionChange: action('onPositionChange'),
   },
 };
+enableFunctionToggleControls(meta, ['closePopover', 'onPositionChange']);
 moveStorybookControlsToCategory(
   meta,
   [
