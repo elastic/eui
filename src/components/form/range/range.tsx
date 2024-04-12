@@ -126,11 +126,9 @@ export class EuiRangeClass extends Component<
     );
 
     if (target) {
-      target.accessibleLabel
-        ? (ariaValueText = `${target.value.toString()}, (${
-            target.accessibleLabel
-          })`)
-        : (ariaValueText = target.value.toString());
+      ariaValueText = target?.accessibleLabel
+        ? `${target.value.toString()}, (${target.accessibleLabel})`
+        : target.value.toString();
 
       return ariaValueText;
     }
