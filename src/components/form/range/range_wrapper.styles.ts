@@ -23,7 +23,7 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
         /* There's no way to target the layout of the extra input, so we must
          * use the descendant selector to allow the width to shrink. */
         inline-size: auto;
-        background: ${backgroundColor};
+        background-color: ${backgroundColor};
       }
     `,
     regular: css`
@@ -37,12 +37,12 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       > .euiFormControlLayout {
-        background: ${backgroundDisabledColor};
+        background-color: ${backgroundDisabledColor};
       }
     `,
     readOnly: css`
       && > .euiFormControlLayout {
-        background: ${backgroundReadOnlyColor};
+        background-color: ${backgroundReadOnlyColor};
       }
     `,
   };
