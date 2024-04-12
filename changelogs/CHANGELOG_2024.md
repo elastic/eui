@@ -1,3 +1,15 @@
+## [`v94.1.0-backport.0`](https://github.com/elastic/eui/releases/v94.1.0-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+**Bug fixes**
+
+- Fixed a visual text alignment regression in `EuiTableRowCell`s with the `row` header scope ([#7681](https://github.com/elastic/eui/pull/7681))
+
+**Accessibility**
+
+- Improved `EuiBasicTable` and `EuiInMemoryTable`'s selection checkboxes to have unique aria-labels per row ([#7672](https://github.com/elastic/eui/pull/7672))
+
 ## [`v94.1.0`](https://github.com/elastic/eui/releases/v94.1.0)
 
 - Updated `EuiTableHeaderCell` to show a subdued `sortable` icon for columns that are not currently sorted but can be ([#7656](https://github.com/elastic/eui/pull/7656))
