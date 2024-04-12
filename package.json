@@ -151,7 +151,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "assert": "^2.0.0",
     "autoprefixer": "^9.8.6",
-    "axe-core": "^4.8.2",
+    "axe-core": "^4.9.0",
     "babel-jest": "^24.1.0",
     "babel-loader": "^9.1.2",
     "babel-plugin-add-module-exports": "^1.0.4",
