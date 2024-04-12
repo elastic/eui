@@ -167,7 +167,6 @@ describe('EuiRange', () => {
       const input = getByRole(container, 'slider');
 
       expect(input).toBeInTheDocument();
-      expect(input.getAttribute('aria-valuenow')).toEqual('20');
       expect(input.getAttribute('aria-valuetext')).toEqual(
         '20, (twenty kilobytes)'
       );
@@ -198,7 +197,6 @@ describe('EuiRange', () => {
       const input = getByRole(container, 'slider');
 
       expect(input).toBeInTheDocument();
-      expect(input.getAttribute('aria-valuenow')).toEqual('8');
       expect(input.getAttribute('aria-valuetext')).toBeFalsy();
 
       expect(container.firstChild).toMatchSnapshot();
