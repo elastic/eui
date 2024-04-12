@@ -151,12 +151,12 @@
       "start": {
         "line": 1339,
         "column": 8,
-        "index": 37663
+        "index": 37681
       },
       "end": {
         "line": 1343,
         "column": 9,
-        "index": 37822
+        "index": 37840
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
