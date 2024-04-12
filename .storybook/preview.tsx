@@ -60,6 +60,8 @@ const preview: Preview = {
         {...(context.componentId === 'theming-euiprovider' && context.args)}
       >
         <div
+          /* #story-wrapper should always be the element that wraps <Story /> */
+          id="story-wrapper"
           css={[
             writingModeStyles.writingMode,
             // @ts-ignore - we're manually ensuring `writingMode` globals match our Emotion style keys
