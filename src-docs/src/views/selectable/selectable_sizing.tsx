@@ -12,54 +12,57 @@ import {
   EuiSelectableOption,
   EuiSpacer,
   EuiTitle,
+  EuiInputPopover,
 } from '../../../../src';
+
+const OPTIONS: EuiSelectableOption[] = [
+  { label: 'Titan' },
+  { label: 'Enceladus' },
+  { label: 'Mimas', checked: 'on' },
+  { label: 'Dione' },
+  { label: 'Iapetus', checked: 'on' },
+  { label: 'Phoebe' },
+  { label: 'Rhea' },
+  { label: 'Pandora' },
+  { label: 'Tethys' },
+  { label: 'Hyperion' },
+  { label: 'Pan' },
+  { label: 'Atlas' },
+  { label: 'Prometheus' },
+  { label: 'Janus' },
+  { label: 'Epimetheus' },
+  { label: 'Amalthea' },
+  { label: 'Thebe' },
+  { label: 'Io' },
+  { label: 'Europa' },
+  { label: 'Ganymede' },
+  { label: 'Callisto' },
+  { label: 'Himalia' },
+  { label: 'Phobos' },
+  { label: 'Deimos' },
+  { label: 'Puck' },
+  { label: 'Miranda' },
+  { label: 'Ariel' },
+  { label: 'Umbriel' },
+  { label: 'Titania' },
+  { label: 'Oberon' },
+  { label: 'Despina' },
+  { label: 'Galatea' },
+  { label: 'Larissa' },
+  { label: 'Triton' },
+  { label: 'Nereid' },
+  { label: 'Charon' },
+  { label: 'Styx' },
+  { label: 'Nix' },
+  { label: 'Kerberos' },
+  { label: 'Hydra' },
+];
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
-  const [options, setOptions] = useState<EuiSelectableOption[]>([
-    { label: 'Titan' },
-    { label: 'Enceladus' },
-    { label: 'Mimas', checked: 'on' },
-    { label: 'Dione' },
-    { label: 'Iapetus', checked: 'on' },
-    { label: 'Phoebe' },
-    { label: 'Rhea' },
-    { label: 'Pandora' },
-    { label: 'Tethys' },
-    { label: 'Hyperion' },
-    { label: 'Pan' },
-    { label: 'Atlas' },
-    { label: 'Prometheus' },
-    { label: 'Janus' },
-    { label: 'Epimetheus' },
-    { label: 'Amalthea' },
-    { label: 'Thebe' },
-    { label: 'Io' },
-    { label: 'Europa' },
-    { label: 'Ganymede' },
-    { label: 'Callisto' },
-    { label: 'Himalia' },
-    { label: 'Phobos' },
-    { label: 'Deimos' },
-    { label: 'Puck' },
-    { label: 'Miranda' },
-    { label: 'Ariel' },
-    { label: 'Umbriel' },
-    { label: 'Titania' },
-    { label: 'Oberon' },
-    { label: 'Despina' },
-    { label: 'Galatea' },
-    { label: 'Larissa' },
-    { label: 'Triton' },
-    { label: 'Nereid' },
-    { label: 'Charon' },
-    { label: 'Styx' },
-    { label: 'Nix' },
-    { label: 'Kerberos' },
-    { label: 'Hydra' },
-  ]);
+  const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
   const onChange = (options: EuiSelectableOption[]) => {
     setOptions(options);
   };
@@ -146,6 +149,13 @@ export default () => {
       <EuiSpacer />
 
       <EuiTitle size="xxs">
+        <h4>In an input popover</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <SelectableInputPopover />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
         <h4>
           Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
           <EuiCode language="js">
@@ -153,8 +163,7 @@ export default () => {
           </EuiCode>
         </h4>
       </EuiTitle>
-
-      <EuiSpacer />
+      <EuiSpacer size="s" />
 
       <EuiSelectable
         aria-label="Bordered selectable example"
@@ -166,5 +175,62 @@ export default () => {
         {(list) => list}
       </EuiSelectable>
     </>
+  );
+};
+
+const SelectableInputPopover = () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isSearching, setIsSearching] = useState(true);
+
+  return (
+    <EuiSelectable
+      aria-label="Selectable + input popover example"
+      options={options}
+      onChange={(newOptions, event, changedOption) => {
+        setOptions(newOptions);
+        setIsOpen(false);
+
+        if (changedOption.checked === 'on') {
+          setInputValue(changedOption.label);
+          setIsSearching(false);
+        } else {
+          setInputValue('');
+        }
+      }}
+      singleSelection
+      searchable
+      searchProps={{
+        value: inputValue,
+        onChange: (value) => {
+          setInputValue(value);
+          setIsSearching(true);
+        },
+        onKeyDown: (event) => {
+          if (event.key !== 'Escape') setIsOpen(true);
+        },
+        onClick: () => setIsOpen(true),
+        onFocus: () => setIsOpen(true),
+        onBlur: () => setIsOpen(false),
+      }}
+      isPreFiltered={!isSearching} // Shows the full list when not actively typing to search
+      listProps={{
+        css: { '.euiSelectableList__list': { maxBlockSize: 200 } },
+      }}
+    >
+      {(list, search) => (
+        <EuiInputPopover
+          closePopover={() => setIsOpen(false)}
+          disableFocusTrap
+          closeOnScroll
+          isOpen={isOpen}
+          input={search!}
+          panelPaddingSize="none"
+        >
+          {list}
+        </EuiInputPopover>
+      )}
+    </EuiSelectable>
   );
 };
