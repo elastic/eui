@@ -9,7 +9,8 @@ import {
   EuiPopoverFooter,
   EuiPopoverTitle,
   EuiSelectable,
-  EuiSelectableOption,
+  type EuiSelectableOption,
+  type EuiSelectableProps,
   EuiSpacer,
   EuiTitle,
   EuiInputPopover,
@@ -59,9 +60,6 @@ const OPTIONS: EuiSelectableOption[] = [
 ];
 
 export default () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-
   const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
   const onChange = (options: EuiSelectableOption[]) => {
     setOptions(options);
@@ -69,45 +67,96 @@ export default () => {
 
   return (
     <>
-      <EuiPopover
-        panelPaddingSize="none"
-        button={
-          <EuiButton
-            iconType="arrowDown"
-            iconSide="right"
-            onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-          >
-            Show popover
-          </EuiButton>
-        }
-        isOpen={isPopoverOpen}
-        closePopover={() => setIsPopoverOpen(false)}
-      >
-        <EuiSelectable
-          searchable
-          searchProps={{
-            placeholder: 'Filter list',
-            compressed: true,
-          }}
-          options={options}
-          onChange={onChange}
-        >
-          {(list, search) => (
-            <div style={{ width: 240 }}>
-              <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
-              {list}
-              <EuiPopoverFooter paddingSize="s">
-                <EuiButton size="s" fullWidth>
-                  Manage this list
-                </EuiButton>
-              </EuiPopoverFooter>
-            </div>
-          )}
-        </EuiSelectable>
-      </EuiPopover>
-
+      <SelectablePopover options={options} onChange={onChange} />
       <EuiSpacer />
 
+      <SelectableFlyout options={options} onChange={onChange} />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
+        <h4>In an input popover</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <SelectableInputPopover />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
+        <h4>
+          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
+          <EuiCode language="js">
+            listProps.paddingSize=&quot;none&quot;
+          </EuiCode>
+        </h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiSelectable
+        aria-label="Bordered selectable example"
+        options={options}
+        onChange={onChange}
+        style={{ width: 300 }}
+        listProps={{ bordered: true, paddingSize: 'none' }}
+      >
+        {(list) => list}
+      </EuiSelectable>
+    </>
+  );
+};
+
+const SelectablePopover = (
+  props: Pick<EuiSelectableProps, 'options' | 'onChange'>
+) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const { options, onChange } = props;
+
+  return (
+    <EuiPopover
+      panelPaddingSize="none"
+      button={
+        <EuiButton
+          iconType="arrowDown"
+          iconSide="right"
+          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+        >
+          Show popover
+        </EuiButton>
+      }
+      isOpen={isPopoverOpen}
+      closePopover={() => setIsPopoverOpen(false)}
+    >
+      <EuiSelectable
+        aria-label="Selectable + popover example"
+        searchable
+        searchProps={{
+          placeholder: 'Filter list',
+          compressed: true,
+        }}
+        options={options}
+        onChange={onChange}
+      >
+        {(list, search) => (
+          <div style={{ width: 240 }}>
+            <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+            {list}
+            <EuiPopoverFooter paddingSize="s">
+              <EuiButton size="s" fullWidth>
+                Manage this list
+              </EuiButton>
+            </EuiPopoverFooter>
+          </div>
+        )}
+      </EuiSelectable>
+    </EuiPopover>
+  );
+};
+
+const SelectableFlyout = (
+  props: Pick<EuiSelectableProps, 'options' | 'onChange'>
+) => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const { options, onChange } = props;
+
+  return (
+    <>
       <EuiButton onClick={() => setIsFlyoutVisible(true)}>
         Show flyout
       </EuiButton>
@@ -119,7 +168,7 @@ export default () => {
           aria-labelledby="selectableFlyout"
         >
           <EuiSelectable
-            aria-label="Popover example"
+            aria-label="Selectable + flyout example"
             searchable
             options={options}
             onChange={onChange}
@@ -145,35 +194,6 @@ export default () => {
           </EuiFlyoutFooter>
         </EuiFlyout>
       )}
-
-      <EuiSpacer />
-
-      <EuiTitle size="xxs">
-        <h4>In an input popover</h4>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <SelectableInputPopover />
-      <EuiSpacer />
-
-      <EuiTitle size="xxs">
-        <h4>
-          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
-          <EuiCode language="js">
-            listProps.paddingSize=&quot;none&quot;
-          </EuiCode>
-        </h4>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-
-      <EuiSelectable
-        aria-label="Bordered selectable example"
-        options={options}
-        onChange={onChange}
-        style={{ width: 300 }}
-        listProps={{ bordered: true, paddingSize: 'none' }}
-      >
-        {(list) => list}
-      </EuiSelectable>
     </>
   );
 };
