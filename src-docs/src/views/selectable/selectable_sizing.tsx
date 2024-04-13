@@ -20,7 +20,7 @@ const OPTIONS: EuiSelectableOption[] = [
   { label: 'Enceladus' },
   { label: 'Mimas', checked: 'on' },
   { label: 'Dione' },
-  { label: 'Iapetus', checked: 'on' },
+  { label: 'Iapetus' },
   { label: 'Phoebe' },
   { label: 'Rhea' },
   { label: 'Pandora' },
