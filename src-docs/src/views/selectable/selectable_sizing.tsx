@@ -222,6 +222,8 @@ const SelectableInputPopover = () => {
       singleSelection
       searchable
       searchProps={{
+        // wrapperProps: { isDropdown: true },
+        // placeholder: 'Select an option',
         value: inputValue,
         onChange: (value) => {
           setInputValue(value);
@@ -237,6 +239,8 @@ const SelectableInputPopover = () => {
       isPreFiltered={!isSearching} // Shows the full list when not actively typing to search
       listProps={{
         css: { '.euiSelectableList__list': { maxBlockSize: 200 } },
+        // @ts-ignore - Override search highlighting when a selection is chosen
+        searchValue: isSearching ? inputValue : '',
       }}
     >
       {(list, search) => (
