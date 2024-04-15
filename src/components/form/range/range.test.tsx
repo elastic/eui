@@ -143,65 +143,6 @@ describe('EuiRange', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('input should include aria-valuetext when value equals tick[value]', () => {
-      const { container } = render(
-        <EuiRange
-          {...props}
-          showTicks
-          ticks={[
-            {
-              label: '20kb',
-              value: 20,
-              accessibleLabel: 'twenty kilobytes',
-            },
-            {
-              label: '100kb',
-              value: 100,
-              accessibleLabel: 'one-hundred kilobytes',
-            },
-          ]}
-          value={20}
-        />
-      );
-
-      const input = getByRole(container, 'slider');
-
-      expect(input).toBeInTheDocument();
-      expect(input.getAttribute('aria-valuetext')).toEqual(
-        '20, (twenty kilobytes)'
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('input should not include aria-valuetext when values are different', () => {
-      const { container } = render(
-        <EuiRange
-          {...props}
-          showTicks
-          ticks={[
-            {
-              label: '20kb',
-              value: 20,
-              accessibleLabel: 'twenty kilobytes',
-            },
-            {
-              label: '100kb',
-              value: 100,
-              accessibleLabel: 'one-hundred kilobytes',
-            },
-          ]}
-        />
-      );
-
-      const input = getByRole(container, 'slider');
-
-      expect(input).toBeInTheDocument();
-      expect(input.getAttribute('aria-valuetext')).toBeFalsy();
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
     test('slider should display in popover', () => {
       const { container, baseElement, getByTestSubject } = render(
         <EuiRange
@@ -288,6 +229,55 @@ describe('EuiRange', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('input aria-valuetext', () => {
+    const ticksWithLabels = [
+      {
+        label: '20kb',
+        value: 20,
+        accessibleLabel: 'twenty kilobytes',
+      },
+      {
+        label: '100kb',
+        value: 100,
+        accessibleLabel: 'one-hundred kilobytes',
+      },
+    ];
+
+    it('should exist when the current value has an accessible label', () => {
+      const { container } = render(
+        <EuiRange {...props} showTicks ticks={ticksWithLabels} value={20} />
+      );
+      const input = getByRole(container, 'slider');
+      expect(input.getAttribute('aria-valuetext')).toEqual(
+        '20, (twenty kilobytes)'
+      );
+    });
+
+    it('should exist when the current value has a label with typeof string', () => {
+      const { container } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            { label: '20kb', value: 20 },
+            { label: '100kb', value: 100 },
+          ]}
+          value={20}
+        />
+      );
+      const input = getByRole(container, 'slider');
+      expect(input.getAttribute('aria-valuetext')).toEqual('20, (20kb)');
+    });
+
+    it('should not exist when the current value does not have a matching label', () => {
+      const { container } = render(
+        <EuiRange {...props} showTicks ticks={ticksWithLabels} />
+      );
+      const input = getByRole(container, 'slider');
+      expect(input.getAttribute('aria-valuetext')).toBeNull();
     });
   });
 });
