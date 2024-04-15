@@ -228,11 +228,11 @@ const SelectableInputPopover = () => {
           setIsSearching(true);
         },
         onKeyDown: (event) => {
-          if (event.key !== 'Escape') setIsOpen(true);
+          if (event.key === 'Tab') return setIsOpen(false);
+          if (event.key !== 'Escape') return setIsOpen(true);
         },
         onClick: () => setIsOpen(true),
         onFocus: () => setIsOpen(true),
-        onBlur: () => setIsOpen(false),
       }}
       isPreFiltered={isSearching ? false : { highlightSearch: false }} // Shows the full list when not actively typing to search
       listProps={{
