@@ -120,20 +120,17 @@ export class EuiRangeClass extends Component<
     ticks: EuiRangeTick[],
     currentVal: string | number
   ): string | undefined => {
-    let ariaValueText;
     const target = ticks.find(
       (tick) => tick.value.toString() === currentVal.toString()
     );
 
     if (target) {
-      ariaValueText = target?.accessibleLabel
+      return target.accessibleLabel
         ? `${target.value.toString()}, (${target.accessibleLabel})`
-        : target.value.toString();
-
-      return ariaValueText;
+        : typeof target.label === 'string'
+        ? `${target.value.toString()}, (${target.label})`
+        : undefined;
     }
-
-    return ariaValueText; // undefined
   };
 
   render() {
