@@ -242,11 +242,9 @@ export const RangeControlExample = {
             The <EuiCode>EuiRangeTick</EuiCode> interface now includes an
             optional <EuiCode>accessibleLabel</EuiCode>. This property is
             combined with the current <EuiCode>value</EuiCode> to render an{' '}
-            <EuiCode>aria-valuetext</EuiCode> attribute. If the accessible label
-            is not included, <EuiCode>aria-valuetext</EuiCode> will be the
-            computed current value. This attribute is announced to screen reader
-            users and is useful when values are defined differently than tick
-            labels.
+            <EuiCode>aria-valuetext</EuiCode> attribute. A{' '}
+            <EuiCode>label</EuiCode> of type string will be combined with the
+            current value when no accessible label is passed.
           </p>
           <EuiCallOut
             color="warning"
