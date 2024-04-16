@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { JSX } from 'react';
 import {
   requiredProps,
   startThrowingReactWarnings,
@@ -29,10 +29,23 @@ describe('EuiFlexItem', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders as the passed component element', () => {
-    const { container } = render(<EuiFlexItem component="span" />);
+  describe('component', () => {
+    ['div', 'span'].forEach((value) => {
+      test(`${value} is rendered`, () => {
+        const { container } = render(
+          <EuiFlexItem component={value as keyof JSX.IntrinsicElements} />
+        );
 
-    expect(container.firstChild?.nodeName).toEqual('SPAN');
+        expect(container.firstChild?.nodeName).toEqual(value.toUpperCase());
+      });
+    });
+
+    test('custom component is rendered', () => {
+      const component = () => <span>Custom component test</span>;
+      const { getByText } = render(<EuiFlexItem component={component} />);
+
+      expect(getByText('Custom component test')).toBeInTheDocument();
+    });
   });
 
   describe('grow', () => {
