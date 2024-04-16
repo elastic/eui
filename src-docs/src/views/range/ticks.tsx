@@ -137,15 +137,15 @@ export default () => {
         min={0}
         max={84}
         ticks={[
-          { label: '1 GB', value: 0 },
-          { label: '2GB', value: 14 },
-          { label: '4GB', value: 28 },
-          { label: '8GB', value: 42 },
-          { label: '16GB', value: 56 },
-          { label: '32GB', value: 70 },
-          { label: '64GB', value: 84 },
+          { label: '1 GB', value: 0, accessibleLabel: 'one gigabyte' },
+          { label: '2GB', value: 14, accessibleLabel: 'two gigabytes' },
+          { label: '4GB', value: 28, accessibleLabel: 'four gigabytes' },
+          { label: '8GB', value: 42, accessibleLabel: 'eight gigabytes' },
+          { label: '16GB', value: 56, accessibleLabel: 'sixteen gigabytes' },
+          { label: '32GB', value: 70, accessibleLabel: 'thirty-two gigabytes' },
+          { label: '64GB', value: 84, accessibleLabel: 'sixty-four gigabytes' },
         ]}
-        aria-label="An example of EuiDualRange with no linear intervals"
+        aria-label="An example of EuiRange with no linear intervals"
       />
     </>
   );
