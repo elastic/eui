@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { JSX } from 'react';
 import { requiredProps } from '../../test';
 import {
   shouldRenderCustomStyles,
@@ -20,7 +20,6 @@ import {
   ALIGN_ITEMS,
   JUSTIFY_CONTENTS,
   DIRECTIONS,
-  COMPONENT_TYPES,
 } from './flex_group';
 
 describe('EuiFlexGroup', () => {
@@ -98,12 +97,20 @@ describe('EuiFlexGroup', () => {
     });
 
     describe('component', () => {
-      COMPONENT_TYPES.forEach((value) => {
+      ['div', 'span'].forEach((value) => {
         test(`${value} is rendered`, () => {
-          const { container } = render(<EuiFlexGroup component={value} />);
+          const { container } = render(
+            <EuiFlexGroup component={value as keyof JSX.IntrinsicElements} />
+          );
 
           expect(container.firstChild!.nodeName).toEqual(value.toUpperCase());
         });
+      });
+
+      test('custom component is rendered', () => {
+        const component = () => <span>Custom component test</span>;
+        const { getByText } = render(<EuiFlexGroup component={component} />);
+        expect(getByText('Custom component test')).toBeInTheDocument();
       });
 
       // React 18 throws a false error on test unmount for components w/ ref callbacks
