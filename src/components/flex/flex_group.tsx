@@ -123,5 +123,5 @@ export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as <
   props: EuiFlexGroupProps<TComponent> & { ref?: any }
 ) => ReturnType<typeof EuiFlexGroupInternal>;
 
-// Cast here is required because of the cast above
+// Cast is required here because of the cast above
 (EuiFlexGroup as FunctionComponent).displayName = 'EuiFlexGroup';
