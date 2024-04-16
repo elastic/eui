@@ -56,6 +56,10 @@ export interface EuiFieldSearchProps
    */
   isClearable?: boolean;
   /**
+   * Called when the onClear button is pressed.
+   */
+  onClear?: () => void;
+  /**
    * Creates an input group with element(s) coming before input
    * `string` | `ReactElement` or an array of these
    */
@@ -161,11 +165,13 @@ export class EuiFieldSearch extends Component<
     }
     this.setState({ value: '' });
 
-    const { incremental, onSearch } = this.props;
+    const { incremental, onSearch, onClear } = this.props;
 
     if (onSearch && incremental) {
       onSearch('');
     }
+
+    onClear?.();
   };
 
   componentWillUnmount() {
@@ -217,6 +223,7 @@ export class EuiFieldSearch extends Component<
       compressed,
       onSearch,
       isClearable: _isClearable,
+      onClear,
       append,
       prepend,
       ...rest
