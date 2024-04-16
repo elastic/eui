@@ -2,7 +2,8 @@ module.exports = {
   // We're adding EUI-specific wrapper elements in .storybook/preview.tsx.
   // Please keep in sync with .storybook/loki.ts
   chromeSelector: '#story-wrapper > *',
-  chromeRetries: 1,
+  chromeRetries: 3,
+  chromeDockerImage: 'yukinying/chrome-headless-browser-stable:latest',
   configurations: {
     'chrome.desktop': {
       target: 'chrome.docker',
