@@ -12,6 +12,10 @@ import React, {
   ComponentPropsWithoutRef,
   PropsWithChildren,
   ComponentType,
+  ForwardedRef,
+  forwardRef,
+  FunctionComponent,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -63,13 +67,16 @@ export type EuiFlexItemProps<TComponent extends ComponentPropType> =
       component?: TComponent;
     };
 
-export const EuiFlexItem = <TComponent extends ComponentPropType>({
-  children,
-  className,
-  grow = true,
-  component = 'div' as TComponent,
-  ...rest
-}: EuiFlexItemProps<TComponent>) => {
+const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
+  {
+    children,
+    className,
+    grow = true,
+    component = 'div' as TComponent,
+    ...rest
+  }: EuiFlexItemProps<TComponent>,
+  ref: ForwardedRef<TComponent>
+) => {
   useEffect(() => {
     if (VALID_GROW_VALUES.indexOf(grow) === -1) {
       throw new Error(
@@ -95,8 +102,21 @@ export const EuiFlexItem = <TComponent extends ComponentPropType>({
   const Component = component as ComponentType<CommonProps & typeof rest>;
 
   return (
-    <Component css={cssStyles} className={classes} {...rest}>
+    <Component {...rest} ref={ref} css={cssStyles} className={classes}>
       {children}
     </Component>
   );
 };
+
+// Cast forwardRef return type to work with the generic TComponent type
+// and not fallback to implicit any typing
+export const EuiFlexItem = forwardRef(EuiFlexItemInternal) as <
+  TComponent extends ComponentPropType
+>(
+  props: EuiFlexItemProps<TComponent> & {
+    ref?: Ref<typeof EuiFlexItemInternal>;
+  }
+) => ReturnType<typeof EuiFlexItemInternal>;
+
+// Cast is required here because of the cast above
+(EuiFlexItem as FunctionComponent).displayName = 'EuiFlexItem';

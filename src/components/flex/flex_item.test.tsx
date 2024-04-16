@@ -12,7 +12,10 @@ import {
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../test';
-import { shouldRenderCustomStyles } from '../../test/internal';
+import {
+  shouldRenderCustomStyles,
+  testOnReactVersion,
+} from '../../test/internal';
 import { render } from '../../test/rtl';
 
 import { EuiFlexItem } from './flex_item';
@@ -91,9 +94,16 @@ describe('EuiFlexItem', () => {
       });
     });
 
-    it('throws an error for invalid values', () => {
-      // @ts-expect-error testing invalid type
-      expect(() => render(<EuiFlexItem grow={11} />)).toThrowError();
-    });
+    // React 18 throws a false error on test unmount for components w/ ref callbacks
+    // that throw in a `useEffect`. Note: This only affects the test env, not prod
+    // @see https://github.com/facebook/react/issues/25675#issuecomment-1363957941
+    // TODO: Remove `testOnReactVersion` once the above bug is fixed
+    testOnReactVersion(['16', '17'])(
+      `invalid component types throw an error`,
+      () => {
+        // @ts-expect-error intentionally passing an invalid value
+        expect(() => render(<EuiFlexItem grow={11} />)).toThrow();
+      }
+    );
   });
 });
