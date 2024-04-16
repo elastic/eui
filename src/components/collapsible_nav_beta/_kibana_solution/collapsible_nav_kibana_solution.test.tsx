@@ -12,30 +12,30 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
 import { EuiCollapsibleNavContext } from '../context';
-import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
+import { KibanaCollapsibleNavSolution } from './collapsible_nav_kibana_solution';
 
-describe('EuiCollapsibleNavGroup', () => {
+describe('KibanaCollapsibleNavSolution', () => {
   const sharedProps = {
     title: 'Group',
     items: [{ title: 'Item' }],
     icon: 'home',
   };
 
-  shouldRenderCustomStyles(<EuiCollapsibleNavGroup {...sharedProps} />, {
+  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />, {
     skip: { style: true }, // Spread to a different location than className and CSS
   });
-  shouldRenderCustomStyles(<EuiCollapsibleNavGroup {...sharedProps} />, {
+  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />, {
     targetSelector: '.euiCollapsibleNavItem',
     skip: { className: true, css: true },
   });
-  shouldRenderCustomStyles(<EuiCollapsibleNavGroup {...sharedProps} />, {
+  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />, {
     childProps: ['wrapperProps'],
     skip: { parentTest: true },
   });
 
   it('renders', () => {
     const { container } = render(
-      <EuiCollapsibleNavGroup {...sharedProps} {...requiredProps} />
+      <KibanaCollapsibleNavSolution {...sharedProps} {...requiredProps} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -51,7 +51,7 @@ describe('EuiCollapsibleNavGroup', () => {
           side: 'left',
         }}
       >
-        <EuiCollapsibleNavGroup {...sharedProps} />
+        <KibanaCollapsibleNavSolution {...sharedProps} />
       </EuiCollapsibleNavContext.Provider>
     );
 

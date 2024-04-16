@@ -12,15 +12,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiHeader, EuiHeaderSection } from '../../header';
 import { EuiPageTemplate } from '../../page_template';
 
-import { EuiCollapsibleNavBeta, EuiCollapsibleNavBetaProps } from '../';
+import { EuiCollapsibleNavBeta, EuiCollapsibleNavBetaProps } from '..';
 import {
-  EuiCollapsibleNavGroup,
-  EuiCollapsibleNavGroupProps,
-} from './collapsible_nav_group';
+  KibanaCollapsibleNavSolution,
+  KibanaCollapsibleNavSolutionProps,
+} from './collapsible_nav_kibana_solution';
 
-const meta: Meta<EuiCollapsibleNavGroupProps> = {
+const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
   title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNavBeta.Group',
-  component: EuiCollapsibleNavGroup,
+  component: KibanaCollapsibleNavSolution,
   parameters: {
     layout: 'fullscreen',
   },
@@ -44,7 +44,7 @@ const meta: Meta<EuiCollapsibleNavGroupProps> = {
   },
 };
 export default meta;
-type Story = StoryObj<EuiCollapsibleNavGroupProps>;
+type Story = StoryObj<KibanaCollapsibleNavSolutionProps>;
 
 const CollapsibleNavTemplate: FunctionComponent<
   PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
@@ -68,7 +68,7 @@ const CollapsibleNavTemplate: FunctionComponent<
 export const Playground: Story = {
   render: ({ ...args }) => (
     <CollapsibleNavTemplate>
-      <EuiCollapsibleNavBeta.Group {...args} />
+      <EuiCollapsibleNavBeta.KibanaSolution {...args} />
     </CollapsibleNavTemplate>
   ),
   args: {
@@ -81,10 +81,10 @@ export const EdgeCaseTesting: Story = {
     <CollapsibleNavTemplate initialIsCollapsed={true}>
       <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceHappy" />
       <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceSad" />
-      <EuiCollapsibleNavBeta.Group {...args} />
+      <EuiCollapsibleNavBeta.KibanaSolution {...args} />
       <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceHappy" />
       <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceSad" />
-      <EuiCollapsibleNavBeta.Group {...args} />
+      <EuiCollapsibleNavBeta.KibanaSolution {...args} />
     </CollapsibleNavTemplate>
   ),
 };

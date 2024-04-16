@@ -21,40 +21,44 @@ import {
 } from '../collapsible_nav_item/collapsible_nav_item';
 import { EuiCollapsedNavPopover } from '../collapsible_nav_item/collapsed/collapsed_nav_popover';
 
-import { euiCollapsibleNavGroupStyles } from './collapsible_nav_group.styles';
+import { euiCollapsibleNavKibanaSolutionStyles } from './collapsible_nav_kibana_solution.styles';
 
-export type EuiCollapsibleNavGroupProps = _SharedEuiCollapsibleNavItemProps &
-  Pick<
-    EuiCollapsibleNavItemProps,
-    'title' | 'titleElement' | 'icon' | 'iconProps'
-  > &
-  Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
-    /**
-     * Optional props to pass to the wrapping div
-     */
-    wrapperProps?: HTMLAttributes<HTMLDivElement> & CommonProps;
-  };
+export type KibanaCollapsibleNavSolutionProps =
+  _SharedEuiCollapsibleNavItemProps &
+    Pick<
+      EuiCollapsibleNavItemProps,
+      'title' | 'titleElement' | 'icon' | 'iconProps'
+    > &
+    Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
+      /**
+       * Optional props to pass to the wrapping div
+       */
+      wrapperProps?: HTMLAttributes<HTMLDivElement> & CommonProps;
+    };
 
 /**
  * This component should only ever be used as a **top-level component**, and not as a sub-item.
  * It also should **not** be used in the nav footer.
+ *
+ * This component is **incredibly** specific to Kibana (honestly, possibly should just live there)
+ * and is not meant to be a generic component.
  */
-export const EuiCollapsibleNavGroup: FunctionComponent<
-  EuiCollapsibleNavGroupProps
+export const KibanaCollapsibleNavSolution: FunctionComponent<
+  KibanaCollapsibleNavSolutionProps
 > = ({ items, className, wrapperProps, ...props }) => {
   const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
 
   const classes = classNames(
-    'euiCollapsibleNavGroup',
+    'kibanaCollapsibleNavSolution',
     className,
     wrapperProps?.className
   );
 
-  const styles = useEuiMemoizedStyles(euiCollapsibleNavGroupStyles);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavKibanaSolutionStyles);
   const cssStyles = [
-    styles.euiCollapsibleNavGroup,
+    styles.euiCollapsibleNavKibanaSolution,
     isPush && isCollapsed
-      ? styles.euiCollapsibleNavGroup__title
+      ? styles.euiCollapsibleNavKibanaSolution__title
       : styles.isWrapper,
     wrapperProps?.css,
   ];
@@ -70,7 +74,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
           <EuiCollapsibleNavItem
             id={labelledById}
             {...props}
-            css={styles.euiCollapsibleNavGroup__title}
+            css={styles.euiCollapsibleNavKibanaSolution__title}
           />
           <EuiCollapsibleNavSubItems
             items={items}

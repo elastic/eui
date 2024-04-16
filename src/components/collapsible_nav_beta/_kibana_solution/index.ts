@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EuiCollapsibleNavGroup } from './collapsible_nav_group';
+export { KibanaCollapsibleNavSolution } from './collapsible_nav_kibana_solution';

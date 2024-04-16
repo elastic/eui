@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCollapsibleNavGroup renders 1`] = `
+exports[`KibanaCollapsibleNavSolution renders 1`] = `
 <div
-  class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isWrapper-euiTestCss"
+  class="kibanaCollapsibleNavSolution testClass1 testClass2 emotion-euiCollapsibleNavKibanaSolution-isWrapper-euiTestCss"
 >
   <span
     aria-label="aria-label"
-    class="euiCollapsibleNavLink euiCollapsibleNavItem emotion-euiCollapsibleNavLink-isTopItem-isNotAccordion-euiCollapsibleNavGroup__title"
+    class="euiCollapsibleNavLink euiCollapsibleNavItem emotion-euiCollapsibleNavLink-isTopItem-isNotAccordion-euiCollapsibleNavKibanaSolution__title"
     data-test-subj="test subject string"
     id="generated-id"
   >
@@ -37,12 +37,12 @@ exports[`EuiCollapsibleNavGroup renders 1`] = `
 </div>
 `;
 
-exports[`EuiCollapsibleNavGroup renders as a docked button icon 1`] = `
+exports[`KibanaCollapsibleNavSolution renders as a docked button icon 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-euiCollapsibleNavGroup__title"
+  class="kibanaCollapsibleNavSolution emotion-euiCollapsibleNavKibanaSolution-euiCollapsibleNavKibanaSolution__title"
 >
   <div
-    class="euiPopover euiCollapsibleNavGroup emotion-euiPopover-block"
+    class="euiPopover kibanaCollapsibleNavSolution emotion-euiPopover-block"
   >
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-block"

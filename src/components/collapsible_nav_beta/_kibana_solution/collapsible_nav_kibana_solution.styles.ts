@@ -12,16 +12,18 @@ import { UseEuiTheme } from '../../../services';
 
 import { euiCollapsibleNavItemVariables } from '../collapsible_nav_item/collapsible_nav_item.styles';
 
-export const euiCollapsibleNavGroupStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCollapsibleNavKibanaSolutionStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
   const { euiTheme } = euiThemeContext;
   const sharedStyles = euiCollapsibleNavItemVariables(euiThemeContext);
 
   return {
-    euiCollapsibleNavGroup: css``,
+    euiCollapsibleNavKibanaSolution: css``,
     isWrapper: css`
       margin: ${sharedStyles.padding};
     `,
-    euiCollapsibleNavGroup__title: css`
+    euiCollapsibleNavKibanaSolution__title: css`
       margin-block: ${euiTheme.size.base};
       margin-inline: 0;
 

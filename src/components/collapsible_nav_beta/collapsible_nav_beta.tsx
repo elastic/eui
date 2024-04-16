@@ -232,12 +232,12 @@ import {
   EuiCollapsibleNavBody,
   EuiCollapsibleNavFooter,
 } from './collapsible_nav_body_footer';
-import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
+import { KibanaCollapsibleNavSolution } from './_kibana_solution';
 
 export const EuiCollapsibleNavBeta = Object.assign(_EuiCollapsibleNavBeta, {
   Body: EuiCollapsibleNavBody,
   Footer: EuiCollapsibleNavFooter,
-  Group: EuiCollapsibleNavGroup,
   Item: EuiCollapsibleNavItem,
+  KibanaSolution: KibanaCollapsibleNavSolution,
 });
