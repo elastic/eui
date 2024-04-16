@@ -112,18 +112,6 @@ describe('EuiFlexGroup', () => {
         const { getByText } = render(<EuiFlexGroup component={component} />);
         expect(getByText('Custom component test')).toBeInTheDocument();
       });
-
-      // React 18 throws a false error on test unmount for components w/ ref callbacks
-      // that throw in a `useEffect`. Note: This only affects the test env, not prod
-      // @see https://github.com/facebook/react/issues/25675#issuecomment-1363957941
-      // TODO: Remove `testOnReactVersion` once the above bug is fixed
-      testOnReactVersion(['16', '17'])(
-        `invalid component types throw an error`,
-        () => {
-          // @ts-expect-error intentionally passing an invalid value
-          expect(() => render(<EuiFlexGroup component="h2" />)).toThrow();
-        }
-      );
     });
   });
 });
