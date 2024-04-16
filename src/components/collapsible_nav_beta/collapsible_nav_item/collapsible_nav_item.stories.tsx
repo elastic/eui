@@ -18,7 +18,7 @@ import {
 } from './collapsible_nav_item';
 
 const meta: Meta<EuiCollapsibleNavItemProps> = {
-  title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNavItem',
+  title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavItem',
   component: EuiCollapsibleNavItem,
 };
 export default meta;

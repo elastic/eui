@@ -19,7 +19,7 @@ import {
 } from './collapsible_nav_kibana_solution';
 
 const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
-  title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNavBeta.Group',
+  title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavBeta.Group',
   component: KibanaCollapsibleNavSolution,
   parameters: {
     layout: 'fullscreen',

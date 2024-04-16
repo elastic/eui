@@ -27,7 +27,7 @@ import {
 } from './';
 
 const meta: Meta<EuiCollapsibleNavBetaProps> = {
-  title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNavBeta',
+  title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavBeta',
   component: EuiCollapsibleNavBeta,
   parameters: {
     layout: 'fullscreen',
