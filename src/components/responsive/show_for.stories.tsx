@@ -20,8 +20,8 @@ type Story = StoryObj<EuiShowForProps>;
 
 export const Playground: Story = {
   args: {
-    sizes: ['l'],
+    sizes: ['m', 'l', 'xl'],
     children:
-      'Try changing the Storybook viewport, or adding the `s` size, to see how it affects the visibility of this text.',
+      'Try changing the Storybook viewport, or add or remove additional sizes, to see how it affects the visibility of this text.',
   },
 };
