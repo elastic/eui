@@ -257,9 +257,9 @@ export const FlexExample = {
         <p>
           Pass the <EuiCode>component</EuiCode> property to{' '}
           <strong>EuiFlexGroup</strong> and/or <strong>EuiFlexItem</strong> to
-          change the rendered component type from the default {' '}
-          <EuiCode>div</EuiCode>. It can be any valid React component type
-          like a tag name string such as <EuiCode>div</EuiCode>
+          change the rendered component type from the default{' '}
+          <EuiCode>div</EuiCode>. It can be any valid React component type like
+          a tag name string such as <EuiCode>div</EuiCode>
           or <EuiCode>span</EuiCode> or a React component.
         </p>
       ),
