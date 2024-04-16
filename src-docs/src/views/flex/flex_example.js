@@ -246,7 +246,7 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'Spans instead of divs',
+      title: 'Override output component type',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -255,9 +255,12 @@ export const FlexExample = {
       ],
       text: (
         <p>
-          Specify <EuiCode>component=&ldquo;span&rdquo;</EuiCode> on{' '}
+          Pass the <EuiCode>component</EuiCode> property to{' '}
           <strong>EuiFlexGroup</strong> and/or <strong>EuiFlexItem</strong> to
-          change from the default <EuiCode>div</EuiCode>.
+          change the rendered component type from the default {' '}
+          <EuiCode>div</EuiCode>. It can be any valid React component type
+          like a tag name string such as <EuiCode>div</EuiCode>
+          or <EuiCode>span</EuiCode> or a React component.
         </p>
       ),
       snippet: componentSpanSnippet,
