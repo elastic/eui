@@ -127,8 +127,7 @@ export class EuiRangeClass extends Component<
     if (target) {
       return target.accessibleLabel
         ? `${target.value}, (${target.accessibleLabel})`
-        // Fall back to the label if it's a usable string
-        : typeof target.label === 'string'
+        : typeof target.label === 'string' // Fall back to the label if it's a usable string
         ? `${target.value}, (${target.label})`
         : undefined;
     }
