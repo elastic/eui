@@ -272,12 +272,22 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(getByRole('slider')).toHaveAttribute('aria-valuetext', '20, (20kb)');
+      expect(getByRole('slider')).toHaveAttribute(
+        'aria-valuetext',
+        '20, (20kb)'
+      );
     });
 
     it('should not exist when the current value does not have a matching label', () => {
       const { getByRole } = render(
-        <EuiRange {...props} showTicks ticks={ticksWithLabels} />
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            { value: 20, label: '20kb', accessibleLabel: 'twenty kilobytes' },
+          ]}
+          value={10}
+        />
       );
 
       expect(getByRole('slider')).not.toHaveAttribute('aria-valuetext');
