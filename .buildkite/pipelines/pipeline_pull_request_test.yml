@@ -51,6 +51,8 @@ steps:
     artifact_paths:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
+    retry:
+      automatic: true
   
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":cypress: Cypress tests on React 17"
@@ -62,6 +64,8 @@ steps:
     artifact_paths:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
+    retry:
+      automatic: true
   
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":cypress: Cypress tests on React 18"
@@ -73,6 +77,8 @@ steps:
     artifact_paths:
       - "cypress/screenshots/**/*.png"
       - "cypress/videos/**/*.mp4"
+    retry:
+      automatic: true
 
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":axe: Cypress accessibility (a11y) tests on React 18"
