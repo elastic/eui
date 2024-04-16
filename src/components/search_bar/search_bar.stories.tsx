@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { faker } from '@faker-js/faker';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { EuiBasicTable } from '../basic_table';
@@ -23,6 +24,8 @@ import {
   QueryType,
 } from './search_bar';
 
+faker.seed(42);
+
 const tags = [
   { name: 'marketing', color: 'danger' },
   { name: 'finance', color: 'success' },
@@ -31,58 +34,22 @@ const tags = [
   { name: 'ga', color: 'success' },
 ];
 
-const items = [
-  {
-    type: 'watch',
-    status: 'open',
-    active: false,
-    tag: ['finance'],
-    owner: 'wanda',
-    stars: 2,
-    followers: 10,
-    comments: 3,
-  },
-  {
-    type: 'visualization',
-    status: 'closed',
-    active: true,
-    tag: ['ga', 'marketing', 'eng'],
-    owner: 'carrie',
-    stars: 2,
-    followers: 7,
-    comments: 2,
-  },
-  {
-    type: 'watch',
-    open: 'open',
-    active: true,
-    tag: [],
-    owner: 'carrie',
-    stars: 4,
-    followers: 2,
-    comments: 10,
-  },
-  {
-    type: 'visualization',
-    open: 'open',
-    active: false,
-    tag: ['eng'],
-    owner: 'dewey',
-    stars: 5,
-    followers: 2,
-    comments: 8,
-  },
-  {
-    type: 'dashboard',
-    open: 'closed',
-    active: false,
-    tag: ['sales', 'marketing', 'ga'],
-    owner: 'gabic',
-    stars: 1,
-    followers: 13,
-    comments: 1,
-  },
-];
+const items = [...Array(5).keys()].map((id) => {
+  return {
+    id,
+    status: faker.helpers.arrayElement(['open', 'closed']),
+    type: faker.helpers.arrayElement(['dashboard', 'visualization', 'watch']),
+    tag: faker.helpers.arrayElements(
+      tags.map((tag) => tag.name),
+      { min: 0, max: 3 }
+    ),
+    active: faker.datatype.boolean(),
+    owner: faker.helpers.arrayElement(['dewey', 'wanda', 'carrie', 'gabic']),
+    followers: faker.number.int({ min: 0, max: 20 }),
+    comments: faker.number.int({ min: 0, max: 10 }),
+    stars: faker.number.int({ min: 0, max: 5 }),
+  };
+});
 
 const meta: Meta<EuiSearchBarProps> = {
   title: 'Forms/EuiSearchBar/EuiSearchBar',

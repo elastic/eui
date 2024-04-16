@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { faker } from '@faker-js/faker';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { EuiText } from '../text';
@@ -16,15 +17,14 @@ import {
   EuiResizableContainerProps,
 } from './resizable_container';
 
-// using static text over '@faker-js/faker' to ensure same output in regards to VRT
+faker.seed(42);
+
 const placeholderText = (
-  <p>
-    Autem vitae quibusdam iure aspernatur nobis. Illo dicta debitis aperiam.
-    Assumenda dicta saepe corrupti tempora. Nobis nihil ipsum esse eius
-    perspiciatis velit maiores architecto earum. Minus ipsam dignissimos
-    voluptatem eos ipsa. Laudantium eius porro autem impedit voluptatibus
-    accusamus qui adipisci.
-  </p>
+  <>
+    <p>{faker.lorem.sentences(5)}</p>
+    <p>{faker.lorem.sentences(5)}</p>
+    <p>{faker.lorem.sentences(5)}</p>
+  </>
 );
 
 const TwoColumns: EuiResizableContainerProps['children'] = (
@@ -33,21 +33,13 @@ const TwoColumns: EuiResizableContainerProps['children'] = (
 ) => (
   <>
     <EuiResizablePanel initialSize={50} tabIndex={0}>
-      <EuiText>
-        {placeholderText}
-        {placeholderText}
-        {placeholderText}
-      </EuiText>
+      <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
 
     <EuiResizableButton />
 
     <EuiResizablePanel initialSize={50} tabIndex={0}>
-      <EuiText>
-        {placeholderText}
-        {placeholderText}
-        {placeholderText}
-      </EuiText>
+      <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
   </>
 );
@@ -58,31 +50,19 @@ const ThreeColumns: EuiResizableContainerProps['children'] = (
 ) => (
   <>
     <EuiResizablePanel initialSize={40} tabIndex={0}>
-      <EuiText>
-        {placeholderText}
-        {placeholderText}
-        {placeholderText}
-      </EuiText>
+      <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
 
     <EuiResizableButton />
 
     <EuiResizablePanel initialSize={40} tabIndex={0}>
-      <EuiText>
-        {placeholderText}
-        {placeholderText}
-        {placeholderText}
-      </EuiText>
+      <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
 
     <EuiResizableButton />
 
     <EuiResizablePanel initialSize={20} tabIndex={0}>
-      <EuiText>
-        {placeholderText}
-        {placeholderText}
-        {placeholderText}
-      </EuiText>
+      <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
   </>
 );

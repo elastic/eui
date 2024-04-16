@@ -8,6 +8,8 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { css } from '@emotion/react';
+import { faker } from '@faker-js/faker';
 
 import {
   disableStorybookControls,
@@ -15,7 +17,8 @@ import {
 } from '../../../.storybook/utils';
 import { EuiResizableContainer } from './resizable_container';
 import { EuiResizablePanel, EuiResizablePanelProps } from './resizable_panel';
-import { css } from '@emotion/react';
+
+faker.seed(42);
 
 const meta: Meta<EuiResizablePanelProps> = {
   title: 'Layout/EuiResizableContainer/EuiResizablePanel',
@@ -61,8 +64,7 @@ type Story = StoryObj<EuiResizablePanelProps>;
 
 export const Playground: Story = {
   args: {
-    children:
-      'Autem vitae quibusdam iure aspernatur nobis. Illo dicta debitis aperiam. Assumenda dicta saepe corrupti tempora.',
+    children: faker.lorem.sentences(5),
     initialSize: 100,
   },
   render: ({ mode, children, ...rest }) => {
