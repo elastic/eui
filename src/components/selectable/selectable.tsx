@@ -178,7 +178,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      *
      * @default false
      */
-    isPreFiltered?: boolean | { highlightSearch?: false };
+    isPreFiltered?: boolean | { highlightSearch?: boolean };
     /**
      * Optional screen reader instructions to announce upon focus/interaction. This text is read out
      * after the `EuiSelectable` label and a brief pause, but before the default keyboard instructions for
