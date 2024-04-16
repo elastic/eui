@@ -239,12 +239,11 @@ export const RangeControlExample = {
             values (min-max), though the label may be anything you choose.
           </p>
           <p>
-            The <EuiCode>EuiRangeTick</EuiCode> interface now includes an
-            optional <EuiCode>accessibleLabel</EuiCode>. This property is
-            combined with the current <EuiCode>value</EuiCode> to render an{' '}
-            <EuiCode>aria-valuetext</EuiCode> attribute. A{' '}
-            <EuiCode>label</EuiCode> of type string will be combined with the
-            current value when no accessible label is passed.
+            Tick labels can improve the accessibility of your range. If your
+            label is a simple string, it will be read out to screen readers
+            alongside the value. You can also use the{' '}
+            <EuiCode>accessibleLabel</EuiCode> property to provide more explicit
+            screen reader text.
           </p>
           <EuiCallOut
             color="warning"
