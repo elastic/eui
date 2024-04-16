@@ -4,6 +4,7 @@ module.exports = {
   chromeSelector: '#story-wrapper > *',
   chromeRetries: 3,
   chromeDockerImage: 'yukinying/chrome-headless-browser-stable:latest',
+  chromeFlags: '--headless --disable-gpu --hide-scrollbars --force-prefers-reduced-motion',
   configurations: {
     'chrome.desktop': {
       target: 'chrome.docker',
