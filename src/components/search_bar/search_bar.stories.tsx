@@ -20,6 +20,7 @@ import {
   EuiSearchBarOnChangeArgs,
   EuiSearchBar,
   EuiSearchBarProps,
+  QueryType,
 } from './search_bar';
 
 const tags = [
@@ -226,7 +227,7 @@ export const Playground: Story = {
 const StatefulSearchBar = (args: EuiSearchBarProps) => {
   const { query, defaultQuery, box, hint } = args;
 
-  const [_query, setQuery] = useState(
+  const [_query, setQuery] = useState<QueryType>(
     query ?? defaultQuery ?? EuiSearchBar.Query.MATCH_ALL
   );
   const [error, setError] = useState<EuiSearchBarOnChangeArgs['error']>(null);
@@ -237,7 +238,7 @@ const StatefulSearchBar = (args: EuiSearchBarProps) => {
       setError(error);
     } else {
       setError(null);
-      setQuery(query);
+      setQuery(query ?? EuiSearchBar.Query.MATCH_ALL);
     }
   };
 
