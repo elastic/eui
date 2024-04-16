@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent, getByRole } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
@@ -233,31 +233,34 @@ describe('EuiRange', () => {
   });
 
   describe('input aria-valuetext', () => {
-    const ticksWithLabels = [
-      {
-        label: '20kb',
-        value: 20,
-        accessibleLabel: 'twenty kilobytes',
-      },
-      {
-        label: '100kb',
-        value: 100,
-        accessibleLabel: 'one-hundred kilobytes',
-      },
-    ];
-
     it('should exist when the current value has an accessible label', () => {
-      const { container } = render(
-        <EuiRange {...props} showTicks ticks={ticksWithLabels} value={20} />
+      const { getByRole } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            {
+              label: '20kb',
+              value: 20,
+              accessibleLabel: 'twenty kilobytes',
+            },
+            {
+              label: '100kb',
+              value: 100,
+              accessibleLabel: 'one-hundred kilobytes',
+            },
+          ]}
+          value={20}
+        />
       );
-      const input = getByRole(container, 'slider');
-      expect(input.getAttribute('aria-valuetext')).toEqual(
+      expect(getByRole('slider')).toHaveAttribute(
+        'aria-valuetext',
         '20, (twenty kilobytes)'
       );
     });
 
-    it('should exist when the current value has a label with typeof string', () => {
-      const { container } = render(
+    it('falls back to string `label`s if `accessibleLabel` does not exist', () => {
+      const { getByRole } = render(
         <EuiRange
           {...props}
           showTicks
@@ -268,16 +271,16 @@ describe('EuiRange', () => {
           value={20}
         />
       );
-      const input = getByRole(container, 'slider');
-      expect(input.getAttribute('aria-valuetext')).toEqual('20, (20kb)');
+
+      expect(getByRole('slider')).toHaveAttribute('aria-valuetext', '20, (20kb)');
     });
 
     it('should not exist when the current value does not have a matching label', () => {
-      const { container } = render(
+      const { getByRole } = render(
         <EuiRange {...props} showTicks ticks={ticksWithLabels} />
       );
-      const input = getByRole(container, 'slider');
-      expect(input.getAttribute('aria-valuetext')).toBeNull();
+
+      expect(getByRole('slider')).not.toHaveAttribute('aria-valuetext');
     });
   });
 });
