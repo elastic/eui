@@ -23,9 +23,12 @@ export default meta;
 type Story = StoryObj<EuiErrorBoundaryProps>;
 
 const ErrorContent = () => {
-  throw new Error(
+  const err = new Error(
     "I'm here to kick butt and chew bubblegum.\n\nAnd I'm all out of gum."
   );
+  err.stack = 'Stack trace';
+
+  throw err;
 };
 
 export const Playground: Story = {
