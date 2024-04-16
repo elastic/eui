@@ -52,7 +52,7 @@ type FlexGroupDirection = (typeof DIRECTIONS)[number];
 
 type ComponentPropType = ElementType<CommonProps>;
 
-export type EuiFlexGroupProps<TComponent extends ComponentPropType> =
+export type EuiFlexGroupProps<TComponent extends ComponentPropType = 'div'> =
   ComponentPropsWithoutRef<TComponent> & {
     alignItems?: FlexGroupAlignItems;
     /**

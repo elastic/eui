@@ -42,7 +42,7 @@ const VALID_GROW_VALUES = [
 
 type ComponentPropType = ElementType<CommonProps>;
 
-export type EuiFlexItemProps<TComponent extends ComponentPropType> =
+export type EuiFlexItemProps<TComponent extends ComponentPropType = 'div'> =
   PropsWithChildren &
     CommonProps &
     ComponentPropsWithoutRef<TComponent> & {
