@@ -904,7 +904,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
           hasPagination(this.props) && this.pageSize > 0
             ? this.props.pagination.pageIndex * this.pageSize + index
             : index;
-        return this.renderItemRow(item, tableItemIndex);
+        return this.renderItemRow(item, tableItemIndex, index);
       });
     }
 
@@ -950,7 +950,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     );
   }
 
-  renderItemRow(item: T, rowIndex: number) {
+  renderItemRow(item: T, rowIndex: number, displayedRowIndex: number) {
     const { columns, selection, rowHeader, itemIdToExpandedRowMap } =
       this.props;
 
@@ -974,7 +974,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       const [checkboxCell, isDisabled] = this.renderItemSelectionCell(
         itemId,
         item,
-        selected
+        selected,
+        displayedRowIndex
       );
       cells.push(checkboxCell);
       rowSelectionDisabled = !!isDisabled;
@@ -1075,7 +1076,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
     );
   }
 
-  renderItemSelectionCell(itemId: ItemId<T>, item: T, selected: boolean) {
+  renderItemSelectionCell(
+    itemId: ItemId<T>,
+    item: T,
+    selected: boolean,
+    displayedRowIndex: number
+  ) {
     const { selection } = this.props;
     const key = `_selection_column_${itemId}`;
     const checked = selected;
@@ -1100,7 +1106,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
     };
     return [
       <EuiTableRowCellCheckbox key={key}>
-        <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
+        <EuiI18n
+          token="euiBasicTable.selectThisRow"
+          default="Select row {index}"
+          values={{ index: displayedRowIndex + 1 }}
+        >
           {(selectThisRow: string) => (
             <EuiCheckbox
               id={`${this.tableId}${key}-checkbox`}

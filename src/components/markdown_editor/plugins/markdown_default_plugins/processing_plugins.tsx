@@ -28,12 +28,15 @@ import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
 import all from 'mdast-util-to-hast/lib/all';
 import rehype2react from 'rehype-react';
 import remark2rehype from 'remark-rehype';
-import * as MarkdownTooltip from '../markdown_tooltip';
-import * as MarkdownCheckbox from '../markdown_checkbox';
-import { FENCED_CLASS } from '../remark/remark_prismjs';
+
 import { EuiLink } from '../../../link';
 import { EuiCodeBlock, EuiCode } from '../../../code';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
+
+import { FENCED_CLASS } from '../remark/remark_prismjs';
+import * as MarkdownTooltip from '../markdown_tooltip';
+import * as MarkdownCheckbox from '../markdown_checkbox';
+import type { ExcludableDefaultPlugins, DefaultPluginsConfig } from './plugins';
 
 const unknownHandler: Handler = (h, node) => {
   return h(node, node.type, node, all(h, node));
@@ -50,12 +53,26 @@ export type DefaultEuiMarkdownProcessingPlugins = [
   ...PluggableList // any additional are generic
 ];
 
+const DEFAULT_COMPONENT_RENDERERS: Partial<
+  Record<ExcludableDefaultPlugins, React.ComponentType<any>>
+> = {
+  checkbox: MarkdownCheckbox.renderer,
+  tooltip: MarkdownTooltip.renderer,
+};
+
 export const getDefaultEuiMarkdownProcessingPlugins = ({
   exclude,
-}: {
-  exclude?: Array<'tooltip'>;
-} = {}): DefaultEuiMarkdownProcessingPlugins => {
-  const excludeSet = new Set(exclude);
+}: DefaultPluginsConfig = {}): DefaultEuiMarkdownProcessingPlugins => {
+  const componentPluginsWithExclusions: Rehype2ReactOptions['components'] = {};
+
+  Object.entries(DEFAULT_COMPONENT_RENDERERS).forEach(
+    ([excludeName, renderer]) => {
+      if (!exclude?.includes(excludeName as ExcludableDefaultPlugins)) {
+        const pluginName = `${excludeName}Plugin`;
+        componentPluginsWithExclusions[pluginName] = renderer;
+      }
+    }
+  );
 
   const plugins: DefaultEuiMarkdownProcessingPlugins = [
     [
@@ -99,14 +116,11 @@ export const getDefaultEuiMarkdownProcessingPlugins = ({
             <table className="euiMarkdownFormat__table" {...props} />
           ),
           hr: (props) => <EuiHorizontalRule {...props} />,
-          checkboxPlugin: MarkdownCheckbox.renderer,
+          ...componentPluginsWithExclusions,
         },
       },
     ],
   ];
-
-  if (!excludeSet.has('tooltip'))
-    plugins[1][1].components.tooltipPlugin = MarkdownTooltip.renderer;
 
   return plugins;
 };

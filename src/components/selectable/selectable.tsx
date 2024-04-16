@@ -168,10 +168,17 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     errorMessage?: ReactElement | string | null;
     /**
-     * Control whether or not options get filtered internally or if consumer will filter
-     * Default: false
+     * Control whether or not options get filtered internally (i.e., whether filtering is
+     * handled by EUI or by you, the consumer).
+     * If set to `true`, all passed `options` will be displayed regardless of the user's
+     * search input.
+     *
+     * Additionally allows passing a configuration object which enables turning off
+     * search highlighting if needed.
+     *
+     * @default false
      */
-    isPreFiltered?: boolean;
+    isPreFiltered?: boolean | { highlightSearch?: boolean };
     /**
      * Optional screen reader instructions to announce upon focus/interaction. This text is read out
      * after the `EuiSelectable` label and a brief pause, but before the default keyboard instructions for
@@ -222,7 +229,7 @@ export class EuiSelectable<T = {}> extends Component<
     const visibleOptions = getMatchingOptions<T>(
       options,
       initialSearchValue,
-      isPreFiltered
+      !!isPreFiltered
     );
     searchProps?.onChange?.(initialSearchValue, visibleOptions);
 
@@ -262,7 +269,7 @@ export class EuiSelectable<T = {}> extends Component<
     stateUpdate.visibleOptions = getMatchingOptions<T>(
       options,
       stateUpdate.searchValue ?? '',
-      isPreFiltered
+      !!isPreFiltered
     );
 
     if (
@@ -482,7 +489,7 @@ export class EuiSelectable<T = {}> extends Component<
     const visibleOptions = getMatchingOptions(
       options,
       searchValue,
-      isPreFiltered
+      !!isPreFiltered
     );
 
     this.setState({ visibleOptions });
@@ -712,7 +719,7 @@ export class EuiSelectable<T = {}> extends Component<
               listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
               aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
               placeholder={placeholderName}
-              isPreFiltered={isPreFiltered ?? false}
+              isPreFiltered={!!isPreFiltered}
               inputRef={(node) => {
                 this.inputRef = node;
                 searchProps?.inputRef?.(node);
@@ -781,6 +788,7 @@ export class EuiSelectable<T = {}> extends Component<
                 options={options}
                 visibleOptions={visibleOptions}
                 searchValue={searchValue}
+                isPreFiltered={isPreFiltered}
                 activeOptionIndex={activeOptionIndex}
                 setActiveOptionIndex={(index, cb) => {
                   this.setState({ activeOptionIndex: index }, cb);
