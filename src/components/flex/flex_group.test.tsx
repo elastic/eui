@@ -8,10 +8,7 @@
 
 import React, { JSX } from 'react';
 import { requiredProps } from '../../test';
-import {
-  shouldRenderCustomStyles,
-  testOnReactVersion,
-} from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
 
 import {
