@@ -63,6 +63,12 @@ if (['16', '17'].includes(reactVersion)) {
   ] = `@testing-library/react-16-17$1`;
   config.moduleNameMapper['^react((\\/.*)?)$'] = `react-${reactVersion}$1`;
 
+  // This import override is here just to make jest module resolver happy.
+  // The import wouldn't actually work if executed on React <18
+  // since there's no such export as react-dom/client on previous
+  // React versions
+  config.moduleNameMapper['^react-dom/client'] = 'react-dom';
+
   config.moduleNameMapper[
     '^react-dom((\\/.*)?)$'
   ] = `react-dom-${reactVersion}$1`;
