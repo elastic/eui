@@ -34,6 +34,7 @@ interface GetColumnActions {
   sorting: EuiDataGridSorting | undefined;
   switchColumnPos: (colFromId: string, colToId: string) => void;
   setFocusedCell: DataGridFocusContextShape['setFocusedCell'];
+  columnFocusIndex: number; // Index including leadingControlColumns
 }
 
 export const getColumnActions = ({
@@ -47,6 +48,7 @@ export const getColumnActions = ({
   sorting,
   switchColumnPos,
   setFocusedCell,
+  columnFocusIndex,
 }: GetColumnActions): EuiListGroupItemProps[] => {
   if (column.actions === false) {
     return [];
@@ -70,6 +72,7 @@ export const getColumnActions = ({
       columns,
       switchColumnPos,
       setFocusedCell,
+      columnFocusIndex,
     }),
     ...(column.actions?.additional || []),
   ];
@@ -136,7 +139,11 @@ export const getHideColumnAction = ({
  */
 type MoveColumnActions = Pick<
   GetColumnActions,
-  'column' | 'columns' | 'switchColumnPos' | 'setFocusedCell'
+  | 'column'
+  | 'columns'
+  | 'switchColumnPos'
+  | 'setFocusedCell'
+  | 'columnFocusIndex'
 >;
 
 const getMoveColumnActions = ({
@@ -144,6 +151,7 @@ const getMoveColumnActions = ({
   columns,
   switchColumnPos,
   setFocusedCell,
+  columnFocusIndex,
 }: MoveColumnActions): EuiListGroupItemProps[] => {
   const items = [];
 
@@ -154,7 +162,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx - 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
-        setFocusedCell([colIdx - 1, -1]);
+        setFocusedCell([columnFocusIndex - 1, -1]);
       }
     };
     const action = {
@@ -174,7 +182,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx + 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
-        setFocusedCell([colIdx + 1, -1]);
+        setFocusedCell([columnFocusIndex + 1, -1]);
       }
     };
     const action = {

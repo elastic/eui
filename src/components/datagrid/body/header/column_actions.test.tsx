@@ -27,6 +27,7 @@ describe('getColumnActions', () => {
   const testArgs = {
     column: { id: 'B' },
     columns: [{ id: 'A' }, { id: 'B' }, { id: 'C' }],
+    columnFocusIndex: 1,
     schema: {},
     schemaDetectors,
     setVisibleColumns,
@@ -199,6 +200,25 @@ describe('getColumnActions', () => {
         // Quick note about the -1 row index above: `-1` is the index we set for our
         // sticky header row, and these column actions can only ever be called by an
         // interactive header cell, so we can safely and statically set the -1 index
+      });
+    });
+
+    describe('focus behavior with leading control columns', () => {
+      const items = getColumnActions({
+        ...testArgs,
+        columnFocusIndex: testArgs.columnFocusIndex + 2, // "Add" 2 leading control columns
+      });
+      const moveLeft = items[1];
+      const moveRight = items[2];
+
+      it('correctly calls the focused cell x index accounting for leading control columns', () => {
+        callActionOnClick(moveLeft);
+        expect(switchColumnPos).toHaveBeenCalledWith('B', 'A');
+        expect(setFocusedCell).toHaveBeenLastCalledWith([2, -1]);
+
+        callActionOnClick(moveRight);
+        expect(switchColumnPos).toHaveBeenCalledWith('B', 'C');
+        expect(setFocusedCell).toHaveBeenLastCalledWith([4, -1]);
       });
     });
 
