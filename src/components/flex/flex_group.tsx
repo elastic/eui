@@ -13,6 +13,7 @@ import React, {
   ForwardedRef,
   forwardRef,
   FunctionComponent,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -120,7 +121,9 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
 export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as <
   TComponent extends ComponentPropType
 >(
-  props: EuiFlexGroupProps<TComponent> & { ref?: any }
+  props: EuiFlexGroupProps<TComponent> & {
+    ref?: Ref<typeof EuiFlexGroupInternal>;
+  }
 ) => ReturnType<typeof EuiFlexGroupInternal>;
 
 // Cast is required here because of the cast above
