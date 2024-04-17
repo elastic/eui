@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react/pure'; // Pure is important here to preserve state between tests
-
 import { useRowManager } from './data_grid_row_manager';
+import { renderHook } from '../../../test/rtl';
+import { EuiDataGridRowManager } from '../data_grid_types';
 
 describe('row manager', () => {
   const mockGridRef = { current: document.createElement('div') } as any;
@@ -131,35 +131,41 @@ describe('row manager', () => {
 
     const initialRowClasses = { 0: 'hello' };
 
-    const { result, rerender } = renderHook(useRowManager, {
-      initialProps: { ...mockArgs, rowClasses: initialRowClasses },
-    });
+    const render = (props: any = {}) =>
+      renderHook(useRowManager, {
+        initialProps: { ...mockArgs, rowClasses: initialRowClasses, ...props },
+      });
 
-    const getRow = (rowIndex: number) =>
-      result.current.getRow({ ...mockRowArgs, rowIndex });
+    const getRow = (manager: EuiDataGridRowManager, rowIndex: number) =>
+      manager.getRow({ ...mockRowArgs, rowIndex });
 
     it('creates rows with the passed gridStyle.rowClasses', () => {
-      expect(getRow(0).classList.contains('hello')).toBe(true);
+      const { result } = render();
+      expect(getRow(result.current, 0).classList.contains('hello')).toBe(true);
     });
 
     it('updates row classes dynamically when gridStyle.rowClasses updates', () => {
+      const { result, rerender } = render();
       rerender({ ...mockArgs, rowClasses: { 0: 'world' } });
-      const row0 = getRow(0);
+
+      const row0 = getRow(result.current, 0);
 
       expect(row0.classList.contains('hello')).toBe(false);
       expect(row0.classList.contains('world')).toBe(true);
     });
 
     it('allows passing multiple classes', () => {
-      rerender({ ...mockArgs, rowClasses: { 0: 'hello world' } });
-      expect(getRow(0).classList.contains('hello')).toBe(true);
-      expect(getRow(0).classList.contains('world')).toBe(true);
+      const { result } = render({ rowClasses: { 0: 'hello world' } });
+      expect(getRow(result.current, 0).classList.contains('hello')).toBe(true);
+      expect(getRow(result.current, 0).classList.contains('world')).toBe(true);
     });
 
     it('adds/removes row classes correctly when gridStyle.rowClasses updates', () => {
+      const { result, rerender } = render();
       rerender({ ...mockArgs, rowClasses: { 1: 'test' } });
-      const row0 = getRow(0);
-      const row1 = getRow(1);
+
+      const row0 = getRow(result.current, 0);
+      const row1 = getRow(result.current, 1);
 
       expect(row0.classList.contains('hello')).toBe(false);
       expect(row0.classList.contains('world')).toBe(false);
@@ -167,9 +173,10 @@ describe('row manager', () => {
     });
 
     it('correctly preserves EUI classes when adding/removing classes dynamically', () => {
+      const { result, rerender } = render();
       rerender({ ...mockArgs, rowClasses: undefined });
 
-      expect(getRow(0).classList.value).toEqual(
+      expect(getRow(result.current, 0).classList.value).toEqual(
         'euiDataGridRow euiDataGridRow--striped'
       );
     });
