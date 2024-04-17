@@ -22,6 +22,12 @@ const meta: Meta<EuiScreenReaderLiveProps> = {
     isActive: true,
     focusRegionOnTextChange: false,
   },
+  parameters: {
+    loki: {
+      // There are no visual elements to test
+      skip: true,
+    },
+  },
 };
 
 export default meta;

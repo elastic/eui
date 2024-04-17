@@ -12,6 +12,7 @@ import { action } from '@storybook/addon-actions';
 
 import { EuiModal } from './modal';
 import { EuiModalBody, EuiModalBodyProps } from './modal_body';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiModalBodyProps> = {
   title: 'Layout/EuiModal/EuiModalBody',
@@ -23,6 +24,12 @@ const meta: Meta<EuiModalBodyProps> = {
       </EuiModal>
     ),
   ],
+  parameters: {
+    loki: {
+      // Modal is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
 };
 
 export default meta;
