@@ -47,7 +47,6 @@ describe('EuiAccordion', () => {
       cy.realMount(<EuiAccordion {...sharedProps} />);
       cy.realPress('Tab');
       cy.realPress('Enter');
-      cy.realPress(['Shift', 'Tab']);
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
       cy.realPress('Space');
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'false');
@@ -55,23 +54,18 @@ describe('EuiAccordion', () => {
   });
 
   describe('focus management', () => {
-    const expectChildrenIsFocused = () => {
-      cy.focused()
-        .should('have.class', 'euiAccordion__childWrapper')
-        .should('have.attr', 'tabindex', '-1');
-    };
-
-    it('focuses the accordion content when the arrow is clicked', () => {
+    it('maintains focus when the button is clicked', () => {
       cy.realMount(<EuiAccordion {...sharedProps} />);
-      cy.get('.euiAccordion__arrow').realClick();
-      expectChildrenIsFocused();
+      cy.get('.euiAccordion__button').realClick();
+      cy.focused().should('have.class', 'euiAccordion__button');
     });
 
-    it('focuses the accordion content when the button is clicked', () => {
+    it('maintains focus when the button is pressed', () => {
       cy.realMount(<EuiAccordion {...sharedProps} />);
       cy.realPress('Tab');
+      cy.focused().should('have.class', 'euiAccordion__button');
       cy.focused().contains('Click me to toggle').realPress('Enter');
-      expectChildrenIsFocused();
+      cy.focused().should('have.class', 'euiAccordion__button');
     });
 
     describe('forceState', () => {
@@ -111,23 +105,6 @@ describe('EuiAccordion', () => {
         cy.focused()
           .should('not.have.class', 'euiAccordion__childWrapper')
           .should('have.attr', 'data-test-subj', 'toggleForceState');
-      });
-
-      it('attempts to focus the accordion children when `onToggle` controls `forceState`', () => {
-        const ControlledComponent = () => {
-          const [accordionOpen, setAccordionOpen] = useState(false);
-          return (
-            <EuiAccordion
-              {...sharedProps}
-              onToggle={(open) => setAccordionOpen(open)}
-              forceState={accordionOpen ? 'open' : 'closed'}
-            />
-          );
-        };
-        cy.realMount(<ControlledComponent />);
-
-        cy.contains('Click me to toggle').realClick();
-        expectChildrenIsFocused();
       });
     });
   });
