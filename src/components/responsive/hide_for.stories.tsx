@@ -13,6 +13,13 @@ import { EuiHideFor, EuiHideForProps } from './hide_for';
 const meta: Meta<EuiHideForProps> = {
   title: 'Utilities/EuiHideFor',
   component: EuiHideFor,
+  parameters: {
+    loki: {
+      // EuiHideFor may render null resulting in Loki failing
+      // to find an element to snapshot
+      skip: true,
+    },
+  },
 };
 
 export default meta;

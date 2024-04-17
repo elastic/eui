@@ -18,6 +18,7 @@ import { EuiModalHeaderTitle } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModal, EuiModalProps } from './modal';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiModalProps> = {
   title: 'Layout/EuiModal/EuiModal',
@@ -29,6 +30,12 @@ const meta: Meta<EuiModalProps> = {
   args: {
     role: 'dialog',
     maxWidth: true,
+  },
+  parameters: {
+    loki: {
+      // Modal is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 

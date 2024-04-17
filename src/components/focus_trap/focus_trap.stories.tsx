@@ -35,6 +35,12 @@ const meta: Meta<EuiFocusTrapProps> = {
     returnFocus: true,
     scrollLock: false,
   },
+  parameters: {
+    loki: {
+      // There are no visual elements to test
+      skip: true,
+    },
+  },
 };
 hideStorybookControls(meta, ['style']);
 

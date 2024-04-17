@@ -17,6 +17,7 @@ import {
   EuiConfirmModal,
   EuiConfirmModalProps,
 } from './confirm_modal';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiConfirmModalProps> = {
   title: 'Layout/EuiConfirmModal',
@@ -36,6 +37,12 @@ const meta: Meta<EuiConfirmModalProps> = {
     buttonColor: 'primary',
     role: 'alertdialog',
     maxWidth: true,
+  },
+  parameters: {
+    loki: {
+      // Modal is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 moveStorybookControlsToCategory(
