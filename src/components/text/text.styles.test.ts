@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react';
 import { useEuiTheme } from '../../services';
+import { renderHook } from '../../test/rtl';
 
 import { TEXT_SIZES } from './text';
 import { euiTextStyles } from './text.styles';

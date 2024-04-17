@@ -6,8 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react';
-
+import { renderHook } from '../../test/rtl';
 import { useDeepEqual } from './useDeepEqual';
 
 describe('useDeepEqual', () => {
