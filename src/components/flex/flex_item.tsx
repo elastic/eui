@@ -59,7 +59,7 @@ export type EuiFlexItemProps<TComponent extends ComponentPropType = 'div'> =
        *
        * @example
        * // Renders a <button> element
-       * <EuiFlexGroup component="button">
+       * <EuiFlexItem component="button">
        *   Submit form
        * </EuiFlexGroup>
        * @default "div"
