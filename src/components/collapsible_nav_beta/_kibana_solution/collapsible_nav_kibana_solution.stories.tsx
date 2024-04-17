@@ -32,27 +32,26 @@ const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
     icon: 'logoSecurity',
     solutions: [
       {
-        label: 'Observability',
-        iconType: 'logoObservability',
+        title: 'Observability',
+        icon: 'logoObservability',
         href: '#',
       },
       {
-        label: 'Search',
-        iconType: 'logoElasticsearch',
+        title: 'Search',
+        icon: 'logoElasticsearch',
         href: '#',
       },
       {
-        label: 'Security',
-        iconType: 'logoSecurity',
+        title: 'Security',
+        icon: 'logoSecurity',
         href: '#',
         isActive: true,
       },
-    ],
-    secondaryItems: [
       {
-        label: 'Switch to classic',
-        iconType: 'logoKibana',
+        title: 'Switch to classic',
+        icon: 'logoKibana',
         onClick: () => {},
+        isSecondary: true,
       },
     ],
     items: [

@@ -20,9 +20,9 @@ describe('KibanaCollapsibleNavSolution', () => {
     title: 'Some solution',
     icon: 'logoElastic',
     solutions: [
-      { label: 'Some other solution', 'data-test-subj': 'test-solution' },
+      { title: 'Some other solution', 'data-test-subj': 'test-solution' },
+      { title: 'Some other popover content', isSecondary: true },
     ],
-    secondaryItems: [{ label: 'Some other popover content' }],
     items: [{ title: 'Some navigation link' }],
   };
 

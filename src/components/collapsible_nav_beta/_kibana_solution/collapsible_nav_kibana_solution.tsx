@@ -35,8 +35,7 @@ import { euiCollapsibleNavKibanaSolutionStyles } from './collapsible_nav_kibana_
 export type KibanaCollapsibleNavSolutionProps = HTMLAttributes<HTMLDivElement> &
   CommonProps &
   Required<Pick<EuiCollapsibleNavItemProps, 'title' | 'icon' | 'items'>> & {
-    solutions: EuiListGroupItemProps[];
-    secondaryItems?: EuiListGroupItemProps[];
+    solutions: EuiListGroupItemsModified;
   };
 
 /**
@@ -52,7 +51,6 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
   title,
   icon,
   solutions = [],
-  secondaryItems,
   // Rest of the nav
   items,
   // Wrapper
@@ -83,16 +81,17 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
     'Navigate to solution'
   );
   const solutionSwitcherContent = useMemo(() => {
+    const [primaryItems, secondaryItems] = parseListItems(solutions);
     return (
       <>
         <EuiListGroup
           data-test-subj="kibanaSolutionSwitcherList"
           aria-label={solutionSolutionGroupLabel}
-          listItems={solutions}
+          listItems={primaryItems}
           size="s"
           bordered
         />
-        {secondaryItems && (
+        {secondaryItems.length > 0 && (
           <>
             <EuiListGroup
               listItems={secondaryItems}
@@ -103,7 +102,7 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
         )}
       </>
     );
-  }, [solutions, secondaryItems, solutionSolutionGroupLabel, styles]);
+  }, [solutions, solutionSolutionGroupLabel, styles]);
 
   const sharedPopoverProps = {
     'aria-label': solutionSolutionSwitcherTitle,
@@ -171,4 +170,33 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
       )}
     </div>
   );
+};
+
+/**
+ * Tweak EuiListGroup's items API to match EuiCollapsibleNav's
+ * more closely (primarily label->title, iconType->icon),
+ * and also to allow passing secondary items in the same array
+ * (which will get rendered in a separate non-bordered group)
+ */
+type EuiListGroupItemsModified = Array<
+  Omit<EuiListGroupItemProps, 'label' | 'iconType' | 'icon'> & {
+    title: string;
+    icon?: EuiListGroupItemProps['iconType'];
+    isSecondary?: boolean;
+  }
+>;
+const parseListItems = (items: EuiListGroupItemsModified) => {
+  const primaryItems: EuiListGroupItemProps[] = [];
+  const secondaryItems: EuiListGroupItemProps[] = [];
+
+  items.forEach(({ title, icon, isSecondary, ...item }) => {
+    const arrayToPushTo = isSecondary ? secondaryItems : primaryItems;
+    arrayToPushTo.push({
+      ...item,
+      label: title,
+      iconType: icon,
+    });
+  });
+
+  return [primaryItems, secondaryItems];
 };
