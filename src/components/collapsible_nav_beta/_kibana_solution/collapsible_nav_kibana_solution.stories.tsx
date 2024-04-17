@@ -6,85 +6,151 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiSpacer } from '../../spacer';
 import { EuiHeader, EuiHeaderSection } from '../../header';
 import { EuiPageTemplate } from '../../page_template';
 
-import { EuiCollapsibleNavBeta, EuiCollapsibleNavBetaProps } from '..';
+import { EuiCollapsibleNavBeta } from '../';
 import {
   KibanaCollapsibleNavSolution,
   KibanaCollapsibleNavSolutionProps,
 } from './collapsible_nav_kibana_solution';
 
+const navSpacer = () => <EuiSpacer size="m" />;
+
 const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
-  title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavBeta.Group',
+  title: 'Navigation/EuiCollapsibleNav (beta)/KibanaSolution',
   component: KibanaCollapsibleNavSolution,
   parameters: {
     layout: 'fullscreen',
   },
   args: {
-    title: 'Elastic',
-    icon: 'logoElastic',
+    title: 'Security',
+    icon: 'logoSecurity',
+    solutions: [
+      {
+        label: 'Observability',
+        iconType: 'logoObservability',
+        href: '#',
+      },
+      {
+        label: 'Search',
+        iconType: 'logoElasticsearch',
+        href: '#',
+      },
+      {
+        label: 'Security',
+        iconType: 'logoSecurity',
+        href: '#',
+        isActive: true,
+      },
+    ],
+    secondaryItems: [
+      {
+        label: 'Switch to classic',
+        iconType: 'logoKibana',
+        onClick: () => {},
+      },
+    ],
     items: [
-      { title: 'Get started', href: '#' },
+      { title: 'Discover', href: '#' },
       { title: 'Dashboards', href: '#' },
+      { renderItem: navSpacer },
+      {
+        title: 'Rules',
+        items: [
+          { title: 'SIEM rules', href: '#' },
+          { title: 'Shared exception list', href: '#' },
+          { title: 'CIS benchmark rules', href: '#' },
+          { title: 'Defend rules', href: '#' },
+        ],
+      },
+      { title: 'Alerts', href: '#' },
+      { title: 'Findings', href: '#' },
+      { title: 'Cases', href: '#' },
+      { renderItem: navSpacer },
+      { title: 'Investigation', href: '#' },
+      { title: 'Intelligence', href: '#' },
       {
         title: 'Explore',
         items: [
-          { title: 'Hello', href: '#' },
-          { title: 'World', href: '#' },
+          { title: 'Host', href: '#' },
+          { title: 'Users', href: '#', isSelected: true },
+          { title: 'Network', href: '#' },
+        ],
+        isCollapsible: false,
+      },
+      { renderItem: navSpacer },
+      { title: 'Assets', href: '#' },
+      { renderItem: navSpacer },
+      {
+        title: 'Machine learning',
+        items: [
+          { title: 'Overview', href: '#' },
+          { title: 'Notifications', href: '#' },
+          { title: 'Memory usage', href: '#' },
+          { title: 'Anomaly detection', href: '#' },
+          { title: 'Data frame analytics', href: '#' },
+          { title: 'Model management', href: '#' },
         ],
       },
     ],
   },
-  argTypes: {
-    wrapperProps: { control: 'object' },
-  },
+  decorators: [
+    (Story) => (
+      <>
+        <EuiHeader position="fixed">
+          <EuiHeaderSection>
+            <EuiCollapsibleNavBeta>
+              <EuiCollapsibleNavBeta.Body>
+                <Story />
+              </EuiCollapsibleNavBeta.Body>
+              <EuiCollapsibleNavBeta.Footer>
+                <EuiCollapsibleNavBeta.Item
+                  title="Recents"
+                  icon="clock"
+                  href="#"
+                />
+                <EuiCollapsibleNavBeta.Item
+                  title="Get started"
+                  icon="launch"
+                  href="#"
+                />
+                <EuiCollapsibleNavBeta.Item
+                  title="Developer tools"
+                  icon="editorCodeBlock"
+                  href="#"
+                />
+                <EuiCollapsibleNavBeta.Item
+                  title="Management"
+                  icon="gear"
+                  items={[
+                    { title: 'Users and roles', href: '#' },
+                    { title: 'Performance', href: '#' },
+                    {
+                      title: 'Billing and subscription',
+                      href: '#',
+                      linkProps: { target: '_blank' },
+                    },
+                  ]}
+                />
+              </EuiCollapsibleNavBeta.Footer>
+            </EuiCollapsibleNavBeta>
+          </EuiHeaderSection>
+        </EuiHeader>
+        <EuiPageTemplate>
+          <EuiPageTemplate.Section>
+            EuiCollapsibleNavBeta.KibanaSolution
+          </EuiPageTemplate.Section>
+        </EuiPageTemplate>
+      </>
+    ),
+  ],
 };
 export default meta;
 type Story = StoryObj<KibanaCollapsibleNavSolutionProps>;
 
-const CollapsibleNavTemplate: FunctionComponent<
-  PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
-> = ({ children, ...props }) => {
-  return (
-    <>
-      <EuiHeader position="fixed">
-        <EuiHeaderSection>
-          <EuiCollapsibleNavBeta {...props}>
-            <EuiCollapsibleNavBeta.Body>{children}</EuiCollapsibleNavBeta.Body>
-          </EuiCollapsibleNavBeta>
-        </EuiHeaderSection>
-      </EuiHeader>
-      <EuiPageTemplate>
-        <EuiPageTemplate.Section>Hello world</EuiPageTemplate.Section>
-      </EuiPageTemplate>
-    </>
-  );
-};
-
-export const Playground: Story = {
-  render: ({ ...args }) => (
-    <CollapsibleNavTemplate>
-      <EuiCollapsibleNavBeta.KibanaSolution {...args} />
-    </CollapsibleNavTemplate>
-  ),
-  args: {
-    wrapperProps: { 'data-test-subj': 'test' },
-  },
-};
-
-export const EdgeCaseTesting: Story = {
-  render: ({ ...args }) => (
-    <CollapsibleNavTemplate initialIsCollapsed={true}>
-      <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceHappy" />
-      <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceSad" />
-      <EuiCollapsibleNavBeta.KibanaSolution {...args} />
-      <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceHappy" />
-      <EuiCollapsibleNavBeta.Item href="#" title="Test" icon="faceSad" />
-      <EuiCollapsibleNavBeta.KibanaSolution {...args} />
-    </CollapsibleNavTemplate>
-  ),
-};
+export const Playground: Story = {};

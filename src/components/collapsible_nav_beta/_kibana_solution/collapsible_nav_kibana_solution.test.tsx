@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render } from '../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
@@ -16,33 +17,33 @@ import { KibanaCollapsibleNavSolution } from './collapsible_nav_kibana_solution'
 
 describe('KibanaCollapsibleNavSolution', () => {
   const sharedProps = {
-    title: 'Group',
-    items: [{ title: 'Item' }],
-    icon: 'home',
+    title: 'Some solution',
+    icon: 'logoElastic',
+    solutions: [
+      { label: 'Some other solution', 'data-test-subj': 'test-solution' },
+    ],
+    secondaryItems: [{ label: 'Some other popover content' }],
+    items: [{ title: 'Some navigation link' }],
   };
 
-  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />, {
-    skip: { style: true }, // Spread to a different location than className and CSS
-  });
-  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />, {
-    targetSelector: '.euiCollapsibleNavItem',
-    skip: { className: true, css: true },
-  });
-  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />, {
-    childProps: ['wrapperProps'],
-    skip: { parentTest: true },
-  });
+  shouldRenderCustomStyles(<KibanaCollapsibleNavSolution {...sharedProps} />);
 
-  it('renders', () => {
-    const { container } = render(
+  it('renders with a solution switcher', async () => {
+    const { container, getByTestSubject, getByRole } = render(
       <KibanaCollapsibleNavSolution {...sharedProps} {...requiredProps} />
     );
-
     expect(container.firstChild).toMatchSnapshot();
+
+    fireEvent.click(getByTestSubject('kibanaSolutionSwitcher'));
+    await waitForEuiPopoverOpen();
+    expect(getByTestSubject('kibanaSolutionSwitcherList')).toBeInTheDocument();
+    expect(getByTestSubject('test-solution')).toBeInTheDocument();
+
+    expect(getByRole('dialog')).toMatchSnapshot('popover');
   });
 
-  it('renders as a docked button icon', () => {
-    const { container } = render(
+  it('renders docked icons', async () => {
+    const { container, getByLabelText, getByText, getByRole } = render(
       <EuiCollapsibleNavContext.Provider
         value={{
           isCollapsed: true,
@@ -54,7 +55,12 @@ describe('KibanaCollapsibleNavSolution', () => {
         <KibanaCollapsibleNavSolution {...sharedProps} />
       </EuiCollapsibleNavContext.Provider>
     );
-
     expect(container.firstChild).toMatchSnapshot();
+
+    fireEvent.click(getByLabelText('Solution view'));
+    await waitForEuiPopoverOpen();
+    expect(getByText('Some other solution')).toBeInTheDocument();
+
+    expect(getByRole('dialog')).toMatchSnapshot('popover');
   });
 });

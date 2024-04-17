@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
 
 import { euiCollapsibleNavItemVariables } from '../collapsible_nav_item/collapsible_nav_item.styles';
 
@@ -20,17 +21,54 @@ export const euiCollapsibleNavKibanaSolutionStyles = (
 
   return {
     euiCollapsibleNavKibanaSolution: css``,
-    isWrapper: css`
+    uncollapsed: css`
       margin: ${sharedStyles.padding};
     `,
-    euiCollapsibleNavKibanaSolution__title: css`
-      margin-block: ${euiTheme.size.base};
-      margin-inline: 0;
 
-      /* Make title icons slightly larger */
-      .euiIcon {
-        transform: scale(1.25);
+    // Solution switcher title (popover toggle)
+    euiCollapsibleNavKibanaSolution__title: css`
+      margin-block-start: ${euiTheme.size.base};
+      margin-block-end: ${euiTheme.size.s};
+
+      /* EuiCollapsibleNavLink override */
+      &:is(button) {
+        inline-size: 100%;
       }
+    `,
+    // Make the solution logo slightly larger
+    euiCollapsibleNavKibanaSolution__logo: css`
+      transform: scale(1.25);
+    `,
+    // Align the layer icon to the accordion arrows
+    euiCollapsibleNavKibanaSolution__switcherIcon: css`
+      margin-inline-start: auto;
+    `,
+
+    // Solution switcher popover
+    euiCollapsibleNavKibanaSolution__switcherPopover: css`
+      /* Custom title appearance */
+      .euiPopoverTitle {
+        padding: ${mathWithUnits(
+          [euiTheme.size.s, euiTheme.size.xxs],
+          (x, y) => x + y
+        )};
+        margin-block-end: 0;
+        border-block-end: none;
+      }
+
+      /* EuiCollapsedNavPopover overrides */
+      [class*='euiCollapsedNavPopover__title'] {
+        padding: 0;
+      }
+
+      [class*='euiCollapsedNavPopover__items'] {
+        padding: 0;
+        mask-image: none;
+      }
+    `,
+    euiCollapsibleNavKibanaSolution__secondaryItems: css`
+      /* padding-bottom already handled by the popover panel */
+      padding-block-end: 0;
     `,
   };
 };
