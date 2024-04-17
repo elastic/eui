@@ -66,9 +66,10 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiCollapsibleNavKibanaSolutionStyles);
   const cssStyles = [
     styles.euiCollapsibleNavKibanaSolution,
-    !(isPush && isCollapsed) && styles.uncollapsed,
+    isPush && isCollapsed ? styles.collapsed : styles.uncollapsed,
   ];
 
+  const solutionSwitcherIcon = 'layers';
   const solutionSolutionSwitcherTitle = useEuiI18n(
     'euiCollapsibleNavKibanaSolution.switcherTitle',
     'Solution view'
@@ -117,14 +118,14 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
     <div className={classes} css={cssStyles} {...props}>
       {isCollapsed && isPush ? (
         <>
+          <EuiCollapsedNavPopover icon={icon} title={title} items={items} />
           <EuiCollapsedNavPopover
             {...sharedPopoverProps}
-            icon="layers"
+            icon={solutionSwitcherIcon}
             title={solutionSolutionSwitcherTitle}
             items={[{ renderItem: () => solutionSwitcherContent }]}
             data-test-subj="kibanaSolutionSwitcherDocked"
           />
-          <EuiCollapsedNavPopover icon={icon} title={title} items={items} />
         </>
       ) : (
         <>
@@ -150,7 +151,7 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
                 />
                 {title}
                 <EuiIcon
-                  type="layers"
+                  type={solutionSwitcherIcon}
                   css={styles.euiCollapsibleNavKibanaSolution__switcherIcon}
                   aria-label={solutionSolutionSwitcherAriaLabel}
                 />

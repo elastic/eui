@@ -2,8 +2,29 @@
 
 exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
 <div
-  class="kibanaCollapsibleNavSolution emotion-euiCollapsibleNavKibanaSolution"
+  class="kibanaCollapsibleNavSolution emotion-euiCollapsibleNavKibanaSolution-collapsed"
 >
+  <div
+    class="euiPopover emotion-euiPopover-block"
+  >
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    >
+      <button
+        aria-label="Some solution"
+        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+        data-test-subj="euiCollapsedNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="logoElastic"
+        />
+      </button>
+    </span>
+  </div>
   <div
     class="euiPopover emotion-euiPopover-block"
     data-test-subj="kibanaSolutionSwitcherDocked"
@@ -22,27 +43,6 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
           class="euiButtonIcon__icon"
           color="inherit"
           data-euiicon-type="layers"
-        />
-      </button>
-    </span>
-  </div>
-  <div
-    class="euiPopover emotion-euiPopover-block"
-  >
-    <span
-      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
-    >
-      <button
-        aria-label="Some solution"
-        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
-        data-test-subj="euiCollapsedNavButton"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="logoElastic"
         />
       </button>
     </span>

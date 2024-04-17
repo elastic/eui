@@ -21,6 +21,9 @@ export const euiCollapsibleNavKibanaSolutionStyles = (
 
   return {
     euiCollapsibleNavKibanaSolution: css``,
+    collapsed: css`
+      margin-block-start: ${euiTheme.size.base};
+    `,
     uncollapsed: css`
       margin: ${sharedStyles.padding};
     `,
