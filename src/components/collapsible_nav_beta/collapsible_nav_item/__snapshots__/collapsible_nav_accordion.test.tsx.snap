@@ -47,7 +47,6 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -119,7 +118,6 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
