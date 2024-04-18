@@ -10,7 +10,6 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      aria-disabled="false"
       class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
       data-step-status="complete"
       title="Step 1: Completed Step 1 is complete"
@@ -37,7 +36,6 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      aria-disabled="false"
       class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
       data-step-status="current"
       title="Current step 2: Selected Step 2"
@@ -68,7 +66,6 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      aria-disabled="false"
       class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
       data-step-status="incomplete"
       title="Step 3: Incomplete Step 3 is incomplete"

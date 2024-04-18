@@ -97,7 +97,6 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     loading: useI18nLoadingStep({ number: step, title }),
   };
   const titleAttr = titleAttrsMap[status || 'step'];
-  const buttonAriaDisabled = status === 'disabled';
 
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
@@ -107,7 +106,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
 
   return (
     <button
-      aria-disabled={buttonAriaDisabled}
+      aria-disabled={status === 'disabled' ? true : undefined}
       className={classes}
       title={titleAttr}
       onClick={onStepClick}
