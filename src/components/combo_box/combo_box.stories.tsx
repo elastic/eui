@@ -10,15 +10,23 @@ import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { hideStorybookControls } from '../../../.storybook/utils';
+import { ToolTipPositions } from '../tool_tip';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiCode } from '../code';
+
+const toolTipProps = {
+  toolTipContent: 'This is a tooltip!',
+  toolTipProps: { position: 'bottom' as ToolTipPositions },
+  value: 4,
+};
 
 const options = [
   { label: 'Item 1' },
   { label: 'Item 2' },
   { label: 'Item 3' },
-  { label: 'Item 4' },
+  { label: 'Item 4', disabled: true },
   { label: 'Item 5' },
 ];
 
@@ -64,41 +72,85 @@ export default meta;
 type Story = StoryObj<EuiComboBoxProps<{}>>;
 
 export const Playground: Story = {
-  render: function Render({ singleSelection, onCreateOption, ...args }) {
-    const [selectedOptions, setSelectedOptions] = useState(
-      args.selectedOptions
-    );
-    const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
-      setSelectedOptions(options);
-      action('onChange')(options, ...args);
-    };
-    const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
-      searchValue,
-      ...args
-    ) => {
-      const createdOption = { label: searchValue };
-      setSelectedOptions((prevState) =>
-        !prevState || singleSelection
-          ? [createdOption]
-          : [...prevState, createdOption]
-      );
-      action('onCreateOption')(searchValue, ...args);
-    };
-    return (
-      <EuiComboBox
-        singleSelection={
-          // @ts-ignore Specific to Storybook control
-          singleSelection === 'asPlainText'
-            ? { asPlainText: true }
-            : Boolean(singleSelection)
-        }
-        {...args}
-        selectedOptions={selectedOptions}
-        onChange={onChange}
-        onCreateOption={onCreateOption ? _onCreateOption : undefined}
-      />
-    );
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
+export const WithTooltip: Story = {
+  args: {
+    options: options.map((option) => ({ ...option, ...toolTipProps })),
   },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+// hide props as they are not relevant for testing the story args
+hideStorybookControls(WithTooltip, [
+  'append',
+  'aria-label',
+  'aria-labelledby',
+  'async',
+  'autoFocus',
+  'compressed',
+  'customOptionText',
+  'delimiter',
+  'id',
+  'inputPopoverProps',
+  'inputRef',
+  'isCaseSensitive',
+  'isClearable',
+  'isDisabled',
+  'isInvalid',
+  'isLoading',
+  'noSuggestions',
+  'onBlur',
+  'onChange',
+  'onCreateOption',
+  'onFocus',
+  'onKeyDown',
+  'onSearchChange',
+  'placeholder',
+  'prepend',
+  'renderOption',
+  'rowHeight',
+  'singleSelection',
+  'sortMatchesBy',
+  'truncationProps',
+]);
+
+const StatefulComboBox = ({
+  singleSelection,
+  onCreateOption,
+  ...args
+}: EuiComboBoxProps<{}>) => {
+  const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
+  const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
+    setSelectedOptions(options);
+    action('onChange')(options, ...args);
+  };
+  const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
+    searchValue,
+    ...args
+  ) => {
+    const createdOption = { label: searchValue };
+    setSelectedOptions((prevState) =>
+      !prevState || singleSelection
+        ? [createdOption]
+        : [...prevState, createdOption]
+    );
+    action('onCreateOption')(searchValue, ...args);
+  };
+  return (
+    <EuiComboBox
+      singleSelection={
+        // @ts-ignore Specific to Storybook control
+        singleSelection === 'asPlainText'
+          ? { asPlainText: true }
+          : Boolean(singleSelection)
+      }
+      {...args}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption ? _onCreateOption : undefined}
+    />
+  );
 };
 
 export const CustomMatcher: Story = {
