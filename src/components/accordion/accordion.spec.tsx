@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
 
 const sharedProps: EuiAccordionProps = {
@@ -53,59 +53,12 @@ describe('EuiAccordion', () => {
     });
   });
 
-  describe('focus management', () => {
-    it('maintains focus when the button is clicked', () => {
-      cy.realMount(<EuiAccordion {...sharedProps} />);
-      cy.get('.euiAccordion__button').realClick();
-      cy.focused().should('have.class', 'euiAccordion__button');
-    });
-
-    it('maintains focus when the button is pressed', () => {
-      cy.realMount(<EuiAccordion {...sharedProps} />);
-      cy.realPress('Tab');
-      cy.focused().should('have.class', 'euiAccordion__button');
-      cy.focused().contains('Click me to toggle').realPress('Enter');
-      cy.focused().should('have.class', 'euiAccordion__button');
-    });
-
-    describe('forceState', () => {
-      it('does not focus the accordion when `forceState` prevents the accordion from opening', () => {
-        cy.realMount(<EuiAccordion {...sharedProps} forceState="closed" />);
-
-        cy.contains('Click me to toggle').realClick();
-        // cy.focused() is flaky here and doesn't always return an element, so use document.activeElement instead
-        cy.then(() => {
-          expect(document.activeElement).not.to.have.class(
-            'euiAccordion__childWrapper'
-          );
-        });
-      });
-
-      it('does not focus the accordion when programmatically toggled from outside the accordion', () => {
-        const ControlledComponent = () => {
-          const [accordionOpen, setAccordionOpen] = useState(false);
-          return (
-            <>
-              <button
-                data-test-subj="toggleForceState"
-                onClick={() => setAccordionOpen(!accordionOpen)}
-              >
-                Control accordion
-              </button>
-              <EuiAccordion
-                {...sharedProps}
-                forceState={accordionOpen ? 'open' : 'closed'}
-              />
-            </>
-          );
-        };
-        cy.realMount(<ControlledComponent />);
-
-        cy.get('[data-test-subj="toggleForceState"]').realClick();
-        cy.focused()
-          .should('not.have.class', 'euiAccordion__childWrapper')
-          .should('have.attr', 'data-test-subj', 'toggleForceState');
-      });
-    });
+  // Note: we used to move focus automatically to the accordion contents on open/
+  // toggle button click, but we no longer do so after receiving a11y audit feedback
+  // that the change of context was confusing/not helpful
+  it('maintains focus on the toggle button when opened', () => {
+    cy.realMount(<EuiAccordion {...sharedProps} />);
+    cy.get('.euiAccordion__button').realClick();
+    cy.focused().should('have.class', 'euiAccordion__button');
   });
 });
