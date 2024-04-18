@@ -151,6 +151,8 @@ describe('getColumnActions', () => {
   });
 
   describe('column reordering', () => {
+    jest.useFakeTimers();
+
     describe('default enabled behavior', () => {
       const items = getColumnActions(testArgs);
       const moveLeft = items[1];
@@ -190,10 +192,12 @@ describe('getColumnActions', () => {
 
       it('calls switchColumnPos and updates the focused cell column index on click', () => {
         callActionOnClick(moveLeft);
+        jest.runAllTimers();
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'A');
         expect(setFocusedCell).toHaveBeenLastCalledWith([0, -1]);
 
         callActionOnClick(moveRight);
+        jest.runAllTimers();
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'C');
         expect(setFocusedCell).toHaveBeenLastCalledWith([2, -1]);
 
@@ -213,10 +217,12 @@ describe('getColumnActions', () => {
 
       it('correctly calls the focused cell x index accounting for leading control columns', () => {
         callActionOnClick(moveLeft);
+        jest.runAllTimers();
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'A');
         expect(setFocusedCell).toHaveBeenLastCalledWith([2, -1]);
 
         callActionOnClick(moveRight);
+        jest.runAllTimers();
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'C');
         expect(setFocusedCell).toHaveBeenLastCalledWith([4, -1]);
       });

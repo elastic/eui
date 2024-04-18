@@ -157,12 +157,21 @@ const getMoveColumnActions = ({
 
   const colIdx = columns.findIndex((col) => col.id === column.id);
 
+  const moveFocus = (direction: 'left' | 'right') => {
+    const newIndex = direction === 'left' ? -1 : 1;
+    // Wait a beat to move focus, otherwise the EuiPopover's EuiFocusTrap's
+    // returnFocus logic sometimes steals it (depending on rerenders)
+    setTimeout(() => {
+      setFocusedCell([columnFocusIndex + newIndex, -1]); // -1 is the static y-index of the header
+    });
+  };
+
   if (isColumnActionEnabled('showMoveLeft', column.actions)) {
     const onClickMoveLeft = () => {
       const targetCol = columns[colIdx - 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
-        setFocusedCell([columnFocusIndex - 1, -1]);
+        moveFocus('left');
       }
     };
     const action = {
@@ -182,7 +191,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx + 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
-        setFocusedCell([columnFocusIndex + 1, -1]);
+        moveFocus('right');
       }
     };
     const action = {
