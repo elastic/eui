@@ -145,6 +145,7 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
         </>
       ) : (
         <>
+          {/* Using EuiInputPopover instead of EuiPopover mostly for the automatic width logic 🍝 */}
           <EuiInputPopover
             {...sharedPopoverProps}
             fullWidth={true}
