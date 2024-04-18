@@ -2,7 +2,6 @@
 
 exports[`EuiStepHorizontal is rendered 1`] = `
 <button
-  aria-disabled="false"
   aria-label="aria-label"
   class="euiStepHorizontal testClass1 testClass2 emotion-euiStepHorizontal-enabled-euiTestCss"
   data-step-status="incomplete"
@@ -32,7 +31,6 @@ exports[`EuiStepHorizontal is rendered 1`] = `
 
 exports[`EuiStepHorizontal props size m is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
   title="Step 1 is incomplete"
@@ -60,7 +58,6 @@ exports[`EuiStepHorizontal props size m is rendered 1`] = `
 
 exports[`EuiStepHorizontal props size s is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
   title="Step 1 is incomplete"
@@ -88,7 +85,6 @@ exports[`EuiStepHorizontal props size s is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="complete"
   title="Step 1 is complete"
@@ -111,7 +107,6 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status current is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="current"
   title="Current step is 1"
@@ -139,7 +134,6 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="danger"
   title="Step 1 has errors"
@@ -219,7 +213,6 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
 
 exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
   title="Step 1 is incomplete"
@@ -247,7 +240,6 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="loading"
   title="Step 1 is loading"
@@ -274,7 +266,6 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="warning"
   title="Step 1 has warnings"
@@ -297,7 +288,6 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 
 exports[`EuiStepHorizontal props step 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
   title="Step 5 is incomplete"
@@ -325,7 +315,6 @@ exports[`EuiStepHorizontal props step 1`] = `
 
 exports[`EuiStepHorizontal props title 1`] = `
 <button
-  aria-disabled="false"
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"
   title="Step 1: First step is incomplete"
