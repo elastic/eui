@@ -49,20 +49,26 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   }, [index, setFocusedCell]);
 
   const [isFocused, setIsFocused] = useState(false);
-  useEffect(() => {
-    onFocusUpdate([index, -1], (isFocused: boolean) => {
-      setIsFocused(isFocused);
-    });
-  }, [index, onFocusUpdate]);
 
-  useEffect(() => {
+  const updateFocus = (isFocused: Boolean, headerEl: HTMLDivElement | null) => {
     if (isFocused && headerEl) {
       // Only focus the cell if not already focused on something in the cell
       if (!headerEl.contains(document.activeElement)) {
         headerEl.focus();
       }
     }
-  }, [isFocused, headerEl]);
+  }
+
+  useEffect(() => {
+    onFocusUpdate([index, -1], (isFocused: boolean) => {
+      setIsFocused(isFocused);
+      updateFocus(isFocused, headerEl);
+    });
+  }, [index, onFocusUpdate]);
+
+  useEffect(() => {
+    updateFocus(isFocused, headerEl);
+  }, [headerEl]);
 
   // For cell headers with actions, auto-focus into the button instead of the cell wrapper div
   // The button text is significantly more useful to screen readers (e.g. contains sort order & hints)
