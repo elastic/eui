@@ -86,44 +86,6 @@ export const WithTooltip: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
-const StatefulComboBox = ({
-  singleSelection,
-  onCreateOption,
-  ...args
-}: EuiComboBoxProps<{}>) => {
-  const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
-  const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
-    setSelectedOptions(options);
-    action('onChange')(options, ...args);
-  };
-  const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
-    searchValue,
-    ...args
-  ) => {
-    const createdOption = { label: searchValue };
-    setSelectedOptions((prevState) =>
-      !prevState || singleSelection
-        ? [createdOption]
-        : [...prevState, createdOption]
-    );
-    action('onCreateOption')(searchValue, ...args);
-  };
-  return (
-    <EuiComboBox
-      singleSelection={
-        // @ts-ignore Specific to Storybook control
-        singleSelection === 'asPlainText'
-          ? { asPlainText: true }
-          : Boolean(singleSelection)
-      }
-      {...args}
-      selectedOptions={selectedOptions}
-      onChange={onChange}
-      onCreateOption={onCreateOption ? _onCreateOption : undefined}
-    />
-  );
-};
-
 export const CustomMatcher: Story = {
   render: function Render({ singleSelection, onCreateOption, ...args }) {
     const [selectedOptions, setSelectedOptions] = useState(
@@ -164,4 +126,42 @@ export const CustomMatcher: Story = {
       </>
     );
   },
+};
+
+const StatefulComboBox = ({
+  singleSelection,
+  onCreateOption,
+  ...args
+}: EuiComboBoxProps<{}>) => {
+  const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
+  const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
+    setSelectedOptions(options);
+    action('onChange')(options, ...args);
+  };
+  const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
+    searchValue,
+    ...args
+  ) => {
+    const createdOption = { label: searchValue };
+    setSelectedOptions((prevState) =>
+      !prevState || singleSelection
+        ? [createdOption]
+        : [...prevState, createdOption]
+    );
+    action('onCreateOption')(searchValue, ...args);
+  };
+  return (
+    <EuiComboBox
+      singleSelection={
+        // @ts-ignore Specific to Storybook control
+        singleSelection === 'asPlainText'
+          ? { asPlainText: true }
+          : Boolean(singleSelection)
+      }
+      {...args}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption ? _onCreateOption : undefined}
+    />
+  );
 };
