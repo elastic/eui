@@ -13,7 +13,8 @@ import { hideStorybookControls } from '../../../../../.storybook/utils';
 import { EuiCollapsedNavItem } from './collapsed_nav_item';
 
 const meta: Meta<typeof EuiCollapsedNavItem> = {
-  title: 'Navigation/EuiCollapsibleNav/EuiCollapsedNavItem',
+  title:
+    'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavItem/EuiCollapsedNavItem',
   component: EuiCollapsedNavItem,
   argTypes: {
     icon: { control: 'text' },

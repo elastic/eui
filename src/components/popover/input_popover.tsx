@@ -141,7 +141,9 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 
       if (event.key === keys.TAB) {
         if (disableFocusTrap) {
-          closePopover();
+          if (!ownFocus) {
+            closePopover();
+          }
         } else {
           const tabbableItems = tabbable(event.currentTarget).filter(
             (el) => !el.hasAttribute('data-focus-guard')
@@ -157,7 +159,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
         }
       }
     },
-    [disableFocusTrap, closePopover, panelPropsOnKeyDown]
+    [disableFocusTrap, ownFocus, closePopover, panelPropsOnKeyDown]
   );
 
   /**
