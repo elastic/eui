@@ -83,6 +83,26 @@ const renderOptionSnippet = `<EuiComboBox
   renderOption={renderOption}
 />`;
 
+import ToolTips from './tool_tips';
+const toolTipsSource = require('!!raw-loader!./tool_tips');
+const toolTipsSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
+  placeholder="Select or create options"
+  options={[
+    { 
+      label: 'option 1', 
+      tooltipContent: 'tooltip 1', 
+      tooltipProps: {
+        position: 'bottom'
+        'data-test-subj': 'optionTooltip',
+      }
+    }
+  ]}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
+
 import Truncation from './truncation';
 const truncationSource = require('!!raw-loader!./truncation');
 const truncationSnippet = `<EuiComboBox
@@ -471,6 +491,25 @@ export const ComboBoxExample = {
           code: renderOptionSource,
         },
       ],
+    },
+    {
+      title: 'Tooltips',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: toolTipsSource,
+        },
+      ],
+      text: (
+        <p>
+          You can add tooltips to the options by passing{' '}
+          <EuiCode>toolTipContent</EuiCode>. Use <EuiCode>toolTipProps</EuiCode>{' '}
+          to pass additional <EuiCode>EuiToolTipProps</EuiCode> to the tooltip.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: toolTipsSnippet,
+      demo: <ToolTips />,
     },
     {
       title: 'Truncation',
