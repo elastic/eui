@@ -13,6 +13,7 @@ import { withEuiTheme, WithEuiThemeProps } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { EuiIcon } from '../icon';
 
 import { euiFilterSelectItemStyles } from './filter_select_item.styles';
@@ -24,6 +25,14 @@ export interface EuiFilterSelectItemProps
   checked?: FilterChecked;
   showIcons?: boolean;
   isFocused?: boolean;
+  /**
+   * Optional custom tooltip content for the button
+   */
+  toolTipContent?: EuiToolTipProps['content'];
+  /**
+   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
 
 const resolveIconAndColor = (checked?: FilterChecked) => {
@@ -79,6 +88,9 @@ export class EuiFilterSelectItemClass extends Component<
       checked,
       isFocused,
       showIcons,
+      toolTipContent,
+      toolTipProps,
+      style,
       ...rest
     } = this.props;
 
@@ -90,6 +102,9 @@ export class EuiFilterSelectItemClass extends Component<
 
     const classes = classNames('euiFilterSelectItem', className);
 
+    const hasToolTip =
+      !disabled && React.isValidElement(children) && toolTipContent;
+
     let iconNode;
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
@@ -100,7 +115,7 @@ export class EuiFilterSelectItemClass extends Component<
       );
     }
 
-    return (
+    const optionItem = (
       <button
         ref={(ref) => (this.buttonRef = ref)}
         role="option"
@@ -110,6 +125,7 @@ export class EuiFilterSelectItemClass extends Component<
         css={cssStyles}
         disabled={disabled}
         aria-disabled={disabled}
+        style={!hasToolTip ? style : undefined}
         {...rest}
       >
         <EuiFlexGroup
@@ -127,6 +143,23 @@ export class EuiFilterSelectItemClass extends Component<
           </EuiFlexItem>
         </EuiFlexGroup>
       </button>
+    );
+
+    return hasToolTip ? (
+      // This extra wrapper is needed to ensure that the tooltip has a correct context
+      // for positioning while also ensuring to wrap the interactive option
+      <span style={style}>
+        <EuiToolTip
+          display="block"
+          content={toolTipContent}
+          {...toolTipProps}
+          isOpen={isFocused}
+        >
+          {optionItem}
+        </EuiToolTip>
+      </span>
+    ) : (
+      optionItem
     );
   }
 }
