@@ -96,6 +96,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
+      aria-disabled="true"
       class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
       data-step-status="disabled"
       title="Step 4: Disabled Step 4 is disabled"

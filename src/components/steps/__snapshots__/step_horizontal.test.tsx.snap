@@ -156,6 +156,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 <button
+  aria-disabled="true"
   class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
   data-step-status="disabled"
   title="Step 1 is disabled"
@@ -183,6 +184,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status disabled overrides the passed status 1`] = `
 <button
+  aria-disabled="true"
   class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
   data-step-status="disabled"
   disabled=""

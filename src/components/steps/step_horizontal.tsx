@@ -106,6 +106,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
 
   return (
     <button
+      aria-disabled={status === 'disabled' ? true : undefined}
       className={classes}
       title={titleAttr}
       onClick={onStepClick}
