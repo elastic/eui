@@ -9,9 +9,11 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent,
   useContext,
   useState,
   useMemo,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -80,6 +82,19 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
     'euiCollapsibleNavKibanaSolution.groupLabel',
     'Navigate to solution'
   );
+  const closeSolutionPopover = useCallback((event: MouseEvent) => {
+    // Allow child items to stop the popover from being closed
+    if (event.isPropagationStopped()) return;
+    // Only listen for clicks on child items - currentTarget is the parent <ul>
+    if (event.target === event.currentTarget) return;
+
+    // Only close the popover if the item is a clickable link or button
+    const target = event.target as HTMLElement;
+    const childItem = target.closest('.euiListGroupItem');
+    if (['A', 'BUTTON'].includes(childItem?.firstElementChild?.tagName || '')) {
+      setIsSolutionSwitcherOpen(false);
+    }
+  }, []);
   const solutionSwitcherContent = useMemo(() => {
     const [primaryItems, secondaryItems] = parseListItems(solutions);
     return (
@@ -90,6 +105,7 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
           listItems={primaryItems}
           size="s"
           bordered
+          onClick={closeSolutionPopover}
         />
         {secondaryItems.length > 0 && (
           <>
@@ -97,12 +113,13 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
               listItems={secondaryItems}
               size="s"
               css={styles.euiCollapsibleNavKibanaSolution__secondaryItems}
+              onClick={closeSolutionPopover}
             />
           </>
         )}
       </>
     );
-  }, [solutions, solutionSolutionGroupLabel, styles]);
+  }, [solutions, solutionSolutionGroupLabel, closeSolutionPopover, styles]);
 
   const sharedPopoverProps = {
     'aria-label': solutionSolutionSwitcherTitle,

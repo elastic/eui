@@ -8,7 +8,11 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
+import {
+  render,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
@@ -62,5 +66,74 @@ describe('KibanaCollapsibleNavSolution', () => {
     expect(getByText('Some other solution')).toBeInTheDocument();
 
     expect(getByRole('dialog')).toMatchSnapshot('popover');
+  });
+
+  describe('closeSolutionPopover', () => {
+    const onClickProps = {
+      ...sharedProps,
+      solutions: [
+        {
+          title: 'Solution A',
+          href: '#',
+        },
+        {
+          title: 'Solution B',
+          icon: 'logoKibana',
+          onClick: () => {},
+        },
+        {
+          title: 'Stops propagation',
+          onClick: (event: React.MouseEvent) => event.stopPropagation(),
+        },
+        {
+          title: 'Non-interactive item',
+          isSecondary: true,
+        },
+      ],
+    };
+
+    it('automatically closes the popover if an interactive item was clicked', async () => {
+      const { getByTestSubject, getByText } = render(
+        <KibanaCollapsibleNavSolution {...onClickProps} />
+      );
+      fireEvent.click(getByTestSubject('kibanaSolutionSwitcher'));
+      await waitForEuiPopoverOpen();
+
+      fireEvent.click(getByText('Solution A'));
+      await waitForEuiPopoverClose();
+    });
+
+    it('closes the popover even if a sub-DOM-node of a link/button was clicked', async () => {
+      const { getByTestSubject } = render(
+        <KibanaCollapsibleNavSolution {...onClickProps} />
+      );
+      fireEvent.click(getByTestSubject('kibanaSolutionSwitcher'));
+      await waitForEuiPopoverOpen();
+
+      fireEvent.click(document.querySelector('.euiListGroupItem__icon')!);
+      await waitForEuiPopoverClose();
+    });
+
+    it('does not close the popover if propagation was stopped', async () => {
+      const { getByTestSubject, getByText } = render(
+        <KibanaCollapsibleNavSolution {...onClickProps} />
+      );
+      fireEvent.click(getByTestSubject('kibanaSolutionSwitcher'));
+      await waitForEuiPopoverOpen();
+
+      fireEvent.click(getByText('Stops propagation'));
+      await waitForEuiPopoverOpen();
+    });
+
+    it('does not close the popover if a non-interactive item was clicked', async () => {
+      const { getByTestSubject, getByText } = render(
+        <KibanaCollapsibleNavSolution {...onClickProps} />
+      );
+      fireEvent.click(getByTestSubject('kibanaSolutionSwitcher'));
+      await waitForEuiPopoverOpen();
+
+      fireEvent.click(getByText('Non-interactive item'));
+      await waitForEuiPopoverOpen();
+    });
   });
 });
