@@ -8,7 +8,11 @@
 
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { render, showEuiComboBoxOptions } from '../../test/rtl';
+import {
+  render,
+  showEuiComboBoxOptions,
+  waitForEuiToolTipVisible,
+} from '../../test/rtl';
 import {
   shouldRenderCustomStyles,
   testOnReactVersion,
@@ -22,6 +26,8 @@ import type { EuiComboBoxOptionOption } from './types';
 interface Options {
   'data-test-subj'?: string;
   label: string;
+  toolTipContent?: string;
+  toolTipProps?: {};
 }
 const options: Options[] = [
   {
@@ -216,426 +222,468 @@ describe('EuiComboBox', () => {
       });
     });
 
-    describe('placeholder', () => {
-      it('renders', () => {
-        const { getByTestSubject } = render(
-          <EuiComboBox
-            options={options}
-            selectedOptions={[]}
-            placeholder="Select something"
-          />
-        );
-        const searchInput = getByTestSubject('comboBoxSearchInput');
+    describe('toolTipContent & tooltipProps', () => {
+      const options = [
+        {
+          label: 'Titan',
+          'data-test-subj': 'titanOption',
+          toolTipContent: 'I am a tooltip!',
+          toolTipProps: {
+            'data-test-subj': 'optionToolTip',
+          },
+        },
+        {
+          label: 'Enceladus',
+        },
+        {
+          label: 'Mimas',
+        },
+      ];
 
-        expect(searchInput).toHaveAttribute('placeholder', 'Select something');
-        expect(searchInput).toHaveStyle('inline-size: 100%');
+      it('renders a tooltip with applied props on mouseover', async () => {
+        const { getByTestSubject } = render(<EuiComboBox options={options} />);
+
+        await showEuiComboBoxOptions();
+
+        fireEvent.mouseOver(getByTestSubject('titanOption'));
+        await waitForEuiToolTipVisible();
+
+        expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
+        expect(getByTestSubject('optionToolTip')).toHaveTextContent(
+          'I am a tooltip!'
+        );
       });
 
-      it('does not render the placeholder if a selection has been made', () => {
-        const { getByTestSubject } = render(
+      it('renders a tooltip with applied props on focus', async () => {
+        const { getByTestSubject } = render(<EuiComboBox options={options} />);
+        await showEuiComboBoxOptions();
+
+        const input = getByTestSubject('comboBoxSearchInput');
+        fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+
+        await waitForEuiToolTipVisible();
+
+        expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
+        expect(getByTestSubject('optionToolTip')).toHaveTextContent(
+          'I am a tooltip!'
+        );
+      });
+
+      describe('placeholder', () => {
+        it('renders', () => {
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[]}
+              placeholder="Select something"
+            />
+          );
+          const searchInput = getByTestSubject('comboBoxSearchInput');
+
+          expect(searchInput).toHaveAttribute(
+            'placeholder',
+            'Select something'
+          );
+          expect(searchInput).toHaveStyle('inline-size: 100%');
+        });
+
+        it('does not render the placeholder if a selection has been made', () => {
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[0]]}
+              placeholder="Select something"
+            />
+          );
+          const searchInput = getByTestSubject('comboBoxSearchInput');
+          expect(searchInput).not.toHaveAttribute('placeholder');
+        });
+
+        it('does not render the placeholder if a search value exists', () => {
+          const { getByTestSubject } = render(
+            <EuiComboBox options={options} placeholder="Select something" />
+          );
+          const searchInput = getByTestSubject('comboBoxSearchInput');
+          expect(searchInput).toHaveAttribute('placeholder');
+
+          fireEvent.change(searchInput, { target: { value: 'some search' } });
+          expect(searchInput).not.toHaveAttribute('placeholder');
+        });
+      });
+
+      test('isDisabled', () => {
+        const { container, queryByTestSubject, queryByTitle } = render(
           <EuiComboBox
             options={options}
             selectedOptions={[options[0]]}
-            placeholder="Select something"
+            isDisabled={true}
           />
         );
-        const searchInput = getByTestSubject('comboBoxSearchInput');
-        expect(searchInput).not.toHaveAttribute('placeholder');
-      });
 
-      it('does not render the placeholder if a search value exists', () => {
-        const { getByTestSubject } = render(
-          <EuiComboBox options={options} placeholder="Select something" />
-        );
-        const searchInput = getByTestSubject('comboBoxSearchInput');
-        expect(searchInput).toHaveAttribute('placeholder');
-
-        fireEvent.change(searchInput, { target: { value: 'some search' } });
-        expect(searchInput).not.toHaveAttribute('placeholder');
-      });
-    });
-
-    test('isDisabled', () => {
-      const { container, queryByTestSubject, queryByTitle } = render(
-        <EuiComboBox
-          options={options}
-          selectedOptions={[options[0]]}
-          isDisabled={true}
-        />
-      );
-
-      expect(container.firstElementChild!.className).toContain('-isDisabled');
-      expect(queryByTestSubject('comboBoxSearchInput')).toBeDisabled();
-
-      expect(queryByTestSubject('comboBoxClearButton')).toBeFalsy();
-      expect(queryByTestSubject('comboBoxToggleListButton')).toBeFalsy();
-      expect(
-        queryByTitle('Remove Titan from selection in this group')
-      ).toBeFalsy();
-    });
-
-    test('fullWidth', () => {
-      // TODO: Should likely be a visual screenshot test
-      const { container } = render(
-        <EuiComboBox
-          options={options}
-          selectedOptions={[options[2]]}
-          fullWidth={true}
-        />
-      );
-
-      expect(container.innerHTML).toContain('euiFormControlLayout--fullWidth');
-      expect(container.innerHTML).toContain('euiComboBox--fullWidth');
-      expect(container.innerHTML).toContain(
-        'euiComboBox__inputWrap--fullWidth'
-      );
-    });
-
-    test('autoFocus', () => {
-      const { getByTestSubject } = render(
-        <EuiComboBox
-          options={options}
-          selectedOptions={[options[2], options[3]]}
-          autoFocus
-        />
-      );
-
-      expect(document.activeElement).toBe(
-        getByTestSubject('comboBoxSearchInput')
-      );
-    });
-
-    test('aria-label / aria-labelledby renders on the input, not on the wrapper', () => {
-      const { getByTestSubject } = render(
-        <EuiComboBox
-          options={options}
-          // Production usages shouldn't have both attributes,
-          // we're just combining them for testing expedience
-          aria-label="Test label"
-          aria-labelledby="test-heading-id"
-        />
-      );
-      const input = getByTestSubject('comboBoxSearchInput');
-
-      expect(input).toHaveAttribute('aria-label', 'Test label');
-      expect(input).toHaveAttribute('aria-labelledby', 'test-heading-id');
-    });
-
-    test('inputRef', () => {
-      const inputRefCallback = jest.fn();
-
-      const { getByRole } = render(
-        <EuiComboBox options={options} inputRef={inputRefCallback} />
-      );
-      expect(inputRefCallback).toHaveBeenCalledTimes(1);
-
-      expect(getByRole('combobox')).toBe(inputRefCallback.mock.calls[0][0]);
-    });
-
-    test('onSearchChange', () => {
-      const onSearchChange = jest.fn();
-      const { getByTestSubject, queryAllByRole } = render(
-        <EuiComboBox options={options} onSearchChange={onSearchChange} />
-      );
-      const input = getByTestSubject('comboBoxSearchInput');
-
-      fireEvent.change(input, { target: { value: 'no results' } });
-      expect(onSearchChange).toHaveBeenCalledWith('no results', false);
-      expect(queryAllByRole('option')).toHaveLength(0);
-
-      fireEvent.change(input, { target: { value: 'titan' } });
-      expect(onSearchChange).toHaveBeenCalledWith('titan', true);
-      expect(queryAllByRole('option')).toHaveLength(2);
-    });
-  });
-
-  it('does not show multiple checkmarks with duplicate labels', async () => {
-    const options = [
-      { label: 'Titan', key: 'titan1' },
-      { label: 'Titan', key: 'titan2' },
-      { label: 'Tethys' },
-    ];
-    const { baseElement } = render(
-      <EuiComboBox
-        singleSelection={{ asPlainText: true }}
-        options={options}
-        selectedOptions={[options[1]]}
-      />
-    );
-    await showEuiComboBoxOptions();
-
-    const dropdownOptions = baseElement.querySelectorAll(
-      '.euiFilterSelectItem'
-    );
-    expect(
-      dropdownOptions[0]!.querySelector('[data-euiicon-type="check"]')
-    ).toBeFalsy();
-    expect(
-      dropdownOptions[1]!.querySelector('[data-euiicon-type="check"]')
-    ).toBeTruthy();
-  });
-
-  describe('behavior', () => {
-    describe('hitting "Enter"', () => {
-      describe('when the search input matches a value', () => {
-        it('selects the option', () => {
-          const onChange = jest.fn();
-          const { getByTestSubject } = render(
-            <EuiComboBox options={[{ label: 'Red' }]} onChange={onChange} />
-          );
-
-          const input = getByTestSubject('comboBoxSearchInput');
-          fireEvent.change(input, { target: { value: 'red' } });
-          fireEvent.keyDown(input, { key: 'Enter' });
-
-          expect(onChange).toHaveBeenCalledWith([{ label: 'Red' }]);
-        });
-
-        it('accounts for group labels', () => {
-          const onChange = jest.fn();
-          const { getByTestSubject } = render(
-            <EuiComboBox
-              options={[{ label: 'Group', options: [{ label: 'Blue' }] }]}
-              onChange={onChange}
-            />
-          );
-
-          const input = getByTestSubject('comboBoxSearchInput');
-          fireEvent.change(input, { target: { value: 'blue' } });
-          fireEvent.keyDown(input, { key: 'Enter' });
-
-          expect(onChange).toHaveBeenCalledWith([{ label: 'Blue' }]);
-        });
-      });
-
-      describe('when `onCreateOption` is passed', () => {
-        it('fires the callback when there is input', () => {
-          const onCreateOptionHandler = jest.fn();
-
-          const { getByTestSubject } = render(
-            <EuiComboBox
-              options={options}
-              selectedOptions={[options[2]]}
-              onCreateOption={onCreateOptionHandler}
-            />
-          );
-          const input = getByTestSubject('comboBoxSearchInput');
-
-          fireEvent.change(input, { target: { value: 'foo' } });
-          fireEvent.keyDown(input, { key: 'Enter' });
-
-          expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
-          expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
-        });
-
-        it('does not fire the callback when there is no input', () => {
-          const onCreateOptionHandler = jest.fn();
-
-          const { getByTestSubject } = render(
-            <EuiComboBox
-              options={options}
-              selectedOptions={[options[2]]}
-              onCreateOption={onCreateOptionHandler}
-            />
-          );
-          const input = getByTestSubject('comboBoxSearchInput');
-
-          fireEvent.keyDown(input, { key: 'Enter' });
-
-          expect(onCreateOptionHandler).not.toHaveBeenCalled();
-        });
-      });
-    });
-
-    describe('tabbing off the search input', () => {
-      it("closes the options list if the user isn't navigating the options", async () => {
-        const keyDownBubbled = jest.fn();
-
-        const { getByTestSubject } = render(
-          <div onKeyDown={keyDownBubbled}>
-            <EuiComboBox options={options} selectedOptions={[options[2]]} />
-          </div>
-        );
-        await showEuiComboBoxOptions();
-
-        const mockEvent = { key: keys.TAB, shiftKey: true };
-        fireEvent.keyDown(getByTestSubject('comboBoxSearchInput'), mockEvent);
-
-        // If the TAB keydown bubbled up to the wrapper, then a browser DOM would shift the focus
-        expect(keyDownBubbled).toHaveBeenCalledWith(
-          expect.objectContaining(mockEvent)
-        );
-      });
-
-      it('calls onCreateOption', () => {
-        const onCreateOptionHandler = jest.fn();
-
-        const { getByTestSubject } = render(
-          <EuiComboBox
-            options={options}
-            selectedOptions={[options[2]]}
-            onCreateOption={onCreateOptionHandler}
-          />
-        );
-        const input = getByTestSubject('comboBoxSearchInput');
-
-        fireEvent.change(input, { target: { value: 'foo' } });
-        fireEvent.blur(input);
-
-        expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
-        expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
-      });
-
-      it('does nothing if the user is navigating the options', async () => {
-        const keyDownBubbled = jest.fn();
-
-        const { getByTestSubject } = render(
-          <div onKeyDown={keyDownBubbled}>
-            <EuiComboBox options={options} selectedOptions={[options[2]]} />
-          </div>
-        );
-        await showEuiComboBoxOptions();
-
-        // Navigate to an option then tab off
-        const input = getByTestSubject('comboBoxSearchInput');
-        fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
-        fireEvent.keyDown(input, { key: keys.TAB });
-
-        // If the TAB keydown did not bubble to the wrapper, then the tab event was prevented
-        expect(keyDownBubbled).not.toHaveBeenCalled();
-      });
-    });
-
-    describe('clear button', () => {
-      it('renders when options are selected', () => {
-        const { getByTestSubject } = render(
-          <EuiComboBox options={options} selectedOptions={[options[2]]} />
-        );
-
-        expect(getByTestSubject('comboBoxClearButton')).toBeInTheDocument();
-      });
-
-      it('does not render when no options are selected', () => {
-        const { queryByTestSubject } = render(
-          <EuiComboBox options={options} />
-        );
+        expect(container.firstElementChild!.className).toContain('-isDisabled');
+        expect(queryByTestSubject('comboBoxSearchInput')).toBeDisabled();
 
         expect(queryByTestSubject('comboBoxClearButton')).toBeFalsy();
+        expect(queryByTestSubject('comboBoxToggleListButton')).toBeFalsy();
+        expect(
+          queryByTitle('Remove Titan from selection in this group')
+        ).toBeFalsy();
       });
 
-      it('does not render when isClearable is false', () => {
-        const { queryByTestSubject } = render(
+      test('fullWidth', () => {
+        // TODO: Should likely be a visual screenshot test
+        const { container } = render(
           <EuiComboBox
             options={options}
             selectedOptions={[options[2]]}
-            isClearable={false}
+            fullWidth={true}
           />
         );
 
-        expect(queryByTestSubject('comboBoxClearButton')).toBeFalsy();
+        expect(container.innerHTML).toContain(
+          'euiFormControlLayout--fullWidth'
+        );
+        expect(container.innerHTML).toContain('euiComboBox--fullWidth');
+        expect(container.innerHTML).toContain(
+          'euiComboBox__inputWrap--fullWidth'
+        );
       });
 
-      it('calls the onChange callback with empty array', () => {
-        const onChangeHandler = jest.fn();
-
+      test('autoFocus', () => {
         const { getByTestSubject } = render(
           <EuiComboBox
             options={options}
-            selectedOptions={[options[2]]}
-            onChange={onChangeHandler}
+            selectedOptions={[options[2], options[3]]}
+            autoFocus
           />
         );
-        fireEvent.click(getByTestSubject('comboBoxClearButton'));
-
-        expect(onChangeHandler).toHaveBeenCalledTimes(1);
-        expect(onChangeHandler).toHaveBeenCalledWith([]);
-      });
-
-      it('focuses the input', () => {
-        const { getByTestSubject } = render(
-          <EuiComboBox
-            options={options}
-            selectedOptions={[options[2]]}
-            onChange={() => {}}
-          />
-        );
-        fireEvent.click(getByTestSubject('comboBoxClearButton'));
 
         expect(document.activeElement).toBe(
           getByTestSubject('comboBoxSearchInput')
         );
       });
-    });
 
-    describe('sortMatchesBy', () => {
-      const sortMatchesByOptions = [
-        { label: 'Something is Disabled' },
-        ...options,
-      ];
-
-      test('"none"', () => {
-        const { getByTestSubject, getAllByRole } = render(
-          <EuiComboBox options={sortMatchesByOptions} sortMatchesBy="none" />
-        );
-        fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
-          target: { value: 'di' },
-        });
-
-        const foundOptions = getAllByRole('option');
-        expect(foundOptions).toHaveLength(2);
-        expect(foundOptions[0]).toHaveTextContent('Something is Disabled');
-        expect(foundOptions[1]).toHaveTextContent('Dione');
-      });
-
-      test('"startsWith"', () => {
-        const { getByTestSubject, getAllByRole } = render(
+      test('aria-label / aria-labelledby renders on the input, not on the wrapper', () => {
+        const { getByTestSubject } = render(
           <EuiComboBox
-            options={sortMatchesByOptions}
-            sortMatchesBy="startsWith"
-          />
-        );
-        fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
-          target: { value: 'di' },
-        });
-
-        const foundOptions = getAllByRole('option');
-        expect(foundOptions).toHaveLength(2);
-        expect(foundOptions[0]).toHaveTextContent('Dione');
-        expect(foundOptions[1]).toHaveTextContent('Something is Disabled');
-      });
-    });
-
-    describe('isCaseSensitive', () => {
-      const isCaseSensitiveOptions = [{ label: 'Case sensitivity' }];
-
-      test('false', () => {
-        const { getByTestSubject, queryAllByRole } = render(
-          <EuiComboBox
-            options={isCaseSensitiveOptions}
-            isCaseSensitive={false}
-          />
-        );
-        fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
-          target: { value: 'case' },
-        });
-
-        expect(queryAllByRole('option')).toHaveLength(1);
-      });
-
-      test('true', () => {
-        const { getByTestSubject, queryAllByRole } = render(
-          <EuiComboBox
-            options={isCaseSensitiveOptions}
-            isCaseSensitive={true}
+            options={options}
+            // Production usages shouldn't have both attributes,
+            // we're just combining them for testing expedience
+            aria-label="Test label"
+            aria-labelledby="test-heading-id"
           />
         );
         const input = getByTestSubject('comboBoxSearchInput');
 
-        fireEvent.change(input, { target: { value: 'case' } });
+        expect(input).toHaveAttribute('aria-label', 'Test label');
+        expect(input).toHaveAttribute('aria-labelledby', 'test-heading-id');
+      });
+
+      test('inputRef', () => {
+        const inputRefCallback = jest.fn();
+
+        const { getByRole } = render(
+          <EuiComboBox options={options} inputRef={inputRefCallback} />
+        );
+        expect(inputRefCallback).toHaveBeenCalledTimes(1);
+
+        expect(getByRole('combobox')).toBe(inputRefCallback.mock.calls[0][0]);
+      });
+
+      test('onSearchChange', () => {
+        const onSearchChange = jest.fn();
+        const { getByTestSubject, queryAllByRole } = render(
+          <EuiComboBox options={options} onSearchChange={onSearchChange} />
+        );
+        const input = getByTestSubject('comboBoxSearchInput');
+
+        fireEvent.change(input, { target: { value: 'no results' } });
+        expect(onSearchChange).toHaveBeenCalledWith('no results', false);
         expect(queryAllByRole('option')).toHaveLength(0);
 
-        fireEvent.change(input, { target: { value: 'Case' } });
-        expect(queryAllByRole('option')).toHaveLength(1);
+        fireEvent.change(input, { target: { value: 'titan' } });
+        expect(onSearchChange).toHaveBeenCalledWith('titan', true);
+        expect(queryAllByRole('option')).toHaveLength(2);
+      });
+    });
+
+    it('does not show multiple checkmarks with duplicate labels', async () => {
+      const options = [
+        { label: 'Titan', key: 'titan1' },
+        { label: 'Titan', key: 'titan2' },
+        { label: 'Tethys' },
+      ];
+      const { baseElement } = render(
+        <EuiComboBox
+          singleSelection={{ asPlainText: true }}
+          options={options}
+          selectedOptions={[options[1]]}
+        />
+      );
+      await showEuiComboBoxOptions();
+
+      const dropdownOptions = baseElement.querySelectorAll(
+        '.euiFilterSelectItem'
+      );
+      expect(
+        dropdownOptions[0]!.querySelector('[data-euiicon-type="check"]')
+      ).toBeFalsy();
+      expect(
+        dropdownOptions[1]!.querySelector('[data-euiicon-type="check"]')
+      ).toBeTruthy();
+    });
+
+    describe('behavior', () => {
+      describe('hitting "Enter"', () => {
+        describe('when the search input matches a value', () => {
+          it('selects the option', () => {
+            const onChange = jest.fn();
+            const { getByTestSubject } = render(
+              <EuiComboBox options={[{ label: 'Red' }]} onChange={onChange} />
+            );
+
+            const input = getByTestSubject('comboBoxSearchInput');
+            fireEvent.change(input, { target: { value: 'red' } });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onChange).toHaveBeenCalledWith([{ label: 'Red' }]);
+          });
+
+          it('accounts for group labels', () => {
+            const onChange = jest.fn();
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                options={[{ label: 'Group', options: [{ label: 'Blue' }] }]}
+                onChange={onChange}
+              />
+            );
+
+            const input = getByTestSubject('comboBoxSearchInput');
+            fireEvent.change(input, { target: { value: 'blue' } });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onChange).toHaveBeenCalledWith([{ label: 'Blue' }]);
+          });
+        });
+
+        describe('when `onCreateOption` is passed', () => {
+          it('fires the callback when there is input', () => {
+            const onCreateOptionHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            fireEvent.change(input, { target: { value: 'foo' } });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
+            expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
+          });
+
+          it('does not fire the callback when there is no input', () => {
+            const onCreateOptionHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onCreateOptionHandler).not.toHaveBeenCalled();
+          });
+        });
+      });
+
+      describe('tabbing off the search input', () => {
+        it("closes the options list if the user isn't navigating the options", async () => {
+          const keyDownBubbled = jest.fn();
+          const { getByTestSubject } = render(
+            <div onKeyDown={keyDownBubbled}>
+              <EuiComboBox options={options} selectedOptions={[options[2]]} />
+            </div>
+          );
+          await showEuiComboBoxOptions();
+          const mockEvent = { key: keys.TAB, shiftKey: true };
+          fireEvent.keyDown(getByTestSubject('comboBoxSearchInput'), mockEvent);
+          // If the TAB keydown bubbled up to the wrapper, then a browser DOM would shift the focus
+          expect(keyDownBubbled).toHaveBeenCalledWith(
+            expect.objectContaining(mockEvent)
+          );
+        });
+        it('calls onCreateOption', () => {
+          const onCreateOptionHandler = jest.fn();
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[2]]}
+              onCreateOption={onCreateOptionHandler}
+            />
+          );
+          const input = getByTestSubject('comboBoxSearchInput');
+          fireEvent.change(input, { target: { value: 'foo' } });
+          fireEvent.blur(input);
+          expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
+          expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
+        });
+        it('does nothing if the user is navigating the options', async () => {
+          const keyDownBubbled = jest.fn();
+          const { getByTestSubject } = render(
+            <div onKeyDown={keyDownBubbled}>
+              <EuiComboBox options={options} selectedOptions={[options[2]]} />
+            </div>
+          );
+          await showEuiComboBoxOptions();
+          // Navigate to an option then tab off
+          const input = getByTestSubject('comboBoxSearchInput');
+          fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
+          fireEvent.keyDown(input, { key: keys.TAB });
+          // If the TAB keydown did not bubble to the wrapper, then the tab event was prevented
+          expect(keyDownBubbled).not.toHaveBeenCalled();
+        });
+      });
+
+      describe('clear button', () => {
+        it('renders when options are selected', () => {
+          const { getByTestSubject } = render(
+            <EuiComboBox options={options} selectedOptions={[options[2]]} />
+          );
+
+          expect(getByTestSubject('comboBoxClearButton')).toBeInTheDocument();
+        });
+
+        it('does not render when no options are selected', () => {
+          const { queryByTestSubject } = render(
+            <EuiComboBox options={options} />
+          );
+
+          expect(queryByTestSubject('comboBoxClearButton')).toBeFalsy();
+        });
+
+        it('does not render when isClearable is false', () => {
+          const { queryByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[2]]}
+              isClearable={false}
+            />
+          );
+
+          expect(queryByTestSubject('comboBoxClearButton')).toBeFalsy();
+        });
+
+        it('calls the onChange callback with empty array', () => {
+          const onChangeHandler = jest.fn();
+
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[2]]}
+              onChange={onChangeHandler}
+            />
+          );
+          fireEvent.click(getByTestSubject('comboBoxClearButton'));
+
+          expect(onChangeHandler).toHaveBeenCalledTimes(1);
+          expect(onChangeHandler).toHaveBeenCalledWith([]);
+        });
+
+        it('focuses the input', () => {
+          const { getByTestSubject } = render(
+            <EuiComboBox
+              options={options}
+              selectedOptions={[options[2]]}
+              onChange={() => {}}
+            />
+          );
+          fireEvent.click(getByTestSubject('comboBoxClearButton'));
+
+          expect(document.activeElement).toBe(
+            getByTestSubject('comboBoxSearchInput')
+          );
+        });
+      });
+
+      describe('sortMatchesBy', () => {
+        const sortMatchesByOptions = [
+          { label: 'Something is Disabled' },
+          ...options,
+        ];
+
+        test('"none"', () => {
+          const { getByTestSubject, getAllByRole } = render(
+            <EuiComboBox options={sortMatchesByOptions} sortMatchesBy="none" />
+          );
+          fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
+            target: { value: 'di' },
+          });
+
+          const foundOptions = getAllByRole('option');
+          expect(foundOptions).toHaveLength(2);
+          expect(foundOptions[0]).toHaveTextContent('Something is Disabled');
+          expect(foundOptions[1]).toHaveTextContent('Dione');
+        });
+
+        test('"startsWith"', () => {
+          const { getByTestSubject, getAllByRole } = render(
+            <EuiComboBox
+              options={sortMatchesByOptions}
+              sortMatchesBy="startsWith"
+            />
+          );
+          fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
+            target: { value: 'di' },
+          });
+
+          const foundOptions = getAllByRole('option');
+          expect(foundOptions).toHaveLength(2);
+          expect(foundOptions[0]).toHaveTextContent('Dione');
+          expect(foundOptions[1]).toHaveTextContent('Something is Disabled');
+        });
+      });
+
+      describe('isCaseSensitive', () => {
+        const isCaseSensitiveOptions = [{ label: 'Case sensitivity' }];
+
+        test('false', () => {
+          const { getByTestSubject, queryAllByRole } = render(
+            <EuiComboBox
+              options={isCaseSensitiveOptions}
+              isCaseSensitive={false}
+            />
+          );
+          fireEvent.change(getByTestSubject('comboBoxSearchInput'), {
+            target: { value: 'case' },
+          });
+
+          expect(queryAllByRole('option')).toHaveLength(1);
+        });
+
+        test('true', () => {
+          const { getByTestSubject, queryAllByRole } = render(
+            <EuiComboBox
+              options={isCaseSensitiveOptions}
+              isCaseSensitive={true}
+            />
+          );
+          const input = getByTestSubject('comboBoxSearchInput');
+
+          fireEvent.change(input, { target: { value: 'case' } });
+          expect(queryAllByRole('option')).toHaveLength(0);
+
+          fireEvent.change(input, { target: { value: 'Case' } });
+          expect(queryAllByRole('option')).toHaveLength(1);
+        });
       });
     });
   });
