@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react';
 import { useEuiTheme } from '../../services';
+import { renderHook } from '../../test/rtl';
 
 import { POSITIONS, COLORS } from './progress';
 import { euiProgressStyles } from './progress.styles';
