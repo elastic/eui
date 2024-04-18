@@ -223,24 +223,24 @@ describe('EuiComboBox', () => {
     });
 
     describe('toolTipContent & tooltipProps', () => {
-      const options = [
-        {
-          label: 'Titan',
-          'data-test-subj': 'titanOption',
-          toolTipContent: 'I am a tooltip!',
-          toolTipProps: {
-            'data-test-subj': 'optionToolTip',
-          },
-        },
-        {
-          label: 'Enceladus',
-        },
-        {
-          label: 'Mimas',
-        },
-      ];
-
       it('renders a tooltip with applied props on mouseover', async () => {
+        const options = [
+          {
+            label: 'Titan',
+            'data-test-subj': 'titanOption',
+            toolTipContent: 'I am a tooltip!',
+            toolTipProps: {
+              'data-test-subj': 'optionToolTip',
+            },
+          },
+          {
+            label: 'Enceladus',
+          },
+          {
+            label: 'Mimas',
+          },
+        ];
+
         const { getByTestSubject } = render(<EuiComboBox options={options} />);
 
         await showEuiComboBoxOptions();
@@ -255,6 +255,23 @@ describe('EuiComboBox', () => {
       });
 
       it('renders a tooltip with applied props on focus', async () => {
+        const options = [
+          {
+            label: 'Titan',
+            'data-test-subj': 'titanOption',
+            toolTipContent: 'I am a tooltip!',
+            toolTipProps: {
+              'data-test-subj': 'optionToolTip',
+            },
+          },
+          {
+            label: 'Enceladus',
+          },
+          {
+            label: 'Mimas',
+          },
+        ];
+
         const { getByTestSubject } = render(<EuiComboBox options={options} />);
         await showEuiComboBoxOptions();
 
