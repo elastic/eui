@@ -28,7 +28,7 @@ ls_options=(
   -l # Print additional details about the subdir
 )
 echo "Listing all PR staging links"
-gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" | sort -k 2 #
+gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" # | sort -k 2 # sort by the 2nd field returned by -l which is the 'created by' timestamp
 
 # https://cloud.google.com/storage/docs/gsutil/commands/rm
 rm_options=(
