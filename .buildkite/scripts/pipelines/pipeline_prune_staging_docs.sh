@@ -27,14 +27,15 @@ ls_options=(
   -d # only list directories
   -l # include additional details about the subdir, notably the date as a second field
 )
-echo "Listing all PR staging links"
-gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" \
+echo "Getting all but the most recent 50 PR staging links..."
+list=$(gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" \
   | sort -k 2 `# sort by the 2nd field returned by -l which is a timestamp` \
-  | head -n -50 # remove the last 50 items, so basically keep the latest 50 items
-
-# https://cloud.google.com/storage/docs/gsutil/commands/rm
-rm_options=(
-  -r # recursive, delete everything inside subdir
-  -m # enables multi-threading for large numbers of objects
+  | head -n -50 `# remove the last 50 items, so basically keep the latest 50 staging docs` \
 )
-# gsutil rm "${rm_options[@]}" "gs://${BUCKET}/pr_TODO"
+while IFS= read -r line || [[ -n $line ]]; do
+  url="$(echo -e "${line}" | tr -d '[:space:]')" # trim the leading whitespaces
+  url=${url%/} # trim the trailing slash
+  echo "Deleting $url"
+  # https://cloud.google.com/storage/docs/gsutil/commands/rm
+  gsutil -m rm -r "$url"
+done < <(printf '%s' "$list")
