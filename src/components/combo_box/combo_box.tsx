@@ -743,6 +743,7 @@ export class EuiComboBox<T> extends Component<
       autoFocus,
       truncationProps,
       inputPopoverProps,
+      optionMatcher,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       ...rest

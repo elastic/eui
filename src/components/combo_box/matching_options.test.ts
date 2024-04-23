@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import { EuiComboBoxOptionOption } from './types';
+import { EuiComboBoxOptionOption, EuiComboBoxOptionMatcher } from './types';
 import {
   SortMatchesBy,
   flattenOptionGroups,
   getMatchingOptions,
   getSelectedOptionForSearchValue,
+  createPartialStringEqualityOptionMatcher,
 } from './matching_options';
 
 const options = [
@@ -109,7 +110,11 @@ interface GetMatchingOptionsTestCase {
   selectedOptions: EuiComboBoxOptionOption[];
   showPrevSelected: boolean;
   sortMatchesBy: SortMatchesBy;
+  optionMatcher: EuiComboBoxOptionMatcher<unknown>;
 }
+
+const defaultOptionMatcher =
+  createPartialStringEqualityOptionMatcher<unknown>();
 
 const testCases: GetMatchingOptionsTestCase[] = [
   {
@@ -126,6 +131,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
     showPrevSelected: false,
     expected: [],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
   },
   {
     options,
@@ -144,6 +150,8 @@ const testCases: GetMatchingOptionsTestCase[] = [
       { label: 'Mimas' },
     ],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
+
   },
   {
     options,
@@ -159,6 +167,8 @@ const testCases: GetMatchingOptionsTestCase[] = [
     showPrevSelected: true,
     expected: [{ 'data-test-subj': 'saturnOption', label: 'Saturn' }],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
+
   },
   {
     options,
@@ -178,6 +188,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       { label: 'Mimas' },
     ],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
   },
   {
     options: [{ label: 'Titan' }, { label: 'Titan' }],
@@ -194,6 +205,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       // Duplicate options without an key will be treated as the same option
     ],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
   },
   {
     options: [
@@ -215,6 +227,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       { label: 'Titan', key: 'titan1' },
     ],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
   },
   // Case sensitivity
   {
@@ -231,6 +244,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
   },
   {
     options,
@@ -241,6 +255,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
     showPrevSelected: false,
     expected: [],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
   },
   {
     options,
@@ -256,6 +271,29 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     sortMatchesBy: 'none',
+    optionMatcher: defaultOptionMatcher,
+  },
+  {
+    options,
+    selectedOptions: [],
+    searchValue: 'Titan',
+    isCaseSensitive: false,
+    isPreFiltered: false,
+    showPrevSelected: false,
+    expected: options,
+    sortMatchesBy: 'none',
+    optionMatcher: () => true,
+  },
+  {
+    options,
+    selectedOptions: [],
+    searchValue: 'Titan',
+    isCaseSensitive: false,
+    isPreFiltered: false,
+    showPrevSelected: false,
+    expected: [],
+    sortMatchesBy: 'none',
+    optionMatcher: () => false,
   },
 ];
 

@@ -12,6 +12,7 @@ import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableSearch } from './selectable_search';
+import { createPartialStringEqualityOptionMatcher } from '../matching_options';
 
 describe('EuiSelectableSearch', () => {
   const onChange = jest.fn();
@@ -21,6 +22,7 @@ describe('EuiSelectableSearch', () => {
     options: [{ label: 'hello' }, { label: 'world' }],
     value: '',
     isPreFiltered: false,
+    optionMatcher: createPartialStringEqualityOptionMatcher(),
   };
 
   beforeEach(() => jest.clearAllMocks());
