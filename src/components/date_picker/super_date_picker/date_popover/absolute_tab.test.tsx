@@ -11,6 +11,7 @@ import { fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
+import { LocaleSpecifier } from 'moment';
 
 // Mock EuiDatePicker - 3rd party datepicker lib causes render issues
 jest.mock('../../date_picker', () => ({
@@ -103,6 +104,27 @@ describe('EuiAbsoluteTab', () => {
       changeInput(input, 'Jan 31st 01');
       expect(input).not.toBeInvalid();
       expect(input).toHaveValue('Jan 31st 01');
+    });
+
+    describe('parses date string in locale', () => {
+      test.each<{
+        locale: LocaleSpecifier;
+        dateString: string;
+      }>([
+        { locale: 'en', dateString: 'Mon Jan 1st' },
+        { locale: 'zh-CN', dateString: '周一 1月 1日' },
+        { locale: 'ja-JP', dateString: '月 1月 1日' },
+        { locale: 'fr-FR', dateString: 'lun. janv. 1er' },
+      ])('%p', ({ locale, dateString }) => {
+        const { getByTestSubject } = render(
+          <EuiAbsoluteTab {...props} dateFormat="ddd MMM Do" locale={locale} />
+        );
+        const input = getByTestSubject('superDatePickerAbsoluteDateInput');
+
+        changeInput(input, dateString);
+        expect(input).not.toBeInvalid();
+        expect(input).toHaveValue(dateString);
+      });
     });
 
     describe('allows several other common date formats, and autoformats them to the `dateFormat` prop', () => {

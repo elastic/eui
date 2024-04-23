@@ -116,10 +116,15 @@ export class EuiAbsoluteTab extends Component<
       return this.setState(invalidDateState);
     }
 
-    const { onChange, dateFormat } = this.props;
+    const { onChange, dateFormat, locale } = this.props;
 
-    // Attempt to parse with passed `dateFormat`
-    let valueAsMoment = moment(textInputValue, dateFormat, true);
+    // Attempt to parse with passed `dateFormat` and `locale`
+    let valueAsMoment = moment(
+      textInputValue,
+      dateFormat,
+      typeof locale === 'string' ? locale : undefined,
+      true
+    );
     let dateIsValid = valueAsMoment.isValid();
 
     // If not valid, try a few other other standardized formats
