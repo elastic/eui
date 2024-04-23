@@ -1,0 +1,6 @@
+## 🏠/.buildkite/pipelines/pipeline_prune_staging_docs.yml
+
+steps:
+  - agents:
+      provider: "gcp"
+    command: .buildkite/scripts/pipelines/pipeline_prune_staging_docs.sh
