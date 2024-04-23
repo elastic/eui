@@ -25,10 +25,12 @@ BUCKET=${GPROJECT}-${EUI_DOCS_PROJECT}
 # https://cloud.google.com/storage/docs/gsutil/commands/ls
 ls_options=(
   -d # only list directories
-  -l # Print additional details about the subdir
+  -l # include additional details about the subdir, notably the date as a second field
 )
 echo "Listing all PR staging links"
-gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" # | sort -k 2 # sort by the 2nd field returned by -l which is the 'created by' timestamp
+gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" \
+  | sort -k 2 `# sort by the 2nd field returned by -l which is a timestamp` \
+  | head -n -50 # remove the last 50 items, so basically keep the latest 50 items
 
 # https://cloud.google.com/storage/docs/gsutil/commands/rm
 rm_options=(
