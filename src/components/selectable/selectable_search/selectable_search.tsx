@@ -12,6 +12,7 @@ import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
+import type { EuiSelectableOptionMatcher } from '../selectable';
 
 export type EuiSelectableSearchProps<T> = CommonProps &
   Omit<
@@ -40,6 +41,10 @@ type _EuiSelectableSearchProps<T> = EuiSelectableSearchProps<T> & {
    */
   listId?: string;
   isPreFiltered: boolean;
+  /**
+   * Optional custom option matcher function
+   */
+  optionMatcher: EuiSelectableOptionMatcher<T>;
 };
 
 export const EuiSelectableSearch = <T,>({
@@ -50,19 +55,21 @@ export const EuiSelectableSearch = <T,>({
   isPreFiltered,
   listId,
   className,
+  optionMatcher,
   ...rest
 }: _EuiSelectableSearchProps<T>) => {
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const searchValue = e.target.value;
-      const matchingOptions = getMatchingOptions<T>(
+      const matchingOptions = getMatchingOptions<T>({
         options,
         searchValue,
-        isPreFiltered
-      );
+        isPreFiltered,
+        optionMatcher,
+      });
       onChangeCallback(searchValue, matchingOptions);
     },
-    [options, isPreFiltered, onChangeCallback]
+    [options, isPreFiltered, onChangeCallback, optionMatcher]
   );
 
   const classes = classNames('euiSelectableSearch', className);
