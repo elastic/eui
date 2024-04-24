@@ -151,7 +151,6 @@ const testCases: GetMatchingOptionsTestCase[] = [
     ],
     sortMatchesBy: 'none',
     optionMatcher: defaultOptionMatcher,
-
   },
   {
     options,
@@ -168,7 +167,6 @@ const testCases: GetMatchingOptionsTestCase[] = [
     expected: [{ 'data-test-subj': 'saturnOption', label: 'Saturn' }],
     sortMatchesBy: 'none',
     optionMatcher: defaultOptionMatcher,
-
   },
   {
     options,
