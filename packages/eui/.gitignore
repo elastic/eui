@@ -1,0 +1,31 @@
+# node_modules directory at any level deep
+node_modules
+
+# Testing artifacts
+/test/spec/screenshots/baseline/**/*.png
+/test/spec/screenshots/diff/**/*.png
+/test/spec/screenshots/screen/**/*.png
+/test/failure-snapshots/**/*.png
+/cypress/screenshots
+/cypress/videos
+
+# Build-related files
+/storybook-static
+/coverage
+/reports
+/.nyc_output
+/tmp
+/docs
+/dist
+/lib
+/es
+/optimize
+/test-env
+/.cache-loader
+**/*.out
+.eslintcache
+.yo-rc.json
+
+# TypeScript output
+/types
+eui.d.ts
