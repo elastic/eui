@@ -1,0 +1,19 @@
+{
+  "name": "@elastic/eui-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Elastic Design System",
+  "scripts": {
+    "pre-push": "yarn --cwd packages/eui pre-push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git"
+  },
+  "pre-push": [
+    "pre-push"
+  ],
+  "devDependencies": {
+    "pre-push": "^0.1.4"
+  }
+}

@@ -18219,15 +18219,6 @@ postcss@^8.4.24:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-pre-push@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/pre-push/-/pre-push-0.1.4.tgz#48e7a29e15d3d7a83b62d5a02e10ba5dc40ab3aa"
-  integrity sha512-bIdVuDQR3r5AWV7bM6OMHD3mCXA53Ql0LXmW5UfcSmJZq+J+TytqZ5YJcTmMLcojJysN65vcFIeCqRn6YidA+Q==
-  dependencies:
-    cross-spawn "^5.0.1"
-    spawn-sync "^1.0.15"
-    which "1.2.x"
-
 preferred-pm@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/preferred-pm/-/preferred-pm-3.0.3.tgz#1b6338000371e3edbce52ef2e4f65eb2e73586d6"
@@ -23232,13 +23223,6 @@ which-typed-array@^1.1.2, which-typed-array@^1.1.9:
     gopd "^1.0.1"
     has-tostringtag "^1.0.0"
     is-typed-array "^1.1.10"
-
-which@1.2.x:
-  version "1.2.14"
-  resolved "https://registry.yarnpkg.com/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
-  integrity sha1-mofEN48D6CfOyvGs31bHNsAcFOU=
-  dependencies:
-    isexe "^2.0.0"
 
 which@^1.2.12, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   version "1.3.1"

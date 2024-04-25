@@ -43,7 +43,8 @@
     "release-backport": "node ./scripts/release.js --type=backport",
     "release-rc": "node ./scripts/release.js --type=prerelease",
     "storybook": "yarn compile-scss && storybook dev -p 6006",
-    "build-storybook": "yarn compile-scss && storybook build"
+    "build-storybook": "yarn compile-scss && storybook build",
+    "pre-push": "yarn test-staged"
   },
   "repository": {
     "type": "git",
@@ -55,9 +56,6 @@
     "**/@types/react": "^18",
     "react-focus-lock": "^2.9.5"
   },
-  "pre-push": [
-    "test-staged"
-  ],
   "dependencies": {
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
@@ -212,7 +210,6 @@
     "postcss-inline-svg": "^4.1.0",
     "postcss-loader": "^7.0.1",
     "postcss-styled-syntax": "^0.4.0",
-    "pre-push": "^0.1.4",
     "prettier": "^2.8.8",
     "process": "^0.11.10",
     "raw-loader": "^4.0.1",
