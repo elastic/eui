@@ -122,7 +122,7 @@ export class EuiAbsoluteTab extends Component<
     let valueAsMoment = moment(
       textInputValue,
       dateFormat,
-      typeof locale === 'string' ? locale : undefined,
+      typeof locale === 'string' ? locale : 'en', // Narrow the union type to string
       true
     );
     let dateIsValid = valueAsMoment.isValid();
