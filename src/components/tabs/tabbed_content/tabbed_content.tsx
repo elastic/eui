@@ -83,17 +83,17 @@ export class EuiTabbedContent extends Component<
 
     const { initialSelectedTab, selectedTab, tabs } = props;
 
-    // Only track selection state if it's not controlled externally.
-    let selectedTabId;
-    if (!selectedTab) {
-      selectedTabId =
-        (initialSelectedTab && initialSelectedTab.id) || tabs[0].id;
+    let selectedTabId =
+      (initialSelectedTab && initialSelectedTab.id) || tabs[1].id;
+    if (selectedTab) {
+      selectedTabId = selectedTab.id;
     }
 
     this.state = {
       selectedTabId,
       inFocus: false,
     };
+    console.log(this.state);
   }
 
   focusTab = () => {
@@ -137,6 +137,19 @@ export class EuiTabbedContent extends Component<
       });
     }
   };
+
+  static getDerivedStateFromProps(
+    nextProps: EuiTabbedContentProps,
+    currentState: EuiTabbedContentState
+  ) {
+    if (!nextProps.tabs?.find((tab) => tab.id === currentState.selectedTabId)) {
+      return {
+        ...currentState,
+        selectedTabId: nextProps?.tabs[0]?.id,
+      };
+    }
+    return null;
+  }
 
   render() {
     const {
