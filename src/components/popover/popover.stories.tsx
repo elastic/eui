@@ -28,6 +28,7 @@ const meta: Meta<EuiPopoverProps> = {
     isOpen: false,
     ownFocus: true,
     panelPaddingSize: 'm',
+    buffer: 16,
     hasArrow: true,
     anchorPosition: 'downCenter',
     display: 'inline-block',
@@ -39,6 +40,9 @@ const meta: Meta<EuiPopoverProps> = {
     hasDragDrop: false,
     panelClassName: '',
     popoverScreenReaderText: '',
+  },
+  argTypes: {
+    buffer: { control: 'number' }, // For ease of QA
   },
 };
 enableFunctionToggleControls(meta, ['closePopover', 'onPositionChange']);
