@@ -32,30 +32,40 @@ import {
   euiMarkdownLinkValidator,
   EuiMarkdownLinkValidatorOptions,
 } from '../markdown_link_validator';
+import type { ExcludableDefaultPlugins, DefaultPluginsConfig } from './plugins';
 
 export type DefaultEuiMarkdownParsingPlugins = PluggableList;
 
+const DEFAULT_PARSING_PLUGINS: Record<
+  ExcludableDefaultPlugins,
+  DefaultEuiMarkdownParsingPlugins[0]
+> = {
+  emoji: [emoji, { emoticon: false }],
+  lineBreaks: [breaks, {}],
+  linkValidator: [
+    euiMarkdownLinkValidator,
+    {
+      allowRelative: true,
+      allowProtocols: ['https:', 'http:', 'mailto:'],
+    } as EuiMarkdownLinkValidatorOptions,
+  ],
+  checkbox: [MarkdownCheckbox.parser, {}],
+  tooltip: [MarkdownTooltip.parser, {}],
+};
+
 export const getDefaultEuiMarkdownParsingPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownParsingPlugins => {
-  const excludeSet = new Set(exclude);
+}: DefaultPluginsConfig = {}): DefaultEuiMarkdownParsingPlugins => {
   const parsingPlugins: PluggableList = [
     [markdown, {}],
     [highlight, {}],
-    [emoji, { emoticon: false }],
-    [breaks, {}],
-    [
-      euiMarkdownLinkValidator,
-      {
-        allowRelative: true,
-        allowProtocols: ['https:', 'http:', 'mailto:'],
-      } as EuiMarkdownLinkValidatorOptions,
-    ],
-    [MarkdownCheckbox.parser, {}],
   ];
 
-  if (!excludeSet.has('tooltip'))
-    parsingPlugins.push([MarkdownTooltip.parser, {}]);
+  Object.entries(DEFAULT_PARSING_PLUGINS).forEach(([pluginName, plugin]) => {
+    if (!exclude?.includes(pluginName as ExcludableDefaultPlugins)) {
+      parsingPlugins.push(plugin);
+    }
+  });
 
   return parsingPlugins;
 };

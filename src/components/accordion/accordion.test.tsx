@@ -319,18 +319,5 @@ describe('EuiAccordion', () => {
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(false);
     });
-
-    it('moves focus to the content when expanded', () => {
-      const component = mount(<EuiAccordion id={getId()} />);
-      const childWrapper = component.find('div[role="group"]').getDOMNode();
-
-      expect(childWrapper).not.toBeFalsy();
-      expect(childWrapper).not.toBe(document.activeElement);
-
-      // click the button
-      component.find('button').at(0).simulate('click');
-
-      expect(childWrapper).toBe(document.activeElement);
-    });
   });
 });

@@ -13,12 +13,19 @@ import { EuiButton } from '../button';
 import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutFooter, EuiFlyoutFooterProps } from './flyout_footer';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutFooterProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutFooter',
   component: EuiFlyoutFooter,
   argTypes: {
     // TODO: editable children
+  },
+  parameters: {
+    loki: {
+      // Flyout content is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 

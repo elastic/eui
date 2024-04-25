@@ -2,5 +2,7 @@ last 2 versions
 not dead
 not IE 11
 Safari 7
+# adding as part of Storybook upgrade to v8 https://github.com/babel/babel/issues/16171#issuecomment-2015227043
+not op_mob >= 1
 
 # Safari 7 for PhantomJS support

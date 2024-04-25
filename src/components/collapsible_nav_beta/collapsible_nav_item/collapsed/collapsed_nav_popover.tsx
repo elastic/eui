@@ -10,7 +10,11 @@ import React, { FunctionComponent, useState, useCallback } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../../services';
 
-import { EuiPopover, EuiPopoverTitle } from '../../../popover';
+import {
+  type EuiPopoverProps,
+  EuiPopover,
+  EuiPopoverTitle,
+} from '../../../popover';
 
 import {
   EuiCollapsibleNavSubItem,
@@ -24,7 +28,8 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   Omit<
     EuiCollapsibleNavItemProps,
     'isCollapsible' | 'accordionProps' | 'href' | 'linkProps'
-  >
+  > &
+    Partial<EuiPopoverProps>
 > = ({
   items,
   title,
@@ -50,7 +55,6 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       display="block"
       anchorPosition="rightUp"
       panelPaddingSize="none"
-      panelProps={{ css: styles.euiCollapsedNavPopover__panel }}
       button={
         <EuiCollapsedNavButton
           title={title}
@@ -62,6 +66,10 @@ export const EuiCollapsedNavPopover: FunctionComponent<
         />
       }
       {...rest}
+      panelProps={{
+        ...rest.panelProps,
+        css: [styles.euiCollapsedNavPopover__panel, rest.panelProps?.css],
+      }}
     >
       <EuiPopoverTitle>
         <TitleElement

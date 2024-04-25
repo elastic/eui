@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
+<div
+  class="kibanaCollapsibleNavSolution emotion-euiCollapsibleNavKibanaSolution-collapsed"
+>
+  <div
+    class="euiPopover emotion-euiPopover-block"
+  >
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    >
+      <button
+        aria-label="Some solution"
+        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+        data-test-subj="euiCollapsedNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="logoElastic"
+        />
+      </button>
+    </span>
+  </div>
+  <div
+    class="euiPopover emotion-euiPopover-block"
+    data-test-subj="kibanaSolutionSwitcherDocked"
+  >
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    >
+      <button
+        aria-label="Solution view"
+        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+        data-test-subj="euiCollapsedNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="layers"
+        />
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`KibanaCollapsibleNavSolution renders docked icons: popover 1`] = `
+<div
+  aria-describedby="generated-id"
+  aria-label="Solution view"
+  aria-live="off"
+  aria-modal="true"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel  emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-hasTransform-right-euiCollapsedNavPopover__panel-euiCollapsibleNavKibanaSolution__switcherPopover"
+  data-autofocus="true"
+  data-popover-open="true"
+  data-popover-panel="true"
+  role="dialog"
+  style="top: -22px; left: 16px; z-index: 2000;"
+  tabindex="0"
+>
+  <div
+    class="euiPopover__arrow emotion-euiPopoverArrow-right"
+    data-popover-arrow="right"
+    style="left: 0px; top: 10px;"
+  />
+  <p
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+  </p>
+  <div>
+    <div
+      class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+    >
+      <span
+        class="eui-textTruncate emotion-euiCollapsedNavPopover__title"
+      >
+        Solution view
+      </span>
+    </div>
+    <div
+      class="emotion-euiCollapsedNavPopover__items"
+    >
+      <ul
+        aria-label="Navigate to solution"
+        class="euiListGroup emotion-euiListGroup-s-bordered-maxWidthDefault"
+        data-test-subj="kibanaSolutionSwitcherList"
+      >
+        <li
+          class="euiListGroupItem emotion-euiListGroupItem-s"
+        >
+          <span
+            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
+            data-test-subj="test-solution"
+          >
+            <span
+              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              title="Some other solution"
+            >
+              Some other solution
+            </span>
+          </span>
+        </li>
+      </ul>
+      <ul
+        class="euiListGroup emotion-euiListGroup-s-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
+      >
+        <li
+          class="euiListGroupItem emotion-euiListGroupItem-s"
+        >
+          <span
+            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
+          >
+            <span
+              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              title="Some other popover content"
+            >
+              Some other popover content
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`KibanaCollapsibleNavSolution renders with a solution switcher 1`] = `
+<div
+  aria-label="aria-label"
+  class="kibanaCollapsibleNavSolution testClass1 testClass2 emotion-euiCollapsibleNavKibanaSolution-uncollapsed-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiPopover euiInputPopover emotion-euiPopover-block-EuiInputPopover"
+  >
+    <button
+      class="euiLink euiCollapsibleNavLink emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isInteractive-euiCollapsibleNavKibanaSolution__title"
+      data-test-subj="kibanaSolutionSwitcher"
+      type="button"
+    >
+      <span
+        class="emotion-euiCollapsibleNavKibanaSolution__logo"
+        data-euiicon-type="logoElastic"
+      />
+      Some solution
+      <span
+        class="emotion-euiCollapsibleNavKibanaSolution__switcherIcon"
+        data-euiicon-type="layers"
+      >
+         - click to switch to another solution
+      </span>
+    </button>
+  </div>
+  <div
+    aria-label="Some solution"
+    class="euiCollapsibleNavItem__items emotion-euiCollapsibleNavItem__items-isGroup"
+    role="group"
+  >
+    <span
+      class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+    >
+      <span
+        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      >
+        Some navigation link
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`KibanaCollapsibleNavSolution renders with a solution switcher: popover 1`] = `
+<div
+  aria-describedby="generated-id"
+  aria-label="Solution view"
+  aria-live="off"
+  aria-modal="true"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel  emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-isAttached-bottom-euiCollapsibleNavKibanaSolution__switcherPopover"
+  data-autofocus="true"
+  data-popover-open="true"
+  data-popover-panel="true"
+  role="dialog"
+  style="top: 0px; left: -22px; z-index: 2000; inline-size: 0px;"
+  tabindex="0"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id"
+  >
+    You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+  </p>
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <div
+        class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
+      >
+        Solution view
+      </div>
+      <ul
+        aria-label="Navigate to solution"
+        class="euiListGroup emotion-euiListGroup-s-bordered-maxWidthDefault"
+        data-test-subj="kibanaSolutionSwitcherList"
+      >
+        <li
+          class="euiListGroupItem emotion-euiListGroupItem-s"
+        >
+          <span
+            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
+            data-test-subj="test-solution"
+          >
+            <span
+              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              title="Some other solution"
+            >
+              Some other solution
+            </span>
+          </span>
+        </li>
+      </ul>
+      <ul
+        class="euiListGroup emotion-euiListGroup-s-maxWidthDefault-euiCollapsibleNavKibanaSolution__secondaryItems"
+      >
+        <li
+          class="euiListGroupItem emotion-euiListGroupItem-s"
+        >
+          <span
+            class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
+          >
+            <span
+              class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+              title="Some other popover content"
+            >
+              Some other popover content
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;

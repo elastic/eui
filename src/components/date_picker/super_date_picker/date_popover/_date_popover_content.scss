@@ -2,6 +2,10 @@
 .euiDatePopoverContent .react-datepicker {
   width: $euiFormMaxWidth;
   max-width: 100%;
+
+  @include euiBreakpoint('xs') {
+    width: $euiDatePickerCalendarWidth;
+  }
 }
 
 .euiDatePopoverContent__padded {
@@ -10,11 +14,4 @@
 
 .euiDatePopoverContent__padded--large {
   padding: $euiSize;
-}
-
-@include euiBreakpoint('xs') {
-  .euiDatePopoverContent {
-    // Small screens drop the time selector
-    width: $euiDatePickerCalendarWidth;
-  }
 }

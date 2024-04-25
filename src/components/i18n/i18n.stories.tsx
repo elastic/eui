@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiI18n, EuiI18nProps, I18nTokensShape } from './i18n';
 import { EuiCard } from '../card';
@@ -18,6 +19,11 @@ type Props = EuiI18nProps<any, any, string[]>;
 const meta: Meta<Props> = {
   title: 'Utilities/EuiI18n',
   component: EuiI18n,
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.textOnly,
+    },
+  },
 };
 
 export default meta;

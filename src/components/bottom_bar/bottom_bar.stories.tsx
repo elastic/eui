@@ -8,6 +8,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiBottomBar, EuiBottomBarProps } from './bottom_bar';
 
 const meta: Meta<EuiBottomBarProps> = {
@@ -25,6 +26,12 @@ const meta: Meta<EuiBottomBarProps> = {
     position: 'fixed',
     usePortal: true,
     affordForDisplacement: true,
+  },
+  parameters: {
+    loki: {
+      // Bottom bar content is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 

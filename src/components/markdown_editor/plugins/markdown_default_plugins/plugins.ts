@@ -19,8 +19,19 @@ import {
   DefaultEuiMarkdownProcessingPlugins,
 } from './processing_plugins';
 
+export type ExcludableDefaultPlugins =
+  | 'emoji'
+  | 'lineBreaks'
+  | 'linkValidator'
+  | 'checkbox'
+  | 'tooltip';
+
+export type DefaultPluginsConfig =
+  | undefined
+  | { exclude?: ExcludableDefaultPlugins[] };
+
 export const getDefaultEuiMarkdownPlugins = (
-  config: undefined | { exclude?: Array<'tooltip'> }
+  config?: DefaultPluginsConfig
 ): {
   parsingPlugins: DefaultEuiMarkdownParsingPlugins;
   processingPlugins: DefaultEuiMarkdownProcessingPlugins;

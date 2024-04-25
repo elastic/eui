@@ -271,11 +271,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
-                aria-label="Select this row"
+                aria-label="Select row 1"
                 class="euiCheckbox__input"
                 data-test-subj="checkboxSelectRow-1"
                 id="__table_generated-id_selection_column_1-checkbox"
-                title="Select this row"
+                title="Select row 1"
                 type="checkbox"
               />
               <div
@@ -377,11 +377,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
-                aria-label="Select this row"
+                aria-label="Select row 2"
                 class="euiCheckbox__input"
                 data-test-subj="checkboxSelectRow-2"
                 id="__table_generated-id_selection_column_2-checkbox"
-                title="Select this row"
+                title="Select row 2"
                 type="checkbox"
               />
               <div
@@ -483,11 +483,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
-                aria-label="Select this row"
+                aria-label="Select row 3"
                 class="euiCheckbox__input"
                 data-test-subj="checkboxSelectRow-3"
                 id="__table_generated-id_selection_column_3-checkbox"
-                title="Select this row"
+                title="Select row 3"
                 type="checkbox"
               />
               <div
