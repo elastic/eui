@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiCodeBlock,
   EuiIcon,
@@ -37,6 +38,9 @@ const autoRefreshOnlySource = require('!!raw-loader!./auto_refresh_only');
 import SuperDatePickerPattern from './super_date_picker_pattern';
 const superDatePickerPatternSource = require('!!raw-loader!./super_date_picker_pattern');
 
+import SuperDatePickerLocale from './super_date_picker_locale';
+const superDatePickerLocaleSource = require('!!raw-loader!./super_date_picker_locale');
+
 const superDatePickerSnippet = `<EuiSuperDatePicker
   onTimeChange={onTimeChange}
   start="now-30m"
@@ -58,6 +62,14 @@ const superDatePickerCustomQuickSelectSnippet = `<EuiSuperDatePicker
   ]}
 />
 `;
+
+const superDatePickerLocaleSnippet = `<EuiSuperDatePicker
+  start="now-1h"
+  end="now-15m"
+  locale="zh-CN"
+  dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+  onTimeChange={onTimeChange}
+/>`;
 
 export const SuperDatePickerExample = {
   title: 'Super date picker',
@@ -345,6 +357,39 @@ if (!endMoment || !endMoment.isValid()) {
       ),
       demo: <SuperDatePickerPattern />,
       dempPanelProps: { color: 'subdued' },
+    },
+    {
+      title: 'Locale',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: superDatePickerLocaleSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Locale formatting is achieved by using the <EuiCode>locale</EuiCode>
+            ,<EuiCode>timeFormat</EuiCode>, and <EuiCode>dateFormat</EuiCode>{' '}
+            props. The latter will take any <EuiCode>moment()</EuiCode>{' '}
+            notation. Check{' '}
+            <a href="https://en.wikipedia.org/wiki/Date_format_by_country">
+              Date format by country
+            </a>{' '}
+            for formatting examples.
+          </p>
+          <EuiCallOut color="warning">
+            Moment will try to load the locale on demand when it is used.
+            Bundlers that do not support dynamic require statements will need to
+            explicitly import the locale, e.g.{' '}
+            <EuiCode>{"import 'moment/locale/zh-cn'"}</EuiCode>. See the below
+            demo TSX for examples.
+          </EuiCallOut>
+        </>
+      ),
+      props: { EuiSuperDatePicker },
+      snippet: superDatePickerLocaleSnippet,
+      demo: <SuperDatePickerLocale />,
     },
   ],
 };
