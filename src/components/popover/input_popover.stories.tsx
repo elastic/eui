@@ -38,11 +38,6 @@ const meta: Meta<EuiInputPopoverProps> = {
     popoverScreenReaderText: '',
   },
 };
-enableFunctionToggleControls(meta, [
-  'closePopover',
-  'onPanelResize',
-  'onPositionChange',
-]);
 moveStorybookControlsToCategory(
   meta,
   [
@@ -75,6 +70,11 @@ export const Playground: Story = {
   },
   render: (args) => <StatefulInputPopover {...args} />,
 };
+enableFunctionToggleControls(Playground, [
+  'closePopover',
+  'onPanelResize',
+  'onPositionChange',
+]);
 
 const StatefulInputPopover = ({
   children,
@@ -106,4 +106,20 @@ const StatefulInputPopover = ({
       {children}
     </EuiInputPopover>
   );
+};
+
+export const AnchorPosition: Story = {
+  parameters: {
+    controls: { include: ['anchorPosition', 'panelMinWidth'] },
+  },
+  args: {
+    children: 'Popover content',
+    isOpen: true,
+    panelMinWidth: 500,
+  },
+  render: (args) => (
+    <div css={{ display: 'flex', justifyContent: 'center' }}>
+      <StatefulInputPopover {...args} />
+    </div>
+  ),
 };
