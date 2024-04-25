@@ -16,6 +16,10 @@ import {
 } from '../../../.storybook/utils';
 import { EuiButton } from '../button';
 import { EuiFlexGroup } from '../flex';
+import { EuiText } from '../text';
+
+import { EuiPopoverTitle } from './popover_title';
+import { EuiPopoverFooter } from './popover_footer';
 import { EuiPopover, EuiPopoverProps } from './popover';
 
 const meta: Meta<EuiPopoverProps> = {
@@ -45,7 +49,6 @@ const meta: Meta<EuiPopoverProps> = {
     buffer: { control: 'number' }, // For ease of QA
   },
 };
-enableFunctionToggleControls(meta, ['closePopover', 'onPositionChange']);
 disableStorybookControls(meta, ['panelRef', 'popoverRef']);
 
 export default meta;
@@ -59,6 +62,7 @@ export const Playground: Story = {
   },
   render: (args) => <StatefulPopover {...args} />,
 };
+enableFunctionToggleControls(Playground, ['closePopover', 'onPositionChange']);
 
 const StatefulPopover = ({
   button,
@@ -95,4 +99,25 @@ const StatefulPopover = ({
       />
     </EuiFlexGroup>
   );
+};
+
+export const PanelPaddingSize: Story = {
+  parameters: {
+    controls: { include: ['panelPaddingSize'] },
+  },
+  args: {
+    children: (
+      <>
+        <EuiPopoverTitle>Popover title</EuiPopoverTitle>
+        <EuiText>
+          Panel padding size will cascade down to its child{' '}
+          <strong>EuiPopoverTitle</strong> and <strong>EuiPopoverFooter</strong>
+        </EuiText>
+        <EuiPopoverFooter>Popover footer</EuiPopoverFooter>
+      </>
+    ),
+    button: 'popover trigger',
+    isOpen: true,
+  },
+  render: (args) => <StatefulPopover {...args} />,
 };
