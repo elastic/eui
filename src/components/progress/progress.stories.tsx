@@ -25,6 +25,7 @@ const meta: Meta<typeof EuiProgress> = {
     color: 'success',
     size: 'm',
     position: 'static',
+    valueText: false,
   },
 };
 
