@@ -63,20 +63,21 @@ moveStorybookControlsToCategory(
   ],
   'EuiPopover props'
 );
-disableStorybookControls(meta, ['inputRef']);
+disableStorybookControls(meta, ['input', 'inputRef']);
 
 export default meta;
 type Story = StoryObj<EuiInputPopoverProps>;
 
 export const Playground: Story = {
   args: {
-    children: 'This is a popover',
+    children: 'Popover content',
     isOpen: true,
   },
   render: (args) => <StatefulInputPopover {...args} />,
 };
 
 const StatefulInputPopover = ({
+  children,
   input,
   closePopover,
   isOpen: _isOpen,
@@ -93,7 +94,6 @@ const StatefulInputPopover = ({
     <EuiInputPopover
       isOpen={isOpen}
       closePopover={handleOnClose}
-      closeOnScroll={true}
       input={
         <EuiFieldText
           onFocus={() => setOpen(true)}
@@ -103,7 +103,7 @@ const StatefulInputPopover = ({
       }
       {...rest}
     >
-      Popover content
+      {children}
     </EuiInputPopover>
   );
 };
