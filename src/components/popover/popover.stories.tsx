@@ -49,7 +49,7 @@ const meta: Meta<EuiPopoverProps> = {
     buffer: { control: 'number' }, // For ease of QA
   },
 };
-disableStorybookControls(meta, ['panelRef', 'popoverRef']);
+disableStorybookControls(meta, ['panelRef', 'popoverRef', 'closePopover']);
 
 export default meta;
 type Story = StoryObj<EuiPopoverProps>;
@@ -62,7 +62,7 @@ export const Playground: Story = {
   },
   render: (args) => <StatefulPopover {...args} />,
 };
-enableFunctionToggleControls(Playground, ['closePopover', 'onPositionChange']);
+enableFunctionToggleControls(Playground, ['onPositionChange']);
 
 const StatefulPopover = ({
   button,
