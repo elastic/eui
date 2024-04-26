@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render } from '../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import { render, waitForEuiToolTipVisible } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableList } from './selectable_list';
@@ -78,13 +79,11 @@ describe('EuiSelectableListItem', () => {
             searchValue="Mi"
           />
         );
-
         expect(container.querySelector('.euiMark')).toHaveTextContent('Mi');
         expect(
           container.querySelector('.euiTextTruncate')
         ).not.toBeInTheDocument();
       });
-
       it('renders an EuiTextTruncate component when truncating text', () => {
         const { container, getByTestSubject } = render(
           <EuiSelectableList
@@ -94,12 +93,10 @@ describe('EuiSelectableListItem', () => {
             searchValue="titan"
           />
         );
-
         expect(getByTestSubject('titanOption')).toContainElement(
           container.querySelector('.euiTextTruncate')
         );
       });
-
       it('does not highlight/mark the current `searchValue` if `isPreFiltered.highlightSearch` is false', () => {
         const { container } = render(
           <EuiSelectableList
@@ -109,7 +106,6 @@ describe('EuiSelectableListItem', () => {
             searchValue="Mi"
           />
         );
-
         expect(container.querySelector('.euiMark')).not.toBeInTheDocument();
       });
     });
@@ -387,6 +383,76 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(container.querySelector('.euiTextTruncate')).toBeInTheDocument();
+      });
+    });
+
+    describe('toolTipContent & tooltipProps', () => {
+      it('renders a tooltip with applied props on mouseover', async () => {
+        const options = [
+          {
+            label: 'Titan',
+            'data-test-subj': 'titanOption',
+            toolTipContent: 'I am a tooltip!',
+            toolTipProps: {
+              'data-test-subj': 'optionToolTip',
+            },
+          },
+          {
+            label: 'Enceladus',
+          },
+          {
+            label: 'Mimas',
+          },
+        ];
+
+        const { getByTestSubject } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+          />
+        );
+
+        fireEvent.mouseOver(getByTestSubject('titanOption'));
+        await waitForEuiToolTipVisible();
+
+        expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
+        expect(getByTestSubject('optionToolTip')).toHaveTextContent(
+          'I am a tooltip!'
+        );
+      });
+
+      it('renders a tooltip with applied props when activeOptionIndex is set', async () => {
+        const options = [
+          {
+            label: 'Titan',
+            'data-test-subj': 'titanOption',
+            toolTipContent: 'I am a tooltip!',
+            toolTipProps: {
+              'data-test-subj': 'optionToolTip',
+            },
+          },
+          {
+            label: 'Enceladus',
+          },
+          {
+            label: 'Mimas',
+          },
+        ];
+
+        const { getByTestSubject } = render(
+          <EuiSelectableList
+            options={options}
+            activeOptionIndex={0}
+            {...selectableListRequiredProps}
+          />
+        );
+
+        await waitForEuiToolTipVisible();
+
+        expect(getByTestSubject('optionToolTip')).toBeInTheDocument();
+        expect(getByTestSubject('optionToolTip')).toHaveTextContent(
+          'I am a tooltip!'
+        );
       });
     });
   });
