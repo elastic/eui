@@ -6,25 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { faker } from '@faker-js/faker';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { EuiBasicTable } from '../basic_table';
 import { EuiButton } from '../button';
-import { EuiCallOut } from '../call_out';
-import { EuiHealth } from '../health';
-import { EuiSpacer } from '../spacer';
-import { EuiText } from '../text';
-import {
-  EuiSearchBarOnChangeArgs,
-  EuiSearchBar,
-  EuiSearchBarProps,
-  QueryType,
-} from './search_bar';
-
-faker.seed(42);
+import { EuiSearchBar, EuiSearchBarProps } from './search_bar';
 
 const tags = [
   { name: 'marketing', color: 'danger' },
@@ -33,23 +20,6 @@ const tags = [
   { name: 'sales', color: 'warning' },
   { name: 'ga', color: 'success' },
 ];
-
-const items = [...Array(5).keys()].map((id) => {
-  return {
-    id,
-    status: faker.helpers.arrayElement(['open', 'closed']),
-    type: faker.helpers.arrayElement(['dashboard', 'visualization', 'watch']),
-    tag: faker.helpers.arrayElements(
-      tags.map((tag) => tag.name),
-      { min: 0, max: 3 }
-    ),
-    active: faker.datatype.boolean(),
-    owner: faker.helpers.arrayElement(['dewey', 'wanda', 'carrie', 'gabic']),
-    followers: faker.number.int({ min: 0, max: 20 }),
-    comments: faker.number.int({ min: 0, max: 10 }),
-    stars: faker.number.int({ min: 0, max: 5 }),
-  };
-});
 
 const meta: Meta<EuiSearchBarProps> = {
   title: 'Forms/EuiSearchBar/EuiSearchBar',
@@ -126,10 +96,6 @@ export const Playground: Story = {
         },
       },
     },
-    hint: {
-      content: '',
-      popoverProps: {},
-    },
     filters: [
       {
         type: 'field_value_toggle_group',
@@ -177,7 +143,7 @@ export const Playground: Story = {
               resolve(
                 tags.map((tag) => ({
                   value: tag.name,
-                  view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+                  view: tag.name,
                 }))
               );
             }, 2000);
@@ -188,124 +154,4 @@ export const Playground: Story = {
     toolsLeft: false as any,
     toolsRight: false as any,
   },
-  render: (args) => <StatefulSearchBar {...args} />,
-};
-
-const StatefulSearchBar = (args: EuiSearchBarProps) => {
-  const { query, defaultQuery, box, hint } = args;
-
-  const [_query, setQuery] = useState<QueryType>(
-    query ?? defaultQuery ?? EuiSearchBar.Query.MATCH_ALL
-  );
-  const [error, setError] = useState<EuiSearchBarOnChangeArgs['error']>(null);
-  const showHint = !!hint?.content;
-
-  const onChange = ({ query, error }: EuiSearchBarOnChangeArgs) => {
-    if (error) {
-      setError(error);
-    } else {
-      setError(null);
-      setQuery(query ?? EuiSearchBar.Query.MATCH_ALL);
-    }
-  };
-
-  const handleOnClear = () => {
-    setQuery(EuiSearchBar.Query.MATCH_ALL);
-  };
-
-  const renderSearch = () => {
-    return (
-      <EuiSearchBar
-        {...args}
-        defaultQuery={defaultQuery}
-        box={{
-          ...box,
-          onClear: handleOnClear,
-        }}
-        onChange={onChange}
-        hint={
-          showHint
-            ? {
-                content: <span>{hint.content}</span>,
-                popoverProps: hint.popoverProps ?? {},
-              }
-            : undefined
-        }
-      />
-    );
-  };
-
-  const renderError = () => {
-    if (!error) {
-      return;
-    }
-    return (
-      <>
-        <EuiCallOut
-          iconType="faceSad"
-          color="danger"
-          title={`Invalid search: ${error.message}`}
-        />
-        <EuiSpacer size="l" />
-      </>
-    );
-  };
-
-  const renderTable = () => {
-    const columns = [
-      {
-        name: 'Type',
-        field: 'type',
-      },
-      {
-        name: 'Open',
-        field: 'status',
-        render: (status: string) => (status === 'open' ? 'Yes' : 'No'),
-      },
-      {
-        name: 'Active',
-        field: 'active',
-      },
-      {
-        name: 'Tags',
-        field: 'tag',
-      },
-      {
-        name: 'Owner',
-        field: 'owner',
-      },
-      {
-        name: 'Stats',
-        width: '150px',
-        render: (item: (typeof items)[0]) => {
-          return (
-            <div>
-              <div>{`${item.stars} Stars`}</div>
-              <div>{`${item.followers} Followers`}</div>
-              <div>{`${item.comments} Comments`}</div>
-            </div>
-          );
-        },
-      },
-    ];
-
-    const queriedItems = EuiSearchBar.Query.execute(_query, items, {
-      defaultFields: ['owner', 'tag', 'type'],
-    });
-
-    return <EuiBasicTable items={queriedItems} columns={columns} />;
-  };
-  return (
-    renderError() || (
-      <>
-        {renderSearch()}
-        <EuiSpacer />
-        <EuiText>
-          <h2>Example data output</h2>
-        </EuiText>
-        <EuiSpacer />
-        {renderTable()}
-      </>
-    )
-  );
 };
