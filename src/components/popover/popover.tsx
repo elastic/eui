@@ -191,7 +191,7 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Minimum distance between the popover and the bounding container;
    * Pass an array of 4 values to adjust each side differently: `[top, right, bottom, left]`
-   * Default is 16
+   * @default 16
    */
   buffer?: number | [number, number, number, number];
   /**
@@ -453,6 +453,17 @@ export class EuiPopover extends Component<Props, State> {
     // The popover is being opened.
     if (!prevProps.isOpen && this.props.isOpen) {
       this.onOpenPopover();
+    }
+
+    // ensure recalculation of panel position on prop updates
+    if (
+      this.props.isOpen &&
+      (prevProps.anchorPosition !== this.props.anchorPosition ||
+        prevProps.buffer !== this.props.buffer ||
+        prevProps.offset !== this.props.offset ||
+        prevProps.panelPaddingSize !== this.props.panelPaddingSize)
+    ) {
+      this.positionPopoverFluid();
     }
 
     // update scroll listener
