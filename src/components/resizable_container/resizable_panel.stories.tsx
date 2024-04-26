@@ -65,7 +65,7 @@ type Story = StoryObj<EuiResizablePanelProps>;
 export const Playground: Story = {
   args: {
     children: faker.lorem.sentences(5),
-    initialSize: 100,
+    initialSize: 50,
   },
   render: ({ mode, children, ...rest }) => {
     const placeholderMode =

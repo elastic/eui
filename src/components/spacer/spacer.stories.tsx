@@ -21,13 +21,7 @@ const meta: Meta<EuiSpacerProps> = {
         <EuiText>
           <p>Observe the space created between this and the next text block.</p>
         </EuiText>
-        <div
-          css={({ euiTheme }) => ({
-            backgroundColor: euiTheme.colors.lightShade,
-          })}
-        >
-          <Story />
-        </div>
+        <Story />
         <EuiText>
           <p>
             Observe the space created between this and the previous text block.
