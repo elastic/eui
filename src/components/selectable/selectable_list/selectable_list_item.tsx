@@ -7,13 +7,14 @@
  */
 
 import classNames from 'classnames';
-import React, { Component, LiHTMLAttributes } from 'react';
+import React, { AriaAttributes, Component, LiHTMLAttributes } from 'react';
 
 import { CommonProps, keysOf } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
+import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
 
 import type {
   EuiSelectableOption,
@@ -90,6 +91,14 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * Wrapping only works if virtualization is off.
      */
     textWrap?: EuiSelectableOption['textWrap'];
+    /**
+     * Optional custom tooltip content for the button
+     */
+    toolTipContent?: EuiToolTipProps['content'];
+    /**
+     * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+     */
+    toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
   };
 
 export class EuiSelectableListItem extends Component<EuiSelectableListItemProps> {
@@ -147,7 +156,10 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
       paddingSize = 's',
       role = 'option',
       searchable,
+      style,
       textWrap,
+      toolTipContent,
+      toolTipProps,
       ...rest
     } = this.props;
 
@@ -163,6 +175,8 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
     const textClasses = classNames('euiSelectableListItem__text', {
       [`euiSelectableListItem__text--${textWrap}`]: textWrap,
     });
+
+    const hasToolTip = !disabled && toolTipContent;
 
     let optionIcon: React.ReactNode;
     if (showIcons) {
@@ -337,24 +351,45 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
       </EuiScreenReaderOnly>
     );
 
-    return (
-      <li
-        role={role}
-        aria-disabled={disabled}
-        aria-checked={this.isChecked(role, checked)} // Whether the item is "checked"
-        aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
-        className={classes}
-        {...rest}
-      >
-        <span className="euiSelectableListItem__content">
-          {optionIcon}
-          {prependNode}
-          <span className={textClasses}>
-            {children}
-            {screenReaderText}
-          </span>
-          {appendNode}
+    const content = (
+      <span className="euiSelectableListItem__content">
+        {optionIcon}
+        {prependNode}
+        <span className={textClasses}>
+          {children}
+          {screenReaderText}
         </span>
+        {appendNode}
+      </span>
+    );
+
+    const optionProps = {
+      role: role,
+      'aria-disabled': disabled,
+      'aria-checked': this.isChecked(
+        role,
+        checked
+      ) as AriaAttributes['aria-checked'], // Whether the item is "checked"
+      'aria-selected': !disabled && isFocused, // Whether the item has keyboard focus per W3 spec
+      ...rest,
+    };
+
+    return hasToolTip ? (
+      // This extra wrapper is needed to ensure that the tooltip has a correct context
+      // for positioning while also ensuring to wrap the interactive option
+      <li style={style} className={classes}>
+        <EuiToolTip
+          content={toolTipContent}
+          anchorClassName="euiSelectableListItem__tooltipAnchor"
+          {...toolTipProps}
+          isOpen={isFocused}
+        >
+          <span {...optionProps}>{content}</span>
+        </EuiToolTip>
+      </li>
+    ) : (
+      <li {...optionProps} style={style} className={classes}>
+        {content}
       </li>
     );
   }
