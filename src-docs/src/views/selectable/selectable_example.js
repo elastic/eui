@@ -33,6 +33,9 @@ const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion')
 import SelectableMixed from './selectable_mixed';
 const selectableMixedSource = require('!!raw-loader!./selectable_mixed');
 
+import SelectableToolTips from './selectable_tool_tips';
+const selectableToolTipsSource = require('!!raw-loader!./selectable_tool_tips');
+
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
@@ -281,6 +284,42 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   aria-label="Example supporting mixed (indeterminate) options"
   options={[{ label: '', checked: 'mixed' }]}
+  onChange={newOptions => setOptions(newOptions)}
+>
+  {list => list}
+</EuiSelectable>`,
+    },
+
+    {
+      title: 'Options can have tooltips',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableToolTipsSource,
+        },
+      ],
+      text: (
+        <p>
+          You can add tooltips to the options by passing{' '}
+          <EuiCode>toolTipContent</EuiCode>. Use <EuiCode>toolTipProps</EuiCode>{' '}
+          to pass additional <EuiCode>EuiToolTipProps</EuiCode> to the tooltip.
+        </p>
+      ),
+      props,
+      demo: <SelectableToolTips />,
+      snippet: `<EuiSelectable
+  aria-label="Example supporting mixed (indeterminate) options"
+  options={[
+    {
+      label: '',
+      checked: 'mixed',
+      toolTipContent: 'tooltip 1', 
+      toolTipProps: {
+        position: 'bottom'
+        'data-test-subj': 'optionTooltip',
+      }
+    }
+  ]}
   onChange={newOptions => setOptions(newOptions)}
 >
   {list => list}
