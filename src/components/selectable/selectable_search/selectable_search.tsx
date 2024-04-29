@@ -42,7 +42,7 @@ type _EuiSelectableSearchProps<T> = EuiSelectableSearchProps<T> & {
   listId?: string;
   isPreFiltered: boolean;
   /**
-   * Optional custom option matcher function
+   * Option matcher function
    */
   optionMatcher: EuiSelectableOptionMatcher<T>;
 };
