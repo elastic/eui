@@ -148,7 +148,4 @@ export const Playground: Story = {
       },
     },
   },
-  // using render() over args to ensure dynamic update on prop changes
-  // Cee TODO: This doesn't appear to work for the `paddingSize` and `bottomBorder` props
-  // render: ({ ...args }) => <EuiPageTemplate {...args} />,
 };

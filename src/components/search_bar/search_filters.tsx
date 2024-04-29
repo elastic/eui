@@ -13,7 +13,7 @@ import { EuiFilterGroup } from '../filter_group';
 
 export type { SearchFilterConfig } from './filters';
 
-interface EuiSearchBarFiltersProps {
+export interface EuiSearchBarFiltersProps {
   query: Query;
   onChange: (query: Query) => void;
   filters: SearchFilterConfig[];

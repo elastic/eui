@@ -11,6 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   hideStorybookControls,
   disableStorybookControls,
+  enableFunctionToggleControls,
 } from '../../../.storybook/utils';
 
 import { EuiIcon } from '../icon';
@@ -37,6 +38,7 @@ const meta: Meta<EuiSideNavProps> = {
   ],
 };
 disableStorybookControls(meta, ['children']);
+enableFunctionToggleControls(meta, ['toggleOpenOnMobile']);
 
 export default meta;
 type Story = StoryObj<EuiSideNavProps>;
