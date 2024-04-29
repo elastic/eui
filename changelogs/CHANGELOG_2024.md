@@ -7,7 +7,6 @@
   - `emoji`
 - Updated `EuiSelectable`'s `isPreFiltered` prop to allow passing a configuration object, which allows disabling search highlighting in addition to search filtering ([#7683](https://github.com/elastic/eui/pull/7683))
 - Updated `EuiFlexGroup` and `EuiFlexItem` prop types to support passing any valid React component type to the `component` prop and ensure proper type checking of the extra props forwarded to the `component`. ([#7688](https://github.com/elastic/eui/pull/7688))
-- Fixed `toolTipProps` type on `EuiSuperUpdateButton` to use `Partial<EuiToolTipProps>` ([#7692](https://github.com/elastic/eui/pull/7692))
 - Updated `EuiSearchBar` to allow the `@` special character in query string searches ([#7702](https://github.com/elastic/eui/pull/7702))
 - Added a new, optional `optionMatcher` prop to `EuiSelectable` and `EuiComboBox` allowing passing a custom option matcher function to these components and controlling option filtering for given search string ([#7709](https://github.com/elastic/eui/pull/7709))
 
@@ -23,6 +22,7 @@
   - Longer `append`/`prepend` labels no longer cause a background bug
   - Inputs can no longer overwhelm the actual range in width
 - Fixed a visual text alignment regression in `EuiTableRowCell`s with the `row` header scope ([#7681](https://github.com/elastic/eui/pull/7681))
+- Fixed `toolTipProps` type on `EuiSuperUpdateButton` to use `Partial<EuiToolTipProps>` ([#7692](https://github.com/elastic/eui/pull/7692))
 - Fixes missing prop type for `popperProps` on `EuiDatePicker` ([#7694](https://github.com/elastic/eui/pull/7694))
 - Fixed a focus bug with `EuiDataGrid`s with `leadingControlColumns` when moving columns to the left/right ([#7701](https://github.com/elastic/eui/pull/7701)) ([#7698](https://github.com/elastic/eui/pull/7698))
 - Fixed `EuiSuperDatePicker` to validate date string with respect of locale on `EuiAbsoluteTab`. ([#7705](https://github.com/elastic/eui/pull/7705))
