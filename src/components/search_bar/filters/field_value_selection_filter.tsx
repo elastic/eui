@@ -66,8 +66,6 @@ const defaults = {
   config: {
     multiSelect: true,
     filterWith: 'prefix',
-    loadingMessage: 'Loading...',
-    noOptionsMessage: 'No options found',
     searchThreshold: 10,
   },
 };
@@ -400,16 +398,10 @@ export class FieldValueSelectionFilter extends Component<
               options={items}
               renderOption={(option) => option.view}
               isLoading={isNil(this.state.options)}
-              loadingMessage={
-                config.loadingMessage || defaults.config.loadingMessage
-              }
-              emptyMessage={
-                config.noOptionsMessage || defaults.config.noOptionsMessage
-              }
+              loadingMessage={config.loadingMessage}
+              emptyMessage={config.noOptionsMessage}
               errorMessage={this.state.error}
-              noMatchesMessage={
-                config.noOptionsMessage || defaults.config.noOptionsMessage
-              }
+              noMatchesMessage={config.noOptionsMessage}
               listProps={{
                 isVirtualized: isOverSearchThreshold || false,
               }}
