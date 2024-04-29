@@ -60,7 +60,6 @@
   ],
   "dependencies": {
     "@hello-pangea/dnd": "^16.6.0",
-    "@storybook/test": "^8.0.5",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
     "@types/react-window": "^1.8.8",
@@ -127,6 +126,7 @@
     "@storybook/blocks": "^8.0.5",
     "@storybook/react": "^8.0.5",
     "@storybook/react-webpack5": "^8.0.5",
+    "@storybook/test": "^8.0.5",
     "@svgr/core": "8.0.0",
     "@svgr/plugin-jsx": "^8.0.1",
     "@svgr/plugin-svgo": "^8.0.1",
