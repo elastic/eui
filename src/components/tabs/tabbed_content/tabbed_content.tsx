@@ -137,19 +137,6 @@ export class EuiTabbedContent extends Component<
     }
   };
 
-  static getDerivedStateFromProps(
-    nextProps: EuiTabbedContentProps,
-    currentState: EuiTabbedContentState
-  ) {
-    if (!nextProps.tabs?.find((tab) => tab.id === currentState.selectedTabId)) {
-      return {
-        ...currentState,
-        selectedTabId: nextProps?.tabs[0]?.id,
-      };
-    }
-    return null;
-  }
-
   render() {
     const {
       className,
@@ -168,9 +155,10 @@ export class EuiTabbedContent extends Component<
       externalSelectedTab ||
       tabs.find(
         (tab: EuiTabbedContentTab) => tab.id === this.state.selectedTabId
-      );
+      ) ||
+      tabs[0]; // Fall back to the first tab if a selected tab can't be found
 
-    const { content: selectedTabContent, id: selectedTabId } = selectedTab!;
+    const { content: selectedTabContent, id: selectedTabId } = selectedTab;
 
     return (
       <div className={className} {...rest}>

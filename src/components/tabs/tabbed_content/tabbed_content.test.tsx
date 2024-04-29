@@ -121,5 +121,32 @@ describe('EuiTabbedContent', () => {
       );
       expect(getAllByRole('tab')[1]).toHaveAttribute('aria-selected', 'true');
     });
+
+    it('resets the selected tab to the first if the `tabs` content completely changes', () => {
+      const { rerender, getAllByRole, getByTestSubject } = render(
+        <EuiTabbedContent tabs={tabs} />
+      );
+
+      fireEvent.click(getByTestSubject('kibanaTab'));
+      expect(getAllByRole('tab')[1]).toHaveAttribute('aria-selected', 'true');
+
+      rerender(
+        <EuiTabbedContent
+          tabs={[
+            {
+              id: 'hello',
+              name: 'New tab 1',
+              content: <p>Hello</p>,
+            },
+            {
+              id: 'world',
+              name: 'New tab 2',
+              content: <p>World</p>,
+            },
+          ]}
+        />
+      );
+      expect(getAllByRole('tab')[0]).toHaveAttribute('aria-selected', 'true');
+    });
   });
 });
