@@ -13,4 +13,7 @@ export * from './combo_box_options_list';
 export type {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
+  EuiComboBoxOptionMatcher,
+  EuiComboBoxOptionMatcherArgs,
 } from './types';
+export { createPartialStringEqualityOptionMatcher } from './matching_options';

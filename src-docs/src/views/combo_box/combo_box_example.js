@@ -258,6 +258,17 @@ const labelledbySnippet = `<EuiComboBox
   isClearable={true}
 />`;
 
+import OptionMatcher from './option_matcher';
+const optionMatcherSource = require('!!raw-loader!./option_matcher');
+const optionMatcherSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
+  placeholder="Select or create options"
+  options={options}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  optionMatcher={optionMatcher}
+/>`;
+
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
@@ -676,6 +687,35 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: startingWithSnippet,
       demo: <StartingWith />,
+    },
+    {
+      title: 'Custom option matcher',
+      text: (
+        <>
+          <p>
+            When searching for options, <EuiCode>EuiComboBox</EuiCode> uses a
+            partial equality string matcher by default, displaying all options
+            whose labels include the searched string and taking{' '}
+            <EuiCode>isCaseSensitive</EuiCode> prop value into account.
+          </p>
+          <p>
+            In rare cases, you may want to customize this behavior. You can do
+            so by passing a custom option matcher function to the{' '}
+            <EuiCode>optionMatcher</EuiCode> prop. The function must be of type{' '}
+            <EuiCode>EuiComboBoxOptionMatcher</EuiCode> and return
+            <EuiCode>true</EuiCode> for options that should be visible for given
+            search string.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: optionMatcherSource,
+        },
+      ],
+      snippet: optionMatcherSnippet,
+      demo: <OptionMatcher />,
     },
     {
       title: 'Duplicate labels',

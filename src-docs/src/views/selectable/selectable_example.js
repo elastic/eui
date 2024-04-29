@@ -45,6 +45,9 @@ const truncationSource = require('!!raw-loader!./selectable_truncation');
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
 
+import SelectableOptionMatcher from './selectable_option_matcher';
+const selectableOptionMatcherSource = require('!!raw-loader!./selectable_option_matcher');
+
 const props = {
   EuiSelectable,
   EuiSelectableOptionProps,
@@ -525,6 +528,40 @@ export const SelectableExample = {
   {list => list}
 </EuiSelectable>`,
       props,
+    },
+    {
+      title: 'Custom option matcher',
+      text: (
+        <>
+          <p>
+            When searching for options, <EuiCode>EuiSelectable</EuiCode> uses a
+            partial equality string matcher by default, displaying all options
+            whose labels include the searched string.
+          </p>
+          <p>
+            In rare cases, you may want to customize this behavior. You can do
+            so by passing a custom option matcher function to the{' '}
+            <EuiCode>optionMatcher</EuiCode> prop. The function must be of type{' '}
+            <EuiCode>EuiSelectableOptionMatcher</EuiCode> and return
+            <EuiCode>true</EuiCode> for options that should be visible for given
+            search string.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableOptionMatcherSource,
+        },
+      ],
+      demo: <SelectableOptionMatcher />,
+      snippet: `<EuiSelectable
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  optionMatcher={optionMatcher}
+>
+  {list => list}
+</EuiSelectable>`,
     },
   ],
 };
