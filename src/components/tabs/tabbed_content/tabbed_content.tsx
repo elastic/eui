@@ -153,9 +153,7 @@ export class EuiTabbedContent extends Component<
     // Allow the consumer to control tab selection.
     const selectedTab =
       externalSelectedTab ||
-      tabs.find(
-        (tab: EuiTabbedContentTab) => tab.id === this.state.selectedTabId
-      ) ||
+      tabs.find((tab) => tab.id === this.state.selectedTabId) ||
       tabs[0]; // Fall back to the first tab if a selected tab can't be found
 
     const { content: selectedTabContent, id: selectedTabId } = selectedTab;
@@ -169,7 +167,7 @@ export class EuiTabbedContent extends Component<
           onFocus={this.initializeFocus}
           onBlur={this.removeFocus}
         >
-          {tabs.map((tab: EuiTabbedContentTab) => {
+          {tabs.map((tab) => {
             const {
               id,
               name,
