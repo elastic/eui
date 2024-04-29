@@ -1,3 +1,10 @@
+## [`v94.2.1`](https://github.com/elastic/eui/releases/v94.2.1)
+
+**Bug fixes**
+
+- Fixed an `EuiTabbedContent` edge case bug that occurred when updated with a completely different set of `tabs` ([#7713](https://github.com/elastic/eui/pull/7713))
+- Fixed the `@storybook/test` dependency to be listed in `devDependencies` and not `dependencies` ([#7719](https://github.com/elastic/eui/pull/7719))
+
 ## [`v94.2.0`](https://github.com/elastic/eui/releases/v94.2.0)
 
 - Updated `getDefaultEuiMarkdownPlugins()` to allow excluding the following plugins in addition to `tooltip`: ([#7676](https://github.com/elastic/eui/pull/7676))
