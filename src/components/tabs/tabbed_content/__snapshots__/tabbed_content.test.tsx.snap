@@ -8,8 +8,8 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
   >
     <button
       aria-controls="generated-id"
-      aria-selected="false"
-      class="euiTab emotion-euiTab"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
@@ -22,8 +22,8 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
     </button>
     <button
       aria-controls="generated-id"
-      aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      aria-selected="false"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -49,12 +49,12 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
     </button>
   </div>
   <div
-    aria-labelledby="kibana"
+    aria-labelledby="es"
     id="generated-id"
     role="tabpanel"
   >
     <p>
-      Kibana content
+      Elasticsearch content
     </p>
   </div>
 </div>
@@ -132,8 +132,8 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
   >
     <button
       aria-controls="generated-id"
-      aria-selected="false"
-      class="euiTab emotion-euiTab"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
@@ -146,8 +146,8 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
     </button>
     <button
       aria-controls="generated-id"
-      aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      aria-selected="false"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -173,12 +173,12 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="kibana"
+    aria-labelledby="es"
     id="generated-id"
     role="tabpanel"
   >
     <p>
-      Kibana content
+      Elasticsearch content
     </p>
   </div>
 </div>
@@ -192,8 +192,8 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
   >
     <button
       aria-controls="generated-id"
-      aria-selected="false"
-      class="euiTab emotion-euiTab"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
@@ -206,8 +206,8 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
     </button>
     <button
       aria-controls="generated-id"
-      aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      aria-selected="false"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -233,12 +233,12 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="kibana"
+    aria-labelledby="es"
     id="generated-id"
     role="tabpanel"
   >
     <p>
-      Kibana content
+      Elasticsearch content
     </p>
   </div>
 </div>
@@ -252,8 +252,8 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
   >
     <button
       aria-controls="generated-id"
-      aria-selected="false"
-      class="euiTab emotion-euiTab"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
@@ -266,8 +266,8 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
     </button>
     <button
       aria-controls="generated-id"
-      aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      aria-selected="false"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -293,12 +293,12 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="kibana"
+    aria-labelledby="es"
     id="generated-id"
     role="tabpanel"
   >
     <p>
-      Kibana content
+      Elasticsearch content
     </p>
   </div>
 </div>
@@ -432,8 +432,8 @@ exports[`EuiTabbedContent props size can be small 1`] = `
   >
     <button
       aria-controls="generated-id"
-      aria-selected="false"
-      class="euiTab emotion-euiTab"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
@@ -446,8 +446,8 @@ exports[`EuiTabbedContent props size can be small 1`] = `
     </button>
     <button
       aria-controls="generated-id"
-      aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      aria-selected="false"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -473,12 +473,12 @@ exports[`EuiTabbedContent props size can be small 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="kibana"
+    aria-labelledby="es"
     id="generated-id"
     role="tabpanel"
   >
     <p>
-      Kibana content
+      Elasticsearch content
     </p>
   </div>
 </div>

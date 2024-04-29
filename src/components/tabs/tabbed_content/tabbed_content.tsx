@@ -83,17 +83,16 @@ export class EuiTabbedContent extends Component<
 
     const { initialSelectedTab, selectedTab, tabs } = props;
 
-    let selectedTabId =
-      (initialSelectedTab && initialSelectedTab.id) || tabs[1].id;
-    if (selectedTab) {
-      selectedTabId = selectedTab.id;
+    // Only track selection state if it's not controlled externally.
+    let selectedTabId;
+    if (!selectedTab) {
+      selectedTabId = initialSelectedTab?.id || tabs[0].id;
     }
 
     this.state = {
       selectedTabId,
       inFocus: false,
     };
-    console.log(this.state);
   }
 
   focusTab = () => {
