@@ -1,5 +1,30 @@
 [
   {
+    "version": "94.2.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.selectThisRow",
+        "changeType": "modified",
+        "value": "Select row {index}"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.switcherTitle",
+        "changeType": "added",
+        "value": "Solution view"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.switcherAriaLabel",
+        "changeType": "added",
+        "value": " - click to switch to another solution"
+      },
+      {
+        "token": "euiCollapsibleNavKibanaSolution.groupLabel",
+        "changeType": "added",
+        "value": "Navigate to solution"
+      }
+    ]
+  },
+  {
     "version": "93.6.0",
     "changes": [
       {
