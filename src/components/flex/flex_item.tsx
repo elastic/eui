@@ -111,10 +111,11 @@ const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
 export const EuiFlexItem = forwardRef(EuiFlexItemInternal) as <
-  TComponent extends ComponentPropType
+  TComponent extends ComponentPropType,
+  TComponentRef = ReturnType<typeof EuiFlexItemInternal>
 >(
   props: EuiFlexItemProps<TComponent> & {
-    ref?: Ref<typeof EuiFlexItemInternal>;
+    ref?: Ref<TComponentRef>;
   }
 ) => ReturnType<typeof EuiFlexItemInternal>;
 
