@@ -122,10 +122,11 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
 export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as <
-  TComponent extends ComponentPropType
+  TComponent extends ComponentPropType,
+  TComponentRef = ReturnType<typeof EuiFlexGroupInternal>
 >(
   props: EuiFlexGroupProps<TComponent> & {
-    ref?: Ref<typeof EuiFlexGroupInternal>;
+    ref?: Ref<TComponentRef>;
   }
 ) => ReturnType<typeof EuiFlexGroupInternal>;
 
