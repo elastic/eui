@@ -18,7 +18,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 // When below this number the grid only shows the right control icon buttons
-const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
+export const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 export const EuiDataGridToolbar = ({
   gridWidth,
