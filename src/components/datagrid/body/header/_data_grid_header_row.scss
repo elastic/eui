@@ -42,6 +42,9 @@
 
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
+
+      flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
+      text-align: left; // overwrites inherited 'center' styles from button
     }
 
     .euiDataGridHeaderCell__sortingArrow {
