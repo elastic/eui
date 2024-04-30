@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { EuiComboBoxOptionOption } from './types';
+import { EuiComboBoxOptionOption, EuiComboBoxOptionMatcher } from './types';
 
 export type SortMatchesBy = 'none' | 'startsWith';
 interface GetMatchingOptions<T> {
   options: Array<EuiComboBoxOptionOption<T>>;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
+  optionMatcher: EuiComboBoxOptionMatcher<T>;
   isCaseSensitive?: boolean;
   isPreFiltered?: boolean;
   showPrevSelected?: boolean;
@@ -21,7 +22,11 @@ interface GetMatchingOptions<T> {
 interface CollectMatchingOption<T>
   extends Pick<
     GetMatchingOptions<T>,
-    'isCaseSensitive' | 'isPreFiltered' | 'showPrevSelected'
+    | 'isCaseSensitive'
+    | 'isPreFiltered'
+    | 'showPrevSelected'
+    | 'optionMatcher'
+    | 'searchValue'
   > {
   accumulator: Array<EuiComboBoxOptionOption<T>>;
   option: EuiComboBoxOptionOption<T>;
@@ -86,10 +91,12 @@ const collectMatchingOption = <T>({
   accumulator,
   option,
   selectedOptions,
+  searchValue,
   normalizedSearchValue,
   isCaseSensitive,
   isPreFiltered,
   showPrevSelected,
+  optionMatcher,
 }: CollectMatchingOption<T>) => {
   // Only show options which haven't yet been selected unless requested.
   const selectedOption = getSelectedOptionForSearchValue({
@@ -113,11 +120,13 @@ const collectMatchingOption = <T>({
     return;
   }
 
-  const normalizedOption = transformForCaseSensitivity(
-    option.label.trim(),
-    isCaseSensitive
-  );
-  if (normalizedOption.includes(normalizedSearchValue)) {
+  const isMatching = optionMatcher({
+    option,
+    searchValue,
+    normalizedSearchValue,
+    isCaseSensitive: isCaseSensitive ?? true,
+  });
+  if (isMatching) {
     accumulator.push(option);
   }
 };
@@ -126,6 +135,7 @@ export const getMatchingOptions = <T>({
   options,
   selectedOptions,
   searchValue,
+  optionMatcher,
   isCaseSensitive = false,
   isPreFiltered = false,
   showPrevSelected = false,
@@ -145,10 +155,12 @@ export const getMatchingOptions = <T>({
           accumulator: matchingOptionsForGroup,
           option: groupOption,
           selectedOptions,
+          searchValue,
           normalizedSearchValue,
           isCaseSensitive,
           isPreFiltered,
           showPrevSelected,
+          optionMatcher,
         });
       });
       if (matchingOptionsForGroup.length > 0) {
@@ -167,10 +179,12 @@ export const getMatchingOptions = <T>({
         accumulator: matchingOptions,
         option,
         selectedOptions,
+        searchValue,
         normalizedSearchValue,
         isCaseSensitive,
         isPreFiltered,
         showPrevSelected,
+        optionMatcher,
       });
     }
   });
@@ -196,4 +210,25 @@ export const getMatchingOptions = <T>({
   }
 
   return matchingOptions;
+};
+
+/**
+ * Partial string equality option matcher for EuiComboBox.
+ * It matches all options with labels including the searched string.
+ */
+export const createPartialStringEqualityOptionMatcher = <
+  TOption
+>(): EuiComboBoxOptionMatcher<TOption> => {
+  return ({ option, isCaseSensitive, normalizedSearchValue }) => {
+    if (!normalizedSearchValue) {
+      return true;
+    }
+
+    const normalizedOption = transformForCaseSensitivity(
+      option.label.trim(),
+      isCaseSensitive
+    );
+
+    return normalizedOption.includes(normalizedSearchValue);
+  };
 };

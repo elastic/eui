@@ -256,7 +256,6 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -321,7 +320,6 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"

@@ -33,3 +33,35 @@ export type RefInstance<T> = T | null;
 export interface EuiComboBoxSingleSelectionShape {
   asPlainText?: boolean;
 }
+
+export interface EuiComboBoxOptionMatcherArgs<TOption> {
+  /**
+   * Option being currently processed
+   */
+  option: EuiComboBoxOptionOption<TOption>;
+  /**
+   * Raw search input value
+   */
+  searchValue: string;
+  /**
+   * Search input value normalized for case-sensitivity
+   * and with leading and trailing whitespace characters trimmed
+   */
+  normalizedSearchValue: string;
+  /**
+   * Whether to match the option with case-sensitivity
+   */
+  isCaseSensitive: boolean;
+}
+
+/**
+ * Option matcher function for EuiComboBox component.
+ *
+ * @example
+ * const equalityMatcher: EuiComboBoxOptionMatcher = ({ option, searchValue }) => {
+ *   return option.label === searchValue;
+ * }
+ */
+export type EuiComboBoxOptionMatcher<TOption> = (
+  args: EuiComboBoxOptionMatcherArgs<TOption>
+) => boolean;

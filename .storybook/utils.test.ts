@@ -6,11 +6,14 @@
  * Side Public License, v 1.
  */
 
-import {
+import * as utils from './utils';
+
+const {
   hideStorybookControls,
   disableStorybookControls,
   moveStorybookControlsToCategory,
-} from './utils';
+  enableFunctionToggleControls,
+} = utils;
 
 describe('hideStorybookControls', () => {
   it('updates the provided config with the expected `argTypes` object when passed prop name strings', () => {
@@ -193,6 +196,70 @@ describe('moveStorybookControlsToCategory', () => {
     moveStorybookControlsToCategory<TestProps>({ argTypes: {} }, [
       'hello',
       'world',
+      // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
+      'error',
+    ]);
+  });
+});
+
+describe('enableFunctionToggleControls', () => {
+  it('updates the provided config with the expected `argTypes` object when passed function prop name strings', () => {
+    expect(enableFunctionToggleControls({ argTypes: {} }, ['onClick'])).toEqual(
+      {
+        args: {
+          onClick: true,
+        },
+        argTypes: {
+          onClick: {
+            control: 'boolean',
+            mapping: { false: undefined, true: expect.any(Function) },
+          },
+        },
+        parameters: { actions: { argTypesRegex: null } },
+      }
+    );
+  });
+
+  it('merges existing and new `argTypes` objects correctly', () => {
+    type TestProps = { hello: boolean; onHello: () => {} };
+
+    expect(
+      enableFunctionToggleControls<TestProps>(
+        {
+          args: { hello: true },
+          argTypes: {
+            isDisabled: { control: { type: 'boolean' } },
+          },
+        },
+        ['onHello']
+      )
+    ).toEqual({
+      args: {
+        hello: true,
+        onHello: true,
+      },
+      argTypes: {
+        isDisabled: { control: { type: 'boolean' } },
+        onHello: {
+          control: 'boolean',
+          mapping: { false: undefined, true: expect.any(Function) },
+        },
+      },
+      parameters: { actions: { argTypesRegex: null } },
+    });
+  });
+
+  it('throws a typescript error if a generic is passed and the prop names do not match', () => {
+    type TestProps = { hello: boolean; onHello: () => {} };
+
+    // No typescript error
+    enableFunctionToggleControls<TestProps>({ argTypes: {} }, [
+      'hello',
+      'onHello',
+    ]);
+    enableFunctionToggleControls<TestProps>({ argTypes: {} }, [
+      'hello',
+      'onHello',
       // @ts-expect-error - will fail `yarn lint` if a TS error is *not* produced
       'error',
     ]);

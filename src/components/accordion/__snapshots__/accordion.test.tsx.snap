@@ -41,7 +41,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -97,7 +96,6 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -150,7 +148,6 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     id="22"
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -203,7 +200,6 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
     id="24"
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -259,7 +255,6 @@ exports[`EuiAccordion is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -311,7 +306,6 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -346,7 +340,6 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -396,7 +389,6 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -448,7 +440,6 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -502,7 +493,6 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -552,7 +542,6 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -600,7 +589,6 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -652,7 +640,6 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -703,7 +690,6 @@ exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -754,7 +740,6 @@ exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -805,7 +790,6 @@ exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -853,7 +837,6 @@ exports[`EuiAccordion props element is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -910,7 +893,6 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -960,7 +942,6 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -1013,7 +994,6 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
     id="17"
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -1066,7 +1046,6 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     id="12"
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children emotion-euiAccordion__children"
@@ -1129,7 +1108,6 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children euiAccordion__children-isLoading emotion-euiAccordion__children-isLoading"
@@ -1188,7 +1166,6 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
     inert=""
     role="group"
     style="block-size: 0;"
-    tabindex="-1"
   >
     <div
       class="euiAccordion__children euiAccordion__children-isLoading emotion-euiAccordion__children-isLoading"

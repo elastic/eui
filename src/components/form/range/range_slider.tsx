@@ -51,6 +51,7 @@ export interface EuiRangeSliderProps
   onChange?: ChangeEventHandler<HTMLInputElement>;
   thumbColor?: EuiRangeLevel['color'];
   onResize: EuiResizeObserverProps['onResize'];
+  ariaValueText?: string;
 }
 
 export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
@@ -69,6 +70,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
   showRange,
   thumbColor,
   onResize,
+  ariaValueText,
   ...rest
 }) => {
   const classes = classNames('euiRangeSlider', className);
@@ -94,6 +96,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
     <EuiResizeObserver onResize={onResize}>
       {(resizeRef) => (
         <input
+          aria-valuetext={ariaValueText}
           ref={resizeRef}
           type="range"
           id={id}

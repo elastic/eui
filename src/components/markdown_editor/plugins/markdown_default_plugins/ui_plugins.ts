@@ -6,18 +6,28 @@
  * Side Public License, v 1.
  */
 
-import * as MarkdownTooltip from '../markdown_tooltip';
 import { EuiMarkdownEditorUiPlugin } from './../../markdown_types';
+import * as MarkdownTooltip from '../markdown_tooltip';
+import type { ExcludableDefaultPlugins, DefaultPluginsConfig } from './plugins';
 
 export type DefaultEuiMarkdownUiPlugins = EuiMarkdownEditorUiPlugin[];
 
+const DEFAULT_UI_PLUGINS: Partial<
+  Record<ExcludableDefaultPlugins, EuiMarkdownEditorUiPlugin>
+> = {
+  tooltip: MarkdownTooltip.plugin,
+};
+
 export const getDefaultEuiMarkdownUiPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownUiPlugins => {
-  const excludeSet = new Set(exclude);
-  const uiPlugins = [];
+}: DefaultPluginsConfig = {}): DefaultEuiMarkdownUiPlugins => {
+  const uiPlugins: EuiMarkdownEditorUiPlugin[] = [];
 
-  if (!excludeSet.has('tooltip')) uiPlugins.push(MarkdownTooltip.plugin);
+  Object.entries(DEFAULT_UI_PLUGINS).forEach(([pluginName, plugin]) => {
+    if (!exclude?.includes(pluginName as ExcludableDefaultPlugins)) {
+      uiPlugins.push(plugin);
+    }
+  });
 
   return uiPlugins;
 };

@@ -238,6 +238,13 @@ export const RangeControlExample = {
             <EuiCode>label</EuiCode>. The value must be included in the range of
             values (min-max), though the label may be anything you choose.
           </p>
+          <p>
+            Tick labels can improve the accessibility of your range. If your
+            label is a simple string, it will be read out to screen readers
+            alongside the value. You can also use the{' '}
+            <EuiCode>accessibleLabel</EuiCode> property to provide more explicit
+            screen reader text.
+          </p>
           <EuiCallOut
             color="warning"
             title="Minimum of 5px width per tick allowed"

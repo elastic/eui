@@ -47,7 +47,7 @@ export type EuiSuperUpdateButtonProps = {
   /**
    * Passes props to `EuiToolTip`
    */
-  toolTipProps?: EuiToolTipProps;
+  toolTipProps?: Partial<EuiToolTipProps>;
 
   /**
    * Returns an IconButton instead

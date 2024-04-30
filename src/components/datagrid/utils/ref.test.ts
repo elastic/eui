@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react';
+import { renderHook } from '../../../test/rtl';
 import { useCellLocationCheck, useSortPageCheck } from './ref';
 
 // see ref.spec.tsx for E2E useImperativeGridRef tests

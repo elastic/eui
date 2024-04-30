@@ -21,6 +21,12 @@ const meta: Meta<EuiScreenReaderOnlyProps> = {
     // Component defaults
     showOnFocus: false,
   },
+  parameters: {
+    loki: {
+      // There are no visual elements to test
+      skip: true,
+    },
+  },
 };
 
 export default meta;

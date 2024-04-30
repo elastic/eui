@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
@@ -170,7 +170,7 @@ describe('EuiSelectableTemplateSitewide', () => {
         ).not.toBeInTheDocument();
       });
 
-      test('toggles the selectable popover for keyboard users', () => {
+      test('toggles the selectable popover for keyboard users', async () => {
         const { getByTestSubject } = render(
           <EuiSelectableTemplateSitewide
             options={options}
@@ -179,7 +179,7 @@ describe('EuiSelectableTemplateSitewide', () => {
         );
         // fireEvent doesn't seem to work: https://github.com/testing-library/user-event/issues/179#issuecomment-1125146667
         getByTestSubject('mobilePopoverButton').focus();
-        userEvent.keyboard('{enter}');
+        await waitFor(() => userEvent.keyboard('{enter}'));
         waitForEuiPopoverOpen();
 
         expect(getByTestSubject('euiSelectableList')).toBeInTheDocument();

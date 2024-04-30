@@ -27,7 +27,7 @@ import {
 } from './';
 
 const meta: Meta<EuiCollapsibleNavBetaProps> = {
-  title: 'Navigation/EuiCollapsibleNav/EuiCollapsibleNavBeta',
+  title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavBeta',
   component: EuiCollapsibleNavBeta,
   parameters: {
     layout: 'fullscreen',
@@ -89,7 +89,7 @@ const renderGroup = (
   ];
 };
 
-export const KibanaExample: Story = {
+export const Playground: Story = {
   render: ({ ...args }) => (
     <OpenCollapsibleNav {...args}>
       <EuiCollapsibleNavBeta.Body>
@@ -285,98 +285,6 @@ export const KibanaExample: Story = {
             { title: 'Stack monitoring', href: '#' },
             { title: 'Stack management', href: '#' },
           ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Project settings"
-          icon="gear"
-          items={[
-            { title: 'Management', href: '#' },
-            {
-              title: 'Users and roles',
-              href: '#',
-              linkProps: { target: '_blank' },
-            },
-            {
-              title: 'Performance',
-              href: '#',
-              linkProps: { target: '_blank' },
-            },
-            {
-              title: 'Billing and subscription',
-              href: '#',
-              linkProps: { target: '_blank' },
-            },
-          ]}
-        />
-      </EuiCollapsibleNavBeta.Footer>
-    </OpenCollapsibleNav>
-  ),
-};
-
-// Security has a very custom nav
-export const SecurityExample: Story = {
-  render: ({ ...args }) => (
-    <OpenCollapsibleNav {...args}>
-      <EuiCollapsibleNavBeta.Body>
-        <EuiCollapsibleNavBeta.Group
-          title="Security"
-          icon="logoSecurity"
-          items={[
-            { title: 'Get started', href: '#' },
-            { title: 'Dashboards', href: '#' },
-            { title: 'Alerts', href: '#' },
-            { title: 'Findings', href: '#' },
-            { title: 'Cases', href: '#' },
-            { title: 'Investigation', href: '#' },
-            { title: 'Intelligence', href: '#' },
-            {
-              title: 'Explore',
-              items: [
-                { title: 'Host', href: '#' },
-                { title: 'Users', href: '#', isSelected: true },
-                { title: 'Network', href: '#' },
-              ],
-              isCollapsible: false,
-            },
-            { title: 'Assets', href: '#' },
-            {
-              title: 'Rules',
-              items: [
-                { title: 'SIEM rules', href: '#' },
-                { title: 'Shared exception list', href: '#' },
-                { title: 'CIS benchmark rules', href: '#' },
-                { title: 'Defend rules', href: '#' },
-              ],
-            },
-            {
-              title: 'Machine learning',
-              items: [
-                { title: 'Overview', href: '#' },
-                { title: 'Notifications', href: '#' },
-                { title: 'Memory usage', href: '#' },
-                { title: 'Anomaly detection', href: '#' },
-                { title: 'Data frame analytics', href: '#' },
-                { title: 'Model management', href: '#' },
-              ],
-            },
-            {
-              title: 'Settings',
-              items: [
-                { title: 'Endpoints', href: '#' },
-                { title: 'OS query', href: '#' },
-                { title: 'Response actions history', href: '#' },
-                { title: 'Event filters', href: '#' },
-                { title: 'Host isolation', href: '#' },
-              ],
-            },
-          ]}
-        />
-      </EuiCollapsibleNavBeta.Body>
-      <EuiCollapsibleNavBeta.Footer>
-        <EuiCollapsibleNavBeta.Item
-          title="Developer tools"
-          icon="editorCodeBlock"
-          href="#"
         />
         <EuiCollapsibleNavBeta.Item
           title="Project settings"

@@ -14,6 +14,7 @@ import {
   euiFontSize,
   euiTextTruncate,
   logicalCSS,
+  logicalTextAlignCSS,
 } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
@@ -32,8 +33,9 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.text};
     `,
     rowHeader: css`
-      /* Unset the automatic browser bolding applied to [th] elements */
+      /* Unset the automatic browser bolding and center alignment applied to [th] elements */
       font-weight: ${euiTheme.font.weight.regular};
+      ${logicalTextAlignCSS('left')}
     `,
     isExpander: css`
       ${hasIcons}

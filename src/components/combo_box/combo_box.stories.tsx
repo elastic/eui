@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
+import { EuiComboBoxOptionMatcher } from './types';
+import { EuiCode } from '../code';
 
 const options = [
   { label: 'Item 1' },
@@ -95,6 +97,48 @@ export const Playground: Story = {
         onChange={onChange}
         onCreateOption={onCreateOption ? _onCreateOption : undefined}
       />
+    );
+  },
+};
+
+export const CustomMatcher: Story = {
+  render: function Render({ singleSelection, onCreateOption, ...args }) {
+    const [selectedOptions, setSelectedOptions] = useState(
+      args.selectedOptions
+    );
+    const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
+      setSelectedOptions(options);
+      action('onChange')(options, ...args);
+    };
+
+    const optionMatcher = useCallback<EuiComboBoxOptionMatcher<unknown>>(
+      ({ option, searchValue }) => {
+        return option.label.startsWith(searchValue);
+      },
+      []
+    );
+
+    return (
+      <>
+        <p>
+          This matcher example uses <EuiCode>option.label.startsWith()</EuiCode>
+          . Only options that start exactly like the given search string will be
+          matched.
+        </p>
+        <br />
+        <EuiComboBox
+          singleSelection={
+            // @ts-ignore Specific to Storybook control
+            singleSelection === 'asPlainText'
+              ? { asPlainText: true }
+              : Boolean(singleSelection)
+          }
+          {...args}
+          selectedOptions={selectedOptions}
+          onChange={onChange}
+          optionMatcher={optionMatcher}
+        />
+      </>
     );
   },
 };

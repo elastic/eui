@@ -1,3 +1,53 @@
+## [`v94.2.1`](https://github.com/elastic/eui/releases/v94.2.1)
+
+**Bug fixes**
+
+- Fixed an `EuiTabbedContent` edge case bug that occurred when updated with a completely different set of `tabs` ([#7713](https://github.com/elastic/eui/pull/7713))
+- Fixed the `@storybook/test` dependency to be listed in `devDependencies` and not `dependencies` ([#7719](https://github.com/elastic/eui/pull/7719))
+
+## [`v94.2.0`](https://github.com/elastic/eui/releases/v94.2.0)
+
+- Updated `getDefaultEuiMarkdownPlugins()` to allow excluding the following plugins in addition to `tooltip`: ([#7676](https://github.com/elastic/eui/pull/7676))
+  - `checkbox`
+  - `linkValidator`
+  - `lineBreaks`
+  - `emoji`
+- Updated `EuiSelectable`'s `isPreFiltered` prop to allow passing a configuration object, which allows disabling search highlighting in addition to search filtering ([#7683](https://github.com/elastic/eui/pull/7683))
+- Updated `EuiFlexGroup` and `EuiFlexItem` prop types to support passing any valid React component type to the `component` prop and ensure proper type checking of the extra props forwarded to the `component`. ([#7688](https://github.com/elastic/eui/pull/7688))
+- Updated `EuiSearchBar` to allow the `@` special character in query string searches ([#7702](https://github.com/elastic/eui/pull/7702))
+- Added a new, optional `optionMatcher` prop to `EuiSelectable` and `EuiComboBox` allowing passing a custom option matcher function to these components and controlling option filtering for given search string ([#7709](https://github.com/elastic/eui/pull/7709))
+
+**Bug fixes**
+
+- Fixed an `EuiPageTemplate` bug where prop updates would not cascade down to child sections ([#7648](https://github.com/elastic/eui/pull/7648))
+  - To cascade props down to the sidebar, `EuiPageTemplate` now explicitly requires using the `EuiPageTemplate.Sidebar` rather than `EuiPageSidebar`
+- Fixed `EuiFieldNumber`'s typing to accept an icon configuration shape ([#7666](https://github.com/elastic/eui/pull/7666))
+- Fixed `EuiFieldText` and `EuiFieldNumber` to render the correct paddings for icon shapes set to `side: 'right'` ([#7666](https://github.com/elastic/eui/pull/7666))
+- Fixed `EuiFieldText` and `EuiFieldNumber` to fully ignore `icon`/`prepend`/`append` when `controlOnly` is set to true ([#7666](https://github.com/elastic/eui/pull/7666))
+- Fixed `EuiColorPicker`'s input not setting the correct right padding for the number of icons displayed ([#7666](https://github.com/elastic/eui/pull/7666))
+- Visual fixes for `EuiRange`s with `showInput`: ([#7678](https://github.com/elastic/eui/pull/7678))
+  - Longer `append`/`prepend` labels no longer cause a background bug
+  - Inputs can no longer overwhelm the actual range in width
+- Fixed a visual text alignment regression in `EuiTableRowCell`s with the `row` header scope ([#7681](https://github.com/elastic/eui/pull/7681))
+- Fixed `toolTipProps` type on `EuiSuperUpdateButton` to use `Partial<EuiToolTipProps>` ([#7692](https://github.com/elastic/eui/pull/7692))
+- Fixes missing prop type for `popperProps` on `EuiDatePicker` ([#7694](https://github.com/elastic/eui/pull/7694))
+- Fixed a focus bug with `EuiDataGrid`s with `leadingControlColumns` when moving columns to the left/right ([#7701](https://github.com/elastic/eui/pull/7701)) ([#7698](https://github.com/elastic/eui/pull/7698))
+- Fixed `EuiSuperDatePicker` to validate date string with respect of locale on `EuiAbsoluteTab`. ([#7705](https://github.com/elastic/eui/pull/7705))
+- Fixed a visual bug with `EuiSuperDatePicker`'s absolute tab on small mobile screens ([#7708](https://github.com/elastic/eui/pull/7708))
+- Fixed i18n of empty and loading state messages for the `FieldValueSelectionFilter` component ([#7718](https://github.com/elastic/eui/pull/7718))
+
+**Dependency updates**
+
+- Updated `@hello-pangea/dnd` to v16.6.0 ([#7599](https://github.com/elastic/eui/pull/7599))
+- Updated `remark-rehype` to v8.1.0 ([#7601](https://github.com/elastic/eui/pull/7601))
+
+**Accessibility**
+
+- Improved `EuiBasicTable` and `EuiInMemoryTable`'s selection checkboxes to have unique aria-labels per row ([#7672](https://github.com/elastic/eui/pull/7672))
+- Added `aria-valuetext` attributes to `EuiRange`s with tick labels for improved screen reader UX ([#7675](https://github.com/elastic/eui/pull/7675))
+- Updated `EuiAccordion` to keep focus on accordion trigger instead of moving to content on click/keypress ([#7696](https://github.com/elastic/eui/pull/7696))
+- Added `aria-disabled` attribute to `EuiHorizontalSteps` when status is "disabled" ([#7699](https://github.com/elastic/eui/pull/7699))
+
 ## [`v94.1.0`](https://github.com/elastic/eui/releases/v94.1.0)
 
 - Updated `EuiTableHeaderCell` to show a subdued `sortable` icon for columns that are not currently sorted but can be ([#7656](https://github.com/elastic/eui/pull/7656))

@@ -16,6 +16,7 @@ import {
   EuiModalHeaderTitle,
   EuiModalHeaderTitleProps,
 } from './modal_header_title';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiModalHeaderTitleProps> = {
   title: 'Layout/EuiModal/EuiModalHeaderTitle',
@@ -36,6 +37,12 @@ const meta: Meta<EuiModalHeaderTitleProps> = {
       </EuiModal>
     ),
   ],
+  parameters: {
+    loki: {
+      // Modal is rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
 };
 
 export default meta;

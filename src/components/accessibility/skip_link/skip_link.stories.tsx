@@ -25,6 +25,12 @@ const meta: Meta<EuiSkipLinkProps> = {
     // Override default to true for clearer Storybook behavior
     overrideLinkBehavior: true,
   },
+  parameters: {
+    loki: {
+      // There are no visual elements to test
+      skip: true,
+    },
+  },
 };
 moveStorybookControlsToCategory(
   meta,

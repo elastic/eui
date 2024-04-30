@@ -87,6 +87,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           sorting,
           switchColumnPos,
           setFocusedCell,
+          columnFocusIndex: index,
         });
       }, [
         column,
@@ -99,6 +100,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         sorting,
         switchColumnPos,
         setFocusedCell,
+        index,
       ]);
 
       const showColumnActions = columnActions && columnActions.length > 0;

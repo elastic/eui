@@ -32,6 +32,7 @@ import {
   getSelectedOptionForSearchValue,
   transformForCaseSensitivity,
   SortMatchesBy,
+  createPartialStringEqualityOptionMatcher,
 } from './matching_options';
 import {
   EuiComboBoxInputProps,
@@ -43,6 +44,7 @@ import {
   RefInstance,
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
+  EuiComboBoxOptionMatcher,
 } from './types';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
@@ -126,6 +128,15 @@ export interface _EuiComboBoxProps<T>
    */
   isCaseSensitive?: boolean;
   /**
+   * Optional custom option matcher function
+   *
+   * @example
+   * const exactEqualityMatcher: EuiComboBoxOptionMatcher = ({ option, searchValue }) => {
+   *   return option.label === searchValue;
+   * }
+   */
+  optionMatcher?: EuiComboBoxOptionMatcher<T>;
+  /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
    */
@@ -181,10 +192,11 @@ export interface _EuiComboBoxProps<T>
  */
 type DefaultProps<T> = Omit<
   (typeof EuiComboBox)['defaultProps'],
-  'options' | 'selectedOptions'
+  'options' | 'selectedOptions' | 'optionMatcher'
 > & {
   options: Array<EuiComboBoxOptionOption<T>>;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+  optionMatcher: EuiComboBoxOptionMatcher<T>;
 };
 export type EuiComboBoxProps<T> = Omit<
   _EuiComboBoxProps<T>,
@@ -217,6 +229,7 @@ export class EuiComboBox<T> extends Component<
     prepend: undefined,
     append: undefined,
     sortMatchesBy: 'none' as const,
+    optionMatcher: createPartialStringEqualityOptionMatcher(),
   };
 
   state: EuiComboBoxState<T> = {
@@ -227,6 +240,7 @@ export class EuiComboBox<T> extends Component<
       options: this.props.options,
       selectedOptions: this.props.selectedOptions,
       searchValue: initialSearchValue,
+      optionMatcher: this.props.optionMatcher!,
       isCaseSensitive: this.props.isCaseSensitive,
       isPreFiltered: this.props.async,
       showPrevSelected: Boolean(this.props.singleSelection),
@@ -670,6 +684,7 @@ export class EuiComboBox<T> extends Component<
       selectedOptions,
       singleSelection,
       sortMatchesBy,
+      optionMatcher,
     } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
@@ -683,6 +698,7 @@ export class EuiComboBox<T> extends Component<
       isPreFiltered: async,
       showPrevSelected: Boolean(singleSelection),
       sortMatchesBy,
+      optionMatcher: optionMatcher!,
     });
 
     const stateUpdate: Partial<EuiComboBoxState<T>> = { matchingOptions };
@@ -727,6 +743,7 @@ export class EuiComboBox<T> extends Component<
       autoFocus,
       truncationProps,
       inputPopoverProps,
+      optionMatcher,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       ...rest

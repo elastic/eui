@@ -239,6 +239,7 @@ export interface EuiDualRangeProps
 export interface EuiRangeTick {
   value: number;
   label: ReactNode;
+  accessibleLabel?: string;
 }
 
 export interface EuiRangeLevel

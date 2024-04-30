@@ -7,6 +7,11 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
+import {
+  disableStorybookControls,
+  hideStorybookControls,
+  moveStorybookControlsToCategory,
+} from '../../../../.storybook/utils';
 
 import { EuiFieldNumber, EuiFieldNumberProps } from './field_number';
 
@@ -15,11 +20,28 @@ const meta: Meta<EuiFieldNumberProps> = {
   component: EuiFieldNumber,
   argTypes: {
     step: { control: 'number' },
+    // For quicker/easier QA
+    icon: { control: 'text' },
+    prepend: { control: 'text' },
+    append: { control: 'text' },
+  },
+  args: {
+    // Component defaults
+    compressed: false,
+    fullWidth: false,
+    isInvalid: false,
+    isLoading: false,
+    disabled: false,
+    readOnly: false,
+    controlOnly: false,
+    // Added for easier testing
+    placeholder: '0',
   },
 };
 
 export default meta;
 type Story = StoryObj<EuiFieldNumberProps>;
+disableStorybookControls(meta, ['inputRef']);
 
 export const Playground: Story = {};
 
@@ -32,3 +54,43 @@ export const ControlledComponent: Story = {
     onChange: () => {},
   },
 };
+// Hide props that don't impact this story
+hideStorybookControls(ControlledComponent, [
+  'controlOnly',
+  'inputRef',
+  'compressed',
+  'fullWidth',
+  'icon',
+  'isInvalid',
+  'isLoading',
+  'disabled',
+  'readOnly',
+  'placeholder',
+  'prepend',
+  'append',
+]);
+
+export const IconShape: Story = {
+  argTypes: { icon: { control: 'object' } },
+  args: { icon: { type: 'warning', color: 'warning', side: 'left' } },
+};
+// Move other props below the icon prop
+moveStorybookControlsToCategory(IconShape, [
+  'compressed',
+  'fullWidth',
+  'isInvalid',
+  'isLoading',
+  'disabled',
+  'readOnly',
+  'placeholder',
+  'prepend',
+  'append',
+]);
+// Hide props that remove or won't affect the icon or its positioning
+hideStorybookControls(IconShape, [
+  'controlOnly',
+  'inputRef',
+  'min',
+  'max',
+  'step',
+]);

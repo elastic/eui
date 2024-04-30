@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, renderHookAct } from '../../../test/rtl';
 import {
   useDefaultColumnWidth,
   doesColumnHaveAnInitialWidth,
@@ -116,7 +116,7 @@ describe('useColumnWidths', () => {
     it("sets a single column's width in the columnWidths map", () => {
       const { result } = renderHook(() => useColumnWidths(args));
 
-      act(() => result.current.setColumnWidth('c', 125));
+      renderHookAct(() => result.current.setColumnWidth('c', 125));
       expect(result.current.columnWidths).toEqual({ b: 75, c: 125 });
       expect(args.onColumnResize).toHaveBeenCalledWith({
         columnId: 'c',

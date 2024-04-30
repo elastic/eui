@@ -17,6 +17,9 @@ import type { EuiBasicTableColumn } from './basic_table';
 
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 
+// Set static seed so that the generated faker data is consistent between page loads
+faker.seed(8_02_2010);
+
 const meta: Meta<EuiInMemoryTableProps> = {
   title: 'Tabular Content/EuiInMemoryTable',
   // @ts-ignore complex

@@ -871,12 +871,12 @@ describe('defaultSyntax', () => {
     });
 
     test('special characters', () => {
-      const ast = defaultSyntax.parse('*_-:');
+      const ast = defaultSyntax.parse('*_-:@');
       const clauses = ast.getTermClauses();
       expect(clauses).toEqual([
         {
           type: 'term',
-          value: '*_-:',
+          value: '*_-:@',
           match: 'must',
         },
       ]);

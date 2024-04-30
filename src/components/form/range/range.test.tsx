@@ -231,4 +231,66 @@ describe('EuiRange', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
   });
+
+  describe('input aria-valuetext', () => {
+    it('should exist when the current value has an accessible label', () => {
+      const { getByRole } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            {
+              label: '20kb',
+              value: 20,
+              accessibleLabel: 'twenty kilobytes',
+            },
+            {
+              label: '100kb',
+              value: 100,
+              accessibleLabel: 'one-hundred kilobytes',
+            },
+          ]}
+          value={20}
+        />
+      );
+      expect(getByRole('slider')).toHaveAttribute(
+        'aria-valuetext',
+        '20, (twenty kilobytes)'
+      );
+    });
+
+    it('falls back to string `label`s if `accessibleLabel` does not exist', () => {
+      const { getByRole } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            { label: '20kb', value: 20 },
+            { label: '100kb', value: 100 },
+          ]}
+          value={20}
+        />
+      );
+
+      expect(getByRole('slider')).toHaveAttribute(
+        'aria-valuetext',
+        '20, (20kb)'
+      );
+    });
+
+    it('should not exist when the current value does not have a matching label', () => {
+      const { getByRole } = render(
+        <EuiRange
+          {...props}
+          showTicks
+          ticks={[
+            { value: 20, label: '20kb', accessibleLabel: 'twenty kilobytes' },
+          ]}
+          value={10}
+        />
+      );
+
+      expect(getByRole('slider')).not.toHaveAttribute('aria-valuetext');
+    });
+  });
 });

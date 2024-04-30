@@ -31,8 +31,11 @@ import { EuiHighlight } from '../../highlight';
 import { EuiMark } from '../../mark';
 import { EuiTextTruncate } from '../../text_truncate';
 
-import { EuiSelectableOption } from '../selectable_option';
-import { EuiSelectableOnChangeEvent } from '../selectable';
+import type { EuiSelectableOption } from '../selectable_option';
+import type {
+  EuiSelectableOnChangeEvent,
+  EuiSelectableProps,
+} from '../selectable';
 import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
@@ -153,6 +156,7 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
    */
   allowExclusions?: boolean;
   searchable?: boolean;
+  isPreFiltered?: EuiSelectableProps['isPreFiltered'];
   makeOptionId: (index: number | undefined) => string;
   listId: string;
   setActiveOptionIndex: (index: number, cb?: () => void) => void;
@@ -329,6 +333,7 @@ export class EuiSelectableList<T> extends Component<
       setActiveOptionIndex,
       searchable,
       searchValue,
+      isPreFiltered,
       isVirtualized,
     } = this.props;
 
@@ -351,6 +356,14 @@ export class EuiSelectableList<T> extends Component<
     const id = makeOptionId(index);
     const isFocused = activeOptionIndex === index;
 
+    // Search highlighting
+    const hasSearch = !!searchValue;
+    const highlightSearch =
+      hasSearch &&
+      (typeof isPreFiltered === 'object'
+        ? isPreFiltered.highlightSearch !== false
+        : true);
+
     // Text wrapping
     const canWrap = !isVirtualized;
     const _textWrap = option.textWrap ?? this.props.textWrap;
@@ -359,7 +372,7 @@ export class EuiSelectableList<T> extends Component<
     // Truncation config (if any). If none, CSS truncation is used
     const truncationProps =
       textWrap === 'truncate'
-        ? this.getTruncationProps(option, isFocused)
+        ? this.getTruncationProps(option, highlightSearch, isFocused)
         : undefined;
 
     return (
@@ -397,7 +410,7 @@ export class EuiSelectableList<T> extends Component<
               { ..._option, ...optionData },
               searchValue
             )
-          : searchValue
+          : highlightSearch
           ? this.renderSearchedText(label, truncationProps)
           : truncationProps
           ? this.renderTruncatedText(label, truncationProps)
@@ -513,7 +526,11 @@ export class EuiSelectableList<T> extends Component<
     });
   };
 
-  getTruncationProps = (option: EuiSelectableOption, isFocused: boolean) => {
+  getTruncationProps = (
+    option: EuiSelectableOption,
+    highlightSearch: boolean,
+    isFocused: boolean
+  ) => {
     // Individual truncation settings should override component-wide settings
     const truncationProps = {
       ...this.props.truncationProps,
@@ -522,7 +539,7 @@ export class EuiSelectableList<T> extends Component<
 
     // If we're not actually using EuiTextTruncate, no need to continue
     const hasComplexTruncation =
-      this.props.searchValue || Object.keys(truncationProps).length > 0;
+      highlightSearch || Object.keys(truncationProps).length > 0;
     if (!hasComplexTruncation) return undefined;
 
     // Determine whether we can use the optimized default option width
@@ -618,6 +635,7 @@ export class EuiSelectableList<T> extends Component<
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
       role,
+      isPreFiltered,
       isVirtualized,
       textWrap,
       truncationProps,

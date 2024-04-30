@@ -99,6 +99,19 @@ describe('EuiSelectableListItem', () => {
           container.querySelector('.euiTextTruncate')
         );
       });
+
+      it('does not highlight/mark the current `searchValue` if `isPreFiltered.highlightSearch` is false', () => {
+        const { container } = render(
+          <EuiSelectableList
+            options={options}
+            {...selectableListRequiredProps}
+            isPreFiltered={{ highlightSearch: false }}
+            searchValue="Mi"
+          />
+        );
+
+        expect(container.querySelector('.euiMark')).not.toBeInTheDocument();
+      });
     });
 
     test('renderOption', () => {

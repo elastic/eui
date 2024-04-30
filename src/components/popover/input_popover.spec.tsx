@@ -209,6 +209,25 @@ describe('EuiPopover', () => {
 
         cy.get('[data-popover-panel]').should('not.exist');
       });
+
+      it('behaves with normal popover focus trap/tab behavior if `ownFocus` is set to true', () => {
+        cy.mount(
+          <>
+            <StatefulInputPopover disableFocusTrap={true} ownFocus={true}>
+              <button data-test-subj="one">one</button>
+              <button data-test-subj="two">two</button>
+            </StatefulInputPopover>
+          </>
+        );
+
+        cy.get('[data-test-subj="one"]').click();
+        // Should not close the popover
+        cy.realPress('Tab');
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'two');
+        // Should cycle back to the beginning of the focus trap
+        cy.repeatRealPress('Tab', 2);
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'one');
+      });
     });
   });
 

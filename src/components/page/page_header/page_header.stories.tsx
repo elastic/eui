@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { moveStorybookControlsToCategory } from '../../../../.storybook/utils';
 import { EuiButton } from '../../button';
 import { EuiPageHeader, EuiPageHeaderProps } from '../page_header';
 
@@ -23,6 +24,10 @@ const meta: Meta<EuiPageHeaderProps> = {
     pageTitleProps: { control: 'object' },
     breadcrumbProps: { control: 'object' },
     tabsProps: { control: 'object' },
+    restrictWidth: {
+      control: 'select',
+      options: [true, false, 500, 900, 1800, '25%', '50%', '75%'],
+    },
   },
   args: {
     // Component defaults
@@ -33,8 +38,54 @@ const meta: Meta<EuiPageHeaderProps> = {
   },
 };
 
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'pageTitle',
+    'pageTitleProps',
+    'iconType',
+    'iconProps',
+    'breadcrumbs',
+    'breadcrumbProps',
+    'tabs',
+    'tabsProps',
+    'description',
+    'responsive',
+    'alignItems',
+    'rightSideItems',
+    'rightSideGroupProps',
+    'children',
+  ],
+  'EuiPageHeaderContent props'
+);
+
 export default meta;
 type Story = StoryObj<EuiPageHeaderProps>;
+
+const tabs = [
+  {
+    label: 'Tab 1',
+    isSelected: true,
+  },
+  {
+    label: 'Tab 2',
+  },
+];
+
+const breadcrumbs = [
+  {
+    text: 'Breadcrumb 1',
+    href: '#',
+  },
+  {
+    text: 'Breadcrumb 2',
+    href: '#',
+  },
+  {
+    text: 'Current',
+    href: '#',
+  },
+];
 
 export const Playground: Story = {
   args: {
@@ -46,28 +97,7 @@ export const Playground: Story = {
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
     ],
-    tabs: [
-      {
-        label: 'Tab 1',
-        isSelected: true,
-      },
-      {
-        label: 'Tab 2',
-      },
-    ],
-    breadcrumbs: [
-      {
-        text: 'Breadcrumb 1',
-        href: '#',
-      },
-      {
-        text: 'Breadcrumb 2',
-        href: '#',
-      },
-      {
-        text: 'Current',
-        href: '#',
-      },
-    ],
+    tabs,
+    breadcrumbs,
   },
 };

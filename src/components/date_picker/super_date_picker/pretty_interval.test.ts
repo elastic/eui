@@ -6,8 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react';
-
+import { renderHook } from '../../../test/rtl';
 import { usePrettyInterval } from './pretty_interval';
 
 const IS_NOT_PAUSED = false;
