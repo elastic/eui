@@ -12,7 +12,6 @@ import React, {
   ElementType,
   ForwardedRef,
   forwardRef,
-  FunctionComponent,
   PropsWithChildren,
   Ref,
 } from 'react';
@@ -121,14 +120,13 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
 
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
-export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as <
-  TComponent extends ComponentPropType,
+export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as (<
+  TComponent extends ComponentPropType = 'div',
   TComponentRef = ReturnType<typeof EuiFlexGroupInternal>
 >(
   props: EuiFlexGroupProps<TComponent> & {
     ref?: Ref<TComponentRef>;
   }
-) => ReturnType<typeof EuiFlexGroupInternal>;
+) => ReturnType<typeof EuiFlexGroupInternal>) & { displayName?: string };
 
-// Cast is required here because of the cast above
-(EuiFlexGroup as FunctionComponent).displayName = 'EuiFlexGroup';
+EuiFlexGroup.displayName = 'EuiFlexGroup';
