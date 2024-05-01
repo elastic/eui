@@ -6,15 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  ComponentPropsWithoutRef,
-  ComponentType,
-  ElementType,
-  ForwardedRef,
-  forwardRef,
-  FunctionComponent,
-  Ref,
-} from 'react';
+import React, { HTMLAttributes, Ref, forwardRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -51,80 +43,80 @@ export const DIRECTIONS = [
 ] as const;
 type FlexGroupDirection = (typeof DIRECTIONS)[number];
 
-type ComponentPropType = ElementType<CommonProps>;
+export const COMPONENT_TYPES = ['div', 'span'] as const;
+type FlexGroupComponentType = (typeof COMPONENT_TYPES)[number];
 
-export type EuiFlexGroupProps<TComponent extends ComponentPropType = 'div'> =
-  ComponentPropsWithoutRef<TComponent> & {
-    alignItems?: FlexGroupAlignItems;
-    /**
-     * Customize the component type that is rendered.
-     *
-     * It can be any valid React component type like a tag name string
-     * such as `'div'` or `'span'`, a React component (a function, a class,
-     * or an exotic component like `memo()`).
-     *
-     * `<EuiFlexGroup>` accepts and forwards all extra props to the custom
-     * component.
-     *
-     * @example
-     * // Renders a <button> element
-     * <EuiFlexGroup component="button">
-     *   Submit form
-     * </EuiFlexGroup>
-     * @default "div"
-     */
-    component?: TComponent;
-    direction?: FlexGroupDirection;
-    gutterSize?: EuiFlexGroupGutterSize;
-    justifyContent?: FlexGroupJustifyContent;
-    responsive?: boolean;
-    wrap?: boolean;
-  };
+export interface EuiFlexGroupProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
+  alignItems?: FlexGroupAlignItems;
+  component?: FlexGroupComponentType;
+  direction?: FlexGroupDirection;
+  gutterSize?: EuiFlexGroupGutterSize;
+  justifyContent?: FlexGroupJustifyContent;
+  responsive?: boolean;
+  wrap?: boolean;
+}
 
-const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
-  {
-    className,
-    component = 'div' as TComponent,
-    gutterSize = 'l',
-    alignItems = 'stretch',
-    responsive = true,
-    justifyContent = 'flexStart',
-    direction = 'row',
-    wrap = false,
-    ...rest
-  }: EuiFlexGroupProps<TComponent>,
-  ref: ForwardedRef<TComponent>
-) => {
-  const styles = useEuiMemoizedStyles(euiFlexGroupStyles);
-  const cssStyles = [
-    styles.euiFlexGroup,
-    responsive && !direction.includes('column') && styles.responsive,
-    wrap && styles.wrap,
-    styles.gutterSizes[gutterSize],
-    styles.justifyContent[justifyContent],
-    styles.alignItems[alignItems],
-    styles.direction[direction],
-  ];
-
-  const classes = classNames('euiFlexGroup', className);
-
-  // Cast the resolved component prop type to ComponentType to help TS
-  // process multiple infers and the overall type complexity.
-  // This might not be needed in TypeScript 5
-  const Component = component as ComponentType<CommonProps & typeof rest>;
-
-  return <Component {...rest} ref={ref} className={classes} css={cssStyles} />;
-};
-
-// Cast forwardRef return type to work with the generic TComponent type
-// and not fallback to implicit any typing
-export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as <
-  TComponent extends ComponentPropType
+export const EuiFlexGroup = forwardRef<
+  HTMLDivElement | HTMLSpanElement,
+  EuiFlexGroupProps
 >(
-  props: EuiFlexGroupProps<TComponent> & {
-    ref?: Ref<typeof EuiFlexGroupInternal>;
-  }
-) => ReturnType<typeof EuiFlexGroupInternal>;
+  (
+    {
+      children,
+      className,
+      gutterSize = 'l',
+      alignItems = 'stretch',
+      responsive = true,
+      justifyContent = 'flexStart',
+      direction = 'row',
+      wrap = false,
+      component = 'div',
+      ...rest
+    },
+    ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
+  ) => {
+    const styles = useEuiMemoizedStyles(euiFlexGroupStyles);
+    const cssStyles = [
+      styles.euiFlexGroup,
+      responsive && !direction.includes('column') && styles.responsive,
+      wrap && styles.wrap,
+      styles.gutterSizes[gutterSize],
+      styles.justifyContent[justifyContent],
+      styles.alignItems[alignItems],
+      styles.direction[direction],
+    ];
 
-// Cast is required here because of the cast above
-(EuiFlexGroup as FunctionComponent).displayName = 'EuiFlexGroup';
+    const classes = classNames('euiFlexGroup', className);
+
+    useEffect(() => {
+      if (!COMPONENT_TYPES.includes(component)) {
+        throw new Error(
+          `${component} is not a valid element type. Use \`div\` or \`span\`.`
+        );
+      }
+    }, [component]);
+
+    return component === 'span' ? (
+      <span
+        css={cssStyles}
+        className={classes}
+        ref={ref as Ref<HTMLSpanElement>}
+        {...rest}
+      >
+        {children}
+      </span>
+    ) : (
+      <div
+        css={cssStyles}
+        className={classes}
+        ref={ref as Ref<HTMLDivElement>}
+        {...rest}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+EuiFlexGroup.displayName = 'EuiFlexGroup';
