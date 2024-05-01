@@ -38,8 +38,6 @@ export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 const unsupportedProps = [
   // We don't want to show multiple months next to each other
   'monthsShown',
-  // There is no need to show week numbers
-  'showWeekNumbers',
   // Our css adapts to height, no need to fix it
   'fixedHeight',
   // We force the month / year selection UI. No need to configure it
