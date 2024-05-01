@@ -27,10 +27,10 @@ ls_options=(
   -d # only list directories
   -l # include additional details about the subdir, notably the date as a second field
 )
-echo "Getting all but the most recent 50 PR staging links..."
+echo "Getting all but the most recent 100 PR staging links..."
 list=$(gsutil ls "${ls_options[@]}" "gs://${BUCKET}/pr_*" \
   | sort -k 2 `# sort by the 2nd field returned by -l which is a timestamp` \
-  | head -n -50 `# remove the last 50 items, so basically keep the latest 50 staging docs` \
+  | head -n -100 `# remove the last 100 items, so basically keep the latest 100 staging docs` \
 )
 while IFS= read -r line || [[ -n $line ]]; do
   url="$(echo -e "${line}" | tr -d '[:space:]')" # trim the leading whitespaces
