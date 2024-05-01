@@ -1,3 +1,9 @@
+## [`v94.2.1-backport.0`](https://github.com/elastic/eui/releases/v94.2.1-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+- Reverted the `EuiFlexGroup`/`EuiFlexItem` `component` prop feature due to Kibana typing issues
+
 ## [`v94.2.1`](https://github.com/elastic/eui/releases/v94.2.1)
 
 **Bug fixes**
