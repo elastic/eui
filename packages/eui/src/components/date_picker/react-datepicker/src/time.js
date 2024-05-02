@@ -369,8 +369,8 @@ export default class Time extends React.Component {
           <div
             className={timeBoxClassNames}
             onKeyDown={this.onInputKeyDown}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
+            onFocusCapture={this.onFocus}
+            onBlurCapture={this.onBlur}
           >
             <ul
               aria-label={this.props.timeCaption}
