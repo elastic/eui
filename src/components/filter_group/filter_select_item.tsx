@@ -107,7 +107,10 @@ export class EuiFilterSelectItemClass extends Component<
     const classes = classNames('euiFilterSelectItem', className);
 
     const hasToolTip =
-      !disabled && React.isValidElement(children) && toolTipContent;
+      // we're using isValidElement here as EuiToolTipAnchor uses
+      // cloneElement to enhance the element with required attributes
+      React.isValidElement(children) && !disabled && toolTipContent;
+
     let anchorProps = undefined;
 
     if (hasToolTip) {
