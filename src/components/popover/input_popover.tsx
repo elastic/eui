@@ -169,33 +169,36 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   useEffect(() => {
     // When the popover opens, add a scroll listener to the page (& remove it after)
     if (closeOnScroll && panelEl) {
-      // Close the popover, but only if the scroll event occurs outside the input or the popover itself
       const closePopoverOnScroll = (event: Event) => {
-        if (!panelEl || !inputEl || !event.target) return;
         const scrollTarget = event.target as Node;
 
-        if (
-          panelEl.contains(scrollTarget) === false &&
-          inputEl.contains(scrollTarget) === false
-        ) {
-          closePopover();
+        // Basic existence check
+        if (!panelEl || !inputEl || !scrollTarget) {
+          return;
         }
+        // Do not close the popover if the input or popover itself was scrolled
+        if (panelEl.contains(scrollTarget) || inputEl.contains(scrollTarget)) {
+          return;
+        }
+        // Firefox will trigger a scroll event in many common situations (e.g. docs side nav)
+        // when the options list div is appended to the DOM. To work around this, we should
+        // check if the element that scrolled actually contains/will affect the input
+        if (!scrollTarget.contains(inputEl)) {
+          return;
+        }
+
+        closePopover();
       };
 
-      // Firefox will trigger a scroll event in many common situations when the options list div is appended
-      // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
-      const timeoutId = setTimeout(() => {
-        window.addEventListener('scroll', closePopoverOnScroll, {
-          passive: true, // for better performance as we won't call preventDefault
-          capture: true, // scroll events don't bubble, they must be captured instead
-        });
-      }, 500);
+      window.addEventListener('scroll', closePopoverOnScroll, {
+        passive: true, // for better performance as we won't call preventDefault
+        capture: true, // scroll events don't bubble, they must be captured instead
+      });
 
       return () => {
         window.removeEventListener('scroll', closePopoverOnScroll, {
           capture: true,
         });
-        clearTimeout(timeoutId);
       };
     }
   }, [closeOnScroll, closePopover, panelEl, inputEl]);
