@@ -145,7 +145,7 @@ const columns = [
   },
   {
     id: 'date',
-    display: <div style={{ textAlign: 'right' }}>Date</div>,
+    displayAsText: 'Date',
     defaultSortDirection: 'desc' as const,
   },
   {
