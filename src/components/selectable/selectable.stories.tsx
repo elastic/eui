@@ -107,30 +107,17 @@ export const Playground: Story = {
 };
 
 export const WithTooltip: Story = {
+  parameters: {
+    controls: {
+      include: ['options', 'singleSelection', 'searchable'],
+    },
+  },
   args: {
     options: options.map((option) => ({ ...option, ...toolTipProps })),
     searchable: false,
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
-// hide props as they are not relevant for testing the story args
-hideStorybookControls(WithTooltip, [
-  'allowExclusions',
-  'children',
-  'onChange',
-  'isLoading',
-  'renderOption',
-  'emptyMessage',
-  'errorMessage',
-  'height',
-  'isPreFiltered',
-  'listProps',
-  'loadingMessage',
-  'noMatchesMessage',
-  'onActiveOptionChange',
-  'selectableScreenReaderText',
-  'searchProps',
-]);
 
 const StatefulSelectable = ({
   options,
