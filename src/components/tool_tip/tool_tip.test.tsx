@@ -182,26 +182,6 @@ describe('EuiToolTip', () => {
     });
   });
 
-  describe('isOpen', () => {
-    it('shows/hides the tooltip', async () => {
-      const { rerender } = render(
-        <EuiToolTip content="Tooltip content" id="toolTipId" isOpen>
-          <button data-test-subj="trigger">Trigger</button>
-        </EuiToolTip>
-      );
-
-      await waitForEuiToolTipVisible();
-
-      rerender(
-        <EuiToolTip content="Tooltip content" id="toolTipId" isOpen={false}>
-          <button data-test-subj="trigger">Trigger</button>
-        </EuiToolTip>
-      );
-
-      await waitForEuiToolTipHidden();
-    });
-  });
-
   describe('ref methods', () => {
     // Although we don't publicly recommend it, consumers may need to reach into EuiToolTip
     // class methods to manually control visibility state via `show/hideToolTip`.

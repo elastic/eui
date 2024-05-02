@@ -99,10 +99,6 @@ export interface EuiToolTipProps extends CommonProps {
    */
   position: ToolTipPositions;
   /**
-   * For controlled use to show/hide the tooltip
-   */
-  isOpen?: boolean;
-  /**
    * When `true`, the tooltip's position is re-calculated when the user
    * scrolls. This supports having fixed-position tooltip anchors.
    *
@@ -157,10 +153,6 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     if (this.props.repositionOnScroll) {
       window.addEventListener('scroll', this.positionToolTip, true);
     }
-
-    if (this.props.isOpen) {
-      this.showToolTip();
-    }
   }
 
   componentWillUnmount() {
@@ -172,14 +164,6 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
-    }
-
-    if (prevProps.isOpen !== this.props.isOpen) {
-      if (this.props.isOpen) {
-        this.showToolTip();
-      } else {
-        this.hideToolTip();
-      }
     }
 
     // update scroll listener
@@ -323,7 +307,6 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       delay,
       display,
       repositionOnScroll,
-      isOpen,
       ...rest
     } = this.props;
 
