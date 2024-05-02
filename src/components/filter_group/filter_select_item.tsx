@@ -106,8 +106,23 @@ export class EuiFilterSelectItemClass extends Component<
 
     const classes = classNames('euiFilterSelectItem', className);
 
-    const hasToolTip =
-      !disabled && React.isValidElement(children) && toolTipContent;
+    const hasToolTip = !disabled && toolTipContent;
+    let anchorProps = undefined;
+
+    if (hasToolTip) {
+      const anchorStyles = toolTipProps?.anchorProps?.style
+        ? { ...toolTipProps?.anchorProps?.style, ...style }
+        : style;
+
+      anchorProps = toolTipProps?.anchorProps
+        ? {
+            ...toolTipProps.anchorProps,
+            style: anchorStyles,
+          }
+        : { style };
+
+      this.toggleToolTip(isFocused ?? false);
+    }
 
     let iconNode;
     if (showIcons) {
@@ -150,18 +165,16 @@ export class EuiFilterSelectItemClass extends Component<
     );
 
     return hasToolTip ? (
-      // This extra wrapper is needed to ensure that the tooltip has a correct context
-      // for positioning while also ensuring to wrap the interactive option
-      <span style={style}>
-        <EuiToolTip
-          display="block"
-          content={toolTipContent}
-          {...toolTipProps}
-          isOpen={isFocused}
-        >
-          {optionItem}
-        </EuiToolTip>
-      </span>
+      <EuiToolTip
+        ref={this.tooltipRef}
+        display="block"
+        content={toolTipContent}
+        position="left"
+        {...toolTipProps}
+        anchorProps={anchorProps}
+      >
+        {optionItem}
+      </EuiToolTip>
     ) : (
       optionItem
     );
