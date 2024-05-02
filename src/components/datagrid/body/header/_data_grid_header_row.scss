@@ -28,6 +28,10 @@
     @include euiDataGridCellFocus;
   }
 
+  .euiDataGridHeaderCell__content {
+    flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
+  }
+
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
     .euiDataGridHeaderCell__button {
@@ -43,7 +47,6 @@
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
 
-      flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
       text-align: left; // overwrites inherited 'center' styles from button
     }
 
@@ -79,7 +82,6 @@
   &.euiDataGridHeaderCell--numeric,
   &.euiDataGridHeaderCell--currency {
     .euiDataGridHeaderCell__content {
-      flex-grow: 1;
       text-align: right;
     }
   }
