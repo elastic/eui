@@ -23,7 +23,7 @@ import {
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
-  toolTipProps: { position: 'bottom' as ToolTipPositions },
+  toolTipProps: { position: 'left' as ToolTipPositions },
   value: 4,
 };
 

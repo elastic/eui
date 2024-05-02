@@ -7,14 +7,19 @@
  */
 
 import classNames from 'classnames';
-import React, { AriaAttributes, Component, LiHTMLAttributes } from 'react';
+import React, {
+  AriaAttributes,
+  Component,
+  createRef,
+  LiHTMLAttributes,
+} from 'react';
 
 import { CommonProps, keysOf } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
-import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
+import { EuiToolTip } from '../../tool_tip';
 
 import type {
   EuiSelectableOption,
@@ -94,11 +99,11 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     /**
      * Optional custom tooltip content for the button
      */
-    toolTipContent?: EuiToolTipProps['content'];
+    toolTipContent?: EuiSelectableOption['toolTipContent'];
     /**
      * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
      */
-    toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
+    toolTipProps?: EuiSelectableOption['toolTipProps'];
   };
 
 export class EuiSelectableListItem extends Component<EuiSelectableListItemProps> {
@@ -108,8 +113,18 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
     textWrap: 'truncate',
   };
 
+  tooltipRef = createRef<EuiToolTip>();
+
   constructor(props: EuiSelectableListItemProps) {
     super(props);
+  }
+
+  componentDidMount(): void {
+    const { disabled, isFocused, toolTipContent } = this.props;
+
+    if (isFocused === true && !disabled && !!toolTipContent) {
+      this.toggleToolTip(true);
+    }
   }
 
   // aria-checked is intended to be used with role="checkbox" but
@@ -138,6 +153,16 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
         }
       default:
         return false;
+    }
+  };
+
+  toggleToolTip = (isFocused: boolean) => {
+    if (!this.tooltipRef?.current) return;
+
+    if (isFocused) {
+      this.tooltipRef.current.showToolTip();
+    } else {
+      this.tooltipRef.current.hideToolTip();
     }
   };
 
@@ -176,7 +201,11 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
       [`euiSelectableListItem__text--${textWrap}`]: textWrap,
     });
 
-    const hasToolTip = !disabled && toolTipContent;
+    const hasToolTip = !disabled && !!toolTipContent;
+
+    if (hasToolTip) {
+      this.toggleToolTip(isFocused ?? false);
+    }
 
     let optionIcon: React.ReactNode;
     if (showIcons) {
@@ -375,14 +404,15 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
     };
 
     return hasToolTip ? (
-      // This extra wrapper is needed to ensure that the tooltip has a correct context
-      // for positioning while also ensuring to wrap the interactive option
+      // This extra wrapper is needed to ensure proper semantics and that the tooltip has
+      // a correct context for positioning while also ensuring to wrap the interactive option
       <li style={style} className={classes}>
         <EuiToolTip
+          ref={this.tooltipRef}
           content={toolTipContent}
           anchorClassName="euiSelectableListItem__tooltipAnchor"
+          position="left"
           {...toolTipProps}
-          isOpen={isFocused}
         >
           <span {...optionProps}>{content}</span>
         </EuiToolTip>
