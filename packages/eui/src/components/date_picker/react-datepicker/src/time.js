@@ -341,7 +341,7 @@ export default class Time extends React.Component {
     let screenReaderInstructions;
     if (this.state.readInstructions) {
       screenReaderInstructions = (
-        <p aria-live>
+        <p>
           You are a in a time selector. Use the up and down keys to select from
           other common times then press enter to confirm.
           {this.state.preSelection ? `${formatDate(this.state.preSelection, this.timeFormat)} is currently
@@ -362,7 +362,7 @@ export default class Time extends React.Component {
             {this.props.timeCaption}
           </div>
           <EuiScreenReaderOnly>
-            <span>{screenReaderInstructions}</span>
+            <span aria-live="polite">{screenReaderInstructions}</span>
           </EuiScreenReaderOnly>
         </div>
         <div className="react-datepicker__time">
