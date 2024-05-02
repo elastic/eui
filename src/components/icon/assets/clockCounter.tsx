@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconError = ({
+const EuiIconClockCounter = ({
   title,
   titleId,
   ...props
@@ -28,11 +28,8 @@ const EuiIconError = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4.854 5.146a.5.5 0 1 0-.708.708L6.793 8.5l-2.647 2.646a.5.5 0 0 0 .708.708L7.5 9.207l2.646 2.647a.5.5 0 0 0 .708-.708L8.207 8.5l2.647-2.646a.5.5 0 0 0-.708-.708L7.5 7.793 4.854 5.146Z" />
-    <path
-      fillRule="evenodd"
-      d="M5 1a1 1 0 0 0-.707.293l-4 4A1 1 0 0 0 0 6v5a1 1 0 0 0 .293.707l4 4A1 1 0 0 0 5 16h5a1 1 0 0 0 .707-.293l4-4A1 1 0 0 0 15 11V6a1 1 0 0 0-.293-.707l-4-4A1 1 0 0 0 10 1H5Zm5 1H5L1 6v5l4 4h5l4-4V6l-4-4Z"
-    />
+    <path d="M11.39 3.61a5.5 5.5 0 0 0-7.78 7.78l.562.56v-1.622a.5.5 0 0 1 1 0v2.829a.5.5 0 0 1-.5.5H1.843a.5.5 0 0 1 0-1h1.621l-.56-.56A6.5 6.5 0 1 1 7.5 14a.5.5 0 0 1 0-1 5.5 5.5 0 0 0 3.89-9.39Z" />
+    <path d="M7.5 3a.5.5 0 0 1 .5.5V7h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5Z" />
   </svg>
 );
-export const icon = EuiIconError;
+export const icon = EuiIconClockCounter;
