@@ -22,6 +22,7 @@ export default () => {
     {
       label: 'Dione',
       toolTipContent: 'Lorem ipsum',
+      toolTipProps: { position: 'bottom' },
     },
     {
       label: 'Iapetus',
