@@ -10,7 +10,6 @@ import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { hideStorybookControls } from '../../../.storybook/utils';
 import { ToolTipPositions } from '../tool_tip';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 import { EuiComboBoxOptionMatcher } from './types';
@@ -18,7 +17,7 @@ import { EuiCode } from '../code';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
-  toolTipProps: { position: 'bottom' as ToolTipPositions },
+  toolTipProps: { position: 'left' as ToolTipPositions },
   value: 4,
 };
 
@@ -76,44 +75,16 @@ export const Playground: Story = {
 };
 
 export const WithTooltip: Story = {
+  parameters: {
+    controls: {
+      include: ['fullWidth', 'options', 'selectedOptions'],
+    },
+  },
   args: {
     options: options.map((option) => ({ ...option, ...toolTipProps })),
   },
   render: (args) => <StatefulComboBox {...args} />,
 };
-// hide props as they are not relevant for testing the story args
-hideStorybookControls(WithTooltip, [
-  'append',
-  'aria-label',
-  'aria-labelledby',
-  'async',
-  'autoFocus',
-  'compressed',
-  'customOptionText',
-  'delimiter',
-  'id',
-  'inputPopoverProps',
-  'inputRef',
-  'isCaseSensitive',
-  'isClearable',
-  'isDisabled',
-  'isInvalid',
-  'isLoading',
-  'noSuggestions',
-  'onBlur',
-  'onChange',
-  'onCreateOption',
-  'onFocus',
-  'onKeyDown',
-  'onSearchChange',
-  'placeholder',
-  'prepend',
-  'renderOption',
-  'rowHeight',
-  'singleSelection',
-  'sortMatchesBy',
-  'truncationProps',
-]);
 
 const StatefulComboBox = ({
   singleSelection,

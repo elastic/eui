@@ -254,7 +254,7 @@ describe('EuiComboBox', () => {
         );
       });
 
-      it('renders a tooltip with applied props on focus', async () => {
+      it('renders a tooltip with applied props on keyboard navigation', async () => {
         const options = [
           {
             label: 'Titan',
