@@ -9,7 +9,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 import {
   EuiStepsHorizontal,
