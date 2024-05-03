@@ -38,6 +38,7 @@ const dataKeys = [
 const raw_data = Array.from({ length: 10 }).map(() => {
   const email = faker.internet.email();
   const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
+  const date = faker.date.past().toDateString();
   const suffix = faker.person.suffix();
   return {
     name: {
@@ -54,7 +55,7 @@ const raw_data = Array.from({ length: 10 }).map(() => {
         <EuiLink href="https://google.com">{faker.location.country()}</EuiLink>
       </>
     ),
-    date: `${faker.date.past()}`,
+    date: `${date}`,
     account: faker.finance.accountNumber(),
     version: faker.system.semver(),
   };
