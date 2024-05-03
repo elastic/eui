@@ -177,7 +177,7 @@ export class EuiSelectableList<T> extends Component<
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
-    isVirtualized: true,
+    isVirtualized: true as const,
   };
 
   private animationFrameId: number | undefined;
@@ -297,6 +297,18 @@ export class EuiSelectableList<T> extends Component<
         itemData: { ...optionArray },
         ...this.calculateAriaSetAttrs(optionArray),
       });
+    }
+
+    // ensure that ListRow updates based on item props
+    if (
+      isVirtualized &&
+      (prevProps.showIcons !== this.props.showIcons ||
+        prevProps.paddingSize !== this.props.paddingSize ||
+        prevProps.textWrap !== this.props.textWrap ||
+        prevProps.onFocusBadge !== this.props.onFocusBadge ||
+        prevProps.searchable !== this.props.searchable)
+    ) {
+      this.forceVirtualizedListRowRerender();
     }
   }
 
@@ -652,6 +664,15 @@ export class EuiSelectableList<T> extends Component<
       ...rest
     } = this.props;
 
+    const itemProps = {
+      allowExclusions,
+      onFocusBadge,
+      showIcons,
+      paddingSize,
+      searchable,
+      textWrap,
+    };
+
     const heightIsFull = forcedHeight === 'full';
 
     const classes = classNames(
@@ -681,6 +702,8 @@ export class EuiSelectableList<T> extends Component<
                     key: index,
                     data: this.state.optionArray,
                     index,
+                    // pass additional props to ensure rerender on list item prop updates
+                    ...itemProps,
                   },
                   null
                 )
