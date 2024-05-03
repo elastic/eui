@@ -23,7 +23,15 @@ describe('EuiAbsoluteTab', () => {
   const rafSpy = jest
     .spyOn(window, 'requestAnimationFrame')
     .mockImplementation((cb: Function) => cb());
-  afterAll(() => rafSpy.mockRestore());
+  // mock setTimeout to fire immediately
+  const stoSpy = jest
+    .spyOn(window, 'setTimeout')
+    .mockImplementation((cb: Function) => cb());
+  // restore mocked functions
+  afterAll(() => {
+    rafSpy.mockRestore();
+    stoSpy.mockRestore();
+  });
 
   const props = {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',

@@ -99,6 +99,30 @@ export class EuiAbsoluteTab extends Component<
     });
   };
 
+  setStateTimeoutId: ReturnType<typeof setTimeout> | undefined;
+  override setState<K extends keyof EuiAbsoluteTabState>(
+    state: Pick<EuiAbsoluteTabState, K>
+  ): void {
+    clearTimeout(this.setStateTimeoutId);
+
+    if (
+      // Only TypeScript 4.9+ understands this in-narrowing
+      'isTextInvalid' in state &&
+      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
+      state.isTextInvalid
+    ) {
+      // Defer setting true to isTextInvalid
+      this.setStateTimeoutId = setTimeout(
+        () => super.setState({ isTextInvalid: true }),
+        100 // a very short period to avoid text blinking on switching tabs
+      );
+      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
+      delete state.isTextInvalid;
+    }
+
+    return super.setState(state);
+  }
+
   parseUserDateInput = (textInputValue: string) => {
     this.isParsing = true;
     // Wait a tick for state to finish updating (whatever gets returned),
@@ -202,6 +226,7 @@ export class EuiAbsoluteTab extends Component<
                     this.parseUserDateInput(textInputValue);
                   }
                 }}
+                onBlur={() => this.parseUserDateInput(textInputValue)}
                 data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
               />
