@@ -25,6 +25,8 @@ import type {
 } from './data_grid_types';
 import { EuiDataGrid } from './data_grid';
 
+faker.seed(42);
+
 const dataKeys = [
   'name',
   'email',
