@@ -327,7 +327,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     if (isLoading) {
       emptyStateContent = (
-        <EuiFlexGroup gutterSize="s" justifyContent="center">
+        <EuiFlexGroup gutterSize="s" justifyContent="center" responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiLoadingSpinner size="m" />
           </EuiFlexItem>
