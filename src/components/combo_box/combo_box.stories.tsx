@@ -10,14 +10,13 @@ import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { ToolTipPositions } from '../tool_tip';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiCode } from '../code';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
-  toolTipProps: { position: 'left' as ToolTipPositions },
+  toolTipProps: { position: 'left' as const },
   value: 4,
 };
 

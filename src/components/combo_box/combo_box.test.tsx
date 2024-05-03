@@ -525,21 +525,26 @@ describe('EuiComboBox', () => {
       describe('tabbing off the search input', () => {
         it("closes the options list if the user isn't navigating the options", async () => {
           const keyDownBubbled = jest.fn();
+
           const { getByTestSubject } = render(
             <div onKeyDown={keyDownBubbled}>
               <EuiComboBox options={options} selectedOptions={[options[2]]} />
             </div>
           );
           await showEuiComboBoxOptions();
+
           const mockEvent = { key: keys.TAB, shiftKey: true };
           fireEvent.keyDown(getByTestSubject('comboBoxSearchInput'), mockEvent);
+
           // If the TAB keydown bubbled up to the wrapper, then a browser DOM would shift the focus
           expect(keyDownBubbled).toHaveBeenCalledWith(
             expect.objectContaining(mockEvent)
           );
         });
+
         it('calls onCreateOption', () => {
           const onCreateOptionHandler = jest.fn();
+
           const { getByTestSubject } = render(
             <EuiComboBox
               options={options}
@@ -548,23 +553,29 @@ describe('EuiComboBox', () => {
             />
           );
           const input = getByTestSubject('comboBoxSearchInput');
+
           fireEvent.change(input, { target: { value: 'foo' } });
           fireEvent.blur(input);
+
           expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
           expect(onCreateOptionHandler).toHaveBeenCalledWith('foo', options);
         });
+
         it('does nothing if the user is navigating the options', async () => {
           const keyDownBubbled = jest.fn();
+
           const { getByTestSubject } = render(
             <div onKeyDown={keyDownBubbled}>
               <EuiComboBox options={options} selectedOptions={[options[2]]} />
             </div>
           );
           await showEuiComboBoxOptions();
+
           // Navigate to an option then tab off
           const input = getByTestSubject('comboBoxSearchInput');
           fireEvent.keyDown(input, { key: keys.ARROW_DOWN });
           fireEvent.keyDown(input, { key: keys.TAB });
+
           // If the TAB keydown did not bubble to the wrapper, then the tab event was prevented
           expect(keyDownBubbled).not.toHaveBeenCalled();
         });
