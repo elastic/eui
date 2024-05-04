@@ -73,6 +73,35 @@ export class EuiAbsoluteTab extends Component<
     };
   }
 
+  setStateTimeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  override componentWillUnmount() {
+    clearTimeout(this.setStateTimeoutId);
+  }
+
+  override setState<K extends keyof EuiAbsoluteTabState>(
+    state: Pick<EuiAbsoluteTabState, K>
+  ): void {
+    clearTimeout(this.setStateTimeoutId);
+
+    if (
+      // Only TypeScript 4.9+ understands this in-narrowing
+      'isTextInvalid' in state &&
+      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
+      state.isTextInvalid
+    ) {
+      // Defer setting true to isTextInvalid
+      this.setStateTimeoutId = setTimeout(
+        () => super.setState({ isTextInvalid: true }),
+        100 // a very short period to avoid text blinking on switching tabs
+      );
+      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
+      delete state.isTextInvalid;
+    }
+
+    return super.setState(state);
+  }
+
   handleChange: EuiDatePickerProps['onChange'] = (date) => {
     const { onChange } = this.props;
     if (date === null) {
@@ -98,30 +127,6 @@ export class EuiAbsoluteTab extends Component<
       isTextInvalid: false,
     });
   };
-
-  setStateTimeoutId: ReturnType<typeof setTimeout> | undefined;
-  override setState<K extends keyof EuiAbsoluteTabState>(
-    state: Pick<EuiAbsoluteTabState, K>
-  ): void {
-    clearTimeout(this.setStateTimeoutId);
-
-    if (
-      // Only TypeScript 4.9+ understands this in-narrowing
-      'isTextInvalid' in state &&
-      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
-      state.isTextInvalid
-    ) {
-      // Defer setting true to isTextInvalid
-      this.setStateTimeoutId = setTimeout(
-        () => super.setState({ isTextInvalid: true }),
-        100 // a very short period to avoid text blinking on switching tabs
-      );
-      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
-      delete state.isTextInvalid;
-    }
-
-    return super.setState(state);
-  }
 
   parseUserDateInput = (textInputValue: string) => {
     this.isParsing = true;
