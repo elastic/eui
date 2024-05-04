@@ -76,6 +76,9 @@ export class EuiAbsoluteTab extends Component<
   setStateTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
   override componentWillUnmount() {
+    // for browsers that may leave focus on text field, such as iOS Safari
+    this.parseUserDateInput(this.state.textInputValue);
+
     clearTimeout(this.setStateTimeoutId);
   }
 
@@ -90,7 +93,6 @@ export class EuiAbsoluteTab extends Component<
       // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
       state.isTextInvalid
     ) {
-      // Defer setting true to isTextInvalid
       this.setStateTimeoutId = setTimeout(
         () => super.setState({ isTextInvalid: true }),
         100 // a very short period to avoid text blinking on switching tabs
