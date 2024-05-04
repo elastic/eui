@@ -30,9 +30,7 @@ describe('EuiAbsoluteTab', () => {
         try {
           return originalFireEvent[event](node, options);
         } finally {
-          act(() => {
-            jest.runOnlyPendingTimers();
-          });
+          act(() => jest.runOnlyPendingTimers());
         }
       })
   );
