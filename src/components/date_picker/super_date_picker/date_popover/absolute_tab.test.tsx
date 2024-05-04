@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent, EventType } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
@@ -23,15 +23,25 @@ describe('EuiAbsoluteTab', () => {
   const rafSpy = jest
     .spyOn(window, 'requestAnimationFrame')
     .mockImplementation((cb: Function) => cb());
-  // mock setTimeout to fire immediately
-  const stoSpy = jest
-    .spyOn(window, 'setTimeout')
-    .mockImplementation((cb: Function) => cb());
-  // restore mocked functions
+  // mock fireEvent to run jest.runOnlyPendingTimers() after every event
+  const fevSpys = Array<EventType>('change', 'blur', 'keyDown', 'paste').map(
+    (...[event, , , originalFireEvent = { ...fireEvent }]) =>
+      jest.spyOn(fireEvent, event).mockImplementation((node, options) => {
+        try {
+          return originalFireEvent[event](node, options);
+        } finally {
+          act(() => {
+            jest.runOnlyPendingTimers();
+          });
+        }
+      })
+  );
   afterAll(() => {
     rafSpy.mockRestore();
-    stoSpy.mockRestore();
+    fevSpys.forEach((spy) => spy.mockRestore());
   });
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
 
   const props = {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
@@ -94,6 +104,19 @@ describe('EuiAbsoluteTab', () => {
 
       expect(queryByText(/Allowed formats: /)).toBeInTheDocument();
       expect(queryByText(/Press the Enter key /)).not.toBeInTheDocument();
+    });
+
+    it('parses the input text on blur from the date input', () => {
+      const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
+      const input = getByTestSubject(
+        'superDatePickerAbsoluteDateInput'
+      ) as HTMLInputElement;
+
+      fireEvent.change(input, { target: { value: 'test' } });
+      expect(input).not.toBeInvalid();
+
+      fireEvent.blur(input);
+      expect(input).toBeInvalid();
     });
   });
 
