@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { act, fireEvent, EventType } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
@@ -23,23 +23,7 @@ describe('EuiAbsoluteTab', () => {
   const rafSpy = jest
     .spyOn(window, 'requestAnimationFrame')
     .mockImplementation((cb: Function) => cb());
-  // mock fireEvent to run jest.runOnlyPendingTimers() after every event
-  const fevSpys = Array<EventType>('change', 'blur', 'keyDown', 'paste').map(
-    (...[event, , , originalFireEvent = { ...fireEvent }]) =>
-      jest.spyOn(fireEvent, event).mockImplementation((node, options) => {
-        try {
-          return originalFireEvent[event](node, options);
-        } finally {
-          act(() => jest.runOnlyPendingTimers());
-        }
-      })
-  );
-  afterAll(() => {
-    rafSpy.mockRestore();
-    fevSpys.forEach((spy) => spy.mockRestore());
-  });
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  afterAll(() => rafSpy.mockRestore());
 
   const props = {
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
@@ -113,7 +97,13 @@ describe('EuiAbsoluteTab', () => {
       fireEvent.change(input, { target: { value: 'test' } });
       expect(input).not.toBeInvalid();
 
-      fireEvent.blur(input);
+      jest.useFakeTimers();
+      try {
+        fireEvent.blur(input);
+        act(() => jest.runOnlyPendingTimers());
+      } finally {
+        jest.useRealTimers();
+      }
       expect(input).toBeInvalid();
     });
   });
