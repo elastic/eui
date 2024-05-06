@@ -17,9 +17,14 @@ npm login # Will prompt for credentials and 2FA token
 npm whoami # Should return your NPM username
 ```
 
-Ensure you are on the `main` branch, and then start the release process by running the following command:
+Ensure you are on the `main` branch and in the `packages/eui` directory:
 ```sh
-git checkout main && npm run release
+git checkout main && cd packages/eui
+```
+
+You can now start the release script by running the following command:
+```sh
+npm run release
 ```
 
 This command ensures that you have the latest `upstream/main` and dependencies, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `changelogs/upcoming/` and you will be asked to choose what part of the version to bump.
