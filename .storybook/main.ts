@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
@@ -30,7 +31,23 @@ const config: StorybookConfig = {
         },
       ],
     });
-    return config;
+
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          // we need to resolve to the modules file as otherwise
+          // 'tty' and 'os' dependencies are not resolved correctly
+          // https://github.com/storybookjs/storybook/issues/26997#issuecomment-2088494093
+          '@storybook/test': path.resolve(
+            __dirname,
+            '../node_modules/@storybook/test/dist/index.mjs'
+          ),
+        },
+      },
+    };
   },
   docs: {
     autodocs: 'tag',
