@@ -28,7 +28,11 @@ const EuiIconTokenMetricCounter = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M11 3a1 1 0 0 0-1 1v1H9a1 1 0 0 0 0 2h1v1a1 1 0 1 0 2 0V7h1a1 1 0 1 0 0-2h-1V4a1 1 0 0 0-1-1ZM5 7a1 1 0 0 0-1 1v1H3a1 1 0 0 0 0 2h1v1a1 1 0 1 0 2 0v-1h1a1 1 0 1 0 0-2H6V8a1 1 0 0 0-1-1Z" />
+    <path d="M12 10.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 0-1H12v-.5Z" />
+    <path
+      fillRule="evenodd"
+      d="M8 3h4v5.035A3.5 3.5 0 1 1 8.337 13H2V9h3V6h3V3Zm1.05 9a2.5 2.5 0 1 1 4.902-1 2.5 2.5 0 0 1-4.902 1ZM11 8.035a3.49 3.49 0 0 0-2 1.016V4h2v4.035ZM8 12H6V7h2v5Zm-3 0v-2H3v2h2Z"
+    />
   </svg>
 );
 export const icon = EuiIconTokenMetricCounter;
