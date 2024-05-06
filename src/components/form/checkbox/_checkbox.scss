@@ -50,6 +50,29 @@
       }
     }
 
+    &:focus {
+      + .euiCheckbox__square {
+        @include euiCustomControlFocused;
+      }
+    }
+
+    // Readonly checkboxes are used by EuiMarkdownEditor
+    &[readonly] {
+      cursor: default !important; // stylelint-disable-line declaration-no-important
+
+      ~ .euiCheckbox__label {
+        cursor: default !important; // stylelint-disable-line declaration-no-important
+      }
+
+      // maintain the initial color to enforce that clicks are not doing anything
+      &:focus {
+        + .euiCheckbox__square {
+          outline-color: $euiFormCustomControlBorderColor !important; // stylelint-disable-line declaration-no-important
+          border-color: $euiFormCustomControlBorderColor;
+        }
+      }
+    }
+
     &[disabled] {
       cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
 
@@ -72,12 +95,6 @@
     &:indeterminate[disabled] {
       + .euiCheckbox__square {
         @include euiCustomControlDisabled($type: 'square');
-      }
-    }
-
-    &:focus {
-      + .euiCheckbox__square {
-        @include euiCustomControlFocused;
       }
     }
   }

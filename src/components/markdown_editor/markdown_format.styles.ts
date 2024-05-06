@@ -23,31 +23,13 @@ const euiScaleMarkdownFormatText = (
   euiTheme: UseEuiTheme,
   options: _FontScaleOptions
 ) => {
-  const { fontSize, lineHeight } = euiFontSize(euiTheme, 'm', options);
-  const { unit } = options;
-  const lineHeightSize = unit === 'em' ? `${lineHeight}em` : lineHeight;
+  const { fontSize } = euiFontSize(euiTheme, 'm', options);
 
   // Custom scales
   const tablePaddingVertical = mathWithUnits(fontSize, (x) => x / 4);
   const tablePaddingHorizontal = mathWithUnits(fontSize, (x) => x / 2);
 
   return `
-    .euiCheckbox .euiCheckbox__input ~ .euiCheckbox__label { // Extra specificity necessary to override default checkbox CSS
-      font-size: ${fontSize};
-      ${logicalCSS('padding-left', lineHeightSize)}
-      line-height: ${lineHeight};
-    }
-
-    .euiCheckbox + *:not(.euiCheckbox) {
-      ${logicalCSS('margin-top', fontSize)}
-    }
-
-    /* Better align checkboxes with all text sizes */
-    .euiCheckbox .euiCheckbox__input + .euiCheckbox__square {
-      ${logicalCSS('top', '50%')}
-      transform: translateY(-50%);
-    }
-
     .euiMarkdownFormat__codeblockWrapper {
       ${logicalCSS('margin-bottom', fontSize)}
     }
