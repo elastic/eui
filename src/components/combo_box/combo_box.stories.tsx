@@ -9,14 +9,19 @@
 import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { userEvent, waitFor, within, expect } from '@storybook/test';
 
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiCode } from '../code';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
-  toolTipProps: { position: 'left' as const },
+  toolTipProps: {
+    position: 'left' as const,
+    ['data-test-subj']: 'tooltip',
+  },
   value: 4,
 };
 
@@ -78,11 +83,39 @@ export const WithTooltip: Story = {
     controls: {
       include: ['fullWidth', 'options', 'selectedOptions'],
     },
+    loki: {
+      // popover and tooltip are rendered in a portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
   args: {
     options: options.map((option) => ({ ...option, ...toolTipProps })),
   },
   render: (args) => <StatefulComboBox {...args} />,
+  play: lokiPlayDecorator(async (context) => {
+    const { bodyElement, step } = context;
+
+    const canvas = within(bodyElement);
+
+    await step(
+      'show popover on click, then hover first option to show its tooltip',
+      async () => {
+        await userEvent.click(canvas.getByRole('combobox'));
+        await waitFor(() => {
+          expect(canvas.getByRole('listbox')).toBeVisible();
+        });
+
+        const options = canvas.getAllByRole('option');
+
+        await userEvent.hover(options[0]);
+        await waitFor(() =>
+          expect(
+            document.querySelectorAll('[data-test-subj="tooltip"]')[0]
+          ).toBeVisible()
+        );
+      }
+    );
+  }),
 };
 
 export const CustomMatcher: Story = {
