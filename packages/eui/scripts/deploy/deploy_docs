@@ -7,8 +7,8 @@ set +x
 # itself from within another docker container to deploy to GCP.
 
 # Usage:
-# * Compile and deploy:          ./scripts/deploy/deploy_docs
-# * Deploy only without docker:  ./scripts/deploy/deploy_docs nodocker
+# * Compile and deploy:          ./packages/eui/scripts/deploy/deploy_docs
+# * Deploy only without docker:  ./packages/eui/scripts/deploy/deploy_docs nodocker
 
 # Expected env variables:
 # * GPROJECT - GCE project name, e.g. elastic-bekitzur
@@ -81,15 +81,15 @@ publish_to_bucket()
     -z js,css,html # enable gzip encoding for these extensions
   )
 
-  echo "Copying ${PWD}/docs/* to ${full_bucket_path}"
-  gsutil "${copy_options[@]}" "${PWD}/docs/*" "${full_bucket_path}"
+  echo "Copying ${PWD}/packages/eui/docs/* to ${full_bucket_path}"
+  gsutil "${copy_options[@]}" "${PWD}/packages/eui/docs/*" "${full_bucket_path}"
 
-  echo "Copying ${PWD}/storybook-static/* to ${full_bucket_path}storybook/"
-  gsutil "${copy_options[@]}" "${PWD}/storybook-static/*" "${full_bucket_path}storybook/"
+  echo "Copying ${PWD}/packages/eui/storybook-static/* to ${full_bucket_path}storybook/"
+  gsutil "${copy_options[@]}" "${PWD}/packages/eui/storybook-static/*" "${full_bucket_path}storybook/"
 }
 
 if [[ "$1" != "nodocker" ]]; then
-  ./scripts/deploy/build_docs
+  ./packages/eui/scripts/deploy/build_docs
 
   # Get the latest tag on main, which will determine whether we deploy to the root `eui.elastic.co` bucket
   # NOTE: specifying the main branch means we don't override prod with backport or prerelease tags.
@@ -112,7 +112,7 @@ if [[ "$1" != "nodocker" ]]; then
     --volume "${PWD}":/app:ro \
     --workdir /app \
     "${GCE_IMAGE}" \
-    /app/scripts/deploy/deploy_docs nodocker "$@"
+    /app/packages/eui/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
   # If the branch is not a pull request, Buildkite passes "false"

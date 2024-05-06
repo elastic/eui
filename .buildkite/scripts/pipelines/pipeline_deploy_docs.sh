@@ -13,9 +13,6 @@ if [[ -z "${GITHUB_TOKEN}" ]]; then
   exit 1
 fi
 
-cd packages/eui
-
 # Run EUI build/deploy script, set in the template parameter
 # Expects env: GPROJECT, GCE_ACCOUNT, GIT_BRANCH, GITHUB_TOKEN from pre_command.sh
-./scripts/deploy/deploy_docs
-
+./packages/eui/scripts/deploy/deploy_docs
