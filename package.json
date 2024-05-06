@@ -4,8 +4,15 @@
   "version": "1.0.0",
   "description": "Elastic Design System",
   "workspaces": {
-    "packages": ["packages/*"],
-    "nohoist": ["**/eslint-plugin-local", "**/eslint-plugin-local/**"]
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/eslint-plugin-local",
+      "**/eslint-plugin-local/**",
+      "**/stylelint",
+      "**/stylelint/**"
+    ]
   },
   "scripts": {
     "pre-push": "yarn --cwd packages/eui pre-push"
