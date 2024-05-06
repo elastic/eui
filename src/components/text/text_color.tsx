@@ -29,6 +29,8 @@ export const COLORS = [
   'inherit',
 ] as const;
 export type TextColor = (typeof COLORS)[number];
+export const _isNamedColor = (color: any): color is TextColor =>
+  COLORS.includes(color);
 
 export type EuiTextColorProps = CommonProps &
   Omit<
@@ -58,7 +60,7 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   style,
   ...rest
 }) => {
-  const isNamedColor = COLORS.includes(color as TextColor);
+  const isNamedColor = _isNamedColor(color);
 
   const styles = useEuiMemoizedStyles(euiTextColorStyles);
   const cssStyles = [

@@ -10,15 +10,26 @@ import { useEuiTheme } from '../../services';
 import { renderHook } from '../../test/rtl';
 
 import { TEXT_SIZES } from '../text/text';
+import { COLORS } from '../text/text_color';
 import { euiMarkdownFormatStyles } from './markdown_format.styles';
+
+const output = renderHook(() => euiMarkdownFormatStyles(useEuiTheme())).result
+  .current;
 
 describe('euiMarkdownFormat text sizes', () => {
   TEXT_SIZES.forEach((size) => {
     test(size, () => {
-      const emotionReturn = renderHook(() =>
-        euiMarkdownFormatStyles(useEuiTheme())
-      ).result.current;
-      expect(emotionReturn[size].styles).toMatchSnapshot();
+      expect(output[size].styles).toMatchSnapshot();
+    });
+  });
+});
+
+describe('euiMarkdownFormat text colors', () => {
+  const colors = [...COLORS, 'custom'] as const;
+
+  colors.forEach((color) => {
+    test(`${color}`, () => {
+      expect(output.colors[color].styles).toMatchSnapshot();
     });
   });
 });

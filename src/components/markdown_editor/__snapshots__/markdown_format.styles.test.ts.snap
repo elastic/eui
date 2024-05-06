@@ -1,5 +1,338 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`euiMarkdownFormat text colors accent 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #F04E98;
+    }
+
+    .euiHorizontalRule {
+      background-color: #F04E98;
+      color: #F04E98; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #F04E98;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #F04E98;
+
+      &:last-child {
+        border-inline-end: 1px solid #F04E98;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #F04E98;
+    }
+  ;label:accent;"
+`;
+
+exports[`euiMarkdownFormat text colors custom 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: currentColor;
+    }
+
+    .euiHorizontalRule {
+      background-color: currentColor;
+      color: currentColor; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid currentColor;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid currentColor;
+
+      &:last-child {
+        border-inline-end: 1px solid currentColor;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid currentColor;
+    }
+  ;label:custom;"
+`;
+
+exports[`euiMarkdownFormat text colors danger 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #BD271E;
+    }
+
+    .euiHorizontalRule {
+      background-color: #BD271E;
+      color: #BD271E; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #BD271E;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #BD271E;
+
+      &:last-child {
+        border-inline-end: 1px solid #BD271E;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #BD271E;
+    }
+  ;label:danger;"
+`;
+
+exports[`euiMarkdownFormat text colors default 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: rgba(0,0,0,0.15);
+    }
+
+    .euiHorizontalRule {
+      background-color: rgba(0,0,0,0.15);
+      color: rgba(0,0,0,0.15); /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid rgba(0,0,0,0.15);
+
+      &:last-child {
+        border-inline-end: 1px solid rgba(0,0,0,0.15);
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid rgba(0,0,0,0.15);
+    }
+  ;label:default;"
+`;
+
+exports[`euiMarkdownFormat text colors ghost 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #FFF;
+    }
+
+    .euiHorizontalRule {
+      background-color: #FFF;
+      color: #FFF; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #FFF;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #FFF;
+
+      &:last-child {
+        border-inline-end: 1px solid #FFF;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #FFF;
+    }
+  ;label:ghost;"
+`;
+
+exports[`euiMarkdownFormat text colors inherit 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: currentColor;
+    }
+
+    .euiHorizontalRule {
+      background-color: currentColor;
+      color: currentColor; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid currentColor;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid currentColor;
+
+      &:last-child {
+        border-inline-end: 1px solid currentColor;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid currentColor;
+    }
+  ;label:inherit;"
+`;
+
+exports[`euiMarkdownFormat text colors subdued 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #646a77;
+    }
+
+    .euiHorizontalRule {
+      background-color: #646a77;
+      color: #646a77; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #646a77;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #646a77;
+
+      &:last-child {
+        border-inline-end: 1px solid #646a77;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #646a77;
+    }
+  ;label:subdued;"
+`;
+
+exports[`euiMarkdownFormat text colors success 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #00BFB3;
+    }
+
+    .euiHorizontalRule {
+      background-color: #00BFB3;
+      color: #00BFB3; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #00BFB3;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #00BFB3;
+
+      &:last-child {
+        border-inline-end: 1px solid #00BFB3;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #00BFB3;
+    }
+  ;label:success;"
+`;
+
+exports[`euiMarkdownFormat text colors warning 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #FEC514;
+    }
+
+    .euiHorizontalRule {
+      background-color: #FEC514;
+      color: #FEC514; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #FEC514;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #FEC514;
+
+      &:last-child {
+        border-inline-end: 1px solid #FEC514;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #FEC514;
+    }
+  ;label:warning;"
+`;
+
 exports[`euiMarkdownFormat text sizes m 1`] = `
 "
     .euiCheckbox .euiCheckbox__input ~ .euiCheckbox__label { // Extra specificity necessary to override default checkbox CSS
