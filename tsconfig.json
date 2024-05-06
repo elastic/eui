@@ -57,7 +57,8 @@
   },
   "include": [
     "./src/**/*",
-    "./src-docs/**/*"
+    "./src-docs/**/*",
+    "./.storybook/*.d.ts"
   ],
   "exclude": ["node_modules", "**/*/*.spec.tsx", "**/*/*.a11y.tsx"]
 }
