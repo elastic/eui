@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps, findTestSubject } from '../../../test';
-import { shouldRenderCustomStyles } from '../../../test/internal';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test';
 
 import { EuiTabbedContent, AUTOFOCUS } from './tabbed_content';
 
@@ -46,10 +46,10 @@ describe('EuiTabbedContent', () => {
     describe('onTabClick', () => {
       test('is called when a tab is clicked', () => {
         const onTabClickHandler = jest.fn();
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiTabbedContent onTabClick={onTabClickHandler} tabs={tabs} />
         );
-        findTestSubject(component, 'kibanaTab').simulate('click');
+        fireEvent.click(getByTestSubject('kibanaTab'));
         expect(onTabClickHandler).toBeCalledTimes(1);
         expect(onTabClickHandler).toBeCalledWith(kibanaTab);
       });
@@ -94,33 +94,59 @@ describe('EuiTabbedContent', () => {
   });
 
   describe('behavior', () => {
-    test("when selected tab state isn't controlled by the owner, select the first tab by default", () => {
-      const { container } = render(<EuiTabbedContent tabs={tabs} />);
-      expect(container.firstChild).toMatchSnapshot();
+    describe('when selectedTab state is uncontrolled', () => {
+      it('selects the first tab by default', () => {
+        const { getAllByRole } = render(<EuiTabbedContent tabs={tabs} />);
+        const tabElements = getAllByRole('tab');
+        expect(tabElements[0]).toHaveAttribute('aria-selected', 'true');
+        expect(tabElements[1]).toHaveAttribute('aria-selected', 'false');
+      });
     });
 
-    test('when uncontrolled, the selected tab should update if it receives new content', () => {
-      const tabs = [
-        elasticsearchTab,
-        {
-          ...kibanaTab,
-        },
-      ];
-      const component = mount(<EuiTabbedContent tabs={tabs} />);
+    it("does not reset the existing selected tab if the tab's contents update", () => {
+      const { rerender, getAllByRole, getByTestSubject } = render(
+        <EuiTabbedContent tabs={[elasticsearchTab, { ...kibanaTab }]} />
+      );
 
-      component.find('EuiTab[id="kibana"] button').first().simulate('click');
+      fireEvent.click(getByTestSubject('kibanaTab'));
+      expect(getAllByRole('tab')[1]).toHaveAttribute('aria-selected', 'true');
 
-      component.setProps({
-        tabs: [
-          elasticsearchTab,
-          {
-            ...kibanaTab,
-            content: <p>updated Kibana content</p>,
-          },
-        ],
-      });
+      rerender(
+        <EuiTabbedContent
+          tabs={[
+            elasticsearchTab,
+            { ...kibanaTab, content: <p>pdated Kibana content</p> },
+          ]}
+        />
+      );
+      expect(getAllByRole('tab')[1]).toHaveAttribute('aria-selected', 'true');
+    });
 
-      expect(component.render()).toMatchSnapshot();
+    it('resets the selected tab to the first if the `tabs` content completely changes', () => {
+      const { rerender, getAllByRole, getByTestSubject } = render(
+        <EuiTabbedContent tabs={tabs} />
+      );
+
+      fireEvent.click(getByTestSubject('kibanaTab'));
+      expect(getAllByRole('tab')[1]).toHaveAttribute('aria-selected', 'true');
+
+      rerender(
+        <EuiTabbedContent
+          tabs={[
+            {
+              id: 'hello',
+              name: 'New tab 1',
+              content: <p>Hello</p>,
+            },
+            {
+              id: 'world',
+              name: 'New tab 2',
+              content: <p>World</p>,
+            },
+          ]}
+        />
+      );
+      expect(getAllByRole('tab')[0]).toHaveAttribute('aria-selected', 'true');
     });
   });
 });

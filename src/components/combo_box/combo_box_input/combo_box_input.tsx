@@ -190,6 +190,8 @@ export class EuiComboBoxInput<T> extends Component<
         append,
         prepend,
         truncationProps,
+        toolTipContent,
+        toolTipProps,
         ...rest
       } = option;
       const pillOnClose =

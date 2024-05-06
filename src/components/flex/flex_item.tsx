@@ -7,10 +7,15 @@
  */
 
 import React, {
-  HTMLAttributes,
-  FunctionComponent,
   ElementType,
   useEffect,
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+  ComponentType,
+  ForwardedRef,
+  forwardRef,
+  FunctionComponent,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -35,25 +40,43 @@ const VALID_GROW_VALUES = [
   10,
 ] as const;
 
-export interface EuiFlexItemProps {
-  grow?: boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | null; // Leave this as an inline string enum so the props table properly parses it
-  /**
-   * @default div
-   */
-  component?: ElementType;
-}
+type ComponentPropType = ElementType<CommonProps>;
 
-export const EuiFlexItem: FunctionComponent<
-  CommonProps &
-    HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
-    EuiFlexItemProps
-> = ({
-  children,
-  className,
-  grow = true,
-  component: Component = 'div',
-  ...rest
-}) => {
+export type EuiFlexItemProps<TComponent extends ComponentPropType = 'div'> =
+  PropsWithChildren &
+    CommonProps &
+    ComponentPropsWithoutRef<TComponent> & {
+      grow?: boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | null; // Leave this as an inline string enum so the props table properly parses it
+      /**
+       * Customize the component type that is rendered.
+       *
+       * It can be any valid React component type like a tag name string
+       * such as `'div'` or `'span'`, a React component (a function, a class,
+       * or an exotic component like `memo()`).
+       *
+       * `<EuiFlexGroup>` accepts and forwards all extra props to the custom
+       * component.
+       *
+       * @example
+       * // Renders a <button> element
+       * <EuiFlexItem component="button">
+       *   Submit form
+       * </EuiFlexGroup>
+       * @default "div"
+       */
+      component?: TComponent;
+    };
+
+const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
+  {
+    children,
+    className,
+    grow = true,
+    component = 'div' as TComponent,
+    ...rest
+  }: EuiFlexItemProps<TComponent>,
+  ref: ForwardedRef<TComponent>
+) => {
   useEffect(() => {
     if (VALID_GROW_VALUES.indexOf(grow) === -1) {
       throw new Error(
@@ -73,9 +96,27 @@ export const EuiFlexItem: FunctionComponent<
 
   const classes = classNames('euiFlexItem', className);
 
+  // Cast the resolved component prop type to ComponentType to help TS
+  // process multiple infers and the overall type complexity.
+  // This might not be needed in TypeScript 5
+  const Component = component as ComponentType<CommonProps & typeof rest>;
+
   return (
-    <Component css={cssStyles} className={classes} {...rest}>
+    <Component {...rest} ref={ref} css={cssStyles} className={classes}>
       {children}
     </Component>
   );
 };
+
+// Cast forwardRef return type to work with the generic TComponent type
+// and not fallback to implicit any typing
+export const EuiFlexItem = forwardRef(EuiFlexItemInternal) as <
+  TComponent extends ComponentPropType
+>(
+  props: EuiFlexItemProps<TComponent> & {
+    ref?: Ref<typeof EuiFlexItemInternal>;
+  }
+) => ReturnType<typeof EuiFlexItemInternal>;
+
+// Cast is required here because of the cast above
+(EuiFlexItem as FunctionComponent).displayName = 'EuiFlexItem';

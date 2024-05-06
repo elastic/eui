@@ -7,6 +7,7 @@
  */
 
 import { EuiSelectableOption } from './selectable_option';
+import { EuiSelectableOptionMatcher } from './selectable';
 
 const getSearchableLabel = <T>(
   option: EuiSelectableOption<T>,
@@ -26,18 +27,30 @@ const getSelectedOptionForSearchValue = <T>(
   );
 };
 
-const collectMatchingOption = <T>(
-  accumulator: Array<EuiSelectableOption<T>>,
-  option: EuiSelectableOption<T>,
-  normalizedSearchValue: string,
-  isPreFiltered?: boolean,
-  selectedOptions?: Array<EuiSelectableOption<T>>
-) => {
+interface CollectMatchingOptionArgs<TOption> {
+  accumulator: Array<EuiSelectableOption<TOption>>;
+  option: EuiSelectableOption<TOption>;
+  searchValue: string;
+  normalizedSearchValue: string;
+  isPreFiltered?: boolean;
+  selectedOptions?: Array<EuiSelectableOption<TOption>>;
+  optionMatcher: EuiSelectableOptionMatcher<TOption>;
+}
+
+const collectMatchingOption = <TOption>({
+  selectedOptions,
+  isPreFiltered,
+  option,
+  accumulator,
+  searchValue,
+  normalizedSearchValue,
+  optionMatcher,
+}: CollectMatchingOptionArgs<TOption>) => {
   // Don't show options that have already been requested if
   // the selectedOptions list exists
   if (selectedOptions) {
-    const selectedOption = getSelectedOptionForSearchValue<T>(
-      getSearchableLabel<T>(option, false),
+    const selectedOption = getSelectedOptionForSearchValue<TOption>(
+      getSearchableLabel<TOption>(option, false),
       selectedOptions
     );
     if (selectedOption) {
@@ -57,44 +70,76 @@ const collectMatchingOption = <T>(
     return;
   }
 
-  const normalizedOption = getSearchableLabel<T>(option);
-  if (normalizedOption.includes(normalizedSearchValue)) {
+  const isMatching = optionMatcher({
+    option,
+    searchValue,
+    normalizedSearchValue,
+  });
+  if (isMatching) {
     accumulator.push(option);
   }
 };
 
 type SelectableOptions<T> = Array<EuiSelectableOption<T>>;
 
-export const getMatchingOptions = <T>(
+interface GetMatchingOptionsArgs<TOption> {
   /**
    * All available options to match against
    */
-  options: SelectableOptions<T>,
+  options: SelectableOptions<TOption>;
   /**
    * String to match option.label || option.searchableLabel against
    */
-  searchValue: string,
+  searchValue: string;
   /**
    * Async?
    */
-  isPreFiltered?: boolean,
+  isPreFiltered: boolean;
   /**
    * To exclude selected options from the search list,
    * pass the array of selected options
    */
-  selectedOptions?: SelectableOptions<T>
-) => {
+  selectedOptions?: SelectableOptions<TOption>;
+  /**
+   * Option matcher function passed to EuiSelectable or the default matcher
+   */
+  optionMatcher: EuiSelectableOptionMatcher<TOption>;
+}
+
+export const getMatchingOptions = <TOption>({
+  searchValue,
+  options,
+  isPreFiltered,
+  selectedOptions = [],
+  optionMatcher,
+}: GetMatchingOptionsArgs<TOption>) => {
   const normalizedSearchValue = searchValue.toLowerCase();
-  const matchingOptions: SelectableOptions<T> = [];
+  const matchingOptions: SelectableOptions<TOption> = [];
 
   options.forEach((option) => {
-    collectMatchingOption<T>(
-      matchingOptions,
+    collectMatchingOption<TOption>({
+      accumulator: matchingOptions,
       option,
+      searchValue,
       normalizedSearchValue,
       isPreFiltered,
-      selectedOptions
-    );
+      selectedOptions,
+      optionMatcher,
+    });
   });
   return matchingOptions;
+};
+
+/**
+ * Partial string equality option matcher for EuiSelectable
+ * It matches all options with labels including the searched string.
+ */
+export const createPartialStringEqualityOptionMatcher = <
+  TOption
+>(): EuiSelectableOptionMatcher<TOption> => {
+  return ({ option, normalizedSearchValue }) => {
+    const normalizedOption = getSearchableLabel(option);
+
+    return normalizedOption.includes(normalizedSearchValue);
+  };
 };

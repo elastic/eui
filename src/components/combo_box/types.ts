@@ -10,6 +10,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
 
 import type { _EuiComboBoxProps } from './combo_box';
+import { EuiToolTipProps } from '../tool_tip';
 
 // note similarity to `Option` in `components/selectable/types.tsx`
 export interface EuiComboBoxOptionOption<
@@ -24,6 +25,14 @@ export interface EuiComboBoxOptionOption<
   prepend?: ReactNode;
   append?: ReactNode;
   truncationProps?: _EuiComboBoxProps<T>['truncationProps'];
+  /**
+   * Optional custom tooltip content for the button
+   */
+  toolTipContent?: EuiToolTipProps['content'];
+  /**
+   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 }
 
 export type OptionHandler<T> = (option: EuiComboBoxOptionOption<T>) => void;
@@ -33,3 +42,35 @@ export type RefInstance<T> = T | null;
 export interface EuiComboBoxSingleSelectionShape {
   asPlainText?: boolean;
 }
+
+export interface EuiComboBoxOptionMatcherArgs<TOption> {
+  /**
+   * Option being currently processed
+   */
+  option: EuiComboBoxOptionOption<TOption>;
+  /**
+   * Raw search input value
+   */
+  searchValue: string;
+  /**
+   * Search input value normalized for case-sensitivity
+   * and with leading and trailing whitespace characters trimmed
+   */
+  normalizedSearchValue: string;
+  /**
+   * Whether to match the option with case-sensitivity
+   */
+  isCaseSensitive: boolean;
+}
+
+/**
+ * Option matcher function for EuiComboBox component.
+ *
+ * @example
+ * const equalityMatcher: EuiComboBoxOptionMatcher = ({ option, searchValue }) => {
+ *   return option.label === searchValue;
+ * }
+ */
+export type EuiComboBoxOptionMatcher<TOption> = (
+  args: EuiComboBoxOptionMatcherArgs<TOption>
+) => boolean;

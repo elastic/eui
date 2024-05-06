@@ -26,7 +26,10 @@ import {
 } from './selectable_list';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiSpacer } from '../spacer';
-import { getMatchingOptions } from './matching_options';
+import {
+  createPartialStringEqualityOptionMatcher,
+  getMatchingOptions,
+} from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
 import { EuiScreenReaderLive, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
@@ -48,6 +51,16 @@ type OptionalEuiSelectableOptionsListProps = Omit<
 type EuiSelectableOptionsListPropsWithDefaults =
   RequiredEuiSelectableOptionsListProps &
     Partial<OptionalEuiSelectableOptionsListProps>;
+
+export interface EuiSelectableOptionMatcherArgs<TOption> {
+  option: EuiSelectableOption<TOption>;
+  searchValue: string;
+  normalizedSearchValue: string;
+}
+
+export type EuiSelectableOptionMatcher<T> = (
+  args: EuiSelectableOptionMatcherArgs<T>
+) => boolean;
 
 // The `searchable` prop has significant implications for a11y.
 // When present, we effectively change from adhering
@@ -185,6 +198,15 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      * interacting with a selectable are read out.
      */
     selectableScreenReaderText?: string;
+    /**
+     * Optional custom option matcher function
+     *
+     * @example
+     * const exactEqualityMatcher: EuiSelectableOptionMatcher = ({ option, searchValue }) => {
+     *   return option.label === searchValue;
+     * }
+     */
+    optionMatcher?: EuiSelectableOptionMatcher<T>;
   };
 
 export interface EuiSelectableState<T> {
@@ -203,6 +225,7 @@ export class EuiSelectable<T = {}> extends Component<
     singleSelection: false,
     searchable: false,
     isPreFiltered: false,
+    optionMatcher: createPartialStringEqualityOptionMatcher(),
   };
   private inputRef: HTMLInputElement | null = null;
   private containerRef = createRef<HTMLDivElement>();
@@ -226,11 +249,14 @@ export class EuiSelectable<T = {}> extends Component<
     const initialSearchValue =
       searchProps?.value || String(searchProps?.defaultValue || '');
 
-    const visibleOptions = getMatchingOptions<T>(
+    const visibleOptions = getMatchingOptions<T>({
       options,
-      initialSearchValue,
-      !!isPreFiltered
-    );
+      searchValue: initialSearchValue,
+      isPreFiltered: !!isPreFiltered,
+      selectedOptions: [],
+      optionMatcher: props.optionMatcher!,
+    });
+
     searchProps?.onChange?.(initialSearchValue, visibleOptions);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
@@ -254,7 +280,7 @@ export class EuiSelectable<T = {}> extends Component<
     nextProps: EuiSelectableProps<T>,
     prevState: EuiSelectableState<T>
   ) {
-    const { options, isPreFiltered, searchProps } = nextProps;
+    const { options, isPreFiltered, searchProps, optionMatcher } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
     const stateUpdate: Partial<EuiSelectableState<T>> = {
@@ -266,11 +292,13 @@ export class EuiSelectable<T = {}> extends Component<
       stateUpdate.searchValue = searchProps.value;
     }
 
-    stateUpdate.visibleOptions = getMatchingOptions<T>(
+    stateUpdate.visibleOptions = getMatchingOptions<T>({
       options,
-      stateUpdate.searchValue ?? '',
-      !!isPreFiltered
-    );
+      searchValue: stateUpdate.searchValue ?? '',
+      isPreFiltered: !!isPreFiltered,
+      selectedOptions: [],
+      optionMatcher: optionMatcher!,
+    });
 
     if (
       activeOptionIndex != null &&
@@ -484,13 +512,15 @@ export class EuiSelectable<T = {}> extends Component<
     event: EuiSelectableOnChangeEvent,
     clickedOption: EuiSelectableOption<T>
   ) => {
-    const { isPreFiltered, onChange } = this.props;
+    const { isPreFiltered, onChange, optionMatcher } = this.props;
     const { searchValue } = this.state;
-    const visibleOptions = getMatchingOptions(
+    const visibleOptions = getMatchingOptions({
       options,
-      searchValue,
-      !!isPreFiltered
-    );
+      searchValue: searchValue ?? '',
+      isPreFiltered: !!isPreFiltered,
+      selectedOptions: [],
+      optionMatcher: optionMatcher!,
+    });
 
     this.setState({ visibleOptions });
 
@@ -529,6 +559,7 @@ export class EuiSelectable<T = {}> extends Component<
       errorMessage,
       selectableScreenReaderText,
       isPreFiltered,
+      optionMatcher,
       ...rest
     } = this.props;
 
@@ -720,6 +751,7 @@ export class EuiSelectable<T = {}> extends Component<
               aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
               placeholder={placeholderName}
               isPreFiltered={!!isPreFiltered}
+              optionMatcher={optionMatcher!}
               inputRef={(node) => {
                 this.inputRef = node;
                 searchProps?.inputRef?.(node);
