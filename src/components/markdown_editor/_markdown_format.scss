@@ -56,17 +56,6 @@
     }
   }
 
-  .euiCheckbox {
-    // stylelint-disable-next-line declaration-no-important
-    margin-bottom: 0 !important;
-  }
-
-  // We're adjusting the position of the checkboxes so that when the text size is `relative` the checkboxes get better positioned
-  .euiCheckbox .euiCheckbox__input + .euiCheckbox__square {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
   // Tables
   .euiMarkdownFormat__table {
     display: block;

@@ -42,6 +42,12 @@ const euiScaleMarkdownFormatText = (
       ${logicalCSS('margin-top', fontSize)}
     }
 
+    /* Better align checkboxes with all text sizes */
+    .euiCheckbox .euiCheckbox__input + .euiCheckbox__square {
+      ${logicalCSS('top', '50%')}
+      transform: translateY(-50%);
+    }
+
     .euiMarkdownFormat__codeblockWrapper {
       ${logicalCSS('margin-bottom', fontSize)}
     }
@@ -62,27 +68,26 @@ const euiScaleMarkdownFormatText = (
  * Styles
  */
 export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
-  // TODO: Remaining _markdown_format.scss styles
   euiMarkdownFormat: css``,
   // Text sizes
-  m: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+  m: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       customScale: 'm',
-    })}
-  `,
-  s: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+    })
+  ),
+  s: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       customScale: 's',
-    })}
-  `,
-  xs: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+    })
+  ),
+  xs: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       customScale: 'xs',
-    })}
-  `,
-  relative: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+    })
+  ),
+  relative: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       unit: 'em',
-    })}
-  `,
+    })
+  ),
 });
