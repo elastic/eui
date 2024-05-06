@@ -3,9 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "description": "Elastic Design System",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/eslint-plugin-local", "**/eslint-plugin-local/**"]
+  },
   "scripts": {
     "pre-push": "yarn --cwd packages/eui pre-push"
   },
