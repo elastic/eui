@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "description": "Elastic Design System",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "pre-push": "yarn --cwd packages/eui pre-push"
   },
