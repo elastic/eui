@@ -2,7 +2,7 @@
 
 exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1`] = `
 <div
-  class="euiMarkdownEditor testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -228,7 +228,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
 
 exports[`EuiMarkdownEditor is rendered 1`] = `
 <div
-  class="euiMarkdownEditor testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -474,7 +474,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
 
 exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = `
 <div
-  class="euiMarkdownEditor testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -719,7 +719,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
 
 exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
 <div
-  class="euiMarkdownEditor euiMarkdownEditor--fullHeight testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-fullHeight-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -964,7 +964,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
 
 exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
 <div
-  class="euiMarkdownEditor testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -1209,7 +1209,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
 
 exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = `
 <div
-  class="euiMarkdownEditor testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -1454,7 +1454,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
 
 exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
 <div
-  class="euiMarkdownEditor testClass1 testClass2 emotion-euiTestCss"
+  class="euiMarkdownEditor testClass1 testClass2 emotion-euiMarkdownEditor-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

@@ -22,7 +22,11 @@ import unified, { PluggableList, Processor } from 'unified';
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { CommonProps, OneOf } from '../common';
+import { EuiModal } from '../modal';
+import { EuiResizeObserver } from '../observer/resize_observer';
+
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import {
@@ -31,8 +35,6 @@ import {
 } from './markdown_editor_text_area';
 import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
-import { useGeneratedHtmlId } from '../../services';
-
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
   EuiMarkdownAstNode,
@@ -41,16 +43,13 @@ import {
   EuiMarkdownParseError,
   EuiMarkdownStringTagConfig,
 } from './markdown_types';
-
-import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
 import {
   defaultParsingPlugins,
   defaultProcessingPlugins,
   defaultUiPlugins,
 } from './plugins/markdown_default_plugins';
-
-import { EuiResizeObserver } from '../observer/resize_observer';
+import { euiMarkdownEditorStyles } from './markdown_editor.styles';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -350,12 +349,15 @@ export const EuiMarkdownEditor = forwardRef<
     const [editorFooterHeight, setEditorFooterHeight] = useState(0);
     const [editorToolbarHeight, setEditorToolbarHeight] = useState(0);
 
+    const styles = useEuiMemoizedStyles(euiMarkdownEditorStyles);
+    const cssStyles = [
+      styles.euiMarkdownEditor,
+      height === 'full' && styles.fullHeight,
+    ];
+
     const classes = classNames(
       'euiMarkdownEditor',
-      { 'euiMarkdownEditor--fullHeight': height === 'full' },
-      {
-        'euiMarkdownEditor--isPreviewing': isPreviewing,
-      },
+      { 'euiMarkdownEditor-isPreviewing': isPreviewing },
       className
     );
 
@@ -421,7 +423,7 @@ export const EuiMarkdownEditor = forwardRef<
 
     return (
       <EuiMarkdownContext.Provider value={contextValue}>
-        <div className={classes} {...rest}>
+        <div className={classes} css={cssStyles} {...rest}>
           <EuiMarkdownEditorToolbar
             ref={editorToolbarRef}
             selectedNode={selectedNode}
@@ -437,6 +439,7 @@ export const EuiMarkdownEditor = forwardRef<
             <div
               ref={previewRef}
               className={classesPreview}
+              css={styles.euiMarkdownEditorPreview}
               style={{ height: previewHeight }}
             >
               <EuiMarkdownFormat
@@ -453,6 +456,7 @@ export const EuiMarkdownEditor = forwardRef<
             className="euiMarkdownEditor__toggleContainer"
             style={{
               height: editorToggleContainerHeight,
+              display: isPreviewing ? 'none' : undefined,
             }}
           >
             <EuiMarkdownEditorDropZone
