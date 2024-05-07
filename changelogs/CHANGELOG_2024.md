@@ -2,7 +2,6 @@
 
 - Updated `launch` glyph for `EuiIcon` ([#7670](https://github.com/elastic/eui/pull/7670))
 - Updated `EuiComboBox`'s `options` to support including tooltip details for selectable options. Use `toolTipContent` to render tooltip information, and `toolTipProps` to optionally customize the tooltip rendering behavior ([#7700](https://github.com/elastic/eui/pull/7700))
-- Added a new, optional `optionMatcher` prop to `EuiSelectable` and `EuiComboBox` allowing passing a custom option matcher function to these components and controlling option filtering for given search string ([#7709](https://github.com/elastic/eui/pull/7709))
 - Updated the following existing glyphs in `EuiIcon`: ([#7727](https://github.com/elastic/eui/pull/7727))
   - `error` (now an outlined version instead of filled) 
   - `tokenMetricCounter`
