@@ -26,6 +26,7 @@ describe('euiFormVariables', () => {
     const { result } = renderHook(() => euiFormVariables(useEuiTheme()));
     expect(result.current).toMatchInlineSnapshot(`
       Object {
+        "animationTiming": "150ms ease-in",
         "backgroundColor": "#f9fbfd",
         "backgroundDisabledColor": "#eceff5",
         "backgroundReadOnlyColor": "#FFF",
@@ -187,7 +188,7 @@ describe('euiCustomControl', () => {
 
           @media screen and (prefers-reduced-motion: no-preference) {
             transition: background-color 150ms ease-in,
-                    border-color 150ms ease-in;
+              border-color 150ms ease-in;
           }
         "
     `);
@@ -206,7 +207,7 @@ describe('euiCustomControl', () => {
 
           @media screen and (prefers-reduced-motion: no-preference) {
             transition: background-color 150ms ease-in,
-                    border-color 150ms ease-in;
+              border-color 150ms ease-in;
           }
         "
     `);
@@ -225,7 +226,7 @@ describe('euiCustomControl', () => {
 
           @media screen and (prefers-reduced-motion: no-preference) {
             transition: background-color 150ms ease-in,
-                    border-color 150ms ease-in;
+              border-color 150ms ease-in;
           }
         "
     `);
@@ -244,7 +245,7 @@ describe('euiCustomControl', () => {
 
           @media screen and (prefers-reduced-motion: no-preference) {
             transition: background-color 150ms ease-in,
-                    border-color 150ms ease-in;
+              border-color 150ms ease-in;
           }
         "
     `);
@@ -263,7 +264,7 @@ describe('euiCustomControl', () => {
 
           @media screen and (prefers-reduced-motion: no-preference) {
             transition: background-color 150ms ease-in,
-                    border-color 150ms ease-in;
+              border-color 150ms ease-in;
           }
         "
     `);

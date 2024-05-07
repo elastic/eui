@@ -184,7 +184,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea"
+        class="euiMarkdownEditorTextArea emotion-euiMarkdownEditorTextArea-editable"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
@@ -430,7 +430,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea"
+        class="euiMarkdownEditorTextArea emotion-euiMarkdownEditorTextArea-editable"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         placeholder="placeholder"
@@ -676,7 +676,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea"
+        class="euiMarkdownEditorTextArea emotion-euiMarkdownEditorTextArea-editable"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
@@ -921,7 +921,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea"
+        class="euiMarkdownEditorTextArea emotion-euiMarkdownEditorTextArea-editable"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
@@ -1166,7 +1166,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea"
+        class="euiMarkdownEditorTextArea emotion-euiMarkdownEditorTextArea-editable"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
@@ -1411,7 +1411,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea"
+        class="euiMarkdownEditorTextArea emotion-euiMarkdownEditorTextArea-editable"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
@@ -1662,11 +1662,10 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
   >
     <div
       class="euiMarkdownEditorDropZone"
-      role="button"
     >
       <textarea
         aria-label="aria-label"
-        class="euiMarkdownEditorTextArea euiMarkdownEditorTextArea-isReadOnly"
+        class="euiMarkdownEditorTextArea euiMarkdownEditorTextArea-isReadOnly emotion-euiMarkdownEditorTextArea-readOnly"
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         readonly=""
