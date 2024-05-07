@@ -6,57 +6,26 @@ export default () => {
   const [options, setOptions] = useState<EuiSelectableOption[]>([
     {
       label: 'Titan',
-      'data-test-subj': 'titanOption',
-      toolTipContent: 'Lorem ipsum',
+      toolTipContent:
+        'Titan is the largest moon of Saturn and the second-largest in the Solar System',
     },
     {
-      label: 'Enceladus is disabled',
-      disabled: true,
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label: 'Mimas',
-      checked: 'on',
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label: 'Dione',
-      toolTipContent: 'Lorem ipsum',
-      toolTipProps: { position: 'bottom' },
+      label: 'Pandora',
+      toolTipContent:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
     },
     {
       label: 'Iapetus',
-      checked: 'on',
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label: 'Phoebe',
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label: 'Rhea',
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label:
-        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label: 'Tethys',
-      toolTipContent: 'Lorem ipsum',
-    },
-    {
-      label: 'Hyperion',
-      toolTipContent: 'Lorem ipsum',
+      toolTipContent: "Iapetus is the outermost of Saturn's large moons",
+      toolTipProps: { position: 'bottom' },
     },
   ]);
 
   return (
     <EuiSelectable
-      aria-label="Basic example"
+      aria-label="Example with option tooltips"
       options={options}
-      listProps={{ bordered: true }}
+      listProps={{ bordered: true, style: { maxInlineSize: 400 } }}
       onChange={(newOptions) => setOptions(newOptions)}
     >
       {(list) => list}

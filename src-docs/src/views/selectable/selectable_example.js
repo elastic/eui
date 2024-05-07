@@ -9,6 +9,7 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiTextTruncate,
+  EuiToolTip,
   EuiCallOut,
   EuiLink,
 } from '../../../../src';
@@ -33,9 +34,6 @@ const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion')
 import SelectableMixed from './selectable_mixed';
 const selectableMixedSource = require('!!raw-loader!./selectable_mixed');
 
-import SelectableToolTips from './selectable_tool_tips';
-const selectableToolTipsSource = require('!!raw-loader!./selectable_tool_tips');
-
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
@@ -44,6 +42,9 @@ const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
 
 import Truncation from './selectable_truncation';
 const truncationSource = require('!!raw-loader!./selectable_truncation');
+
+import SelectableToolTips from './selectable_tool_tips';
+const selectableToolTipsSource = require('!!raw-loader!./selectable_tool_tips');
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
@@ -294,42 +295,6 @@ export const SelectableExample = {
     },
 
     {
-      title: 'Options can have tooltips',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: selectableToolTipsSource,
-        },
-      ],
-      text: (
-        <p>
-          You can add tooltips to the options by passing{' '}
-          <EuiCode>toolTipContent</EuiCode>. Use <EuiCode>toolTipProps</EuiCode>{' '}
-          to pass additional <EuiCode>EuiToolTipProps</EuiCode> to the tooltip.
-        </p>
-      ),
-      props,
-      demo: <SelectableToolTips />,
-      snippet: `<EuiSelectable
-  aria-label="Example supporting mixed (indeterminate) options"
-  options={[
-    {
-      label: '',
-      checked: 'mixed',
-      toolTipContent: 'tooltip 1', 
-      toolTipProps: {
-        position: 'bottom'
-        'data-test-subj': 'optionTooltip',
-      }
-    }
-  ]}
-  onChange={newOptions => setOptions(newOptions)}
->
-  {list => list}
-</EuiSelectable>`,
-    },
-
-    {
       title: 'Messages and loading',
       source: [
         {
@@ -477,6 +442,57 @@ export const SelectableExample = {
   {list => list}
 </EuiSelectable>`,
       demo: <Truncation />,
+    },
+
+    {
+      title: 'Tooltips',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableToolTipsSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            If you have longer information that you need to make available to
+            users outside of truncated text, one approach could be adding
+            tooltip descriptions to individual options by passing{' '}
+            <EuiCode>toolTipContent</EuiCode>.
+          </p>
+          <p>
+            You can additionally customize individual tooltip behavior by
+            passing <EuiCode>toolTipProps</EuiCode>, which accepts any
+            configuration that{' '}
+            <Link to="/display/tooltip">
+              <strong>EuiToolTip</strong>
+            </Link>{' '}
+            accepts.
+          </p>
+        </>
+      ),
+      props: {
+        EuiSelectableOptionProps,
+        EuiToolTip,
+      },
+      demo: <SelectableToolTips />,
+      snippet: `<EuiSelectable
+  aria-label="Example with option tooltips"
+  options={[
+    {
+      label: '',
+      checked: 'mixed',
+      toolTipContent: 'tooltip 1', 
+      toolTipProps: {
+        position: 'bottom'
+        'data-test-subj': 'optionTooltip',
+      }
+    }
+  ]}
+  onChange={newOptions => setOptions(newOptions)}
+>
+  {list => list}
+</EuiSelectable>`,
     },
     {
       title: 'Rendering the options',
