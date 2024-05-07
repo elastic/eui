@@ -32,7 +32,7 @@ export const euiMarkdownEditorToolbarStyles = (
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: ${euiTheme.size.xs};
+      column-gap: ${euiTheme.size.xs};
     `,
     euiMarkdownEditorToolbar__divider: css`
       display: block;
