@@ -71,7 +71,7 @@ export class EuiTabbedContent extends Component<
   EuiTabbedContentState
 > {
   static defaultProps = {
-    autoFocus: 'initial',
+    autoFocus: 'initial' as const,
   };
 
   private readonly rootId = htmlIdGenerator()();
