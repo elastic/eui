@@ -6,13 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, PropsWithChildren, useEffect } from 'react';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  useEffect,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 
 import { useEuiMemoizedStyles } from '../../services';
 import { useResizeObserver } from '../observer/resize_observer';
 
+import { EuiMarkdownContext } from './markdown_context';
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
 import {
   EuiMarkdownEditorUiPlugin,
@@ -62,6 +68,8 @@ const getUnacceptedItems = (
 export const EuiMarkdownEditorDropZone: FunctionComponent<
   EuiMarkdownEditorDropZoneProps
 > = (props) => {
+  const { readOnly } = useContext(EuiMarkdownContext);
+
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
   const [isDraggingError, toggleDraggingError] = React.useState(false);
@@ -103,7 +111,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   }, [setEditorFooterHeight, isEditing, editorFooterHeight]);
 
   const { getRootProps, getInputProps, open } = useDropzone({
-    disabled: dropHandlers.length === 0,
+    disabled: dropHandlers.length === 0 || readOnly,
     // Disable click and keydown behavior
     noClick: true,
     noKeyboard: true,
@@ -203,8 +211,11 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
     },
   });
 
+  const rootProps = { ...getRootProps() };
+  if (readOnly) rootProps.role = undefined; // Unset the default `role="button"` attribute which sets a misleading pointer icon
+
   return (
-    <div {...getRootProps()} css={cssStyles} className={classes}>
+    <div {...rootProps} css={cssStyles} className={classes}>
       {children}
       <EuiMarkdownEditorFooter
         ref={setEditorFooterRef}
