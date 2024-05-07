@@ -11,6 +11,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
+  logicalCSSWithFallback,
   logicalBorderRadiusCSS,
   euiScrollBarStyles,
 } from '../../global_styling';
@@ -56,7 +57,7 @@ export const euiMarkdownEditorStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiMarkdownEditorPreview: css`
       ${logicalCSS('min-height', minHeight)}
-      ${logicalCSS('overflow-y', 'auto')}
+      ${logicalCSSWithFallback('overflow-y', 'auto')}
       ${euiScrollBarStyles(euiThemeContext)}
       padding: ${euiTheme.size.m};
       border: ${euiTheme.border.thin};
