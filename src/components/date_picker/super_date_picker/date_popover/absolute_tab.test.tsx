@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
@@ -86,25 +86,6 @@ describe('EuiAbsoluteTab', () => {
 
       expect(queryByText(/Allowed formats: /)).toBeInTheDocument();
       expect(queryByText(/Press the Enter key /)).not.toBeInTheDocument();
-    });
-
-    it('parses the input text on blur from the date input', () => {
-      const { getByTestSubject } = render(<EuiAbsoluteTab {...props} />);
-      const input = getByTestSubject(
-        'superDatePickerAbsoluteDateInput'
-      ) as HTMLInputElement;
-
-      fireEvent.change(input, { target: { value: 'test' } });
-      expect(input).not.toBeInvalid();
-
-      jest.useFakeTimers();
-      try {
-        fireEvent.blur(input);
-        act(() => jest.runOnlyPendingTimers());
-      } finally {
-        jest.useRealTimers();
-      }
-      expect(input).toBeInvalid();
     });
   });
 

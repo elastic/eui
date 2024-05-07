@@ -28,8 +28,6 @@ const ALLOWED_USER_DATE_FORMATS = [
   'X', // Unix timestamp in seconds
 ];
 
-const TIMEOUT_MAX = Math.pow(2, 31) - 1;
-
 export interface EuiAbsoluteTabProps {
   dateFormat: string;
   timeFormat: string;
@@ -55,8 +53,6 @@ export class EuiAbsoluteTab extends Component<
 > {
   state: EuiAbsoluteTabState;
   isParsing = false; // Store outside of state as a ref for faster/unbatched updates
-  setTextInvalidTimeoutId: ReturnType<typeof setTimeout> | undefined;
-  setTextInvalidDelayMilliseconds = 0;
 
   constructor(props: EuiAbsoluteTabProps) {
     super(props);
@@ -75,37 +71,6 @@ export class EuiAbsoluteTab extends Component<
       textInputValue,
       valueAsMoment,
     };
-  }
-
-  override componentWillUnmount() {
-    // for browsers that may leave focus on text field, such as iOS Safari
-    this.setTextInvalidDelayMilliseconds = TIMEOUT_MAX;
-    this.parseUserDateInput(this.state.textInputValue);
-    clearTimeout(this.setTextInvalidTimeoutId);
-  }
-
-  override setState<K extends keyof EuiAbsoluteTabState>(
-    state: Pick<EuiAbsoluteTabState, K>
-  ): void {
-    clearTimeout(this.setTextInvalidTimeoutId);
-
-    if (
-      this.setTextInvalidDelayMilliseconds &&
-      // Only TypeScript 4.9+ understands the following in-narrowing
-      'isTextInvalid' in state &&
-      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
-      state.isTextInvalid
-    ) {
-      // @ts-ignore TS2339: TODO remove in TypeScript 4.9+
-      delete state.isTextInvalid;
-      this.setTextInvalidTimeoutId = setTimeout(
-        () => super.setState({ isTextInvalid: true }),
-        this.setTextInvalidDelayMilliseconds
-      );
-    }
-
-    this.setTextInvalidDelayMilliseconds = 0;
-    return super.setState(state);
   }
 
   handleChange: EuiDatePickerProps['onChange'] = (date) => {
@@ -236,11 +201,6 @@ export class EuiAbsoluteTab extends Component<
                   if (event.key === keys.ENTER) {
                     this.parseUserDateInput(textInputValue);
                   }
-                }}
-                onBlur={() => {
-                  // Without delay, help text may blink on switching tabs
-                  this.setTextInvalidDelayMilliseconds = 1000;
-                  this.parseUserDateInput(textInputValue);
                 }}
                 data-test-subj="superDatePickerAbsoluteDateInput"
                 prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
