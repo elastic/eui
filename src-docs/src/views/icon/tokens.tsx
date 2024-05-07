@@ -22,6 +22,7 @@ const tokens: EuiTokenMapType[] = [
   'tokenCompletionSuggester',
   'tokenConstant',
   'tokenDate',
+  'tokenDimension',
   'tokenElement',
   'tokenEnum',
   'tokenEnumMember',

@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
 import {
   logicalCSS,
   euiFontSize,
@@ -23,25 +23,13 @@ const euiScaleMarkdownFormatText = (
   euiTheme: UseEuiTheme,
   options: _FontScaleOptions
 ) => {
-  const { fontSize, lineHeight } = euiFontSize(euiTheme, 'm', options);
-  const { unit } = options;
-  const lineHeightSize = unit === 'em' ? `${lineHeight}em` : lineHeight;
+  const { fontSize } = euiFontSize(euiTheme, 'm', options);
 
   // Custom scales
   const tablePaddingVertical = mathWithUnits(fontSize, (x) => x / 4);
   const tablePaddingHorizontal = mathWithUnits(fontSize, (x) => x / 2);
 
   return `
-    .euiCheckbox .euiCheckbox__input ~ .euiCheckbox__label { // Extra specificity necessary to override default checkbox CSS
-      font-size: ${fontSize};
-      ${logicalCSS('padding-left', lineHeightSize)}
-      line-height: ${lineHeight};
-    }
-
-    .euiCheckbox + *:not(.euiCheckbox) {
-      ${logicalCSS('margin-top', fontSize)}
-    }
-
     .euiMarkdownFormat__codeblockWrapper {
       ${logicalCSS('margin-bottom', fontSize)}
     }
@@ -58,31 +46,104 @@ const euiScaleMarkdownFormatText = (
   `;
 };
 
+// Internal utility for generating border colors based on EuiText colors
+const euiMarkdownAdjustBorderColors = (
+  { euiTheme }: UseEuiTheme,
+  color: string
+) => {
+  const border = `${euiTheme.border.width.thin} solid ${color}`;
+
+  return `
+    .euiMarkdownFormat__blockquote {
+      ${logicalCSS('border-left-color', color)}
+    }
+
+    .euiHorizontalRule {
+      background-color: ${color};
+      color: ${color}; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      ${logicalCSS('width', '100%')}
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      ${logicalCSS('border-left', border)}
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      ${logicalCSS('border-vertical', border)}
+
+      &:last-child {
+        ${logicalCSS('border-right', border)}
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      ${logicalCSS('border-top', border)}
+    }
+  `;
+};
+
 /**
  * Styles
  */
 export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
-  // TODO: Remaining _markdown_format.scss styles
   euiMarkdownFormat: css``,
   // Text sizes
-  m: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+  m: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       customScale: 'm',
-    })}
-  `,
-  s: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+    })
+  ),
+  s: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       customScale: 's',
-    })}
-  `,
-  xs: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+    })
+  ),
+  xs: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       customScale: 'xs',
-    })}
-  `,
-  relative: css`
-    ${euiScaleMarkdownFormatText(euiTheme, {
+    })
+  ),
+  relative: css(
+    euiScaleMarkdownFormatText(euiTheme, {
       unit: 'em',
-    })}
-  `,
+    })
+  ),
+  colors: {
+    default: css(
+      euiMarkdownAdjustBorderColors(
+        euiTheme,
+        transparentize(euiTheme.euiTheme.colors.fullShade, 0.15)
+      )
+    ),
+    subdued: css(
+      euiMarkdownAdjustBorderColors(
+        euiTheme,
+        euiTheme.euiTheme.colors.subduedText
+      )
+    ),
+    success: css(
+      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.success)
+    ),
+    accent: css(
+      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.accent)
+    ),
+    warning: css(
+      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.warning)
+    ),
+    danger: css(
+      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.danger)
+    ),
+    ghost: css(
+      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.ghost)
+    ),
+    inherit: css(euiMarkdownAdjustBorderColors(euiTheme, 'currentColor')),
+    custom: css(euiMarkdownAdjustBorderColors(euiTheme, 'currentColor')),
+  },
 });

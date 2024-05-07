@@ -18,6 +18,7 @@ export type EuiTokenMapType =
   | 'tokenCompletionSuggester'
   | 'tokenConstant'
   | 'tokenDate'
+  | 'tokenDimension'
   | 'tokenElement'
   | 'tokenEnum'
   | 'tokenEnumMember'
@@ -109,6 +110,10 @@ export const TOKEN_MAP: {
   tokenDate: {
     shape: 'square',
     color: 'euiColorVis6',
+  },
+  tokenDimension: {
+    shape: 'square',
+    color: 'euiColorVis1',
   },
   tokenElement: {
     shape: 'square',

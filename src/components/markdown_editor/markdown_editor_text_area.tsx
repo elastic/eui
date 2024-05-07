@@ -13,8 +13,12 @@ import React, {
   CSSProperties,
 } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
+
 import { EuiMarkdownContext } from './markdown_context';
+import { euiMarkdownEditorTextAreaStyles } from './markdown_editor_text_area.styles';
 
 export type EuiMarkdownEditorTextAreaProps =
   TextareaHTMLAttributes<HTMLTextAreaElement> &
@@ -50,6 +54,12 @@ export const EuiMarkdownEditorTextArea = forwardRef<
       'euiMarkdownEditorTextArea-isReadOnly': readOnly,
     });
 
+    const styles = useEuiMemoizedStyles(euiMarkdownEditorTextAreaStyles);
+    const cssStyles = [
+      styles.euiMarkdownEditorTextArea,
+      readOnly ? styles.readOnly : styles.editable,
+    ];
+
     // Ignore invalid empty string style values
     const style: CSSProperties = {};
     if (height !== '') {
@@ -65,6 +75,7 @@ export const EuiMarkdownEditorTextArea = forwardRef<
         data-test-subj="euiMarkdownEditorTextArea"
         style={style}
         className={classes}
+        css={cssStyles}
         {...rest}
         rows={6}
         name={name}

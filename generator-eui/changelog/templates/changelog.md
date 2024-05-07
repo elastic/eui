@@ -8,6 +8,12 @@
 - Fixed ...
 
 <%_ } -%>
+<%_ if (a11y) { -%>
+**Accessibility**
+
+- Improved the accessibility experience of ...
+
+<%_ } -%>
 <%_ if (deprecations) { -%>
 **Deprecations**
 

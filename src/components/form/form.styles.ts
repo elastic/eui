@@ -14,7 +14,11 @@ import {
   transparentize,
   makeHighContrastColor,
 } from '../../services';
-import { mathWithUnits, euiCanAnimate } from '../../global_styling';
+import {
+  mathWithUnits,
+  euiCanAnimate,
+  euiFontSize,
+} from '../../global_styling';
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -88,6 +92,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     ...customControlColors,
     ...iconSizes,
     ...controlLayout,
+    animationTiming: `${euiTheme.animation.fast} ease-in`,
   };
 };
 
@@ -151,8 +156,71 @@ export const euiCustomControl = (
     background: ${euiTheme.colors.emptyShade} no-repeat center;
 
     ${euiCanAnimate} {
-      transition: background-color ${euiTheme.animation.fast} ease-in,
-              border-color ${euiTheme.animation.fast} ease-in;
+      transition: background-color ${form.animationTiming},
+        border-color ${form.animationTiming};
     }
   `;
 };
+
+export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { fontSize } = euiFontSize(euiThemeContext, 's');
+  const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
+
+  return `
+    font-family: ${euiTheme.font.family};
+    font-size: ${fontSize};
+    color: ${euiTheme.colors.text};
+
+    ${euiPlaceholderPerBrowser(`color: ${controlPlaceholderText}`)}
+  `;
+};
+
+export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    box-shadow: inset 0 0 0 1px ${form.borderColor};
+    background-color: ${form.backgroundColor};
+
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-image: linear-gradient(to top,
+      var(--euiFormStateColor),
+      var(--euiFormStateColor) ${euiTheme.border.width.thick},
+      transparent ${euiTheme.border.width.thick},
+      transparent 100%
+    );
+
+    ${euiCanAnimate} {
+      transition:
+        box-shadow ${form.animationTiming},
+        background-image ${form.animationTiming},
+        background-size ${form.animationTiming},
+        background-color ${form.animationTiming};
+    }
+  `;
+};
+
+export const euiFormControlFocusStyles = ({
+  euiTheme,
+  colorMode,
+}: UseEuiTheme) => `
+  --euiFormStateColor: ${euiTheme.colors.primary};
+  background-color: ${
+    colorMode === 'DARK'
+      ? shade(euiTheme.colors.emptyShade, 0.4)
+      : euiTheme.colors.emptyShade
+  };
+  background-size: 100% 100%;
+  outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+`;
+
+const euiPlaceholderPerBrowser = (content: string) => `
+  &::-webkit-input-placeholder { ${content}; opacity: 1; }
+  &::-moz-placeholder { ${content}; opacity: 1; }
+  &:-ms-input-placeholder { ${content}; opacity: 1; }
+  &:-moz-placeholder { ${content}; opacity: 1; }
+  &::placeholder { ${content}; opacity: 1; }
+`;

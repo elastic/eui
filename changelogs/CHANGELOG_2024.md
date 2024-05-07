@@ -1,3 +1,25 @@
+## [`v94.3.0`](https://github.com/elastic/eui/releases/v94.3.0)
+
+- Updated `launch` glyph for `EuiIcon` ([#7670](https://github.com/elastic/eui/pull/7670))
+- Updated `EuiComboBox`'s `options` to support including tooltip details for selectable options. Use `toolTipContent` to render tooltip information, and `toolTipProps` to optionally customize the tooltip rendering behavior ([#7700](https://github.com/elastic/eui/pull/7700))
+- Updated the following existing glyphs in `EuiIcon`: ([#7727](https://github.com/elastic/eui/pull/7727))
+  - `error` (now an outlined version instead of filled) 
+  - `tokenMetricCounter`
+  - `tokenMetricGauge` 
+- Added the following new glyphs to `EuiIcon`: ([#7727](https://github.com/elastic/eui/pull/7727))
+  - `tokenDimension`
+  - `clickLeft`
+  - `clickRight`
+  - `clockCounter`
+  - `errorFilled` (the previous `error` glyph design)
+  - `warningFilled`
+
+**Bug fixes**
+
+- Fixed a visual layout bug for `EuiComboBox` with `isLoading` in mobile views ([#7700](https://github.com/elastic/eui/pull/7700))
+- Fixed missing styles on header cells of `EuiDataGrid` that prevented content text alignment styles to apply ([#7720](https://github.com/elastic/eui/pull/7720))
+- Fixed `EuiFlexGroup` and `EuiFlexItem` `ref` prop typing to support refs of the same type as the passed `component` type and allow `displayName` to be defined for easy component naming when using component wrappers like `styled()` ([#7724](https://github.com/elastic/eui/pull/7724))
+
 ## [`v94.2.1`](https://github.com/elastic/eui/releases/v94.2.1)
 
 **Bug fixes**
