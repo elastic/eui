@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, screen } from '../../test/rtl';
 
 import { EuiMarkdownEditor } from './markdown_editor';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
@@ -124,7 +124,7 @@ describe('EuiMarkdownEditor', () => {
   });
 
   test('is preview rendered', () => {
-    const component = mount(
+    const { container, getByTestSubject } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value="## Hello world"
@@ -132,17 +132,14 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    component
-      .find('button[data-test-subj="markdown_editor_preview_button"]')
-      .simulate('click');
-    const rendered = component.render();
+    fireEvent.click(getByTestSubject('markdown_editor_preview_button'));
     expect(
-      rendered.find('.euiText.euiMarkdownFormat').find('h2').text()
-    ).toEqual('Hello world');
+      container.querySelector('.euiText.euiMarkdownFormat')?.querySelector('h2')
+    ).toHaveTextContent('Hello world');
   });
 
   test('modal with help syntax is rendered', () => {
-    const component = mount(
+    const { baseElement, getByLabelText } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value=""
@@ -150,20 +147,18 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    expect(component.find('EuiModal').length).toBe(0);
+    expect(baseElement.querySelector('.euiModal')).not.toBeInTheDocument();
 
-    component
-      .find('button.euiMarkdownEditorFooter__helpButton')
-      .simulate('click');
+    fireEvent.click(getByLabelText('Show markdown help'));
 
-    expect(component.find('EuiModal').length).toBe(1);
+    expect(baseElement.querySelector('.euiModal')).toBeInTheDocument();
   });
 
   test('custom plugins are excluded and popover is rendered', () => {
     const { parsingPlugins, processingPlugins, uiPlugins } =
       getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
 
-    const component = mount(
+    const { baseElement, getByLabelText } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value=""
@@ -174,11 +169,10 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    component
-      .find('button.euiMarkdownEditorFooter__helpButton')
-      .simulate('click');
+    fireEvent.click(getByLabelText('Show markdown help'));
 
-    expect(component.render()).toMatchSnapshot();
+    expect(baseElement.querySelector('.euiModal')).not.toBeInTheDocument();
+    expect(baseElement.querySelector('.euiPopover')).toBeInTheDocument();
   });
 
   test('fires onChange on text area change', () => {
@@ -188,13 +182,13 @@ describe('EuiMarkdownEditor', () => {
       onChange: jest.fn(),
     };
 
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiMarkdownEditor {...testProps} {...requiredProps} />
     );
 
     const event = { target: { value: 'sometext' } };
+    fireEvent.change(getByTestSubject('euiMarkdownEditorTextArea'), event);
 
-    component.find('EuiMarkdownEditorTextArea').simulate('change', event);
     expect(testProps.onChange).toHaveBeenCalledTimes(1);
     expect(testProps.onChange).toHaveBeenLastCalledWith(event.target.value);
   });
@@ -221,7 +215,7 @@ describe('EuiMarkdownEditor', () => {
         onParse: jest.fn(),
       };
 
-      mount(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
+      render(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
 
       expect(testProps.onParse).toHaveBeenCalledTimes(1);
       expect(testProps.onParse).toBeCalledWith(null, {
@@ -245,13 +239,11 @@ describe('EuiMarkdownEditor', () => {
         errors: testMessage,
       };
 
-      const component = mount(
+      const { getByLabelText } = render(
         <EuiMarkdownEditor {...testProps} {...requiredProps} />
       );
 
-      expect(component.find('button[aria-label="Show errors"]')).toHaveLength(
-        1
-      );
+      expect(getByLabelText('Show errors')).toBeInTheDocument();
     });
 
     test('does not render error if error messages are empty', () => {
@@ -262,12 +254,11 @@ describe('EuiMarkdownEditor', () => {
         errors: [],
       };
 
-      const component = mount(
+      const { queryByTestSubject } = render(
         <EuiMarkdownEditor {...testProps} {...requiredProps} />
       );
-      expect(component.find('button[aria-label="Show errors"]')).toHaveLength(
-        0
-      );
+
+      expect(queryByTestSubject('Show errors')).not.toBeInTheDocument();
     });
   });
 
@@ -289,33 +280,30 @@ describe('EuiMarkdownEditor', () => {
       value: 'Hello',
       onChange: jest.fn(),
     };
-    let component: ReactWrapper<
-      any,
-      Readonly<{}>,
-      React.Component<{}, {}, any>
-    >;
-    let textareaNode: () => Element;
+
+    const getElementByIdSpy = jest.spyOn(document, 'getElementById');
+    const execCommandMock = jest.fn();
+    document.execCommand = execCommandMock;
+
     beforeEach(() => {
-      component = mount(
+      const { getByTestSubject } = render(
         <EuiMarkdownEditor {...testProps} {...requiredProps} />
       );
-      textareaNode = () =>
-        component.find('EuiMarkdownEditorTextArea').getDOMNode();
 
-      const textarea = textareaNode();
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
+      const textarea = getByTestSubject(
+        'euiMarkdownEditorTextArea'
+      ) as HTMLTextAreaElement;
       textarea.setSelectionRange(0, 5);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      document.getElementById = jest.fn(() => textarea);
-      document.execCommand = jest.fn(() => true);
+
+      getElementByIdSpy.mockReturnValue(textarea);
+      execCommandMock.mockReturnValue(true);
+      jest.clearAllMocks();
     });
 
     it('bold selected text on bold icon click', () => {
-      component.find('button[aria-label="Bold"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Bold'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `**${testProps.value}**`
@@ -323,9 +311,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('italicize selected text on italic icon click', () => {
-      component.find('button[aria-label="Italic"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Italic'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `_${testProps.value}_`
@@ -333,9 +321,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('convert selected text to unordered list on unordered list icon click', () => {
-      component.find('button[aria-label="Unordered list"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Unordered list'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `- ${testProps.value}`
@@ -343,9 +331,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('convert selected text to ordered list on ordered list icon click', () => {
-      component.find('button[aria-label="Ordered list"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Ordered list'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `1. ${testProps.value}`
@@ -353,9 +341,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('convert selected text task list on tasklist icon click', () => {
-      component.find('button[aria-label="Task list"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Task list'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `- [ ] ${testProps.value}`
@@ -363,9 +351,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('convert selected text to quote on quote icon click', () => {
-      component.find('button[aria-label="Quote"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Quote'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `> ${testProps.value}`
@@ -373,9 +361,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('convert selected text to code on code icon click', () => {
-      component.find('button[aria-label="Code"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Code'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `\`${testProps.value}\``
@@ -383,9 +371,9 @@ describe('EuiMarkdownEditor', () => {
     });
 
     it('selected text will have a tooltip on tooltip icon click', () => {
-      component.find('button[aria-label="Tooltip"]').simulate('click');
-      expect(document.getElementById).toHaveBeenCalledWith(testProps.editorId);
-      expect(document.execCommand).toHaveBeenCalledWith(
+      fireEvent.click(screen.getByLabelText('Tooltip'));
+      expect(getElementByIdSpy).toHaveBeenCalledWith(testProps.editorId);
+      expect(execCommandMock).toHaveBeenCalledWith(
         'insertText',
         false,
         `!{tooltip[${testProps.value}]()}`

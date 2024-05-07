@@ -12,7 +12,7 @@ import React, {
   ElementType,
   ForwardedRef,
   forwardRef,
-  FunctionComponent,
+  PropsWithChildren,
   Ref,
 } from 'react';
 import classNames from 'classnames';
@@ -54,32 +54,34 @@ type FlexGroupDirection = (typeof DIRECTIONS)[number];
 type ComponentPropType = ElementType<CommonProps>;
 
 export type EuiFlexGroupProps<TComponent extends ComponentPropType = 'div'> =
-  ComponentPropsWithoutRef<TComponent> & {
-    alignItems?: FlexGroupAlignItems;
-    /**
-     * Customize the component type that is rendered.
-     *
-     * It can be any valid React component type like a tag name string
-     * such as `'div'` or `'span'`, a React component (a function, a class,
-     * or an exotic component like `memo()`).
-     *
-     * `<EuiFlexGroup>` accepts and forwards all extra props to the custom
-     * component.
-     *
-     * @example
-     * // Renders a <button> element
-     * <EuiFlexGroup component="button">
-     *   Submit form
-     * </EuiFlexGroup>
-     * @default "div"
-     */
-    component?: TComponent;
-    direction?: FlexGroupDirection;
-    gutterSize?: EuiFlexGroupGutterSize;
-    justifyContent?: FlexGroupJustifyContent;
-    responsive?: boolean;
-    wrap?: boolean;
-  };
+  PropsWithChildren &
+    CommonProps &
+    ComponentPropsWithoutRef<TComponent> & {
+      alignItems?: FlexGroupAlignItems;
+      /**
+       * Customize the component type that is rendered.
+       *
+       * It can be any valid React component type like a tag name string
+       * such as `'div'` or `'span'`, a React component (a function, a class,
+       * or an exotic component like `memo()`).
+       *
+       * `<EuiFlexGroup>` accepts and forwards all extra props to the custom
+       * component.
+       *
+       * @example
+       * // Renders a <button> element
+       * <EuiFlexGroup component="button">
+       *   Submit form
+       * </EuiFlexGroup>
+       * @default "div"
+       */
+      component?: TComponent;
+      direction?: FlexGroupDirection;
+      gutterSize?: EuiFlexGroupGutterSize;
+      justifyContent?: FlexGroupJustifyContent;
+      responsive?: boolean;
+      wrap?: boolean;
+    };
 
 const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
   {
@@ -118,13 +120,13 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
 
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
-export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as <
-  TComponent extends ComponentPropType
+export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as (<
+  TComponent extends ComponentPropType = 'div',
+  TComponentRef = ReturnType<typeof EuiFlexGroupInternal>
 >(
   props: EuiFlexGroupProps<TComponent> & {
-    ref?: Ref<typeof EuiFlexGroupInternal>;
+    ref?: Ref<TComponentRef>;
   }
-) => ReturnType<typeof EuiFlexGroupInternal>;
+) => ReturnType<typeof EuiFlexGroupInternal>) & { displayName?: string };
 
-// Cast is required here because of the cast above
-(EuiFlexGroup as FunctionComponent).displayName = 'EuiFlexGroup';
+EuiFlexGroup.displayName = 'EuiFlexGroup';

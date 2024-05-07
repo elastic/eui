@@ -13,15 +13,19 @@ import React, {
   forwardRef,
   Ref,
 } from 'react';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { IconType } from '../icon';
 import { EuiI18n } from '../i18n';
 import { EuiToolTip } from '../tool_tip';
+
 import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiMarkdownContext } from './markdown_context';
 import MarkdownActions from './markdown_actions';
-import { IconType } from '../icon';
+import { euiMarkdownEditorToolbarStyles } from './markdown_editor_toolbar.styles';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -148,13 +152,19 @@ export const EuiMarkdownEditorToolbar = forwardRef<
 
     const isEditable = !isPreviewing && !readOnly;
 
+    const styles = useEuiMemoizedStyles(euiMarkdownEditorToolbarStyles);
+
     return (
       <div
         ref={ref}
-        data-test-subj="euiMarkdownEditorToolbar"
+        css={styles.euiMarkdownEditorToolbar}
         className="euiMarkdownEditorToolbar"
+        data-test-subj="euiMarkdownEditorToolbar"
       >
-        <div className="euiMarkdownEditorToolbar__buttons">
+        <div
+          css={styles.euiMarkdownEditorToolbar__buttons}
+          className="euiMarkdownEditorToolbar__buttons"
+        >
           {boldItalicButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
               <EuiMarkdownEditorToolbarButton
@@ -168,7 +178,10 @@ export const EuiMarkdownEditorToolbar = forwardRef<
               />
             </EuiToolTip>
           ))}
-          <span className="euiMarkdownEditorToolbar__divider" />
+          <span
+            css={styles.euiMarkdownEditorToolbar__divider}
+            className="euiMarkdownEditorToolbar__divider"
+          />
           {listButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
               <EuiMarkdownEditorToolbarButton
@@ -182,7 +195,10 @@ export const EuiMarkdownEditorToolbar = forwardRef<
               />
             </EuiToolTip>
           ))}
-          <span className="euiMarkdownEditorToolbar__divider" />
+          <span
+            css={styles.euiMarkdownEditorToolbar__divider}
+            className="euiMarkdownEditorToolbar__divider"
+          />
           {quoteCodeLinkButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
               <EuiMarkdownEditorToolbarButton
@@ -199,7 +215,10 @@ export const EuiMarkdownEditorToolbar = forwardRef<
 
           {uiPlugins.length > 0 ? (
             <>
-              <span className="euiMarkdownEditorToolbar__divider" />
+              <span
+                css={styles.euiMarkdownEditorToolbar__divider}
+                className="euiMarkdownEditorToolbar__divider"
+              />
               {uiPlugins.map(({ name, button }) => {
                 return (
                   <EuiToolTip key={name} content={button.label} delay="long">
