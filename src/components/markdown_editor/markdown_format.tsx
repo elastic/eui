@@ -12,7 +12,8 @@ import { VFileContents } from 'vfile';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiText, EuiTextProps } from '../text/text';
-import { useEuiTheme } from '../../services';
+import { _isNamedColor } from '../text/text_color';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiMarkdownFormatStyles } from './markdown_format.styles';
 import {
   defaultProcessingPlugins,
@@ -38,6 +39,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
   textSize = 'm',
+  color = 'default',
   ...rest
 }) => {
   const processor = useMemo(
@@ -55,14 +57,23 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
     }
   }, [children, processor]);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiMarkdownFormatStyles(euiTheme);
-  const cssStyles = [styles.euiMarkdownFormat, styles[textSize]];
+  const styles = useEuiMemoizedStyles(euiMarkdownFormatStyles);
+  const cssStyles = [
+    styles.euiMarkdownFormat,
+    styles[textSize],
+    _isNamedColor(color) ? styles.colors[color] : styles.colors.custom,
+  ];
 
   const classes = classNames('euiMarkdownFormat', className);
 
   return (
-    <EuiText size={textSize} css={cssStyles} className={classes} {...rest}>
+    <EuiText
+      size={textSize}
+      css={cssStyles}
+      className={classes}
+      color={color}
+      {...rest}
+    >
       {result}
     </EuiText>
   );
