@@ -61,7 +61,7 @@ describe('KibanaCollapsibleNavSolution', () => {
     );
     expect(container.firstChild).toMatchSnapshot();
 
-    fireEvent.click(getByLabelText('"Solution view" quick navigation menu'));
+    fireEvent.click(getByLabelText('Solution view, quick navigation menu'));
     await waitForEuiPopoverOpen();
     expect(getByText('Some other solution')).toBeInTheDocument();
 
