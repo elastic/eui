@@ -11,7 +11,7 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
         class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
       >
         <button
-          aria-label="Item"
+          aria-label="\\"Item\\" quick navigation menu"
           class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
           data-test-subj="euiCollapsedNavButton"
           type="button"
