@@ -191,17 +191,17 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
         style="max-height: 500px;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <div
           class="euiPopover emotion-euiPopover-inline-block"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text-euiMarkdownEditorFooter__helpButton"
             title="Syntax help"
             type="button"
           >
@@ -438,17 +438,17 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         style="max-height: 500px;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text-euiMarkdownEditorFooter__helpButton"
             type="button"
           >
             <span
@@ -683,17 +683,17 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
         style="max-height: 500px;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text-euiMarkdownEditorFooter__helpButton"
             type="button"
           >
             <span
@@ -928,17 +928,17 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
         style="height: 100%;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text-euiMarkdownEditorFooter__helpButton"
             type="button"
           >
             <span
@@ -1173,17 +1173,17 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
         style="max-height: 500px;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text-euiMarkdownEditorFooter__helpButton"
             type="button"
           >
             <span
@@ -1418,17 +1418,17 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
         style="max-height: 600px;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-text-euiMarkdownEditorFooter__helpButton"
             type="button"
           >
             <span
@@ -1674,17 +1674,17 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
         style="max-height: 500px;"
       />
       <div
-        class="euiMarkdownEditorFooter"
+        class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
       >
         <div
-          class="euiMarkdownEditorFooter__actions"
+          class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
         />
         <span
           class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-disabled-isDisabled"
+            class="euiButtonIcon euiMarkdownEditorFooter__helpButton emotion-euiButtonIcon-s-empty-disabled-isDisabled-euiMarkdownEditorFooter__helpButton"
             disabled=""
             type="button"
           >
