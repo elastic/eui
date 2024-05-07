@@ -84,10 +84,14 @@ export const useEuiTextDiff = ({
     return html;
   }, [textDiff, deleteComponent, insertComponent, sameComponent]); // produces diff array
 
-  return [
+  // specifically defining the return type here as the
+  // inferred type is not correct: array vs tuple
+  const textDiffResult: [JSX.Element, typeof textDiff] = [
     <span css={styles.euiTextDiff} className={classes} {...rest}>
       {rendereredHtml}
     </span>,
     textDiff,
   ];
+
+  return textDiffResult;
 };
