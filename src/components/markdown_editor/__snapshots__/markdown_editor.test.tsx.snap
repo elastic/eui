@@ -179,7 +179,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
       role="button"
     >
       <textarea
@@ -425,7 +425,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
       role="button"
     >
       <textarea
@@ -671,7 +671,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
       role="button"
     >
       <textarea
@@ -916,7 +916,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
       role="button"
     >
       <textarea
@@ -1161,7 +1161,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
       role="button"
     >
       <textarea
@@ -1406,7 +1406,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
       role="button"
     >
       <textarea
@@ -1661,7 +1661,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
     class="euiMarkdownEditor__toggleContainer"
   >
     <div
-      class="euiMarkdownEditorDropZone"
+      class="euiMarkdownEditorDropZone emotion-euiMarkdownEditorDropZone"
     >
       <textarea
         aria-label="aria-label"

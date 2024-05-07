@@ -9,6 +9,10 @@
 import React, { FunctionComponent, PropsWithChildren, useEffect } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
+
+import { useEuiMemoizedStyles } from '../../services';
+import { useResizeObserver } from '../observer/resize_observer';
+
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
 import {
   EuiMarkdownEditorUiPlugin,
@@ -17,7 +21,7 @@ import {
   EuiMarkdownStringTagConfig,
   EuiMarkdownDragAndDropResult,
 } from './markdown_types';
-import { useResizeObserver } from '../observer/resize_observer';
+import { euiMarkdownEditorDropZoneStyles } from './markdown_editor_drop_zone.styles';
 
 interface EuiMarkdownEditorDropZoneProps extends PropsWithChildren {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
@@ -74,11 +78,15 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
     isEditing,
   } = props;
 
-  const classes = classNames('euiMarkdownEditorDropZone', {
-    'euiMarkdownEditorDropZone--isDragging': isDragging,
-    'euiMarkdownEditorDropZone--hasError': hasUnacceptedItems,
-    'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
-  });
+  const classes = classNames('euiMarkdownEditorDropZone');
+
+  const styles = useEuiMemoizedStyles(euiMarkdownEditorDropZoneStyles);
+  const cssStyles = [
+    styles.euiMarkdownEditorDropZone,
+    isDragging && !isDraggingError && styles.isDragging,
+    isDraggingError && styles.isDraggingError,
+    hasUnacceptedItems && styles.hasError,
+  ];
 
   const [editorFooterRef, setEditorFooterRef] =
     React.useState<HTMLDivElement | null>(null);
@@ -196,7 +204,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   });
 
   return (
-    <div {...getRootProps()} className={classes}>
+    <div {...getRootProps()} css={cssStyles} className={classes}>
       {children}
       <EuiMarkdownEditorFooter
         ref={setEditorFooterRef}
