@@ -7,7 +7,7 @@ exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collaps
   data-test-subj="test subject string"
 >
   <button
-    aria-label="Item"
+    aria-label="Item, quick navigation menu"
     class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
     data-test-subj="euiCollapsedNavButton"
     type="button"

@@ -23,6 +23,7 @@ import {
   euiCollapsedNavButtonStyles,
   euiCollapsedNavItemTooltipStyles,
 } from './collapsed_nav_button.styles';
+import { useEuiI18n } from '../../../i18n';
 
 export const EuiCollapsedNavButton: FunctionComponent<
   Omit<
@@ -63,6 +64,12 @@ export const EuiCollapsedNavButton: FunctionComponent<
     hideToolTip && tooltipStyles.hidden,
   ];
 
+  const buttonIconAriaLabel = useEuiI18n(
+    'euiCollapsedNavButton.ariaLabelButtonIcon',
+    '{title}, quick navigation menu',
+    { title }
+  );
+
   return (
     <EuiToolTip
       content={title}
@@ -77,7 +84,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
         color="text"
         href={href}
         onClick={onClick}
-        aria-label={title}
+        aria-label={buttonIconAriaLabel}
         {...(linkProps as EuiButtonIconPropsForAnchor)} // Exclusive union shenanigans
         className={buttonClassName}
         css={buttonCssStyles}
