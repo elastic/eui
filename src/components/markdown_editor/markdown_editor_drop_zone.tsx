@@ -93,7 +93,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
     styles.euiMarkdownEditorDropZone,
     isDragging && !isDraggingError && styles.isDragging,
     isDraggingError && styles.isDraggingError,
-    hasUnacceptedItems && styles.hasError,
+    (hasUnacceptedItems || errors.length > 0) && styles.hasError,
   ];
 
   const [editorFooterRef, setEditorFooterRef] =
