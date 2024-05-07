@@ -66,7 +66,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
 
   const buttonIconAriaLabel = useEuiI18n(
     'euiCollapsedNavButton.ariaLabelButtonIcon',
-    '"{title}" quick navigation menu',
+    '{title}, quick navigation menu',
     { title }
   );
 
