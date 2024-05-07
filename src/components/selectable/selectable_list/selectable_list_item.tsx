@@ -8,10 +8,10 @@
 
 import classNames from 'classnames';
 import React, {
-  AriaAttributes,
   Component,
-  createRef,
   LiHTMLAttributes,
+  ReactElement,
+  createRef,
 } from 'react';
 
 import { CommonProps, keysOf } from '../../common';
@@ -114,6 +114,7 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
   };
 
   tooltipRef = createRef<EuiToolTip>();
+  tooltipId: string | undefined;
 
   constructor(props: EuiSelectableListItemProps) {
     super(props);
@@ -121,9 +122,13 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
 
   componentDidMount(): void {
     const { disabled, isFocused, toolTipContent } = this.props;
+    const hasToolTip = !disabled && !!toolTipContent;
 
-    if (isFocused === true && !disabled && !!toolTipContent) {
-      this.toggleToolTip(true);
+    if (hasToolTip) {
+      this.tooltipId = this.tooltipRef.current?.state.id;
+      if (isFocused) {
+        this.toggleToolTip(true);
+      }
     }
   }
 
@@ -181,7 +186,6 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
       paddingSize = 's',
       role = 'option',
       searchable,
-      style,
       textWrap,
       toolTipContent,
       toolTipProps,
@@ -380,7 +384,7 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
       </EuiScreenReaderOnly>
     );
 
-    const content = (
+    const content: ReactElement = (
       <span className="euiSelectableListItem__content">
         {optionIcon}
         {prependNode}
@@ -392,34 +396,33 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
       </span>
     );
 
-    const optionProps = {
-      role: role,
-      'aria-disabled': disabled,
-      'aria-checked': this.isChecked(
-        role,
-        checked
-      ) as AriaAttributes['aria-checked'], // Whether the item is "checked"
-      'aria-selected': !disabled && isFocused, // Whether the item has keyboard focus per W3 spec
-      ...rest,
-    };
+    const ariaDescribedBy = hasToolTip
+      ? classNames(this.tooltipId, rest['aria-describedby'])
+      : rest['aria-describedby'];
 
-    return hasToolTip ? (
-      // This extra wrapper is needed to ensure proper semantics and that the tooltip has
-      // a correct context for positioning while also ensuring to wrap the interactive option
-      <li style={style} className={classes}>
-        <EuiToolTip
-          ref={this.tooltipRef}
-          content={toolTipContent}
-          anchorClassName="euiSelectableListItem__tooltipAnchor"
-          position="left"
-          {...toolTipProps}
-        >
-          <span {...optionProps}>{content}</span>
-        </EuiToolTip>
-      </li>
-    ) : (
-      <li {...optionProps} style={style} className={classes}>
-        {content}
+    return (
+      <li
+        role={role}
+        aria-disabled={disabled}
+        aria-checked={this.isChecked(role, checked)} // Whether the item is "checked"
+        aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
+        className={classes}
+        {...rest}
+        aria-describedby={ariaDescribedBy}
+      >
+        {hasToolTip ? (
+          <EuiToolTip
+            ref={this.tooltipRef}
+            content={toolTipContent}
+            anchorClassName="euiSelectableListItem__tooltipAnchor"
+            position="left"
+            {...toolTipProps}
+          >
+            {content}
+          </EuiToolTip>
+        ) : (
+          content
+        )}
       </li>
     );
   }

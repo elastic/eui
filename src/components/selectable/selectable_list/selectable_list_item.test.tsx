@@ -165,7 +165,7 @@ describe('EuiSelectableListItem', () => {
     });
 
     test('tooltip behavior on mouseover', async () => {
-      const { baseElement, getByRole, getByTestSubject } = render(
+      const { baseElement, getByTestSubject } = render(
         <EuiSelectableListItem
           toolTipContent="I am a tooltip!"
           toolTipProps={{
@@ -179,7 +179,10 @@ describe('EuiSelectableListItem', () => {
         </EuiSelectableListItem>
       );
 
-      fireEvent.mouseOver(getByRole('option'));
+      const tooltipAnchor = baseElement.querySelector(
+        '.euiSelectableListItem__tooltipAnchor'
+      );
+      fireEvent.mouseOver(tooltipAnchor!);
       await waitForEuiToolTipVisible();
 
       expect(getByTestSubject('listItemToolTip')).toBeInTheDocument();

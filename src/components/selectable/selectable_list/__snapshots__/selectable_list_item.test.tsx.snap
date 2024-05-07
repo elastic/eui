@@ -513,28 +513,26 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
 >
   <div>
     <li
+      aria-checked="false"
+      aria-describedby=""
       class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+      role="option"
     >
       <span
         class="euiToolTipAnchor euiSelectableListItem__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock"
       >
         <span
-          aria-checked="false"
           aria-describedby="generated-id"
-          role="option"
+          class="euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__content"
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
           >
-            <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-            >
-              Item content
-            </span>
+            Item content
           </span>
         </span>
       </span>
@@ -575,46 +573,44 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
 >
   <div>
     <li
+      aria-checked="false"
+      aria-describedby=""
+      aria-selected="true"
       class="euiSelectableListItem euiSelectableListItem-isFocused euiSelectableListItem--paddingSmall"
+      role="option"
     >
       <span
         class="euiToolTipAnchor euiSelectableListItem__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock"
       >
         <span
-          aria-checked="false"
           aria-describedby="generated-id"
-          aria-selected="true"
-          role="option"
+          class="euiSelectableListItem__content"
         >
           <span
-            class="euiSelectableListItem__content"
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
           >
+            Item content
+          </span>
+          <span
+            class="euiSelectableListItem__append"
+          >
+             
             <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+              aria-hidden="true"
+              class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-hollow"
             >
-              Item content
-            </span>
-            <span
-              class="euiSelectableListItem__append"
-            >
-               
               <span
-                aria-hidden="true"
-                class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-hollow"
+                class="euiBadge__content emotion-euiBadge__content"
               >
                 <span
-                  class="euiBadge__content emotion-euiBadge__content"
-                >
-                  <span
-                    class="euiBadge__icon emotion-euiBadge__icon-left"
-                    color="inherit"
-                    data-euiicon-type="returnKey"
-                  />
-                </span>
+                  class="euiBadge__icon emotion-euiBadge__icon-left"
+                  color="inherit"
+                  data-euiicon-type="returnKey"
+                />
               </span>
             </span>
           </span>
