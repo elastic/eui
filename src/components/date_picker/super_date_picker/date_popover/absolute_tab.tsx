@@ -6,14 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component, ChangeEvent, FormEvent } from 'react';
 
 import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 import dateMath from '@elastic/datemath';
 
-import { keys } from '../../../../services';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
+import { EuiFlexGroup } from '../../../flex';
+import { EuiButtonIcon } from '../../../button';
 import { EuiCode } from '../../../code';
 import { EuiI18n } from '../../../i18n';
 
@@ -167,45 +168,64 @@ export class EuiAbsoluteTab extends Component<
         />
         <EuiI18n
           tokens={[
-            'euiAbsoluteTab.dateFormatHint',
+            'euiAbsoluteTab.dateFormatButtonLabel',
             'euiAbsoluteTab.dateFormatError',
           ]}
           defaults={[
-            'Press the Enter key to parse as a date.',
+            'Parse date',
             'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
           ]}
           values={{ dateFormat: <EuiCode>{dateFormat}</EuiCode> }}
         >
-          {([dateFormatHint, dateFormatError]: string[]) => (
-            <EuiFormRow
-              className="euiSuperDatePicker__absoluteDateFormRow"
-              isInvalid={isTextInvalid}
-              error={isTextInvalid ? dateFormatError : undefined}
-              helpText={
-                hasUnparsedText
-                  ? isTextInvalid
-                    ? dateFormatHint
-                    : [dateFormatHint, dateFormatError]
-                  : undefined
-              }
+          {([dateFormatButtonLabel, dateFormatError]: string[]) => (
+            <EuiFlexGroup
+              component="form"
+              onSubmit={(e: FormEvent) => {
+                e.preventDefault(); // Prevents a page refresh/reload
+                this.parseUserDateInput(textInputValue);
+              }}
+              className="euiSuperDatePicker__absoluteDateForm"
+              gutterSize="s"
+              responsive={false}
             >
-              <EuiFieldText
-                compressed
+              <EuiFormRow
+                className="euiSuperDatePicker__absoluteDateFormRow"
                 isInvalid={isTextInvalid}
-                value={textInputValue}
-                onChange={this.handleTextChange}
-                onPaste={(event) => {
-                  this.parseUserDateInput(event.clipboardData.getData('text'));
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === keys.ENTER) {
-                    this.parseUserDateInput(textInputValue);
-                  }
-                }}
-                data-test-subj="superDatePickerAbsoluteDateInput"
-                prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
-              />
-            </EuiFormRow>
+                error={isTextInvalid ? dateFormatError : undefined}
+                helpText={
+                  hasUnparsedText && !isTextInvalid
+                    ? dateFormatError
+                    : undefined
+                }
+              >
+                <EuiFieldText
+                  compressed
+                  isInvalid={isTextInvalid}
+                  value={textInputValue}
+                  onChange={this.handleTextChange}
+                  onPaste={(event) => {
+                    this.parseUserDateInput(
+                      event.clipboardData.getData('text')
+                    );
+                  }}
+                  data-test-subj="superDatePickerAbsoluteDateInput"
+                  prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+                />
+              </EuiFormRow>
+              {hasUnparsedText && (
+                <EuiButtonIcon
+                  type="submit"
+                  className="euiSuperDatePicker__absoluteDateFormSubmit"
+                  size="s"
+                  display="base"
+                  color={isTextInvalid ? 'danger' : 'primary'}
+                  iconType="check"
+                  aria-label={dateFormatButtonLabel}
+                  title={dateFormatButtonLabel}
+                  data-test-subj="parseAbsoluteDateFormat"
+                />
+              )}
+            </EuiFlexGroup>
           )}
         </EuiI18n>
       </>
