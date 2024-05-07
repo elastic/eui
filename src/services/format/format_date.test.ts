@@ -160,5 +160,5 @@ function formatTimezoneOffset(offset: number) {
   offset = Math.abs(offset);
   const hrs = Math.floor(offset / 60);
   const mins = offset - hrs * 60;
-  return `${sign}${hrs < 9 ? '0' : ''}${hrs}:${mins < 9 ? '0' : ''}${mins}`;
+  return `${sign}${hrs <= 9 ? '0' : ''}${hrs}:${mins <= 9 ? '0' : ''}${mins}`;
 }

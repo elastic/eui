@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconError = ({
+const EuiIconWarningFilled = ({
   title,
   titleId,
   ...props
@@ -28,11 +28,10 @@ const EuiIconError = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4.854 5.146a.5.5 0 1 0-.708.708L6.793 8.5l-2.647 2.646a.5.5 0 0 0 .708.708L7.5 9.207l2.646 2.647a.5.5 0 0 0 .708-.708L8.207 8.5l2.647-2.646a.5.5 0 0 0-.708-.708L7.5 7.793 4.854 5.146Z" />
     <path
       fillRule="evenodd"
-      d="M5 1a1 1 0 0 0-.707.293l-4 4A1 1 0 0 0 0 6v5a1 1 0 0 0 .293.707l4 4A1 1 0 0 0 5 16h5a1 1 0 0 0 .707-.293l4-4A1 1 0 0 0 15 11V6a1 1 0 0 0-.293-.707l-4-4A1 1 0 0 0 10 1H5Zm5 1H5L1 6v5l4 4h5l4-4V6l-4-4Z"
+      d="M8 1a1 1 0 0 1 .864.496l7 12A1 1 0 0 1 15 15H1a1 1 0 0 1-.864-1.504l7-12A1 1 0 0 1 8 1Zm.9 4.995-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995a.905.905 0 1 1 1.8 0ZM8 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
     />
   </svg>
 );
-export const icon = EuiIconError;
+export const icon = EuiIconWarningFilled;
