@@ -10,18 +10,20 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
+import { euiMarkdownEditorVariables } from './markdown_editor.styles';
 
 export const euiMarkdownEditorToolbarStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const { barsBackgroundColor } = euiMarkdownEditorVariables(euiThemeContext);
 
   return {
     euiMarkdownEditorToolbar: css`
       display: flex;
       flex-wrap: wrap;
       padding: ${euiTheme.size.xs};
-      background-color: ${euiTheme.colors.lightShade};
+      background-color: ${barsBackgroundColor};
       border: ${euiTheme.border.thin};
       ${logicalCSS('border-bottom', 'none')}
     `,

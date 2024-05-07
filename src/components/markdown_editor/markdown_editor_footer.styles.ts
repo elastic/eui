@@ -10,9 +10,12 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
+import { euiMarkdownEditorVariables } from './markdown_editor.styles';
 
 export const euiMarkdownEditorFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const { borderRadius, barsBackgroundColor } =
+    euiMarkdownEditorVariables(euiThemeContext);
 
   return {
     euiMarkdownEditorFooter: css`
@@ -20,7 +23,7 @@ export const euiMarkdownEditorFooterStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       padding: ${euiTheme.size.xs};
       border: ${euiTheme.border.thin};
-      background-color: ${euiTheme.colors.lightShade};
+      background-color: ${barsBackgroundColor};
     `,
     euiMarkdownEditorFooter__actions: css`
       flex: 1;
