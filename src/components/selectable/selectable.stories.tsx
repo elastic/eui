@@ -13,7 +13,7 @@ import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../.storybook/utils';
-import { ToolTipPositions } from '../tool_tip';
+
 import { EuiSelectableOption } from './selectable_option';
 import {
   EuiSelectable,
@@ -23,11 +23,11 @@ import {
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
-  toolTipProps: { position: 'left' as ToolTipPositions },
+  toolTipProps: { position: 'left' as const },
   value: 4,
 };
 
-const options = [
+const options: EuiSelectableOption[] = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -63,7 +63,7 @@ const options = [
   {
     label: 'Hyperion',
   },
-] as EuiSelectableOption[];
+];
 
 const meta: Meta<EuiSelectableProps> = {
   title: 'Forms/EuiSelectable',
@@ -81,7 +81,6 @@ const meta: Meta<EuiSelectableProps> = {
     isPreFiltered: false,
   },
 };
-enableFunctionToggleControls(meta, ['onChange', 'onActiveOptionChange']);
 hideStorybookControls(meta, ['aria-label']);
 
 export default meta;
@@ -90,11 +89,6 @@ type Story = StoryObj<EuiSelectableProps>;
 export const Playground: Story = {
   args: {
     options,
-    // cast as any to align with earier teasing/QA
-    children: 'list' as any,
-    searchProps: {
-      'data-test-subj': 'selectableSearchHere',
-    },
     // setting up for easier testing/QA
     allowExclusions: false,
     isLoading: false,
@@ -102,9 +96,13 @@ export const Playground: Story = {
     loadingMessage: '',
     noMatchesMessage: '',
     selectableScreenReaderText: '',
+    searchProps: {
+      'data-test-subj': 'selectableSearchHere',
+    },
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
+enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
 
 export const WithTooltip: Story = {
   parameters: {
