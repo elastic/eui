@@ -16,7 +16,7 @@ import {
 import { EuiSelectableOption } from '../selectable_option';
 import { EuiSelectableList, EuiSelectableListProps } from './selectable_list';
 
-const options = [
+const options: EuiSelectableOption[] = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -52,7 +52,7 @@ const options = [
   {
     label: 'Hyperion',
   },
-] as EuiSelectableOption[];
+];
 
 const meta: Meta<EuiSelectableListProps<{}>> = {
   title: 'Forms/EuiSelectable/EuiSelectableList/EuiSelectableList',
@@ -78,14 +78,18 @@ const meta: Meta<EuiSelectableListProps<{}>> = {
   },
 };
 enableFunctionToggleControls(meta, ['onOptionClick', 'setActiveOptionIndex']);
-moveStorybookControlsToCategory(meta, [
-  'allowExclusions',
-  'onFocusBadge',
-  'paddingSize',
-  'searchable',
-  'showIcons',
-  'textWrap',
-]);
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'allowExclusions',
+    'onFocusBadge',
+    'paddingSize',
+    'searchable',
+    'showIcons',
+    'textWrap',
+  ],
+  'EuiSelectableListItem props'
+);
 
 export default meta;
 type Story = StoryObj<EuiSelectableListProps<{}>>;

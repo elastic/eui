@@ -19,7 +19,7 @@ import {
   _EuiSelectableSearchProps as EuiSelectableSearchProps,
 } from './selectable_search';
 
-const options = [
+const options: EuiSelectableOption[] = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -55,7 +55,7 @@ const options = [
   {
     label: 'Hyperion',
   },
-] as EuiSelectableOption[];
+];
 
 const meta: Meta<EuiSelectableSearchProps<{}>> = {
   title: 'Forms/EuiSelectable/EuiSelectableSearch',
