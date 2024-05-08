@@ -36,35 +36,40 @@ describe('EuiAbsoluteTab', () => {
   };
 
   describe('user input', () => {
-    it('displays the enter key help text when the input has been edited and the date has not yet been parsed', () => {
-      const { getByTestSubject, queryByText } = render(
+    const formatHelpText = /Allowed formats: /;
+
+    it('displays helptext and a submit button when the input has been edited and the date has not yet been parsed', () => {
+      const { getByTestSubject, queryByTestSubject, queryByText } = render(
         <EuiAbsoluteTab {...props} />
       );
-      const helpText = 'Press the Enter key to parse as a date.';
-      expect(queryByText(helpText)).not.toBeInTheDocument();
+      expect(queryByText(formatHelpText)).not.toBeInTheDocument();
+      expect(
+        queryByTestSubject('parseAbsoluteDateFormat')
+      ).not.toBeInTheDocument();
 
       const input = getByTestSubject('superDatePickerAbsoluteDateInput');
       fireEvent.change(input, { target: { value: 'test' } });
 
-      expect(queryByText(helpText)).toBeInTheDocument();
+      expect(queryByText(formatHelpText)).toBeInTheDocument();
+      expect(queryByTestSubject('parseAbsoluteDateFormat')).toBeInTheDocument();
     });
 
     it('displays the formats as a hint before parse, but as an error if invalid', () => {
       const { getByTestSubject, queryByText } = render(
         <EuiAbsoluteTab {...props} />
       );
-      const formatHelpText = /Allowed formats: /;
       expect(queryByText(formatHelpText)).not.toBeInTheDocument();
 
-      const input = getByTestSubject('superDatePickerAbsoluteDateInput');
-      fireEvent.change(input, { target: { value: 'test' } });
+      fireEvent.change(getByTestSubject('superDatePickerAbsoluteDateInput'), {
+        target: { value: 'test' },
+      });
       expect(queryByText(formatHelpText)).toHaveClass('euiFormHelpText');
 
-      fireEvent.keyDown(input, { key: 'Enter' });
+      fireEvent.click(getByTestSubject('parseAbsoluteDateFormat'));
       expect(queryByText(formatHelpText)).toHaveClass('euiFormErrorText');
     });
 
-    it('immediately parses pasted text without needing an extra enter keypress', () => {
+    it('immediately parses pasted text without needing an extra click or keypress', () => {
       const { getByTestSubject, queryByText } = render(
         <EuiAbsoluteTab {...props} />
       );
@@ -84,15 +89,14 @@ describe('EuiAbsoluteTab', () => {
       });
       expect(input).toBeInvalid();
 
-      expect(queryByText(/Allowed formats: /)).toBeInTheDocument();
-      expect(queryByText(/Press the Enter key /)).not.toBeInTheDocument();
+      expect(queryByText(formatHelpText)).toBeInTheDocument();
     });
   });
 
   describe('date parsing', () => {
     const changeInput = (input: HTMLElement, value: string) => {
-      fireEvent.change(input, { target: { value } });
-      fireEvent.keyDown(input, { key: 'Enter' });
+      fireEvent.change(input, { target: { value: `${value}` } });
+      fireEvent.submit(input.closest('form')!);
     };
 
     it('parses the passed `dateFormat` prop', () => {
