@@ -12,7 +12,7 @@ import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiStepNumber, EuiStepNumberProps } from './step_number';
 
 const meta: Meta<EuiStepNumberProps> = {
-  title: 'Navigation/EuiSteps/EuiStepNumber',
+  title: 'Navigation/EuiSteps/Subcomponents/EuiStepNumber',
   component: EuiStepNumber,
   args: {
     titleSize: 's',

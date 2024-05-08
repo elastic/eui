@@ -16,7 +16,7 @@ import {
 } from './steps_horizontal';
 
 const meta: Meta<EuiStepsHorizontalProps> = {
-  title: 'Navigation/EuiSteps/EuiStepsHorizontal/EuiStepsHorizontal',
+  title: 'Navigation/EuiSteps/EuiStepsHorizontal',
   component: EuiStepsHorizontal,
   args: {
     size: 'm',

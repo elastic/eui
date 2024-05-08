@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiSubSteps, EuiSubStepsProps } from './sub_steps';
 
 const meta: Meta<EuiSubStepsProps> = {
-  title: 'Navigation/EuiSteps/EuiSubSteps',
+  title: 'Navigation/EuiSteps/Subcomponents/EuiSubSteps',
   component: EuiSubSteps,
 };
 
