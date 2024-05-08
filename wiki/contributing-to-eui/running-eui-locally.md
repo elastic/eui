@@ -1,6 +1,10 @@
 # Setting up and running EUI locally
 
-The below instructions run EUI's [documentation site](https://elastic.github.io/eui/) locally, with any changes made in `src/` reflected. On local, EUI's favicon will be gray instead of colored.
+The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `src/` reflected. On local, EUI's favicon will be gray instead of colored.
+
+> [!IMPORTANT]
+> This repository is a monorepo, meaning that it contains sources of multiple packages within a single git repository. You can find all packages in the [`packages`](../../packages) directory.
+> When dealing with EUI ([`@elastic/eui`](https://www.npmjs.com/package/@elastic/eui) package), most of the work will be done from within the [`packages/eui`](../../packages/eui) directory.
 
 ## Set up
 
@@ -12,7 +16,7 @@ You will probably want to install a node version manager. [nvm](https://github.c
 
 To install and use the correct node version with `nvm`:
 
-```bash
+```shell
 nvm install
 ```
 
@@ -22,7 +26,7 @@ EUI uses `yarn` for dependency management. We use `npm` for release purposes onl
 
 EUI only uses [yarn@v1 (classic)](https://classic.yarnpkg.com/en/docs/install), and not yarn v2 or above. Ensure you are on the correct version via `yarn -v` before installing all dependencies:
 
-```bash
+```shell
 yarn
 ```
 
@@ -37,14 +41,20 @@ If you're on an Apple arm64 machine and receive an error on `yarn` about Puppete
 
 ## Running
 
+Go to `packages/eui` directory:
+
+```shell
+cd packages/eui
+```
+
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) with the following command:
 
-```bash
+```shell
 yarn start
 ```
 
 If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
 
-```bash
+```shell
 yarn start --port 9000
 ```
