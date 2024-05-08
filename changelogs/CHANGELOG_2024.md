@@ -1,3 +1,13 @@
+## [`v93.6.0-backport.0`](https://github.com/elastic/eui/releases/v93.6.0-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+- Updated `EuiSearchBar` to allow the `@` special character in query string searches ([#7702](https://github.com/elastic/eui/pull/7702))
+
+**Bug fixes**
+
+- Fixed a focus bug with `EuiDataGrid`s with `leadingControlColumns` when moving columns to the left/right ([#7701](https://github.com/elastic/eui/pull/7701)) ([#7698](https://github.com/elastic/eui/pull/7698))
+
 ## [`v93.6.0`](https://github.com/elastic/eui/releases/v93.6.0)
 
 - Updated `EuiBreadcrumb` styles to improve visual distinction of clickable breadcrumbs ([#7615](https://github.com/elastic/eui/pull/7615))
