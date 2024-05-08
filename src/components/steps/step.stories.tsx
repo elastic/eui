@@ -9,11 +9,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
+import { STATUS } from './step_number';
 import { EuiStep, EuiStepProps } from './step';
 
 const meta: Meta<EuiStepProps> = {
   title: 'Navigation/EuiSteps/EuiSteps/EuiStep',
   component: EuiStep,
+  argTypes: {
+    status: { options: [undefined, ...STATUS] },
+  },
   args: {
     headingElement: 'p',
     titleSize: 's',
