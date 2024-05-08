@@ -8,4 +8,12 @@
 
 .euiSuperDatePicker__absoluteDateFormRow {
   flex-grow: 1;
+
+  // CSS hack to make the help/error text extend to the submit button.
+  // We can't actually put the submit button within an EuiFormRow due to
+  // cloneElement limitations (https://github.com/elastic/eui/issues/2493#issuecomment-561278494)
+  // TODO: Remove this and clean up DOM rendering once we can
+  .euiFormRow__text {
+    margin-inline-end: -1 * ($euiSizeXL + $euiSizeS); // XL - size of the button, S - size of the flex gap
+  }
 }
