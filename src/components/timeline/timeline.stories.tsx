@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiTimeline, EuiTimelineProps } from './timeline';
@@ -24,9 +25,22 @@ type Story = StoryObj<EuiTimelineProps>;
 export const Playground: Story = {
   args: {
     items: [
-      { children: 'timeline item 1', icon: 'home' },
-      { children: 'timeline item 2', icon: 'email' },
-      { children: 'timeline item 3', icon: 'warning' },
+      {
+        icon: 'pencil',
+        children: 'Project renamed to "Revenue Dashboard".',
+      },
+      {
+        icon: 'email',
+        children: (
+          <>
+            <strong>dev@elastic.co</strong> was invited to the project.
+          </>
+        ),
+      },
+      {
+        icon: 'folderClosed',
+        children: 'The project was archived.',
+      },
     ],
   },
 };
