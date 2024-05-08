@@ -218,7 +218,6 @@ export class EuiAbsoluteTab extends Component<
                   className="euiSuperDatePicker__absoluteDateFormSubmit"
                   size="s"
                   display="base"
-                  color={isTextInvalid ? 'danger' : 'primary'}
                   iconType="check"
                   aria-label={dateFormatButtonLabel}
                   title={dateFormatButtonLabel}
