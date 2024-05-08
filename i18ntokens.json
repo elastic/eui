@@ -995,14 +995,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 119,
+        "line": 122,
         "column": 6,
-        "index": 3133
+        "index": 3246
       },
       "end": {
-        "line": 119,
+        "line": 122,
         "column": 75,
-        "index": 3202
+        "index": 3315
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1013,14 +1013,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 161,
+        "line": 178,
         "column": 13,
-        "index": 4181
+        "index": 4719
       },
       "end": {
-        "line": 161,
+        "line": 178,
         "column": 78,
-        "index": 4246
+        "index": 4784
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1031,14 +1031,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
+        "line": 199,
         "column": 8,
-        "index": 4816
+        "index": 5340
       },
       "end": {
-        "line": 182,
+        "line": 199,
         "column": 75,
-        "index": 4883
+        "index": 5407
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1049,14 +1049,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 263,
+        "line": 280,
         "column": 8,
-        "index": 6935
+        "index": 7459
       },
       "end": {
-        "line": 267,
+        "line": 284,
         "column": 10,
-        "index": 7075
+        "index": 7599
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1067,14 +1067,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 311,
         "column": 8,
-        "index": 7773
+        "index": 8297
       },
       "end": {
-        "line": 298,
+        "line": 315,
         "column": 10,
-        "index": 7913
+        "index": 8437
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1085,14 +1085,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 225,
+        "line": 227,
         "column": 16,
-        "index": 7475
+        "index": 7525
       },
       "end": {
-        "line": 228,
+        "line": 230,
         "column": 18,
-        "index": 7628
+        "index": 7678
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1103,14 +1103,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 296,
+        "line": 298,
         "column": 16,
-        "index": 9645
+        "index": 9695
       },
       "end": {
-        "line": 300,
+        "line": 302,
         "column": 18,
-        "index": 9819
+        "index": 9869
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1121,14 +1121,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 304,
+        "line": 306,
         "column": 16,
-        "index": 9897
+        "index": 9947
       },
       "end": {
-        "line": 308,
+        "line": 310,
         "column": 18,
-        "index": 10073
+        "index": 10123
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1139,14 +1139,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 314,
+        "line": 316,
         "column": 16,
-        "index": 10219
+        "index": 10269
       },
       "end": {
-        "line": 319,
+        "line": 321,
         "column": 18,
-        "index": 10447
+        "index": 10497
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1157,14 +1157,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 323,
+        "line": 325,
         "column": 16,
-        "index": 10525
+        "index": 10575
       },
       "end": {
-        "line": 328,
+        "line": 330,
         "column": 18,
-        "index": 10755
+        "index": 10805
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1175,14 +1175,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 334,
+        "line": 336,
         "column": 16,
-        "index": 10884
+        "index": 10934
       },
       "end": {
-        "line": 339,
+        "line": 341,
         "column": 18,
-        "index": 11122
+        "index": 11172
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1193,14 +1193,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 343,
+        "line": 345,
         "column": 16,
-        "index": 11200
+        "index": 11250
       },
       "end": {
-        "line": 348,
+        "line": 350,
         "column": 18,
-        "index": 11440
+        "index": 11490
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1211,14 +1211,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 413,
+        "line": 415,
         "column": 6,
-        "index": 13286
+        "index": 13336
       },
       "end": {
-        "line": 416,
+        "line": 418,
         "column": 8,
-        "index": 13479
+        "index": 13529
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
