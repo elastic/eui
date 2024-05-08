@@ -8,10 +8,12 @@
 
 import classNames from 'classnames';
 import React, {
-  Component,
+  FunctionComponent,
   LiHTMLAttributes,
   ReactElement,
-  createRef,
+  useState,
+  useEffect,
+  useMemo,
 } from 'react';
 
 import { CommonProps, keysOf } from '../../common';
@@ -106,115 +108,43 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     toolTipProps?: EuiSelectableOption['toolTipProps'];
   };
 
-export class EuiSelectableListItem extends Component<EuiSelectableListItemProps> {
-  static defaultProps = {
-    showIcons: true,
-    onFocusBadge: true,
-    textWrap: 'truncate',
-  };
+export const EuiSelectableListItem: FunctionComponent<
+  EuiSelectableListItemProps
+> = ({
+  children,
+  className,
+  disabled,
+  checked,
+  isFocused,
+  showIcons = true,
+  prepend,
+  append,
+  allowExclusions,
+  onFocusBadge = true,
+  paddingSize = 's',
+  role = 'option',
+  searchable,
+  textWrap = 'truncate',
+  toolTipContent,
+  toolTipProps,
+  'aria-describedby': _ariaDescribedBy,
+  ...rest
+}) => {
+  const classes = classNames(
+    'euiSelectableListItem',
+    { 'euiSelectableListItem-isFocused': isFocused },
+    paddingSizeToClassNameMap[paddingSize],
+    className
+  );
 
-  tooltipRef = createRef<EuiToolTip>();
-  tooltipId: string | undefined;
+  const textClasses = classNames('euiSelectableListItem__text', {
+    [`euiSelectableListItem__text--${textWrap}`]: textWrap,
+  });
 
-  constructor(props: EuiSelectableListItemProps) {
-    super(props);
-  }
-
-  componentDidMount(): void {
-    const { disabled, isFocused, toolTipContent } = this.props;
-    const hasToolTip = !disabled && !!toolTipContent;
-
-    if (hasToolTip) {
-      this.tooltipId = this.tooltipRef.current?.state.id;
-      if (isFocused) {
-        this.toggleToolTip(true);
-      }
-    }
-  }
-
-  // aria-checked is intended to be used with role="checkbox" but
-  // the MDN documentation lists it as a possibility for role="option".
-  // See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
-  // and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/option_role
-  isChecked = (role: string, checked: EuiSelectableOptionCheckedType) => {
-    const rolesThatCanBeMixed = ['option', 'checkbox', 'menuitemcheckbox'];
-    const rolesThatCanBeChecked = [
-      ...rolesThatCanBeMixed,
-      'radio',
-      'menuitemradio',
-      'switch',
-    ];
-    if (!rolesThatCanBeChecked.includes(role)) return undefined;
-
-    switch (checked) {
-      case 'on':
-      case 'off':
-        return true;
-      case 'mixed':
-        if (rolesThatCanBeMixed.includes(role)) {
-          return 'mixed';
-        } else {
-          return false;
-        }
-      default:
-        return false;
-    }
-  };
-
-  toggleToolTip = (isFocused: boolean) => {
-    if (!this.tooltipRef?.current) return;
-
-    if (isFocused) {
-      this.tooltipRef.current.showToolTip();
-    } else {
-      this.tooltipRef.current.hideToolTip();
-    }
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      disabled,
-      checked,
-      isFocused,
-      showIcons,
-      prepend,
-      append,
-      allowExclusions,
-      onFocusBadge,
-      paddingSize = 's',
-      role = 'option',
-      searchable,
-      textWrap,
-      toolTipContent,
-      toolTipProps,
-      ...rest
-    } = this.props;
-
-    const classes = classNames(
-      'euiSelectableListItem',
-      {
-        'euiSelectableListItem-isFocused': isFocused,
-      },
-      paddingSizeToClassNameMap[paddingSize],
-      className
-    );
-
-    const textClasses = classNames('euiSelectableListItem__text', {
-      [`euiSelectableListItem__text--${textWrap}`]: textWrap,
-    });
-
-    const hasToolTip = !disabled && !!toolTipContent;
-
-    if (hasToolTip) {
-      this.toggleToolTip(isFocused ?? false);
-    }
-
-    let optionIcon: React.ReactNode;
+  const optionIcon = useMemo(() => {
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
-      optionIcon = (
+      return (
         <EuiIcon
           className="euiSelectableListItem__icon"
           color={color}
@@ -222,9 +152,61 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
         />
       );
     }
+  }, [showIcons, checked]);
 
+  const prependNode = useMemo(() => {
+    if (prepend) {
+      return <span className="euiSelectableListItem__prepend">{prepend}</span>;
+    }
+  }, [prepend]);
+
+  const onFocusBadgeNode = useMemo(() => {
+    const defaultOnFocusBadgeProps: EuiBadgeProps = {
+      'aria-hidden': true,
+      iconType: 'returnKey',
+      iconSide: 'left',
+      color: 'hollow',
+    };
+
+    if (onFocusBadge === true) {
+      return (
+        <EuiBadge
+          className="euiSelectableListItem__onFocusBadge"
+          {...defaultOnFocusBadgeProps}
+        />
+      );
+    } else if (typeof onFocusBadge !== 'boolean' && !!onFocusBadge) {
+      const { children, className, ...restBadgeProps } = onFocusBadge;
+      return (
+        <EuiBadge
+          className={classNames(
+            'euiSelectableListItem__onFocusBadge',
+            className
+          )}
+          {...defaultOnFocusBadgeProps}
+          {...(restBadgeProps as EuiBadgeProps)}
+        >
+          {children}
+        </EuiBadge>
+      );
+    }
+  }, [onFocusBadge]);
+  const showOnFocusBadge = !!(isFocused && !disabled && onFocusBadgeNode);
+
+  const appendNode = useMemo(() => {
+    if (append || showOnFocusBadge) {
+      return (
+        <span className="euiSelectableListItem__append">
+          {append} {showOnFocusBadge ? onFocusBadgeNode : null}
+        </span>
+      );
+    }
+  }, [append, showOnFocusBadge, onFocusBadgeNode]);
+
+  const screenReaderText = useMemo(() => {
     let state: React.ReactNode;
     let instructions: React.ReactNode;
+
     const screenReaderStrings = {
       checked: {
         state: (
@@ -323,57 +305,7 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
         break;
     }
 
-    let prependNode: React.ReactNode;
-    if (prepend) {
-      prependNode = (
-        <span className="euiSelectableListItem__prepend">{prepend}</span>
-      );
-    }
-
-    let appendNode: React.ReactNode;
-    if (append || !!onFocusBadge) {
-      let onFocusBadgeNode: React.ReactNode;
-      const defaultOnFocusBadgeProps: EuiBadgeProps = {
-        'aria-hidden': true,
-        iconType: 'returnKey',
-        iconSide: 'left',
-        color: 'hollow',
-      };
-
-      if (onFocusBadge === true) {
-        onFocusBadgeNode = (
-          <EuiBadge
-            className="euiSelectableListItem__onFocusBadge"
-            {...defaultOnFocusBadgeProps}
-          />
-        );
-      } else if (typeof onFocusBadge !== 'boolean' && !!onFocusBadge) {
-        const { children, className, ...restBadgeProps } = onFocusBadge;
-        onFocusBadgeNode = (
-          <EuiBadge
-            className={classNames(
-              'euiSelectableListItem__onFocusBadge',
-              className
-            )}
-            {...defaultOnFocusBadgeProps}
-            {...(restBadgeProps as EuiBadgeProps)}
-          >
-            {children}
-          </EuiBadge>
-        );
-      }
-
-      // Only display the append wrapper if append exists or isFocused
-      if (append || (isFocused && !disabled)) {
-        appendNode = (
-          <span className="euiSelectableListItem__append">
-            {append} {isFocused && !disabled ? onFocusBadgeNode : null}
-          </span>
-        );
-      }
-    }
-
-    const screenReaderText = (state || instructions) && (
+    return state || instructions ? (
       <EuiScreenReaderOnly>
         <div>
           {state || instructions ? '. ' : null}
@@ -382,48 +314,96 @@ export class EuiSelectableListItem extends Component<EuiSelectableListItemProps>
           {instructions}
         </div>
       </EuiScreenReaderOnly>
-    );
+    ) : null;
+  }, [checked, searchable, allowExclusions]);
 
-    const content: ReactElement = (
-      <span className="euiSelectableListItem__content">
-        {optionIcon}
-        {prependNode}
-        <span className={textClasses}>
-          {children}
-          {screenReaderText}
-        </span>
-        {appendNode}
+  // aria-checked is intended to be used with role="checkbox" but
+  // the MDN documentation lists it as a possibility for role="option".
+  // See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
+  // and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/option_role
+  const ariaChecked = useMemo(() => {
+    const rolesThatCanBeMixed = ['option', 'checkbox', 'menuitemcheckbox'];
+    const rolesThatCanBeChecked = [
+      ...rolesThatCanBeMixed,
+      'radio',
+      'menuitemradio',
+      'switch',
+    ];
+    if (!rolesThatCanBeChecked.includes(role)) return undefined;
+
+    switch (checked) {
+      case 'on':
+      case 'off':
+        return true;
+      case 'mixed':
+        if (rolesThatCanBeMixed.includes(role)) {
+          return 'mixed';
+        } else {
+          return false;
+        }
+      default:
+        return false;
+    }
+  }, [role, checked]);
+
+  const hasToolTip = !!toolTipContent && !disabled;
+  const [tooltipRef, setTooltipRef] = useState<EuiToolTip | null>(null); // Needs to be state and not a ref to trigger useEffect
+  const [ariaDescribedBy, setAriaDescribedBy] = useState(_ariaDescribedBy);
+
+  // Manually trigger the tooltip on keyboard focus
+  useEffect(() => {
+    if (!tooltipRef) return;
+
+    if (isFocused) {
+      tooltipRef.showToolTip();
+    } else {
+      tooltipRef.hideToolTip();
+    }
+  }, [isFocused, tooltipRef]);
+
+  // Manually set the `aria-describedby` id on the <li> wrapper
+  useEffect(() => {
+    if (tooltipRef) {
+      const tooltipId = tooltipRef.state.id;
+      setAriaDescribedBy(classNames(tooltipId, _ariaDescribedBy));
+    }
+  }, [tooltipRef, _ariaDescribedBy]);
+
+  const content: ReactElement = (
+    <span className="euiSelectableListItem__content">
+      {optionIcon}
+      {prependNode}
+      <span className={textClasses}>
+        {children}
+        {screenReaderText}
       </span>
-    );
+      {appendNode}
+    </span>
+  );
 
-    const ariaDescribedBy = hasToolTip
-      ? classNames(this.tooltipId, rest['aria-describedby'])
-      : rest['aria-describedby'];
-
-    return (
-      <li
-        role={role}
-        aria-disabled={disabled}
-        aria-checked={this.isChecked(role, checked)} // Whether the item is "checked"
-        aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
-        className={classes}
-        {...rest}
-        aria-describedby={ariaDescribedBy}
-      >
-        {hasToolTip ? (
-          <EuiToolTip
-            ref={this.tooltipRef}
-            content={toolTipContent}
-            anchorClassName="euiSelectableListItem__tooltipAnchor"
-            position="left"
-            {...toolTipProps}
-          >
-            {content}
-          </EuiToolTip>
-        ) : (
-          content
-        )}
-      </li>
-    );
-  }
-}
+  return (
+    <li
+      role={role}
+      aria-disabled={disabled}
+      aria-checked={ariaChecked} // Whether the item is "checked"
+      aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
+      className={classes}
+      {...rest}
+      aria-describedby={ariaDescribedBy}
+    >
+      {hasToolTip ? (
+        <EuiToolTip
+          ref={setTooltipRef}
+          content={toolTipContent}
+          anchorClassName="euiSelectableListItem__tooltipAnchor"
+          position="left"
+          {...toolTipProps}
+        >
+          {content}
+        </EuiToolTip>
+      ) : (
+        content
+      )}
+    </li>
+  );
+};

@@ -398,7 +398,6 @@ export class EuiSelectableList<T> extends Component<
           event.persist(); // NOTE: This is needed for React v16 backwards compatibility
           this.onAddOrRemoveOption(option, event);
         }}
-        ref={ref ? ref.bind(null, index) : undefined}
         isFocused={isFocused}
         title={searchableLabel || label}
         checked={checked}
