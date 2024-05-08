@@ -38,6 +38,7 @@ const meta: Meta<EuiGlobalToastListProps> = {
   component: EuiGlobalToastList,
   args: {
     side: 'right',
+    showClearAllButtonAt: 3,
     // stub for testing/QA
     dismissToast: () => {},
   },
