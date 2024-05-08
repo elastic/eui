@@ -13,6 +13,13 @@ import { EuiShowFor, EuiShowForProps } from './show_for';
 const meta: Meta<EuiShowForProps> = {
   title: 'Utilities/EuiShowFor',
   component: EuiShowFor,
+  parameters: {
+    loki: {
+      // EuiShowFor may render null resulting in Loki failing
+      // to find an element to snapshot
+      skip: true,
+    },
+  },
 };
 
 export default meta;
