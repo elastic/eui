@@ -36,6 +36,9 @@ const staticToasts: Toast[] = [
 const meta: Meta<EuiGlobalToastListProps> = {
   title: 'Display/EuiToast/EuiGlobalToastList/EuiGlobalToastList',
   component: EuiGlobalToastList,
+  argTypes: {
+    showClearAllButtonAt: { control: { type: 'number', min: 0 } },
+  },
   args: {
     side: 'right',
     showClearAllButtonAt: 3,
