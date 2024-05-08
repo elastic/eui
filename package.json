@@ -34,6 +34,6 @@
     "**/prismjs": "1.27.0",
     "**/react": "^18",
     "**/@types/react": "^18",
-    "react-focus-lock": "^2.9.5"
+    "react-focus-lock": "2.9.5"
   }
 }
