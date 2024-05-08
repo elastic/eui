@@ -17,7 +17,7 @@ import {
 } from './global_toast_list_item';
 
 const meta: Meta<EuiGlobalToastListItemProps> = {
-  title: 'Display/EuiGlobalToastList/EuiGlobalToastListItem',
+  title: 'Display/EuiToast/EuiGlobalToastList/EuiGlobalToastListItem',
   component: EuiGlobalToastListItem,
   args: {
     isDismissed: false,

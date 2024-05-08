@@ -34,7 +34,7 @@ const staticToasts: Toast[] = [
 ];
 
 const meta: Meta<EuiGlobalToastListProps> = {
-  title: 'Display/EuiGlobalToastList/EuiGlobalToastList',
+  title: 'Display/EuiToast/EuiGlobalToastList/EuiGlobalToastList',
   component: EuiGlobalToastList,
   args: {
     side: 'right',
