@@ -37,9 +37,11 @@ const meta: Meta<EuiGlobalToastListProps> = {
   title: 'Display/EuiToast/EuiGlobalToastList/EuiGlobalToastList',
   component: EuiGlobalToastList,
   argTypes: {
+    role: { control: { type: 'select' }, options: ['log', 'alert'] },
     showClearAllButtonAt: { control: { type: 'number', min: 0 } },
   },
   args: {
+    role: 'log',
     side: 'right',
     showClearAllButtonAt: 3,
     // stub for testing/QA
