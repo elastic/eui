@@ -11,7 +11,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
       class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
     >
       <button
-        aria-label="Some solution"
+        aria-label="Some solution, quick navigation menu"
         class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
         data-test-subj="euiCollapsedNavButton"
         type="button"
@@ -33,7 +33,7 @@ exports[`KibanaCollapsibleNavSolution renders docked icons 1`] = `
       class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
     >
       <button
-        aria-label="Solution view"
+        aria-label="Solution view, quick navigation menu"
         class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
         data-test-subj="euiCollapsedNavButton"
         type="button"

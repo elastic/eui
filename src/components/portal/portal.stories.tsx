@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiPortal, EuiPortalProps } from './portal';
@@ -16,6 +17,12 @@ import { EuiPortal, EuiPortalProps } from './portal';
 const meta: Meta<EuiPortalProps> = {
   title: 'Utilities/EuiPortal',
   component: EuiPortal,
+  parameters: {
+    loki: {
+      // content rendered in portal
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
   argTypes: {
     children: { control: 'text' },
   },
