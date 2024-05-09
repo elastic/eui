@@ -78,13 +78,11 @@ describe('EuiSelectableListItem', () => {
             searchValue="Mi"
           />
         );
-
         expect(container.querySelector('.euiMark')).toHaveTextContent('Mi');
         expect(
           container.querySelector('.euiTextTruncate')
         ).not.toBeInTheDocument();
       });
-
       it('renders an EuiTextTruncate component when truncating text', () => {
         const { container, getByTestSubject } = render(
           <EuiSelectableList
@@ -94,12 +92,10 @@ describe('EuiSelectableListItem', () => {
             searchValue="titan"
           />
         );
-
         expect(getByTestSubject('titanOption')).toContainElement(
           container.querySelector('.euiTextTruncate')
         );
       });
-
       it('does not highlight/mark the current `searchValue` if `isPreFiltered.highlightSearch` is false', () => {
         const { container } = render(
           <EuiSelectableList
@@ -109,7 +105,6 @@ describe('EuiSelectableListItem', () => {
             searchValue="Mi"
           />
         );
-
         expect(container.querySelector('.euiMark')).not.toBeInTheDocument();
       });
     });

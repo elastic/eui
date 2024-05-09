@@ -180,6 +180,8 @@ export class EuiSelectableList<T> extends Component<
     isVirtualized: true,
   };
 
+  private animationFrameId: number | undefined;
+
   constructor(props: EuiSelectableListProps<T>) {
     super(props);
 
@@ -195,6 +197,15 @@ export class EuiSelectableList<T> extends Component<
 
   listRef: FixedSizeList | null = null;
   listBoxRef: HTMLUListElement | null = null;
+
+  componentWillUnmount(): void {
+    // ensure requestAnimationFrame is canceled on unmount as
+    // it could potentially run on a next tick otherwise
+    if (this.animationFrameId !== undefined) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = undefined;
+    }
+  }
 
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
@@ -387,7 +398,6 @@ export class EuiSelectableList<T> extends Component<
           event.persist(); // NOTE: This is needed for React v16 backwards compatibility
           this.onAddOrRemoveOption(option, event);
         }}
-        ref={ref ? ref.bind(null, index) : undefined}
         isFocused={isFocused}
         title={searchableLabel || label}
         checked={checked}
@@ -508,7 +518,7 @@ export class EuiSelectableList<T> extends Component<
     this.focusBadgeOffset = this.props.onFocusBadge === false ? 0 : 46;
 
     // Wait a tick for the listbox ref to update before proceeding
-    requestAnimationFrame(() => {
+    this.animationFrameId = requestAnimationFrame(() => {
       const scrollbarOffset = this.listBoxRef
         ? containerWidth - this.listBoxRef.offsetWidth
         : 0;

@@ -506,3 +506,143 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
   </span>
 </li>
 `;
+
+exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <li
+      aria-checked="false"
+      aria-describedby="generated-id"
+      class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+      role="option"
+    >
+      <span
+        class="euiToolTipAnchor euiSelectableListItem__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      >
+        <span
+          aria-describedby="generated-id"
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            Item content
+          </span>
+        </span>
+      </span>
+    </li>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-top"
+      data-position="top"
+      data-test-subj="listItemToolTip"
+      id="generated-id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__title emotion-euiToolTip__title"
+      >
+        Test
+      </div>
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 4px; top: 0px;"
+      />
+      <div>
+        I am a tooltip!
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <li
+      aria-checked="false"
+      aria-describedby="generated-id"
+      aria-selected="true"
+      class="euiSelectableListItem euiSelectableListItem-isFocused euiSelectableListItem--paddingSmall"
+      role="option"
+    >
+      <span
+        class="euiToolTipAnchor euiSelectableListItem__tooltipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      >
+        <span
+          aria-describedby="generated-id"
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            Item content
+          </span>
+          <span
+            class="euiSelectableListItem__append"
+          >
+             
+            <span
+              aria-hidden="true"
+              class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-hollow"
+            >
+              <span
+                class="euiBadge__content emotion-euiBadge__content"
+              >
+                <span
+                  class="euiBadge__icon emotion-euiBadge__icon-left"
+                  color="inherit"
+                  data-euiicon-type="returnKey"
+                />
+              </span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </li>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      class="euiToolTipPopover euiToolTip emotion-euiToolTip-top"
+      data-position="top"
+      data-test-subj="listItemToolTip"
+      id="generated-id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__title emotion-euiToolTip__title"
+      >
+        Test
+      </div>
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
+        style="left: 4px; top: 0px;"
+      />
+      <div>
+        I am a tooltip!
+      </div>
+    </div>
+  </div>
+</body>
+`;
