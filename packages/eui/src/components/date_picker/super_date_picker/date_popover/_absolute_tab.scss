@@ -1,24 +1,19 @@
-.euiSuperDatePicker__absoluteDateFormRow {
+.euiSuperDatePicker__absoluteDateForm {
   padding: 0 $euiSizeS $euiSizeS;
+}
 
-  /* A bit of a visual trickery to make the format "hint" become an "error" text.
-     NOTE: Normally reordering visually (vs DOM) isn't super great for screen reader users,
-     but as the help text is already read out via `aria-describedby`, and the error text
-     is read out immediately via `aria-live`, we can fairly safely prioritize visuals instead */
-  .euiFormRow__fieldWrapper {
-    display: flex;
-    flex-direction: column;
-  };
+.euiSuperDatePicker__absoluteDateFormSubmit {
+  flex-shrink: 0;
+}
 
-  .euiFormControlLayout {
-    order: 0;
-  }
+.euiSuperDatePicker__absoluteDateFormRow {
+  flex-grow: 1;
 
-  .euiFormHelpText {
-    order: 1;
-  }
-
-  .euiFormErrorText {
-    order: 2;
+  // CSS hack to make the help/error text extend to the submit button.
+  // We can't actually put the submit button within an EuiFormRow due to
+  // cloneElement limitations (https://github.com/elastic/eui/issues/2493#issuecomment-561278494)
+  // TODO: Remove this and clean up DOM rendering once we can
+  .euiFormRow__text {
+    margin-inline-end: -1 * ($euiSizeXL + $euiSizeS); // XL - size of the button, S - size of the flex gap
   }
 }
