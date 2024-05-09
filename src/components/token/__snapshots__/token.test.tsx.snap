@@ -264,6 +264,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenDenseVector is rendered
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenDimension is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-square-light-s-euiColorVis1"
+>
+  <span
+    data-euiicon-type="tokenDimension"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenElement is rendered 1`] = `
 <span
   class="euiToken emotion-euiToken-square-light-s-euiColorVis3"

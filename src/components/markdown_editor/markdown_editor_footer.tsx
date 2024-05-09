@@ -14,6 +14,8 @@ import React, {
   forwardRef,
   useContext,
 } from 'react';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiTitle } from '../title';
@@ -24,22 +26,22 @@ import {
   EuiModalHeader,
 } from '../modal';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import { EuiPopover, EuiPopoverTitle } from '../popover';
+import { EuiText } from '../text';
+import { EuiSpacer } from '../spacer';
+import { EuiToolTip } from '../tool_tip';
+import { EuiHorizontalRule } from '../horizontal_rule';
+import { EuiLink } from '../link';
+
 import {
   EuiMarkdownDropHandler,
   EuiMarkdownEditorUiPlugin,
   EuiMarkdownParseError,
 } from './markdown_types';
-import { EuiPopover, EuiPopoverTitle } from '../popover';
-import { EuiText } from '../text';
-import { EuiSpacer } from '../spacer';
-import { EuiToolTip } from '../tool_tip';
+import { EuiMarkdownContext } from './markdown_context';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
-import { EuiHorizontalRule } from '../horizontal_rule';
-
-import { EuiLink } from '../link';
-
-import { EuiMarkdownContext } from './markdown_context';
+import { euiMarkdownEditorFooterStyles } from './markdown_editor_footer.styles';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
@@ -62,6 +64,9 @@ export const EuiMarkdownEditorFooter = forwardRef<
     hasUnacceptedItems,
     dropHandlers,
   } = props;
+
+  const styles = useEuiMemoizedStyles(euiMarkdownEditorFooterStyles);
+
   const [isShowingHelpModal, setIsShowingHelpModal] = useState(false);
   const [isShowingHelpPopover, setIsShowingHelpPopover] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -128,6 +133,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
     uploadButton = (
       <EuiToolTip content={ariaLabels.supportedFileTypes}>
         <EuiButtonEmpty
+          css={styles.euiMarkdownEditorFooter__uploadError}
           className="euiMarkdownEditorFooter__uploadError"
           autoFocus
           size="s"
@@ -175,7 +181,10 @@ export const EuiMarkdownEditorFooter = forwardRef<
         panelPaddingSize="s"
         anchorPosition="upCenter"
       >
-        <div className="euiMarkdownEditorFooter__popover">
+        <div
+          css={styles.euiMarkdownEditorFooter__popover}
+          className="euiMarkdownEditorFooter__popover"
+        >
           <EuiPopoverTitle>
             <EuiI18n
               token="euiMarkdownEditorFooter.errorsTitle"
@@ -215,6 +224,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         <EuiToolTip content={syntaxTitle}>
           <EuiButtonIcon
             size="s"
+            css={styles.euiMarkdownEditorFooter__helpButton}
             className="euiMarkdownEditorFooter__helpButton"
             iconType={MarkdownLogo}
             color="text"
@@ -288,6 +298,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
           <EuiButtonIcon
             title={syntaxTitle}
             size="s"
+            css={styles.euiMarkdownEditorFooter__helpButton}
             className="euiMarkdownEditorFooter__helpButton"
             iconType={MarkdownLogo}
             color="text"
@@ -315,8 +326,15 @@ export const EuiMarkdownEditorFooter = forwardRef<
   }
 
   return (
-    <div ref={ref} className="euiMarkdownEditorFooter">
-      <div className="euiMarkdownEditorFooter__actions">
+    <div
+      ref={ref}
+      css={styles.euiMarkdownEditorFooter}
+      className="euiMarkdownEditorFooter"
+    >
+      <div
+        css={styles.euiMarkdownEditorFooter__actions}
+        className="euiMarkdownEditorFooter__actions"
+      >
         {uploadButton}
         {errorsButton}
       </div>

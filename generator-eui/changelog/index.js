@@ -36,6 +36,12 @@ module.exports = class extends Generator {
         default: false,
       },
       {
+        message: 'Does your PR contain accessibility improvements?',
+        name: 'a11y',
+        type: 'confirm',
+        default: false,
+      },
+      {
         message: 'Does your PR contain deprecations?',
         name: 'deprecations',
         type: 'confirm',

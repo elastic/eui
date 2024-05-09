@@ -6,14 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { ButtonHTMLAttributes, Component } from 'react';
+import React, { ButtonHTMLAttributes, Component, createRef } from 'react';
 import classNames from 'classnames';
 
 import { withEuiTheme, WithEuiThemeProps } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
+import { EuiComboBoxOptionOption } from '../combo_box';
 
 import { euiFilterSelectItemStyles } from './filter_select_item.styles';
 
@@ -24,6 +26,8 @@ export interface EuiFilterSelectItemProps
   checked?: FilterChecked;
   showIcons?: boolean;
   isFocused?: boolean;
+  toolTipContent?: EuiComboBoxOptionOption['toolTipContent'];
+  toolTipProps?: EuiComboBoxOptionOption['toolTipProps'];
 }
 
 const resolveIconAndColor = (checked?: FilterChecked) => {
@@ -55,6 +59,7 @@ export class EuiFilterSelectItemClass extends Component<
   };
 
   buttonRef: HTMLButtonElement | null = null;
+  tooltipRef = createRef<EuiToolTip>();
 
   state = {
     hasFocus: false,
@@ -63,6 +68,14 @@ export class EuiFilterSelectItemClass extends Component<
   focus = () => {
     if (this.buttonRef) {
       this.buttonRef.focus();
+    }
+  };
+
+  toggleToolTip = (isFocused: boolean) => {
+    if (isFocused) {
+      this.tooltipRef?.current?.showToolTip();
+    } else {
+      this.tooltipRef?.current?.hideToolTip();
     }
   };
 
@@ -79,6 +92,9 @@ export class EuiFilterSelectItemClass extends Component<
       checked,
       isFocused,
       showIcons,
+      toolTipContent,
+      toolTipProps,
+      style,
       ...rest
     } = this.props;
 
@@ -90,6 +106,28 @@ export class EuiFilterSelectItemClass extends Component<
 
     const classes = classNames('euiFilterSelectItem', className);
 
+    const hasToolTip =
+      // we're using isValidElement here as EuiToolTipAnchor uses
+      // cloneElement to enhance the element with required attributes
+      React.isValidElement(children) && !disabled && toolTipContent;
+
+    let anchorProps = undefined;
+
+    if (hasToolTip) {
+      const anchorStyles = toolTipProps?.anchorProps?.style
+        ? { ...toolTipProps?.anchorProps?.style, ...style }
+        : style;
+
+      anchorProps = toolTipProps?.anchorProps
+        ? {
+            ...toolTipProps.anchorProps,
+            style: anchorStyles,
+          }
+        : { style };
+
+      this.toggleToolTip(isFocused ?? false);
+    }
+
     let iconNode;
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
@@ -100,7 +138,7 @@ export class EuiFilterSelectItemClass extends Component<
       );
     }
 
-    return (
+    const optionItem = (
       <button
         ref={(ref) => (this.buttonRef = ref)}
         role="option"
@@ -110,6 +148,7 @@ export class EuiFilterSelectItemClass extends Component<
         css={cssStyles}
         disabled={disabled}
         aria-disabled={disabled}
+        style={!hasToolTip ? style : undefined}
         {...rest}
       >
         <EuiFlexGroup
@@ -127,6 +166,21 @@ export class EuiFilterSelectItemClass extends Component<
           </EuiFlexItem>
         </EuiFlexGroup>
       </button>
+    );
+
+    return hasToolTip ? (
+      <EuiToolTip
+        ref={this.tooltipRef}
+        display="block"
+        content={toolTipContent}
+        position="left"
+        {...toolTipProps}
+        anchorProps={anchorProps}
+      >
+        {optionItem}
+      </EuiToolTip>
+    ) : (
+      optionItem
     );
   }
 }

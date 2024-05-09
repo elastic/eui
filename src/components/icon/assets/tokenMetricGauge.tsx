@@ -28,7 +28,11 @@ const EuiIconTokenMetricGauge = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 4h-.5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1 0-1H5v-2h-.5a.5.5 0 0 1 0-1H5V7h-.5a.5.5 0 0 1 0-1H5V4Zm3 1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H8Z" />
+    <path d="M12 10.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 0-1H12v-.5Z" />
+    <path
+      fillRule="evenodd"
+      d="M6 3H2v10h6.337A3.5 3.5 0 1 0 12 8.035V5H8v2H6V3Zm5 5.035V6H9v3.05a3.49 3.49 0 0 1 2-1.015ZM9 11.5a2.5 2.5 0 1 1 5.002 0A2.5 2.5 0 0 1 9 11.5ZM8 8H6v4h2V8ZM5 4H3v8h2V4Z"
+    />
   </svg>
 );
 export const icon = EuiIconTokenMetricGauge;
