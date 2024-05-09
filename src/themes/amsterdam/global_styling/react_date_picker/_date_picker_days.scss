@@ -27,7 +27,8 @@
 }
 
 .react-datepicker__day-name,
-.react-datepicker__day {
+.react-datepicker__day,
+.react-datepicker__week-number {
   font-weight: $euiFontWeightMedium;
   text-align: center;
   color: $euiTitleColor;
@@ -40,6 +41,14 @@
 
 .react-datepicker__day-name {
   color: $euiTextSubduedColor;
+}
+
+.react-datepicker__week-number {
+  color: $euiTextSubduedColor;
+  background-color: $euiPageBackgroundColor;
+  // Overlap the background color so it's all one column
+  padding-block: $euiSizeXS;
+  margin-block: ($euiSizeXS / -2);
 }
 
 .react-datepicker__day {
