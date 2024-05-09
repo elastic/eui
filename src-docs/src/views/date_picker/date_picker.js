@@ -13,7 +13,11 @@ export default () => {
 
   return (
     <EuiFormRow label="Select a date">
-      <EuiDatePicker selected={startDate} onChange={handleChange} />
+      <EuiDatePicker
+        selected={startDate}
+        onChange={handleChange}
+        showWeekNumbers={true}
+      />
     </EuiFormRow>
   );
 };
