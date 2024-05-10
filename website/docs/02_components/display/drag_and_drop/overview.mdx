@@ -1,0 +1,145 @@
+---
+id: component_drag_and_drop_overview
+title: Drag and drop
+export_name:
+  - EuiDragDropContext
+  - EuiDroppable
+  - EuiDraggable
+slug: /components/drag-and-drop
+---
+
+An extension of [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) (which is an actively maintained fork
+of [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)) with a compatible API and built-in
+style opinions. Functionality results from 3 components working together:
+
+* `<EuiDragDropContext />`: Section of your application containing the draggable elements and the drop targets.
+* `<EuiDroppable />`: Area into which items can be dropped. Contains one or more `<EuiDraggable />`.
+* `<EuiDraggable />`: Items that can be dragged. Must be part of an `<EuiDroppable />`
+
+:::warning Consider your users, use case
+
+Drag and drop interfaces are not well-adapted to many cases, and may be less suitable than other form types
+for data operations. For instance, drag and drop interaction relies heavily on spatial orientation that may
+not be entirely valid to all users (e.g., screen readers as the sole source of information).
+Similarly, users navigating by keyboard may not be afforded nuanced, dual-axis drag item manipulation.
+
+EUI (largely due to the great work already in @hello-pangea/dnd) has and will continue to ensure accessibility
+where possible. With that in mind, keep your users' working context in mind.
+
+:::
+
+## Just the facts
+
+**EuiDraggable** makes very few assumptions about what content it contains. To give affordance to draggable elements
+and to ensure a consistent experience, child elements must be able to accept a border and drop shadow
+(automatically applied via CSS). No other style opinions are applied, however.
+
+Similarly, **EuiDroppable** must accept a background color overlay (automatically applied via CSS),
+but has no other restrictions.
+
+All **EuiDragDropContext** elements are discrete and isolated; **EuiDroppables** and **EuiDraggables** cannot
+be shared/transferred between instances. Also, **EuiDragDropContexts** cannot be nested. It is recommended that
+a single, high-level **EuiDragDropContext** is used and **EuiDroppables** account for categorical and functional
+separation (see later examples).
+
+**EuiDragDropContext** handles all events but makes no assumptions about the result of a drop event.
+As such, the following event handlers are available:
+
+* `onBeforeDragStart`
+* `onDragStart`
+* `onDragUpdate`
+* `onDragEnd` (required)
+
+EUI also provides methods for helping to deal to common action types:
+
+* `reorder`: change an item's location in a droppable area
+* `copy`: create a duplicate of an item in a different droppable area
+* `move`: move an item to a different droppable area
+
+<!-- TODO: Add basic example -->
+
+## Simple item reorder
+
+The simplest case, demonstrating a single **EuiDroppable** with `reorder` behavior.
+
+Notice the ability to change rendered content based on dragging state. **EuiDraggable** `children` is a render prop
+that mush return a `ReactElement`. The `snapshot` parameter on that function has state data that can be used
+to alter appearance or behavior (e.g., `isDragging`).
+
+<!-- TODO: Add reorder example -->
+
+## Custom drag handle
+
+By default, the entire element surface can initiate a drag. To specify an element within as the handle and create
+a containing group, set `customDragHandle=true` and `hasInteractiveChildren=true` on the **EuiDraggable**.
+
+The `provided` parameter on the **EuiDraggable** `children` render prop has all data required for functionality.
+Along with the `customDragHandle` flag,`provided.dragHandleProps` needs to be added to the intended handle element.
+
+<!-- TODO: Add custom drag handle example -->
+
+:::note
+
+**Icon-only** custom drag handles require an accessible label. Add an `aria-label="Drag handle"` attribute
+to your React component or HTML element that receives`provided.dragHandleProps`.
+
+:::
+
+## Interactive elements
+
+**EuiDraggable** can contain interactive elements such as buttons and form fields. Interactive elements require
+`customDragHandle=true` and `hasInteractiveChildren=true` on the **EuiDraggable**. These props will maintain drag
+functionality and accessibility, while enabling click, keypress, etc., events on the interactive child elements.
+
+<!-- TODO: Add interactive elements example -->
+
+## Move between lists
+
+By default, all **EuiDroppable** elements are of the same type and will accept **EuiDraggable** elements from
+others in the same **EuiDragDropContext**.
+
+The EUI `move` method is demonstrated in this example.
+
+<!-- TODO: Add move between lists example -->
+
+## Distinguish droppable areas by type
+
+Setting the `type` prop on an **EuiDroppable** element will ensure that it will only accept **EuiDraggable** elements
+from the same type of **EuiDroppable**.
+
+Notice that the enabled, compatible **EuiDroppable** elements have a visual change that indicates they can accept
+the actively moving/focused **EuiDraggable** element.
+
+<!-- TODO: Add distinguish by type example -->
+
+## Copyable items
+
+For cases where collections of **EuiDraggable** elements are static or can be used in multiple places set
+`cloneDraggables=true` on the parent **EuiDroppable**. The **EuiDroppable** becomes disabled (does not accept
+new **EuiDraggable** elements) in this scenario to avoid mixed content intentions.
+
+The EUI `copy` method is available and demonstrated in the example below. Note that the data point used
+as `draggableId` in **EuiDraggable** must change to allow for real duplication.
+
+`isRemovable` is used in the example for cloned items. This API is likely to change, but currently provides
+the visual changes with drop-to-remove interactions.
+
+<!-- TODO: Add copyable items example -->
+
+## Kitchen sink
+
+**EuiDraggables** in **EuiDroppables**, **EuiDroppables** in **EuiDraggables**, custom drag handles, horizontal
+movement, vertical movement, flexbox, panel inception, you name it.
+
+<!-- TODO: Add kitchen sink example -->
+
+## Using drag and drop in popovers
+
+**EuiDraggables** use fixed positioning to render and animate the item being dragged.
+This positioning logic does not work as expected when used inside of containers that have their own
+[stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
+
+This behavior particularly affects [**EuiPopover**](#/layout/popover). If using drag and drop UX within a popover,
+you **must** include the `<EuiPopover hasDragDrop>` prop for items to properly render while being dragged.
+
+<!-- TODO: Add drag and drop in popover example -->
