@@ -9,6 +9,7 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiTextTruncate,
+  EuiToolTip,
   EuiCallOut,
   EuiLink,
 } from '../../../../src';
@@ -41,6 +42,9 @@ const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
 
 import Truncation from './selectable_truncation';
 const truncationSource = require('!!raw-loader!./selectable_truncation');
+
+import SelectableToolTips from './selectable_tool_tips';
+const selectableToolTipsSource = require('!!raw-loader!./selectable_tool_tips');
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
@@ -438,6 +442,57 @@ export const SelectableExample = {
   {list => list}
 </EuiSelectable>`,
       demo: <Truncation />,
+    },
+
+    {
+      title: 'Tooltips',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableToolTipsSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            If you have longer information that you need to make available to
+            users outside of truncated text, one approach could be adding
+            tooltip descriptions to individual options by passing{' '}
+            <EuiCode>toolTipContent</EuiCode>.
+          </p>
+          <p>
+            You can additionally customize individual tooltip behavior by
+            passing <EuiCode>toolTipProps</EuiCode>, which accepts any
+            configuration that{' '}
+            <Link to="/display/tooltip">
+              <strong>EuiToolTip</strong>
+            </Link>{' '}
+            accepts.
+          </p>
+        </>
+      ),
+      props: {
+        EuiSelectableOptionProps,
+        EuiToolTip,
+      },
+      demo: <SelectableToolTips />,
+      snippet: `<EuiSelectable
+  aria-label="Example with option tooltips"
+  options={[
+    {
+      label: '',
+      checked: 'mixed',
+      toolTipContent: 'tooltip 1', 
+      toolTipProps: {
+        position: 'bottom'
+        'data-test-subj': 'optionTooltip',
+      }
+    }
+  ]}
+  onChange={newOptions => setOptions(newOptions)}
+>
+  {list => list}
+</EuiSelectable>`,
     },
     {
       title: 'Rendering the options',

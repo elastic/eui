@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
-import { render } from '../../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
+import { fireEvent } from '@testing-library/react';
 
 describe('EuiSelectableListItem', () => {
   test('is rendered', () => {
@@ -161,6 +162,53 @@ describe('EuiSelectableListItem', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+    });
+
+    test('tooltip behavior on mouseover', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiSelectableListItem
+          toolTipContent="I am a tooltip!"
+          toolTipProps={{
+            title: 'Test',
+            position: 'top',
+            delay: 'long',
+            'data-test-subj': 'listItemToolTip',
+          }}
+        >
+          Item content
+        </EuiSelectableListItem>
+      );
+
+      const tooltipAnchor = baseElement.querySelector(
+        '.euiSelectableListItem__tooltipAnchor'
+      );
+      fireEvent.mouseOver(tooltipAnchor!);
+      await waitForEuiToolTipVisible();
+
+      expect(getByTestSubject('listItemToolTip')).toBeInTheDocument();
+      expect(baseElement).toMatchSnapshot();
+    });
+
+    test('tooltip behavior when isFocused', async () => {
+      const { baseElement, getByTestSubject } = render(
+        <EuiSelectableListItem
+          toolTipContent="I am a tooltip!"
+          toolTipProps={{
+            title: 'Test',
+            position: 'top',
+            delay: 'long',
+            'data-test-subj': 'listItemToolTip',
+          }}
+          isFocused
+        >
+          Item content
+        </EuiSelectableListItem>
+      );
+
+      await waitForEuiToolTipVisible();
+
+      expect(getByTestSubject('listItemToolTip')).toBeInTheDocument();
+      expect(baseElement).toMatchSnapshot();
     });
   });
 });

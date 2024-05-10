@@ -9,8 +9,11 @@
 import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import type { EuiTextTruncateProps } from '../text_truncate';
+import { EuiToolTipProps } from '../tool_tip';
 
-export type EuiSelectableOptionCheckedType = 'on' | 'off' | 'mixed' | undefined;
+export const OPTION_CHECKED_STATES = ['on', 'off', 'mixed', undefined] as const;
+export type EuiSelectableOptionCheckedType =
+  (typeof OPTION_CHECKED_STATES)[number];
 
 export type EuiSelectableOptionBase = CommonProps & {
   /**
@@ -74,6 +77,14 @@ export type EuiSelectableOptionBase = CommonProps & {
    * text will always take precedence.
    */
   truncationProps?: Partial<Omit<EuiTextTruncateProps, 'text' | 'children'>>;
+  /**
+   * Optional custom tooltip content for the button
+   */
+  toolTipContent?: EuiToolTipProps['content'];
+  /**
+   * Optional props to pass to the underlying **[EuiToolTip](/#/display/tooltip)**
+   */
+  toolTipProps?: Partial<Omit<EuiToolTipProps, 'content' | 'children'>>;
 };
 
 type _EuiSelectableGroupLabelOption = Omit<

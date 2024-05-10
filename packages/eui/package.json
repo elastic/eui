@@ -110,6 +110,8 @@
     "@emotion/jest": "^11.11.0",
     "@emotion/react": "^11.11.0",
     "@faker-js/faker": "^8.0.2",
+    "@loki/create-async-callback": "^0.35.0",
+    "@loki/is-loki-running": "^0.35.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@storybook/addon-essentials": "^8.0.5",
     "@storybook/addon-interactions": "^8.0.5",
