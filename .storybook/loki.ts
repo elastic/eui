@@ -88,6 +88,6 @@ const waitForDocumentLoaded = (): Promise<void> => {
 
 const enablePointerEvents = (): void => {
   const styleElement = document.createElement('style');
-  document.documentElement.appendChild(styleElement);
+  document.head.appendChild(styleElement);
   styleElement.sheet?.insertRule('* {pointer-events: auto !important}');
 };
