@@ -14,29 +14,55 @@ import {
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideProps,
 } from './selectable_template_sitewide';
-import { EuiSelectableOption } from '../selectable_option';
+import type { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
 
-const options = [
+const options: EuiSelectableTemplateSitewideOption[] = [
   {
-    label: 'Titan',
-    'data-test-subj': 'titanOption',
+    label: 'Welcome dashboards',
+    icon: { type: 'logoKibana' },
+    avatar: { name: 'Default Space' },
+    meta: [
+      {
+        text: 'Dashboard',
+        type: 'application',
+        highlightSearchString: true,
+      },
+    ],
+    url: 'welcome-dashboards',
   },
   {
-    label: 'Enceladus is disabled',
-    disabled: true,
+    label: 'SIEM',
+    icon: { type: 'logoSecurity' },
+    meta: [
+      {
+        text: 'personal-databoard',
+        type: 'deployment',
+      },
+    ],
+    space: 'Hello World',
   },
   {
-    label: 'Iapetus',
-    checked: 'on',
+    label: 'Dev tools',
+    url: 'dev-tools-console',
+    icon: { type: 'wrench' },
+    meta: [
+      {
+        text: 'Management application',
+        type: 'application',
+      },
+    ],
   },
   {
-    label: 'Phoebe',
+    label: 'My support tickets',
+    icon: { type: 'help' },
+    meta: [
+      {
+        text: 'Support',
+        type: 'platform',
+      },
+    ],
   },
-  {
-    label:
-      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-  },
-] as EuiSelectableOption[];
+];
 
 const meta: Meta<EuiSelectableTemplateSitewideProps> = {
   title: 'Templates/EuiSelectableTemplateSitewide',
