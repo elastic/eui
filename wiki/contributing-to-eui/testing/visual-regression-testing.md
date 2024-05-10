@@ -25,6 +25,23 @@ Now you can run Loki to test for visual regressions:
 yarn test-visual-regression
 ```
 
+You can also run the test for specific stories only by using `--storiesFilter`:
+
+```shell
+yarn test-visual-regression --storiesFilter EuiComboBox
+```
+
+To add baseline reference images run:
+
+```shell
+# all components
+yarn test-visual-regression update
+
+# specific component
+yarn test-visual-regression update --storiesFilter EuiComboBox
+```
+
+
 ## Skipping stories
 
 Some stories cannot be tested for various reasons. You can set
@@ -66,3 +83,41 @@ const meta: Meta<MyComponentProps> = {
   },
 };
 ```
+
+## Using storybook interactions for specific interaction states
+
+You can use storybooks [`interactions`](https://storybook.js.org/docs/essentials/interactions) to run VRT testing on specific component states after user interaction.
+
+Use `lokiPlayDecorator` function to ensure VRT testing runs 
+- a) as defined (VRT only vs storybook & VRT)
+- b) after interactions were run
+
+```tsx
+import { userEvent, waitFor, within, expect } from '@storybook/test';
+import { lokiPlayDecorator } from '/.storybook/loki'
+
+
+const Playground = {
+  play: lokiPlayDecorator(async (context) => {
+    const { bodyElement, canvasElement, step } = context;
+
+    // for any content inside the story wrapper use canvasElement
+    const canvas = within(canvasElement);
+    // any content outside the story wrapper (e.g. added via portals) use bodyElement
+    const canvas = within(bodyElement);
+
+    /* NOTE: multi-steps breaks on going through steps on not found elements
+    for show/hide actions. It seems more reliable to use a single step for
+    these interactions as they are used for VRT only (so far). */
+    await step('show popover on click', async () => {
+        await userEvent.click(canvas.getByRole('combobox'));
+
+        await waitFor(() => {
+          expect(canvas.getByRole('listbox')).toBeVisible();
+        })
+      }
+    );
+  })
+}
+```
+
