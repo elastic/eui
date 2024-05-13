@@ -9,6 +9,20 @@
 import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
 
+/**
+ * Get an absolute path to package's `node_modules` directory. It's compatible
+ * with yarn hoisting logic.
+ *
+ * It works by resolving a path to its `package.json` file since it's the only
+ * file that must exist in the package's root directory. Resolving the package
+ * itself would return a path to the entry point that could be anywhere within
+ * that package's directory.
+ *
+ * @see {@link https://github.com/storybookjs/storybook/issues/21710#issuecomment-1604260157}
+ */
+const getAbsoluteDependencyPath = (packageName: string) =>
+  path.dirname(require.resolve(path.join(packageName, 'package.json')));
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -41,9 +55,9 @@ const config: StorybookConfig = {
           // we need to resolve to the modules file as otherwise
           // 'tty' and 'os' dependencies are not resolved correctly
           // https://github.com/storybookjs/storybook/issues/26997#issuecomment-2088494093
-          '@storybook/test': path.resolve(
-            __dirname,
-            '../node_modules/@storybook/test/dist/index.mjs'
+          '@storybook/test': path.join(
+            getAbsoluteDependencyPath('@storybook/test'),
+            'dist/index.mjs'
           ),
         },
       },
