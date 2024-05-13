@@ -32,6 +32,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import CalendarContainer from "./calendar_container";
+
+import { EuiFocusTrap } from '../../../focus_trap';
+import { EuiI18n } from '../../../i18n';
+import { EuiScreenReaderOnly } from '../../../accessibility/screen_reader_only';
 import {
   now,
   setMonth,
@@ -60,7 +64,36 @@ import {
   getEffectiveMaxDate
 } from "./date_utils";
 
-import { EuiFocusTrap } from '../../../focus_trap';
+const WEEK_DAY_NAMES = [
+  {
+    token: 'euiDatePicker.sunday',
+    default: 'Sunday',
+  },
+  {
+    token: 'euiDatePicker.monday',
+    default: 'Monday',
+  },
+  {
+    token: 'euiDatePicker.tuesday',
+    default: 'Tuesday',
+  },
+  {
+    token: 'euiDatePicker.wednesday',
+    default: 'Wednesday',
+  },
+  {
+    token: 'euiDatePicker.thursday',
+    default: 'Thursday',
+  },
+  {
+    token: 'euiDatePicker.friday',
+    default: 'Friday',
+  },
+  {
+    token: 'euiDatePicker.saturday',
+    default: 'Saturday',
+  },
+];
 
 const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
 
@@ -357,10 +390,23 @@ export default class Calendar extends React.Component {
         const day = addDays(cloneDate(startOfWeek), offset);
         const localeData = getLocaleData(day);
         const weekDayName = this.formatWeekday(localeData, day);
+        const localeStartDayOfWeek = localeData._week.dow;
+        const weekStartDayIndex = localeStartDayOfWeek + offset;
+        // determine the current day index based on the week starting day (Sunday vs Monday)
+        const currentDayIndex =
+          weekStartDayIndex < 7 ? weekStartDayIndex : 7 - weekStartDayIndex;
 
         return (
           <div key={offset} className="react-datepicker__day-name">
-            {weekDayName}
+            <span aria-hidden="true">{weekDayName}</span>
+            <EuiScreenReaderOnly>
+              <span>
+                <EuiI18n
+                  token={WEEK_DAY_NAMES[currentDayIndex].token}
+                  default={WEEK_DAY_NAMES[currentDayIndex].default}
+                />
+              </span>
+            </EuiScreenReaderOnly>
           </div>
         );
       })
