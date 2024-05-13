@@ -2,11 +2,13 @@
 
 steps:
   - trigger: "eui-pull-request-test"
+    key: "test"
     label: ":hammer: EUI pull request test"
     build:
       branch: "${BUILDKITE_BRANCH}"
       commit: "${BUILDKITE_COMMIT}"
   - trigger: "eui-pull-request-deploy-docs"
+    key: "deploy-docs"
     label: ":newspaper: EUI pull request deploy docs"
     build:
       branch: "${BUILDKITE_BRANCH}"
@@ -14,3 +16,18 @@ steps:
       env:
         GIT_BRANCH: "${BUILDKITE_BRANCH}"
         GIT_PULL_REQUEST_ID: "${BUILDKITE_PULL_REQUEST}"
+  - depends_on: "deploy-docs"
+    label: ":camera_with_flash: Visual regression tests"
+    command: ".buildkite/scripts/visual_regression/run_loki.sh"
+    agents:
+      provider: "gcp"
+      # Loki isn't resource heavy and doesn't benefit
+      # from faster CPUs like the n2 family
+      machineType: 'n1-standard-1'
+      # Use spot instances
+      # https://cloud.google.com/spot-vms
+      preemptible: true
+    retry:
+      automatic:
+        - exit_status: '-1'
+          limit: 1
