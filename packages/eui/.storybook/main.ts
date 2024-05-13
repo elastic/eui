@@ -9,6 +9,9 @@
 import path from 'path';
 import type { StorybookConfig } from '@storybook/react-webpack5';
 
+const getAbsoluteDependencyPath = (packageName: string) =>
+  path.dirname(require.resolve(path.join(packageName, 'package.json')));
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -41,9 +44,9 @@ const config: StorybookConfig = {
           // we need to resolve to the modules file as otherwise
           // 'tty' and 'os' dependencies are not resolved correctly
           // https://github.com/storybookjs/storybook/issues/26997#issuecomment-2088494093
-          '@storybook/test': path.resolve(
-            __dirname,
-            '../node_modules/@storybook/test/dist/index.mjs'
+          '@storybook/test': path.join(
+            getAbsoluteDependencyPath('@storybook/test'),
+            'dist/index.mjs'
           ),
         },
       },
