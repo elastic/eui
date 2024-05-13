@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: dangoslen/changelog-enforcer@v2
       with:
-        changeLogPath: "changelogs/upcoming/${{ github.event.pull_request.number }}.md"
+        # This should eventually by replaced with a monorepo-compatible changelog checker
+        changeLogPath: "packages/eui/changelogs/upcoming/${{ github.event.pull_request.number }}.md"
         skipLabels: 'skip-changelog'
         missingUpdateErrorMessage: 'You need to add a changelog to this PR before it can be merged. @see https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md'
