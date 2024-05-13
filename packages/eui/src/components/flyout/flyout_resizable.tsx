@@ -22,14 +22,14 @@ import { getPosition } from '../resizable_container/helpers';
 import { EuiFlyout, EuiFlyoutProps } from './flyout';
 import { euiFlyoutResizableButtonStyles } from './flyout_resizable.styles';
 
-export type EuiFlyoutResizableProps = Omit<EuiFlyoutProps, 'maxWidth'> & {
+export type EuiFlyoutResizableProps = {
   maxWidth?: number;
   minWidth?: number;
   /**
    * Optional callback that fires on user resize with the new flyout width
    */
   onResize?: (width: number) => void;
-};
+} & Omit<EuiFlyoutProps, 'maxWidth' | 'onResize'>; // If not omitted, the correct props don't show up in the docs prop table
 
 export const EuiFlyoutResizable = forwardRef(
   (
