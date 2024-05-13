@@ -1,4 +1,4 @@
-## [`v94.4.0`](https://github.com/elastic/eui/releases/v94.4.0)
+## [`v94.4.1`](https://github.com/elastic/eui/releases/v94.4.1)
 
 - Added support for `toolTipContent` and `toolTipProps` props on `EuiSelectable` options ([#7715](https://github.com/elastic/eui/pull/7715))
 - Updated `EuiSuperDatePicker`'s absolute tab UX to support setting manual timestamps via mouse click as well as enter key ([#7732](https://github.com/elastic/eui/pull/7732))
