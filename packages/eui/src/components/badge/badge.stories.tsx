@@ -42,7 +42,7 @@ export const Playground: Story = {
 export const CustomColors: Story = {
   parameters: {
     controls: {
-      include: ['color', 'children'],
+      include: ['color', 'children', 'isDisabled'],
     },
   },
   args: {

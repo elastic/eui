@@ -3,7 +3,7 @@
 exports[`EuiBadge is disabled 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-disabled-euiTestCss"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-disabled-euiTestCss"
   data-test-subj="test subject string"
   title="Content"
 >

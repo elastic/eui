@@ -110,15 +110,12 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     danger: css(setBadgeColorVars(badgeColors.danger)),
     success: css(setBadgeColorVars(badgeColors.success)),
     disabled: css`
-      /* stylelint-disable declaration-no-important */
+      ${setBadgeColorVars(badgeColors.disabled)}
 
-      /* Using !important to override inline styles */
-      --euiBadgeTextColor: ${badgeColors.disabled.color};
-      --euiBadgeBackgroundColor: ${badgeColors.disabled.backgroundColor};
-      color: ${badgeColors.disabled.color} !important;
-      background-color: ${badgeColors.disabled.backgroundColor} !important;
-
-      /* stylelint-enable declaration-no-important */
+      /* Override selection color, since disabled badges have rgba backgrounds with opacity */
+      *::selection {
+        color: ${euiTheme.colors.emptyShade};
+      }
     `,
 
     // Content wrapper
