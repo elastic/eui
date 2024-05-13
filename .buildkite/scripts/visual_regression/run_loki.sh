@@ -17,14 +17,8 @@ else
   exit 1
 fi
 
-docker run \
-  -i \
-  --rm \
-  --env GIT_COMMITTER_NAME=test \
-  --env GIT_COMMITTER_EMAIL=test \
-  --env HOME=/tmp \
-  --user="$(id -u):$(id -g)" \
-  --volume="$(pwd):/app" \
-  --workdir=/app \
-  "$DOCKER_BASE_IMAGE" \
-  bash -c "yarn && yarn --cwd packages/eui test-visual-regression --reactUri $storybook_url"
+# Install dependencies
+yarn
+
+# Run Loki targeting the built and deployed Storybook instance
+yarn --cwd packages/eui test-visual-regression --reactUri "${storybook_url}"
