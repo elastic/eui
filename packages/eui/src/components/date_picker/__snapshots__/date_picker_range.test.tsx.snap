@@ -351,37 +351,100 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
               <div
                 class="react-datepicker__day-name"
               >
-                Su
+                <span
+                  aria-hidden="true"
+                >
+                  Su
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Sunday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Mo
+                <span
+                  aria-hidden="true"
+                >
+                  Mo
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Monday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Tu
+                <span
+                  aria-hidden="true"
+                >
+                  Tu
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Tuesday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                We
+                <span
+                  aria-hidden="true"
+                >
+                  We
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Wednesday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Th
+                <span
+                  aria-hidden="true"
+                >
+                  Th
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Thursday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Fr
+                <span
+                  aria-hidden="true"
+                >
+                  Fr
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Friday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Sa
+                <span
+                  aria-hidden="true"
+                >
+                  Sa
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Saturday
+                </span>
               </div>
             </div>
           </div>
@@ -801,37 +864,100 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
               <div
                 class="react-datepicker__day-name"
               >
-                Su
+                <span
+                  aria-hidden="true"
+                >
+                  Su
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Sunday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Mo
+                <span
+                  aria-hidden="true"
+                >
+                  Mo
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Monday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Tu
+                <span
+                  aria-hidden="true"
+                >
+                  Tu
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Tuesday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                We
+                <span
+                  aria-hidden="true"
+                >
+                  We
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Wednesday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Th
+                <span
+                  aria-hidden="true"
+                >
+                  Th
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Thursday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Fr
+                <span
+                  aria-hidden="true"
+                >
+                  Fr
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Friday
+                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                Sa
+                <span
+                  aria-hidden="true"
+                >
+                  Sa
+                </span>
+                <span
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Saturday
+                </span>
               </div>
             </div>
           </div>
