@@ -17,6 +17,12 @@ else
   exit 1
 fi
 
+echo "current user: $(whoami)"
+
+source $HOME/.bash_profile
+
+nvm use default
+
 # Install dependencies
 yarn
 
