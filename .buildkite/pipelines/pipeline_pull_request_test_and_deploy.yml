@@ -19,6 +19,8 @@ steps:
   - depends_on: "deploy-docs"
     label: ":camera_with_flash: Visual regression tests"
     command: ".buildkite/scripts/visual_regression/run_loki.sh"
+    artifact_paths:
+      - "packages/eui/.loki/difference/*.png"
     agents:
       provider: "gcp"
       # Loki isn't resource heavy and doesn't benefit
