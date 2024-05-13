@@ -1,3 +1,23 @@
+## [`v94.4.0`](https://github.com/elastic/eui/releases/v94.4.0)
+
+- Added support for `toolTipContent` and `toolTipProps` props on `EuiSelectable` options ([#7715](https://github.com/elastic/eui/pull/7715))
+- Updated `EuiSuperDatePicker`'s absolute tab UX to support setting manual timestamps via mouse click as well as enter key ([#7732](https://github.com/elastic/eui/pull/7732))
+
+**Bug fixes**
+
+- Fixed issue with unmounted component state updates on requestAnimationFrame for `EuiSelectable` ([#7715](https://github.com/elastic/eui/pull/7715))
+- Fixed `EuiMarkdownEditor` not disabling the upload dropzone when in `readOnly` mode ([#7738](https://github.com/elastic/eui/pull/7738))
+- Fixed `EuiMarkdownEditor` not showing an invalid underline on the editor when `errors` are present ([#7738](https://github.com/elastic/eui/pull/7738))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiMarkdownEditor` to Emotion; Removed `$euiMarkdownEditorMinHeight` ([#7738](https://github.com/elastic/eui/pull/7738))
+- Fully converted `EuiMarkdownFormat` to Emotion ([#7738](https://github.com/elastic/eui/pull/7738))
+
+**Accessibility**
+
+- Updated `EuiCollapsedNavButton` with improved context for screen reader navigation ([#7740](https://github.com/elastic/eui/pull/7740))
+
 ## [`v94.3.0`](https://github.com/elastic/eui/releases/v94.3.0)
 
 - Updated `launch` glyph for `EuiIcon` ([#7670](https://github.com/elastic/eui/pull/7670))
