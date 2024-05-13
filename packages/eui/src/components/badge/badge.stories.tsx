@@ -8,7 +8,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiBadge, EuiBadgeProps } from './badge';
+import { EuiBadge, EuiBadgeProps, COLORS } from './badge';
 
 const meta: Meta<EuiBadgeProps> = {
   title: 'Display/EuiBadge/EuiBadge',
@@ -20,6 +20,7 @@ const meta: Meta<EuiBadgeProps> = {
     // Component defaults
     iconSide: 'left',
     isDisabled: false,
+    color: 'default',
   },
 };
 
@@ -29,5 +30,23 @@ type Story = StoryObj<EuiBadgeProps>;
 export const Playground: Story = {
   args: {
     children: 'Badge text',
+  },
+  argTypes: {
+    color: {
+      control: 'select',
+      options: COLORS,
+    },
+  },
+};
+
+export const CustomColors: Story = {
+  parameters: {
+    controls: {
+      include: ['color', 'children'],
+    },
+  },
+  args: {
+    children: 'Badge text',
+    color: '#0000FF',
   },
 };

@@ -178,7 +178,6 @@ exports[`EuiBadge props color accent is rendered 1`] = `
 exports[`EuiBadge props color accepts hex 1`] = `
 <span
   class="euiBadge emotion-euiBadge"
-  style="background-color: rgb(51, 51, 51); color: rgb(255, 255, 255);"
   title="Content"
 >
   <span
@@ -196,7 +195,6 @@ exports[`EuiBadge props color accepts hex 1`] = `
 exports[`EuiBadge props color accepts rgba 1`] = `
 <span
   class="euiBadge emotion-euiBadge"
-  style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);"
   title="Content"
 >
   <span
