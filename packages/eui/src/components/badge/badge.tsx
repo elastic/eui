@@ -151,8 +151,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       }
 
       return {
-        backgroundColor: color,
-        color: textColor,
+        '--euiBadgeBackgroundColor': color,
+        '--euiBadgeTextColor': textColor,
         ...style,
       };
     } catch (err) {
