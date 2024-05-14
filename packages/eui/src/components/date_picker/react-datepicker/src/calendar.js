@@ -63,16 +63,6 @@ import {
   getEffectiveMaxDate
 } from "./date_utils";
 
-const WEEK_DAY_NAMES = [
-'Sunday',
-'Monday',
-'Tuesday',
-'Wednesday',
-'Thursday',
-'Friday',
-'Saturday',
-];
-
 const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
 
 const DROPDOWN_FOCUS_CLASSNAMES = [
@@ -364,34 +354,28 @@ export default class Calendar extends React.Component {
       );
     }
 
-    const isLocaleEnglish = this.props.locale
-      ? Array.isArray(this.props.locale.match(/^en\b/))
-      // when this.props.locale is not set the default is 'en' 
-      : this.props.locale === undefined;
-
     return dayNames.concat(
       [0, 1, 2, 3, 4, 5, 6].map(offset => {
         const day = addDays(cloneDate(startOfWeek), offset);
         const localeData = getLocaleData(day);
-        const weekDayName = this.formatWeekday(localeData, day);
         const localeStartDayOfWeek = localeData._week.dow;
+
         const weekStartDayIndex = localeStartDayOfWeek + offset;
         // determine the current day index based on the week starting day (Sunday vs Monday)
         const currentDayIndex =
           weekStartDayIndex < 7 ? weekStartDayIndex : 7 - weekStartDayIndex;
 
+        const weekDayName = this.formatWeekday(localeData, day);
+        const weekDayNameLong = localeData._weekdays[currentDayIndex]
+
         return (
           <div key={offset} className="react-datepicker__day-name">
-            <span aria-hidden={isLocaleEnglish ? 'true' : undefined}>{weekDayName}</span>
-            {isLocaleEnglish && (
-              // we're using sr-only and aria-hidden here instead of aria-label as aria-label is
-              // not generally applied/read by screen readers for non-semantic element like div
+            {/* we're using sr-only and aria-hidden here instead of aria-label as aria-label is
+            not generally applied/read by screen readers for non-semantic element like div */}
+            <span aria-hidden="true">{weekDayName}</span>
               <EuiScreenReaderOnly>
-                <span>
-                  {WEEK_DAY_NAMES[currentDayIndex]}
-                </span>
+                <span>{weekDayNameLong}</span>
               </EuiScreenReaderOnly>
-            )}
           </div>
         );
       })
