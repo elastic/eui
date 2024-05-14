@@ -22,7 +22,7 @@ import {
 import { EuiTableRow, EuiTableRowProps } from './table_row';
 
 const meta: Meta<EuiTableRowProps> = {
-  title: 'Tabular Content/EuiTable/EuiTableRow',
+  title: 'Tabular Content/EuiTable/EuiTableRow/EuiTableRow',
   component: EuiTableRow,
 };
 
