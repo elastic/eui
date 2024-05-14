@@ -89,6 +89,12 @@ const meta: Meta<EuiSelectableTemplateSitewideProps> = {
         false: undefined,
       },
     },
+    noMatchesMessage: { control: 'boolean', 
+      mapping: {
+        true: <span>custom message</span>,
+        false: undefined,
+      }
+     },
   },
 };
 

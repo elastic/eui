@@ -34,6 +34,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
           aria-label="aria-label"
           autocomplete="off"
           class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          data-test-subj="nav-search-input"
           placeholder="Search for anything..."
           type="search"
           value=""
@@ -54,6 +55,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
+  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-inline-block"
@@ -74,6 +76,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
+  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
@@ -104,6 +107,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
           aria-label="Filter options"
           autocomplete="off"
           class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          data-test-subj="nav-search-input"
           placeholder="Search for anything..."
           type="search"
           value=""
@@ -124,6 +128,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
+  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover customPopoverClass emotion-euiPopover-block"
@@ -154,6 +159,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
           aria-label="Filter options"
           autocomplete="off"
           class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          data-test-subj="nav-search-input"
           placeholder="Search for anything..."
           type="search"
           value=""
@@ -174,6 +180,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
+  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
@@ -204,6 +211,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
           aria-label="Filter options"
           autocomplete="off"
           class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          data-test-subj="nav-search-input"
           placeholder="Search for anything..."
           type="search"
           value=""
