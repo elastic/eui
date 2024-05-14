@@ -14,12 +14,10 @@ import { CommonProps } from '../common';
 
 import { resolveWidthAsStyle } from './utils';
 import { euiTableCellCheckboxStyles } from './table_cells_shared.styles';
+import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 
 export type EuiTableHeaderCellCheckboxScope =
-  | 'col'
-  | 'row'
-  | 'colgroup'
-  | 'rowgroup';
+  (typeof HEADER_CELL_SCOPE)[number];
 
 export interface EuiTableHeaderCellCheckboxProps {
   width?: string | number;
@@ -34,6 +32,8 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
   const classes = classNames('euiTableHeaderCellCheckbox', className);
   const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
   const inlineStyles = resolveWidthAsStyle(style, width);
+
+  console.log('inlineStyles', inlineStyles);
 
   return (
     <th
