@@ -16,26 +16,47 @@ import { EuiButton } from '../../components';
 import { EuiToolTip } from './tool_tip';
 
 describe('EuiToolTip', () => {
-  it('shows the tooltip on hover', () => {
+  it('shows the tooltip on hover and hides it on mouseout', () => {
     cy.mount(
       <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
         <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
       </EuiToolTip>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
+
     cy.get('[data-test-subj="toggleToolTip"]').trigger('mouseover');
     cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.get('[data-test-subj="toggleToolTip"]').trigger('mouseout');
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
-  it('shows the tooltip on keyboard focus', () => {
+  it('shows the tooltip on keyboard focus and hides it on blur', () => {
     cy.mount(
       <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
         <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
       </EuiToolTip>
     );
     cy.get('[data-test-subj="tooltip"]').should('not.exist');
+
     cy.get('[data-test-subj="toggleToolTip"]').focus();
     cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.get('[data-test-subj="toggleToolTip"]').blur();
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
+  });
+
+  it('hides the tooltip on Escape key down', () => {
+    cy.realMount(
+      <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
+        <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
+      </EuiToolTip>
+    );
+    cy.realPress('Tab');
+    cy.get('[data-test-subj="tooltip"]').should('exist');
+
+    cy.realPress('Escape');
+    cy.get('[data-test-subj="tooltip"]').should('not.exist');
   });
 
   it('does not show multiple tooltips if one tooltip toggle is focused and another tooltip toggle is hovered', () => {

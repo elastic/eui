@@ -1,5 +1,24 @@
 [
   {
+    "version": "94.4.0",
+    "changes": [
+      {
+        "token": "euiAbsoluteTab.dateFormatHint",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCollapsedNavButton.ariaLabelButtonIcon",
+        "changeType": "added",
+        "value": "{title}, quick navigation menu"
+      },
+      {
+        "token": "euiAbsoluteTab.dateFormatButtonLabel",
+        "changeType": "added",
+        "value": "Parse date"
+      }
+    ]
+  },
+  {
     "version": "94.2.0",
     "changes": [
       {
