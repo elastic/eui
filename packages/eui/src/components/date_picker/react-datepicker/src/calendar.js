@@ -34,7 +34,6 @@ import classnames from "classnames";
 import CalendarContainer from "./calendar_container";
 
 import { EuiFocusTrap } from '../../../focus_trap';
-import { EuiI18n } from '../../../i18n';
 import { EuiScreenReaderOnly } from '../../../accessibility/screen_reader_only';
 import {
   now,
