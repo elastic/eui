@@ -210,6 +210,16 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     );
   }, [popoverButton, canShowPopoverButton, togglePopover]);
 
+  const handleCustomNoMessageMatches = useCallback(() => {
+    if (!noMatchesMessage) return emptyMessage 
+    // show loading message if the search is loading
+    else if (isLoading) {
+      return loadingMessage;
+    } else {
+      return undefined;
+    }
+  }, [noMatchesMessage, isLoading, loadingMessage, emptyMessage]);
+
   return (
     <EuiSelectable
       isLoading={isLoading}
@@ -244,7 +254,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       }}
       loadingMessage={loadingMessage}
       emptyMessage={emptyMessage}
-      noMatchesMessage={!noMatchesMessage ? emptyMessage : undefined}
+      noMatchesMessage={handleCustomNoMessageMatches()}
       {...rest}
       className={classes}
       searchable
