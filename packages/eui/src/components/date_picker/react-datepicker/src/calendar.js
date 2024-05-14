@@ -64,27 +64,13 @@ import {
 } from "./date_utils";
 
 const WEEK_DAY_NAMES = [
-  {
-    default: 'Sunday',
-  },
-  {
-    default: 'Monday',
-  },
-  {
-    default: 'Tuesday',
-  },
-  {
-    default: 'Wednesday',
-  },
-  {
-    default: 'Thursday',
-  },
-  {
-    default: 'Friday',
-  },
-  {
-    default: 'Saturday',
-  },
+'Sunday',
+'Monday',
+'Tuesday',
+'Wednesday',
+'Thursday',
+'Friday',
+'Saturday',
 ];
 
 const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
@@ -400,7 +386,7 @@ export default class Calendar extends React.Component {
             {isLocaleEnglish && (
               <EuiScreenReaderOnly>
                 <span>
-                  {WEEK_DAY_NAMES[currentDayIndex].default}
+                  {WEEK_DAY_NAMES[currentDayIndex]}
                 </span>
               </EuiScreenReaderOnly>
             )}
