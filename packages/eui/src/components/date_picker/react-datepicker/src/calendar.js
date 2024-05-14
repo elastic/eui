@@ -66,31 +66,24 @@ import {
 
 const WEEK_DAY_NAMES = [
   {
-    token: 'euiDatePicker.sunday',
     default: 'Sunday',
   },
   {
-    token: 'euiDatePicker.monday',
     default: 'Monday',
   },
   {
-    token: 'euiDatePicker.tuesday',
     default: 'Tuesday',
   },
   {
-    token: 'euiDatePicker.wednesday',
     default: 'Wednesday',
   },
   {
-    token: 'euiDatePicker.thursday',
     default: 'Thursday',
   },
   {
-    token: 'euiDatePicker.friday',
     default: 'Friday',
   },
   {
-    token: 'euiDatePicker.saturday',
     default: 'Saturday',
   },
 ];
@@ -385,6 +378,12 @@ export default class Calendar extends React.Component {
         </div>
       );
     }
+
+    const isLocaleEnglish = this.props.locale
+      ? Array.isArray(this.props.locale.match(/^en\b/))
+      // when this.props.locale is not set the default is 'en' 
+      : this.props.locale === undefined;
+
     return dayNames.concat(
       [0, 1, 2, 3, 4, 5, 6].map(offset => {
         const day = addDays(cloneDate(startOfWeek), offset);
@@ -398,15 +397,14 @@ export default class Calendar extends React.Component {
 
         return (
           <div key={offset} className="react-datepicker__day-name">
-            <span aria-hidden="true">{weekDayName}</span>
-            <EuiScreenReaderOnly>
-              <span>
-                <EuiI18n
-                  token={WEEK_DAY_NAMES[currentDayIndex].token}
-                  default={WEEK_DAY_NAMES[currentDayIndex].default}
-                />
-              </span>
-            </EuiScreenReaderOnly>
+            <span aria-hidden={isLocaleEnglish ? 'true' : undefined}>{weekDayName}</span>
+            {isLocaleEnglish && (
+              <EuiScreenReaderOnly>
+                <span>
+                  {WEEK_DAY_NAMES[currentDayIndex].default}
+                </span>
+              </EuiScreenReaderOnly>
+            )}
           </div>
         );
       })
