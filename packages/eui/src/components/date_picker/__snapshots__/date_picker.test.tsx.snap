@@ -87,99 +87,50 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   일
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Sunday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   월
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Monday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   화
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Tuesday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   수
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Wednesday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   목
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Thursday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   금
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Friday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   토
-                </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Saturday
                 </span>
               </div>
             </div>
@@ -553,99 +504,50 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   lu
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Monday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   ma
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Tuesday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   me
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Wednesday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   je
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Thursday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   ve
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Friday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   sa
                 </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Saturday
-                </span>
               </div>
               <div
                 class="react-datepicker__day-name"
               >
-                <span
-                  aria-hidden="true"
-                >
+                <span>
                   di
-                </span>
-                <span
-                  class="emotion-euiScreenReaderOnly"
-                >
-                  Sunday
                 </span>
               </div>
             </div>
