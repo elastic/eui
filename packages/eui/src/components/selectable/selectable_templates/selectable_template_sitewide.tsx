@@ -78,6 +78,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   isLoading,
   popoverButton,
   popoverButtonBreakpoints,
+  noMatchesMessage,
   ...rest
 }) => {
   /**
@@ -243,7 +244,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       }}
       loadingMessage={loadingMessage}
       emptyMessage={emptyMessage}
-      noMatchesMessage={emptyMessage}
+      noMatchesMessage={!noMatchesMessage ? emptyMessage : undefined}
       {...rest}
       className={classes}
       searchable
