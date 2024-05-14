@@ -84,7 +84,7 @@ describe('EuiDatePicker', () => {
       ).toHaveTextContent('Sunday');
     });
 
-    it('adds long-text sr-only week names when locale is set to european English', () => {
+    it('adds long-text sr-only week names when locale is set', () => {
       const selectedDate = moment('2019-07-01T00:00:00-0700');
 
       const { container } = render(
@@ -104,28 +104,6 @@ describe('EuiDatePicker', () => {
         container.getElementsByClassName('react-datepicker__day-name')[0]
           .lastChild
       ).toHaveTextContent('Monday');
-    });
-
-    it('does not add long-text week names when locale is not English', () => {
-      const selectedDate = moment('2019-07-01T00:00:00-0700');
-
-      const { container } = render(
-        <EuiDatePicker
-          {...requiredProps}
-          inline
-          selected={selectedDate}
-          locale="fr"
-        />
-      );
-
-      expect(
-        container.getElementsByClassName('react-datepicker__day-name')[0]
-          .children.length
-      ).toEqual(1);
-      expect(
-        container.getElementsByClassName('react-datepicker__day-name')[0]
-          .firstChild
-      ).not.toHaveAttribute('aria-hidden');
     });
   });
 });
