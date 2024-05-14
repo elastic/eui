@@ -59,7 +59,7 @@ If another process is already listening on port 8030, the next free port will be
 yarn start --port 9000
 ```
 
-## Troubleshooting
+## VSCode setup
 
 ### Eslint
 
