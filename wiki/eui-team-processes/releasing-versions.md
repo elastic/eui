@@ -125,3 +125,9 @@ The prerelease process is very similar to the backport process above.
 - Go to https://www.npmjs.com/package/@elastic/eui?activeTab=versions and confirm that your pre-release has been pushed up with the correct version and tag, e.g. `83.1.1-rc.0`
 - Update Kibana or CodeSandbox (or whatever other environment you are using to test) to point at that version
 - QA away!
+
+# Unpublishing/deprecating releases
+
+If releases with issues or errors are created, they must be deprecated via `npm deprecate @elastic/eui@x.x.x 'Reason for deprecation'`.
+
+Unfortunately, the EUI package is no longer eligible to `npm unpublish` as npm now only allows that for packages with less than 300 downloads per week.
