@@ -384,6 +384,8 @@ export default class Calendar extends React.Component {
           <div key={offset} className="react-datepicker__day-name">
             <span aria-hidden={isLocaleEnglish ? 'true' : undefined}>{weekDayName}</span>
             {isLocaleEnglish && (
+              // we're using sr-only and aria-hidden here instead of aria-label as aria-label is
+              // not generally applied/read by screen readers for non-semantic element like div
               <EuiScreenReaderOnly>
                 <span>
                   {WEEK_DAY_NAMES[currentDayIndex]}
