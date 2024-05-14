@@ -16,7 +16,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -278,6 +278,13 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     this.hideToolTip();
   };
 
+  onEscapeKey = (event: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (event.key === keys.ESCAPE) {
+      this.setState({ hasFocus: false }); // Allows mousing over back into the tooltip to work correctly
+      this.hideToolTip();
+    }
+  };
+
   onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
@@ -323,6 +330,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           ref={this.setAnchorRef}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
+          onKeyDown={this.onEscapeKey}
           onMouseOver={this.showToolTip}
           onMouseOut={this.onMouseOut}
           id={id}
