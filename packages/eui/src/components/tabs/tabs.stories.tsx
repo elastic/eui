@@ -35,9 +35,7 @@ const meta: Meta<EuiTabsProps> = {
   component: EuiTabs,
   argTypes: {
     children: {
-      // re-adding missing description
-      description: "ReactNode to render as this component's content",
-      // @ts-ignore - overwritting to ensure correct expected type
+      // @ts-ignore - overwriting to ensure correct expected type
       type: 'ReactNode',
     },
   },
