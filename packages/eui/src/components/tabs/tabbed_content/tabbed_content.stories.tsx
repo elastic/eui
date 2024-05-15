@@ -16,7 +16,9 @@ import {
   enableFunctionToggleControls,
   hideStorybookControls,
 } from '../../../../.storybook/utils';
+import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
+
 import { EuiTabbedContent, EuiTabbedContentProps } from './tabbed_content';
 
 const tabs = [
@@ -24,30 +26,39 @@ const tabs = [
     id: 'tab--1',
     name: 'Tab 1',
     content: (
-      <EuiText>
-        <h2>Tab 1</h2>
-        <p>{faker.lorem.paragraph(3)}</p>
-      </EuiText>
+      <>
+        <EuiSpacer />
+        <EuiText>
+          <h2>Tab 1</h2>
+          <p>{faker.lorem.paragraph(3)}</p>
+        </EuiText>
+      </>
     ),
   },
   {
     id: 'tab--2',
     name: 'Tab 2',
     content: (
-      <EuiText>
-        <h2>Tab 2</h2>
-        <p>{faker.lorem.paragraph(3)}</p>
-      </EuiText>
+      <>
+        <EuiSpacer />
+        <EuiText>
+          <h2>Tab 2</h2>
+          <p>{faker.lorem.paragraph(3)}</p>
+        </EuiText>
+      </>
     ),
   },
   {
     id: 'tab--3',
     name: 'Tab 3',
     content: (
-      <EuiText>
-        <h2>Tab 3</h2>
-        <p>{faker.lorem.paragraph(3)}</p>
-      </EuiText>
+      <>
+        <EuiSpacer />
+        <EuiText>
+          <h2>Tab 3</h2>
+          <p>{faker.lorem.paragraph(3)}</p>
+        </EuiText>
+      </>
     ),
   },
 ];
