@@ -41,10 +41,10 @@ export const Playground: Story = {
     beforeText: 'Lorem dolor sit ipsum.',
     afterText: 'Lorem ipsum dolor sit.',
   },
-  render: (args) => <StatefulPlayground {...args} />,
+  render: (args) => <ComponentUseEuiTextDiff {...args} />,
 };
 
-const StatefulPlayground = ({
+const ComponentUseEuiTextDiff = ({
   beforeText,
   afterText,
   ...rest
