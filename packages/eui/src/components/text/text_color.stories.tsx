@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
 
@@ -34,5 +35,19 @@ type Story = StoryObj<EuiTextColorProps>;
 export const Playground: Story = {
   args: {
     children: faker.lorem.sentences(3),
+  },
+};
+
+export const CloneElement: Story = {
+  parameters: {
+    controls: {
+      include: ['color', 'cloneElement'],
+    },
+  },
+  args: {
+    children: (
+      <p>Inspect this text via devtools to see the DOM/element tag change.</p>
+    ),
+    cloneElement: true,
   },
 };
