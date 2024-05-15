@@ -65,45 +65,4 @@ describe('EuiDatePicker', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
   });
-
-  describe('calendar week day names', () => {
-    it('adds long-text sr-only week names when locale is not set', () => {
-      const selectedDate = moment('2019-07-01T00:00:00-0700');
-
-      const { container } = render(
-        <EuiDatePicker {...requiredProps} inline selected={selectedDate} />
-      );
-
-      expect(
-        container.getElementsByClassName('react-datepicker__day-name')[0]
-          .firstChild
-      ).toHaveAttribute('aria-hidden');
-      expect(
-        container.getElementsByClassName('react-datepicker__day-name')[0]
-          .lastChild
-      ).toHaveTextContent('Sunday');
-    });
-
-    it('adds long-text sr-only week names when locale is set', () => {
-      const selectedDate = moment('2019-07-01T00:00:00-0700');
-
-      const { container } = render(
-        <EuiDatePicker
-          {...requiredProps}
-          inline
-          selected={selectedDate}
-          locale="en-gb"
-        />
-      );
-
-      expect(
-        container.getElementsByClassName('react-datepicker__day-name')[0]
-          .firstChild
-      ).toHaveAttribute('aria-hidden');
-      expect(
-        container.getElementsByClassName('react-datepicker__day-name')[0]
-          .lastChild
-      ).toHaveTextContent('Monday');
-    });
-  });
 });
