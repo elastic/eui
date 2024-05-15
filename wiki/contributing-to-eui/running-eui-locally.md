@@ -35,9 +35,9 @@ yarn
 If you're on an Apple arm64 machine and receive an error on `yarn` about Puppeteer/the chromium binary not being available, you have two options:
 
 1. If you don't need to run Puppeteer tests locally:
-    - Paste `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true` into your terminal as an environment variable
+   - Paste `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true` into your terminal as an environment variable
 2. If you do need need to run Puppeteer locally:
-    - [Follow these steps](https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758) to install the Chromium binary globally and update your `~/.zshrc`.
+   - [Follow these steps](https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758) to install the Chromium binary globally and update your `~/.zshrc`.
 
 ## Running
 
@@ -57,4 +57,17 @@ If another process is already listening on port 8030, the next free port will be
 
 ```shell
 yarn start --port 9000
+```
+
+## VSCode setup
+
+### Eslint
+
+If you're developing in VSCode and you are using the [`ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension for VSCode you will notice that ESLint is showing errors about not finding config files _since the monorepo setup changes_.
+To fix this add `eslint.workingDirectories` to your VSCode settings and pass all working directories as relative paths.
+
+```json
+{
+  "eslint.workingDirectories": ["./packages/eui"]
+}
 ```

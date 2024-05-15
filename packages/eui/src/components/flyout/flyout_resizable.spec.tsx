@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { EuiFlyoutResizable } from './flyout_resizable';
 
@@ -195,6 +195,65 @@ describe('EuiFlyoutResizable', () => {
         expect(onResize.callCount).to.eql(3);
         expect(onResize.lastCall.args).to.eql([600]);
       });
+    });
+
+    it('responds to `size` prop updates after user resize', () => {
+      let onResizeCalls = 0;
+      const TestComponent = () => {
+        const [size, setSize] = useState<string | number>(400);
+        const onResize = useCallback((width: number) => {
+          setSize(width);
+          onResizeCalls++;
+        }, []);
+
+        return (
+          <EuiFlyoutResizable onClose={onClose} size={size} onResize={onResize}>
+            <button data-test-subj="resetSize" onClick={() => setSize(400)}>
+              Reset flyout size
+            </button>
+            <button data-test-subj="setSize" onClick={() => setSize('200px')}>
+              Change flyout size
+            </button>
+            <button data-test-subj="setSizeKey" onClick={() => setSize('s')}>
+              Change flyout size to a size key
+            </button>
+          </EuiFlyoutResizable>
+        );
+      };
+      cy.mount(<TestComponent />);
+      cy.get('.euiFlyout').should('have.css', 'inline-size', '400px');
+
+      // User resizing
+      cy.get('[data-test-subj="euiResizableButton"]').focus();
+      cy.realPress('ArrowLeft').then(() => {
+        onResizeCalls = 0; // Reset resize calls. Cypress is flaky here so we shouldn't directly assert on the number of calls
+      });
+      cy.get('.euiFlyout').should('have.css', 'inline-size', '410px');
+
+      // Consumer resizing
+      cy.wait(100); // Wait a tick for flyout to finish rerendering
+      cy.get('[data-test-subj="resetSize"]').realClick();
+      cy.get('.euiFlyout')
+        .should('have.css', 'inline-size', '400px')
+        .then(() => {
+          expect(onResizeCalls).to.eql(0);
+        });
+
+      cy.wait(100); // Wait a tick for flyout to finish rerendering
+      cy.get('[data-test-subj="setSize"]').realClick();
+      cy.get('.euiFlyout')
+        .should('have.css', 'inline-size', '200px')
+        .then(() => {
+          expect(onResizeCalls).to.eql(0);
+        });
+
+      cy.wait(100); // Wait a tick for flyout to finish rerendering
+      cy.get('[data-test-subj="setSizeKey"]').realClick();
+      cy.get('.euiFlyout')
+        .should('have.css', 'inline-size', '384px')
+        .then(() => {
+          expect(onResizeCalls).to.eql(0);
+        });
     });
   });
 

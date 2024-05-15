@@ -70,7 +70,9 @@ export class EuiTabbedContent extends Component<
   EuiTabbedContentProps,
   EuiTabbedContentState
 > {
-  static defaultProps = {
+  static defaultProps: {
+    autoFocus: EuiTabbedContentProps['autoFocus'];
+  } = {
     autoFocus: 'initial',
   };
 
