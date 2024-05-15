@@ -65,12 +65,20 @@ export const EuiFlyoutResizable = forwardRef(
     // Must use state for the flyout ref in order for the useEffect to be correctly called after render
     const [flyoutRef, setFlyoutRef] = useState<HTMLElement | null>(null);
     const setRefs = useCombinedRefs([setFlyoutRef, ref]);
+
     useEffect(() => {
-      setCallOnResize(false); // Don't call `onResize` for non-user width changes
-      setFlyoutWidth(
-        flyoutRef ? getFlyoutMinMaxWidth(flyoutRef.offsetWidth) : 0
-      );
-    }, [flyoutRef, getFlyoutMinMaxWidth, size]);
+      if (!flyoutWidth && flyoutRef) {
+        setCallOnResize(false); // Don't call `onResize` for non-user width changes
+        setFlyoutWidth(getFlyoutMinMaxWidth(flyoutRef.offsetWidth));
+      }
+    }, [flyoutWidth, flyoutRef, getFlyoutMinMaxWidth]);
+
+    // Update flyout width when consumers pass in a new `size`
+    useEffect(() => {
+      setCallOnResize(false);
+      // For string `size`s, resetting flyoutWidth to 0 will trigger the above useEffect's recalculation
+      setFlyoutWidth(typeof size === 'number' ? getFlyoutMinMaxWidth(size) : 0);
+    }, [size, getFlyoutMinMaxWidth]);
 
     // Initial numbers to calculate from, on resize drag start
     const initialWidth = useRef(0);
