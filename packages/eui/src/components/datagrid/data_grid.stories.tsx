@@ -27,6 +27,24 @@ import { EuiDataGrid } from './data_grid';
 
 faker.seed(42);
 
+// NOTE: using faker.date.past() is not fully stable for VRT as the date is
+// based on a years time distance (default 1 year) which updates with progressing time
+// faker.seed() ensures the same date is output in the same time frame
+// but after some time the time distance will generate a newer, closer date
+// which then invalidates the VRT
+const staticDates = [
+  new Date('Tue Mar 19 2024 18:54:51 GMT+0100'),
+  new Date('Mon Mar 25 2024 19:27:35 GMT+0100'),
+  new Date('Sat Sep 09 2023 00:32:42 GMT+0200'),
+  new Date('Wed Jun 14 2023 06:48:29 GMT+0200'),
+  new Date('Mon Mar 04 2024 04:40:36 GMT+0100'),
+  new Date('Mon Feb 05 2024 10:51:48 GMT+0100'),
+  new Date('Mon Jun 19 2023 12:08:38 GMT+0200'),
+  new Date('Wed Jul 26 2023 01:15:02 GMT+0200'),
+  new Date('Wed Nov 08 2023 08:49:13 GMT+0100'),
+  new Date('Sun Nov 19 2023 01:49:12 GMT+0100'),
+];
+
 const dataKeys = [
   'name',
   'email',
@@ -35,10 +53,11 @@ const dataKeys = [
   'date',
   'version',
 ] as const;
-const raw_data = Array.from({ length: 10 }).map(() => {
+
+const raw_data = Array.from({ length: 10 }).map((_, i) => {
   const email = faker.internet.email();
   const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
-  const date = faker.date.past().toDateString();
+  const date = staticDates[i].toDateString();
   const suffix = faker.person.suffix();
   return {
     name: {
