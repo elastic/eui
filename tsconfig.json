@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+
+    // emit files to the `types` dir, these are ignored by everything but TS needs _somewhere_ to emit
+    "outDir": "types",
+
+    // generate declaration files
+    "declaration": true,
+
+    // re-use info from previous runs to improve performance
+    "incremental": true,
+
+    // don't allow un-used variables
+    "noUnusedLocals": true,
+
+    // Enables all strict type checking options.
+    "strict": true,
+
+    // Output as ES Modules & esnext code, webpack will handle further conversion
+    "module": "esnext",
+    "target": "esnext",
+
+    // Allows default imports from modules with no default export. This does not affect code emit, just type checking.
+    // We have to enable this option explicitly since `esModuleInterop` doesn't enable it automatically when ES2015 or
+    // ESNext module format is used.
+    "allowSyntheticDefaultImports": true,
+
+    // Support .tsx files and transform JSX into calls to React.createElement
+    "jsx": "react",
+
+    // Emits __importStar and __importDefault helpers for runtime babel ecosystem compatibility.
+    "esModuleInterop": true,
+
+    // Allow importing JSON files
+    "resolveJsonModule": true,
+
+    // Resolve modules in the same way as Node.js. Aka make `require` works the
+    // same in TypeScript as it does in Node.js.
+    "moduleResolution": "node",
+
+    // Disallow inconsistently-cased references to the same file.
+    "forceConsistentCasingInFileNames": true,
+
+    // enables "core language features"
+    "lib": [
+      // ESNext auto includes previous versions all the way back to es5
+      "esnext",
+      // includes support for browser APIs
+      "dom"
+    ],
+
+    // Specifies where to find library definitions. When this is explicitly set,
+    // it has to include the default location i.e. node_modules/@types
+    "typeRoots": ["../../node_modules/@types", "node_modules/@types", "src/custom_typings"]
+  },
+  "include": [
+    "./src/**/*",
+    "./src-docs/**/*",
+    "./.storybook/*.d.ts"
+  ],
+  "exclude": ["node_modules", "**/*/*.spec.tsx", "**/*/*.a11y.tsx"]
+}

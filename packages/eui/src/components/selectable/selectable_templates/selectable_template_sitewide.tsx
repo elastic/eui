@@ -81,214 +81,206 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   noMatchesMessage,
   ...rest
 }) => {
-    /**
-     * i18n text
-     */
-    const [searchPlaceholder] = useEuiI18n(
-      ['euiSelectableTemplateSitewide.searchPlaceholder'],
-      ['Search for anything...']
-    );
+  /**
+   * i18n text
+   */
+  const [searchPlaceholder] = useEuiI18n(
+    ['euiSelectableTemplateSitewide.searchPlaceholder'],
+    ['Search for anything...']
+  );
 
-    /**
-     * Popover helpers
-     */
-    const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
-    const [popoverIsOpen, setPopoverIsOpen] = useState(false);
-    const {
-      closePopover: _closePopover,
-      panelRef,
-      width,
-      ...popoverRest
-    } = {
-      ...popoverProps,
-    };
-
-    const closePopover = () => {
-      setPopoverIsOpen(false);
-      _closePopover && _closePopover();
-    };
-
-    const togglePopover = useCallback(() => {
-      setPopoverIsOpen((isOpen) => !isOpen);
-    }, []);
-
-    // Width applied to the internal div
-    const popoverWidth: CSSProperties['width'] = width || 600;
-    const setPanelRef = useCombinedRefs([setPopoverRef, panelRef]);
-
-    /**
-     * Search helpers
-     */
-    const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-      searchProps?.onFocus?.(e);
-      setPopoverIsOpen(true);
-    };
-
-    const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
-      searchProps?.onInput?.(e);
-      setPopoverIsOpen(true);
-    };
-
-    const onSearchKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      searchProps?.onKeyDown?.(e);
-      if (e.key === ENTER) {
-        setPopoverIsOpen(true);
-      }
-    };
-
-    const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      searchProps?.onBlur?.(e);
-      if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
-        setPopoverIsOpen(false);
-      }
-    };
-
-    /**
-     * Classes
-     */
-    const classes = classNames('euiSelectableTemplateSitewide', className);
-    const searchClasses = classNames(
-      'euiSelectableTemplateSitewide__search',
-      searchProps && searchProps.className
-    );
-    const listClasses = classNames(
-      'euiSelectableTemplateSitewide__list',
-      listProps && listProps.className
-    );
-
-    /**
-     * List options
-     */
-    const formattedOptions = euiSelectableTemplateSitewideFormatOptions(options);
-
-    const loadingMessage = (
-      <EuiSelectableMessage style={{ minHeight: 300 }}>
-        <EuiLoadingSpinner size="l" />
-        <br />
-        <p>
-          <EuiI18n
-            token="euiSelectableTemplateSitewide.loadingResults"
-            default="Loading results"
-          />
-        </p>
-      </EuiSelectableMessage>
-    );
-
-    const emptyMessage = (
-      <EuiSelectableMessage style={{ minHeight: 300 }}>
-        <p>
-          <EuiI18n
-            token="euiSelectableTemplateSitewide.noResults"
-            default="No results available"
-          />
-        </p>
-      </EuiSelectableMessage>
-    );
-
-    /**
-     * Changes based on showing the `popoverButton` if provided.
-     * This will move the search input into the popover
-     * and use the passed `popoverButton` as the popover trigger.
-     */
-    const currentBreakpoint = useCurrentEuiBreakpoint();
-    const canShowPopoverButton = useMemo(() => {
-      if (!popoverButtonBreakpoints) return true;
-      if (!currentBreakpoint) return false;
-      return popoverButtonBreakpoints.includes(currentBreakpoint);
-    }, [currentBreakpoint, popoverButtonBreakpoints]);
-
-    const popoverTrigger = useMemo(() => {
-      if (!popoverButton || !canShowPopoverButton) return;
-      return (
-        <span
-          className="euiSelectableTemplateSitewide__popoverTrigger"
-          onClick={togglePopover}
-          onKeyDown={(e) => e.stopPropagation()}
-        >
-          {popoverButton}
-        </span>
-      );
-    }, [popoverButton, canShowPopoverButton, togglePopover]);
-
-    const handleCustomNoMessageMatches = useCallback(() => {
-      if (!noMatchesMessage) return emptyMessage
-      // show loading message if the search is loading
-      else if (isLoading) {
-        return loadingMessage;
-      } else {
-        return undefined;
-      }
-    }, [noMatchesMessage, isLoading, loadingMessage, emptyMessage]);
-
-    return (
-      <EuiSelectable
-        data-test-subj='euiSelectableTemplateSitewide'
-        isLoading={isLoading}
-        options={formattedOptions}
-        renderOption={euiSelectableTemplateSitewideRenderOptions}
-        singleSelection={true}
-        searchProps={{
-          'data-test-subj': 'nav-search-input',
-          placeholder: searchPlaceholder,
-          isClearable: true,
-          // TS is mad that searchProps.className may be `undefined`, but we overwrite it below
-          ...(searchProps as Omit<typeof searchProps, 'className'>),
-          onFocus: searchOnFocus,
-          onBlur: searchOnBlur,
-          onInput: onSearchInput,
-          onKeyDown: onSearchKeydown,
-          className: searchClasses,
-        }}
-        listProps={{
-          rowHeight: 68,
-          showIcons: false,
-          onFocusBadge: {
-            iconSide: 'right',
-            children: (
-              <EuiI18n
-                token="euiSelectableTemplateSitewide.onFocusBadgeGoTo"
-                default="Go to"
-              />
-            ),
-          },
-          ...listProps,
-          className: listClasses,
-        }}
-        loadingMessage={loadingMessage}
-        emptyMessage={emptyMessage}
-        noMatchesMessage={handleCustomNoMessageMatches()}
-        {...rest}
-        className={classes}
-        searchable
-      >
-        {(list, search) => (
-          <EuiPopover
-            panelPaddingSize="none"
-            isOpen={popoverIsOpen}
-            ownFocus={!!popoverTrigger}
-            display={popoverTrigger ? 'inline-block' : 'block'}
-            {...popoverRest}
-            panelRef={setPanelRef}
-            button={popoverTrigger ? popoverTrigger : search!}
-            closePopover={closePopover}
-          >
-            <div style={{ width: popoverWidth, maxWidth: '100%' }}>
-              {popoverTitle || popoverTrigger ? (
-                <EuiPopoverTitle paddingSize="s">
-                  {popoverTitle}
-                  {popoverTitle && search && <EuiSpacer />}
-                  {search}
-                </EuiPopoverTitle>
-              ) : undefined}
-              {list}
-              {popoverFooter && (
-                <EuiPopoverFooter paddingSize="s">
-                  {popoverFooter}
-                </EuiPopoverFooter>
-              )}
-            </div>
-          </EuiPopover>
-        )}
-      </EuiSelectable>
-    );
+  /**
+   * Popover helpers
+   */
+  const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const {
+    closePopover: _closePopover,
+    panelRef,
+    width,
+    ...popoverRest
+  } = {
+    ...popoverProps,
   };
+
+  const closePopover = () => {
+    setPopoverIsOpen(false);
+    _closePopover && _closePopover();
+  };
+
+  const togglePopover = useCallback(() => {
+    setPopoverIsOpen((isOpen) => !isOpen);
+  }, []);
+
+  // Width applied to the internal div
+  const popoverWidth: CSSProperties['width'] = width || 600;
+  const setPanelRef = useCombinedRefs([setPopoverRef, panelRef]);
+
+  /**
+   * Search helpers
+   */
+  const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    searchProps?.onFocus?.(e);
+    setPopoverIsOpen(true);
+  };
+
+  const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
+    searchProps?.onInput?.(e);
+    setPopoverIsOpen(true);
+  };
+
+  const onSearchKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    searchProps?.onKeyDown?.(e);
+    if (e.key === ENTER) {
+      setPopoverIsOpen(true);
+    }
+  };
+
+  const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    searchProps?.onBlur?.(e);
+    if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
+      setPopoverIsOpen(false);
+    }
+  };
+
+  /**
+   * Classes
+   */
+  const classes = classNames('euiSelectableTemplateSitewide', className);
+  const searchClasses = classNames(
+    'euiSelectableTemplateSitewide__search',
+    searchProps && searchProps.className
+  );
+  const listClasses = classNames(
+    'euiSelectableTemplateSitewide__list',
+    listProps && listProps.className
+  );
+
+  /**
+   * List options
+   */
+  const formattedOptions = euiSelectableTemplateSitewideFormatOptions(options);
+
+  const loadingMessage = (
+    <EuiSelectableMessage style={{ minHeight: 300 }}>
+      <EuiLoadingSpinner size="l" />
+      <br />
+      <p>
+        <EuiI18n
+          token="euiSelectableTemplateSitewide.loadingResults"
+          default="Loading results"
+        />
+      </p>
+    </EuiSelectableMessage>
+  );
+
+  const emptyMessage = (
+    <EuiSelectableMessage style={{ minHeight: 300 }}>
+      <p>
+        <EuiI18n
+          token="euiSelectableTemplateSitewide.noResults"
+          default="No results available"
+        />
+      </p>
+    </EuiSelectableMessage>
+  );
+
+  /**
+   * Changes based on showing the `popoverButton` if provided.
+   * This will move the search input into the popover
+   * and use the passed `popoverButton` as the popover trigger.
+   */
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+  const canShowPopoverButton = useMemo(() => {
+    if (!popoverButtonBreakpoints) return true;
+    if (!currentBreakpoint) return false;
+    return popoverButtonBreakpoints.includes(currentBreakpoint);
+  }, [currentBreakpoint, popoverButtonBreakpoints]);
+
+  const popoverTrigger = useMemo(() => {
+    if (!popoverButton || !canShowPopoverButton) return;
+    return (
+      <span
+        className="euiSelectableTemplateSitewide__popoverTrigger"
+        onClick={togglePopover}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        {popoverButton}
+      </span>
+    );
+  }, [popoverButton, canShowPopoverButton, togglePopover]);
+
+  return (
+    <EuiSelectable
+      isLoading={isLoading}
+      options={formattedOptions}
+      renderOption={euiSelectableTemplateSitewideRenderOptions}
+      singleSelection={true}
+      searchProps={{
+        'data-test-subj': 'nav-search-input',
+        placeholder: searchPlaceholder,
+        isClearable: true,
+        // TS is mad that searchProps.className may be `undefined`, but we overwrite it below
+        ...(searchProps as Omit<typeof searchProps, 'className'>),
+        onFocus: searchOnFocus,
+        onBlur: searchOnBlur,
+        onInput: onSearchInput,
+        onKeyDown: onSearchKeydown,
+        className: searchClasses,
+      }}
+      listProps={{
+        rowHeight: 68,
+        showIcons: false,
+        onFocusBadge: {
+          iconSide: 'right',
+          children: (
+            <EuiI18n
+              token="euiSelectableTemplateSitewide.onFocusBadgeGoTo"
+              default="Go to"
+            />
+          ),
+        },
+        ...listProps,
+        className: listClasses,
+      }}
+      loadingMessage={loadingMessage}
+      emptyMessage={emptyMessage}
+      noMatchesMessage={noMatchesMessage ?? emptyMessage}
+      {...rest}
+      className={classes}
+      searchable
+    >
+      {(list, search) => (
+        <EuiPopover
+          panelPaddingSize="none"
+          isOpen={popoverIsOpen}
+          ownFocus={!!popoverTrigger}
+          display={popoverTrigger ? 'inline-block' : 'block'}
+          {...popoverRest}
+          panelRef={setPanelRef}
+          button={popoverTrigger ? popoverTrigger : search!}
+          closePopover={closePopover}
+        >
+          <div
+            style={{ width: popoverWidth, maxWidth: '100%' }}
+            data-test-subj="nav-search-popover"
+          >
+            {popoverTitle || popoverTrigger ? (
+              <EuiPopoverTitle paddingSize="s">
+                {popoverTitle}
+                {popoverTitle && search && <EuiSpacer />}
+                {search}
+              </EuiPopoverTitle>
+            ) : undefined}
+            {list}
+            {popoverFooter && (
+              <EuiPopoverFooter paddingSize="s">
+                {popoverFooter}
+              </EuiPopoverFooter>
+            )}
+          </div>
+        </EuiPopover>
+      )}
+    </EuiSelectable>
+  );
+};

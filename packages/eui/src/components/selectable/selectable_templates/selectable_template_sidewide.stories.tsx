@@ -15,6 +15,8 @@ import {
   EuiSelectableTemplateSitewideProps,
 } from './selectable_template_sitewide';
 import type { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiText } from '../../text';
 
 const options: EuiSelectableTemplateSitewideOption[] = [
   {
@@ -64,6 +66,27 @@ const options: EuiSelectableTemplateSitewideOption[] = [
   },
 ];
 
+const noMatchesMessage = (
+  <EuiFlexGroup
+    style={{ minHeight: 300 }}
+    data-test-subj="nav-search-no-results"
+    direction="column"
+    gutterSize="xs"
+    alignItems="center"
+    justifyContent="center"
+  >
+    <EuiFlexItem grow={false}>
+      <EuiText size="m">
+        <p>"No results found"</p>
+      </EuiText>
+
+      <p>
+        "Try searching for applications, dashboards, visualizations, and more."
+      </p>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
 const meta: Meta<EuiSelectableTemplateSitewideProps> = {
   title: 'Templates/EuiSelectableTemplateSitewide',
   component: EuiSelectableTemplateSitewide,
@@ -89,12 +112,13 @@ const meta: Meta<EuiSelectableTemplateSitewideProps> = {
         false: undefined,
       },
     },
-    noMatchesMessage: { control: 'boolean', 
+    noMatchesMessage: {
+      control: 'boolean',
       mapping: {
-        true: <span>custom message</span>,
+        true: noMatchesMessage,
         false: undefined,
-      }
-     },
+      },
+    },
   },
 };
 
@@ -110,5 +134,6 @@ export const Playground: Story = {
     popoverTitle: false,
     popoverFooter: false,
     popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+    noMatchesMessage: 'TEST',
   },
 };

@@ -55,7 +55,6 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
-  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-inline-block"
@@ -76,7 +75,6 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
-  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
@@ -128,7 +126,6 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
-  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover customPopoverClass emotion-euiPopover-block"
@@ -180,7 +177,6 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
 exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
-  data-test-subj="euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
