@@ -190,6 +190,8 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
         closePopover();
       };
 
+      // Kibana Cypress tests trigger a scroll event in many common situations when the options list div is appended
+      // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
       const timeoutId = setTimeout(() => {
         window.addEventListener('scroll', closePopoverOnScroll, {
           passive: true, // for better performance as we won't call preventDefault
