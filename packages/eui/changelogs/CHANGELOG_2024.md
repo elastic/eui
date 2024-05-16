@@ -1,3 +1,15 @@
+## [`v94.5.0`](https://github.com/elastic/eui/releases/v94.5.0)
+
+- `EuiFlyoutResizable` now respects `size` prop updates, allowing for controlled `size` usage ([#7759](https://github.com/elastic/eui/pull/7759))
+
+**Bug fixes**
+
+- Restored a removed `setTimeout` in `EuiInputPopover` to reduce flaky Cypress failures ([#7760](https://github.com/elastic/eui/pull/7760))
+
+**Accessibility**
+
+- `EuiToolTip`s can now additionally be dismissed via `Escape` keypress as well as on focus blur. ([#7751](https://github.com/elastic/eui/pull/7751))
+
 ## [`v94.4.1`](https://github.com/elastic/eui/releases/v94.4.1)
 
 - Added support for `toolTipContent` and `toolTipProps` props on `EuiSelectable` options ([#7715](https://github.com/elastic/eui/pull/7715))
