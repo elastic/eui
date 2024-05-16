@@ -87,9 +87,6 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
   } = props;
 
   const classes = classNames('euiFieldText', className, {
-    ...(!controlOnly && {
-      'euiFieldText--inGroup': prepend || append,
-    }),
     'euiFieldText-isLoading': isLoading,
   });
 
@@ -98,6 +95,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     styles.euiFieldText,
     compressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
+    (prepend || append) && !controlOnly && styles.inGroup,
   ];
 
   const iconAffordanceStyles = useMemo(() => {

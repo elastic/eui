@@ -145,6 +145,13 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${form.controlCompressedBorderRadius};
     `,
 
+    // In group
+    inGroup: `
+      ${logicalCSS('height', '100%')}
+      box-shadow: none;
+      border-radius: 0;
+    `,
+
     // Widths
     formWidth: `
       ${logicalCSS('max-width', form.maxWidth)}

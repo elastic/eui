@@ -140,6 +140,11 @@ describe('euiFormControlStyles', () => {
             max-inline-size: 100%;
             inline-size: 100%;
           ",
+        "inGroup": "
+            block-size: 100%;
+            box-shadow: none;
+            border-radius: 0;
+          ",
         "invalid": "
         --euiFormStateColor: #BD271E !important;
         background-size: 100% 100%;
