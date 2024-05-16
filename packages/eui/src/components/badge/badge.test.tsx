@@ -154,12 +154,16 @@ describe('EuiBadge', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+        // NOTE: jsdom currently does not support CSS variables (@see https://github.com/testing-library/jest-dom/issues/322)
+        // We're relying on visual regression tests here instead
       });
 
       it('accepts hex', () => {
         const { container } = render(<EuiBadge color="#333">Content</EuiBadge>);
 
         expect(container.firstChild).toMatchSnapshot();
+        // NOTE: jsdom currently does not support CSS variables (@see https://github.com/testing-library/jest-dom/issues/322)
+        // We're relying on visual regression tests here instead
       });
     });
 

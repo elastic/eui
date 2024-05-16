@@ -132,6 +132,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 
   const euiTheme = useEuiTheme();
   const customColorStyles = useMemo(() => {
+    // Disabled badges should not have custom colors
+    if (isDisabled) return style;
     // Named colors set their styles via Emotion CSS and not inline styles
     if (isNamedColor) return style;
 
@@ -151,8 +153,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       }
 
       return {
-        backgroundColor: color,
-        color: textColor,
+        '--euiBadgeBackgroundColor': color,
+        '--euiBadgeTextColor': textColor,
         ...style,
       };
     } catch (err) {
@@ -164,14 +166,17 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         );
       }
     }
-  }, [color, isNamedColor, style, euiTheme]);
+  }, [color, isNamedColor, isDisabled, style, euiTheme]);
 
   const styles = useEuiMemoizedStyles(euiBadgeStyles);
   const cssStyles = [
     styles.euiBadge,
-    isNamedColor && styles[color as BadgeColor],
-    (onClick || href) && !iconOnClick && styles.clickable,
-    isDisabled && styles.disabled,
+    ...(isDisabled
+      ? [styles.disabled]
+      : [
+          isNamedColor && styles[color as BadgeColor],
+          !iconOnClick && (onClick || href) && styles.clickable,
+        ]),
   ];
   const textCssStyles = [
     styles.text.euiBadge__text,
