@@ -341,12 +341,17 @@ export default class Time extends React.Component {
     let screenReaderInstructions;
     if (this.state.readInstructions) {
       screenReaderInstructions = (
-        <p>
-          You are a in a time selector. Use the up and down keys to select from
-          other common times then press enter to confirm.
-          {this.state.preSelection ? `${formatDate(this.state.preSelection, this.timeFormat)} is currently
-          focused.`: `No time is currently focused.`}
-        </p>
+        <>
+          <p>
+            You are a in a time selector. Use the up and down keys to select from
+            other common times then press enter to confirm.
+          </p>
+          {/* Note: needs to be separate paragraph nodes for aria-atomic="false" to work correctly */}
+          <p>
+            {this.state.preSelection ? `${formatDate(this.state.preSelection, this.timeFormat)} is currently
+            focused.`: `No time is currently focused.`}
+          </p>
+        </>
       );
     }
 
@@ -362,7 +367,9 @@ export default class Time extends React.Component {
             {this.props.timeCaption}
           </div>
           <EuiScreenReaderOnly>
-            <span aria-live="polite">{screenReaderInstructions}</span>
+            <span aria-live="polite" aria-atomic="false">
+              {screenReaderInstructions}
+            </span>
           </EuiScreenReaderOnly>
         </div>
         <div className="react-datepicker__time">
