@@ -217,6 +217,31 @@ describe('EuiDualRange', () => {
 
         jest.restoreAllMocks();
       });
+
+      it('correctly defaults to min/max props if the lower or upper value is an empty string', () => {
+        const props = {
+          showInput: true,
+          min: -50,
+          max: 50,
+          minInputProps: { 'aria-label': 'Min value' },
+          maxInputProps: { 'aria-label': 'Max value' },
+          onChange: () => {},
+        };
+
+        const { getByLabelText, rerender } = render(
+          <EuiDualRange {...props} value={['20', '']} />
+        );
+        expect(getByLabelText('Min value')).toHaveAttribute('min', '-50');
+        expect(getByLabelText('Min value')).toHaveAttribute('max', '50');
+
+        rerender(<EuiDualRange {...props} value={['', '30']} />);
+        expect(getByLabelText('Max value')).toHaveAttribute('min', '-50');
+        expect(getByLabelText('Max value')).toHaveAttribute('max', '50');
+
+        rerender(<EuiDualRange {...props} value={['', '']} />);
+        expect(getByLabelText('Min value')).not.toBeInvalid();
+        expect(getByLabelText('Max value')).not.toBeInvalid();
+      });
     });
 
     describe('loading', () => {
