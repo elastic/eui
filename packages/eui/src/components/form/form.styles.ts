@@ -42,7 +42,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     backgroundColor: backgroundColor,
-    backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.1),
+    backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
     borderColor: transparentize(euiTheme.border.color, 0.9),
     borderDisabledColor: transparentize(euiTheme.border.color, 0.9),

@@ -28,7 +28,7 @@ describe('euiFormVariables', () => {
       Object {
         "animationTiming": "150ms ease-in",
         "backgroundColor": "#f9fbfd",
-        "backgroundDisabledColor": "#eceff5",
+        "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
         "borderColor": "rgba(211,218,230,0.9)",
         "borderDisabledColor": "rgba(211,218,230,0.9)",
