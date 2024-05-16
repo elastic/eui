@@ -13,6 +13,7 @@ import { EuiProvider } from '../provider';
 
 import {
   euiFormVariables,
+  euiFormControlStyles,
   euiFormControlSize,
   euiCustomControl,
 } from './form.styles';
@@ -31,6 +32,7 @@ describe('euiFormVariables', () => {
         "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
         "borderColor": "rgba(32,38,47,0.1)",
+        "controlAutoFillColor": "#343741",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -70,6 +72,143 @@ describe('euiFormVariables', () => {
     expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
     expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
     expect(result.current.customControlBorderColor).toEqual('#16171c');
+  });
+});
+
+describe('euiFormControlStyles', () => {
+  it('outputs an object of control states and modifiers', () => {
+    const { result } = renderHook(() => euiFormControlStyles(useEuiTheme()));
+    expect(result.current).toMatchInlineSnapshot(`
+      Object {
+        "autoFill": "
+            &:-webkit-autofill {
+              -webkit-text-fill-color: #343741;
+
+              ~ .euiFormControlLayoutIcons {
+                color: #343741;
+              }
+            }",
+        "compressed": "
+            block-size: 32px;
+            padding: 8px;
+            border-radius: 4px;
+          ",
+        "disabled": "
+          color: #98A2B3;
+          /* Required for Safari */
+          -webkit-text-fill-color: #98A2B3;
+          background-color: #eef1f7;
+          cursor: not-allowed;
+
+          
+        &::-webkit-input-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &::-moz-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &:-ms-input-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &:-moz-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &::placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+
+        ",
+        "focus": "
+        --euiFormStateColor: #07C;
+        background-color: #FFF;
+        background-size: 100% 100%;
+        outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+      ",
+        "formWidth": "
+            max-inline-size: 400px;
+            inline-size: 100%;
+          ",
+        "fullWidth": "
+            max-inline-size: 100%;
+            inline-size: 100%;
+          ",
+        "invalid": "
+        --euiFormStateColor: #BD271E !important;
+        background-size: 100% 100%;
+      ",
+        "readOnly": "
+          cursor: default;
+          color: #343741;
+          -webkit-text-fill-color: #343741; /* Required for Safari */
+
+          background-color: #FFF;
+          --euiFormStateColor: transparent;
+        ",
+        "shared": "
+            
+          font-family: 'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+          font-size: 1.0000rem;
+          color: #343741;
+
+          
+        &::-webkit-input-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &::-moz-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &:-ms-input-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &:-moz-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &::placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+
+        
+            
+          /* We use inset box-shadow instead of border to skip extra hight calculations */
+          border: none;
+          box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
+          background-color: #f9fbfd;
+
+          background-repeat: no-repeat;
+          background-size: 0% 100%;
+          background-image: linear-gradient(to top,
+            var(--euiFormStateColor),
+            var(--euiFormStateColor) 2px,
+            transparent 2px,
+            transparent 100%
+          );
+
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition:
+              box-shadow 150ms ease-in,
+              background-image 150ms ease-in,
+              background-size 150ms ease-in,
+              background-color 150ms ease-in;
+          }
+        
+          ",
+        "uncompressed": "
+            block-size: 40px;
+            padding: 12px;
+            border-radius: 6px;
+          ",
+      }
+    `);
   });
 });
 

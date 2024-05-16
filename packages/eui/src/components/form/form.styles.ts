@@ -15,6 +15,7 @@ import {
   makeHighContrastColor,
 } from '../../services';
 import {
+  logicalCSS,
   mathWithUnits,
   euiCanAnimate,
   euiFontSize,
@@ -56,6 +57,10 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
+    controlAutoFillColor:
+      colorMode === 'LIGHT'
+        ? euiTheme.colors.darkestShade
+        : euiTheme.colors.lightShade,
     inputGroupLabelBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
@@ -98,6 +103,53 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     ...iconSizes,
     ...controlLayout,
     animationTiming: `${euiTheme.animation.fast} ease-in`,
+  };
+};
+
+export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return {
+    shared: `
+      ${euiFormControlText(euiThemeContext)}
+      ${euiFormControlDefaultShadow(euiThemeContext)}
+    `,
+
+    // Sizes
+    uncompressed: `
+      ${logicalCSS('height', form.controlHeight)}
+      padding: ${form.controlPadding};
+      border-radius: ${form.controlBorderRadius};
+    `,
+    compressed: `
+      ${logicalCSS('height', form.controlCompressedHeight)}
+      padding: ${form.controlCompressedPadding};
+      border-radius: ${form.controlCompressedBorderRadius};
+    `,
+
+    // Widths
+    formWidth: `
+      ${logicalCSS('max-width', form.maxWidth)}
+      ${logicalCSS('width', '100%')}
+    `,
+    fullWidth: `
+      ${logicalCSS('max-width', '100%')}
+      ${logicalCSS('width', '100%')}
+    `,
+
+    // States
+    invalid: euiFormControlInvalidStyles(euiThemeContext),
+    focus: euiFormControlFocusStyles(euiThemeContext),
+    disabled: euiFormControlDisabledStyles(euiThemeContext),
+    readOnly: euiFormControlReadOnlyStyles(euiThemeContext),
+    autoFill: `
+      &:-webkit-autofill {
+        -webkit-text-fill-color: ${form.controlAutoFillColor};
+
+        ~ .euiFormControlLayoutIcons {
+          color: ${form.controlAutoFillColor};
+        }
+      }`,
   };
 };
 
@@ -226,6 +278,41 @@ export const euiFormControlFocusStyles = ({
   background-size: 100% 100%;
   outline: none; /* Remove all outlines and rely on our own bottom border gradient */
 `;
+
+export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
+  --euiFormStateColor: ${euiTheme.colors.danger} !important;
+  background-size: 100% 100%;
+`;
+
+export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    color: ${form.controlDisabledColor};
+    /* Required for Safari */
+    -webkit-text-fill-color: ${form.controlDisabledColor};
+    background-color: ${form.backgroundDisabledColor};
+    cursor: not-allowed;
+
+    ${euiPlaceholderPerBrowser(`
+      color: ${form.controlDisabledColor};
+      opacity: 1;
+    `)}
+  `;
+};
+
+export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    cursor: default;
+    color: ${form.textColor};
+    -webkit-text-fill-color: ${form.textColor}; /* Required for Safari */
+
+    background-color: ${form.backgroundReadOnlyColor};
+    --euiFormStateColor: transparent;
+  `;
+};
 
 const euiPlaceholderPerBrowser = (content: string) => `
   &::-webkit-input-placeholder { ${content} }
