@@ -53,6 +53,8 @@ describe('euiFormVariables', () => {
         "controlPlaceholderText": "#646a77",
         "customControlBorderColor": "#f5f7fc",
         "customControlDisabledIconColor": "#cacfd8",
+        "iconAffordance": "24px",
+        "iconCompressedAffordance": "18px",
         "inputGroupBorder": "none",
         "inputGroupLabelBackground": "#e9edf3",
         "maxWidth": "400px",
@@ -89,7 +91,9 @@ describe('euiFormControlStyles', () => {
             }",
         "compressed": "
             block-size: 32px;
-            padding: 8px;
+            padding-block: 8px;
+            padding-inline-start: calc(8px + (18px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(8px + (18px * var(--euiFormControlRightIconsCount, 0)));
             border-radius: 4px;
           ",
         "disabled": "
@@ -203,7 +207,9 @@ describe('euiFormControlStyles', () => {
           ",
         "uncompressed": "
             block-size: 40px;
-            padding: 12px;
+            padding-block: 12px;
+            padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
             border-radius: 6px;
           ",
       }

@@ -39,6 +39,8 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlCompressedPadding: euiTheme.size.s,
     controlBorderRadius: euiTheme.border.radius.medium,
     controlCompressedBorderRadius: euiTheme.border.radius.small,
+    iconAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
+    iconCompressedAffordance: mathWithUnits(euiTheme.size.m, (x) => x * 1.5),
   };
 
   const colors = {
@@ -118,12 +120,28 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     uncompressed: `
       ${logicalCSS('height', form.controlHeight)}
-      padding: ${form.controlPadding};
+      ${logicalCSS('padding-vertical', form.controlPadding)}
+      ${logicalCSS(
+        'padding-left',
+        `calc(${form.controlPadding} + (${form.iconAffordance} * var(--euiFormControlLeftIconsCount, 0)))`
+      )}
+      ${logicalCSS(
+        'padding-right',
+        `calc(${form.controlPadding} + (${form.iconAffordance} * var(--euiFormControlRightIconsCount, 0)))`
+      )}
       border-radius: ${form.controlBorderRadius};
     `,
     compressed: `
       ${logicalCSS('height', form.controlCompressedHeight)}
-      padding: ${form.controlCompressedPadding};
+      ${logicalCSS('padding-vertical', form.controlCompressedPadding)}
+      ${logicalCSS(
+        'padding-left',
+        `calc(${form.controlCompressedPadding} + (${form.iconCompressedAffordance} * var(--euiFormControlLeftIconsCount, 0)))`
+      )}
+      ${logicalCSS(
+        'padding-right',
+        `calc(${form.controlCompressedPadding} + (${form.iconCompressedAffordance} * var(--euiFormControlRightIconsCount, 0)))`
+      )}
       border-radius: ${form.controlCompressedBorderRadius};
     `,
 
