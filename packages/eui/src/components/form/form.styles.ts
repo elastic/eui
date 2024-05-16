@@ -44,8 +44,12 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundColor: backgroundColor,
     backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
-    borderColor: transparentize(euiTheme.border.color, 0.9),
-    borderDisabledColor: transparentize(euiTheme.border.color, 0.9),
+    borderColor: transparentize(
+      colorMode === 'DARK'
+        ? euiTheme.colors.ghost
+        : darken(euiTheme.border.color, 4),
+      0.1
+    ),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
@@ -181,7 +185,9 @@ export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
   return `
-    box-shadow: inset 0 0 0 1px ${form.borderColor};
+    /* We use inset box-shadow instead of border to skip extra hight calculations */
+    border: none;
+    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
     background-color: ${form.backgroundColor};
 
     background-repeat: no-repeat;
