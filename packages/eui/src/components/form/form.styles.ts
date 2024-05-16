@@ -153,33 +153,6 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiFormControlSize = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    height?: string;
-    fullWidth?: boolean;
-    compressed?: boolean;
-    inGroup?: boolean;
-  } = {}
-) => {
-  const form = euiFormVariables(euiThemeContext);
-
-  const width = '100%';
-
-  let maxWidth = form.maxWidth;
-  if (options.fullWidth) maxWidth = '100%';
-
-  let height = options.height || form.controlHeight;
-  if (options.compressed) height = form.controlCompressedHeight;
-  if (options.inGroup) height = '100%';
-
-  return `
-    max-inline-size: ${maxWidth};
-    inline-size: ${width};
-    block-size: ${height};
-  `;
-};
-
 export const euiCustomControl = (
   euiThemeContext: UseEuiTheme,
   options: {

@@ -2,7 +2,7 @@
 
 exports[`EuiDualRange props isDraggable renders draggable track when isDraggable=true 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -69,7 +69,7 @@ exports[`EuiDualRange props isDraggable renders draggable track when isDraggable
 
 exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -146,7 +146,7 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
 
 exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     class="euiFormControlLayout"
@@ -249,7 +249,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
 
 exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     class="euiFormControlLayout"
@@ -353,7 +353,7 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
 
 exports[`EuiDualRange props minInputProps allows overriding default props 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     class="euiFormControlLayout"
@@ -465,7 +465,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
 
 exports[`EuiDualRange props minInputProps applies passed props to min input 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     class="euiFormControlLayout"
@@ -569,7 +569,7 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
 
 exports[`EuiDualRange props showLabels renders labels when showLabels=true 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <label
     class="euiRangeLabel emotion-euiRangeLabel-min"
@@ -631,7 +631,7 @@ exports[`EuiDualRange props showLabels renders labels when showLabels=true 1`] =
 
 exports[`EuiDualRange props showRange hides range when showRange=false 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -674,7 +674,7 @@ exports[`EuiDualRange props showRange hides range when showRange=false 1`] = `
 
 exports[`EuiDualRange props showRange renders range when showRange=true 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -726,7 +726,7 @@ exports[`EuiDualRange props showRange renders range when showRange=true 1`] = `
 
 exports[`EuiDualRange props value accepts empty strings 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -769,7 +769,7 @@ exports[`EuiDualRange props value accepts empty strings 1`] = `
 
 exports[`EuiDualRange props value accepts numbers 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -821,7 +821,7 @@ exports[`EuiDualRange props value accepts numbers 1`] = `
 
 exports[`EuiDualRange renders 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiDualRange-euiTestCss"
+  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiRangeWrapper-euiDualRange-euiTestCss"
 >
   <div
     aria-hidden="false"

@@ -14,7 +14,6 @@ import { EuiProvider } from '../provider';
 import {
   euiFormVariables,
   euiFormControlStyles,
-  euiFormControlSize,
   euiCustomControl,
 } from './form.styles';
 
@@ -208,109 +207,6 @@ describe('euiFormControlStyles', () => {
             border-radius: 6px;
           ",
       }
-    `);
-  });
-});
-
-describe('euiFormControlSize', () => {
-  it('outputs the logical properties for height, width, and max-width', () => {
-    const { result } = renderHook(() => euiFormControlSize(useEuiTheme()));
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 40px;"
-    `);
-  });
-
-  it('allows passing in a custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { height: '100px' })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100px;"
-    `);
-  });
-
-  test('fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 40px;"
-    `);
-  });
-
-  test('compressed', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { compressed: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
-
-  test('compressed & fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { compressed: true, fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
-
-  test('inGroup', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { inGroup: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100%;"
-    `);
-  });
-
-  test('inGroup & fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { inGroup: true, fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 100%;"
-    `);
-  });
-
-  test('compressed overrides custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { height: '500px', compressed: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
-
-  test('inGroup overrides compressed and custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), {
-        height: '500px',
-        compressed: true,
-        inGroup: true,
-      })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100%;"
     `);
   });
 });
