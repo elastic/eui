@@ -41,6 +41,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   };
 
   const colors = {
+    textColor: euiTheme.colors.text,
     backgroundColor: backgroundColor,
     backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
@@ -169,14 +170,17 @@ export const euiCustomControl = (
 export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { fontSize } = euiFontSize(euiThemeContext, 's');
-  const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
+  const form = euiFormVariables(euiThemeContext);
 
   return `
     font-family: ${euiTheme.font.family};
     font-size: ${fontSize};
-    color: ${euiTheme.colors.text};
+    color: ${form.textColor};
 
-    ${euiPlaceholderPerBrowser(`color: ${controlPlaceholderText}`)}
+    ${euiPlaceholderPerBrowser(`
+      color: ${form.controlPlaceholderText};
+      opacity: 1;
+    `)}
   `;
 };
 
@@ -224,9 +228,9 @@ export const euiFormControlFocusStyles = ({
 `;
 
 const euiPlaceholderPerBrowser = (content: string) => `
-  &::-webkit-input-placeholder { ${content}; opacity: 1; }
-  &::-moz-placeholder { ${content}; opacity: 1; }
-  &:-ms-input-placeholder { ${content}; opacity: 1; }
-  &:-moz-placeholder { ${content}; opacity: 1; }
-  &::placeholder { ${content}; opacity: 1; }
+  &::-webkit-input-placeholder { ${content} }
+  &::-moz-placeholder { ${content} }
+  &:-ms-input-placeholder { ${content} }
+  &:-moz-placeholder { ${content} }
+  &::placeholder { ${content} }
 `;

@@ -55,6 +55,7 @@ describe('euiFormVariables', () => {
         "inputGroupBorder": "none",
         "inputGroupLabelBackground": "#e9edf3",
         "maxWidth": "400px",
+        "textColor": "#343741",
       }
     `);
   });
