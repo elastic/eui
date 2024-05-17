@@ -127,7 +127,7 @@ describe('euiFormControlStyles', () => {
 
         ",
         "focus": "
-        --euiFormStateColor: #07C;
+        --euiFormControlStateColor: #07C;
         background-color: #FFF;
         background-size: 100% 100%;
         outline: none; /* Remove all outlines and rely on our own bottom border gradient */
@@ -146,7 +146,7 @@ describe('euiFormControlStyles', () => {
             border-radius: 0;
           ",
         "invalid": "
-        --euiFormStateColor: #BD271E !important;
+        --euiFormControlStateColor: #BD271E !important;
         background-size: 100% 100%;
       ",
         "readOnly": "
@@ -155,7 +155,7 @@ describe('euiFormControlStyles', () => {
           -webkit-text-fill-color: #343741; /* Required for Safari */
 
           background-color: #FFF;
-          --euiFormStateColor: transparent;
+          --euiFormControlStateColor: transparent;
         ",
         "shared": "
             
@@ -195,8 +195,8 @@ describe('euiFormControlStyles', () => {
           background-repeat: no-repeat;
           background-size: 0% 100%;
           background-image: linear-gradient(to top,
-            var(--euiFormStateColor),
-            var(--euiFormStateColor) 2px,
+            var(--euiFormControlStateColor),
+            var(--euiFormControlStateColor) 2px,
             transparent 2px,
             transparent 100%
           );

@@ -247,8 +247,8 @@ export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
-      var(--euiFormStateColor),
-      var(--euiFormStateColor) ${euiTheme.border.width.thick},
+      var(--euiFormControlStateColor),
+      var(--euiFormControlStateColor) ${euiTheme.border.width.thick},
       transparent ${euiTheme.border.width.thick},
       transparent 100%
     );
@@ -267,7 +267,7 @@ export const euiFormControlFocusStyles = ({
   euiTheme,
   colorMode,
 }: UseEuiTheme) => `
-  --euiFormStateColor: ${euiTheme.colors.primary};
+  --euiFormControlStateColor: ${euiTheme.colors.primary};
   background-color: ${
     colorMode === 'DARK'
       ? shade(euiTheme.colors.emptyShade, 0.4)
@@ -278,7 +278,7 @@ export const euiFormControlFocusStyles = ({
 `;
 
 export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
-  --euiFormStateColor: ${euiTheme.colors.danger} !important;
+  --euiFormControlStateColor: ${euiTheme.colors.danger} !important;
   background-size: 100% 100%;
 `;
 
@@ -308,7 +308,7 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
     -webkit-text-fill-color: ${form.textColor}; /* Required for Safari */
 
     background-color: ${form.backgroundReadOnlyColor};
-    --euiFormStateColor: transparent;
+    --euiFormControlStateColor: transparent;
   `;
 };
 

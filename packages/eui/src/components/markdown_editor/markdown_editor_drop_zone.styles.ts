@@ -46,7 +46,7 @@ export const euiMarkdownEditorDropZoneStyles = (
     hasError: css`
       .euiMarkdownEditorTextArea {
         /* stylelint-disable-next-line declaration-no-important */
-        --euiFormStateColor: ${euiTheme.colors.danger} !important;
+        --euiFormControlStateColor: ${euiTheme.colors.danger} !important;
         background-size: 100% 100%;
       }
     `,
