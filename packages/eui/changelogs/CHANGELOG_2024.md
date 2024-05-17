@@ -1,3 +1,9 @@
+## [`v94.5.0-backport.0`](https://github.com/elastic/eui/releases/v94.5.0-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+- Reverted `EuiSelectableList` refactor (https://github.com/elastic/eui/pull/7728) that led to a possible read-after-write desynchronization bug on component state
+
 ## [`v94.5.0`](https://github.com/elastic/eui/releases/v94.5.0)
 
 - `EuiFlyoutResizable` now respects `size` prop updates, allowing for controlled `size` usage ([#7759](https://github.com/elastic/eui/pull/7759))
