@@ -11,9 +11,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import type { EuiTextTruncateProps } from '../text_truncate';
 import { EuiToolTipProps } from '../tool_tip';
 
-export const OPTION_CHECKED_STATES = ['on', 'off', 'mixed', undefined] as const;
-export type EuiSelectableOptionCheckedType =
-  (typeof OPTION_CHECKED_STATES)[number];
+export type EuiSelectableOptionCheckedType = 'on' | 'off' | 'mixed' | undefined;
 
 export type EuiSelectableOptionBase = CommonProps & {
   /**

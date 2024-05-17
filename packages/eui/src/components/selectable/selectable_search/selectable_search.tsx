@@ -30,7 +30,7 @@ export type EuiSelectableSearchProps<T> = CommonProps &
     ) => void;
   };
 
-export type _EuiSelectableSearchProps<T> = EuiSelectableSearchProps<T> & {
+type _EuiSelectableSearchProps<T> = EuiSelectableSearchProps<T> & {
   options: Array<EuiSelectableOption<T>>;
   /**
    * Search value state managed by parent EuiSelectable

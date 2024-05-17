@@ -177,12 +177,10 @@ export class EuiSelectableList<T> extends Component<
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
-    isVirtualized: true as const,
+    isVirtualized: true,
   };
 
   private animationFrameId: number | undefined;
-  // counter for tracking list renders and ensuring rerenders
-  private listRowRerender = 0;
 
   constructor(props: EuiSelectableListProps<T>) {
     super(props);
@@ -260,47 +258,9 @@ export class EuiSelectableList<T> extends Component<
     }
   };
 
-  shouldComponentUpdate(
-    nextProps: Readonly<EuiSelectableListProps<T>>
-  ): boolean {
-    const {
-      allowExclusions,
-      showIcons,
-      paddingSize,
-      textWrap,
-      onFocusBadge,
-      searchable,
-    } = this.props;
-
-    // using shouldComponentUpdate to determine needed rerender before actual rerender
-    // without needing state updates or lagging behind on updates
-    if (
-      nextProps.allowExclusions !== allowExclusions ||
-      nextProps.showIcons !== showIcons ||
-      nextProps.paddingSize !== paddingSize ||
-      nextProps.textWrap !== textWrap ||
-      nextProps.onFocusBadge !== onFocusBadge ||
-      nextProps.searchable !== searchable
-    ) {
-      this.listRowRerender += 1;
-    }
-
-    return true;
-  }
-
   componentDidUpdate(prevProps: EuiSelectableListProps<T>) {
-    const {
-      isVirtualized,
-      activeOptionIndex,
-      visibleOptions,
-      options,
-      allowExclusions,
-      showIcons,
-      paddingSize,
-      textWrap,
-      onFocusBadge,
-      searchable,
-    } = this.props;
+    const { isVirtualized, activeOptionIndex, visibleOptions, options } =
+      this.props;
 
     if (prevProps.activeOptionIndex !== activeOptionIndex) {
       const { makeOptionId } = this.props;
@@ -337,20 +297,6 @@ export class EuiSelectableList<T> extends Component<
         itemData: { ...optionArray },
         ...this.calculateAriaSetAttrs(optionArray),
       });
-    }
-
-    // ensure that ListRow updates based on item props
-    if (isVirtualized) {
-      if (
-        prevProps.allowExclusions !== allowExclusions ||
-        prevProps.showIcons !== showIcons ||
-        prevProps.paddingSize !== paddingSize ||
-        prevProps.textWrap !== textWrap ||
-        prevProps.onFocusBadge !== onFocusBadge ||
-        prevProps.searchable !== searchable
-      ) {
-        this.forceVirtualizedListRowRerender();
-      }
     }
   }
 
@@ -732,7 +678,7 @@ export class EuiSelectableList<T> extends Component<
                 React.createElement(
                   this.ListRow,
                   {
-                    key: `${index}-${this.listRowRerender}`,
+                    key: index,
                     data: this.state.optionArray,
                     index,
                   },
