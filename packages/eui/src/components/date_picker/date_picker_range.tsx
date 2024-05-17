@@ -24,9 +24,9 @@ import {
 import { IconType } from '../icon';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import {
-  euiDatePickerRangeStyles,
+  euiDatePickerRangeStyles as styles,
   euiDatePickerRangeInlineStyles,
 } from './date_picker_range.styles';
 
@@ -124,25 +124,18 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
 
   const classes = classNames('euiDatePickerRange', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiDatePickerRangeStyles(euiTheme);
-  const cssStyles = [styles.euiDatePickerRange];
-
-  if (inline) {
-    // Determine the inline container query to use based on the width of the react-datepicker
-    const hasTimeSelect =
-      startDateControl.props.showTimeSelect ||
-      endDateControl.props.showTimeSelect;
-
-    const inlineStyles = euiDatePickerRangeInlineStyles(euiTheme);
-    cssStyles.push(inlineStyles.inline);
-    cssStyles.push(
-      hasTimeSelect
-        ? inlineStyles.responsiveWithTimeSelect
-        : inlineStyles.responsive
-    );
-    if (shadow) cssStyles.push(inlineStyles.shadow);
-  }
+  const inlineStyles = useEuiMemoizedStyles(euiDatePickerRangeInlineStyles);
+  const cssStyles = !inline
+    ? styles.euiDatePickerRange
+    : [
+        inlineStyles.euiDatePickerRangeInline,
+        // Determine the inline container query to use based on the width of the react-datepicker
+        startDateControl.props.showTimeSelect ||
+        endDateControl.props.showTimeSelect
+          ? inlineStyles.responsiveWithTimeSelect
+          : inlineStyles.responsive,
+        shadow && inlineStyles.shadow,
+      ];
 
   let startControl = startDateControl;
   let endControl = endDateControl;
@@ -154,6 +147,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         controlOnly: true,
         showIcon: false,
         inline,
+        compressed,
         fullWidth,
         readOnly,
         disabled: disabled || startDateControl.props.disabled,
@@ -179,6 +173,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         controlOnly: true,
         showIcon: false,
         inline,
+        compressed,
         fullWidth,
         readOnly,
         disabled: disabled || endDateControl.props.disabled,
