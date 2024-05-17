@@ -1,3 +1,7 @@
+## [`v94.5.0-backport.1`](https://github.com/elastic/eui/releases/v94.5.0-backport.1)
+
+**This is a backport release only intended for use by Kibana.**
+
 ## [`v94.5.0-backport.0`](https://github.com/elastic/eui/releases/v94.5.0-backport.0)
 
 **This is a backport release only intended for use by Kibana.**
