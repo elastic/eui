@@ -25,18 +25,16 @@
   padding-bottom: 0 !important;
 }
 
-// stylelint-disable declaration-no-important
-.euiColorPicker__input--inGroup {
-  height: $euiFormControlLayoutGroupInputHeight !important;
-  box-shadow: none !important;
-  border-radius: 0;
-
-  &.euiFieldText--compressed {
-    height: $euiFormControlLayoutGroupInputCompressedHeight !important;
-    border-radius: 0;
-  }
+.euiColorPicker__input {
+  // Manually account for custom left icon / color swatch preview
+  --euiFormControlLeftIconsCount: 1;
 }
-// stylelint-enable declaration-no-important
+
+.euiColorPicker__input--inGroup {
+  height: 100%;
+  box-shadow: none;
+  border-radius: 0;
+}
 
 .euiColorPicker__alphaRange {
   .euiRangeInput {

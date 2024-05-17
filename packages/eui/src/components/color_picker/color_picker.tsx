@@ -296,8 +296,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const inputClasses = classNames(
     'euiColorPicker__input',
     { 'euiColorPicker__input--inGroup': prepend || append },
-    // Manually account for input padding, since `controlOnly` disables that logic
-    'euiFieldText--withIcon',
     numIconsClass
   );
 
