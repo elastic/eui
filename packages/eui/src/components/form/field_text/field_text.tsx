@@ -95,7 +95,8 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     styles.euiFieldText,
     compressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
-    (prepend || append) && !controlOnly && styles.inGroup,
+    !controlOnly && (prepend || append) && styles.inGroup,
+    controlOnly && styles.controlOnly,
   ];
 
   const iconAffordanceStyles = useMemo(() => {

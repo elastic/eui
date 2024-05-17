@@ -293,11 +293,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     clear: isClearable,
     isInvalid,
   });
-  const inputClasses = classNames(
-    'euiColorPicker__input',
-    { 'euiColorPicker__input--inGroup': prepend || append },
-    numIconsClass
-  );
+  const inputClasses = classNames('euiColorPicker__input', numIconsClass);
 
   const handleOnChange = (text: string) => {
     const output = getOutput(text, showAlpha);

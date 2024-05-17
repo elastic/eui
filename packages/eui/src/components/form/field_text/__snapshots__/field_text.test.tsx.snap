@@ -24,7 +24,7 @@ exports[`EuiFieldText is rendered 1`] = `
 exports[`EuiFieldText props controlOnly is rendered 1`] = `
 <eui-validatable-control>
   <input
-    class="euiFieldText emotion-euiFieldText"
+    class="euiFieldText emotion-euiFieldText-controlOnly"
     type="text"
     value=""
   />

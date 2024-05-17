@@ -40,10 +40,17 @@ export const euiFieldTextStyles = (euiThemeContext: UseEuiTheme) => {
     // Skip the css() on the default height to avoid generating a className
     uncompressed: formStyles.uncompressed,
     compressed: css(formStyles.compressed),
-    inGroup: css(formStyles.inGroup),
 
     // Skip the css() on the default width to avoid generating a className
     formWidth: formStyles.formWidth,
     fullWidth: css(formStyles.fullWidth),
+
+    // Layout modifiers
+    inGroup: css(formStyles.inGroup),
+    controlOnly: css`
+      .euiFormControlLayout--group & {
+        ${formStyles.inGroup}
+      }
+    `,
   };
 };
