@@ -64,7 +64,8 @@ import {
   getMonth
 } from "./date_utils";
 
-import {EuiPopover, popoverAnchorPosition} from '../../../popover/popover';
+import { EuiPopover, popoverAnchorPosition } from '../../../popover/popover';
+import { EuiFieldText } from '../../../form/field_text';
 
 export { default as CalendarContainer } from "./calendar_container";
 
@@ -769,8 +770,12 @@ export default class DatePicker extends React.Component {
       [outsideClickIgnoreClass]: this.state.open
     });
 
-    const customInput = this.props.customInput || <input type="text" />;
-    const customInputRef = this.props.customInputRef || "ref";
+    const customInput = this.props.customInput || (
+      <EuiFieldText controlOnly {...this.props.defaultInputProps} />
+    );
+    const customInputRef =
+      this.props.customInputRef ??
+      (this.props.customInput ? 'ref' : 'inputRef');
     const inputValue =
       typeof this.props.value === "string"
         ? this.props.value
