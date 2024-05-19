@@ -6,7 +6,7 @@
 
 Check out our [full documentation site][docs] which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. Our FAQ below covers common usage questions — for other general questions regarding EUI, check out the [Discussions tab](https://github.com/elastic/eui/discussions).
 
-> ![NOTE]
+> [!NOTE]
 > We're in the process of migrating this repository to a monorepo structure. You can find `@elastic/eui` files in the [packages/eui](https://github.com/elastic/eui/tree/main/packages/eui) directory.
 
 ## Frequently Asked Questions
