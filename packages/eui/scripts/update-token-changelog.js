@@ -91,7 +91,7 @@ async function getPreviousI18nTokens() {
   const commitID = execSync(`git rev-parse v${oldPackageVersion}`)
     .toString()
     .trim();
-  const fileContents = execSync(`git cat-file blob ${commitID}:i18ntokens.json`)
+  const fileContents = execSync(`git cat-file blob ${commitID}:packages/eui/i18ntokens.json`)
     .toString()
     .trim();
   return JSON.parse(fileContents);
