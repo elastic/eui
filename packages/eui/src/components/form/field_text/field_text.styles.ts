@@ -34,7 +34,9 @@ export const euiFieldTextStyles = (euiThemeContext: UseEuiTheme) => {
         ${formStyles.readOnly}
       }
 
-      ${formStyles.autoFill}
+      &:autofill {
+        ${formStyles.autoFill}
+      }
     `,
 
     // Skip the css() on the default height to avoid generating a className

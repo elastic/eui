@@ -20,6 +20,7 @@ import {
   euiCanAnimate,
   euiFontSize,
 } from '../../global_styling';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -59,10 +60,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
-    controlAutoFillColor:
-      colorMode === 'LIGHT'
-        ? euiTheme.colors.darkestShade
-        : euiTheme.colors.lightShade,
     inputGroupLabelBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
@@ -167,14 +164,7 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
     focus: euiFormControlFocusStyles(euiThemeContext),
     disabled: euiFormControlDisabledStyles(euiThemeContext),
     readOnly: euiFormControlReadOnlyStyles(euiThemeContext),
-    autoFill: `
-      &:-webkit-autofill {
-        -webkit-text-fill-color: ${form.controlAutoFillColor};
-
-        ~ .euiFormControlLayoutIcons {
-          color: ${form.controlAutoFillColor};
-        }
-      }`,
+    autoFill: euiFormControlAutoFillStyles(euiThemeContext),
   };
 };
 
@@ -309,6 +299,41 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
 
     background-color: ${form.backgroundReadOnlyColor};
     --euiFormControlStateColor: transparent;
+  `;
+};
+
+export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  // Make the text color slightly less prominent than the default colors.text
+  const textColor = euiTheme.colors.darkestShade;
+
+  const { backgroundColor } = euiButtonColor(euiThemeContext, 'primary');
+  const tintedBackgroundColor =
+    colorMode === 'DARK'
+      ? shade(backgroundColor, 0.5)
+      : tint(backgroundColor, 0.7);
+  // Hacky workaround to background-color, since Chrome doesn't normally allow overriding its styles
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:autofill#sect1
+  const backgroundShadow = `inset 0 0 0 100vw ${tintedBackgroundColor}`;
+
+  // Re-create the border, since the above webkit box shadow overrides the default border box-shadow
+  // + change the border color to match states, since the underline background gradient no longer works
+  const borderColor = transparentize(euiTheme.colors.primaryText, 0.2);
+  const invalidBorder = euiTheme.colors.danger;
+  const borderShadow = (color: string) =>
+    `inset 0 0 0 ${euiTheme.border.width.thin} ${color}`;
+
+  // These styles only apply/override Chrome/webkit browsers - Firefox does not set autofill styles
+  return `
+    &:-webkit-autofill {
+      -webkit-text-fill-color: ${textColor};
+      -webkit-box-shadow: ${borderShadow(borderColor)}, ${backgroundShadow};
+
+      &:invalid {
+        -webkit-box-shadow: ${borderShadow(invalidBorder)}, ${backgroundShadow};
+      }
+    }
   `;
 };
 

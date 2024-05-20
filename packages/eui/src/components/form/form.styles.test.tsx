@@ -31,7 +31,6 @@ describe('euiFormVariables', () => {
         "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
         "borderColor": "rgba(32,38,47,0.1)",
-        "controlAutoFillColor": "#343741",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -82,13 +81,15 @@ describe('euiFormControlStyles', () => {
     expect(result.current).toMatchInlineSnapshot(`
       Object {
         "autoFill": "
-            &:-webkit-autofill {
-              -webkit-text-fill-color: #343741;
+          &:-webkit-autofill {
+            -webkit-text-fill-color: #343741;
+            -webkit-box-shadow: inset 0 0 0 1px rgba(0,107,184,0.2), inset 0 0 0 100vw #f0f7fc;
 
-              ~ .euiFormControlLayoutIcons {
-                color: #343741;
-              }
-            }",
+            &:invalid {
+              -webkit-box-shadow: inset 0 0 0 1px #BD271E, inset 0 0 0 100vw #f0f7fc;
+            }
+          }
+        ",
         "compressed": "
             block-size: 32px;
             padding-block: 8px;
