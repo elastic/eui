@@ -16,7 +16,7 @@ import {
 } from './selectable_list_item';
 
 const meta: Meta<EuiSelectableListItemProps> = {
-  title: 'Forms/EuiSelectable/EuiSelectableList/EuiSelectableListItem',
+  title: 'Forms/EuiSelectable/Subcomponents/EuiSelectableListItem',
   component: EuiSelectableListItem,
   argTypes: {
     checked: {

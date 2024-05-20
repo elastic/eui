@@ -20,7 +20,7 @@ import {
 } from './pagination_button';
 
 const meta: Meta<EuiPaginationButtonProps> = {
-  title: 'Navigation/EuiPagination/EuiPaginationButton',
+  title: 'Navigation/EuiPagination/Subcomponents/EuiPaginationButton',
   component: EuiPaginationButton,
   argTypes: {
     iconType: { control: 'text' },

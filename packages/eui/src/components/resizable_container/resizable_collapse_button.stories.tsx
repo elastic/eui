@@ -17,7 +17,8 @@ import {
 } from './resizable_collapse_button';
 
 const meta: Meta<EuiResizableCollapseButtonProps> = {
-  title: 'Layout/EuiResizableContainer/EuiResizableCollapseButton',
+  title:
+    'Layout/EuiResizableContainer/Subcomponents/EuiResizableCollapseButton',
   component: EuiResizableCollapseButton,
   args: {
     isVisible: true,

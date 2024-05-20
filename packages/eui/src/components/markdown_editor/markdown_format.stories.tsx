@@ -35,7 +35,7 @@ And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip
 `;
 
 const meta: Meta<EuiMarkdownFormatProps> = {
-  title: 'Editors & Syntax/EuiMarkdownEditor/EuiMarkdownFormat',
+  title: 'Editors & Syntax/EuiMarkdownFormat',
   component: EuiMarkdownFormat,
   argTypes: {
     color: { control: { type: 'text' } },

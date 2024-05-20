@@ -32,7 +32,7 @@ And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip
 `;
 
 const meta: Meta<EuiMarkdownEditorProps> = {
-  title: 'Editors & Syntax/EuiMarkdownEditor/EuiMarkdownEditor',
+  title: 'Editors & Syntax/EuiMarkdownEditor',
   component: EuiMarkdownEditor,
   // Component defaults
   args: {
