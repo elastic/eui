@@ -8,7 +8,6 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiProgress, COLORS } from './progress';
 
 const meta: Meta<typeof EuiProgress> = {
@@ -40,11 +39,8 @@ export const Determinate: Story = {
   },
 };
 
-export const Indeterminate: Story = {};
-hideStorybookControls(Indeterminate, [
-  'max',
-  'value',
-  'valueText',
-  'label',
-  'labelProps',
-]);
+export const Indeterminate: Story = {
+  parameters: {
+    controls: { exclude: ['max', 'value', 'valueText', 'label', 'labelProps'] },
+  },
+};

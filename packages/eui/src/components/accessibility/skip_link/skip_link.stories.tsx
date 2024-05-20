@@ -8,10 +8,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-  hideStorybookControls,
-  moveStorybookControlsToCategory,
-} from '../../../../.storybook/utils';
+import { moveStorybookControlsToCategory } from '../../../../.storybook/utils';
 import { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
 
 const meta: Meta<EuiSkipLinkProps> = {
@@ -34,7 +31,16 @@ const meta: Meta<EuiSkipLinkProps> = {
 };
 moveStorybookControlsToCategory(
   meta,
-  ['color', 'fill', 'size'],
+  [
+    'aria-label',
+    'color',
+    'fill',
+    'size',
+    'buttonRef',
+    'isDisabled',
+    'onClick',
+    'href',
+  ],
   'EuiButton props'
 );
 
@@ -46,11 +52,3 @@ export const Playground: Story = {
     children: 'Skip to content',
   },
 };
-// Hide certain irrelevent EuiButton props for better DX
-hideStorybookControls(Playground, [
-  'aria-label',
-  'buttonRef',
-  'isDisabled',
-  'onClick',
-  'href',
-]);

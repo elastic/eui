@@ -8,7 +8,6 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiPanel } from '../panel';
 import { EuiResizableContainer } from './resizable_container';
@@ -53,6 +52,9 @@ export const Playground: Story = {
 };
 
 export const ProductionUsage: Story = {
+  parameters: {
+    controls: { include: ['direction', 'internalPosition'] },
+  },
   render: ({ direction, internalPosition }) => (
     <EuiResizableContainer direction={direction} css={{ blockSize: 500 }}>
       {(EuiResizablePanel, EuiResizableButton) => (
@@ -87,9 +89,3 @@ export const ProductionUsage: Story = {
     </EuiResizableContainer>
   ),
 };
-// Not testable via `EuiResizableContainer`, so hide these props from the controls
-hideStorybookControls(ProductionUsage, [
-  'externalPosition',
-  'isVisible',
-  'isCollapsed',
-]);

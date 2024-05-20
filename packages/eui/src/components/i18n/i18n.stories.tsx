@@ -10,7 +10,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiI18n, EuiI18nProps, I18nTokensShape } from './i18n';
 import { EuiCard } from '../card';
 
@@ -30,6 +29,9 @@ export default meta;
 type Story = StoryObj<Props>;
 
 export const SingleToken: Story = {
+  parameters: {
+    controls: { include: ['default', 'token'] },
+  },
   argTypes: {
     default: { control: { type: 'text' } },
   },
@@ -39,18 +41,22 @@ export const SingleToken: Story = {
       'This is the English copy that would be replaced by a translation defined by the euiI18nBasic.basicexample token.',
   },
 };
-hideStorybookControls(SingleToken, ['children', 'tokens', 'defaults']);
 
 export const Interpolation: Story = {
+  parameters: {
+    controls: { include: ['default', 'token', 'values'] },
+  },
   args: {
     token: 'euiI18nInterpolation.clickedCount',
     default: 'Clicked on button {count} times.',
     values: { count: 3 },
   },
 };
-hideStorybookControls(Interpolation, ['children', 'tokens', 'defaults']);
 
 export const MultipleTokens: Story = {
+  parameters: {
+    controls: { include: ['defaults', 'tokens'] },
+  },
   args: {
     tokens: ['euiI18n.title', 'euiI18n.description'],
     defaults: ['Card title', 'Card description'],
@@ -64,9 +70,11 @@ export const MultipleTokens: Story = {
     </EuiI18n>
   ),
 };
-hideStorybookControls(MultipleTokens, ['token', 'default']);
 
 export const MultipleTokenInterpolation: Story = {
+  parameters: {
+    controls: { include: ['defaults', 'tokens', 'values'] },
+  },
   args: {
     tokens: ['euiI18nMulti.title', 'euiI18nMulti.description'],
     defaults: [
@@ -84,4 +92,3 @@ export const MultipleTokenInterpolation: Story = {
     </EuiI18n>
   ),
 };
-hideStorybookControls(MultipleTokenInterpolation, ['token', 'default']);

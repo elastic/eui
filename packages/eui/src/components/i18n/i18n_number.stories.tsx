@@ -10,7 +10,6 @@ import React, { ReactChild } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiI18nNumber, EuiI18nNumberProps } from './i18n_number';
 import { EuiText } from '../text';
 
@@ -28,6 +27,9 @@ export default meta;
 type Story = StoryObj<EuiI18nNumberProps>;
 
 export const SingleValue: Story = {
+  parameters: {
+    controls: { include: ['value'] },
+  },
   args: {
     value: 99,
   },
@@ -37,9 +39,11 @@ export const SingleValue: Story = {
     </EuiText>
   ),
 };
-hideStorybookControls(SingleValue, ['children', 'values']);
 
 export const MultipleValues: Story = {
+  parameters: {
+    controls: { include: ['values'] },
+  },
   args: {
     values: [0, 1, 2],
     children: (values: ReactChild[]) => (
@@ -53,4 +57,3 @@ export const MultipleValues: Story = {
     ),
   },
 };
-hideStorybookControls(MultipleValues, ['value']);
