@@ -27,6 +27,11 @@ export const euiMarkdownEditorTextAreaStyles = (
   const { euiTheme } = euiThemeContext;
   const { minHeight } = euiMarkdownEditorVariables(euiThemeContext);
 
+  const borderCSS = `
+    border: ${euiTheme.border.thin};
+    ${logicalCSS('border-bottom', 'none')}
+  `;
+
   return {
     euiMarkdownEditorTextArea: css`
       ${logicalSizeCSS('100%')}
@@ -38,11 +43,9 @@ export const euiMarkdownEditorTextAreaStyles = (
       padding: ${euiTheme.size.m};
       ${euiFormControlText(euiThemeContext)}
       line-height: ${euiTheme.font.lineHeightMultiplier};
-
-      border: ${euiTheme.border.thin};
-      ${logicalCSS('border-bottom', 'none')}
     `,
     readOnly: css`
+      ${borderCSS}
       background-color: ${euiTheme.colors.emptyShade};
       cursor: default;
 
@@ -52,7 +55,9 @@ export const euiMarkdownEditorTextAreaStyles = (
     `,
     editable: css`
       ${euiFormControlDefaultShadow(euiThemeContext)}
-      box-shadow: none; /* Border already set above */
+      /* Override euiFormControlDefaultShadow's border/box-shadow */
+      ${borderCSS}
+      box-shadow: none;
 
       /* Prevent the text area from losing the focus outline when 
          clicking on an action button from the toolbar */
