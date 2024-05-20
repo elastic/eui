@@ -5,6 +5,7 @@ import {
   EuiSpacer,
   EuiFormControlLayoutDelimited,
   EuiFormLabel,
+  EuiFieldText,
   EuiPanel,
   EuiText,
   OnRefreshProps,
@@ -58,21 +59,19 @@ export default () => {
         <EuiFormControlLayoutDelimited
           prepend={<EuiFormLabel>Dates</EuiFormLabel>}
           startControl={
-            <input
+            <EuiFieldText
+              controlOnly
               onChange={onStartInputChange}
-              type="text"
               value={start}
               placeholder="start"
-              className="euiFieldText"
             />
           }
           endControl={
-            <input
+            <EuiFieldText
+              controlOnly
               onChange={onEndInputChange}
-              type="text"
               placeholder="end"
               value={end}
-              className="euiFieldText"
             />
           }
         />
