@@ -146,7 +146,7 @@ describe('euiFormControlStyles', () => {
             border-radius: 0;
           ",
         "invalid": "
-        --euiFormControlStateColor: #BD271E !important;
+        --euiFormControlStateColor: #BD271E;
         background-size: 100% 100%;
       ",
         "readOnly": "

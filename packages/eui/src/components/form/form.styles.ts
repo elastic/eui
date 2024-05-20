@@ -278,7 +278,7 @@ export const euiFormControlFocusStyles = ({
 `;
 
 export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
-  --euiFormControlStateColor: ${euiTheme.colors.danger} !important;
+  --euiFormControlStateColor: ${euiTheme.colors.danger};
   background-size: 100% 100%;
 `;
 
