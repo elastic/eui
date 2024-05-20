@@ -6,21 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
-import { CommonProps } from '../../common';
+import React, {
+  InputHTMLAttributes,
+  Ref,
+  FunctionComponent,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
 import { EuiValidatableControl } from '../validatable_control';
-import {
-  isRightSideIcon,
-  getFormControlClassNameForIconCount,
-} from '../form_control_layout/_num_icons';
+import { getIconAffordanceStyles } from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
+
+import { euiFieldTextStyles } from './field_text.styles';
 
 export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -68,6 +72,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     placeholder,
     value,
     className,
+    style,
     icon,
     isInvalid,
     inputRef,
@@ -81,25 +86,24 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
     ...rest
   } = props;
 
-  const hasRightSideIcon = isRightSideIcon(icon);
-
-  const numIconsClass = controlOnly
-    ? false
-    : getFormControlClassNameForIconCount({
-        isInvalid,
-        isLoading,
-        icon: hasRightSideIcon,
-      });
-
-  const classes = classNames('euiFieldText', className, numIconsClass, {
-    'euiFieldText--fullWidth': fullWidth,
-    'euiFieldText--compressed': compressed,
-    ...(!controlOnly && {
-      'euiFieldText--withIcon': icon && !hasRightSideIcon,
-      'euiFieldText--inGroup': prepend || append,
-    }),
+  const classes = classNames('euiFieldText', className, {
     'euiFieldText-isLoading': isLoading,
   });
+
+  const styles = useEuiMemoizedStyles(euiFieldTextStyles);
+  const cssStyles = [
+    styles.euiFieldText,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    !controlOnly && (prepend || append) && styles.inGroup,
+    controlOnly && styles.controlOnly,
+  ];
+
+  const iconAffordanceStyles = useMemo(() => {
+    return !controlOnly
+      ? getIconAffordanceStyles({ icon, isInvalid, isLoading })
+      : undefined;
+  }, [controlOnly, icon, isInvalid, isLoading]);
 
   const control = (
     <EuiValidatableControl isInvalid={isInvalid}>
@@ -109,6 +113,8 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
         name={name}
         placeholder={placeholder}
         className={classes}
+        css={cssStyles}
+        style={{ ...iconAffordanceStyles, ...style }}
         value={value}
         ref={inputRef}
         readOnly={readOnly}

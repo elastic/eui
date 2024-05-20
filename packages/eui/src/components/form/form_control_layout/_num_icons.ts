@@ -51,3 +51,40 @@ export const isRightSideIcon = (
 ): boolean => {
   return !!icon && isIconShape(icon) && icon.side === 'right';
 };
+
+export const getIconAffordanceStyles = ({
+  icon,
+  clear,
+  isLoading,
+  isInvalid,
+  isDropdown,
+}: {
+  icon?: EuiFormControlLayoutIconsProps['icon'];
+  clear?: boolean;
+  isLoading?: boolean;
+  isInvalid?: boolean;
+  isDropdown?: boolean;
+}) => {
+  const cssVariables = {
+    '--euiFormControlLeftIconsCount': 0,
+    '--euiFormControlRightIconsCount': 0,
+  };
+
+  if (icon) {
+    if (isRightSideIcon(icon)) {
+      cssVariables['--euiFormControlRightIconsCount']++;
+    } else {
+      cssVariables['--euiFormControlLeftIconsCount']++;
+    }
+  }
+
+  if (clear) cssVariables['--euiFormControlRightIconsCount']++;
+  if (isLoading) cssVariables['--euiFormControlRightIconsCount']++;
+  if (isInvalid) cssVariables['--euiFormControlRightIconsCount']++;
+  if (isDropdown) cssVariables['--euiFormControlRightIconsCount']++;
+
+  const filtered = Object.entries(cssVariables).filter(
+    ([, count]) => count > 0
+  );
+  return filtered.length ? Object.fromEntries(filtered) : undefined;
+};

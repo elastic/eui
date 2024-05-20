@@ -2,7 +2,7 @@
 
 exports[`EuiRange allows value prop to accept a number 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -34,7 +34,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
 
 exports[`EuiRange allows value prop to accept empty string 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -59,7 +59,7 @@ exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
   class="euiForm"
 >
   <div
-    class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-fullWidth-euiRange"
+    class="euiRangeWrapper euiRange emotion-euiRangeWrapper-fullWidth-euiRange"
   >
     <div
       aria-hidden="false"
@@ -82,7 +82,7 @@ exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
 
 exports[`EuiRange is rendered 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-euiTestCss"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-euiRange-euiTestCss"
 >
   <div
     aria-hidden="false"
@@ -129,7 +129,7 @@ exports[`EuiRange props compressed should render 1`] = `
 
 exports[`EuiRange props custom ticks should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -180,7 +180,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
 
 exports[`EuiRange props disabled should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -203,7 +203,7 @@ exports[`EuiRange props disabled should render 1`] = `
 
 exports[`EuiRange props fullWidth should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-fullWidth-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-fullWidth-euiRange"
 >
   <div
     aria-hidden="false"
@@ -225,7 +225,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-euiRange-hasInput-euiTestCss"
 >
   <div
     aria-hidden="true"
@@ -274,7 +274,7 @@ exports[`EuiRange props input should render 1`] = `
 
 exports[`EuiRange props labels should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <label
     class="euiRangeLabel emotion-euiRangeLabel-min"
@@ -306,7 +306,7 @@ exports[`EuiRange props labels should render 1`] = `
 
 exports[`EuiRange props levels should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -377,7 +377,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
 
 exports[`EuiRange props range should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -471,7 +471,7 @@ exports[`EuiRange props slider should display in popover 1`] = `
             data-focus-lock-disabled="disabled"
           >
             <div
-              class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
+              class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-euiRange-hasInput-euiTestCss"
             >
               <div
                 aria-hidden="true"
@@ -512,7 +512,7 @@ exports[`EuiRange props slider should display in popover 1`] = `
 
 exports[`EuiRange props ticks should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"
@@ -598,7 +598,7 @@ exports[`EuiRange props ticks should render 1`] = `
 
 exports[`EuiRange props value should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-euiRange"
 >
   <div
     aria-hidden="false"

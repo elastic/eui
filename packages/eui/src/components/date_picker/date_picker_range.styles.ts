@@ -10,19 +10,16 @@ import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 import { euiShadowMedium } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
-import { euiFormVariables } from '../form/form.styles';
 
-export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
-  const { controlLayoutGroupInputHeight } = euiFormVariables(euiThemeContext);
-
-  return {
-    euiDatePickerRange: css`
-      .euiFieldText.euiDatePicker {
-        /* Needed for correct focus/invalid box-shadow styles */
-        ${logicalCSS('height', controlLayoutGroupInputHeight)}
-      }
-    `,
-  };
+export const euiDatePickerRangeStyles = {
+  euiDatePickerRange: css`
+    /* Needed for correct focus/invalid underline/linear-gradient styles */
+    .euiPopover,
+    .react-datepicker__input-container,
+    .euiDatePicker {
+      ${logicalCSS('height', '100%')}
+    }
+  `,
 };
 
 export const euiDatePickerRangeInlineStyles = (
@@ -55,7 +52,7 @@ export const euiDatePickerRangeInlineStyles = (
     }`;
 
   return {
-    inline: css`
+    euiDatePickerRangeInline: css`
       .euiFormControlLayoutDelimited {
         /* Reset form control styling */
         ${logicalCSS('height', 'auto')}

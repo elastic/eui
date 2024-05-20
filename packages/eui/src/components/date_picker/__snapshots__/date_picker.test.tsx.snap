@@ -837,7 +837,7 @@ exports[`EuiDatePicker renders 1`] = `
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
-            class="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2 emotion-euiTestCss"
+            class="euiFieldText euiDatePicker testClass1 testClass2 emotion-euiFieldText-controlOnly-euiTestCss"
             type="text"
             value=""
           />

@@ -15,6 +15,7 @@ import {
   makeHighContrastColor,
 } from '../../services';
 import {
+  logicalCSS,
   mathWithUnits,
   euiCanAnimate,
   euiFontSize,
@@ -38,19 +39,30 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlCompressedPadding: euiTheme.size.s,
     controlBorderRadius: euiTheme.border.radius.medium,
     controlCompressedBorderRadius: euiTheme.border.radius.small,
+    iconAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
+    iconCompressedAffordance: mathWithUnits(euiTheme.size.m, (x) => x * 1.5),
   };
 
   const colors = {
+    textColor: euiTheme.colors.text,
     backgroundColor: backgroundColor,
-    backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.1),
+    backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
-    borderColor: transparentize(euiTheme.border.color, 0.9),
-    borderDisabledColor: transparentize(euiTheme.border.color, 0.9),
+    borderColor: transparentize(
+      colorMode === 'DARK'
+        ? euiTheme.colors.ghost
+        : darken(euiTheme.border.color, 4),
+      0.1
+    ),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
+    controlAutoFillColor:
+      colorMode === 'LIGHT'
+        ? euiTheme.colors.darkestShade
+        : euiTheme.colors.lightShade,
     inputGroupLabelBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
@@ -96,31 +108,74 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiFormControlSize = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    height?: string;
-    fullWidth?: boolean;
-    compressed?: boolean;
-    inGroup?: boolean;
-  } = {}
-) => {
+export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
-  const width = '100%';
+  return {
+    shared: `
+      ${euiFormControlText(euiThemeContext)}
+      ${euiFormControlDefaultShadow(euiThemeContext)}
+    `,
 
-  let maxWidth = form.maxWidth;
-  if (options.fullWidth) maxWidth = '100%';
+    // Sizes
+    uncompressed: `
+      ${logicalCSS('height', form.controlHeight)}
+      ${logicalCSS('padding-vertical', form.controlPadding)}
+      ${logicalCSS(
+        'padding-left',
+        `calc(${form.controlPadding} + (${form.iconAffordance} * var(--euiFormControlLeftIconsCount, 0)))`
+      )}
+      ${logicalCSS(
+        'padding-right',
+        `calc(${form.controlPadding} + (${form.iconAffordance} * var(--euiFormControlRightIconsCount, 0)))`
+      )}
+      border-radius: ${form.controlBorderRadius};
+    `,
+    compressed: `
+      ${logicalCSS('height', form.controlCompressedHeight)}
+      ${logicalCSS('padding-vertical', form.controlCompressedPadding)}
+      ${logicalCSS(
+        'padding-left',
+        `calc(${form.controlCompressedPadding} + (${form.iconCompressedAffordance} * var(--euiFormControlLeftIconsCount, 0)))`
+      )}
+      ${logicalCSS(
+        'padding-right',
+        `calc(${form.controlCompressedPadding} + (${form.iconCompressedAffordance} * var(--euiFormControlRightIconsCount, 0)))`
+      )}
+      border-radius: ${form.controlCompressedBorderRadius};
+    `,
 
-  let height = options.height || form.controlHeight;
-  if (options.compressed) height = form.controlCompressedHeight;
-  if (options.inGroup) height = '100%';
+    // In group
+    inGroup: `
+      ${logicalCSS('height', '100%')}
+      box-shadow: none;
+      border-radius: 0;
+    `,
 
-  return `
-    max-inline-size: ${maxWidth};
-    inline-size: ${width};
-    block-size: ${height};
-  `;
+    // Widths
+    formWidth: `
+      ${logicalCSS('max-width', form.maxWidth)}
+      ${logicalCSS('width', '100%')}
+    `,
+    fullWidth: `
+      ${logicalCSS('max-width', '100%')}
+      ${logicalCSS('width', '100%')}
+    `,
+
+    // States
+    invalid: euiFormControlInvalidStyles(euiThemeContext),
+    focus: euiFormControlFocusStyles(euiThemeContext),
+    disabled: euiFormControlDisabledStyles(euiThemeContext),
+    readOnly: euiFormControlReadOnlyStyles(euiThemeContext),
+    autoFill: `
+      &:-webkit-autofill {
+        -webkit-text-fill-color: ${form.controlAutoFillColor};
+
+        ~ .euiFormControlLayoutIcons {
+          color: ${form.controlAutoFillColor};
+        }
+      }`,
+  };
 };
 
 export const euiCustomControl = (
@@ -165,14 +220,17 @@ export const euiCustomControl = (
 export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { fontSize } = euiFontSize(euiThemeContext, 's');
-  const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
+  const form = euiFormVariables(euiThemeContext);
 
   return `
     font-family: ${euiTheme.font.family};
     font-size: ${fontSize};
-    color: ${euiTheme.colors.text};
+    color: ${form.textColor};
 
-    ${euiPlaceholderPerBrowser(`color: ${controlPlaceholderText}`)}
+    ${euiPlaceholderPerBrowser(`
+      color: ${form.controlPlaceholderText};
+      opacity: 1;
+    `)}
   `;
 };
 
@@ -181,14 +239,16 @@ export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
   return `
-    box-shadow: inset 0 0 0 1px ${form.borderColor};
+    /* We use inset box-shadow instead of border to skip extra hight calculations */
+    border: none;
+    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
     background-color: ${form.backgroundColor};
 
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
-      var(--euiFormStateColor),
-      var(--euiFormStateColor) ${euiTheme.border.width.thick},
+      var(--euiFormControlStateColor),
+      var(--euiFormControlStateColor) ${euiTheme.border.width.thick},
       transparent ${euiTheme.border.width.thick},
       transparent 100%
     );
@@ -207,7 +267,7 @@ export const euiFormControlFocusStyles = ({
   euiTheme,
   colorMode,
 }: UseEuiTheme) => `
-  --euiFormStateColor: ${euiTheme.colors.primary};
+  --euiFormControlStateColor: ${euiTheme.colors.primary};
   background-color: ${
     colorMode === 'DARK'
       ? shade(euiTheme.colors.emptyShade, 0.4)
@@ -217,10 +277,45 @@ export const euiFormControlFocusStyles = ({
   outline: none; /* Remove all outlines and rely on our own bottom border gradient */
 `;
 
+export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
+  --euiFormControlStateColor: ${euiTheme.colors.danger};
+  background-size: 100% 100%;
+`;
+
+export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    color: ${form.controlDisabledColor};
+    /* Required for Safari */
+    -webkit-text-fill-color: ${form.controlDisabledColor};
+    background-color: ${form.backgroundDisabledColor};
+    cursor: not-allowed;
+
+    ${euiPlaceholderPerBrowser(`
+      color: ${form.controlDisabledColor};
+      opacity: 1;
+    `)}
+  `;
+};
+
+export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    cursor: default;
+    color: ${form.textColor};
+    -webkit-text-fill-color: ${form.textColor}; /* Required for Safari */
+
+    background-color: ${form.backgroundReadOnlyColor};
+    --euiFormControlStateColor: transparent;
+  `;
+};
+
 const euiPlaceholderPerBrowser = (content: string) => `
-  &::-webkit-input-placeholder { ${content}; opacity: 1; }
-  &::-moz-placeholder { ${content}; opacity: 1; }
-  &:-ms-input-placeholder { ${content}; opacity: 1; }
-  &:-moz-placeholder { ${content}; opacity: 1; }
-  &::placeholder { ${content}; opacity: 1; }
+  &::-webkit-input-placeholder { ${content} }
+  &::-moz-placeholder { ${content} }
+  &:-ms-input-placeholder { ${content} }
+  &:-moz-placeholder { ${content} }
+  &::placeholder { ${content} }
 `;

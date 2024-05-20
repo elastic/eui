@@ -69,7 +69,7 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
         >
           <input
             aria-label="Search columns"
-            class="euiFieldText euiFieldText--compressed"
+            class="euiFieldText emotion-euiFieldText-compressed"
             data-test-subj="dataGridColumnSelectorSearch"
             placeholder="Search"
             type="text"
@@ -361,7 +361,7 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
         >
           <input
             aria-label="Search columns"
-            class="euiFieldText euiFieldText--compressed"
+            class="euiFieldText emotion-euiFieldText-compressed"
             data-test-subj="dataGridColumnSelectorSearch"
             placeholder="Search"
             type="text"
@@ -653,7 +653,7 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
         >
           <input
             aria-label="Search columns"
-            class="euiFieldText euiFieldText--compressed"
+            class="euiFieldText emotion-euiFieldText-compressed"
             data-test-subj="dataGridColumnSelectorSearch"
             placeholder="Search"
             type="text"

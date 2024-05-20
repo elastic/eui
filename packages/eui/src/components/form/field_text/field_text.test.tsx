@@ -83,7 +83,7 @@ describe('EuiFieldText', () => {
       );
 
       const input = getByRole('textbox');
-      expect(input).toHaveClass('euiFieldText--fullWidth');
+      expect(input.className).toContain('fullWidth');
     });
   });
 });

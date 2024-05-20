@@ -13,7 +13,7 @@ import { EuiProvider } from '../provider';
 
 import {
   euiFormVariables,
-  euiFormControlSize,
+  euiFormControlStyles,
   euiCustomControl,
 } from './form.styles';
 
@@ -28,10 +28,10 @@ describe('euiFormVariables', () => {
       Object {
         "animationTiming": "150ms ease-in",
         "backgroundColor": "#f9fbfd",
-        "backgroundDisabledColor": "#eceff5",
+        "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
-        "borderColor": "rgba(211,218,230,0.9)",
-        "borderDisabledColor": "rgba(211,218,230,0.9)",
+        "borderColor": "rgba(32,38,47,0.1)",
+        "controlAutoFillColor": "#343741",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -53,9 +53,12 @@ describe('euiFormVariables', () => {
         "controlPlaceholderText": "#646a77",
         "customControlBorderColor": "#f5f7fc",
         "customControlDisabledIconColor": "#cacfd8",
+        "iconAffordance": "24px",
+        "iconCompressedAffordance": "18px",
         "inputGroupBorder": "none",
         "inputGroupLabelBackground": "#e9edf3",
         "maxWidth": "400px",
+        "textColor": "#343741",
       }
     `);
   });
@@ -73,105 +76,148 @@ describe('euiFormVariables', () => {
   });
 });
 
-describe('euiFormControlSize', () => {
-  it('outputs the logical properties for height, width, and max-width', () => {
-    const { result } = renderHook(() => euiFormControlSize(useEuiTheme()));
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 40px;"
-    `);
-  });
+describe('euiFormControlStyles', () => {
+  it('outputs an object of control states and modifiers', () => {
+    const { result } = renderHook(() => euiFormControlStyles(useEuiTheme()));
+    expect(result.current).toMatchInlineSnapshot(`
+      Object {
+        "autoFill": "
+            &:-webkit-autofill {
+              -webkit-text-fill-color: #343741;
 
-  it('allows passing in a custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { height: '100px' })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100px;"
-    `);
-  });
+              ~ .euiFormControlLayoutIcons {
+                color: #343741;
+              }
+            }",
+        "compressed": "
+            block-size: 32px;
+            padding-block: 8px;
+            padding-inline-start: calc(8px + (18px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(8px + (18px * var(--euiFormControlRightIconsCount, 0)));
+            border-radius: 4px;
+          ",
+        "disabled": "
+          color: #98A2B3;
+          /* Required for Safari */
+          -webkit-text-fill-color: #98A2B3;
+          background-color: #eef1f7;
+          cursor: not-allowed;
 
-  test('fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 40px;"
-    `);
-  });
+          
+        &::-webkit-input-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &::-moz-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &:-ms-input-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &:-moz-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &::placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
 
-  test('compressed', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { compressed: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
+        ",
+        "focus": "
+        --euiFormControlStateColor: #07C;
+        background-color: #FFF;
+        background-size: 100% 100%;
+        outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+      ",
+        "formWidth": "
+            max-inline-size: 400px;
+            inline-size: 100%;
+          ",
+        "fullWidth": "
+            max-inline-size: 100%;
+            inline-size: 100%;
+          ",
+        "inGroup": "
+            block-size: 100%;
+            box-shadow: none;
+            border-radius: 0;
+          ",
+        "invalid": "
+        --euiFormControlStateColor: #BD271E;
+        background-size: 100% 100%;
+      ",
+        "readOnly": "
+          cursor: default;
+          color: #343741;
+          -webkit-text-fill-color: #343741; /* Required for Safari */
 
-  test('compressed & fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { compressed: true, fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
+          background-color: #FFF;
+          --euiFormControlStateColor: transparent;
+        ",
+        "shared": "
+            
+          font-family: 'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+          font-size: 1.0000rem;
+          color: #343741;
 
-  test('inGroup', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { inGroup: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100%;"
-    `);
-  });
+          
+        &::-webkit-input-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &::-moz-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &:-ms-input-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &:-moz-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &::placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
 
-  test('inGroup & fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { inGroup: true, fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 100%;"
-    `);
-  });
+        
+            
+          /* We use inset box-shadow instead of border to skip extra hight calculations */
+          border: none;
+          box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
+          background-color: #f9fbfd;
 
-  test('compressed overrides custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { height: '500px', compressed: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
+          background-repeat: no-repeat;
+          background-size: 0% 100%;
+          background-image: linear-gradient(to top,
+            var(--euiFormControlStateColor),
+            var(--euiFormControlStateColor) 2px,
+            transparent 2px,
+            transparent 100%
+          );
 
-  test('inGroup overrides compressed and custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), {
-        height: '500px',
-        compressed: true,
-        inGroup: true,
-      })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100%;"
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition:
+              box-shadow 150ms ease-in,
+              background-image 150ms ease-in,
+              background-size 150ms ease-in,
+              background-color 150ms ease-in;
+          }
+        
+          ",
+        "uncompressed": "
+            block-size: 40px;
+            padding-block: 12px;
+            padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
+            border-radius: 6px;
+          ",
+      }
     `);
   });
 });
