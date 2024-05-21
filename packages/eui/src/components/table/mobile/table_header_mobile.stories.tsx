@@ -15,7 +15,7 @@ import { EuiTableHeaderMobile } from './table_header_mobile';
 type EuiTableHeaderMobileProps = typeof EuiTableHeaderMobile;
 
 const meta: Meta<EuiTableHeaderMobileProps> = {
-  title: 'Tabular Content/EuiTable/EuiTableHeaderMobile',
+  title: 'Tabular Content/EuiTable/Mobile subcomponents/EuiTableHeaderMobile',
   component: EuiTableHeaderMobile,
   decorators: [
     (Story, { args }) => (

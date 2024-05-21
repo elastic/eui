@@ -18,7 +18,7 @@ import {
 } from './table_sort_mobile';
 
 const meta: Meta<EuiTableSortMobileProps> = {
-  title: 'Tabular Content/EuiTable/EuiTableSortMobile/EuiTableSortMobile',
+  title: 'Tabular Content/EuiTable/Mobile subcomponents/EuiTableSortMobile',
   component: EuiTableSortMobile,
   decorators: [
     (Story, { args }) => (
