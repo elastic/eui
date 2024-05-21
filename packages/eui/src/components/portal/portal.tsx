@@ -52,7 +52,9 @@ export interface EuiPortalProps {
 export const EuiPortal: FunctionComponent<EuiPortalProps> = (props) => {
   const propsWithDefaults = usePropsWithComponentDefaults('EuiPortal', props);
   const currentWindow = useEuiWindow();
-  return <EuiPortalClass currentWindow={currentWindow} {...propsWithDefaults} />;
+  return (
+    <EuiPortalClass currentWindow={currentWindow} {...propsWithDefaults} />
+  );
 };
 
 interface EuiPortalState {
