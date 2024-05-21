@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   disableStorybookControls,
@@ -62,3 +63,24 @@ moveStorybookControlsToCategory(IconShape, [
 ]);
 // Hide props that remove or won't affect the icon or its positioning
 hideStorybookControls(IconShape, ['controlOnly', 'inputRef']);
+
+export const AutoFill: Story = {
+  parameters: {
+    controls: { include: ['name', 'isInvalid'] },
+    loki: { skip: true },
+  },
+  decorators: [
+    (Story) => (
+      <form action="#">
+        In Chrome: Type any text, press Enter, then go back and select the
+        autofill suggestion. Test light+dark mode as well as invalid state
+        <br />
+        <br />
+        <Story />
+      </form>
+    ),
+  ],
+  args: {
+    name: 'autofill-test',
+  },
+};
