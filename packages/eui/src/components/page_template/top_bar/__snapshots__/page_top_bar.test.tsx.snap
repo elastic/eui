@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_EuiPageTopBar renders 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiPageTopBar-bordered-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <section
+    class="emotion-euiPageSection-m-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-m-euiPageTopBar__content-right-m"
+    />
+  </section>
+</div>
+`;
