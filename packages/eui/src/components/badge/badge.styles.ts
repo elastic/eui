@@ -22,6 +22,12 @@ import { euiBadgeColors } from './color_utils';
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const badgeColors = euiBadgeColors(euiThemeContext);
+  const setBadgeColorVars = (
+    colors: ReturnType<typeof euiBadgeColors>['primary']
+  ) => `
+    --euiBadgeTextColor: ${colors.color};
+    --euiBadgeBackgroundColor: ${colors.backgroundColor};
+  `;
 
   return {
     euiBadge: css`
@@ -39,7 +45,6 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       white-space: nowrap;
       text-decoration: none;
       cursor: default;
-      background-color: transparent;
       border: ${euiTheme.border.width.thin} solid transparent;
       border-radius: ${mathWithUnits(
         euiTheme.border.radius.medium,
@@ -48,6 +53,25 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       /* The badge will only ever be as wide as its content
          So, make the text left aligned to ensure all badges line up the same */
       ${logicalTextAlignCSS('left')}
+
+      /* Colors - inherit from CSS variables, which can be set via inline style */
+      color: var(--euiBadgeTextColor, ${badgeColors.default.color});
+      background-color: var(
+        --euiBadgeBackgroundColor,
+        ${badgeColors.default.backgroundColor}
+      );
+
+      /* Ensure that selected text is always visible by inverting badge and text colors */
+      *::selection {
+        color: var(
+          --euiBadgeBackgroundColor,
+          ${badgeColors.default.backgroundColor}
+        );
+        background-color: var(
+          --euiBadgeTextColor,
+          ${badgeColors.default.color}
+        );
+      }
 
       &:focus-within {
         ${euiFocusRing(euiThemeContext)}
@@ -75,25 +99,23 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Colors
-    default: css(badgeColors.default),
+    default: css(setBadgeColorVars(badgeColors.default)),
     hollow: css`
-      color: ${badgeColors.hollow.color};
-      background-color: ${badgeColors.hollow.backgroundColor};
+      ${setBadgeColorVars(badgeColors.hollow)}
       border-color: ${badgeColors.hollow.borderColor};
     `,
-    primary: css(badgeColors.primary),
-    accent: css(badgeColors.accent),
-    warning: css(badgeColors.warning),
-    danger: css(badgeColors.danger),
-    success: css(badgeColors.success),
+    primary: css(setBadgeColorVars(badgeColors.primary)),
+    accent: css(setBadgeColorVars(badgeColors.accent)),
+    warning: css(setBadgeColorVars(badgeColors.warning)),
+    danger: css(setBadgeColorVars(badgeColors.danger)),
+    success: css(setBadgeColorVars(badgeColors.success)),
     disabled: css`
-      /* stylelint-disable declaration-no-important */
+      ${setBadgeColorVars(badgeColors.disabled)}
 
-      /* Using !important to override inline styles */
-      color: ${badgeColors.disabled.color} !important;
-      background-color: ${badgeColors.disabled.backgroundColor} !important;
-
-      /* stylelint-enable declaration-no-important */
+      /* Override selection color, since disabled badges have rgba backgrounds with opacity */
+      *::selection {
+        color: ${euiTheme.colors.emptyShade};
+      }
     `,
 
     // Content wrapper

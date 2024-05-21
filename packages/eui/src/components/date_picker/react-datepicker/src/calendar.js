@@ -32,6 +32,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import CalendarContainer from "./calendar_container";
+
+import { EuiFocusTrap } from '../../../focus_trap';
+import { EuiScreenReaderOnly } from '../../../accessibility/screen_reader_only';
 import {
   now,
   setMonth,
@@ -59,8 +62,6 @@ import {
   getEffectiveMinDate,
   getEffectiveMaxDate
 } from "./date_utils";
-
-import { EuiFocusTrap } from '../../../focus_trap';
 
 const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
 
@@ -352,15 +353,22 @@ export default class Calendar extends React.Component {
         </div>
       );
     }
+
     return dayNames.concat(
       [0, 1, 2, 3, 4, 5, 6].map(offset => {
         const day = addDays(cloneDate(startOfWeek), offset);
         const localeData = getLocaleData(day);
         const weekDayName = this.formatWeekday(localeData, day);
+        const weekDayNameLong = localeData.weekdays(day);
 
         return (
           <div key={offset} className="react-datepicker__day-name">
-            {weekDayName}
+            {/* we're using sr-only and aria-hidden here instead of aria-label as aria-label is
+            not generally applied/read by screen readers for non-semantic element like div */}
+            <span aria-hidden="true">{weekDayName}</span>
+              <EuiScreenReaderOnly>
+                <span>{weekDayNameLong}</span>
+              </EuiScreenReaderOnly>
           </div>
         );
       })

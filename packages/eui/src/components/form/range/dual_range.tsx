@@ -458,7 +458,7 @@ export class EuiDualRangeClass extends Component<
         // Non-overridable props
         side="min"
         min={min}
-        max={Number(this.upperValue)}
+        max={this.upperValue === '' ? max : Number(this.upperValue)}
         step={step}
         compressed={compressed}
         autoSize={!showInputOnly}
@@ -513,7 +513,7 @@ export class EuiDualRangeClass extends Component<
         {...maxInputProps}
         // Non-overridable props
         side="max"
-        min={Number(this.lowerValue)}
+        min={this.lowerValue === '' ? min : Number(this.lowerValue)}
         max={max}
         step={step}
         compressed={compressed}
