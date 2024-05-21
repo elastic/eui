@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiSpacer } from '../../spacer';
+import { EuiButton, EuiButtonEmpty } from '../../button';
+import { EuiFlyout } from '../../flyout';
 import { EuiHeader, EuiHeaderSection } from '../../header';
 import { EuiPageTemplate } from '../../page_template';
 
@@ -99,54 +101,76 @@ const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
     ],
   },
   decorators: [
-    (Story) => (
-      <>
-        <EuiHeader position="fixed">
-          <EuiHeaderSection>
-            <EuiCollapsibleNavBeta>
-              <EuiCollapsibleNavBeta.Body>
-                <Story />
-              </EuiCollapsibleNavBeta.Body>
-              <EuiCollapsibleNavBeta.Footer>
-                <EuiCollapsibleNavBeta.Item
-                  title="Recents"
-                  icon="clock"
-                  href="#"
-                />
-                <EuiCollapsibleNavBeta.Item
-                  title="Get started"
-                  icon="launch"
-                  href="#"
-                />
-                <EuiCollapsibleNavBeta.Item
-                  title="Developer tools"
-                  icon="editorCodeBlock"
-                  href="#"
-                />
-                <EuiCollapsibleNavBeta.Item
-                  title="Management"
-                  icon="gear"
-                  items={[
-                    { title: 'Users and roles', href: '#' },
-                    { title: 'Performance', href: '#' },
-                    {
-                      title: 'Billing and subscription',
-                      href: '#',
-                      linkProps: { target: '_blank' },
-                    },
-                  ]}
-                />
-              </EuiCollapsibleNavBeta.Footer>
-            </EuiCollapsibleNavBeta>
-          </EuiHeaderSection>
-        </EuiHeader>
-        <EuiPageTemplate>
-          <EuiPageTemplate.Section>
-            EuiCollapsibleNavBeta.KibanaSolution
-          </EuiPageTemplate.Section>
-        </EuiPageTemplate>
-      </>
-    ),
+    (Story) => {
+      const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+      const openFlyout = () => setIsFlyoutOpen(true);
+      const closeFlyout = () => setIsFlyoutOpen(false);
+      return (
+        <>
+          <EuiHeader position="fixed">
+            <EuiHeaderSection>
+              <EuiCollapsibleNavBeta>
+                <EuiCollapsibleNavBeta.Body>
+                  <Story />
+                </EuiCollapsibleNavBeta.Body>
+                <EuiCollapsibleNavBeta.Footer>
+                  <EuiCollapsibleNavBeta.Item
+                    title="Recents"
+                    icon="clock"
+                    href="#"
+                  />
+                  <EuiCollapsibleNavBeta.Item
+                    title="Get started"
+                    icon="launch"
+                    href="#"
+                  />
+                  <EuiCollapsibleNavBeta.Item
+                    title="Developer tools"
+                    icon="editorCodeBlock"
+                    href="#"
+                  />
+                  <EuiCollapsibleNavBeta.Item
+                    title="Management"
+                    icon="gear"
+                    items={[
+                      { title: 'Users and roles', href: '#' },
+                      { title: 'Performance', href: '#' },
+                      {
+                        title: 'Billing and subscription',
+                        href: '#',
+                        linkProps: { target: '_blank' },
+                      },
+                    ]}
+                  />
+                </EuiCollapsibleNavBeta.Footer>
+              </EuiCollapsibleNavBeta>
+            </EuiHeaderSection>
+          </EuiHeader>
+          <EuiPageTemplate>
+            <EuiPageTemplate.TopBar paddingSize="m">
+              <EuiButtonEmpty iconType="indexOpen" onClick={openFlyout}>
+                Add integrations
+              </EuiButtonEmpty>
+              <EuiButtonEmpty iconType="gear" onClick={openFlyout}>
+                Settings
+              </EuiButtonEmpty>
+            </EuiPageTemplate.TopBar>
+            <EuiPageTemplate.Header
+              iconType="logoElastic"
+              pageTitle="Example Kibana solution"
+              rightSideItems={[
+                <EuiButton onClick={openFlyout}>Button</EuiButton>,
+              ]}
+              tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
+            />
+            <EuiPageTemplate.Section
+              style={{ blockSize: '100vh' }} // Demos the sticky top bar
+            />
+          </EuiPageTemplate>
+          {isFlyoutOpen && <EuiFlyout onClose={closeFlyout} />}
+        </>
+      );
+    },
   ],
 };
 export default meta;
