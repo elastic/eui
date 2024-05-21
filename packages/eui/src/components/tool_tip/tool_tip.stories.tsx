@@ -55,8 +55,20 @@ type Story = StoryObj<EuiToolTipProps>;
 export const Playground: Story = {
   args: {
     // using autoFocus here as small trick to ensure showing the tooltip on load (e.g. for VRT)
-    // TODO: exchange for loki play() interactions once #7735 is merged
+    // TODO: uncomment loki play() interactions and remove autoFocus once #7747 is merged
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
   },
+  // play: lokiPlayDecorator(async (context) => {
+  //   const { bodyElement, step } = context;
+
+  //   const canvas = within(bodyElement);
+
+  //   await step('show tooltip on click', async () => {
+  //     await userEvent.click(canvas.getByRole('button'));
+  //     await waitFor(() => {
+  //       expect(canvas.getByRole('tooltip')).toBeVisible();
+  //     });
+  //   });
+  // }),
 };
