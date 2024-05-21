@@ -24,6 +24,10 @@ import {
   _EuiPageBottomBarProps,
 } from './bottom_bar/page_bottom_bar';
 import {
+  _EuiPageTopBar as EuiPageTopBar,
+  _EuiPageTopBarProps,
+} from './top_bar/page_top_bar';
+import {
   _EuiPageEmptyPrompt as EuiPageEmptyPrompt,
   _EuiPageEmptyPromptProps,
 } from './empty_prompt/page_empty_prompt';
@@ -46,6 +50,7 @@ export const TemplateContext = createContext({
   section: {},
   header: {},
   emptyPrompt: {},
+  topBar: {},
   bottomBar: {},
 });
 
@@ -111,8 +116,9 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   });
 
   // Sections include page header
-  const [sidebar, sections] = useMemo(() => {
+  const [sidebar, topBar, sections] = useMemo(() => {
     const sidebar: React.ReactElement[] = [];
+    const topBar: React.ReactElement[] = [];
     const sections: React.ReactElement[] = [];
 
     React.Children.toArray(children).forEach((child) => {
@@ -123,12 +129,17 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === _EuiPageSidebar
       ) {
         sidebar.push(child);
+      } else if (
+        child.type === _EuiPageTopBar ||
+        child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === _EuiPageTopBar
+      ) {
+        topBar.push(child);
       } else {
         sections.push(child);
       }
     });
 
-    return [sidebar, sections];
+    return [sidebar, topBar, sections];
   }, [children]);
 
   const classes = classNames('euiPageTemplate', className);
@@ -168,6 +179,12 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         panelled: innerPanelled ? true : panelled,
         grow: true,
       },
+      topBar: {
+        panelled: innerPanelled,
+        contentBorder: contentBorder ?? true,
+        restrictWidth,
+        paddingSize,
+      },
       bottomBar: {
         restrictWidth,
         paddingSize,
@@ -182,6 +199,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     paddingSize,
     panelled,
     innerPanelled,
+    contentBorder,
     headerBottomBorder,
   ]);
 
@@ -203,6 +221,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           panelled={innerPanelled}
           responsive={responsive}
         >
+          {topBar}
           {sections}
         </EuiPageInner>
       </EuiPageOuter>
@@ -244,10 +263,17 @@ const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
   return <EuiPageBottomBar {...bottomBar} {...props} />;
 };
 
+const _EuiPageTopBar: FunctionComponent<_EuiPageTopBarProps> = (props) => {
+  const { topBar } = useContext(TemplateContext);
+
+  return <EuiPageTopBar {...topBar} {...props} />;
+};
+
 export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
   Sidebar: _EuiPageSidebar,
   Header: _EuiPageHeader,
   Section: _EuiPageSection,
+  TopBar: _EuiPageTopBar,
   BottomBar: _EuiPageBottomBar,
   EmptyPrompt: _EuiPageEmptyPrompt,
 });

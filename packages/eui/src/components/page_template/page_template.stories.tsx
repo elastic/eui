@@ -14,7 +14,7 @@ import {
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
 import { EuiSkeletonText } from '../skeleton';
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonEmpty } from '../button';
 import { EuiText } from '../text';
 
 import { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
@@ -51,6 +51,11 @@ const sidebarContent = (
   <EuiPageTemplate.Sidebar>
     <EuiSkeletonText lines={10} contentAriaLabel="Page sidebar example text" />
   </EuiPageTemplate.Sidebar>
+);
+const topBarContent = (
+  <EuiPageTemplate.TopBar>
+    <EuiButtonEmpty iconType="gear">Settings</EuiButtonEmpty>
+  </EuiPageTemplate.TopBar>
 );
 const bottomBarContent = (
   <EuiPageTemplate.BottomBar>
@@ -126,24 +131,38 @@ export const Playground: Story = {
         'With everything',
         'Without sidebar',
         'Without header',
-        'Without bottom bar',
+        'Without top/bottom bars',
         'With empty prompt content',
       ],
       mapping: {
         'With everything': [
           sidebarContent,
+          topBarContent,
           headerContent,
           sectionContent,
           bottomBarContent,
         ],
-        'Without sidebar': [headerContent, sectionContent, bottomBarContent],
-        'Without header': [sidebarContent, sectionContent, bottomBarContent],
-        'Without bottom bar': [sidebarContent, headerContent, sectionContent],
+        'Without sidebar': [
+          topBarContent,
+          headerContent,
+          sectionContent,
+          bottomBarContent,
+        ],
+        'Without header': [
+          sidebarContent,
+          topBarContent,
+          sectionContent,
+          bottomBarContent,
+        ],
+        'Without top/bottom bars': [
+          sidebarContent,
+          headerContent,
+          sectionContent,
+        ],
         'With empty prompt content': [
           sidebarContent,
           headerContent,
           emptyPromptContent,
-          bottomBarContent,
         ],
       },
     },

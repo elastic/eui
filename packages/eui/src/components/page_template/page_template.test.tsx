@@ -129,6 +129,18 @@ describe('EuiPageTemplate', () => {
       expect(getByRole('main').childElementCount).toEqual(0);
     });
 
+    it('detects top bars and places them above other content', () => {
+      const { container, getByRole } = render(
+        <EuiPageTemplate {...requiredProps}>
+          <EuiPageTemplate.Header>B</EuiPageTemplate.Header>
+          <EuiPageTemplate.Section>C</EuiPageTemplate.Section>
+          <EuiPageTemplate.TopBar>A</EuiPageTemplate.TopBar>
+        </EuiPageTemplate>
+      );
+      expect(container.firstChild).toMatchSnapshot();
+      expect(getByRole('main')).toHaveTextContent('ABC');
+    });
+
     it('renders all other types within the main EuiPageInner', () => {
       const { container, getByRole } = render(
         <EuiPageTemplate {...requiredProps}>

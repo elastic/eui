@@ -82,6 +82,58 @@ exports[`EuiPageTemplate children detects sidebars and does not place them in th
 </div>
 `;
 
+exports[`EuiPageTemplate children detects top bars and places them above other content 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
+  data-test-subj="test subject string"
+  style="min-block-size: max(460px, 100vh); padding-block-start: var(--euiFixedHeadersOffset, 0);"
+>
+  <main
+    class="emotion-euiPageInner"
+    id="EuiPageTemplateInner_generated-id"
+  >
+    <div
+      class="emotion-euiPageTopBar-bordered"
+    >
+      <section
+        class="emotion-euiPageSection-l-top-transparent"
+      >
+        <div
+          class="emotion-euiPageSection__content-l-restrictWidth-euiPageTopBar__content-right-l"
+          style="max-width: 1200px;"
+        >
+          A
+        </div>
+      </section>
+    </div>
+    <header
+      class="euiPageHeader emotion-euiPageHeader-l-border"
+    >
+      <div
+        class="emotion-euiPageHeaderContent-l"
+      >
+        <div
+          class="css-ljpjbj-flex-center"
+        >
+          B
+        </div>
+      </div>
+    </header>
+    <section
+      class="emotion-euiPageSection-grow-l-top-plain"
+    >
+      <div
+        class="emotion-euiPageSection__content-l-restrictWidth"
+        style="max-width: 1200px;"
+      >
+        C
+      </div>
+    </section>
+  </main>
+</div>
+`;
+
 exports[`EuiPageTemplate children renders all other types within the main EuiPageInner 1`] = `
 <div
   aria-label="aria-label"
