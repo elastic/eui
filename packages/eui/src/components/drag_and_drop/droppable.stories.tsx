@@ -246,7 +246,11 @@ const StatefulCloneDraggables = ({
                     isRemovable: isItemRemovable,
                   },
                   <EuiPanel>
-                    <EuiFlexGroup gutterSize="none" alignItems="center">
+                    <EuiFlexGroup
+                      gutterSize="none"
+                      alignItems="center"
+                      responsive={false}
+                    >
                       <EuiFlexItem>Draggable item {idx + 1}</EuiFlexItem>
                       <EuiFlexItem grow={false}>
                         {isItemRemovable ? (
