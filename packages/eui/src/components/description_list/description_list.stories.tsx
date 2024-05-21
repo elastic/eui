@@ -15,6 +15,7 @@ const listItems = Array.from({ length: 3 }, () => ({
   title: faker.lorem.sentence(),
   description: faker.lorem.sentences(2),
 }));
+import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 import { EuiDescriptionListProps } from './description_list_types';
 import { EuiDescriptionList } from './description_list';
 
@@ -39,13 +40,19 @@ export const Playground: Story = {
     listItems,
   },
 };
+moveStorybookControlsToCategory(
+  Playground,
+  ['columnGutterSize', 'columnWidths'],
+  'Column layout'
+);
+moveStorybookControlsToCategory(Playground, ['rowGutterSize'], 'Row layout');
 
 export const Column: Story = {
   parameters: {
     controls: {
       include: [
         'align',
-        'columngutterSize',
+        'columnGutterSize',
         'columnWidths',
         'compressed',
         'descriptionProps',
