@@ -327,20 +327,19 @@ export class EuiSelectableList<T> extends Component<
       }
     }
 
+    const optionArray = visibleOptions || options;
+
     if (
       prevProps.visibleOptions !== visibleOptions ||
       prevProps.options !== options
     ) {
-      const optionArray = visibleOptions || options;
       this.setState({
         optionArray,
         itemData: { ...optionArray },
         ...this.calculateAriaSetAttrs(optionArray),
       });
-    }
-
-    // ensure that ListRow updates based on item props
-    if (isVirtualized) {
+    } else if (isVirtualized) {
+      // ensure that ListRow updates based on item props
       if (
         prevProps.allowExclusions !== allowExclusions ||
         prevProps.showIcons !== showIcons ||
@@ -349,7 +348,9 @@ export class EuiSelectableList<T> extends Component<
         prevProps.onFocusBadge !== onFocusBadge ||
         prevProps.searchable !== searchable
       ) {
-        this.forceVirtualizedListRowRerender();
+        this.setState({
+          itemData: { ...optionArray },
+        });
       }
     }
   }
