@@ -9,7 +9,7 @@
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  hideStorybookControls,
+  disableStorybookControls,
   hideAllStorybookControls,
 } from '../../../.storybook/utils';
 
@@ -314,7 +314,10 @@ export const Playground: Story = {
 };
 
 export const CollapsedStateInLocalStorage: Story = {
-  render: () => {
+  parameters: {
+    controls: { include: ['initialIsCollapsed', 'onCollapseToggle'] },
+  },
+  render: (_args) => {
     const key = 'EuiCollapsibleNav__isCollapsed';
     const initialIsCollapsed = window.localStorage.getItem(key) === 'true';
     const onCollapseToggle = (isCollapsed: boolean) =>
@@ -340,13 +343,12 @@ export const CollapsedStateInLocalStorage: Story = {
     );
   },
 };
-hideStorybookControls(CollapsedStateInLocalStorage, [
-  'aria-label',
-  'side',
-  'width',
-]);
+disableStorybookControls(CollapsedStateInLocalStorage, ['initialIsCollapsed']);
 
 export const GlobalCSSVariable: Story = {
+  parameters: {
+    controls: { include: ['side', 'width'] },
+  },
   render: ({ side, ...args }) => (
     <>
       <EuiHeader position="fixed">
@@ -364,11 +366,6 @@ export const GlobalCSSVariable: Story = {
     </>
   ),
 };
-hideStorybookControls(GlobalCSSVariable, [
-  'aria-label',
-  'initialIsCollapsed',
-  'onCollapseToggle',
-]);
 
 const MockConsumerFlyout: FunctionComponent = () => {
   const [flyoutIsOpen, setFlyoutOpen] = useState(false);

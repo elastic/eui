@@ -21,7 +21,7 @@ import { EuiResizablePanel, EuiResizablePanelProps } from './resizable_panel';
 faker.seed(42);
 
 const meta: Meta<EuiResizablePanelProps> = {
-  title: 'Layout/EuiResizableContainer/EuiResizablePanel',
+  title: 'Layout/EuiResizableContainer/Subcomponents/EuiResizablePanel',
   component: EuiResizablePanel,
   argTypes: {
     mode: {

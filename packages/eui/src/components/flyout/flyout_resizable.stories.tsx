@@ -8,7 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../.storybook/utils';
+import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 
 import { EuiText } from '../text';
 import { EuiFlyoutBody } from './flyout_body';
@@ -44,21 +44,28 @@ const meta: Meta<EuiFlyoutResizableProps> = {
 };
 // Stateful flyouts are already tested via default EuiFlyout stories, hide non-relevant props
 // so that focus remains on the props of this component that affect resizing
-hideStorybookControls(meta, [
-  'onClose',
-  'outsideClickCloses',
-  'closeButtonPosition',
-  'hideCloseButton',
-  'closeButtonProps',
-  'focusTrapProps',
-  'includeFixedHeadersInFocusTrap',
-  'ownFocus',
-  'maskProps',
-  'pushAnimation',
-  'pushMinBreakpoint',
-  'paddingSize',
-  'style',
-]);
+moveStorybookControlsToCategory(
+  meta,
+  [
+    'aria-label',
+    'as',
+    'children',
+    'onClose',
+    'outsideClickCloses',
+    'closeButtonPosition',
+    'hideCloseButton',
+    'closeButtonProps',
+    'focusTrapProps',
+    'includeFixedHeadersInFocusTrap',
+    'ownFocus',
+    'maskProps',
+    'pushAnimation',
+    'pushMinBreakpoint',
+    'paddingSize',
+    'style',
+  ],
+  'Other EuiFlyout props'
+);
 
 export default meta;
 type Story = StoryObj<EuiFlyoutResizableProps>;

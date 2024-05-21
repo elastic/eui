@@ -17,7 +17,7 @@ import {
 } from './resizable_button';
 
 const meta: Meta<EuiResizableButtonProps> = {
-  title: 'Layout/EuiResizableContainer/EuiResizableButton',
+  title: 'Layout/EuiResizableContainer/Subcomponents/EuiResizableButton',
   component: EuiResizableButton,
   args: {
     // Component defaults

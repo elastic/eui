@@ -9,7 +9,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
-  hideStorybookControls,
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
@@ -145,30 +144,32 @@ export const Playground: Story = {
 };
 
 export const MobileSideNav: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+    controls: {
+      include: [
+        'isOpenOnMobile',
+        'mobileBreakpoints',
+        'mobileTitle',
+        'toggleOpenOnMobile',
+        'headingProps',
+      ],
+    },
+  },
   args: {
     isOpenOnMobile: true,
     items: sharedSideNavItems,
     mobileTitle: 'Toggle isOpenOnMobile in the controls panel',
     headingProps: { size: 'xxs' },
   },
-
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
-  },
 };
-// This story demos the side nav on smaller screens; removing other props to streamline controls
-hideStorybookControls(MobileSideNav, [
-  'aria-label',
-  'children',
-  'heading',
-  'items',
-  'renderItem',
-  'truncate',
-]);
 
 export const RenderItem: Story = {
+  parameters: {
+    controls: { include: ['items', 'renderItem'] },
+  },
   args: {
     renderItem: ({ children, ...rest }) => (
       <EuiText color="accent">
@@ -204,14 +205,3 @@ export const RenderItem: Story = {
     ],
   },
 };
-// This story demos the renderItem prop; removing other props to streamline controls
-hideStorybookControls(RenderItem, [
-  'aria-label',
-  'heading',
-  'headingProps',
-  'toggleOpenOnMobile',
-  'isOpenOnMobile',
-  'mobileBreakpoints',
-  'mobileTitle',
-  'truncate',
-]);
