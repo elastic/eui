@@ -19,7 +19,7 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 
-import { EuiNestedThemeContext } from '../../services';
+import { EuiNestedThemeContext, useEuiWindow } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 const INSERT_POSITIONS = ['after', 'before'] as const;
@@ -43,11 +43,16 @@ export interface EuiPortalProps {
    * Optional ref callback
    */
   portalRef?: (ref: HTMLDivElement | null) => void;
+  /**
+   * Window object
+   */
+  currentWindow?: Window;
 }
 
 export const EuiPortal: FunctionComponent<EuiPortalProps> = (props) => {
   const propsWithDefaults = usePropsWithComponentDefaults('EuiPortal', props);
-  return <EuiPortalClass {...propsWithDefaults} />;
+  const currentWindow = useEuiWindow();
+  return <EuiPortalClass currentWindow={currentWindow} {...propsWithDefaults} />;
 };
 
 interface EuiPortalState {
@@ -67,14 +72,14 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
   }
 
   componentDidMount() {
-    const { insert } = this.props;
+    const { insert, currentWindow } = this.props;
 
     const portalNode = document.createElement('div');
     portalNode.dataset.euiportal = 'true';
 
     if (insert == null) {
       // no insertion defined, append to body
-      document.body.appendChild(portalNode);
+      (currentWindow ?? window).document.body.appendChild(portalNode);
     } else {
       // inserting before or after an element
       const { sibling, position } = insert;
