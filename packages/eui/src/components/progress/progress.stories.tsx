@@ -41,6 +41,6 @@ export const Determinate: Story = {
 
 export const Indeterminate: Story = {
   parameters: {
-    controls: { include: ['color', 'position', 'size', 'aria-label']}
+    controls: { include: ['color', 'position', 'size', 'aria-label'] },
   },
 };
