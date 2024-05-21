@@ -4903,12 +4903,12 @@
       "start": {
         "line": 593,
         "column": 6,
-        "index": 17613
+        "index": 17675
       },
       "end": {
         "line": 596,
         "column": 8,
-        "index": 17848
+        "index": 17910
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
