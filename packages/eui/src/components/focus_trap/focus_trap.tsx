@@ -142,7 +142,7 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   setInitialFocus = (initialFocus?: FocusTarget) => {
     if (!initialFocus) return;
 
-    const currentDocument = this.context.window.document;
+    const currentDocument = (this.context.window ?? window).document;
     const node = findElementBySelectorOrRef(initialFocus, currentDocument);
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-on' API
@@ -157,13 +157,13 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   };
 
   addMouseupListener = () => {
-    const currentDocument = this.context.window.document;
+    const currentDocument = (this.context.window ?? window).document;
     currentDocument.addEventListener('mouseup', this.onMouseupOutside);
     currentDocument.addEventListener('touchend', this.onMouseupOutside);
   };
 
   removeMouseupListener = () => {
-    const currentDocument = this.context.window.document;
+    const currentDocument = (this.context.window ?? window).document;
     currentDocument.removeEventListener('mouseup', this.onMouseupOutside);
     currentDocument.removeEventListener('touchend', this.onMouseupOutside);
   };

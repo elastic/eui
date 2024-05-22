@@ -11,5 +11,5 @@ import { EuiWindowContext } from './context';
 
 export function useEuiWindow() {
   const context = useContext(EuiWindowContext);
-  return context.window;
+  return context.window ?? window;
 }

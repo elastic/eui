@@ -39,11 +39,11 @@ export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
   }
 
   addEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
-    this.context.window.addEventListener(event, handler);
+    (this.context.window ?? window).addEventListener(event, handler);
   }
 
   removeEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
-    this.context.window.removeEventListener(event, handler);
+    (this.context.window ?? window).removeEventListener(event, handler);
   }
 
   render() {

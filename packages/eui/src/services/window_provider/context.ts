@@ -8,10 +8,12 @@
 
 import { createContext } from 'react';
 
+// If 'window' field is undefined, fallback to global window object at runtime.
+// This is compatible with jsdom tests.
 export interface EuiWindowContextValue {
-  window: Window;
+  window?: Window;
 }
 
 export const EuiWindowContext = createContext<EuiWindowContextValue>({
-  window: window,
+  window: undefined,
 });

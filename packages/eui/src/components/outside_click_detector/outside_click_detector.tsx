@@ -101,13 +101,13 @@ export class EuiOutsideClickDetector extends Component<EuiOutsideClickDetectorPr
   };
 
   componentDidMount() {
-    const currentDocument = this.context.window.document;
+    const currentDocument = (this.context.window ?? window).document;
     currentDocument.addEventListener('mouseup', this.onClickOutside);
     currentDocument.addEventListener('touchend', this.onClickOutside);
   }
 
   componentWillUnmount() {
-    const currentDocument = this.context.window.document;
+    const currentDocument = (this.context.window ?? window).document;
     currentDocument.removeEventListener('mouseup', this.onClickOutside);
     currentDocument.removeEventListener('touchend', this.onClickOutside);
   }
