@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { Component } from 'react';
+import { Component, ContextType } from 'react';
 import { EuiWindowContext, EuiWindowContextValue } from '../window_provider';
 
 type EventNames = keyof WindowEventMap;
@@ -18,6 +18,7 @@ interface Props<Ev extends EventNames> {
 
 export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
   static contextType = EuiWindowContext;
+  declare context: ContextType<typeof EuiWindowContext>;
 
   componentDidMount() {
     this.addEvent(this.props);
