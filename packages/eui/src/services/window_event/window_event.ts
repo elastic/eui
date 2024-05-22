@@ -7,7 +7,7 @@
  */
 
 import { Component, ContextType } from 'react';
-import { EuiWindowContext, EuiWindowContextValue } from '../window_provider';
+import { EuiWindowContext } from '../window_provider';
 
 type EventNames = keyof WindowEventMap;
 
@@ -39,13 +39,11 @@ export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
   }
 
   addEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
-    const currentWindow = (this.context as EuiWindowContextValue).window;
-    currentWindow.addEventListener(event, handler);
+    this.context.window.addEventListener(event, handler);
   }
 
   removeEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
-    const currentWindow = (this.context as EuiWindowContextValue).window;
-    currentWindow.removeEventListener(event, handler);
+    this.context.window.removeEventListener(event, handler);
   }
 
   render() {

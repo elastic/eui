@@ -13,9 +13,10 @@ import {
   EventHandler,
   MouseEvent as ReactMouseEvent,
   ReactElement,
+  ContextType,
 } from 'react';
 import { htmlIdGenerator } from '../../services/accessibility';
-import { EuiWindowContext, EuiWindowContextValue } from '../../services';
+import { EuiWindowContext } from '../../services';
 
 export interface EuiEvent extends Event {
   euiGeneratedBy: string[];
@@ -47,6 +48,7 @@ export class EuiOutsideClickDetector extends Component<EuiOutsideClickDetectorPr
   // items below as the deconstruction of a click event.
 
   static contextType = EuiWindowContext;
+  declare context: ContextType<typeof EuiWindowContext>;
 
   private id: string;
 
@@ -99,15 +101,13 @@ export class EuiOutsideClickDetector extends Component<EuiOutsideClickDetectorPr
   };
 
   componentDidMount() {
-    const currentDocument = (this.context as EuiWindowContextValue).window
-      .document;
+    const currentDocument = this.context.window.document;
     currentDocument.addEventListener('mouseup', this.onClickOutside);
     currentDocument.addEventListener('touchend', this.onClickOutside);
   }
 
   componentWillUnmount() {
-    const currentDocument = (this.context as EuiWindowContextValue).window
-      .document;
+    const currentDocument = this.context.window.document;
     currentDocument.removeEventListener('mouseup', this.onClickOutside);
     currentDocument.removeEventListener('touchend', this.onClickOutside);
   }

@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FunctionComponent, CSSProperties } from 'react';
+import React, {
+  Component,
+  FunctionComponent,
+  CSSProperties,
+  ContextType,
+} from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
@@ -111,6 +116,7 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   };
 
   static contextType = EuiWindowContext;
+  declare context: ContextType<typeof EuiWindowContext>;
 
   state: State = {
     hasBeenDisabledByClick: false,
@@ -137,8 +143,7 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   setInitialFocus = (initialFocus?: FocusTarget) => {
     if (!initialFocus) return;
 
-    const currentDocument = (this.context as EuiWindowContextValue).window
-      .document;
+    const currentDocument = this.context.window.document;
     const node = findElementBySelectorOrRef(initialFocus, currentDocument);
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-on' API
@@ -153,15 +158,13 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   };
 
   addMouseupListener = () => {
-    const currentDocument = (this.context as EuiWindowContextValue).window
-      .document;
+    const currentDocument = this.context.window.document;
     currentDocument.addEventListener('mouseup', this.onMouseupOutside);
     currentDocument.addEventListener('touchend', this.onMouseupOutside);
   };
 
   removeMouseupListener = () => {
-    const currentDocument = (this.context as EuiWindowContextValue).window
-      .document;
+    const currentDocument = this.context.window.document;
     currentDocument.removeEventListener('mouseup', this.onMouseupOutside);
     currentDocument.removeEventListener('touchend', this.onMouseupOutside);
   };
