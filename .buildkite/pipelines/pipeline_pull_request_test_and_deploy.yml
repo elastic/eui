@@ -29,7 +29,6 @@ steps:
       # Use spot instances
       # https://cloud.google.com/spot-vms
       preemptible: true
-      imageProject: "elastic-images-qa"
       image: "family/eui-ubuntu-2204"
     retry:
       automatic:
