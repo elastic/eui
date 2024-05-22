@@ -8,15 +8,15 @@
 
 import { addons } from '@storybook/manager-api';
 
-import { STORY_TAGS } from './constants';
-
 // filter out stories based on tags that should not
 // be shown in the Storybook sidebar menu
 addons.setConfig({
   sidebar: {
     filters: {
       patterns: (item) => {
-        return !item.tags?.includes(STORY_TAGS.VRT_ONLY);
+        // Storybook only accepts string literals in the tags
+        // handling this centrally via a map doesn't work :(
+        return !item.tags?.includes('vrt-only');
       },
     },
   },

@@ -9,7 +9,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
-import { STORY_TAGS } from '../../../../.storybook/constants';
 import { EuiSwitch, EuiSwitchProps } from './switch';
 
 const meta: Meta<EuiSwitchProps> = {
@@ -41,7 +40,7 @@ export const Playground: Story = {
 // adding a specific story for VRT only as the component is controlled
 // it's excluded from the sidebar via the added tag (filtering is set up in the manager.ts file)
 export const Checked: Story = {
-  tags: [STORY_TAGS.VRT_ONLY],
+  tags: ['vrt-only'],
   parameters: {
     controls: {
       include: ['checked'],
