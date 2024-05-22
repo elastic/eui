@@ -9,7 +9,10 @@
 import { useContext } from 'react';
 import { EuiWindowContext } from './context';
 
+/**
+ * In SSR scenarios it can return undefined as no window is available.
+ */
 export function useEuiWindow() {
   const context = useContext(EuiWindowContext);
-  return context.window ?? window;
+  return context.window ?? (typeof window !== 'undefined' ? window : undefined);
 }

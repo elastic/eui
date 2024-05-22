@@ -81,7 +81,7 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
 
     if (insert == null) {
       // no insertion defined, append to body
-      (currentWindow ?? window).document.body.appendChild(portalNode);
+      (currentWindow?.document ?? document).body.appendChild(portalNode);
     } else {
       // inserting before or after an element
       const { sibling, position } = insert;
