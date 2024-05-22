@@ -292,14 +292,17 @@ export const EuiFlyout = forwardRef(
      * If not disabled, automatically add fixed EuiHeaders as shards
      * to EuiFlyout focus traps, to prevent focus fighting
      */
-    const flyoutToggle = useRef<Element | null>(currentWindow.document.activeElement);
+    const flyoutToggle = useRef<Element | null>(
+      currentWindow.document.activeElement
+    );
     const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
 
     useEffect(() => {
       if (includeFixedHeadersInFocusTrap) {
-        const fixedHeaderEls = currentWindow.document.querySelectorAll<HTMLDivElement>(
-          '.euiHeader[data-fixed-header]'
-        );
+        const fixedHeaderEls =
+          currentWindow.document.querySelectorAll<HTMLDivElement>(
+            '.euiHeader[data-fixed-header]'
+          );
         setFixedHeaders(Array.from(fixedHeaderEls));
 
         // Flyouts that are toggled from fixed headers do not have working
