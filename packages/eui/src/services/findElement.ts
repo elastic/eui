@@ -13,10 +13,13 @@
  */
 export type ElementTarget = HTMLElement | string | (() => HTMLElement);
 
-export const findElementBySelectorOrRef = (elementTarget?: ElementTarget) => {
+export const findElementBySelectorOrRef = (
+  elementTarget?: ElementTarget,
+  currentDocument?: Document
+) => {
   let node = elementTarget instanceof HTMLElement ? elementTarget : null;
   if (typeof elementTarget === 'string') {
-    node = document.querySelector(elementTarget as string);
+    node = (currentDocument ?? document).querySelector(elementTarget as string);
   } else if (typeof elementTarget === 'function') {
     node = (elementTarget as () => HTMLElement)();
   }

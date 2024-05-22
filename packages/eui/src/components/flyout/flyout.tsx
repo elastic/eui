@@ -30,6 +30,7 @@ import {
   useIsWithinMinBreakpoint,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
+  useEuiWindow,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
@@ -202,6 +203,7 @@ export const EuiFlyout = forwardRef(
   ) => {
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
+    const currentWindow = useEuiWindow();
 
     const windowIsLargeEnoughToPush =
       useIsWithinMinBreakpoint(pushMinBreakpoint);
@@ -225,9 +227,9 @@ export const EuiFlyout = forwardRef(
         const paddingSide =
           side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
 
-        document.body.style[paddingSide] = `${width}px`;
+        currentWindow.document.body.style[paddingSide] = `${width}px`;
         return () => {
-          document.body.style[paddingSide] = '';
+          currentWindow.document.body.style[paddingSide] = '';
         };
       }
     }, [isPushed, side, width]);
@@ -236,10 +238,10 @@ export const EuiFlyout = forwardRef(
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
      */
     useEffect(() => {
-      document.body.classList.add('euiBody--hasFlyout');
+      currentWindow.document.body.classList.add('euiBody--hasFlyout');
       return () => {
         // Remove the hasFlyout class when the flyout is unmounted
-        document.body.classList.remove('euiBody--hasFlyout');
+        currentWindow.document.body.classList.remove('euiBody--hasFlyout');
       };
     }, []);
 
@@ -290,12 +292,12 @@ export const EuiFlyout = forwardRef(
      * If not disabled, automatically add fixed EuiHeaders as shards
      * to EuiFlyout focus traps, to prevent focus fighting
      */
-    const flyoutToggle = useRef<Element | null>(document.activeElement);
+    const flyoutToggle = useRef<Element | null>(currentWindow.document.activeElement);
     const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
 
     useEffect(() => {
       if (includeFixedHeadersInFocusTrap) {
-        const fixedHeaderEls = document.querySelectorAll<HTMLDivElement>(
+        const fixedHeaderEls = currentWindow.document.querySelectorAll<HTMLDivElement>(
           '.euiHeader[data-fixed-header]'
         );
         setFixedHeaders(Array.from(fixedHeaderEls));

@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren } from 'react';
+import React, { ReactNode } from 'react';
 import { EuiWindowContext } from './context';
 
-export interface EuiWindowProviderProps extends PropsWithChildren {
+export interface EuiWindowProviderProps {
   window: Window;
+  children: ReactNode;
 }
 
 export function EuiWindowProvider({

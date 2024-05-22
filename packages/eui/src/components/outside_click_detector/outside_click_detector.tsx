@@ -15,6 +15,7 @@ import {
   ReactElement,
 } from 'react';
 import { htmlIdGenerator } from '../../services/accessibility';
+import { EuiWindowContext, EuiWindowContextValue } from '../../services';
 
 export interface EuiEvent extends Event {
   euiGeneratedBy: string[];
@@ -44,6 +45,8 @@ export class EuiOutsideClickDetector extends Component<EuiOutsideClickDetectorPr
   // We need the actual event targets to make the correct decisions
   // about user intention. So, consider the down/start and up/end
   // items below as the deconstruction of a click event.
+
+  static contextType = EuiWindowContext;
 
   private id: string;
 
@@ -96,13 +99,17 @@ export class EuiOutsideClickDetector extends Component<EuiOutsideClickDetectorPr
   };
 
   componentDidMount() {
-    document.addEventListener('mouseup', this.onClickOutside);
-    document.addEventListener('touchend', this.onClickOutside);
+    const currentDocument = (this.context as EuiWindowContextValue).window
+      .document;
+    currentDocument.addEventListener('mouseup', this.onClickOutside);
+    currentDocument.addEventListener('touchend', this.onClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mouseup', this.onClickOutside);
-    document.removeEventListener('touchend', this.onClickOutside);
+    const currentDocument = (this.context as EuiWindowContextValue).window
+      .document;
+    currentDocument.removeEventListener('mouseup', this.onClickOutside);
+    currentDocument.removeEventListener('touchend', this.onClickOutside);
   }
 
   onChildClick = (

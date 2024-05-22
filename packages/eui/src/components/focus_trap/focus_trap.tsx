@@ -12,7 +12,7 @@ import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { CommonProps } from '../common';
-import { findElementBySelectorOrRef, ElementTarget } from '../../services';
+import { findElementBySelectorOrRef, ElementTarget, EuiWindowContext, EuiWindowContextValue } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 export type FocusTarget = ElementTarget;
@@ -105,6 +105,8 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
     gapMode: 'padding', // EUI defaults to padding because Kibana's body/layout CSS ignores `margin`
   };
 
+  static contextType = EuiWindowContext;
+
   state: State = {
     hasBeenDisabledByClick: false,
   };
@@ -129,7 +131,9 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   // Programmatically sets focus on a nested DOM node; optional
   setInitialFocus = (initialFocus?: FocusTarget) => {
     if (!initialFocus) return;
-    const node = findElementBySelectorOrRef(initialFocus);
+
+    const currentDocument = (this.context as EuiWindowContextValue).window.document;
+    const node = findElementBySelectorOrRef(initialFocus, currentDocument);
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-on' API
     node.setAttribute('data-autofocus', 'true');
@@ -143,13 +147,15 @@ class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   };
 
   addMouseupListener = () => {
-    document.addEventListener('mouseup', this.onMouseupOutside);
-    document.addEventListener('touchend', this.onMouseupOutside);
+    const currentDocument = (this.context as EuiWindowContextValue).window.document;
+    currentDocument.addEventListener('mouseup', this.onMouseupOutside);
+    currentDocument.addEventListener('touchend', this.onMouseupOutside);
   };
 
   removeMouseupListener = () => {
-    document.removeEventListener('mouseup', this.onMouseupOutside);
-    document.removeEventListener('touchend', this.onMouseupOutside);
+    const currentDocument = (this.context as EuiWindowContextValue).window.document;
+    currentDocument.removeEventListener('mouseup', this.onMouseupOutside);
+    currentDocument.removeEventListener('touchend', this.onMouseupOutside);
   };
 
   handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (event) => {
