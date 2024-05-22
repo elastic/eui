@@ -243,7 +243,7 @@ export const EuiFlyout = forwardRef(
         // Remove the hasFlyout class when the flyout is unmounted
         currentWindow.document.body.classList.remove('euiBody--hasFlyout');
       };
-    }, []);
+    }, [currentWindow.document.body.classList]);
 
     /**
      * ESC key closes flyout (always?)
@@ -316,7 +316,7 @@ export const EuiFlyout = forwardRef(
         // Clear existing headers if necessary, e.g. switching to `false`
         setFixedHeaders((headers) => (headers.length ? [] : headers));
       }
-    }, [includeFixedHeadersInFocusTrap, resizeRef]);
+    }, [includeFixedHeadersInFocusTrap, resizeRef, currentWindow.document]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
       () => ({
