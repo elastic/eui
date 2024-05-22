@@ -204,6 +204,7 @@ export const EuiFlyout = forwardRef(
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
     const currentWindow = useEuiWindow();
+    const currentDocument = currentWindow?.document ?? document;
 
     const windowIsLargeEnoughToPush =
       useIsWithinMinBreakpoint(pushMinBreakpoint);
@@ -227,23 +228,23 @@ export const EuiFlyout = forwardRef(
         const paddingSide =
           side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
 
-        currentWindow.document.body.style[paddingSide] = `${width}px`;
+        currentDocument.body.style[paddingSide] = `${width}px`;
         return () => {
-          currentWindow.document.body.style[paddingSide] = '';
+          currentDocument.body.style[paddingSide] = '';
         };
       }
-    }, [isPushed, side, width, currentWindow.document.body.style]);
+    }, [isPushed, side, width, currentDocument.body.style]);
 
     /**
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
      */
     useEffect(() => {
-      currentWindow.document.body.classList.add('euiBody--hasFlyout');
+      currentDocument.body.classList.add('euiBody--hasFlyout');
       return () => {
         // Remove the hasFlyout class when the flyout is unmounted
-        currentWindow.document.body.classList.remove('euiBody--hasFlyout');
+        currentDocument.body.classList.remove('euiBody--hasFlyout');
       };
-    }, [currentWindow.document.body.classList]);
+    }, [currentDocument.body.classList]);
 
     /**
      * ESC key closes flyout (always?)
@@ -292,17 +293,14 @@ export const EuiFlyout = forwardRef(
      * If not disabled, automatically add fixed EuiHeaders as shards
      * to EuiFlyout focus traps, to prevent focus fighting
      */
-    const flyoutToggle = useRef<Element | null>(
-      currentWindow.document.activeElement
-    );
+    const flyoutToggle = useRef<Element | null>(currentDocument.activeElement);
     const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
 
     useEffect(() => {
       if (includeFixedHeadersInFocusTrap) {
-        const fixedHeaderEls =
-          currentWindow.document.querySelectorAll<HTMLDivElement>(
-            '.euiHeader[data-fixed-header]'
-          );
+        const fixedHeaderEls = currentDocument.querySelectorAll<HTMLDivElement>(
+          '.euiHeader[data-fixed-header]'
+        );
         setFixedHeaders(Array.from(fixedHeaderEls));
 
         // Flyouts that are toggled from fixed headers do not have working
@@ -316,7 +314,7 @@ export const EuiFlyout = forwardRef(
         // Clear existing headers if necessary, e.g. switching to `false`
         setFixedHeaders((headers) => (headers.length ? [] : headers));
       }
-    }, [includeFixedHeadersInFocusTrap, resizeRef, currentWindow.document]);
+    }, [includeFixedHeadersInFocusTrap, resizeRef, currentDocument]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
       () => ({
