@@ -23,6 +23,7 @@ const meta: Meta<EuiFieldTextProps> = {
     icon: { control: 'text' },
     prepend: { control: 'text' },
     append: { control: 'text' },
+    value: { control: 'text' },
   },
   args: {
     // Component defaults
@@ -35,6 +36,8 @@ const meta: Meta<EuiFieldTextProps> = {
     controlOnly: false,
     // Added for easier testing
     placeholder: 'EuiFieldText',
+    id: '',
+    name: '',
   },
 };
 

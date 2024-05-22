@@ -36,6 +36,8 @@ const meta: Meta<EuiFieldNumberProps> = {
     controlOnly: false,
     // Added for easier testing
     placeholder: '0',
+    id: '',
+    name: '',
   },
 };
 
