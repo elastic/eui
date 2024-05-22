@@ -34,7 +34,7 @@ export type EuiSwitchProps = CommonProps &
     'onChange' | 'type' | 'disabled'
   > & {
     /**
-     * Whether to render the render the text label
+     * Whether to render the text label
      */
     showLabel?: boolean;
     /**
@@ -47,7 +47,7 @@ export type EuiSwitchProps = CommonProps &
     compressed?: boolean;
     type?: 'submit' | 'reset' | 'button';
     /**
-     * Object of props passed to the label's <span/>
+     * Object of props passed to the label's `<span/>`
      */
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
