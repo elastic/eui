@@ -83,6 +83,9 @@ function hasPreSelectionChanged(date1, date2) {
 
 function hasSelectionChanged(date1, date2) {
   if (date1 && date2) {
+    if (date1._isValid === false && date2._isValid === false) {
+      return false;
+    }
     return !equals(date1, date2);
   }
 

@@ -21,6 +21,16 @@ describe('EuiDatePicker', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('handles invalid `selected` dates', () => {
+    const { container } = render(
+      <EuiDatePicker selected={moment('invalid')} />
+    );
+    const datepickerInput = container.querySelector('input.euiDatePicker');
+
+    expect(datepickerInput).toHaveValue('Invalid date');
+    expect(datepickerInput).toBeInvalid();
+  });
+
   test('compressed', () => {
     const { container } = render(<EuiDatePicker compressed />);
     // TODO: Should probably be a visual snapshot test
