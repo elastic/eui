@@ -23,6 +23,8 @@ describe('EuiDatePicker', () => {
   });
 
   it('handles invalid `selected` dates', async () => {
+    // Silence the console warning from the invalid moment date
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
     const { container } = render(
       <EuiDatePicker selected={moment('invalid')} />
     );
@@ -38,6 +40,8 @@ describe('EuiDatePicker', () => {
     expect(calendar).toBeInTheDocument();
     const selected = document.querySelector('.react-datepicker__day--selected');
     expect(selected).not.toBeInTheDocument();
+
+    jest.restoreAllMocks();
   });
 
   test('compressed', () => {
