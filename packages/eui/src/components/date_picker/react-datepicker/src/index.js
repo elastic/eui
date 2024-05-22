@@ -291,7 +291,7 @@ export default class DatePicker extends React.Component {
     return {
       open: this.props.startOpen || false,
       preventFocus: false,
-      preSelection: this.props.selected
+      preSelection: this.props.selected?._isValid
         ? newDate(this.props.selected)
         : boundedPreSelection,
       // transforming highlighted days (perhaps nested array)
@@ -696,7 +696,7 @@ export default class DatePicker extends React.Component {
         useWeekdaysShort={this.props.useWeekdaysShort}
         formatWeekDay={this.props.formatWeekDay}
         dropdownMode={this.props.dropdownMode}
-        selected={this.props.selected}
+        selected={this.props.selected?._isValid ? this.props.selected : undefined}
         preSelection={this.state.preSelection}
         onSelect={this.handleSelect}
         onWeekSelect={this.props.onWeekSelect}
