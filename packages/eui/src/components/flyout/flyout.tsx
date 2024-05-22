@@ -232,7 +232,7 @@ export const EuiFlyout = forwardRef(
           currentWindow.document.body.style[paddingSide] = '';
         };
       }
-    }, [isPushed, side, width]);
+    }, [isPushed, side, width, currentWindow.document.body.style]);
 
     /**
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
