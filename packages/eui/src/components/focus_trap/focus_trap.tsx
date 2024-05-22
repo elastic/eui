@@ -21,7 +21,6 @@ import {
   findElementBySelectorOrRef,
   ElementTarget,
   EuiWindowContext,
-  EuiWindowContextValue,
 } from '../../services';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
