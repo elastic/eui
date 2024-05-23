@@ -15,6 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { getIconAffordanceStyles } from './_num_icons';
 import {
   EuiFormControlLayoutIcons,
   EuiFormControlLayoutIconsProps,
@@ -68,6 +69,10 @@ export type EuiFormControlLayoutProps = CommonProps &
 export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
   static contextType = FormContext;
 
+  static defaultProps = {
+    iconsPosition: 'absolute',
+  };
+
   render() {
     const { defaultFullWidth } = this.context as FormContextValue;
     const {
@@ -101,13 +106,27 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       className
     );
 
+    const iconAffordanceStyles =
+      iconsPosition === 'absolute' // Static icons don't need padding affordance
+        ? getIconAffordanceStyles({
+            icon,
+            clear,
+            isInvalid,
+            isLoading,
+            isDropdown,
+          })
+        : undefined;
+
     const prependNodes = this.renderSideNode('prepend', prepend, inputId);
     const appendNodes = this.renderSideNode('append', append, inputId);
 
     return (
       <div className={classes} {...rest}>
         {prependNodes}
-        <div className="euiFormControlLayout__childrenWrapper">
+        <div
+          className="euiFormControlLayout__childrenWrapper"
+          style={iconAffordanceStyles}
+        >
           {this.renderLeftIcons()}
           {children}
           {this.renderRightIcons()}
