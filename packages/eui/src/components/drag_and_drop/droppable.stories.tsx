@@ -11,6 +11,7 @@ import { OnDragEndResponder, OnDragUpdateResponder } from '@hello-pangea/dnd';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { hideStorybookControls } from '../../../.storybook/utils';
 import { htmlIdGenerator } from '../../services';
 import { EuiPanel } from '../panel';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -44,6 +45,7 @@ const meta: Meta<EuiDroppableProps> = {
     grow: false,
   },
 };
+hideStorybookControls(meta, ['style']);
 
 export default meta;
 type Story = StoryObj<EuiDroppableProps>;

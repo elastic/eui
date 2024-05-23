@@ -10,6 +10,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import { hideStorybookControls } from '../../../.storybook/utils';
 import { EuiPanel } from '../panel';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiIcon } from '../icon';
@@ -53,6 +54,7 @@ const meta: Meta<EuiDraggableProps> = {
     spacing: 'none',
   },
 };
+hideStorybookControls(meta, ['style']);
 
 export default meta;
 type Story = StoryObj<EuiDraggableProps>;
