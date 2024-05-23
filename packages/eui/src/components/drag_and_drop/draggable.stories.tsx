@@ -53,13 +53,19 @@ export const Playground: Story = {
 export const Interactive: Story = {
   parameters: {
     controls: {
-      include: ['hasInteractiveChildren', 'isDragDisabled', 'spacing'],
+      include: [
+        'hasInteractiveChildren',
+        'isDragDisabled',
+        'spacing',
+        'customDragHandle',
+      ],
     },
   },
   args: {
     draggableId: 'draggable-item',
     index: 0,
     hasInteractiveChildren: true,
+    customDragHandle: true,
   },
   render: (args) => (
     <EuiDraggable {...args}>
