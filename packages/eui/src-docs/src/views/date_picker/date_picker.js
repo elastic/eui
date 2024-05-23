@@ -5,7 +5,7 @@ import moment from 'moment';
 import { EuiDatePicker, EuiFormRow } from '../../../../src/components';
 
 export default () => {
-  const [startDate, setStartDate] = useState(moment('invalid'));
+  const [startDate, setStartDate] = useState(moment());
 
   const handleChange = (date) => {
     setStartDate(date);
