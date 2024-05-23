@@ -67,7 +67,7 @@ export interface EuiFilePickerProps
 export class EuiFilePicker extends Component<EuiFilePickerProps> {
   static contextType = FormContext;
 
-  static defaultProps = {
+  static defaultProps: Partial<EuiFilePickerProps> = {
     initialPromptText: (
       <EuiI18n
         token="euiFilePicker.promptText"
