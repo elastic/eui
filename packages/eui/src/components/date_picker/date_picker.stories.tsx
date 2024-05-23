@@ -26,6 +26,11 @@ const meta: Meta<EuiDatePickerProps> = {
   component: EuiDatePicker,
   parameters: {
     loki: {
+      // EuiDatePicker highlights the current day using `moment()` date
+      // which causes snapshots to differ every day. To fix that we would need
+      // to add another prop to react-datepicker and expose it through
+      // EuiDatePicker
+      skip: true,
       chromeSelector: LOKI_SELECTORS.portal,
     },
   },
