@@ -84,6 +84,11 @@ export const WithTooltip: Story = {
       include: ['fullWidth', 'options', 'selectedOptions'],
     },
     loki: {
+      // TODO: Unskip when the interaction is working.
+      // Right now it fails because createAsyncCallback call
+      // doesn't see the window.loki.registerPendingPromise being defined
+      // and doesn't make loki wait before taking a screenshot
+      skip: true,
       // popover and tooltip are rendered in a portal
       chromeSelector: LOKI_SELECTORS.portal,
     },
