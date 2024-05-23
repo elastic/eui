@@ -95,7 +95,7 @@ export const euiSelectableTemplateSitewideRenderOptions = (
   searchValue: string
 ) => {
   return (
-    <>
+    <a href="" style={{ textDecoration: 'none' }}>
       <EuiHighlight
         className="euiSelectableTemplateSitewide__listItemTitle"
         search={searchValue}
@@ -103,7 +103,7 @@ export const euiSelectableTemplateSitewideRenderOptions = (
         {option.label}
       </EuiHighlight>
       {renderOptionMeta(option.meta, searchValue)}
-    </>
+    </a>
   );
 };
 
