@@ -19,9 +19,9 @@ import { EuiIcon } from '../icon';
 import { EuiButtonIcon } from '../button';
 
 import { euiDragDropCopy, euiDragDropReorder } from './services';
-import { EuiDroppable, EuiDroppableProps } from './droppable';
-import { EuiDraggable } from './draggable';
 import { EuiDragDropContext } from './drag_drop_context';
+import { EuiDraggable } from './draggable';
+import { EuiDroppable, EuiDroppableProps } from './droppable';
 
 const makeId = htmlIdGenerator();
 
@@ -168,8 +168,6 @@ const StatefulCloneDraggables = ({
     const list = Array.from(lists[droppableId]);
     list.splice(index, 1);
 
-    console.log('LIST', list);
-
     actions[droppableId](list);
   };
   const onDragUpdate: OnDragUpdateResponder = ({ source, destination }) => {
@@ -188,8 +186,6 @@ const StatefulCloneDraggables = ({
           source.index,
           destination.index
         );
-
-        console.log('ITEMS', items);
 
         actions[id](items);
 
