@@ -14,6 +14,7 @@ import {
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
 import { EuiIcon } from '../../icon';
+
 import { EuiSelect, EuiSelectProps } from './select';
 
 const meta: Meta<EuiSelectProps> = {
