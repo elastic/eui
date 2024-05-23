@@ -16,6 +16,7 @@ import { EuiPanel } from '../panel';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiIcon } from '../icon';
 import { EuiButtonIcon } from '../button';
+
 import { euiDragDropCopy, euiDragDropReorder } from './services';
 import { EuiDroppable, EuiDroppableProps } from './droppable';
 import { EuiDraggable } from './draggable';
@@ -26,6 +27,14 @@ const makeId = htmlIdGenerator();
 const meta: Meta<EuiDroppableProps> = {
   title: 'Display/EuiDroppable',
   component: EuiDroppable,
+  argTypes: {
+    droppableId: {
+      type: {
+        name: 'string',
+        required: true,
+      },
+    },
+  },
   args: {
     cloneDraggables: false,
     isDropDisabled: false,

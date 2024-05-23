@@ -14,6 +14,7 @@ import { EuiPanel } from '../panel';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiIcon } from '../icon';
 import { EuiButton } from '../button';
+
 import { EuiDragDropContext } from './drag_drop_context';
 import { EuiDroppable } from './droppable';
 import { EuiDraggable, EuiDraggableProps } from './draggable';
@@ -30,6 +31,20 @@ const meta: Meta<EuiDraggableProps> = {
       </EuiDragDropContext>
     ),
   ],
+  argTypes: {
+    index: {
+      type: {
+        name: 'number',
+        required: true,
+      },
+    },
+    draggableId: {
+      type: {
+        name: 'string',
+        required: true,
+      },
+    },
+  },
   args: {
     customDragHandle: false,
     isDragDisabled: false,
