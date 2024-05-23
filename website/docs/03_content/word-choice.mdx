@@ -3,66 +3,116 @@ slug: words
 title: Word choice
 ---
 
-Find just the right term for use in your documentation or UI copy. Apply this guidance as follows.
+Find the right term to use in your UI copy.
 
-- **Preferred.**  This term is recommended.
+## Use these preferred words and terms
 
-- **Use with caution.**  This term might be ambiguous.
-Make sure you are using the term correctly.
+Use these words and terms in the scenarios described in the following table:
 
-- **Avoid.** This term might be offensive or non-inclusive.
-Whenever possible, use the alternate suggestion, or a more specific term.
+| Word | Usage notes |
+| ------- | ------------ |
+| **add** | Use for establishing a new relationship.  Often used in create-then-add scenarios. Create a dashboard, then add a visualization. In button labels, always follow _add_ by an object. Remove is the correct opposite. |
+| **cancel** | Use to stop an action without saving pending changes. |
+| **can't** | Use to indicate you don't have the ability to do something.  Often confused with _unable_. |
+| **create** | Use for creating an object from scratch. In button labels, always followed by an object.  Not _create new_.  Delete is the correct opposite. |
+| **delete** | Use when deleting data that users can no longer retrieve.  Create is the correct opposite. |
+| **edit** | Don't use _change_ or _modify_. Edit is the better choice for localization. |
+| **enter** | Use for the user entering text. Don't use _type_. |
+| **later** | Use when referring to versions of the product. For Example, Elastic Stack 8.13 and later.
+| **open** | Use to mean opening an app or program. Don't use _launch_.  |
+| **press** | Use _press_ for keyboard keys. Don't use _hit_.
+| **remove** | Use when removing a relationship, but not permanently deleting the data. For example, you remove a visualization from a dashboard. Add is the correct opposite. |
+| **select** | _Select_ is preferred over _choose_. |
+| **use**| Use instead of _utilize_ and _make use of_. |
+| **view** | Use instead of _see_ because _view_ is more inclusive. |
 
-For questions, or to add a term, contact the **#ux-writing** Slack channel.
+## Avoid these words and terms
 
----
+This section includes terms that you should avoid in most instances. These terms might be offensive, non-inclusive, unclear, or unnecessary.
+Use the alternate suggestions in the following tables or a more specific term.
 
-| Word | Status | Usage notes |
-| ------- | ------- | ------------ |
-| **abort** | 🔴 Avoid | This word can be offensive. Use _shut down,_ _cancel,_ or _stop_ instead. |
-| **above** | 🟠 Use with caution | Don't use to refer to a postion. Directional language does not meet accessibility requirements.|
-| **add** | 🟢 Preferred | Use for establishing a new relationship.  Often used in create-then-add scenarios.  Create a dashboard, then add a visualization.  In button labels, always follow _add_ by an object.  Remove is the correct opposite. |
-| **app**, **application**| 🟠 Use with caution | Use only when needed for clarity.  Otherwise, a Kibana app name can standalone.  App is a well-known abbreviation for application and is preferred. |
-| **begin** | 🟠 Use with caution | Similar to _start_, using _begin_ depends on context. _Begin a procedure,_ _begin an analysis,_ or _begin an installation_ are common phrases. Similarly, _start a program,_ _start an engine,_ or _start a timer_ are frequently used.  _Start_ is considered less formal than _begin_. _End_ is the correct opposite of _begin_.|
-| **below** | 🟠 Use with caution | Don’t use to refer to a position. Directional language does not meet accessibility requirements.|
-| **blacklist** | 🔴 Avoid | This word has roots in racism. Use _blocked list_ instead. |
-| **boot** | 🔴 Avoid | Use _start_ or _run_ instead. |
-| **can** | 🟢 Preferred | Use to convey permission. |
-| **cancel** | 🟢 Preferred | Use to stop an action without saving pending changes. |
-| **cannot**, **can't** | 🟢 Preferred | Use to indicate you don't have the ability to do something.  Often confused with _unable_. |
-| **choose** | 🔴 Avoid | Use _select_ instead. |
-| **click** | 🟢 Use with caution | OK when describing mouse actions. Otherwise, use verbs that work with multiple devices, such as _select_.   |
-| **clone** | 🟠 Use with caution | Use when creating a copy that is linked to the original. Often confused with _copy_ and _duplicate_. |
-| **copy** | 🟠 Use with caution | Use when creating an exact copy in the same location as the original. Often confused with _clone_ and _duplicate_. |
-| **could** | 🔴 Avoid | Replace with _can_ or _might_ whenever possible. |
-| **create** | 🟢 Preferred | Use for creating an object from scratch. In button labels, always followed by an object.  Not _create new_.  Delete is the correct opposite. |
-| **delete** | 🟢 Preferred | Use when deleting data that users can no longer retrieve.  Create is the correct opposite. |
-| **disable** | 🟠 Use with caution | Don't use to describe something that is broken. Use _inactive_, _unavailable_, _deactivate_, _turn off_, or _deselect_, depending on the context.|
-| **duplicate** | 🟠 Use with caution | Use when creating a copy of an object in the same location as the original.  Often confused with _copy_ and _clone_.  |
-| **easy**, **easily** | 🔴 Avoid | It can be frustrating for users to think that something is easy, but then struggle to do the task. Typically the same meaning can be conveyed without this word.|
-| **edit** | 🟢 Preferred | Not _change_ or _modify_. Edit is the better choice for localization. |
-| **e.g.** | 🔴 Avoid | Don't use Latin abbreviations. Use _for example_ or _such as_ instead. |
-| **enable** | 🟢 Preferred | Use when turning on or activating an option or a feature. |
-| **enter** | 🟢 Preferred | Use to refer to the user entering text. Not _type_. |
-| **execute** | 🔴 Avoid |Use _run_ or _start_ instead.|
-| **hack** | 🔴 Avoid | For a noun, use _tip_ or _work-around_ instead. For a verb, use _configure_ or _modify_. |
-| **hit** | 🔴 Avoid | For a noun, use _visits_ (as in web visits). For a verb, use _click_ or _press_.|
-| **i.e.** | 🔴 Avoid | Don't use Latin abbreviations.|
-| **invalid** | 🔴 Avoid | Use _not valid_ or _incorrect_ instead. |
-| **kill** | 🟠 Use with caution | Use _cancel_ or _stop_ unless the actual command is `kill`. |
-| **launch** | 🔴 Avoid | Use _open_ instead.  |
-| **may** | 🟠 Use with caution | Use _may_ for permissibility. Use _can_ for capability. Use _might_ for possibility.  |
-| **ok** | 🔴 Avoid | In button labels, use words that explain the action instead.  |
-| **open** | 🟢 Preferred | Use instead of _launch_.  |
-| **please** | 🔴 Avoid | In most cases, _please_ is unnecessary. Exceptions are situations where the user must wait or do something inconvenient. Or, if the text sounds too abrupt without it.  |
-| **remove** | 🟢 Preferred | Use when removing a relationship, but not permanently deleting the data. For example, you remove a visualization from a dashboard. Add is the correct opposite. |
-| **select** | 🟢 Preferred | _Select_ is preferred over _choose_. |
-| **simple**, **simply** | 🔴 Avoid | Often used before a before a verb like _select_, but doesn't add any information or value. Implies that users should have been able to do such a simple task without assistance.|
-| **sorry** | 🔴 Avoid | Use _sorry_ only in error messages that result in serious problems for the user. |
-| **start** | 🟠 Use with caution | _start_ and _begin_ depend on context. _Start a program,_ _start an engine,_ or _start a timer_ are common phrases. Similarly, _begin a procedure,_ _begin an analysis,_ or _begin an installation_ are frequently used.  _Start_ is considered less formal than _begin_.|
-| **success** | 🔴 Avoid | In most cases, _success_ is not needed in messages because it's implied.  |
-| **terminate** | 🔴 Avoid | Use _stop_ or _exit_ instead.|
-| **type** | 🔴 Avoid | Use _enter_ because there is typically more than one way to enter text than typing. |
-| **unable** | 🟠 Use with caution | Unable means not being able to perform an action. Often confused with cannot.  |
-| **utilize** | 🟠 Use with caution | Don't use _utilize_ when you mean _use_. |
-| **view** | 🟢 Preferred | Preferred over _see_ because _view_ is more inclusive. |
+### Latin abbreviations
+
+Latin abbreviations can be unclear.
+Use the following suggestions instead:
+
+| Word | Usage notes |
+| ------- | ------------ |
+| **e.g.** | Use _for example_ or _such as_ instead. |
+| **i.e.** | Use _that is_ instead.|
+| **via** | Use _with_, _by using_, or _through_ instead. |
+
+### Directional language
+
+Directional language does not meet accessibility requirements and you should avoid it, especially as the only way to find an element in the UI.
+Use the following suggestions instead:
+
+| Word | Usage notes |
+| ------- | ------------ |
+| **above** | Use a link, _previous_, or _preceding_ instead. |
+| **below** | Use a link or _following_ instead|
+
+### Nouns created from verbs
+
+Avoid using nouns created from adjectives or verbs.
+These words often make text unnecessarily complex.
+For example:
+
+- Use _choose_ instead of _make a choice_.
+- Use _register_ instead of _complete your registration_.
+- Use investigate instead of _conduct an investigation_.
+
+### General words and terms to avoid
+
+Avoid the following words and terms, and use the suggestions instead:
+
+| Word | Usage notes |
+| ------- | ------------ |
+| **abort** |  Use _shut down,_ _cancel,_ or _stop_ instead. |
+| **as well as** | Use _and_ instead. |
+| **blacklist** | Use _blocked list_ instead. |
+| **boot** | Use _start_ or _run_ instead. |
+| **bottom left, bottom right** | Use _lower left_ or _lower right_ instead. Hyphenate when using as an adjective. For example, lower-left corner. |
+| **choose** |  Use _select_ instead. See Words for interacting with UI|
+| **disable** | Use _turn off_, _block_, or _hide_. |
+| **enable** | Use _turn on_ or _allow_. |
+| **easy**, **easily** | It can be frustrating for users to think that something is easy, but then struggle to do the task. Typically the same meaning can be conveyed without this word.|
+| **execute** | Use _run_ or _start_ instead.|
+| **hack** | For a noun, use _tip_ or _work-around_ instead. For a verb, use _configure_ or _modify_. |
+| **hit** | For a noun, use _visits_ (as in web visits). For a verb, use _select_ or _press_.|
+| **impact** | Don't use impact as a verb. Use _affect_ instead. |
+| **in order to** | Use simple verbs like _to_ instead. |
+| **invalid** | Use _not valid_ or _incorrect_ instead. |
+| **just** | Don't use before a command, like "_just_ click here."
+| **launch** | Use _open_ instead.  |
+| **ok** | In button labels, use words that explain the action instead. |
+| **normal**, **normally** | Use _usual_ or _typical_ instead. For _normally_ use _usually_, _typically_, or _generally_.
+| **please** | In most cases, _please_ is unnecessary. Only use when the user must wait or do something inconvenient. |
+| **simple**, **simply** | Unnecessary because it doesn't add any information or value.|
+| **sorry** | Use _sorry_ only in error messages that result in serious problems for the user. |
+| **success** | Unnecessary because _success_ is generally implied.  |
+| **terminate** | Use _stop_ or _exit_ instead.|
+| **type** | Use _enter_ because there is typically more than one way to enter text. |
+| **top left, top right**| Use _upper left_ or _upper right_ instead. Hyphenate when using as an adjective. For example, upper-left corner. |
+| **utilize** | Don't use _utilize_ when you mean _use_. |
+| **whitelist** | Use _allow list_ instead. |
+
+## Use caution with these words and terms
+
+These words and terms might be appropriate in some situations and inappropriate in others.
+Only use them when appropriate.
+
+| Word | Usage notes |
+| ------- | ------------ |
+| **app**, **application**| Use only when needed for clarity. Otherwise, a Kibana app name can standalone. App is a well-known abbreviation for application and is preferred. |
+| **begin** | Use context to decide between _begin_ and _start_. _Begin a procedure_, _begin an analysis_, or _begin an installation_ are common phrases. Similarly, _start a program_, _start an engine_, or _start a timer_ are frequently used. _Start_ is considered less formal than _begin_. _End_ is the correct opposite of _begin_.|
+| **can** | Use for capability. Rewrite as an action if possible. For example, instead of _You can add..._ use _Add..._. |
+| **click** | OK when describing mouse actions. Otherwise, use verbs that work with multiple devices, such as _select_.   |
+| **clone** | Use when creating a copy that is linked to the original. Often confused with _copy_ and _duplicate_. |
+| **copy** | Use when creating an exact copy in the same location as the original. Often confused with _clone_ and _duplicate_. |
+| **disable** | Don't use to describe something that is broken. Use _inactive_, _unavailable_, _deactivate_, _turn off_, or _deselect_, depending on the context.|
+| **duplicate** | Use when creating a copy of an object in the same location as the original.  Often confused with _copy_ and _clone_.  |
+| **kill** | Use _cancel_ or _stop_ unless the actual command is `kill`. |
+| **may** | Use _may_ for permissibility. Use _can_ for capability. Use _might_ for possibility.  |
+| **start** | Use context to decide between _start_ and _begin_. _Start a program_, _start an engine_, or _start a timer_ are common phrases. Similarly, _begin a procedure_, _begin an analysis_, or _begin an installation_ are frequently used. _Start_ is considered less formal than _begin_.|
+| **unable** | Unable means not being able to perform an action. Often confused with _cannot_.  |
