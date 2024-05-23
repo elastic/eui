@@ -39,12 +39,11 @@ const meta: Meta<EuiDroppableProps> = {
     cloneDraggables: false,
     isDropDisabled: false,
     spacing: 'none',
-    type: 'EUI_DEFAULT',
     withPanel: false,
     grow: false,
   },
 };
-hideStorybookControls(meta, ['style']);
+hideStorybookControls(meta, ['style', 'type']);
 
 export default meta;
 type Story = StoryObj<EuiDroppableProps>;
