@@ -9,7 +9,6 @@
 import React, { ReactElement, useState } from 'react';
 import { OnDragEndResponder, OnDragUpdateResponder } from '@hello-pangea/dnd';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
 import { htmlIdGenerator } from '../../services';
@@ -122,8 +121,6 @@ const StatefulPlayground = ({ children, ...rest }: EuiDroppableProps) => {
       );
 
       setItems(updatedItems);
-
-      action('onDragEnd')({ source, destination });
     }
   };
 
@@ -174,8 +171,6 @@ const StatefulCloneDraggables = ({
     const shouldRemove =
       !destination && source.droppableId === 'DROPPABLE_AREA_COPY_2';
     setIsItemRemovable(shouldRemove);
-
-    action('onDragUpdate')({ source, destination });
   };
   const onDragEnd: OnDragEndResponder = ({ source, destination }) => {
     if (source && destination) {
@@ -188,8 +183,6 @@ const StatefulCloneDraggables = ({
         );
 
         actions[id](items);
-
-        action('onDragEnd reorder');
       } else {
         const sourceId = source.droppableId;
         const destinationId = destination.droppableId;
@@ -206,13 +199,9 @@ const StatefulCloneDraggables = ({
 
         actions[sourceId](result[sourceId]);
         actions[destinationId](result[destinationId]);
-
-        action('onDragEnd copy')({ source, destination });
       }
     } else if (!destination && source.droppableId === 'DROPPABLE_AREA_COPY_2') {
       remove(source.droppableId, source.index);
-
-      action('onDragEnd remove')({ source, destination });
     }
   };
 
