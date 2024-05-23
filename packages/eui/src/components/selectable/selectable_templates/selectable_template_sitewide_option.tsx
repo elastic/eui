@@ -95,7 +95,7 @@ export const euiSelectableTemplateSitewideRenderOptions = (
   searchValue: string
 ) => {
   return (
-    <a href="" style={{ textDecoration: 'none' }}>
+    <a style={{ textDecoration: 'none' }}>
       <EuiHighlight
         className="euiSelectableTemplateSitewide__listItemTitle"
         search={searchValue}

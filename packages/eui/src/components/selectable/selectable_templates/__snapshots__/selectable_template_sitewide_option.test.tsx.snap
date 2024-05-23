@@ -95,7 +95,13 @@ Array [
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 1`] = `
-<React.Fragment>
+<a
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+>
   <EuiHighlight
     className="euiSelectableTemplateSitewide__listItemTitle"
     search=""
@@ -113,11 +119,17 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are rende
       Application
     </EuiHighlight>
   </span>
-</React.Fragment>
+</a>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 2`] = `
-<React.Fragment>
+<a
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+>
   <EuiHighlight
     className="euiSelectableTemplateSitewide__listItemTitle"
     search=""
@@ -142,11 +154,17 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are rende
       personal-databoard
     </EuiHighlight>
   </span>
-</React.Fragment>
+</a>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 3`] = `
-<React.Fragment>
+<a
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+>
   <EuiHighlight
     className="euiSelectableTemplateSitewide__listItemTitle"
     search=""
@@ -184,11 +202,17 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are rende
       I have a custom type
     </EuiHighlight>
   </span>
-</React.Fragment>
+</a>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 1`] = `
-<React.Fragment>
+<a
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+>
   <EuiHighlight
     className="euiSelectableTemplateSitewide__listItemTitle"
     search="data"
@@ -206,11 +230,17 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are rende
       Application
     </EuiHighlight>
   </span>
-</React.Fragment>
+</a>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 2`] = `
-<React.Fragment>
+<a
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+>
   <EuiHighlight
     className="euiSelectableTemplateSitewide__listItemTitle"
     search="data"
@@ -235,11 +265,17 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are rende
       personal-databoard
     </EuiHighlight>
   </span>
-</React.Fragment>
+</a>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 3`] = `
-<React.Fragment>
+<a
+  style={
+    Object {
+      "textDecoration": "none",
+    }
+  }
+>
   <EuiHighlight
     className="euiSelectableTemplateSitewide__listItemTitle"
     search="data"
@@ -277,5 +313,5 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are rende
       I have a custom type
     </EuiHighlight>
   </span>
-</React.Fragment>
+</a>
 `;
