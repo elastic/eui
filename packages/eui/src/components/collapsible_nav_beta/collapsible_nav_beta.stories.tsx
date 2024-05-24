@@ -48,7 +48,7 @@ const meta: Meta<EuiCollapsibleNavBetaProps> = {
 export default meta;
 type Story = StoryObj<EuiCollapsibleNavBetaProps>;
 
-const OpenCollapsibleNav: FunctionComponent<
+const StatefulCollapsibleNav: FunctionComponent<
   PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
 > = (props) => {
   return (
@@ -91,7 +91,7 @@ const renderGroup = (
 
 export const Playground: Story = {
   render: ({ ...args }) => (
-    <OpenCollapsibleNav {...args}>
+    <StatefulCollapsibleNav {...args}>
       <EuiCollapsibleNavBeta.Body>
         <EuiCollapsibleNavBeta.Item
           title="Elasticsearch"
@@ -165,7 +165,7 @@ export const Playground: Story = {
           ]}
         />
       </EuiCollapsibleNavBeta.Footer>
-    </OpenCollapsibleNav>
+    </StatefulCollapsibleNav>
   ),
 };
 

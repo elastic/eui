@@ -28,10 +28,10 @@ const meta: Meta<EuiSideNavProps> = {
     isOpenOnMobile: false,
   },
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <div style={{ width: 248 }}>
         {/* The side nav is visually easier to see with the width set */}
-        <Story />
+        <Story {...args} />
       </div>
     ),
   ],

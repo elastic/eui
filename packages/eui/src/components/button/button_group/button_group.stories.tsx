@@ -67,7 +67,7 @@ const options: EuiButtonGroupOptionProps[] = [
   },
 ];
 
-const EuiButtonGroupSingle = (props: any) => {
+const StatefulEuiButtonGroupSingle = (props: any) => {
   const [idSelected, setIdSelected] = useState(props.idSelected);
 
   return (
@@ -80,7 +80,7 @@ const EuiButtonGroupSingle = (props: any) => {
 };
 
 export const SingleSelection: Story = {
-  render: ({ ...args }) => <EuiButtonGroupSingle {...args} />,
+  render: ({ ...args }) => <StatefulEuiButtonGroupSingle {...args} />,
   args: {
     legend: 'EuiButtonGroup - single selection',
     options,
@@ -89,7 +89,7 @@ export const SingleSelection: Story = {
   },
 };
 
-const EuiButtonGroupMulti = (props: any) => {
+const StatefulEuiButtonGroupMulti = (props: any) => {
   const [idToSelectedMap, setIdToSelectedMap] = useState<
     Record<string, boolean>
   >(props.idToSelectedMap);
@@ -113,7 +113,7 @@ const EuiButtonGroupMulti = (props: any) => {
 };
 
 export const MultiSelection: Story = {
-  render: ({ ...args }) => <EuiButtonGroupMulti {...args} />,
+  render: ({ ...args }) => <StatefulEuiButtonGroupMulti {...args} />,
   args: {
     legend: 'EuiButtonGroup - multiple selections',
     options,
@@ -123,7 +123,7 @@ export const MultiSelection: Story = {
 };
 
 export const WithTooltips: Story = {
-  render: ({ ...args }) => <EuiButtonGroupMulti {...args} />,
+  render: ({ ...args }) => <StatefulEuiButtonGroupMulti {...args} />,
   args: {
     legend: 'EuiButtonGroup - tooltip UI testing',
     isIconOnly: true, // Start example with icons to demonstrate usefulness of tooltips
