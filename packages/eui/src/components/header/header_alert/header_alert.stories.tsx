@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   EuiLink,
   EuiBadge,
@@ -62,11 +61,27 @@ export const Playground: Story = {};
 /**
  * Flyout example
  */
-const Flyout = (props: EuiHeaderAlertProps) => {
+const Flyout = (
+  props: EuiHeaderAlertProps & { __STORYBOOK_ONLY__isOpen: boolean }
+) => {
+  const { __STORYBOOK_ONLY__isOpen, ...rest } = props ?? {
+    __STORYBOOK_ONLY__isOpen: true,
+  };
+  const [isMounted, setMounted] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const closeFlyout = () => setIsFlyoutVisible(false);
 
-  const flyout = isFlyoutVisible && (
+  useEffect(() => {
+    if (!props || isMounted) return;
+
+    if (props.__STORYBOOK_ONLY__isOpen) {
+      setMounted(true);
+    }
+  }, [props, isMounted]);
+
+  const shouldShowCode = !isMounted && !isFlyoutVisible;
+
+  const flyout = (shouldShowCode || (isMounted && isFlyoutVisible)) && (
     <EuiFlyout onClose={closeFlyout} size="s">
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="s">
@@ -74,11 +89,11 @@ const Flyout = (props: EuiHeaderAlertProps) => {
         </EuiTitle>
       </EuiFlyoutHeader>
       <EuiFlyoutBody>
-        <EuiHeaderAlert {...props} />
-        <EuiHeaderAlert {...props} />
-        <EuiHeaderAlert {...props} />
-        <EuiHeaderAlert {...props} />
-        <EuiHeaderAlert {...props} />
+        <EuiHeaderAlert {...rest} />
+        <EuiHeaderAlert {...rest} />
+        <EuiHeaderAlert {...rest} />
+        <EuiHeaderAlert {...rest} />
+        <EuiHeaderAlert {...rest} />
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
         <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
@@ -118,7 +133,12 @@ const Flyout = (props: EuiHeaderAlertProps) => {
   );
 };
 export const FlyoutExample: Story = {
-  render: ({ ...args }) => <Flyout {...args} />,
+  parameters: {
+    codeSnippet: {
+      resolveChildren: true,
+    },
+  },
+  render: (args) => <Flyout {...args} __STORYBOOK_ONLY__isOpen={true} />,
 };
 
 /**
@@ -178,5 +198,10 @@ const Popover = (props: any) => {
   );
 };
 export const PopoverExample: Story = {
-  render: ({ ...args }) => <Popover {...args} />,
+  parameters: {
+    codeSnippet: {
+      resolveChildren: true,
+    },
+  },
+  render: (args) => <Popover {...args} />,
 };

@@ -7,7 +7,11 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { disableStorybookControls } from '../../../.storybook/utils';
+
+import {
+  disableStorybookControls,
+  enableFunctionToggleControls,
+} from '../../../.storybook/utils';
 
 import { EuiButton, Props as EuiButtonProps } from './button';
 
@@ -34,6 +38,7 @@ const meta: Meta<EuiButtonProps> = {
     isSelected: false,
   },
 };
+enableFunctionToggleControls(meta, ['onClick']);
 
 export default meta;
 type Story = StoryObj<EuiButtonProps>;

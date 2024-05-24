@@ -48,8 +48,8 @@ export const MultipleValues: Story = {
     values: [0, 1, 2],
     children: (values: ReactChild[]) => (
       <>
-        {values.map((value) => (
-          <EuiText>
+        {values.map((value, index) => (
+          <EuiText key={index}>
             <span>Formatted number: {value}</span>
           </EuiText>
         ))}
