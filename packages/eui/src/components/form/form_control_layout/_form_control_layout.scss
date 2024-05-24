@@ -1,11 +1,6 @@
 // TODO: Address nesting during Emotion conversion, if possible
 // stylelint-disable max-nesting-depth
 
-.euiFormControlLayout {
-  // Let the height expand as needed
-  @include euiFormControlSize($includeAlternates: true);
-}
-
 /**
  * 1. Account for inner box-shadow style border
  */

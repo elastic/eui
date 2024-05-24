@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayout is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormControlLayout testClass1 testClass2 emotion-euiFormControlLayout-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -16,7 +16,7 @@ exports[`EuiFormControlLayout is rendered 1`] = `
 
 exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -43,7 +43,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
 
 exports[`EuiFormControlLayout props compressed renders small-sized icon, clear button, and loading spinner 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--compressed"
+  class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -87,7 +87,7 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
 
 exports[`EuiFormControlLayout props fullWidth is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -97,7 +97,7 @@ exports[`EuiFormControlLayout props fullWidth is rendered 1`] = `
 
 exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -122,7 +122,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
 
 exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -148,7 +148,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
 
 exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -173,7 +173,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
 
 exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -199,7 +199,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
 exports[`EuiFormControlLayout props iconsPosition 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormControlLayout testClass1 testClass2 emotion-euiFormControlLayout-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -237,7 +237,7 @@ exports[`EuiFormControlLayout props iconsPosition 1`] = `
 
 exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -262,7 +262,7 @@ exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
 
 exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -282,7 +282,7 @@ exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
 
 exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
 <div
-  class="euiFormControlLayout"
+  class="euiFormControlLayout emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
@@ -303,7 +303,7 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
 
 exports[`EuiFormControlLayout props multiple appends are rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
@@ -323,7 +323,7 @@ exports[`EuiFormControlLayout props multiple appends are rendered 1`] = `
 
 exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <span
     class="euiFormControlLayout__prepend"
@@ -343,7 +343,7 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
 
 exports[`EuiFormControlLayout props one append node is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
@@ -358,7 +358,7 @@ exports[`EuiFormControlLayout props one append node is rendered 1`] = `
 
 exports[`EuiFormControlLayout props one append string is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
@@ -373,7 +373,7 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
 
 exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <span
     class="euiFormControlLayout__prepend"
@@ -388,7 +388,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
 
 exports[`EuiFormControlLayout props one prepend node is rendered with className 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <span
     class="euiFormControlLayout__prepend myClass"
@@ -403,7 +403,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered with className 
 
 exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--group"
+  class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout"
 >
   <label
     class="euiFormLabel euiFormControlLayout__prepend"
@@ -418,7 +418,7 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
 
 exports[`EuiFormControlLayout props readOnly is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--readOnly"
+  class="euiFormControlLayout euiFormControlLayout--readOnly emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"

@@ -101,8 +101,6 @@ export const EuiFormControlLayout: FunctionComponent<
   const classes = classNames(
     'euiFormControlLayout',
     {
-      'euiFormControlLayout--fullWidth': fullWidth,
-      'euiFormControlLayout--compressed': compressed,
       'euiFormControlLayout--readOnly': readOnly,
       'euiFormControlLayout--group': prepend || append,
       'euiFormControlLayout-isDisabled': isDisabled,
@@ -111,6 +109,12 @@ export const EuiFormControlLayout: FunctionComponent<
   );
 
   const styles = useEuiMemoizedStyles(euiFormControlLayoutStyles);
+
+  const cssStyles = [
+    styles.euiFormControlLayout,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+  ];
 
   const childrenWrapperStyles = [
     styles.children.euiFormControlLayout__childrenWrapper,
@@ -136,7 +140,7 @@ export const EuiFormControlLayout: FunctionComponent<
   }, [iconsPosition, icon, clear, isInvalid, isLoading, hasDropdownIcon]);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       <EuiFormControlLayoutSideNodes
         side="prepend"
         nodes={prepend}

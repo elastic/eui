@@ -238,7 +238,7 @@ describe('EuiFormControlLayout', () => {
       const layout = baseElement.querySelector('.euiFormControlLayout');
 
       expect(layout).toBeDefined();
-      expect(layout).toHaveClass('euiFormControlLayout--fullWidth');
+      expect(layout!.className).toContain('fullWidth');
     });
   });
 });
