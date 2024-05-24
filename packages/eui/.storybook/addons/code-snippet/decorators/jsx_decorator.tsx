@@ -18,6 +18,7 @@ import type {
 import { addons, useEffect, useCallback } from '@storybook/preview-api';
 import { logger } from '@storybook/client-logger';
 
+import { useEuiTheme } from '../../../../src/services';
 import { EVENTS, STORY_ARGS_MARKER } from '../constants';
 
 import { getFormattedCode, skipJsxRender } from './utils';
@@ -136,8 +137,13 @@ export const customJsxDecorator = (
       )
     : story;
 
+  // NOTE: euiTheme is defined on global level to prevent errors on conditionally rendered hooks
+  // when stories have conditionally rendered components (via mapping) that rely on euiTheme
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const euiTheme = useEuiTheme();
+
   // generate JSX from the story
-  const renderedJsx = renderJsx(storyJsx, options, context);
+  const renderedJsx = renderJsx(storyJsx, options, context, euiTheme);
   if (renderedJsx) {
     getFormattedCode(renderedJsx)
       .then((res: string) => {

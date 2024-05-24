@@ -19,7 +19,7 @@ import type { StoryContext } from '@storybook/types';
 import { getDocgenSection } from '@storybook/docs-tools';
 import { logger } from '@storybook/client-logger';
 
-import { useEuiTheme } from '../../../../src/services';
+import { UseEuiTheme } from '../../../../src/services';
 import {
   getComponentDisplayName,
   getEmotionComponentDisplayName,
@@ -56,7 +56,8 @@ export type JSXOptions = Options & {
 export const renderJsx = (
   code: React.ReactElement,
   options?: JSXOptions,
-  context?: StoryContext<ReactRenderer>
+  context?: StoryContext<ReactRenderer>,
+  euiTheme?: UseEuiTheme
 ): string | null => {
   if (typeof code === 'undefined') {
     logger.warn('Too many skip or undefined component');
@@ -242,7 +243,7 @@ export const renderJsx = (
     }
 
     let string: string = toJSXString(
-      _simplifyNodeForStringify(node),
+      _simplifyNodeForStringify(node, euiTheme),
       opts as Options
     );
 
@@ -323,12 +324,12 @@ export const renderJsx = (
  * - resolves Emotion css prop back to its input state
  * - resolves arrays and objects to single elements
  */
-const _simplifyNodeForStringify = (node: ReactNode): ReactNode => {
+const _simplifyNodeForStringify = (
+  node: ReactNode,
+  euiTheme?: UseEuiTheme
+): ReactNode => {
   if (isValidElement(node)) {
     let updatedNode = node;
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const euiTheme = useEuiTheme();
 
     // remove outer fragments
     if (isFragment(updatedNode) && !Array.isArray(updatedNode.props.children)) {
@@ -360,7 +361,10 @@ const _simplifyNodeForStringify = (node: ReactNode): ReactNode => {
           if (cur === 'css') {
             // example:
             //   css={({ euiTheme }) => ({})}
-            if (typeof updatedNode.props[cur] === 'function') {
+            if (
+              typeof updatedNode.props[cur] === 'function' &&
+              euiTheme != null
+            ) {
               const styles = updatedNode.props[cur]?.(euiTheme);
               const fnString = String(updatedNode.props[cur]);
 
@@ -488,7 +492,9 @@ const _simplifyNodeForStringify = (node: ReactNode): ReactNode => {
   }
   // recursively resolve array or object nodes (e.g. props)
   if (Array.isArray(node)) {
-    const children = node.map(_simplifyNodeForStringify);
+    const children = node.map((child) =>
+      _simplifyNodeForStringify(child, euiTheme)
+    );
     return children.flat();
   }
 
