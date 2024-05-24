@@ -12,3 +12,5 @@ export const PANEL_ID = `${ADDON_ID}/panel`;
 export const EVENTS = {
   SNIPPET_RENDERED: `${ADDON_ID}/snippet-rendered`,
 };
+
+export const STORY_ARGS_MARKER = '{{STORY_ARGS}}';
