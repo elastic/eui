@@ -7800,6 +7800,26 @@ exports[`EuiIcon props type moon is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type move is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="move"
+  data-is-loaded="true"
+  fill="none"
+  height="14"
+  role="img"
+  viewBox="0 0 15 14"
+  width="15"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13.883 6.644a.5.5 0 0 1 .006.707l-1.984 2.016a.5.5 0 0 1-.856-.347l-.009-1.004-3.024.024V11h1a.5.5 0 0 1 .354.854l-2 2a.5.5 0 0 1-.707 0l-2-2A.5.5 0 0 1 5.016 11h1V8.057l-3.008.024.008.995a.5.5 0 0 1-.85.36L.148 7.454a.5.5 0 0 1-.005-.707L2.127 4.73a.5.5 0 0 1 .857.347l.008 1.004 3.024-.025V3h-1a.5.5 0 0 1-.353-.854l2-2a.5.5 0 0 1 .707 0l2 2A.5.5 0 0 1 9.016 3h-1v3.04l3.008-.024-.008-.996a.5.5 0 0 1 .85-.36l2.017 1.984Z"
+    fill="#343741"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type namespace is rendered 1`] = `
 <svg
   aria-hidden="true"

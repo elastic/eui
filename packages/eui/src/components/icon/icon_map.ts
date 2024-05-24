@@ -305,6 +305,7 @@ export const typeToPathMap = {
   mobile: 'mobile',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
+  move: 'move',
   namespace: 'namespace',
   nested: 'nested',
   newChat: 'new_chat',
