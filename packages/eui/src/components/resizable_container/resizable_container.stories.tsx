@@ -155,6 +155,12 @@ const MultiCollapsible: EuiResizableContainerProps['children'] = (
 const meta: Meta<EuiResizableContainerProps> = {
   title: 'Layout/EuiResizableContainer/EuiResizableContainer',
   component: EuiResizableContainer,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   args: {
     direction: 'horizontal',
   },

@@ -22,6 +22,12 @@ import {
 const meta: Meta<EuiMutationObserverProps> = {
   title: 'Utilities/EuiMutationObserver',
   component: EuiMutationObserver,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
 };
 
 export default meta;
