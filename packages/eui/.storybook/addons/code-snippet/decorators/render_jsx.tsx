@@ -376,29 +376,34 @@ const _simplifyNodeForStringify = (
                *      minBlockSize: '150vh'
                *     };"
                */
-              const regex = /return \{([\S\s]*?)(;)$/gm;
+              const regex = /return([\S\s]*?)\{([\S\s]*?)(};?)$/gm;
               const matches = fnString.match(regex);
 
               if (matches) {
                 const rules = matches[0]
                   .replace('return {\n', '')
+                  .replace('return{', '')
                   .replace(/(\/\/)([\S\s]*?)$/g, '')
                   .replaceAll(' ', '')
                   .replaceAll('\n', '')
+                  .replace(/}}/g, '')
                   .split(',');
 
                 // transform string to styles object
                 const cssStyles = rules.reduce((acc, cur) => {
                   const [property, value] = cur.split(':');
                   const isToken = value.match('euiTheme') != null;
+                  const cleanedValue = isToken
+                    ? value.replace(/.+?(?=euiTheme)/g, '')
+                    : value.replaceAll("'", '').replaceAll('"', '');
 
                   // if the value is a token, we pass the token name with variable
                   // markers which are removed in a later step.
                   // this way the value won't be coerced to another type when
                   // transforming the element to a jsx string
                   acc[property] = isToken
-                    ? `{{${value}}}`
-                    : value.replaceAll("'", '');
+                    ? `{{${cleanedValue}}}`
+                    : cleanedValue;
 
                   return acc;
                 }, {} as Record<string, any>);
