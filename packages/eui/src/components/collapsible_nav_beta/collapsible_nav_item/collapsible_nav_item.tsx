@@ -240,17 +240,16 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
 type EuiCollapsibleNavSubItemsProps = HTMLAttributes<HTMLDivElement> &
   _EuiCollapsibleNavItemDisplayProps & {
     items: EuiCollapsibleNavSubItemProps[];
-    isGroup?: boolean;
   };
 export const EuiCollapsibleNavSubItems: FunctionComponent<
   EuiCollapsibleNavSubItemsProps
-> = ({ items, isSubItem, isGroup, className, ...rest }) => {
+> = ({ items, isSubItem, className, ...rest }) => {
   const classes = classNames('euiCollapsibleNavItem__items', className);
 
   const styles = useEuiMemoizedStyles(euiCollapsibleNavSubItemsStyles);
   const cssStyles = [
     styles.euiCollapsibleNavItem__items,
-    isGroup ? styles.isGroup : isSubItem ? styles.isSubItem : styles.isTopItem,
+    isSubItem ? styles.isSubItem : styles.isTopItem,
   ];
 
   const itemsHaveIcons = useMemo(

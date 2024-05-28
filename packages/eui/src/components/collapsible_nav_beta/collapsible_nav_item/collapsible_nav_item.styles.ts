@@ -55,13 +55,9 @@ export const euiCollapsibleNavItemTitleStyles = {
 export const euiCollapsibleNavSubItemsStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCollapsibleNavItem__items: css``,
-    isGroup: css`
-      ${logicalCSS('padding-top', euiTheme.size.xs)}
-      ${logicalCSS('padding-left', euiTheme.size.s)}
-    `,
     isTopItem: css`
       ${logicalCSS('padding-top', euiTheme.size.xs)}
-      ${logicalCSS('padding-left', euiTheme.size.xl)}
+      ${logicalCSS('padding-left', euiTheme.size.s)}
     `,
     isSubItem: css`
       ${logicalCSS('border-left', euiTheme.border.thin)}
