@@ -11,10 +11,11 @@ import React, {
   useEffect,
   ComponentPropsWithoutRef,
   PropsWithChildren,
-  ComponentType,
   ForwardedRef,
   forwardRef,
   Ref,
+  ReactElement,
+  FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -39,9 +40,7 @@ const VALID_GROW_VALUES = [
   10,
 ] as const;
 
-type ComponentPropType = ElementType<CommonProps>;
-
-export type EuiFlexItemProps<TComponent extends ComponentPropType = 'div'> =
+export type EuiFlexItemProps<TComponent extends ElementType = 'div'> =
   PropsWithChildren &
     CommonProps &
     ComponentPropsWithoutRef<TComponent> & {
@@ -53,20 +52,20 @@ export type EuiFlexItemProps<TComponent extends ComponentPropType = 'div'> =
        * such as `'div'` or `'span'`, a React component (a function, a class,
        * or an exotic component like `memo()`).
        *
-       * `<EuiFlexGroup>` accepts and forwards all extra props to the custom
+       * `<EuiFlexItem>` accepts and forwards all extra props to the custom
        * component.
        *
        * @example
        * // Renders a <button> element
        * <EuiFlexItem component="button">
        *   Submit form
-       * </EuiFlexGroup>
+       * </EuiFlexItem>
        * @default "div"
        */
       component?: TComponent;
     };
 
-const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
+const EuiFlexItemInternal = <TComponent extends ElementType>(
   {
     children,
     className,
@@ -75,7 +74,7 @@ const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
     ...rest
   }: EuiFlexItemProps<TComponent>,
   ref: ForwardedRef<TComponent>
-) => {
+): ReactElement<EuiFlexItemProps<TComponent>, TComponent> => {
   useEffect(() => {
     if (VALID_GROW_VALUES.indexOf(grow) === -1) {
       throw new Error(
@@ -95,10 +94,11 @@ const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
 
   const classes = classNames('euiFlexItem', className);
 
-  // Cast the resolved component prop type to ComponentType to help TS
-  // process multiple infers and the overall type complexity.
-  // This might not be needed in TypeScript 5
-  const Component = component as ComponentType<CommonProps & typeof rest>;
+  // Cast `component` to FunctionComponent to simplify its type.
+  // Note that FunctionComponent type is used here for purely typing
+  // convenience since we specify the return type above, and function
+  // components don't support `ref`s, but that doesn't matter in this case.
+  const Component = component as FunctionComponent<CommonProps & typeof rest>;
 
   return (
     <Component {...rest} ref={ref} css={cssStyles} className={classes}>
@@ -110,12 +110,12 @@ const EuiFlexItemInternal = <TComponent extends ComponentPropType>(
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
 export const EuiFlexItem = forwardRef(EuiFlexItemInternal) as (<
-  TComponent extends ComponentPropType,
-  TComponentRef = ReturnType<typeof EuiFlexItemInternal>
+  TComponent extends ElementType,
+  TComponentRef = ReactElement<any, TComponent>
 >(
   props: EuiFlexItemProps<TComponent> & {
     ref?: Ref<TComponentRef>;
   }
-) => ReturnType<typeof EuiFlexItemInternal>) & { displayName?: string };
+) => ReactElement) & { displayName?: string };
 
 EuiFlexItem.displayName = 'EuiFlexItem';

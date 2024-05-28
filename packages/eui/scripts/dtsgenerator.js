@@ -106,6 +106,7 @@ const generator = dtsGenerator({
 // 2. replace any import("src/...") declarations to import("@elastic/eui/src/...")
 // 3. replace any import("./...") declarations to import("@elastic/eui/src/...)
 // 4. generate & add EuiTokenObject
+// 5. Fix React.ElementType being incorrectly expanded to React.ElementType<any, keyof React.JSX.IntrinsicElements>
 generator.then(() => {
   const defsFilePath = path.resolve(baseDir, 'eui.d.ts');
 
@@ -155,6 +156,10 @@ generator.then(() => {
         }
       ) // end 3.
       .replace(/$/, `\n\n${buildEuiTokensObject()}`) // 4.
+      .replaceAll(
+        'React.ElementType<any, keyof React.JSX.IntrinsicElements>',
+        'React.ElementType'
+      ) // 5.
   );
 });
 
