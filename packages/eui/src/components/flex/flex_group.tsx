@@ -8,11 +8,12 @@
 
 import React, {
   ComponentPropsWithoutRef,
-  ComponentType,
   ElementType,
   ForwardedRef,
   forwardRef,
+  FunctionComponent,
   PropsWithChildren,
+  ReactElement,
   Ref,
 } from 'react';
 import classNames from 'classnames';
@@ -51,9 +52,7 @@ export const DIRECTIONS = [
 ] as const;
 type FlexGroupDirection = (typeof DIRECTIONS)[number];
 
-type ComponentPropType = ElementType<CommonProps>;
-
-export type EuiFlexGroupProps<TComponent extends ComponentPropType = 'div'> =
+export type EuiFlexGroupProps<TComponent extends ElementType = 'div'> =
   PropsWithChildren &
     CommonProps &
     ComponentPropsWithoutRef<TComponent> & {
@@ -83,7 +82,7 @@ export type EuiFlexGroupProps<TComponent extends ComponentPropType = 'div'> =
       wrap?: boolean;
     };
 
-const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
+const EuiFlexGroupInternal = <TComponent extends ElementType>(
   {
     className,
     component = 'div' as TComponent,
@@ -96,7 +95,7 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
     ...rest
   }: EuiFlexGroupProps<TComponent>,
   ref: ForwardedRef<TComponent>
-) => {
+): ReactElement<EuiFlexGroupProps<TComponent>, TComponent> => {
   const styles = useEuiMemoizedStyles(euiFlexGroupStyles);
   const cssStyles = [
     styles.euiFlexGroup,
@@ -110,10 +109,11 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
 
   const classes = classNames('euiFlexGroup', className);
 
-  // Cast the resolved component prop type to ComponentType to help TS
-  // process multiple infers and the overall type complexity.
-  // This might not be needed in TypeScript 5
-  const Component = component as ComponentType<CommonProps & typeof rest>;
+  // Cast `component` to FunctionComponent to simplify its type.
+  // Note that FunctionComponent type is used here for purely typing
+  // convenience since we specify the return type above, and function
+  // components don't support `ref`s, but that doesn't matter in this case.
+  const Component = component as FunctionComponent<CommonProps & typeof rest>;
 
   return <Component {...rest} ref={ref} className={classes} css={cssStyles} />;
 };
@@ -121,12 +121,12 @@ const EuiFlexGroupInternal = <TComponent extends ComponentPropType>(
 // Cast forwardRef return type to work with the generic TComponent type
 // and not fallback to implicit any typing
 export const EuiFlexGroup = forwardRef(EuiFlexGroupInternal) as (<
-  TComponent extends ComponentPropType = 'div',
-  TComponentRef = ReturnType<typeof EuiFlexGroupInternal>
+  TComponent extends ElementType = 'div',
+  TComponentRef = ReactElement<any, TComponent>
 >(
   props: EuiFlexGroupProps<TComponent> & {
     ref?: Ref<TComponentRef>;
   }
-) => ReturnType<typeof EuiFlexGroupInternal>) & { displayName?: string };
+) => ReactElement) & { displayName?: string };
 
 EuiFlexGroup.displayName = 'EuiFlexGroup';
