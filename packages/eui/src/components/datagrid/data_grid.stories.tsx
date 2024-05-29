@@ -300,15 +300,15 @@ export const Playground: Story = {
 };
 enableFunctionToggleControls<EuiDataGridProps>(Playground, ['onColumnResize']);
 
-export const RowHeight: Story = {
+export const HeightLineCount: Story = {
   parameters: {
     controls: {
-      include: ['gridStyle', 'rowHeightsOptions', 'width'],
+      include: ['gridStyle', 'rowHeightsOptions', 'width', 'height'],
     },
   },
   args: {
     columns,
-    rowCount: 3,
+    rowCount: 5,
     renderCellValue: RenderCellValue,
     // setup for easier testing/QA
     columnVisibility: {
@@ -342,7 +342,112 @@ export const RowHeight: Story = {
       defaultHeight: {
         lineCount: 1,
       },
+      lineHeight: undefined,
+      scrollAnchorRow: undefined,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+export const RowHeight: Story = {
+  parameters: {
+    controls: {
+      include: ['gridStyle', 'rowHeightsOptions', 'width', 'height'],
+    },
+  },
+  args: {
+    columns,
+    rowCount: 5,
+    renderCellValue: RenderCellValue,
+    // setup for easier testing/QA
+    columnVisibility: {
+      visibleColumns: [
+        'name',
+        'email',
+        'account',
+        'location',
+        'date',
+        'amount',
+        'phone',
+        'version',
+      ],
+      setVisibleColumns: () => {},
+    },
+    gridStyle: {
+      fontSize: 's',
+      cellPadding: 'm',
+      border: 'all',
+      stripes: false,
+      header: 'shade',
+      footer: 'overline',
+      stickyFooter: true,
+      rowHover: 'highlight',
+      rowClasses: {},
+    },
+    width: '',
+    height: '',
+    toolbarVisibility: false,
+    rowHeightsOptions: {
+      defaultHeight: {
+        height: 48,
+      },
       rowHeights: {},
+      lineHeight: undefined,
+      scrollAnchorRow: undefined,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+export const CustomRowHeights: Story = {
+  parameters: {
+    controls: {
+      include: ['gridStyle', 'rowHeightsOptions', 'width', 'height'],
+    },
+  },
+  args: {
+    columns,
+    rowCount: 5,
+    renderCellValue: RenderCellValue,
+    // setup for easier testing/QA
+    columnVisibility: {
+      visibleColumns: [
+        'name',
+        'email',
+        'account',
+        'location',
+        'date',
+        'amount',
+        'phone',
+        'version',
+      ],
+      setVisibleColumns: () => {},
+    },
+    gridStyle: {
+      fontSize: 's',
+      cellPadding: 'm',
+      border: 'all',
+      stripes: false,
+      header: 'shade',
+      footer: 'overline',
+      stickyFooter: true,
+      rowHover: 'highlight',
+      rowClasses: {},
+    },
+    width: '700px',
+    height: '',
+    toolbarVisibility: false,
+    rowHeightsOptions: {
+      defaultHeight: {
+        lineCount: 1,
+      },
+      rowHeights: {
+        2: 'auto',
+        3: 48,
+        4: {
+          height: 48,
+        },
+      },
       lineHeight: undefined,
       scrollAnchorRow: undefined,
     },
