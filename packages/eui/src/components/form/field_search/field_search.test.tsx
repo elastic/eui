@@ -93,7 +93,7 @@ describe('EuiFieldSearch', () => {
       );
 
       const input = container.querySelector('.euiFieldSearch');
-      expect(input).toHaveClass('euiFieldSearch--fullWidth');
+      expect(input?.className).toContain('fullWidth');
     });
   });
 });

@@ -8,18 +8,23 @@
 
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
+
 import { Browser } from '../../../services/browser';
 import { CommonProps } from '../../common';
-import { keys } from '../../../services';
+import {
+  keys,
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
+} from '../../../services';
 
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
 import { EuiValidatableControl } from '../validatable_control';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 import { FormContext, FormContextValue } from '../eui_form_context';
+
+import { euiFieldSearchStyles } from './field_search.styles';
 
 export interface EuiFieldSearchProps
   extends CommonProps,
@@ -74,8 +79,8 @@ interface EuiFieldSearchState {
 
 let isSearchSupported: boolean = false;
 
-export class EuiFieldSearch extends Component<
-  EuiFieldSearchProps,
+export class EuiFieldSearchClass extends Component<
+  EuiFieldSearchProps & WithEuiStylesMemoizerProps,
   EuiFieldSearchState
 > {
   static contextType = FormContext;
@@ -205,6 +210,7 @@ export class EuiFieldSearch extends Component<
   render() {
     const { defaultFullWidth } = this.context as FormContextValue;
     const {
+      stylesMemoizer,
       className,
       id,
       name,
@@ -230,25 +236,23 @@ export class EuiFieldSearch extends Component<
       _isClearable && value && !rest.readOnly && !rest.disabled
     );
 
-    const numIconsClass = getFormControlClassNameForIconCount({
-      clear: isClearable,
-      isInvalid,
-      isLoading,
-    });
-
     const classes = classNames(
       'euiFieldSearch',
-      numIconsClass,
       {
-        'euiFieldSearch--fullWidth': fullWidth,
-        'euiFieldSearch--compressed': compressed,
-        'euiFieldSearch--inGroup': prepend || append,
         'euiFieldSearch-isLoading': isLoading,
         'euiFieldSearch-isClearable': isClearable,
         'euiFieldSearch-isInvalid': isInvalid,
       },
       className
     );
+
+    const styles = stylesMemoizer(euiFieldSearchStyles);
+    const cssStyles = [
+      styles.euiFieldSearch,
+      compressed ? styles.compressed : styles.uncompressed,
+      fullWidth ? styles.fullWidth : styles.formWidth,
+      (prepend || append) && styles.inGroup,
+    ];
 
     return (
       <EuiFormControlLayout
@@ -272,6 +276,7 @@ export class EuiFieldSearch extends Component<
             name={name}
             placeholder={placeholder}
             className={classes}
+            css={cssStyles}
             onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
             ref={this.setRef}
             {...rest}
@@ -281,3 +286,6 @@ export class EuiFieldSearch extends Component<
     );
   }
 }
+
+export const EuiFieldSearch =
+  withEuiStylesMemoizer<EuiFieldSearchProps>(EuiFieldSearchClass);
