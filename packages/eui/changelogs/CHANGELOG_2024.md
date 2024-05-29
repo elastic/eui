@@ -1,3 +1,10 @@
+## [`v94.5.2`](https://github.com/elastic/eui/releases/v94.5.2)
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` to more gracefully handle incorrectly formatted `selected` Moment dates, instead of simply crashing ([#7784](https://github.com/elastic/eui/pull/7784))
+- Fixed `EuiFlexGroup` and `EuiFlexItem` types to correctly accept global attribute props and simplify type resolution when used with `styled()`-like wrappers ([#7792](https://github.com/elastic/eui/pull/7792))
+
 ## [`v94.5.1`](https://github.com/elastic/eui/releases/v94.5.1)
 
 **Bug fixes**
