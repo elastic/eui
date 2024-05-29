@@ -58,7 +58,7 @@ const options: EuiSelectableOption[] = [
 ];
 
 const meta: Meta<EuiSelectableSearchProps<{}>> = {
-  title: 'Forms/EuiSelectable/EuiSelectableSearch',
+  title: 'Forms/EuiSelectable/Subcomponents/EuiSelectableSearch',
   component: EuiSelectableSearch,
   argTypes: {
     name: { control: 'text' },

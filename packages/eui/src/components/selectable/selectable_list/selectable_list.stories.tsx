@@ -55,7 +55,7 @@ const options: EuiSelectableOption[] = [
 ];
 
 const meta: Meta<EuiSelectableListProps<{}>> = {
-  title: 'Forms/EuiSelectable/EuiSelectableList/EuiSelectableList',
+  title: 'Forms/EuiSelectable/Subcomponents/EuiSelectableList',
   component: EuiSelectableList,
   argTypes: {
     height: { control: 'number' },

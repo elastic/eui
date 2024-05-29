@@ -133,8 +133,8 @@ const hasStep = (step) => {
     updateChangelog(changelog, versionTarget);
     execSync('git commit -m "Updated changelog" -n');
 
-    // update package.json & package-lock.json version, git commit, git tag
-    execSync(`npm version ${versionTarget}`, execOptions);
+    // update package.json version, git commit, git tag
+    execSync(`yarn version --new-version ${versionTarget} --version-tag-prefix=v --version-git-tag=true --version-commit-hooks=false`, execOptions);
   }
 
   if (hasStep('tag') && !isDryRun) {

@@ -1,3 +1,22 @@
+## [`v94.5.2`](https://github.com/elastic/eui/releases/v94.5.2)
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` to more gracefully handle incorrectly formatted `selected` Moment dates, instead of simply crashing ([#7784](https://github.com/elastic/eui/pull/7784))
+- Fixed `EuiFlexGroup` and `EuiFlexItem` types to correctly accept global attribute props and simplify type resolution when used with `styled()`-like wrappers ([#7792](https://github.com/elastic/eui/pull/7792))
+
+## [`v94.5.1`](https://github.com/elastic/eui/releases/v94.5.1)
+
+**Bug fixes**
+
+- Fixed an `EuiDualRange`s with `showInput` bug, where `min`/`max` values and invalid states were not being correctly set if values were empty strings ([#7767](https://github.com/elastic/eui/pull/7767))
+
+**Accessibility**
+
+- Improved `EuiDatePicker` and `EuiSuperDatePicker`'s time selection screen reader UX ([#7726](https://github.com/elastic/eui/pull/7726))
+- Improved the accessibility of `EuiDatePicker` by providing full screen-reader-only week day names to the calendar header ([#7748](https://github.com/elastic/eui/pull/7748))
+- Improved `EuiBadge`'s ability to tell when text within the badge is selected/highlighted and selection color contrast ([#7752](https://github.com/elastic/eui/pull/7752))
+
 ## [`v94.5.0`](https://github.com/elastic/eui/releases/v94.5.0)
 
 - `EuiFlyoutResizable` now respects `size` prop updates, allowing for controlled `size` usage ([#7759](https://github.com/elastic/eui/pull/7759))

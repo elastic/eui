@@ -9,7 +9,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   disableStorybookControls,
-  hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 
@@ -46,6 +45,9 @@ disableStorybookControls(meta, ['inputRef']);
 export const Playground: Story = {};
 
 export const ControlledComponent: Story = {
+  parameters: {
+    controls: { include: ['max', 'min', 'onChange', 'step', 'value'] },
+  },
   args: {
     value: 0,
   },
@@ -54,23 +56,23 @@ export const ControlledComponent: Story = {
     onChange: () => {},
   },
 };
-// Hide props that don't impact this story
-hideStorybookControls(ControlledComponent, [
-  'controlOnly',
-  'inputRef',
-  'compressed',
-  'fullWidth',
-  'icon',
-  'isInvalid',
-  'isLoading',
-  'disabled',
-  'readOnly',
-  'placeholder',
-  'prepend',
-  'append',
-]);
 
 export const IconShape: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'icon',
+        'compressed',
+        'fullWidth',
+        'prepend',
+        'append',
+        'isInvalid',
+        'isLoading',
+        'disabled',
+        'readOnly',
+      ],
+    },
+  },
   argTypes: { icon: { control: 'object' } },
   args: { icon: { type: 'warning', color: 'warning', side: 'left' } },
 };
@@ -82,15 +84,6 @@ moveStorybookControlsToCategory(IconShape, [
   'isLoading',
   'disabled',
   'readOnly',
-  'placeholder',
   'prepend',
   'append',
-]);
-// Hide props that remove or won't affect the icon or its positioning
-hideStorybookControls(IconShape, [
-  'controlOnly',
-  'inputRef',
-  'min',
-  'max',
-  'step',
 ]);

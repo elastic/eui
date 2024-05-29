@@ -44,7 +44,7 @@ export interface EuiIconTipProps {
   iconProps?: Omit<PropsOf<typeof EuiIcon>, 'type'> & { type?: never };
 }
 
-type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &
+export type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &
   EuiIconTipProps & {
     // This are copied from EuiToolTipProps, but made optional. Defaults
     // are applied below.

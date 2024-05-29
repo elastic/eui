@@ -10,7 +10,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   disableStorybookControls,
-  hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 
@@ -46,6 +45,21 @@ disableStorybookControls(meta, ['inputRef']);
 export const Playground: Story = {};
 
 export const IconShape: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'icon',
+        'compressed',
+        'fullWidth',
+        'prepend',
+        'append',
+        'isInvalid',
+        'isLoading',
+        'disabled',
+        'readOnly',
+      ],
+    },
+  },
   argTypes: { icon: { control: 'object' } },
   args: { icon: { type: 'warning', color: 'warning', side: 'left' } },
 };
@@ -57,12 +71,9 @@ moveStorybookControlsToCategory(IconShape, [
   'isLoading',
   'disabled',
   'readOnly',
-  'placeholder',
   'prepend',
   'append',
 ]);
-// Hide props that remove or won't affect the icon or its positioning
-hideStorybookControls(IconShape, ['controlOnly', 'inputRef']);
 
 export const AutoFill: Story = {
   parameters: {
