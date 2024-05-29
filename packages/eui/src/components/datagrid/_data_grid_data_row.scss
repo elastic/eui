@@ -4,12 +4,12 @@
 
 @include euiDataGridRowCell {
   position: relative; // Needed for .euiDataGridRowCell__actions
-  padding: $euiDataGridCellPaddingM;
   border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
 
   .euiDataGridRowCell__content {
     @include euiFontSizeS;
+    padding: $euiDataGridCellPaddingM;
     height: 100%;
     overflow: hidden;
 
@@ -257,13 +257,17 @@
 // Padding alternates
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridRowCell {
-    padding: $euiDataGridCellPaddingS;
+    .euiDataGridRowCell__content {
+      padding: $euiDataGridCellPaddingS;
+    }
   }
 }
 
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
-    padding: $euiDataGridCellPaddingL;
+    .euiDataGridRowCell__content {
+      padding: $euiDataGridCellPaddingL;
+    }
   }
 }
 
