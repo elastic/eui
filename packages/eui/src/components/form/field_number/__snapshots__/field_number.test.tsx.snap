@@ -11,7 +11,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldNumber testClass1 testClass2 emotion-euiTestCss euiFieldNumber--withIcon"
+      class="euiFieldNumber testClass1 testClass2 emotion-euiFieldNumber-euiTestCss"
       data-test-subj="test subject string"
       id="1"
       max="8"
@@ -28,7 +28,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
 exports[`EuiFieldNumber props controlOnly is rendered 1`] = `
 <eui-validatable-control>
   <input
-    class="euiFieldNumber"
+    class="euiFieldNumber emotion-euiFieldNumber-controlOnly"
     step="any"
     type="number"
     value=""
@@ -44,7 +44,7 @@ exports[`EuiFieldNumber props fullWidth is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldNumber euiFieldNumber--fullWidth"
+      class="euiFieldNumber emotion-euiFieldNumber-fullWidth"
       step="any"
       type="number"
       value=""
@@ -65,7 +65,7 @@ exports[`EuiFieldNumber props isInvalid is rendered from a prop 1`] = `
   >
     <input
       aria-invalid="true"
-      class="euiFieldNumber euiFormControlLayout--1icons"
+      class="euiFieldNumber emotion-euiFieldNumber"
       step="any"
       type="number"
       value=""
@@ -82,7 +82,7 @@ exports[`EuiFieldNumber props isLoading is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldNumber euiFormControlLayout--1icons euiFieldNumber-isLoading"
+      class="euiFieldNumber euiFieldNumber-isLoading emotion-euiFieldNumber"
       step="any"
       type="number"
       value=""
@@ -100,7 +100,7 @@ exports[`EuiFieldNumber props readOnly is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldNumber"
+      class="euiFieldNumber emotion-euiFieldNumber"
       readonly=""
       step="any"
       type="number"
@@ -118,7 +118,7 @@ exports[`EuiFieldNumber props value no initial value 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldNumber"
+      class="euiFieldNumber emotion-euiFieldNumber"
       step="any"
       type="number"
       value=""
@@ -135,7 +135,7 @@ exports[`EuiFieldNumber props value value is number 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldNumber"
+      class="euiFieldNumber emotion-euiFieldNumber"
       step="any"
       type="number"
       value="0"
