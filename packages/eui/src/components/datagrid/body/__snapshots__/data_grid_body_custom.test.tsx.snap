@@ -132,10 +132,14 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
         data-datagrid-cellcontent="true"
       >
-        hello
+        <div
+          class="euiDataGridRowCell__contentInner eui-textTruncate"
+        >
+          hello
+        </div>
       </div>
       <p
         class="emotion-euiScreenReaderOnly"
@@ -158,10 +162,14 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
         data-datagrid-cellcontent="true"
       >
-        world
+        <div
+          class="euiDataGridRowCell__contentInner eui-textTruncate"
+        >
+          world
+        </div>
       </div>
       <p
         class="emotion-euiScreenReaderOnly"
@@ -188,10 +196,14 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
         data-datagrid-cellcontent="true"
       >
-        lorem
+        <div
+          class="euiDataGridRowCell__contentInner eui-textTruncate"
+        >
+          lorem
+        </div>
       </div>
       <p
         class="emotion-euiScreenReaderOnly"
@@ -214,10 +226,14 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
         data-datagrid-cellcontent="true"
       >
-        ipsum
+        <div
+          class="euiDataGridRowCell__contentInner eui-textTruncate"
+        >
+          ipsum
+        </div>
       </div>
       <p
         class="emotion-euiScreenReaderOnly"

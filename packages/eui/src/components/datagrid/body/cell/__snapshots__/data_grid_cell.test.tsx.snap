@@ -49,20 +49,24 @@ exports[`EuiDataGridCell renders 1`] = `
   tabindex="-1"
 >
   <div
-    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
     data-datagrid-cellcontent="true"
   >
-    <div>
-      <button
-        data-datagrid-interactable="true"
-      >
-        hello
-      </button>
-      <button
-        data-datagrid-interactable="true"
-      >
-        world
-      </button>
+    <div
+      class="euiDataGridRowCell__contentInner eui-textTruncate"
+    >
+      <div>
+        <button
+          data-datagrid-interactable="true"
+        >
+          hello
+        </button>
+        <button
+          data-datagrid-interactable="true"
+        >
+          world
+        </button>
+      </div>
     </div>
   </div>
   <p

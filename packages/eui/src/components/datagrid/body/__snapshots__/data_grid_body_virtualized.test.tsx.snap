@@ -133,12 +133,16 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
         data-datagrid-cellcontent="true"
       >
-        <span>
-          cell content
-        </span>
+        <div
+          class="euiDataGridRowCell__contentInner eui-textTruncate"
+        >
+          <span>
+            cell content
+          </span>
+        </div>
       </div>
       <p
         class="emotion-euiScreenReaderOnly"
@@ -161,12 +165,16 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
         data-datagrid-cellcontent="true"
       >
-        <span>
-          cell content
-        </span>
+        <div
+          class="euiDataGridRowCell__contentInner eui-textTruncate"
+        >
+          <span>
+            cell content
+          </span>
+        </div>
       </div>
       <p
         class="emotion-euiScreenReaderOnly"
