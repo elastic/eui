@@ -12,20 +12,21 @@ import React, {
   useState,
   Ref,
 } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
+
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+import { useEuiI18n } from '../../i18n';
+import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
-import { useEuiI18n } from '../../i18n';
-import { useCombinedRefs } from '../../../services';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
+
+import { euiFieldPasswordStyles } from './field_password.styles';
 
 export type EuiFieldPasswordProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -148,23 +149,20 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
 
   const finalAppend = appends.length ? appends : undefined;
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-  });
-
   const classes = classNames(
     'euiFieldPassword',
-    numIconsClass,
-    {
-      'euiFieldPassword--fullWidth': fullWidth,
-      'euiFieldPassword--compressed': compressed,
-      'euiFieldPassword--inGroup': prepend || finalAppend,
-      'euiFieldPassword--withToggle': type === 'dual',
-      'euiFieldPassword-isLoading': isLoading,
-    },
+    { 'euiFieldPassword-isLoading': isLoading },
     className
   );
+
+  const styles = useEuiMemoizedStyles(euiFieldPasswordStyles);
+  const cssStyles = [
+    styles.euiFieldPassword,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    (finalAppend || prepend) && styles.inGroup,
+    type === 'dual' && styles.withToggle,
+  ];
 
   return (
     <EuiFormControlLayout
@@ -183,6 +181,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
           name={name}
           placeholder={placeholder}
           className={classes}
+          css={cssStyles}
           value={value}
           ref={setInputRef}
           {...rest}
