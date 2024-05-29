@@ -6665,14 +6665,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 77,
+        "line": 78,
         "column": 10,
-        "index": 2359
+        "index": 2418
       },
       "end": {
-        "line": 81,
+        "line": 82,
         "column": 11,
-        "index": 2533
+        "index": 2592
       }
     },
     "filepath": "src/components/table/table_header_cell.tsx"
@@ -6847,12 +6847,12 @@
       "start": {
         "line": 65,
         "column": 27,
-        "index": 1855
+        "index": 1862
       },
       "end": {
         "line": 65,
         "column": 76,
-        "index": 1904
+        "index": 1911
       }
     },
     "filepath": "src/components/tool_tip/icon_tip.tsx"
