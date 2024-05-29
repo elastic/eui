@@ -10,6 +10,8 @@ import React, {
   InputHTMLAttributes,
   FunctionComponent,
   useState,
+  useMemo,
+  useCallback,
   Ref,
 } from 'react';
 import classNames from 'classnames';
@@ -111,43 +113,57 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
   const [inputRef, _setInputRef] = useState<HTMLInputElement | null>(null);
   const setInputRef = useCombinedRefs([_setInputRef, _inputRef]);
 
-  const handleToggle = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    isVisible: boolean
-  ) => {
-    setInputType(isVisible ? 'password' : 'text');
-    if (inputRef) {
-      inputRef.focus();
-    }
+  const handleToggle = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>, isVisible: boolean) => {
+      setInputType(isVisible ? 'password' : 'text');
+      inputRef?.focus();
 
-    if (dualToggleProps && dualToggleProps.onClick) {
-      dualToggleProps.onClick(event);
-    }
-  };
+      dualToggleProps?.onClick?.(event);
+    },
+    [inputRef, dualToggleProps]
+  );
 
-  // Convert any `append` elements to an array so the visibility
-  // toggle can be added to it
-  let appends = Array.isArray(append) ? append : [];
-  if (append && !Array.isArray(append)) appends.push(append);
   // Add a toggling button to switch between `password` and `input` if consumer wants `dual`
   // https://www.w3schools.com/howto/howto_js_toggle_password.asp
-  if (type === 'dual') {
-    const isVisible = inputType === 'text';
+  const visibilityToggle = useMemo(() => {
+    if (type === 'dual') {
+      const isVisible = inputType === 'text';
 
-    const visibilityToggle = (
-      <EuiButtonIcon
-        iconType={isVisible ? 'eyeClosed' : 'eye'}
-        aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
-        title={isVisible ? maskPasswordLabel : showPasswordLabel}
-        disabled={rest.disabled}
-        {...dualToggleProps}
-        onClick={(e) => handleToggle(e, isVisible)}
-      />
-    );
-    appends = [...appends, visibilityToggle];
-  }
+      return (
+        <EuiButtonIcon
+          iconType={isVisible ? 'eyeClosed' : 'eye'}
+          aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
+          title={isVisible ? maskPasswordLabel : showPasswordLabel}
+          disabled={rest.disabled}
+          {...dualToggleProps}
+          onClick={(e) => handleToggle(e, isVisible)}
+        />
+      );
+    }
+  }, [
+    type,
+    inputType,
+    maskPasswordLabel,
+    showPasswordLabel,
+    dualToggleProps,
+    handleToggle,
+    rest.disabled,
+  ]);
 
-  const finalAppend = appends.length ? appends : undefined;
+  const finalAppend = useMemo(() => {
+    if (!visibilityToggle) return append;
+    if (!append) return visibilityToggle;
+
+    // Convert any `append` elements to an array so the visibility
+    // toggle can be added to it
+    const appendAsArray = append
+      ? Array.isArray(append)
+        ? append
+        : [append]
+      : [];
+
+    return [...appendAsArray, visibilityToggle];
+  }, [append, visibilityToggle]);
 
   const classes = classNames(
     'euiFieldPassword',
