@@ -164,7 +164,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   injectTimes,
   inline,
   inputRef,
-  isInvalid,
+  isInvalid: _isInvalid,
   isLoading,
   locale,
   maxDate,
@@ -192,6 +192,10 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     'euiDatePicker--inline': inline,
     'euiDatePicker--shadow': inline && shadow,
   });
+
+  // Check for whether the passed `selected` moment date is valid
+  const isInvalid =
+    _isInvalid || (selected?.isValid() === false ? true : undefined);
 
   const numIconsClass = controlOnly
     ? false
