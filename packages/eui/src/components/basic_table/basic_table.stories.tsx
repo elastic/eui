@@ -6,19 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
-import {
-  enableFunctionToggleControls,
-  moveStorybookControlsToCategory,
-} from '../../../.storybook/utils';
+import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 
 import { EuiLink } from '../link';
 import { EuiHealth } from '../health';
 
-import type { EuiBasicTableColumn } from './basic_table';
+import type {
+  CriteriaWithPagination,
+  EuiBasicTableColumn,
+} from './basic_table';
 import { EuiBasicTable, EuiBasicTableProps } from './basic_table';
 
 // Set static seed so that the generated faker data is consistent between page loads
@@ -206,6 +206,8 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
 ];
 
+const initialPageSize = 3;
+
 export const Playground: Story = {
   args: {
     tableCaption: 'EuiBasicTable playground',
@@ -217,7 +219,7 @@ export const Playground: Story = {
     pagination: {
       pageIndex: 0,
       totalItemCount: 5,
-      pageSize: 3,
+      pageSize: initialPageSize,
       pageSizeOptions: [3, 5],
     },
     sorting: {
@@ -232,11 +234,11 @@ export const Playground: Story = {
         !selectable ? 'User is currently offline' : '',
       onSelectionChange: action('onSelectionChange'),
     },
+    onChange: (criteria: CriteriaWithPagination<User>) =>
+      action('onChange')(criteria),
   },
+  render: (args: EuiBasicTableProps<User>) => <StatefulPlayground {...args} />,
 };
-enableFunctionToggleControls<EuiBasicTableProps<User>>(Playground, [
-  'onChange',
-]);
 
 export const ExpandedRow: Story = {
   parameters: {
@@ -259,4 +261,39 @@ export const ExpandedRow: Story = {
       ),
     },
   },
+};
+
+const StatefulPlayground = ({
+  items,
+  pagination,
+  sorting,
+  ...rest
+}: EuiBasicTableProps<User>) => {
+  const [_items, setItems] = useState<User[]>([]);
+
+  const updateItems = useCallback(() => {
+    let sortedItems = [...items];
+
+    if (sorting?.sort) {
+      const { field, direction } = sorting?.sort;
+      const directionIndex = direction === 'desc' ? -1 : 1;
+
+      sortedItems = sortedItems.sort((a, b) =>
+        a[field]! > b[field]! ? directionIndex : -directionIndex
+      );
+    }
+
+    setItems(() => {
+      return [...sortedItems].splice(
+        0,
+        pagination?.pageSize ?? initialPageSize
+      );
+    });
+  }, [items, pagination, sorting]);
+
+  useEffect(() => {
+    updateItems();
+  }, [items, pagination, sorting, updateItems]);
+
+  return <EuiBasicTable items={_items} pagination={pagination!} {...rest} />;
 };
