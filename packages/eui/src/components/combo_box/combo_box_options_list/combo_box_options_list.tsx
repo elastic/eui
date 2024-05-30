@@ -171,7 +171,11 @@ export class EuiComboBoxOptionsList<T> extends Component<
     if (isGroupLabelOption) {
       return (
         <div key={key ?? label} style={style}>
-          <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
+          <EuiComboBoxTitle>
+            {prepend}
+            {label}
+            {append}
+          </EuiComboBoxTitle>
         </div>
       );
     }
