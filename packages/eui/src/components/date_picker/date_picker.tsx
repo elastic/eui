@@ -21,7 +21,6 @@ import { Moment } from 'moment'; // eslint-disable-line import/named
 
 import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
-import { getIconAffordanceStyles } from '../form/form_control_layout/_num_icons';
 
 import { useCombinedRefs } from '../../services';
 import { EuiI18nConsumer } from '../context';
@@ -282,16 +281,6 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     optionalIcon = 'calendar';
   }
 
-  // TODO: DRY out icon affordance logic to EuiFormControlLayout in the next few PRs
-  const iconAffordanceStyles = !controlOnly
-    ? getIconAffordanceStyles({
-        icon: optionalIcon,
-        clear: !!(selected && onClear),
-        isInvalid,
-        isLoading,
-      })
-    : undefined;
-
   return (
     <span className={classes}>
       <EuiFormControlLayout
@@ -310,7 +299,6 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
             inline && isInvalid && !disabled && !readOnly,
         })}
         iconsPosition={inline ? 'static' : undefined}
-        style={iconAffordanceStyles} // TODO
       >
         {control}
       </EuiFormControlLayout>

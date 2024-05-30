@@ -60,7 +60,7 @@ export const getIconAffordanceStyles = ({
   isDropdown,
 }: {
   icon?: EuiFormControlLayoutIconsProps['icon'];
-  clear?: boolean;
+  clear?: EuiFormControlLayoutIconsProps['clear'] | boolean;
   isLoading?: boolean;
   isInvalid?: boolean;
   isDropdown?: boolean;
