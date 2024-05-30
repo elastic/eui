@@ -191,6 +191,37 @@ export const Groups: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+export const NestedOptionsGroups: Story = {
+  parameters: {
+    controls: {
+      include: ['options'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.body,
+    },
+  },
+  args: {
+    options: [
+      {
+        label: 'Group 1',
+        isGroupLabelOption: true,
+        options: [...options].splice(0, 3),
+      },
+      {
+        label: 'Group 2',
+        isGroupLabelOption: true,
+        prepend: '#prepend ',
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+        ),
+        options: [...options].splice(3, options.length),
+      },
+    ],
+    autoFocus: true,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
 const StatefulComboBox = ({
   singleSelection,
   onCreateOption,
