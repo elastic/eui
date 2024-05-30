@@ -11,8 +11,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   disableStorybookControls,
   enableFunctionToggleControls,
-  hideStorybookControls,
-  moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 import { EuiTextArea, EuiTextAreaProps } from './text_area';
 
@@ -43,6 +41,11 @@ type Story = StoryObj<EuiTextAreaProps>;
 export const Playground: Story = {};
 
 export const IconShape: Story = {
+  parameters: {
+    controls: {
+      include: ['icon'],
+    },
+  },
   args: {
     icon: {
       type: 'faceHappy',
@@ -51,13 +54,3 @@ export const IconShape: Story = {
     },
   },
 };
-moveStorybookControlsToCategory(IconShape, [
-  'compressed',
-  'fullWidth',
-  'isClearable',
-  'isInvalid',
-  'isLoading',
-  'onChange',
-  'resize',
-]);
-hideStorybookControls(IconShape, ['inputRef']);
