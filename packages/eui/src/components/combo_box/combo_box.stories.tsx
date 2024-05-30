@@ -12,9 +12,11 @@ import { action } from '@storybook/addon-actions';
 import { userEvent, waitFor, within, expect } from '@storybook/test';
 
 import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
-import { EuiComboBox, EuiComboBoxProps } from './combo_box';
-import { EuiComboBoxOptionMatcher } from './types';
 import { EuiCode } from '../code';
+import { EuiFlexItem } from '../flex';
+
+import { EuiComboBoxOptionMatcher } from './types';
+import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
 const toolTipProps = {
   toolTipContent: 'This is a tooltip!',
@@ -85,7 +87,8 @@ export const WithTooltip: Story = {
     },
     loki: {
       // popover and tooltip are rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
+      // LOKI_SELECTOR.portal currently doesn't work so we use body instead
+      chromeSelector: LOKI_SELECTORS.body,
     },
   },
   args: {
@@ -158,6 +161,34 @@ export const CustomMatcher: Story = {
       </>
     );
   },
+};
+
+export const Groups: Story = {
+  parameters: {
+    controls: {
+      include: ['options'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.body,
+    },
+  },
+  args: {
+    options: [
+      { label: 'Group 1', isGroupLabelOption: true },
+      ...[...options].splice(0, 3),
+      {
+        label: 'Group 2',
+        isGroupLabelOption: true,
+        prepend: '#prepend ',
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+        ),
+      },
+      ...[...options].splice(3, options.length),
+    ],
+    autoFocus: true,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
 };
 
 const StatefulComboBox = ({
