@@ -25,7 +25,7 @@ const meta: Meta<EuiFieldSearchProps> = {
       options: [undefined, 'icon', 'text'],
       mapping: {
         icon: <EuiIcon type="faceHappy" />,
-        text: 'Appened',
+        text: 'Appended',
         undefined: undefined,
       },
     },
