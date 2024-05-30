@@ -29,12 +29,9 @@ export type EuiSwitchEvent = React.BaseSyntheticEvent<
 >;
 
 export type EuiSwitchProps = CommonProps &
-  Omit<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    'onChange' | 'type' | 'disabled'
-  > & {
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'disabled'> & {
     /**
-     * Whether to render the render the text label
+     * Whether to render the text label
      */
     showLabel?: boolean;
     /**
@@ -45,9 +42,8 @@ export type EuiSwitchProps = CommonProps &
     onChange: (event: EuiSwitchEvent) => void;
     disabled?: boolean;
     compressed?: boolean;
-    type?: 'submit' | 'reset' | 'button';
     /**
-     * Object of props passed to the label's <span/>
+     * Object of props passed to the label's `<span />`
      */
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
