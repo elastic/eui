@@ -2,14 +2,14 @@
 
 exports[`EuiTextArea is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--euiTextArea"
+  class="euiFormControlLayout euiFormControlLayout--euiTextArea emotion-euiTextArea"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
   >
     <textarea
       aria-label="aria-label"
-      class="euiTextArea euiTextArea--resizeVertical testClass1 testClass2 emotion-euiTestCss"
+      class="euiTextArea testClass1 testClass2 emotion-euiTextArea-vertical-euiTestCss"
       data-test-subj="test subject string"
       rows="6"
     />
