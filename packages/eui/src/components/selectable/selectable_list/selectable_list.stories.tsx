@@ -15,6 +15,7 @@ import {
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 import { EuiFlexItem } from '../../flex';
+import { EuiIcon } from '../../icon';
 import { EuiSelectableOption } from '../selectable_option';
 
 import { EuiSelectableList, EuiSelectableListProps } from './selectable_list';
@@ -124,7 +125,7 @@ export const Groups: Story = {
       {
         label: 'Group 2',
         isGroupLabel: true,
-        prepend: '#prepend ',
+        prepend: <EuiIcon type="warning" />,
         append: (
           <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
         ),
