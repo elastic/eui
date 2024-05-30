@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
+  EuiFlexGroup,
   EuiButtonEmpty,
   EuiButtonIcon,
   EuiFieldText,
@@ -19,24 +20,24 @@ export default () => {
   const [isReadOnly, setReadOnly] = useState(false);
 
   return (
-    <Fragment>
-      <EuiSwitch
-        label="compressed"
-        checked={isCompressed}
-        onChange={(e) => setCompressed(e.target.checked)}
-      />
-      &emsp;
-      <EuiSwitch
-        label="disabled"
-        checked={isDisabled}
-        onChange={(e) => setDisabled(e.target.checked)}
-      />
-      &emsp;
-      <EuiSwitch
-        label="readOnly"
-        checked={isReadOnly}
-        onChange={(e) => setReadOnly(e.target.checked)}
-      />
+    <>
+      <EuiFlexGroup responsive={false}>
+        <EuiSwitch
+          label="compressed"
+          checked={isCompressed}
+          onChange={(e) => setCompressed(e.target.checked)}
+        />
+        <EuiSwitch
+          label="disabled"
+          checked={isDisabled}
+          onChange={(e) => setDisabled(e.target.checked)}
+        />
+        <EuiSwitch
+          label="readOnly"
+          checked={isReadOnly}
+          onChange={(e) => setReadOnly(e.target.checked)}
+        />
+      </EuiFlexGroup>
       <EuiSpacer />
       <EuiFieldText
         placeholder="String & text in a tooltip"
@@ -180,6 +181,6 @@ export default () => {
         readOnly={isReadOnly}
         aria-label="Use aria labels when no actual label is in use"
       />
-    </Fragment>
+    </>
   );
 };
