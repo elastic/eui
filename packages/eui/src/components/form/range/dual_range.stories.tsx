@@ -84,6 +84,8 @@ moveStorybookControlsToCategory(
     'inputPopoverProps',
     'isInvalid',
     'isLoading',
+    'minInputProps',
+    'maxInputProps',
   ],
   'Input'
 );
@@ -92,6 +94,66 @@ moveStorybookControlsToCategory(
   ['showTicks', 'compressed', 'tickInterval', 'ticks'],
   'Ticks'
 );
+
+export const Ticks: Story = {
+  parameters: {
+    controls: {
+      include: ['ticks', 'showTicks', 'showRange', 'max', 'min', 'value'],
+    },
+  },
+  args: {
+    value: [25, 50],
+    showTicks: true,
+    ticks: [
+      { label: '0 kilobytes', value: 0 },
+      { label: '50 kilobytes', value: 50 },
+      { label: '100 kilobytes', value: 100 },
+    ],
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
+
+export const Input: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'showInput',
+        'append',
+        'prepend',
+        'inputPopoverProps',
+        'isInvalid',
+        'isLoading',
+        'max',
+        'min',
+        'value',
+        'minInputProps',
+        'maxInputProps',
+      ],
+    },
+  },
+  args: {
+    value: [25, 50],
+    showInput: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
+
+export const Levels: Story = {
+  parameters: {
+    controls: {
+      include: ['levels', 'max', 'min', 'value', 'showLabels'],
+    },
+  },
+  args: {
+    value: [25, 50],
+    levels: [
+      { min: 0, max: 20, color: 'danger' },
+      { min: 20, max: 100, color: 'success' },
+    ],
+    showLabels: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
 
 const StatefulPlayground = ({
   value,
