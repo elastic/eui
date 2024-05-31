@@ -26,7 +26,7 @@ const meta: Meta<EuiSelectProps> = {
       options: [undefined, 'icon', 'text'],
       mapping: {
         icon: <EuiIcon type="faceHappy" />,
-        text: 'Appened',
+        text: 'Appended',
         undefined: undefined,
       },
     },
@@ -60,6 +60,11 @@ export default meta;
 type Story = StoryObj<EuiSelectProps>;
 
 export const Playground: Story = {
+  parameters: {
+    controls: {
+      exclude: ['onMouseUp'],
+    },
+  },
   args: {
     defaultValue: 'option-2',
     options: [
