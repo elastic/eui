@@ -234,7 +234,6 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
             tabIndex={0}
             css={cssStyles}
             className={classes}
-            role="button"
             {...rest}
           >
             {icon || label}
