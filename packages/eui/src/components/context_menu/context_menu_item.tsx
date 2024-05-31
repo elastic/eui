@@ -25,12 +25,12 @@ import {
 } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 import { CommonProps, keysOf } from '../common';
-import { EuiIcon } from '../icon';
+import { EuiIcon, type IconType } from '../icon';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
-export type EuiContextMenuItemIcon = ReactElement<any> | string | HTMLElement;
+export type EuiContextMenuItemIcon = IconType | ReactElement<any>;
 
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
@@ -124,7 +124,7 @@ export const EuiContextMenuItem: FunctionComponent<Props> = ({
       />
     ) : (
       // Assume it's already an instance of an icon.
-      cloneElementWithCss(icon as ReactElement, {
+      cloneElementWithCss(icon, {
         css: styles.euiContextMenu__icon,
       })
     ));
