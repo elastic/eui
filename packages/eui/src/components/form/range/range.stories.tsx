@@ -190,7 +190,7 @@ export const Input: Story = {
 export const Levels: Story = {
   parameters: {
     controls: {
-      include: ['levels', 'max', 'min', 'value', 'showLabels', 'showTicks'],
+      include: ['levels', 'max', 'min', 'value', 'showLabels'],
     },
   },
   args: {
@@ -200,7 +200,6 @@ export const Levels: Story = {
       { min: 20, max: 100, color: 'success' },
     ],
     showLabels: true,
-    showTicks: true,
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
