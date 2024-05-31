@@ -252,14 +252,18 @@ export class FieldValueSelectionFilter extends Component<
   ) {
     const multiSelect = this.resolveMultiSelect();
     const {
-      config: { autoClose = true, operator = Operator.EQ },
+      config: { autoClose, operator = Operator.EQ },
     } = this.props;
 
-    // we're closing popover only if the user can only select one item... if the
-    // user can select more, we'll leave it open so she can continue selecting
-
-    if (!multiSelect && autoClose) {
+    // If the consumer explicitly sets `autoClose`, always defer to that.
+    // Otherwise, default to auto-closing for single selections and leaving the
+    // popover open for multi-select (so users can continue selecting options)
+    const shouldClosePopover = autoClose ?? !multiSelect;
+    if (shouldClosePopover) {
       this.closePopover();
+    }
+
+    if (!multiSelect) {
       const query = checked
         ? this.props.query
             .removeSimpleFieldClauses(field)
@@ -267,20 +271,18 @@ export class FieldValueSelectionFilter extends Component<
         : this.props.query.removeSimpleFieldClauses(field);
 
       this.props.onChange(query);
+    } else if (multiSelect === 'or') {
+      const query = checked
+        ? this.props.query.addOrFieldValue(field, value, true, operator)
+        : this.props.query.removeOrFieldValue(field, value);
+
+      this.props.onChange(query);
     } else {
-      if (multiSelect === 'or') {
-        const query = checked
-          ? this.props.query.addOrFieldValue(field, value, true, operator)
-          : this.props.query.removeOrFieldValue(field, value);
+      const query = checked
+        ? this.props.query.addSimpleFieldValue(field, value, true, operator)
+        : this.props.query.removeSimpleFieldValue(field, value);
 
-        this.props.onChange(query);
-      } else {
-        const query = checked
-          ? this.props.query.addSimpleFieldValue(field, value, true, operator)
-          : this.props.query.removeSimpleFieldValue(field, value);
-
-        this.props.onChange(query);
-      }
+      this.props.onChange(query);
     }
   }
 
