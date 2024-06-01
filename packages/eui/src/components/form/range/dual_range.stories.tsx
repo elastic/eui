@@ -29,6 +29,7 @@ const meta: Meta<EuiDualRangeProps> = {
         text: 'Appended',
         undefined: undefined,
       },
+      if: { arg: 'showInput', eq: 'inputWithPopover' },
     },
     prepend: {
       control: 'radio',
@@ -38,6 +39,11 @@ const meta: Meta<EuiDualRangeProps> = {
         text: 'Prepended',
         undefined: undefined,
       },
+      if: { arg: 'showInput', eq: 'inputWithPopover' },
+    },
+    showInput: {
+      control: 'radio',
+      options: [true, false, 'inputWithPopover'],
     },
   },
   args: {
@@ -65,6 +71,11 @@ const meta: Meta<EuiDualRangeProps> = {
   },
 };
 enableFunctionToggleControls(meta, ['onChange', 'onFocus', 'onBlur']);
+moveStorybookControlsToCategory(
+  meta,
+  ['append', 'prepend'],
+  'Input with popover'
+);
 
 export default meta;
 type Story = StoryObj<EuiDualRangeProps>;
@@ -128,12 +139,41 @@ export const Input: Story = {
         'value',
         'minInputProps',
         'maxInputProps',
+        'onFocus',
+        'onBlur',
       ],
     },
   },
   args: {
     value: [25, 50],
     showInput: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
+
+export const InputWithPopover: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'showInput',
+        'append',
+        'prepend',
+        'inputPopoverProps',
+        'isInvalid',
+        'isLoading',
+        'max',
+        'min',
+        'value',
+        'minInputProps',
+        'maxInputProps',
+        'onFocus',
+        'onBlur',
+      ],
+    },
+  },
+  args: {
+    value: [25, 50],
+    showInput: 'inputWithPopover',
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
