@@ -3,9 +3,10 @@
  *    works.
  */
 .euiComboBoxTitle {
-  font-size: $euiFontSizeXS;
-  padding: ($euiSizeXS + $euiSizeS - 1px) $euiSizeS $euiSizeXS; /* 1 */
+  display: flex;
   width: 100%;
+  padding: ($euiSizeXS + $euiSizeS - 1px) $euiSizeS $euiSizeXS; /* 1 */
+  font-size: $euiFontSizeXS;
   font-weight: $euiFontWeightBold;
   color: $euiColorFullShade;
 }
