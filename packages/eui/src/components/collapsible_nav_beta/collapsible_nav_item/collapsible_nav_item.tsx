@@ -28,6 +28,7 @@ import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
 import { EuiCollapsibleNavGroup } from './collapsible_nav_group';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import {
+  euiCollapsibleNavTopItemStyles,
   euiCollapsibleNavItemTitleStyles,
   euiCollapsibleNavSubItemsStyles,
 } from './collapsible_nav_item.styles';
@@ -199,7 +200,16 @@ export const EuiCollapsibleNavItemTitle: FunctionComponent<
 
   return (
     <>
-      {icon && <EuiIcon type={icon} {...iconProps} />}
+      {icon && (
+        <EuiIcon
+          type={icon}
+          {...iconProps}
+          className={classNames(
+            'euiCollapsibleNavItem__icon',
+            iconProps?.className
+          )}
+        />
+      )}
 
       <TitleElement
         className="euiCollapsibleNavItem__title eui-textTruncate"
@@ -284,6 +294,7 @@ export const EuiCollapsibleNavItem: FunctionComponent<
   EuiCollapsibleNavItemProps
 > = ({ className, ...props }) => {
   const classes = classNames('euiCollapsibleNavItem', className);
+  const styles = useEuiMemoizedStyles(euiCollapsibleNavTopItemStyles);
 
   const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
 
@@ -293,6 +304,7 @@ export const EuiCollapsibleNavItem: FunctionComponent<
     <EuiCollapsibleNavItemDisplay
       className={classes}
       {...props}
+      css={styles.euiCollapsibleNavTopItem}
       isSubItem={false}
     />
   );
