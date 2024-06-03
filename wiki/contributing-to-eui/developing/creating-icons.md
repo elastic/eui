@@ -61,13 +61,14 @@ _**Note**: Figma users can use the [SVG Export plugin][svg-plugin] to optimize S
 Create a new feature branch against this repo and make the following changes:
 
 _1. Add your glyph to the `EuiIcon` component_
-- Add your SVG file to the `/src/components/icon/svgs` folder
-- Add a reference in the `/src/components/icon/icon_map.ts` file (in alphabetical order)
+- Add your SVG file to the `/packages/eui/src/components/icon/svgs` folder
+- Add a reference in the `/packages/eui/src/components/icon/icon_map.ts` file (in alphabetical order)
 
 _2. Display the icon in the docs_
-- Add the icon name to `/src-docs/src/views/icon/icons.js` *
+- Add the icon name to `/packages/eui/src-docs/src/views/icon/icons.js` *
 
 _3. Compile and test_
+- Go to the `packages/eui` directory
 - Run `yarn compile-icons`
 - Preview your icon locally at `http://localhost:8030/#/display/icons` **
 - Switch the docs to dark mode and verify that the icon is visible (all paths should be filled with the reverse color)
@@ -84,7 +85,7 @@ Once your PR is approved, you will be able to merge it and give yourself a well-
 
 ---
 
-_\* The Icons page actually contains several sections. In most cases, you will be adding your icon to the base set. However, if your icon should appear in a different set, then add it to the appropriate section file in `/src-docs/src/views/icon`._
+_\* The Icons page actually contains several sections. In most cases, you will be adding your icon to the base set. However, if your icon should appear in a different set, then add it to the appropriate section file in `/packages/eui/src-docs/src/views/icon`._
 
 _\** Run `yarn && yarn start` to view the EUI docs site locally._
 

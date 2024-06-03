@@ -17,9 +17,14 @@ npm login # Will prompt for credentials and 2FA token
 npm whoami # Should return your NPM username
 ```
 
-Ensure you are on the `main` branch, and then start the release process by running the following command:
+Ensure you are on the `main` branch and in the `packages/eui` directory:
 ```sh
-git checkout main && npm run release
+git checkout main && cd packages/eui
+```
+
+You can now start the release script by running the following command:
+```sh
+npm run release
 ```
 
 This command ensures that you have the latest `upstream/main` and dependencies, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `changelogs/upcoming/` and you will be asked to choose what part of the version to bump.
@@ -120,3 +125,9 @@ The prerelease process is very similar to the backport process above.
 - Go to https://www.npmjs.com/package/@elastic/eui?activeTab=versions and confirm that your pre-release has been pushed up with the correct version and tag, e.g. `83.1.1-rc.0`
 - Update Kibana or CodeSandbox (or whatever other environment you are using to test) to point at that version
 - QA away!
+
+# Unpublishing/deprecating releases
+
+If releases with issues or errors are created, they must be deprecated via `npm deprecate @elastic/eui@x.x.x 'Reason for deprecation'`.
+
+Unfortunately, the EUI package is no longer eligible to `npm unpublish` as npm now only allows that for packages with less than 300 downloads per week.

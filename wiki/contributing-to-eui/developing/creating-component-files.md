@@ -4,7 +4,7 @@
 
 ### Create the component directory
 
-1. Create a directory for your component in `src/components/`. All folder and file names should be `snake_cased`.
+1. Create a directory for your component in `packages/eui/src/components/`. All folder and file names should be `snake_cased`.
 
 #### Logical groupings of directories
 
@@ -20,7 +20,7 @@ then they belong in the same logical grouping (i.e., directory). A component dir
 
 1. Create the React component(s) as TypeScript `.tsx` file(s) in your new component directory.
 2. Export these components from an `index.ts` file.
-3. Re-export these components from `src/components/index.ts`.
+3. Re-export these components from `packages/eui/src/components/index.ts`.
 
 This makes your React component available for import into your project.
 
