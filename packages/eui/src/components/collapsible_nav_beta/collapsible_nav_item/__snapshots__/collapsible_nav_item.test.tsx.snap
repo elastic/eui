@@ -25,7 +25,7 @@ exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collaps
 exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiCollapsibleNavTopItem-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -102,7 +102,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
 exports[`EuiCollapsibleNavItem renders a top level group if items exist and \`isCollapsible\` is set to false 1`] = `
 <div
   aria-label="aria-label"
-  class="euiCollapsibleNavGroup euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavGroup-isTopItem-euiTestCss"
+  class="euiCollapsibleNavGroup euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavGroup-isTopItem-euiCollapsibleNavTopItem-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
