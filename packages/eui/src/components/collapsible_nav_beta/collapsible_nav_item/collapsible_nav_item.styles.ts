@@ -55,10 +55,6 @@ export const euiCollapsibleNavItemTitleStyles = {
 export const euiCollapsibleNavSubItemsStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCollapsibleNavItem__items: css``,
-    isGroup: css`
-      ${logicalCSS('padding-top', euiTheme.size.xs)}
-      ${logicalCSS('padding-left', euiTheme.size.s)}
-    `,
     isTopItem: css`
       ${logicalCSS('padding-top', euiTheme.size.xs)}
       ${logicalCSS('padding-left', euiTheme.size.xl)}
@@ -73,6 +69,28 @@ export const euiCollapsibleNavSubItemsStyles = ({ euiTheme }: UseEuiTheme) => {
           (x, y) => x - y
         )
       )}
+    `,
+  };
+};
+
+/**
+ * Top-level item only styles
+ */
+
+export const euiCollapsibleNavTopItemStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    // If this is the only top-level item in the list, assume it's a solution nav and
+    // reduce its default left padding + increase its relative icon size
+    euiCollapsibleNavTopItem: css`
+      &:only-child {
+        .euiCollapsibleNavItem__items {
+          ${logicalCSS('padding-left', euiTheme.size.s)}
+        }
+
+        .euiCollapsibleNavItem__icon {
+          transform: scale(1.25);
+        }
+      }
     `,
   };
 };

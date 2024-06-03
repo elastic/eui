@@ -180,7 +180,6 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
           </EuiInputPopover>
           <EuiCollapsibleNavSubItems
             items={items}
-            isGroup
             role="group"
             aria-label={title}
           />
