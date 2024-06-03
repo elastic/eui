@@ -851,14 +851,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 335,
+        "line": 339,
         "column": 12,
-        "index": 9517
+        "index": 9584
       },
       "end": {
-        "line": 338,
+        "line": 342,
         "column": 14,
-        "index": 9640
+        "index": 9707
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -869,14 +869,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 348,
+        "line": 352,
         "column": 16,
-        "index": 10079
+        "index": 10146
       },
       "end": {
-        "line": 352,
+        "line": 356,
         "column": 18,
-        "index": 10310
+        "index": 10377
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -887,14 +887,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 367,
+        "line": 371,
         "column": 16,
-        "index": 10739
+        "index": 10806
       },
       "end": {
-        "line": 373,
+        "line": 377,
         "column": 18,
-        "index": 11012
+        "index": 11079
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -905,14 +905,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 402,
+        "line": 406,
         "column": 20,
-        "index": 12003
+        "index": 12070
       },
       "end": {
-        "line": 408,
+        "line": 412,
         "column": 22,
-        "index": 12301
+        "index": 12368
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -923,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 419,
+        "line": 423,
         "column": 12,
-        "index": 12505
+        "index": 12572
       },
       "end": {
-        "line": 423,
+        "line": 427,
         "column": 14,
-        "index": 12726
+        "index": 12793
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -941,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 430,
+        "line": 434,
         "column": 10,
-        "index": 12845
+        "index": 12912
       },
       "end": {
-        "line": 433,
+        "line": 437,
         "column": 12,
-        "index": 12985
+        "index": 13052
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -959,14 +959,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 439,
+        "line": 443,
         "column": 10,
-        "index": 13098
+        "index": 13165
       },
       "end": {
-        "line": 442,
+        "line": 446,
         "column": 12,
-        "index": 13241
+        "index": 13308
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
