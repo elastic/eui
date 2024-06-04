@@ -6,12 +6,6 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/eslint-plugin-local",
-      "**/eslint-plugin-local/**",
-      "**/stylelint",
-      "**/stylelint/**"
     ]
   },
   "scripts": {
@@ -34,7 +28,8 @@
     "prismjs": "1.27.0",
     "react": "^18",
     "@types/react": "^18",
-    "react-focus-lock": "2.9.5"
+    "react-focus-lock": "2.9.5",
+    "@babel/core": "^7.21.8"
   },
   "packageManager": "yarn@4.2.2"
 }
