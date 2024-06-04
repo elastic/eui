@@ -90,15 +90,7 @@ const EuiDataGridCellContent: FunctionComponent<
       () =>
         classNames(
           'euiDataGridRowCell__content',
-          `euiDataGridRowCell__content--${cellHeightType}Height`
-        ),
-      [cellHeightType]
-    );
-
-    const innerContentClasses = useMemo(
-      () =>
-        classNames(
-          'euiDataGridRowCell__contentInner',
+          `euiDataGridRowCell__content--${cellHeightType}Height`,
           !isControlColumn && {
             'eui-textBreakWord': cellHeightType !== 'default',
             'eui-textTruncate': cellHeightType === 'default',
@@ -109,30 +101,28 @@ const EuiDataGridCellContent: FunctionComponent<
 
     return (
       <>
-        <div
-          ref={setCellContentsRef}
-          data-datagrid-cellcontent
-          className={classes}
+        <RenderTruncatedCellContent
+          hasLineCountTruncation={
+            cellHeightType === 'lineCount' && !isControlColumn
+          }
+          rowHeight={rowHeight}
         >
-          <RenderTruncatedCellContent
-            hasLineCountTruncation={
-              cellHeightType === 'lineCount' && !isControlColumn
-            }
-            rowHeight={rowHeight}
+          <div
+            ref={setCellContentsRef}
+            data-datagrid-cellcontent
+            className={classes}
           >
-            <div className={innerContentClasses}>
-              <CellElement
-                isDetails={false}
-                data-test-subj="cell-content"
-                rowIndex={rowIndex}
-                colIndex={colIndex}
-                schema={column?.schema || rest.columnType}
-                {...cellContext}
-                {...rest}
-              />
-            </div>
-          </RenderTruncatedCellContent>
-        </div>
+            <CellElement
+              isDetails={false}
+              data-test-subj="cell-content"
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+              schema={column?.schema || rest.columnType}
+              {...cellContext}
+              {...rest}
+            />
+          </div>
+        </RenderTruncatedCellContent>
 
         <EuiScreenReaderOnly>
           <p hidden={!isFocused}>
