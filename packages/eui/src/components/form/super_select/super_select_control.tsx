@@ -17,6 +17,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiScreenReaderOnly } from '../../accessibility';
 
@@ -24,10 +25,10 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
 
 import { EuiSuperSelectOption } from './super_select_item';
+import { euiSuperSelectControlStyles } from './super_select.styles';
 
 export interface EuiSuperSelectControlProps<T>
   extends CommonProps,
@@ -73,7 +74,7 @@ export interface EuiSuperSelectControlProps<T>
 }
 
 export const EuiSuperSelectControl: <T = string>(
-  props: EuiSuperSelectControlProps<T>
+  props: EuiSuperSelectControlProps<T> & { isDropdownOpen?: boolean }
 ) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
@@ -85,6 +86,7 @@ export const EuiSuperSelectControl: <T = string>(
     fullWidth = defaultFullWidth,
     isLoading = false,
     isInvalid = false,
+    isDropdownOpen,
     readOnly,
     defaultValue,
     compressed = false,
@@ -95,24 +97,27 @@ export const EuiSuperSelectControl: <T = string>(
     disabled,
     ...rest
   } = props;
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-    isDropdown: true,
-  });
 
   const classes = classNames(
     'euiSuperSelectControl',
-    numIconsClass,
     {
-      'euiSuperSelectControl--fullWidth': fullWidth,
-      'euiSuperSelectControl--compressed': compressed,
-      'euiSuperSelectControl--inGroup': prepend || append,
       'euiSuperSelectControl-isLoading': isLoading,
       'euiSuperSelectControl-isInvalid': isInvalid,
     },
     className
   );
+
+  const styles = useEuiMemoizedStyles(euiSuperSelectControlStyles);
+  const cssStyles = [
+    styles.euiSuperSelect__control,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    (prepend || append) && styles.inGroup,
+    isDropdownOpen && styles.open,
+    isInvalid && styles.invalid,
+    readOnly && styles.readOnly,
+    disabled && !readOnly && styles.disabled,
+  ];
 
   const inputValue = value != null ? value : defaultValue;
 
@@ -170,17 +175,19 @@ export const EuiSuperSelectControl: <T = string>(
         <button
           type="button"
           className={classes}
+          css={cssStyles}
           aria-haspopup="listbox"
           aria-labelledby={ariaLabelledBy}
           id={buttonId}
           disabled={disabled || readOnly}
-          // @ts-ignore Using as a selector only for mixin use
-          readOnly={readOnly}
           {...rest}
           ref={buttonRef}
         >
           {showPlaceholder ? (
-            <span className="euiSuperSelectControl__placeholder">
+            <span
+              className="euiSuperSelectControl__placeholder"
+              css={styles.euiSuperSelect__placeholder}
+            >
               {placeholder}
             </span>
           ) : (

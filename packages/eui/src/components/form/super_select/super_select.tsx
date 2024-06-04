@@ -283,13 +283,6 @@ export class EuiSuperSelect<T = string> extends Component<
       popoverProps?.className
     );
 
-    const buttonClasses = classNames(
-      {
-        'euiSuperSelect--isOpen__button': this.state.isPopoverOpen,
-      },
-      className
-    );
-
     const button = (
       <EuiSuperSelectControl
         options={options}
@@ -299,12 +292,13 @@ export class EuiSuperSelect<T = string> extends Component<
           this.state.isPopoverOpen ? this.closePopover : this.openPopover
         }
         onKeyDown={this.onSelectKeyDown}
-        className={buttonClasses}
+        className={className}
         fullWidth={fullWidth}
         isInvalid={isInvalid}
         compressed={compressed}
         {...rest}
         buttonRef={this.controlButtonRef}
+        isDropdownOpen={this.state.isPopoverOpen}
       />
     );
 
