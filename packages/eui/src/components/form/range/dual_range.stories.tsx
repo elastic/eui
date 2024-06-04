@@ -11,14 +11,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   enableFunctionToggleControls,
-  hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 import { EuiIcon } from '../../icon';
 import { _DualRangeChangeEvent, EuiDualRangeProps } from './types';
 import { EuiDualRange } from './dual_range';
-
-// type EuiDualRangeProps = typeof EuiDualRange;
 
 const meta: Meta<EuiDualRangeProps> = {
   title: 'Forms/EuiDualRange',
@@ -76,7 +73,6 @@ const meta: Meta<EuiDualRangeProps> = {
     ticks: [],
   },
 };
-enableFunctionToggleControls(meta, ['onChange', 'onFocus', 'onBlur']);
 moveStorybookControlsToCategory<EuiDualRangeProps>(
   meta,
   ['append', 'prepend', 'inputPopoverProps'],
@@ -92,6 +88,7 @@ export const Playground: Story = {
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
+enableFunctionToggleControls(Playground, ['onChange', 'onFocus', 'onBlur']);
 moveStorybookControlsToCategory(
   Playground,
   [
@@ -115,16 +112,7 @@ moveStorybookControlsToCategory(
 export const Ticks: Story = {
   parameters: {
     controls: {
-      include: [
-        'ticks',
-        'showTicks',
-        'showRange',
-        'max',
-        'min',
-        'value',
-        'onFocus',
-        'onBlur',
-      ],
+      include: ['ticks', 'showTicks', 'showRange', 'max', 'min', 'value'],
     },
   },
   args: {
@@ -138,7 +126,6 @@ export const Ticks: Story = {
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
-hideStorybookControls(Ticks, ['onFocus', 'onBlur']);
 
 export const Input: Story = {
   parameters: {
@@ -155,8 +142,6 @@ export const Input: Story = {
         'value',
         'minInputProps',
         'maxInputProps',
-        'onFocus',
-        'onBlur',
       ],
     },
   },
@@ -166,7 +151,6 @@ export const Input: Story = {
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
-hideStorybookControls(Input, ['onFocus', 'onBlur']);
 
 export const InputWithPopover: Story = {
   parameters: {
@@ -183,8 +167,6 @@ export const InputWithPopover: Story = {
         'value',
         'minInputProps',
         'maxInputProps',
-        'onFocus',
-        'onBlur',
       ],
     },
   },
@@ -194,20 +176,11 @@ export const InputWithPopover: Story = {
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
-hideStorybookControls(InputWithPopover, ['onFocus', 'onBlur']);
 
 export const Levels: Story = {
   parameters: {
     controls: {
-      include: [
-        'levels',
-        'max',
-        'min',
-        'value',
-        'showLabels',
-        'onFocus',
-        'onBlur',
-      ],
+      include: ['levels', 'max', 'min', 'value', 'showLabels'],
     },
   },
   args: {
@@ -220,7 +193,6 @@ export const Levels: Story = {
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
-hideStorybookControls(Levels, ['onFocus', 'onBlur']);
 
 const StatefulPlayground = ({
   value,
