@@ -94,7 +94,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             <select
               aria-describedby="generated-id generated-id"
               aria-label="Time tense"
-              class="euiSelect euiFormControlLayout--1icons euiSelect--compressed"
+              class="euiSelect emotion-euiSelect-compressed"
             >
               <option
                 value="last"
@@ -155,7 +155,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             <select
               aria-describedby="generated-id generated-id"
               aria-label="Time unit"
-              class="euiSelect euiFormControlLayout--1icons euiSelect--compressed"
+              class="euiSelect emotion-euiSelect-compressed"
             >
               <option
                 value="s"
@@ -372,7 +372,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             <select
               aria-describedby="generated-id generated-id"
               aria-label="Refresh interval units"
-              class="euiSelect euiFormControlLayout--1icons euiSelect--fullWidth euiSelect--compressed"
+              class="euiSelect emotion-euiSelect-compressed-fullWidth"
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
               disabled=""
             >

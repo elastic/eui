@@ -17,7 +17,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       />
@@ -56,7 +56,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       >
@@ -97,7 +97,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       >
@@ -166,7 +166,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       >
@@ -215,7 +215,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       >
@@ -264,7 +264,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       >
@@ -304,7 +304,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control-open"
         data-test-subj="colorPalettePicker"
         type="button"
       >
