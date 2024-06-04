@@ -11,7 +11,7 @@ exports[`EuiSelect is rendered 1`] = `
   <eui-validatable-control>
     <select
       aria-label="aria-label"
-      class="euiSelect euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+      class="euiSelect testClass1 testClass2 emotion-euiSelect-euiTestCss"
       data-test-subj="test subject string"
       id="id"
       name="name"
@@ -29,7 +29,7 @@ exports[`EuiSelect props disabled options are rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiFormControlLayout--1icons"
+      class="euiSelect emotion-euiSelect"
     >
       <option
         value="1"
@@ -56,7 +56,7 @@ exports[`EuiSelect props fullWidth is rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiFormControlLayout--1icons euiSelect--fullWidth"
+      class="euiSelect emotion-euiSelect-fullWidth"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -74,7 +74,7 @@ exports[`EuiSelect props isInvalid is rendered 1`] = `
     isinvalid="true"
   >
     <select
-      class="euiSelect euiFormControlLayout--2icons"
+      class="euiSelect emotion-euiSelect"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -89,7 +89,7 @@ exports[`EuiSelect props isLoading is rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiFormControlLayout--2icons euiSelect-isLoading"
+      class="euiSelect euiSelect-isLoading emotion-euiSelect"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -104,7 +104,7 @@ exports[`EuiSelect props options are rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiFormControlLayout--1icons"
+      class="euiSelect emotion-euiSelect"
     >
       <option
         value="1"
@@ -130,7 +130,7 @@ exports[`EuiSelect props value option is rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiFormControlLayout--1icons"
+      class="euiSelect emotion-euiSelect"
     >
       <option
         value="1"

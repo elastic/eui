@@ -12,15 +12,19 @@ import React, {
   Ref,
   FunctionComponent,
 } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+
+import { useFormContext } from '../eui_form_context';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
-import { useFormContext } from '../eui_form_context';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+
+import { euiSelectStyles } from './select.styles';
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
@@ -105,23 +109,29 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
     if (onMouseUp) onMouseUp(e);
   };
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-    isDropdown: true,
-  });
-
   const classes = classNames(
     'euiSelect',
-    numIconsClass,
-    {
-      'euiSelect--fullWidth': fullWidth,
-      'euiSelect--compressed': compressed,
-      'euiSelect--inGroup': prepend || append,
-      'euiSelect-isLoading': isLoading,
-    },
+    { 'euiSelect-isLoading': isLoading },
     className
   );
+
+  const inGroup = !!(prepend || append);
+
+  const styles = useEuiMemoizedStyles(euiSelectStyles);
+  const cssStyles = [
+    styles.euiSelect,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    inGroup && styles.inGroup,
+    styles.lineHeight.removePadding,
+    inGroup
+      ? compressed
+        ? styles.lineHeight.inGroup.compressed
+        : styles.lineHeight.inGroup.uncompressed
+      : compressed
+      ? styles.lineHeight.compressed
+      : styles.lineHeight.uncompressed,
+  ];
 
   let emptyOptionNode;
   if (hasNoInitialSelection) {
@@ -156,6 +166,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
           id={id}
           name={name}
           className={classes}
+          css={cssStyles}
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
