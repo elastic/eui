@@ -204,7 +204,7 @@ exports[`EuiSuperSelect renders 1`] = `
             >
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item"
                 id="1"
                 role="option"
                 type="button"
@@ -222,7 +222,7 @@ exports[`EuiSuperSelect renders 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item"
                 id="2"
                 role="option"
                 type="button"

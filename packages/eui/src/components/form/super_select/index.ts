@@ -8,8 +8,7 @@
 
 export type { EuiSuperSelectProps } from './super_select';
 export { EuiSuperSelect } from './super_select';
-export type {
-  EuiSuperSelectControlProps,
-  EuiSuperSelectOption,
-} from './super_select_control';
+export type { EuiSuperSelectOption } from './super_select_item';
+
+export type { EuiSuperSelectControlProps } from './super_select_control';
 export { EuiSuperSelectControl } from './super_select_control';

@@ -14,13 +14,16 @@ import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiInputPopover, type EuiInputPopoverProps } from '../../popover';
-import { EuiContextMenuItem, type EuiContextMenuItemLayoutAlignment } from '../../context_menu';
+import { type EuiContextMenuItemLayoutAlignment } from '../../context_menu';
 
 import {
   EuiSuperSelectControl,
   type EuiSuperSelectControlProps,
-  type EuiSuperSelectOption,
 } from './super_select_control';
+import {
+  EuiSuperSelectItem,
+  type EuiSuperSelectOption,
+} from './super_select_item';
 import { euiSuperSelectStyles as styles } from './super_select.styles';
 
 enum ShiftDirection {
@@ -287,14 +290,6 @@ export class EuiSuperSelect<T = string> extends Component<
       className
     );
 
-    const itemClasses = classNames(
-      'euiSuperSelect__item',
-      {
-        'euiSuperSelect__item--hasDividers': hasDividers,
-      },
-      itemClassName
-    );
-
     const button = (
       <EuiSuperSelectControl
         options={options}
@@ -318,21 +313,21 @@ export class EuiSuperSelect<T = string> extends Component<
       if (value == null) return;
 
       return (
-        <EuiContextMenuItem
+        <EuiSuperSelectItem
           key={index}
-          className={itemClasses}
+          id={String(value)}
+          className={itemClassName}
+          hasDividers={hasDividers}
+          layoutAlign={itemLayoutAlign}
           icon={valueOfSelected === value ? 'check' : 'empty'}
           onClick={() => this.itemClicked(value)}
           onKeyDown={this.onItemKeyDown}
-          layoutAlign={itemLayoutAlign}
           buttonRef={(node) => this.setItemNode(node, index)}
-          role="option"
-          id={String(value)}
           aria-selected={valueOfSelected === value}
           {...optionRest}
         >
           {dropdownDisplay || inputDisplay}
-        </EuiContextMenuItem>
+        </EuiSuperSelectItem>
       );
     });
 

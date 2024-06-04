@@ -27,13 +27,7 @@ import {
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
 
-export interface EuiSuperSelectOption<T> {
-  value: NonNullable<T>;
-  inputDisplay?: ReactNode;
-  dropdownDisplay?: ReactNode;
-  disabled?: boolean;
-  'data-test-subj'?: string;
-}
+import { EuiSuperSelectOption } from './super_select_item';
 
 export interface EuiSuperSelectControlProps<T>
   extends CommonProps,

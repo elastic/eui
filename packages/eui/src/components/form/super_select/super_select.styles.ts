@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 
+import { UseEuiTheme } from '../../../services';
 import { logicalCSS, logicalCSSWithFallback } from '../../../global_styling';
 
 export const euiSuperSelectStyles = {
@@ -17,3 +18,14 @@ export const euiSuperSelectStyles = {
     ${logicalCSSWithFallback('overflow-x', 'hidden')}
   `,
 };
+
+export const euiSuperSelectItemStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiSuperSelect__item: css`
+    padding: ${euiTheme.size.s};
+  `,
+  hasDividers: css`
+    &:not(:last-of-type) {
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
+    }
+  `,
+});
