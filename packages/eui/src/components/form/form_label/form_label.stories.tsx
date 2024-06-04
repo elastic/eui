@@ -13,7 +13,7 @@ import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiFormLabel, EuiFormLabelProps } from './form_label';
 
 const meta: Meta<EuiFormLabelProps> = {
-  title: 'Forms/EuiForm/EuiFormLabel',
+  title: 'Forms/EuiForm/EuiFormRow/Subcomponents/EuiFormLabel',
   component: EuiFormLabel,
   args: {
     type: 'label',

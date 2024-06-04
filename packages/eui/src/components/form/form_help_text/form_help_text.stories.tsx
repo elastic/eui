@@ -13,7 +13,7 @@ import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiFormHelpText, EuiFormHelpTextProps } from './form_help_text';
 
 const meta: Meta<EuiFormHelpTextProps> = {
-  title: 'Forms/EuiForm/EuiFormHelpText',
+  title: 'Forms/EuiForm/EuiFormRow/Subcomponents/EuiFormHelpText',
   component: EuiFormHelpText,
 };
 hideStorybookControls(meta, ['aria-label']);

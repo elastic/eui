@@ -13,7 +13,7 @@ import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiFormErrorText, EuiFormErrorTextProps } from './form_error_text';
 
 const meta: Meta<EuiFormErrorTextProps> = {
-  title: 'Forms/EuiForm/EuiFormErrorText',
+  title: 'Forms/EuiForm/EuiFormRow/Subcomponents/EuiFormErrorText',
   component: EuiFormErrorText,
 };
 hideStorybookControls(meta, ['aria-label']);

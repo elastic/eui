@@ -15,7 +15,7 @@ import { EuiForm } from '../form';
 import { EuiFormRow, EuiFormRowProps } from './form_row';
 
 const meta: Meta<EuiFormRowProps> = {
-  title: 'Forms/EuiForm/Subcomponents/EuiFormRow',
+  title: 'Forms/EuiForm/EuiFormRow',
   component: EuiFormRow,
   decorators: [
     (Story, { args }) => (
