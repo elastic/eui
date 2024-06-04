@@ -43,6 +43,11 @@ export type EuiFormControlLayoutProps = CommonProps &
     append?: PrependAppendType;
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
+    /**
+     * Determines whether icons are absolutely or statically rendered. For single inputs,
+     * absolute rendering is typically preferred.
+     * @default absolute
+     */
     iconsPosition?: EuiFormControlLayoutIconsProps['iconsPosition'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
     /**
