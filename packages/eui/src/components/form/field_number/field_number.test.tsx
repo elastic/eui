@@ -113,7 +113,7 @@ describe('EuiFieldNumber', () => {
       );
       const control = container.querySelector('.euiFieldNumber')!;
 
-      if (!control.classList.contains('euiFieldNumber--fullWidth')) {
+      if (!control.className.includes('fullWidth')) {
         throw new Error(
           'expected EuiFieldNumber to inherit fullWidth from EuiForm'
         );

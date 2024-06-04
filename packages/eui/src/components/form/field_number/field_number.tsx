@@ -17,7 +17,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useCombinedRefs } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { EuiValidatableControl } from '../validatable_control';
@@ -25,11 +25,9 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import {
-  getFormControlClassNameForIconCount,
-  isRightSideIcon,
-} from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
+
+import { euiFieldNumberStyles } from './field_number.styles';
 
 export type EuiFieldNumberProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -136,24 +134,18 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     }
   }, [value, min, max, step, checkNativeValidity]);
 
-  const hasRightSideIcon = isRightSideIcon(icon);
-  const numIconsClass = controlOnly
-    ? false
-    : getFormControlClassNameForIconCount({
-        isInvalid: isInvalid || isNativelyInvalid,
-        isLoading,
-        icon: hasRightSideIcon,
-      });
-
-  const classes = classNames('euiFieldNumber', className, numIconsClass, {
-    'euiFieldNumber--fullWidth': fullWidth,
-    'euiFieldNumber--compressed': compressed,
-    ...(!controlOnly && {
-      'euiFieldNumber--inGroup': prepend || append,
-      'euiFieldNumber--withIcon': icon && !hasRightSideIcon,
-    }),
+  const classes = classNames('euiFieldNumber', className, {
     'euiFieldNumber-isLoading': isLoading,
   });
+
+  const styles = useEuiMemoizedStyles(euiFieldNumberStyles);
+  const cssStyles = [
+    styles.euiFieldNumber,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    !controlOnly && (prepend || append) && styles.inGroup,
+    controlOnly && styles.controlOnly,
+  ];
 
   const control = (
     <EuiValidatableControl isInvalid={isInvalid}>
@@ -168,6 +160,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         placeholder={placeholder}
         readOnly={readOnly}
         className={classes}
+        css={cssStyles}
         ref={combinedRefs}
         aria-invalid={isInvalid || isNativelyInvalid}
         onKeyUp={(e) => {

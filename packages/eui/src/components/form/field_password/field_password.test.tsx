@@ -152,7 +152,7 @@ describe('EuiFieldPassword', () => {
       );
 
       const input = container.querySelector('.euiFieldPassword');
-      expect(input).toHaveClass('euiFieldPassword--fullWidth');
+      expect(input!.className).toContain('fullWidth');
     });
   });
 });
