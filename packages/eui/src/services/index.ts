@@ -40,8 +40,6 @@ export {
   euiPaletteGray,
   euiPaletteRed,
   euiPaletteGreen,
-  euiPalettePositive,
-  euiPaletteNegative,
   euiPaletteWarm,
   getSteppedGradient,
   hexToHsv,
