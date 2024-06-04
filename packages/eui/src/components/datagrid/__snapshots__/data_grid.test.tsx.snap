@@ -714,14 +714,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, A
-                </div>
+                0, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -744,14 +740,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, B
-                </div>
+                0, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -774,14 +766,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, A
-                </div>
+                1, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -804,14 +792,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, B
-                </div>
+                1, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -834,14 +818,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, A
-                </div>
+                2, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -864,14 +844,10 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, B
-                </div>
+                2, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1206,11 +1182,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner"
-                >
-                  0
-                </div>
+                0
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1233,14 +1205,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, A
-                </div>
+                0, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1263,14 +1231,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, B
-                </div>
+                0, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1296,11 +1260,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner"
-                >
-                  0
-                </div>
+                0
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1326,11 +1286,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner"
-                >
-                  1
-                </div>
+                1
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1353,14 +1309,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, A
-                </div>
+                1, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1383,14 +1335,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, B
-                </div>
+                1, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1416,11 +1364,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner"
-                >
-                  1
-                </div>
+                1
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1446,11 +1390,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner"
-                >
-                  2
-                </div>
+                2
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1473,14 +1413,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, A
-                </div>
+                2, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1503,14 +1439,10 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, B
-                </div>
+                2, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1536,11 +1468,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner"
-                >
-                  2
-                </div>
+                2
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1833,14 +1761,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, A
-                </div>
+                0, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1863,14 +1787,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, B
-                </div>
+                0, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1893,14 +1813,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, A
-                </div>
+                1, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1923,14 +1839,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, B
-                </div>
+                1, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1953,14 +1865,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, A
-                </div>
+                2, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -1983,14 +1891,10 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, B
-                </div>
+                2, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -2281,14 +2185,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, A
-                </div>
+                0, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -2311,14 +2211,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  0, B
-                </div>
+                0, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -2341,14 +2237,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, A
-                </div>
+                1, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -2371,14 +2263,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  1, B
-                </div>
+                1, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -2401,14 +2289,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, A
-                </div>
+                2, A
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
@@ -2431,14 +2315,10 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
                 data-datagrid-cellcontent="true"
               >
-                <div
-                  class="euiDataGridRowCell__contentInner eui-textTruncate"
-                >
-                  2, B
-                </div>
+                2, B
               </div>
               <p
                 class="emotion-euiScreenReaderOnly"
