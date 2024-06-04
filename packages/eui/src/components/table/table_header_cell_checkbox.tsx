@@ -33,8 +33,6 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
   const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
   const inlineStyles = resolveWidthAsStyle(style, width);
 
-  console.log('inlineStyles', inlineStyles);
-
   return (
     <th
       css={styles.euiTableHeaderCellCheckbox}
