@@ -198,7 +198,7 @@ exports[`EuiSuperSelect renders 1`] = `
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
               aria-label="Select listbox"
-              class="euiSuperSelect__listbox"
+              class="euiSuperSelect__listbox eui-scrollBar emotion-euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
             >

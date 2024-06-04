@@ -9,22 +9,19 @@
 import React, { Component, FocusEvent, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
-
-import { EuiScreenReaderOnly } from '../../accessibility';
 import { htmlIdGenerator, keys } from '../../../services';
+import { CommonProps } from '../../common';
+import { EuiI18n } from '../../i18n';
+import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiInputPopover, type EuiInputPopoverProps } from '../../popover';
+import { EuiContextMenuItem, type EuiContextMenuItemLayoutAlignment } from '../../context_menu';
+
 import {
   EuiSuperSelectControl,
-  EuiSuperSelectControlProps,
-  EuiSuperSelectOption,
+  type EuiSuperSelectControlProps,
+  type EuiSuperSelectOption,
 } from './super_select_control';
-import { EuiInputPopover, EuiInputPopoverProps } from '../../popover';
-import {
-  EuiContextMenuItem,
-  EuiContextMenuItemLayoutAlignment,
-} from '../../context_menu';
-
-import { EuiI18n } from '../../i18n';
+import { euiSuperSelectStyles as styles } from './super_select.styles';
 
 enum ShiftDirection {
   BACK = 'back',
@@ -364,7 +361,8 @@ export class EuiSuperSelect<T = string> extends Component<
             <div
               aria-label={ariaLabel}
               aria-describedby={this.describedById}
-              className="euiSuperSelect__listbox"
+              css={styles.euiSuperSelect__listbox}
+              className="euiSuperSelect__listbox eui-scrollBar"
               role="listbox"
               aria-activedescendant={
                 valueOfSelected != null ? String(valueOfSelected) : undefined
