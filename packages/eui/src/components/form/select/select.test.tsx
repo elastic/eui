@@ -119,7 +119,7 @@ describe('EuiSelect', () => {
         >
            
         </option>
-`);
+      `);
     });
 
     it('can be reset to an empty initial selection', () => {

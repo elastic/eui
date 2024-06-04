@@ -11,6 +11,7 @@ import React, {
   OptionHTMLAttributes,
   Ref,
   FunctionComponent,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -100,14 +101,21 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
   // value needs to fallback to an empty string to interact properly with `defaultValue`
   const value = hasNoInitialSelection ? _value ?? '' : _value;
 
-  const handleMouseUp = (e: React.MouseEvent<HTMLSelectElement>) => {
-    // Normalizes cross-browser mouse eventing by preventing propagation,
-    // notably for use in conjunction with EuiOutsideClickDetector.
-    // See https://github.com/elastic/eui/pull/1926 for full discussion on
-    // rationale and alternatives should this intervention become problematic.
-    e.nativeEvent.stopImmediatePropagation();
-    if (onMouseUp) onMouseUp(e);
-  };
+  // React HTML input can not have both value and defaultValue properties.
+  // https://reactjs.org/docs/uncontrolled-components.html#default-values
+  const selectDefaultValue = value != null ? undefined : defaultValue || '';
+
+  const handleMouseUp = useCallback(
+    (e: React.MouseEvent<HTMLSelectElement>) => {
+      // Normalizes cross-browser mouse eventing by preventing propagation,
+      // notably for use in conjunction with EuiOutsideClickDetector.
+      // See https://github.com/elastic/eui/pull/1926 for full discussion on
+      // rationale and alternatives should this intervention become problematic.
+      e.nativeEvent.stopImmediatePropagation();
+      onMouseUp?.(e);
+    },
+    [onMouseUp]
+  );
 
   const classes = classNames(
     'euiSelect',
@@ -132,22 +140,6 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
       ? styles.lineHeight.compressed
       : styles.lineHeight.uncompressed,
   ];
-
-  let emptyOptionNode;
-  if (hasNoInitialSelection) {
-    emptyOptionNode = (
-      <option value="" disabled hidden style={{ display: 'none' }}>
-        &nbsp;
-      </option>
-    );
-  }
-
-  // React HTML input can not have both value and defaultValue properties.
-  // https://reactjs.org/docs/uncontrolled-components.html#default-values
-  let selectDefaultValue;
-  if (value == null) {
-    selectDefaultValue = defaultValue || '';
-  }
 
   return (
     <EuiFormControlLayout
@@ -174,7 +166,11 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
           disabled={disabled}
           {...rest}
         >
-          {emptyOptionNode}
+          {hasNoInitialSelection && (
+            <option value="" disabled hidden style={{ display: 'none' }}>
+              &nbsp;
+            </option>
+          )}
           {options.map((option, index) => {
             const { text, ...rest } = option;
             return (
