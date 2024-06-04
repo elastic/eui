@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -13,7 +14,10 @@ import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
+import { EuiFlexItem } from '../../flex';
+import { EuiIcon } from '../../icon';
 import { EuiSelectableOption } from '../selectable_option';
+
 import { EuiSelectableList, EuiSelectableListProps } from './selectable_list';
 
 const options: EuiSelectableOption[] = [
@@ -97,6 +101,42 @@ type Story = StoryObj<EuiSelectableListProps<{}>>;
 export const Playground: Story = {
   args: {
     options,
+    activeOptionIndex: 0,
+    makeOptionId: (index) => `selectable_list_item-${index}`,
+    // ensuring that onOptionClick triggers an action as it's
+    // only called through setActiveOptionIndex callback
+    setActiveOptionIndex: (index, callback) => {
+      callback?.();
+      action('setActiveOptionIndex')(index);
+    },
+  },
+};
+
+export const Groups: Story = {
+  parameters: {
+    controls: {
+      include: ['options'],
+    },
+  },
+  args: {
+    options: [
+      { label: 'Group 1', isGroupLabel: true },
+      ...[...options].splice(0, 4),
+      {
+        label: 'Group 2',
+        isGroupLabel: true,
+        prepend: (
+          <EuiIcon
+            type="warning"
+            css={({ euiTheme }) => ({ marginRight: euiTheme.size.s })}
+          />
+        ),
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+        ),
+      },
+      ...[...options].splice(4, options.length),
+    ],
     activeOptionIndex: 0,
     makeOptionId: (index) => `selectable_list_item-${index}`,
     // ensuring that onOptionClick triggers an action as it's
