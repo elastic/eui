@@ -640,6 +640,7 @@ export interface EuiDataGridCellProps {
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
   pagination?: Required<EuiDataGridPaginationProps>;
+  shouldUpdateLineHeight?: boolean;
 }
 
 export interface EuiDataGridCellState {
