@@ -76,7 +76,7 @@ export const EuiFormControlLayout: FunctionComponent<
     className,
     children,
     icon,
-    iconsPosition,
+    iconsPosition = 'absolute',
     clear,
     isDropdown,
     isLoading,
