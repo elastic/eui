@@ -42,13 +42,11 @@ import {
 } from '../utils/grid_height_width';
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
-import { useShouldUpdateCellLineHeight } from '../utils/cell_heights';
 import { useScrollBars, useScroll } from '../utils/scrolling';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = memo(
   ({ columnIndex, rowIndex, style, data }) => {
-    const { gridStyles, ...cellData } = data;
     const memoizedStyles = useDeepEqual(style);
     const cellStyles = useMemo(() => {
       const { headerRowHeight } = data;
@@ -58,15 +56,12 @@ export const Cell: FunctionComponent<GridChildComponentProps> = memo(
       };
     }, [memoizedStyles, data]);
 
-    const shouldUpdateLineHeight = useShouldUpdateCellLineHeight(gridStyles);
-
     return (
       <CellWrapper
         colIndex={columnIndex}
         visibleRowIndex={rowIndex}
         style={cellStyles}
-        shouldUpdateLineHeight={shouldUpdateLineHeight}
-        {...cellData}
+        {...data}
       />
     );
   }
@@ -339,7 +334,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           rowManager,
           pagination,
           headerRowHeight,
-          gridStyles,
         };
       }, [
         schemaDetectors,
@@ -360,7 +354,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         rowManager,
         pagination,
         headerRowHeight,
-        gridStyles,
       ]);
 
       const rowWrapperContextValue = useMemo(() => {

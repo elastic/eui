@@ -318,10 +318,6 @@ export class EuiDataGridCell extends Component<
       this.recalculateLineHeight();
     }
 
-    if (this.props?.shouldUpdateLineHeight === true) {
-      this.recalculateLineHeight();
-    }
-
     if (
       (this.props.rowHeightUtils as RowHeightVirtualizationUtils)
         ?.compensateForLayoutShift &&

@@ -75,7 +75,6 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
     rowHeightsOptions,
     rowHeightUtils,
     rowManager,
-    shouldUpdateLineHeight,
     ...rest
   }) => {
     const popoverContext = useContext(DataGridCellPopoverContext);
@@ -156,7 +155,6 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
           width={leadingColumn.width}
           renderCellValue={rowCellRender}
           isExpandable={false}
-          shouldUpdateLineHeight={shouldUpdateLineHeight}
           {...rest}
         />
       );
@@ -173,7 +171,6 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
           width={trailingColumn.width}
           renderCellValue={rowCellRender}
           isExpandable={false}
-          shouldUpdateLineHeight={shouldUpdateLineHeight}
           {...rest}
         />
       );
@@ -197,7 +194,6 @@ export const CellWrapper: FunctionComponent<CellProps> = memo(
           renderCellPopover={renderCellPopover}
           interactiveCellId={interactiveCellId}
           isExpandable={isExpandable}
-          shouldUpdateLineHeight={shouldUpdateLineHeight}
           {...rest}
         />
       );
