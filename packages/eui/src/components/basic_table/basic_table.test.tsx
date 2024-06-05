@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { render, screen } from '../../test/rtl';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -460,6 +461,72 @@ describe('EuiBasicTable', () => {
 
       expect(onSelectionChange).toHaveBeenCalledWith([]);
       expect(container.querySelectorAll('[checked]')).toHaveLength(0);
+    });
+
+    describe('header checkbox', () => {
+      it('selects all rows', () => {
+        const props: EuiBasicTableProps<BasicItem> = {
+          items: basicItems,
+          columns: basicColumns,
+          itemId: 'id',
+          selection: {
+            onSelectionChange: () => {},
+            initialSelected: [],
+          },
+        };
+        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
+
+        fireEvent.click(getByTestSubject('checkboxSelectAll'));
+
+        expect(getByTestSubject('checkboxSelectAll')).toBeChecked();
+        expect(getCheckboxAt(1)).toBeChecked();
+        expect(getCheckboxAt(2)).toBeChecked();
+        expect(getCheckboxAt(3)).toBeChecked();
+      });
+
+      it('deselects all rows', () => {
+        const props: EuiBasicTableProps<BasicItem> = {
+          items: basicItems,
+          columns: basicColumns,
+          itemId: 'id',
+          selection: {
+            onSelectionChange: () => {},
+            initialSelected: basicItems,
+          },
+        };
+        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        expect(getByTestSubject('checkboxSelectAll')).toBeChecked();
+
+        fireEvent.click(getByTestSubject('checkboxSelectAll'));
+
+        expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
+        expect(getCheckboxAt(1)).not.toBeChecked();
+        expect(getCheckboxAt(2)).not.toBeChecked();
+        expect(getCheckboxAt(3)).not.toBeChecked();
+      });
+
+      it('renders an indeterminate header checkbox if some but not all rows are selected', () => {
+        const props: EuiBasicTableProps<BasicItem> = {
+          items: basicItems,
+          columns: basicColumns,
+          itemId: 'id',
+          selection: {
+            onSelectionChange: () => {},
+            initialSelected: [],
+          },
+        };
+        const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+        expect(getByTestSubject('checkboxSelectAll')).not.toBeChecked();
+
+        fireEvent.click(getCheckboxAt(1));
+        expect(getCheckboxAt(1)).toBeChecked();
+        expect(getByTestSubject('checkboxSelectAll')).toBePartiallyChecked();
+
+        // Should deselect all rows on indeterminate click
+        fireEvent.click(getByTestSubject('checkboxSelectAll'));
+        expect(getCheckboxAt(1)).not.toBeChecked();
+      });
     });
   });
 
