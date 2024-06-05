@@ -24,6 +24,11 @@ export const euiTextAreaStyles = (euiThemeContext: UseEuiTheme) => {
       /* Give more spacing between multiple lines */
       line-height: ${euiTheme.font.lineHeightMultiplier};
 
+      /* <textarea>s default to 'inline-block', which causes an extra 2-3px of
+       * unnecessary height within its parent 'block' form control wrapper.
+       * @see https://stackoverflow.com/a/27536461/4294462 */
+      display: block;
+
       &:invalid {
         ${formStyles.invalid}
       }
