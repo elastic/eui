@@ -12,18 +12,11 @@ import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
-import { EuiCheckbox, EuiCheckboxProps, TYPES } from './checkbox';
+import { EuiCheckbox, EuiCheckboxProps } from './checkbox';
 
 const meta: Meta<EuiCheckboxProps> = {
   title: 'Forms/EuiCheckbox',
   component: EuiCheckbox,
-  argTypes: {
-    label: { control: 'text' },
-    type: {
-      control: 'radio',
-      options: [undefined, ...TYPES],
-    },
-  },
   args: {
     checked: false,
     compressed: false,

@@ -703,7 +703,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
         {(selectAllRows: string) => (
           <EuiCheckbox
             id={this.selectAllIdGenerator(isMobile ? 'mobile' : 'desktop')}
-            type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}
             onChange={onChange}
@@ -1114,7 +1113,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
           {(selectThisRow: string) => (
             <EuiCheckbox
               id={`${this.tableId}${key}-checkbox`}
-              type="inList"
               disabled={disabled}
               checked={checked}
               onChange={onChange}

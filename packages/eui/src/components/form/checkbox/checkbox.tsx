@@ -19,15 +19,7 @@ import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 import { useCombinedRefs } from '../../../services';
-import { keysOf, CommonProps } from '../../common';
-
-const typeToClassNameMap = {
-  inList: 'euiCheckbox--inList',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-
-export type EuiCheckboxType = keyof typeof typeToClassNameMap;
+import { CommonProps } from '../../common';
 
 export interface EuiCheckboxProps
   extends CommonProps,
@@ -37,7 +29,6 @@ export interface EuiCheckboxProps
   onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required
   inputRef?: (element: HTMLInputElement) => void;
   label?: ReactNode;
-  type?: EuiCheckboxType;
   disabled?: boolean;
   /**
    * when `true` creates a shorter height checkbox row
@@ -67,7 +58,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
 }) => {
   const classes = classNames(
     'euiCheckbox',
-    type && typeToClassNameMap[type],
     {
       'euiCheckbox--noLabel': !label,
       'euiCheckbox--compressed': compressed,
