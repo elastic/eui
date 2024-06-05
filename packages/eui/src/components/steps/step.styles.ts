@@ -78,7 +78,7 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     // to ensure the connection lines connect properly to the indicators
     xxs: css`
       &:not(:first-of-type) {
-        ${logicalCSS('margin-top', `calc(-1 * ${euiStep.numberXXSOffset})`)};
+        ${logicalCSS('margin-top', `calc(-1 * ${euiStep.numberXXSOffset})`)}
       }
 
       &:not(:last-of-type) {

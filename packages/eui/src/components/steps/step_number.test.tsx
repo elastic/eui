@@ -23,13 +23,25 @@ describe('EuiStepNumber', () => {
   });
 
   describe('props', () => {
-    describe('has titleSize', () => {
+    describe('titleSize', () => {
       it('is rendered', () => {
         const { container } = render(
           <EuiStepNumber titleSize="xs" number={1} />
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+
+      describe('xxs', () => {
+        it('renders no visible number', () => {
+          const { container } = render(
+            <EuiStepNumber titleSize="xxs" number={1} />
+          );
+
+          expect(
+            container.querySelector('.euiStepNumber__number')
+          ).not.toBeInTheDocument();
+        });
       });
     });
 
@@ -42,6 +54,38 @@ describe('EuiStepNumber', () => {
 
           expect(container.firstChild).toMatchSnapshot();
         });
+
+        if (['complete', 'warning', 'danger'].includes(status)) {
+          it('renders an icon', () => {
+            const { container } = render(
+              <EuiStepNumber titleSize="xxs" number={1} status={status} />
+            );
+
+            expect(
+              container.querySelector('.euiStepNumber__icon')
+            ).toBeInTheDocument();
+          });
+        } else if (status === 'loading') {
+          it('renders a loading spinner', () => {
+            const { container } = render(
+              <EuiStepNumber titleSize="xxs" number={1} status={status} />
+            );
+
+            expect(
+              container.querySelector('.euiStepNumber__loader')
+            ).toBeInTheDocument();
+          });
+        } else {
+          it('does not render an icon', () => {
+            const { container } = render(
+              <EuiStepNumber titleSize="xxs" number={1} status={status} />
+            );
+
+            expect(
+              container.querySelector('.euiStepNumber__icon')
+            ).not.toBeInTheDocument();
+          });
+        }
       });
     });
   });
