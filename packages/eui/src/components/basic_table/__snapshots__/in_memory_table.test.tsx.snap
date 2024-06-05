@@ -10,7 +10,8 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
     <input
       aria-label="Select all rows"
       class="euiCheckbox__input"
-      id="_selection_column-checkbox_generated-id_mobile"
+      data-test-subj="checkboxSelectAll"
+      id="_selection_column-checkbox_generated-id"
       title="Select all rows"
       type="checkbox"
     />
@@ -19,7 +20,7 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
     />
     <label
       class="euiCheckbox__label"
-      for="_selection_column-checkbox_generated-id_mobile"
+      for="_selection_column-checkbox_generated-id"
     >
       Select all rows
     </label>

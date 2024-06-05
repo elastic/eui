@@ -711,13 +711,12 @@ export class EuiBasicTable<T extends object = any> extends Component<
       >
         {([selectAllRows, deselectRows]: string[]) => (
           <EuiCheckbox
-            id={this.selectAllIdGenerator(isMobile ? 'mobile' : 'desktop')}
+            id={this.selectAllIdGenerator()}
             checked={checked}
             indeterminate={indeterminate}
             disabled={disabled}
             onChange={onChange}
-            // Only add data-test-subj to one of the checkboxes
-            data-test-subj={isMobile ? undefined : 'checkboxSelectAll'}
+            data-test-subj="checkboxSelectAll"
             aria-label={checked || indeterminate ? deselectRows : selectAllRows}
             title={checked || indeterminate ? deselectRows : selectAllRows}
             label={isMobile ? selectAllRows : null}
