@@ -14,13 +14,14 @@ import React, {
   ReactNode,
 } from 'react';
 import { CommonProps } from '../common';
-import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
+import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import { useEuiTheme } from '../../services';
 import {
   euiStepStyles,
   euiStepContentStyles,
   euiStepTitleStyles,
+  euiStepNumberStyles,
 } from './step.styles';
 
 export interface EuiStepInterface {
@@ -42,9 +43,9 @@ export interface EuiStepInterface {
    */
   status?: EuiStepStatus;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
+   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs` and `xxs`. Defaults to `s`
    */
-  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
+  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'l'>;
 }
 
 export type EuiStepProps = CommonProps &
@@ -81,12 +82,24 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   ];
   const cssTitleWrapperStyles = titleStyles.euiStep__titleWrapper;
 
+  const stepNumberStyles = euiStepNumberStyles(euiTheme);
+  const cssStepNumberStyles = [
+    titleSize === 'xxs' && stepNumberStyles.offset__xxs,
+  ];
+
+  const size = titleSize === 'xxs' ? 'xs' : titleSize;
+
   return (
     <div className={classes} css={cssStyles} {...rest}>
       <div className="euiStep__titleWrapper" css={cssTitleWrapperStyles}>
-        <EuiStepNumber number={step} status={status} titleSize={titleSize} />
+        <EuiStepNumber
+          number={step}
+          status={status}
+          titleSize={titleSize}
+          css={cssStepNumberStyles}
+        />
         <EuiTitle
-          size={titleSize as EuiTitleSize}
+          size={size}
           className="euiStep__title"
           css={cssStepTitleStyles}
         >

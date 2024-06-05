@@ -14,7 +14,9 @@ export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
   return {
     numberSize: euiTheme.size.xl,
     numberXSSize: euiTheme.size.l,
+    numberXXSSize: euiTheme.size.base,
     numberMargin: euiTheme.size.base,
+    numberXXSOffset: euiTheme.size.xs,
   };
 };
 
@@ -29,7 +31,12 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => x / 2 - y / 2
   );
   const lineEndPosition = mathWithUnits(
-    [euiStep.numberSize, euiTheme.border.width.thick],
+    [
+      euiStep.numberSize === 'xxs'
+        ? euiStep.numberSize + euiTheme.size.xs
+        : euiStep.numberSize,
+      euiTheme.border.width.thick,
+    ],
     (x, y) => x / 2 + y / 2
   );
 
@@ -64,6 +71,20 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
       &:not(:last-of-type) {
         /* Adjust the line to be centered on the smaller number */
         background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
+      }
+    `,
+    // the xxs indicator circle is smaller than the text height, we realign the
+    // distances of the steps after manually horizontally aligning the step number
+    // to ensure the connection lines connect properly to the indicators
+    xxs: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', `calc(-1 * ${euiStep.numberXXSOffset})`)};
+      }
+
+      &:not(:last-of-type) {
+        /* Adjust the line to be centered on the smaller number */
+        background-position: -${euiTheme.size.s} calc(${euiTheme.size.base} +
+              ${euiStep.numberXXSOffset});
       }
     `,
   };
@@ -118,6 +139,21 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
         mathWithUnits(euiStep.numberXSSize, (x) => x / 2)
       )}
     `,
+    xxs: css`
+      /* Align the content's contents with the title */
+      ${logicalCSS(
+        'padding-left',
+        mathWithUnits(
+          [euiStep.numberXXSSize, euiStep.numberMargin],
+          (x, y) => x / 2 + y
+        )
+      )}
+      /* Align content border to horizontal center of step number */
+      ${logicalCSS(
+        'margin-left',
+        mathWithUnits(euiStep.numberXXSSize, (x) => x / 2)
+      )}
+    `,
   };
 };
 
@@ -142,5 +178,19 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-top', euiTheme.size.xs)}
     `,
     xs: css``,
+    xxs: css``,
+  };
+};
+
+export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
+
+  return {
+    // the xxs number circle is smaller than the title text height, therefore
+    // we move it manually down to align it horizontally
+    offset__xxs: css`
+      ${logicalCSS('margin-top', euiStep.numberXXSOffset)}
+    `,
   };
 };

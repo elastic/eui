@@ -30,7 +30,7 @@ export interface EuiStepsProps
    */
   headingElement?: string;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
+   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs` and `xxs`. Defaults to `s`
    */
   titleSize?: EuiStepProps['titleSize'];
 }
