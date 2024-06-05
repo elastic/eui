@@ -7,15 +7,18 @@
  */
 
 import React, {
-  Component,
+  FunctionComponent,
   ChangeEventHandler,
   ReactNode,
   InputHTMLAttributes,
   LabelHTMLAttributes,
+  useCallback,
+  useMemo,
 } from 'react';
 import { css } from '@emotion/react';
 import classNames from 'classnames';
 
+import { useCombinedRefs } from '../../../services';
 import { keysOf, CommonProps } from '../../common';
 
 const typeToClassNameMap = {
@@ -47,100 +50,74 @@ export interface EuiCheckboxProps
   labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
 
-export class EuiCheckbox extends Component<EuiCheckboxProps> {
-  static defaultProps = {
-    checked: false,
-    disabled: false,
-    indeterminate: false,
-    compressed: false,
-  };
+export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
+  className,
+  css: customCss,
+  id,
+  checked = false,
+  label,
+  onChange,
+  type,
+  disabled = false,
+  compressed = false,
+  indeterminate = false,
+  inputRef,
+  labelProps,
+  ...rest
+}) => {
+  const classes = classNames(
+    'euiCheckbox',
+    type && typeToClassNameMap[type],
+    {
+      'euiCheckbox--noLabel': !label,
+      'euiCheckbox--compressed': compressed,
+    },
+    className
+  );
 
-  inputRef?: HTMLInputElement = undefined;
+  const styles = { euiCheckbox: css`` }; // TODO: Emotion conversion
+  const cssStyles = [styles.euiCheckbox, customCss];
 
-  componentDidMount() {
-    this.invalidateIndeterminate();
-  }
+  const optionalLabel = useMemo(() => {
+    if (!label) return;
 
-  componentDidUpdate() {
-    this.invalidateIndeterminate();
-  }
-
-  render() {
-    const {
-      className,
-      css: customCss,
-      id,
-      checked,
-      label,
-      onChange,
-      type,
-      disabled,
-      compressed,
-      indeterminate,
-      inputRef,
-      labelProps,
-      ...rest
-    } = this.props;
-
-    const classes = classNames(
-      'euiCheckbox',
-      type && typeToClassNameMap[type],
-      {
-        'euiCheckbox--noLabel': !label,
-        'euiCheckbox--compressed': compressed,
-      },
-      className
-    );
     const labelClasses = classNames(
       'euiCheckbox__label',
       labelProps?.className
     );
-    let optionalLabel;
-
-    if (label) {
-      optionalLabel = (
-        <label {...labelProps} className={labelClasses} htmlFor={id}>
-          {label}
-        </label>
-      );
-    }
-
-    const styles = { euiCheckbox: css`` }; // TODO: Emotion conversion
-    const cssStyles = [styles.euiCheckbox, customCss];
 
     return (
-      <div css={cssStyles} className={classes}>
-        <input
-          className="euiCheckbox__input"
-          type="checkbox"
-          id={id}
-          checked={checked}
-          onChange={onChange}
-          disabled={disabled}
-          ref={this.setInputRef}
-          {...rest}
-        />
-
-        <div className="euiCheckbox__square" />
-
-        {optionalLabel}
-      </div>
+      <label {...labelProps} className={labelClasses} htmlFor={id}>
+        {label}
+      </label>
     );
-  }
+  }, [label, labelProps, id]);
 
-  setInputRef = (input: HTMLInputElement) => {
-    this.inputRef = input;
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
+  const setIndeterminateState = useCallback(
+    (input?: HTMLInputElement) => {
+      if (input) input.indeterminate = indeterminate;
+    },
+    [indeterminate]
+  );
+  const refs = useCombinedRefs([inputRef, setIndeterminateState]);
 
-    if (this.props.inputRef) {
-      this.props.inputRef(input);
-    }
+  return (
+    <div css={cssStyles} className={classes}>
+      <input
+        className="euiCheckbox__input"
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        ref={refs}
+        {...rest}
+      />
 
-    this.invalidateIndeterminate();
-  };
+      <div className="euiCheckbox__square" />
 
-  invalidateIndeterminate() {
-    if (this.inputRef) {
-      this.inputRef.indeterminate = this.props.indeterminate!;
-    }
-  }
-}
+      {optionalLabel}
+    </div>
+  );
+};
