@@ -31,12 +31,7 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => x / 2 - y / 2
   );
   const lineEndPosition = mathWithUnits(
-    [
-      euiStep.numberSize === 'xxs'
-        ? euiStep.numberSize + euiTheme.size.xs
-        : euiStep.numberSize,
-      euiTheme.border.width.thick,
-    ],
+    [euiStep.numberSize, euiTheme.border.width.thick],
     (x, y) => x / 2 + y / 2
   );
 
