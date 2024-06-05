@@ -3765,7 +3765,7 @@ __metadata:
     babel-eslint: "npm:^10.0.3"
     eslint: "npm:^6.4.0"
   peerDependencies:
-    eslint: "*"
+    eslint: ">=5 <7"
   languageName: unknown
   linkType: soft
 
