@@ -119,7 +119,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
         className="euiStepHorizontal__number"
         status={status}
         number={step}
-        titleSize={size === 's' ? 'xs' : 'm'} // The titleSize map is not 1 to 1; small == xs on the titleSize map
+        titleSize={size === 's' ? 'xs' : size} // The titleSize map is not 1 to 1; small == xs on the titleSize map
         css={cssNumberStyles}
       />
 
