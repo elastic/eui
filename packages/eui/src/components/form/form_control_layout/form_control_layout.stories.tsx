@@ -28,7 +28,7 @@ const meta: Meta<EuiFormControlLayoutProps> = {
       options: [undefined, 'icon', 'text'],
       mapping: {
         icon: <EuiIcon type="faceHappy" />,
-        text: 'Appened',
+        text: 'Appended',
         undefined: undefined,
       },
     },
@@ -64,11 +64,7 @@ type Story = StoryObj<EuiFormControlLayoutProps>;
 export const Playground: Story = {
   args: {
     children: (
-      <EuiFieldText
-        fullWidth
-        controlOnly
-        aria-label="EuiFormControlLayout demo"
-      />
+      <EuiFieldText controlOnly aria-label="EuiFormControlLayout demo" />
     ),
   },
 };
@@ -82,7 +78,6 @@ export const IconShape: Story = {
   args: {
     children: (
       <EuiFieldText
-        fullWidth
         controlOnly
         aria-label="EuiFormControlLayout icon and clear API demo"
       />

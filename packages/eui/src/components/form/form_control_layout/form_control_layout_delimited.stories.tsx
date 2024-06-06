@@ -36,7 +36,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       options: [undefined, 'icon', 'text'],
       mapping: {
         icon: <EuiIcon type="arrowRight" />,
-        text: 'multiply',
+        text: '+',
       },
     },
     append: {
@@ -44,7 +44,7 @@ const meta: Meta<EuiFormControlLayoutDelimitedProps> = {
       options: [undefined, 'icon', 'text'],
       mapping: {
         icon: <EuiIcon type="faceHappy" />,
-        text: 'Appened',
+        text: 'Appended',
         undefined: undefined,
       },
     },

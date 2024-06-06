@@ -11,12 +11,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiForm } from '../form';
 import { EuiFormRow } from '../form_row';
+import { EuiFieldText } from '../field_text';
 
 import {
   EuiDescribedFormGroup,
   EuiDescribedFormGroupProps,
 } from './described_form_group';
-import { EuiFieldText } from '../field_text';
 
 const meta: Meta<EuiDescribedFormGroupProps> = {
   title: 'Forms/EuiForm/EuiDescribedFormGroup',

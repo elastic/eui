@@ -19,7 +19,7 @@ const meta: Meta<EuiFormRowProps> = {
   component: EuiFormRow,
   decorators: [
     (Story, { args }) => (
-      <EuiForm>
+      <EuiForm component="form">
         <Story {...args} />
       </EuiForm>
     ),
@@ -58,7 +58,7 @@ type Story = StoryObj<EuiFormRowProps>;
 
 export const Playground: Story = {
   args: {
-    children: <EuiFieldText fullWidth />,
+    children: <EuiFieldText />,
     label: 'Text field label',
     helpText: 'I am some friendly help text.',
   },
