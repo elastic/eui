@@ -14,6 +14,7 @@ import {
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 import { EuiIcon } from '../../icon';
+import { EuiFieldNumber } from '../field_number';
 
 import {
   EuiFormControlLayoutDelimited,
@@ -99,18 +100,16 @@ type Story = StoryObj<EuiFormControlLayoutDelimitedProps>;
 export const Playground: Story = {
   args: {
     startControl: (
-      <input
-        type="number"
+      <EuiFieldNumber
+        controlOnly
         placeholder="0"
-        className="euiFieldNumber"
         aria-label="EuiFormControlLayoutDelimited demo - start control"
       />
     ),
     endControl: (
-      <input
-        type="number"
+      <EuiFieldNumber
+        controlOnly
         placeholder="100"
-        className="euiFieldNumber"
         aria-label="EuiFormControlLayoutDelimited demo - end control"
       />
     ),

@@ -23,7 +23,7 @@ const meta: Meta<EuiDescribedFormGroupProps> = {
   component: EuiDescribedFormGroup,
   decorators: [
     (Story, { args }) => (
-      <EuiForm>
+      <EuiForm component="form">
         <Story {...args} />
       </EuiForm>
     ),
