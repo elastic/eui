@@ -64,7 +64,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
     xxs: css`
       ${createStepsNumber(
         euiStep.numberXXSSize,
-        euiFontSizeFromScale('xxs', euiTheme)
+        euiFontSizeFromScale('xs', euiTheme)
       )}
     `,
     // status
