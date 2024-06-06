@@ -83,7 +83,7 @@ exports[`EuiStepHorizontal props size s is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiStepHorizontal props size xxs is rendered 1`] = `
+exports[`EuiStepHorizontal props size xs is rendered 1`] = `
 <button
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="incomplete"

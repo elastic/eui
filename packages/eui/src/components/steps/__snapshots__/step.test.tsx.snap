@@ -10,7 +10,7 @@ exports[`EuiStep is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -48,7 +48,7 @@ exports[`EuiStep props headingElement 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -86,7 +86,7 @@ exports[`EuiStep props status complete is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-complete-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-complete"
     >
       <span
         class="euiStepNumber__icon emotion-euiStepNumber__icon-complete"
@@ -119,7 +119,7 @@ exports[`EuiStep props status current is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-current-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-current"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -157,7 +157,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-danger-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-danger"
     >
       <span
         class="euiStepNumber__icon emotion-euiStepNumber__icon-danger"
@@ -190,7 +190,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-disabled-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-disabled"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -228,7 +228,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-incomplete-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-incomplete"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -266,7 +266,7 @@ exports[`EuiStep props status loading is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-loading-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-loading"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -303,7 +303,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-warning-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s-warning"
     >
       <span
         class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
@@ -336,7 +336,7 @@ exports[`EuiStep props step 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-s-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-s"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -374,7 +374,7 @@ exports[`EuiStep props titleSize 1`] = `
     class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber emotion-euiStepNumber-xs-EuiStep"
+      class="euiStepNumber emotion-euiStepNumber-xs"
     >
       <span
         class="emotion-euiScreenReaderOnly"
