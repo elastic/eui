@@ -114,7 +114,7 @@ export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
   static contextType = FormContext;
 
-  static defaultProps = {
+  static defaultProps: Partial<EuiFormRowProps> = {
     display: 'row',
     hasEmptyLabelSpace: false,
     describedByIds: [],
