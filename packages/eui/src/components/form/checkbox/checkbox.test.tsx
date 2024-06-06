@@ -15,7 +15,7 @@ import {
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
-import { EuiCheckbox, TYPES } from './checkbox';
+import { EuiCheckbox } from './checkbox';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
@@ -77,17 +77,6 @@ describe('EuiCheckbox', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-    describe('type', () => {
-      TYPES.forEach((value) => {
-        test(`${value} is rendered`, () => {
-          const { container } = render(
-            <EuiCheckbox {...checkboxRequiredProps} type={value} />
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
     });
 
     describe('disabled', () => {

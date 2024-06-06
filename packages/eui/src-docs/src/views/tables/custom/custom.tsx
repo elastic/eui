@@ -494,7 +494,6 @@ export default class extends Component<{}, State> {
         title="Select all rows"
         checked={this.areAllItemsSelected()}
         onChange={this.toggleAll.bind(this)}
-        type={mobile ? undefined : 'inList'}
       />
     );
   };
@@ -572,7 +571,6 @@ export default class extends Component<{}, State> {
                 id={`${item.id}-checkbox`}
                 checked={this.isItemSelected(item.id)}
                 onChange={this.toggleItem.bind(this, item.id)}
-                type="inList"
                 title="Select this row"
                 aria-label="Select this row"
               />
