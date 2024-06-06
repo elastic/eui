@@ -295,5 +295,12 @@ const StatefulPlayground = ({
     updateItems();
   }, [items, pagination, sorting, updateItems]);
 
-  return <EuiBasicTable items={_items} pagination={pagination!} {...rest} />;
+  return (
+    <EuiBasicTable
+      items={_items}
+      pagination={pagination!}
+      sorting={sorting}
+      {...rest}
+    />
+  );
 };

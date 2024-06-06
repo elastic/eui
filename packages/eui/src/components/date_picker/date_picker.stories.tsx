@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import moment from 'moment';
 
 import {
   disableStorybookControls,
@@ -128,6 +129,9 @@ export const Playground: Story = {
     // NOTE: loki play interactions won't work in CLI somehow
     // TODO: exchange with loki play() interactions once fixed
     autoFocus: true,
+    // setting a selected date to ensure VRT does not
+    // automatically updated based on the current date
+    selected: moment('Tue Mar 19 2024 18:54:51 GMT+0100'),
   },
   render: (args) => <StatefulDatePicker {...args} />,
 };
