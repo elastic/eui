@@ -21,7 +21,6 @@ import {
   euiStepStyles,
   euiStepContentStyles,
   euiStepTitleStyles,
-  euiStepNumberStyles,
 } from './step.styles';
 
 export interface EuiStepInterface {
@@ -82,22 +81,12 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   ];
   const cssTitleWrapperStyles = titleStyles.euiStep__titleWrapper;
 
-  const stepNumberStyles = euiStepNumberStyles(euiTheme);
-  const cssStepNumberStyles = [
-    titleSize === 'xxs' && stepNumberStyles.offset__xxs,
-  ];
-
   const size = titleSize === 'xxs' ? 'xs' : titleSize;
 
   return (
     <div className={classes} css={cssStyles} {...rest}>
       <div className="euiStep__titleWrapper" css={cssTitleWrapperStyles}>
-        <EuiStepNumber
-          number={step}
-          status={status}
-          titleSize={titleSize}
-          css={cssStepNumberStyles}
-        />
+        <EuiStepNumber number={step} status={status} titleSize={titleSize} />
         <EuiTitle
           size={size}
           className="euiStep__title"
