@@ -15,11 +15,12 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
-import { useCombinedRefs } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
+
+import { euiCheckboxStyles } from './checkbox.styles';
 
 export interface EuiCheckboxProps
   extends CommonProps,
@@ -43,7 +44,6 @@ export interface EuiCheckboxProps
 
 export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   className,
-  css: customCss,
   id,
   checked = false,
   label,
@@ -65,8 +65,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
     className
   );
 
-  const styles = { euiCheckbox: css`` }; // TODO: Emotion conversion
-  const cssStyles = [styles.euiCheckbox, customCss];
+  const styles = useEuiMemoizedStyles(euiCheckboxStyles);
 
   const optionalLabel = useMemo(() => {
     if (!label) return;
@@ -93,7 +92,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   const refs = useCombinedRefs([inputRef, setIndeterminateState]);
 
   return (
-    <div css={cssStyles} className={classes}>
+    <div css={styles.euiCheckbox} className={classes}>
       <input
         className="euiCheckbox__input"
         type="checkbox"
