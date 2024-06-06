@@ -14,6 +14,8 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { EuiStepProps } from './step';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import { EuiStepsHorizontalSizes } from './steps_horizontal';
 import {
@@ -26,7 +28,6 @@ import {
   useI18nErrorsStep,
   useI18nLoadingStep,
 } from './step_strings';
-import { useEuiTheme } from '../../services';
 import {
   euiStepHorizontalStyles,
   euiStepHorizontalNumberStyles,
@@ -104,6 +105,13 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     if (!disabled) onClick(event);
   };
 
+  // The titleSize map is not 1 to 1; small == xs on the titleSize map
+  const stepNumberSizeMap: Record<string, EuiStepProps['titleSize']> = {
+    xs: 'xxs',
+    s: 'xs',
+    m: 'm',
+  };
+
   return (
     <button
       aria-disabled={status === 'disabled' ? true : undefined}
@@ -119,7 +127,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
         className="euiStepHorizontal__number"
         status={status}
         number={step}
-        titleSize={size === 's' ? 'xs' : size} // The titleSize map is not 1 to 1; small == xs on the titleSize map
+        titleSize={stepNumberSizeMap[size]}
         css={cssNumberStyles}
       />
 

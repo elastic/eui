@@ -12,7 +12,7 @@ import { CommonProps } from '../common';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
 import { euiStepsHorizontalStyles } from './steps_horizontal.styles';
 
-export const SIZES = ['xxs', 's', 'm'] as const;
+export const SIZES = ['xs', 's', 'm'] as const;
 export type EuiStepsHorizontalSizes = (typeof SIZES)[number];
 
 export interface EuiStepsHorizontalProps

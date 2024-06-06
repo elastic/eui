@@ -176,16 +176,3 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
     xxs: css``,
   };
 };
-
-export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-  const euiStep = euiStepVariables(euiTheme);
-
-  return {
-    // the xxs number circle is smaller than the title text height, therefore
-    // we move it manually down to align it horizontally
-    offset__xxs: css`
-      ${logicalCSS('margin-top', euiStep.numberXXSOffset)}
-    `,
-  };
-};

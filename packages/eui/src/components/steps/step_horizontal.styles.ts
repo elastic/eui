@@ -76,7 +76,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
     // Adjust the size of the step number and connecting lines based on size
     m: _generateStepSizeAndInset(euiStep.numberSize),
     s: _generateStepSizeAndInset(euiStep.numberXSSize),
-    xxs: _generateStepSizeAndInset(euiStep.numberXXSSize),
+    xs: _generateStepSizeAndInset(euiStep.numberXXSSize),
     // Note: these selectors must be nested because focus/hover state
     // is on the parent container, but affects specific children
     enabled: css`
