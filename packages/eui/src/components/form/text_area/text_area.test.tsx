@@ -29,7 +29,7 @@ describe('EuiTextArea', () => {
       );
 
       const element = container.querySelector('.euiTextArea');
-      expect(element).toHaveClass('euiTextArea--fullWidth');
+      expect(element!.className).toContain('fullWidth');
     });
   });
 });

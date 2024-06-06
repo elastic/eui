@@ -11,16 +11,21 @@ import React, {
   OptionHTMLAttributes,
   Ref,
   FunctionComponent,
+  useCallback,
 } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+
+import { useFormContext } from '../eui_form_context';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
-import { useFormContext } from '../eui_form_context';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+
+import { euiSelectStyles } from './select.styles';
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
@@ -96,48 +101,45 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
   // value needs to fallback to an empty string to interact properly with `defaultValue`
   const value = hasNoInitialSelection ? _value ?? '' : _value;
 
-  const handleMouseUp = (e: React.MouseEvent<HTMLSelectElement>) => {
-    // Normalizes cross-browser mouse eventing by preventing propagation,
-    // notably for use in conjunction with EuiOutsideClickDetector.
-    // See https://github.com/elastic/eui/pull/1926 for full discussion on
-    // rationale and alternatives should this intervention become problematic.
-    e.nativeEvent.stopImmediatePropagation();
-    if (onMouseUp) onMouseUp(e);
-  };
+  // React HTML input can not have both value and defaultValue properties.
+  // https://reactjs.org/docs/uncontrolled-components.html#default-values
+  const selectDefaultValue = value != null ? undefined : defaultValue || '';
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-    isDropdown: true,
-  });
+  const handleMouseUp = useCallback(
+    (e: React.MouseEvent<HTMLSelectElement>) => {
+      // Normalizes cross-browser mouse eventing by preventing propagation,
+      // notably for use in conjunction with EuiOutsideClickDetector.
+      // See https://github.com/elastic/eui/pull/1926 for full discussion on
+      // rationale and alternatives should this intervention become problematic.
+      e.nativeEvent.stopImmediatePropagation();
+      onMouseUp?.(e);
+    },
+    [onMouseUp]
+  );
 
   const classes = classNames(
     'euiSelect',
-    numIconsClass,
-    {
-      'euiSelect--fullWidth': fullWidth,
-      'euiSelect--compressed': compressed,
-      'euiSelect--inGroup': prepend || append,
-      'euiSelect-isLoading': isLoading,
-    },
+    { 'euiSelect-isLoading': isLoading },
     className
   );
 
-  let emptyOptionNode;
-  if (hasNoInitialSelection) {
-    emptyOptionNode = (
-      <option value="" disabled hidden style={{ display: 'none' }}>
-        &nbsp;
-      </option>
-    );
-  }
+  const inGroup = !!(prepend || append);
 
-  // React HTML input can not have both value and defaultValue properties.
-  // https://reactjs.org/docs/uncontrolled-components.html#default-values
-  let selectDefaultValue;
-  if (value == null) {
-    selectDefaultValue = defaultValue || '';
-  }
+  const styles = useEuiMemoizedStyles(euiSelectStyles);
+  const cssStyles = [
+    styles.euiSelect,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    inGroup && styles.inGroup,
+    styles.lineHeight.removePadding,
+    inGroup
+      ? compressed
+        ? styles.lineHeight.inGroup.compressed
+        : styles.lineHeight.inGroup.uncompressed
+      : compressed
+      ? styles.lineHeight.compressed
+      : styles.lineHeight.uncompressed,
+  ];
 
   return (
     <EuiFormControlLayout
@@ -156,6 +158,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
           id={id}
           name={name}
           className={classes}
+          css={cssStyles}
           ref={inputRef}
           defaultValue={selectDefaultValue}
           value={value}
@@ -163,7 +166,11 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
           disabled={disabled}
           {...rest}
         >
-          {emptyOptionNode}
+          {hasNoInitialSelection && (
+            <option value="" disabled hidden style={{ display: 'none' }}>
+              &nbsp;
+            </option>
+          )}
           {options.map((option, index) => {
             const { text, ...rest } = option;
             return (

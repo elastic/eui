@@ -119,7 +119,7 @@ describe('EuiSuperSelectControl', () => {
       );
 
       const control = container.querySelector('.euiSuperSelectControl');
-      expect(control).toHaveClass('euiSuperSelectControl--fullWidth');
+      expect(control!.className).toContain('fullWidth');
     });
   });
 

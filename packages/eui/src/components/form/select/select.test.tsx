@@ -119,7 +119,7 @@ describe('EuiSelect', () => {
         >
            
         </option>
-`);
+      `);
     });
 
     it('can be reset to an empty initial selection', () => {
@@ -165,7 +165,7 @@ describe('EuiSelect', () => {
       );
 
       const select = container.querySelector('.euiSelect');
-      expect(select).toHaveClass('euiSelect--fullWidth');
+      expect(select!.className).toContain('fullWidth');
     });
   });
 });
