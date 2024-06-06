@@ -27,7 +27,7 @@ import {
 } from '../form_control_layout';
 import { useFormContext } from '../eui_form_context';
 
-import { EuiSuperSelectOption } from './super_select_item';
+import { type EuiSuperSelectOption } from './super_select_item';
 import { euiSuperSelectControlStyles } from './super_select.styles';
 
 export interface EuiSuperSelectControlProps<T>
