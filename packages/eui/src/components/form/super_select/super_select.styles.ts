@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import {
+  euiFontSize,
   euiTextTruncate,
   logicalCSS,
   logicalCSSWithFallback,
@@ -25,16 +26,21 @@ export const euiSuperSelectStyles = {
   `,
 };
 
-export const euiSuperSelectItemStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiSuperSelect__item: css`
-    padding: ${euiTheme.size.s};
-  `,
-  hasDividers: css`
-    &:not(:last-of-type) {
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
-    }
-  `,
-});
+export const euiSuperSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiSuperSelect__item: css`
+      padding: ${euiTheme.size.s};
+      ${euiFontSize(euiThemeContext, 's')}
+    `,
+    hasDividers: css`
+      &:not(:last-of-type) {
+        ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      }
+    `,
+  };
+};
 
 export const euiSuperSelectControlStyles = (euiThemeContext: UseEuiTheme) => {
   const formStyles = euiFormControlStyles(euiThemeContext);
