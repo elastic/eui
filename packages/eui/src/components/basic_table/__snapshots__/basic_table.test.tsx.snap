@@ -151,7 +151,8 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 aria-label="Select all rows"
                 class="euiCheckbox__input"
                 data-test-subj="checkboxSelectAll"
-                id="_selection_column-checkbox_generated-id_desktop"
+                id="_selection_column-checkbox_generated-id"
+                title="Select all rows"
                 type="checkbox"
               />
               <div
