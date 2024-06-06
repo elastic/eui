@@ -103,7 +103,7 @@ export const Playground: Story = {
         type="number"
         placeholder="0"
         className="euiFieldNumber"
-        aria-label="Use aria labels when no actual label is in use"
+        aria-label="EuiFormControlLayoutDelimited demo - start control"
       />
     ),
     endControl: (
@@ -111,7 +111,7 @@ export const Playground: Story = {
         type="number"
         placeholder="100"
         className="euiFieldNumber"
-        aria-label="Use aria labels when no actual label is in use"
+        aria-label="EuiFormControlLayoutDelimited demo - end control"
       />
     ),
   },

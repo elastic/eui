@@ -67,7 +67,7 @@ export const Playground: Story = {
       <EuiFieldText
         fullWidth
         controlOnly
-        aria-label="Use aria labels when no actual label is in use"
+        aria-label="EuiFormControlLayout demo"
       />
     ),
   },
@@ -84,7 +84,7 @@ export const IconShape: Story = {
       <EuiFieldText
         fullWidth
         controlOnly
-        aria-label="Use aria labels when no actual label is in use"
+        aria-label="EuiFormControlLayout icon and clear API demo"
       />
     ),
     icon: {

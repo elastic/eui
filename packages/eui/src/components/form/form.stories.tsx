@@ -34,7 +34,7 @@ export const Playground: Story = {
     children: (
       <>
         <EuiFormRow>
-          <EuiFieldText aria-label="Use aria labels when no actual label is in use" />
+          <EuiFieldText aria-label="EuiForm demo" />
         </EuiFormRow>
       </>
     ),
