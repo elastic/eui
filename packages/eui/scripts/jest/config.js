@@ -50,9 +50,7 @@ const config = {
     '^.+\\.(js|tsx?)$': 'babel-jest',
   },
   snapshotSerializers: [
-    // enzyme-to-json is installed in the root node_modules and needs
-    // an exact path to be provided here
-    '<rootDir>/../../node_modules/enzyme-to-json/serializer',
+    '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',
   ],
   // react version and user permissions aware cache directory

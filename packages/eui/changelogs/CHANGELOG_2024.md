@@ -1,3 +1,11 @@
+## [`v94.6.0`](https://github.com/elastic/eui/releases/v94.6.0)
+
+- Updated `EuiComboBox` to support rendering `option.append` and `option.prepend` in group labels ([#7800](https://github.com/elastic/eui/pull/7800))
+
+**Accessibility**
+
+- Improved the accessibility experience of `EuiBetaBadge` ([#7805](https://github.com/elastic/eui/pull/7805))
+
 ## [`v94.5.2`](https://github.com/elastic/eui/releases/v94.5.2)
 
 **Bug fixes**

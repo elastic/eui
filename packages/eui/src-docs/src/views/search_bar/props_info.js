@@ -279,7 +279,7 @@ export const propsInfo = {
         },
         autoClose: {
           description:
-            'Should the dropdown close after the user selects a value. Ignored if multiSelect is true.',
+            'Should the dropdown close after the user selects a value. If not explicitly passed, will auto-close for single selection and remain open for multi-selection.',
           required: false,
           defaultValue: { value: 'true' },
           type: { name: 'boolean' },

@@ -33,8 +33,6 @@ export {
   euiPaletteComplementary,
   euiPaletteRed,
   euiPaletteGreen,
-  euiPaletteNegative,
-  euiPalettePositive,
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,

@@ -145,7 +145,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             class="euiTableCellContent"
           >
             <div
-              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+              class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
                 aria-label="Select all rows"
@@ -268,7 +268,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             class="euiTableCellContent"
           >
             <div
-              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+              class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
                 aria-label="Select row 1"
@@ -374,7 +374,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             class="euiTableCellContent"
           >
             <div
-              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+              class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
                 aria-label="Select row 2"
@@ -480,7 +480,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             class="euiTableCellContent"
           >
             <div
-              class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
+              class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
             >
               <input
                 aria-label="Select row 3"

@@ -94,23 +94,9 @@ export const Playground: Story = {
     <OpenCollapsibleNav {...args}>
       <EuiCollapsibleNavBeta.Body>
         <EuiCollapsibleNavBeta.Item
-          title="Home"
-          icon="home"
-          isSelected
-          href="#"
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Recent"
-          icon="clock"
-          items={[
-            { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
-            { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
-            { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
           title="Elasticsearch"
           icon="logoElasticsearch"
+          isCollapsible={false}
           items={[
             { title: 'Get started', href: '#' },
             ...renderGroup('Explore', [
@@ -126,145 +112,17 @@ export const Playground: Story = {
             ...renderGroup('Security', [{ title: 'API keys', href: '#' }]),
           ]}
         />
-        <EuiCollapsibleNavBeta.Item
-          title="Enterprise Search"
-          icon="logoEnterpriseSearch"
-          items={[
-            { title: 'ESRE', href: '#' },
-            { title: 'Vector search', href: '#' },
-            { title: 'Content', href: '#' },
-            { title: 'Search applications', href: '#' },
-            { title: 'Behavioral analytics', href: '#' },
-            { title: 'Elasticsearch', href: '#' },
-            { title: 'App search', href: '#' },
-            { title: 'Workplace search', href: '#' },
-            { title: 'Search experiences', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Observability"
-          icon="logoObservability"
-          items={[
-            { title: 'Get started', href: '#' },
-            { title: 'Alerts', href: '#' },
-            { title: 'Cases', href: '#' },
-            { title: 'SLOs', href: '#' },
-            ...renderGroup('Signals', [
-              { title: 'Logs', href: '#' },
-              {
-                title: 'Tracing',
-                items: [
-                  { title: 'Services', href: '#' },
-                  { title: 'Traces', href: '#' },
-                  { title: 'Dependencies', href: '#' },
-                ],
-              },
-            ]),
-            ...renderGroup('Toolbox', [
-              { title: 'Visualize library', href: '#' },
-              { title: 'Dashboards', href: '#' },
-              {
-                title: 'AIOps',
-                items: [
-                  { title: 'Anomaly detection', href: '#' },
-                  { title: 'Spike analysis', href: '#' },
-                  { title: 'Change point detection', href: '#' },
-                  { title: 'Notifications', href: '#' },
-                ],
-              },
-            ]),
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Security"
-          icon="logoSecurity"
-          items={[
-            { title: 'Get started', href: '#' },
-            { title: 'Dashboards', href: '#' },
-            { title: 'Alerts', href: '#' },
-            { title: 'Findings', href: '#' },
-            { title: 'Cases', href: '#' },
-            { title: 'Investigation', href: '#' },
-            { title: 'Intelligence', href: '#' },
-            {
-              title: 'Explore',
-              items: [
-                { title: 'Host', href: '#' },
-                { title: 'Users', href: '#' },
-                { title: 'Network', href: '#' },
-              ],
-            },
-            { title: 'Assets', href: '#' },
-            {
-              title: 'Rules',
-              items: [
-                { title: 'SIEM rules', href: '#' },
-                { title: 'Shared exception list', href: '#' },
-                { title: 'CIS benchmark rules', href: '#' },
-                { title: 'Defend rules', href: '#' },
-              ],
-            },
-            {
-              title: 'Machine learning',
-              items: [
-                { title: 'Overview', href: '#' },
-                { title: 'Notifications', href: '#' },
-                { title: 'Memory usage', href: '#' },
-                { title: 'Anomaly detection', href: '#' },
-                { title: 'Data frame analytics', href: '#' },
-                { title: 'Model management', href: '#' },
-              ],
-            },
-            {
-              title: 'Settings',
-              items: [
-                { title: 'Endpoints', href: '#' },
-                { title: 'OS query', href: '#' },
-                { title: 'Response actions history', href: '#' },
-                { title: 'Event filters', href: '#' },
-                { title: 'Host isolation', href: '#' },
-              ],
-            },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Analytics"
-          icon="stats"
-          items={[
-            { title: 'Discover', href: '#' },
-            { title: 'Dashboard', href: '#' },
-            { title: 'Visualize library', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Machine learning"
-          icon="indexMapping"
-          items={[
-            { title: 'Overview', href: '#' },
-            { title: 'Notifications', href: '#' },
-            { title: 'Memory usage', href: '#' },
-            ...renderGroup('Anomaly detection', [
-              { title: 'Jobs', href: '#' },
-              { title: 'Anomaly explorer', href: '#' },
-              { title: 'Single metric viewer', href: '#' },
-              { title: 'Settings', href: '#' },
-            ]),
-            ...renderGroup('Data frame analytics', [
-              { title: 'Jobs', href: '#' },
-              { title: 'Results explorer', href: '#' },
-              { title: 'Analytics map', href: '#' },
-            ]),
-            ...renderGroup('Model management', [
-              { title: 'Trained models', href: '#' },
-            ]),
-            ...renderGroup('Data visualizer', [
-              { title: 'File', href: '#' },
-              { title: 'Data view', href: '#' },
-            ]),
-          ]}
-        />
       </EuiCollapsibleNavBeta.Body>
       <EuiCollapsibleNavBeta.Footer>
+        <EuiCollapsibleNavBeta.Item
+          title="Recent"
+          icon="clock"
+          items={[
+            { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
+            { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
+            { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
+          ]}
+        />
         <EuiCollapsibleNavBeta.Item
           title="Developer tools"
           icon="editorCodeBlock"
@@ -276,21 +134,19 @@ export const Playground: Story = {
           ]}
         />
         <EuiCollapsibleNavBeta.Item
-          title="Management"
-          icon="gear"
-          items={[
-            { title: 'Integrations', href: '#' },
-            { title: 'Fleet', href: '#' },
-            { title: 'Osquery', href: '#' },
-            { title: 'Stack monitoring', href: '#' },
-            { title: 'Stack management', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
           title="Project settings"
           icon="gear"
           items={[
-            { title: 'Management', href: '#' },
+            {
+              title: 'Management',
+              items: [
+                { title: 'Integrations', href: '#' },
+                { title: 'Fleet', href: '#' },
+                { title: 'Osquery', href: '#' },
+                { title: 'Stack monitoring', href: '#' },
+                { title: 'Stack management', href: '#' },
+              ],
+            },
             {
               title: 'Users and roles',
               href: '#',
