@@ -86,6 +86,6 @@ export const UnorderedSteps: Story = {
   },
   args: {
     steps,
-    size: 'xxs',
+    size: 'xs',
   },
 };
