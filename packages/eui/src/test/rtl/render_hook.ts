@@ -19,8 +19,8 @@ if (process.env.REACT_VERSION === '18') {
   renderHook = require('@testing-library/react').renderHook;
   renderHookAct = require('@testing-library/react').act;
 } else {
-  renderHook = require('@testing-library/react-hooks').renderHook;
-  renderHookAct = require('@testing-library/react-hooks').act;
+  renderHook = require('@testing-library/react-hooks/dom').renderHook;
+  renderHookAct = require('@testing-library/react-hooks/dom').act;
 }
 
 /* eslint-enable @typescript-eslint/no-var-requires */
