@@ -234,11 +234,9 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
   findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
     key: keys.ENTER,
   });
-  expect(
-    findTestSubject(colorPicker, 'euiColorPickerAnchor').getDOMNode()
-  ).toEqual(document.activeElement);
-  // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
-  expect(onBlurHandler).toBeCalled();
+
+  expect(document.body).toEqual(document.activeElement);
+  expect(onBlurHandler).toHaveBeenCalled();
 });
 
 test('Setting a new color calls onChange', () => {

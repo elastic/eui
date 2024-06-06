@@ -10,7 +10,7 @@ exports[`astToEsQueryString ast - 'john -doe is:online group:eng group:es -group
 
 exports[`astToEsQueryString ast - 'john -sales' 1`] = `"+john -sales"`;
 
-exports[`astToEsQueryString ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `"+john +(group:eng OR group:\\"marketing org\\") -group:\\"kibana team\\""`;
+exports[`astToEsQueryString ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `"+john +(group:eng OR group:"marketing org") -group:"kibana team""`;
 
 exports[`astToEsQueryString ast - 'john group:(eng or es) -group:kibana' 1`] = `"+john +(group:eng OR group:es) -group:kibana"`;
 
@@ -24,4 +24,4 @@ exports[`astToEsQueryString ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = 
 
 exports[`astToEsQueryString ast - date>='2004-03-22' 1`] = `"+date:>=2004-03-22"`;
 
-exports[`astToEsQueryString ast·-·'"john·smith"·-"sales team"' 1`] = `"+\\"john smith\\" -\\"sales team\\""`;
+exports[`astToEsQueryString ast·-·'"john·smith"·-"sales team"' 1`] = `"+"john smith" -"sales team""`;

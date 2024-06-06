@@ -503,7 +503,7 @@ describe('useDataGridDisplaySelector', () => {
       ).result.current;
 
       expect(gridStyles).toMatchInlineSnapshot(`
-        Object {
+        {
           "border": "all",
           "cellPadding": "m",
           "fontSize": "m",

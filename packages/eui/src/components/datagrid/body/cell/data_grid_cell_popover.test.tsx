@@ -100,7 +100,7 @@ describe('useCellPopover', () => {
           closePopover={[Function]}
           display="block"
           focusTrapProps={
-            Object {
+            {
               "clickOutsideDisables": false,
               "onClickOutside": [Function],
             }
@@ -111,12 +111,12 @@ describe('useCellPopover', () => {
           panelClassName="euiDataGridRowCell__popover"
           panelPaddingSize="s"
           panelProps={
-            Object {
+            {
               "data-test-subj": "euiDataGridExpansionPopover",
             }
           }
           panelStyle={
-            Object {
+            {
               "maxBlockSize": "50vh",
               "maxInlineSize": "min(75vw, max(0px, 400px))",
             }

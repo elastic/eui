@@ -560,8 +560,8 @@ describe('EuiDataGrid', () => {
           return props;
         })
       ).toMatchInlineSnapshot(`
-        Array [
-          Object {
+        [
+          {
             "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
@@ -573,7 +573,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "red",
               "height": 34,
               "left": 0,
@@ -585,7 +585,7 @@ describe('EuiDataGrid', () => {
             },
             "tabIndex": -1,
           },
-          Object {
+          {
             "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
@@ -597,7 +597,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "blue",
               "height": 34,
               "left": 100,
@@ -609,7 +609,7 @@ describe('EuiDataGrid', () => {
             },
             "tabIndex": -1,
           },
-          Object {
+          {
             "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
@@ -621,7 +621,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "red",
               "height": 34,
               "left": 0,
@@ -633,7 +633,7 @@ describe('EuiDataGrid', () => {
             },
             "tabIndex": -1,
           },
-          Object {
+          {
             "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
@@ -645,7 +645,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "blue",
               "height": 34,
               "left": 100,
@@ -788,7 +788,7 @@ describe('EuiDataGrid', () => {
           .find('[className*="euiDataGridRowCell--"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
@@ -824,7 +824,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
@@ -854,7 +854,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
@@ -893,7 +893,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--currency",
@@ -944,7 +944,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
           ]
@@ -975,16 +975,16 @@ describe('EuiDataGrid', () => {
         />
       );
       expect(extractGridData(component)).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "Column 1",
             "Column 2",
           ],
-          Array [
+          [
             "Hello, Row 0-Column 1!",
             "Hello, Row 0-Column 2!",
           ],
-          Array [
+          [
             "Hello, Row 1-Column 1!",
             "Hello, Row 1-Column 2!",
           ],

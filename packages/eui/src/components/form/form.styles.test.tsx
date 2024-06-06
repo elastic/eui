@@ -25,7 +25,7 @@ describe('euiFormVariables', () => {
   it('outputs an object of reusable form vars', () => {
     const { result } = renderHook(() => euiFormVariables(useEuiTheme()));
     expect(result.current).toMatchInlineSnapshot(`
-      Object {
+      {
         "animationTiming": "150ms ease-in",
         "backgroundColor": "#f9fbfd",
         "backgroundDisabledColor": "#eef1f7",
@@ -38,7 +38,7 @@ describe('euiFormVariables', () => {
         "controlCompressedPadding": "8px",
         "controlDisabledColor": "#98A2B3",
         "controlHeight": "40px",
-        "controlIconSize": Object {
+        "controlIconSize": {
           "l": "24px",
           "m": "16px",
           "s": "12px",

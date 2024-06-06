@@ -187,6 +187,7 @@ exports[`EuiTableRowCell truncateText renders lines configuration 1`] = `
         >
           <span
             class="euiTableCellContent__text euiTextBlockTruncate emotion-euiTextBlockTruncate"
+            style="-webkit-line-clamp: 2;"
           />
         </div>
       </td>
