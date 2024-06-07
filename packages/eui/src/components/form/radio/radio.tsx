@@ -18,10 +18,6 @@ import { CommonProps, ExclusiveUnion } from '../../common';
 
 export interface RadioProps {
   autoFocus?: boolean;
-  /**
-   * When `true` creates a shorter height radio row
-   */
-  compressed?: boolean;
   name?: string;
   value?: string;
   checked?: boolean;
@@ -55,7 +51,6 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   value,
   onChange,
   disabled,
-  compressed,
   autoFocus,
   labelProps,
   ...rest
@@ -64,7 +59,6 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
     'euiRadio',
     {
       'euiRadio--noLabel': !label,
-      'euiRadio--compressed': compressed,
     },
     className
   );

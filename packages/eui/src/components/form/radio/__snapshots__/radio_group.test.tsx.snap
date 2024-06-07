@@ -3,13 +3,15 @@
 exports[`EuiRadioGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiTestCss"
+  class="euiRadioGroup testClass1 testClass2 emotion-euiRadioGroup-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiRadioGroup props idSelected is rendered 1`] = `
-<div>
+<div
+  class="euiRadioGroup emotion-euiRadioGroup"
+>
   <div
     class="euiRadio euiRadioGroup__item"
   >
@@ -53,7 +55,9 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
 `;
 
 exports[`EuiRadioGroup props legend is rendered 1`] = `
-<fieldset>
+<fieldset
+  class="euiRadioGroup emotion-euiRadioGroup"
+>
   <legend
     class="euiFormLegend"
   >
@@ -101,7 +105,9 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
 `;
 
 exports[`EuiRadioGroup props name is propagated to radios 1`] = `
-<div>
+<div
+  class="euiRadioGroup emotion-euiRadioGroup"
+>
   <div
     class="euiRadio euiRadioGroup__item"
   >
@@ -146,7 +152,9 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
 `;
 
 exports[`EuiRadioGroup props options are rendered 1`] = `
-<div>
+<div
+  class="euiRadioGroup emotion-euiRadioGroup"
+>
   <div
     class="euiRadio euiRadioGroup__item"
   >
@@ -190,7 +198,9 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
 `;
 
 exports[`EuiRadioGroup props value is propagated to radios 1`] = `
-<div>
+<div
+  class="euiRadioGroup emotion-euiRadioGroup"
+>
   <div
     class="euiRadio euiRadioGroup__item"
   >
