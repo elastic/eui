@@ -57,6 +57,12 @@ const steps: EuiStepInterface[] = [
 const meta: Meta<EuiStepsProps> = {
   title: 'Navigation/EuiSteps/EuiSteps',
   component: EuiSteps,
+  argTypes: {
+    titleSize: {
+      control: 'radio',
+      options: ['xxs', 'xs', 's', 'm'],
+    },
+  },
   args: {
     firstStepNumber: 1,
     headingElement: 'p',
