@@ -123,10 +123,6 @@ import StepsTitleSizes from './steps_title_sizes';
 const stepsTitleSizesSource = require('!!raw-loader!./steps_title_sizes');
 const stepsTitleSizesSnippet = '<EuiSteps titleSize="xs" steps={steps} />';
 
-import StepsUnordered from './steps_unordered';
-const stepsUnorderedSource = require('!!raw-loader!./steps_unordered');
-const stepsUnorderedSnippet = '<EuiSteps titleSize="xxs" steps={steps} />';
-
 export const StepsExample = {
   title: 'Steps',
   sections: [
@@ -235,29 +231,14 @@ export const StepsExample = {
           <strong>EuiSteps</strong> and <strong>EuiStep</strong>, the latter
           value will override the former. Additionally, the title size{' '}
           <EuiCode>xs</EuiCode> will automatically generate smaller steps
-          circles.
+          circles. <br />
+          The title size <EuiCode>xxs</EuiCode> affects only the size of the
+          accompanying <strong>unnumbered</strong> step indicator, but not the
+          title itself.
         </p>
       ),
       demo: <StepsTitleSizes />,
       snippet: stepsTitleSizesSnippet,
-    },
-    {
-      title: 'Visually unordered steps',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: stepsUnorderedSource,
-        },
-      ],
-      text: (
-        <p>
-          You can use <strong>EuiSteps</strong> with visually unordered steps by
-          setting <EuiCode>titleSize="xxs"</EuiCode>. This will output a step
-          without number.
-        </p>
-      ),
-      demo: <StepsUnordered />,
-      snippet: stepsUnorderedSnippet,
     },
     {
       title: 'Horizontal steps',
