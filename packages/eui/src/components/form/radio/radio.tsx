@@ -12,9 +12,14 @@ import React, {
   HTMLAttributes,
   LabelHTMLAttributes,
   ReactNode,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
+
+import { euiRadioStyles } from './radio.styles';
 
 export interface RadioProps {
   autoFocus?: boolean;
@@ -60,28 +65,38 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   labelProps,
   ...rest
 }) => {
+  const styles = useEuiMemoizedStyles(euiRadioStyles);
+
   const classes = classNames(
     'euiRadio',
     {
-      'euiRadio--noLabel': !label,
       'euiRadio--compressed': compressed,
     },
     className
   );
-  const labelClasses = classNames('euiRadio__label', labelProps?.className);
-  let optionalLabel;
 
-  if (label) {
-    optionalLabel = (
-      <label {...labelProps} className={labelClasses} htmlFor={id}>
+  const optionalLabel = useMemo(() => {
+    if (!label) return;
+
+    const labelClasses = classNames('euiRadio__label', labelProps?.className);
+    const labelCssStyles = [styles.euiRadio__label, labelProps?.css];
+
+    return (
+      <label
+        {...labelProps}
+        css={labelCssStyles}
+        className={labelClasses}
+        htmlFor={id}
+      >
         {label}
       </label>
     );
-  }
+  }, [label, labelProps, id, styles]);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={styles.euiRadio} className={classes} {...rest}>
       <input
+        css={styles.euiRadio__input}
         className="euiRadio__input"
         type="radio"
         id={id}
@@ -92,7 +107,6 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
         disabled={disabled}
         autoFocus={autoFocus}
       />
-      <div className="euiRadio__circle" />
 
       {optionalLabel}
     </div>

@@ -3,70 +3,58 @@
 exports[`EuiRadio is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRadio euiRadio--noLabel testClass1 testClass2 emotion-euiTestCss"
+  class="euiRadio testClass1 testClass2 emotion-euiRadio-euiTestCss"
   data-test-subj="test subject string"
 >
   <input
-    class="euiRadio__input"
+    class="euiRadio__input emotion-euiRadio__input"
     id="id"
     type="radio"
     value=""
-  />
-  <div
-    class="euiRadio__circle"
   />
 </div>
 `;
 
 exports[`EuiRadio props checked is rendered 1`] = `
 <div
-  class="euiRadio euiRadio--noLabel"
+  class="euiRadio emotion-euiRadio"
 >
   <input
     checked=""
-    class="euiRadio__input"
+    class="euiRadio__input emotion-euiRadio__input"
     id="id"
     type="radio"
     value=""
-  />
-  <div
-    class="euiRadio__circle"
   />
 </div>
 `;
 
 exports[`EuiRadio props disabled is rendered 1`] = `
 <div
-  class="euiRadio euiRadio--noLabel"
+  class="euiRadio emotion-euiRadio"
 >
   <input
-    class="euiRadio__input"
+    class="euiRadio__input emotion-euiRadio__input"
     disabled=""
     id="id"
     type="radio"
     value=""
-  />
-  <div
-    class="euiRadio__circle"
   />
 </div>
 `;
 
 exports[`EuiRadio props label is rendered 1`] = `
 <div
-  class="euiRadio"
+  class="euiRadio emotion-euiRadio"
 >
   <input
-    class="euiRadio__input"
+    class="euiRadio__input emotion-euiRadio__input"
     id="id"
     type="radio"
     value=""
   />
-  <div
-    class="euiRadio__circle"
-  />
   <label
-    class="euiRadio__label"
+    class="euiRadio__label emotion-euiRadio__label"
     for="id"
   >
     <span>
@@ -78,20 +66,17 @@ exports[`EuiRadio props label is rendered 1`] = `
 
 exports[`EuiRadio props labelProps is rendered 1`] = `
 <div
-  class="euiRadio"
+  class="euiRadio emotion-euiRadio"
 >
   <input
-    class="euiRadio__input"
+    class="euiRadio__input emotion-euiRadio__input"
     id="id"
     type="radio"
     value=""
   />
-  <div
-    class="euiRadio__circle"
-  />
   <label
     aria-label="aria-label"
-    class="euiRadio__label testClass1 testClass2 emotion-euiTestCss"
+    class="euiRadio__label testClass1 testClass2 emotion-euiRadio__label-euiTestCss"
     data-test-subj="test subject string"
     for="id"
   >
@@ -102,16 +87,13 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
 
 exports[`EuiRadio props value is rendered 1`] = `
 <div
-  class="euiRadio euiRadio--noLabel"
+  class="euiRadio emotion-euiRadio"
 >
   <input
-    class="euiRadio__input"
+    class="euiRadio__input emotion-euiRadio__input"
     id="id"
     type="radio"
     value="bobbins"
-  />
-  <div
-    class="euiRadio__circle"
   />
 </div>
 `;
