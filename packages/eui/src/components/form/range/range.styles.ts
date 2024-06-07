@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
-import { mathWithUnits } from '../../../global_styling';
+import { euiCanAnimate, mathWithUnits } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
@@ -106,17 +106,23 @@ export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return `
     ${euiRangeThumbBoxShadow(euiThemeContext)};
     ${euiRangeThumbBorder(euiThemeContext)};
+    border-radius: 50%;
     cursor: pointer;
     background-color: ${range.thumbBackgroundColor};
     padding: 0;
     block-size: ${range.thumbHeight};
     inline-size: ${range.thumbWidth};
     box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
+
+    ${euiCanAnimate} {
+      transition: background-color ${euiTheme.animation.fast} ease-in;
+    }
   `;
 };
 

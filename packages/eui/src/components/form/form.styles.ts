@@ -168,45 +168,6 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCustomControl = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    type?: 'round' | 'square';
-    size?: string;
-  } = {}
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const form = euiFormVariables(euiThemeContext);
-  const { type, size = euiTheme.size.base } = options;
-
-  let padddingStyle = '';
-  let borderRadiusStyle = '';
-
-  if (size) {
-    const borderSize = parseFloat(String(euiTheme.border.width.thin));
-    const paddingSize = mathWithUnits(size, (x) => (x - borderSize * 2) / 2);
-    padddingStyle = `padding: ${paddingSize};`;
-  }
-
-  if (type === 'round') {
-    borderRadiusStyle = `border-radius: ${size};`;
-  } else if (type === 'square') {
-    borderRadiusStyle = `border-radius: ${form.controlCompressedBorderRadius};`;
-  }
-
-  return `
-    ${padddingStyle}
-    ${borderRadiusStyle}
-    border: ${euiTheme.border.width.thin} solid ${form.customControlBorderColor};
-    background: ${euiTheme.colors.emptyShade} no-repeat center;
-
-    ${euiCanAnimate} {
-      transition: background-color ${form.animationTiming},
-        border-color ${form.animationTiming};
-    }
-  `;
-};
-
 export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { fontSize } = euiFontSize(euiThemeContext, 's');
