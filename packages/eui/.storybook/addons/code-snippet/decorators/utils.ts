@@ -11,7 +11,6 @@ https://github.com/storybookjs/storybook/blob/2bff7a1c156bbd42ab381f84b8a55a0769
 
 import { ReactElement, FunctionComponent, ComponentType } from 'react';
 import * as prettier from 'prettier';
-// @ts-ignore - types are available but not resolved
 import tsParser from 'prettier/parser-typescript';
 import { StoryContext } from '@storybook/react';
 
