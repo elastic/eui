@@ -59,7 +59,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   const classes = classNames(
     'euiCheckbox',
     {
-      'euiCheckbox--noLabel': !label,
       'euiCheckbox--compressed': compressed,
     },
     className
@@ -74,13 +73,19 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
       'euiCheckbox__label',
       labelProps?.className
     );
+    const labelCssStyles = [styles.euiCheckbox__label, labelProps?.css];
 
     return (
-      <label {...labelProps} className={labelClasses} htmlFor={id}>
+      <label
+        {...labelProps}
+        css={labelCssStyles}
+        className={labelClasses}
+        htmlFor={id}
+      >
         {label}
       </label>
     );
-  }, [label, labelProps, id]);
+  }, [label, labelProps, id, styles]);
 
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
   const setIndeterminateState = useCallback(
@@ -94,6 +99,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   return (
     <div css={styles.euiCheckbox} className={classes}>
       <input
+        css={styles.euiCheckbox__input}
         className="euiCheckbox__input"
         type="checkbox"
         id={id}
@@ -103,9 +109,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
         ref={refs}
         {...rest}
       />
-
-      <div className="euiCheckbox__square" />
-
       {optionalLabel}
     </div>
   );
