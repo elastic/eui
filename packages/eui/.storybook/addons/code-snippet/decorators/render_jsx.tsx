@@ -13,7 +13,7 @@ import type { ReactElement, ReactNode } from 'react';
 import React, { isValidElement } from 'react';
 import type { Options } from 'react-element-to-jsx-string';
 import reactElementToJSXString from 'react-element-to-jsx-string';
-import { camelCase } from 'lodash';
+import { camelCase, isEmpty } from 'lodash';
 import type { ReactRenderer } from '@storybook/react';
 import type { StoryContext } from '@storybook/types';
 import { getDocgenSection } from '@storybook/docs-tools';
@@ -173,18 +173,21 @@ export const renderJsx = (
     useFragmentShortSyntax: true,
     sortProps: true,
     filterProps: (value: any, key: string) => {
-      if (EXCLUDED_PROPS.includes(key) || value == null) {
+      if (
+        EXCLUDED_PROPS.includes(key) ||
+        value == null ||
+        value === '' ||
+        // empty objects/arrays that we set up for easier testing
+        (typeof value === 'object' && isEmpty(value))
+      ) {
         return false;
       }
 
-      // manually filter `false` values as this ensures proper formatting of tags
-      // while `useBooleanShorthandSyntax={true}` leaves closing tags `>` on a new line
-      // filter out specific props that are needed to show with value `false`
+      // manually filter props with `false` values as this allows us to preserve
+      // `false` values where required e.g. grow={false}
       if (value === false && !PRESERVED_FALSE_VALUE_PROPS.includes(key)) {
         return false;
       }
-
-      if (value === '') return false;
 
       return true;
     },
@@ -242,11 +245,13 @@ export const renderJsx = (
       }
     }
 
+    // convert node to jsx string
     let string: string = toJSXString(
       _simplifyNodeForStringify(node, euiTheme),
       opts as Options
     );
 
+    /** Start of filtering the generated jsx string */
     if (string.indexOf('&quot;') > -1) {
       const matches = string.match(/\S+=\\"([^"]*)\\"/g);
       if (matches) {
