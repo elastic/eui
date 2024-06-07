@@ -58,15 +58,15 @@ export const getEmotionComponentDisplayName = (
       displayName.match(/^(Emotion)(\w)*/g)) ||
     node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ != null
   ) {
-    const isForwardRefComponent = isForwardRef(
-      node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-    );
+    const { __EMOTION_TYPE_PLEASE_DO_NOT_USE__: emotionData } = node.props;
+    const isForwardRefComponent = isForwardRef(emotionData);
+
     // we need to rely here on the reference Emotion stores to know what component this actually is
     const replacementName = isForwardRefComponent
-      ? node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__.__docgenInfo.displayName
-      : typeof node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === 'string'
-      ? node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-      : node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__?.displayName;
+      ? emotionData.__docgenInfo.displayName
+      : typeof emotionData === 'string'
+      ? emotionData
+      : emotionData?.displayName;
 
     // remove internal component underscore markings
     return replacementName ? replacementName.replace('_', '') : displayName;
