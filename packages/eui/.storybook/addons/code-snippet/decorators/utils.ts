@@ -64,6 +64,8 @@ export const getEmotionComponentDisplayName = (
     // we need to rely here on the reference Emotion stores to know what component this actually is
     const replacementName = isForwardRefComponent
       ? node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__.__docgenInfo.displayName
+      : typeof node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === 'string'
+      ? node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       : node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__?.displayName;
 
     // remove internal component underscore markings
