@@ -4,12 +4,6 @@
   }
 }
 
-.euiCheckbox .euiCheckbox__input {
-  &:focus {
-    @include euiCustomControlFocused('.euiCheckbox__square');
-  }
-}
-
 .euiSwitch .euiSwitch__button:focus {
   @include euiFocusRing(null, 'outer');
 
