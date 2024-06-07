@@ -159,8 +159,11 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiStep__titleWrapper: css`
       display: flex;
-      align-items: center;
       gap: ${euiStep.numberMargin};
+    `,
+    // skip css to not add a class name
+    alignCenter: `
+      align-items: center;
     `,
     euiStep__title: css``,
     isDisabled: css`

@@ -81,7 +81,10 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
     status === 'disabled' && titleStyles.isDisabled,
     titleStyles[titleSize],
   ];
-  const cssTitleWrapperStyles = titleStyles.euiStep__titleWrapper;
+  const cssTitleWrapperStyles = [
+    titleStyles.euiStep__titleWrapper,
+    titleSize === 'xxs' && titleStyles.alignCenter,
+  ];
 
   return (
     <div className={classes} css={cssStyles} {...rest}>
