@@ -23,10 +23,6 @@ import { euiRadioStyles } from './radio.styles';
 
 export interface RadioProps {
   autoFocus?: boolean;
-  /**
-   * When `true` creates a shorter height radio row
-   */
-  compressed?: boolean;
   name?: string;
   value?: string;
   checked?: boolean;
@@ -60,20 +56,13 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   value,
   onChange,
   disabled,
-  compressed,
   autoFocus,
   labelProps,
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiRadioStyles);
 
-  const classes = classNames(
-    'euiRadio',
-    {
-      'euiRadio--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiRadio', className);
 
   const optionalLabel = useMemo(() => {
     if (!label) return;
