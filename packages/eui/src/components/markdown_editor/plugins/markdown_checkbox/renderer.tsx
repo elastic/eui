@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, PropsWithChildren, useContext } from 'react';
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../../../global_styling';
+import { logicalCSS, logicalSizeCSS } from '../../../../global_styling';
 import { EuiCheckbox } from '../../../form/checkbox';
 import { EuiMarkdownContext } from '../../markdown_context';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';
@@ -39,24 +39,23 @@ export const CheckboxMarkdownRenderer: FunctionComponent<
 };
 
 const markdownCheckboxStyles = css`
-  /* && selector specificity overrides Sass. TODO: Remove once EuiCheckbox is on Emotion */
-  && {
-    /* Inherit from markdown text size */
-    .euiCheckbox__input ~ .euiCheckbox__label {
-      font-size: inherit;
-      line-height: inherit;
-      ${logicalCSS('padding-left', '1.5em')}
-    }
+  /* Sacrifice text-wrapping for better single-line alignment at all text sizes */
+  align-items: center;
 
-    /* Add a margin-bottom if the next sibling is not another checkbox */
-    &:has(+ :not(.euiCheckbox)) {
-      ${logicalCSS('margin-bottom', '1em')}
-    }
+  .euiCheckbox__input {
+    font-size: inherit;
+    ${logicalSizeCSS('1em')}
+    ${logicalCSS('margin-top', '0 !important')}
+  }
 
-    /* Better align checkboxes with all text sizes */
-    .euiCheckbox__input + .euiCheckbox__square {
-      ${logicalCSS('top', '50%')}
-      transform: translateY(-50%);
-    }
+  .euiCheckbox__label {
+    font-size: inherit;
+    line-height: inherit;
+    ${logicalCSS('padding-left', '0.5em')}
+  }
+
+  /* Add a margin-bottom if the next sibling is not another checkbox */
+  &:has(+ :not(.euiCheckbox)) {
+    ${logicalCSS('margin-bottom', '1em')}
   }
 `;
