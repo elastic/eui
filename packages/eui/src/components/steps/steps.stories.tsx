@@ -79,6 +79,7 @@ export const Playground: Story = {
 };
 
 export const UnorderedSteps: Story = {
+  tags: ['vrt-only'],
   parameters: {
     controls: {
       include: ['steps', 'titleSize'],
