@@ -90,7 +90,7 @@ exports[`EuiStepHorizontal props size xs is rendered 1`] = `
   title="Step 1 is incomplete"
 >
   <span
-    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-xxs-incomplete-euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-none-incomplete-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"

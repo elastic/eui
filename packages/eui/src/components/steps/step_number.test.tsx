@@ -32,10 +32,10 @@ describe('EuiStepNumber', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
-      describe('xxs', () => {
+      describe('none', () => {
         it('renders no visible number', () => {
           const { container } = render(
-            <EuiStepNumber titleSize="xxs" number={1} />
+            <EuiStepNumber titleSize="none" number={1} />
           );
 
           expect(
@@ -58,7 +58,7 @@ describe('EuiStepNumber', () => {
         if (['complete', 'warning', 'danger'].includes(status)) {
           it('renders an icon', () => {
             const { container } = render(
-              <EuiStepNumber titleSize="xxs" number={1} status={status} />
+              <EuiStepNumber titleSize="none" number={1} status={status} />
             );
 
             expect(
@@ -68,7 +68,7 @@ describe('EuiStepNumber', () => {
         } else if (status === 'loading') {
           it('renders a loading spinner', () => {
             const { container } = render(
-              <EuiStepNumber titleSize="xxs" number={1} status={status} />
+              <EuiStepNumber titleSize="none" number={1} status={status} />
             );
 
             expect(
@@ -78,7 +78,7 @@ describe('EuiStepNumber', () => {
         } else {
           it('does not render an icon', () => {
             const { container } = render(
-              <EuiStepNumber titleSize="xxs" number={1} status={status} />
+              <EuiStepNumber titleSize="none" number={1} status={status} />
             );
 
             expect(

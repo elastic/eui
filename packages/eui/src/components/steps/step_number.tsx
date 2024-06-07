@@ -13,9 +13,9 @@ import { CommonProps } from '../common';
 import { EuiIcon, IconSize } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiLoadingSpinnerSize } from '../loading/loading_spinner';
+import { EuiTitleProps } from '../title';
 import { useEuiTheme } from '../../services';
 
-import { EuiStepProps } from './step';
 import {
   useI18nCompleteStep,
   useI18nDisabledStep,
@@ -52,9 +52,11 @@ export interface EuiStepNumberProps
   status?: EuiStepStatus;
   number?: number;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs` and `xxs`. Defaults to `s`
+   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs`.
+   * `none` indicates no step number should be rendered.
+   * @default s
    */
-  titleSize?: EuiStepProps['titleSize'];
+  titleSize?: Extract<EuiTitleProps['size'], 'xs' | 's' | 'm'> | 'none';
 }
 
 export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
@@ -88,16 +90,12 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const contentStyles = euiStepNumberContentStyles(euiTheme);
   let content: ReactNode;
   let screenReaderText: string | undefined;
-  const hasIcon = status
-    ? ['loading', 'warning', 'danger', 'complete'].includes(status)
-    : false;
-  const hasContent = titleSize !== 'xxs' || hasIcon;
 
   switch (status) {
     // Loading spinner
     case 'loading': {
       const iconSizeMap: Record<string, EuiLoadingSpinnerSize> = {
-        xxs: 'm',
+        none: 'm',
         xs: 'l',
         s: 'xl',
         m: 'xl',
@@ -120,7 +118,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         contentStyles[status],
         // EuiIcon does not support a xxs size so far,
         // we use custom sizing here instead
-        titleSize === 'xxs' && contentStyles[titleSize],
+        titleSize === 'none' && contentStyles[titleSize],
       ];
       const iconTypeMap = {
         danger: 'cross',
@@ -150,12 +148,17 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
     case 'current':
     case 'disabled':
     default:
+      screenReaderText = ariaLabelsMap[status || 'step'];
+
+      if (titleSize === 'none') {
+        break;
+      }
+
       const cssNumberStyles = [
         contentStyles.euiStepNumber__number,
         status && contentStyles[status],
       ];
 
-      screenReaderText = ariaLabelsMap[status || 'step'];
       content = (
         <span
           aria-hidden="true"
@@ -175,7 +178,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
           <span>{screenReaderText}</span>
         </EuiScreenReaderOnly>
       )}
-      {hasContent && content}
+      {content}
     </span>
   );
 };
