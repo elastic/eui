@@ -32,7 +32,7 @@ export interface EuiCheckboxProps
   label?: ReactNode;
   disabled?: boolean;
   /**
-   * when `true` creates a shorter height checkbox row
+   * @deprecated - can be removed with no visual regressions
    */
   compressed?: boolean;
   indeterminate?: boolean;
@@ -50,19 +50,13 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   onChange,
   type,
   disabled = false,
-  compressed = false,
+  compressed, // @deprecated
   indeterminate = false,
   inputRef,
   labelProps,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiCheckbox',
-    {
-      'euiCheckbox--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiCheckbox', className);
 
   const styles = useEuiMemoizedStyles(euiCheckboxStyles);
 
