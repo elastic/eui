@@ -9,15 +9,12 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
   >
     <input
       aria-label="Select all rows"
-      class="euiCheckbox__input"
+      class="euiCheckbox__input emotion-euiCheckbox__input"
       id="_selection_column-checkbox_generated-id_mobile"
       type="checkbox"
     />
-    <div
-      class="euiCheckbox__square"
-    />
     <label
-      class="euiCheckbox__label"
+      class="euiCheckbox__label emotion-euiCheckbox__label"
       for="_selection_column-checkbox_generated-id_mobile"
     >
       Select all rows
