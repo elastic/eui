@@ -42,9 +42,11 @@ export interface EuiStepInterface {
    */
   status?: EuiStepStatus;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs` and `xxs`. Defaults to `s`
+   * Title sizing equivalent to **EuiTitle**, but only `m`, `s`, `xs` font sizes.
+   * The `xxs` size reduces the size of the accompanying step indicator, but not the title itself.
+   * @default s
    */
-  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'l'>;
+  titleSize?: Extract<EuiTitleProps['size'], 'xxs' | 'xs' | 's' | 'm'>;
 }
 
 export type EuiStepProps = CommonProps &
@@ -81,14 +83,16 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   ];
   const cssTitleWrapperStyles = titleStyles.euiStep__titleWrapper;
 
-  const size = titleSize === 'xxs' ? 'xs' : titleSize;
-
   return (
     <div className={classes} css={cssStyles} {...rest}>
       <div className="euiStep__titleWrapper" css={cssTitleWrapperStyles}>
-        <EuiStepNumber number={step} status={status} titleSize={titleSize} />
+        <EuiStepNumber
+          number={step}
+          status={status}
+          titleSize={titleSize === 'xxs' ? 'none' : titleSize}
+        />
         <EuiTitle
-          size={size}
+          size={titleSize === 'xxs' ? 'xs' : titleSize}
           className="euiStep__title"
           css={cssStepTitleStyles}
         >

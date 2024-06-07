@@ -14,26 +14,22 @@ import { EuiStepProps, EuiStep } from './step';
 
 export type EuiContainedStepProps = Omit<EuiStepProps, 'step'>;
 
-export interface EuiStepsProps
-  extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  /**
-   * An array of `EuiStep` objects excluding the `step` prop
-   */
-  steps: EuiContainedStepProps[];
-  /**
-   * The number the steps should begin from
-   */
-  firstStepNumber?: number;
-  /**
-   * The HTML tag used for the title
-   */
-  headingElement?: string;
-  /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs` and `xxs`. Defaults to `s`
-   */
-  titleSize?: EuiStepProps['titleSize'];
-}
+export type EuiStepsProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps &
+  Pick<EuiStepProps, 'titleSize'> & {
+    /**
+     * An array of `EuiStep` objects excluding the `step` prop
+     */
+    steps: EuiContainedStepProps[];
+    /**
+     * The number the steps should begin from
+     */
+    firstStepNumber?: number;
+    /**
+     * The HTML tag used for the title
+     */
+    headingElement?: string;
+  };
 
 function renderSteps(
   steps: EuiContainedStepProps[],

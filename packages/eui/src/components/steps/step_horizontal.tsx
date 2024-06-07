@@ -15,8 +15,11 @@ import React, {
 } from 'react';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { EuiStepProps } from './step';
-import { EuiStepNumber, EuiStepStatus } from './step_number';
+import {
+  EuiStepNumber,
+  EuiStepNumberProps,
+  EuiStepStatus,
+} from './step_number';
 import { EuiStepsHorizontalSizes } from './steps_horizontal';
 import {
   useI18nCompleteStep,
@@ -55,6 +58,13 @@ export interface EuiStepHorizontalProps
   status?: EuiStepStatus;
   size?: EuiStepsHorizontalSizes;
 }
+
+// The titleSize map is not 1 to 1; small == xs on the titleSize map
+const stepNumberSizeMap: Record<string, EuiStepNumberProps['titleSize']> = {
+  xs: 'none',
+  s: 'xs',
+  m: 'm',
+};
 
 export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   className,
@@ -103,13 +113,6 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     if (!disabled) onClick(event);
-  };
-
-  // The titleSize map is not 1 to 1; small == xs on the titleSize map
-  const stepNumberSizeMap: Record<string, EuiStepProps['titleSize']> = {
-    xs: 'xxs',
-    s: 'xs',
-    m: 'm',
   };
 
   return (
