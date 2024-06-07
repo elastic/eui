@@ -43,42 +43,80 @@ describe('EUI provider dev warnings', () => {
       consoleWarnSpy.mockRestore();
     });
 
-    const providerMessage = 'hello world';
+    describe('emits log or throws', () => {
+      const providerMessage = 'hello world';
 
-    it('does nothing if the warning level is undefined', () => {
-      emitEuiProviderWarning(providerMessage);
+      it('does nothing if the warning level is undefined', () => {
+        emitEuiProviderWarning(providerMessage);
 
-      expect(consoleLogSpy).not.toHaveBeenCalled();
-      expect(consoleWarnSpy).not.toHaveBeenCalled();
+        expect(consoleLogSpy).not.toHaveBeenCalled();
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+      });
+
+      it('emits a console log when level is log', () => {
+        setEuiDevProviderWarning('log');
+
+        emitEuiProviderWarning(providerMessage);
+
+        expect(consoleLogSpy).toHaveBeenCalledWith('hello world');
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+      });
+
+      it('emits a console warning when level is warn', () => {
+        setEuiDevProviderWarning('warn');
+
+        emitEuiProviderWarning(providerMessage);
+
+        expect(consoleLogSpy).not.toHaveBeenCalled();
+        expect(consoleWarnSpy).toHaveBeenCalledWith('hello world');
+      });
+
+      it('throws an error when level is error', () => {
+        setEuiDevProviderWarning('error');
+
+        expect(() => emitEuiProviderWarning(providerMessage)).toThrowError(
+          'hello world'
+        );
+
+        expect(consoleLogSpy).not.toHaveBeenCalled();
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+      });
     });
 
-    it('emits a console log when level is log', () => {
-      setEuiDevProviderWarning('log');
+    describe('calls optional callback function', () => {
+      const providerMessage = 'hello callback';
+      const devCallback = jest.fn();
 
-      emitEuiProviderWarning(providerMessage);
+      afterEach(() => {
+        devCallback.mockReset();
+      });
 
-      expect(consoleLogSpy).toHaveBeenCalledWith('hello world');
-      expect(consoleWarnSpy).not.toHaveBeenCalled();
-    });
+      it('when level is log', () => {
+        setEuiDevProviderWarning('log', devCallback);
 
-    it('emits a console warning when level is warn', () => {
-      setEuiDevProviderWarning('warn');
+        emitEuiProviderWarning(providerMessage);
 
-      emitEuiProviderWarning(providerMessage);
+        expect(devCallback).toHaveBeenCalledWith('hello callback');
+        expect(devCallback).toHaveBeenCalledTimes(1);
+      });
 
-      expect(consoleLogSpy).not.toHaveBeenCalled();
-      expect(consoleWarnSpy).toHaveBeenCalledWith('hello world');
-    });
+      it('when level is warn', () => {
+        setEuiDevProviderWarning('warn', devCallback);
 
-    it('throws an error when level is error', () => {
-      setEuiDevProviderWarning('error');
+        emitEuiProviderWarning(providerMessage);
 
-      expect(() => emitEuiProviderWarning(providerMessage)).toThrowError(
-        'hello world'
-      );
+        expect(devCallback).toHaveBeenCalledWith('hello callback');
+        expect(devCallback).toHaveBeenCalledTimes(1);
+      });
 
-      expect(consoleLogSpy).not.toHaveBeenCalled();
-      expect(consoleWarnSpy).not.toHaveBeenCalled();
+      it('when level is error', () => {
+        setEuiDevProviderWarning('error', devCallback);
+
+        expect(() => emitEuiProviderWarning(providerMessage)).toThrow();
+
+        expect(devCallback).toHaveBeenCalledWith(new Error('hello callback'));
+        expect(devCallback).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

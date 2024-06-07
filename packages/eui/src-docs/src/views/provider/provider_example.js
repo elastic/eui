@@ -254,6 +254,25 @@ export const ProviderExample = {
               exception
             </li>
           </ul>
+
+          <p>
+            Developers can provide an optional callback function which will
+            receive the log message or Error object.
+          </p>
+          <ul>
+            <li>
+              <EuiCode>setEuiDevProviderWarning('log', callbackFn)</EuiCode>:
+              callbackFn will be called with a <EuiCode>string</EuiCode>
+            </li>
+            <li>
+              <EuiCode>setEuiDevProviderWarning('warn', callbackFn)</EuiCode>:
+              callbackFn will be called with a <EuiCode>string</EuiCode>
+            </li>
+            <li>
+              <EuiCode>setEuiDevProviderWarning('error', callbackFn)</EuiCode>:
+              callbackFn will be called with an <EuiCode>Error</EuiCode> object
+            </li>
+          </ul>
         </EuiText>
       ),
     },
