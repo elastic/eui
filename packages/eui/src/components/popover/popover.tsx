@@ -369,7 +369,10 @@ export class EuiPopover extends Component<Props, State> {
     this.strandedFocusTimeout = window.setTimeout(() => {
       // If `returnFocus` failed and focus was stranded on the body,
       // attempt to manually restore focus to the toggle button
-      if (document.activeElement === document.body) {
+      if (
+        document.activeElement === document.body ||
+        document.activeElement === this.panel
+      ) {
         if (!this.button) return;
 
         const focusableItems = focusable(this.button);
@@ -489,6 +492,7 @@ export class EuiPopover extends Component<Props, State> {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.positionPopoverFixed, true);
+    if (!clearTimeout) return;
     clearTimeout(this.respositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);

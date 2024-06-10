@@ -7,14 +7,17 @@
  */
 
 import React, { ReactNode } from 'react';
-import { mount } from 'enzyme';
-import { act } from '@testing-library/react';
+
+import { act, fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import {
+  render,
+  waitForEuiPopoverClose,
+  waitForEuiPopoverOpen,
+} from '../../test/rtl';
 
 import { keys } from '../../services';
-import { EuiFocusTrap } from '../focus_trap';
 
 import {
   EuiPopover,
@@ -32,6 +35,9 @@ jest.mock('../portal', () => ({
 
 let id = 0;
 const getId = () => `${id++}`;
+
+const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
+const openingTransitionTime = closingTransitionTime;
 
 describe('EuiPopover', () => {
   shouldRenderCustomStyles(
@@ -88,27 +94,44 @@ describe('EuiPopover', () => {
     });
 
     describe('closePopover', () => {
-      it('is called when ESC key is hit and the popover is open', () => {
-        const closePopoverHandler = jest.fn();
+      beforeAll(() => jest.useFakeTimers());
+      afterAll(() => jest.useRealTimers());
 
-        const component = mount(
+      it('is called when ESC key is hit and the popover is open', async () => {
+        const closePopoverHandler = jest.fn();
+        const id = getId();
+
+        const { container, rerender } = render(
           <EuiPopover
-            ownFocus={false}
-            id={getId()}
+            id={id}
             button={<button />}
             closePopover={closePopoverHandler}
             isOpen
           />
         );
 
-        component.simulate('keydown', { key: keys.ESCAPE });
-        expect(closePopoverHandler).toBeCalledTimes(1);
+        actAdvanceTimersByTime(closingTransitionTime);
+
+        fireEvent.keyDown(container, {
+          key: keys.ESCAPE,
+        });
+
+        rerender(
+          <EuiPopover
+            id={id}
+            button={<button />}
+            closePopover={closePopoverHandler}
+            isOpen={false}
+          />
+        );
+
+        expect(closePopoverHandler).toHaveBeenCalledTimes(1);
       });
 
       it('is not called when ESC key is hit and the popover is closed', () => {
         const closePopoverHandler = jest.fn();
 
-        const component = mount(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -117,8 +140,13 @@ describe('EuiPopover', () => {
           />
         );
 
-        component.simulate('keydown', { key: keys.ESCAPE });
-        expect(closePopoverHandler).not.toBeCalled();
+        actAdvanceTimersByTime(closingTransitionTime);
+
+        fireEvent.keyDown(container, {
+          key: keys.ESCAPE,
+        });
+
+        expect(closePopoverHandler).not.toHaveBeenCalled();
       });
     });
 
@@ -176,7 +204,7 @@ describe('EuiPopover', () => {
       });
 
       test('renders true', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -187,15 +215,13 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        // console.log(component.debug());
-
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('ownFocus', () => {
       test('defaults to true', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -206,11 +232,11 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders false', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               ownFocus={false}
@@ -222,13 +248,12 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
-
     describe('panelClassName', () => {
       test('is rendered', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -240,13 +265,13 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('panelPaddingSize', () => {
       test('is rendered', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -258,13 +283,13 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('panelProps', () => {
       test('is rendered', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -276,13 +301,13 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('focusTrapProps', () => {
       test('is rendered', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -298,7 +323,7 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -356,7 +381,7 @@ describe('EuiPopover', () => {
 
     describe('arrowChildren', () => {
       test('is rendered', () => {
-        const component = mount(
+        const { container } = render(
           <div>
             <EuiPopover
               id={getId()}
@@ -368,12 +393,12 @@ describe('EuiPopover', () => {
           </div>
         );
 
-        expect(component.render()).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('buffer', () => {
-      const component = mount(
+      const { container } = render(
         <div>
           <EuiPopover
             id={getId()}
@@ -385,11 +410,11 @@ describe('EuiPopover', () => {
         </div>
       );
 
-      expect(component.render()).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('buffer for all sides', () => {
-      const component = mount(
+      const { container } = render(
         <div>
           <EuiPopover
             id={getId()}
@@ -401,11 +426,11 @@ describe('EuiPopover', () => {
         </div>
       );
 
-      expect(component.render()).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('popoverScreenReaderText', () => {
-      const component = mount(
+      const { container } = render(
         <div>
           <EuiPopover
             id={getId()}
@@ -418,7 +443,7 @@ describe('EuiPopover', () => {
         </div>
       );
 
-      expect(component.render()).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -456,7 +481,7 @@ describe('EuiPopover', () => {
     });
 
     it('cleans up timeouts and rAFs on unmount', () => {
-      const component = mount(
+      const { rerender, unmount } = render(
         <EuiPopover
           id={getId()}
           button={<button />}
@@ -467,12 +492,21 @@ describe('EuiPopover', () => {
       );
       expect(window.clearTimeout).toHaveBeenCalledTimes(0);
 
-      component.setProps({ isOpen: true });
+      rerender(
+        <EuiPopover
+          id={getId()}
+          isOpen={true}
+          button={<button />}
+          closePopover={() => {}}
+          panelPaddingSize="s"
+        />
+      );
+
       expect(window.clearTimeout).toHaveBeenCalledTimes(3);
       expect(rafSpy).toHaveBeenCalledTimes(1);
       expect(activeAnimationFrames.size).toEqual(1);
 
-      component.unmount();
+      unmount();
       expect(window.clearTimeout).toHaveBeenCalledTimes(9);
       expect(cafSpy).toHaveBeenCalledTimes(1);
       expect(activeAnimationFrames.size).toEqual(0);
@@ -492,12 +526,6 @@ describe('EuiPopover', () => {
 
   describe('onEscapeKey', () => {
     const closePopover = jest.fn();
-    const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
-
-    const mockEvent = {
-      preventDefault: () => {},
-      stopPropagation: () => {},
-    } as Event;
 
     beforeAll(() => jest.useFakeTimers());
     beforeEach(() => {
@@ -506,11 +534,13 @@ describe('EuiPopover', () => {
     });
     afterAll(() => jest.useRealTimers());
 
-    it('closes the popover and refocuses the toggle button', () => {
+    it('closes the popover and refocuses the toggle button', async () => {
       const toggleButtonEl = React.createRef<HTMLButtonElement>();
-      const toggleButton = <button ref={toggleButtonEl} />;
+      const toggleButton = (
+        <button ref={toggleButtonEl} data-test-subj="toggleButton" />
+      );
 
-      const component = mount(
+      const { container, getByTestSubject, rerender } = render(
         <EuiPopover
           isOpen={true}
           button={toggleButton}
@@ -518,24 +548,44 @@ describe('EuiPopover', () => {
           {...requiredProps}
         />
       );
-      component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
-      component.setProps({ isOpen: false });
+
+      actAdvanceTimersByTime(openingTransitionTime);
+      await waitForEuiPopoverOpen();
+
+      fireEvent.keyDown(container, {
+        key: keys.ESCAPE,
+      });
+
+      rerender(
+        <EuiPopover
+          isOpen={false}
+          button={toggleButton}
+          closePopover={closePopover}
+          {...requiredProps}
+        />
+      );
+
+      await waitForEuiPopoverClose();
       actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
-      expect(document.activeElement).toEqual(toggleButtonEl.current);
+      expect(getByTestSubject('toggleButton')).toHaveFocus();
     });
 
-    it('refocuses the first nested toggle button on focus trap deactivation', () => {
+    it('refocuses the first nested toggle button on focus trap deactivation', async () => {
       const toggleButtonEl = React.createRef<HTMLButtonElement>();
       const toggleDiv = (
         <div>
-          <button ref={toggleButtonEl} tabIndex={-1} />
+          <button
+            ref={toggleButtonEl}
+            tabIndex={-1}
+            data-test-subj="toggleButton"
+          />
           <button tabIndex={-1} />
         </div>
       );
 
-      const component = mount(
+      const { container, getByTestSubject, rerender } = render(
         <EuiPopover
           isOpen={true}
           button={toggleDiv}
@@ -543,33 +593,65 @@ describe('EuiPopover', () => {
           {...requiredProps}
         />
       );
-      component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
-      component.setProps({ isOpen: false });
+
+      actAdvanceTimersByTime(openingTransitionTime);
+      await waitForEuiPopoverOpen();
+
+      fireEvent.keyDown(container, {
+        key: keys.ESCAPE,
+      });
+
+      rerender(
+        <EuiPopover
+          isOpen={false}
+          button={toggleDiv}
+          closePopover={closePopover}
+          {...requiredProps}
+        />
+      );
+
+      await waitForEuiPopoverClose();
+
       actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
-      expect(document.activeElement).toEqual(toggleButtonEl.current);
+      expect(getByTestSubject('toggleButton')).toHaveFocus();
     });
 
-    it('does not refocus if the toggle button is not focusable', () => {
+    it('does not refocus if the toggle button is not focusable', async () => {
       const toggleDivEl = React.createRef<HTMLDivElement>();
-      const toggleDiv = <div ref={toggleDivEl} />;
+      const toggleDiv = <div ref={toggleDivEl} data-test-subj="toggleButton" />;
 
-      const component = mount(
+      const { container, getByTestSubject, rerender } = render(
         <EuiPopover
-          button={toggleDiv}
           isOpen={true}
+          button={toggleDiv}
           closePopover={closePopover}
           {...requiredProps}
         />
       );
-      component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
-      component.setProps({ isOpen: false });
 
+      actAdvanceTimersByTime(openingTransitionTime);
+      await waitForEuiPopoverOpen();
+
+      fireEvent.keyDown(container, {
+        key: keys.ESCAPE,
+      });
+
+      rerender(
+        <EuiPopover
+          isOpen={false}
+          button={toggleDiv}
+          closePopover={closePopover}
+          {...requiredProps}
+        />
+      );
+
+      await waitForEuiPopoverClose();
       actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
-      expect(document.activeElement).not.toEqual(toggleDivEl.current);
+      expect(getByTestSubject('toggleButton')).not.toHaveFocus();
     });
   });
 });
