@@ -8,12 +8,15 @@
 
 import React from 'react';
 import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiSuperSelectControl } from './super_select_control';
 
 describe('EuiSuperSelectControl', () => {
+  shouldRenderCustomStyles(<EuiSuperSelectControl />);
+
   test('is rendered', () => {
     const { container } = render(<EuiSuperSelectControl {...requiredProps} />);
 

@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
@@ -25,6 +26,8 @@ jest.mock('../validatable_control', () => ({
 }));
 
 describe('EuiFieldText', () => {
+  shouldRenderCustomStyles(<EuiFieldText />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiFieldText

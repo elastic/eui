@@ -8,8 +8,8 @@
 /* eslint-disable no-irregular-whitespace */
 
 import React from 'react';
-import { mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
@@ -23,6 +23,8 @@ jest.mock('../validatable_control', () => ({
 }));
 
 describe('EuiSelect', () => {
+  shouldRenderCustomStyles(<EuiSelect />);
+
   it('is rendered', () => {
     const { container } = render(
       <EuiSelect id="id" name="name" {...requiredProps} />
@@ -94,7 +96,7 @@ describe('EuiSelect', () => {
 
   describe('hasNoInitialSelection', () => {
     it('renders with an extra option at the top', () => {
-      const component = mount(
+      const { container } = render(
         <EuiSelect
           hasNoInitialSelection
           options={[
@@ -105,16 +107,12 @@ describe('EuiSelect', () => {
         />
       );
 
-      expect(component.find('option').length).toBe(3);
-      expect(component.find('option').at(0)).toMatchInlineSnapshot(`
+      expect(container.querySelectorAll('option').length).toBe(3);
+      expect(container.querySelector('option')).toMatchInlineSnapshot(`
         <option
-          disabled={true}
-          hidden={true}
-          style={
-            Object {
-              "display": "none",
-            }
-          }
+          disabled=""
+          hidden=""
+          style="display: none;"
           value=""
         >
            
@@ -123,36 +121,29 @@ describe('EuiSelect', () => {
     });
 
     it('can be reset to an empty initial selection', () => {
-      const component = mount(
-        <EuiSelect
-          hasNoInitialSelection
-          value="1"
-          options={[
-            { value: '1', text: 'Option #1' },
-            { value: '2', text: 'Option #2' },
-          ]}
-          onChange={() => {}}
-        />
+      const props = {
+        hasNoInitialSelection: true,
+        options: [
+          { value: '1', text: 'Option #1' },
+          { value: '2', text: 'Option #2' },
+        ],
+        onChange: () => {},
+        'data-test-subj': 'select',
+      };
+      const { getByTestSubject, rerender } = render(
+        <EuiSelect {...props} value="1" />
       );
 
-      expect(
-        component.find('select').getDOMNode<HTMLSelectElement>().value
-      ).toBe('1');
+      expect(getByTestSubject('select')).toHaveValue('1');
 
-      component.setProps({ value: '' });
-      expect(
-        component.find('select').getDOMNode<HTMLSelectElement>().value
-      ).toBe('');
+      rerender(<EuiSelect {...props} value="" />);
+      expect(getByTestSubject('select')).toHaveValue('');
 
-      component.setProps({ value: '1' });
-      expect(
-        component.find('select').getDOMNode<HTMLSelectElement>().value
-      ).toBe('1');
+      rerender(<EuiSelect {...props} value="2" />);
+      expect(getByTestSubject('select')).toHaveValue('2');
 
-      component.setProps({ value: undefined });
-      expect(
-        component.find('select').getDOMNode<HTMLSelectElement>().value
-      ).toBe('');
+      rerender(<EuiSelect {...props} />);
+      expect(getByTestSubject('select')).toHaveValue('');
     });
   });
 
