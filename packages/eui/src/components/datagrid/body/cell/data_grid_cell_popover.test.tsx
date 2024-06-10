@@ -160,7 +160,10 @@ describe('useCellPopover', () => {
         );
 
         mockCell.append(mockPopoverAnchor);
-        container.prepend(mockCell);
+        // NOTE: [issue for React 16/17] we need to append the cell to the body instead of the container
+        // to prevent issues with unmounting between renders as the cell otherwise
+        // would not be part of the original render content
+        document.body.prepend(mockCell);
 
         return { result, container, baseElement, getByTestSubject };
       };
