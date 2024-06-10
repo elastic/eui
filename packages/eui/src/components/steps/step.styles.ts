@@ -161,10 +161,6 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       gap: ${euiStep.numberMargin};
     `,
-    // skip css to not add a class name
-    alignCenter: `
-      align-items: center;
-    `,
     euiStep__title: css``,
     isDisabled: css`
       color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
@@ -178,5 +174,17 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     xs: css``,
     xxs: css``,
+  };
+};
+
+export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
+
+  return {
+    // the xxs number circle is smaller than the title text height, therefore
+    // we move it manually down to align it horizontally.
+    // skip css to not add a class
+    offset__xxs: logicalCSS('margin-top', euiStep.numberXXSOffset),
   };
 };
