@@ -33,14 +33,14 @@ describe('EuiAspectRatio', () => {
 
   it('merges all styles', () => {
     const { getByTestSubject } = render(
-      <EuiAspectRatio height={4} width={9} style={{ color: 'bronze' }}>
+      <EuiAspectRatio height={4} width={9} style={{ color: 'sienna' }}>
         <div data-test-subj="child" style={{ backgroundColor: 'salmon' }} />
       </EuiAspectRatio>
     );
 
     expect(getByTestSubject('child')).toHaveStyle({
-      color: 'bronze',
-      'background-color': 'salmon',
+      color: 'rgb(160, 82, 45)',
+      'background-color': 'rgb(250, 128, 114)',
       'aspect-ratio': '9 / 4',
       'inline-size': '100%',
     });
