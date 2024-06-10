@@ -139,12 +139,12 @@ const hasStep = (step) => {
     // Commit version number update
     execSync('git add package.json', execOptions);
     execSync(`git commit --no-verify -m "${versionTarget}"`, execOptions);
-
-    // Create a tag
-    execSync(`git tag -a -m "v${versionTarget}" "v${versionTarget}"`, execOptions);
   }
 
   if (hasStep('tag') && !isDryRun) {
+    // Create a tag
+    execSync(`git tag -a -m "v${versionTarget}" "v${versionTarget}"`, execOptions);
+
     // Skip prepush test hook on all pushes - we should have already tested previously,
     // or we skipped the test step for a reason
     if (isSpecialRelease) {
