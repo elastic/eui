@@ -9,6 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 import {
@@ -17,6 +18,7 @@ import {
   EuiFormFieldset,
 } from '../form_fieldset';
 import { EuiCheckbox, EuiCheckboxProps } from './checkbox';
+import { euiCheckboxGroupStyles } from './checkbox_group.styles';
 
 export interface EuiCheckboxGroupOption
   extends Omit<EuiCheckboxProps, 'checked' | 'onChange'> {
@@ -43,10 +45,12 @@ export type EuiCheckboxGroupProps = CommonProps & {
   idToSelectedMap: EuiCheckboxGroupIdToSelectedMap;
   onChange: (optionId: string) => void;
   /**
-   * Tightens up the spacing between checkbox rows and sends down the
-   * compressed prop to the checkbox itself
+   * Tightens up the spacing between checkbox rows
    */
   compressed?: boolean;
+  /**
+   * Passed down to all child `EuiCheckbox`es
+   */
   disabled?: boolean;
 } & ExclusiveUnion<AsDivProps, WithLegendProps>;
 
@@ -60,6 +64,14 @@ export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
   legend,
   ...rest
 }) => {
+  const classes = classNames('euiCheckboxGroup', className);
+
+  const styles = useEuiMemoizedStyles(euiCheckboxGroupStyles);
+  const cssStyles = [
+    styles.euiCheckboxGroup,
+    compressed ? styles.compressed : styles.uncompressed,
+  ];
+
   const checkboxes = options.map((option, index) => {
     const {
       disabled: isOptionDisabled,
@@ -73,7 +85,6 @@ export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
         checked={idToSelectedMap[option.id]}
         disabled={disabled || isOptionDisabled}
         onChange={onChange.bind(null, option.id)}
-        compressed={compressed}
         {...optionRest}
       />
     );
@@ -85,7 +96,8 @@ export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
 
     return (
       <EuiFormFieldset
-        className={className}
+        css={cssStyles}
+        className={classes}
         legend={legend}
         {...(rest as EuiFormFieldsetProps)}
       >
@@ -95,7 +107,11 @@ export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
   }
 
   return (
-    <div className={className} {...(rest as HTMLAttributes<HTMLDivElement>)}>
+    <div
+      css={cssStyles}
+      className={classes}
+      {...(rest as HTMLAttributes<HTMLDivElement>)}
+    >
       {checkboxes}
     </div>
   );

@@ -19,7 +19,6 @@ const meta: Meta<EuiCheckboxProps> = {
   component: EuiCheckbox,
   args: {
     checked: false,
-    compressed: false,
     disabled: false,
     indeterminate: false,
     // set up for easier testing/QA

@@ -57,10 +57,10 @@ export default () => {
 
       <EuiCheckbox
         id={compressedCheckboxId}
-        label="I am a compressed checkbox"
+        label="I am a readonly checkbox"
         checked={checked}
         onChange={(e) => onChange(e)}
-        compressed
+        readOnly
       />
     </Fragment>
   );
