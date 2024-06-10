@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { renderHook, renderHookAct } from '../../../../test/rtl';
+import { createEvent, fireEvent } from '@testing-library/react';
 import { shallow } from 'enzyme';
 
+import { render, renderHook, renderHookAct } from '../../../../test/rtl';
 import { keys } from '../../../../services';
-
 import { DataGridCellPopoverContextShape } from '../../data_grid_types';
 import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
 
@@ -78,6 +78,10 @@ describe('useCellPopover', () => {
     const mockPopoverContent = (
       <div data-test-subj="mockPopover">Hello world</div>
     );
+
+    // the anchor needs to be avialable in the DOM for the context on initialization
+    document.body.append(mockPopoverAnchor);
+
     const populateCellPopover = (
       cellPopoverContext: DataGridCellPopoverContextShape
     ) => {
@@ -145,69 +149,74 @@ describe('useCellPopover', () => {
       // Mock a focusable cell parent
       const mockCell = document.createElement('div');
       mockCell.tabIndex = 0;
-      mockCell.appendChild(mockPopoverAnchor);
 
       const renderCellPopover = () => {
         const { result } = renderHook(useCellPopover);
-        populateCellPopover(result.current.cellPopoverContext);
-        const component = shallow(<div>{result.current.cellPopover}</div>);
 
-        return { result, component };
+        populateCellPopover(result.current.cellPopoverContext);
+
+        const { baseElement, container, getByTestSubject } = render(
+          <div>{result.current.cellPopover}</div>
+        );
+
+        mockCell.append(mockPopoverAnchor);
+        container.prepend(mockCell);
+
+        return { result, container, baseElement, getByTestSubject };
       };
 
       it('closes the popover and refocuses the cell when the Escape key is pressed', () => {
-        const { result, component } = renderCellPopover();
+        const { result, getByTestSubject } = renderCellPopover();
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
-        const event = {
+        const popover = getByTestSubject('euiDataGridExpansionPopover');
+
+        const keyboardEvent = createEvent.keyDown(popover, {
           key: keys.ESCAPE,
-          preventDefault: jest.fn(),
-          stopPropagation: jest.fn(),
-        };
-        renderHookAct(() => {
-          component.find('EuiWrappingPopover').simulate('keyDown', event);
         });
-        expect(event.preventDefault).toHaveBeenCalled();
-        expect(event.stopPropagation).toHaveBeenCalled();
+        keyboardEvent.preventDefault = jest.fn();
+        keyboardEvent.stopPropagation = jest.fn();
+        fireEvent(popover, keyboardEvent);
+
+        expect(keyboardEvent.preventDefault).toHaveBeenCalled();
+        expect(keyboardEvent.stopPropagation).toHaveBeenCalled();
 
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
         expect(document.activeElement).toEqual(mockCell);
       });
 
       it('closes the popover when the F2 key is pressed', () => {
-        const { result, component } = renderCellPopover();
+        const { result, getByTestSubject } = renderCellPopover();
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
-        const event = {
-          key: keys.F2,
-          preventDefault: jest.fn(),
-          stopPropagation: jest.fn(),
-        };
-        renderHookAct(() => {
-          component.find('EuiWrappingPopover').simulate('keyDown', event);
-        });
-        expect(event.preventDefault).toHaveBeenCalled();
-        expect(event.stopPropagation).toHaveBeenCalled();
+        const popover = getByTestSubject('euiDataGridExpansionPopover');
+
+        const keyboardEvent = createEvent.keyDown(popover, { key: keys.F2 });
+        keyboardEvent.preventDefault = jest.fn();
+        keyboardEvent.stopPropagation = jest.fn();
+        fireEvent(popover, keyboardEvent);
+
+        expect(keyboardEvent.preventDefault).toHaveBeenCalled();
+        expect(keyboardEvent.stopPropagation).toHaveBeenCalled();
 
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
         expect(document.activeElement).toEqual(mockCell);
       });
 
       it('does nothing when other keys are pressed', () => {
-        const { result, component } = renderCellPopover();
+        const { result, getByTestSubject } = renderCellPopover();
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
-        const event = {
-          key: keys.ENTER,
-          preventDefault: jest.fn(),
-          stopPropagation: jest.fn(),
-        };
-        renderHookAct(() => {
-          component.find('EuiWrappingPopover').simulate('keyDown', event);
-        });
-        expect(event.preventDefault).not.toHaveBeenCalled();
-        expect(event.stopPropagation).not.toHaveBeenCalled();
-        expect(rafSpy).not.toHaveBeenCalled();
+        const popover = getByTestSubject('euiDataGridExpansionPopover');
+
+        const keyboardEvent = createEvent.keyDown(popover, { key: keys.ENTER });
+        keyboardEvent.preventDefault = jest.fn();
+        keyboardEvent.stopPropagation = jest.fn();
+        fireEvent(popover, keyboardEvent);
+
+        expect(keyboardEvent.preventDefault).not.toHaveBeenCalled();
+        expect(keyboardEvent.stopPropagation).not.toHaveBeenCalled();
+        expect(rafSpy).not.toHaveBeenCalledTimes(2); // 1 render happens on mount
 
         expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
       });
