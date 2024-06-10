@@ -14,8 +14,8 @@ const firstSetOfSteps: EuiStepInterface[] = [
     title: 'Step 1',
     children: (
       <p>
-        Steps with <EuiCode>titleSize</EuiCode> set to <EuiCode>xs</EuiCode>{' '}
-        like this one, get a smaller step circle
+        Both step title and circle indicators will adjust in size based on the{' '}
+        <EuiCode>titleSize</EuiCode> prop
       </p>
     ),
   },
@@ -23,8 +23,8 @@ const firstSetOfSteps: EuiStepInterface[] = [
     title: 'Step 2',
     children: (
       <p>
-        Steps with <EuiCode>titleSize</EuiCode> set to <EuiCode>xs</EuiCode>{' '}
-        like this one, get a smaller step circle
+        Both step title and circle indicators will adjust in size based on the{' '}
+        <EuiCode>titleSize</EuiCode> prop
       </p>
     ),
   },
