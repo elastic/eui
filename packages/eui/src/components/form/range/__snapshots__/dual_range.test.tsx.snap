@@ -327,25 +327,16 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="true"
         aria-label="Max value"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiFieldNumber-euiRangeInput"
         max="100"
         min="1"
         name="undefined-maxValue"
         step="1"
-        style="inline-size: calc(12px + 1ch + 2em + 22px);"
+        style="inline-size: calc(12px + 1ch + 2em + 0px);"
         type="number"
         value="8"
       />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          color="danger"
-          data-euiicon-type="warning"
-        />
-      </div>
     </div>
   </div>
 </div>
@@ -446,18 +437,10 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
         min="1"
         name="undefined-maxValue"
         step="1"
-        style="inline-size: calc(12px + 1ch + 2em + 22px);"
+        style="inline-size: calc(12px + 1ch + 2em + 0px);"
         type="number"
         value="8"
       />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          color="danger"
-          data-euiicon-type="warning"
-        />
-      </div>
     </div>
   </div>
 </div>
@@ -550,18 +533,10 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
         min="1"
         name="undefined-maxValue"
         step="1"
-        style="inline-size: calc(12px + 1ch + 2em + 22px);"
+        style="inline-size: calc(12px + 1ch + 2em + 0px);"
         type="number"
         value="8"
       />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          color="danger"
-          data-euiicon-type="warning"
-        />
-      </div>
     </div>
   </div>
 </div>

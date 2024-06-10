@@ -334,7 +334,6 @@ describe('EuiDualRange', () => {
 
     describe('maxInputProps', () => {
       it('applies passed props to max input', () => {
-        console.log(props);
         const { container } = render(
           <EuiDualRange
             {...props}
