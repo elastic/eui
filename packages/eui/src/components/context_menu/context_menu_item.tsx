@@ -30,7 +30,7 @@ import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 import { euiContextMenuItemStyles } from './context_menu_item.styles';
 
-export type EuiContextMenuItemIcon = IconType | ReactElement<any>;
+export type EuiContextMenuItemIcon = IconType | ReactElement<any> | HTMLElement;
 
 export type EuiContextMenuItemLayoutAlignment = 'center' | 'top' | 'bottom';
 
