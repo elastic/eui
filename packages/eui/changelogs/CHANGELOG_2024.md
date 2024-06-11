@@ -1,5 +1,6 @@
 ## [`v95.1.0`](https://github.com/elastic/eui/releases/v95.1.0)
 
+- Updated the autofill colors of Chrome (and other webkit browsers) to better match EUI's light and dark mode ([#7776](https://github.com/elastic/eui/pull/7776))
 - Updated `EuiFormControlLayout` to automatically pass icon padding affordance down to child `input`s ([#7799](https://github.com/elastic/eui/pull/7799))
 
 **Bug fixes**
@@ -9,7 +10,6 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiFieldText` to Emotion ([#7770](https://github.com/elastic/eui/pull/7770))
-- Updated the autofill colors of Chrome (and other webkit browsers) to better match EUI's light and dark mode ([#7776](https://github.com/elastic/eui/pull/7776))
 - Converted `EuiFieldNumber` to Emotion ([#7802](https://github.com/elastic/eui/pull/7802))
 - Converted `EuiFieldSearch` to Emotion ([#7802](https://github.com/elastic/eui/pull/7802))
 - Converted `EuiFieldPassword` to Emotion ([#7802](https://github.com/elastic/eui/pull/7802))
