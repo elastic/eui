@@ -5171,7 +5171,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/core@npm:3.4.0":
+"@docusaurus/core@npm:3.4.0, @docusaurus/core@npm:^3.4.0":
   version: 3.4.0
   resolution: "@docusaurus/core@npm:3.4.0"
   dependencies:
@@ -5309,7 +5309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/module-type-aliases@npm:3.4.0":
+"@docusaurus/module-type-aliases@npm:3.4.0, @docusaurus/module-type-aliases@npm:^3.4.0":
   version: 3.4.0
   resolution: "@docusaurus/module-type-aliases@npm:3.4.0"
   dependencies:
@@ -5614,7 +5614,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:3.4.0":
+"@docusaurus/types@npm:3.4.0, @docusaurus/types@npm:^3.4.0":
   version: 3.4.0
   resolution: "@docusaurus/types@npm:3.4.0"
   dependencies:
@@ -5648,7 +5648,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/utils-validation@npm:3.4.0":
+"@docusaurus/utils-validation@npm:3.4.0, @docusaurus/utils-validation@npm:^3.4.0":
   version: 3.4.0
   resolution: "@docusaurus/utils-validation@npm:3.4.0"
   dependencies:
@@ -5749,6 +5749,28 @@ __metadata:
     eslint: "npm:^6.4.0"
   peerDependencies:
     eslint: ">=5 <7"
+  languageName: unknown
+  linkType: soft
+
+"@elastic/eui-docusaurus-theme@workspace:^, @elastic/eui-docusaurus-theme@workspace:packages/docusaurus-theme":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-docusaurus-theme@workspace:packages/docusaurus-theme"
+  dependencies:
+    "@docusaurus/core": "npm:^3.4.0"
+    "@docusaurus/module-type-aliases": "npm:^3.4.0"
+    "@docusaurus/types": "npm:^3.4.0"
+    "@docusaurus/utils-validation": "npm:^3.4.0"
+    "@elastic/datemath": "npm:^5.0.3"
+    "@elastic/eui": "npm:94.5.0"
+    "@emotion/css": "npm:^11.11.2"
+    "@emotion/react": "npm:^11.11.4"
+    "@types/react": "npm:^18"
+    "@types/react-dom": "npm:^18"
+    moment: "npm:^2.30.1"
+    typescript: "npm:~5.4.5"
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -9913,6 +9935,15 @@ __metadata:
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/afd57cfd7c6ffbd5f71e6fbfb130323e938cc914b699513be7e69d7d59d3b0e332b15e5379c1e58b9f7f71fc48c0cbdcd5301e1a0017540b53c6152e150e2fee
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
   languageName: node
   linkType: hard
 
@@ -36133,6 +36164,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:~5.4.5":
+  version: 5.4.5
+  resolution: "typescript@npm:5.4.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/2954022ada340fd3d6a9e2b8e534f65d57c92d5f3989a263754a78aba549f7e6529acc1921913560a4b816c46dce7df4a4d29f9f11a3dc0d4213bb76d043251e
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@npm%3A4.5.3#optional!builtin<compat/typescript>":
   version: 4.5.3
   resolution: "typescript@patch:typescript@npm%3A4.5.3#optional!builtin<compat/typescript>::version=4.5.3&hash=f1b8ea"
@@ -36150,6 +36191,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/062c1cee1990e6b9419ce8a55162b8dc917eb87f807e4de0327dbc1c2fa4e5f61bc0dd4e034d38ff541d1ed0479b53bcee8e4de3a4075c51a1724eb6216cb6f5
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A~5.4.5#optional!builtin<compat/typescript>":
+  version: 5.4.5
+  resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/db2ad2a16ca829f50427eeb1da155e7a45e598eec7b086d8b4e8ba44e5a235f758e606d681c66992230d3fc3b8995865e5fd0b22a2c95486d0b3200f83072ec9
   languageName: node
   linkType: hard
 
@@ -37799,6 +37850,7 @@ __metadata:
     "@docusaurus/types": "npm:3.4.0"
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eui": "npm:94.5.0"
+    "@elastic/eui-docusaurus-theme": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
     "@mdx-js/react": "npm:^3.0.0"

@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import OriginalMDXComponents from '@theme-original/MDXComponents';
-import { Badge } from '@site/src/components/badge';
+import OriginalMDXComponents from '@theme-init/MDXComponents';
+import { Badge } from '../../components/badge';
 
 const MDXComponents = {
   ...OriginalMDXComponents,

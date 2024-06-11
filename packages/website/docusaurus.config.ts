@@ -35,6 +35,10 @@ const config: Config = {
     locales: ['en'],
   },
 
+  themes: [
+    '@elastic/eui-docusaurus-theme',
+  ],
+
   presets: [
     [
       'classic',

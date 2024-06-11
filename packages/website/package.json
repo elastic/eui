@@ -19,6 +19,7 @@
     "@docusaurus/preset-classic": "3.4.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "94.5.0",
+    "@elastic/eui-docusaurus-theme": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@mdx-js/react": "^3.0.0",
