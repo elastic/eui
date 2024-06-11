@@ -49,9 +49,6 @@ const config: Config = {
           editUrl:
             'https://github.com/elastic/eui/tree/main/website/',
         },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
       } satisfies Preset.Options,
     ],
   ],
