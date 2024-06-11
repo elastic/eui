@@ -10,22 +10,25 @@ import React, {
   InputHTMLAttributes,
   FunctionComponent,
   useState,
+  useMemo,
+  useCallback,
   Ref,
 } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
+
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+import { useEuiI18n } from '../../i18n';
+import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
-import { useEuiI18n } from '../../i18n';
-import { useCombinedRefs } from '../../../services';
-import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
+
+import { euiFieldPasswordStyles } from './field_password.styles';
 
 export type EuiFieldPasswordProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -110,61 +113,72 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
   const [inputRef, _setInputRef] = useState<HTMLInputElement | null>(null);
   const setInputRef = useCombinedRefs([_setInputRef, _inputRef]);
 
-  const handleToggle = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    isVisible: boolean
-  ) => {
-    setInputType(isVisible ? 'password' : 'text');
-    if (inputRef) {
-      inputRef.focus();
-    }
+  const handleToggle = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>, isVisible: boolean) => {
+      setInputType(isVisible ? 'password' : 'text');
+      inputRef?.focus();
 
-    if (dualToggleProps && dualToggleProps.onClick) {
-      dualToggleProps.onClick(event);
-    }
-  };
+      dualToggleProps?.onClick?.(event);
+    },
+    [inputRef, dualToggleProps]
+  );
 
-  // Convert any `append` elements to an array so the visibility
-  // toggle can be added to it
-  let appends = Array.isArray(append) ? append : [];
-  if (append && !Array.isArray(append)) appends.push(append);
   // Add a toggling button to switch between `password` and `input` if consumer wants `dual`
   // https://www.w3schools.com/howto/howto_js_toggle_password.asp
-  if (type === 'dual') {
-    const isVisible = inputType === 'text';
+  const visibilityToggle = useMemo(() => {
+    if (type === 'dual') {
+      const isVisible = inputType === 'text';
 
-    const visibilityToggle = (
-      <EuiButtonIcon
-        iconType={isVisible ? 'eyeClosed' : 'eye'}
-        aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
-        title={isVisible ? maskPasswordLabel : showPasswordLabel}
-        disabled={rest.disabled}
-        {...dualToggleProps}
-        onClick={(e) => handleToggle(e, isVisible)}
-      />
-    );
-    appends = [...appends, visibilityToggle];
-  }
+      return (
+        <EuiButtonIcon
+          iconType={isVisible ? 'eyeClosed' : 'eye'}
+          aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
+          title={isVisible ? maskPasswordLabel : showPasswordLabel}
+          disabled={rest.disabled}
+          {...dualToggleProps}
+          onClick={(e) => handleToggle(e, isVisible)}
+        />
+      );
+    }
+  }, [
+    type,
+    inputType,
+    maskPasswordLabel,
+    showPasswordLabel,
+    dualToggleProps,
+    handleToggle,
+    rest.disabled,
+  ]);
 
-  const finalAppend = appends.length ? appends : undefined;
+  const finalAppend = useMemo(() => {
+    if (!visibilityToggle) return append;
+    if (!append) return visibilityToggle;
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-  });
+    // Convert any `append` elements to an array so the visibility
+    // toggle can be added to it
+    const appendAsArray = append
+      ? Array.isArray(append)
+        ? append
+        : [append]
+      : [];
+
+    return [...appendAsArray, visibilityToggle];
+  }, [append, visibilityToggle]);
 
   const classes = classNames(
     'euiFieldPassword',
-    numIconsClass,
-    {
-      'euiFieldPassword--fullWidth': fullWidth,
-      'euiFieldPassword--compressed': compressed,
-      'euiFieldPassword--inGroup': prepend || finalAppend,
-      'euiFieldPassword--withToggle': type === 'dual',
-      'euiFieldPassword-isLoading': isLoading,
-    },
+    { 'euiFieldPassword-isLoading': isLoading },
     className
   );
+
+  const styles = useEuiMemoizedStyles(euiFieldPasswordStyles);
+  const cssStyles = [
+    styles.euiFieldPassword,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    (finalAppend || prepend) && styles.inGroup,
+    type === 'dual' && styles.withToggle,
+  ];
 
   return (
     <EuiFormControlLayout
@@ -183,6 +197,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
           name={name}
           placeholder={placeholder}
           className={classes}
+          css={cssStyles}
           value={value}
           ref={setInputRef}
           {...rest}

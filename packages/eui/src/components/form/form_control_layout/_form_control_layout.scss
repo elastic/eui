@@ -5,6 +5,7 @@
   // Let the height expand as needed
   @include euiFormControlSize($includeAlternates: true);
 
+  // TODO: Remove this once all form controls are on Emotion/setting padding via CSS variables
   $iconSize: map-get($euiFormControlIconSizes, 'medium');
   $iconPadding: $euiFormControlPadding;
   $marginBetweenIcons: $euiFormControlPadding / 2;

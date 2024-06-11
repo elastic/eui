@@ -176,7 +176,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
       >
         <input
           aria-label="Auto refresh"
-          class="euiFieldText euiFieldText--inGroup"
+          class="euiFieldText emotion-euiFieldText-inGroup"
           readonly=""
           type="text"
           value="Off"
@@ -226,7 +226,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
       >
         <input
           aria-label="Auto refresh"
-          class="euiFieldText euiFieldText--inGroup"
+          class="euiFieldText emotion-euiFieldText-inGroup"
           disabled=""
           readonly=""
           type="text"

@@ -34,7 +34,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
     >
       <input
         aria-label="aria-label"
-        class="euiFieldText euiFieldText--inGroup"
+        class="euiFieldText emotion-euiFieldText-inGroup"
         data-test-subj="test subject string"
         readonly=""
         type="text"
@@ -79,7 +79,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
     >
       <input
         aria-label="Auto refresh"
-        class="euiFieldText euiFieldText--inGroup"
+        class="euiFieldText emotion-euiFieldText-inGroup"
         readonly=""
         type="text"
         value="1 second"
@@ -123,7 +123,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
     >
       <input
         aria-label="Auto refresh"
-        class="euiFieldText euiFieldText--inGroup"
+        class="euiFieldText emotion-euiFieldText-inGroup"
         readonly=""
         type="text"
         value="2 seconds"

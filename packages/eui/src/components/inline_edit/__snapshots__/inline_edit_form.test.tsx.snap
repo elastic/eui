@@ -28,7 +28,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFieldText--fullWidth"
+                class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 type="text"
@@ -118,7 +118,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFieldText--fullWidth"
+                class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 type="text"
@@ -212,7 +212,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                class="euiFieldText emotion-euiFieldText-fullWidth-inGroup"
                 data-test-subj="customInput"
                 id="generated-id"
                 type="text"
@@ -300,7 +300,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFieldText--fullWidth"
+                class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 type="text"
@@ -389,7 +389,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
                 aria-describedby="inlineEdit_generated-id"
                 aria-invalid="true"
                 aria-label="Edit inline"
-                class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth"
+                class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 type="text"
@@ -485,7 +485,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth euiFieldText-isLoading"
+                class="euiFieldText euiFieldText-isLoading emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 type="text"
@@ -597,7 +597,7 @@ exports[`EuiInlineEditForm edit mode placeholder 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFieldText--fullWidth"
+                class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 placeholder="This is a placeholder."
@@ -686,7 +686,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
               <input
                 aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
-                class="euiFieldText euiFieldText--fullWidth"
+                class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
                 id="generated-id"
                 type="text"

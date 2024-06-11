@@ -16,12 +16,16 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { useCombinedRefs } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 
 import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { useFormContext } from '../eui_form_context';
 import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
+
+import { euiTextAreaStyles } from './text_area.styles';
+
+export const RESIZE = ['vertical', 'horizontal', 'both', 'none'] as const;
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
@@ -44,19 +48,10 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
      * Which direction, if at all, should the textarea resize
      * @default vertical
      */
-    resize?: keyof typeof resizeToClassNameMap;
+    resize?: (typeof RESIZE)[number];
 
     inputRef?: Ref<HTMLTextAreaElement>;
   };
-
-const resizeToClassNameMap = {
-  vertical: 'euiTextArea--resizeVertical',
-  horizontal: 'euiTextArea--resizeHorizontal',
-  both: 'euiTextArea--resizeBoth',
-  none: 'euiTextArea--resizeNone',
-};
-
-export const RESIZE = Object.keys(resizeToClassNameMap);
 
 export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
   const { defaultFullWidth } = useFormContext();
@@ -78,25 +73,15 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     ...rest
   } = props;
 
-  const classes = classNames(
-    'euiTextArea',
-    resizeToClassNameMap[resize],
-    {
-      'euiTextArea--fullWidth': fullWidth,
-      'euiTextArea--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiTextArea', className);
 
-  let definedRows: number;
-
-  if (rows) {
-    definedRows = rows;
-  } else if (compressed) {
-    definedRows = 3;
-  } else {
-    definedRows = 6;
-  }
+  const styles = useEuiMemoizedStyles(euiTextAreaStyles);
+  const cssStyles = [
+    styles.euiTextArea,
+    styles.resize[resize],
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+  ];
 
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const refs = useCombinedRefs([ref, inputRef]);
@@ -137,12 +122,14 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
       clear={clear}
       icon={icon}
       className="euiFormControlLayout--euiTextArea"
+      css={styles.formControlLayout.euiTextArea}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <textarea
           className={classes}
+          css={cssStyles}
           {...rest}
-          rows={definedRows}
+          rows={rows ? rows : compressed ? 3 : 6}
           name={name}
           id={id}
           ref={refs}

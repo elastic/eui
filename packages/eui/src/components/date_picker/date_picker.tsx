@@ -21,7 +21,6 @@ import { Moment } from 'moment'; // eslint-disable-line import/named
 
 import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
-import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 
 import { useCombinedRefs } from '../../services';
 import { EuiI18nConsumer } from '../context';
@@ -60,6 +59,8 @@ const unsupportedProps = [
   'showMonthYearDropdown',
   // We overridde this with `popoverPlacement`
   'popperPlacement',
+  // An internal EUI styling concern that consumers shouldn't need to access
+  'defaultInputProps',
 ] as const;
 
 type UnsupportedProps = (typeof unsupportedProps)[number];
@@ -193,41 +194,15 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     'euiDatePicker--shadow': inline && shadow,
   });
 
+  const datePickerClasses = classNames('euiDatePicker', className);
+
   // Check for whether the passed `selected` moment date is valid
   const isInvalid =
     _isInvalid || (selected?.isValid() === false ? true : undefined);
 
-  const numIconsClass = controlOnly
-    ? false
-    : getFormControlClassNameForIconCount({
-        isInvalid,
-        isLoading,
-      });
-
-  const datePickerClasses = classNames(
-    'euiDatePicker',
-    'euiFieldText',
-    numIconsClass,
-    !inline && {
-      'euiFieldText--fullWidth': fullWidth,
-      'euiFieldText-isLoading': isLoading,
-      'euiFieldText--compressed': compressed,
-      'euiFieldText--withIcon': showIcon,
-      'euiFieldText--isClearable': selected && onClear,
-    },
-    className
-  );
-
-  let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
-  if (inline || customInput || !showIcon) {
-    optionalIcon = undefined;
-  } else if (iconType) {
-    optionalIcon = iconType;
-  } else if (showTimeSelectOnly) {
-    optionalIcon = 'clock';
-  } else {
-    optionalIcon = 'calendar';
-  }
+  // Passed to the default EuiFieldText input, not passed to custom inputs
+  const defaultInputProps =
+    !inline && !customInput ? { compressed, fullWidth } : undefined;
 
   // In case the consumer did not alter the default date format but wants
   // to add the time select, we append the default time format
@@ -255,6 +230,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
             adjustDateOnChange={adjustDateOnChange}
             calendarClassName={calendarClassName}
             className={datePickerClasses}
+            defaultInputProps={defaultInputProps}
             customInput={customInput}
             dateFormat={fullDateFormat}
             dayClassName={dayClassName}
@@ -293,6 +269,17 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   );
 
   if (controlOnly) return control;
+
+  let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
+  if (inline || customInput || !showIcon) {
+    optionalIcon = undefined;
+  } else if (iconType) {
+    optionalIcon = iconType;
+  } else if (showTimeSelectOnly) {
+    optionalIcon = 'clock';
+  } else {
+    optionalIcon = 'calendar';
+  }
 
   return (
     <span className={classes}>

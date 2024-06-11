@@ -28,7 +28,7 @@ exports[`SearchBar render - box 1`] = `
         </div>
         <input
           aria-label="aria-label"
-          class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+          class="euiFieldSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
           data-test-subj="test subject string"
           placeholder="find something..."
           type="search"
@@ -68,7 +68,7 @@ exports[`SearchBar render - no config, no query 1`] = `
         </div>
         <input
           aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
-          class="euiFieldSearch euiFieldSearch--fullWidth"
+          class="euiFieldSearch emotion-euiFieldSearch-fullWidth"
           placeholder="Search..."
           type="search"
           value=""
@@ -107,7 +107,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
         </div>
         <input
           aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
-          class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable"
+          class="euiFieldSearch euiFieldSearch-isClearable emotion-euiFieldSearch-fullWidth"
           placeholder="Search..."
           type="search"
           value="this is a query"
@@ -217,7 +217,7 @@ exports[`SearchBar render - tools 1`] = `
         </div>
         <input
           aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
-          class="euiFieldSearch euiFieldSearch--fullWidth"
+          class="euiFieldSearch emotion-euiFieldSearch-fullWidth"
           placeholder="Search..."
           type="search"
           value=""

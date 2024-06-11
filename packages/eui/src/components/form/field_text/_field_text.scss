@@ -1,8 +1,0 @@
-.euiFieldText {
-  @include euiFormControlStyle;
-  @include euiFormControlWithIcon($isIconOptional: true, $side: 'left');
-}
-
-.euiFieldText--withIcon.euiFieldText--compressed {
-  @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
-}

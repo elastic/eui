@@ -947,7 +947,7 @@ describe('EuiInMemoryTable', () => {
       // should render with all three results visible
       expect(component.find('.testTable EuiTableRow').length).toBe(3);
 
-      const searchField = component.find('EuiFieldSearch input[type="search"]');
+      const searchField = component.find('input.euiFieldSearch');
 
       searchField.simulate('keyUp', {
         target: {

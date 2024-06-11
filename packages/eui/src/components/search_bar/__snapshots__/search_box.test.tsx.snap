@@ -22,7 +22,7 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
     </div>
     <input
       aria-label="aria-label"
-      class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+      class="euiFieldSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
       data-test-subj="test subject string"
       placeholder="..."
       type="search"
@@ -54,7 +54,7 @@ exports[`EuiSearchBox render - no config 1`] = `
     </div>
     <input
       aria-label="aria-label"
-      class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+      class="euiFieldSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
       data-test-subj="test subject string"
       placeholder="Search..."
       type="search"

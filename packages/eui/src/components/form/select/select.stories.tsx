@@ -20,6 +20,12 @@ import { EuiSelect, EuiSelectProps } from './select';
 const meta: Meta<EuiSelectProps> = {
   title: 'Forms/EuiSelect',
   component: EuiSelect,
+  parameters: {
+    controls: {
+      // Excude onMouseUp from controls, as it's not a terribly useful prop to document
+      exclude: ['onMouseUp'],
+    },
+  },
   argTypes: {
     append: {
       control: 'radio',
@@ -53,18 +59,13 @@ const meta: Meta<EuiSelectProps> = {
   },
 };
 // adding onChange for visibility
-enableFunctionToggleControls(meta, ['onChange', 'onMouseUp']);
+enableFunctionToggleControls(meta, ['onChange']);
 disableStorybookControls(meta, ['inputRef']);
 
 export default meta;
 type Story = StoryObj<EuiSelectProps>;
 
 export const Playground: Story = {
-  parameters: {
-    controls: {
-      exclude: ['onMouseUp'],
-    },
-  },
   args: {
     defaultValue: 'option-2',
     options: [

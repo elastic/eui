@@ -7,10 +7,12 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFormControlSize } from '../form.styles';
+import { euiFormVariables } from '../form.styles';
 import { UseEuiTheme } from '../../../services';
 
 export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
   return {
     euiRangeWrapper: css`
       display: flex;
@@ -38,11 +40,16 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    regular: css`
-      ${euiFormControlSize(euiThemeContext)}
+    // Skip the css`` on the default height to avoid generating a className
+    uncompressed: `
+      block-size: ${form.controlHeight};
     `,
     compressed: css`
-      ${euiFormControlSize(euiThemeContext, { compressed: true })}
+      block-size: ${form.controlCompressedHeight};
+    `,
+    // Skip the css`` on the default width to avoid generating a className
+    formWidth: `
+      max-inline-size: ${form.maxWidth};
     `,
     fullWidth: css`
       max-inline-size: 100%;

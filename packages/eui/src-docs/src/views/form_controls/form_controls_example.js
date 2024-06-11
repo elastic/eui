@@ -477,16 +477,6 @@ export const FormControlsExample = {
             the <EuiCode>controlOnly</EuiCode> and <EuiCode>type</EuiCode> props
             of <strong>EuiFieldText</strong> as the wrapped control.
           </p>
-
-          <EuiCallOut title="Additional padding required" color="warning">
-            <p>
-              The padding on the <EuiCode>input</EuiCode> itself doesn&rsquo;t
-              take into account the presence of the various icons supported by{' '}
-              <strong>EuiFormControlLayout</strong>. Any input component
-              provided to <strong>EuiFormControlLayout</strong> is responsible
-              for its own padding.
-            </p>
-          </EuiCallOut>
         </>
       ),
       props: {

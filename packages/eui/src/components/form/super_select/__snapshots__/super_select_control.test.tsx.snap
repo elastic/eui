@@ -15,7 +15,7 @@ exports[`EuiSuperSelectControl is rendered 1`] = `
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
+        class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       />
@@ -51,7 +51,7 @@ exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control-compressed"
         type="button"
       />
       <div
@@ -86,7 +86,7 @@ exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control"
         type="button"
       />
       <div
@@ -121,7 +121,7 @@ exports[`EuiSuperSelectControl props empty value option is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control"
         type="button"
       />
       <div
@@ -156,7 +156,7 @@ exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control-fullWidth"
         type="button"
       />
       <div
@@ -191,7 +191,7 @@ exports[`EuiSuperSelectControl props isInvalid is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isInvalid"
+        class="euiSuperSelectControl euiSuperSelectControl-isInvalid emotion-euiSuperSelect__control-invalid"
         type="button"
       />
       <div
@@ -230,7 +230,7 @@ exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isLoading"
+        class="euiSuperSelectControl euiSuperSelectControl-isLoading emotion-euiSuperSelect__control"
         type="button"
       />
       <div
@@ -270,11 +270,11 @@ exports[`EuiSuperSelectControl props placeholder is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control"
         type="button"
       >
         <span
-          class="euiSuperSelectControl__placeholder"
+          class="euiSuperSelectControl__placeholder emotion-euiSuperSelect__placeholder"
         >
           Select an option
         </span>
@@ -311,7 +311,7 @@ exports[`EuiSuperSelectControl props value option is rendered 1`] = `
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control"
         type="button"
       >
         Option #1
