@@ -492,7 +492,6 @@ export class EuiPopover extends Component<Props, State> {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.positionPopoverFixed, true);
-    if (!clearTimeout) return;
     clearTimeout(this.respositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
