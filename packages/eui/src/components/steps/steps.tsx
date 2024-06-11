@@ -30,7 +30,9 @@ export interface EuiStepsProps
    */
   headingElement?: string;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs` and `xxs`. Defaults to `s`
+   * Title sizing equivalent to **EuiTitle**, but only `m`, `s`, `xs` font sizes.
+   * The `xxs` size reduces the size of the accompanying step indicator, but not the title itself.
+   * @default s
    */
   titleSize?: EuiStepProps['titleSize'];
 }
