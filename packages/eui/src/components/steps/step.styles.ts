@@ -16,7 +16,6 @@ export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
     numberXSSize: euiTheme.size.l,
     numberXXSSize: euiTheme.size.base,
     numberMargin: euiTheme.size.base,
-    numberXXSOffset: euiTheme.size.xs,
   };
 };
 
@@ -68,18 +67,9 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
         background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
       }
     `,
-    // the xxs indicator circle is smaller than the text height, we realign the
-    // distances of the steps after manually horizontally aligning the step number
-    // to ensure the connection lines connect properly to the indicators
     xxs: css`
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', `calc(-1 * ${euiStep.numberXXSOffset})`)}
-      }
-
       &:not(:last-of-type) {
-        /* Adjust the line to be centered on the smaller number */
-        background-position: -${euiTheme.size.s} calc(${euiTheme.size.base} +
-              ${euiStep.numberXXSOffset});
+        background-position: -${euiTheme.size.s} ${euiTheme.size.base};
       }
     `,
   };
@@ -173,18 +163,8 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-top', euiTheme.size.xs)}
     `,
     xs: css``,
-    xxs: css``,
-  };
-};
-
-export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-  const euiStep = euiStepVariables(euiTheme);
-
-  return {
-    // the xxs number circle is smaller than the title text height, therefore
-    // we move it manually down to align it horizontally.
-    // skip css to not add a class
-    offset__xxs: logicalCSS('margin-top', euiStep.numberXXSOffset),
+    xxs: css`
+      line-height: ${euiStep.numberXXSSize};
+    `,
   };
 };
