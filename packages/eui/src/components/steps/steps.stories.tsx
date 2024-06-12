@@ -9,7 +9,50 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
+import { EuiStepInterface } from './step';
 import { EuiSteps, EuiStepsProps } from './steps';
+
+const steps: EuiStepInterface[] = [
+  {
+    title: 'Step 1',
+    children: 'lorem ipsum',
+  },
+  {
+    title: 'Step 2',
+    children: 'lorem ipsum',
+    status: 'current',
+  },
+  {
+    title: 'Step 3',
+    children: 'lorem ipsum',
+    status: 'complete',
+  },
+  {
+    title: 'Step 4',
+    children: 'lorem ipsum',
+    status: 'incomplete',
+  },
+  {
+    title: 'Step 5',
+    children: 'lorem ipsum',
+    status: 'warning',
+  },
+  {
+    title: 'Step 6',
+    children: 'lorem ipsum',
+    status: 'danger',
+  },
+  {
+    title: 'Step 7',
+    children: 'lorem ipsum',
+    status: 'loading',
+  },
+  {
+    title: 'Step 8',
+    children: 'lorem ipsum',
+    status: 'disabled',
+  },
+];
 
 const meta: Meta<EuiStepsProps> = {
   title: 'Navigation/EuiSteps/EuiSteps',
@@ -31,46 +74,19 @@ type Story = StoryObj<EuiStepsProps>;
 
 export const Playground: Story = {
   args: {
-    steps: [
-      {
-        title: 'Step 1',
-        children: 'lorem ipsum',
-      },
-      {
-        title: 'Step 2',
-        children: 'lorem ipsum',
-        status: 'current',
-      },
-      {
-        title: 'Step 3',
-        children: 'lorem ipsum',
-        status: 'complete',
-      },
-      {
-        title: 'Step 4',
-        children: 'lorem ipsum',
-        status: 'incomplete',
-      },
-      {
-        title: 'Step 5',
-        children: 'lorem ipsum',
-        status: 'warning',
-      },
-      {
-        title: 'Step 6',
-        children: 'lorem ipsum',
-        status: 'danger',
-      },
-      {
-        title: 'Step 7',
-        children: 'lorem ipsum',
-        status: 'loading',
-      },
-      {
-        title: 'Step 8',
-        children: 'lorem ipsum',
-        status: 'disabled',
-      },
-    ],
+    steps,
+  },
+};
+
+export const UnorderedSteps: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['steps', 'titleSize'],
+    },
+  },
+  args: {
+    steps,
+    titleSize: 'xxs',
   },
 };

@@ -14,7 +14,7 @@ import React, {
   ReactNode,
 } from 'react';
 import { CommonProps } from '../common';
-import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
+import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import { useEuiTheme } from '../../services';
 import {
@@ -42,9 +42,11 @@ export interface EuiStepInterface {
    */
   status?: EuiStepStatus;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
+   * Title sizing equivalent to **EuiTitle**, but only `m`, `s`, `xs` font sizes.
+   * The `xxs` size reduces the size of the accompanying step indicator, but not the title itself.
+   * @default s
    */
-  titleSize?: Exclude<EuiTitleProps['size'], 'xxxs' | 'xxs' | 'l'>;
+  titleSize?: Extract<EuiTitleProps['size'], 'xxs' | 'xs' | 's' | 'm'>;
 }
 
 export type EuiStepProps = CommonProps &
@@ -84,9 +86,13 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   return (
     <div className={classes} css={cssStyles} {...rest}>
       <div className="euiStep__titleWrapper" css={cssTitleWrapperStyles}>
-        <EuiStepNumber number={step} status={status} titleSize={titleSize} />
+        <EuiStepNumber
+          number={step}
+          status={status}
+          titleSize={titleSize === 'xxs' ? 'none' : titleSize}
+        />
         <EuiTitle
-          size={titleSize as EuiTitleSize}
+          size={titleSize === 'xxs' ? 'xs' : titleSize}
           className="euiStep__title"
           css={cssStepTitleStyles}
         >
