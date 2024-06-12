@@ -34,6 +34,10 @@ export default () => {
 
   const sizeButtons = [
     {
+      id: 'xs',
+      label: 'XSmall',
+    },
+    {
       id: 's',
       label: 'Small',
     },
