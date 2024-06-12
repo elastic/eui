@@ -14,6 +14,7 @@ export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
   return {
     numberSize: euiTheme.size.xl,
     numberXSSize: euiTheme.size.l,
+    numberXXSSize: euiTheme.size.base,
     numberMargin: euiTheme.size.base,
   };
 };
@@ -52,18 +53,23 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       &:not(:last-of-type) {
-        background-position: left ${euiTheme.size.xl};
+        background-position: left ${euiStep.numberSize};
       }
     `,
     s: css`
       &:not(:last-of-type) {
-        background-position: left ${euiTheme.size.xl};
+        background-position: left ${euiStep.numberSize};
       }
     `,
     xs: css`
       &:not(:last-of-type) {
         /* Adjust the line to be centered on the smaller number */
-        background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
+        background-position: -${euiTheme.size.xs} ${euiStep.numberXSSize};
+      }
+    `,
+    xxs: css`
+      &:not(:last-of-type) {
+        background-position: -${euiTheme.size.s} ${euiStep.numberXXSSize};
       }
     `,
   };
@@ -118,6 +124,21 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
         mathWithUnits(euiStep.numberXSSize, (x) => x / 2)
       )}
     `,
+    xxs: css`
+      /* Align the content's contents with the title */
+      ${logicalCSS(
+        'padding-left',
+        mathWithUnits(
+          [euiStep.numberXXSSize, euiStep.numberMargin],
+          (x, y) => x / 2 + y
+        )
+      )}
+      /* Align content border to horizontal center of step number */
+      ${logicalCSS(
+        'margin-left',
+        mathWithUnits(euiStep.numberXXSSize, (x) => x / 2)
+      )}
+    `,
   };
 };
 
@@ -142,5 +163,8 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-top', euiTheme.size.xs)}
     `,
     xs: css``,
+    xxs: css`
+      line-height: ${euiStep.numberXXSSize};
+    `,
   };
 };
