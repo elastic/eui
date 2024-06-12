@@ -2,7 +2,7 @@
 
 exports[`CustomItemAction render 1`] = `
 <div
-  className="test"
+  class="test"
 >
   <span>
     test
