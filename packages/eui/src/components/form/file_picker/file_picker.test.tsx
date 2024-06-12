@@ -29,7 +29,7 @@ describe('EuiFilePicker', () => {
       );
 
       const filePicker = container.querySelector('.euiFilePicker');
-      expect(filePicker).toHaveClass('euiFilePicker--fullWidth');
+      expect(filePicker!.className).toContain('fullWidth');
     });
   });
 });

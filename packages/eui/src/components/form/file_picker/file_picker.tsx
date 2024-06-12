@@ -9,6 +9,11 @@
 import React, { Component, InputHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import {
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
+  htmlIdGenerator,
+} from '../../../services';
 import { CommonProps, keysOf } from '../../common';
 
 import { EuiValidatableControl } from '../validatable_control';
@@ -17,8 +22,8 @@ import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
-import { htmlIdGenerator } from '../../../services/accessibility';
 import { FormContext, FormContextValue } from '../eui_form_context';
+import { euiFilePickerStyles } from './file_picker.styles';
 
 const displayToClassNameMap = {
   default: null,
@@ -64,7 +69,9 @@ export interface EuiFilePickerProps
   disabled?: boolean;
 }
 
-export class EuiFilePicker extends Component<EuiFilePickerProps> {
+export class EuiFilePickerClass extends Component<
+  EuiFilePickerProps & WithEuiStylesMemoizerProps
+> {
   static contextType = FormContext;
 
   static defaultProps: Partial<EuiFilePickerProps> = {
@@ -145,6 +152,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
       >
         {(clearSelectedFiles: string) => {
           const {
+            stylesMemoizer,
             id,
             name,
             initialPromptText,
@@ -171,13 +179,18 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
               'euiFilePicker--compressed': compressed,
-              'euiFilePicker--fullWidth': fullWidth,
               'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-isLoading': isLoading,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
             },
             className
           );
+
+          const styles = stylesMemoizer(euiFilePickerStyles);
+          const cssStyles = [
+            styles.euiFilePicker,
+            fullWidth ? styles.fullWidth : styles.formWidth,
+          ];
 
           let clearButton;
           if (isLoading && normalFormControl) {
@@ -221,7 +234,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
           );
 
           return (
-            <div className={classes}>
+            <div css={cssStyles} className={classes}>
               <div className="euiFilePicker__wrap">
                 <EuiValidatableControl isInvalid={isInvalid}>
                   <input
@@ -265,3 +278,6 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     );
   }
 }
+
+export const EuiFilePicker =
+  withEuiStylesMemoizer<EuiFilePickerProps>(EuiFilePickerClass);

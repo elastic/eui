@@ -3,9 +3,6 @@
   */
 
 .euiFilePicker {
-  @include euiFormControlSize($includeAlternates: true);
-  position: relative;
-
   &.euiFilePicker--large {
     border-radius: $euiFormControlBorderRadius;
     overflow: hidden;
