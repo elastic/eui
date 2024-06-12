@@ -12,20 +12,34 @@ import { render } from '@testing-library/react';
 import { EuiWindowEvent } from './window_event';
 
 describe('EuiWindowEvent', () => {
-  beforeEach(() => {
-    window.addEventListener = jest.fn();
-    window.removeEventListener = jest.fn();
+  let windowAddCount = 0;
+  let windowRemoveCount = 0;
+
+  beforeAll(() => {
+    // React 16 and 17 register a bunch of error listeners which we don't need to capture
+    window.addEventListener = jest.fn((event: string) => {
+      if (event !== 'error') windowAddCount++;
+    });
+    window.removeEventListener = jest.fn((event: string) => {
+      if (event !== 'error') windowRemoveCount++;
+    });
   });
 
-  afterEach(() => {
+  beforeEach(() => {
+    // Reset counts
+    windowAddCount = 0;
+    windowRemoveCount = 0;
+  });
+
+  afterAll(() => {
     jest.restoreAllMocks();
   });
 
   test('attaches handler to window event on mount', () => {
     const handler = () => null;
     render(<EuiWindowEvent event="click" handler={handler} />);
-    expect(window.addEventListener).toHaveBeenCalledTimes(1);
     expect(window.addEventListener).toHaveBeenCalledWith('click', handler);
+    expect(windowAddCount).toEqual(1);
   });
 
   test('removes handler on unmount', () => {
@@ -34,10 +48,8 @@ describe('EuiWindowEvent', () => {
       <EuiWindowEvent event="click" handler={handler} />
     );
     unmount();
-    expect(window.removeEventListener).toHaveBeenLastCalledWith(
-      'click',
-      handler
-    );
+    expect(window.removeEventListener).toHaveBeenCalledWith('click', handler);
+    expect(windowRemoveCount).toEqual(1);
   });
 
   test('removes and re-attaches handler to window event on update', () => {
@@ -47,18 +59,12 @@ describe('EuiWindowEvent', () => {
       <EuiWindowEvent event="click" handler={handler1} />
     );
 
-    expect(window.addEventListener).toHaveBeenLastCalledWith('click', handler1);
+    expect(window.addEventListener).toHaveBeenCalledWith('click', handler1);
 
     rerender(<EuiWindowEvent event="keydown" handler={handler2} />);
 
-    expect(window.removeEventListener).toHaveBeenLastCalledWith(
-      'click',
-      handler1
-    );
-    expect(window.addEventListener).toHaveBeenLastCalledWith(
-      'keydown',
-      handler2
-    );
+    expect(window.removeEventListener).toHaveBeenCalledWith('click', handler1);
+    expect(window.addEventListener).toHaveBeenCalledWith('keydown', handler2);
   });
 
   test('does not remove or re-attach handler if update is irrelevant', () => {
@@ -66,7 +72,7 @@ describe('EuiWindowEvent', () => {
     const { rerender } = render(
       <EuiWindowEvent event="click" handler={handler} />
     );
-    expect(window.addEventListener).toHaveBeenCalledTimes(1);
+    expect(windowAddCount).toEqual(1);
 
     rerender(
       <EuiWindowEvent
@@ -75,7 +81,7 @@ describe('EuiWindowEvent', () => {
         data-test-subj="whatever"
       />
     );
-    expect(window.addEventListener).toHaveBeenCalledTimes(1);
-    expect(window.removeEventListener).not.toHaveBeenCalled();
+    expect(windowAddCount).toEqual(1);
+    expect(windowRemoveCount).toEqual(0);
   });
 });
