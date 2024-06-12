@@ -9,14 +9,28 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { euiFormControlStyles } from '../form.styles';
+import {
+  euiCanAnimate,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
+import { euiFormControlStyles, euiFormVariables } from '../form.styles';
 
 export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   const formStyles = euiFormControlStyles(euiThemeContext);
+  const formVariables = euiFormVariables(euiThemeContext);
 
   return {
     euiFilePicker: css`
+      --euiFormControlLeftIconsCount: 1; /* Manually account for .euiFilePicker__icon */
       position: relative;
+    `,
+    hasFiles: css`
+      --euiFormControlRightIconsCount: 1;
+    `,
+    loading: css`
+      --euiFormControlRightIconsCount: 1;
     `,
 
     // Skip the css() on the default width to avoid generating a className
@@ -41,5 +55,46 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
         opacity: 0;
       }
     `,
+
+    euiFilePicker__prompt: css`
+      pointer-events: none; /* Don't block the user from dropping files onto the filepicker */
+      border: ${euiTheme.border.width.thick} dashed
+        ${euiTheme.colors.lightShade};
+
+      ${euiCanAnimate} {
+        transition: border-color ${euiTheme.animation.fast} ease-in,
+          background-color ${euiTheme.animation.fast} ease-in;
+      }
+    `,
+
+    // Skip the css() on the default height to avoid generating a className
+    uncompressed: formStyles.uncompressed,
+    compressed: css(formStyles.compressed),
+
+    // Completely different rendering style from the normal form controls
+    large: {
+      large: css`
+        padding-inline: ${euiTheme.size.l};
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      `,
+      // Static heights so that surrounding contents don't shift around
+      uncompressed: `
+        ${logicalCSS(
+          'height',
+          mathWithUnits(euiTheme.size.base, (x) => x * 8)
+        )}
+        border-radius: ${formVariables.controlBorderRadius};
+      `,
+      compressed: css`
+        ${logicalCSS(
+          'height',
+          mathWithUnits(euiTheme.size.base, (x) => x * 6.5)
+        )}
+        border-radius: ${formVariables.controlCompressedBorderRadius};
+      `,
+    },
   };
 };

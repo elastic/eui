@@ -1,19 +1,3 @@
-/**
-  * REMEMBER: --large modifiers must come last to override --compressed
-  */
-
-.euiFilePicker {
-  &.euiFilePicker--large {
-    border-radius: $euiFormControlBorderRadius;
-    overflow: hidden;
-    height: auto;
-  }
-
-  &.euiFilePicker--large.euiFilePicker--compressed {
-    border-radius: $euiFormControlCompressedBorderRadius;
-  }
-}
-
 .euiFilePicker__icon {
   position: absolute;
   left: $euiSizeM;
@@ -31,46 +15,7 @@
   }
 }
 
-/**
-  * 1. Don't block the user from dropping files onto the filepicker.
-  * 2. Ensure space for import icon, loading spinner, and clear button (only if it has files)
-  * 4. Static height so that it doesn't shift its surrounding contents around
-  */
 .euiFilePicker__prompt {
-  @include euiFormControlWithIcon; /* 2 */
-  height: $euiFormControlHeight;
-  padding-top: $euiFormControlPadding;
-  padding-right: $euiFormControlPadding;
-  padding-bottom: $euiFormControlPadding;
-  pointer-events: none; /* 1 */
-  border: $euiBorderWidthThick dashed $euiColorLightShade;
-  border-radius: $euiFormControlBorderRadius;
-
-  transition:
-    border-color $euiAnimSpeedFast ease-in,
-    background-color $euiAnimSpeedFast ease-in;
-
-  .euiFilePicker--compressed & {
-    @include euiFormControlStyleCompressed($includeStates: false);
-    @include euiFormControlWithIcon($compressed: true); /* 2 */
-    height: $euiFormControlCompressedHeight;
-    border-radius: $euiFormControlCompressedBorderRadius;
-    box-shadow: none;
-  }
-
-  .euiFilePicker--large & {
-    height: $euiFilePickerTallHeight; /* 4 */
-    padding: 0 $euiSizeL;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .euiFilePicker--large.euiFilePicker--compressed & {
-    height: $euiFilePickerTallHeight - $euiSizeL; /* 4 */
-  }
-
   // To match other EUI form controls, do not color the border red if focused or disabled
   .euiFilePicker-isInvalid:not(.euiFilePicker__showDrop) .euiFilePicker__input:not(:disabled):not(:focus) + & {
     border-color: $euiColorDanger;
@@ -131,14 +76,6 @@
 .euiFilePicker__input:disabled + .euiFilePicker__prompt {
   @include euiFormControlDisabledStyle;
   box-shadow: none;
-}
-
-// Make space for the icons on the right
-.euiFilePicker:not(.euiFilePicker--large) {
-  &.euiFilePicker-isLoading .euiFilePicker__prompt,
-  &.euiFilePicker-hasFiles .euiFilePicker__prompt {
-    @include euiFormControlWithIcon(false, 'right'); /* 2 */
-  }
 }
 
 // When the filepicker has files in it

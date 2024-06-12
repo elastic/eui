@@ -178,7 +178,6 @@ export class EuiFilePickerClass extends Component<
             displayToClassNameMap[display!],
             {
               euiFilePicker__showDrop: this.state.isHoveringDrop,
-              'euiFilePicker--compressed': compressed,
               'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-isLoading': isLoading,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
@@ -190,6 +189,20 @@ export class EuiFilePickerClass extends Component<
           const cssStyles = [
             styles.euiFilePicker,
             fullWidth ? styles.fullWidth : styles.formWidth,
+            isOverridingInitialPrompt && !disabled && styles.hasFiles,
+            isLoading && styles.loading,
+          ];
+
+          const promptStyles = [
+            styles.euiFilePicker__prompt,
+            ...(normalFormControl
+              ? [compressed ? styles.compressed : styles.uncompressed]
+              : [
+                  styles.large.large,
+                  compressed
+                    ? styles.large.compressed
+                    : styles.large.uncompressed,
+                ]),
           ];
 
           let clearButton;
@@ -254,7 +267,11 @@ export class EuiFilePickerClass extends Component<
                     {...rest}
                   />
                 </EuiValidatableControl>
-                <div className="euiFilePicker__prompt" id={promptId}>
+                <div
+                  css={promptStyles}
+                  className="euiFilePicker__prompt"
+                  id={promptId}
+                >
                   <EuiIcon
                     className="euiFilePicker__icon"
                     color={

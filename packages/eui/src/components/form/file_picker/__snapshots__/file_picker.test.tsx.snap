@@ -15,7 +15,7 @@ exports[`EuiFilePicker is rendered 1`] = `
       type="file"
     />
     <div
-      class="euiFilePicker__prompt"
+      class="euiFilePicker__prompt emotion-euiFilePicker__prompt-large"
       id="generated-id-filePicker__prompt"
     >
       <span
