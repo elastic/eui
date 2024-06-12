@@ -189,6 +189,8 @@ export class EuiFilePickerClass extends Component<
           const cssStyles = [
             styles.euiFilePicker,
             fullWidth ? styles.fullWidth : styles.formWidth,
+            this.state.isHoveringDrop && styles.isDroppingFile,
+            isInvalid && !disabled && styles.invalid,
             isOverridingInitialPrompt && !disabled && styles.hasFiles,
             isLoading && styles.loading,
           ];
@@ -254,6 +256,7 @@ export class EuiFilePickerClass extends Component<
                     type="file"
                     id={id}
                     name={name}
+                    css={styles.euiFilePicker__input}
                     className="euiFilePicker__input"
                     onChange={this.handleChange}
                     ref={(input) => {

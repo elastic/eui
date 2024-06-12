@@ -25,6 +25,16 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiFilePicker: css`
       --euiFormControlLeftIconsCount: 1; /* Manually account for .euiFilePicker__icon */
       position: relative;
+
+      &:has(input:focus) {
+        --euiFormControlStateColor: ${euiTheme.colors.primary};
+      }
+    `,
+    isDroppingFile: css`
+      --euiFormControlStateColor: ${euiTheme.colors.primary};
+    `,
+    invalid: css`
+      --euiFormControlStateColor: ${euiTheme.colors.danger};
     `,
     hasFiles: css`
       --euiFormControlRightIconsCount: 1;
@@ -59,7 +69,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiFilePicker__prompt: css`
       pointer-events: none; /* Don't block the user from dropping files onto the filepicker */
       border: ${euiTheme.border.width.thick} dashed
-        ${euiTheme.colors.lightShade};
+        var(--euiFormControlStateColor, ${euiTheme.colors.lightShade});
 
       ${euiCanAnimate} {
         transition: border-color ${euiTheme.animation.fast} ease-in,
