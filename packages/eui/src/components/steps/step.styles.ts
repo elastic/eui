@@ -53,23 +53,23 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       &:not(:last-of-type) {
-        background-position: left ${euiTheme.size.xl};
+        background-position: left ${euiStep.numberSize};
       }
     `,
     s: css`
       &:not(:last-of-type) {
-        background-position: left ${euiTheme.size.xl};
+        background-position: left ${euiStep.numberSize};
       }
     `,
     xs: css`
       &:not(:last-of-type) {
         /* Adjust the line to be centered on the smaller number */
-        background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
+        background-position: -${euiTheme.size.xs} ${euiStep.numberXSSize};
       }
     `,
     xxs: css`
       &:not(:last-of-type) {
-        background-position: -${euiTheme.size.s} ${euiTheme.size.base};
+        background-position: -${euiTheme.size.s} ${euiStep.numberXXSSize};
       }
     `,
   };
