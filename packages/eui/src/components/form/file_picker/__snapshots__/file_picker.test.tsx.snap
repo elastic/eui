@@ -10,7 +10,7 @@ exports[`EuiFilePicker is rendered 1`] = `
     <input
       aria-describedby="generated-id-filePicker__prompt"
       aria-label="aria-label"
-      class="euiFilePicker__input"
+      class="euiFilePicker__input emotion-euiFilePicker__input"
       data-test-subj="test subject string"
       type="file"
     />

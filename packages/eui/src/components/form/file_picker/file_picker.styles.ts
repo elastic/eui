@@ -22,5 +22,24 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     // Skip the css() on the default width to avoid generating a className
     formWidth: formStyles.formWidth,
     fullWidth: css(formStyles.fullWidth),
+
+    // The input is an invisible dropzone / button
+    euiFilePicker__input: css`
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover:disabled {
+        cursor: not-allowed;
+      }
+
+      &:disabled {
+        opacity: 0;
+      }
+    `,
   };
 };
