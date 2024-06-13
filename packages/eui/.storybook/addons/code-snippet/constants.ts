@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-export const ADDON_ID = 'storybook/addon-code-snippet';
+export const ADDON_ID = 'storybook/code-snippet';
 export const PANEL_ID = `${ADDON_ID}/panel`;
 
 export const EVENTS = {
   SNIPPET_RENDERED: `${ADDON_ID}/snippet-rendered`,
 };
+
+export const ADDON_PARAMETER_KEY = 'codeSnippet';
 
 export const STORY_ARGS_MARKER = '{{STORY_ARGS}}';

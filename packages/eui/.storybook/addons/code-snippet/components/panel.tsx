@@ -6,13 +6,24 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
-import { useAddonState, useChannel } from '@storybook/manager-api';
+import React, { useEffect, FunctionComponent } from 'react';
+import {
+  useAddonState,
+  useChannel,
+  useStorybookApi,
+} from '@storybook/manager-api';
 import { AddonPanel, SyntaxHighlighter } from '@storybook/components';
 import { styled } from '@storybook/theming';
 import { STORY_RENDERED } from '@storybook/core-events';
 
-import { ADDON_ID, EVENTS } from '../constants';
+import { ADDON_ID, ADDON_PARAMETER_KEY, EVENTS } from '../constants';
+import { addHiddenStyle, clearHiddenStyle } from '../utils/addon_visibility';
+
+const addonTabStyles = (selector: string) => `
+    ${selector} {
+      display: none;
+    }
+  `;
 
 interface PanelProps {
   active?: boolean;
@@ -22,17 +33,45 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
   const [addonState, setAddonState] = useAddonState(ADDON_ID, {
     code: '',
     isLoaded: false,
+    isSkipped: true,
   });
-  const { code, isLoaded } = addonState;
+  const { code, isLoaded, isSkipped } = addonState;
+  const storybookApi = useStorybookApi();
 
-  useChannel({
+  useEffect(() => {
+    const addonTabId = `#tabbutton-${ADDON_ID.split('/').join('-')}-panel`;
+
+    /**
+     * we manually hide the addon tab element initially and show it only if it's not skipped.
+     * This uses style element injection over classes as we don't have access to the actual elements.
+     * We would need to wait for the elements to be rendered by Storybook to get them which is less
+     * consitent as controlling the styles.
+     * reference: https://storybook.js.org/docs/addons/writing-addons#style-the-addon
+     */
+    if (isSkipped) {
+      addHiddenStyle(ADDON_ID, addonTabStyles(addonTabId));
+    } else {
+      clearHiddenStyle(ADDON_ID);
+    }
+  }, [isSkipped]);
+
+  const emit = useChannel({
     [EVENTS.SNIPPET_RENDERED]: (args) => {
       setAddonState((prevState) => ({ ...prevState, code: args.source ?? '' }));
     },
-    [STORY_RENDERED]: () => {
-      setAddonState((prevState) => ({ ...prevState, isLoaded: true }));
+    [STORY_RENDERED]: (id: string) => {
+      const parameters = storybookApi.getParameters(id);
+      const isStorySkipped = parameters?.[ADDON_PARAMETER_KEY]?.skip ?? false;
+
+      setAddonState((prevState) => ({
+        ...prevState,
+        isLoaded: true,
+        isSkipped: isStorySkipped,
+      }));
     },
   });
+
+  if (isSkipped) return null;
 
   const emptyState = <span>No code snippet available</span>;
   const loadingState = <span>Loading...</span>;
