@@ -34,3 +34,7 @@ export default meta;
 type Story = StoryObj<EuiFilePickerProps>;
 
 export const Playground: Story = {};
+
+export const NonLargeDisplay: Story = {
+  args: { display: 'default' },
+};
