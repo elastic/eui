@@ -9,11 +9,20 @@
 import React from 'react';
 import { requiredProps } from '../../../test';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
 import { EuiFilePicker } from './file_picker';
 
 describe('EuiFilePicker', () => {
+  shouldRenderCustomStyles(<EuiFilePicker />, { skip: { style: true } });
+
+  shouldRenderCustomStyles(<EuiFilePicker />, {
+    // inline styles are applied to input instead of wrapper
+    skip: { className: true, css: true },
+    targetSelector: 'input',
+  });
+
   test('is rendered', () => {
     const { container } = render(<EuiFilePicker {...requiredProps} />);
 
