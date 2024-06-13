@@ -146,6 +146,32 @@ The returned string of the conversion is then cleaned to ensure:
 
 To ensure the formatting is correct after adjusting the string returned from `react-element-to-jsx-string` and to align it with the EUI projects formatting rules, we run `prettier` on the string as a final step. ([code](https://github.com/elastic/eui/pull/7716/files#diff-8b1bc9195faa159bf3e141e0d6e3e63712a69fe4c0846f1ab472e0522e4e28f1R148))
 
+## Options
+
+Currently there are two addon specific parameter options added with this PR that can be used under the key `codeSnippet` in the parameters config key.
+
+```ts
+// meta or story config
+const meta = {
+  title: 'Navigation/EuiButton',
+  component: EuiButton,
+  parameters: {
+    codeSnippet: {
+       // will skip code snippet generation for the component or story
+      skip: true,
+      // useful for complex story composition wrappers (using the story component as nested child)
+      // it will resolve the outer wrapper and return the code snippet for it's children
+      // see the story for `EuiHeader/Multiple Fixed Headers` as example
+      resolveChildren: true,
+    }
+  }
+}
+```
+
+## Additional functionality
+
+🚧 Will follow soon 🚧
+
 
 ## Limitations
 
