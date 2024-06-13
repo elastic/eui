@@ -6,10 +6,17 @@
  * Side Public License, v 1.
  */
 
-import { addons, types } from '@storybook/manager-api';
+import { addons, API, types } from '@storybook/manager-api';
+import { STORY_PREPARED } from '@storybook/core-events';
 
-import { ADDON_ID, PANEL_ID } from './addons/code-snippet/constants';
+import { ADDON_ID, EVENTS, PANEL_ID } from './addons/code-snippet/constants';
 import { Panel } from './addons/code-snippet/components/panel';
+import { StoryContext } from '@storybook/react';
+import {
+  updateQueryParamsOnAddonClosed,
+  updateQueryParamsOnAddonOpened,
+  updateQueryParamsOnStoryPrepared,
+} from './addons/code-snippet/event-handlers/query_params';
 
 // filter out stories based on tags that should not
 // be shown in the Storybook sidebar menu
@@ -26,7 +33,20 @@ addons.setConfig({
 });
 
 // Register a addon
-addons.register(ADDON_ID, () => {
+addons.register(ADDON_ID, (api: API) => {
+  // set up channel event listeners
+  api.on(STORY_PREPARED, (context: StoryContext) => {
+    updateQueryParamsOnStoryPrepared(api, context);
+  });
+
+  api.on(EVENTS.SNIPPET_PANEL_OPENED, () => {
+    updateQueryParamsOnAddonOpened(api);
+  });
+
+  api.on(EVENTS.SNIPPET_PANEL_CLOSED, () => {
+    updateQueryParamsOnAddonClosed(api);
+  });
+
   // Register a panel
   addons.add(PANEL_ID, {
     type: types.PANEL,

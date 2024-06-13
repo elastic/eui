@@ -71,6 +71,19 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
     },
   });
 
+  useEffect(() => {
+    if (isSkipped || !isLoaded || !active) return;
+
+    // emit OPENED event
+    emit(EVENTS.SNIPPET_PANEL_OPENED);
+
+    return () => {
+      // emit CLOSED event
+      emit(EVENTS.SNIPPET_PANEL_CLOSED);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSkipped, isLoaded, active]);
+
   if (isSkipped) return null;
 
   const emptyState = <span>No code snippet available</span>;
