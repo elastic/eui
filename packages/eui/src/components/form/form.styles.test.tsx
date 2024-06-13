@@ -79,7 +79,7 @@ describe('euiFormControlStyles', () => {
   it('outputs an object of control states and modifiers', () => {
     const { result } = renderHook(() => euiFormControlStyles(useEuiTheme()));
     expect(result.current).toMatchInlineSnapshot(`
-      Object {
+      {
         "autoFill": "
           &:-webkit-autofill {
             -webkit-text-fill-color: #343741;

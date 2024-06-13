@@ -222,6 +222,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <input
         aria-invalid="true"
@@ -351,6 +352,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <input
         aria-invalid="true"
@@ -431,7 +433,6 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="true"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiFieldNumber-euiRangeInput"
         max="100"
         min="1"
@@ -527,7 +528,6 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="true"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiFieldNumber-euiRangeInput"
         max="100"
         min="1"

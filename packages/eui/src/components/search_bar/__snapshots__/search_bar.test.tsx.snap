@@ -12,6 +12,7 @@ exports[`SearchBar render - box 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -52,6 +53,7 @@ exports[`SearchBar render - no config, no query 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -91,6 +93,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -201,6 +204,7 @@ exports[`SearchBar render - tools 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"

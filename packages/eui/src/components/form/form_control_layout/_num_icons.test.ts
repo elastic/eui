@@ -41,7 +41,7 @@ describe('getIconAffordanceStyles', () => {
   test('all icons', () => {
     const styles = getIconAffordanceStyles(allIcons);
     expect(styles).toMatchInlineSnapshot(`
-      Object {
+      {
         "--euiFormControlRightIconsCount": 5,
       }
     `);
@@ -53,7 +53,7 @@ describe('getIconAffordanceStyles', () => {
       isInvalid: true,
     });
     expect(styles).toMatchInlineSnapshot(`
-      Object {
+      {
         "--euiFormControlRightIconsCount": 2,
       }
     `);
@@ -64,7 +64,7 @@ describe('getIconAffordanceStyles', () => {
       icon: 'search',
     });
     expect(styles).toMatchInlineSnapshot(`
-      Object {
+      {
         "--euiFormControlLeftIconsCount": 1,
       }
     `);

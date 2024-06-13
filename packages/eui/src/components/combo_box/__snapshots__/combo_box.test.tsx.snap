@@ -13,6 +13,7 @@ exports[`EuiComboBox renders 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlRightIconsCount: 1;"
       >
         <div
           class="euiComboBox__inputWrap euiFormControlLayout--1icons"
@@ -71,6 +72,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
         >
           <div
             class="euiFormControlLayout__childrenWrapper"
+            style="--euiFormControlRightIconsCount: 1;"
           >
             <div
               class="euiComboBox__inputWrap euiFormControlLayout--1icons"

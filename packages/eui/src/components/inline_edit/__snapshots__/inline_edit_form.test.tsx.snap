@@ -384,6 +384,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
+              style="--euiFormControlRightIconsCount: 1;"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
@@ -481,6 +482,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
+              style="--euiFormControlRightIconsCount: 1;"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
