@@ -45,6 +45,10 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     loading: css`
       --euiFormControlRightIconsCount: 1;
+
+      /* Clip EuiProgress loading indicator that renders for large displays */
+      border-radius: ${formVariables.controlCompressedBorderRadius};
+      overflow: hidden;
     `,
 
     // Skip the css() on the default width to avoid generating a className
