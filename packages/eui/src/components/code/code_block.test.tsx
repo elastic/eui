@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
@@ -124,7 +124,7 @@ describe('EuiCodeBlock', () => {
 
   describe('fullscreen', () => {
     it('displays content in fullscreen mode', () => {
-      const component = mount(
+      const { getByLabelText, baseElement } = render(
         <EuiCodeBlock
           {...requiredProps}
           language="javascript"
@@ -133,15 +133,14 @@ describe('EuiCodeBlock', () => {
           const value = &quot;hello&quot;
         </EuiCodeBlock>
       );
-      component.find('button[aria-label="Expand"]').simulate('click');
-      component.update();
+      fireEvent.click(getByLabelText('Expand'));
       expect(
-        component.find('div.euiCodeBlockFullScreen').render()
+        baseElement.querySelector('.euiCodeBlockFullScreen')
       ).toMatchSnapshot();
     });
 
     it('closes fullscreen mode when the escape key is pressed', () => {
-      const component = mount(
+      const { getByLabelText, baseElement } = render(
         <EuiCodeBlock
           {...requiredProps}
           language="javascript"
@@ -150,13 +149,17 @@ describe('EuiCodeBlock', () => {
           const value = &quot;world&quot;
         </EuiCodeBlock>
       );
-      component.find('button[aria-label="Expand"]').simulate('click');
-      component.update();
-      component
-        .find('div.euiCodeBlockFullScreen')
-        .find('pre.euiCodeBlock__pre')
-        .simulate('keyDown', { key: 'Escape' });
-      expect(component.find('.euiCodeBlockFullScreen')).toHaveLength(0);
+      fireEvent.click(getByLabelText('Expand'));
+
+      fireEvent.keyDown(
+        baseElement.querySelector(
+          '.euiCodeBlockFullScreen .euiCodeBlock__pre'
+        )!,
+        { key: 'Escape' }
+      );
+      expect(
+        baseElement.querySelector('.euiCodeBlockFullScreen')
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -177,11 +180,11 @@ describe('EuiCodeBlock', () => {
     describe('type checks', () => {
       it('requires overflowHeight', () => {
         // @ts-expect-error should expect overflowHeight
-        shallow(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
+        render(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
       });
 
       it('only allows whiteSpace of pre', () => {
-        shallow(
+        render(
           // @ts-expect-error should only accept "pre"
           <EuiCodeBlock
             isVirtualized
@@ -190,7 +193,7 @@ describe('EuiCodeBlock', () => {
           />
         );
         // OK
-        shallow(
+        render(
           <EuiCodeBlock isVirtualized overflowHeight={50} whiteSpace="pre" />
         );
       });
