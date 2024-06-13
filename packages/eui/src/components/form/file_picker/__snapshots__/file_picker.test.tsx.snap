@@ -24,11 +24,11 @@ exports[`EuiFilePicker is rendered 1`] = `
         color="primary"
         data-euiicon-type="importAction"
       />
-      <div
+      <span
         class="euiFilePicker__promptText"
       >
         Select or drag and drop a file
-      </div>
+      </span>
     </div>
   </div>
 </div>

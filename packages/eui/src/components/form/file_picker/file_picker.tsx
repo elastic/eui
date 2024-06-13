@@ -319,9 +319,9 @@ export class EuiFilePickerClass extends Component<
                     size={normalFormControl ? 'm' : 'l'}
                     aria-hidden="true"
                   />
-                  <div className="euiFilePicker__promptText">
+                  <span className="euiFilePicker__promptText">
                     {this.state.promptText || initialPromptText}
-                  </div>
+                  </span>
                   {clearButton}
                   {loader}
                 </div>

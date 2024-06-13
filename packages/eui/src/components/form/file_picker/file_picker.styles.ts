@@ -11,6 +11,8 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,
+  euiFontSize,
+  euiTextTruncate,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
@@ -38,6 +40,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     hasFiles: css`
       --euiFormControlRightIconsCount: 1;
+      font-weight: ${euiTheme.font.weight.bold};
     `,
     loading: css`
       --euiFormControlRightIconsCount: 1;
@@ -85,6 +88,10 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
     euiFilePicker__prompt: css`
       pointer-events: none; /* Don't block the user from dropping files onto the filepicker */
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      line-height: 1;
+      ${euiTextTruncate()}
+      color: ${euiTheme.colors.text};
       border: ${euiTheme.border.width.thick} dashed
         var(--euiFormControlStateColor, ${euiTheme.colors.lightShade});
 
