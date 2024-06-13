@@ -200,6 +200,7 @@ export class EuiFilePickerClass extends Component<
 
           const promptStyles = [
             styles.euiFilePicker__prompt,
+            disabled && styles.disabled,
             ...(normalFormControl
               ? [compressed ? styles.compressed : styles.uncompressed]
               : [
