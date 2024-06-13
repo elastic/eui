@@ -252,15 +252,6 @@ export const renderJsx = (
     );
 
     /** Start of filtering the generated jsx string */
-    if (string.indexOf('&quot;') > -1) {
-      const matches = string.match(/\S+=\\"([^"]*)\\"/g);
-      if (matches) {
-        matches.forEach((match) => {
-          string = string.replace(match, match.replace(/&quot;/g, "'"));
-        });
-      }
-    }
-
     // renaming internal components
     if (string.indexOf('<_') > -1) {
       const regexStart = new RegExp(/<_/g);
