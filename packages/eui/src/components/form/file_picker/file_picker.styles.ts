@@ -22,6 +22,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const formStyles = euiFormControlStyles(euiThemeContext);
   const formVariables = euiFormVariables(euiThemeContext);
+  const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 's');
 
   return {
     euiFilePicker: css`
@@ -88,8 +89,8 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
     euiFilePicker__prompt: css`
       pointer-events: none; /* Don't block the user from dropping files onto the filepicker */
-      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-      line-height: 1;
+      font-size: ${fontSize};
+      line-height: 1; /* Vertically centers default display text */
       ${euiTextTruncate()}
       color: ${euiTheme.colors.text};
       border: ${euiTheme.border.width.thick} dashed
@@ -114,6 +115,12 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        /* Child text truncation needed on prompt text due to flex display */
+        .euiFilePicker__promptText {
+          ${euiTextTruncate()}
+          line-height: ${lineHeight}; /* Fix descenders getting cut off */
+        }
       `,
       // Static heights so that surrounding contents don't shift around
       uncompressed: `
