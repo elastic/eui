@@ -21,34 +21,6 @@
 
 // Large styles only
 .euiFilePicker--large {
-  // stylelint-disable max-nesting-depth
-  // Hover and focus
-  .euiFilePicker__input:hover:not(:disabled),
-  .euiFilePicker__input:focus {
-    + .euiFilePicker__prompt {
-      .euiFilePicker__promptText {
-        // Adding the underline to the prompt text ensures the underline
-        // color is the same as the current text color
-        text-decoration: underline;
-      }
-
-      .euiFilePicker__icon {
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  // While dragging files over the dropzone
-  &.euiFilePicker__showDrop .euiFilePicker__prompt {
-    .euiFilePicker__promptText {
-      text-decoration: underline;
-    }
-
-    .euiFilePicker__icon {
-      transform: scale(1.1);
-    }
-  }
-
   &.euiFilePicker-hasFiles .euiFilePicker__promptText {
     font-weight: $euiFontWeightBold;
   }

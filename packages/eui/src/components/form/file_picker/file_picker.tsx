@@ -180,7 +180,7 @@ export class EuiFilePickerClass extends Component<
             'euiFilePicker',
             displayToClassNameMap[display!],
             {
-              euiFilePicker__showDrop: this.state.isHoveringDrop,
+              'euiFilePicker-isDroppingFile': this.state.isHoveringDrop,
               'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-isLoading': isLoading,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
@@ -196,6 +196,11 @@ export class EuiFilePickerClass extends Component<
             isInvalid && !disabled && styles.invalid,
             isOverridingInitialPrompt && !disabled && styles.hasFiles,
             isLoading && styles.loading,
+          ];
+
+          const inputStyles = [
+            styles.input.euiFilePicker__input,
+            !normalFormControl && !disabled && styles.input.largeInteractive,
           ];
 
           const promptStyles = [
@@ -285,7 +290,7 @@ export class EuiFilePickerClass extends Component<
                     type="file"
                     id={id}
                     name={name}
-                    css={styles.euiFilePicker__input}
+                    css={inputStyles}
                     className="euiFilePicker__input"
                     onChange={this.handleChange}
                     ref={(input) => {

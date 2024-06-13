@@ -48,23 +48,40 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
     fullWidth: css(formStyles.fullWidth),
 
     // The input is an invisible dropzone / button
-    euiFilePicker__input: css`
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:hover:disabled {
-        cursor: not-allowed;
-      }
-
-      &:disabled {
+    input: {
+      euiFilePicker__input: css`
+        position: absolute;
+        inset: 0;
         opacity: 0;
-      }
-    `,
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:hover:disabled {
+          cursor: not-allowed;
+        }
+
+        &:disabled {
+          opacity: 0;
+        }
+      `,
+      largeInteractive: css`
+        &:hover,
+        &:focus,
+        .euiFilePicker-isDroppingFile & {
+          & + .euiFilePicker__prompt {
+            .euiFilePicker__promptText {
+              text-decoration: underline;
+            }
+
+            .euiFilePicker__icon {
+              transform: scale(1.1);
+            }
+          }
+        }
+      `,
+    },
 
     euiFilePicker__prompt: css`
       pointer-events: none; /* Don't block the user from dropping files onto the filepicker */
