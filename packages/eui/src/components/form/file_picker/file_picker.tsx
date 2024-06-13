@@ -207,6 +207,18 @@ export class EuiFilePickerClass extends Component<
                 ]),
           ];
 
+          const iconStyles = [
+            styles.icon.euiFilePicker__icon,
+            ...(normalFormControl
+              ? [
+                  styles.icon.normal,
+                  compressed
+                    ? styles.icon.compresssed
+                    : styles.icon.uncompressed,
+                ]
+              : [styles.icon.large]),
+          ];
+
           let clearButton;
           if (isLoading && normalFormControl) {
             // Override clear button with loading spinner if it is in loading state
@@ -276,6 +288,7 @@ export class EuiFilePickerClass extends Component<
                   id={promptId}
                 >
                   <EuiIcon
+                    css={iconStyles}
                     className="euiFilePicker__icon"
                     color={
                       isInvalid ? 'danger' : disabled ? 'subdued' : 'primary'

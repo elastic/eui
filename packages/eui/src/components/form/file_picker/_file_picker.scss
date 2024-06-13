@@ -1,20 +1,3 @@
-.euiFilePicker__icon {
-  position: absolute;
-  left: $euiSizeM;
-  top: $euiSizeM;
-  transition: transform $euiAnimSpeedFast $euiAnimSlightResistance;
-
-  .euiFilePicker--compressed & {
-    top: $euiSizeS;
-    left: $euiSizeS;
-  }
-
-  .euiFilePicker--large & {
-    position: static;
-    margin-bottom: $euiSize;
-  }
-}
-
 .euiFilePicker__promptText {
   @include euiFontSizeS;
   @include euiTextTruncate;

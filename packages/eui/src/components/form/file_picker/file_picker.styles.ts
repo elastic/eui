@@ -106,5 +106,31 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
         border-radius: ${formVariables.controlCompressedBorderRadius};
       `,
     },
+
+    icon: {
+      euiFilePicker__icon: css``,
+
+      normal: css`
+        position: absolute;
+        ${logicalCSS('top', 0)}
+        ${logicalCSS('height', '100%')}
+      `,
+      uncompressed: `
+        ${logicalCSS('left', euiTheme.size.m)}
+      `,
+      compresssed: css`
+        ${logicalCSS('left', euiTheme.size.s)}
+        ${logicalCSS('width', euiTheme.size.m)}
+      `,
+
+      large: css`
+        ${logicalCSS('margin-bottom', euiTheme.size.base)}
+
+        ${euiCanAnimate} {
+          transition: transform ${euiTheme.animation.fast}
+            ${euiTheme.animation.resistance};
+        }
+      `,
+    },
   };
 };
