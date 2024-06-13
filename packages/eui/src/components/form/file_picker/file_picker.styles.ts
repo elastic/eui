@@ -132,5 +132,28 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+
+    rightIcon: {
+      euiFilePicker__rightIcon: css`
+        position: absolute;
+      `,
+      uncompressed: `
+        ${logicalCSS('top', euiTheme.size.m)}
+        ${logicalCSS('right', euiTheme.size.m)}
+      `,
+      compressed: css`
+        ${logicalCSS('right', euiTheme.size.s)}
+        ${logicalCSS('top', '50%')}
+        ${logicalCSS(
+          'margin-top',
+          mathWithUnits(euiTheme.size.m, (x) => x / -2)
+        )}
+      `,
+    },
+
+    euiFilePicker__clearButton: css`
+      pointer-events: auto; /* Undo the pointer-events: none applied to the enclosing prompt */
+      position: relative; /* Required to sit above hidden input */
+    `,
   };
 };

@@ -16,13 +16,16 @@ import {
 } from '../../../services';
 import { CommonProps, keysOf } from '../../common';
 
-import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonEmpty } from '../../button';
 import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
+
 import { FormContext, FormContextValue } from '../eui_form_context';
+import { EuiValidatableControl } from '../validatable_control';
+import { EuiFormControlLayoutClearButton } from '../form_control_layout/form_control_layout_clear_button';
+
 import { euiFilePickerStyles } from './file_picker.styles';
 
 const displayToClassNameMap = {
@@ -219,28 +222,41 @@ export class EuiFilePickerClass extends Component<
               : [styles.icon.large]),
           ];
 
+          const rightIconStyles = normalFormControl
+            ? [
+                styles.rightIcon.euiFilePicker__rightIcon,
+                compressed
+                  ? styles.rightIcon.compressed
+                  : styles.rightIcon.uncompressed,
+              ]
+            : undefined;
+
           let clearButton;
           if (isLoading && normalFormControl) {
             // Override clear button with loading spinner if it is in loading state
             clearButton = (
-              <EuiLoadingSpinner className="euiFilePicker__loadingSpinner" />
+              <EuiLoadingSpinner
+                css={rightIconStyles}
+                className="euiFilePicker__loadingSpinner"
+                size={compressed ? 's' : 'm'}
+              />
             );
           } else if (isOverridingInitialPrompt && !disabled) {
             if (normalFormControl) {
               clearButton = (
-                <button
-                  type="button"
+                <EuiFormControlLayoutClearButton
                   aria-label={clearSelectedFiles}
+                  css={[styles.euiFilePicker__clearButton, rightIconStyles]}
                   className="euiFilePicker__clearButton"
                   onClick={this.removeFiles}
-                >
-                  <EuiIcon className="euiFilePicker__clearIcon" type="cross" />
-                </button>
+                  size={compressed ? 's' : 'm'}
+                />
               );
             } else {
               clearButton = (
                 <EuiButtonEmpty
                   aria-label={clearSelectedFiles}
+                  css={styles.euiFilePicker__clearButton}
                   className="euiFilePicker__clearButton"
                   size="xs"
                   onClick={this.removeFiles}
