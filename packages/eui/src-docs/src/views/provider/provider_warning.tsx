@@ -35,3 +35,16 @@ const AppWithDuplicateProvider = () => (
     </>
   );
 };
+
+export const CallbackExample = () => (
+  <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
+    {`import { setEuiDevProviderWarning } from '@elastic/eui';
+
+const customWarningHandler = (message: string) => {
+  sendWarningToTelemetryService(message);
+  console.debug(message);
+};
+
+setEuiDevProviderWarning(customWarningHandler);`}
+  </EuiCodeBlock>
+);

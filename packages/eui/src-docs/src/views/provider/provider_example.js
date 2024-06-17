@@ -15,7 +15,7 @@ import { GuideSectionPropsTable } from '../../components/guide_section/guide_sec
 
 import Setup from './provider_setup';
 import GlobalStyles from './provider_styles';
-import Warnings from './provider_warning';
+import Warnings, { CallbackExample } from './provider_warning';
 import {
   EuiComponentDefaultsProps,
   euiProviderComponentDefaultsSnippet,
@@ -237,8 +237,7 @@ export const ProviderExample = {
           <Warnings />
 
           <p>
-            <EuiCode>setEuiDevProviderWarning</EuiCode>
-            accepts three levels:
+            <EuiCode>setEuiDevProviderWarning</EuiCode> accepts three levels:
           </p>
           <ul>
             <li>
@@ -256,23 +255,11 @@ export const ProviderExample = {
           </ul>
 
           <p>
-            Developers can provide an optional callback function which will
-            receive the log message or Error object.
+            It also accepts a callback function instead of a default warning
+            level. The warning message string will be passed to your callback,
+            where any custom action can be performed on it. Example usage:
           </p>
-          <ul>
-            <li>
-              <EuiCode>setEuiDevProviderWarning('log', callbackFn)</EuiCode>:
-              callbackFn will be called with a <EuiCode>string</EuiCode>
-            </li>
-            <li>
-              <EuiCode>setEuiDevProviderWarning('warn', callbackFn)</EuiCode>:
-              callbackFn will be called with a <EuiCode>string</EuiCode>
-            </li>
-            <li>
-              <EuiCode>setEuiDevProviderWarning('error', callbackFn)</EuiCode>:
-              callbackFn will be called with an <EuiCode>Error</EuiCode> object
-            </li>
-          </ul>
+          <CallbackExample />
         </EuiText>
       ),
     },
