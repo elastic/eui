@@ -95,6 +95,43 @@ export const ProviderExample = {
           <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
             {'<EuiProvider globalStyles={false} utilityClasses={false} />'}
           </EuiCodeBlock>
+          <EuiSpacer />
+
+          <p>
+            If you would like to use only a subset of the global styles you can
+            pass a custom instance of <EuiCode>EuiGlobalStyles</EuiCode> to{' '}
+            <EuiCode>globalStyles</EuiCode> with specific style flags disabled.
+            The available props are:
+          </p>
+
+          <ul>
+            <li>
+              <EuiCode>hasReset</EuiCode>
+            </li>
+            <li>
+              <EuiCode>hasFont</EuiCode>
+            </li>
+            <li>
+              <EuiCode>hasBase</EuiCode>
+            </li>
+            <li>
+              <EuiCode>hasColor</EuiCode>
+            </li>
+            <li>
+              <EuiCode>hasLink</EuiCode>
+            </li>
+            <li>
+              <EuiCode>hasFocus</EuiCode>
+            </li>
+            <li>
+              <EuiCode>hasScrollbar</EuiCode>
+            </li>
+          </ul>
+
+          <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
+            {`const CustomStyles = () => <EuiGlobalStyles hasReset={false} />\
+            <EuiProvider globalStyles={CustomStyles} utilityClasses={false} />`}
+          </EuiCodeBlock>
 
           <h3 id="cache-customization">@emotion/cache customization</h3>
           <p>
