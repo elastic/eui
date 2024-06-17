@@ -1,6 +1,6 @@
 {
-  "name": "website",
-  "version": "0.0.0",
+  "name": "@elastic/eui-website",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
