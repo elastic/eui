@@ -14,9 +14,27 @@ import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
 
-export interface EuiGlobalStylesProps {}
+export interface EuiGlobalStylesProps {
+  hasReset?: boolean;
+  hasFontReset?: boolean;
+  hasFont?: boolean;
+  hasBase?: boolean;
+  hasColor?: boolean;
+  hasFocus?: boolean;
+  hasLink?: boolean;
+  hasScrollbar?: boolean;
+}
 
-export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
+export const EuiGlobalStyles = ({
+  hasReset = true,
+  hasFontReset = true,
+  hasFont = true,
+  hasBase = true,
+  hasColor = true,
+  hasFocus = true,
+  hasLink = true,
+  hasScrollbar = true,
+}: EuiGlobalStylesProps) => {
   const euiThemeContext = useEuiTheme();
   const { euiTheme, colorMode } = euiThemeContext;
   const { base, colors, font } = euiTheme;
@@ -51,72 +69,96 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * Final styles
    */
   const styles = css`
-    ${reset}
+    ${hasReset && reset}
 
-    html {
-      ${scrollbarStyles}
-      ${fontReset}
-      text-size-adjust: 100%;
-      font-kerning: normal;
-      ${logicalCSS('height', '100%')}
-      background-color: ${colors.body};
-      color: ${colors.text};
-    }
+    ${hasBase &&
+    css`
+      html {
+        ${hasScrollbar && scrollbarStyles}
+        ${hasFontReset && fontReset}
+        text-size-adjust: 100%;
+        font-kerning: normal;
+        ${logicalCSS('height', '100%')}
+        ${
+          hasColor && {
+            backgroundColor: colors.body,
+            color: colors.text,
+          }
+        }
+    `}
 
-    code,
-    pre,
-    kbd,
-    samp {
-      font-family: ${font.familyCode};
-    }
-
-    input,
-    textarea,
-    select {
-      ${{
-        ...fontReset,
-        fontSize: '1rem', // Inherit from html root
-      }}
-    }
-
-    // Chrome has opinionated select:disabled opacity styles that need to be overridden
-    select:disabled {
-      opacity: 1;
-    }
-
-    button {
-      font-family: ${font.family};
-    }
-
-    em {
-      font-style: italic;
-    }
-
-    strong {
-      font-weight: ${font.weight.bold};
-    }
-
-    *:focus {
-      ${euiFocusRing(euiThemeContext)}
-    }
-
-    // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
-    ::selection {
-      background: ${transparentize(
-        colors.primary,
-        colorMode === 'LIGHT' ? 0.1 : 0.2
-      )};
-    }
-
-    a {
-      color: ${colors.primaryText};
-
-      &,
-      &:hover,
-      &:focus {
-        text-decoration: none;
+    ${hasFont &&
+    css`
+      code,
+      pre,
+      kbd,
+      samp {
+        font-family: ${font.familyCode};
       }
-    }
+
+      input,
+      textarea,
+      select {
+        ${hasFontReset && {
+          ...fontReset,
+        }}
+        font-size: 1rem; // Inherit from html root
+      }
+    `}
+
+    ${hasBase &&
+    css`
+      // Chrome has opinionated select:disabled opacity styles that need to be overridden
+      select:disabled {
+        opacity: 1;
+      }
+    `}
+
+    ${hasFont &&
+    css`
+      button {
+        font-family: ${font.family};
+      }
+
+      em {
+        font-style: italic;
+      }
+
+      strong {
+        font-weight: ${font.weight.bold};
+      }
+    `}
+
+    ${hasFocus &&
+    css`
+      *:focus {
+        ${euiFocusRing(euiThemeContext)}
+      }
+    `}
+
+    ${hasColor &&
+    css`
+      // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
+      ::selection {
+        background: ${transparentize(
+          colors.primary,
+          colorMode === 'LIGHT' ? 0.1 : 0.2
+        )};
+      }
+    `}
+
+    ${hasLink &&
+    css`
+      a {
+        ${hasColor && { color: colors.primaryText }}
+
+        &,
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+      }
+    `}
 
     // A few EUI components (e.g. tooltip, combobox) use a portal to render content outside of the DOM hierarchy.
     // The portal content is absolutely positioned relative to the body.
