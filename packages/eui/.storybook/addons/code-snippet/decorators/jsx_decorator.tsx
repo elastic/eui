@@ -107,6 +107,8 @@ export const customJsxDecorator = (
       }
     }
 
+    // add the story args/props to the manual code snippet
+    // by replacing the {{STORY_ARGS}} marker
     const code = codeSnippet.replace(STORY_ARGS_MARKER, JSON.stringify(args));
 
     getFormattedCode(code)

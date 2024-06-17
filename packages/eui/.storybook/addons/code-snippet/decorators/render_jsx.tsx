@@ -40,8 +40,6 @@ const EXCLUDED_PROPS = ['__EMOTION_TYPE_PLEASE_DO_NOT_USE__', 'key'];
 const PRESERVED_FALSE_VALUE_PROPS = ['grow'];
 
 export type JSXOptions = Options & {
-  /** How many wrappers to skip when rendering the jsx */
-  skip?: number;
   /** Whether to show the function in the jsx tab */
   showFunctions?: boolean;
   /** Whether to format HTML or Vue markup */
@@ -64,54 +62,16 @@ export const renderJsx = (
     return null;
   }
 
-  let renderedJSX = code;
-  const Type = renderedJSX.type;
-
-  // @ts-expect-error (Converted from ts-ignore)
-  for (let i = 0; i < options?.skip; i += 1) {
-    if (typeof renderedJSX === 'undefined') {
-      logger.warn('Cannot skip undefined element');
-      return null;
-    }
-
-    if (React.Children.count(renderedJSX) > 1) {
-      logger.warn('Trying to skip an array of elements');
-      return null;
-    }
-
-    if (typeof renderedJSX.props.children === 'undefined') {
-      logger.warn('Not enough children to skip elements.');
-
-      if (
-        typeof renderedJSX.type === 'function' &&
-        renderedJSX.type.name === ''
-      ) {
-        renderedJSX = <Type {...renderedJSX.props} />;
-      }
-    } else if (typeof renderedJSX.props.children === 'function') {
-      renderedJSX = renderedJSX.props.children();
-    } else {
-      renderedJSX = renderedJSX.props.children;
-    }
-  }
-
   let displayNameDefaults;
 
-  // component case based resolving of its displayName
+  // NOTE: This code is from the original Storybook jsxDecorator
+  // and was enhanced to add additional checks for EUI Emotion
+  // component usages to ensure resolving the proper displayName
   if (typeof options?.displayName === 'string') {
     displayNameDefaults = {
       showFunctions: true,
       displayName: () => options.displayName,
     };
-    /**
-     * add `renderedJSX?.type`to handle this case:
-     *
-     * https://github.com/zhyd1997/storybook/blob/20863a75ba4026d7eba6b288991a2cf091d4dfff/code/renderers/react/template/stories/errors.stories.tsx#L14
-     *
-     * or it show the error message when run `yarn build-storybook --quiet`:
-     *
-     * Cannot read properties of undefined (reading '__docgenInfo').
-     */
   } else {
     displayNameDefaults = {
       // To get exotic component names resolving properly
