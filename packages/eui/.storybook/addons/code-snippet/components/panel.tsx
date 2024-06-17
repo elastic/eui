@@ -45,7 +45,7 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
      * we manually hide the addon tab element initially and show it only if it's not skipped.
      * This uses style element injection over classes as we don't have access to the actual elements.
      * We would need to wait for the elements to be rendered by Storybook to get them which is less
-     * consitent as controlling the styles.
+     * consistent as controlling the styles.
      * reference: https://storybook.js.org/docs/addons/writing-addons#style-the-addon
      */
     if (isSkipped) {

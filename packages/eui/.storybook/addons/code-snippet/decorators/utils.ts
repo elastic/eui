@@ -54,8 +54,7 @@ export const getEmotionComponentDisplayName = (
   const displayName = getElementDisplayName(node);
 
   if (
-    (typeof displayName === 'string' &&
-      displayName.match(/^(Emotion)(\w)*/g)) ||
+    (typeof displayName === 'string' && displayName.startsWith('Emotion')) ||
     node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ != null
   ) {
     const { __EMOTION_TYPE_PLEASE_DO_NOT_USE__: emotionData } = node.props;
@@ -107,6 +106,7 @@ export const isStoryComponent = (
 
   return displayName === context?.component?.displayName;
 };
+
 /**
  * checks if the outer most component is a parent of the actual story component
  */
