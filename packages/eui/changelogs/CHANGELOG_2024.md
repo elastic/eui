@@ -1,3 +1,11 @@
+## [`v95.0.0-backport.0`](https://github.com/elastic/eui/releases/v95.0.0-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+- Updated `EuiSteps` to support a new `titleSize="xxs"` style, which outputs the same title font size but smaller unnumbered step indicators ([#7813](https://github.com/elastic/eui/pull/7813))
+- Updated `EuiStepsHorizontal` to support a new `size="xs"` style, which outputs smaller unnumbered step indicators ([#7813](https://github.com/elastic/eui/pull/7813))
+- Updated `EuiStepNumber` to support new `titleSize="none"` which omits rendering step numbers, and will only render icons ([#7813](https://github.com/elastic/eui/pull/7813))
+
 ## [`v95.0.0`](https://github.com/elastic/eui/releases/v95.0.0)
 
 - Added `move` glyph to `EuiIcon` ([#7789](https://github.com/elastic/eui/pull/7789))
