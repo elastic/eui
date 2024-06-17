@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -214,7 +214,7 @@ describe('EuiAccordion', () => {
 
       it('accepts and calls an optional callback on click', () => {
         const onToggleHandler = jest.fn();
-        const component = mount(
+        const { getAllByRole } = render(
           <EuiAccordion
             id={getId()}
             onToggle={onToggleHandler}
@@ -222,7 +222,7 @@ describe('EuiAccordion', () => {
           />
         );
 
-        component.find('button').at(0).simulate('click');
+        fireEvent.click(getAllByRole('button')[0]);
         expect(onToggleHandler).toBeCalled();
         expect(onToggleHandler).toBeCalledWith(true);
       });
@@ -256,66 +256,84 @@ describe('EuiAccordion', () => {
   });
 
   describe('behavior', () => {
+    const expectAccordionClosed = () => {
+      const button = document.querySelector('.euiAccordion__button');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+
+      const children = document.querySelector('.euiAccordion__childWrapper')!;
+      expect(children.className).toContain('isClosed');
+      expect(children).toHaveAttribute('inert', '');
+    };
+
+    const expectAccordionOpen = () => {
+      const button = document.querySelector('.euiAccordion__button')!;
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+
+      const children = document.querySelector('.euiAccordion__childWrapper')!;
+      expect(children.className).toContain('isOpen');
+      expect(children).not.toHaveAttribute('inert');
+    };
+
     it('opens when clicked once', () => {
-      const component = mount(
+      const { getAllByRole } = render(
         <EuiAccordion id={getId()}>
           <p>You can see me.</p>
         </EuiAccordion>
       );
 
-      component.find('button').at(0).simulate('click');
+      fireEvent.click(getAllByRole('button')[0]);
 
-      expect(component.render()).toMatchSnapshot();
+      expectAccordionOpen();
     });
 
     it('does not open when isDisabled', () => {
-      const component = mount(
+      const { getAllByRole } = render(
         <EuiAccordion id={getId()} isDisabled>
           <p>You cannot see me.</p>
         </EuiAccordion>
       );
 
-      component.find('button').at(0).simulate('click');
+      fireEvent.click(getAllByRole('button')[0]);
 
-      expect(component.render()).toMatchSnapshot();
+      expectAccordionClosed();
     });
 
     it('opens when div is clicked if element is a div', () => {
-      const component = mount(
+      const { getAllByRole } = render(
         <EuiAccordion id={getId()} element="div">
           <p>You can see me.</p>
         </EuiAccordion>
       );
 
-      component.find('button').at(0).simulate('click');
+      fireEvent.click(getAllByRole('button')[0]);
 
-      expect(component.render()).toMatchSnapshot();
+      expectAccordionOpen();
     });
 
     it('closes when clicked twice', () => {
-      const component = mount(
+      const { getAllByRole } = render(
         <EuiAccordion id={getId()}>
           <p>You can not see me.</p>
         </EuiAccordion>
       );
 
-      component.find('button').at(0).simulate('click');
-      component.find('button').at(0).simulate('click');
+      fireEvent.click(getAllByRole('button')[0]);
+      fireEvent.click(getAllByRole('button')[0]);
 
-      expect(component.render()).toMatchSnapshot();
+      expectAccordionClosed();
     });
 
     it('accepts and calls an optional callback on open and close', () => {
       const onToggleHandler = jest.fn();
-      const component = mount(
+      const { getAllByRole } = render(
         <EuiAccordion id={getId()} onToggle={onToggleHandler} />
       );
 
-      component.find('button').at(0).simulate('click');
+      fireEvent.click(getAllByRole('button')[0]);
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(true);
 
-      component.find('button').at(0).simulate('click');
+      fireEvent.click(getAllByRole('button')[0]);
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(false);
     });

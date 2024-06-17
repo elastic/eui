@@ -1451,29 +1451,30 @@ Array [
 `;
 
 exports[`shared utils nodeToHtml handles rendering custom annotation types 1`] = `
-<div>
-  <span
-    className="hello-world"
-    key="node-0-0"
+<span
+  class="hello-world"
+>
+  <div
+    class="euiPopover euiCodeBlock__lineAnnotation emotion-euiPopover-inline-block-euiCodeBlockAnnotation"
   >
-    <EuiCodeBlockAnnotation
-      className="euiCodeBlock__lineAnnotation"
-      key="0"
-      lineNumber={3}
+    <button
+      aria-label="Click to view a code annotation for line 3"
+      class="emotion-euiCodeBlockAnnotation__buttonIcon"
+      data-test-subj="euiCodeBlockAnnotationIcon"
     >
-      Hello world
-    </EuiCodeBlockAnnotation>
-  </span>
-</div>
+      <span
+        color="ghost"
+        data-euiicon-type="AnnotationInfoIcon"
+      />
+    </button>
+  </div>
+</span>
 `;
 
 exports[`shared utils nodeToHtml recursively converts refactor nodes to React JSX 1`] = `
-<div>
-  <span
-    className="hello-world"
-    key="node-0-0"
-  >
-    Hello world
-  </span>
-</div>
+<span
+  class="hello-world"
+>
+  Hello world
+</span>
 `;
