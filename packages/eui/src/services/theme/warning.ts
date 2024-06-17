@@ -9,34 +9,29 @@
 type LEVELS = 'log' | 'warn' | 'error';
 type ProviderCallback = (message: string | Error) => void;
 
-let providerWarning: LEVELS | undefined = undefined;
-let providerCallback: ProviderCallback | undefined;
+let providerWarning: LEVELS | ProviderCallback | undefined = undefined;
 
-export const setEuiDevProviderWarning = (
-  level: LEVELS | undefined,
-  cb?: ProviderCallback
-) => {
-  providerWarning = level;
-  providerCallback = cb;
-};
+export const setEuiDevProviderWarning = (warningType: typeof providerWarning) =>
+  (providerWarning = warningType);
 
 export const getEuiDevProviderWarning = () => providerWarning;
 
 // Not a public top-level EUI export, currently for internal use
 export const emitEuiProviderWarning = (providerMessage: string) => {
+  // Handle callback types
+  if (typeof providerWarning === 'function') {
+    return providerWarning(providerMessage);
+  }
+  // Handle level types
   switch (providerWarning) {
     case 'log':
       console.log(providerMessage);
-      providerCallback?.(providerMessage);
       break;
     case 'warn':
       console.warn(providerMessage);
-      providerCallback?.(providerMessage);
       break;
     case 'error':
-      const providerError = new Error(providerMessage);
-      providerCallback?.(providerError);
-      throw providerError;
+      throw new Error(providerMessage);
     case undefined:
     default:
       break;
