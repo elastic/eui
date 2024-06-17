@@ -18,10 +18,7 @@ import {
 import { emitEuiProviderWarning } from '../../services/theme/warning';
 import { cache as fallbackCache } from '../../services/emotion/css';
 
-import {
-  EuiGlobalStyles,
-  EuiGlobalStylesProps,
-} from '../../global_styling/reset/global_styles';
+import { EuiGlobalStyles } from '../../global_styling/reset/global_styles';
 import { EuiUtilityClasses } from '../../global_styling/utility/utility';
 import { EuiThemeAmsterdam } from '../../themes';
 
@@ -38,7 +35,6 @@ const isEmotionCacheObject = (
 
 export interface EuiProviderProps<T>
   extends PropsWithChildren,
-    EuiGlobalStylesProps,
     Pick<EuiThemeProviderProps<T>, 'colorMode' | 'modify'> {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
