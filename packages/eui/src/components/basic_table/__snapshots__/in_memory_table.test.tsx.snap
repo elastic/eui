@@ -216,32 +216,6 @@ exports[`EuiInMemoryTable empty array 1`] = `
 </div>
 `;
 
-exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2 emotion-euiTestCss"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={Array []}
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  tableLayout="fixed"
-/>
-`;
-
 exports[`EuiInMemoryTable with items 1`] = `
 <div
   aria-label="aria-label"
