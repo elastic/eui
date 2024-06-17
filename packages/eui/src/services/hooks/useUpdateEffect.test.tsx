@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
+
 import { useUpdateEffect } from './useUpdateEffect';
 
 describe('useUpdateEffect', () => {
@@ -28,31 +29,31 @@ describe('useUpdateEffect', () => {
   });
 
   it('does not invoke the passed effect on initial mount', () => {
-    mount(<MockComponent />);
+    render(<MockComponent />);
 
     expect(mockEffect).not.toHaveBeenCalled();
   });
 
   it('invokes the passed effect on each component update/rerender', () => {
-    const component = mount(<MockComponent />);
+    const { rerender } = render(<MockComponent />);
 
-    component.setProps({ test: true });
+    rerender(<MockComponent test={true} />);
     expect(mockEffect).toHaveBeenCalledTimes(1);
 
-    component.setProps({ test: false });
+    rerender(<MockComponent test={false} />);
     expect(mockEffect).toHaveBeenCalledTimes(2);
 
-    component.setProps({ test: true });
+    rerender(<MockComponent test={true} />);
     expect(mockEffect).toHaveBeenCalledTimes(3);
   });
 
   it('invokes returned cleanup, same as useEffect', () => {
-    const component = mount(<MockComponent />);
+    const { rerender, unmount } = render(<MockComponent />);
 
-    component.setProps({ test: true }); // Trigger first update/call
+    rerender(<MockComponent test={true} />); // Trigger first update/call
     expect(mockCleanup).not.toHaveBeenCalled();
 
-    component.unmount(); // Trigger cleanup
+    unmount(); // Trigger cleanup
     expect(mockCleanup).toHaveBeenCalled();
   });
 });

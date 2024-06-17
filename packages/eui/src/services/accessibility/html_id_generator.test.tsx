@@ -7,12 +7,11 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { shallow } from 'enzyme';
 import * as uuid from 'uuid';
-import { render } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
+import { testOnReactVersion } from '../../test/internal';
 
 import { htmlIdGenerator, useGeneratedHtmlId } from './html_id_generator';
-import { testOnReactVersion } from '../../test/internal';
 
 const originalUuid = jest.requireActual('uuid');
 jest.mock('uuid');
@@ -65,41 +64,38 @@ describe('htmlIdGenerator', () => {
 
 describe('useGeneratedHtmlId', () => {
   it('does not change when a component updates', () => {
-    const MockComponent: React.FC = (props) => (
+    const MockComponent: React.FC<{ className?: string }> = (props) => (
       <div id={useGeneratedHtmlId()} {...props} />
     );
-    const component = shallow(<MockComponent />);
-    const initialId = component.find('div').prop('id');
+    const { container, rerender } = render(<MockComponent />);
+    const initialId = container.firstElementChild!.id;
 
-    component.setProps({ className: 'test' });
-    const rerenderedId = component.find('div').prop('id');
+    rerender(<MockComponent className="test" />);
+    const rerenderedId = container.firstElementChild!.id;
 
     expect(initialId).toEqual(rerenderedId);
   });
 
   it('passes prefixes and suffixes to htmlIdGenerator', () => {
-    const MockComponent: React.FC = () => (
-      <div id={useGeneratedHtmlId({ prefix: 'hello', suffix: 'world' })} />
+    const { result } = renderHook(() =>
+      useGeneratedHtmlId({ prefix: 'hello', suffix: 'world' })
     );
-    const component = shallow(<MockComponent />);
-    const id = component.find('div').prop('id');
 
-    expect(id!.startsWith('hello')).toBeTruthy();
-    expect(id!.endsWith('world')).toBeTruthy();
+    expect(result.current.startsWith('hello')).toBeTruthy();
+    expect(result.current.endsWith('world')).toBeTruthy();
   });
 
   it('allows overriding generated IDs with conditional IDs (typically from props)', () => {
-    const MockComponent: React.FC<{ id?: string }> = ({ id, ...props }) => (
-      <div id={useGeneratedHtmlId({ conditionalId: id })} {...props} />
-    );
-    const component = shallow(<MockComponent id="hello" />);
-    expect(component.find('div').prop('id')).toEqual('hello');
+    const { result, rerender } = renderHook(useGeneratedHtmlId, {
+      initialProps: { conditionalId: 'hello' },
+    });
+    expect(result.current).toEqual('hello');
 
-    component.setProps({ id: 'world' });
-    expect(component.find('div').prop('id')).toEqual('world');
+    rerender({ conditionalId: 'world' });
+    expect(result.current).toEqual('world');
 
-    component.setProps({ id: undefined });
-    expect(component.find('div').prop('id')).toBeTruthy(); // Should fall back to a generated ID
+    rerender({ conditionalId: undefined });
+    expect(result.current).toBeTruthy(); // Should fall back to a generated ID
   });
 
   describe('version-specific tests', () => {
@@ -119,7 +115,7 @@ describe('useGeneratedHtmlId', () => {
 
     testOnReactVersion('18')('[React 18] generates correct IDs', () => {
       const { getByTestSubject } = render(<MockComponent />);
-      expect(getByTestSubject('el')).toHaveAttribute('id', 'prefix:r0:suffix');
+      expect(getByTestSubject('el')).toHaveAttribute('id', 'prefix:r3:suffix');
     });
 
     testOnReactVersion(['16', '17'])(

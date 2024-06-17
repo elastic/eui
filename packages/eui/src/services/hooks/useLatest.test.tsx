@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { mount } from 'enzyme';
 import React, { MutableRefObject, useEffect } from 'react';
+import { render } from '@testing-library/react';
+
 import { useLatest } from './useLatest';
 
 describe('useLatest', () => {
@@ -22,21 +23,16 @@ describe('useLatest', () => {
   it('updates the ref value but not the ref identity on render', () => {
     const onRefChange = jest.fn();
     const onRefCurrentValueChange = jest.fn();
+    const props = { onRefChange, onRefCurrentValueChange };
 
-    const wrapper = mount(
-      <MockComponent
-        onRefChange={onRefChange}
-        onRefCurrentValueChange={onRefCurrentValueChange}
-        value="first"
-      />
-    );
+    const { rerender } = render(<MockComponent {...props} value="first" />);
 
     expect(onRefChange).toHaveBeenCalledTimes(1);
     expect(onRefChange).toHaveBeenLastCalledWith({ current: 'first' });
     expect(onRefCurrentValueChange).toHaveBeenCalledTimes(1);
     expect(onRefCurrentValueChange).toHaveBeenLastCalledWith('first');
 
-    wrapper.setProps({ value: 'second' });
+    rerender(<MockComponent {...props} value="second" />);
 
     expect(onRefChange).toHaveBeenCalledTimes(1); // the ref's identity has not changed
     expect(onRefCurrentValueChange).toHaveBeenCalledTimes(2);
