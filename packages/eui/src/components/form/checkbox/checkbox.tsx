@@ -30,10 +30,6 @@ export interface EuiCheckboxProps
   inputRef?: (element: HTMLInputElement) => void;
   label?: ReactNode;
   disabled?: boolean;
-  /**
-   * when `true` creates a shorter height checkbox row
-   */
-  compressed?: boolean;
   indeterminate?: boolean;
   /**
    * Object of props passed to the <label/>
@@ -50,7 +46,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   onChange,
   type,
   disabled = false,
-  compressed = false,
   indeterminate = false,
   inputRef,
   labelProps,
@@ -60,7 +55,6 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
     'euiCheckbox',
     {
       'euiCheckbox--noLabel': !label,
-      'euiCheckbox--compressed': compressed,
     },
     className
   );

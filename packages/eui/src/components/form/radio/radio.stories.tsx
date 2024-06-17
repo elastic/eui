@@ -19,7 +19,6 @@ const meta: Meta<EuiRadioProps> = {
   },
   args: {
     checked: false,
-    compressed: false,
     disabled: false,
     // set up for easier testing/QA
     id: '',

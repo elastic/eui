@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
@@ -26,6 +26,7 @@ const TYPES: Array<EuiFieldPasswordProps['type']> = [
 ];
 
 describe('EuiFieldPassword', () => {
+  shouldRenderCustomStyles(<EuiFieldPassword />);
   shouldRenderCustomStyles(<EuiFieldPassword type="dual" />, {
     childProps: ['dualToggleProps'],
   });
@@ -108,37 +109,48 @@ describe('EuiFieldPassword', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
-      test('dual does not mutate the append array prop', () => {
+      test('toggles the password mask on click', () => {
         const props: EuiFieldPasswordProps = {
           type: 'dual',
-          append: ['one', 'two'],
           dualToggleProps: {
             'data-test-subj': 'toggleButton',
           },
         };
-        const component = mount(<EuiFieldPassword {...props} />);
+        const { getByTestSubject } = render(<EuiFieldPassword {...props} />);
+        expect(getByTestSubject('toggleButton')).toMatchInlineSnapshot(`
+          <button
+            aria-label="Show password as plain text. Note: this will visually expose your password on the screen."
+            class="euiButtonIcon euiFormControlLayout__append emotion-euiButtonIcon-xs-empty-primary"
+            data-test-subj="toggleButton"
+            title="Show password as plain text. Note: this will visually expose your password on the screen."
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="eye"
+            />
+          </button>
+        `);
 
-        expect(
-          component.find('button[data-test-subj="toggleButton"]').length
-        ).toBe(1);
-        expect(
-          component
-            .find('button[data-test-subj="toggleButton"] EuiIcon')
-            .props().type
-        ).toBe('eye');
-
-        component
-          .find('button[data-test-subj="toggleButton"]')
-          .simulate('click');
-
-        expect(
-          component.find('button[data-test-subj="toggleButton"]').length
-        ).toBe(1);
-        expect(
-          component
-            .find('button[data-test-subj="toggleButton"] EuiIcon')
-            .props().type
-        ).toBe('eyeClosed');
+        fireEvent.click(getByTestSubject('toggleButton'));
+        expect(getByTestSubject('toggleButton')).toMatchInlineSnapshot(`
+          <button
+            aria-label="Mask password"
+            class="euiButtonIcon euiFormControlLayout__append emotion-euiButtonIcon-xs-empty-primary"
+            data-test-subj="toggleButton"
+            title="Mask password"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="eyeClosed"
+            />
+          </button>
+        `);
       });
     });
   });
@@ -152,7 +164,7 @@ describe('EuiFieldPassword', () => {
       );
 
       const input = container.querySelector('.euiFieldPassword');
-      expect(input).toHaveClass('euiFieldPassword--fullWidth');
+      expect(input!.className).toContain('fullWidth');
     });
   });
 });

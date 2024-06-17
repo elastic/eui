@@ -1,8 +1,0 @@
-.euiFieldNumber {
-  @include euiFormControlStyle;
-  @include euiFormControlWithIcon($isIconOptional: true, $side: 'left');
-}
-
-.euiFieldNumber--withIcon.euiFieldNumber--compressed {
-  @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
-}

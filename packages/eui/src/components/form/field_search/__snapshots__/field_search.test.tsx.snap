@@ -11,7 +11,7 @@ exports[`EuiFieldSearch is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch-isClearable testClass1 testClass2 emotion-euiTestCss"
+      class="euiFieldSearch euiFieldSearch-isClearable testClass1 testClass2 emotion-euiFieldSearch-euiTestCss"
       data-test-subj="test subject string"
       id="1"
       name="elastic"
@@ -33,7 +33,7 @@ exports[`EuiFieldSearch props append is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldSearch--inGroup"
+      class="euiFieldSearch emotion-euiFieldSearch-inGroup"
       type="search"
     />
   </eui-validatable-control>
@@ -49,7 +49,7 @@ exports[`EuiFieldSearch props fullWidth is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldSearch--fullWidth"
+      class="euiFieldSearch emotion-euiFieldSearch-fullWidth"
       type="search"
     />
   </eui-validatable-control>
@@ -65,7 +65,7 @@ exports[`EuiFieldSearch props isClearable is accepted 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch"
+      class="euiFieldSearch emotion-euiFieldSearch"
       type="search"
     />
   </eui-validatable-control>
@@ -82,7 +82,7 @@ exports[`EuiFieldSearch props isClearable is rendered when a value exists 1`] = 
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch-isClearable"
+      class="euiFieldSearch euiFieldSearch-isClearable emotion-euiFieldSearch"
       type="search"
       value="Hello"
     />
@@ -102,7 +102,7 @@ exports[`EuiFieldSearch props isInvalid is rendered 1`] = `
     isinvalid="true"
   >
     <input
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch-isInvalid"
+      class="euiFieldSearch euiFieldSearch-isInvalid emotion-euiFieldSearch"
       type="search"
     />
   </eui-validatable-control>
@@ -118,7 +118,7 @@ exports[`EuiFieldSearch props isLoading is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch-isLoading"
+      class="euiFieldSearch euiFieldSearch-isLoading emotion-euiFieldSearch"
       type="search"
     />
   </eui-validatable-control>
@@ -135,7 +135,7 @@ exports[`EuiFieldSearch props prepend is rendered 1`] = `
 >
   <eui-validatable-control>
     <input
-      class="euiFieldSearch euiFieldSearch--inGroup"
+      class="euiFieldSearch emotion-euiFieldSearch-inGroup"
       type="search"
     />
   </eui-validatable-control>

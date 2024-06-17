@@ -7,8 +7,8 @@
  */
 
 import React, { useImperativeHandle, createRef, forwardRef } from 'react';
-import { act } from '@testing-library/react';
-import { mount } from 'enzyme';
+import { render, act } from '@testing-library/react';
+
 import { useForceRender } from './useForceRender';
 
 interface MockRefShape {
@@ -36,7 +36,7 @@ describe('useForceRender', () => {
 
   it('causes the component to re-render', () => {
     const ref = createRef<MockRefShape>();
-    mount(<MockComponent ref={ref} />);
+    render(<MockComponent ref={ref} />);
 
     expect(renderTracker).toHaveBeenCalledTimes(1);
     act(() => {

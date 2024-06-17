@@ -185,6 +185,7 @@ export const iconTypes = [
   'minusInCircleFilled',
   'mobile',
   'moon',
+  'move',
   'namespace',
   'nested',
   'newChat',

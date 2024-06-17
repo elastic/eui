@@ -293,13 +293,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     clear: isClearable,
     isInvalid,
   });
-  const inputClasses = classNames(
-    'euiColorPicker__input',
-    { 'euiColorPicker__input--inGroup': prepend || append },
-    // Manually account for input padding, since `controlOnly` disables that logic
-    'euiFieldText--withIcon',
-    numIconsClass
-  );
+  const inputClasses = classNames('euiColorPicker__input', numIconsClass);
 
   const handleOnChange = (text: string) => {
     const output = getOutput(text, showAlpha);

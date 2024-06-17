@@ -1,3 +1,44 @@
+## [`v95.1.0`](https://github.com/elastic/eui/releases/v95.1.0)
+
+- Updated the autofill colors of Chrome (and other webkit browsers) to better match EUI's light and dark mode ([#7776](https://github.com/elastic/eui/pull/7776))
+- Updated `EuiFormControlLayout` to automatically pass icon padding affordance down to child `input`s ([#7799](https://github.com/elastic/eui/pull/7799))
+
+**Bug fixes**
+
+- Fixed broken focus/invalid styling on compressed `EuiDatePickerRange`s ([#7770](https://github.com/elastic/eui/pull/7770))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFieldText` to Emotion ([#7770](https://github.com/elastic/eui/pull/7770))
+- Converted `EuiFieldNumber` to Emotion ([#7802](https://github.com/elastic/eui/pull/7802))
+- Converted `EuiFieldSearch` to Emotion ([#7802](https://github.com/elastic/eui/pull/7802))
+- Converted `EuiFieldPassword` to Emotion ([#7802](https://github.com/elastic/eui/pull/7802))
+- Converted `EuiTextArea` to Emotion ([#7812](https://github.com/elastic/eui/pull/7812))
+- Converted `EuiSelect` to Emotion ([#7812](https://github.com/elastic/eui/pull/7812))
+- Converted `EuiSuperSelect` to Emotion ([#7812](https://github.com/elastic/eui/pull/7812))
+
+## [`v95.0.0`](https://github.com/elastic/eui/releases/v95.0.0)
+
+- Added `move` glyph to `EuiIcon` ([#7789](https://github.com/elastic/eui/pull/7789))
+- Updated `EuiBasicTable` and `EuiInMemoryTable`s with `selection` - the header row checkbox will now render an indeterminate state if some (but not all) rows are selected ([#7817](https://github.com/elastic/eui/pull/7817))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` visual bug when using `lineCount` row heights where the clamped text was still visible for some font sizes ([#7793](https://github.com/elastic/eui/pull/7793))
+- Fixed `EuiSearchBar`'s filter configs to always respect `autoClose: false` ([#7806](https://github.com/elastic/eui/pull/7806))
+
+**Breaking changes**
+
+- Removed deprecated `EUI_CHARTS_THEME_DARK`, `EUI_CHARTS_THEME_LIGHT` and `EUI_SPARKLINE_THEME_PARTIAL` exports ([#7682](https://github.com/elastic/eui/pull/7682))
+- Removed deprecated `euiPalettePositive` and `euiPaletteNegative`. Use `euiPaletteGreen` and `euiPaletteRed` instead ([#7808](https://github.com/elastic/eui/pull/7808))
+- Removed `type="inList"` from `EuiCheckbox`. Simply omit passing a `label` prop to render this style of checkbox ([#7814](https://github.com/elastic/eui/pull/7814))
+- Removed the unused `compressed` prop from `EuiCheckbox` and `EuiRadio`. This prop was not doing anything on individual components. ([#7818](https://github.com/elastic/eui/pull/7818))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiCheckboxGroup` to Emotion ([#7818](https://github.com/elastic/eui/pull/7818))
+- Converted `EuiRadioGroup` to Emotion ([#7818](https://github.com/elastic/eui/pull/7818))
+
 ## [`v94.6.0`](https://github.com/elastic/eui/releases/v94.6.0)
 
 - Updated `setEuiDevProviderWarning` to support an optional callback function as the 2nd argument.

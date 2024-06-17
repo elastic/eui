@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
@@ -35,8 +34,6 @@ interface ComplexItem {
     name: string;
   };
 }
-
-// TODO: Convert remaining shallow/mount tests to RTL
 
 describe('EuiInMemoryTable', () => {
   test('empty array', () => {
@@ -91,26 +88,6 @@ describe('EuiInMemoryTable', () => {
     const { container } = render(<EuiInMemoryTable {...props} />);
 
     expect(container.querySelector('.euiBasicTable-loading')).toBeTruthy();
-  });
-
-  test('with executeQueryOptions', () => {
-    const props: EuiInMemoryTableProps<BasicItem> = {
-      ...requiredProps,
-      items: [],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
-      executeQueryOptions: {
-        defaultFields: ['name'],
-      },
-    };
-    const component = shallow(<EuiInMemoryTable {...props} />);
-
-    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with items', () => {
@@ -309,6 +286,11 @@ describe('EuiInMemoryTable', () => {
   });
 
   describe('sorting', () => {
+    const getCellTextArray = () =>
+      Array.from(
+        document.querySelectorAll('tbody .euiTableCellContent__text')
+      ).map((cell) => cell.textContent);
+
     test('with field sorting (off by default)', () => {
       const props: EuiInMemoryTableProps<BasicItem> = {
         ...requiredProps,
@@ -327,13 +309,9 @@ describe('EuiInMemoryTable', () => {
         ],
         sorting: true,
       };
-      const component = mount(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable {...props} />);
 
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['name3', 'name1', 'name2']);
+      expect(getCellTextArray()).toEqual(['name3', 'name1', 'name2']);
     });
 
     test('with field sorting (on by default)', () => {
@@ -359,13 +337,9 @@ describe('EuiInMemoryTable', () => {
           },
         },
       };
-      const component = mount(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable {...props} />);
 
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['name1', 'name2', 'name3']);
+      expect(getCellTextArray()).toEqual(['name1', 'name2', 'name3']);
     });
 
     test('with name sorting', () => {
@@ -391,13 +365,9 @@ describe('EuiInMemoryTable', () => {
           },
         },
       };
-      const component = mount(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable {...props} />);
 
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['name3', 'name2', 'name1']);
+      expect(getCellTextArray()).toEqual(['name3', 'name2', 'name1']);
     });
 
     test('verify field sorting precedes name sorting', () => {
@@ -429,14 +399,17 @@ describe('EuiInMemoryTable', () => {
           },
         },
       };
-      const component = mount(<EuiInMemoryTable {...props} />);
+      render(<EuiInMemoryTable {...props} />);
 
       // name TDs should be sorted desc, id TDs should be asc,
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['name3', '1', 'name2', '2', 'name1', '3']);
+      expect(getCellTextArray()).toEqual([
+        'name3',
+        '1',
+        'name2',
+        '2',
+        'name1',
+        '3',
+      ]);
     });
 
     test('verify an invalid sort field does not blow everything up', () => {
@@ -463,7 +436,7 @@ describe('EuiInMemoryTable', () => {
         },
       };
       expect(() => {
-        mount(<EuiInMemoryTable {...props} />);
+        render(<EuiInMemoryTable {...props} />);
       }).not.toThrow();
     });
 
@@ -496,54 +469,114 @@ describe('EuiInMemoryTable', () => {
         },
       };
 
-      const component = mount(<EuiInMemoryTable {...props} />);
+      const { rerender } = render(<EuiInMemoryTable {...props} />);
 
       // initial sorting: id asc
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['1', 'name1', '2', 'name2', '3', 'name3']);
+      expect(getCellTextArray()).toEqual([
+        '1',
+        'name1',
+        '2',
+        'name2',
+        '3',
+        'name3',
+      ]);
 
       // sorting: id desc
-      component.setProps({
-        sorting: { sort: { field: 'id', direction: SortDirection.DESC } },
-      });
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['3', 'name3', '2', 'name2', '1', 'name1']);
+      rerender(
+        <EuiInMemoryTable
+          {...props}
+          sorting={{ sort: { field: 'id', direction: SortDirection.DESC } }}
+        />
+      );
+      expect(getCellTextArray()).toEqual([
+        '3',
+        'name3',
+        '2',
+        'name2',
+        '1',
+        'name1',
+      ]);
 
       // sorting: name asc
-      component.setProps({
-        sorting: { sort: { field: 'name', direction: SortDirection.ASC } },
-      });
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['1', 'name1', '2', 'name2', '3', 'name3']);
+      rerender(
+        <EuiInMemoryTable
+          {...props}
+          sorting={{ sort: { field: 'name', direction: SortDirection.ASC } }}
+        />
+      );
+      expect(getCellTextArray()).toEqual([
+        '1',
+        'name1',
+        '2',
+        'name2',
+        '3',
+        'name3',
+      ]);
 
       // sorting: name desc
-      component.setProps({
-        sorting: { sort: { field: 'name', direction: SortDirection.DESC } },
-      });
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['3', 'name3', '2', 'name2', '1', 'name1']);
+      rerender(
+        <EuiInMemoryTable
+          {...props}
+          sorting={{ sort: { field: 'name', direction: SortDirection.DESC } }}
+        />
+      );
+      expect(getCellTextArray()).toEqual([
+        '3',
+        'name3',
+        '2',
+        'name2',
+        '1',
+        'name1',
+      ]);
 
       // can return to initial sorting: id asc
-      component.setProps({
-        sorting: { sort: { field: 'id', direction: SortDirection.ASC } },
+      rerender(
+        <EuiInMemoryTable
+          {...props}
+          sorting={{ sort: { field: 'id', direction: SortDirection.ASC } }}
+        />
+      );
+      expect(getCellTextArray()).toEqual([
+        '1',
+        'name1',
+        '2',
+        'name2',
+        '3',
+        'name3',
+      ]);
+    });
+
+    describe('custom column sorting', () => {
+      it('calls the sortable function and uses its return value for sorting', () => {
+        const sortable = jest.fn(({ id }: any) => id); // Sorts by the ID instead of the name
+
+        const props: EuiInMemoryTableProps<BasicItem> = {
+          ...requiredProps,
+          items: [
+            { id: 7, name: 'Alfred' },
+            { id: 3, name: 'Betty' },
+            { id: 5, name: 'Charlie' },
+          ],
+          itemId: 'id',
+          columns: [
+            {
+              field: 'name',
+              name: 'Name',
+              sortable,
+            },
+          ],
+          sorting: {
+            sort: {
+              field: 'name',
+              direction: SortDirection.ASC,
+            },
+          },
+        };
+        render(<EuiInMemoryTable {...props} />);
+
+        expect(sortable).toHaveBeenCalled();
+        expect(getCellTextArray()).toEqual(['Betty', 'Charlie', 'Alfred']);
       });
-      expect(
-        component
-          .find('tbody .euiTableCellContent__text')
-          .map((cell) => cell.text())
-      ).toEqual(['1', 'name1', '2', 'name2', '3', 'name3']);
     });
   });
 
@@ -942,34 +975,28 @@ describe('EuiInMemoryTable', () => {
         className: 'testTable',
       };
 
-      const component = mount(<EuiInMemoryTable {...props} />);
+      const { container } = render(<EuiInMemoryTable {...props} />);
 
       // should render with all three results visible
-      expect(component.find('.testTable EuiTableRow').length).toBe(3);
+      expect(container.querySelectorAll('tbody tr')).toHaveLength(3);
 
-      const searchField = component.find('EuiFieldSearch input[type="search"]');
+      const searchField = container.querySelector('input.euiFieldSearch')!;
 
-      searchField.simulate('keyUp', {
-        target: {
-          value: 'is:active',
-        },
+      fireEvent.keyUp(searchField, {
+        target: { value: 'is:active' },
         key: keys.ENTER,
       });
-      component.update();
 
       // should render with the two active results
-      expect(component.find('.testTable EuiTableRow').length).toBe(2);
+      expect(container.querySelectorAll('tbody tr')).toHaveLength(2);
 
-      searchField.simulate('keyUp', {
-        target: {
-          value: 'active:false',
-        },
+      fireEvent.keyUp(searchField, {
+        target: { value: 'active:false' },
         key: keys.ENTER,
       });
-      component.update();
 
       // should render with the one inactive result
-      expect(component.find('.testTable EuiTableRow').length).toBe(1);
+      expect(container.querySelectorAll('tbody tr')).toHaveLength(1);
     });
 
     it('passes down the executeQueryOptions properly', () => {
@@ -1012,9 +1039,9 @@ describe('EuiInMemoryTable', () => {
         message: <span className="customMessage">No items found!</span>,
       };
 
-      const noDefaultFieldsComponent = mount(<EuiInMemoryTable {...props} />);
+      const { container } = render(<EuiInMemoryTable {...props} />);
       // should render with the no items found text
-      expect(noDefaultFieldsComponent.find('.customMessage').length).toBe(1);
+      expect(container.querySelector('.customMessage')).toBeInTheDocument();
 
       // With defaultFields and a search query, we should only see one
       const props2: EuiInMemoryTableProps<ComplexItem> = {
@@ -1056,44 +1083,10 @@ describe('EuiInMemoryTable', () => {
         message: <span className="customMessage">No items found!</span>,
       };
 
-      const defaultFieldComponent = mount(<EuiInMemoryTable {...props2} />);
-      expect(defaultFieldComponent.find('.testTable EuiTableRow').length).toBe(
-        1
+      const { container: container2 } = render(
+        <EuiInMemoryTable {...props2} />
       );
-    });
-  });
-
-  describe('custom column sorting', () => {
-    it('calls the sortable function and uses its return value for sorting', () => {
-      const props: EuiInMemoryTableProps<BasicItem> = {
-        ...requiredProps,
-        items: [
-          { id: 7, name: 'Alfred' },
-          { id: 3, name: 'Betty' },
-          { id: 5, name: 'Charlie' },
-        ],
-        itemId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            sortable: ({ id }: any) => id,
-          },
-        ],
-        sorting: {
-          sort: {
-            field: 'name',
-            direction: SortDirection.ASC,
-          },
-        },
-      };
-      const component = mount(<EuiInMemoryTable {...props} />);
-
-      expect((component.find('EuiBasicTable').props() as any).items).toEqual([
-        { id: 3, name: 'Betty' },
-        { id: 5, name: 'Charlie' },
-        { id: 7, name: 'Alfred' },
-      ]);
+      expect(container2.querySelectorAll('tbody tr')).toHaveLength(1);
     });
   });
 

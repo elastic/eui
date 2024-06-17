@@ -129,7 +129,8 @@ exports[`EuiScreenReaderLive with dynamic properties alternates rendering screen
       role="status"
     >
       <p>
-        Number of active options: 1
+        Number of active options: 
+        1
       </p>
     </div>
   </div>

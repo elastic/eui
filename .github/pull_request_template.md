@@ -21,6 +21,7 @@ Remove or strikethrough items that do not apply to your PR.
     - [ ] Checked **[Code Sandbox](https://codesandbox.io/)** works for any docs examples
 - Code quality checklist
     - [ ] Added or updated **[jest](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/unit-testing.md) and [cypress](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/cypress-testing.md) tests**
+    - [ ] Updated **[visual regression tests](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/visual-regression-testing.md)**
 - Release checklist
     - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately.
     - [ ] If applicable, added the **breaking change** issue label (and filled out the breaking change checklist)

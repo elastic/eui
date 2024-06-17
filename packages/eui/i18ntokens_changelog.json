@@ -1,5 +1,15 @@
 [
   {
+    "version": "95.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.deselectRows",
+        "changeType": "added",
+        "value": "Deselect rows"
+      }
+    ]
+  },
+  {
     "version": "94.4.0",
     "changes": [
       {

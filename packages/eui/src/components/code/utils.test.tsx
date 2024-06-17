@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import { renderHook } from '../../test/rtl';
+import { render, renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 
 import {
@@ -66,8 +65,8 @@ describe('shared utils', () => {
         0,
         []
       );
-      const component = shallow(<div>{output}</div>);
-      expect(component).toMatchSnapshot();
+      const { container } = render(<>{output}</>);
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('handles rendering custom annotation types', () => {
@@ -88,8 +87,8 @@ describe('shared utils', () => {
         0,
         []
       );
-      const component = shallow(<div>{output}</div>);
-      expect(component).toMatchSnapshot();
+      const { container } = render(<>{output}</>);
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

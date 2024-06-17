@@ -225,14 +225,21 @@ export const StepsExample = {
         },
       ],
       text: (
-        <p>
-          You can set a different title size using <EuiCode>titleSize</EuiCode>.
-          If <EuiCode>titleSize</EuiCode> is set in both{' '}
-          <strong>EuiSteps</strong> and <strong>EuiStep</strong>, the latter
-          value will override the former. Additionally, the title size{' '}
-          <EuiCode>xs</EuiCode> will automatically generate smaller steps
-          circles.
-        </p>
+        <>
+          <p>
+            You can set a different title size using{' '}
+            <EuiCode>titleSize</EuiCode>. If <EuiCode>titleSize</EuiCode> is set
+            in both <strong>EuiSteps</strong> and <strong>EuiStep</strong>, the
+            latter value will override the former. Additionally, the title size{' '}
+            <EuiCode>xs</EuiCode> will automatically generate smaller steps
+            circles.
+          </p>
+          <p>
+            The title size <EuiCode>xxs</EuiCode> affects only the size of the
+            accompanying <strong>unnumbered</strong> step indicator, but not the
+            title itself.
+          </p>
+        </>
       ),
       demo: <StepsTitleSizes />,
       snippet: stepsTitleSizesSnippet,

@@ -8,7 +8,7 @@ exports[`EuiRangeInput renders 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <input
-      class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+      class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiFieldNumber-euiRangeInput"
       max="100"
       min="0"
       step="any"
