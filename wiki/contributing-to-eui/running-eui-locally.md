@@ -22,13 +22,26 @@ nvm install
 
 ### Dependencies
 
-EUI uses `yarn` for dependency management. We use `npm` for release purposes only.
+EUI uses [Yarn v4](https://yarnpkg.com/getting-started/install) for dependency management. We use `npm` for release purposes only.
 
-EUI only uses [yarn@v1 (classic)](https://classic.yarnpkg.com/en/docs/install), and not yarn v2 or above. Ensure you are on the correct version via `yarn -v` before installing all dependencies:
+Unlike Yarn Classic and other package managers, Yarn v4 isn't supposed to be installed globally.
+Instead, it utilizes [corepack](https://nodejs.org/api/corepack.html) - a modern way to manage package managers built straight into Node.js.
+
+First, enable corepack:
+```shell
+corepack enable
+```
+
+`yarn` is now configured on your machine, and you can use it just like any other CLI command.
+Corepack will always use the right Yarn version, even when switching branches.
+
+With `yarn` set up and ready to go, use it to install EUI dependencies:
 
 ```shell
 yarn
 ```
+
+Remember to run `yarn` whenever you're switching branches to ensure all dependencies are installed and have correct versions.
 
 #### Puppeteer issues
 
