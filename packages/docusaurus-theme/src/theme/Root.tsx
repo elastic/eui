@@ -8,6 +8,7 @@
 
 import { EuiProvider } from '@elastic/eui';
 import { Props } from '@theme/Root';
+import '@elastic/eui/dist/eui_theme_light.css';
 
 // Wrap docusaurus root component with <EuiProvider>
 // See https://docusaurus.io/docs/swizzling#wrapper-your-site-with-root

@@ -35,6 +35,10 @@ const config: Config = {
     locales: ['en'],
   },
 
+  themes: [
+    '@elastic/eui-docusaurus-theme',
+  ],
+
   presets: [
     [
       'classic',
@@ -48,9 +52,6 @@ const config: Config = {
           showReadingTime: true,
           editUrl:
             'https://github.com/elastic/eui/tree/main/website/',
-        },
-        theme: {
-          customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
     ],
