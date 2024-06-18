@@ -36,6 +36,7 @@ export interface EuiFilePickerProps
   className?: string;
   /**
    * The content that appears in the dropzone if no file is attached
+   * @default 'Select or drag and drop a file'
    */
   initialPromptText?: ReactNode;
   /**
@@ -44,12 +45,14 @@ export interface EuiFilePickerProps
   onChange?: (files: FileList | null) => void;
   /**
    * Reduces the size to a typical (compressed) input
+   * @default false
    */
   compressed?: boolean;
   /**
    * Size or type of display;
    * `default` for normal height, similar to other controls;
    * `large` for taller size
+   * @default large
    */
   display?: 'default' | 'large';
   /**
