@@ -80,5 +80,18 @@ describe('EUI provider dev warnings', () => {
       expect(consoleLogSpy).not.toHaveBeenCalled();
       expect(consoleWarnSpy).not.toHaveBeenCalled();
     });
+
+    it('passes messages to callback functions', () => {
+      const devCallback = jest.fn();
+      setEuiDevProviderWarning(devCallback);
+
+      emitEuiProviderWarning(providerMessage);
+
+      expect(devCallback).toHaveBeenCalledWith('hello world');
+      expect(devCallback).toHaveBeenCalledTimes(1);
+
+      expect(consoleLogSpy).not.toHaveBeenCalled();
+      expect(consoleWarnSpy).not.toHaveBeenCalled();
+    });
   });
 });

@@ -15,7 +15,7 @@ import { GuideSectionPropsTable } from '../../components/guide_section/guide_sec
 
 import Setup from './provider_setup';
 import GlobalStyles from './provider_styles';
-import Warnings from './provider_warning';
+import Warnings, { CallbackExample } from './provider_warning';
 import {
   EuiComponentDefaultsProps,
   euiProviderComponentDefaultsSnippet,
@@ -237,8 +237,7 @@ export const ProviderExample = {
           <Warnings />
 
           <p>
-            <EuiCode>setEuiDevProviderWarning</EuiCode>
-            accepts three levels:
+            <EuiCode>setEuiDevProviderWarning</EuiCode> accepts three levels:
           </p>
           <ul>
             <li>
@@ -254,6 +253,13 @@ export const ProviderExample = {
               exception
             </li>
           </ul>
+
+          <p>
+            It also accepts a callback function instead of a default warning
+            level. The warning message string will be passed to your callback,
+            where any custom action can be performed on it. Example usage:
+          </p>
+          <CallbackExample />
         </EuiText>
       ),
     },
