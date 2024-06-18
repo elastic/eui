@@ -5425,7 +5425,6 @@ exports[`EuiIcon props type logoElasticStack is rendered 1`] = `
   class="euiIcon emotion-euiIcon-m-isLoaded"
   data-icon-type="logoElasticStack"
   data-is-loaded="true"
-  fill="none"
   height="32"
   role="img"
   viewBox="0 0 32 32"
@@ -5437,10 +5436,8 @@ exports[`EuiIcon props type logoElasticStack is rendered 1`] = `
     fill="#F04E98"
   />
   <path
-    clip-rule="evenodd"
     d="M0 20.148h32v-8.296H0v8.296Z"
     fill="#00BFB3"
-    fill-rule="evenodd"
   />
   <path
     d="M0 23.111h32v6.519A2.37 2.37 0 0 1 29.63 32H2.37A2.37 2.37 0 0 1 0 29.63v-6.52Z"
