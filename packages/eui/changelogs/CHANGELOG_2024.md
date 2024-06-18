@@ -41,8 +41,6 @@
 
 ## [`v94.6.0`](https://github.com/elastic/eui/releases/v94.6.0)
 
-- Updated `setEuiDevProviderWarning` to support an optional callback function as the 2nd argument.
-
 - Updated `EuiComboBox` to support rendering `option.append` and `option.prepend` in group labels ([#7800](https://github.com/elastic/eui/pull/7800))
 
 **Accessibility**
