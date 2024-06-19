@@ -137,7 +137,7 @@ The returned string of the conversion is then cleaned to ensure:
 - rename internal Components (e.g. `<_Component>` to `<Component>`) ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/render_jsx.tsx#L256))
 - rename necessary React.Fragment to shorthand (e.g. `<React.Fragment>` to `<>`) [code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/render_jsx.tsx#L277)
 - ensure boolean value shorthand by manually filtering out values of `true` ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/render_jsx.tsx#L290))
-    - this is manually handled and not by `react-element-to-jsx-string` because we want to keep some occurrences of `false` values when they have meaning (e.g. <EuiFlexItem grow={false}>`)
+    - this is manually handled and not by `react-element-to-jsx-string` because we want to keep some occurrences of `false` values when they have meaning (e.g. `<EuiFlexItem grow={false}>`)
 - replace variable markers that were added in "1: Pre-conversion" ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/render_jsx.tsx#L301))
 - remove obsolete function naming ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/render_jsx.tsx#L314))
 
@@ -148,7 +148,7 @@ To ensure the formatting is correct after adjusting the string returned from `re
 
 ## Options
 
-Currently there are two addon specific parameter options added with this PR that can be used under the key `codeSnippet` in the parameters config key.
+Currently there are two addon specific parameter options added that can be used under the key `codeSnippet` in the parameters config key.
 
 ```ts
 // meta or story config
@@ -175,7 +175,7 @@ const meta = {
 
 Instead of using the automatic code snippet generation, we can also provide a manual snippet which will be output instead. This is especially useful when the story content is not actually a component (e.g. a hook). You can see an example of this for the story of `useEuiTextDiff`.
 
-To add the story args tot he code snippet, add the defined marker `{{STORY_ARGS}}` to the snippet string. This marker will be replaced automatically with the current story args.
+To add the story args to the code snippet, add the defined marker `{{STORY_ARGS}}` to the snippet string. This marker will be replaced automatically with the current story args.
 
 ```ts
 parameters: {
