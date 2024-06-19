@@ -97,7 +97,7 @@ export const customJsxDecorator = (
   }
 
   // use manually provided code snippet and replace args if available
-  const codeSnippet = context?.parameters?.codeSnippet?.snippet;
+  const codeSnippet: string = context?.parameters?.codeSnippet?.snippet;
   if (codeSnippet) {
     const args: typeof context.args = { ...context.args };
 
@@ -123,6 +123,7 @@ export const customJsxDecorator = (
         jsx = code;
       });
 
+    // return story from decorator to be rendered
     return story;
   }
 
@@ -161,5 +162,6 @@ export const customJsxDecorator = (
       });
   }
 
+  // return story from decorator to be rendered
   return story;
 };

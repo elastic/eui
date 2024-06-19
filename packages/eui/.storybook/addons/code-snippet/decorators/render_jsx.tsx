@@ -14,7 +14,7 @@ import React, { isValidElement } from 'react';
 import type { Options } from 'react-element-to-jsx-string';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import { camelCase, isEmpty } from 'lodash';
-import type { ReactRenderer } from '@storybook/react';
+import type { ReactRenderer, Args } from '@storybook/react';
 import type { StoryContext } from '@storybook/types';
 import { getDocgenSection } from '@storybook/docs-tools';
 import { logger } from '@storybook/client-logger';
@@ -80,7 +80,6 @@ export const renderJsx = (
             // causes some stale value for Emotion components
             displayName = getEmotionComponentDisplayName(el) ?? displayName;
           }
-
           return displayName;
         } else if (getDocgenSection(el.type, 'displayName')) {
           return getDocgenSection(el.type, 'displayName');
@@ -101,9 +100,7 @@ export const renderJsx = (
               getComponentDisplayName(context) ??
               context?.title.split('/').pop() ??
               el.type.name;
-
             el.type.displayName = displayName;
-
             return displayName;
           }
           return el.type.name;
@@ -128,6 +125,7 @@ export const renderJsx = (
     useBooleanShorthandSyntax: false, // disabled in favor of manual filtering
     useFragmentShortSyntax: true,
     sortProps: true,
+    // using any type here as component props can have any type
     filterProps: (value: any, key: string) => {
       if (
         EXCLUDED_PROPS.has(key) ||
@@ -170,7 +168,7 @@ export const renderJsx = (
       if (shouldResolveChildren) {
         node =
           child.type && typeof child.type === 'function'
-            ? (child.type as (args: any) => ReactElement)(context?.args) // kinda hacky way to return the children of a wrapper component instead by calling the component
+            ? (child.type as (args: Args) => ReactElement)(context?.args) // kinda hacky way to return the children of a wrapper component instead by calling the component
             : child;
       } else {
         // removes outer wrapper components but leaves:
@@ -304,6 +302,7 @@ const _simplifyNodeForStringify = (
     }
 
     // check and resolve props recursively
+    // NOTE: we're using any types here as component props can have any type
     const updatedProps = updatedNode.props
       ? Object.keys(updatedNode.props).reduce<{
           [key: string]: any;
@@ -458,9 +457,9 @@ const _simplifyNodeForStringify = (
   // e.g. props of object shape
   // props = { text: 'foobar' color: 'green' }
   if (node && !Array.isArray(node) && typeof node === 'object') {
-    const updatedChildren = {
+    const updatedChildren: Record<string, any> = {
       ...node,
-    } as Record<string, any>;
+    };
     let objectValue: ReactElement | undefined;
     const childrenKeys = Object.keys(updatedChildren);
     const childrenValues = Object.values(updatedChildren);

@@ -9,7 +9,12 @@
 /* DISCLAIMER: Parts of this file were copied from Storybook jsxDecorator and adjusted for more specific needs.
 https://github.com/storybookjs/storybook/blob/2bff7a1c156bbd42ab381f84b8a55a07694e7e53/code/renderers/react/src/docs/jsxDecorator.tsx#L224 */
 
-import { ReactElement, FunctionComponent, ComponentType } from 'react';
+import {
+  ReactElement,
+  FunctionComponent,
+  ComponentType,
+  ExoticComponent,
+} from 'react';
 import * as prettier from 'prettier';
 import tsParser from 'prettier/parser-typescript';
 import { StoryContext } from '@storybook/react';
@@ -21,19 +26,26 @@ export const toPascalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
 /* Helpers for React specific checks */
-export const isMemo = (component: any) =>
+export const isMemo = (component: ExoticComponent) =>
   component.$$typeof === Symbol.for('react.memo');
-export const isForwardRef = (component: any) =>
+export const isForwardRef = (component: ExoticComponent) =>
   component.$$typeof === Symbol.for('react.forward_ref');
-export const isFragment = (component: any) =>
-  component.type?.toString().includes('fragment') ||
-  component.$$typeof?.toString().includes('fragment');
+export const isFragment = (component: ReactElement | ExoticComponent) => {
+  const isExoticComponent = (el: any): el is ExoticComponent =>
+    el.$$typeof !== undefined;
+
+  if (isExoticComponent(component)) {
+    return component.$$typeof?.toString().includes('fragment');
+  }
+
+  return component.type?.toString().includes('fragment');
+};
 
 /* Helpers */
 // returns the displayName and handles typing as
 // otherwise `type` would not be typed
 export const getElementDisplayName = (
-  node: ReactElement<any>
+  node: ReactElement
 ): string | undefined => {
   let displayName;
 
@@ -47,7 +59,7 @@ export const getElementDisplayName = (
 
 // returns the displayName after resolving Emotion wrappers
 export const getEmotionComponentDisplayName = (
-  node: ReactElement<any>
+  node: ReactElement
 ): string | undefined => {
   const displayName = getElementDisplayName(node);
 
@@ -59,7 +71,7 @@ export const getEmotionComponentDisplayName = (
     const isForwardRefComponent = isForwardRef(emotionData);
 
     // we need to rely here on the reference Emotion stores to know what component this actually is
-    const replacementName = isForwardRefComponent
+    const replacementName: string | undefined = isForwardRefComponent
       ? emotionData.__docgenInfo.displayName
       : typeof emotionData === 'string'
       ? emotionData
@@ -76,14 +88,14 @@ export const getComponentDisplayName = (
   context: StoryContext | undefined
 ): string | undefined => {
   if (!context) return undefined;
-  const component = context.component as ComponentType<any> & {
+  const component = context.component as ComponentType & {
     __docgenInfo?: { displayName?: string };
   };
 
   return component?.displayName ?? component.__docgenInfo?.displayName;
 };
 
-export const isEmotionComponent = (node: ReactElement<any>): boolean => {
+export const isEmotionComponent = (node: ReactElement): boolean => {
   const displayName = getElementDisplayName(node);
   const matches =
     typeof displayName === 'string' ? displayName.startsWith('Emotion') : null;
@@ -93,7 +105,7 @@ export const isEmotionComponent = (node: ReactElement<any>): boolean => {
 
 /* Story specific checks */
 export const isStoryComponent = (
-  node: ReactElement<any>,
+  node: ReactElement,
   context: StoryContext | undefined
 ): boolean => {
   if (!context) return false;
@@ -107,7 +119,7 @@ export const isStoryComponent = (
  * checks if the outer most component is a parent of the actual story component
  */
 export const isStoryParent = (
-  node: ReactElement<any>,
+  node: ReactElement,
   context: StoryContext | undefined
 ): boolean => {
   if (!context) return false;
@@ -124,7 +136,7 @@ export const isStoryParent = (
 };
 
 export const isSubcomponent = (
-  node: ReactElement<any>,
+  node: ReactElement,
   context: StoryContext | undefined
 ): boolean => {
   if (!context) return false;
@@ -158,6 +170,7 @@ export const isStatefulComponent = (node: ReactElement<any>): boolean => {
 };
 
 /**
+ * NOTE: This code is from the original Storybook jsxDecorator
  * Converts a React symbol to a React-like displayName
  *
  * Symbols come from here
