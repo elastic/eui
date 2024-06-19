@@ -348,7 +348,7 @@ const _simplifyNodeForStringify = (
                 // transform string to styles object
                 const cssStyles = rules.reduce((acc, cur) => {
                   const [property, value] = cur.split(':');
-                  const isToken = value.match('euiTheme') != null;
+                  const isToken = value.includes('euiTheme');
                   const cleanedValue = isToken
                     ? value.replace(/.+?(?=euiTheme)/g, '')
                     : value.replaceAll("'", '').replaceAll('"', '');

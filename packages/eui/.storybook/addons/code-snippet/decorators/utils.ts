@@ -38,10 +38,8 @@ export const getElementDisplayName = (
   let displayName;
 
   if (typeof node.type === 'function' || typeof node.type === 'object') {
-    displayName =
-      (node.type as FunctionComponent).displayName ??
-      (node.type as FunctionComponent).name ??
-      undefined;
+    const component = node.type as FunctionComponent;
+    displayName = component.displayName ?? component.name ?? undefined;
   }
 
   return displayName;
@@ -88,9 +86,7 @@ export const getComponentDisplayName = (
 export const isEmotionComponent = (node: ReactElement<any>): boolean => {
   const displayName = getElementDisplayName(node);
   const matches =
-    typeof displayName === 'string'
-      ? displayName.match(/^(Emotion)(\w)*/g)
-      : null;
+    typeof displayName === 'string' ? displayName.startsWith('Emotion') : null;
 
   return matches != null;
 };
@@ -155,11 +151,10 @@ export const isSubcomponent = (
 export const isStatefulComponent = (node: ReactElement<any>): boolean => {
   const displayName = getEmotionComponentDisplayName(node);
   const isStateful =
-    typeof displayName === 'string'
-      ? displayName.match(/^(Stateful|Component)(\w)*/)
-      : null;
+    typeof displayName === 'string' &&
+    (displayName.startsWith('Stateful') || displayName.startsWith('Component'));
 
-  return Array.isArray(isStateful);
+  return isStateful;
 };
 
 /**
