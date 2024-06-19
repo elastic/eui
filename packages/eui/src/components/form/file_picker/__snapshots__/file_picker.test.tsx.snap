@@ -2,34 +2,30 @@
 
 exports[`EuiFilePicker is rendered 1`] = `
 <div
-  class="euiFilePicker euiFilePicker--large testClass1 testClass2 emotion-euiTestCss"
+  class="euiFilePicker testClass1 testClass2 emotion-euiFilePicker-euiTestCss"
 >
+  <input
+    aria-describedby="generated-id-filePicker__prompt"
+    aria-label="aria-label"
+    class="euiFilePicker__input emotion-euiFilePicker__input-largeInteractive"
+    data-test-subj="test subject string"
+    type="file"
+  />
   <div
-    class="euiFilePicker__wrap"
+    class="euiFilePicker__prompt emotion-euiFilePicker__prompt-large"
+    id="generated-id-filePicker__prompt"
   >
-    <input
-      aria-describedby="generated-id-filePicker__prompt"
-      aria-label="aria-label"
-      class="euiFilePicker__input"
-      data-test-subj="test subject string"
-      type="file"
+    <span
+      aria-hidden="true"
+      class="euiFilePicker__icon emotion-euiFilePicker__icon-large"
+      color="primary"
+      data-euiicon-type="importAction"
     />
-    <div
-      class="euiFilePicker__prompt"
-      id="generated-id-filePicker__prompt"
+    <span
+      class="euiFilePicker__promptText"
     >
-      <span
-        aria-hidden="true"
-        class="euiFilePicker__icon"
-        color="primary"
-        data-euiicon-type="importAction"
-      />
-      <div
-        class="euiFilePicker__promptText"
-      >
-        Select or drag and drop a file
-      </div>
-    </div>
+      Select or drag and drop a file
+    </span>
   </div>
 </div>
 `;

@@ -5435,27 +5435,18 @@ exports[`EuiIcon props type logoElasticStack is rendered 1`] = `
   width="32"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <g
-    fill="none"
-    fill-rule="evenodd"
-  >
-    <path
-      d="M32 9V2.5A2.5 2.5 0 0 0 29.5 0h-27A2.5 2.5 0 0 0 0 2.5V9h32Z"
-      fill="#F04E98"
-    />
-    <path
-      d="M0 20h32v-8H0z"
-      fill="#00BFB3"
-    />
-    <path
-      d="M14.5 23H0v6.5A2.5 2.5 0 0 0 2.5 32h12v-9Z"
-      fill="#0080D5"
-    />
-    <path
-      d="M17.5 23v9h12a2.5 2.5 0 0 0 2.5-2.5V23H17.5Z"
-      fill="#FEC514"
-    />
-  </g>
+  <path
+    d="M0 2.37A2.37 2.37 0 0 1 2.37 0h27.26A2.37 2.37 0 0 1 32 2.37v6.52H0V2.37Z"
+    fill="#F04E98"
+  />
+  <path
+    d="M0 20.148h32v-8.296H0v8.296Z"
+    fill="#00BFB3"
+  />
+  <path
+    d="M0 23.111h32v6.519A2.37 2.37 0 0 1 29.63 32H2.37A2.37 2.37 0 0 1 0 29.63v-6.52Z"
+    fill="#07C"
+  />
 </svg>
 `;
 
