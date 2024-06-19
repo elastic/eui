@@ -16,12 +16,12 @@ const meta: Meta<EuiSpacerProps> = {
   title: 'Layout/EuiSpacer',
   component: EuiSpacer,
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <>
         <EuiText>
           <p>Observe the space created between this and the next text block.</p>
         </EuiText>
-        <Story />
+        <Story {...args} />
         <EuiText>
           <p>
             Observe the space created between this and the previous text block.
@@ -33,6 +33,7 @@ const meta: Meta<EuiSpacerProps> = {
   args: {
     size: 'l',
   },
+  render: (args) => <EuiSpacer {...args} />,
 };
 
 export default meta;
