@@ -20,7 +20,11 @@ import { getDocgenSection } from '@storybook/docs-tools';
 import { logger } from '@storybook/client-logger';
 
 import { UseEuiTheme } from '../../../../src/services';
-import { EXCLUDED_PROPS, PRESERVED_FALSE_VALUE_PROPS } from '../constants';
+import {
+  ADDON_PARAMETER_KEY,
+  EXCLUDED_PROPS,
+  PRESERVED_FALSE_VALUE_PROPS,
+} from '../constants';
 import {
   getComponentDisplayName,
   getEmotionComponentDisplayName,
@@ -201,7 +205,11 @@ export const renderJsx = (
 
     // convert node to jsx string
     let string: string = toJSXString(
-      _simplifyNodeForStringify(node, euiTheme),
+      _simplifyNodeForStringify({
+        node,
+        euiTheme,
+        argsOverride: context?.parameters[ADDON_PARAMETER_KEY]?.args,
+      }),
       opts as Options
     );
 
@@ -274,10 +282,15 @@ export const renderJsx = (
  * - resolves Emotion css prop back to its input state
  * - resolves arrays and objects to single elements
  */
-const _simplifyNodeForStringify = (
-  node: ReactNode,
-  euiTheme?: UseEuiTheme
-): ReactNode => {
+const _simplifyNodeForStringify = ({
+  node,
+  euiTheme,
+  argsOverride,
+}: {
+  node: ReactNode;
+  euiTheme?: UseEuiTheme;
+  argsOverride?: Args;
+}): ReactNode => {
   if (isValidElement(node)) {
     let updatedNode = node;
 
@@ -307,6 +320,14 @@ const _simplifyNodeForStringify = (
       ? Object.keys(updatedNode.props).reduce<{
           [key: string]: any;
         }>((acc, cur) => {
+          // check if the story has manual prop overrides that should be
+          // used instead of the original value
+          if (argsOverride?.[cur]) {
+            console.log('OVERRIDE', cur, argsOverride?.[cur]);
+            acc[cur] = argsOverride?.[cur];
+
+            return acc;
+          }
           // resolve css Emotion object back to css prop
           // ensures tokens are output as is and not its resolved value
           if (cur === 'css') {
@@ -430,7 +451,9 @@ const _simplifyNodeForStringify = (
             });
           }
 
-          acc[cur] = _simplifyNodeForStringify(updatedNode.props[cur]);
+          acc[cur] = _simplifyNodeForStringify({
+            node: updatedNode.props[cur],
+          });
 
           return acc;
         }, {} as Record<string, any>)
@@ -449,7 +472,7 @@ const _simplifyNodeForStringify = (
   // recursively resolve array or object nodes (e.g. props)
   if (Array.isArray(node)) {
     const children = node.map((child) =>
-      _simplifyNodeForStringify(child, euiTheme)
+      _simplifyNodeForStringify({ node: child, euiTheme })
     );
     return children.flat();
   }
@@ -474,7 +497,9 @@ const _simplifyNodeForStringify = (
         objectValue = (() => {}) as unknown as ReactElement;
         break;
       } else {
-        updatedChildren[childrenKeys[i]] = _simplifyNodeForStringify(n);
+        updatedChildren[childrenKeys[i]] = _simplifyNodeForStringify({
+          node: n,
+        });
       }
     }
 
