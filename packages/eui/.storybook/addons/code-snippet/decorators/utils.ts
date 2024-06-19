@@ -31,14 +31,16 @@ export const isMemo = (component: ExoticComponent) =>
 export const isForwardRef = (component: ExoticComponent) =>
   component.$$typeof === Symbol.for('react.forward_ref');
 export const isFragment = (component: ReactElement | ExoticComponent) => {
+  // use type guards to ensure keys are available
+  const isReactElement = (el: any): el is ReactElement => el.type !== undefined;
   const isExoticComponent = (el: any): el is ExoticComponent =>
     el.$$typeof !== undefined;
 
-  if (isExoticComponent(component)) {
-    return component.$$typeof?.toString().includes('fragment');
-  }
-
-  return component.type?.toString().includes('fragment');
+  return isReactElement(component)
+    ? component.type?.toString().includes('fragment')
+    : isExoticComponent(component)
+    ? component.$$typeof?.toString().includes('fragment')
+    : false;
 };
 
 /* Helpers */
