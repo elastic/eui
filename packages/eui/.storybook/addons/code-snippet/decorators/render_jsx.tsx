@@ -20,6 +20,7 @@ import { getDocgenSection } from '@storybook/docs-tools';
 import { logger } from '@storybook/client-logger';
 
 import { UseEuiTheme } from '../../../../src/services';
+import { EXCLUDED_PROPS, PRESERVED_FALSE_VALUE_PROPS } from '../constants';
 import {
   getComponentDisplayName,
   getEmotionComponentDisplayName,
@@ -33,11 +34,6 @@ import {
   isStoryParent,
   isSubcomponent,
 } from './utils';
-
-// excluded props to not be shown in the code snippet
-const EXCLUDED_PROPS = ['__EMOTION_TYPE_PLEASE_DO_NOT_USE__', 'key'];
-// props with 'false' value that should not be removed but shown in the code snippet
-const PRESERVED_FALSE_VALUE_PROPS = ['grow'];
 
 export type JSXOptions = Options & {
   /** Whether to show the function in the jsx tab */
@@ -134,7 +130,7 @@ export const renderJsx = (
     sortProps: true,
     filterProps: (value: any, key: string) => {
       if (
-        EXCLUDED_PROPS.includes(key) ||
+        EXCLUDED_PROPS.has(key) ||
         value == null ||
         value === '' ||
         // empty objects/arrays that we set up for easier testing
@@ -145,7 +141,7 @@ export const renderJsx = (
 
       // manually filter props with `false` values as this allows us to preserve
       // `false` values where required e.g. grow={false}
-      if (value === false && !PRESERVED_FALSE_VALUE_PROPS.includes(key)) {
+      if (value === false && !PRESERVED_FALSE_VALUE_PROPS.has(key)) {
         return false;
       }
 

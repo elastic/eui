@@ -6,6 +6,9 @@
  * Side Public License, v 1.
  */
 
+/**
+ * Addon specific constants
+ */
 export const ADDON_ID = 'storybook/code-snippet';
 export const PANEL_ID = `${ADDON_ID}/panel`;
 
@@ -21,3 +24,14 @@ export const QUERY_PARAMS = {
 };
 
 export const STORY_ARGS_MARKER = '{{STORY_ARGS}}';
+
+/**
+ * JSX snippet generation constants
+ */
+// excluded props to not be shown in the code snippet
+export const EXCLUDED_PROPS = new Set([
+  '__EMOTION_TYPE_PLEASE_DO_NOT_USE__',
+  'key',
+]);
+// props with 'false' value that should not be removed but shown in the code snippet
+export const PRESERVED_FALSE_VALUE_PROPS = new Set(['grow']);
