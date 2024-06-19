@@ -23,51 +23,21 @@ const EuiIconAppCases = ({
     xmlns="http://www.w3.org/2000/svg"
     width={32}
     height={32}
-    fill="none"
     viewBox="0 0 32 32"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M4 6h22v7h-2V8H6v19H4V6Z" className="euiIcon__fillSecondary" />
     <path
-      fillRule="evenodd"
-      d="M0 1h24v5.72h-2V3H2v24H0V1ZM1.497 30.09C.588 29.415 0 28.368 0 27h2c0 .732.287 1.185.69 1.485.44.327 1.088.515 1.81.515 1.015 0 1.619-.305 1.966-.648C6.82 28.002 7 27.519 7 27h2c0 .98-.345 1.999-1.128 2.773C7.082 30.555 5.935 31 4.5 31c-1.028 0-2.13-.262-3.003-.91Z"
+      d="M10 12H7v-2h3v2Zm1 0h12v-2H11v2Z"
       className="euiIcon__fillSecondary"
-      clipRule="evenodd"
     />
+    <path d="M24 1H0v26h1l-1 .001v.026a2.256 2.256 0 0 0 .01.185 4.318 4.318 0 0 0 .563 1.792C1.194 30.064 2.399 31 4.5 31H17v-2H8.429a4.32 4.32 0 0 0 .57-1.927v-.062L9 27.005v-.003S9 27 8 27h1V16h21v3h2v-5H7v12.995l-.003.05a2.32 2.32 0 0 1-.298.95C6.442 28.436 5.898 29 4.5 29c-1.398 0-1.942-.564-2.199-1.004a2.32 2.32 0 0 1-.3-1.001L2 26.992V3h20v3h2V1Z" />
+    <path d="M23 21v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z" />
     <path
       fillRule="evenodd"
-      d="M7.061 14H31v5.105h-2V16H9.061v11.002h-2V14ZM5 29h11.224v2H5v-2Z"
-      className="euiIcon__fillSecondary"
-      clipRule="evenodd"
-    />
-    <path
-      fillRule="evenodd"
-      d="M9.833 12H7v-2h2.833v2ZM24 12H10.864v-2H24v2Z"
-      clipRule="evenodd"
-    />
-    <path
-      fillRule="evenodd"
-      d="M4 6h23v6.897h-2V8H6v19H4V6Z"
-      clipRule="evenodd"
-    />
-    <path
-      fillRule="evenodd"
-      d="M23 30a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z"
-      className="euiIcon__fillSecondary"
-      clipRule="evenodd"
-    />
-    <path
-      fillRule="evenodd"
-      d="M21.9 28.936v-7.98h2v7.98h-2Z"
-      className="euiIcon__fillSecondary"
-      clipRule="evenodd"
-    />
-    <path
-      fillRule="evenodd"
-      d="M26.89 25.946h-7.98v-2h7.98v2Z"
-      className="euiIcon__fillSecondary"
-      clipRule="evenodd"
+      d="M24 32a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
     />
   </svg>
 );

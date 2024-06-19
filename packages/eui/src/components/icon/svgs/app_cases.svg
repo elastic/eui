@@ -1,10 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1H24V6.72043H22V3H2V27H0V1Z" class="euiIcon__fillSecondary"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M1.49743 30.0902C0.588401 29.415 0 28.3679 0 27H2C2 27.7321 2.2866 28.185 2.69007 28.4848C3.13039 28.8119 3.77842 29 4.5 29C5.51465 29 6.11857 28.6947 6.46556 28.3515C6.81988 28.0011 7 27.5194 7 27H9C9 27.9806 8.65512 28.9989 7.87194 29.7735C7.08143 30.5553 5.93535 31 4.5 31C3.47158 31 2.36961 30.7381 1.49743 30.0902Z" class="euiIcon__fillSecondary"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.06122 14H31V19.1046H29V16H9.06122V27.0017H7.06122V14ZM5 29L16.2245 29L16.2245 31H5V29Z" class="euiIcon__fillSecondary"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.83333 12H7V10H9.83333V12ZM24 12H10.8636V10H24V12Z" />
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6H27V12.8974H25V8H6V27H4V6Z" />
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M23 30C25.7614 30 28 27.7614 28 25C28 22.2386 25.7614 20 23 20C20.2386 20 18 22.2386 18 25C18 27.7614 20.2386 30 23 30ZM23 32C26.866 32 30 28.866 30 25C30 21.134 26.866 18 23 18C19.134 18 16 21.134 16 25C16 28.866 19.134 32 23 32Z" class="euiIcon__fillSecondary"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9006 28.9361V20.9565H23.9006V28.9361H21.9006Z" class="euiIcon__fillSecondary"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M26.8902 25.9463H18.9106V23.9463H26.8902V25.9463Z" class="euiIcon__fillSecondary"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <path class="euiIcon__fillSecondary" d="M4 6h22v7h-2V8H6v19H4V6Z"/>
+  <path class="euiIcon__fillSecondary" d="M10 12H7v-2h3v2Zm1 0h12v-2H11v2Z"/>
+  <path d="M24 1H0v26h1l-1 .001v.026a2.256 2.256 0 0 0 .01.185 4.318 4.318 0 0 0 .563 1.792C1.194 30.064 2.399 31 4.5 31H17v-2H8.429a4.32 4.32 0 0 0 .57-1.927v-.062L9 27.005v-.003S9 27 8 27h1V16h21v3h2v-5H7v12.995l-.003.05a2.32 2.32 0 0 1-.298.95C6.442 28.436 5.898 29 4.5 29c-1.398 0-1.942-.564-2.199-1.004a2.32 2.32 0 0 1-.3-1.001L2 26.992V3h20v3h2V1Z"/>
+  <path d="M23 21v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/>
+  <path fill-rule="evenodd" d="M24 32a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/>
 </svg>
