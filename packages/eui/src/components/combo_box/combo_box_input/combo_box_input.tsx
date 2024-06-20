@@ -368,6 +368,7 @@ export class EuiComboBoxInput<T> extends Component<
               placeholder={showPlaceholder ? placeholder : undefined}
               value={this.searchValue}
               autoFocus={autoFocus}
+              autoComplete="off"
               // Force the menu to re-open on every input click - only necessary when plain text
               onClick={this.asPlainText ? (onFocus as any) : undefined} // Type shenanigans - event should be mostly the same
             />
