@@ -38,7 +38,6 @@ const meta: Meta<EuiSpacerProps> = {
   args: {
     size: 'l',
   },
-  render: (args) => <EuiSpacer {...args} />,
 };
 
 export default meta;
