@@ -323,7 +323,6 @@ const _simplifyNodeForStringify = ({
           // check if the story has manual prop overrides that should be
           // used instead of the original value
           if (argsOverride?.[cur]) {
-            console.log('OVERRIDE', cur, argsOverride?.[cur]);
             acc[cur] = argsOverride?.[cur];
 
             return acc;
