@@ -14,10 +14,11 @@ import {
   FunctionComponent,
   ComponentType,
   ExoticComponent,
+  isValidElement,
 } from 'react';
+import { Args, StoryContext } from '@storybook/react';
 import * as prettier from 'prettier';
 import tsParser from 'prettier/parser-typescript';
-import { StoryContext } from '@storybook/react';
 
 // @ts-ignore - config import
 import basePrettierConfig from '../../../../.prettierrc';
@@ -113,8 +114,11 @@ export const isStoryComponent = (
   if (!context) return false;
 
   const displayName = getEmotionComponentDisplayName(node);
+  const isCurrentStory = displayName
+    ? displayName === context?.component?.displayName
+    : false;
 
-  return displayName === context?.component?.displayName;
+  return isCurrentStory;
 };
 
 /**
@@ -169,6 +173,64 @@ export const isStatefulComponent = (node: ReactElement<any>): boolean => {
     (displayName.startsWith('Stateful') || displayName.startsWith('Component'));
 
   return isStateful;
+};
+
+/**
+ * Helper to resolve components that are wrapped.
+ * It's a bit hacky way to return the children of a story wrapper component
+ * by calling the component first. This way we ensure to get the right information
+ * for the story.
+ * (e.g. when resolving <Story /> from a story decorator or when
+ * resolving the children of a wrapper component)
+ */
+export const getResolvedStoryChild = (
+  child: ReactElement,
+  context: StoryContext
+) => {
+  return child.type && typeof child.type === 'function'
+    ? (child.type as (args: Args) => ReactElement)(context?.args)
+    : child;
+};
+
+/**
+ * Helper to resolve the current story element from a composition preview,
+ * e.g. when the story element is a child of a wrapper and only the story
+ * should be output without wrappers or siblings.
+ *
+ * It checks the passed story node recursively until it finds the current
+ * story element and returns it.
+ */
+export const getStoryComponent = (
+  node: ReactElement,
+  context: StoryContext
+): ReactElement | undefined => {
+  let storyNode: ReactElement | undefined;
+
+  const resolveChildren = (childNode: ReactElement) => {
+    if (isStoryComponent(childNode, context)) {
+      storyNode = childNode;
+      return;
+    } else if (
+      isValidElement<any>(childNode) &&
+      Array.isArray(childNode.props?.children)
+    ) {
+      const { children } = childNode.props;
+
+      for (const child of children) {
+        // break out of the loop early if possible
+        if (child == null || storyNode != null) break;
+
+        // Story wrappers need to be resolved first to ensure the right data
+        const resolvedChild = getResolvedStoryChild(child, context);
+
+        resolveChildren(resolvedChild);
+      }
+    }
+  };
+
+  resolveChildren(node);
+
+  return storyNode;
 };
 
 /**

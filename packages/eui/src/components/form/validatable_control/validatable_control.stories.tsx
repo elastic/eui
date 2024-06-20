@@ -26,6 +26,9 @@ const meta: Meta<EuiValidatableControlProps> = {
       // it only adds attributes in the DOM
       skip: true,
     },
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
   },
   decorators: [
     (Story, { args }) => (

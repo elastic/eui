@@ -15,6 +15,11 @@ import { EuiSpacer, EuiSpacerProps } from './spacer';
 const meta: Meta<EuiSpacerProps> = {
   title: 'Layout/EuiSpacer',
   component: EuiSpacer,
+  parameters: {
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
+  },
   decorators: [
     (Story, { args }) => (
       <>

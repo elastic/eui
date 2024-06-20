@@ -37,6 +37,8 @@ import {
   isStoryComponent,
   isStoryParent,
   isSubcomponent,
+  getStoryComponent,
+  getResolvedStoryChild,
 } from './utils';
 
 export type JSXOptions = Options & {
@@ -162,6 +164,8 @@ export const renderJsx = (
 
     const shouldResolveChildren =
       context?.parameters?.codeSnippet?.resolveChildren === true;
+    const shouldResolveStoryElementOnly =
+      context?.parameters?.codeSnippet?.resolveStoryElementOnly === true;
 
     let node = child;
 
@@ -170,10 +174,14 @@ export const renderJsx = (
       // useful when complex custom stories are build where the actual story component is
       // not the outer component but part of a composition within another wrapper
       if (shouldResolveChildren) {
-        node =
-          child.type && typeof child.type === 'function'
-            ? (child.type as (args: Args) => ReactElement)(context?.args) // kinda hacky way to return the children of a wrapper component instead by calling the component
-            : child;
+        node = getResolvedStoryChild(child, context);
+        // resolves the story element only and removes any wrapper or siblings
+      } else if (shouldResolveStoryElementOnly) {
+        const storyNode = getStoryComponent(child, context);
+
+        if (storyNode) {
+          node = storyNode;
+        }
       } else {
         // removes outer wrapper components but leaves:
         // - stateful wrappers (kept and renamed later via displayName)

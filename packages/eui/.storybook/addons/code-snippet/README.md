@@ -148,7 +148,7 @@ To ensure the formatting is correct after adjusting the string returned from `re
 
 ## Options
 
-Currently there are two addon specific parameter options added that can be used under the key `codeSnippet` in the parameters config key.
+Currently there are a few addon specific parameter options added that can be used under the key `codeSnippet` in the parameters config key.
 
 ```ts
 // meta or story config
@@ -164,6 +164,9 @@ const meta = {
       // It will skip the outer story wrapper and return the code snippet for its children
       // instead. See the story for `EuiHeader/Multiple Fixed Headers` as an example.
       resolveChildren: true,
+      // Useful when the story outputs additional contnt that should not be included in the
+      // snippet and instead only the actual story component should be output as snippet.
+      resolveStoryElementOnly: true,
     }
   }
 }
