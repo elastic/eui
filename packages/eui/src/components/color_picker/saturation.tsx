@@ -175,8 +175,15 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         tabIndex={-1}
         {...rest}
       >
-        <div className="euiSaturation__lightness" ref={boxRef}>
-          <div className="euiSaturation__saturation" />
+        <div
+          css={styles.euiSaturation__lightness}
+          className="euiSaturation__lightness"
+          ref={boxRef}
+        >
+          <div
+            css={styles.euiSaturation__saturation}
+            className="euiSaturation__saturation"
+          />
         </div>
         <button
           id={`${id}-saturationIndicator`}
