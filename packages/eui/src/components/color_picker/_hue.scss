@@ -1,35 +1,3 @@
-// This wraps the range. It is needed because there is no way to do a linear gradient in ie11 for the track
-.euiHue {
-  // stylelint-disable color-no-hex
-  background: linear-gradient(to right,
-    #FF3232 0%,
-    #FFF130 20%,
-    #45FF30 35%,
-    #28FFF0 52%,
-    #282CFF 71%,
-    #FF28FB 88%,
-    #FF0094 100%
-  );
-  // stylelint-enable color-no-hex
-  height: $euiSizeL;
-  position: relative;
-
-  // To make our fake range skinny, we add some pseudo borders to fake the height of the gradient
-  &::before,
-  &::after {
-    content: '';
-    left: 0;
-    position: absolute;
-    height: $euiSizeS;
-    background: $euiColorEmptyShade;
-    width: 100%;
-  }
-
-  &::after {
-    bottom: 0;
-  }
-}
-
 // The range itself is the same height
 .euiHue__range {
   @include euiRangeThumbPerBrowser {
