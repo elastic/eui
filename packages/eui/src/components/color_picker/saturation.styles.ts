@@ -33,6 +33,17 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-bottom', '100%')}
       border-radius: ${borderRadius};
       touch-action: none; /* prevent TouchMove events from scrolling page */
+
+      &:focus,
+      &:focus-within {
+        outline: none; /* Hide focus ring from tabindex=0 */
+
+        .euiSaturation__indicator {
+          outline: none; /* Standardize indicator focus ring */
+          box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
+          border-color: ${euiTheme.colors.primary};
+        }
+      }
     `,
 
     euiSaturation__lightness: css`
