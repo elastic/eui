@@ -14,17 +14,40 @@ import { logicalCSS, mathWithUnits } from '../../global_styling';
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const borderRadius = mathWithUnits(
+    euiTheme.border.radius.medium,
+    (x) => x / 2
+  );
+
   return {
     euiSaturation: css`
       z-index: 3; /* Required to be above the hue slider, which can overlap */
       position: relative;
       ${logicalCSS('width', '100%')}
       ${logicalCSS('padding-bottom', '100%')}
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.medium,
-        (x) => x / 2
-      )};
+      border-radius: ${borderRadius};
       touch-action: none; /* prevent TouchMove events from scrolling page */
+    `,
+
+    euiSaturation__lightness: css`
+      position: absolute;
+      inset: 0;
+      ${logicalCSS('top', '-1px')} /* Hides a slight color inconsistency */
+
+      border-radius: ${borderRadius};
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+    `,
+    euiSaturation__saturation: css`
+      position: absolute;
+      inset: 0;
+      ${logicalCSS('top', '-1px')} /* Hides a slight color inconsistency */
+
+      border-radius: ${borderRadius};
+      background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     `,
   };
 };

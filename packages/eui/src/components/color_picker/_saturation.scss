@@ -1,23 +1,5 @@
 
 .euiSaturation {
-  .euiSaturation__lightness,
-  .euiSaturation__saturation {
-    position: absolute;
-    top: -1px; // hides a slight color inconsistency
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: $euiBorderRadius / 2;
-  }
-
-  .euiSaturation__lightness {
-    background: linear-gradient(to right, $euiColorPickerValueRange0, $euiColorPickerValueRange1);
-  }
-
-  .euiSaturation__saturation {
-    background: linear-gradient(to top, $euiColorPickerSaturationRange0, $euiColorPickerSaturationRange1);
-  }
-
   .euiSaturation__indicator {
     position: absolute;
     height: $euiColorPickerIndicatorSize;
