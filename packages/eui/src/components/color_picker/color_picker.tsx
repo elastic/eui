@@ -33,7 +33,6 @@ import {
   EuiRange,
   EuiRangeProps,
 } from '../form';
-import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
@@ -292,15 +291,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
+  const inputClasses = 'euiColorPicker__input';
 
   const styles = useEuiMemoizedStyles(euiColorPickerStyles);
-
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isDropdown: true,
-    clear: isClearable,
-    isInvalid,
-  });
-  const inputClasses = classNames('euiColorPicker__input', numIconsClass);
 
   const handleOnChange = (text: string) => {
     const output = getOutput(text, showAlpha);
@@ -621,7 +614,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           value={color ? color.toUpperCase() : HEX_FALLBACK}
           placeholder={!color ? placeholder || transparent : undefined}
           id={id}
-          icon="empty" // Required to make space (left padding) for the color swatch icon
           onChange={handleColorInput}
           inputRef={setInputRef}
           isInvalid={isInvalid}
