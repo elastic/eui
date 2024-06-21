@@ -9,10 +9,16 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, mathWithUnits } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalSizeCSS,
+  mathWithUnits,
+} from '../../global_styling';
 
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const indicatorSize = euiTheme.size.m;
 
   const borderRadius = mathWithUnits(
     euiTheme.border.radius.medium,
@@ -48,6 +54,24 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
 
       border-radius: ${borderRadius};
       background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    `,
+
+    euiSaturation__indicator: css`
+      position: absolute;
+      ${logicalSizeCSS(indicatorSize)}
+      transform: translateX(-50%) translateY(-50%);
+      border: ${euiTheme.border.width.thin} solid
+        ${euiTheme.colors.darkestShade};
+      border-radius: 100%;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 100%;
+        border: ${euiTheme.border.width.thin} solid
+          ${euiTheme.colors.lightestShade};
+      }
     `,
   };
 };
