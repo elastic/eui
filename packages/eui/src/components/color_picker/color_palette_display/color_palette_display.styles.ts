@@ -25,7 +25,6 @@ export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       display: flex;
       flex-direction: row;
-      ${logicalCSS('height', euiTheme.size.s)}
       overflow: hidden;
 
       &::after {
@@ -36,6 +35,20 @@ export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
         border: ${border};
         border-radius: inherit;
       }
+    `,
+
+    // Sizes
+    xs: css`
+      ${logicalCSS('height', euiTheme.size.xs)}
+      border-radius: ${euiTheme.size.xs};
+    `,
+    s: css`
+      ${logicalCSS('height', euiTheme.size.s)}
+      border-radius: ${euiTheme.size.s};
+    `,
+    m: css`
+      ${logicalCSS('height', euiTheme.size.base)}
+      border-radius: ${euiTheme.size.base};
     `,
   };
 };
