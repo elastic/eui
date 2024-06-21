@@ -187,6 +187,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         </div>
         <button
           id={`${id}-saturationIndicator`}
+          css={styles.euiSaturation__indicator}
           className="euiSaturation__indicator"
           style={{ ...indicator }}
           aria-roledescription={roleDescString}
