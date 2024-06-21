@@ -102,7 +102,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
         type="button"
       >
         <span
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall emotion-euiColorPaletteDisplay"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         >
           <span
             class="emotion-euiScreenReaderOnly"
@@ -177,7 +177,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
         </span>
         <span
           aria-hidden="true"
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall emotion-euiColorPaletteDisplay"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         />
       </button>
       <div
@@ -226,7 +226,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
         </span>
         <span
           aria-hidden="true"
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall emotion-euiColorPaletteDisplay"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         />
       </button>
       <div
@@ -309,7 +309,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
         type="button"
       >
         <span
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall emotion-euiColorPaletteDisplay"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         >
           <span
             class="emotion-euiScreenReaderOnly"
