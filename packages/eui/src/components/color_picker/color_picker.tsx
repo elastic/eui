@@ -530,7 +530,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         </div>
       )}
       {showSwatches && (
-        <ul className="euiColorPicker__swatches">
+        <ul
+          css={styles.euiColorPicker__swatches}
+          className="euiColorPicker__swatches"
+        >
           {swatches.map((swatch, index) => (
             <li className="euiColorPicker__swatch-item" key={swatch}>
               <EuiColorPickerSwatch
