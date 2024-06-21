@@ -8,7 +8,7 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -43,7 +43,7 @@ exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`
   </span>
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -72,7 +72,7 @@ exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -101,7 +101,7 @@ exports[`EuiColorPaletteDisplay props size s is rendered 1`] = `
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -130,7 +130,7 @@ exports[`EuiColorPaletteDisplay props size xs is rendered 1`] = `
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -159,7 +159,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(84, 179, 153); width: 21%;"
@@ -185,7 +185,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"

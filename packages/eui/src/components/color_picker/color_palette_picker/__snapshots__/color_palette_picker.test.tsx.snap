@@ -111,7 +111,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           </span>
           <span
             aria-hidden="true"
-            class="euiColorPaletteDisplayFixed__bleedArea"
+            class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
           >
             <span
               style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -320,7 +320,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               </span>
               <span
                 aria-hidden="true"
-                class="euiColorPaletteDisplayFixed__bleedArea"
+                class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
               >
                 <span
                   style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -438,7 +438,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                       </span>
                       <span
                         aria-hidden="true"
-                        class="euiColorPaletteDisplayFixed__bleedArea"
+                        class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
                       >
                         <span
                           style="background-color: rgb(31, 176, 178); width: 20%;"

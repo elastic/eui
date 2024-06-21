@@ -11,6 +11,7 @@ import { CommonProps } from '../../common';
 import { getFixedLinearGradient } from '../utils';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiColorPaletteDisplayShared } from './color_palette_display';
+import { euiColorPaletteDisplayFixed__bleedArea } from './color_palette_display_fixed.styles';
 
 export interface EuiColorPaletteDisplayFixedProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -45,6 +46,7 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<
         // aria-hidden="true" is to ensure color blocks are ignored by screen readers,
         // and the only accessible text for options is the EuiScreenReaderOnly {title}
         aria-hidden="true"
+        css={euiColorPaletteDisplayFixed__bleedArea}
         className="euiColorPaletteDisplayFixed__bleedArea"
       >
         {paletteStops}
