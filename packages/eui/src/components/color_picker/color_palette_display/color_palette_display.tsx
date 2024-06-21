@@ -8,7 +8,10 @@
 
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { ExclusiveUnion, keysOf } from '../../common';
+
 import type { PaletteColorStop } from '../color_palette_picker';
 import {
   EuiColorPaletteDisplayFixed,
@@ -18,6 +21,7 @@ import {
   EuiColorPaletteDisplayGradient,
   EuiColorPaletteDisplayGradientProps,
 } from './color_palette_display_gradient';
+import { euiColorPaletteDisplayStyles } from './color_palette_display.styles';
 
 const sizeToClassNameMap = {
   xs: 'euiColorPaletteDisplay--sizeExtraSmall',
@@ -67,16 +71,21 @@ export const EuiColorPaletteDisplay: FunctionComponent<
     sizeToClassNameMap[size]
   );
 
+  const styles = useEuiMemoizedStyles(euiColorPaletteDisplayStyles);
+  const cssStyles = [styles.euiColorPaletteDisplay];
+
   return (
     <>
       {type === 'fixed' ? (
         <EuiColorPaletteDisplayFixed
+          css={cssStyles}
           className={classes}
           palette={palette}
           {...rest}
         />
       ) : (
         <EuiColorPaletteDisplayGradient
+          css={cssStyles}
           className={classes}
           palette={palette}
           {...rest}
