@@ -8,11 +8,11 @@
 
 import React, { FunctionComponent } from 'react';
 
-import { EuiSuperSelect } from '../../form';
-
 import { CommonProps } from '../../common';
+import { EuiSpacer } from '../../spacer';
+import { EuiText } from '../../text';
+import { EuiSuperSelect, type EuiSuperSelectProps } from '../../form';
 
-import { EuiSuperSelectProps } from '../../form/super_select';
 import { EuiColorPaletteDisplay } from '../color_palette_display';
 
 export interface PaletteColorStop {
@@ -143,12 +143,16 @@ export const EuiColorPalettePicker: FunctionComponent<
               // Accessible labels are managed by color_palette_display_fixed and
               // color_palette_display_gradient. Adding the aria-hidden attribute
               // here to ensure screen readers don't speak the listbox options twice.
-              <div
-                aria-hidden="true"
-                className="euiColorPalettePicker__itemTitle"
-              >
-                {title}
-              </div>
+              <>
+                <EuiText
+                  aria-hidden="true"
+                  className="euiColorPalettePicker__itemTitle"
+                  size="xs"
+                >
+                  {title}
+                </EuiText>
+                <EuiSpacer size="xs" />
+              </>
             )}
             {type === 'text' ? title : paletteForDisplay}
           </div>
