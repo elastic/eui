@@ -66,6 +66,7 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
         max={HUE_RANGE}
         step={1}
         type="range"
+        css={styles.euiHue__range}
         className="euiHue__range"
         value={hue}
         onChange={handleChange}
