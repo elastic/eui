@@ -17,12 +17,13 @@ import React, {
 import classNames from 'classnames';
 import { ColorSpaces } from 'chroma-js';
 
-import { CommonProps } from '../common';
-import { keys, useMouseMove } from '../../services';
+import { keys, useMouseMove, useEuiMemoizedStyles } from '../../services';
 import { isNil } from '../../services/predicate';
+import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 
 import { getEventPosition } from './utils';
+import { euiSaturationStyles } from './saturation.styles';
 
 export type SaturationClientRect = Pick<
   ClientRect,
@@ -154,7 +155,10 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     };
 
     const classes = classNames('euiSaturation', className);
+    const styles = useEuiMemoizedStyles(euiSaturationStyles);
+
     const instructionsId = `${id}-instructions`;
+
     return (
       <div
         onMouseDown={handleMouseDown}
@@ -162,6 +166,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         onTouchMove={handleInteraction}
         onKeyDown={handleKeyDown}
         ref={ref}
+        css={styles.euiSaturation}
         className={classes}
         data-test-subj={dataTestSubj}
         style={{
