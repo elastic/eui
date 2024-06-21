@@ -1,13 +1,4 @@
 .euiHue {
-  position: relative;
-  height: $euiSizeM;
-  border-radius: $euiSizeM;
-
-  &::before,
-  &::after {
-    display: none;
-  }
-
   &__range {
     @include euiRangeThumbPerBrowser {
       border: 3px solid $euiRangeThumbBorderColor;

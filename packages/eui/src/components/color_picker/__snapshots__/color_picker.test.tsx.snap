@@ -600,7 +600,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     </span>
   </div>
   <div
-    class="euiHue"
+    class="euiHue emotion-euiHue"
   >
     <label
       class="emotion-euiScreenReaderOnly"

@@ -3,7 +3,7 @@
 exports[`EuiHue accepts a hex value 1`] = `
 <div>
   <div
-    class="euiHue testClass1 testClass2 emotion-euiTestCss"
+    class="euiHue testClass1 testClass2 emotion-euiHue-euiTestCss"
   >
     <label
       class="emotion-euiScreenReaderOnly"
@@ -35,7 +35,7 @@ exports[`EuiHue accepts a hex value 1`] = `
 exports[`EuiHue accepts a hue value 1`] = `
 <div>
   <div
-    class="euiHue testClass1 testClass2 emotion-euiTestCss"
+    class="euiHue testClass1 testClass2 emotion-euiHue-euiTestCss"
   >
     <label
       class="emotion-euiScreenReaderOnly"
@@ -65,7 +65,7 @@ exports[`EuiHue accepts a hue value 1`] = `
 exports[`EuiHue is rendered 1`] = `
 <div>
   <div
-    class="euiHue testClass1 testClass2 emotion-euiTestCss"
+    class="euiHue testClass1 testClass2 emotion-euiHue-euiTestCss"
   >
     <label
       class="emotion-euiScreenReaderOnly"
