@@ -19,6 +19,11 @@ import React, {
 import classNames from 'classnames';
 import chroma, { ColorSpaces } from 'chroma-js';
 
+import {
+  useEuiMemoizedStyles,
+  VISUALIZATION_COLORS,
+  keys,
+} from '../../services';
 import { CommonProps } from '../common';
 import {
   EuiFieldText,
@@ -32,7 +37,6 @@ import { getFormControlClassNameForIconCount } from '../form/form_control_layout
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keys } from '../../services';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiHue } from './hue';
@@ -45,6 +49,7 @@ import {
   RGB_FALLBACK,
   RGB_JOIN,
 } from './utils';
+import { euiColorPickerStyles } from './color_picker.styles';
 
 type EuiColorPickerDisplay = 'default' | 'inline';
 type EuiColorPickerMode = 'default' | 'swatch' | 'picker' | 'secondaryInput';
@@ -287,6 +292,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
+
+  const styles = useEuiMemoizedStyles(euiColorPickerStyles);
 
   const numIconsClass = getFormControlClassNameForIconCount({
     isDropdown: true,
@@ -629,7 +636,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   }
 
   return display === 'inline' ? (
-    <div className={classes}>{composite}</div>
+    <div css={styles.euiColorPicker} className={classes}>
+      {composite}
+    </div>
   ) : (
     <EuiPopover
       initialFocus={inputRef ?? undefined}
@@ -647,7 +656,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       aria-label={popoverLabel}
       focusTrapProps={inputRef ? { shards: [inputRef] } : undefined}
     >
-      <div className={classes} data-test-subj="euiColorPickerPopover">
+      <div
+        css={styles.euiColorPicker}
+        className={classes}
+        data-test-subj="euiColorPickerPopover"
+      >
         {composite}
       </div>
     </EuiPopover>

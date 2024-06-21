@@ -6,16 +6,24 @@
  * Side Public License, v 1.
  */
 
-import { UseEuiTheme } from '../../services';
-import { mathWithUnits } from '../../global_styling';
+import { css } from '@emotion/react';
 
-export const euiColorPickerVariables = (euiThemeContext: UseEuiTheme) => {
+import { UseEuiTheme } from '../../services';
+import { logicalCSS, mathWithUnits } from '../../global_styling';
+
+export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
+  // 5 columns of swatches + margins + border
+  const colorPickerWidth = mathWithUnits(
+    [euiTheme.size.l, euiTheme.size.s],
+    (x, y) => x * 5 + y * 4
+  );
+
   return {
-    width: mathWithUnits(
-      [euiTheme.size.l, euiTheme.size.s],
-      (x, y) => x * 5 + y * 4
-    ),
+    euiColorPicker: css`
+      position: relative;
+      ${logicalCSS('width', colorPickerWidth)}
+    `,
   };
 };
