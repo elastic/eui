@@ -25,5 +25,11 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       ${logicalCSS('width', colorPickerWidth)}
     `,
+
+    euiColorPicker__swatches: css`
+      display: flex;
+      flex-wrap: wrap;
+      gap: ${euiTheme.size.s};
+    `,
   };
 };

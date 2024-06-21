@@ -627,7 +627,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     </div>
   </div>
   <ul
-    class="euiColorPicker__swatches"
+    class="euiColorPicker__swatches emotion-euiColorPicker__swatches"
   >
     <li
       class="euiColorPicker__swatch-item"
