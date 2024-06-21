@@ -301,17 +301,17 @@ exports[`EuiColorPicker inline 1`] = `
     tabindex="-1"
   >
     <div
-      class="euiSaturation__lightness"
+      class="euiSaturation__lightness emotion-euiSaturation__lightness"
     >
       <div
-        class="euiSaturation__saturation"
+        class="euiSaturation__saturation emotion-euiSaturation__saturation"
       />
     </div>
     <button
       aria-describedby="undefined-instructions"
       aria-label="#ffeedd"
       aria-roledescription="HSV color mode saturation and value 2-axis slider"
-      class="euiSaturation__indicator"
+      class="euiSaturation__indicator emotion-euiSaturation__indicator"
       id="undefined-saturationIndicator"
       style="left: 0px; top: 0px;"
     />

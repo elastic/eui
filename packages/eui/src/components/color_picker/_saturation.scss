@@ -1,26 +1,5 @@
 
 .euiSaturation {
-  .euiSaturation__indicator {
-    position: absolute;
-    height: $euiColorPickerIndicatorSize;
-    width: $euiColorPickerIndicatorSize;
-    border-radius: 100%;
-    margin-top: $euiColorPickerIndicatorSize * -.5;
-    margin-left: $euiColorPickerIndicatorSize * -.5;
-    border: 1px solid $euiColorDarkestShade;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 100%;
-      border: 1px solid $euiColorLightestShade;
-    }
-  }
-
   &:focus {
     outline: none; // Hide focus ring because of `tabindex=0` on Safari
 
