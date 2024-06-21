@@ -344,7 +344,7 @@ exports[`EuiColorPicker inline 1`] = `
       #ffeedd
     </p>
     <input
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       id="undefined-hue"
       max="359"
       min="0"
