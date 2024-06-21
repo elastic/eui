@@ -8,17 +8,30 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { UseEuiTheme, transparentize } from '../../services';
+import { logicalCSS, mathWithUnits } from '../../global_styling';
+import {
+  euiRangeThumbPerBrowser,
+  euiRangeThumbStyle,
+  euiRangeThumbFocusBoxShadow,
+} from '../form/range/range.styles';
 
 export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const height = euiTheme.size.m;
+  const thumbSize = euiTheme.size.l;
+  const thumbBorder = mathWithUnits(
+    euiTheme.border.width.thick,
+    (x) => x * 1.5
+  );
+  const thumbBoxShadow = `
+    0 2px 2px -1px ${transparentize(euiTheme.colors.shadow, 0.2)},
+    0 1px 5px -2px ${transparentize(euiTheme.colors.shadow, 0.2)};`;
 
   return {
-    // This wraps the range.
-    // It is needed because there is no way to do a linear gradient in ie11 for the track
+    // This wraps the range and sets a rainbow gradient,
+    // which allows the range thumb to be larger than the visible track
     euiHue: css`
       ${logicalCSS('height', height)}
       border-radius: ${height};
@@ -32,6 +45,44 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         #ff28fb 88%,
         #ff0094 100%
       );
+    `,
+
+    euiHue__range: css`
+      ${logicalCSS('height', thumbSize)}
+      /* Allow for overlap */
+      ${logicalCSS('width', `calc(100% + 2px)`)}
+      /* Use ^ overlap to allow thumb to fully cover gradient ends */
+      ${logicalCSS('margin-horizontal', '-1px')}
+      ${logicalCSS(
+        'margin-top',
+        mathWithUnits(height, (x) => x / -2)
+      )}
+
+      /* Resets for the range */
+      appearance: none;
+      background: transparent;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+      }
+
+      /* Indicator styles */
+      ${euiRangeThumbPerBrowser(`
+        ${euiRangeThumbStyle(euiThemeContext)}
+        background-color: inherit;
+        border-width: ${thumbBorder};
+        border-radius: 100%;
+        box-shadow: ${thumbBoxShadow};
+      `)}
+
+      /* Remove wrapping outline and show focus on thumb only */
+      &:focus {
+        outline: none;
+      }
+
+      &:focus-visible {
+        ${euiRangeThumbPerBrowser(euiRangeThumbFocusBoxShadow(euiThemeContext))}
+      }
     `,
   };
 };

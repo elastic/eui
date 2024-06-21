@@ -19,7 +19,7 @@ exports[`EuiHue accepts a hex value 1`] = `
     </p>
     <input
       aria-label="aria-label"
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       data-test-subj="test subject string"
       id="undefined-hue"
       max="359"
@@ -49,7 +49,7 @@ exports[`EuiHue accepts a hue value 1`] = `
     />
     <input
       aria-label="aria-label"
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       data-test-subj="test subject string"
       id="undefined-hue"
       max="359"
@@ -79,7 +79,7 @@ exports[`EuiHue is rendered 1`] = `
     />
     <input
       aria-label="aria-label"
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       data-test-subj="test subject string"
       id="undefined-hue"
       max="359"
