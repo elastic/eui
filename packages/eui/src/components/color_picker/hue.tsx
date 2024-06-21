@@ -42,7 +42,7 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
   };
   const classes = classNames('euiHue', className);
   return (
-    <React.Fragment>
+    <div className={classes}>
       <EuiScreenReaderOnly>
         <label htmlFor={`${id}-hue`}>
           <EuiI18n
@@ -54,19 +54,17 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
       <EuiScreenReaderOnly>
         <p aria-live="polite">{hex}</p>
       </EuiScreenReaderOnly>
-      <div className={classes}>
-        <input
-          id={`${id}-hue`}
-          min={0}
-          max={HUE_RANGE}
-          step={1}
-          type="range"
-          className="euiHue__range"
-          value={hue}
-          onChange={handleChange}
-          {...rest}
-        />
-      </div>
-    </React.Fragment>
+      <input
+        id={`${id}-hue`}
+        min={0}
+        max={HUE_RANGE}
+        step={1}
+        type="range"
+        className="euiHue__range"
+        value={hue}
+        onChange={handleChange}
+        {...rest}
+      />
+    </div>
   );
 };

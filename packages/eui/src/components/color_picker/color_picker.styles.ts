@@ -24,6 +24,11 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiColorPicker: css`
       position: relative;
       ${logicalCSS('width', colorPickerWidth)}
+
+      /* Using flex and gap allows us to easily handle spacing between multiple modes + showAlpha */
+      display: flex;
+      flex-direction: column;
+      gap: ${euiTheme.size.s};
     `,
 
     euiColorPicker__swatches: css`
