@@ -295,7 +295,7 @@ exports[`EuiColorPicker inline 1`] = `
   class="euiColorPicker testClass1 testClass2 emotion-euiColorPicker-euiTestCss"
 >
   <div
-    class="euiSaturation"
+    class="euiSaturation emotion-euiSaturation"
     data-test-subj="euiSaturation"
     style="background: hsl(30, 100%, 50%);"
     tabindex="-1"
