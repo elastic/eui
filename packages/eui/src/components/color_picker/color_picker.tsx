@@ -550,6 +550,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           <EuiSpacer size="s" />
 
           <EuiRange
+            css={styles.euiColorPicker__alphaRange}
             className="euiColorPicker__alphaRange"
             data-test-subj="euiColorPickerAlpha"
             compressed={true}
@@ -584,6 +585,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 type: 'swatchInput',
                 side: 'left',
                 color: colorStyle,
+                css: styles.euiColorPicker__swatchInputIcon,
               }
             : {
                 type: 'stopSlash',

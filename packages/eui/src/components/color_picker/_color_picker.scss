@@ -1,17 +1,5 @@
-// Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
-.euiSwatchInput__stroke {
-  fill: none;
-  stroke: transparentize($euiColorFullShade, .8);
-}
-
 .euiColorPicker__popoverPanel--pickerOnly {
   // Override of EuiPanel padding
   // stylelint-disable-next-line declaration-no-important
   padding-bottom: 0 !important;
-}
-
-.euiColorPicker__alphaRange {
-  .euiRangeInput {
-    min-width: 0;
-  }
 }

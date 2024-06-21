@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 
 export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
@@ -30,6 +30,21 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-wrap: wrap;
       gap: ${euiTheme.size.s};
+    `,
+
+    euiColorPicker__alphaRange: css`
+      .euiRangeInput {
+        ${logicalCSS('min-width', 0)}
+      }
+    `,
+
+    // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
+    // Targets a custom className applied directly to the <svg> icon
+    euiColorPicker__swatchInputIcon: css`
+      .euiSwatchInput__stroke {
+        fill: none;
+        stroke: ${transparentize(euiTheme.colors.fullShade, 0.2)};
+      }
     `,
   };
 };
