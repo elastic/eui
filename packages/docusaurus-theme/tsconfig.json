@@ -3,7 +3,7 @@
   "references": [{"path": "./tsconfig.client.json"}],
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "dom"],
     "declaration": true,
     "sourceMap": true,
     "jsx": "react-jsx",
