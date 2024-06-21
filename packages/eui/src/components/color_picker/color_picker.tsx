@@ -283,11 +283,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const classes = classNames('euiColorPicker', className);
-  const popoverClass = 'euiColorPicker__popoverAnchor';
-  const panelClasses = 'euiColorPicker__popoverPanel';
-  const swatchClass = 'euiColorPicker__swatchSelect';
-  const inputClasses = 'euiColorPicker__input';
-
   const styles = useEuiMemoizedStyles(euiColorPickerStyles);
 
   const handleOnChange = (text: string) => {
@@ -520,9 +515,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           className="euiColorPicker__swatches"
         >
           {swatches.map((swatch, index) => (
-            <li className="euiColorPicker__swatch-item" key={swatch}>
+            <li key={swatch}>
               <EuiColorPickerSwatch
-                className={swatchClass}
                 color={swatch}
                 onClick={() => handleSwatchSelection(swatch)}
                 ref={index === 0 ? swatchRef : undefined}
@@ -592,7 +586,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         isDropdown
       >
         <EuiFieldText
-          className={inputClasses}
+          className="euiColorPicker__input"
           onClick={handleInputActivity}
           onKeyDown={handleInputActivity}
           onBlur={handleOnBlur}
@@ -626,8 +620,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}
       zIndex={popoverZIndex}
-      className={popoverClass}
-      panelClassName={panelClasses}
+      className="euiColorPicker__popoverAnchor"
+      panelClassName="euiColorPicker__popoverPanel"
       display={button ? 'inline-block' : 'block'}
       attachToAnchor={button ? false : true}
       anchorPosition="downLeft"

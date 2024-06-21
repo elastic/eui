@@ -265,7 +265,7 @@ test('Clicking a swatch calls onChange', () => {
   );
 
   findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
+  const swatches = colorPicker.find('button.euiColorPickerSwatch');
   expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
   swatches.first().simulate('click');
   expect(onChange).toBeCalled();
@@ -339,7 +339,7 @@ test('default mode does renders child components', () => {
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(1);
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
+  const swatches = colorPicker.find('button.euiColorPickerSwatch');
   expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
 });
 
@@ -358,7 +358,7 @@ test('swatch mode does not render EuiSaturation or EuiHue', () => {
   expect(saturation.length).toBe(0);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(0);
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
+  const swatches = colorPicker.find('button.euiColorPickerSwatch');
   expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
 });
 
@@ -377,7 +377,7 @@ test('picker mode does not render swatches', () => {
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
   expect(hue.length).toBe(1);
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
+  const swatches = colorPicker.find('button.euiColorPickerSwatch');
   expect(swatches.length).toBe(0);
 });
 
