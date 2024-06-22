@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
 import { EuiColorPaletteDisplay, SIZES } from './color_palette_display';
@@ -34,6 +35,8 @@ const paletteWithStops = [
 ];
 
 describe('EuiColorPaletteDisplay', () => {
+  shouldRenderCustomStyles(<EuiColorPaletteDisplay palette={palette} />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiColorPaletteDisplay {...requiredProps} palette={palette} />
