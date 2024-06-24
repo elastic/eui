@@ -26,7 +26,7 @@ import {
   PRESERVED_FALSE_VALUE_PROPS,
 } from '../constants';
 import {
-  getComponentDisplayName,
+  getStoryComponentDisplayName,
   getEmotionComponentDisplayName,
   getReactSymbolName,
   isForwardRef,
@@ -39,6 +39,7 @@ import {
   isSubcomponent,
   getStoryComponent,
   getResolvedStoryChild,
+  getDefaultPropsfromDocgenInfo,
 } from './utils';
 
 export type JSXOptions = Options & {
@@ -55,8 +56,8 @@ export type JSXOptions = Options & {
  */
 export const renderJsx = (
   code: React.ReactElement,
+  context: StoryContext<ReactRenderer>,
   options?: JSXOptions,
-  context?: StoryContext<ReactRenderer>,
   euiTheme?: UseEuiTheme
 ): string | null => {
   if (typeof code === 'undefined') {
@@ -103,7 +104,7 @@ export const renderJsx = (
           // naming convention: `Stateful{COMPONENT_NAME}`
           if (isStatefulComponent(el)) {
             const displayName =
-              getComponentDisplayName(context) ??
+              getStoryComponentDisplayName(context) ??
               context?.title.split('/').pop() ??
               el.type.name;
             el.type.displayName = displayName;
@@ -112,7 +113,7 @@ export const renderJsx = (
           return el.type.name;
         } else if (typeof el.type === 'function') {
           // this happens e.g. when using decorators where the <Story /> is wrapped
-          return getComponentDisplayName(context) ?? 'No Display Name';
+          return getStoryComponentDisplayName(context) ?? 'No Display Name';
         } else if (isForwardRef(el.type)) {
           return el.type.render.name;
         } else if (isMemo(el.type)) {
@@ -166,10 +167,16 @@ export const renderJsx = (
       context?.parameters?.codeSnippet?.resolveChildren === true;
     const shouldResolveStoryElementOnly =
       context?.parameters?.codeSnippet?.resolveStoryElementOnly === true;
+    const shouldRemoveDefaultProps =
+      context?.parameters?.codeSnippet?.removeDefaultProps !== false;
 
     let node = child;
+    let defaultProps: Record<string, Record<string, any>> | undefined;
 
     if (typeof child !== 'string') {
+      if (shouldRemoveDefaultProps) {
+        defaultProps = getDefaultPropsfromDocgenInfo(child, context);
+      }
       // manual flag to remove an outer story wrapper and resolve its children instead
       // useful when complex custom stories are build where the actual story component is
       // not the outer component but part of a composition within another wrapper
@@ -217,6 +224,7 @@ export const renderJsx = (
         node,
         euiTheme,
         argsOverride: context?.parameters[ADDON_PARAMETER_KEY]?.args,
+        defaultProps,
       }),
       opts as Options
     );
@@ -294,10 +302,12 @@ const _simplifyNodeForStringify = ({
   node,
   euiTheme,
   argsOverride,
+  defaultProps,
 }: {
   node: ReactNode;
   euiTheme?: UseEuiTheme;
   argsOverride?: Args;
+  defaultProps?: Args;
 }): ReactNode => {
   if (isValidElement(node)) {
     let updatedNode = node;
@@ -328,6 +338,10 @@ const _simplifyNodeForStringify = ({
       ? Object.keys(updatedNode.props).reduce<{
           [key: string]: any;
         }>((acc, cur) => {
+          // filter out default props
+          if (defaultProps?.includes(cur)) {
+            return acc;
+          }
           // check if the story has manual prop overrides that should be
           // used instead of the original value
           if (argsOverride?.[cur]) {
@@ -460,6 +474,7 @@ const _simplifyNodeForStringify = ({
 
           acc[cur] = _simplifyNodeForStringify({
             node: updatedNode.props[cur],
+            defaultProps,
           });
 
           return acc;
@@ -479,7 +494,7 @@ const _simplifyNodeForStringify = ({
   // recursively resolve array or object nodes (e.g. props)
   if (Array.isArray(node)) {
     const children = node.map((child) =>
-      _simplifyNodeForStringify({ node: child, euiTheme })
+      _simplifyNodeForStringify({ node: child, euiTheme, defaultProps })
     );
     return children.flat();
   }
@@ -506,6 +521,7 @@ const _simplifyNodeForStringify = ({
       } else {
         updatedChildren[childrenKeys[i]] = _simplifyNodeForStringify({
           node: n,
+          defaultProps,
         });
       }
     }

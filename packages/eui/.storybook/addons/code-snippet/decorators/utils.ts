@@ -22,6 +22,11 @@ import tsParser from 'prettier/parser-typescript';
 
 // @ts-ignore - config import
 import basePrettierConfig from '../../../../.prettierrc';
+import {
+  ADDON_PARAMETER_KEY,
+  EMOTION_LABEL_KEY,
+  EMOTION_TYPE_KEY,
+} from '../constants';
 
 export const toPascalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
@@ -68,17 +73,23 @@ export const getEmotionComponentDisplayName = (
 
   if (
     (typeof displayName === 'string' && displayName.startsWith('Emotion')) ||
-    node.props?.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ != null
+    node.props?.[EMOTION_TYPE_KEY] != null
   ) {
-    const { __EMOTION_TYPE_PLEASE_DO_NOT_USE__: emotionData } = node.props;
-    const isForwardRefComponent = isForwardRef(emotionData);
+    const {
+      [EMOTION_TYPE_KEY]: emotionTypeData,
+      [EMOTION_LABEL_KEY]: emotionLabelData,
+    } = node.props;
+    const isForwardRefComponent = isForwardRef(emotionTypeData);
 
+    const emotionTypeName =
+      emotionTypeData.__docgenInfo?.displayName ??
+      emotionTypeData.render?.displayName;
     // we need to rely here on the reference Emotion stores to know what component this actually is
     const replacementName: string | undefined = isForwardRefComponent
-      ? emotionData.__docgenInfo.displayName
-      : typeof emotionData === 'string'
-      ? emotionData
-      : emotionData?.displayName;
+      ? emotionTypeName
+      : typeof emotionTypeData === 'string'
+      ? emotionTypeData ?? emotionLabelData
+      : emotionTypeName ?? emotionLabelData?.displayName;
 
     // remove internal component underscore markings
     return replacementName ? replacementName.replace('_', '') : displayName;
@@ -87,7 +98,7 @@ export const getEmotionComponentDisplayName = (
   return displayName;
 };
 
-export const getComponentDisplayName = (
+export const getStoryComponentDisplayName = (
   context: StoryContext | undefined
 ): string | undefined => {
   if (!context) return undefined;
@@ -98,12 +109,15 @@ export const getComponentDisplayName = (
   return component?.displayName ?? component.__docgenInfo?.displayName;
 };
 
+/** Determine if a component is an Emotion component based on displayName.
+ * Emotion components are renamed 'EmotionCssPropInternal'
+ */
 export const isEmotionComponent = (node: ReactElement): boolean => {
   const displayName = getElementDisplayName(node);
   const matches =
-    typeof displayName === 'string' ? displayName.startsWith('Emotion') : null;
+    typeof displayName === 'string' ? displayName.startsWith('Emotion') : false;
 
-  return matches != null;
+  return !!matches;
 };
 
 /* Story specific checks */
@@ -113,12 +127,21 @@ export const isStoryComponent = (
 ): boolean => {
   if (!context) return false;
 
-  const displayName = getEmotionComponentDisplayName(node);
+  const displayName = getEmotionComponentDisplayName(node)?.replace(/^_/, '');
   const isCurrentStory = displayName
     ? displayName === context?.component?.displayName
     : false;
 
   return isCurrentStory;
+};
+
+const isStoryWrapper = (node: ReactElement, context: StoryContext) => {
+  const displayName = getEmotionComponentDisplayName(node);
+  const isStoryWrapper =
+    (typeof displayName === 'string' && displayName.startsWith('Story')) ||
+    context.parameters?.[ADDON_PARAMETER_KEY]?.resolveChildren === true;
+
+  return isStoryWrapper;
 };
 
 /**
@@ -195,7 +218,8 @@ export const getResolvedStoryChild = (
 /**
  * Helper to resolve the current story element from a composition preview,
  * e.g. when the story element is a child of a wrapper and only the story
- * should be output without wrappers or siblings.
+ * should be determined without wrappers or siblings.
+ * (e.g. for singular output or for getting defaultProps or the story element)
  *
  * It checks the passed story node recursively until it finds the current
  * story element and returns it.
@@ -210,20 +234,41 @@ export const getStoryComponent = (
     if (isStoryComponent(childNode, context)) {
       storyNode = childNode;
       return;
-    } else if (
-      isValidElement<any>(childNode) &&
-      Array.isArray(childNode.props?.children)
-    ) {
-      const { children } = childNode.props;
+    } else if (isValidElement<any>(childNode) && !storyNode) {
+      // CASE: array of children
+      if (Array.isArray(childNode.props?.children)) {
+        const { children } = childNode.props;
 
-      for (const child of children) {
-        // break out of the loop early if possible
-        if (child == null || storyNode != null) break;
+        for (const child of children) {
+          // break out of the loop early if possible
+          if (child == null || storyNode != null) break;
+          // skip non-ReactElement children
+          if (!isValidElement(child)) continue;
 
+          // Story wrappers need to be resolved first to ensure the right data
+          const resolvedChild = getResolvedStoryChild(child, context);
+          resolveChildren(resolvedChild);
+        }
+      } else if (
+        // CASE: story wrapper; no children
+        childNode.props?.children == null &&
+        (isStoryWrapper(childNode, context) || isStatefulComponent(childNode))
+      ) {
+        const displayName = getEmotionComponentDisplayName(childNode);
         // Story wrappers need to be resolved first to ensure the right data
-        const resolvedChild = getResolvedStoryChild(child, context);
+        const resolvedChild = getResolvedStoryChild(childNode, context);
+        const resolvedDisplayName =
+          getEmotionComponentDisplayName(resolvedChild);
 
-        resolveChildren(resolvedChild);
+        if (resolvedDisplayName && resolvedDisplayName !== displayName) {
+          resolveChildren(resolvedChild);
+        }
+      } else if (
+        // CASE: single child element
+        childNode.props?.children &&
+        !Array.isArray(childNode.props?.children)
+      ) {
+        resolveChildren(childNode.props?.children);
       }
     }
   };
@@ -231,6 +276,57 @@ export const getStoryComponent = (
   resolveChildren(node);
 
   return storyNode;
+};
+
+type ReactElementWithDocgenInfo = ReactElement & {
+  type?: { __docgenInfo?: { props: { [key: string]: any } } };
+};
+
+/**
+ * Helper to retrieve a story components default props.
+ * Only returns props that have the default prop value;
+ * any prop value that's changed in the story is not
+ * considered a default prop in this context
+ */
+export const getDefaultPropsfromDocgenInfo = (
+  component: ReactElementWithDocgenInfo,
+  context: StoryContext
+): Record<string, any> | undefined => {
+  if (typeof component.type === 'string') return undefined;
+
+  // determine the story element first
+  // this is required because the story might be wrapped and
+  // only the story element has the required docgenInfo
+  let storyComponent: ReactElementWithDocgenInfo | undefined =
+    getStoryComponent(component, context);
+
+  if (!storyComponent) return undefined;
+
+  let propsInfo = isEmotionComponent(storyComponent)
+    ? storyComponent.props?.[EMOTION_TYPE_KEY]?.__docgenInfo.props
+    : storyComponent.type?.__docgenInfo?.props;
+
+  const args = context.args;
+
+  const defaultProps = propsInfo
+    ? Object.keys(propsInfo).filter((key) => {
+        if (propsInfo[key].defaultValue == null) return false;
+
+        const defaultValue = propsInfo[key].defaultValue.value;
+        // clean added string (e.g. done by EuiI18n or inline type casting with 'as')
+        // checks if the string starts with wrapping quotes, then matches tonly the quoted string
+        // to remove access content (e.g. "'div' as TComponent" => 'div')
+        const cleanedDefaultValue = defaultValue.startsWith("'")
+          ? defaultValue.match(/^'.*'/)[0].replace(/^\'/, '').replace(/\'$/, '')
+          : propsInfo[key].defaultValue?.value;
+
+        // check that the prop value is not the default value
+        return cleanedDefaultValue === args[key]?.toString();
+      })
+    : undefined;
+
+  // if available, returns an array of prop names
+  return defaultProps;
 };
 
 /**

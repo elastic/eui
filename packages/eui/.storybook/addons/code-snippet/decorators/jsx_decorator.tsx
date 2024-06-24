@@ -174,7 +174,7 @@ export const customJsxDecorator = (
   const euiTheme = useEuiTheme();
 
   // generate JSX from the story
-  const renderedJsx = renderJsx(storyJsx, options, context, euiTheme);
+  const renderedJsx = renderJsx(storyJsx, context, options, euiTheme);
   if (renderedJsx) {
     getFormattedCode(renderedJsx)
       .then((res: string) => {

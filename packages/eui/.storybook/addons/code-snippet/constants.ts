@@ -29,9 +29,13 @@ export const SPREAD_STORY_ARGS_MARKER = '{{...STORY_ARGS}}';
 /**
  * JSX snippet generation constants
  */
+export const EMOTION_TYPE_KEY = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__';
+export const EMOTION_LABEL_KEY = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__';
+
 // excluded props to not be shown in the code snippet
 export const EXCLUDED_PROPS = new Set([
-  '__EMOTION_TYPE_PLEASE_DO_NOT_USE__',
+  EMOTION_TYPE_KEY,
+  EMOTION_LABEL_KEY,
   'key',
 ]);
 // props with 'false' value that should not be removed but shown in the code snippet

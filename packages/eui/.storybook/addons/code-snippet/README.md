@@ -157,16 +157,23 @@ const meta = {
   component: EuiButton,
   parameters: {
     codeSnippet: {
-       // will skip code snippet generation for the component or story
+      // will skip code snippet generation for the component or story
+      // @default false
       skip: true,
       // Useful for complex story composition wrappers (using the story component as 
       // nested child and not as direct return for `render`).
       // It will skip the outer story wrapper and return the code snippet for its children
       // instead. See the story for `EuiHeader/Multiple Fixed Headers` as an example.
+      // @default false
       resolveChildren: true,
       // Useful when the story outputs additional contnt that should not be included in the
       // snippet and instead only the actual story component should be output as snippet.
+      // @default false
       resolveStoryElementOnly: true,
+      // The jsx renderer removes the story components default props. In case that they should 
+      // be added to a specific code snippet it can be enabled by setting this option to `false`.
+      // @default true
+      removeDefaultProps: false,
     }
   }
 }
