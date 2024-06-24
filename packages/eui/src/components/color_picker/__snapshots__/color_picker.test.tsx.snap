@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders EuiColorPicker 1`] = `
+exports[`EuiColorPicker color empty string 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -14,13 +14,13 @@ exports[`renders EuiColorPicker 1`] = `
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
       >
         <span
-          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            color="rgb(255,238,221)"
-            data-euiicon-type="swatchInput"
+            color="subdued"
+            data-euiicon-type="stopSlash"
           />
         </span>
       </div>
@@ -29,8 +29,9 @@ exports[`renders EuiColorPicker 1`] = `
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
+        placeholder="Transparent"
         type="text"
-        value="#FFEEDD"
+        value=""
       />
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
@@ -50,7 +51,7 @@ exports[`renders EuiColorPicker 1`] = `
 </div>
 `;
 
-exports[`renders EuiColorPicker with a clearable input 1`] = `
+exports[`EuiColorPicker color null 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -64,13 +65,13 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
       >
         <span
-          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
+          class="euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
             class="euiFormControlLayoutCustomIcon__icon"
-            color="rgb(255,238,221)"
-            data-euiicon-type="swatchInput"
+            color="subdued"
+            data-euiicon-type="stopSlash"
           />
         </span>
       </div>
@@ -79,22 +80,13 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
         autocomplete="off"
         class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
         data-test-subj="euiColorPickerAnchor test subject string"
+        placeholder="Transparent"
         type="text"
-        value="#FFEEDD"
+        value=""
       />
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
-        <button
-          aria-label="Clear input"
-          class="euiFormControlLayoutClearButton"
-          type="button"
-        >
-          <span
-            class="euiFormControlLayoutClearButton__icon"
-            data-euiicon-type="cross"
-          />
-        </button>
         <span
           class="euiFormControlLayoutCustomIcon"
         >
@@ -110,7 +102,7 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
 </div>
 `;
 
-exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = `
+exports[`EuiColorPicker color valid string 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -160,270 +152,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
 </div>
 `;
 
-exports[`renders EuiColorPicker with a custom placeholder 1`] = `
-<div
-  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
->
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            color="subdued"
-            data-euiicon-type="stopSlash"
-          />
-        </span>
-      </div>
-      <input
-        aria-label="Press the down key to open a popover containing color options"
-        autocomplete="off"
-        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
-        data-test-subj="euiColorPickerAnchor test subject string"
-        placeholder="Auto"
-        type="text"
-        value=""
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
-<div
-  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
->
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            color="subdued"
-            data-euiicon-type="stopSlash"
-          />
-        </span>
-      </div>
-      <input
-        aria-label="Press the down key to open a popover containing color options"
-        autocomplete="off"
-        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
-        data-test-subj="euiColorPickerAnchor test subject string"
-        placeholder="Transparent"
-        type="text"
-        value=""
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
-<div
-  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
->
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            color="subdued"
-            data-euiicon-type="stopSlash"
-          />
-        </span>
-      </div>
-      <input
-        aria-label="Press the down key to open a popover containing color options"
-        autocomplete="off"
-        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
-        data-test-subj="euiColorPickerAnchor test subject string"
-        placeholder="Transparent"
-        type="text"
-        value=""
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders a EuiColorPicker with a prepend and append 1`] = `
-<div
-  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
->
-  <div
-    class="euiFormControlLayout euiFormControlLayout--group"
-  >
-    <label
-      class="euiFormLabel euiFormControlLayout__prepend"
-    >
-      prepend
-    </label>
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            color="rgb(255,238,221)"
-            data-euiicon-type="swatchInput"
-          />
-        </span>
-      </div>
-      <input
-        aria-label="Press the down key to open a popover containing color options"
-        autocomplete="off"
-        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
-        data-test-subj="euiColorPickerAnchor test subject string"
-        type="text"
-        value="#FFEEDD"
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-    <label
-      class="euiFormLabel euiFormControlLayout__append"
-    >
-      append
-    </label>
-  </div>
-</div>
-`;
-
-exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
-<div
-  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
->
-  <div
-    class="euiFormControlLayout"
-  >
-    <div
-      class="euiFormControlLayout__childrenWrapper"
-    >
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            color="rgb(255,238,221)"
-            data-euiicon-type="swatchInput"
-          />
-        </span>
-      </div>
-      <input
-        aria-label="Press the down key to open a popover containing color options"
-        autocomplete="off"
-        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
-        data-test-subj="euiColorPickerAnchor test subject string"
-        type="text"
-        value="#FFEEDD"
-      />
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders compressed EuiColorPicker 1`] = `
+exports[`EuiColorPicker compressed 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -473,7 +202,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
 </div>
 `;
 
-exports[`renders disabled EuiColorPicker 1`] = `
+exports[`EuiColorPicker disabled 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -511,7 +240,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
 </div>
 `;
 
-exports[`renders fullWidth EuiColorPicker 1`] = `
+exports[`EuiColorPicker fullWidth 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -561,7 +290,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
 </div>
 `;
 
-exports[`renders inline EuiColorPicker 1`] = `
+exports[`EuiColorPicker inline 1`] = `
 <div
   class="euiColorPicker testClass1 testClass2 emotion-euiColorPicker-euiTestCss"
 >
@@ -630,7 +359,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #54B399 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(84, 179, 153);"
         type="button"
       />
@@ -638,7 +367,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #6092C0 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(96, 146, 192);"
         type="button"
       />
@@ -646,7 +375,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #D36086 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(211, 96, 134);"
         type="button"
       />
@@ -654,7 +383,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #9170B8 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(145, 112, 184);"
         type="button"
       />
@@ -662,7 +391,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #CA8EAE as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(202, 142, 174);"
         type="button"
       />
@@ -670,7 +399,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #D6BF57 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(214, 191, 87);"
         type="button"
       />
@@ -678,7 +407,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #B9A888 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(185, 168, 136);"
         type="button"
       />
@@ -686,7 +415,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #DA8B45 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(218, 139, 69);"
         type="button"
       />
@@ -694,7 +423,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #AA6556 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(170, 101, 86);"
         type="button"
       />
@@ -702,7 +431,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <li>
       <button
         aria-label="Select #E7664C as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+        class="euiColorPickerSwatch"
         style="background: rgb(231, 102, 76);"
         type="button"
       />
@@ -711,7 +440,178 @@ exports[`renders inline EuiColorPicker 1`] = `
 </div>
 `;
 
-exports[`renders readOnly EuiColorPicker 1`] = `
+exports[`EuiColorPicker isClearable 1`] = `
+<div
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            color="rgb(255,238,221)"
+            data-euiicon-type="swatchInput"
+          />
+        </span>
+      </div>
+      <input
+        aria-label="Press the down key to open a popover containing color options"
+        autocomplete="off"
+        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
+        data-test-subj="euiColorPickerAnchor test subject string"
+        type="text"
+        value="#FFEEDD"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <button
+          aria-label="Clear input"
+          class="euiFormControlLayoutClearButton"
+          type="button"
+        >
+          <span
+            class="euiFormControlLayoutClearButton__icon"
+            data-euiicon-type="cross"
+          />
+        </button>
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiColorPicker placeholder 1`] = `
+<div
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            color="subdued"
+            data-euiicon-type="stopSlash"
+          />
+        </span>
+      </div>
+      <input
+        aria-label="Press the down key to open a popover containing color options"
+        autocomplete="off"
+        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
+        data-test-subj="euiColorPickerAnchor test subject string"
+        placeholder="Auto"
+        type="text"
+        value=""
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiColorPicker prepend and append 1`] = `
+<div
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayout--group"
+  >
+    <label
+      class="euiFormLabel euiFormControlLayout__prepend"
+    >
+      prepend
+    </label>
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            color="rgb(255,238,221)"
+            data-euiicon-type="swatchInput"
+          />
+        </span>
+      </div>
+      <input
+        aria-label="Press the down key to open a popover containing color options"
+        autocomplete="off"
+        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
+        data-test-subj="euiColorPickerAnchor test subject string"
+        type="text"
+        value="#FFEEDD"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+    <label
+      class="euiFormLabel euiFormControlLayout__append"
+    >
+      append
+    </label>
+  </div>
+</div>
+`;
+
+exports[`EuiColorPicker readOnly 1`] = `
 <div
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
@@ -744,6 +644,106 @@ exports[`renders readOnly EuiColorPicker 1`] = `
         type="text"
         value="#FFEEDD"
       />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiColorPicker renders 1`] = `
+<div
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            color="rgb(255,238,221)"
+            data-euiicon-type="swatchInput"
+          />
+        </span>
+      </div>
+      <input
+        aria-label="Press the down key to open a popover containing color options"
+        autocomplete="off"
+        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
+        data-test-subj="euiColorPickerAnchor test subject string"
+        type="text"
+        value="#FFEEDD"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiColorPicker showAlpha 1`] = `
+<div
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon emotion-euiColorPicker__swatchInputIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            color="rgb(255,238,221)"
+            data-euiicon-type="swatchInput"
+          />
+        </span>
+      </div>
+      <input
+        aria-label="Press the down key to open a popover containing color options"
+        autocomplete="off"
+        class="euiFieldText euiColorPicker__input emotion-euiFieldText-controlOnly"
+        data-test-subj="euiColorPickerAnchor test subject string"
+        type="text"
+        value="#FFEEDD"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
     </div>
   </div>
 </div>
