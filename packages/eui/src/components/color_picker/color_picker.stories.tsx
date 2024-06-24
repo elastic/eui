@@ -38,3 +38,14 @@ export default meta;
 type Story = StoryObj<EuiColorPickerProps>;
 
 export const Playground: Story = {};
+
+export const InlineWithAllElements: Story = {
+  tags: ['vrt-only'],
+  args: {
+    // Component defaults
+    display: 'inline',
+    mode: 'default',
+    showAlpha: true,
+    secondaryInputDisplay: 'top',
+  },
+};
