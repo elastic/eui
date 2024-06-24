@@ -9,11 +9,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiMarkdownEditor, EuiMarkdownEditorProps } from './markdown_editor';
-import {
-  defaultParsingPlugins,
-  defaultProcessingPlugins,
-  defaultUiPlugins,
-} from './plugins/markdown_default_plugins';
 import { MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 
 const initialContent = `## Hello world!
@@ -39,9 +34,6 @@ const meta: Meta<EuiMarkdownEditorProps> = {
     height: 250,
     maxHeight: 500,
     autoExpandPreview: true,
-    parsingPluginList: defaultParsingPlugins,
-    processingPluginList: defaultProcessingPlugins,
-    uiPlugins: defaultUiPlugins,
     errors: [],
     initialViewMode: MODE_EDITING,
     dropHandlers: [],
