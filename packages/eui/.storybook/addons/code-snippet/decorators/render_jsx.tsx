@@ -40,6 +40,7 @@ import {
   getStoryComponent,
   getResolvedStoryChild,
   getDefaultPropsfromDocgenInfo,
+  isStoryWrapper,
 } from './utils';
 
 export type JSXOptions = Options & {
@@ -167,16 +168,10 @@ export const renderJsx = (
       context?.parameters?.codeSnippet?.resolveChildren === true;
     const shouldResolveStoryElementOnly =
       context?.parameters?.codeSnippet?.resolveStoryElementOnly === true;
-    const shouldRemoveDefaultProps =
-      context?.parameters?.codeSnippet?.removeDefaultProps !== false;
 
     let node = child;
-    let defaultProps: Record<string, Record<string, any>> | undefined;
 
     if (typeof child !== 'string') {
-      if (shouldRemoveDefaultProps) {
-        defaultProps = getDefaultPropsfromDocgenInfo(child, context);
-      }
       // manual flag to remove an outer story wrapper and resolve its children instead
       // useful when complex custom stories are build where the actual story component is
       // not the outer component but part of a composition within another wrapper
@@ -222,9 +217,9 @@ export const renderJsx = (
     let string: string = toJSXString(
       _simplifyNodeForStringify({
         node,
+        context,
         euiTheme,
         argsOverride: context?.parameters[ADDON_PARAMETER_KEY]?.args,
-        defaultProps,
       }),
       opts as Options
     );
@@ -300,17 +295,23 @@ export const renderJsx = (
  */
 const _simplifyNodeForStringify = ({
   node,
+  context,
   euiTheme,
   argsOverride,
-  defaultProps,
 }: {
   node: ReactNode;
+  context: StoryContext<ReactRenderer>;
   euiTheme?: UseEuiTheme;
   argsOverride?: Args;
-  defaultProps?: Args;
 }): ReactNode => {
   if (isValidElement(node)) {
     let updatedNode = node;
+    const shouldRemoveDefaultProps =
+      context?.parameters?.codeSnippet?.removeDefaultProps !== false;
+    // default props for the current node
+    const defaultProps = shouldRemoveDefaultProps
+      ? getDefaultPropsfromDocgenInfo(node, context)
+      : [];
 
     // remove outer fragments
     if (isFragment(updatedNode) && !Array.isArray(updatedNode.props.children)) {
@@ -474,7 +475,7 @@ const _simplifyNodeForStringify = ({
 
           acc[cur] = _simplifyNodeForStringify({
             node: updatedNode.props[cur],
-            defaultProps,
+            context,
           });
 
           return acc;
@@ -494,7 +495,7 @@ const _simplifyNodeForStringify = ({
   // recursively resolve array or object nodes (e.g. props)
   if (Array.isArray(node)) {
     const children = node.map((child) =>
-      _simplifyNodeForStringify({ node: child, euiTheme, defaultProps })
+      _simplifyNodeForStringify({ node: child, context, euiTheme })
     );
     return children.flat();
   }
@@ -521,7 +522,7 @@ const _simplifyNodeForStringify = ({
       } else {
         updatedChildren[childrenKeys[i]] = _simplifyNodeForStringify({
           node: n,
-          defaultProps,
+          context,
         });
       }
     }
