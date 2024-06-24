@@ -1,41 +1,57 @@
-# Website
+# EUI documentation website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This package contains sources of the upcoming new EUI documentation website
+built with [Docusaurus](https://docusaurus.io/), an open-source documentation
+platform powered by React.
 
-### Installation
+This is a **private** package and is not meant to be published to npm.
+If you're looking for EUI components or utilities, check out our other [packages](../).
 
-```
-$ yarn
-```
+## Local development
 
-### Local Development
+### Prerequisites
 
-```
-$ yarn start
-```
+Like other packages in this repository, this package requires Node.js (check version in [.nvmrc](/.nvmrc)) 
+to be installed and [corepack](https://nodejs.org/api/corepack.html) enabled.
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+### Installing dependencies
 
-### Build
+Please run `yarn` to install dependencies:
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```shell
+yarn
 ```
 
-Not using SSH:
+### Building helper packages
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+Before you run scripts, it's mandatory to build all local dependency packages:
+
+```shell
+yarn workspaces foreach -Rpt --from @elastic/eui-website run build
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+### Running the development server
+
+Run a local development server with hot reloading capabilities:
+
+```shell
+yarn start
+```
+
+Please note that this command does not watch for changes in other packages' sources
+(e.g., the [theme](../docusaurus-theme) package). Please check out each package's
+README to see if watch mode is available and how to use it.
+
+### Building the website
+
+This step is usually unnecessary to run locally unless you're testing production builds.
+
+```shell
+yarn build
+```
+
+### Running type checks
+
+```shell
+yarn typecheck
+```

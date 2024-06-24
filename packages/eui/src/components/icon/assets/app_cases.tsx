@@ -23,22 +23,21 @@ const EuiIconAppCases = ({
     xmlns="http://www.w3.org/2000/svg"
     width={32}
     height={32}
-    fill="none"
     viewBox="0 0 32 32"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M4 6h22v7h-2V8H6v19H4V6Z" className="euiIcon__fillSecondary" />
     <path
-      fillRule="evenodd"
-      d="M22.5 24a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Zm0 2a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z"
-    />
-    <path d="m30.293 27.707-4-4 1.414-1.414 4 4-1.414 1.414ZM6 4H2v27h25v-3h-2v1H4V6h2V4Zm19 6h2V4h-4v2h2v4Z" />
-    <path
-      fillRule="evenodd"
-      d="m16.381 3.024.538 1.158h2.274l.636 2.545H9.68l.637-2.545h2.558l.538-1.158c.292-.63.955-1.024 1.484-1.024.53 0 1.193.394 1.485 1.024Zm6.01 5.703-1.636-6.545h-2.56C17.6.898 16.262 0 14.897 0c-1.364 0-2.703.898-3.299 2.182H8.755L7.118 8.727h15.273ZM7 15h6v-2H7v2Zm6 5H7v-2h6v2Zm-6 5h6v-2H7v2Z"
+      d="M10 12H7v-2h3v2Zm1 0h12v-2H11v2Z"
       className="euiIcon__fillSecondary"
-      clipRule="evenodd"
+    />
+    <path d="M24 1H0v26h1l-1 .001v.026a2.256 2.256 0 0 0 .01.185 4.318 4.318 0 0 0 .563 1.792C1.194 30.064 2.399 31 4.5 31H17v-2H8.429a4.32 4.32 0 0 0 .57-1.927v-.062L9 27.005v-.003S9 27 8 27h1V16h21v3h2v-5H7v12.995l-.003.05a2.32 2.32 0 0 1-.298.95C6.442 28.436 5.898 29 4.5 29c-1.398 0-1.942-.564-2.199-1.004a2.32 2.32 0 0 1-.3-1.001L2 26.992V3h20v3h2V1Z" />
+    <path d="M23 21v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z" />
+    <path
+      fillRule="evenodd"
+      d="M24 32a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
     />
   </svg>
 );

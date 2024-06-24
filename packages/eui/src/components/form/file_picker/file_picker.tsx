@@ -9,25 +9,24 @@
 import React, { Component, InputHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../../common';
+import {
+  withEuiStylesMemoizer,
+  WithEuiStylesMemoizerProps,
+  htmlIdGenerator,
+} from '../../../services';
+import { CommonProps } from '../../common';
 
-import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonEmpty } from '../../button';
 import { EuiProgress } from '../../progress';
 import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
-import { htmlIdGenerator } from '../../../services/accessibility';
+
 import { FormContext, FormContextValue } from '../eui_form_context';
+import { EuiValidatableControl } from '../validatable_control';
+import { EuiFormControlLayoutClearButton } from '../form_control_layout/form_control_layout_clear_button';
 
-const displayToClassNameMap = {
-  default: null,
-  large: 'euiFilePicker--large',
-};
-
-export const DISPLAYS = keysOf(displayToClassNameMap);
-
-export type EuiFilePickerDisplay = keyof typeof displayToClassNameMap;
+import { euiFilePickerStyles } from './file_picker.styles';
 
 export interface EuiFilePickerProps
   extends CommonProps,
@@ -37,6 +36,7 @@ export interface EuiFilePickerProps
   className?: string;
   /**
    * The content that appears in the dropzone if no file is attached
+   * @default 'Select or drag and drop a file'
    */
   initialPromptText?: ReactNode;
   /**
@@ -45,14 +45,16 @@ export interface EuiFilePickerProps
   onChange?: (files: FileList | null) => void;
   /**
    * Reduces the size to a typical (compressed) input
+   * @default false
    */
   compressed?: boolean;
   /**
    * Size or type of display;
    * `default` for normal height, similar to other controls;
    * `large` for taller size
+   * @default large
    */
-  display?: EuiFilePickerDisplay;
+  display?: 'default' | 'large';
   /**
    * Expand to fill 100% of the parent.
    * Defaults to `fullWidth` prop of `<EuiForm>`.
@@ -64,7 +66,9 @@ export interface EuiFilePickerProps
   disabled?: boolean;
 }
 
-export class EuiFilePicker extends Component<EuiFilePickerProps> {
+export class EuiFilePickerClass extends Component<
+  EuiFilePickerProps & WithEuiStylesMemoizerProps
+> {
   static contextType = FormContext;
 
   static defaultProps: Partial<EuiFilePickerProps> = {
@@ -145,6 +149,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
       >
         {(clearSelectedFiles: string) => {
           const {
+            stylesMemoizer,
             id,
             name,
             initialPromptText,
@@ -167,11 +172,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
 
           const classes = classNames(
             'euiFilePicker',
-            displayToClassNameMap[display!],
             {
-              euiFilePicker__showDrop: this.state.isHoveringDrop,
-              'euiFilePicker--compressed': compressed,
-              'euiFilePicker--fullWidth': fullWidth,
+              'euiFilePicker-isDroppingFile': this.state.isHoveringDrop,
               'euiFilePicker-isInvalid': isInvalid,
               'euiFilePicker-isLoading': isLoading,
               'euiFilePicker-hasFiles': isOverridingInitialPrompt,
@@ -179,28 +181,81 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             className
           );
 
+          const styles = stylesMemoizer(euiFilePickerStyles);
+          const cssStyles = [
+            styles.euiFilePicker,
+            fullWidth ? styles.fullWidth : styles.formWidth,
+            this.state.isHoveringDrop && styles.isDroppingFile,
+            isInvalid && !disabled && styles.invalid,
+            isOverridingInitialPrompt && !disabled && styles.hasFiles,
+            isLoading && styles.loading,
+          ];
+
+          const inputStyles = [
+            styles.input.euiFilePicker__input,
+            !normalFormControl && !disabled && styles.input.largeInteractive,
+          ];
+
+          const promptStyles = [
+            styles.euiFilePicker__prompt,
+            disabled && styles.disabled,
+            ...(normalFormControl
+              ? [compressed ? styles.compressed : styles.uncompressed]
+              : [
+                  styles.large.large,
+                  compressed
+                    ? styles.large.compressed
+                    : styles.large.uncompressed,
+                ]),
+          ];
+
+          const iconStyles = [
+            styles.icon.euiFilePicker__icon,
+            ...(normalFormControl
+              ? [
+                  styles.icon.normal,
+                  compressed
+                    ? styles.icon.compresssed
+                    : styles.icon.uncompressed,
+                ]
+              : [styles.icon.large]),
+          ];
+
+          const rightIconStyles = normalFormControl
+            ? [
+                styles.rightIcon.euiFilePicker__rightIcon,
+                compressed
+                  ? styles.rightIcon.compressed
+                  : styles.rightIcon.uncompressed,
+              ]
+            : undefined;
+
           let clearButton;
           if (isLoading && normalFormControl) {
             // Override clear button with loading spinner if it is in loading state
             clearButton = (
-              <EuiLoadingSpinner className="euiFilePicker__loadingSpinner" />
+              <EuiLoadingSpinner
+                css={rightIconStyles}
+                className="euiFilePicker__loadingSpinner"
+                size={compressed ? 's' : 'm'}
+              />
             );
           } else if (isOverridingInitialPrompt && !disabled) {
             if (normalFormControl) {
               clearButton = (
-                <button
-                  type="button"
+                <EuiFormControlLayoutClearButton
                   aria-label={clearSelectedFiles}
+                  css={[styles.euiFilePicker__clearButton, rightIconStyles]}
                   className="euiFilePicker__clearButton"
                   onClick={this.removeFiles}
-                >
-                  <EuiIcon className="euiFilePicker__clearIcon" type="cross" />
-                </button>
+                  size={compressed ? 's' : 'm'}
+                />
               );
             } else {
               clearButton = (
                 <EuiButtonEmpty
                   aria-label={clearSelectedFiles}
+                  css={styles.euiFilePicker__clearButton}
                   className="euiFilePicker__clearButton"
                   size="xs"
                   onClick={this.removeFiles}
@@ -221,42 +276,46 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
           );
 
           return (
-            <div className={classes}>
-              <div className="euiFilePicker__wrap">
-                <EuiValidatableControl isInvalid={isInvalid}>
-                  <input
-                    type="file"
-                    id={id}
-                    name={name}
-                    className="euiFilePicker__input"
-                    onChange={this.handleChange}
-                    ref={(input) => {
-                      this.fileInput = input;
-                    }}
-                    onDragOver={this.showDrop}
-                    onDragLeave={this.hideDrop}
-                    onDrop={this.hideDrop}
-                    disabled={disabled}
-                    aria-describedby={promptId}
-                    {...rest}
-                  />
-                </EuiValidatableControl>
-                <div className="euiFilePicker__prompt" id={promptId}>
-                  <EuiIcon
-                    className="euiFilePicker__icon"
-                    color={
-                      isInvalid ? 'danger' : disabled ? 'subdued' : 'primary'
-                    }
-                    type={isInvalid ? 'alert' : 'importAction'}
-                    size={normalFormControl ? 'm' : 'l'}
-                    aria-hidden="true"
-                  />
-                  <div className="euiFilePicker__promptText">
-                    {this.state.promptText || initialPromptText}
-                  </div>
-                  {clearButton}
-                  {loader}
-                </div>
+            <div css={cssStyles} className={classes}>
+              <EuiValidatableControl isInvalid={isInvalid}>
+                <input
+                  type="file"
+                  id={id}
+                  name={name}
+                  css={inputStyles}
+                  className="euiFilePicker__input"
+                  onChange={this.handleChange}
+                  ref={(input) => {
+                    this.fileInput = input;
+                  }}
+                  onDragOver={this.showDrop}
+                  onDragLeave={this.hideDrop}
+                  onDrop={this.hideDrop}
+                  disabled={disabled}
+                  aria-describedby={promptId}
+                  {...rest}
+                />
+              </EuiValidatableControl>
+              <div
+                css={promptStyles}
+                className="euiFilePicker__prompt"
+                id={promptId}
+              >
+                <EuiIcon
+                  css={iconStyles}
+                  className="euiFilePicker__icon"
+                  color={
+                    isInvalid ? 'danger' : disabled ? 'subdued' : 'primary'
+                  }
+                  type={isInvalid ? 'alert' : 'importAction'}
+                  size={normalFormControl ? 'm' : 'l'}
+                  aria-hidden="true"
+                />
+                <span className="euiFilePicker__promptText">
+                  {this.state.promptText || initialPromptText}
+                </span>
+                {clearButton}
+                {loader}
               </div>
             </div>
           );
@@ -265,3 +324,6 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     );
   }
 }
+
+export const EuiFilePicker =
+  withEuiStylesMemoizer<EuiFilePickerProps>(EuiFilePickerClass);

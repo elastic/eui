@@ -1,3 +1,18 @@
+## [`v95.2.0`](https://github.com/elastic/eui/releases/v95.2.0)
+
+- Updated `EuiContextMenuItemIcon`'s type definition to explicitly define support for `EuiIcon`'s `IconType` ([#7804](https://github.com/elastic/eui/pull/7804))
+- Updated `EuiSteps` to support a new `titleSize="xxs"` style, which outputs the same title font size but smaller unnumbered step indicators ([#7813](https://github.com/elastic/eui/pull/7813))
+- Updated `EuiStepsHorizontal` to support a new `size="xs"` style, which outputs smaller unnumbered step indicators ([#7813](https://github.com/elastic/eui/pull/7813))
+- Updated `EuiStepNumber` to support new `titleSize="none"` which omits rendering step numbers, and will only render icons ([#7813](https://github.com/elastic/eui/pull/7813))
+- Updated `setEuiDevProviderWarning` to additionally accept a custom callback function, which warning messages will be passed to ([#7820](https://github.com/elastic/eui/pull/7820))
+- Updated `EuiIcon` to feature updated `logoElasticStack` logo for referencing Elastic Stack platform ([#7838](https://github.com/elastic/eui/pull/7838))
+- Updated `EuiIcon` to feature updated `casesApp` design. ([#7840](https://github.com/elastic/eui/pull/7840))
+- Updated `EuiComboBox` to no longer autocomplete searched text when used within forms ([#7842](https://github.com/elastic/eui/pull/7842))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFilePicker` to Emotion; Removed `$euiFilePickerTallHeight` ([#7833](https://github.com/elastic/eui/pull/7833))
+
 ## [`v95.1.0`](https://github.com/elastic/eui/releases/v95.1.0)
 
 - Updated the autofill colors of Chrome (and other webkit browsers) to better match EUI's light and dark mode ([#7776](https://github.com/elastic/eui/pull/7776))
