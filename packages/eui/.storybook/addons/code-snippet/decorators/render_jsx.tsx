@@ -164,8 +164,6 @@ export const renderJsx = (
         : // @ts-expect-error (Converted from ts-ignore)
           reactElementToJSXString.default;
 
-    const shouldResolveChildren =
-      context?.parameters?.codeSnippet?.resolveChildren === true;
     const shouldResolveStoryElementOnly =
       context?.parameters?.codeSnippet?.resolveStoryElementOnly === true;
 
@@ -175,15 +173,17 @@ export const renderJsx = (
       // manual flag to remove an outer story wrapper and resolve its children instead
       // useful when complex custom stories are build where the actual story component is
       // not the outer component but part of a composition within another wrapper
-      if (shouldResolveChildren) {
-        node = getResolvedStoryChild(child, context);
-        // resolves the story element only and removes any wrapper or siblings
-      } else if (shouldResolveStoryElementOnly) {
+      if (shouldResolveStoryElementOnly) {
         const storyNode = getStoryComponent(child, context);
 
         if (storyNode) {
           node = storyNode;
         }
+        // manual flag to remove an outer story wrapper and resolve its children instead
+        // useful when complex custom stories are build where the actual story component is
+        // not the outer component but part of a composition within another wrapper
+      } else if (isStoryWrapper(child, context)) {
+        node = getResolvedStoryChild(child, context);
       } else {
         // removes outer wrapper components but leaves:
         // - stateful wrappers (kept and renamed later via displayName)

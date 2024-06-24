@@ -15,6 +15,7 @@ import {
   ComponentType,
   ExoticComponent,
   isValidElement,
+  Component,
 } from 'react';
 import { Args, StoryContext } from '@storybook/react';
 import * as prettier from 'prettier';
@@ -56,8 +57,11 @@ export const getElementDisplayName = (
   node: ReactElement
 ): string | undefined => {
   let displayName;
+  const isClassComponent = node instanceof Component;
 
-  if (typeof node.type === 'function' || typeof node.type === 'object') {
+  if (isClassComponent) {
+    displayName = node.constructor.name;
+  } else if (typeof node.type === 'function' || typeof node.type === 'object') {
     const component = node.type as FunctionComponent;
     displayName = component.displayName ?? component.name ?? undefined;
   }
@@ -92,10 +96,10 @@ export const getEmotionComponentDisplayName = (
       : emotionTypeName ?? emotionLabelData?.displayName;
 
     // remove internal component underscore markings
-    return replacementName ? replacementName.replace('_', '') : displayName;
+    return replacementName ?? displayName;
   }
 
-  return displayName;
+  return displayName ? displayName.replace('_', '') : displayName;
 };
 
 export const getStoryComponentDisplayName = (
@@ -127,7 +131,10 @@ export const isStoryComponent = (
 ): boolean => {
   if (!context) return false;
 
-  const displayName = getEmotionComponentDisplayName(node)?.replace(/^_/, '');
+  const isClassComponent = node instanceof Component;
+  const displayName = isClassComponent
+    ? node.constructor?.name
+    : getEmotionComponentDisplayName(node)?.replace(/^_/, '');
   const isCurrentStory = displayName
     ? displayName === context?.component?.displayName
     : false;
@@ -135,7 +142,7 @@ export const isStoryComponent = (
   return isCurrentStory;
 };
 
-const isStoryWrapper = (node: ReactElement, context: StoryContext) => {
+export const isStoryWrapper = (node: ReactElement, context: StoryContext) => {
   const displayName = getEmotionComponentDisplayName(node);
   const isStoryWrapper =
     (typeof displayName === 'string' && displayName.startsWith('Story')) ||
@@ -210,9 +217,15 @@ export const getResolvedStoryChild = (
   child: ReactElement,
   context: StoryContext
 ) => {
-  return child.type && typeof child.type === 'function'
-    ? (child.type as (args: Args) => ReactElement)(context?.args)
-    : child;
+  if (!child.type) return child;
+  if (typeof child.type !== 'function') return child;
+
+  const isClassComponent = child.type.prototype instanceof Component;
+  const resolvedChild = isClassComponent
+    ? child
+    : (child.type as (args: Args) => ReactElement)(context?.args);
+
+  return resolvedChild;
 };
 
 /**
@@ -245,9 +258,15 @@ export const getStoryComponent = (
           // skip non-ReactElement children
           if (!isValidElement(child)) continue;
 
+          const displayName = getEmotionComponentDisplayName(child);
           // Story wrappers need to be resolved first to ensure the right data
           const resolvedChild = getResolvedStoryChild(child, context);
-          resolveChildren(resolvedChild);
+          const resolvedDisplayName =
+            getEmotionComponentDisplayName(resolvedChild);
+
+          if (resolvedDisplayName !== displayName) {
+            resolveChildren(resolvedChild);
+          }
         }
       } else if (
         // CASE: story wrapper; no children
@@ -260,7 +279,7 @@ export const getStoryComponent = (
         const resolvedDisplayName =
           getEmotionComponentDisplayName(resolvedChild);
 
-        if (resolvedDisplayName && resolvedDisplayName !== displayName) {
+        if (resolvedDisplayName !== displayName) {
           resolveChildren(resolvedChild);
         }
       } else if (
@@ -268,7 +287,7 @@ export const getStoryComponent = (
         childNode.props?.children &&
         !Array.isArray(childNode.props?.children)
       ) {
-        resolveChildren(childNode.props?.children);
+        storyNode = childNode.props.children;
       }
     }
   };
@@ -302,9 +321,11 @@ export const getDefaultPropsfromDocgenInfo = (
 
   if (!storyComponent) return undefined;
 
-  let propsInfo = isEmotionComponent(storyComponent)
-    ? storyComponent.props?.[EMOTION_TYPE_KEY]?.__docgenInfo.props
-    : storyComponent.type?.__docgenInfo?.props;
+  let propsInfo =
+    isEmotionComponent(storyComponent) &&
+    typeof storyComponent.props?.[EMOTION_TYPE_KEY] !== 'string'
+      ? storyComponent.props?.[EMOTION_TYPE_KEY]?.__docgenInfo.props
+      : storyComponent.type?.__docgenInfo?.props;
 
   const args = context.args;
 

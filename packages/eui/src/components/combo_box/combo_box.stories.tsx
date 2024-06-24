@@ -133,7 +133,12 @@ export const WithTooltip: Story = {
 hideStorybookControls(WithTooltip, ['onChange']);
 
 export const CustomMatcher: Story = {
-  render: (args) => <StatefulCustomMatcher {...args} />,
+  parameters: {
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
+  },
+  render: (args) => <StoryCustomMatcher {...args} />,
 };
 
 export const Groups: Story = {
@@ -237,7 +242,7 @@ const StatefulComboBox = ({
   );
 };
 
-const StatefulCustomMatcher = ({
+const StoryCustomMatcher = ({
   singleSelection,
   onChange,
   ...args
