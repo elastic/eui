@@ -24,6 +24,7 @@ export const QUERY_PARAMS = {
 };
 
 export const STORY_ARGS_MARKER = '{{STORY_ARGS}}';
+export const SPREAD_STORY_ARGS_MARKER = '{{...STORY_ARGS}}';
 
 /**
  * JSX snippet generation constants

@@ -178,13 +178,23 @@ const meta = {
 
 Instead of using the automatic code snippet generation, we can also provide a manual snippet which will be output instead. This is especially useful when the story content is not actually a component (e.g. a hook). You can see an example of this for the story of `useEuiTextDiff`.
 
-To add the story args to the code snippet, add the defined marker `{{STORY_ARGS}}` to the snippet string. This marker will be replaced automatically with the current story args.
+To add the story args to the code snippet, add the defined marker `{{STORY_ARGS}}` to the snippet string. This marker will be replaced automatically with the current story args. If the args should be spread on the root component use `{{...STORY_ARGS}}` instead.
 
 ```ts
+// {{STORY_ARGS}}
 parameters: {
     codeSnippet: {
       snippet: `
-      const [rendered, textDiffObject] = useTextDiff(${STORY_ARGS_MARKER})
+      const [rendered, textDiffObject] = useTextDiff({{STORY_ARGS}})
+      `,
+    },
+}
+
+// {{...STORY_ARGS}}
+parameters: {
+    codeSnippet: {
+      snippet: `
+      <SomeComponent {{...STORY_ARGS}}) />
       `,
     },
 }

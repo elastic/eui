@@ -19,7 +19,11 @@ import { addons, useEffect, useCallback } from '@storybook/preview-api';
 import { logger } from '@storybook/client-logger';
 
 import { useEuiTheme } from '../../../../src/services';
-import { EVENTS, STORY_ARGS_MARKER } from '../constants';
+import {
+  EVENTS,
+  SPREAD_STORY_ARGS_MARKER,
+  STORY_ARGS_MARKER,
+} from '../constants';
 
 import { getFormattedCode, skipJsxRender } from './utils';
 import { JSXOptions, renderJsx } from './render_jsx';
@@ -48,7 +52,8 @@ export const customJsxDecorator = (
 ) => {
   const story = storyFn();
   const channel = addons.getChannel();
-  const skip = skipJsxRender(context);
+  const codeSnippet: string = context?.parameters?.codeSnippet?.snippet;
+  const skip = skipJsxRender(context) && !codeSnippet;
 
   let jsx = '';
 
@@ -97,7 +102,6 @@ export const customJsxDecorator = (
   }
 
   // use manually provided code snippet and replace args if available
-  const codeSnippet: string = context?.parameters?.codeSnippet?.snippet;
   if (codeSnippet) {
     const args: typeof context.args = { ...context.args };
 
@@ -108,8 +112,32 @@ export const customJsxDecorator = (
     }
 
     // add the story args/props to the manual code snippet
-    // by replacing the {{STORY_ARGS}} marker
-    const code = codeSnippet.replace(STORY_ARGS_MARKER, JSON.stringify(args));
+    // by replacing the {{STORY_ARGS}} || {{...STORY_ARGS}} marker
+    let outputArgs = JSON.stringify(args);
+    const shouldSpread = codeSnippet.includes(SPREAD_STORY_ARGS_MARKER);
+    const argsMarker = shouldSpread
+      ? SPREAD_STORY_ARGS_MARKER
+      : STORY_ARGS_MARKER;
+
+    // if the spread marker is used, resolve the props object to the first level values
+    // e.g. { foo: 'bar' } => foo="bar"
+    //      { a: { b: 'B' } } => a={{ b: 'B' }}
+    if (shouldSpread) {
+      outputArgs = Object.entries(args)
+        .map(([key, value]) => {
+          const formattedValue =
+            typeof value === 'function' ? `() => {}` : JSON.stringify(value);
+          const formattedOutput =
+            typeof value === 'string'
+              ? `${[key, formattedValue].join('=')}`
+              : `${[key, formattedValue].join('={')}}`;
+
+          return formattedOutput;
+        })
+        .join(' ');
+    }
+
+    const code = codeSnippet.replace(argsMarker, outputArgs);
 
     getFormattedCode(code)
       .then((res: string) => {
