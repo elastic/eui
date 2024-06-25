@@ -182,7 +182,7 @@ exports[`global utility styles generates static global styles 1`] = `
   , 
   rgb(255,0,0) calc(100% - 8px),
   rgba(255,0,0,0.1) 100%
-  );
+  ); transform: translateZ(0);
 ;}
 .eui-xScrollWithShadows{
   
@@ -221,7 +221,7 @@ exports[`global utility styles generates static global styles 1`] = `
   , 
   rgb(255,0,0) calc(100% - 8px),
   rgba(255,0,0,0.1) 100%
-  );
+  ); transform: translateZ(0);
 ;}[class*='eui-showFor']{display:none!important;}
       .eui-hideFor--xl {
         @media only screen and (min-width: 1200px) {
