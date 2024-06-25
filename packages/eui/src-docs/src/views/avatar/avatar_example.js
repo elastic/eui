@@ -10,7 +10,7 @@ const avatarSource = require('!!raw-loader!./avatar');
 const avatarSnippet = [
   `<EuiAvatar name="Raphael" />
 `,
-  `<EuiAvatar size="s" name="Cat" imageUrl="https://source.unsplash.com/64x64/?cat" />
+  `<EuiAvatar size="s" name="Cat" imageUrl="https://picsum.photos/id/40/64" />
 `,
   '<EuiAvatar name="Leonardo" color="#BD10E0" />',
 ];

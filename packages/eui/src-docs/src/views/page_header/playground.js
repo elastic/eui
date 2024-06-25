@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import React from 'react';
 import { PropTypes } from 'react-view';
 import {
-  EuiPageTemplate,
   EuiPageHeader,
   EuiButton,
   EuiTabs,
@@ -42,10 +38,6 @@ const rightSideItems = `[
   <EuiButton fill>Button 1</EuiButton>,
   <EuiButton>Button 2</EuiButton>,
 ]`;
-
-// TODO: Try later to build a toggle that allows switching between different types of content to pass
-// const rightSideItems =
-//   '[<EuiImage url="https://source.unsplash.com/400x200/?Water" height="200" />]';
 
 export const pageHeaderConfig = () => {
   const docgenInfo = Array.isArray(EuiPageHeader.__docgenInfo)

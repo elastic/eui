@@ -100,7 +100,7 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
             hasShadow
             caption={caption}
             alt="Random Star Wars image"
-            url="https://source.unsplash.com/600x600/?starwars"
+            url="https://picsum.photos/id/35/600"
           />
         ) : (
           <EuiImage
@@ -109,7 +109,7 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
             hasShadow
             caption={caption}
             alt="Random Star Trek image"
-            url="https://source.unsplash.com/600x600/?startrek"
+            url="https://picsum.photos/id/120/600"
           />
         )}
       </>
