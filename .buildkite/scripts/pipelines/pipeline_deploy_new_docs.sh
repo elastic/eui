@@ -1,4 +1,4 @@
-#!/bun/bash
+#!/bin/bash
 # Build and deploy new documentation website
 
 set -eo pipefail
