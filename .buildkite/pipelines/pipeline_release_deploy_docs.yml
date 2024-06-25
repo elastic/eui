@@ -8,3 +8,9 @@ steps:
       GIT_BRANCH: "${BUILDKITE_BRANCH}"
       GIT_PULL_REQUEST_ID: "${BUILDKITE_PULL_REQUEST}"
       GIT_TAG: "${BUILDKITE_TAG}"
+  - command: .buildkite/scripts/pipelines/pipeline_deploy_new_docs.sh
+    label: ":docusaurus: Build and deploy new documentation website"
+    agents:
+      provider: gcp
+      machineType: "n2-standard-1"
+      image: "family/eui-ubuntu-2204"
