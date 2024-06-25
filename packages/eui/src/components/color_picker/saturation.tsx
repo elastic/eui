@@ -55,6 +55,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       hex,
       id,
       onChange,
+      onKeyDown,
       ...rest
     },
     ref
@@ -116,6 +117,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       boxRef.current
     );
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown?.(event);
       if (isNil(boxRef?.current)) return;
       const { height, width } = boxRef.current.getBoundingClientRect();
       const { left, top } = indicator;
