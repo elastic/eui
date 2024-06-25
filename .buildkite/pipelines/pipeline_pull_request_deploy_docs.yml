@@ -10,6 +10,6 @@ steps:
     label: ":docusaurus: Build and deploy new documentation website"
     agents:
       provider: gcp
-      machineType: "n2-standard-1"
+      machineType: "n2-standard-2"
       image: "family/eui-ubuntu-2204"
     if: build.branch != "main"
