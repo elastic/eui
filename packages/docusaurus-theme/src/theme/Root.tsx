@@ -6,15 +6,25 @@
  * Side Public License, v 1.
  */
 
+import { FunctionComponent, PropsWithChildren } from 'react';
 import { Props } from '@theme/Root';
+import { Global } from '@emotion/react';
 import { _EuiThemeFontScale, useEuiTheme } from '@elastic/eui';
 import '@elastic/eui/dist/eui_theme_light.css';
-import { FunctionComponent, PropsWithChildren } from 'react';
 
 import { AppThemeProvider } from '../components/theme_context';
+import { getGlobalStyles } from './Root.styles';
 
 const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
-  return <>{children}</>;
+  const euiTheme = useEuiTheme();
+  const styles = getGlobalStyles(euiTheme);
+
+  return (
+    <>
+      <Global styles={styles} />
+      {children}
+    </>
+  );
 };
 
 // Wrap docusaurus root component with <EuiProvider>
