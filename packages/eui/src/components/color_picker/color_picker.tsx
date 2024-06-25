@@ -452,7 +452,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const inlineInput = secondaryInputDisplay !== 'none' && (
+  const showSecondaryInput =
+    mode === 'secondaryInput' || secondaryInputDisplay !== 'none';
+  const inlineInput = showSecondaryInput && (
     <EuiFormRow
       display="rowCompressed"
       isInvalid={isInvalid}
@@ -465,10 +467,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             : undefined
         }
         readOnly={readOnly}
-        compressed={true}
+        isDisabled={disabled}
+        isInvalid={isInvalid}
+        compressed={display === 'inline' ? compressed : true}
       >
         <EuiFieldText
-          compressed={true}
+          controlOnly={true}
+          compressed={display === 'inline' ? compressed : true}
           value={color ? color.toUpperCase() : HEX_FALLBACK}
           placeholder={!color ? placeholder || transparent : undefined}
           onChange={handleColorInput}
