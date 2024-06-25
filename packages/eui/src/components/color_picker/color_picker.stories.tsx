@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
 import { EuiColorPicker, EuiColorPickerProps } from './color_picker';
 
@@ -33,11 +35,14 @@ const meta: Meta<EuiColorPickerProps> = {
     secondaryInputDisplay: 'none',
   },
 };
+enableFunctionToggleControls(meta, ['onChange']);
 
 export default meta;
 type Story = StoryObj<EuiColorPickerProps>;
 
-export const Playground: Story = {};
+export const Playground: Story = {
+  render: (args) => <StatefulColorPicker {...args} />,
+};
 
 export const InlineWithAllElements: Story = {
   tags: ['vrt-only'],
@@ -48,4 +53,34 @@ export const InlineWithAllElements: Story = {
     showAlpha: true,
     secondaryInputDisplay: 'top',
   },
+};
+
+const StatefulColorPicker: FunctionComponent<EuiColorPickerProps> = ({
+  color: _color,
+  format,
+  onChange,
+  ...args
+}) => {
+  const [color, setColor] = useState(_color);
+
+  useEffect(() => {
+    setColor(_color);
+  }, [_color]);
+
+  // Reset the color if hex vs rgba format changes, otherwise the output doesn't update
+  useEffect(() => {
+    setColor('');
+  }, [format]);
+
+  return (
+    <EuiColorPicker
+      {...args}
+      color={color}
+      format={format}
+      onChange={(text, output) => {
+        setColor(text);
+        onChange?.(text, output);
+      }}
+    />
+  );
 };
