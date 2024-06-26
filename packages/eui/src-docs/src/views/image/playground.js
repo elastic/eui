@@ -21,7 +21,7 @@ export default () => {
     },
     defaultValue: 'original',
   };
-  propsToUse.src.value = 'https://source.unsplash.com/100x100/?Nature';
+  propsToUse.src.value = 'https://picsum.photos/100';
   propsToUse.alt.value = 'image_alt';
 
   return {
