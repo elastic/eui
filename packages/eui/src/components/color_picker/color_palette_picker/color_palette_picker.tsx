@@ -11,7 +11,10 @@ import React, { FunctionComponent, useCallback, useMemo } from 'react';
 import { CommonProps } from '../../common';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
-import { EuiSuperSelect, type EuiSuperSelectProps } from '../../form';
+import {
+  EuiSuperSelect,
+  type EuiSuperSelectProps,
+} from '../../form/super_select'; // Note: needs to be pointed at this specific subdir for Storybook to inherit types correctly??
 
 import { EuiColorPaletteDisplay } from '../color_palette_display';
 
