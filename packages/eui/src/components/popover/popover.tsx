@@ -367,8 +367,10 @@ export class EuiPopover extends Component<Props, State> {
 
   handleStrandedFocus = () => {
     this.strandedFocusTimeout = window.setTimeout(() => {
-      // If `returnFocus` failed and focus was stranded on the body,
-      // attempt to manually restore focus to the toggle button
+      // If `returnFocus` failed and focus was stranded,
+      // attempt to manually restore focus to the toggle button.
+      // The stranded focus is either in most cases on body but
+      // it will be on the panel instead on mount when isOpen=true
       if (
         document.activeElement === document.body ||
         document.activeElement === this.panel
