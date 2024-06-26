@@ -359,7 +359,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #54B399 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(84, 179, 153);"
         type="button"
       />
@@ -367,7 +367,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #6092C0 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(96, 146, 192);"
         type="button"
       />
@@ -375,7 +375,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #D36086 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(211, 96, 134);"
         type="button"
       />
@@ -383,7 +383,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #9170B8 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(145, 112, 184);"
         type="button"
       />
@@ -391,7 +391,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #CA8EAE as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(202, 142, 174);"
         type="button"
       />
@@ -399,7 +399,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #D6BF57 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(214, 191, 87);"
         type="button"
       />
@@ -407,7 +407,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #B9A888 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(185, 168, 136);"
         type="button"
       />
@@ -415,7 +415,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #DA8B45 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(218, 139, 69);"
         type="button"
       />
@@ -423,7 +423,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #AA6556 as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(170, 101, 86);"
         type="button"
       />
@@ -431,7 +431,7 @@ exports[`EuiColorPicker inline 1`] = `
     <li>
       <button
         aria-label="Select #E7664C as the color"
-        class="euiColorPickerSwatch"
+        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
         style="background: rgb(231, 102, 76);"
         type="button"
       />
