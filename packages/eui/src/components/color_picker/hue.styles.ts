@@ -27,7 +27,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
   );
   const thumbBoxShadow = `
     0 2px 2px -1px ${transparentize(euiTheme.colors.shadow, 0.2)},
-    0 1px 5px -2px ${transparentize(euiTheme.colors.shadow, 0.2)};`;
+    0 1px 5px -2px ${transparentize(euiTheme.colors.shadow, 0.2)}`;
 
   return {
     // This wraps the range and sets a rainbow gradient,
@@ -35,6 +35,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
     euiHue: css`
       ${logicalCSS('height', height)}
       border-radius: ${height};
+      /* stylelint-disable color-no-hex */
       background: linear-gradient(
         to right,
         #ff3232 0%,
@@ -45,6 +46,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         #ff28fb 88%,
         #ff0094 100%
       );
+      /* stylelint-enable color-no-hex */
     `,
 
     euiHue__range: css`
@@ -62,18 +64,23 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       appearance: none;
       background: transparent;
 
+      /* stylelint-disable property-no-vendor-prefix */
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
       }
+      /* stylelint-enable property-no-vendor-prefix */
 
-      /* Indicator styles */
-      ${euiRangeThumbPerBrowser(`
-        ${euiRangeThumbStyle(euiThemeContext)}
-        background-color: inherit;
-        border-width: ${thumbBorder};
-        border-radius: 100%;
-        box-shadow: ${thumbBoxShadow};
-      `)}
+      /* Indicator styles - for some incredibly bizarre reason, stylelint is unhappy about
+         the semicolons here and can't be stylelint-disabled, hence the syntax workaround */
+      ${euiRangeThumbPerBrowser(
+        [
+          euiRangeThumbStyle(euiThemeContext),
+          'background-color: inherit',
+          `border-width: ${thumbBorder}`,
+          'border-radius: 100%',
+          `box-shadow: ${thumbBoxShadow}`,
+        ].join(';\n')
+      )}
 
       /* Remove wrapping outline and show focus on thumb only */
       &:focus {

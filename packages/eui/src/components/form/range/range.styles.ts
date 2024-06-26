@@ -123,7 +123,7 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
 export const euiRangeThumbPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-thumb { ${content}; }
-    &::-moz-range-thumb  { ${content}; }
+    &::-moz-range-thumb { ${content}; }
     &::-ms-thumb {${content}; }
   `;
 };
