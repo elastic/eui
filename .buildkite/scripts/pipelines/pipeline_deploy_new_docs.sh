@@ -3,18 +3,63 @@
 
 set -eo pipefail
 
-# include utils
+# include .bash_profile and utils
+source ~/.bash_profile
 source .buildkite/scripts/common/utils.sh
+
+# Enable corepack to expose yarn cli command
+corepack enable
+
+# Print out debug information
+echo "Node.js version: $(node -v)"
+echo "Yarn version: $(yarn -v)"
+
+# Calculate paths and directories
+if [[ -n "${BUILDKITE_PULL_REQUEST}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
+  bucket_directory="pr_${BUILDKITE_PULL_REQUEST}/new-docs/"
+  echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
+else
+  echo "The script has been triggered with no pull request or tag information. This is a no-op."
+  exit 1
+fi
 
 echo "+++ :yarn: Installing dependencies"
 yarn
 
 echo "+++ :yarn: Building @elastic/eui-website and its local dependencies"
+
+# Pass base url to docusaurus. It must have a leading and trailing slash included.
+export DOCS_BASE_URL="/${bucket_directory}"
+
 yarn workspaces foreach -Rpt --from @elastic/eui-website run build
 
 echo "+++ Configuring environment for website deployment"
 
-# See if gsutil and gcloud are installed by default
+gcloud auth activate-service-account --key-file <(echo "${GCE_ACCOUNT}")
+unset GCE_ACCOUNT
 
-echo "gsutil version: $(gsutil version)"
-echo "gcloud version: $(gcloud version)"
+storage_vault="secret/ci/elastic-eui/website-storage-bucket"
+GCLOUD_PROJECT="$(retry 5 vault read -field=google_cloud_project "${storage_vault}")"
+GCLOUD_BUCKET="$(retry 5 vault read -field=google_cloud_bucket "${storage_vault}")"
+GCLOUD_BUCKET_FULL="${GCLOUD_PROJECT}-${GCLOUD_BUCKET}"
+
+GCLOUD_CP_ARGS=(
+  --cache-control="public, max-age=1800, must-revalidate" # set caching policy
+  --recursive # copy all files recursively
+  --predefined-acl="publicRead" # ensure copied files are publicly accessible
+  --gzip-local="js,css,html,svg,png,jpg,ico" # gzip these file extensions before copying to the bucket
+)
+
+# Copy files to the GCS bucket
+
+echo "+++ :bucket: Copying built files to the bucket"
+
+# additional protection layer in case bucket_directory is ever unset
+if [[ -z "${bucket_directory}" ]]; then
+  bucket_directory="new-docs/"
+fi
+
+echo "Beginning to copy built files to /${bucket_directory}"
+gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
+
+echo "New documentation website deployed: https://eui.elastic.co/${bucket_directory}" | buildkite-agent annotate --style "success" --context "deployed"
