@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
 
 import { EuiHue } from './hue';
@@ -17,6 +18,15 @@ const onChange = () => {
 };
 
 describe('EuiHue', () => {
+  shouldRenderCustomStyles(<EuiHue onChange={onChange} />, {
+    skip: { style: true },
+  });
+  // `style` goes onto a different element than `className`s
+  shouldRenderCustomStyles(<EuiHue onChange={onChange} />, {
+    skip: { css: true, className: true },
+    targetSelector: '.euiHue__range',
+  });
+
   test('is rendered', () => {
     const { container } = render(
       <EuiHue onChange={onChange} {...requiredProps} />
