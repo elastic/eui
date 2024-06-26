@@ -33,7 +33,7 @@ You can also add any string to the end of the command to run the tests only on f
 
 ## Test helpers
 
-The [`src/test`](../../../packages/eui/src/test) module exports some functions and constants to help you write better tests:
+The [`src/test`](/packages/eui/src/test) module exports some functions and constants to help you write better tests:
 
 * `requiredProps` is a list of all props almost all components should support.
 * `shouldRenderCustomStyles` automatically asserts that consumer classNames, Emotion CSS, and custom styles are merged correctly with EUI's styles.
@@ -131,7 +131,7 @@ describe('YourComponent', () => {
 
 ## Writing mock component files
 
-A component file can be mocked for snapshot simplification or to mitigate nondeterministic rendering in test environments. See [`src/components/icon`](../../../packages/eui//src/components/icon/) for a example.
+A component file can be mocked for snapshot simplification or to mitigate nondeterministic rendering in test environments. See [`src/components/icon`](/packages/eui/src/components/icon/) for a example.
 
 _Mock component files are currently only used as part of consuming project test environments. To use mock components in EUI's own testing environments, use `jest.mock()` manually._
 
