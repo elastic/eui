@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
 
 import { EuiSaturation } from './saturation';
@@ -17,6 +18,8 @@ const onChange = () => {
 };
 
 describe('EuiHue', () => {
+  shouldRenderCustomStyles(<EuiSaturation onChange={onChange} />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiSaturation onChange={onChange} {...requiredProps} />

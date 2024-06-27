@@ -295,25 +295,25 @@ exports[`EuiColorPicker inline 1`] = `
   class="euiColorPicker testClass1 testClass2 emotion-euiColorPicker-euiTestCss"
 >
   <div
-    class="euiSaturation"
+    class="euiSaturation emotion-euiSaturation"
     data-test-subj="euiSaturation"
     style="background: hsl(30, 100%, 50%);"
     tabindex="-1"
   >
     <div
-      class="euiSaturation__lightness"
+      class="euiSaturation__lightness emotion-euiSaturation__lightness"
     >
       <div
-        class="euiSaturation__saturation"
+        class="euiSaturation__saturation emotion-euiSaturation__saturation"
       />
     </div>
     <button
-      aria-describedby="undefined-instructions"
+      aria-describedby="generated-id-instructions"
       aria-label="#ffeedd"
       aria-roledescription="HSV color mode saturation and value 2-axis slider"
-      class="euiSaturation__indicator"
-      id="undefined-saturationIndicator"
-      style="left: 0px; top: 0px;"
+      class="euiSaturation__indicator emotion-euiSaturation__indicator"
+      id="generated-id-saturationIndicator"
+      style="inset-inline-start: 0; inset-block-start: 0;"
     />
     <span
       aria-live="assertive"
@@ -323,13 +323,13 @@ exports[`EuiColorPicker inline 1`] = `
     </span>
     <span
       hidden=""
-      id="undefined-instructions"
+      id="generated-id-instructions"
     >
       Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.
     </span>
   </div>
   <div
-    class="euiHue"
+    class="euiHue emotion-euiHue"
   >
     <label
       class="emotion-euiScreenReaderOnly"
@@ -344,7 +344,7 @@ exports[`EuiColorPicker inline 1`] = `
       #ffeedd
     </p>
     <input
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       id="undefined-hue"
       max="359"
       min="0"

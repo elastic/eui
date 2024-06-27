@@ -13,16 +13,24 @@ import React, {
   useEffect,
   useRef,
   useState,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { ColorSpaces } from 'chroma-js';
 
-import { CommonProps } from '../common';
-import { keys, useMouseMove } from '../../services';
+import {
+  keys,
+  useMouseMove,
+  useEuiMemoizedStyles,
+  useGeneratedHtmlId,
+} from '../../services';
 import { isNil } from '../../services/predicate';
+import { logicalStyles } from '../../global_styling';
+import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 
 import { getEventPosition } from './utils';
+import { euiSaturationStyles } from './saturation.styles';
 
 export type SaturationClientRect = Pick<
   ClientRect,
@@ -53,13 +61,19 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       color = colorDefaultValue,
       'data-test-subj': dataTestSubj = 'euiSaturation',
       hex,
-      id,
+      id: _id,
       onChange,
       onKeyDown,
       ...rest
     },
     ref
   ) => {
+    const classes = classNames('euiSaturation', className);
+    const styles = useEuiMemoizedStyles(euiSaturationStyles);
+
+    const id = useGeneratedHtmlId({ conditionalId: _id });
+    const instructionsId = `${id}-instructions`;
+    const indicatorId = `${id}-saturationIndicator`;
     const [roleDescString, instructionsString] = useEuiI18n(
       ['euiSaturation.ariaLabel', 'euiSaturation.screenReaderInstructions'],
       [
@@ -88,73 +102,84 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       }
     }, [color, lastColor]);
 
-    const calculateColor = ({
-      top,
-      height,
-      left,
-      width,
-    }: SaturationClientRect): ColorSpaces['hsv'] => {
-      const [h] = color;
-      const s = left / width;
-      const v = 1 - top / height;
-      return [h, s, v];
-    };
+    const calculateColor = useCallback(
+      ({
+        top,
+        height,
+        left,
+        width,
+      }: SaturationClientRect): ColorSpaces['hsv'] => {
+        const [h] = color;
+        const s = left / width;
+        const v = 1 - top / height;
+        return [h, s, v];
+      },
+      [color]
+    );
 
-    const handleUpdate = (box: SaturationClientRect) => {
-      const { left, top } = box;
-      setIndicator({ left, top });
-      const newColor = calculateColor(box);
-      setLastColor(newColor);
-      onChange(newColor);
-    };
-    const handleChange = (location: { x: number; y: number }) => {
-      if (isNil(boxRef?.current)) return;
-      const box = getEventPosition(location, boxRef.current);
-      handleUpdate(box);
-    };
+    const handleUpdate = useCallback(
+      (box: SaturationClientRect) => {
+        const { left, top } = box;
+        setIndicator({ left, top });
+        const newColor = calculateColor(box);
+        setLastColor(newColor);
+        onChange(newColor);
+      },
+      [calculateColor, onChange]
+    );
+    const handleChange = useCallback(
+      (location: { x: number; y: number }) => {
+        if (isNil(boxRef?.current)) return;
+        const box = getEventPosition(location, boxRef.current);
+        handleUpdate(box);
+      },
+      [handleUpdate]
+    );
+
     const [handleMouseDown, handleInteraction] = useMouseMove(
       handleChange,
       boxRef.current
     );
-    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      onKeyDown?.(event);
-      if (isNil(boxRef?.current)) return;
-      const { height, width } = boxRef.current.getBoundingClientRect();
-      const { left, top } = indicator;
-      const heightScale = height / 100;
-      const widthScale = width / 100;
-      let newLeft = left;
-      let newTop = top;
+    const handleKeyDown = useCallback(
+      (event: KeyboardEvent<HTMLDivElement>) => {
+        onKeyDown?.(event);
+        if (isNil(boxRef?.current)) return;
+        const { height, width } = boxRef.current.getBoundingClientRect();
+        const { left, top } = indicator;
+        const heightScale = height / 100;
+        const widthScale = width / 100;
+        let newLeft = left;
+        let newTop = top;
 
-      switch (event.key) {
-        case keys.ARROW_DOWN:
-          event.preventDefault();
-          newTop = top < height ? top + heightScale : height;
-          break;
-        case keys.ARROW_LEFT:
-          event.preventDefault();
-          newLeft = left > 0 ? left - widthScale : 0;
-          break;
-        case keys.ARROW_UP:
-          event.preventDefault();
-          newTop = top > 0 ? top - heightScale : 0;
-          break;
-        case keys.ARROW_RIGHT:
-          event.preventDefault();
-          newLeft = left < width ? left + widthScale : width;
-          break;
-        default:
-          return;
-      }
+        switch (event.key) {
+          case keys.ARROW_DOWN:
+            event.preventDefault();
+            newTop = top < height ? top + heightScale : height;
+            break;
+          case keys.ARROW_LEFT:
+            event.preventDefault();
+            newLeft = left > 0 ? left - widthScale : 0;
+            break;
+          case keys.ARROW_UP:
+            event.preventDefault();
+            newTop = top > 0 ? top - heightScale : 0;
+            break;
+          case keys.ARROW_RIGHT:
+            event.preventDefault();
+            newLeft = left < width ? left + widthScale : width;
+            break;
+          default:
+            return;
+        }
 
-      const newPosition = { left: newLeft, top: newTop };
-      setIndicator(newPosition);
-      const newColor = calculateColor({ width, height, ...newPosition });
-      onChange(newColor);
-    };
+        const newPosition = { left: newLeft, top: newTop };
+        setIndicator(newPosition);
+        const newColor = calculateColor({ width, height, ...newPosition });
+        onChange(newColor);
+      },
+      [calculateColor, indicator, onChange, onKeyDown]
+    );
 
-    const classes = classNames('euiSaturation', className);
-    const instructionsId = `${id}-instructions`;
     return (
       <div
         onMouseDown={handleMouseDown}
@@ -162,6 +187,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         onTouchMove={handleInteraction}
         onKeyDown={handleKeyDown}
         ref={ref}
+        css={styles.euiSaturation}
         className={classes}
         data-test-subj={dataTestSubj}
         style={{
@@ -170,13 +196,21 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         tabIndex={-1}
         {...rest}
       >
-        <div className="euiSaturation__lightness" ref={boxRef}>
-          <div className="euiSaturation__saturation" />
+        <div
+          css={styles.euiSaturation__lightness}
+          className="euiSaturation__lightness"
+          ref={boxRef}
+        >
+          <div
+            css={styles.euiSaturation__saturation}
+            className="euiSaturation__saturation"
+          />
         </div>
         <button
-          id={`${id}-saturationIndicator`}
+          id={indicatorId}
+          css={styles.euiSaturation__indicator}
           className="euiSaturation__indicator"
-          style={{ ...indicator }}
+          style={logicalStyles(indicator)}
           aria-roledescription={roleDescString}
           aria-label={hex}
           aria-describedby={instructionsId}
