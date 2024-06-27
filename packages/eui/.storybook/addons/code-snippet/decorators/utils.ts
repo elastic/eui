@@ -33,16 +33,22 @@ export const toPascalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
 /* Helpers for React specific checks */
+const isReactElement = (el: any): el is ReactElement => el.type !== undefined;
+const isExoticComponent = (el: any): el is ExoticComponent =>
+  el.$$typeof !== undefined;
+
 export const isMemo = (component: ExoticComponent) =>
   component.$$typeof === Symbol.for('react.memo');
-export const isForwardRef = (component: ExoticComponent) =>
-  component.$$typeof === Symbol.for('react.forward_ref');
+export const isForwardRef = (component: ReactElement | ExoticComponent) => {
+  // use type guards to ensure keys are available
+  return isReactElement(component) && isExoticComponent(component.type)
+    ? component.type?.$$typeof === Symbol.for('react.forward_ref')
+    : isExoticComponent(component)
+    ? component.$$typeof === Symbol.for('react.forward_ref')
+    : false;
+};
 export const isFragment = (component: ReactElement | ExoticComponent) => {
   // use type guards to ensure keys are available
-  const isReactElement = (el: any): el is ReactElement => el.type !== undefined;
-  const isExoticComponent = (el: any): el is ExoticComponent =>
-    el.$$typeof !== undefined;
-
   return isReactElement(component)
     ? component.type?.toString().includes('fragment')
     : isExoticComponent(component)
@@ -265,7 +271,10 @@ export const getStoryComponent = (
           const resolvedDisplayName =
             getEmotionComponentDisplayName(resolvedChild);
 
-          if (resolvedDisplayName && resolvedDisplayName !== displayName) {
+          if (
+            (resolvedDisplayName && resolvedDisplayName !== displayName) ||
+            isForwardRef(resolvedChild)
+          ) {
             resolveChildren(resolvedChild);
           } else if (typeof resolvedChild.type !== 'string') {
             storyNode = resolvedChild;

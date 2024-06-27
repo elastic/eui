@@ -74,6 +74,9 @@ enableFunctionToggleControls(ResizeObserver, ['onResize']);
 export const StartEndAnchorForSearch: Story = {
   parameters: {
     controls: { include: ['text', 'calculationDelayMs', 'ellipsis', 'width'] },
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
   },
   render: function Render(props) {
     const [highlight, setHighlight] = useState('');
