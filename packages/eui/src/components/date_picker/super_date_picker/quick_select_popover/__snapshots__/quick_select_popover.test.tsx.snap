@@ -90,6 +90,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         >
           <div
             class="euiFormControlLayout__childrenWrapper"
+            style="--euiFormControlRightIconsCount: 1;"
           >
             <select
               aria-describedby="generated-id generated-id"
@@ -151,6 +152,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         >
           <div
             class="euiFormControlLayout__childrenWrapper"
+            style="--euiFormControlRightIconsCount: 1;"
           >
             <select
               aria-describedby="generated-id generated-id"

@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`line utils highlightByLine with line numbers renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -20,23 +20,23 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
                 "lineEnd": 1,
                 "lineStart": 1,
                 "type": "text",
@@ -45,8 +45,8 @@ Array [
             ],
             "lineEnd": 1,
             "lineStart": 1,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -54,7 +54,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 1,
             "lineStart": 1,
             "type": "text",
@@ -62,8 +62,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -72,8 +72,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -81,15 +81,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -99,39 +99,39 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
             "value": "    ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
-                "value": "\\"id\\"",
+                "value": ""id"",
               },
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "property",
               ],
@@ -139,9 +139,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
@@ -150,8 +150,8 @@ Array [
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "operator",
               ],
@@ -159,25 +159,25 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
             "value": " ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
-                "value": "\\"1\\"",
+                "value": ""1"",
               },
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "string",
               ],
@@ -185,9 +185,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
@@ -196,8 +196,8 @@ Array [
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -205,7 +205,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
@@ -213,8 +213,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -223,8 +223,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -232,15 +232,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -250,29 +250,29 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 3,
             "lineStart": 3,
             "type": "text",
             "value": "  ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 3,
                 "lineStart": 3,
                 "type": "text",
@@ -281,8 +281,8 @@ Array [
             ],
             "lineEnd": 3,
             "lineStart": 3,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -291,8 +291,8 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -301,8 +301,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -314,16 +314,16 @@ Array [
 `;
 
 exports[`line utils highlightByLine with line numbers with a custom starting number adds the starting lineNumber to each node 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -333,23 +333,23 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 16,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
                 "lineEnd": 10,
                 "lineStart": 10,
                 "type": "text",
@@ -358,8 +358,8 @@ Array [
             ],
             "lineEnd": 10,
             "lineStart": 10,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -367,7 +367,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 10,
             "lineStart": 10,
             "type": "text",
@@ -375,8 +375,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -385,8 +385,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -394,15 +394,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -412,39 +412,39 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 16,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 11,
             "lineStart": 11,
             "type": "text",
             "value": "    ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 11,
                 "lineStart": 11,
                 "type": "text",
-                "value": "\\"id\\"",
+                "value": ""id"",
               },
             ],
             "lineEnd": 11,
             "lineStart": 11,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "property",
               ],
@@ -452,9 +452,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 11,
                 "lineStart": 11,
                 "type": "text",
@@ -463,8 +463,8 @@ Array [
             ],
             "lineEnd": 11,
             "lineStart": 11,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "operator",
               ],
@@ -472,25 +472,25 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 11,
             "lineStart": 11,
             "type": "text",
             "value": " ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 11,
                 "lineStart": 11,
                 "type": "text",
-                "value": "\\"1\\"",
+                "value": ""1"",
               },
             ],
             "lineEnd": 11,
             "lineStart": 11,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "string",
               ],
@@ -498,9 +498,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 11,
                 "lineStart": 11,
                 "type": "text",
@@ -509,8 +509,8 @@ Array [
             ],
             "lineEnd": 11,
             "lineStart": 11,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -518,7 +518,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 11,
             "lineStart": 11,
             "type": "text",
@@ -526,8 +526,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -536,8 +536,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -545,15 +545,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -563,29 +563,29 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 16,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 12,
             "lineStart": 12,
             "type": "text",
             "value": "  ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 12,
                 "lineStart": 12,
                 "type": "text",
@@ -594,8 +594,8 @@ Array [
             ],
             "lineEnd": 12,
             "lineStart": 12,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -604,8 +604,8 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -614,8 +614,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -627,16 +627,16 @@ Array [
 `;
 
 exports[`line utils highlightByLine with line numbers with annotations adds a custom annotation object after the lineNumber object 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -645,29 +645,29 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "annotation": "Hello world",
             "lineNumber": 1,
             "type": "annotation",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
                 "lineEnd": 1,
                 "lineStart": 1,
                 "type": "text",
@@ -676,8 +676,8 @@ Array [
             ],
             "lineEnd": 1,
             "lineStart": 1,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -685,7 +685,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 1,
             "lineStart": 1,
             "type": "text",
@@ -693,8 +693,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -703,8 +703,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -712,15 +712,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -730,39 +730,39 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
             "value": "    ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
-                "value": "\\"id\\"",
+                "value": ""id"",
               },
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "property",
               ],
@@ -770,9 +770,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
@@ -781,8 +781,8 @@ Array [
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "operator",
               ],
@@ -790,25 +790,25 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
             "value": " ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
-                "value": "\\"1\\"",
+                "value": ""1"",
               },
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "string",
               ],
@@ -816,9 +816,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
@@ -827,8 +827,8 @@ Array [
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -836,7 +836,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
@@ -844,8 +844,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -854,8 +854,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -863,15 +863,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -881,29 +881,29 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 3,
             "lineStart": 3,
             "type": "text",
             "value": "  ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 3,
                 "lineStart": 3,
                 "type": "text",
@@ -912,8 +912,8 @@ Array [
             ],
             "lineEnd": 3,
             "lineStart": 3,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -922,8 +922,8 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -932,8 +932,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -945,16 +945,16 @@ Array [
 `;
 
 exports[`line utils highlightByLine with line numbers with highlighted lines adds a class to the specified lines 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -964,23 +964,23 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
                 "lineEnd": 1,
                 "lineStart": 1,
                 "type": "text",
@@ -989,8 +989,8 @@ Array [
             ],
             "lineEnd": 1,
             "lineStart": 1,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -998,7 +998,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 1,
             "lineStart": 1,
             "type": "text",
@@ -1006,8 +1006,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-96t2rh-euiCodeBlock__lineText-isHighlighted",
           ],
@@ -1016,8 +1016,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -1025,15 +1025,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -1043,39 +1043,39 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
             "value": "    ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
-                "value": "\\"id\\"",
+                "value": ""id"",
               },
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "property",
               ],
@@ -1083,9 +1083,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
@@ -1094,8 +1094,8 @@ Array [
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "operator",
               ],
@@ -1103,25 +1103,25 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
             "value": " ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
-                "value": "\\"1\\"",
+                "value": ""1"",
               },
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "string",
               ],
@@ -1129,9 +1129,9 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 2,
                 "lineStart": 2,
                 "type": "text",
@@ -1140,8 +1140,8 @@ Array [
             ],
             "lineEnd": 2,
             "lineStart": 2,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -1149,7 +1149,7 @@ Array [
             "tagName": "span",
             "type": "element",
           },
-          Object {
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
@@ -1157,8 +1157,8 @@ Array [
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-96t2rh-euiCodeBlock__lineText-isHighlighted",
           ],
@@ -1167,8 +1167,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -1176,15 +1176,15 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [],
-            "properties": Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "properties": {
               "aria-hidden": true,
-              "className": Array [
+              "className": [
                 "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
@@ -1194,29 +1194,29 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "style": Object {
+          "style": {
             "inlineSize": 8,
           },
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 3,
             "lineStart": 3,
             "type": "text",
             "value": "  ",
           },
-          Object {
-            "children": Array [
-              Object {
+          {
+            "children": [
+              {
                 "lineEnd": 3,
                 "lineStart": 3,
                 "type": "text",
@@ -1225,8 +1225,8 @@ Array [
             ],
             "lineEnd": 3,
             "lineStart": 3,
-            "properties": Object {
-              "className": Array [
+            "properties": {
+              "className": [
                 "token",
                 "punctuation",
               ],
@@ -1235,8 +1235,8 @@ Array [
             "type": "element",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "euiCodeBlock__lineText",
             "css-rnrc4n-euiCodeBlock__lineText",
           ],
@@ -1245,8 +1245,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
       ],
@@ -1258,12 +1258,12 @@ Array [
 `;
 
 exports[`line utils highlightByLine without line numbers renders a single .euiCodeBlock__line element per line 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
             "lineEnd": 1,
             "lineStart": 1,
             "type": "text",
@@ -1272,8 +1272,8 @@ Array [
         ],
         "lineEnd": 1,
         "lineStart": 1,
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -1281,7 +1281,7 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
+      {
         "lineEnd": 1,
         "lineStart": 1,
         "type": "text",
@@ -1289,8 +1289,8 @@ Array [
 ",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-yn676d-euiCodeBlock__line",
       ],
@@ -1298,27 +1298,27 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "lineEnd": 2,
         "lineStart": 2,
         "type": "text",
         "value": "    ",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
-            "value": "\\"id\\"",
+            "value": ""id"",
           },
         ],
         "lineEnd": 2,
         "lineStart": 2,
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "property",
           ],
@@ -1326,9 +1326,9 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
@@ -1337,8 +1337,8 @@ Array [
         ],
         "lineEnd": 2,
         "lineStart": 2,
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "operator",
           ],
@@ -1346,25 +1346,25 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
+      {
         "lineEnd": 2,
         "lineStart": 2,
         "type": "text",
         "value": " ",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
-            "value": "\\"1\\"",
+            "value": ""1"",
           },
         ],
         "lineEnd": 2,
         "lineStart": 2,
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "string",
           ],
@@ -1372,9 +1372,9 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
@@ -1383,8 +1383,8 @@ Array [
         ],
         "lineEnd": 2,
         "lineStart": 2,
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -1392,7 +1392,7 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
+      {
         "lineEnd": 2,
         "lineStart": 2,
         "type": "text",
@@ -1400,8 +1400,8 @@ Array [
 ",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-yn676d-euiCodeBlock__line",
       ],
@@ -1409,17 +1409,17 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "lineEnd": 3,
         "lineStart": 3,
         "type": "text",
         "value": "  ",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "lineEnd": 3,
             "lineStart": 3,
             "type": "text",
@@ -1428,8 +1428,8 @@ Array [
         ],
         "lineEnd": 3,
         "lineStart": 3,
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -1438,8 +1438,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "euiCodeBlock__line",
         "css-yn676d-euiCodeBlock__line",
       ],

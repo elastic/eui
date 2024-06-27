@@ -6,6 +6,7 @@ exports[`EuiSelectableSearch is rendered 1`] = `
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
+    style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
       class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -39,6 +40,7 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
+    style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
       class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -77,6 +79,7 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
+    style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
   >
     <div
       class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"

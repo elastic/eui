@@ -7,9 +7,15 @@
  */
 
 import React from 'react';
-import { act } from '@testing-library/react';
-import { shallow, mount, ShallowWrapper, ReactWrapper } from 'enzyme';
-import { renderHook } from '../../../test/rtl';
+import { act, fireEvent, waitFor } from '@testing-library/react';
+import { shallow, ShallowWrapper } from 'enzyme';
+import {
+  renderHook,
+  render,
+  waitForEuiPopoverClose,
+  waitForEuiPopoverOpen,
+} from '../../../test/rtl';
+import { keys } from '../../../services';
 
 import {
   EuiDataGridToolBarVisibilityOptions,
@@ -17,6 +23,7 @@ import {
 } from '../data_grid_types';
 
 import { useDataGridDisplaySelector, startingStyles } from './display_selector';
+import userEvent from '@testing-library/user-event';
 
 describe('useDataGridDisplaySelector', () => {
   describe('displaySelector', () => {
@@ -33,21 +40,32 @@ describe('useDataGridDisplaySelector', () => {
       );
       return <>{displaySelector}</>;
     };
-    const openPopover = (component: ReactWrapper) => {
-      component
-        .find('[data-test-subj="dataGridDisplaySelectorButton"]')
-        .last()
-        .simulate('click');
+    const openPopover = (element: HTMLElement) => {
+      const trigger = Array.from(
+        element.querySelectorAll(
+          '[data-test-subj="dataGridDisplaySelectorButton"]'
+        )
+      ).reverse()[0];
+
+      act(() => userEvent.click(trigger));
     };
-    const closePopover = (component: ReactWrapper) => {
+
+    const closePopover = (element: HTMLElement) => {
+      const popover = element.querySelector(
+        '[data-test-subj="dataGridDisplaySelectorPopover"]'
+      )!;
+
       act(() => {
-        (
-          component
-            .find('[data-test-subj="dataGridDisplaySelectorPopover"]')
-            .first()
-            .prop('closePopover') as Function
-        )();
+        fireEvent.keyDown(popover, { key: keys.ESCAPE });
       });
+    };
+
+    const getSelection = (element: HTMLElement, groupId: string) => {
+      const selection = element.querySelector(
+        `[data-test-subj="${groupId}"] [aria-pressed="true"]`
+      );
+
+      return selection ? selection.getAttribute('data-test-subj') : null;
     };
 
     it('renders a toolbar button/popover allowing users to customize display settings', () => {
@@ -68,33 +86,47 @@ describe('useDataGridDisplaySelector', () => {
     });
 
     describe('density', () => {
-      const getSelection = (component: ReactWrapper) =>
-        component
-          .find('EuiButtonGroup[data-test-subj="densityButtonGroup"]')
-          .prop('idSelected');
+      it('renders display density buttons that change grid density on click', async () => {
+        const { container, baseElement, getByTestSubject } = render(
+          <MockComponent />
+        );
+        openPopover(container);
 
-      it('renders display density buttons that change grid density on click', () => {
-        const component = mount(<MockComponent />);
-        openPopover(component);
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('expanded'));
+        });
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'expanded'
+        );
 
-        component.find('button[data-test-subj="expanded"]').simulate('click');
-        expect(getSelection(component)).toEqual('expanded');
-        component.find('button[data-test-subj="normal"]').simulate('click');
-        expect(getSelection(component)).toEqual('normal');
-        component.find('button[data-test-subj="compact"]').simulate('click');
-        expect(getSelection(component)).toEqual('compact');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('normal'));
+        });
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'normal'
+        );
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('compact'));
+        });
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'compact'
+        );
       });
 
-      it('calls the gridStyles.onDensityChange callback on user change', () => {
+      it('calls the gridStyles.onDensityChange callback on user change', async () => {
         const onDensityChange = jest.fn();
-        const component = mount(
+        const { container, getByTestSubject } = render(
           <MockComponent
             gridStyles={{ stripes: true, onChange: onDensityChange }}
           />
         );
 
-        openPopover(component);
-        component.find('button[data-test-subj="expanded"]').simulate('click');
+        openPopover(container);
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('expanded'));
+        });
 
         expect(onDensityChange).toHaveBeenCalledWith({
           stripes: true,
@@ -102,106 +134,133 @@ describe('useDataGridDisplaySelector', () => {
           cellPadding: 'l',
         });
       });
+    });
 
-      it('hides the density buttongroup if allowDensity is set to false', () => {
-        const component = mount(
-          <MockComponent showDisplaySelector={{ allowDensity: false }} />
+    it('hides the density buttongroup if allowDensity is set to false', () => {
+      const { container, baseElement } = render(
+        <MockComponent showDisplaySelector={{ allowDensity: false }} />
+      );
+      openPopover(container);
+
+      expect(
+        baseElement.querySelector('[data-test-subj="densityButtonGroup"]')
+      ).not.toBeInTheDocument();
+    });
+
+    describe('convertGridStylesToSelection', () => {
+      it('should set compact state if both fontSize and cellPadding are s', () => {
+        const { container, baseElement } = render(
+          <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
         );
-        openPopover(component);
-
-        expect(
-          component.find('[data-test-subj="densityButtonGroup"]')
-        ).toHaveLength(0);
+        openPopover(container);
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'compact'
+        );
       });
 
-      describe('convertGridStylesToSelection', () => {
-        it('should set compact state if both fontSize and cellPadding are s', () => {
-          const component = mount(
-            <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
-          );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('compact');
-        });
+      it('should set normal state if both fontSize and cellPadding are m', () => {
+        const { container, baseElement } = render(
+          <MockComponent gridStyles={{ fontSize: 'm', cellPadding: 'm' }} />
+        );
+        openPopover(container);
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'normal'
+        );
+      });
 
-        it('should set normal state if both fontSize and cellPadding are m', () => {
-          const component = mount(
-            <MockComponent gridStyles={{ fontSize: 'm', cellPadding: 'm' }} />
-          );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('normal');
-        });
+      it('should set compact state if both fontSize and cellPadding are l', () => {
+        const { container, baseElement } = render(
+          <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
+        );
+        openPopover(container);
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'expanded'
+        );
+      });
 
-        it('should set compact state if both fontSize and cellPadding are l', () => {
-          const component = mount(
-            <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
-          );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('expanded');
-        });
-
-        it('should not select any buttons if fontSize and cellPadding do not match a set density state', () => {
-          const component = mount(
-            <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 's' }} />
-          );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('');
-        });
+      it('should not select any buttons if fontSize and cellPadding do not match a set density state', () => {
+        const { container, baseElement } = render(
+          <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 's' }} />
+        );
+        openPopover(container);
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(null);
       });
 
       it('updates grid density whenever new developer styles are passed in', () => {
-        const component = mount(
+        const { container, baseElement, rerender } = render(
           <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
         );
-        openPopover(component);
-        expect(getSelection(component)).toEqual('expanded');
+        openPopover(container);
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'expanded'
+        );
 
-        component.setProps({ gridStyles: { fontSize: 's', cellPadding: 's' } });
-        component.update();
-        expect(getSelection(component)).toEqual('compact');
+        rerender(
+          <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
+        );
+
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'compact'
+        );
       });
 
-      it('correctly resets density to initial developer-passed state', () => {
-        const component = mount(
+      it('correctly resets density to initial developer-passed state', async () => {
+        const { container, baseElement, getByTestSubject } = render(
           <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
         );
-        openPopover(component);
-        expect(getSelection(component)).toEqual('expanded');
+        openPopover(container);
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'expanded'
+        );
 
-        component.find('button[data-test-subj="compact"]').simulate('click');
-        expect(getSelection(component)).toEqual('compact');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('compact'));
+        });
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'compact'
+        );
 
-        component
-          .find('button[data-test-subj="resetDisplaySelector"]')
-          .simulate('click');
-        expect(getSelection(component)).toEqual('expanded');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('resetDisplaySelector'));
+        });
+        expect(getSelection(baseElement, 'densityButtonGroup')).toEqual(
+          'expanded'
+        );
       });
     });
 
     describe('row height', () => {
-      const getSelection = (component: ReactWrapper) =>
-        component
-          .find('EuiButtonGroup[data-test-subj="rowHeightButtonGroup"]')
-          .prop('idSelected');
+      it('renders row height buttons that toggle betwen undefined, auto, and lineCount', async () => {
+        const { container, baseElement, getByTestSubject } = render(
+          <MockComponent />
+        );
 
-      it('renders row height buttons that toggle betwen undefined, auto, and lineCount', () => {
-        const component = mount(<MockComponent />);
-        openPopover(component);
-        expect(getSelection(component)).toEqual('undefined');
+        openPopover(container);
+        expect(
+          baseElement.querySelector('[data-test-subj="lineCountNumber"]')
+        ).not.toBeInTheDocument();
 
-        component.find('button[data-test-subj="auto"]').simulate('click');
-        expect(getSelection(component)).toEqual('auto');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('auto'));
+        });
+
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'auto'
+        );
       });
 
-      it('calls the rowHeightsOptions.onChange callback on user change', () => {
+      it('calls the rowHeightsOptions.onChange callback on user change', async () => {
         const onRowHeightChange = jest.fn();
-        const component = mount(
+        const { container, getByTestSubject } = render(
           <MockComponent
             rowHeightsOptions={{ lineHeight: '3', onChange: onRowHeightChange }}
           />
         );
 
-        openPopover(component);
-        component.find('button[data-test-subj="auto"]').simulate('click');
+        openPopover(container);
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('auto'));
+        });
 
         expect(onRowHeightChange).toHaveBeenCalledWith({
           rowHeights: {},
@@ -211,178 +270,223 @@ describe('useDataGridDisplaySelector', () => {
       });
 
       it('hides the row height buttongroup if allowRowHeight is set to false', () => {
-        const component = mount(
+        const { container, baseElement } = render(
           <MockComponent showDisplaySelector={{ allowRowHeight: false }} />
         );
-        openPopover(component);
+        openPopover(container);
 
         expect(
-          component.find('[data-test-subj="rowHeightButtonGroup"]')
-        ).toHaveLength(0);
+          baseElement.querySelector('[data-test-subj="rowHeightButtonGroup"]')
+        ).not.toBeInTheDocument();
       });
 
       describe('convertRowHeightsOptionsToSelection', () => {
         test('auto', () => {
-          const component = mount(
+          const { container, baseElement } = render(
             <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
           );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('auto');
+          openPopover(container);
+
+          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+            'auto'
+          );
         });
 
         test('lineCount', () => {
-          const component = mount(
+          const { container, baseElement } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
             />
           );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('lineCount');
+          openPopover(container);
+
+          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+            'lineCount'
+          );
         });
 
         test('undefined', () => {
-          const component = mount(
+          const { container, baseElement } = render(
             <MockComponent rowHeightsOptions={undefined} />
           );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('undefined');
+          openPopover(container);
+
+          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+            'undefined'
+          );
         });
 
         test('height should not select any buttons', () => {
-          const component1 = mount(
+          const { container, baseElement } = render(
             <MockComponent rowHeightsOptions={{ defaultHeight: 36 }} />
           );
-          openPopover(component1);
-          expect(getSelection(component1)).toEqual('');
+          openPopover(container);
 
-          const component2 = mount(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { height: 36 } }}
-            />
-          );
-          openPopover(component2);
-          expect(getSelection(component2)).toEqual('');
+          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toBe(null);
         });
       });
 
       it('updates row height whenever new developer settings are passed in', () => {
-        const component = mount(
+        const { container, baseElement, rerender } = render(
           <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
         );
-        openPopover(component);
-        expect(getSelection(component)).toEqual('auto');
+        openPopover(container);
 
-        component.setProps({
-          rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
-        });
-        component.update();
-        expect(getSelection(component)).toEqual('lineCount');
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'auto'
+        );
+
+        rerender(
+          <MockComponent
+            rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+          />
+        );
+
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'lineCount'
+        );
       });
 
-      it('correctly resets row height to initial developer-passed state', () => {
-        const component = mount(
+      it('correctly resets row height to initial developer-passed state', async () => {
+        const { container, baseElement, getByTestSubject } = render(
           <MockComponent rowHeightsOptions={{ defaultHeight: undefined }} />
         );
-        openPopover(component);
-        expect(getSelection(component)).toEqual('undefined');
+        openPopover(container);
 
-        component.find('button[data-test-subj="auto"]').simulate('click');
-        expect(getSelection(component)).toEqual('auto');
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'undefined'
+        );
 
-        component
-          .find('button[data-test-subj="resetDisplaySelector"]')
-          .simulate('click');
-        expect(getSelection(component)).toEqual('undefined');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('auto'));
+        });
+
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'auto'
+        );
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('resetDisplaySelector'));
+        });
+
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'undefined'
+        );
       });
 
       describe('lineCount', () => {
-        const getLineCountNumber = (component: ReactWrapper) =>
-          component
-            .find('input[type="range"][data-test-subj="lineCountNumber"]')
-            .prop('value');
-        const setLineCountNumber = (
-          component: ReactWrapper,
-          number: number
-        ) => {
-          const input = component.find(
-            'input[type="range"][data-test-subj="lineCountNumber"]'
-          );
+        const getLineCountNumber = (element: HTMLElement) =>
+          element
+            .querySelector(
+              'input[type="range"][data-test-subj="lineCountNumber"]'
+            )!
+            .getAttribute('value');
 
-          // enzyme simulate() doesn't handle event.currentTarget updates well
-          // https://github.com/enzymejs/enzyme/issues/218
-          (input.getDOMNode() as HTMLInputElement).value = number.toString();
-          input.simulate('change');
+        const setLineCountNumber = (element: HTMLElement, number: number) => {
+          const input = element.querySelector(
+            'input[type="range"][data-test-subj="lineCountNumber"]'
+          ) as HTMLInputElement;
+
+          fireEvent.input(input, { target: { value: number.toString() } });
         };
 
-        it('conditionally displays a line count number input when the lineCount button is selected', () => {
-          const component = mount(<MockComponent />);
-          openPopover(component);
-          expect(
-            component.find('[data-test-subj="lineCountNumber"]').exists()
-          ).toBe(false);
-
-          component
-            .find('button[data-test-subj="lineCount"]')
-            .simulate('click');
-          expect(getSelection(component)).toEqual('lineCount');
+        it('conditionally displays a line count number input when the lineCount button is selected', async () => {
+          const { container, baseElement, getByTestSubject } = render(
+            <MockComponent />
+          );
+          openPopover(container);
 
           expect(
-            component.find('[data-test-subj="lineCountNumber"]').exists()
-          ).toBe(true);
+            baseElement.querySelector('[data-test-subj="lineCountNumber"]')
+          ).not.toBeInTheDocument();
+
+          await waitFor(() => {
+            userEvent.click(getByTestSubject('lineCount'));
+          });
+
+          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+            'lineCount'
+          );
+
+          expect(
+            baseElement.querySelector('[data-test-subj="lineCountNumber"]')
+          ).toBeInTheDocument();
         });
 
         it('displays the defaultHeight.lineCount passed in by the developer', () => {
-          const component = mount(
+          const { container, baseElement } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 5 } }}
             />
           );
-          openPopover(component);
+          openPopover(container);
 
-          expect(getLineCountNumber(component)).toEqual(5);
+          expect(getLineCountNumber(baseElement)).toEqual('5');
         });
 
-        it('defaults to a lineCount of 2 when no developer settings have been passed', () => {
-          const component = mount(<MockComponent />);
-          openPopover(component);
-          component
-            .find('button[data-test-subj="lineCount"]')
-            .simulate('click');
+        it('defaults to a lineCount of 2 when no developer settings have been passed', async () => {
+          const { container, baseElement, getByTestSubject } = render(
+            <MockComponent />
+          );
+          openPopover(container);
 
-          expect(getLineCountNumber(component)).toEqual(2);
+          await waitFor(() => userEvent.click(getByTestSubject('lineCount')));
+
+          expect(getLineCountNumber(baseElement)).toEqual('2');
         });
 
         it('increments the rowHeightOptions line count number', () => {
-          const component = mount(
+          const { container, baseElement } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 1 } }}
             />
           );
-          openPopover(component);
+          openPopover(container);
 
-          act(() => {
-            setLineCountNumber(component, 3);
-          });
-          component.update();
+          setLineCountNumber(baseElement, 3);
 
-          expect(getLineCountNumber(component)).toEqual(3);
+          expect(getLineCountNumber(baseElement)).toEqual('3');
         });
 
-        it('updates the input but not the grid display if an invalid number is passed', () => {
+        it('sets the min value for the text input if an invalid number is passed', () => {
+          const { container, baseElement } = render(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
+            />
+          );
+          openPopover(container);
+
+          const assertInvalidNumber = (value: number) => {
+            setLineCountNumber(baseElement, value);
+
+            const input = baseElement.querySelector(
+              'input[type="number"]'
+            ) as HTMLInputElement;
+
+            expect(input.value).toEqual(input.min);
+          };
+
+          assertInvalidNumber(0);
+          assertInvalidNumber(-50);
+        });
+
+        it('the text input is invalid and does not update the grid display if an invalid number is passed', () => {
           const onChange = jest.fn();
 
-          const component = mount(
+          const { container, baseElement } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 2 }, onChange }}
             />
           );
-          openPopover(component);
+          openPopover(container);
 
           const assertInvalidNumber = (value: number) => {
-            setLineCountNumber(component, value);
+            const input = baseElement.querySelector(
+              'input[type="number"]'
+            ) as HTMLInputElement;
 
-            const input = component.find('input[type="number"]').getDOMNode();
-            expect((input as HTMLInputElement).value).toEqual(String(value));
+            input.value = value.toString();
+            expect(input.value).toEqual(value.toString());
 
             expect(input).toBeInvalid();
             expect(onChange).not.toHaveBeenCalled();
@@ -392,58 +496,68 @@ describe('useDataGridDisplaySelector', () => {
           assertInvalidNumber(-50);
         });
 
-        it('correctly resets lineCount to initial developer-passed state', () => {
-          const component = mount(
+        it('correctly resets lineCount to initial developer-passed state', async () => {
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
             />
           );
-          openPopover(component);
-          expect(getLineCountNumber(component)).toEqual(3);
+          openPopover(container);
+          expect(getLineCountNumber(baseElement)).toEqual('3');
 
-          setLineCountNumber(component, 5);
-          expect(getLineCountNumber(component)).toEqual(5);
+          setLineCountNumber(baseElement, 5);
+          expect(getLineCountNumber(baseElement)).toEqual('5');
 
-          component
-            .find('button[data-test-subj="resetDisplaySelector"]')
-            .simulate('click');
-          expect(getLineCountNumber(component)).toEqual(3);
+          await waitFor(() =>
+            userEvent.click(getByTestSubject('resetDisplaySelector'))
+          );
+
+          expect(getLineCountNumber(baseElement)).toEqual('3');
         });
       });
     });
 
     describe('reset button', () => {
-      it('renders a reset button only when the user changes from the current settings', () => {
-        const component = mount(<MockComponent gridStyles={startingStyles} />);
-        openPopover(component);
+      it('renders a reset button only when the user changes from the current settings', async () => {
+        // const component = mount(<MockComponent gridStyles={startingStyles} />);
+        const { container, baseElement, getByTestSubject } = render(
+          <MockComponent gridStyles={startingStyles} />
+        );
+        openPopover(container);
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(false);
+          container.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
 
-        component.find('button[data-test-subj="expanded"]').simulate('click');
-        component.find('button[data-test-subj="auto"]').simulate('click');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('expanded'));
+          userEvent.click(getByTestSubject('auto'));
+        });
+
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(true);
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).toBeInTheDocument();
 
         // Should show the reset button again after the popover was reopened
-        closePopover(component);
-        openPopover(component);
+        closePopover(container);
+        await waitForEuiPopoverClose();
+        openPopover(container);
+        await waitForEuiPopoverOpen();
+
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(true);
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).toBeInTheDocument();
 
         // Should hide the reset button again after it's been clicked
-        component
-          .find('button[data-test-subj="resetDisplaySelector"]')
-          .simulate('click');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('resetDisplaySelector'));
+        });
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(false);
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
       });
 
-      it('hides the reset button even after changes if allowResetButton is false', () => {
-        const component = mount(
+      it('hides the reset button even after changes if allowResetButton is false', async () => {
+        const { container, baseElement, getByTestSubject } = render(
           <MockComponent
             showDisplaySelector={{
               allowResetButton: false,
@@ -451,29 +565,34 @@ describe('useDataGridDisplaySelector', () => {
             gridStyles={startingStyles}
           />
         );
-        openPopover(component);
+        openPopover(container);
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(false);
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
 
-        component.find('button[data-test-subj="expanded"]').simulate('click');
-        component.find('button[data-test-subj="auto"]').simulate('click');
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('expanded'));
+          userEvent.click(getByTestSubject('auto'));
+        });
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(false);
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
 
         // Should hide the reset button again after the popover was reopened
-        closePopover(component);
-        openPopover(component);
+        closePopover(container);
+        await waitForEuiPopoverClose();
+        openPopover(container);
+        await waitForEuiPopoverOpen();
+
         expect(
-          component.find('[data-test-subj="resetDisplaySelector"]').exists()
-        ).toBe(false);
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
       });
     });
 
     describe('additionalDisplaySettings', () => {
       it('renders custom content if additionalDisplaySettings is defined', () => {
-        const component = mount(
+        const { container, getByTestSubject } = render(
           <MockComponent
             showDisplaySelector={{
               additionalDisplaySettings: (
@@ -482,15 +601,14 @@ describe('useDataGridDisplaySelector', () => {
             }}
           />
         );
-        openPopover(component);
-        expect(component.find('[data-test-subj="test-custom"]'))
-          .toMatchInlineSnapshot(`
-          <div
-            data-test-subj="test-custom"
-          >
-            Custom content
-          </div>
-        `);
+        openPopover(container);
+        expect(getByTestSubject('test-custom')).toMatchInlineSnapshot(`
+                <div
+                  data-test-subj="test-custom"
+                >
+                  Custom content
+                </div>
+              `);
       });
     });
   });
@@ -501,19 +619,18 @@ describe('useDataGridDisplaySelector', () => {
       const [, gridStyles] = renderHook(() =>
         useDataGridDisplaySelector(true, initialStyles, {})
       ).result.current;
-
       expect(gridStyles).toMatchInlineSnapshot(`
-        Object {
-          "border": "all",
-          "cellPadding": "m",
-          "fontSize": "m",
-          "footer": "overline",
-          "header": "shade",
-          "rowHover": "highlight",
-          "stickyFooter": true,
-          "stripes": true,
-        }
-      `);
+              {
+                "border": "all",
+                "cellPadding": "m",
+                "fontSize": "m",
+                "footer": "overline",
+                "header": "shade",
+                "rowHover": "highlight",
+                "stickyFooter": true,
+                "stripes": true,
+              }
+            `);
     });
   });
 
@@ -549,7 +666,6 @@ describe('useDataGridDisplaySelector', () => {
     const getOutput = (component: ShallowWrapper) => {
       return JSON.parse(component.find('[data-test-subj="output"]').text());
     };
-
     describe('returns an object of rowHeightsOptions with user overrides', () => {
       it('overrides `rowHeights` and `defaultHeight`', () => {
         const component = shallow(
@@ -560,22 +676,17 @@ describe('useDataGridDisplaySelector', () => {
             }}
           />
         );
-
         setRowHeight(component, 'undefined');
-
         expect(getOutput(component)).toEqual({
           rowHeights: {},
           defaultHeight: undefined,
         });
       });
-
       it('does not override other rowHeightsOptions properties', () => {
         const component = shallow(
           <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
         );
-
         setRowHeight(component, 'lineCount');
-
         expect(getOutput(component)).toEqual({
           lineHeight: '2em',
           defaultHeight: { lineCount: 2 },

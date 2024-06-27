@@ -9,6 +9,7 @@ exports[`renders EuiColorPicker 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -59,6 +60,7 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 2;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -119,6 +121,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -169,6 +172,7 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -220,6 +224,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -271,6 +276,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -327,6 +333,7 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
     </label>
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -382,6 +389,7 @@ exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -432,6 +440,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -482,6 +491,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -520,6 +530,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -569,7 +580,7 @@ exports[`renders inline EuiColorPicker 1`] = `
     <div
       class="euiSaturation"
       data-test-subj="euiSaturation"
-      style="background: hsl(30, 100%, 50%);"
+      style="background: rgb(255, 128, 0);"
       tabindex="-1"
     >
       <div
@@ -742,6 +753,7 @@ exports[`renders readOnly EuiColorPicker 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"

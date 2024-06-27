@@ -13,6 +13,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -83,6 +84,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -133,6 +135,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -183,6 +186,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
           class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"

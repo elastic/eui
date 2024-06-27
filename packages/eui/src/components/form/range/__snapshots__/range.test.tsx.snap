@@ -348,6 +348,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <input
         aria-label="aria-label"

@@ -78,7 +78,7 @@ describe('getColumnActions', () => {
 
     const customAction = items[3];
     expect(customAction).toMatchInlineSnapshot(`
-      Object {
+      {
         "iconType": "warning",
         "label": "Hi world!",
         "onClick": [Function],
@@ -96,17 +96,17 @@ describe('getColumnActions', () => {
 
       it('renders a "Hide column" item first', () => {
         expect(hideColumn).toMatchInlineSnapshot(`
-            Object {
-              "color": "text",
-              "iconType": "eyeClosed",
-              "label": <EuiI18n
-                default="Hide column"
-                token="euiColumnActions.hideColumn"
-              />,
-              "onClick": [Function],
-              "size": "xs",
-            }
-          `);
+          {
+            "color": "text",
+            "iconType": "eyeClosed",
+            "label": <EuiI18n
+              default="Hide column"
+              token="euiColumnActions.hideColumn"
+            />,
+            "onClick": [Function],
+            "size": "xs",
+          }
+        `);
       });
 
       it('hides the current column on click and refocuses into the grid', () => {
@@ -160,34 +160,34 @@ describe('getColumnActions', () => {
 
       it('renders a "Move left" item', () => {
         expect(moveLeft).toMatchInlineSnapshot(`
-            Object {
-              "color": "text",
-              "iconType": "sortLeft",
-              "isDisabled": false,
-              "label": <EuiI18n
-                default="Move left"
-                token="euiColumnActions.moveLeft"
-              />,
-              "onClick": [Function],
-              "size": "xs",
-            }
-          `);
+          {
+            "color": "text",
+            "iconType": "sortLeft",
+            "isDisabled": false,
+            "label": <EuiI18n
+              default="Move left"
+              token="euiColumnActions.moveLeft"
+            />,
+            "onClick": [Function],
+            "size": "xs",
+          }
+        `);
       });
 
       it('renders a "Move right" item', () => {
         expect(moveRight).toMatchInlineSnapshot(`
-            Object {
-              "color": "text",
-              "iconType": "sortRight",
-              "isDisabled": false,
-              "label": <EuiI18n
-                default="Move right"
-                token="euiColumnActions.moveRight"
-              />,
-              "onClick": [Function],
-              "size": "xs",
-            }
-          `);
+          {
+            "color": "text",
+            "iconType": "sortRight",
+            "isDisabled": false,
+            "label": <EuiI18n
+              default="Move right"
+              token="euiColumnActions.moveRight"
+            />,
+            "onClick": [Function],
+            "size": "xs",
+          }
+        `);
       });
 
       it('calls switchColumnPos and updates the focused cell column index on click', () => {
@@ -313,7 +313,7 @@ describe('getColumnActions', () => {
 
       it('renders a "Sort A-Z" item', () => {
         expect(sortAsc).toMatchInlineSnapshot(`
-          Object {
+          {
             "className": "",
             "color": "text",
             "iconType": "sortUp",
@@ -322,7 +322,7 @@ describe('getColumnActions', () => {
               default="Sort {schemaLabel}"
               token="euiColumnActions.sort"
               values={
-                Object {
+                {
                   "schemaLabel": <EuiI18n
                     default="A-Z"
                     token="euiColumnSortingDraggable.defaultSortAsc"
@@ -338,7 +338,7 @@ describe('getColumnActions', () => {
 
       it('renders a "Sort Z-A" item', () => {
         expect(sortDesc).toMatchInlineSnapshot(`
-          Object {
+          {
             "className": "",
             "color": "text",
             "iconType": "sortDown",
@@ -347,7 +347,7 @@ describe('getColumnActions', () => {
               default="Sort {schemaLabel}"
               token="euiColumnActions.sort"
               values={
-                Object {
+                {
                   "schemaLabel": <EuiI18n
                     default="Z-A"
                     token="euiColumnSortingDraggable.defaultSortDesc"

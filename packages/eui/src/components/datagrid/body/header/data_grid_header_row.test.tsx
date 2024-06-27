@@ -52,18 +52,18 @@ describe('EuiDataGridHeaderRow', () => {
       >
         <EuiDataGridHeaderCell
           column={
-            Object {
+            {
               "id": "someColumn",
             }
           }
           columnWidths={
-            Object {
+            {
               "someColumn": 30,
             }
           }
           columns={
-            Array [
-              Object {
+            [
+              {
                 "id": "someColumn",
               },
             ]
@@ -72,13 +72,13 @@ describe('EuiDataGridHeaderRow', () => {
           index={0}
           key="someColumn"
           schema={
-            Object {
-              "someColumn": Object {
+            {
+              "someColumn": {
                 "columnType": "string",
               },
             }
           }
-          schemaDetectors={Array []}
+          schemaDetectors={[]}
           setColumnWidth={[MockFunction]}
           setVisibleColumns={[MockFunction]}
           switchColumnPos={[MockFunction]}
@@ -110,7 +110,7 @@ describe('EuiDataGridHeaderRow', () => {
       >
         <EuiDataGridControlHeaderCell
           controlColumn={
-            Object {
+            {
               "headerCellRender": [Function],
               "id": "someLeadingColumn",
               "rowCellRender": [Function],
@@ -147,7 +147,7 @@ describe('EuiDataGridHeaderRow', () => {
       >
         <EuiDataGridControlHeaderCell
           controlColumn={
-            Object {
+            {
               "headerCellRender": [Function],
               "id": "someTrailingColumn",
               "rowCellRender": [Function],

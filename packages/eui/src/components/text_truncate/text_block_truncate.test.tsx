@@ -22,6 +22,7 @@ describe('EuiTextBlockTruncate', () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
         class="euiTextBlockTruncate emotion-euiTextBlockTruncate"
+        style="-webkit-line-clamp: 3;"
       >
         Hello world
       </div>
@@ -37,6 +38,7 @@ describe('EuiTextBlockTruncate', () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       <p
         class="test euiTextBlockTruncate emotion-euiTextBlockTruncate"
+        style="-webkit-line-clamp: 3;"
       >
         Hello world
       </p>

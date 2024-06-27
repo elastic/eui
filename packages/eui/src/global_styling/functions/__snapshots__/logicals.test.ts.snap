@@ -116,325 +116,325 @@ exports[`logicalCSSWithFallback returns both the original property and the logic
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom 1`] = `
-Object {
+{
   "borderBlockEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom-color 1`] = `
-Object {
+{
   "borderBlockEndColor": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom-left-radius 1`] = `
-Object {
+{
   "borderEndStartRadius": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom-right-radius 1`] = `
-Object {
+{
   "borderEndEndRadius": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom-style 1`] = `
-Object {
+{
   "borderBlockEndStyle": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom-width 1`] = `
-Object {
+{
   "borderBlockEndWidth": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-horizontal 1`] = `
-Object {
+{
   "borderInline": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-horizontal-color 1`] = `
-Object {
+{
   "borderInlineColor": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-horizontal-style 1`] = `
-Object {
+{
   "borderInlineStyle": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-horizontal-width 1`] = `
-Object {
+{
   "borderInlineWidth": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-left 1`] = `
-Object {
+{
   "borderInlineStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-left-color 1`] = `
-Object {
+{
   "borderInlineStartColor": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-left-style 1`] = `
-Object {
+{
   "borderInlineStartStyle": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-left-width 1`] = `
-Object {
+{
   "borderInlineStartWidth": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-right 1`] = `
-Object {
+{
   "borderInlineEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-right-color 1`] = `
-Object {
+{
   "borderInlineEndColor": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-right-style 1`] = `
-Object {
+{
   "borderInlineEndStyle": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-right-width 1`] = `
-Object {
+{
   "borderInlineEndWidth": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-top 1`] = `
-Object {
+{
   "borderBlockStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-top-color 1`] = `
-Object {
+{
   "borderBlockStartColor": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-top-left-radius 1`] = `
-Object {
+{
   "borderStartStartRadius": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-top-right-radius 1`] = `
-Object {
+{
   "borderStartEndRadius": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-top-style 1`] = `
-Object {
+{
   "borderBlockStartStyle": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-top-width 1`] = `
-Object {
+{
   "borderBlockStartWidth": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-vertical 1`] = `
-Object {
+{
   "borderBlock": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-vertical-color 1`] = `
-Object {
+{
   "borderBlockColor": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-vertical-style 1`] = `
-Object {
+{
   "borderBlockStyle": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-vertical-width 1`] = `
-Object {
+{
   "borderBlockWidth": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: bottom 1`] = `
-Object {
+{
   "insetBlockEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: height 1`] = `
-Object {
+{
   "blockSize": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: horizontal 1`] = `
-Object {
+{
   "insetInline": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: left 1`] = `
-Object {
+{
   "insetInlineStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: margin-bottom 1`] = `
-Object {
+{
   "marginBlockEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: margin-horizontal 1`] = `
-Object {
+{
   "marginInline": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: margin-left 1`] = `
-Object {
+{
   "marginInlineStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: margin-right 1`] = `
-Object {
+{
   "marginInlineEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: margin-top 1`] = `
-Object {
+{
   "marginBlockStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: margin-vertical 1`] = `
-Object {
+{
   "marginBlock": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: max-height 1`] = `
-Object {
+{
   "maxBlockSize": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: max-width 1`] = `
-Object {
+{
   "maxInlineSize": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: min-height 1`] = `
-Object {
+{
   "minBlockSize": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: min-width 1`] = `
-Object {
+{
   "minInlineSize": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: overflow-x 1`] = `
-Object {
+{
   "overflowInline": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: overflow-y 1`] = `
-Object {
+{
   "overflowBlock": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: padding-bottom 1`] = `
-Object {
+{
   "paddingBlockEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: padding-horizontal 1`] = `
-Object {
+{
   "paddingInline": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: padding-left 1`] = `
-Object {
+{
   "paddingInlineStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: padding-right 1`] = `
-Object {
+{
   "paddingInlineEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: padding-top 1`] = `
-Object {
+{
   "paddingBlockStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: padding-vertical 1`] = `
-Object {
+{
   "paddingBlock": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: right 1`] = `
-Object {
+{
   "insetInlineEnd": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: top 1`] = `
-Object {
+{
   "insetBlockStart": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: vertical 1`] = `
-Object {
+{
   "insetBlock": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: width 1`] = `
-Object {
+{
   "inlineSize": "8px",
 }
 `;
@@ -446,19 +446,19 @@ exports[`logicalTextAlignCSS mixin returns a string property for each text align
 exports[`logicalTextAlignCSS mixin returns a string property for each text align value: right 1`] = `"text-align: end;"`;
 
 exports[`logicalTextAlignStyle mixin returns a string property for each text align value: center 1`] = `
-Object {
+{
   "textAlign": "center",
 }
 `;
 
 exports[`logicalTextAlignStyle mixin returns a string property for each text align value: left 1`] = `
-Object {
+{
   "textAlign": "start",
 }
 `;
 
 exports[`logicalTextAlignStyle mixin returns a string property for each text align value: right 1`] = `
-Object {
+{
   "textAlign": "end",
 }
 `;

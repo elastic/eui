@@ -33,7 +33,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
   >
     <EuiI18n
       defaults={
-        Array [
+        [
           "Density",
           "Compact",
           "Normal",
@@ -41,7 +41,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
         ]
       }
       tokens={
-        Array [
+        [
           "euiDisplaySelector.densityLabel",
           "euiDisplaySelector.labelCompact",
           "euiDisplaySelector.labelNormal",
@@ -53,7 +53,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     </EuiI18n>
     <EuiI18n
       defaults={
-        Array [
+        [
           "Row height",
           "Single",
           "Auto fit",
@@ -62,7 +62,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
         ]
       }
       tokens={
-        Array [
+        [
           "euiDisplaySelector.rowHeightLabel",
           "euiDisplaySelector.labelSingle",
           "euiDisplaySelector.labelAuto",

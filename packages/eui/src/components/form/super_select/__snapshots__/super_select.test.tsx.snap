@@ -13,6 +13,7 @@ exports[`EuiSuperSelect props compressed 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -50,6 +51,7 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -92,6 +94,7 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
     </label>
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -136,6 +139,7 @@ exports[`EuiSuperSelect renders 1`] = `
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
+          style="--euiFormControlRightIconsCount: 1;"
         >
           <button
             aria-haspopup="listbox"
