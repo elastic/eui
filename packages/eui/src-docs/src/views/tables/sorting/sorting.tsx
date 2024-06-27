@@ -8,9 +8,8 @@ import {
   EuiTableSortingType,
   Criteria,
   EuiHealth,
-  EuiIcon,
   EuiLink,
-  EuiToolTip,
+  EuiIconTip,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSwitch,
@@ -77,17 +76,16 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'github',
     name: (
-      <EuiToolTip content="Their mascot is the Octokitty">
-        <>
-          Github{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
+      <>
+        Github{' '}
+        <EuiIconTip
+          size="s"
+          color="subdued"
+          type="questionInCircle"
+          className="eui-alignTop"
+          content="Their mascot is the Octokitty"
+        />
+      </>
     ),
     render: (username: User['github']) => (
       <EuiLink href="#" target="_blank">
@@ -98,17 +96,16 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'dateOfBirth',
     name: (
-      <EuiToolTip content="Colloquially known as a 'birthday'">
-        <>
-          Date of Birth{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
+      <>
+        Date of Birth{' '}
+        <EuiIconTip
+          size="s"
+          color="subdued"
+          type="questionInCircle"
+          className="eui-alignTop"
+          content="Colloquially known as a 'birthday'"
+        />
+      </>
     ),
     render: (dateOfBirth: User['dateOfBirth']) =>
       formatDate(dateOfBirth, 'dobLong'),
@@ -116,17 +113,16 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: (
-      <EuiToolTip content="The city and country in which this person resides">
-        <>
-          Nationality{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
+      <>
+        Nationality{' '}
+        <EuiIconTip
+          size="s"
+          color="subdued"
+          type="questionInCircle"
+          className="eui-alignTop"
+          content="The city and country in which this person resides"
+        />
+      </>
     ),
     render: (location: User['location']) => {
       return `${location.city}, ${location.country}`;
@@ -137,17 +133,16 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'online',
     name: (
-      <EuiToolTip content="Free to talk or busy with business">
-        <>
-          Online{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
+      <>
+        Online{' '}
+        <EuiIconTip
+          size="s"
+          color="subdued"
+          type="questionInCircle"
+          className="eui-alignTop"
+          content="Free to talk or busy with business"
+        />
+      </>
     ),
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';
