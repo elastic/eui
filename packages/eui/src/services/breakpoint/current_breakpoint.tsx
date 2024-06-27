@@ -21,7 +21,7 @@ import {
   _EuiThemeBreakpoint,
   _EuiThemeBreakpoints,
 } from '../../global_styling/variables/breakpoint';
-import { useEuiTheme } from '../theme';
+import { useEuiTheme } from '../theme/hooks';
 import { throttle } from '../throttle';
 import { sortMapByLargeToSmallValues } from './_sorting';
 

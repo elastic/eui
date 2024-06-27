@@ -23,7 +23,7 @@ import isEqual from 'lodash/isEqual';
 import type { CommonProps } from '../../components/common';
 import { cloneElementWithCss } from '../emotion';
 import { css, cx } from '../emotion/css';
-import { CurrentEuiBreakpointProvider } from '../breakpoint';
+import { CurrentEuiBreakpointProvider } from '../breakpoint/current_breakpoint';
 
 import {
   EuiSystemContext,
