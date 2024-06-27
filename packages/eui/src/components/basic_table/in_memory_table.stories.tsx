@@ -24,12 +24,6 @@ const meta: Meta<EuiInMemoryTableProps> = {
   title: 'Tabular Content/EuiInMemoryTable',
   // @ts-ignore complex
   component: EuiInMemoryTable,
-  parameters: {
-    codeSnippet: {
-      // TODO: enable once render functions are supported
-      skip: true,
-    },
-  },
   args: {
     allowNeutralSort: true,
     searchFormat: 'eql',
