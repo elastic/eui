@@ -128,7 +128,7 @@ export const Playground: Story = {
   parameters: {
     codeSnippet: {
       args: {
-        selected: 'Tue Mar 19 2024 18:54:51 GMT+0100',
+        selected: "#{moment('Tue Mar 19 2024 18:54:51 GMT+0100')}",
       },
     },
   },

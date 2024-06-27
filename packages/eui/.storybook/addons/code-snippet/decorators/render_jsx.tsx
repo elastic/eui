@@ -272,11 +272,28 @@ export const renderJsx = (
 
     // ensure tokens are output properly by removing added variable markers
     if (string.indexOf('{{') > -1) {
-      const regex = new RegExp(/'{{|}}'/g);
+      const regex = new RegExp(/'{{|"{{|}}'|}}"/g);
       const matches = string.match(regex);
       if (matches) {
         matches.forEach((match) => {
-          string = string.replace(match, match.replace(regex, ''));
+          string = string.replace(match, '');
+        });
+      }
+    }
+
+    // removed arg value overwrite markers
+    // example:
+    // in:  selected: "#{moment('Tue Mar 19 2024 18:54:51 GMT+0100')}"
+    // out: selected={moment('Tue Mar 19 2024 18:54:51 GMT+0100')}
+    if (string.indexOf('#{') > -1) {
+      const variableRegex = new RegExp(/("|')#{.*?}("|')/g);
+      const variableContentRegex = new RegExp(/(?<="#{).*?(?=}")/g);
+      const variableMatch = string.match(variableRegex);
+
+      if (variableMatch) {
+        variableMatch.forEach((match) => {
+          const content = match.match(variableContentRegex)!;
+          string = string.replace(match, `{${content[0]}}`);
         });
       }
     }
