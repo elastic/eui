@@ -217,7 +217,8 @@ export const CustomBreakpointsJS = () => {
         <>
           <p>
             Theme breakpoints can be overriden or added via{' '}
-            <EuiCode>EuiProvider</EuiCode>&apos;s <EuiCode>modify</EuiCode>{' '}
+            <EuiCode>EuiProvider</EuiCode>&apos;s or{' '}
+            <EuiCode>EuiThemeProvider</EuiCode>&apos;s <EuiCode>modify</EuiCode>{' '}
             prop.
           </p>
           <p>
@@ -232,7 +233,7 @@ export const CustomBreakpointsJS = () => {
           Current custom breakpoint: <strong>{currentBreakpoint}</strong>
         </p>
       }
-      snippet={`<EuiProvider
+      snippet={`<EuiThemeProvider
   modify={{
     breakpoint: {
       xxs: 0,
@@ -246,7 +247,7 @@ export const CustomBreakpointsJS = () => {
   }}
 >
   <App />
-</EuiProvider>
+</EuiThemeProvider>
 `}
       snippetLanguage="js"
     />
