@@ -144,10 +144,10 @@ export class EuiFilePickerClass extends Component<
 
     return (
       <EuiI18n
-        token="euiFilePicker.removeSelectedFiles"
+        token="euiFilePicker.removeSelectedAriaLabel"
         default="Remove selected files"
       >
-        {(removeSelectedFiles: string) => {
+        {(removeSelectedAriaLabel: string) => {
           const {
             stylesMemoizer,
             id,
@@ -244,7 +244,7 @@ export class EuiFilePickerClass extends Component<
             if (normalFormControl) {
               clearButton = (
                 <EuiFormControlLayoutClearButton
-                  aria-label={removeSelectedFiles}
+                  aria-label={removeSelectedAriaLabel}
                   css={[styles.euiFilePicker__clearButton, rightIconStyles]}
                   className="euiFilePicker__clearButton"
                   onClick={this.removeFiles}
@@ -254,7 +254,7 @@ export class EuiFilePickerClass extends Component<
             } else {
               clearButton = (
                 <EuiButtonEmpty
-                  aria-label={removeSelectedFiles}
+                  aria-label={removeSelectedAriaLabel}
                   css={styles.euiFilePicker__clearButton}
                   className="euiFilePicker__clearButton"
                   size="xs"
