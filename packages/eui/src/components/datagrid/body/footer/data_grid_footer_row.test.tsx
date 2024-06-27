@@ -42,8 +42,8 @@ describe('EuiDataGridFooterRow', () => {
           isExpandable={true}
           key="0,10"
           popoverContext={
-            Object {
-              "cellLocation": Object {
+            {
+              "cellLocation": {
                 "colIndex": 0,
                 "rowIndex": 0,
               },
@@ -70,8 +70,8 @@ describe('EuiDataGridFooterRow', () => {
           isExpandable={true}
           key="1,10"
           popoverContext={
-            Object {
-              "cellLocation": Object {
+            {
+              "cellLocation": {
                 "colIndex": 0,
                 "rowIndex": 0,
               },
@@ -124,8 +124,8 @@ describe('EuiDataGridFooterRow', () => {
             isExpandable={false}
             key="someLeadingColumn-10"
             popoverContext={
-              Object {
-                "cellLocation": Object {
+              {
+                "cellLocation": {
                   "colIndex": 0,
                   "rowIndex": 0,
                 },
@@ -177,8 +177,8 @@ describe('EuiDataGridFooterRow', () => {
             isExpandable={false}
             key="someTrailingColumn-10"
             popoverContext={
-              Object {
-                "cellLocation": Object {
+              {
+                "cellLocation": {
                   "colIndex": 0,
                   "rowIndex": 0,
                 },

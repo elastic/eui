@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size l 1`] = `
-Object {
+{
   "color": "#1a1c21",
   "fontSize": "2.4286rem",
   "fontWeight": 700,
@@ -10,7 +10,7 @@ Object {
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size m 1`] = `
-Object {
+{
   "color": "#1a1c21",
   "fontSize": "1.9286rem",
   "fontWeight": 700,
@@ -19,7 +19,7 @@ Object {
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size s 1`] = `
-Object {
+{
   "color": "#1a1c21",
   "fontSize": "1.5714rem",
   "fontWeight": 700,
@@ -28,7 +28,7 @@ Object {
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size xs 1`] = `
-Object {
+{
   "color": "#1a1c21",
   "fontSize": "1.1429rem",
   "fontWeight": 700,
@@ -37,7 +37,7 @@ Object {
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size xxs 1`] = `
-Object {
+{
   "color": "#1a1c21",
   "fontSize": "1.0000rem",
   "fontWeight": 700,
@@ -46,7 +46,7 @@ Object {
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size xxxs 1`] = `
-Object {
+{
   "color": "#1a1c21",
   "fontSize": "0.8571rem",
   "fontWeight": 700,

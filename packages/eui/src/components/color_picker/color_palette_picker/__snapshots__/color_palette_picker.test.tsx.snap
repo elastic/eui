@@ -13,6 +13,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -52,6 +53,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -93,6 +95,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -162,6 +165,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -211,6 +215,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -260,6 +265,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
@@ -303,6 +309,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
+          style="--euiFormControlRightIconsCount: 1;"
         >
           <button
             aria-haspopup="listbox"

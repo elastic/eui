@@ -354,6 +354,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
@@ -408,19 +409,19 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
 `;
 
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its search/listbox 1`] = `
-Object {
+{
   "activeOptionIndex": 0,
   "isFocused": true,
   "searchValue": "",
-  "visibleOptions": Array [
-    Object {
+  "visibleOptions": [
+    {
       "data-test-subj": "titanOption",
       "label": "Titan",
     },
-    Object {
+    {
       "label": "Enceladus",
     },
-    Object {
+    {
       "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
     },
   ],
@@ -428,19 +429,19 @@ Object {
 `;
 
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its search/listbox 2`] = `
-Object {
+{
   "activeOptionIndex": 0,
   "isFocused": true,
   "searchValue": "",
-  "visibleOptions": Array [
-    Object {
+  "visibleOptions": [
+    {
       "data-test-subj": "titanOption",
       "label": "Titan",
     },
-    Object {
+    {
       "label": "Enceladus",
     },
-    Object {
+    {
       "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
     },
   ],

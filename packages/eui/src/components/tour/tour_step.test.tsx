@@ -170,13 +170,13 @@ describe('EuiTourStep', () => {
     expect(container.querySelector('.goesOnPopover')).not.toBeInTheDocument();
     expect(container.querySelector('.goesOnAnchor')).toBeInTheDocument();
     expect(container.querySelector('.goesOnAnchor')).toHaveStyle({
-      color: 'blue',
+      color: 'rgb(0, 0, 255)',
     });
 
     rerender(<TestTour isStepOpen />);
     expect(container.querySelector('.goesOnPopover')).toBeInTheDocument();
     expect(container.querySelector('.goesOnPopover')).toHaveStyle({
-      color: 'red',
+      color: 'rgb(255, 0, 0)',
     });
   });
 });

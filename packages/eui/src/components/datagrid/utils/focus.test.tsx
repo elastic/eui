@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { renderHook, renderHookAct } from '../../../test/rtl';
+import React from 'react';
+import { render, renderHook, renderHookAct } from '../../../test/rtl';
 import { keys } from '../../../services';
 import {
   useFocus,
@@ -173,6 +174,8 @@ describe('createKeyDownHandler', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    const { container } = render(<button>button</button>);
+    mockArgs.gridElement = container as HTMLDivElement;
     // Ensure document.activeElement is inside the grid pass the early return
     const mockFocus = mockArgs.gridElement.appendChild(
       document.createElement('button')

@@ -3,13 +3,13 @@
 exports[`EuiI18n default rendering render prop with multiple tokens renders basic strings to the dom 1`] = `
 <EuiI18n
   defaults={
-    Array [
+    [
       "This is the first basic string.",
       "This is the second basic string.",
     ]
   }
   tokens={
-    Array [
+    [
       "test1",
       "test2",
     ]
@@ -26,19 +26,19 @@ exports[`EuiI18n default rendering render prop with multiple tokens renders basi
 exports[`EuiI18n default rendering render prop with multiple tokens renders strings with placeholders to the dom 1`] = `
 <EuiI18n
   defaults={
-    Array [
+    [
       "This is the first basic string.",
       "This is the a second string with a {placeholder}.",
     ]
   }
   tokens={
-    Array [
+    [
       "test1",
       "test2",
     ]
   }
   values={
-    Object {
+    {
       "placeholder": "value",
     }
   }
@@ -55,16 +55,16 @@ exports[`EuiI18n default rendering render prop with single token calls a functio
 <EuiI18n
   default={
     [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
+      "calls": [
+        [
+          {
             "special": "values",
             "type": "callback",
           },
         ],
       ],
-      "results": Array [
-        Object {
+      "results": [
+        {
           "type": "return",
           "value": "This is a callback with values.",
         },
@@ -73,7 +73,7 @@ exports[`EuiI18n default rendering render prop with single token calls a functio
   }
   token="test"
   values={
-    Object {
+    {
       "special": "values",
       "type": "callback",
     }
@@ -97,7 +97,7 @@ exports[`EuiI18n default rendering render prop with single token renders render 
   default="This is a {type} with {special}."
   token="test"
   values={
-    Object {
+    {
       "special": "values",
       "type": "string",
     }
@@ -111,16 +111,16 @@ exports[`EuiI18n default rendering rendering to dom calls a function and renders
 <EuiI18n
   default={
     [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
+      "calls": [
+        [
+          {
             "special": "values",
             "type": "callback",
           },
         ],
       ],
-      "results": Array [
-        Object {
+      "results": [
+        {
           "type": "return",
           "value": "This is a callback with values.",
         },
@@ -129,7 +129,7 @@ exports[`EuiI18n default rendering rendering to dom calls a function and renders
   }
   token="test"
   values={
-    Object {
+    {
       "special": "values",
       "type": "callback",
     }
@@ -153,7 +153,7 @@ exports[`EuiI18n default rendering rendering to dom renders a string with placeh
   default="This is a {type} with {special}."
   token="test"
   values={
-    Object {
+    {
       "special": "values",
       "type": "string",
     }
@@ -168,7 +168,7 @@ exports[`EuiI18n default rendering rendering to dom renders when value is null 1
   default="{arg}"
   token="test"
   values={
-    Object {
+    {
       "arg": null,
     }
   }
@@ -182,8 +182,8 @@ exports[`EuiI18n default rendering rendering to dom renders when value is null 1
 exports[`EuiI18n mapped tokens handles multiple tokens 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test1": "first value",
         "test2": "second value",
       },
@@ -206,8 +206,8 @@ exports[`EuiI18n mapped tokens handles multiple tokens 1`] = `
 exports[`EuiI18n mapped tokens handles single token with values 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "myToken": "In reverse order: {second}, then {first}",
       },
     }
@@ -224,8 +224,8 @@ exports[`EuiI18n mapped tokens handles single token with values 1`] = `
 exports[`EuiI18n mapped tokens handles single token without values 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "token": "This is the mapped value.",
       },
     }
@@ -242,7 +242,7 @@ exports[`EuiI18n mapped tokens handles single token without values 1`] = `
 exports[`EuiI18n mapped tokens i18nRenderFunc uses user defined component render function 1`] = `
 <EuiContext
   i18n={
-    Object {
+    {
       "render": [Function],
     }
   }
@@ -273,18 +273,18 @@ exports[`EuiI18n mapped tokens i18nRenderFunc uses user defined component render
 exports[`EuiI18n mapped tokens mappingFunc calls the mapping function with the source string 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test1": "This is the mapped value.",
       },
       "mappingFunc": [MockFunction] {
-        "calls": Array [
-          Array [
+        "calls": [
+          [
             "placeholder",
           ],
         ],
-        "results": Array [
-          Object {
+        "results": [
+          {
             "type": "return",
             "value": "PLACEHOLDER",
           },
@@ -306,18 +306,18 @@ exports[`EuiI18n mapped tokens mappingFunc calls the mapping function with the s
 exports[`EuiI18n reading values from context mappingFunc calls the mapping function with the source string 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test1": "This is the mapped value.",
       },
       "mappingFunc": [MockFunction] {
-        "calls": Array [
-          Array [
+        "calls": [
+          [
             "This is the basic string.",
           ],
         ],
-        "results": Array [
-          Object {
+        "results": [
+          {
             "type": "return",
             "value": "THIS IS THE BASIC STRING.",
           },
@@ -342,8 +342,8 @@ exports[`EuiI18n reading values from context mappingFunc calls the mapping funct
 exports[`EuiI18n reading values from context render prop with multiple tokens renders mapped render prop result to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test1": "This is the first mapped value.",
         "test2": "This is the second mapped value.",
       },
@@ -352,13 +352,13 @@ exports[`EuiI18n reading values from context render prop with multiple tokens re
 >
   <EuiI18n
     defaults={
-      Array [
+      [
         "This is the first basic string.",
         "This is the second basic string.",
       ]
     }
     tokens={
-      Array [
+      [
         "test1",
         "test2",
       ]
@@ -376,26 +376,26 @@ exports[`EuiI18n reading values from context render prop with multiple tokens re
 exports[`EuiI18n reading values from context render prop with multiple tokens uses the mapping function if one is provided 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test1": "This is the first mapped value.",
         "test2": "This is the second mapped value.",
       },
       "mappingFunc": [MockFunction] {
-        "calls": Array [
-          Array [
+        "calls": [
+          [
             "This is the first basic string.",
           ],
-          Array [
+          [
             "This is the second basic string.",
           ],
         ],
-        "results": Array [
-          Object {
+        "results": [
+          {
             "type": "return",
             "value": "THIS IS THE FIRST BASIC STRING.",
           },
-          Object {
+          {
             "type": "return",
             "value": "THIS IS THE SECOND BASIC STRING.",
           },
@@ -406,13 +406,13 @@ exports[`EuiI18n reading values from context render prop with multiple tokens us
 >
   <EuiI18n
     defaults={
-      Array [
+      [
         "This is the first basic string.",
         "This is the second basic string.",
       ]
     }
     tokens={
-      Array [
+      [
         "test1",
         "test2",
       ]
@@ -430,19 +430,19 @@ exports[`EuiI18n reading values from context render prop with multiple tokens us
 exports[`EuiI18n reading values from context render prop with single token calls a mapped function and renders render prop result to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test": [MockFunction] {
-          "calls": Array [
-            Array [
-              Object {
+          "calls": [
+            [
+              {
                 "special": "values",
                 "type": "callback",
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": "This is a callback with values.",
             },
@@ -455,16 +455,16 @@ exports[`EuiI18n reading values from context render prop with single token calls
   <EuiI18n
     default={
       [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
+        "calls": [
+          [
+            {
               "special": "values",
               "type": "callback",
             },
           ],
         ],
-        "results": Array [
-          Object {
+        "results": [
+          {
             "type": "return",
             "value": "This is a callback with values.",
           },
@@ -473,7 +473,7 @@ exports[`EuiI18n reading values from context render prop with single token calls
     }
     token="test"
     values={
-      Object {
+      {
         "special": "values",
         "type": "callback",
       }
@@ -487,8 +487,8 @@ exports[`EuiI18n reading values from context render prop with single token calls
 exports[`EuiI18n reading values from context render prop with single token renders mapped render prop result to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test": "An overridden string.",
       },
     }
@@ -506,8 +506,8 @@ exports[`EuiI18n reading values from context render prop with single token rende
 exports[`EuiI18n reading values from context render prop with single token renders mapped render prop result with placeholders to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test": "An overridden {type} with {special}.",
       },
     }
@@ -517,7 +517,7 @@ exports[`EuiI18n reading values from context render prop with single token rende
     default="This is a {type} with {special}."
     token="test"
     values={
-      Object {
+      {
         "special": "values",
         "type": "string",
       }
@@ -531,19 +531,19 @@ exports[`EuiI18n reading values from context render prop with single token rende
 exports[`EuiI18n reading values from context rendering to dom calls a mapped function and renders the result to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test": [MockFunction] {
-          "calls": Array [
-            Array [
-              Object {
+          "calls": [
+            [
+              {
                 "special": "values",
                 "type": "callback",
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": "This is a mapped callback with values.",
             },
@@ -557,7 +557,7 @@ exports[`EuiI18n reading values from context rendering to dom calls a mapped fun
     default={[Function]}
     token="test"
     values={
-      Object {
+      {
         "special": "values",
         "type": "callback",
       }
@@ -571,8 +571,8 @@ exports[`EuiI18n reading values from context rendering to dom calls a mapped fun
 exports[`EuiI18n reading values from context rendering to dom renders a mapped basic string to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test": "An overridden string.",
       },
     }
@@ -590,8 +590,8 @@ exports[`EuiI18n reading values from context rendering to dom renders a mapped b
 exports[`EuiI18n reading values from context rendering to dom renders a mapped string with placeholders to the dom 1`] = `
 <EuiContext
   i18n={
-    Object {
-      "mapping": Object {
+    {
+      "mapping": {
         "test": "An overridden {type} with {special}.",
       },
     }
@@ -601,7 +601,7 @@ exports[`EuiI18n reading values from context rendering to dom renders a mapped s
     default="This is a {type} with {special}."
     token="test"
     values={
-      Object {
+      {
         "special": "values",
         "type": "string",
       }
@@ -629,15 +629,15 @@ exports[`EuiI18n useEuiI18n unmapped calls a function that returns JSX and rende
 exports[`EuiI18n useEuiI18n unmapped calls a function that returns a string and the i18n mapping function 1`] = `
 <EuiContext
   i18n={
-    Object {
+    {
       "mappingFunc": [MockFunction] {
-        "calls": Array [
-          Array [
+        "calls": [
+          [
             "This is a callback with values",
           ],
         ],
-        "results": Array [
-          Object {
+        "results": [
+          {
             "type": "return",
             "value": "THIS IS A CALLBACK WITH VALUES",
           },

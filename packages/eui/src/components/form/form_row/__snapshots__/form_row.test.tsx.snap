@@ -2,7 +2,7 @@
 
 exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 <EuiFormRow
-  describedByIds={Array []}
+  describedByIds={[]}
   display="row"
   hasChildLabel={true}
   hasEmptyLabelSpace={false}
@@ -53,7 +53,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
 
 exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 <EuiFormRow
-  describedByIds={Array []}
+  describedByIds={[]}
   display="row"
   hasChildLabel={true}
   hasEmptyLabelSpace={false}
@@ -104,7 +104,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
 
 exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 <EuiFormRow
-  describedByIds={Array []}
+  describedByIds={[]}
   display="row"
   hasChildLabel={true}
   hasEmptyLabelSpace={false}
@@ -155,7 +155,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
 
 exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = `
 <EuiFormRow
-  describedByIds={Array []}
+  describedByIds={[]}
   display="row"
   hasChildLabel={true}
   hasEmptyLabelSpace={false}

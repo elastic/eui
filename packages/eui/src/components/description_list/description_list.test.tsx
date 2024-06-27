@@ -202,7 +202,7 @@ describe('EuiDescriptionList', () => {
               style={{ color: 'red' }}
             />
           );
-          expect(container.firstChild).toHaveStyle('color: red');
+          expect(container.firstChild).toHaveStyle('color: rgb(255, 0, 0)');
         });
 
         it('correctly removes inline styles when responsive columns collapse to rows', () => {

@@ -24,6 +24,14 @@ import {
   usePopoverArrowNavigation,
 } from './data_grid_header_cell';
 
+const MockPanel = () => (
+  <div tabIndex={-1}>
+    <button data-test-subj="first">First action</button>
+    <button data-test-subj="second">Second action</button>
+    <button data-test-subj="last">Last action</button>
+  </div>
+);
+
 describe('EuiDataGridHeaderCell', () => {
   const requiredProps = {
     column: {
@@ -265,14 +273,7 @@ describe('EuiDataGridHeaderCell', () => {
         panelProps: { onKeyDown },
       } = renderHook(usePopoverArrowNavigation).result.current;
 
-      const mockPanel = document.createElement('div');
-      mockPanel.setAttribute('tabindex', '-1');
-      mockPanel.innerHTML = `
-        <button data-test-subj="first">First action</button>
-        <button data-test-subj="second">Second action</button>
-        <button data-test-subj="last">Last action</button>
-      `;
-      panelRef(mockPanel);
+      let mockPanel: HTMLElement;
 
       const preventDefault = jest.fn();
       const keyDownEvent = { preventDefault } as unknown as React.KeyboardEvent;
@@ -295,9 +296,16 @@ describe('EuiDataGridHeaderCell', () => {
       });
 
       describe('when the popover panel is focused (on initial open state)', () => {
-        beforeEach(() => mockPanel.focus());
+        beforeEach(() => {
+          const { container } = render(<MockPanel />);
 
+          mockPanel = container.firstElementChild as HTMLElement;
+          panelRef(mockPanel);
+
+          mockPanel.focus();
+        });
         it('focuses the first action when the arrow down key is pressed', () => {
+          expect(mockPanel).toHaveFocus();
           onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
           expect(preventDefault).toHaveBeenCalled();
           expect(
@@ -316,11 +324,16 @@ describe('EuiDataGridHeaderCell', () => {
 
       describe('when already focused on action buttons', () => {
         describe('down arrow key', () => {
-          beforeAll(() =>
-            (mockPanel.firstElementChild as HTMLButtonElement).focus()
-          );
+          beforeEach(() => {
+            const { container } = render(<MockPanel />);
+
+            mockPanel = container.firstElementChild as HTMLElement;
+            panelRef(mockPanel);
+          });
 
           it('moves focus to the the next action', () => {
+            (mockPanel.firstElementChild as HTMLButtonElement).focus();
+
             onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
@@ -333,6 +346,8 @@ describe('EuiDataGridHeaderCell', () => {
           });
 
           it('loops focus back to the first action when pressing down on the last action', () => {
+            (mockPanel.lastElementChild as HTMLButtonElement).focus();
+
             onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
@@ -341,11 +356,16 @@ describe('EuiDataGridHeaderCell', () => {
         });
 
         describe('up arrow key', () => {
-          beforeAll(() =>
-            (mockPanel.lastElementChild as HTMLButtonElement).focus()
-          );
+          beforeEach(() => {
+            const { container } = render(<MockPanel />);
+
+            mockPanel = container.firstElementChild as HTMLElement;
+            panelRef(mockPanel);
+          });
 
           it('moves focus to the previous action', () => {
+            (mockPanel.lastElementChild as HTMLButtonElement).focus();
+
             onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
@@ -358,6 +378,8 @@ describe('EuiDataGridHeaderCell', () => {
           });
 
           it('loops focus back to the last action when pressing up on the first action', () => {
+            (mockPanel.firstElementChild as HTMLButtonElement).focus();
+
             onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
             expect(
               document.activeElement?.getAttribute('data-test-subj')
