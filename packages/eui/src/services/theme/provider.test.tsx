@@ -11,6 +11,7 @@ import { render } from '@testing-library/react'; // Note - don't use the EUI cus
 import { css } from '@emotion/react';
 
 import { EuiProvider } from '../../components/provider';
+import { useCurrentEuiBreakpoint } from '../breakpoint';
 import { EuiNestedThemeContext } from './context';
 import { EuiThemeProvider } from './provider';
 
@@ -72,6 +73,33 @@ describe('EuiThemeProvider', () => {
       );
 
       expect(getByText('Modified')).toHaveStyleRule('color', 'hotpink');
+    });
+
+    it('sets a conditional CurrentEuiBreakpointProvider if modify.breakpoint is passed', () => {
+      window.innerWidth = 2500;
+      const customBreakpoints = { xxl: 2000 };
+      const PrintCurrentBreakpoint = () => <>{useCurrentEuiBreakpoint()}</>;
+
+      const { container, rerender } = render(
+        <EuiThemeProvider modify={{ breakpoint: customBreakpoints }}>
+          <PrintCurrentBreakpoint />
+        </EuiThemeProvider>
+      );
+
+      expect(container.textContent).toEqual('xxl');
+
+      // Does nothing if no modify.breakpoint is passed
+      const eventListenerSpy = jest.spyOn(window, 'addEventListener');
+      rerender(
+        <EuiThemeProvider>
+          <PrintCurrentBreakpoint />
+        </EuiThemeProvider>
+      );
+      expect(eventListenerSpy).not.toHaveBeenCalledWith('resize');
+      expect(container.textContent).toEqual('xl');
+
+      // Reset window width to jsdom's default
+      window.innerWidth = 1024;
     });
   });
 
