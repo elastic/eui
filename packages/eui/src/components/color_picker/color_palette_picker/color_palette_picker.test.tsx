@@ -7,14 +7,15 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { requiredProps } from '../../../test';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';
-import { requiredProps, takeMountedSnapshot } from '../../../test';
 
 const palettes: EuiColorPalettePickerPaletteProps[] = [
   {
@@ -67,6 +68,8 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
 ];
 
 describe('EuiColorPalettePicker', () => {
+  shouldRenderCustomStyles(<EuiColorPalettePicker palettes={palettes} />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiColorPalettePicker
@@ -146,7 +149,7 @@ describe('EuiColorPalettePicker', () => {
   });
 
   test('more props are propagated to each option', () => {
-    const component = mount(
+    const { getByTestSubject, baseElement } = render(
       <EuiColorPalettePicker
         palettes={palettes}
         valueOfSelected="paletteFixed"
@@ -155,10 +158,8 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    component
-      .find('button[data-test-subj="colorPalettePicker"]')
-      .simulate('click');
+    fireEvent.click(getByTestSubject('colorPalettePicker'));
 
-    expect(takeMountedSnapshot(component)).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 });

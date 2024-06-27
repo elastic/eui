@@ -102,7 +102,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
         type="button"
       >
         <span
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         >
           <span
             class="emotion-euiScreenReaderOnly"
@@ -111,7 +111,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           </span>
           <span
             aria-hidden="true"
-            class="euiColorPaletteDisplayFixed__bleedArea"
+            class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
           >
             <span
               style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -177,7 +177,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
         </span>
         <span
           aria-hidden="true"
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         />
       </button>
       <div
@@ -226,7 +226,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
         </span>
         <span
           aria-hidden="true"
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+          class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
         />
       </button>
       <div
@@ -289,69 +289,295 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
 `;
 
 exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
-<div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
->
-  <input
-    type="hidden"
-    value="paletteFixed"
-  />
-  <div
-    class="euiFormControlLayout"
-  >
+<body>
+  <div>
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-block-EuiInputPopover"
     >
-      <button
-        aria-haspopup="listbox"
-        class="euiSuperSelectControl emotion-euiSuperSelect__control-open"
-        data-test-subj="colorPalettePicker"
-        type="button"
-      >
-        <span
-          class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-        >
-          <span
-            class="emotion-euiScreenReaderOnly"
-          >
-            Palette 1
-          </span>
-          <span
-            aria-hidden="true"
-            class="euiColorPaletteDisplayFixed__bleedArea"
-          >
-            <span
-              style="background-color: rgb(31, 176, 178); width: 20%;"
-            />
-            <span
-              style="background-color: rgb(255, 219, 109); width: 20%;"
-            />
-            <span
-              style="background-color: rgb(238, 145, 145); width: 20%;"
-            />
-            <span
-              style="background-color: rgb(255, 255, 255); width: 20%;"
-            />
-            <span
-              style="background-color: rgb(136, 128, 148); width: 20%;"
-            />
-          </span>
-        </span>
-      </button>
+      <input
+        type="hidden"
+        value="paletteFixed"
+      />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayout"
       >
-        <span
-          class="euiFormControlLayoutCustomIcon"
+        <div
+          class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="arrowDown"
-          />
-        </span>
+          <button
+            aria-haspopup="listbox"
+            class="euiSuperSelectControl emotion-euiSuperSelect__control-open"
+            data-test-subj="colorPalettePicker"
+            type="button"
+          >
+            <span
+              class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+            >
+              <span
+                class="emotion-euiScreenReaderOnly"
+              >
+                Palette 1
+              </span>
+              <span
+                aria-hidden="true"
+                class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
+              >
+                <span
+                  style="background-color: rgb(31, 176, 178); width: 20%;"
+                />
+                <span
+                  style="background-color: rgb(255, 219, 109); width: 20%;"
+                />
+                <span
+                  style="background-color: rgb(238, 145, 145); width: 20%;"
+                />
+                <span
+                  style="background-color: rgb(255, 255, 255); width: 20%;"
+                />
+                <span
+                  style="background-color: rgb(136, 128, 148); width: 20%;"
+                />
+              </span>
+            </span>
+          </button>
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="arrowDown"
+              />
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <div
+        aria-live="assertive"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
+      >
+        <div>
+          <div
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="-1"
+          />
+          <div
+            data-focus-lock-disabled="disabled"
+          >
+            <p
+              class="emotion-euiScreenReaderOnly"
+              id="euiSuperSelect__generated-id__screenreaderDescribeId"
+            >
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
+            </p>
+            <div
+              aria-activedescendant="paletteFixed"
+              aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-label="Select listbox"
+              class="euiSuperSelect__listbox eui-scrollBar emotion-euiSuperSelect__listbox"
+              role="listbox"
+              tabindex="0"
+            >
+              <button
+                aria-label="my palette fixed"
+                aria-selected="true"
+                class="euiContextMenuItem euiSuperSelect__item paletteFixedClass emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                data-test-subj="fixed-data-test-subj"
+                id="paletteFixed"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="check"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  <div
+                    class="euiColorPalettePicker__item"
+                  >
+                    <div
+                      aria-hidden="true"
+                      class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                    >
+                      Palette 1
+                    </div>
+                    <div
+                      class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
+                    />
+                    <span
+                      class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+                    >
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        Palette 1
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
+                      >
+                        <span
+                          style="background-color: rgb(31, 176, 178); width: 20%;"
+                        />
+                        <span
+                          style="background-color: rgb(255, 219, 109); width: 20%;"
+                        />
+                        <span
+                          style="background-color: rgb(238, 145, 145); width: 20%;"
+                        />
+                        <span
+                          style="background-color: rgb(255, 255, 255); width: 20%;"
+                        />
+                        <span
+                          style="background-color: rgb(136, 128, 148); width: 20%;"
+                        />
+                      </span>
+                    </span>
+                  </div>
+                </span>
+              </button>
+              <button
+                aria-selected="false"
+                class="euiContextMenuItem euiSuperSelect__item paletteLinearClass emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                data-test-subj="gradient-data-test-subj"
+                id="paletteLinear"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  <div
+                    class="euiColorPalettePicker__item"
+                  >
+                    <div
+                      aria-hidden="true"
+                      class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                    >
+                      Linear Gradient
+                    </div>
+                    <div
+                      class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
+                    />
+                    <span
+                      class="emotion-euiScreenReaderOnly"
+                    >
+                      Linear Gradient
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+                    />
+                  </div>
+                </span>
+              </button>
+              <button
+                aria-selected="false"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                data-test-subj="gradient-with-stops-data-test-subj"
+                id="paletteLinearStops"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  <div
+                    class="euiColorPalettePicker__item"
+                  >
+                    <div
+                      aria-hidden="true"
+                      class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                    >
+                      Linear Gradient with stops
+                    </div>
+                    <div
+                      class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
+                    />
+                    <span
+                      class="emotion-euiScreenReaderOnly"
+                    >
+                      Linear Gradient with stops
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
+                    />
+                  </div>
+                </span>
+              </button>
+              <button
+                aria-selected="false"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item-hasDividers"
+                data-test-subj="text-data-test-subj"
+                id="custom"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__icon emotion-euiContextMenu__icon"
+                  color="inherit"
+                  data-euiicon-type="empty"
+                />
+                <span
+                  class="euiContextMenuItem__text emotion-euiContextMenuItem__text"
+                >
+                  <div
+                    class="euiColorPalettePicker__item"
+                  >
+                    Plain text as a custom option
+                  </div>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            data-focus-guard="true"
+            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+  </div>
+</body>
 `;

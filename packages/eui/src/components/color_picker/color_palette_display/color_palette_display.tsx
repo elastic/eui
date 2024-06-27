@@ -8,7 +8,10 @@
 
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
-import { ExclusiveUnion, keysOf } from '../../common';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { ExclusiveUnion } from '../../common';
+
 import type { PaletteColorStop } from '../color_palette_picker';
 import {
   EuiColorPaletteDisplayFixed,
@@ -18,16 +21,11 @@ import {
   EuiColorPaletteDisplayGradient,
   EuiColorPaletteDisplayGradientProps,
 } from './color_palette_display_gradient';
+import { euiColorPaletteDisplayStyles } from './color_palette_display.styles';
 
-const sizeToClassNameMap = {
-  xs: 'euiColorPaletteDisplay--sizeExtraSmall',
-  s: 'euiColorPaletteDisplay--sizeSmall',
-  m: 'euiColorPaletteDisplay--sizeMedium',
-};
+export const SIZES = ['xs', 's', 'm'] as const;
 
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiColorPaletteDisplaySize = keyof typeof sizeToClassNameMap;
+export type EuiColorPaletteDisplaySize = (typeof SIZES)[number];
 
 export interface EuiColorPaletteDisplayShared {
   /**
@@ -61,22 +59,23 @@ export type EuiColorPaletteDisplayProps = {
 export const EuiColorPaletteDisplay: FunctionComponent<
   EuiColorPaletteDisplayProps
 > = ({ type = 'fixed', palette, className, size = 's', ...rest }) => {
-  const classes = classnames(
-    'euiColorPaletteDisplay',
-    className,
-    sizeToClassNameMap[size]
-  );
+  const classes = classnames('euiColorPaletteDisplay', className);
+
+  const styles = useEuiMemoizedStyles(euiColorPaletteDisplayStyles);
+  const cssStyles = [styles.euiColorPaletteDisplay, styles[size]];
 
   return (
     <>
       {type === 'fixed' ? (
         <EuiColorPaletteDisplayFixed
+          css={cssStyles}
           className={classes}
           palette={palette}
           {...rest}
         />
       ) : (
         <EuiColorPaletteDisplayGradient
+          css={cssStyles}
           className={classes}
           palette={palette}
           {...rest}
