@@ -105,7 +105,8 @@ export const getEmotionComponentDisplayName = (
 export const getStoryComponentDisplayName = (
   context: StoryContext | undefined
 ): string | undefined => {
-  if (!context) return undefined;
+  if (!context) return;
+
   const component = context.component as ComponentType & {
     __docgenInfo?: { displayName?: string };
   };
@@ -135,9 +136,9 @@ export const isStoryComponent = (
   const displayName = isClassComponent
     ? node.constructor?.name
     : getEmotionComponentDisplayName(node)?.replace(/^_/, '');
-  const isCurrentStory = displayName
-    ? displayName === context?.component?.displayName
-    : false;
+  const storyDisplayName = getStoryComponentDisplayName(context);
+  const isCurrentStory =
+    displayName && storyDisplayName ? displayName === storyDisplayName : false;
 
   return isCurrentStory;
 };
@@ -264,8 +265,10 @@ export const getStoryComponent = (
           const resolvedDisplayName =
             getEmotionComponentDisplayName(resolvedChild);
 
-          if (resolvedDisplayName !== displayName) {
+          if (resolvedDisplayName && resolvedDisplayName !== displayName) {
             resolveChildren(resolvedChild);
+          } else if (typeof resolvedChild.type !== 'string') {
+            storyNode = resolvedChild;
           }
         }
       } else if (
@@ -285,9 +288,14 @@ export const getStoryComponent = (
       } else if (
         // CASE: single child element
         childNode.props?.children &&
+        typeof childNode.props?.children === 'object' &&
         !Array.isArray(childNode.props?.children)
       ) {
-        storyNode = childNode.props.children;
+        const { children } = childNode.props;
+
+        if (isStoryComponent(children, context)) {
+          storyNode = children;
+        }
       }
     }
   };
@@ -311,7 +319,7 @@ export const getDefaultPropsfromDocgenInfo = (
   component: ReactElementWithDocgenInfo,
   context: StoryContext
 ): Record<string, any> | undefined => {
-  if (typeof component.type === 'string') return undefined;
+  if (typeof component.type === 'string') return;
 
   // determine the story element first
   // this is required because the story might be wrapped and
@@ -319,7 +327,7 @@ export const getDefaultPropsfromDocgenInfo = (
   let storyComponent: ReactElementWithDocgenInfo | undefined =
     getStoryComponent(component, context);
 
-  if (!storyComponent) return undefined;
+  if (!storyComponent) return;
 
   let propsInfo =
     isEmotionComponent(storyComponent) &&
