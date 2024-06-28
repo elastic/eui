@@ -191,9 +191,11 @@ const meta = {
 
 ### Manual code snippets
 
-Instead of using the automatic code snippet generation, we can also provide a manual snippet which will be output instead. This is especially useful when the story content is not actually a component (e.g. a hook). You can see an example of this for the story of `useEuiTextDiff`.
+Instead of using the automatic code snippet generation, you can also provide a manual snippet which will be output instead. This is especially useful when the story content is not actually a component (e.g. a hook). You can see an example of this for the story of `useEuiTextDiff`.
 
-To add the story args to the code snippet, add the defined marker `{{STORY_ARGS}}` to the snippet string. This marker will be replaced automatically with the current story args. If the args should be spread on the root component use `{{...STORY_ARGS}}` instead.
+To add the story args to the code snippet, add the defined marker `{{STORY_ARGS}}` to the snippet string. If the args should be spread on the root component use `{{...STORY_ARGS}}` instead. 
+These markers will be replaced automatically with the current story args. It's important to note that the `children` prop is removed and it should be manually added to the snippet input instead. Additionally the story `args` are filtered to remove the default props. This can be changed via the `removeDefaultProps` option.
+
 
 ```ts
 // {{STORY_ARGS}}

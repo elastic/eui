@@ -25,7 +25,11 @@ import {
   STORY_ARGS_MARKER,
 } from '../constants';
 
-import { getFormattedCode, skipJsxRender } from './utils';
+import {
+  getDefaultPropsfromDocgenInfo,
+  getFormattedCode,
+  skipJsxRender,
+} from './utils';
 import { JSXOptions, renderJsx } from './render_jsx';
 
 const defaultJsxOptions = {
@@ -104,9 +108,18 @@ export const customJsxDecorator = (
   // use manually provided code snippet and replace args if available
   if (codeSnippet) {
     const args: typeof context.args = { ...context.args };
+    const defaultProps = getDefaultPropsfromDocgenInfo(story, context);
 
     for (const key of Object.keys(context.args)) {
-      if (!context.args[key]) {
+      // checks story args for:
+      //   - remove if no value
+      //   - remove if `chidlren`
+      //   - remove if arg is a default prop
+      if (
+        !context.args[key] ||
+        key === 'children' ||
+        defaultProps?.includes(key)
+      ) {
         delete args[key];
       }
     }
@@ -141,7 +154,7 @@ export const customJsxDecorator = (
 
     getFormattedCode(code)
       .then((res: string) => {
-        jsx = res;
+        jsx = res.replace(';\n', '\n');
       })
       .catch((error: Error): void => {
         logger.error(
