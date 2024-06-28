@@ -157,10 +157,13 @@ const meta = {
   component: EuiButton,
   parameters: {
     codeSnippet: {
-      // optional way to override selected story args with manual values
-      // this is useful when the story arg would render unreadable or not useful output
+      // Optional way to override selected story args with manual values.
+      // This is useful when the story arg would render unreadable or not useful output.
+      // You can use interpolation markers #{} to ensure the value is output as is, this
+      // is useful for e.g. functions to prevent them from being called.
       args: {
         propA: 'new value for propA',
+        propB: "#{someFunctionCall('inputValue')}" // returns: propB={someFunctionCall('inputValue')}
       },
       // will skip code snippet generation for the component or story
       // @default false

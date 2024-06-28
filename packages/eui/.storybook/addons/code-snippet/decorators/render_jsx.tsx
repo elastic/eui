@@ -281,7 +281,7 @@ export const renderJsx = (
       }
     }
 
-    // removed arg value overwrite markers
+    // remove arg value override markers #{} and replace them with their content
     // example:
     // in:  selected: "#{moment('Tue Mar 19 2024 18:54:51 GMT+0100')}"
     // out: selected={moment('Tue Mar 19 2024 18:54:51 GMT+0100')}
