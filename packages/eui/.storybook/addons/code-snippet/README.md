@@ -88,7 +88,7 @@ Before passing a React element to the `react-element-to-jsx-string` package func
 1. Should a story be skipped? ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/utils.ts#L196))
     - a story may be skipped:
         - by using `parameters.codeSnippet.skip` ([example](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/src/components/drag_and_drop/drag_drop_context.stories.tsx#L31))
-        - by returning an anonymous function from story `render`
+        - by returning an anonymous function without `args` from story `render`
 2. Is a manual code snippet provided? ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/jsx_decorator.tsx#L100)) ([example](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/src/components/text_diff/text_diff.stories.tsx#L24))
 
 3. What React element should be used? (only a single React element can be passed to `react-element-to-jsx-string`) ([code](https://github.com/elastic/eui/blob/03d20559b4262d6a18de5fc8edf4ec3854753995/packages/eui/.storybook/addons/code-snippet/decorators/jsx_decorator.tsx#L146))
@@ -174,7 +174,7 @@ const meta = {
       // instead. See the story for `EuiHeader/Multiple Fixed Headers` as an example.
       // @default false
       resolveChildren: true,
-      // Useful when the story outputs additional contnt that should not be included in the
+      // Useful when the story outputs additional content that should not be included in the
       // snippet and instead only the actual story component should be output as snippet.
       // @default false
       resolveStoryElementOnly: true,
