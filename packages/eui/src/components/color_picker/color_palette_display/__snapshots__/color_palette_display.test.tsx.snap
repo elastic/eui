@@ -3,12 +3,12 @@
 exports[`EuiColorPaletteDisplay is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -32,7 +32,7 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
 exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
   id="id"
 >
@@ -43,7 +43,7 @@ exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`
   </span>
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -67,12 +67,12 @@ exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`
 exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeMedium"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-m-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -96,12 +96,12 @@ exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
 exports[`EuiColorPaletteDisplay props size s is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -125,12 +125,12 @@ exports[`EuiColorPaletteDisplay props size s is rendered 1`] = `
 exports[`EuiColorPaletteDisplay props size xs is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeExtraSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-xs-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -154,12 +154,12 @@ exports[`EuiColorPaletteDisplay props size xs is rendered 1`] = `
 exports[`EuiColorPaletteDisplay props type and palette are rendered with type fixed and palette with stops 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(84, 179, 153); width: 21%;"
@@ -180,12 +180,12 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
 exports[`EuiColorPaletteDisplay props type and palette are rendered with type fixed and palette without stops 1`] = `
 <span
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
     aria-hidden="true"
-    class="euiColorPaletteDisplayFixed__bleedArea"
+    class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
       style="background-color: rgb(31, 176, 178); width: 20%;"
@@ -210,7 +210,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type gr
 <span
   aria-hidden="true"
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -219,7 +219,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type gr
 <span
   aria-hidden="true"
   aria-label="aria-label"
-  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiTestCss euiColorPaletteDisplay--sizeSmall"
+  class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

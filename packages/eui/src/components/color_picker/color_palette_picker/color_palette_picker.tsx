@@ -6,13 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
-
-import { EuiSuperSelect } from '../../form';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
 
 import { CommonProps } from '../../common';
+import { EuiSpacer } from '../../spacer';
+import { EuiText } from '../../text';
+import {
+  EuiSuperSelect,
+  type EuiSuperSelectProps,
+} from '../../form/super_select'; // Note: needs to be pointed at this specific subdir for Storybook to inherit types correctly??
 
-import { EuiSuperSelectProps } from '../../form/super_select';
 import { EuiColorPaletteDisplay } from '../color_palette_display';
 
 export interface PaletteColorStop {
@@ -115,47 +118,58 @@ export const EuiColorPalettePicker: FunctionComponent<
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const getPalette = ({
-    type,
-    palette,
-    title,
-  }:
-    | EuiColorPalettePickerPaletteFixedProps
-    | EuiColorPalettePickerPaletteGradientProps) => {
-    return (
-      <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
-    );
-  };
+  const getPalette = useCallback(
+    ({
+      type,
+      palette,
+      title,
+    }:
+      | EuiColorPalettePickerPaletteFixedProps
+      | EuiColorPalettePickerPaletteGradientProps) => {
+      return (
+        <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
+      );
+    },
+    []
+  );
 
-  const paletteOptions = palettes.map(
-    (item: EuiColorPalettePickerPaletteProps) => {
-      const { type, value, title, palette, ...rest } = item;
-      const paletteForDisplay = item.type !== 'text' ? getPalette(item) : null;
-      return {
-        value: String(value),
-        inputDisplay:
-          selectionDisplay === 'title' || type === 'text'
-            ? title
-            : paletteForDisplay,
-        dropdownDisplay: (
-          <div className="euiColorPalettePicker__item">
-            {title && type !== 'text' && (
-              // Accessible labels are managed by color_palette_display_fixed and
-              // color_palette_display_gradient. Adding the aria-hidden attribute
-              // here to ensure screen readers don't speak the listbox options twice.
-              <div
-                aria-hidden="true"
-                className="euiColorPalettePicker__itemTitle"
-              >
-                {title}
-              </div>
-            )}
-            {type === 'text' ? title : paletteForDisplay}
-          </div>
-        ),
-        ...rest,
-      };
-    }
+  const paletteOptions = useMemo(
+    () =>
+      palettes.map((item: EuiColorPalettePickerPaletteProps) => {
+        const { type, value, title, palette, ...rest } = item;
+        const paletteForDisplay =
+          item.type !== 'text' ? getPalette(item) : null;
+
+        return {
+          value: String(value),
+          inputDisplay:
+            selectionDisplay === 'title' || type === 'text'
+              ? title
+              : paletteForDisplay,
+          dropdownDisplay: (
+            <div className="euiColorPalettePicker__item">
+              {title && type !== 'text' && (
+                // Accessible labels are managed by color_palette_display_fixed and
+                // color_palette_display_gradient. Adding the aria-hidden attribute
+                // here to ensure screen readers don't speak the listbox options twice.
+                <>
+                  <EuiText
+                    aria-hidden="true"
+                    className="euiColorPalettePicker__itemTitle"
+                    size="xs"
+                  >
+                    {title}
+                  </EuiText>
+                  <EuiSpacer size="xs" />
+                </>
+              )}
+              {type === 'text' ? title : paletteForDisplay}
+            </div>
+          ),
+          ...rest,
+        };
+      }),
+    [getPalette, palettes, selectionDisplay]
   );
 
   return (

@@ -7,414 +7,359 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
-import { act } from '@testing-library/react';
+
+import { VISUALIZATION_COLORS, keys } from '../../services';
 
 import { EuiColorPicker } from './color_picker';
-import { VISUALIZATION_COLORS, keys } from '../../services';
-import { requiredProps, findTestSubject, sleep } from '../../test';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
 }));
 
-const onChange = jest.fn();
+describe('EuiColorPicker', () => {
+  const onChange = jest.fn();
+  beforeEach(() => jest.clearAllMocks());
 
-test('renders EuiColorPicker', () => {
-  const { container } = render(
-    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-test('renders compressed EuiColorPicker', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      compressed={true}
-      {...requiredProps}
-    />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-test('renders readOnly EuiColorPicker', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      readOnly={true}
-      {...requiredProps}
-    />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-test('renders fullWidth EuiColorPicker', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      fullWidth={true}
-      {...requiredProps}
-    />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-test('renders disabled EuiColorPicker', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      disabled={true}
-      {...requiredProps}
-    />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-test('renders inline EuiColorPicker', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      display="inline"
-      {...requiredProps}
-    />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
-
-test('renders a EuiColorPicker with a prepend and append', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      prepend="prepend"
-      append="append"
-      {...requiredProps}
-    />
+  shouldRenderCustomStyles(
+    <EuiColorPicker onChange={onChange} display="inline" />,
+    { skip: { style: true } } // No ...rest
   );
 
-  expect(container.firstChild).toMatchSnapshot();
-});
+  it('renders', () => {
+    const { container } = render(
+      <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('renders a EuiColorPicker with an alpha range selector', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      showAlpha={true}
-      {...requiredProps}
-    />
-  );
+  test('compressed', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        compressed={true}
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-  expect(container.firstChild).toMatchSnapshot();
-});
+  test('readOnly', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        readOnly={true}
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('renders EuiColorPicker with an empty swatch when color is null', () => {
-  const { container } = render(
-    <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
+  test('fullWidth', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        fullWidth={true}
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('renders EuiColorPicker with an empty swatch when color is ""', () => {
-  const { container } = render(
-    <EuiColorPicker onChange={onChange} color={''} {...requiredProps} />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
+  test('disabled', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        disabled={true}
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('renders EuiColorPicker with a color swatch when color is defined', () => {
-  const { container } = render(
-    <EuiColorPicker onChange={onChange} color={'#ffffff'} {...requiredProps} />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
+  test('inline', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        display="inline"
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('renders EuiColorPicker with a custom placeholder', () => {
-  const { container } = render(
-    <EuiColorPicker onChange={onChange} placeholder="Auto" {...requiredProps} />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
+  test('prepend and append', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        prepend="prepend"
+        append="append"
+        {...requiredProps}
+      />
+    );
 
-test('renders EuiColorPicker with a clearable input', () => {
-  const { container } = render(
-    <EuiColorPicker
-      onChange={onChange}
-      color={'#ffeedd'}
-      isClearable={true}
-      {...requiredProps}
-    />
-  );
-  expect(container.firstChild).toMatchSnapshot();
-});
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('popover color selector is not shown by default', () => {
-  const colorPicker = mount(
-    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
-  );
+  test('showAlpha', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color="#ffeedd"
+        showAlpha={true}
+        {...requiredProps}
+      />
+    );
 
-  const colorSelector = findTestSubject(colorPicker, 'euiColorPickerPopover');
-  expect(colorSelector.length).toBe(0);
-});
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-test('popover color selector is shown when the input is clicked', () => {
-  const onFocusHandler = jest.fn();
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      onFocus={onFocusHandler}
-      color="#ffeedd"
-      {...requiredProps}
-    />
-  );
+  describe('color', () => {
+    test('null', () => {
+      const { container } = render(
+        <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
+      );
+      expect(container.firstChild).toMatchSnapshot();
+    });
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  expect(onFocusHandler).toBeCalled();
-  const colorSelector = findTestSubject(colorPicker, 'euiColorPickerPopover');
-  expect(colorSelector.length).toBe(1);
-});
+    test('empty string', () => {
+      const { container } = render(
+        <EuiColorPicker onChange={onChange} color={''} {...requiredProps} />
+      );
+      expect(container.firstChild).toMatchSnapshot();
+    });
 
-test('popover color selector is hidden when the ESC key pressed', async () => {
-  const onBlurHandler = jest.fn();
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      onBlur={onBlurHandler}
-      {...requiredProps}
-    />
-  );
+    test('valid string', () => {
+      const { container } = render(
+        <EuiColorPicker
+          onChange={onChange}
+          color="#ffffff"
+          {...requiredProps}
+        />
+      );
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
 
-  await act(
-    async () =>
-      await findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate(
-        'click'
-      )
-  );
+  test('placeholder', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        placeholder="Auto"
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-  await act(() => sleep());
+  test('isClearable', () => {
+    const { container } = render(
+      <EuiColorPicker
+        onChange={onChange}
+        color={'#ffeedd'}
+        isClearable={true}
+        {...requiredProps}
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-  act(() => {
-    findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('keydown', {
+  test('popover color selector is not shown by default', () => {
+    const { queryByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
+    );
+
+    expect(queryByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
+  });
+
+  test('popover color selector is shown when the input is clicked', () => {
+    const onFocusHandler = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} onFocus={onFocusHandler} />
+    );
+
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
+    expect(onFocusHandler).toBeCalled();
+    expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
+  });
+
+  test('popover color selector is hidden when the ESC key pressed', async () => {
+    const onBlurHandler = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} onBlur={onBlurHandler} />
+    );
+
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
+    fireEvent.keyDown(getByTestSubject('euiColorPickerAnchor'), {
       key: keys.ENTER,
     });
-  });
+    expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
 
-  await act(() => sleep());
-
-  act(() => {
-    findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
+    fireEvent.keyDown(getByTestSubject('euiColorPickerPopover'), {
       key: keys.ESCAPE,
+    });
+    await (async () => {
+      expect(getByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
+      expect(onBlurHandler).toBeCalled(); // The blur handler is called just before the portal would be removed.
     });
   });
 
-  // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
-  expect(onBlurHandler).toBeCalled();
-});
+  test('popover color selector is hidden and input regains focus when the ENTER key pressed', async () => {
+    const onBlurHandler = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} onBlur={onBlurHandler} />
+    );
 
-test('popover color selector is hidden and input regains focus when the ENTER key pressed', () => {
-  const onBlurHandler = jest.fn();
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      onBlur={onBlurHandler}
-      {...requiredProps}
-    />
-  );
-
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
-    key: keys.ENTER,
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
+    fireEvent.keyDown(getByTestSubject('euiColorPickerAnchor'), {
+      key: keys.ENTER,
+    });
+    await (async () => {
+      expect(getByTestSubject('euiColorPickerAnchor')).toHaveFocus();
+      expect(getByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
+    });
   });
 
-  expect(document.body).toEqual(document.activeElement);
-  expect(onBlurHandler).toHaveBeenCalled();
-});
+  test('Setting a new color calls onChange', () => {
+    const { getByTestSubject } = render(<EuiColorPicker onChange={onChange} />);
 
-test('Setting a new color calls onChange', () => {
-  const colorPicker = mount(
-    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
-  );
+    const event = { target: { value: '#000000' } };
+    fireEvent.change(getByTestSubject('euiColorPickerAnchor'), event);
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const event = { target: { value: '#000000' } };
-  const inputs = colorPicker.find('input[type="text"]');
-  expect(inputs.length).toBe(1);
-  inputs.simulate('change', event);
-  expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('#000000', {
-    hex: '#000000',
-    isValid: true,
-    rgba: [0, 0, 0, 1],
+    expect(onChange).toBeCalled();
+    expect(onChange).toBeCalledWith('#000000', {
+      hex: '#000000',
+      isValid: true,
+      rgba: [0, 0, 0, 1],
+    });
   });
-});
 
-test('Clicking a swatch calls onChange', () => {
-  const colorPicker = mount(
-    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
-  );
+  test('Clicking a swatch calls onChange', () => {
+    const { getByTestSubject } = render(<EuiColorPicker onChange={onChange} />);
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
-  expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
-  swatches.first().simulate('click');
-  expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith(VISUALIZATION_COLORS[0], {
-    hex: '#54b399',
-    isValid: true,
-    rgba: [84, 179, 153, 1],
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
+
+    const swatches = document.querySelectorAll('button.euiColorPickerSwatch');
+    expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
+
+    fireEvent.click(swatches[0]);
+    expect(onChange).toBeCalled();
+    expect(onChange).toBeCalledWith(VISUALIZATION_COLORS[0], {
+      hex: '#54b399',
+      isValid: true,
+      rgba: [84, 179, 153, 1],
+    });
   });
-});
 
-test('Setting a new alpha value calls onChange', () => {
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      showAlpha={true}
-      {...requiredProps}
-    />
-  );
+  test('Setting a new alpha value calls onChange', () => {
+    const { getByTestSubject, getAllByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} color="#ffeedd" showAlpha={true} />
+    );
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  // Slider
-  const alpha = findTestSubject(colorPicker, 'euiColorPickerAlpha');
-  const event1 = { target: { value: '50' } };
-  const range = alpha.first(); // input[type=range]
-  range.simulate('change', event1);
-  expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('#ffeedd80', {
-    hex: '#ffeedd80',
-    isValid: true,
-    rgba: [255, 238, 221, 0.5],
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
+
+    // Slider
+    const [range, input] = getAllByTestSubject('euiColorPickerAlpha');
+    fireEvent.change(range, { target: { value: '50' } });
+    expect(onChange).toBeCalledWith('#ffeedd80', {
+      hex: '#ffeedd80',
+      isValid: true,
+      rgba: [255, 238, 221, 0.5],
+    });
+    // Number input
+    fireEvent.change(input, { target: { value: '25' } });
+    expect(onChange).toBeCalledWith('#ffeedd40', {
+      hex: '#ffeedd40',
+      isValid: true,
+      rgba: [255, 238, 221, 0.25],
+    });
   });
-  // Number input
-  const event2 = { target: { value: '25' } };
-  const input = alpha.at(1); // input[type=number]
-  input.simulate('change', event2);
-  expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('#ffeedd40', {
-    hex: '#ffeedd40',
-    isValid: true,
-    rgba: [255, 238, 221, 0.25],
+
+  test('Clicking the "clear" button calls onChange', () => {
+    const { getByLabelText } = render(
+      <EuiColorPicker onChange={onChange} color="#ffeedd" isClearable={true} />
+    );
+
+    fireEvent.click(getByLabelText('Clear input'));
+    expect(onChange).toBeCalled();
+    expect(onChange).toBeCalledWith('', {
+      hex: '',
+      isValid: false,
+      rgba: [NaN, NaN, NaN, 1],
+    });
   });
-});
 
-test('Clicking the "clear" button calls onChange', () => {
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      color="#ffeedd"
-      isClearable={true}
-      {...requiredProps}
-    />
-  );
+  test('default mode does renders child components', () => {
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} color="#ffeedd" />
+    );
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
 
-  colorPicker.find('.euiFormControlLayoutClearButton').simulate('click');
-  expect(onChange).toBeCalled();
-  expect(onChange).toBeCalledWith('', {
-    hex: '',
-    isValid: false,
-    rgba: [NaN, NaN, NaN, 1],
+    expect(document.querySelector('.euiSaturation')).toBeInTheDocument();
+    expect(document.querySelector('.euiHue')).toBeInTheDocument();
+    expect(
+      document.querySelectorAll('button.euiColorPickerSwatch').length
+    ).toBe(VISUALIZATION_COLORS.length);
   });
-});
 
-test('default mode does renders child components', () => {
-  const colorPicker = mount(
-    <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
-  );
+  test('swatch mode does not render EuiSaturation or EuiHue', () => {
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} mode="swatch" />
+    );
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const saturation = findTestSubject(colorPicker, 'euiSaturation');
-  expect(saturation.length).toBe(1);
-  const hue = colorPicker.find('EuiHue');
-  expect(hue.length).toBe(1);
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
-  expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
-});
+    expect(document.querySelector('.euiSaturation')).not.toBeInTheDocument();
+    expect(document.querySelector('.euiHue')).not.toBeInTheDocument();
+    expect(
+      document.querySelectorAll('button.euiColorPickerSwatch').length
+    ).toBe(VISUALIZATION_COLORS.length);
+  });
 
-test('swatch mode does not render EuiSaturation or EuiHue', () => {
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      mode="swatch"
-      color="#ffeedd"
-      {...requiredProps}
-    />
-  );
+  test('picker mode does not render swatches', () => {
+    const { getByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} mode="picker" />
+    );
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const saturation = colorPicker.find('EuiSaturation');
-  expect(saturation.length).toBe(0);
-  const hue = colorPicker.find('EuiHue');
-  expect(hue.length).toBe(0);
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
-  expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
-});
+    expect(document.querySelector('.euiSaturation')).toBeInTheDocument();
+    expect(document.querySelector('.euiHue')).toBeInTheDocument();
+    expect(
+      document.querySelectorAll('button.euiColorPickerSwatch').length
+    ).toBe(0);
+  });
 
-test('picker mode does not render swatches', () => {
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      mode="picker"
-      color="#ffeedd"
-      {...requiredProps}
-    />
-  );
+  test('secondaryInputDisplay `top` has a popover panel input', () => {
+    const { getByTestSubject, queryByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} secondaryInputDisplay="top" />
+    );
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const saturation = findTestSubject(colorPicker, 'euiSaturation');
-  expect(saturation.length).toBe(1);
-  const hue = colorPicker.find('EuiHue');
-  expect(hue.length).toBe(1);
-  const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
-  expect(swatches.length).toBe(0);
-});
+    expect(queryByTestSubject('euiColorPickerInput_top')).toBeInTheDocument();
+    expect(
+      queryByTestSubject('euiColorPickerInput_bottom')
+    ).not.toBeInTheDocument();
+  });
 
-test('secondaryInputDisplay `top` has a popover panel input', () => {
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      secondaryInputDisplay="top"
-      color="#ffeedd"
-      {...requiredProps}
-    />
-  );
+  test('secondaryInputDisplay `bottom` has a popover panel input', () => {
+    const { getByTestSubject, queryByTestSubject } = render(
+      <EuiColorPicker onChange={onChange} secondaryInputDisplay="bottom" />
+    );
+    fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const inputTop = findTestSubject(colorPicker, 'euiColorPickerInput_top');
-  const inputBottom = findTestSubject(
-    colorPicker,
-    'euiColorPickerInput_bottom'
-  );
-  expect(inputTop.length).toBe(1);
-  expect(inputBottom.length).toBe(0);
-});
-
-test('secondaryInputDisplay `bottom` has a popover panel input', () => {
-  const colorPicker = mount(
-    <EuiColorPicker
-      onChange={onChange}
-      secondaryInputDisplay="bottom"
-      color="#ffeedd"
-      {...requiredProps}
-    />
-  );
-
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  const inputTop = findTestSubject(colorPicker, 'euiColorPickerInput_top');
-  const inputBottom = findTestSubject(
-    colorPicker,
-    'euiColorPickerInput_bottom'
-  );
-  expect(inputTop.length).toBe(0);
-  expect(inputBottom.length).toBe(1);
+    expect(
+      queryByTestSubject('euiColorPickerInput_top')
+    ).not.toBeInTheDocument();
+    expect(
+      queryByTestSubject('euiColorPickerInput_bottom')
+    ).toBeInTheDocument();
+  });
 });
