@@ -20,9 +20,9 @@ const meta: Meta<EuiTextBlockTruncateProps> = {
   title: 'Utilities/EuiTextBlockTruncate',
   component: EuiTextBlockTruncate,
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <EuiPanel style={{ width: 200 }}>
-        <Story />
+        <Story {...args} />
       </EuiPanel>
     ),
   ],

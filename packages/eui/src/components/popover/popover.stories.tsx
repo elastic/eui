@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -71,6 +71,10 @@ const StatefulPopover = ({
   ...rest
 }: EuiPopoverProps) => {
   const [isOpen, setOpen] = useState(_isOpen);
+
+  useEffect(() => {
+    setOpen(_isOpen);
+  }, [_isOpen]);
 
   const handleOnClose = () => {
     setOpen(false);

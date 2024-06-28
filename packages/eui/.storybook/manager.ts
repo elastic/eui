@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { addons } from '@storybook/manager-api';
+import { addons, API, types } from '@storybook/manager-api';
+
+import { ADDON_ID, PANEL_ID } from './addons/code-snippet/constants';
+import { Panel } from './addons/code-snippet/components/panel';
+import { setupCodeSnippetEvents } from './addons/code-snippet/event-handlers/setup';
 
 // filter out stories based on tags that should not
 // be shown in the Storybook sidebar menu
@@ -20,4 +24,17 @@ addons.setConfig({
       },
     },
   },
+});
+
+// Register a addon
+addons.register(ADDON_ID, (api: API) => {
+  setupCodeSnippetEvents(api);
+
+  // Register a panel
+  addons.add(PANEL_ID, {
+    type: types.PANEL,
+    title: 'Code Snippet',
+    match: ({ viewMode }) => viewMode === 'story',
+    render: Panel,
+  });
 });

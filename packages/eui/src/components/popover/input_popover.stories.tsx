@@ -67,6 +67,12 @@ export const Playground: Story = {
   args: {
     children: 'Popover content',
     isOpen: true,
+    input: (
+      <EuiFieldText
+        placeholder="Focus me to toggle an input popover"
+        aria-label="Popover attached to input element"
+      />
+    ),
   },
   render: (args) => <StatefulInputPopover {...args} />,
 };
@@ -90,17 +96,18 @@ const StatefulInputPopover = ({
     closePopover?.();
   };
 
+  const connectedInput = React.isValidElement(input)
+    ? React.cloneElement(input, {
+        ...input.props,
+        onFocus: () => setOpen(true),
+      })
+    : input;
+
   return (
     <EuiInputPopover
       isOpen={isOpen}
       closePopover={handleOnClose}
-      input={
-        <EuiFieldText
-          onFocus={() => setOpen(true)}
-          placeholder="Focus me to toggle an input popover"
-          aria-label="Popover attached to input element"
-        />
-      }
+      input={connectedInput}
       {...rest}
     >
       {children}

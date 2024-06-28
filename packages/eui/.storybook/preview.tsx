@@ -50,10 +50,13 @@ setEuiDevProviderWarning('error');
  */
 
 import type { CommonProps } from '../src/components/common';
+
+import { customJsxDecorator } from './addons/code-snippet/decorators/jsx_decorator';
 import { hideStorybookControls } from './utils';
 
 const preview: Preview = {
   decorators: [
+    customJsxDecorator,
     (Story, context) => (
       <EuiProvider
         colorMode={context.globals.colorMode}

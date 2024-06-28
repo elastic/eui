@@ -205,6 +205,12 @@ const RenderCellValue = ({
 const meta: Meta<EuiDataGridProps> = {
   title: 'Tabular Content/EuiDataGrid',
   component: EuiDataGrid,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   argTypes: {
     width: { control: 'text' },
     height: { control: 'text' },

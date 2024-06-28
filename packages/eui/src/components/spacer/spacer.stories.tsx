@@ -15,13 +15,18 @@ import { EuiSpacer, EuiSpacerProps } from './spacer';
 const meta: Meta<EuiSpacerProps> = {
   title: 'Layout/EuiSpacer',
   component: EuiSpacer,
+  parameters: {
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
+  },
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <>
         <EuiText>
           <p>Observe the space created between this and the next text block.</p>
         </EuiText>
-        <Story />
+        <Story {...args} />
         <EuiText>
           <p>
             Observe the space created between this and the previous text block.

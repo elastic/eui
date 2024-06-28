@@ -125,6 +125,13 @@ export default meta;
 type Story = StoryObj<EuiDatePickerProps>;
 
 export const Playground: Story = {
+  parameters: {
+    codeSnippet: {
+      args: {
+        selected: "#{moment('Tue Mar 19 2024 18:54:51 GMT+0100')}",
+      },
+    },
+  },
   args: {
     // NOTE: loki play interactions won't work in CLI somehow
     // TODO: exchange with loki play() interactions once fixed

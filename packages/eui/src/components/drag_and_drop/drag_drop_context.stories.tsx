@@ -26,6 +26,10 @@ const meta: Meta<DragDropContextProps> = {
       // visual parts with the Drag and Drop components separately
       skip: true,
     },
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
   },
 };
 enableFunctionToggleControls(meta, [

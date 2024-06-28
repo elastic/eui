@@ -77,6 +77,10 @@ export const Interactive: Story = {
         'customDragHandle',
       ],
     },
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
   },
   args: {
     draggableId: 'draggable-item',

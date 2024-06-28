@@ -18,9 +18,9 @@ const meta: Meta<EuiPopoverFooterProps> = {
   title: 'Layout/EuiPopover/EuiPopoverFooter',
   component: EuiPopoverFooter,
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <EuiPopover isOpen button={<EuiButton>trigger</EuiButton>}>
-        <Story />
+        <Story {...args} />
       </EuiPopover>
     ),
   ],

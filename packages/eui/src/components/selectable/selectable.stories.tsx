@@ -68,6 +68,12 @@ const options: EuiSelectableOption[] = [
 const meta: Meta<EuiSelectableProps> = {
   title: 'Forms/EuiSelectable',
   component: EuiSelectable,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   argTypes: {
     singleSelection: { control: 'radio', options: [true, false, 'always'] },
     emptyMessage: { control: 'text' },
@@ -111,7 +117,11 @@ export const WithTooltip: Story = {
     },
   },
   args: {
-    options: options.map((option) => ({ ...option, ...toolTipProps })),
+    options: options.map((option, idx) => ({
+      ...option,
+      ...toolTipProps,
+      value: idx,
+    })),
     searchable: false,
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,

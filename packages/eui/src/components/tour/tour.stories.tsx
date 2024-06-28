@@ -20,6 +20,10 @@ const meta: Meta<EuiTourProps> = {
   component: EuiTour,
   parameters: {
     layout: 'fullscreen',
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
   },
   decorators: [
     (Story, { args }) => (

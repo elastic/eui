@@ -27,6 +27,12 @@ const makeId = htmlIdGenerator();
 const meta: Meta<EuiDroppableProps> = {
   title: 'Display/EuiDroppable',
   component: EuiDroppable,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   argTypes: {
     droppableId: {
       type: {

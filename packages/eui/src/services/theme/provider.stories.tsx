@@ -21,9 +21,14 @@ export default meta;
 type Story = StoryObj<EuiThemeProviderProps<{}>>;
 
 export const WrapperCloneElement: Story = {
-  render: () => (
+  args: {
+    wrapperProps: {
+      cloneElement: true,
+    },
+  },
+  render: (args) => (
     <>
-      <EuiThemeProvider wrapperProps={{ cloneElement: true }}>
+      <EuiThemeProvider {...args}>
         <main className="clonedExample">
           This example should only have 1 main wrapper rendered.
         </main>
@@ -33,14 +38,14 @@ export const WrapperCloneElement: Story = {
 };
 
 export const CSSVariablesNearest: Story = {
-  render: () => (
+  render: (args) => (
     <>
       <MockComponent color="red">
         This component sets the nearest theme provider (the global theme) with a
         red CSS variable color. Inspect the `:root` styles to see the variable
         set.
       </MockComponent>
-      <EuiThemeProvider>
+      <EuiThemeProvider {...args}>
         <MockComponent color="blue">
           This component sets the nearest local theme provider with a blue CSS
           variable color. Inspect the parent theme wrapper to see the variable
@@ -52,14 +57,14 @@ export const CSSVariablesNearest: Story = {
 };
 
 export const CSSVariablesGlobal: Story = {
-  render: () => (
+  render: (args) => (
     <>
       <MockComponent color="red">
         This component sets the nearest theme provider (the global theme) with a
         red CSS variable color. However, it should be overridden by the next
         component.
       </MockComponent>
-      <EuiThemeProvider>
+      <EuiThemeProvider {...args}>
         <MockComponent color="blue" global={true}>
           This component sets the global theme with a blue CSS variable color.
           It should override the previous component. Inspect the `:root` styles

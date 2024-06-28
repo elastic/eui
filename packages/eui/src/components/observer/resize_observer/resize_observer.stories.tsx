@@ -20,6 +20,12 @@ import { EuiResizeObserver, EuiResizeObserverProps } from './resize_observer';
 const meta: Meta<EuiResizeObserverProps> = {
   title: 'Utilities/EuiResizeObserver',
   component: EuiResizeObserver,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
 };
 
 export default meta;
