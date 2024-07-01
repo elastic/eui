@@ -18,11 +18,6 @@ exports[`EuiStat is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -41,11 +36,6 @@ exports[`EuiStat props accent is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-accent"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -66,11 +56,6 @@ exports[`EuiStat props center is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -90,11 +75,6 @@ exports[`EuiStat props danger is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -113,11 +93,6 @@ exports[`EuiStat props default is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -139,11 +114,6 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -162,11 +132,6 @@ exports[`EuiStat props l is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -187,11 +152,6 @@ exports[`EuiStat props left is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -209,14 +169,10 @@ exports[`EuiStat props loading is rendered 1`] = `
     </p>
   </div>
   <p
+    aria-label="Statistic is loading"
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default-isLoading"
   >
     --
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    Statistic is loading
   </p>
 </div>
 `;
@@ -237,11 +193,6 @@ exports[`EuiStat props m is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -260,11 +211,6 @@ exports[`EuiStat props primary is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-primary"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -328,11 +274,6 @@ exports[`EuiStat props right is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -351,11 +292,6 @@ exports[`EuiStat props s is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-s-euiStat__title-default"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -376,11 +312,6 @@ exports[`EuiStat props subdued is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -399,11 +330,6 @@ exports[`EuiStat props success is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-success"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -424,11 +350,6 @@ exports[`EuiStat props title and description are reversed 1`] = `
       description
     </p>
   </div>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    title description
-  </p>
 </div>
 `;
 
@@ -447,11 +368,6 @@ exports[`EuiStat props xs is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-xs-euiStat__title-default"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;
@@ -472,11 +388,6 @@ exports[`EuiStat props xxs is rendered 1`] = `
   >
     title
   </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
-  </p>
 </div>
 `;
 
@@ -495,11 +406,6 @@ exports[`EuiStat props xxxs is rendered 1`] = `
     class="euiTitle euiStat__title emotion-euiTitle-xxxs-euiStat__title-default"
   >
     title
-  </p>
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    description title
   </p>
 </div>
 `;

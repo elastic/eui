@@ -18,8 +18,7 @@ import classNames from 'classnames';
 
 import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
 import { useEuiTheme } from '../../services';
 import { euiStatStyles, euiStatTitleStyles } from './stat.styles';
@@ -93,6 +92,11 @@ export const EuiStat: FunctionComponent<
   const cssStyles = [styles.euiStat, styles[textAlign]];
   const classes = classNames('euiStat', className);
 
+  const loadingStatsAriaLabel = useEuiI18n(
+    'euiStat.loadingText',
+    'Statistic is loading'
+  );
+
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
       {createElement(descriptionElement, {}, description)}
@@ -106,30 +110,20 @@ export const EuiStat: FunctionComponent<
     isNamedTitleColor && titleStyles[titleColor as TitleColor],
     isLoading && titleStyles.isLoading,
   ];
-  const titleChildren = isLoading ? '--' : title;
 
   const titleDisplay = (
-    <EuiTitle size={titleSize} className="euiStat__title" css={titleCssStyles}>
+    <EuiTitle
+      size={titleSize}
+      className="euiStat__title"
+      css={titleCssStyles}
+      aria-label={isLoading ? loadingStatsAriaLabel : undefined}
+    >
       {createElement(
         titleElement,
         isNamedTitleColor ? {} : { style: { color: titleColor } },
-        titleChildren
+        isLoading ? '--' : title
       )}
     </EuiTitle>
-  );
-
-  const screenReader = (
-    <EuiScreenReaderOnly>
-      <p>
-        {isLoading ? (
-          <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
-        ) : (
-          <Fragment>
-            {reverse ? `${title} ${description}` : `${description} ${title}`}
-          </Fragment>
-        )}
-      </p>
-    </EuiScreenReaderOnly>
   );
 
   const statDisplay = (
@@ -137,9 +131,6 @@ export const EuiStat: FunctionComponent<
       {!reverse && descriptionDisplay}
       {titleDisplay}
       {reverse && descriptionDisplay}
-      {typeof title === 'string' &&
-        typeof description === 'string' &&
-        screenReader}
     </Fragment>
   );
 
