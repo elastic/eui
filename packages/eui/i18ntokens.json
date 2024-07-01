@@ -653,14 +653,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 32,
+        "line": 37,
         "column": 20,
-        "index": 1153
+        "index": 1352
       },
       "end": {
-        "line": 36,
+        "line": 41,
         "column": 3,
-        "index": 1255
+        "index": 1454
       }
     },
     "filepath": "src/components/color_picker/color_picker_swatch.tsx"
@@ -671,14 +671,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -689,14 +689,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -707,14 +707,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -725,14 +725,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -743,14 +743,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -761,14 +761,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -779,14 +779,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -797,14 +797,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 48,
+        "line": 54,
         "column": 10,
-        "index": 1226
+        "index": 1411
       },
       "end": {
-        "line": 51,
+        "line": 57,
         "column": 12,
-        "index": 1340
+        "index": 1525
       }
     },
     "filepath": "src/components/color_picker/hue.tsx"
@@ -815,14 +815,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 62,
+        "line": 77,
         "column": 49,
-        "index": 1604
+        "index": 2089
       },
       "end": {
-        "line": 68,
+        "line": 83,
         "column": 5,
-        "index": 2018
+        "index": 2503
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -833,14 +833,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 62,
+        "line": 77,
         "column": 49,
-        "index": 1604
+        "index": 2089
       },
       "end": {
-        "line": 68,
+        "line": 83,
         "column": 5,
-        "index": 2018
+        "index": 2503
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -4824,8 +4824,8 @@
     "filepath": "src/components/form/file_picker/file_picker.tsx"
   },
   {
-    "token": "euiFilePicker.clearSelectedFiles",
-    "defString": "Clear selected files",
+    "token": "euiFilePicker.removeSelectedAriaLabel",
+    "defString": "Remove selected files",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -4836,7 +4836,7 @@
       "end": {
         "line": 149,
         "column": 7,
-        "index": 3989
+        "index": 3995
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -4849,12 +4849,12 @@
       "start": {
         "line": 263,
         "column": 18,
-        "index": 7913
+        "index": 7934
       },
       "end": {
         "line": 266,
         "column": 20,
-        "index": 8036
+        "index": 8057
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -5801,14 +5801,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 693,
+        "line": 698,
         "column": 16,
-        "index": 20529
+        "index": 20714
       },
       "end": {
-        "line": 696,
+        "line": 701,
         "column": 18,
-        "index": 20723
+        "index": 20908
       }
     },
     "filepath": "src/components/popover/popover.tsx"

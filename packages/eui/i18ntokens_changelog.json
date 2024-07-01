@@ -1,5 +1,19 @@
 [
   {
+    "version": "95.3.0",
+    "changes": [
+      {
+        "token": "euiFilePicker.clearSelectedFiles",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFilePicker.removeSelectedAriaLabel",
+        "changeType": "added",
+        "value": "Remove selected files"
+      }
+    ]
+  },
+  {
     "version": "95.0.0",
     "changes": [
       {
