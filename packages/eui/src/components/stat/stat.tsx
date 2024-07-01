@@ -93,13 +93,9 @@ export const EuiStat: FunctionComponent<
   const cssStyles = [styles.euiStat, styles[textAlign]];
   const classes = classNames('euiStat', className);
 
-  const commonProps: HTMLAttributes<Element> = {
-    'aria-hidden': true,
-  };
-
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      {createElement(descriptionElement, commonProps, description)}
+      {createElement(descriptionElement, {}, description)}
     </EuiText>
   );
 
@@ -110,14 +106,15 @@ export const EuiStat: FunctionComponent<
     isNamedTitleColor && titleStyles[titleColor as TitleColor],
     isLoading && titleStyles.isLoading,
   ];
-  const titleProps = isNamedTitleColor
-    ? commonProps
-    : { ...commonProps, style: { color: titleColor } };
   const titleChildren = isLoading ? '--' : title;
 
   const titleDisplay = (
     <EuiTitle size={titleSize} className="euiStat__title" css={titleCssStyles}>
-      {createElement(titleElement, titleProps, titleChildren)}
+      {createElement(
+        titleElement,
+        isNamedTitleColor ? {} : { style: { color: titleColor } },
+        titleChildren
+      )}
     </EuiTitle>
   );
 
