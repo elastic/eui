@@ -1,3 +1,24 @@
+## [`v95.3.0`](https://github.com/elastic/eui/releases/v95.3.0)
+
+- Updated `EuiThemeProvider`s to allow modifying/setting custom `breakpoint`s in nested usage (as opposed to only at the top `EuiProvider` level) ([#7862](https://github.com/elastic/eui/pull/7862))
+
+**Bug fixes**
+
+- Fixed a Chrome/Edge CSS `mask-image` bug that was affecting scroll overflow shadow utilties ([#7855](https://github.com/elastic/eui/pull/7855))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiColorPicker` to Emotion; Removed `$euiColorPickerWidth` ([#7845](https://github.com/elastic/eui/pull/7845))
+- Converted `EuiColorPickerSwatch` to Emotion ([#7853](https://github.com/elastic/eui/pull/7853))
+- Converted `EuiColorPalettePicker` and `EuiColorPaletteDisplay` to Emotion ([#7854](https://github.com/elastic/eui/pull/7854))
+  - Removed `$euiColorPaletteDisplaySizes`
+  - Removed `@mixin euiColorPaletteInnerBorder`
+- Removed `$euiColorPickerValueRange0`, `$euiColorPickerValueRange1`,  `$euiColorPickerSaturationRange0`, `$euiColorPickerSaturationRange1`, and `$euiColorPickerIndicatorSize` ([#7859](https://github.com/elastic/eui/pull/7859))
+
+**Accessibility**
+
+- Updated the `aria-label` attribute for the `EuiFilePicker` remove file button ([#7860](https://github.com/elastic/eui/pull/7860))
+
 ## [`v95.2.0`](https://github.com/elastic/eui/releases/v95.2.0)
 
 - Updated `EuiContextMenuItemIcon`'s type definition to explicitly define support for `EuiIcon`'s `IconType` ([#7804](https://github.com/elastic/eui/pull/7804))
