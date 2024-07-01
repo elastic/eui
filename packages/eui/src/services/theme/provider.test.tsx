@@ -74,32 +74,76 @@ describe('EuiThemeProvider', () => {
 
       expect(getByText('Modified')).toHaveStyleRule('color', 'hotpink');
     });
+  });
 
-    it('sets a conditional CurrentEuiBreakpointProvider if modify.breakpoint is passed', () => {
-      window.innerWidth = 2500;
-      const customBreakpoints = { xxl: 2000 };
-      const PrintCurrentBreakpoint = () => <>{useCurrentEuiBreakpoint()}</>;
+  describe('conditional CurrentEuiBreakpointProvider', () => {
+    const PrintCurrentBreakpoint = () => <>{useCurrentEuiBreakpoint()}</>;
+    let resizeListenerCount = 0;
 
-      const { container, rerender } = render(
-        <EuiThemeProvider modify={{ breakpoint: customBreakpoints }}>
-          <PrintCurrentBreakpoint />
-        </EuiThemeProvider>
-      );
+    beforeAll(() => {
+      // React 16 and 17 register a bunch of error listeners which we don't need to capture
+      window.addEventListener = jest.fn((event: string) => {
+        if (event === 'resize') resizeListenerCount++;
+      });
+    });
 
-      expect(container.textContent).toEqual('xxl');
+    beforeEach(() => {
+      // Reset counts
+      resizeListenerCount = 0;
+    });
 
-      // Does nothing if no modify.breakpoint is passed
-      const eventListenerSpy = jest.spyOn(window, 'addEventListener');
-      rerender(
-        <EuiThemeProvider>
-          <PrintCurrentBreakpoint />
-        </EuiThemeProvider>
-      );
-      expect(eventListenerSpy).not.toHaveBeenCalledWith('resize');
-      expect(container.textContent).toEqual('xl');
+    afterAll(() => {
+      jest.restoreAllMocks();
+    });
 
-      // Reset window width to jsdom's default
-      window.innerWidth = 1024;
+    describe('in the top-level global theme provider', () => {
+      it('is always rendered regardless of modified breakpoints', () => {
+        const { container } = render(
+          <EuiProvider>
+            <PrintCurrentBreakpoint />
+          </EuiProvider>
+        );
+        expect(container.textContent).toEqual('l');
+        expect(resizeListenerCount).toEqual(1);
+      });
+    });
+
+    describe('in nested child theme providers', () => {
+      beforeAll(() => {
+        window.innerWidth = 2500;
+      });
+
+      afterAll(() => {
+        // Reset window width to jsdom's default
+        window.innerWidth = 1024;
+      });
+
+      it('is rendered if modify.breakpoint is passed', () => {
+        const customBreakpoints = { xxl: 2000 };
+
+        const { container } = render(
+          <EuiProvider>
+            <EuiThemeProvider modify={{ breakpoint: customBreakpoints }}>
+              <PrintCurrentBreakpoint />
+            </EuiThemeProvider>
+          </EuiProvider>
+        );
+
+        expect(container.textContent).toEqual('xxl');
+        expect(resizeListenerCount).toBeGreaterThanOrEqual(2); // Technically 3 due to EuiThemeProvider rerendering
+      });
+
+      it('is not rendered if modify.breakpoint is not passed', () => {
+        const { container } = render(
+          <EuiProvider>
+            <EuiThemeProvider>
+              <PrintCurrentBreakpoint />
+            </EuiThemeProvider>
+          </EuiProvider>
+        );
+        expect(container.textContent).toEqual('xl');
+        expect(resizeListenerCount).toEqual(1);
+      });
     });
   });
 

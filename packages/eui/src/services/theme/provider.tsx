@@ -83,10 +83,13 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const prevSystemKey = useRef(system.key);
 
   // To reduce the number of window resize listeners, only render a
-  // CurrentEuiBreakpointProvider if modified breakpoint overrides are passed
+  // CurrentEuiBreakpointProvider for the top level parent theme, or for
+  // nested themes only if modified breakpoint overrides are passed
   const EuiConditionalBreakpointProvider = useMemo(() => {
-    return _modifications?.breakpoint ? CurrentEuiBreakpointProvider : Fragment;
-  }, [_modifications]);
+    return isGlobalTheme || _modifications?.breakpoint
+      ? CurrentEuiBreakpointProvider
+      : Fragment;
+  }, [isGlobalTheme, _modifications]);
 
   const [modifications, setModifications] = useState<EuiThemeModifications>(
     mergeDeep(parentModifications, _modifications)
