@@ -11,6 +11,7 @@ import { render } from '@testing-library/react'; // Note - don't use the EUI cus
 import { css } from '@emotion/react';
 
 import { EuiProvider } from '../../components/provider';
+import { useCurrentEuiBreakpoint } from '../breakpoint';
 import { EuiNestedThemeContext } from './context';
 import { EuiThemeProvider } from './provider';
 
@@ -72,6 +73,77 @@ describe('EuiThemeProvider', () => {
       );
 
       expect(getByText('Modified')).toHaveStyleRule('color', 'hotpink');
+    });
+  });
+
+  describe('conditional CurrentEuiBreakpointProvider', () => {
+    const PrintCurrentBreakpoint = () => <>{useCurrentEuiBreakpoint()}</>;
+    let resizeListenerCount = 0;
+
+    beforeAll(() => {
+      // React 16 and 17 register a bunch of error listeners which we don't need to capture
+      window.addEventListener = jest.fn((event: string) => {
+        if (event === 'resize') resizeListenerCount++;
+      });
+    });
+
+    beforeEach(() => {
+      // Reset counts
+      resizeListenerCount = 0;
+    });
+
+    afterAll(() => {
+      jest.restoreAllMocks();
+    });
+
+    describe('in the top-level global theme provider', () => {
+      it('is always rendered regardless of modified breakpoints', () => {
+        const { container } = render(
+          <EuiProvider>
+            <PrintCurrentBreakpoint />
+          </EuiProvider>
+        );
+        expect(container.textContent).toEqual('l');
+        expect(resizeListenerCount).toEqual(1);
+      });
+    });
+
+    describe('in nested child theme providers', () => {
+      beforeAll(() => {
+        window.innerWidth = 2500;
+      });
+
+      afterAll(() => {
+        // Reset window width to jsdom's default
+        window.innerWidth = 1024;
+      });
+
+      it('is rendered if modify.breakpoint is passed', () => {
+        const customBreakpoints = { xxl: 2000 };
+
+        const { container } = render(
+          <EuiProvider>
+            <EuiThemeProvider modify={{ breakpoint: customBreakpoints }}>
+              <PrintCurrentBreakpoint />
+            </EuiThemeProvider>
+          </EuiProvider>
+        );
+
+        expect(container.textContent).toEqual('xxl');
+        expect(resizeListenerCount).toBeGreaterThanOrEqual(2); // Technically 3 due to EuiThemeProvider rerendering
+      });
+
+      it('is not rendered if modify.breakpoint is not passed', () => {
+        const { container } = render(
+          <EuiProvider>
+            <EuiThemeProvider>
+              <PrintCurrentBreakpoint />
+            </EuiThemeProvider>
+          </EuiProvider>
+        );
+        expect(container.textContent).toEqual('xl');
+        expect(resizeListenerCount).toEqual(1);
+      });
     });
   });
 

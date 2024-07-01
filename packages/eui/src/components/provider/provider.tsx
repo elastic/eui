@@ -13,7 +13,6 @@ import {
   EuiThemeProvider,
   EuiThemeProviderProps,
   EuiThemeSystem,
-  CurrentEuiBreakpointProvider,
 } from '../../services';
 import { emitEuiProviderWarning } from '../../services/theme/warning';
 import { cache as fallbackCache } from '../../services/emotion/css';
@@ -146,9 +145,7 @@ export const EuiProvider = <T extends {} = {}>({
             </>
           )}
           <EuiComponentDefaultsProvider componentDefaults={componentDefaults}>
-            <CurrentEuiBreakpointProvider>
-              {children}
-            </CurrentEuiBreakpointProvider>
+            {children}
           </EuiComponentDefaultsProvider>
         </EuiThemeProvider>
       </EuiCacheProvider>
