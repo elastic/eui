@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { EuiSpacer, EuiText, EuiProvider } from '../../../../../src';
+import { EuiSpacer, EuiText, EuiThemeProvider } from '../../../../../src';
 
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
@@ -51,7 +51,7 @@ export default () => {
       <GuideSection color="transparent">{valuesContent}</GuideSection>
 
       {currentLanguage.includes('js') && (
-        <EuiProvider modify={{ breakpoint: CUSTOM_BREAKPOINTS }}>
+        <EuiThemeProvider modify={{ breakpoint: CUSTOM_BREAKPOINTS }}>
           <GuideSection color="subdued">
             <EuiText grow={false}>
               <h2 id={breakpointSections[1].id}>
@@ -70,7 +70,7 @@ export default () => {
           </GuideSection>
 
           <GuideSection color="transparent">{valuesContent}</GuideSection>
-        </EuiProvider>
+        </EuiThemeProvider>
       )}
     </>
   );

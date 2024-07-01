@@ -15,6 +15,7 @@ import React, {
   useCallback,
   PropsWithChildren,
   HTMLAttributes,
+  Fragment,
 } from 'react';
 import { Global, type CSSObject } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
@@ -22,6 +23,7 @@ import isEqual from 'lodash/isEqual';
 import type { CommonProps } from '../../components/common';
 import { cloneElementWithCss } from '../emotion';
 import { css, cx } from '../emotion/css';
+import { CurrentEuiBreakpointProvider } from '../breakpoint/current_breakpoint';
 
 import {
   EuiSystemContext,
@@ -79,6 +81,15 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   const [system, setSystem] = useState(_system || parentSystem);
   const prevSystemKey = useRef(system.key);
+
+  // To reduce the number of window resize listeners, only render a
+  // CurrentEuiBreakpointProvider for the top level parent theme, or for
+  // nested themes only if modified breakpoint overrides are passed
+  const EuiConditionalBreakpointProvider = useMemo(() => {
+    return isGlobalTheme || _modifications?.breakpoint
+      ? CurrentEuiBreakpointProvider
+      : Fragment;
+  }, [isGlobalTheme, _modifications]);
 
   const [modifications, setModifications] = useState<EuiThemeModifications>(
     mergeDeep(parentModifications, _modifications)
@@ -232,7 +243,9 @@ export const EuiThemeProvider = <T extends {} = {}>({
               <EuiNestedThemeContext.Provider value={nestedThemeContext}>
                 <EuiThemeMemoizedStylesProvider>
                   <EuiEmotionThemeProvider>
-                    {renderedChildren}
+                    <EuiConditionalBreakpointProvider>
+                      {renderedChildren}
+                    </EuiConditionalBreakpointProvider>
                   </EuiEmotionThemeProvider>
                 </EuiThemeMemoizedStylesProvider>
               </EuiNestedThemeContext.Provider>
