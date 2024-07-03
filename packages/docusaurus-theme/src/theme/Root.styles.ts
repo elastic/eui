@@ -1,10 +1,13 @@
 import {
+  euiFontSizeFromScale,
   euiLineHeightFromBaseline,
   useEuiBackgroundColor,
   UseEuiTheme,
 } from '@elastic/eui';
 
 // override docusaurus variables as needed
+// NOTE: we use define variables with style calculations here
+// on the global level to reduce how often they are called
 export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
   const { font, base, colors, size } = euiTheme;
   const fontBodyScale = font.scale[font.body.scale];
@@ -16,7 +19,16 @@ export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
     fontWeight: font.weight[font.body.weight],
   };
 
-  const lineHeightL = '1.75rem';
+  const fontSizeXXL = euiFontSizeFromScale('xxl', euiTheme);
+  const fontSizeXL = euiFontSizeFromScale('xl', euiTheme);
+  const fontSizeL = euiFontSizeFromScale('l', euiTheme);
+  const fontSizeM = euiFontSizeFromScale('m', euiTheme);
+  const fontSizeS = euiFontSizeFromScale('s', euiTheme);
+  const fontSizeXS = euiFontSizeFromScale('xs', euiTheme);
+  const fontSizeXXS = euiFontSizeFromScale('xxs', euiTheme);
+
+  const lineHeightXL = '1.75rem';
+  const lineHeightL = '1.5rem';
   const lineHeightM = euiLineHeightFromBaseline('s', euiTheme);
   const lineHeightS = euiLineHeightFromBaseline('xs', euiTheme);
   const lineHeightXS = '1.33rem';
@@ -34,18 +46,31 @@ export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
         /* Docusaurus theme variables */
         --ifm-background-color: ${colors.body};
         --ifm-font-color-base: ${colors.text};
+        --ifm-link-color: ${colors.link};
+        --ifm-link-hover-color: ${colors.link};
       }
 
       :root {
         /* EUI theme variables */
-        --eui-line-height-base: ${lineHeightL};
+        --eui-font-size-base: ${fontBase.fontSize};
+        --eui-font-size-xxl: ${fontSizeXXL};
+        --eui-font-size-xl: ${fontSizeXL};
+        --eui-font-size-l: ${fontSizeL};
+        --eui-font-size-m: ${fontSizeM};
+        --eui-font-size-s: ${fontSizeS};
+        --eui-font-size-xs: ${fontSizeXS};
+        --eui-font-size-xxs: ${fontSizeXXS};
+
+        --eui-line-height-base: ${lineHeightXL};
+        --eui-line-height-xl: ${lineHeightXL};
+        --eui-line-height-l: ${lineHeightL};
         --eui-line-height-m: ${lineHeightM};
         --eui-line-height-s: ${lineHeightS};
         --eui-line-height-xs: ${lineHeightXS};
 
         /* Docusaurus theme variables */
         --ifm-font-family-base: ${fontBase.fontFamily};
-        --ifm-font-size-base: ${fontBase.fontSize};
+        --ifm-font-size-base: var(--eui-font-size-base);
         --ifm-font-weight-base: ${fontBase.fontWeight};
         --ifm-line-height-base: var(--eui-line-height-base);
 

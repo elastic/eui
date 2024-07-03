@@ -8,6 +8,7 @@ import DocVersionBadge from '@theme-original/DocVersionBadge';
 import DocBreadcrumbs from '@theme-original/DocBreadcrumbs';
 import Unlisted from '@theme-original/Unlisted';
 import * as Props from '@theme-original/DocItem/Layout';
+import { EuiHorizontalRule } from '@elastic/eui';
 
 import DocItemContent from '../Content';
 import DocItemTOCMobile from '../TOC/Mobile';
@@ -71,6 +72,7 @@ export default function DocItemLayout({ children }: typeof Props): JSX.Element {
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />
           </article>
+          <EuiHorizontalRule margin="xl" />
           <DocItemPaginator />
         </div>
       </div>
