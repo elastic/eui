@@ -7,7 +7,7 @@
  */
 
 import { IframeHTMLAttributes, useMemo } from 'react';
-import { useEuiTheme, UseEuiTheme } from '@elastic/eui';
+import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -30,8 +30,7 @@ const getFigmaEmbedStyles = (euiTheme: UseEuiTheme) => ({
 
 export const FigmaEmbed = ({ url, ...rest }: FigmaEmbedProps) => {
   const baseUrl = useBaseUrl('/', { absolute: true });
-  const euiTheme = useEuiTheme();
-  const styles = getFigmaEmbedStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(getFigmaEmbedStyles);
 
   const src = useMemo(() => {
     const params = new URLSearchParams({
