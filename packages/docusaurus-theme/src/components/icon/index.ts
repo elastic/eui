@@ -6,16 +6,6 @@
  * Side Public License, v 1.
  */
 
-import OriginalMDXComponents from '@theme-init/MDXComponents';
-import { Badge } from '../../components/badge';
-import { Icon } from '../../components/icon';
-import { FigmaEmbed } from '../../components/figma_embed';
+import { EuiIcon } from '@elastic/eui';
 
-const MDXComponents = {
-  ...OriginalMDXComponents,
-  Badge,
-  FigmaEmbed,
-  Icon,
-};
-
-export default MDXComponents;
+export const Icon = EuiIcon;
