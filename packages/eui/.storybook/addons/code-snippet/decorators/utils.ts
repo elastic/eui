@@ -330,15 +330,17 @@ export const getDefaultPropsfromDocgenInfo = (
 ): Record<string, any> | undefined => {
   if (typeof component.type === 'string') return;
 
+  if (!isStoryComponent(component, context)) return;
+
   // determine the story element first
   // this is required because the story might be wrapped and
   // only the story element has the required docgenInfo
-  let storyComponent: ReactElementWithDocgenInfo | undefined =
+  const storyComponent: ReactElementWithDocgenInfo | undefined =
     getStoryComponent(component, context);
 
   if (!storyComponent) return;
 
-  let propsInfo =
+  const propsInfo =
     isEmotionComponent(storyComponent) &&
     typeof storyComponent.props?.[EMOTION_TYPE_KEY] !== 'string'
       ? storyComponent.props?.[EMOTION_TYPE_KEY]?.__docgenInfo.props
