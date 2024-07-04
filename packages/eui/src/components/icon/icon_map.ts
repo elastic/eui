@@ -223,7 +223,7 @@ export const typeToPathMap = {
   lock: 'lock',
   lockOpen: 'lockOpen',
   logPatternAnalysis: 'log_pattern_analysis',
-  logRateAnalysis:'log_rate_analysis',
+  logRateAnalysis: 'log_rate_analysis',
   logoAWS: 'logo_aws',
   logoAWSMono: 'logo_aws_mono',
   logoAerospike: 'logo_aerospike',
