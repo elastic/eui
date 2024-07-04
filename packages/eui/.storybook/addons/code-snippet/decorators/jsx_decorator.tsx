@@ -20,6 +20,8 @@ import { logger } from '@storybook/client-logger';
 
 import { useEuiTheme } from '../../../../src/services';
 import {
+  ADDON_ERROR,
+  CODE_FORMATTING_ERROR,
   EVENTS,
   SPREAD_STORY_ARGS_MARKER,
   STORY_ARGS_MARKER,
@@ -91,7 +93,7 @@ export const customJsxDecorator = (
   // https://github.com/storybookjs/storybook/blob/4c1d585ca07db5097f01a84bc6a4092ada33629b/code/lib/preview-api/src/modules/addons/hooks.ts#L474
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (jsx) {
+    if (jsx != null) {
       emitChannel(jsx, skip);
     }
     if (skip) {
@@ -157,10 +159,7 @@ export const customJsxDecorator = (
         jsx = res.replace(';\n', '\n');
       })
       .catch((error: Error): void => {
-        logger.error(
-          'An error occurred and no formatted code was provided. Falling back to pre-formatted code.',
-          error
-        );
+        logger.error(CODE_FORMATTING_ERROR, error);
         jsx = code;
       });
 
@@ -186,21 +185,24 @@ export const customJsxDecorator = (
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const euiTheme = useEuiTheme();
 
-  // generate JSX from the story
-  const renderedJsx = renderJsx(storyJsx, context, options, euiTheme);
-  if (renderedJsx) {
-    getFormattedCode(renderedJsx)
-      .then((res: string) => {
-        // prettier adds a semicolon due to semi: true but semi:false adds one at the beginning ¯\_(ツ)_/¯
-        jsx = res.replace(';\n', '\n');
-      })
-      .catch((error: Error): void => {
-        logger.error(
-          'An error occurred and no formatted code was provided. Falling back to pre-formatted code.',
-          error
-        );
-        jsx = renderedJsx;
-      });
+  try {
+    // generate JSX from the story
+    const renderedJsx = renderJsx(storyJsx, context, options, euiTheme);
+    if (renderedJsx) {
+      getFormattedCode(renderedJsx)
+        .then((res: string) => {
+          // prettier adds a semicolon due to semi: true but semi:false adds one at the beginning ¯\_(ツ)_/¯
+          jsx = res.replace(';\n', '\n');
+        })
+        .catch((error: Error): void => {
+          logger.error(CODE_FORMATTING_ERROR, error);
+          jsx = renderedJsx;
+        });
+    }
+  } catch (error) {
+    logger.error(ADDON_ERROR, error);
+
+    jsx = '';
   }
 
   // return story from decorator to be rendered
