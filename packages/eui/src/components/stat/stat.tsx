@@ -7,21 +7,20 @@
  */
 
 import React, {
-  Fragment,
   HTMLAttributes,
   FunctionComponent,
   ReactNode,
   createElement,
+  useMemo,
 } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiStatStyles, euiStatTitleStyles } from './stat.styles';
 
 export const COLORS = [
@@ -88,67 +87,62 @@ export const EuiStat: FunctionComponent<
   descriptionElement = 'p',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiStatStyles();
-  const cssStyles = [styles.euiStat, styles[textAlign]];
   const classes = classNames('euiStat', className);
+  const styles = useEuiMemoizedStyles(euiStatStyles);
+  const cssStyles = [styles.euiStat, styles[textAlign]];
 
-  const commonProps: HTMLAttributes<Element> = {
-    'aria-hidden': true,
-  };
-
-  const descriptionDisplay = (
-    <EuiText size="s" className="euiStat__description">
-      {createElement(descriptionElement, commonProps, description)}
-    </EuiText>
+  const loadingStatsAriaLabel = useEuiI18n(
+    'euiStat.loadingText',
+    'Statistic is loading'
   );
 
-  const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
-  const titleStyles = euiStatTitleStyles(euiTheme);
-  const titleCssStyles = [
-    titleStyles.euiStat__title,
-    isNamedTitleColor && titleStyles[titleColor as TitleColor],
-    isLoading && titleStyles.isLoading,
-  ];
-  const titleProps = isNamedTitleColor
-    ? commonProps
-    : { ...commonProps, style: { color: titleColor } };
-  const titleChildren = isLoading ? '--' : title;
+  const titleStyles = useEuiMemoizedStyles(euiStatTitleStyles);
+  const titleDisplay = useMemo(() => {
+    const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
+    const titleCssStyles = [
+      titleStyles.euiStat__title,
+      isNamedTitleColor && titleStyles[titleColor as TitleColor],
+      isLoading && titleStyles.isLoading,
+    ];
 
-  const titleDisplay = (
-    <EuiTitle size={titleSize} className="euiStat__title" css={titleCssStyles}>
-      {createElement(titleElement, titleProps, titleChildren)}
-    </EuiTitle>
-  );
-
-  const screenReader = (
-    <EuiScreenReaderOnly>
-      <p>
-        {isLoading ? (
-          <EuiI18n token="euiStat.loadingText" default="Statistic is loading" />
-        ) : (
-          <Fragment>
-            {reverse ? `${title} ${description}` : `${description} ${title}`}
-          </Fragment>
+    return (
+      <EuiTitle
+        size={titleSize}
+        className="euiStat__title"
+        css={titleCssStyles}
+        aria-label={isLoading ? loadingStatsAriaLabel : undefined}
+      >
+        {createElement(
+          titleElement,
+          isNamedTitleColor ? null : { style: { color: titleColor } },
+          isLoading ? '--' : title
         )}
-      </p>
-    </EuiScreenReaderOnly>
-  );
+      </EuiTitle>
+    );
+  }, [
+    title,
+    titleElement,
+    titleColor,
+    titleSize,
+    titleStyles,
+    isLoading,
+    loadingStatsAriaLabel,
+  ]);
 
-  const statDisplay = (
-    <Fragment>
-      {!reverse && descriptionDisplay}
-      {titleDisplay}
-      {reverse && descriptionDisplay}
-      {typeof title === 'string' &&
-        typeof description === 'string' &&
-        screenReader}
-    </Fragment>
+  const descriptionDisplay = useMemo(
+    () => (
+      <EuiText size="s" className="euiStat__description">
+        {createElement(descriptionElement, null, description)}
+      </EuiText>
+    ),
+    [description, descriptionElement]
   );
 
   return (
     <div css={cssStyles} className={classes} {...rest}>
-      {statDisplay}
+      {!reverse && descriptionDisplay}
+      {titleDisplay}
+      {reverse && descriptionDisplay}
       {children}
     </div>
   );
