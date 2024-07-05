@@ -26,7 +26,7 @@ import {
   SPREAD_STORY_ARGS_MARKER,
   STORY_ARGS_MARKER,
 } from '../constants';
-
+import { AddonError } from '../types';
 import {
   getDefaultPropsfromDocgenInfo,
   getFormattedCode,
@@ -62,24 +62,34 @@ export const customJsxDecorator = (
   const skip = skipJsxRender(context) && !codeSnippet;
 
   let jsx = '';
+  let error: AddonError | false = false;
 
   // using Storybook Channel events to send the code string
-  // to the addon panel to output
-  // uses Storybook useCallback hook not React one
+  // to the addon panel to output.
+  // This uses Storybook useCallback hook not the React one
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const emitChannel = useCallback(
-    (jsx: string, skip: boolean, shouldSkip = false) => {
+    (jsx: string, skip: boolean, shouldSkip = false, error?: AddonError) => {
       const { id, unmappedArgs } = context;
       if (skip || shouldSkip) {
         channel.emit(EVENTS.SNIPPET_RENDERED, {
           id,
           source: '',
+          error: false,
+          args: unmappedArgs,
+        });
+      } else if (error) {
+        channel.emit(EVENTS.SNIPPET_RENDERED, {
+          id,
+          source: '',
+          error,
           args: unmappedArgs,
         });
       } else {
         channel.emit(EVENTS.SNIPPET_RENDERED, {
           id,
           source: jsx,
+          error: false,
           args: unmappedArgs,
         });
       }
@@ -93,13 +103,14 @@ export const customJsxDecorator = (
   // https://github.com/storybookjs/storybook/blob/4c1d585ca07db5097f01a84bc6a4092ada33629b/code/lib/preview-api/src/modules/addons/hooks.ts#L474
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (jsx != null) {
+    if (error) {
+      emitChannel(jsx, skip, false, error);
+    } else if (jsx !== '' && !error) {
       emitChannel(jsx, skip);
-    }
-    if (skip) {
+    } else if (skip) {
       emitChannel(jsx, skip, true);
     }
-  }, [jsx, skip, emitChannel]);
+  }, [jsx, error, skip, emitChannel]);
 
   // We only need to render JSX if the source block is actually going to
   // consume it. Otherwise it's just slowing us down.
@@ -157,9 +168,12 @@ export const customJsxDecorator = (
     getFormattedCode(code)
       .then((res: string) => {
         jsx = res.replace(';\n', '\n');
+        error = false;
       })
-      .catch((error: Error): void => {
-        logger.error(CODE_FORMATTING_ERROR, error);
+      .catch((err: Error): void => {
+        logger.error(CODE_FORMATTING_ERROR, err);
+
+        error = { reason: CODE_FORMATTING_ERROR, body: err };
         jsx = code;
       });
 
@@ -193,15 +207,19 @@ export const customJsxDecorator = (
         .then((res: string) => {
           // prettier adds a semicolon due to semi: true but semi:false adds one at the beginning ¯\_(ツ)_/¯
           jsx = res.replace(';\n', '\n');
+          error = false;
         })
-        .catch((error: Error): void => {
-          logger.error(CODE_FORMATTING_ERROR, error);
+        .catch((err: Error): void => {
+          logger.error(CODE_FORMATTING_ERROR, err);
+
+          error = { reason: CODE_FORMATTING_ERROR, body: err };
           jsx = renderedJsx;
         });
     }
-  } catch (error) {
-    logger.error(ADDON_ERROR, error);
+  } catch (err) {
+    logger.error(ADDON_ERROR, err);
 
+    error = { reason: ADDON_ERROR, body: err as Error };
     jsx = '';
   }
 

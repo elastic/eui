@@ -7,6 +7,7 @@
  */
 
 import React, { useEffect, FunctionComponent } from 'react';
+import type { Args } from '@storybook/react';
 import {
   useAddonState,
   useChannel,
@@ -16,8 +17,23 @@ import { AddonPanel, SyntaxHighlighter } from '@storybook/components';
 import { styled } from '@storybook/theming';
 import { STORY_RENDERED } from '@storybook/core-events';
 
+import type { AddonError } from '../types';
 import { ADDON_ID, ADDON_PARAMETER_KEY, EVENTS } from '../constants';
 import { addHiddenStyle, clearHiddenStyle } from '../utils/addon_visibility';
+
+type CodeEvent = {
+  id: string;
+  source: string;
+  error: AddonError | false;
+  args: Args;
+};
+
+type AddonState = {
+  code: string;
+  error: { reason: string; body: Error } | false;
+  isLoaded: boolean;
+  isSkipped: boolean;
+};
 
 const addonTabStyles = (selector: string) => `
     ${selector} {
@@ -30,12 +46,13 @@ interface PanelProps {
 }
 
 export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
-  const [addonState, setAddonState] = useAddonState(ADDON_ID, {
+  const [addonState, setAddonState] = useAddonState<AddonState>(ADDON_ID, {
     code: '',
+    error: false,
     isLoaded: false,
     isSkipped: true,
   });
-  const { code, isLoaded, isSkipped } = addonState;
+  const { code, error, isLoaded, isSkipped } = addonState;
   const storybookApi = useStorybookApi();
 
   useEffect(() => {
@@ -56,8 +73,12 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
   }, [isSkipped]);
 
   const emit = useChannel({
-    [EVENTS.SNIPPET_RENDERED]: (args) => {
-      setAddonState((prevState) => ({ ...prevState, code: args.source ?? '' }));
+    [EVENTS.SNIPPET_RENDERED]: (args: CodeEvent) => {
+      setAddonState((prevState) => ({
+        ...prevState,
+        code: args.source ?? '',
+        error: args.error ?? false,
+      }));
     },
     [STORY_RENDERED]: (id: string) => {
       const parameters = storybookApi.getParameters(id);
@@ -88,10 +109,21 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
 
   const emptyState = <span>No code snippet available</span>;
   const loadingState = <span>Loading...</span>;
+  const errorState = error && (
+    <Container>
+      <p>{error.reason}</p>
+      <code>
+        {error.body.name}: {error.body.message}
+      </code>
+      <p>See the browser console for more information.</p>
+    </Container>
+  );
 
   return (
     <AddonPanel active={active ?? false} {...rest}>
-      {code ? (
+      {error ? (
+        errorState
+      ) : code ? (
         <SyntaxHighlighter
           language="tsx"
           copyable
@@ -110,6 +142,7 @@ export const Panel: FunctionComponent<PanelProps> = ({ active, ...rest }) => {
 
 const Container = styled.div(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'flex-start',
   margin: 0,
   padding: theme.layoutMargin,
