@@ -99,7 +99,7 @@ export const EuiStat: FunctionComponent<
 
   const descriptionDisplay = (
     <EuiText size="s" className="euiStat__description">
-      {createElement(descriptionElement, {}, description)}
+      {createElement(descriptionElement, null, description)}
     </EuiText>
   );
 
@@ -120,7 +120,7 @@ export const EuiStat: FunctionComponent<
     >
       {createElement(
         titleElement,
-        isNamedTitleColor ? {} : { style: { color: titleColor } },
+        isNamedTitleColor ? null : { style: { color: titleColor } },
         isLoading ? '--' : title
       )}
     </EuiTitle>
