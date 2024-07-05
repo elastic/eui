@@ -15,7 +15,10 @@ import type {
   ArgsStoryFn,
   PartialStoryFn,
 } from '@storybook/types';
-import { addons, useEffect, useCallback } from '@storybook/preview-api';
+import {
+  addons,
+  useEffect as useStorybookEffect,
+} from '@storybook/preview-api';
 import { logger } from '@storybook/client-logger';
 
 import { useEuiTheme } from '../../../../src/services';
@@ -64,45 +67,43 @@ export const customJsxDecorator = (
   let jsx = '';
   let error: AddonError | false = false;
 
-  // using Storybook Channel events to send the code string
-  // to the addon panel to output.
-  // This uses Storybook useCallback hook not the React one
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const emitChannel = useCallback(
-    (jsx: string, skip: boolean, shouldSkip = false, error?: AddonError) => {
-      const { id, unmappedArgs } = context;
-      if (skip || shouldSkip) {
-        channel.emit(EVENTS.SNIPPET_RENDERED, {
-          id,
-          source: '',
-          error: false,
-          args: unmappedArgs,
-        });
-      } else if (error) {
-        channel.emit(EVENTS.SNIPPET_RENDERED, {
-          id,
-          source: '',
-          error,
-          args: unmappedArgs,
-        });
-      } else {
-        channel.emit(EVENTS.SNIPPET_RENDERED, {
-          id,
-          source: jsx,
-          error: false,
-          args: unmappedArgs,
-        });
-      }
-    },
-    [context, channel]
-  );
+  const emitChannel = (
+    jsx: string,
+    skip: boolean,
+    shouldSkip = false,
+    error?: AddonError
+  ) => {
+    const { id, unmappedArgs } = context;
+    if (skip || shouldSkip) {
+      channel.emit(EVENTS.SNIPPET_RENDERED, {
+        id,
+        source: '',
+        error: false,
+        args: unmappedArgs,
+      });
+    } else if (error) {
+      channel.emit(EVENTS.SNIPPET_RENDERED, {
+        id,
+        source: '',
+        error,
+        args: unmappedArgs,
+      });
+    } else {
+      channel.emit(EVENTS.SNIPPET_RENDERED, {
+        id,
+        source: jsx,
+        error: false,
+        args: unmappedArgs,
+      });
+    }
+  };
 
   // disabling this rule as this is how Storybook handles it
   // they export their own hook wrappers and have the eslint rule disabled completely
   // https://github.com/storybookjs/storybook/blob/2bff7a1c156bbd42ab381f84b8a55a07694e7e53/code/renderers/react/src/docs/jsxDecorator.tsx#L233
   // https://github.com/storybookjs/storybook/blob/4c1d585ca07db5097f01a84bc6a4092ada33629b/code/lib/preview-api/src/modules/addons/hooks.ts#L474
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
+  useStorybookEffect(() => {
     if (error) {
       emitChannel(jsx, skip, false, error);
     } else if (jsx !== '' && !error) {
@@ -220,7 +221,6 @@ export const customJsxDecorator = (
     logger.error(ADDON_ERROR, err);
 
     error = { reason: ADDON_ERROR, body: err as Error };
-    jsx = '';
   }
 
   // return story from decorator to be rendered
