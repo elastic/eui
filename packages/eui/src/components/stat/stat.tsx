@@ -7,11 +7,11 @@
  */
 
 import React, {
-  Fragment,
   HTMLAttributes,
   FunctionComponent,
   ReactNode,
   createElement,
+  useMemo,
 } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
@@ -20,7 +20,7 @@ import { EuiText } from '../text';
 import { EuiTitle, EuiTitleSize } from '../title/title';
 import { useEuiI18n } from '../i18n';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiStatStyles, euiStatTitleStyles } from './stat.styles';
 
 export const COLORS = [
@@ -87,56 +87,62 @@ export const EuiStat: FunctionComponent<
   descriptionElement = 'p',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiStatStyles();
-  const cssStyles = [styles.euiStat, styles[textAlign]];
   const classes = classNames('euiStat', className);
+  const styles = useEuiMemoizedStyles(euiStatStyles);
+  const cssStyles = [styles.euiStat, styles[textAlign]];
 
   const loadingStatsAriaLabel = useEuiI18n(
     'euiStat.loadingText',
     'Statistic is loading'
   );
 
-  const descriptionDisplay = (
-    <EuiText size="s" className="euiStat__description">
-      {createElement(descriptionElement, null, description)}
-    </EuiText>
-  );
+  const titleStyles = useEuiMemoizedStyles(euiStatTitleStyles);
+  const titleDisplay = useMemo(() => {
+    const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
+    const titleCssStyles = [
+      titleStyles.euiStat__title,
+      isNamedTitleColor && titleStyles[titleColor as TitleColor],
+      isLoading && titleStyles.isLoading,
+    ];
 
-  const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
-  const titleStyles = euiStatTitleStyles(euiTheme);
-  const titleCssStyles = [
-    titleStyles.euiStat__title,
-    isNamedTitleColor && titleStyles[titleColor as TitleColor],
-    isLoading && titleStyles.isLoading,
-  ];
+    return (
+      <EuiTitle
+        size={titleSize}
+        className="euiStat__title"
+        css={titleCssStyles}
+        aria-label={isLoading ? loadingStatsAriaLabel : undefined}
+      >
+        {createElement(
+          titleElement,
+          isNamedTitleColor ? null : { style: { color: titleColor } },
+          isLoading ? '--' : title
+        )}
+      </EuiTitle>
+    );
+  }, [
+    title,
+    titleElement,
+    titleColor,
+    titleSize,
+    titleStyles,
+    isLoading,
+    loadingStatsAriaLabel,
+  ]);
 
-  const titleDisplay = (
-    <EuiTitle
-      size={titleSize}
-      className="euiStat__title"
-      css={titleCssStyles}
-      aria-label={isLoading ? loadingStatsAriaLabel : undefined}
-    >
-      {createElement(
-        titleElement,
-        isNamedTitleColor ? null : { style: { color: titleColor } },
-        isLoading ? '--' : title
-      )}
-    </EuiTitle>
-  );
-
-  const statDisplay = (
-    <Fragment>
-      {!reverse && descriptionDisplay}
-      {titleDisplay}
-      {reverse && descriptionDisplay}
-    </Fragment>
+  const descriptionDisplay = useMemo(
+    () => (
+      <EuiText size="s" className="euiStat__description">
+        {createElement(descriptionElement, null, description)}
+      </EuiText>
+    ),
+    [description, descriptionElement]
   );
 
   return (
     <div css={cssStyles} className={classes} {...rest}>
-      {statDisplay}
+      {!reverse && descriptionDisplay}
+      {titleDisplay}
+      {reverse && descriptionDisplay}
       {children}
     </div>
   );
