@@ -700,13 +700,13 @@ export class EuiSuperDatePickerInternal extends Component<
     });
 
     // Force reduction in width if showing quick select only
-    const width = isQuickSelectOnly ? 'auto' : _width;
+    const width = isQuickSelectOnly ? 'auto' : _width ?? 'restricted';
 
     const cssStyles = [
       styles.euiSuperDatePicker,
-      styles.widths[width!],
-      !showUpdateButton && styles.noUpdateButton,
-      isAutoRefreshOnly && styles.isAutoRefreshOnly,
+      styles.widths[width],
+      !showUpdateButton && styles.noUpdateButton[width],
+      isAutoRefreshOnly && styles.isAutoRefreshOnly[width],
       isQuickSelectOnly && styles.isQuickSelectOnly,
     ];
 
