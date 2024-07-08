@@ -2,7 +2,7 @@
 
 exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormControlLayout 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker"
   data-test-subj="mySuperDatePicker"
 >
   <div
@@ -72,7 +72,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
 
 exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--compressed euiFormControlLayout--group"
@@ -141,7 +141,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
 
 exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly"
+  class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly emotion-euiSuperDatePicker"
 >
   <div
     class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
@@ -189,7 +189,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
 
 exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly"
+  class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly emotion-euiSuperDatePicker"
   data-test-subj="autoRefreshOnly"
 >
   <div
@@ -255,7 +255,7 @@ exports[`EuiSuperDatePicker props isDisabled config object 1`] = `
 
 exports[`EuiSuperDatePicker props isDisabled true 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--group"
@@ -328,7 +328,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
 
 exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--isQuickSelectOnly euiSuperDatePicker--autoWidth"
+  class="euiSuperDatePicker euiSuperDatePicker--isQuickSelectOnly euiSuperDatePicker--autoWidth emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--group"
@@ -389,7 +389,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
 
 exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--noUpdateButton"
+  class="euiSuperDatePicker euiSuperDatePicker--noUpdateButton emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--group"
@@ -438,7 +438,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
 
 exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--group"
@@ -510,7 +510,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
 
 exports[`EuiSuperDatePicker props width can be auto 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--autoWidth"
+  class="euiSuperDatePicker euiSuperDatePicker--autoWidth emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--group"
@@ -579,7 +579,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
 
 exports[`EuiSuperDatePicker props width can be full 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--fullWidth"
+  class="euiSuperDatePicker euiSuperDatePicker--fullWidth emotion-euiSuperDatePicker"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout--group"
@@ -648,7 +648,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
 
 exports[`EuiSuperDatePicker renders 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiSuperDatePicker-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -718,7 +718,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
 
 exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiSuperDatePicker-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

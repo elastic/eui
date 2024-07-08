@@ -1,6 +1,4 @@
 .euiSuperDatePicker {
-  display: flex;
-  gap: $euiSizeS;
   max-width: 100%;
   // Set a sensible min-width for when width is auto
   min-width: MIN(($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS, 100%);
