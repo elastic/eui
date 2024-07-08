@@ -6,4 +6,7 @@ export const EuiThemeOverrides: EuiThemeModifications = {
       body: '#fff',
     },
   },
+  font: {
+    lineHeightMultiplier: 1.75,
+  },
 };

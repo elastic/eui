@@ -7,6 +7,7 @@
  */
 
 import { FunctionComponent, PropsWithChildren } from 'react';
+import Head from '@docusaurus/Head';
 import { Props } from '@theme/Root';
 import { Global } from '@emotion/react';
 import { _EuiThemeFontScale, useEuiTheme } from '@elastic/eui';
@@ -21,6 +22,12 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
 
   return (
     <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <Global styles={styles} />
       {children}
     </>
