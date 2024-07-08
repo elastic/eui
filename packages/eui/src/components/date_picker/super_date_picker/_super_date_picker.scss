@@ -1,36 +1,4 @@
 .euiSuperDatePicker {
-  max-width: 100%;
-  // Set a sensible min-width for when width is auto
-  min-width: MIN(($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS, 100%);
-  width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
-
-  @include euiBreakpoint('xs', 's') {
-    width: 100%;
-  }
-
-  &--isAutoRefreshOnly {
-    min-width: MIN($euiFormMaxWidth / 2, 100%);
-    width: $euiFormMaxWidth;
-  }
-
-  &--noUpdateButton {
-    min-width: MIN($euiFormMaxWidth / 2, 100%);
-    width: $euiSuperDatePickerWidth;
-  }
-
-  &--fullWidth {
-    width: 100%;
-  }
-
-  &--isQuickSelectOnly {
-    min-width: 0;
-  }
-
-  &--autoWidth {
-    display: inline-flex;
-    width: auto;
-  }
-
   .euiDatePickerRange {
     flex-grow: 1;
   }

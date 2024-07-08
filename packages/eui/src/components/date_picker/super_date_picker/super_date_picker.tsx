@@ -694,20 +694,21 @@ export class EuiSuperDatePickerInternal extends Component<
     } = this.props;
     const { hasChanged, isInvalid } = this.state;
 
-    // Force reduction in width if showing quick select only
-    const width = isQuickSelectOnly ? 'auto' : _width;
-
     const classes = classNames('euiSuperDatePicker', className, {
       'euiSuperDatePicker--needsUpdating':
         hasChanged && !isDisabled && !isInvalid,
-      'euiSuperDatePicker--noUpdateButton': !showUpdateButton,
-      'euiSuperDatePicker--isAutoRefreshOnly': isAutoRefreshOnly,
-      'euiSuperDatePicker--isQuickSelectOnly': isQuickSelectOnly,
-      'euiSuperDatePicker--fullWidth': width === 'full',
-      'euiSuperDatePicker--autoWidth': width === 'auto',
     });
 
-    const cssStyles = [styles.euiSuperDatePicker];
+    // Force reduction in width if showing quick select only
+    const width = isQuickSelectOnly ? 'auto' : _width;
+
+    const cssStyles = [
+      styles.euiSuperDatePicker,
+      styles.widths[width!],
+      !showUpdateButton && styles.noUpdateButton,
+      isAutoRefreshOnly && styles.isAutoRefreshOnly,
+      isQuickSelectOnly && styles.isQuickSelectOnly,
+    ];
 
     return (
       <div css={cssStyles} className={classes} data-test-subj={dataTestSubj}>
