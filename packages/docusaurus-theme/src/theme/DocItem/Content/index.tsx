@@ -52,10 +52,7 @@ export default function DocItemContent({ children }: Props): JSX.Element {
   const styles = useEuiMemoizedStyles(getContentStyles);
 
   return (
-    <div
-      className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}
-      data-search-children=""
-    >
+    <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
       {syntheticTitle && (
         <>
           <header css={styles.header}>
