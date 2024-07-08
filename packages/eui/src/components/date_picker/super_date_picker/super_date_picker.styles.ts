@@ -10,6 +10,8 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import {
+  euiFontSize,
+  euiCanAnimate,
   euiMaxBreakpoint,
   logicalCSS,
   mathWithUnits,
@@ -45,6 +47,12 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         ${logicalCSS('width', '100%')}
+      }
+
+      /* Fix border radius clipping, but only if the auto refresh append item isn't rendered */
+      .euiFormControlLayout__childrenWrapper:last-child {
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
       }
     `,
 
@@ -95,6 +103,39 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     // isQuickSelectOnly forces `width` to be `auto`
     isQuickSelectOnly: css`
       ${logicalCSS('min-width', 0)}
+    `,
+
+    euiSuperDatePicker__range: css`
+      flex-grow: 1;
+    `,
+    euiSuperDatePicker__rangeInput: css`
+      flex-grow: 1;
+      /* Needs !important to override EuiFormControlLayoutDelimited's fullWidth CSS */
+      ${logicalCSS('width', 'auto !important')}
+    `,
+    euiSuperDatePicker__prettyFormat: css`
+      ${logicalCSS('height', '100%')}
+      ${logicalCSS('width', '100%')}
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      text-align: start;
+      word-break: break-all;
+      color: ${forms.textColor};
+      background-color: ${forms.backgroundColor};
+
+      &:disabled {
+        background-color: ${forms.backgroundDisabledColor};
+        color: ${forms.controlDisabledColor};
+        cursor: not-allowed;
+      }
+
+      ${euiCanAnimate} {
+        transition: background-color ${euiTheme.animation.fast} ease-in;
+      }
     `,
   };
 };

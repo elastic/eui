@@ -516,6 +516,7 @@ export class EuiSuperDatePickerInternal extends Component<
       utcOffset,
       compressed,
       onFocus,
+      memoizedStyles: styles,
     } = this.props;
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
@@ -537,6 +538,7 @@ export class EuiSuperDatePickerInternal extends Component<
       disabled: !!isDisabled,
       prepend: this.renderQuickSelect(),
       append: autoRefreshAppend,
+      fullWidth: true,
     };
 
     if (isQuickSelectOnly) {
@@ -558,6 +560,7 @@ export class EuiSuperDatePickerInternal extends Component<
         <EuiFormControlLayout {...formControlLayoutProps}>
           <button
             type="button"
+            css={styles.euiSuperDatePicker__prettyFormat}
             className={classNames('euiSuperDatePicker__prettyFormat', {
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
@@ -586,10 +589,12 @@ export class EuiSuperDatePickerInternal extends Component<
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
             {...formControlLayoutProps}
+            css={styles.euiSuperDatePicker__range}
             isCustom={true}
             iconType={false}
             startDateControl={
               <EuiDatePopoverButton
+                css={styles.euiSuperDatePicker__rangeInput}
                 className="euiSuperDatePicker__startPopoverButton"
                 compressed={compressed}
                 position="start"
@@ -612,6 +617,7 @@ export class EuiSuperDatePickerInternal extends Component<
             }
             endDateControl={
               <EuiDatePopoverButton
+                css={styles.euiSuperDatePicker__rangeInput}
                 position="end"
                 compressed={compressed}
                 needsUpdating={hasChanged}
