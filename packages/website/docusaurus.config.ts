@@ -57,6 +57,12 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    ['docusaurus-lunr-search', {
+      disableVersioning: true, // We don't use docusaurus docs versioning
+    }]
+  ],
+
   themeConfig: {
     navbar: {
       title: 'Elastic UI',
