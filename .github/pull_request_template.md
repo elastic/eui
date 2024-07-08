@@ -25,4 +25,5 @@ Remove or strikethrough items that do not apply to your PR.
 - Release checklist
     - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately.
     - [ ] If applicable, added the **breaking change** issue label (and filled out the breaking change checklist)
-- [ ] If applicable, [enter a ticket](https://github.com/elastic/platform-ux-team/issues/new/choose) to have our [Figma library](https://www.figma.com/community/file/964536385682658129) updated with the corresponding changes. (This is an internal repo, if you are external to Elastic, ask a maintainer to submit this request)
+- Designer checklist
+  - [ ] If applicable, [file an issue](https://github.com/elastic/platform-ux-team/issues/new/choose) to update [EUI's Figma library](https://www.figma.com/community/file/964536385682658129) with any corresponding UI changes. _(This is an internal repo, if you are external to Elastic, ask a maintainer to submit this request)_
