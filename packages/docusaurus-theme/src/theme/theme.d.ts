@@ -419,3 +419,33 @@ declare module '@theme-original/NavbarItem' {
 
   export default function NavbarItem(props: Props): JSX.Element;
 }
+
+// original: https://github.com/facebook/docusaurus/blob/80203b385dd5a2a87039af3a73e141101574e440/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1340
+declare module '@theme-original/TOC' {
+  import type { TOCItem } from '@docusaurus/mdx-loader';
+
+  // `minHeadingLevel` only comes from doc/post front matter, and won't have a
+  // default set by Joi. See TOC, TOCInline, TOCCollapsible for examples.
+  export interface Props {
+    readonly toc: readonly TOCItem[];
+    readonly minHeadingLevel?: number;
+    readonly maxHeadingLevel?: number;
+    readonly className?: string;
+  }
+
+  export default function TOC(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/80203b385dd5a2a87039af3a73e141101574e440/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1328
+declare module '@theme-original/TOCItems/Tree' {
+  import type { TOCTreeNode } from '@docusaurus/theme-common/internal';
+
+  export interface Props {
+    readonly toc: readonly TOCTreeNode[];
+    readonly className: string;
+    readonly linkClassName: string | null;
+    readonly isChild?: boolean;
+  }
+
+  export default function TOCItems(props: Props): JSX.Element;
+}
