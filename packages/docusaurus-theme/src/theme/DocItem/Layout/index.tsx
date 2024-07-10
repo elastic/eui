@@ -18,9 +18,6 @@ import DocItemFooter from '../Footer';
 // converted from css modules to emotion
 const layoutStyles = {
   docItemContainer: css`
-    max-width: 764px;
-    margin: auto;
-
     & header + *,
     & article > *:first-child {
       margin-top: 0;
@@ -28,7 +25,7 @@ const layoutStyles = {
   `,
   docItemCol: css`
     @media (min-width: 997px) {
-      max-width: 75% !important;
+      max-width: 764px;
     }
   `,
 };
