@@ -18,6 +18,9 @@ import DocItemFooter from '../Footer';
 // converted from css modules to emotion
 const layoutStyles = {
   docItemContainer: css`
+    max-width: 764px;
+    margin: auto;
+
     & header + *,
     & article > *:first-child {
       margin-top: 0;
