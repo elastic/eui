@@ -449,3 +449,16 @@ declare module '@theme-original/TOCItems/Tree' {
 
   export default function TOCItems(props: Props): JSX.Element;
 }
+
+// original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1381
+declare module '@theme-original/TOCCollapsible/CollapseButton' {
+  import type { ComponentProps } from 'react';
+
+  export interface Props extends ComponentProps<'button'> {
+    collapsed: boolean;
+  }
+
+  export default function TOCCollapsibleCollapseButton(
+    props: Props
+  ): JSX.Element;
+}

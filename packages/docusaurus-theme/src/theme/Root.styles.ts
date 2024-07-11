@@ -62,6 +62,12 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-font-color-base: ${colors.text};
         --ifm-link-color: ${colors.link};
         --ifm-link-hover-color: ${colors.link};
+
+        --ifm-menu-color: ${euiTheme.colors.text};
+        --ifm-menu-color-background-active: ${euiTheme.colors.lightestShade};
+        --ifm-menu-color-background-hover: var(--eui-background-color-primary);
+
+        --ifm-pre-background: ${euiTheme.colors.lightestShade};
       }
 
       :root {
@@ -93,6 +99,8 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-font-size-base: var(--eui-font-size-base);
         --ifm-font-weight-base: ${fontBase.fontWeight};
         --ifm-line-height-base: var(--eui-line-height-base);
+
+        --ifm-global-radius: ${euiTheme.border.radius.small};
       }
 
       /* base styles & resets */
