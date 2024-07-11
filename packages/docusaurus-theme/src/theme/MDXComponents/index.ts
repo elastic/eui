@@ -10,12 +10,15 @@ import OriginalMDXComponents from '@theme-init/MDXComponents';
 import { Badge } from '../../components/badge';
 import { Icon } from '../../components/icon';
 import { FigmaEmbed } from '../../components/figma_embed';
+import { Demo, DemoSource } from '../../components/demo';
 
 const MDXComponents = {
   ...OriginalMDXComponents,
   Badge,
   FigmaEmbed,
   Icon,
+  Demo,
+  DemoSource,
 };
 
 export default MDXComponents;
