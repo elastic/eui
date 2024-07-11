@@ -10,7 +10,7 @@ import { euiButtonColor } from '@elastic/eui/lib/themes/amsterdam/global_styling
 const getStyles = (theme: UseEuiTheme) => {
   const { euiTheme } = theme;
   const buttonColor = euiButtonColor(theme, 'primary');
-  console.log(buttonColor);
+
   return {
     editPage: css`
       // overriding Docusaurus link hover styles to preserve button styles
