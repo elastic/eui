@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { FunctionComponent, PropsWithChildren } from 'react';
+import {
+  FunctionComponent,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react';
 import Head from '@docusaurus/Head';
 import { Props } from '@theme/Root';
 import { Global } from '@emotion/react';
@@ -17,8 +22,21 @@ import { AppThemeProvider } from '../components/theme_context';
 import { getGlobalStyles } from './Root.styles';
 
 const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
+  const [mounted, setMounted] = useState(false);
   const euiTheme = useEuiTheme();
   const styles = getGlobalStyles(euiTheme);
+
+  // NOTE: This is a temp. solution
+  // Emotion styles are loaded dynamically on client in contrast
+  // to Docusaurus' SSR content. By rendering the content only
+  // after mount we can prevent some quite noticeable style updates
+  // and layout shifts. The drawback is that the page initially loads blank.
+  // TODO: remove this once we have an approach to inject HTML server-side
+  useEffect(() => {
+    if (!mounted) {
+      setMounted(true);
+    }
+  }, []);
 
   return (
     <>
@@ -29,7 +47,7 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
         />
       </Head>
       <Global styles={styles} />
-      {children}
+      {mounted && children}
     </>
   );
 };
