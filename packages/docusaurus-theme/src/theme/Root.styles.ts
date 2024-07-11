@@ -38,8 +38,8 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const fontSizeXXS = euiFontSizeFromScale('xxs', euiTheme);
 
   const lineHeightXL = '1.75rem';
-  const lineHeightL = '1.5rem';
-  const lineHeightM = euiLineHeightFromBaseline('s', euiTheme);
+  const lineHeightL = euiLineHeightFromBaseline('s', euiTheme);
+  const lineHeightM = '1.5rem';
   const lineHeightS = euiLineHeightFromBaseline('xs', euiTheme);
   const lineHeightXS = '1.33rem';
   const lineHeightXXS = euiLineHeightFromBaseline('xxs', euiTheme);

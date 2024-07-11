@@ -23,7 +23,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 
       .tree-item__inner {
         font-size: var(--eui-font-size-s);
-        line-height: var(--eui-line-height-m);
+        line-height: var(--eui-line-height-l);
       }
 
       @media (min-width: 997px) {
