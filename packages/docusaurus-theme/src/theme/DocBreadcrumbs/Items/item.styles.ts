@@ -17,10 +17,6 @@ export const getItemStyles = ({ euiTheme }: UseEuiTheme) => ({
       line-height: var(--eui-line-height-m);
     }
 
-    &.breadcrumbs__item:first-child .breadcrumbs__link {
-      padding-inline-start: 0;
-    }
-
     a.breadcrumbs__link {
       color: ${euiTheme.colors.link};
       font-weight: ${euiTheme.font.weight.bold};

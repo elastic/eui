@@ -14,11 +14,14 @@ import HomeBreadcrumbItem from './Items/Home';
 import { getItemStyles } from './Items/item.styles';
 
 // converted from css modules to Emotion
-const styles = {
+const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   breadcrumbsContainer: css`
     --ifm-breadcrumb-size-multiplier: 0.8;
+
+    // align breadcrumb items with content
+    margin-inline-start: -${euiTheme.size.m};
   `,
-};
+});
 
 // TODO move to design system folder
 function BreadcrumbsItemLink({
@@ -87,6 +90,8 @@ function BreadcrumbsItem({
 export default function DocBreadcrumbs(): JSX.Element | null {
   const breadcrumbs = useSidebarBreadcrumbs();
   const homePageRoute = useHomePageRoute();
+
+  const styles = useEuiMemoizedStyles(getStyles);
 
   if (!breadcrumbs) {
     return null;
