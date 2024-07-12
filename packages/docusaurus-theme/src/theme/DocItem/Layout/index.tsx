@@ -3,13 +3,13 @@ import { css } from '@emotion/react';
 import { useWindowSize } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/theme-common/internal';
 import DocItemPaginator from '@theme-original/DocItem/Paginator';
-import DocVersionBanner from '@theme-original/DocVersionBanner';
-import DocVersionBadge from '@theme-original/DocVersionBadge';
-import DocBreadcrumbs from '@theme-original/DocBreadcrumbs';
 import Unlisted from '@theme-original/Unlisted';
 import * as Props from '@theme-original/DocItem/Layout';
 import { EuiHorizontalRule } from '@elastic/eui';
 
+import DocVersionBanner from '../../DocVersionBanner';
+import DocVersionBadge from '../../DocVersionBadge';
+import DocBreadcrumbs from '../../DocBreadcrumbs';
 import DocItemContent from '../Content';
 import DocItemTOCMobile from '../TOC/Mobile';
 import DocItemTOCDesktop from '../TOC/Desktop';
