@@ -132,20 +132,32 @@ export default () => {
           <EuiBottomBar position="sticky">
             <EuiFlexGroup responsive={false} justifyContent="flexEnd">
               <EuiFlexItem grow={false}>
-                <EuiButton onClick={() => {
-                  const overridesJSON = JSON.stringify(overrides || {}, null, 2)
-                  localStorage.setItem('kbn-theme-overrides', overridesJSON);
-                  location.reload();
-                }} fill iconType="copyClipboard">
+                <EuiButton
+                  onClick={() => {
+                    const overridesJSON = JSON.stringify(
+                      overrides || {},
+                      null,
+                      2
+                    );
+                    localStorage.setItem('kbn-theme-overrides', overridesJSON);
+                    location.reload();
+                  }}
+                  fill
+                  iconType="copyClipboard"
+                >
                   Apply to local storage
                 </EuiButton>
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
-                <EuiButton onClick={() => {
-                  const overridesJSON = JSON.stringify({}, null, 2)
-                  localStorage.setItem('kbn-theme-overrides', overridesJSON);
-                  location.reload();
-                }} fill iconType="copyClipboard">
+                <EuiButton
+                  onClick={() => {
+                    const overridesJSON = JSON.stringify({}, null, 2);
+                    localStorage.setItem('kbn-theme-overrides', overridesJSON);
+                    location.reload();
+                  }}
+                  fill
+                  iconType="copyClipboard"
+                >
                   Reset local storage
                 </EuiButton>
               </EuiFlexItem>

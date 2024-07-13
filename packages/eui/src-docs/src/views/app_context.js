@@ -49,7 +49,9 @@ export const AppContext = ({ children }) => {
   const isLocalDev = window.location.host.includes('803');
   setEuiDevProviderWarning(isLocalDev ? 'error' : 'warn'); // Note: this can't be in a useEffect, otherwise it fires too late for style memoization warnings to error on page reload
 
-  const overrides = JSON.parse(localStorage.getItem('kbn-theme-overrides') || '{}');
+  const overrides = JSON.parse(
+    localStorage.getItem('kbn-theme-overrides') || '{}'
+  );
 
   return (
     <EuiProvider
