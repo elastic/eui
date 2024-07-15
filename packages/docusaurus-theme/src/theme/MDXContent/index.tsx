@@ -26,7 +26,7 @@ const MDXContent = (props: Props): JSX.Element => {
   const styles = useEuiMemoizedStyles(getStyles);
 
   return (
-    <EuiText size="m" css={styles.text}>
+    <EuiText size="m" css={styles.text} data-search-children>
       <OriginalMDXContent {...props} />
     </EuiText>
   );
