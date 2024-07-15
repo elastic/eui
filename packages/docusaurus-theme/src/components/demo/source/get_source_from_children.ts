@@ -18,7 +18,13 @@ export const getSourceFromChildren = (children: ReactNode): string | null => {
   }
 
   const element = children as ReactElement;
-  if (typeof element.type !== 'function' || (element.type as Function).name !== 'MDXPre') {
+  const functionName = (element.type as Function).name;
+  // The code block content could render in either MDXPre (development builds)
+  // or pre (optimized production builds)
+  if (
+    typeof element.type !== 'function' ||
+    (functionName !== 'MDXPre' && functionName !== 'pre')
+  ) {
     return null;
   }
 
@@ -32,9 +38,9 @@ export const getSourceFromChildren = (children: ReactNode): string | null => {
   }
 
   const code = codeElement.props.children;
-  if (typeof code !== 'string'){
+  if (typeof code !== 'string') {
     return null;
   }
 
   return code;
-}
+};
