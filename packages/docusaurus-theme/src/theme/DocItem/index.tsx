@@ -1,9 +1,9 @@
 import React from 'react';
 import { HtmlClassNameProvider } from '@docusaurus/theme-common';
 import { DocProvider } from '@docusaurus/theme-common/internal';
-import DocItemMetadata from '@theme-original/DocItem/Metadata';
 import type { Props } from '@theme/DocItem';
 
+import DocItemMetadata from './Metadata';
 import DocItemLayout from './Layout';
 
 export default function DocItem(props: Props): JSX.Element {

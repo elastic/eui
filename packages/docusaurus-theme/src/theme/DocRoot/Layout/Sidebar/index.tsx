@@ -1,0 +1,132 @@
+import React, { type ReactNode, useState, useCallback } from 'react';
+import clsx from 'clsx';
+import { css } from '@emotion/react';
+import {
+  prefersReducedMotion,
+  ThemeClassNames,
+} from '@docusaurus/theme-common';
+import { useDocsSidebar } from '@docusaurus/theme-common/internal';
+import { useLocation } from '@docusaurus/router';
+import DocSidebar from '@theme-original/DocSidebar';
+import type { Props } from '@theme-original/DocRoot/Layout/Sidebar';
+import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
+
+import ExpandButton from './ExpandButton';
+
+const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    sidebar: css`
+      --doc-sidebar-width: 258px;
+      --doc-sidebar-hidden-width: 30px;
+
+      // ensure scrolling still works
+      display: flex;
+
+      .theme-doc-sidebar-menu.menu__list {
+        padding: 0 ${euiTheme.size.s};
+      }
+    `,
+  };
+};
+
+// converted from css moduels to Emotion
+const styles = {
+  docSidebarContainer: css`
+    display: none;
+
+    @media (min-width: 997px) {
+      display: block;
+      width: var(--doc-sidebar-width);
+      margin-top: calc(-1 * var(--ifm-navbar-height));
+      border-right: 1px solid var(--ifm-toc-border-color);
+      will-change: width;
+      transition: width var(--ifm-transition-fast) ease;
+      clip-path: inset(0);
+    }
+  `,
+  docSidebarContainerHidden: css`
+    width: var(--doc-sidebar-hidden-width);
+    cursor: pointer;
+  `,
+  sidebarViewport: css`
+    top: 0;
+    position: sticky;
+    height: 100%;
+    max-height: 100vh;
+  `,
+};
+
+// Reset sidebar state when sidebar changes
+// Use React key to unmount/remount the children
+// See https://github.com/facebook/docusaurus/issues/3414
+function ResetOnSidebarChange({ children }: { children: ReactNode }) {
+  const sidebar = useDocsSidebar();
+  return (
+    <React.Fragment key={sidebar?.name ?? 'noSidebar'}>
+      {children}
+    </React.Fragment>
+  );
+}
+
+export default function DocRootLayoutSidebar({
+  sidebar,
+  hiddenSidebarContainer,
+  setHiddenSidebarContainer,
+}: Props): JSX.Element {
+  const { pathname } = useLocation();
+  const globalStyles = useEuiMemoizedStyles(getGlobalStyles);
+
+  const [hiddenSidebar, setHiddenSidebar] = useState(false);
+  const toggleSidebar = useCallback(() => {
+    if (hiddenSidebar) {
+      setHiddenSidebar(false);
+    }
+    // onTransitionEnd won't fire when sidebar animation is disabled
+    // fixes https://github.com/facebook/docusaurus/issues/8918
+    if (!hiddenSidebar && prefersReducedMotion()) {
+      setHiddenSidebar(true);
+    }
+    setHiddenSidebarContainer((value) => !value);
+  }, [setHiddenSidebarContainer, hiddenSidebar]);
+
+  return (
+    <aside
+      className={clsx(
+        ThemeClassNames.docs.docSidebarContainer,
+        styles.docSidebarContainer.name // adding the name here to preserve the functionality of the class check further down
+      )}
+      css={[
+        globalStyles.sidebar,
+        styles.docSidebarContainer,
+        hiddenSidebarContainer && styles.docSidebarContainerHidden,
+      ]}
+      onTransitionEnd={(e) => {
+        if (
+          !e.currentTarget.classList.contains(styles.docSidebarContainer.name!)
+        ) {
+          return;
+        }
+
+        if (hiddenSidebarContainer) {
+          console.log('hidden sidebar?');
+          setHiddenSidebar(true);
+        }
+      }}
+    >
+      <ResetOnSidebarChange>
+        <div
+          className={clsx(hiddenSidebar && 'sidebarViewportHidden')}
+          css={styles.sidebarViewport}
+        >
+          <DocSidebar
+            sidebar={sidebar}
+            path={pathname}
+            onCollapse={toggleSidebar}
+            isHidden={hiddenSidebar}
+          />
+          {hiddenSidebar && <ExpandButton toggleSidebar={toggleSidebar} />}
+        </div>
+      </ResetOnSidebarChange>
+    </aside>
+  );
+}
