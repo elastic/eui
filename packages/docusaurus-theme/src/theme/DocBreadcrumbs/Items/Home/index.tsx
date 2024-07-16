@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { translate } from '@docusaurus/Translate';
@@ -23,7 +22,7 @@ export default function HomeBreadcrumbItem(): JSX.Element {
         className="breadcrumbs__link"
         href={homeHref}
       >
-        EUI+
+        EUI
       </Link>
       <EuiIcon type="arrowRight" size="s" css={styles.icon} />
     </li>
