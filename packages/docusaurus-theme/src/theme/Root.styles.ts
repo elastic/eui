@@ -11,6 +11,7 @@ import {
   euiFontSizeFromScale,
   euiLineHeightFromBaseline,
   useEuiBackgroundColor,
+  useEuiFocusRing,
   UseEuiTheme,
 } from '@elastic/eui';
 
@@ -119,6 +120,11 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         color: inherit;
         border-radius: 0;
         font-size: inherit;
+      }
+
+      /* global styles */
+      * {
+        ${useEuiFocusRing('outset', euiTheme.colors.primary)};
       }
   `;
 };
