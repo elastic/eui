@@ -2,12 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import NavbarLayout from '@theme-original/Navbar/Layout';
 import NavbarContent from '@theme-original/Navbar/Content';
-import {
-  euiFocusRing,
-  logicalCSS,
-  useEuiMemoizedStyles,
-  UseEuiTheme,
-} from '@elastic/eui';
+import { euiFocusRing, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import {
   euiFormControlText,
   euiFormVariables,
