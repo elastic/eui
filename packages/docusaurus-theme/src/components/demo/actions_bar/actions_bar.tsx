@@ -1,11 +1,9 @@
 import {
-  euiBackgroundColor,
   EuiButton,
   EuiButtonIcon,
   EuiFlexGroup,
   EuiToolTip,
   useEuiMemoizedStyles,
-  euiBorderColor,
   UseEuiTheme,
   darken,
 } from '@elastic/eui';
@@ -23,7 +21,7 @@ export interface DemoActionsBarProps {
 const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
   return {
     actionsBar: css`
-      padding: ${euiTheme.euiTheme.size.s};
+      padding: var(--eui-size-s);
       background: ${darken(euiTheme.euiTheme.colors.body, 0.05)};
       border-top: 1px solid var(--docs-demo-border-color);
 
@@ -34,8 +32,8 @@ const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
       }
     `,
     button: css`
-      background: ${euiBackgroundColor(euiTheme, 'primary', { method: 'opaque' })};
-      border: 1px solid ${euiBorderColor(euiTheme, 'primary')};
+      background: var(--eui-background-color-primary-opaque);
+      border: 1px solid var(--eui-border-color-primary);
       margin-right: auto;
     `,
   };

@@ -1,4 +1,13 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import {
+  euiBorderColor,
   euiFontSizeFromScale,
   euiLineHeightFromBaseline,
   useEuiBackgroundColor,
@@ -8,7 +17,8 @@ import {
 // override docusaurus variables as needed
 // NOTE: we use define variables with style calculations here
 // on the global level to reduce how often they are called
-export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
+export const getGlobalStyles = (theme: UseEuiTheme) => {
+  const { euiTheme } = theme;
   const { font, base, colors, size } = euiTheme;
   const fontBodyScale = font.scale[font.body.scale];
   const fontBase = {
@@ -39,10 +49,13 @@ export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
       [data-theme='dark']:root {
         /* EUI theme variables */
         --eui-background-color-primary: ${useEuiBackgroundColor('primary')};
+        --eui-background-color-primary-opaque: ${useEuiBackgroundColor('primary', { method: 'opaque' })};
         --eui-background-color-success: ${useEuiBackgroundColor('success')};
         --eui-background-color-danger: ${useEuiBackgroundColor('danger')};
         --eui-background-color-warning: ${useEuiBackgroundColor('warning')};
-  
+
+        --eui-color-danger-text: ${euiTheme.colors.dangerText};
+
         /* Docusaurus theme variables */
         --ifm-background-color: ${colors.body};
         --ifm-font-color-base: ${colors.text};
@@ -68,6 +81,11 @@ export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
         --eui-line-height-s: ${lineHeightS};
         --eui-line-height-xs: ${lineHeightXS};
 
+        --eui-size-xs: ${euiTheme.size.xs};
+        --eui-size-s: ${euiTheme.size.s};
+
+        --eui-border-color-primary: ${euiBorderColor(theme, 'primary')};
+
         /* Docusaurus theme variables */
         --ifm-font-family-base: ${fontBase.fontFamily};
         --ifm-font-size-base: var(--eui-font-size-base);
@@ -80,7 +98,7 @@ export const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
       h1, h2, h3, h4, h5, h6 {
         margin-block-start: ${size.l};
         margin-block-end: ${size.m};
-        
+
         font-weight: ${font.weight.bold};
       }
 

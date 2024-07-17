@@ -1,8 +1,16 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import { LiveEditor, LiveError } from 'react-live';
 import { css } from '@emotion/react';
-import { useEuiTheme, euiFontSize, euiBackgroundColor, UseEuiTheme } from '@elastic/eui';
+import { useEuiMemoizedStyles, useEuiTheme } from '@elastic/eui';
 
-const getEditorStyles = (euiTheme: UseEuiTheme) => ({
+const getEditorStyles = () => ({
   editor: css`
     font-family: var(--ifm-font-family-monospace);
     border-radius: 0 0 var(--docs-demo-border-radius) var(--docs-demo-border-radius);
@@ -15,10 +23,10 @@ const getEditorStyles = (euiTheme: UseEuiTheme) => ({
     // docusaurus overrides the default pre styles
     // forcing us to use higher specificity here
     && > pre {
-      font-size: ${euiFontSize(euiTheme, 's')};
-      background: ${euiBackgroundColor(euiTheme, 'danger')};
-      color: ${euiTheme.euiTheme.colors.dangerText};
-      padding: ${euiTheme.euiTheme.size.xs} ${euiTheme.euiTheme.size.s};
+      font-size: var(--eui-font-size-s);
+      background: var(--eui-background-color-danger);
+      color: var(--eui-color-danger-text);
+      padding: var(--eui-size-xs) var(--eui-size-s);
       margin: 0;
       border-radius: 0;
     }
@@ -26,8 +34,7 @@ const getEditorStyles = (euiTheme: UseEuiTheme) => ({
 });
 
 export const DemoEditor = () => {
-  const euiTheme = useEuiTheme();
-  const styles = getEditorStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(getEditorStyles);
 
   return (
     <div css={styles.editor}>
