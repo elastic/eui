@@ -27,16 +27,16 @@ describe('euiFormVariables', () => {
     expect(result.current).toMatchInlineSnapshot(`
       {
         "animationTiming": "150ms ease-in",
-        "backgroundColor": "#f9fbfd",
-        "backgroundDisabledColor": "#eef1f7",
+        "backgroundColor": "#fdfefe",
+        "backgroundDisabledColor": "#f8f9fa",
         "backgroundReadOnlyColor": "#FFF",
-        "borderColor": "rgba(32,38,47,0.1)",
+        "borderColor": "rgba(33,38,46,0.1)",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
         "controlCompressedHeight": "32px",
         "controlCompressedPadding": "8px",
-        "controlDisabledColor": "#98A2B3",
+        "controlDisabledColor": "#C4CDD8",
         "controlHeight": "40px",
         "controlIconSize": {
           "l": "24px",
@@ -49,15 +49,15 @@ describe('euiFormVariables', () => {
         "controlLayoutGroupInputCompressedHeight": "30px",
         "controlLayoutGroupInputHeight": "38px",
         "controlPadding": "12px",
-        "controlPlaceholderText": "#646a77",
-        "customControlBorderColor": "#f5f7fc",
-        "customControlDisabledIconColor": "#cacfd8",
+        "controlPlaceholderText": "#686b79",
+        "customControlBorderColor": "#fcfdfe",
+        "customControlDisabledIconColor": "#e1e5eb",
         "iconAffordance": "24px",
         "iconCompressedAffordance": "18px",
         "inputGroupBorder": "none",
-        "inputGroupLabelBackground": "#e9edf3",
+        "inputGroupLabelBackground": "#eff3f7",
         "maxWidth": "400px",
-        "textColor": "#343741",
+        "textColor": "#353741",
       }
     `);
   });
@@ -82,11 +82,11 @@ describe('euiFormControlStyles', () => {
       {
         "autoFill": "
           &:-webkit-autofill {
-            -webkit-text-fill-color: #343741;
-            -webkit-box-shadow: inset 0 0 0 1px rgba(0,107,184,0.2), inset 0 0 0 100vw #f0f7fc;
+            -webkit-text-fill-color: #1C1E24;
+            -webkit-box-shadow: inset 0 0 0 1px rgba(21,51,133,0.2), inset 0 0 0 100vw #f0f6fd;
 
             &:invalid {
-              -webkit-box-shadow: inset 0 0 0 1px #BD271E, inset 0 0 0 100vw #f0f7fc;
+              -webkit-box-shadow: inset 0 0 0 1px #DE0000, inset 0 0 0 100vw #f0f6fd;
             }
           }
         ",
@@ -98,37 +98,37 @@ describe('euiFormControlStyles', () => {
             border-radius: 4px;
           ",
         "disabled": "
-          color: #98A2B3;
+          color: #C4CDD8;
           /* Required for Safari */
-          -webkit-text-fill-color: #98A2B3;
-          background-color: #eef1f7;
+          -webkit-text-fill-color: #C4CDD8;
+          background-color: #f8f9fa;
           cursor: not-allowed;
 
           
         &::-webkit-input-placeholder { 
-            color: #98A2B3;
+            color: #C4CDD8;
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #98A2B3;
+            color: #C4CDD8;
             opacity: 1;
            }
         &:-ms-input-placeholder { 
-            color: #98A2B3;
+            color: #C4CDD8;
             opacity: 1;
            }
         &:-moz-placeholder { 
-            color: #98A2B3;
+            color: #C4CDD8;
             opacity: 1;
            }
         &::placeholder { 
-            color: #98A2B3;
+            color: #C4CDD8;
             opacity: 1;
            }
 
         ",
         "focus": "
-        --euiFormControlStateColor: #07C;
+        --euiFormControlStateColor: #0B64DD;
         background-color: #FFF;
         background-size: 100% 100%;
         outline: none; /* Remove all outlines and rely on our own bottom border gradient */
@@ -147,13 +147,13 @@ describe('euiFormControlStyles', () => {
             border-radius: 0;
           ",
         "invalid": "
-        --euiFormControlStateColor: #BD271E;
+        --euiFormControlStateColor: #DE0000;
         background-size: 100% 100%;
       ",
         "readOnly": "
           cursor: default;
-          color: #343741;
-          -webkit-text-fill-color: #343741; /* Required for Safari */
+          color: #353741;
+          -webkit-text-fill-color: #353741; /* Required for Safari */
 
           background-color: #FFF;
           --euiFormControlStateColor: transparent;
@@ -162,27 +162,27 @@ describe('euiFormControlStyles', () => {
             
           font-family: 'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif;
           font-size: 1.0000rem;
-          color: #343741;
+          color: #353741;
 
           
         &::-webkit-input-placeholder { 
-            color: #646a77;
+            color: #686b79;
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #646a77;
+            color: #686b79;
             opacity: 1;
            }
         &:-ms-input-placeholder { 
-            color: #646a77;
+            color: #686b79;
             opacity: 1;
            }
         &:-moz-placeholder { 
-            color: #646a77;
+            color: #686b79;
             opacity: 1;
            }
         &::placeholder { 
-            color: #646a77;
+            color: #686b79;
             opacity: 1;
            }
 
@@ -190,8 +190,8 @@ describe('euiFormControlStyles', () => {
             
           /* We use inset box-shadow instead of border to skip extra hight calculations */
           border: none;
-          box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
-          background-color: #f9fbfd;
+          box-shadow: inset 0 0 0 1px rgba(33,38,46,0.1);
+          background-color: #fdfefe;
 
           background-repeat: no-repeat;
           background-size: 0% 100%;
@@ -230,7 +230,7 @@ describe('euiCustomControl', () => {
       "
           padding: 7px;
           
-          border: 1px solid #f5f7fc;
+          border: 1px solid #fcfdfe;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -249,7 +249,7 @@ describe('euiCustomControl', () => {
       "
           padding: 15px;
           
-          border: 1px solid #f5f7fc;
+          border: 1px solid #fcfdfe;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -268,7 +268,7 @@ describe('euiCustomControl', () => {
       "
           padding: 7px;
           border-radius: 16px;
-          border: 1px solid #f5f7fc;
+          border: 1px solid #fcfdfe;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -287,7 +287,7 @@ describe('euiCustomControl', () => {
       "
           padding: 2px;
           border-radius: 6px;
-          border: 1px solid #f5f7fc;
+          border: 1px solid #fcfdfe;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -306,7 +306,7 @@ describe('euiCustomControl', () => {
       "
           padding: 7px;
           border-radius: 4px;
-          border: 1px solid #f5f7fc;
+          border: 1px solid #fcfdfe;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {

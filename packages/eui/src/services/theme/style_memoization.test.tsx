@@ -45,7 +45,7 @@ describe('useEuiMemoizedStyles', () => {
     const { getByRole } = render(<Component />);
 
     expect(componentStyles).toHaveBeenCalledTimes(1);
-    expect(getByRole('button')).toHaveStyleRule('color', '#006bb8');
+    expect(getByRole('button')).toHaveStyleRule('color', '#153385');
 
     fireEvent.click(getByRole('button'));
     expect(componentStyles).toHaveBeenCalledTimes(1);
@@ -58,7 +58,7 @@ describe('useEuiMemoizedStyles', () => {
       </EuiThemeProvider>
     );
     expect(componentStyles).toHaveBeenCalledTimes(1);
-    expect(getByRole('button')).toHaveStyleRule('color', '#006bb8');
+    expect(getByRole('button')).toHaveStyleRule('color', '#153385');
 
     rerender(
       <EuiThemeProvider colorMode="dark">
@@ -66,7 +66,7 @@ describe('useEuiMemoizedStyles', () => {
       </EuiThemeProvider>
     );
     expect(componentStyles).toHaveBeenCalledTimes(2);
-    expect(getByRole('button')).toHaveStyleRule('color', '#36a2ef');
+    expect(getByRole('button')).toHaveStyleRule('color', '#153385');
 
     // Should not recompute styles if no theme changes
     rerender(
@@ -122,7 +122,7 @@ describe('withEuiStylesMemoizer', () => {
     const { getByRole } = render(<Component />);
 
     expect(componentStyles).toHaveBeenCalledTimes(1);
-    expect(getByRole('button')).toHaveStyleRule('color', '#bd271e');
+    expect(getByRole('button')).toHaveStyleRule('color', '#B60000');
 
     fireEvent.click(getByRole('button'));
     expect(componentStyles).toHaveBeenCalledTimes(1);
@@ -135,7 +135,7 @@ describe('withEuiStylesMemoizer', () => {
       </EuiThemeProvider>
     );
     expect(componentStyles).toHaveBeenCalledTimes(1);
-    expect(getByRole('button')).toHaveStyleRule('color', '#bd271e');
+    expect(getByRole('button')).toHaveStyleRule('color', '#B60000');
 
     rerender(
       <EuiThemeProvider colorMode="dark">
@@ -143,7 +143,7 @@ describe('withEuiStylesMemoizer', () => {
       </EuiThemeProvider>
     );
     expect(componentStyles).toHaveBeenCalledTimes(2);
-    expect(getByRole('button')).toHaveStyleRule('color', '#f86b63');
+    expect(getByRole('button')).toHaveStyleRule('color', '#B60000');
 
     // Should not recompute styles if no theme changes
     rerender(

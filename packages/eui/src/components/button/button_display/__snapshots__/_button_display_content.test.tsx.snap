@@ -8,7 +8,7 @@ exports[`EuiButtonDisplayContent button icon loading icon renders disabled & loa
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color: #07c currentcolor currentcolor currentcolor;"
+    style="border-color: #0b64dd currentcolor currentcolor currentcolor;"
   />
   <span
     class="eui-textTruncate"

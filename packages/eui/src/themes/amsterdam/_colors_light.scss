@@ -8,40 +8,59 @@ $euiColorGhost: #FFF !default;
 $euiColorInk: #000 !default;
 
 // Core
-$euiColorPrimary: #07C !default;
+// $euiColorPrimary: #07C !default;
+$euiColorPrimary: #0B64DD !default;
 $euiColorAccent: #F04E98 !default;
 
 // Status
-$euiColorSuccess: #00BFB3 !default;
+// $euiColorSuccess: #00BFB3 !default;
+$euiColorSuccess: #02BCB7 !default;
 $euiColorWarning: #FEC514 !default;
-$euiColorDanger: #BD271E !default;
+// $euiColorDanger: #BD271E !default;
+$euiColorDanger: #DE0000 !default;
 
 // Grays
 $euiColorEmptyShade: #FFF !default;
-$euiColorLightestShade: #F5F7FA !default;
-$euiColorLightShade: #D3DAE6 !default;
-$euiColorMediumShade: #98A2B3 !default;
-$euiColorDarkShade: #69707D !default;
-$euiColorDarkestShade: #343741 !default;
+// $euiColorLightestShade: #F5F7FA !default;
+$euiColorLightestShade: #FBFCFD !default;
+// $euiColorLightShade: #D3DAE6 !default;
+$euiColorLightShade: #DFE6EF !default;
+// $euiColorMediumShade: #98A2B3 !default;
+$euiColorMediumShade: #C4CDD8 !default;
+// $euiColorDarkShade: #69707D !default;
+$euiColorDarkShade: #353741 !default;
+// $euiColorDarkestShade: #343741 !default;
+$euiColorDarkestShade: #1C1E24 !default;
 $euiColorFullShade: #000 !default;
 
 // Backgrounds
-$euiPageBackgroundColor: tint($euiColorLightestShade, 50%) !default;
+// $euiPageBackgroundColor: tint($euiColorLightestShade, 50%) !default;
+$euiPageBackgroundColor: #F5F7FA;
 $euiColorHighlight: tint($euiColorWarning, 90%) !default;
 
 // Every color below must be based mathematically on the set above and in a particular order.
-$euiTextColor: $euiColorDarkestShade !default;
-$euiTitleColor: shade($euiTextColor, 50%) !default;
-$euiTextSubduedColor: $euiColorDarkShade !default;
-$euiColorDisabled: #ABB4C4 !default;
+// $euiTextColor: $euiColorDarkestShade !default;
+$euiTextColor: #353741 !default;
+// $euiTitleColor: shade($euiTextColor, 50%) !default;
+$euiTitleColor: #1C1E24 !default;
+// $euiTextSubduedColor: $euiColorDarkShade !default;
+$euiTextSubduedColor: #7F8494 !default;
+// $euiColorDisabled: #ABB4C4 !default;
+$euiColorDisabled: #E6EBF2 !default;
 
 // Contrasty text variants
-$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
-$euiColorSuccessText: makeHighContrastColor($euiColorSuccess) !default;
-$euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
-$euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
-$euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
-$euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
+// $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
+$euiColorPrimaryText: #0B64DD !default;
+// $euiColorSuccessText: makeHighContrastColor($euiColorSuccess) !default;
+$euiColorSuccessText: #02BCB7 !default;
+// $euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
+$euiColorAccentText: #F04E98 !default;
+// $euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
+$euiColorWarningText: #FEC514 !default;
+// $euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
+$euiColorDangerText: #DE0000 !default;
+// $euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
+$euiColorDisabledText: #7F8494 !default;
 $euiLinkColor: $euiColorPrimaryText !default;
 
 // Charts

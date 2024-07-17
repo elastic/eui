@@ -128,7 +128,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.8571rem;
-      color: #343741;
+      color: #353741;
     }
 
     small {
@@ -152,7 +152,7 @@ exports[`euiTextStyles sizes m 1`] = `
     
     kbd::after {
       content: '';
-      border-block-end: 1px solid #343741;
+      border-block-end: 1px solid #353741;
       position: absolute;
       inset-block-end: 2px;
       inset-inline-start: 0;
@@ -289,7 +289,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.75em;
-      color: #343741;
+      color: #353741;
     }
 
     small {
@@ -435,7 +435,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.7500rem;
-      color: #343741;
+      color: #353741;
     }
 
     small {
@@ -581,7 +581,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.6429rem;
-      color: #343741;
+      color: #353741;
     }
 
     small {

@@ -28,47 +28,67 @@ import {
  */
 
 export const brand_colors: _EuiThemeBrandColors = {
-  primary: '#07C',
+  //primary: '#07C',
+  primary: '#0B64DD',
   accent: '#F04E98',
-  success: '#00BFB3',
+  //success: '#00BFB3',
+  success: '#02BCB7',
   warning: '#FEC514',
-  danger: '#BD271E',
+  //danger: '#BD271E',
+  danger: '#DE0000',
 };
 
 export const brand_text_colors: _EuiThemeBrandTextColors = {
-  primaryText: computed(makeHighContrastColor('colors.primary')),
-  accentText: computed(makeHighContrastColor('colors.accent')),
-  successText: computed(makeHighContrastColor('colors.success')),
-  warningText: computed(makeHighContrastColor('colors.warning')),
-  dangerText: computed(makeHighContrastColor('colors.danger')),
+  //primaryText: computed(makeHighContrastColor('colors.primary')),
+  primaryText: '#153385',
+  //accentText: computed(makeHighContrastColor('colors.accent')),
+  accentText: '#89004A',
+  //successText: computed(makeHighContrastColor('colors.success')),
+  successText: '#00615F',
+  //warningText: computed(makeHighContrastColor('colors.warning')),
+  warningText: '#AD5600',
+  //dangerText: computed(makeHighContrastColor('colors.danger')),
+  dangerText: '#B60000',
 };
 
 export const shade_colors: _EuiThemeShadeColors = {
   emptyShade: '#FFF',
-  lightestShade: '#F1F4FA',
-  lightShade: '#D3DAE6',
-  mediumShade: '#98A2B3',
-  darkShade: '#69707D',
-  darkestShade: '#343741',
+  //lightestShade: '#F1F4FA',
+  lightestShade: '#FBFCFD',
+  //lightShade: '#D3DAE6',
+  lightShade: '#DFE6EF',
+  //mediumShade: '#98A2B3',
+  mediumShade: '#C4CDD8',
+  //darkShade: '#69707D',
+  darkShade: '#353741',
+  //darkestShade: '#343741',
+  darkestShade: '#1C1E24',
   fullShade: '#000',
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
-  body: computed(
-    ([lightestShade]) => tint(lightestShade, 0.4),
-    ['colors.lightestShade']
-  ),
+  // body: computed(
+  //   ([lightestShade]) => tint(lightestShade, 0.4),
+  //   ['colors.lightestShade']
+  // ),
+  body: '#F5F7FA',
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
-  disabled: '#ABB4C4',
-  disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  //disabled: '#ABB4C4',
+  disabled: '#E6EBF2',
+  //disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  disabledText: '#7F8494',
   shadow: computed(({ colors }) => colors.ink),
 };
 
 export const text_colors: _EuiThemeTextColors = {
-  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
-  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
-  subduedText: computed(makeHighContrastColor('colors.darkShade')),
-  link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
+  //text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
+  text: '#353741',
+  //title: computed(([text]) => shade(text, 0.5), ['colors.text']),
+  title: '#1C1E24',
+  //subduedText: computed(makeHighContrastColor('colors.darkShade')),
+  subduedText: '#7F8494',
+  //link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
+  link: '#153385',
 };
 
 export const light_colors: _EuiThemeColorsMode = {
