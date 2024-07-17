@@ -9,7 +9,6 @@ import {
   UseEuiTheme,
 } from '@elastic/eui';
 import {
-  euiFormControlFocusStyles,
   euiFormControlText,
   euiFormVariables,
   // @ts-ignore - reusing form styles as we don't have access to the plugin component yet
@@ -35,6 +34,13 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     navbar: css`
       --ifm-navbar-item-padding-horizontal: 0;
       --ifm-navbar-item-padding-vertical: 0;
+
+      --ifm-navbar-background-color: ${euiTheme.colors.body};
+
+      .navbar {
+        border-block-end: ${euiTheme.border.thin};
+        box-shadow: none;
+      }
 
       .navbar__items {
         gap: ${euiTheme.size.s};
