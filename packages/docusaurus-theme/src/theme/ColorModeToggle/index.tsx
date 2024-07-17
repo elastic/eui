@@ -1,18 +1,24 @@
-import { useContext, useEffect } from 'react';
-import OriginalColorModeToggle from '@theme-init/ColorModeToggle';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { css } from '@emotion/react';
+import { translate } from '@docusaurus/Translate';
+import { useColorMode } from '@docusaurus/theme-common';
+import type { Props } from '@theme-original/ColorModeToggle';
+
 import type ColorModeToggleType from '@theme-init/ColorModeToggle';
 import type { WrapperProps } from '@docusaurus/types';
 import { EuiThemeColorMode } from '@elastic/eui';
 
+import { NavbarItem } from '../../components/navbar_item';
 import { AppThemeContext } from '../../components/theme_context';
 
-type Props = WrapperProps<typeof ColorModeToggleType>;
+type WrappedProps = WrapperProps<typeof ColorModeToggleType>;
 
-export default function ColorModeToggle({
+// Additional wrapper to connect Docusaurus color mode with eui theme
+function ColorModeToggle({
   value,
   onChange,
   ...rest
-}: Props): JSX.Element {
+}: WrappedProps): JSX.Element {
   const { theme, changeTheme } = useContext(AppThemeContext);
 
   useEffect(() => {
@@ -25,12 +31,55 @@ export default function ColorModeToggle({
   };
 
   return (
-    <>
-      <OriginalColorModeToggle
-        value={theme}
-        onChange={handleOnChange}
-        {...rest}
-      />
-    </>
+    <OriginalColorModeToggle
+      value={theme}
+      onChange={handleOnChange}
+      {...rest}
+    />
   );
 }
+
+function OriginalColorModeToggle({
+  className,
+  value,
+  onChange,
+}: Props): JSX.Element {
+  const isDarkMode = value === 'dark';
+
+  const title = translate(
+    {
+      message: 'Switch between dark and light mode (currently {mode})',
+      id: 'theme.colorToggle.ariaLabel',
+      description: 'The ARIA label for the navbar color mode toggle',
+    },
+    {
+      mode:
+        value === 'dark'
+          ? translate({
+              message: 'dark mode',
+              id: 'theme.colorToggle.ariaLabel.mode.dark',
+              description: 'The name for the dark color mode',
+            })
+          : translate({
+              message: 'light mode',
+              id: 'theme.colorToggle.ariaLabel.mode.light',
+              description: 'The name for the light color mode',
+            }),
+    }
+  );
+
+  const handleOnChange = useCallback(() => {
+    onChange(value === 'dark' ? 'light' : 'dark');
+  }, [value, onChange]);
+
+  return (
+    <NavbarItem
+      className={className}
+      title={title}
+      icon={isDarkMode ? 'sun' : 'moon'}
+      onClick={handleOnChange}
+    />
+  );
+}
+
+export default React.memo(ColorModeToggle);
