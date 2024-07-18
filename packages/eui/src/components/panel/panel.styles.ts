@@ -22,24 +22,27 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiPanel: css`
       flex-grow: 0;
+      background-color: #fff;
     `,
 
     grow: css`
       flex-grow: 1;
     `,
-
+    // We're changing shadow to just be a bottom border, this is tricky on white backgrounds though...
     hasShadow: css`
-      ${euiShadow(euiThemeContext, 'm')}
+      border-block-end: 1px solid #d0d9e4;
     `,
 
+    // We're keeping the border option
     hasBorder: css`
-      border: ${euiTheme.border.thin};
+      border: 1px solid #d0d9e4;
     `,
 
+    // And shrinking the border radius
     radius: {
       none: css``,
       m: css`
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: 2px;
       `,
     },
 
