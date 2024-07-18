@@ -47,7 +47,7 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
         />
       </Head>
       <Global styles={styles} />
-      {mounted && children}
+      <div style={{ display: !mounted ? 'none' : undefined }}>{children}</div>
     </>
   );
 };
