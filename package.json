@@ -30,7 +30,8 @@
     "@types/react": "^18",
     "react-focus-lock": "2.9.5",
     "@babel/core": "^7.21.8",
-    "jsdom": "24.1.0"
+    "jsdom": "24.1.0",
+    "@types/jsdom@npm:^20.0.0": "patch:@types/jsdom@npm%3A20.0.1#~/.yarn/patches/@types-jsdom-npm-20.0.1-5bb899e006.patch"
   },
   "packageManager": "yarn@4.2.2"
 }
