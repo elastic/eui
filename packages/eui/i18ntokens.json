@@ -6359,14 +6359,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 128,
-        "column": 10,
-        "index": 3326
+        "line": 94,
+        "column": 32,
+        "index": 2304
       },
       "end": {
-        "line": 128,
-        "column": 80,
-        "index": 3396
+        "line": 97,
+        "column": 3,
+        "index": 2373
       }
     },
     "filepath": "src/components/stat/stat.tsx"
