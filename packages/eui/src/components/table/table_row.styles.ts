@@ -117,7 +117,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('border-top-left-radius', 0)}
         ${logicalCSS('border-top-right-radius', 0)}
 
-        .euiTableRowCell {
+        > .euiTableRowCell {
           ${logicalCSS('width', '100%')}
         }
 
