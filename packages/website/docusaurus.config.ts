@@ -84,6 +84,12 @@ const config: Config = {
           label: 'Patterns',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'contentSidebar',
+          position: 'left',
+          label: 'Content',
+        },
+        {
           href: 'https://github.com/elastic/eui',
           label: 'GitHub',
           position: 'right',
