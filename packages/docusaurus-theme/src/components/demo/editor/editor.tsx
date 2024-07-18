@@ -17,6 +17,8 @@ const getEditorStyles = () => ({
 
     & .prism-code {
       border-radius: 0 0 calc(var(--docs-demo-border-radius) - 1px) calc(var(--docs-demo-border-radius) - 1px);
+      max-height: 450px;
+      overflow: auto;
     }
   `,
   error: css`
