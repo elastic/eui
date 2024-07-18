@@ -9,9 +9,8 @@ import { useDocsSidebar } from '@docusaurus/theme-common/internal';
 import { useLocation } from '@docusaurus/router';
 import DocSidebar from '@theme-original/DocSidebar';
 import type { Props } from '@theme-original/DocRoot/Layout/Sidebar';
+import ExpandButton from '@theme-original/DocRoot/Layout/Sidebar/ExpandButton';
 import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
-
-import ExpandButton from './ExpandButton';
 
 const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -108,7 +107,6 @@ export default function DocRootLayoutSidebar({
         }
 
         if (hiddenSidebarContainer) {
-          console.log('hidden sidebar?');
           setHiddenSidebar(true);
         }
       }}
