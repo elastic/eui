@@ -28,7 +28,9 @@ const meta: Meta<EuiTableRowCellProps> = {
       <EuiTable>
         <EuiTableBody>
           <EuiTableRow hasActions={args.hasActions}>
-            <EuiTableRowCell>Cell 1</EuiTableRowCell>
+            {(args.hasActions || args.isExpander) && (
+              <EuiTableRowCell>Cell 1</EuiTableRowCell>
+            )}
             <Story {...args} />
           </EuiTableRow>
         </EuiTableBody>
@@ -48,6 +50,8 @@ const meta: Meta<EuiTableRowCellProps> = {
     align: LEFT_ALIGNMENT,
     hasActions: false,
     isExpander: false,
+    isExpandedCell: false,
+    hasCheckboxOffset: false,
     setScopeRow: false,
     textOnly: true,
     truncateText: false,
