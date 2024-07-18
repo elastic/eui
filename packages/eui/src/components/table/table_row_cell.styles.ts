@@ -22,7 +22,7 @@ import { euiTableVariables } from './table.styles';
 export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const { mobileSizes } = euiTableVariables(euiThemeContext);
+  const { mobileSizes, checkboxSize } = euiTableVariables(euiThemeContext);
 
   // Unsets the extra strut caused by inline-block display of buttons/icons/tooltips.
   // Without this, the row height jumps whenever actions are disabled.
@@ -56,6 +56,9 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     bottom: css`
       vertical-align: bottom;
+    `,
+    checkboxOffset: css`
+      ${logicalCSS('padding-left', checkboxSize)}
     `,
 
     desktop: {
