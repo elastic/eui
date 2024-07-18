@@ -10,6 +10,7 @@ import { DemoPreview } from './preview';
 import { DemoSource } from './source';
 import { demoScope } from './scope';
 import { DemoActionsBar } from './actions_bar';
+import { demoCodeTransformer } from './code_transformer';
 
 export interface DemoSourceMeta {
   code: string;
@@ -20,8 +21,6 @@ export interface DemoSourceMeta {
 export interface DemoProps extends PropsWithChildren {
   isSourceOpen?: boolean;
 }
-
-const transformCode = (code: string) => code;
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
   demo: css`
@@ -69,7 +68,7 @@ export const Demo = ({
         <LiveProvider
           key={liveProviderKey}
           code={activeSource?.code || ''}
-          transformCode={transformCode}
+          transformCode={demoCodeTransformer}
           theme={prismThemes.dracula}
           scope={demoScope}
         >
