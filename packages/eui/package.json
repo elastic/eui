@@ -272,5 +272,8 @@
     "eui.d.ts",
     "i18ntokens.json",
     "NOTICE.txt"
-  ]
+  ],
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
 }
