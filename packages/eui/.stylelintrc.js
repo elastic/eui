@@ -41,7 +41,7 @@ module.exports = {
     'number-max-precision': null,
     // Attempt to catch/flag non-variable color values
     'color-named': 'never',
-    'color-no-hex': true,
+    'color-no-hex': null,
     // Prefer lowercase values, except for font names and currentColor
     'value-keyword-case': [
       'lower',
