@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { LiveError, LivePreview } from 'react-live';
+import { LivePreview } from 'react-live';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import ErrorBoundary from '@docusaurus/ErrorBoundary';
 import { ErrorBoundaryErrorMessageFallback } from '@docusaurus/theme-common';
@@ -30,9 +30,9 @@ export const DemoPreview = () => {
       {() => (
         <>
           <ErrorBoundary fallback={(params: any) => <ErrorBoundaryErrorMessageFallback {...params} />}>
-            <EuiFlexGroup css={styles.previewWrapper} alignItems="center" justifyContent="center">
+            <div css={styles.previewWrapper}>
               <LivePreview />
-            </EuiFlexGroup>
+            </div>
           </ErrorBoundary>
         </>
       )}
