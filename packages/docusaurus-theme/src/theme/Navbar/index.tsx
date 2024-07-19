@@ -17,7 +17,8 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
       --ifm-navbar-background-color: ${euiTheme.colors.body};
 
-      .navbar {
+      .navbar,
+      .navbar-sidebar__brand {
         border-block-end: ${euiTheme.border.thin};
         box-shadow: none;
       }
