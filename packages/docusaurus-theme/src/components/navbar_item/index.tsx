@@ -17,6 +17,7 @@ import { AppThemeContext } from '../theme_context';
 type SharedProps = {
   icon: IconType;
   showLabel?: boolean;
+  isMenuItem?: boolean;
 } & CommonProps;
 
 type Props = ExclusiveUnion<
@@ -26,18 +27,27 @@ type Props = ExclusiveUnion<
 
 // converted from css modules to Emotion
 export const getStyles = ({ euiTheme }: UseEuiTheme) => ({
-  wrapper: css`
-    -webkit-tap-highlight-color: transparent;
-    align-items: center;
+  item: css`
     display: flex;
-    justify-content: flex-start;
-    gap: ${euiTheme.size.s};
+    align-items: center;
+
+    -webkit-tap-highlight-color: transparent;
     transition: background var(--ifm-transition-fast);
 
     &:hover {
       background-color: var(--ifm-color-emphasis-200);
       color: currentColor;
     }
+  `,
+  navItem: css`
+    justify-content: center;
+    width: ${euiTheme.size.xl};
+    height: ${euiTheme.size.xl};
+    border-radius: 50%;
+  `,
+  menuItem: css`
+    justify-content: flex-start;
+    gap: ${euiTheme.size.s};
 
     @media (min-width: 997px) {
       justify-content: center;
@@ -69,7 +79,16 @@ const isAnchorClick = (
 ): onClick is PropsForAnchor<SharedProps>['onClick'] => href != null;
 
 export const NavbarItem = (props: Props) => {
-  const { className, title, icon, onClick, href, target, showLabel } = props;
+  const {
+    className,
+    title,
+    icon,
+    onClick,
+    href,
+    target,
+    showLabel,
+    isMenuItem = true,
+  } = props;
 
   const isBrowser = useIsBrowser();
   const { theme } = useContext(AppThemeContext);
@@ -78,7 +97,8 @@ export const NavbarItem = (props: Props) => {
 
   const styles = useEuiMemoizedStyles(getStyles);
   const cssStyles = [
-    styles.wrapper,
+    styles.item,
+    isMenuItem ? styles.menuItem : styles.navItem,
     !isBrowser && styles.disabled,
     isDarkMode && styles.darkMode,
   ];

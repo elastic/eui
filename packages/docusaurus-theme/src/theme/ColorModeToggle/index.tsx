@@ -1,7 +1,5 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import { css } from '@emotion/react';
 import { translate } from '@docusaurus/Translate';
-import { useColorMode } from '@docusaurus/theme-common';
 import type { Props } from '@theme-original/ColorModeToggle';
 
 import type ColorModeToggleType from '@theme-init/ColorModeToggle';
@@ -77,6 +75,7 @@ function OriginalColorModeToggle({
       className={className}
       title={title}
       icon={isDarkMode ? 'sun' : 'moon'}
+      isMenuItem={false}
       onClick={handleOnChange}
     />
   );
