@@ -38,10 +38,11 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const fontSizeXXS = euiFontSizeFromScale('xxs', euiTheme);
 
   const lineHeightXL = '1.75rem';
-  const lineHeightL = '1.5rem';
-  const lineHeightM = euiLineHeightFromBaseline('s', euiTheme);
+  const lineHeightL = euiLineHeightFromBaseline('s', euiTheme);
+  const lineHeightM = '1.5rem';
   const lineHeightS = euiLineHeightFromBaseline('xs', euiTheme);
   const lineHeightXS = '1.33rem';
+  const lineHeightXXS = euiLineHeightFromBaseline('xxs', euiTheme);
 
   return `
       // color theme related variables
@@ -61,6 +62,12 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-font-color-base: ${colors.text};
         --ifm-link-color: ${colors.link};
         --ifm-link-hover-color: ${colors.link};
+
+        --ifm-menu-color: ${euiTheme.colors.text};
+        --ifm-menu-color-background-active: ${euiTheme.colors.lightestShade};
+        --ifm-menu-color-background-hover: var(--eui-background-color-primary);
+
+        --ifm-pre-background: ${euiTheme.colors.lightestShade};
       }
 
       :root {
@@ -80,6 +87,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --eui-line-height-m: ${lineHeightM};
         --eui-line-height-s: ${lineHeightS};
         --eui-line-height-xs: ${lineHeightXS};
+        --eui-line-height-xxs: ${lineHeightXXS};
 
         --eui-size-xs: ${euiTheme.size.xs};
         --eui-size-s: ${euiTheme.size.s};
@@ -92,6 +100,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-font-weight-base: ${fontBase.fontWeight};
         --ifm-line-height-base: var(--eui-line-height-base);
 
+        --ifm-global-radius: ${euiTheme.border.radius.small};
       }
 
       /* base styles & resets */

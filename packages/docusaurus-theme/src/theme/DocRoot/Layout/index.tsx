@@ -3,8 +3,8 @@ import { css } from '@emotion/react';
 import { useDocsSidebar } from '@docusaurus/theme-common/internal';
 import BackToTopButton from '@theme-original/BackToTopButton';
 import type { Props } from '@theme-original/DocRoot/Layout';
+import DocRootLayoutSidebar from '@theme-original/DocRoot/Layout/Sidebar';
 
-import DocRootLayoutSidebar from './Sidebar';
 import DocRootLayoutMain from './Main';
 
 // converted from css modules to Emotion

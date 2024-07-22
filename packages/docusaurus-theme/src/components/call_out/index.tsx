@@ -37,8 +37,8 @@ const getStyles = ({ euiTheme }: UseEuiTheme, variant: VARIANTS) => {
 
   return {
     note: css`
-      &:not(:last-of-type) {
-        margin-block-end: ${euiTheme.size.m};
+      &:not(:last-child) {
+        margin-block-end: ${euiTheme.size.xl};
       }
 
       .alert {
