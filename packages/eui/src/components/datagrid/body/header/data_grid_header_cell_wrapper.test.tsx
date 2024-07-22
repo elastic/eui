@@ -69,16 +69,287 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                 role="columnheader"
                 tabindex="0"
               >
-                <button
-                  data-euigrid-tab-managed="true"
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
+                  <button
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
+                  />
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
                 />
               </div>
             }
-            renderFocusTrap={false}
+            renderFocusTrap={true}
             updateCellFocusContext={[Function]}
           >
-            <button />
+            <FocusTrappedChildren
+              cellEl={
+                <div
+                  class="euiDataGridHeaderCell"
+                  data-gridcell-column-id="someColumn"
+                  data-gridcell-column-index="0"
+                  data-gridcell-row-index="-1"
+                  data-gridcell-visible-row-index="-1"
+                  data-test-subj="dataGridHeaderCell-someColumn"
+                  role="columnheader"
+                  tabindex="0"
+                >
+                  <div
+                    data-focus-guard="true"
+                    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                    tabindex="-1"
+                  />
+                  <div
+                    data-focus-lock-disabled="disabled"
+                  >
+                    <button
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
+                    />
+                    <p
+                      aria-live="assertive"
+                      class="emotion-euiScreenReaderOnly"
+                    >
+                      Press the Enter key to interact with this cell's contents.
+                    </p>
+                  </div>
+                  <div
+                    data-focus-guard="true"
+                    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                    tabindex="-1"
+                  />
+                </div>
+              }
+            >
+              <EuiFocusTrap
+                clickOutsideDisables={true}
+                disabled={true}
+              >
+                <EuiFocusTrapClass
+                  clickOutsideDisables={true}
+                  crossFrame={false}
+                  disabled={true}
+                  gapMode="padding"
+                  noIsolation={true}
+                  returnFocus={true}
+                  scrollLock={false}
+                >
+                  <ForwardRef
+                    crossFrame={false}
+                    enabled={false}
+                    noIsolation={true}
+                    onClickOutside={[Function]}
+                    returnFocus={true}
+                    scrollLock={false}
+                  >
+                    <ForwardRef
+                      crossFrame={false}
+                      enabled={false}
+                      noIsolation={true}
+                      onClickOutside={[Function]}
+                      returnFocus={true}
+                      scrollLock={false}
+                      sideCar={[Function]}
+                    >
+                      <ForwardRef(FocusLockUI)
+                        as={
+                          {
+                            "$$typeof": Symbol(react.forward_ref),
+                            "classNames": {
+                              "fullWidth": "width-before-scroll-bar",
+                              "zeroRight": "right-scroll-bar-position",
+                            },
+                            "defaultProps": {
+                              "enabled": true,
+                              "inert": false,
+                              "removeScrollBar": true,
+                            },
+                            "render": [Function],
+                          }
+                        }
+                        autoFocus={true}
+                        crossFrame={false}
+                        disabled={true}
+                        lockProps={
+                          {
+                            "allowPinchZoom": undefined,
+                            "as": undefined,
+                            "enabled": false,
+                            "gapMode": undefined,
+                            "inert": undefined,
+                            "shards": undefined,
+                            "sideCar": [Function],
+                            "style": undefined,
+                          }
+                        }
+                        noFocusGuards={false}
+                        persistentFocus={false}
+                        returnFocus={true}
+                        sideCar={[Function]}
+                      >
+                        <div
+                          data-focus-guard={true}
+                          key="guard-first"
+                          style={
+                            {
+                              "height": "0px",
+                              "left": "1px",
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "fixed",
+                              "top": "1px",
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex={-1}
+                        />
+                        <ForwardRef
+                          data-focus-lock-disabled="disabled"
+                          enabled={false}
+                          inert={false}
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          removeScrollBar={true}
+                          sideCar={[Function]}
+                        >
+                          <div
+                            data-focus-lock-disabled="disabled"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            onScrollCapture={[Function]}
+                            onTouchMoveCapture={[Function]}
+                            onWheelCapture={[Function]}
+                          >
+                            <button />
+                            <EuiScreenReaderOnly>
+                              <p
+                                aria-live="assertive"
+                                css="unknown styles"
+                                key="null"
+                              >
+                                <Insertion
+                                  cache={
+                                    {
+                                      "insert": [Function],
+                                      "inserted": {
+                                        "gb1zbv-euiScreenReaderOnly": true,
+                                      },
+                                      "key": "css",
+                                      "nonce": undefined,
+                                      "registered": {},
+                                      "sheet": StyleSheet {
+                                        "_alreadyInsertedOrderInsensitiveRule": true,
+                                        "_insertTag": [Function],
+                                        "before": null,
+                                        "container": <head>
+                                          <style
+                                            data-emotion="css"
+                                            data-s=""
+                                          >
+                                            
+                                            .emotion-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                                          </style>
+                                        </head>,
+                                        "ctr": 1,
+                                        "insertionPoint": undefined,
+                                        "isSpeedy": false,
+                                        "key": "css",
+                                        "nonce": undefined,
+                                        "prepend": undefined,
+                                        "tags": [
+                                          <style
+                                            data-emotion="css"
+                                            data-s=""
+                                          >
+                                            
+                                            .emotion-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                                          </style>,
+                                        ],
+                                      },
+                                    }
+                                  }
+                                  isStringTag={true}
+                                  serialized={
+                                    {
+                                      "map": undefined,
+                                      "name": "gb1zbv-euiScreenReaderOnly",
+                                      "next": undefined,
+                                      "styles": ";
+        /* Take the element out of the layout */
+        position: absolute;
+        /* Keep it vertically inline */
+        inset-block-start: auto;
+        /* Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text */
+        inset-inline-start: -10000px;
+        /* The element must have a size (for some screen readers) */
+        
+          inline-size: 1px;
+          block-size: 1px;
+        
+        /* But reduce the visible size to nothing */
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        /* And ensure no overflows occur */
+        overflow: hidden;
+        /* Chrome requires the negative margin to not cause overflows of parent containers */
+        margin: -1px;
+      ;label:euiScreenReaderOnly;;;",
+                                      "toString": [Function],
+                                    }
+                                  }
+                                />
+                                <p
+                                  aria-live="assertive"
+                                  className="emotion-euiScreenReaderOnly"
+                                >
+                                  <EuiI18n
+                                    default="Press the Enter key to interact with this cell's contents."
+                                    token="euiDataGridCell.focusTrapEnterPrompt"
+                                  >
+                                    Press the Enter key to interact with this cell's contents.
+                                  </EuiI18n>
+                                </p>
+                              </p>
+                            </EuiScreenReaderOnly>
+                          </div>
+                        </ForwardRef>
+                        <div
+                          data-focus-guard={true}
+                          style={
+                            {
+                              "height": "0px",
+                              "left": "1px",
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "fixed",
+                              "top": "1px",
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex={-1}
+                        />
+                      </ForwardRef(FocusLockUI)>
+                    </ForwardRef>
+                  </ForwardRef>
+                </EuiFocusTrapClass>
+              </EuiFocusTrap>
+            </FocusTrappedChildren>
           </HandleInteractiveChildren>
         </div>
       </EuiDataGridHeaderCellWrapper>
@@ -124,16 +395,289 @@ describe('EuiDataGridHeaderCellWrapper', () => {
               style="width: 30px;"
               tabindex="0"
             >
-              <button
-                data-euigrid-tab-managed="true"
+              <div
+                data-focus-guard="true"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <button
+                  data-euigrid-tab-managed="true"
+                  tabindex="-1"
+                />
+                <p
+                  aria-live="assertive"
+                  class="emotion-euiScreenReaderOnly"
+                >
+                  Press the Enter key to interact with this cell's contents.
+                </p>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
           }
-          renderFocusTrap={false}
+          renderFocusTrap={true}
           updateCellFocusContext={[Function]}
         >
-          <button />
+          <FocusTrappedChildren
+            cellEl={
+              <div
+                aria-label="test"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+                data-gridcell-column-id="someColumn"
+                data-gridcell-column-index="0"
+                data-gridcell-row-index="-1"
+                data-gridcell-visible-row-index="-1"
+                data-test-subj="dataGridHeaderCell-someColumn"
+                role="columnheader"
+                style="width: 30px;"
+                tabindex="0"
+              >
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
+                >
+                  <button
+                    data-euigrid-tab-managed="true"
+                    tabindex="-1"
+                  />
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
+                />
+              </div>
+            }
+          >
+            <EuiFocusTrap
+              clickOutsideDisables={true}
+              disabled={true}
+            >
+              <EuiFocusTrapClass
+                clickOutsideDisables={true}
+                crossFrame={false}
+                disabled={true}
+                gapMode="padding"
+                noIsolation={true}
+                returnFocus={true}
+                scrollLock={false}
+              >
+                <ForwardRef
+                  crossFrame={false}
+                  enabled={false}
+                  noIsolation={true}
+                  onClickOutside={[Function]}
+                  returnFocus={true}
+                  scrollLock={false}
+                >
+                  <ForwardRef
+                    crossFrame={false}
+                    enabled={false}
+                    noIsolation={true}
+                    onClickOutside={[Function]}
+                    returnFocus={true}
+                    scrollLock={false}
+                    sideCar={[Function]}
+                  >
+                    <ForwardRef(FocusLockUI)
+                      as={
+                        {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "classNames": {
+                            "fullWidth": "width-before-scroll-bar",
+                            "zeroRight": "right-scroll-bar-position",
+                          },
+                          "defaultProps": {
+                            "enabled": true,
+                            "inert": false,
+                            "removeScrollBar": true,
+                          },
+                          "render": [Function],
+                        }
+                      }
+                      autoFocus={true}
+                      crossFrame={false}
+                      disabled={true}
+                      lockProps={
+                        {
+                          "allowPinchZoom": undefined,
+                          "as": undefined,
+                          "enabled": false,
+                          "gapMode": undefined,
+                          "inert": undefined,
+                          "shards": undefined,
+                          "sideCar": [Function],
+                          "style": undefined,
+                        }
+                      }
+                      noFocusGuards={false}
+                      persistentFocus={false}
+                      returnFocus={true}
+                      sideCar={[Function]}
+                    >
+                      <div
+                        data-focus-guard={true}
+                        key="guard-first"
+                        style={
+                          {
+                            "height": "0px",
+                            "left": "1px",
+                            "overflow": "hidden",
+                            "padding": 0,
+                            "position": "fixed",
+                            "top": "1px",
+                            "width": "1px",
+                          }
+                        }
+                        tabIndex={-1}
+                      />
+                      <ForwardRef
+                        data-focus-lock-disabled="disabled"
+                        enabled={false}
+                        inert={false}
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        removeScrollBar={true}
+                        sideCar={[Function]}
+                      >
+                        <div
+                          data-focus-lock-disabled="disabled"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onScrollCapture={[Function]}
+                          onTouchMoveCapture={[Function]}
+                          onWheelCapture={[Function]}
+                        >
+                          <button />
+                          <EuiScreenReaderOnly>
+                            <p
+                              aria-live="assertive"
+                              css="unknown styles"
+                              key="null"
+                            >
+                              <Insertion
+                                cache={
+                                  {
+                                    "insert": [Function],
+                                    "inserted": {
+                                      "gb1zbv-euiScreenReaderOnly": true,
+                                    },
+                                    "key": "css",
+                                    "nonce": undefined,
+                                    "registered": {},
+                                    "sheet": StyleSheet {
+                                      "_alreadyInsertedOrderInsensitiveRule": true,
+                                      "_insertTag": [Function],
+                                      "before": null,
+                                      "container": <head>
+                                        <style
+                                          data-emotion="css"
+                                          data-s=""
+                                        >
+                                          
+                                          .emotion-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                                        </style>
+                                      </head>,
+                                      "ctr": 1,
+                                      "insertionPoint": undefined,
+                                      "isSpeedy": false,
+                                      "key": "css",
+                                      "nonce": undefined,
+                                      "prepend": undefined,
+                                      "tags": [
+                                        <style
+                                          data-emotion="css"
+                                          data-s=""
+                                        >
+                                          
+                                          .emotion-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                                        </style>,
+                                      ],
+                                    },
+                                  }
+                                }
+                                isStringTag={true}
+                                serialized={
+                                  {
+                                    "map": undefined,
+                                    "name": "gb1zbv-euiScreenReaderOnly",
+                                    "next": undefined,
+                                    "styles": ";
+        /* Take the element out of the layout */
+        position: absolute;
+        /* Keep it vertically inline */
+        inset-block-start: auto;
+        /* Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text */
+        inset-inline-start: -10000px;
+        /* The element must have a size (for some screen readers) */
+        
+          inline-size: 1px;
+          block-size: 1px;
+        
+        /* But reduce the visible size to nothing */
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        /* And ensure no overflows occur */
+        overflow: hidden;
+        /* Chrome requires the negative margin to not cause overflows of parent containers */
+        margin: -1px;
+      ;label:euiScreenReaderOnly;;;",
+                                    "toString": [Function],
+                                  }
+                                }
+                              />
+                              <p
+                                aria-live="assertive"
+                                className="emotion-euiScreenReaderOnly"
+                              >
+                                <EuiI18n
+                                  default="Press the Enter key to interact with this cell's contents."
+                                  token="euiDataGridCell.focusTrapEnterPrompt"
+                                >
+                                  Press the Enter key to interact with this cell's contents.
+                                </EuiI18n>
+                              </p>
+                            </p>
+                          </EuiScreenReaderOnly>
+                        </div>
+                      </ForwardRef>
+                      <div
+                        data-focus-guard={true}
+                        style={
+                          {
+                            "height": "0px",
+                            "left": "1px",
+                            "overflow": "hidden",
+                            "padding": 0,
+                            "position": "fixed",
+                            "top": "1px",
+                            "width": "1px",
+                          }
+                        }
+                        tabIndex={-1}
+                      />
+                    </ForwardRef(FocusLockUI)>
+                  </ForwardRef>
+                </ForwardRef>
+              </EuiFocusTrapClass>
+            </EuiFocusTrap>
+          </FocusTrappedChildren>
         </HandleInteractiveChildren>
       </div>
     `);

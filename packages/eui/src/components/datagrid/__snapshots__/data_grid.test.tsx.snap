@@ -595,6 +595,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               role="row"
             >
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="A"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="0"
@@ -606,48 +608,75 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-A"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="A"
-                  >
-                    A
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      A
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="B"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="1"
@@ -659,46 +688,71 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-B"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="B"
-                  >
-                    B
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      B
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
             </div>
             <div
@@ -1041,6 +1095,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 </div>
               </div>
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="A"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="1"
@@ -1052,48 +1108,75 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-A"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="A"
-                  >
-                    A
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      A
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="B"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="2"
@@ -1105,46 +1188,71 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-B"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="B"
-                  >
-                    B
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      B
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn trailingControlCol"
@@ -1640,6 +1748,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               role="row"
             >
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="A"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="0"
@@ -1651,48 +1761,75 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-A"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="A"
-                  >
-                    Column A
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      Column A
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="B"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="1"
@@ -1704,48 +1841,73 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-B"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="B"
-                  >
-                    <div>
-                      More Elements
-                    </div>
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      <div>
+                        More Elements
+                      </div>
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
             </div>
             <div
@@ -2066,6 +2228,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               role="row"
             >
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="A"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="0"
@@ -2077,48 +2241,75 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-A"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="A"
-                  >
-                    A
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="A"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      A
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
               <div
+                aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+                aria-label="B"
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="1"
@@ -2130,46 +2321,71 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
-                  data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
-                />
-                <button
-                  aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-                  class="euiDataGridHeaderCell__button"
-                  data-euigrid-tab-managed="true"
-                  data-test-subj="dataGridHeaderCellActionButton-B"
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                   tabindex="-1"
+                />
+                <div
+                  data-focus-lock-disabled="disabled"
                 >
                   <div
-                    class="euiDataGridHeaderCell__content"
-                    title="B"
-                  >
-                    B
-                  </div>
-                  <div
-                    class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    class="euiDataGridHeaderCell__innerWrapper"
+                    role="group"
                   >
                     <div
-                      class="euiDataGridHeaderCell__icon"
+                      class="euiDataGridColumnResizer"
+                      data-test-subj="dataGridColumnResizer"
+                      style="margin-right: 0px;"
+                    />
+                    <div
+                      class="euiDataGridHeaderCell__content"
+                      title="B"
                     >
-                      <span
-                        color="text"
-                        data-euiicon-type="boxesVertical"
-                      />
+                      B
                     </div>
+                    <div
+                      class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+                    >
+                      <button
+                        aria-labelledby="euiDataGridCellHeader_generated-id_actions"
+                        class="euiDataGridHeaderCell__button"
+                        data-euigrid-tab-managed="true"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="euiDataGridHeaderCell__icon"
+                        >
+                          <span
+                            color="text"
+                            data-euiicon-type="boxesVertical"
+                          />
+                        </div>
+                        <p
+                          hidden=""
+                          id="euiDataGridCellHeader_generated-id_actions"
+                        >
+                          Click to view column header actions
+                        </p>
+                      </button>
+                    </div>
+                    <p
+                      hidden=""
+                      id="euiDataGridCellHeader_generated-id_sorting"
+                    />
                   </div>
-                </button>
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_sorting"
+                  <p
+                    aria-live="assertive"
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Press the Enter key to interact with this cell's contents.
+                  </p>
+                </div>
+                <div
+                  data-focus-guard="true"
+                  style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                  tabindex="-1"
                 />
-                <p
-                  hidden=""
-                  id="euiDataGridCellHeader_generated-id_actions"
-                >
-                  Click to view column header actions
-                </p>
               </div>
             </div>
             <div
