@@ -539,6 +539,16 @@ export class EuiSuperDatePickerInternal extends Component<
       prepend: this.renderQuickSelect(),
       append: autoRefreshAppend,
       fullWidth: true,
+      css: [
+        styles.states.euiSuperDatePicker__formControlLayout,
+        isDisabled
+          ? styles.states.disabled
+          : isInvalid
+          ? styles.states.invalid
+          : hasChanged
+          ? styles.states.needsUpdating
+          : styles.states.default,
+      ],
     };
 
     if (isQuickSelectOnly) {
@@ -584,15 +594,17 @@ export class EuiSuperDatePickerInternal extends Component<
       );
     }
 
+    const rangeCssStyles = [
+      styles.euiSuperDatePicker__range,
+      formControlLayoutProps.css,
+    ];
+
     return (
       <EuiI18nConsumer>
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
             {...formControlLayoutProps}
-            css={[
-              styles.euiSuperDatePicker__range,
-              hasChanged && styles.needsUpdating,
-            ]}
+            css={rangeCssStyles}
             isCustom={true}
             iconType={false}
             startDateControl={

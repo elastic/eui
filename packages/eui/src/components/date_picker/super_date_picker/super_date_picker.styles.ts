@@ -16,12 +16,16 @@ import {
 } from '../../../services';
 import {
   euiFontSize,
-  euiCanAnimate,
   euiMaxBreakpoint,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
-import { euiFormVariables } from '../../form/form.styles';
+import {
+  euiFormVariables,
+  euiFormControlDefaultShadow,
+  euiFormControlInvalidStyles,
+  euiFormControlDisabledStyles,
+} from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -131,19 +135,58 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${_buttonStyles(euiThemeContext)}
     `,
 
-    // Range states
-    needsUpdating: css`
-      /* Extra specificity needed to override default delimited styles */
-      .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
-        color: ${needsUpdatingTextColor};
-        background-color: ${needsUpdatingBackgroundColor};
-        transition: background-color ${euiTheme.animation.fast} ease-in; /* Match .euiDatePopoverButton */
-      }
+    // Form states
+    states: {
+      euiSuperDatePicker__formControlLayout: css`
+        .euiFormControlLayout__childrenWrapper {
+          ${euiFormControlDefaultShadow(euiThemeContext)}
+          box-shadow: none;
+        }
+      `,
+      default: css`
+        .euiFormControlLayout__childrenWrapper {
+          color: ${forms.textColor};
+          background-color: ${forms.backgroundColor};
+        }
 
-      .euiFormControlLayoutDelimited__delimiter {
-        color: inherit;
-      }
-    `,
+        /* Focus/selection underline per-button */
+        .euiDatePopoverButton {
+          ${euiFormControlDefaultShadow(euiThemeContext)}
+          box-shadow: none;
+        }
+
+        .euiDatePopoverButton:focus,
+        .euiPopover-isOpen .euiDatePopoverButton {
+          --euiFormControlStateColor: ${euiTheme.colors.primary};
+          background-size: 100% 100%;
+        }
+      `,
+      disabled: css`
+        .euiFormControlLayout__childrenWrapper {
+          ${euiFormControlDisabledStyles(euiThemeContext)}
+        }
+      `,
+      invalid: css`
+        .euiFormControlLayout__childrenWrapper {
+          color: ${euiTheme.colors.dangerText};
+          background-color: ${forms.backgroundColor};
+          ${euiFormControlInvalidStyles(euiThemeContext)}
+        }
+      `,
+      needsUpdating: css`
+        /* Extra specificity needed to override default delimited styles */
+        .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
+          --euiFormControlStateColor: ${euiTheme.colors.success};
+          color: ${needsUpdatingTextColor};
+          background-color: ${needsUpdatingBackgroundColor};
+          background-size: 100% 100%;
+        }
+
+        .euiFormControlLayoutDelimited__delimiter {
+          color: inherit;
+        }
+      `,
+    },
   };
 };
 
