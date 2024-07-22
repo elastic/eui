@@ -24,6 +24,7 @@ import type {
   EuiDataGridProps,
 } from './data_grid_types';
 import { EuiDataGrid } from './data_grid';
+import { EuiToolTip } from '../tool_tip';
 
 faker.seed(42);
 
@@ -80,10 +81,26 @@ const raw_data = Array.from({ length: 10 }).map((_, i) => {
   };
 });
 
+// in a group this will be a single item
+// consider providing a slot for a interactive element?
+// that would result in a better AT output (2 items vs 1 item)
+const HeaderCell = (
+  <>
+    <span>Name</span>
+    <EuiToolTip content="Content">
+      <EuiButtonIcon
+        iconType="questionInCircle"
+        aria-label="Name, additional information"
+        color="primary"
+      />
+    </EuiToolTip>
+  </>
+);
+
 const columns = [
   {
     id: 'name',
-    displayAsText: 'Name',
+    display: HeaderCell,
     defaultSortDirection: 'asc' as const,
     cellActions: [
       ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
@@ -500,8 +517,9 @@ const StatefulDataGrid = (props: EuiDataGridProps) => {
   const onSort = useCallback(
     (sortingColumns: EuiDataGridColumnSortingConfig[]) => {
       setSortingColumns(sortingColumns);
+      sorting?.onSort?.(sortingColumns);
     },
-    [setSortingColumns]
+    [setSortingColumns, sorting]
   );
 
   useEffect(() => {

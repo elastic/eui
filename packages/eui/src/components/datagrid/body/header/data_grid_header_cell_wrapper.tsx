@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import classnames from 'classnames';
 import React, {
   FunctionComponent,
   FocusEventHandler,
@@ -15,6 +14,7 @@ import React, {
   useState,
   useCallback,
 } from 'react';
+import classnames from 'classnames';
 
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
@@ -90,7 +90,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       <HandleInteractiveChildren
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap={!hasActionsPopover}
+        renderFocusTrap
       >
         {children}
       </HandleInteractiveChildren>

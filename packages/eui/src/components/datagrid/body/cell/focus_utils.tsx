@@ -20,6 +20,9 @@ import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
 
+// DOM Node type guard
+const isDOMNode = (el: any): el is Node => el instanceof Node;
+
 /**
  * This internal utility component is used by all cells, both header and body/footer cells.
  * It always handles:
@@ -80,6 +83,13 @@ export const FocusTrappedChildren: FunctionComponent<
   PropsWithChildren & { cellEl: HTMLElement }
 > = ({ cellEl, children }) => {
   const [isCellEntered, setIsCellEntered] = useState(false);
+  const [isActive, setActive] = useState(false);
+  const [isExited, setExited] = useState(false);
+
+  const focusCell = (cellEl: HTMLElement) => {
+    requestAnimationFrame(() => cellEl.focus()); // move focus to cell
+  };
+
   useEffect(() => {
     if (isCellEntered) {
       enableAndFocusInteractives(cellEl);
@@ -94,43 +104,94 @@ export const FocusTrappedChildren: FunctionComponent<
         case keys.ENTER:
         case keys.F2:
           event.preventDefault();
-          setIsCellEntered(true);
+          setIsCellEntered((isCellEntered) => {
+            if (!isCellEntered) {
+              // set cell to active for initial ENTER
+              if (!isActive) {
+                setActive(true);
+              }
+              return true;
+            }
+
+            return isCellEntered;
+          });
           break;
 
         case keys.ESCAPE:
           event.preventDefault();
           setIsCellEntered((isCellEntered) => {
             if (isCellEntered === true) {
-              requestAnimationFrame(() => cellEl.focus()); // move focus to cell
-              return false;
+              if (!isActive) {
+                // return active state to cell
+                // e.g.  when closing inner content
+                setActive(true);
+              } else {
+                // exit cell content
+                setActive(false);
+                setIsCellEntered(false);
+                focusCell(cellEl);
+                return false;
+              }
             }
+
             return isCellEntered;
           });
           break;
       }
     };
+
+    const onFocusIn = (e: FocusEvent) => {
+      if (
+        isDOMNode(e.target) &&
+        isDOMNode(e.relatedTarget) &&
+        isDOMNode(e.currentTarget)
+      ) {
+        const active =
+          (e.currentTarget as Node).contains(e.target) &&
+          e.currentTarget.contains(e.relatedTarget);
+
+        setActive(e.target === e.currentTarget || active);
+      }
+    };
+
+    const onFocusOut = (e: FocusEvent) => {
+      const active =
+        isDOMNode(e.currentTarget) &&
+        e.currentTarget.contains(document.activeElement);
+      setActive(active);
+      setExited(e.relatedTarget === e.currentTarget);
+    };
+
     cellEl.addEventListener('keyup', onKeyUp);
+    cellEl.addEventListener('focusin', onFocusIn);
+    cellEl.addEventListener('focusout', onFocusOut);
+
     return () => {
       cellEl.removeEventListener('keyup', onKeyUp);
+      cellEl.removeEventListener('focusin', onFocusIn);
+      cellEl.removeEventListener('focusout', onFocusOut);
     };
-  }, [cellEl]);
+  }, [cellEl, isActive]);
 
   return (
-    <EuiFocusTrap
-      disabled={!isCellEntered}
-      onDeactivation={() => setIsCellEntered(false)}
-      clickOutsideDisables={true}
-    >
+    <EuiFocusTrap disabled={!isCellEntered} clickOutsideDisables={true}>
       {children}
 
       <EuiScreenReaderOnly>
-        <p>
-          {' - '}
-          <EuiI18n
-            // eslint-disable-next-line local/i18n
-            token="euiDataGridCell.focusTrapEnterPrompt"
-            default="Press the Enter key to interact with this cell's contents."
-          />
+        <p aria-live="assertive">
+          {isExited ? (
+            <EuiI18n
+              // eslint-disable-next-line local/i18n
+              token="euiDataGridCell.focusTrapExitPrompt"
+              default="Exited cell content."
+            />
+          ) : (
+            <EuiI18n
+              // eslint-disable-next-line local/i18n
+              token="euiDataGridCell.focusTrapEnterPrompt"
+              default="Press the Enter key to interact with this cell's contents."
+            />
+          )}
         </p>
       </EuiScreenReaderOnly>
     </EuiFocusTrap>

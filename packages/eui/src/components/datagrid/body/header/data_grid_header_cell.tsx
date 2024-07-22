@@ -105,9 +105,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       const showColumnActions = columnActions && columnActions.length > 0;
       const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
-      const focusActionsButton = useCallback(() => {
-        actionsButtonRef.current?.focus();
-      }, []);
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
 
@@ -117,6 +114,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           id,
           showColumnActions,
         });
+
       const sortingAriaId = useGeneratedHtmlId({
         prefix: 'euiDataGridCellHeader',
         suffix: 'sorting',
@@ -138,6 +136,28 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const title = displayAsText || id;
       const children = display || displayAsText || id;
 
+      const headerCellActionButton = (
+        <button
+          ref={actionsButtonRef}
+          className="euiDataGridHeaderCell__button"
+          onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}
+          onFocus={() => setIsActionsButtonFocused(true)}
+          onBlur={() => setIsActionsButtonFocused(false)}
+          aria-labelledby={actionsAriaId}
+          data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+        >
+          <div className="euiDataGridHeaderCell__icon">
+            <EuiIcon type="boxesVertical" size="s" color="text" />
+          </div>
+          <p id={actionsAriaId} hidden>
+            <EuiI18n
+              token="euiDataGridHeaderCell.headerActions"
+              default="Click to view column header actions"
+            />
+          </p>
+        </button>
+      );
+
       return (
         <EuiDataGridHeaderCellWrapper
           {...displayHeaderCellProps}
@@ -148,40 +168,31 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
           isActionsButtonFocused={isActionsButtonFocused}
-          focusActionsButton={focusActionsButton}
+          aria-label={title}
+          aria-describedby={sortingAriaId}
         >
-          {column.isResizable !== false && width != null ? (
-            <EuiDataGridColumnResizer
-              columnId={id}
-              columnWidth={width}
-              setColumnWidth={setColumnWidth}
-            />
-          ) : null}
+          <div role="group" className="euiDataGridHeaderCell__innerWrapper">
+            {column.isResizable !== false && width != null ? (
+              <EuiDataGridColumnResizer
+                columnId={id}
+                columnWidth={width}
+                setColumnWidth={setColumnWidth}
+              />
+            ) : null}
 
-          {!showColumnActions ? (
-            <>
-              <CellContent title={title} arrow={sortingArrow}>
-                {children}
-              </CellContent>
-              {sortingScreenReaderText && (
-                <EuiScreenReaderOnly>
-                  <p>{sortingScreenReaderText}</p>
-                </EuiScreenReaderOnly>
-              )}
-            </>
-          ) : (
-            <>
-              <button
-                className="euiDataGridHeaderCell__button"
-                onClick={() =>
-                  setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)
-                }
-                onFocus={() => setIsActionsButtonFocused(true)}
-                onBlur={() => setIsActionsButtonFocused(false)}
-                aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
-                ref={actionsButtonRef}
-                data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-              >
+            {!showColumnActions ? (
+              <>
+                <CellContent title={title} arrow={sortingArrow}>
+                  {children}
+                </CellContent>
+                {sortingScreenReaderText && (
+                  <EuiScreenReaderOnly>
+                    <p>{sortingScreenReaderText}</p>
+                  </EuiScreenReaderOnly>
+                )}
+              </>
+            ) : (
+              <>
                 <CellContent title={title} arrow={sortingArrow}>
                   {children}
                 </CellContent>
@@ -203,11 +214,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       }
                     },
                   }}
-                  button={
-                    <div className="euiDataGridHeaderCell__icon">
-                      <EuiIcon type="boxesVertical" size="s" color="text" />
-                    </div>
-                  }
+                  button={headerCellActionButton}
                   isOpen={isPopoverOpen}
                   closePopover={() => setIsPopoverOpen(false)}
                   {...popoverArrowNavigationProps}
@@ -218,19 +225,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                     data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
                   />
                 </EuiPopover>
-              </button>
 
-              <p id={sortingAriaId} hidden>
-                {sortingScreenReaderText}
-              </p>
-              <p id={actionsAriaId} hidden>
-                <EuiI18n
-                  token="euiDataGridHeaderCell.headerActions"
-                  default="Click to view column header actions"
-                />
-              </p>
-            </>
-          )}
+                <p id={sortingAriaId} hidden>
+                  {sortingScreenReaderText}
+                </p>
+              </>
+            )}
+          </div>
         </EuiDataGridHeaderCellWrapper>
       );
     }
