@@ -128,28 +128,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', 'auto !important')}
     `,
     euiSuperDatePicker__prettyFormat: css`
-      ${logicalCSS('height', '100%')}
-      ${logicalCSS('width', '100%')}
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-      text-align: start;
-      word-break: break-all;
-      color: ${forms.textColor};
-      background-color: ${forms.backgroundColor};
-
-      &:disabled {
-        background-color: ${forms.backgroundDisabledColor};
-        color: ${forms.controlDisabledColor};
-        cursor: not-allowed;
-      }
-
-      ${euiCanAnimate} {
-        transition: background-color ${euiTheme.animation.fast} ease-in;
-      }
+      ${_buttonStyles(euiThemeContext)}
     `,
 
     // Range states
@@ -166,4 +145,27 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
   };
+};
+
+export const _buttonStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return css`
+    ${logicalCSS('height', '100%')}
+    ${logicalCSS('width', '100%')}
+    ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+
+    /* Align content automatically for compressed heights */
+    display: flex;
+    align-items: center;
+
+    font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+    word-break: break-all;
+    color: inherit;
+    background-color: inherit;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  `;
 };

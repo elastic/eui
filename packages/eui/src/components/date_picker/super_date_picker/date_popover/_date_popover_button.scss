@@ -1,11 +1,5 @@
 .euiDatePopoverButton {
-  @include euiSuperDatePickerText;
   background-size: 100%; // For the bottom "border" via background-image
-
-  &--compressed {
-    line-height: $euiFormControlLayoutGroupInputCompressedHeight;
-    height: $euiFormControlLayoutGroupInputCompressedHeight;
-  }
 
   &:focus,
   &-isSelected {
@@ -39,12 +33,4 @@
     color: $euiColorDarkShade;
     cursor: default;
   }
-}
-
-.euiDatePopoverButton--start {
-  text-align: center;
-}
-
-.euiDatePopoverButton--end {
-  text-align: center;
 }
