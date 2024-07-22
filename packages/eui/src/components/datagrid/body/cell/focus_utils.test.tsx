@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { FocusTrappedChildren, HandleInteractiveChildren } from './focus_utils';
@@ -21,7 +21,7 @@ const getCellWithInteractiveChildren = () => {
   return cell;
 };
 
-const renderCellWithInteractiveChilren = () => {
+const renderCellWithInteractiveChildren = () => {
   const { container } = render(
     <div tabIndex={0}>
       <button>button 1</button>
@@ -143,9 +143,9 @@ describe('FocusTrappedChildren', () => {
         data-focus-lock-disabled="disabled"
       >
         <p
+          aria-live="assertive"
           class="emotion-euiScreenReaderOnly"
         >
-           - 
           Press the Enter key to interact with this cell's contents.
         </p>
       </div>
@@ -154,7 +154,7 @@ describe('FocusTrappedChildren', () => {
 
   describe('on enter', () => {
     it('enables the focus trap, all interactive children, and moves focus to the first focusable child', () => {
-      const cell = renderCellWithInteractiveChilren();
+      const cell = renderCellWithInteractiveChildren();
 
       const { container } = render(<FocusTrappedChildren cellEl={cell} />);
       fireEvent.keyUp(cell, { key: 'Enter' });
@@ -168,7 +168,7 @@ describe('FocusTrappedChildren', () => {
     });
 
     it('allows pressing F2 to enter as well', () => {
-      const cell = renderCellWithInteractiveChilren();
+      const cell = renderCellWithInteractiveChildren();
 
       render(<FocusTrappedChildren cellEl={cell} />);
       fireEvent.keyUp(cell, { key: 'F2' });
@@ -183,12 +183,13 @@ describe('FocusTrappedChildren', () => {
       .spyOn(window, 'requestAnimationFrame')
       .mockImplementation((cb: Function) => cb());
 
-    it('disables the focus trap, all interactive children and moves focus to the cell wrapper', () => {
-      const cell = renderCellWithInteractiveChilren();
+    it('disables the focus trap, all interactive children and moves focus to the cell wrapper', async () => {
+      const cell = renderCellWithInteractiveChildren();
 
       const { container } = render(<FocusTrappedChildren cellEl={cell} />);
+
       fireEvent.keyUp(cell, { key: 'Enter' });
-      fireEvent.keyUp(cell, { key: 'Escape' });
+      waitFor(() => fireEvent.keyUp(cell, { key: 'Escape' }));
 
       expect(
         container.querySelector('[data-focus-lock-disabled]')
@@ -199,7 +200,7 @@ describe('FocusTrappedChildren', () => {
     });
 
     it('does nothing if the cell is not entered', () => {
-      const cell = renderCellWithInteractiveChilren();
+      const cell = renderCellWithInteractiveChildren();
 
       render(<FocusTrappedChildren cellEl={cell} />);
       fireEvent.keyUp(cell, { key: 'Escape' });
