@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSuperUpdateButton renders 1`] = `
+exports[`EuiDatePopoverButton renders 1`] = `
 <div>
   <div
     class="euiPopover testClass1 testClass2 emotion-euiPopover-block-euiTestCss"
