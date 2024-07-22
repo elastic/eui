@@ -39,7 +39,9 @@ If it's too much effort for the EUI team alone to handle migrating/updating depr
 
 ## Opening a draft PR to kick off CI
 
-At this point, we recommend opening a **draft** PR with your existing commits/changes against Kibana main. Unfortunately, Kibana's many tests are far too numerous to reasonably run them all locally - your machine will OOM if you even try. Kicking off a CI run is therefore the quickest way to find test failures at this point. To starts the Kibana CI simply comment `/ci` on your draft PR.
+At this point, we recommend opening a **draft** PR with your existing commits/changes against Kibana main. Unfortunately, Kibana's many tests are far too numerous to reasonably run them all locally - your machine will OOM if you even try. Kicking off a CI run is therefore the quickest way to find test failures at this point.
+
+Draft PRs in Kibana do not start CI automatically - you'll need to manually comment `/ci` in GitHub to kick off a run.
 
 ### PR template
 
