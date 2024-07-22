@@ -13,8 +13,8 @@
   }
 
   &-needsUpdating {
-    background-color: $euiSuperDatePickerNeedsUpdatingBackgroundColor;
-    color: $euiSuperDatePickerNeedsUpdatingTextColor;
+    background-color: inherit;
+    color: inherit;
 
     &:focus,
     &.euiDatePopoverButton-isSelected {

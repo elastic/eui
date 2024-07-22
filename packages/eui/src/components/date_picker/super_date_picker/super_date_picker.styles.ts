@@ -8,7 +8,12 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import {
+  UseEuiTheme,
+  tint,
+  shade,
+  makeHighContrastColor,
+} from '../../../services';
 import {
   euiFontSize,
   euiCanAnimate,
@@ -19,7 +24,7 @@ import {
 import { euiFormVariables } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
   const forms = euiFormVariables(euiThemeContext);
 
   const inputWidth = euiTheme.base * 30;
@@ -37,6 +42,15 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const autoMinWidth = mathWithUnits(
     gap,
     (gap) => minFormWidth + gap + buttonWidth
+  );
+
+  // Needs updating colors
+  const needsUpdatingBackgroundColor =
+    colorMode === 'DARK'
+      ? shade(euiTheme.colors.success, 0.7)
+      : tint(euiTheme.colors.success, 0.9);
+  const needsUpdatingTextColor = makeHighContrastColor(euiTheme.colors.success)(
+    needsUpdatingBackgroundColor
   );
 
   return {
@@ -135,6 +149,20 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.fast} ease-in;
+      }
+    `,
+
+    // Range states
+    needsUpdating: css`
+      /* Extra specificity needed to override default delimited styles */
+      .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
+        color: ${needsUpdatingTextColor};
+        background-color: ${needsUpdatingBackgroundColor};
+        transition: background-color ${euiTheme.animation.fast} ease-in; /* Match .euiDatePopoverButton */
+      }
+
+      .euiFormControlLayoutDelimited__delimiter {
+        color: inherit;
       }
     `,
   };
