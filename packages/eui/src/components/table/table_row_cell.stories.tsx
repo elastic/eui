@@ -28,7 +28,9 @@ const meta: Meta<EuiTableRowCellProps> = {
       <EuiTable>
         <EuiTableBody>
           <EuiTableRow hasActions={args.hasActions}>
-            <EuiTableRowCell>Cell 1</EuiTableRowCell>
+            {(args.hasActions || args.isExpander) && (
+              <EuiTableRowCell>Cell 1</EuiTableRowCell>
+            )}
             <Story {...args} />
           </EuiTableRow>
         </EuiTableBody>
