@@ -101,16 +101,6 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    */
   isExpander?: boolean;
   /**
-   * Indicates that it's a cell within an expanded row
-   */
-  isExpandedCell?: boolean;
-  /**
-   * Apply to offset expanded & selectable rows by the
-   * checkbox width to line up content with the 2nd column.
-   * Only takes effect when isExpandedCell={true}
-   */
-  hasCheckboxOffset?: boolean;
-  /**
    * Mobile options for displaying differently at small screens;
    * See #EuiTableRowCellMobileOptionsShape
    */
@@ -135,8 +125,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   width,
   valign = 'middle',
   mobileOptions,
-  isExpandedCell,
-  hasCheckboxOffset,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
@@ -146,7 +134,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     setScopeRow && styles.rowHeader,
     isExpander && styles.isExpander,
     hasActions && styles.hasActions,
-    isExpandedCell && hasCheckboxOffset && styles.checkboxOffset,
     styles[valign],
     ...(isResponsive
       ? [

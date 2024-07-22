@@ -1055,12 +1055,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         isExpandedRow={true}
         hasSelection={!!selection}
       >
-        <EuiTableRowCell
-          colSpan={expandedRowColSpan}
-          textOnly={false}
-          isExpandedCell={true}
-          hasCheckboxOffset={!!selection}
-        >
+        <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
           {itemIdToExpandedRowMap![itemId]}
         </EuiTableRowCell>
       </EuiTableRow>

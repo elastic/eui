@@ -50,8 +50,6 @@ const meta: Meta<EuiTableRowCellProps> = {
     align: LEFT_ALIGNMENT,
     hasActions: false,
     isExpander: false,
-    isExpandedCell: false,
-    hasCheckboxOffset: false,
     setScopeRow: false,
     textOnly: true,
     truncateText: false,

@@ -85,6 +85,7 @@ export const EuiTableRow: FunctionComponent<Props> = ({
         isSelected && styles.desktop.selected,
         isExpandedRow && styles.desktop.expanded,
         onClick && styles.desktop.clickable,
+        isExpandedRow && hasSelection && styles.desktop.checkboxOffset,
       ];
 
   const classes = classNames('euiTableRow', className, {
