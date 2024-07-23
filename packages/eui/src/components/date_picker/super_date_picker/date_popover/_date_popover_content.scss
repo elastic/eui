@@ -1,9 +1,0 @@
-.euiDatePopoverContent,
-.euiDatePopoverContent .react-datepicker {
-  width: $euiFormMaxWidth;
-  max-width: 100%;
-
-  @include euiBreakpoint('xs') {
-    width: $euiDatePickerCalendarWidth;
-  }
-}
