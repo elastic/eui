@@ -12,6 +12,11 @@ export interface SourceMeta {
  * Get source string from given children.
  */
 export const getSourceFromChildren = (children: ReactNode): string | null => {
+  // Direct (non-MDX) usage almost always passes a string
+  if (typeof children === 'string') {
+    return children;
+  }
+
   if (Children.count(children) !== 1 || !isElement(children)) {
     // This should never happen
     return null;
