@@ -6,9 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEventHandler } from 'react';
+import React, {
+  FunctionComponent,
+  ChangeEvent,
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import dateMath from '@elastic/datemath';
-import { htmlIdGenerator } from '../../../../services';
+import { LocaleSpecifier } from 'moment';
+
+import { useUpdateEffect, useGeneratedHtmlId } from '../../../../services';
+import { useEuiI18n, EuiI18n } from '../../../i18n';
+import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import {
   EuiForm,
@@ -20,20 +31,17 @@ import {
   EuiFormLabel,
   EuiSwitchEvent,
 } from '../../../form';
+import { EuiPopoverFooter } from '../../../popover';
 import { EuiSpacer } from '../../../spacer';
 
+import { RelativeParts, TimeUnitId } from '../../types';
 import { TimeOptions } from '../time_options';
+import { INVALID_DATE } from '../date_modes';
 import {
   parseRelativeParts,
   toRelativeStringFromParts,
 } from '../relative_utils';
-import { EuiScreenReaderOnly } from '../../../accessibility';
-import { EuiI18n } from '../../../i18n';
-import { RelativeParts, TimeUnitId } from '../../types';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import { EuiDatePopoverContentProps } from './date_popover_content';
-import { INVALID_DATE } from '../date_modes';
-import { EuiPopoverFooter } from '../../../popover';
 
 export interface EuiRelativeTabProps {
   dateFormat: string;
@@ -41,189 +49,150 @@ export interface EuiRelativeTabProps {
   value: string;
   onChange: EuiDatePopoverContentProps['onChange'];
   roundUp?: boolean;
-  position: 'start' | 'end';
   labelPrefix: string;
   timeOptions: TimeOptions;
 }
 
-interface EuiRelativeTabState
-  extends Pick<RelativeParts, 'unit' | 'round' | 'roundUnit'> {
-  count: number | undefined;
-}
+export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
+  timeOptions: { relativeOptions, relativeRoundingLabels },
+  dateFormat,
+  locale,
+  value,
+  onChange,
+  roundUp,
+  labelPrefix,
+}) => {
+  const initialRelativeParts = useRef<RelativeParts>(parseRelativeParts(value));
+  const { roundUnit } = initialRelativeParts.current;
 
-export class EuiRelativeTab extends Component<
-  EuiRelativeTabProps,
-  EuiRelativeTabState
-> {
-  state: EuiRelativeTabState = {
-    ...parseRelativeParts(this.props.value),
-  };
+  const [unit, setUnit] = useState<RelativeParts['unit']>(
+    initialRelativeParts.current.unit
+  );
+  const onUnitChange = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
+    setUnit(event.target.value);
+  }, []);
 
-  relativeDateInputNumberDescriptionId = htmlIdGenerator()();
+  const [round, setRound] = useState<RelativeParts['round']>(
+    initialRelativeParts.current.round
+  );
+  const onRoundChange = useCallback((event: EuiSwitchEvent) => {
+    setRound(event.target.checked);
+  }, []);
 
-  onCountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const [count, setCount] = useState<RelativeParts['count'] | undefined>(
+    initialRelativeParts.current.count
+  );
+  const onCountChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const sanitizedValue = parseInt(event.target.value, 10);
-    this.setState(
-      {
-        count: isNaN(sanitizedValue) ? undefined : sanitizedValue,
-      },
-      this.handleChange
-    );
-  };
+    const count = isNaN(sanitizedValue) ? undefined : sanitizedValue;
+    setCount(count);
+  }, []);
 
-  onUnitChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    this.setState(
-      {
-        unit: event.target.value,
-      },
-      this.handleChange
-    );
-  };
+  useUpdateEffect(() => {
+    if (count === undefined || count < 0) return;
 
-  onRoundChange = (event: EuiSwitchEvent) => {
-    this.setState(
-      {
-        round: event.target.checked,
-      },
-      this.handleChange
-    );
-  };
-
-  handleChange = () => {
-    const { count, round, roundUnit, unit } = this.state;
-    const { onChange } = this.props;
-    if (count === undefined || count < 0) {
-      return;
-    }
     const date = toRelativeStringFromParts({
       count,
-      round,
+      round: !!round,
       roundUnit,
       unit,
     });
     onChange(date);
-  };
+  }, [onChange, count, round, roundUnit, unit]);
 
-  render() {
-    const { relativeOptions, relativeRoundingLabels } = this.props.timeOptions;
-    const { count, unit } = this.state;
-    const invalidDate = this.props.value === INVALID_DATE;
-    const invalidValue = count === undefined || count < 0;
-    const isInvalid = invalidValue || invalidDate;
+  const invalidDate = value === INVALID_DATE;
+  const invalidValue = count === undefined || count < 0;
+  const isInvalid = invalidValue || invalidDate;
 
-    const parsedValue = dateMath.parse(this.props.value, {
-      roundUp: this.props.roundUp,
-    });
+  const formattedValue = useMemo(() => {
+    if (isInvalid) return '';
 
-    const formattedValue =
-      isInvalid || !parsedValue || !parsedValue.isValid()
-        ? ''
-        : parsedValue
-            .locale(this.props.locale || 'en')
-            .format(this.props.dateFormat);
+    const parsedValue = dateMath.parse(value, { roundUp });
+    if (!parsedValue || !parsedValue.isValid()) return '';
 
-    const getErrorMessage = ({
-      numberInputError,
-      dateInputError,
-    }: {
-      numberInputError: string;
-      dateInputError: string;
-    }) => {
-      if (invalidValue) return numberInputError;
-      if (invalidDate) return dateInputError;
-      return null;
-    };
+    return parsedValue.locale(locale || 'en').format(dateFormat);
+  }, [isInvalid, value, roundUp, locale, dateFormat]);
 
-    return (
-      <>
-        <EuiForm className="euiDatePopoverContent__padded">
-          <EuiFlexGroup gutterSize="s" responsive={false}>
-            <EuiFlexItem>
-              <EuiI18n
-                tokens={[
-                  'euiRelativeTab.numberInputError',
-                  'euiRelativeTab.numberInputLabel',
-                  'euiRelativeTab.dateInputError',
-                ]}
-                defaults={[
-                  'Must be >= 0',
-                  'Time span amount',
-                  'Must be a valid range',
-                ]}
-              >
-                {([
-                  numberInputError,
-                  numberInputLabel,
-                  dateInputError,
-                ]: string[]) => (
-                  <EuiFormRow
-                    isInvalid={isInvalid}
-                    error={getErrorMessage({
-                      numberInputError,
-                      dateInputError,
-                    })}
-                  >
-                    <EuiFieldNumber
-                      compressed
-                      aria-label={numberInputLabel}
-                      aria-describedby={
-                        this.relativeDateInputNumberDescriptionId
-                      }
-                      data-test-subj={'superDatePickerRelativeDateInputNumber'}
-                      value={count}
-                      onChange={this.onCountChange}
-                      isInvalid={isInvalid}
-                    />
-                  </EuiFormRow>
-                )}
-              </EuiI18n>
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiI18n
-                token="euiRelativeTab.unitInputLabel"
-                default="Relative time span"
-              >
-                {(unitInputLabel: string) => (
-                  <EuiSelect
-                    compressed
-                    aria-label={unitInputLabel}
-                    data-test-subj={
-                      'superDatePickerRelativeDateInputUnitSelector'
-                    }
-                    value={unit}
-                    options={relativeOptions}
-                    onChange={this.onUnitChange}
-                  />
-                )}
-              </EuiI18n>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-          <EuiSpacer size="s" />
-          <EuiFieldText
-            compressed
-            value={formattedValue}
-            readOnly
-            prepend={<EuiFormLabel>{this.props.labelPrefix}</EuiFormLabel>}
-          />
-          <EuiScreenReaderOnly>
-            <p id={this.relativeDateInputNumberDescriptionId}>
-              <EuiI18n
-                token="euiRelativeTab.fullDescription"
-                default="The unit is changeable. Currently set to {unit}."
-                values={{ unit }}
+  const relativeDateInputNumberDescriptionId = useGeneratedHtmlId();
+  const numberAriaLabel = useEuiI18n(
+    'euiRelativeTab.numberInputLabel',
+    'Time span amount'
+  );
+  const numberInputError = useEuiI18n(
+    'euiRelativeTab.numberInputError',
+    'Must be >= 0'
+  );
+  const dateInputError = useEuiI18n(
+    'euiRelativeTab.dateInputError',
+    'Must be a valid range'
+  );
+  const unitSelectAriaLabel = useEuiI18n(
+    'euiRelativeTab.unitInputLabel',
+    'Relative time span'
+  );
+
+  return (
+    <>
+      <EuiForm className="euiDatePopoverContent__padded">
+        <EuiFlexGroup gutterSize="s" responsive={false}>
+          <EuiFlexItem>
+            <EuiFormRow
+              isInvalid={isInvalid}
+              error={
+                invalidValue
+                  ? numberInputError
+                  : invalidDate
+                  ? dateInputError
+                  : null
+              }
+            >
+              <EuiFieldNumber
+                compressed
+                aria-label={numberAriaLabel}
+                aria-describedby={relativeDateInputNumberDescriptionId}
+                data-test-subj="superDatePickerRelativeDateInputNumber"
+                value={count}
+                onChange={onCountChange}
+                isInvalid={isInvalid}
               />
-            </p>
-          </EuiScreenReaderOnly>
-        </EuiForm>
-        <EuiPopoverFooter paddingSize="s">
-          <EuiSwitch
-            data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
-            label={relativeRoundingLabels[unit.substring(0, 1) as TimeUnitId]}
-            checked={this.state.round}
-            onChange={this.onRoundChange}
-          />
-        </EuiPopoverFooter>
-      </>
-    );
-  }
-}
+            </EuiFormRow>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSelect
+              compressed
+              aria-label={unitSelectAriaLabel}
+              data-test-subj="superDatePickerRelativeDateInputUnitSelector"
+              value={unit}
+              options={relativeOptions}
+              onChange={onUnitChange}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+        <EuiFieldText
+          compressed
+          value={formattedValue}
+          readOnly
+          prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+        />
+        <EuiScreenReaderOnly>
+          <p id={relativeDateInputNumberDescriptionId}>
+            <EuiI18n
+              token="euiRelativeTab.fullDescription"
+              default="The unit is changeable. Currently set to {unit}."
+              values={{ unit }}
+            />
+          </p>
+        </EuiScreenReaderOnly>
+      </EuiForm>
+      <EuiPopoverFooter paddingSize="s">
+        <EuiSwitch
+          data-test-subj="superDatePickerRelativeDateRoundSwitch"
+          label={relativeRoundingLabels[unit.substring(0, 1) as TimeUnitId]}
+          checked={!!round}
+          onChange={onRoundChange}
+        />
+      </EuiPopoverFooter>
+    </>
+  );
+};
