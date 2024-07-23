@@ -2,11 +2,11 @@
 
 exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormControlLayout 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted"
   data-test-subj="mySuperDatePicker"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -39,7 +39,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -72,10 +72,10 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
 
 exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--compressed euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -108,7 +108,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -141,7 +141,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
 
 exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted-isAutoRefreshOnly"
 >
   <div
     class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
@@ -189,7 +189,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
 
 exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--isAutoRefreshOnly"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted-isAutoRefreshOnly"
   data-test-subj="autoRefreshOnly"
 >
   <div
@@ -240,7 +240,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
 
 exports[`EuiSuperDatePicker props isDisabled config object 1`] = `
 <button
-  class="euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled"
+  class="euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiSuperDatePicker__prettyFormat"
   data-test-subj="superDatePickerShowDatesButton"
   disabled=""
   type="button"
@@ -255,10 +255,10 @@ exports[`EuiSuperDatePicker props isDisabled config object 1`] = `
 
 exports[`EuiSuperDatePicker props isDisabled true 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-disabled"
     disabled=""
   >
     <div
@@ -293,7 +293,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled"
+        class="euiSuperDatePicker__prettyFormat euiSuperDatePicker__prettyFormat--disabled emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         disabled=""
         type="button"
@@ -328,10 +328,10 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
 
 exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--isQuickSelectOnly euiSuperDatePicker--autoWidth"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-auto-isQuickSelectOnly"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -389,10 +389,10 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
 
 exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--noUpdateButton"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted-noUpdateButton"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -425,7 +425,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -438,10 +438,10 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
 
 exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
 <div
-  class="euiSuperDatePicker"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -474,7 +474,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -510,10 +510,10 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
 
 exports[`EuiSuperDatePicker props width can be auto 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--autoWidth"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-auto"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -546,7 +546,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -579,10 +579,10 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
 
 exports[`EuiSuperDatePicker props width can be full 1`] = `
 <div
-  class="euiSuperDatePicker euiSuperDatePicker--fullWidth"
+  class="euiSuperDatePicker emotion-euiSuperDatePicker-full"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -615,7 +615,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -648,11 +648,11 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
 
 exports[`EuiSuperDatePicker renders 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiSuperDatePicker-restricted-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group emotion-euiSuperDatePicker__formControlLayout-default"
   >
     <div
       class="euiPopover emotion-euiPopover-inline-block"
@@ -685,7 +685,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <button
-        class="euiSuperDatePicker__prettyFormat"
+        class="euiSuperDatePicker__prettyFormat emotion-euiSuperDatePicker__prettyFormat"
         data-test-subj="superDatePickerShowDatesButton"
         type="button"
       >
@@ -718,14 +718,14 @@ exports[`EuiSuperDatePicker renders 1`] = `
 
 exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiSuperDatePicker-restricted-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
-    class="euiDatePickerRange emotion-euiDatePickerRange"
+    class="euiDatePickerRange emotion-euiDatePickerRange-euiSuperDatePicker__range-euiSuperDatePicker__formControlLayout-default"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayoutDelimited"
+      class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group euiFormControlLayoutDelimited"
     >
       <div
         class="euiPopover emotion-euiPopover-inline-block"
@@ -758,10 +758,10 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover-block"
+          class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiSuperDatePicker__rangeInput"
         >
           <button
-            class="euiDatePopoverButton euiDatePopoverButton--start euiDatePopoverButton-isSelected"
+            class="euiDatePopoverButton euiDatePopoverButton--start euiDatePopoverButton-isSelected emotion-euiDatePopoverButton"
             data-test-subj="superDatePickerstartDatePopoverButton"
             title="~ 15 minutes ago"
             type="button"
@@ -779,10 +779,10 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           </span>
         </div>
         <div
-          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block"
+          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiSuperDatePicker__rangeInput"
         >
           <button
-            class="euiDatePopoverButton euiDatePopoverButton--end"
+            class="euiDatePopoverButton euiDatePopoverButton--end emotion-euiDatePopoverButton"
             data-test-subj="superDatePickerendDatePopoverButton"
             title="now"
             type="button"
