@@ -17,7 +17,7 @@ import React, {
 import moment, { Moment, LocaleSpecifier } from 'moment';
 import dateMath from '@elastic/datemath';
 
-import { useUpdateEffect } from '../../../../services';
+import { useUpdateEffect, useEuiMemoizedStyles } from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiFlexGroup } from '../../../flex';
@@ -26,6 +26,7 @@ import { EuiCode } from '../../../code';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
+import { euiAbsoluteTabDateFormStyles } from './absolute_tab.styles';
 
 // Allow users to paste in and have the datepicker parse multiple common date formats,
 // in addition to the configured displayed `dateFormat` prop
@@ -56,6 +57,8 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   utcOffset,
   labelPrefix,
 }) => {
+  const styles = useEuiMemoizedStyles(euiAbsoluteTabDateFormStyles);
+
   const [valueAsMoment, setValueAsMoment] = useState<Moment | null>(() => {
     const parsedValue = dateMath.parse(value, { roundUp });
     return parsedValue && parsedValue.isValid() ? parsedValue : moment();
@@ -159,12 +162,12 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
           e.preventDefault(); // Prevents a page refresh/reload
           setIsReadyToParse(true);
         }}
-        className="euiSuperDatePicker__absoluteDateForm"
+        css={styles.euiAbsoluteTabDateForm}
         gutterSize="s"
         responsive={false}
       >
         <EuiFormRow
-          className="euiSuperDatePicker__absoluteDateFormRow"
+          css={styles.euiAbsoluteTabDateForm__row}
           isInvalid={isTextInvalid}
           error={isTextInvalid ? dateFormatError : undefined}
           helpText={
@@ -187,7 +190,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
         {hasUnparsedText && (
           <EuiButtonIcon
             type="submit"
-            className="euiSuperDatePicker__absoluteDateFormSubmit"
+            css={styles.euiAbsoluteTabDateForm__submit}
             size="s"
             display="base"
             iconType="check"
