@@ -254,6 +254,33 @@ declare module '@theme-original/NavbarItem/DefaultNavbarItem' {
   export default function DefaultNavbarItem(props: Props): JSX.Element;
 }
 
+// original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1407
+declare module '@theme-original/ColorModeToggle' {
+  import type { ColorMode } from '@docusaurus/theme-common';
+
+  export interface Props {
+    readonly className?: string;
+    readonly buttonClassName?: string;
+    readonly value: ColorMode;
+    /**
+     * The parameter represents the "to-be" value. For example, if currently in
+     * dark mode, clicking the button should call `onChange("light")`
+     */
+    readonly onChange: (colorMode: ColorMode) => void;
+  }
+
+  export default function ColorModeToggle(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/026a317fc4300e6ae1817404519d229d2ca684a4/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1014
+declare module '@theme-original/Navbar/Layout' {
+  export interface Props {
+    readonly children: React.ReactNode;
+  }
+
+  export default function NavbarLayout(props: Props): JSX.Element;
+}
+
 // original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1067
 declare module '@theme-original/NavbarItem/NavbarNavLink' {
   import type { ReactNode } from 'react';
@@ -461,4 +488,16 @@ declare module '@theme-original/TOCCollapsible/CollapseButton' {
   export default function TOCCollapsibleCollapseButton(
     props: Props
   ): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1424
+declare module '@theme-original/Logo' {
+  import type { ComponentProps } from 'react';
+
+  export interface Props extends ComponentProps<'a'> {
+    readonly imageClassName?: string;
+    readonly titleClassName?: string;
+  }
+
+  export default function Logo(props: Props): JSX.Element;
 }
