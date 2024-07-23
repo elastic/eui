@@ -216,7 +216,8 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       >
         <button
           aria-describedby="generated-id generated-id"
-          class="euiButton euiQuickSelect__applyButton emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
+          class="euiButton emotion-euiButtonDisplay-s-base-primary"
+          data-test-subj="superDatePickerQuickSelectApplyButton"
           type="button"
         >
           <span

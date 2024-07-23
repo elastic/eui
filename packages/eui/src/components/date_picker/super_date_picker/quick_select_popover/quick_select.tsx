@@ -277,7 +277,8 @@ export class EuiQuickSelect extends Component<
           <EuiFlexItem grow={false}>
             <EuiButton
               aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
-              className="euiQuickSelect__applyButton"
+              data-test-subj="superDatePickerQuickSelectApplyButton"
+              minWidth={0} // Allow the button to shrink
               size="s"
               onClick={this.applyQuickSelect}
               disabled={timeValue <= 0}
