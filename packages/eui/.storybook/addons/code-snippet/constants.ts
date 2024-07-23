@@ -40,3 +40,9 @@ export const EXCLUDED_PROPS = new Set([
 ]);
 // props with 'false' value that should not be removed but shown in the code snippet
 export const PRESERVED_FALSE_VALUE_PROPS = new Set(['grow']);
+
+/** ERRORS */
+export const ADDON_ERROR =
+  'An error occurred in the EUI Storybook `code-snippet` addon. Returning the story without code snippet.';
+export const CODE_FORMATTING_ERROR =
+  'An error occurred and no formatted code was provided. Falling back to pre-formatted code.';

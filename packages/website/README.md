@@ -50,8 +50,29 @@ This step is usually unnecessary to run locally unless you're testing production
 yarn build
 ```
 
+You can serve the built static files for local testing by running
+
+```shell
+yarn serve
+```
+
 ### Running type checks
 
 ```shell
 yarn typecheck
 ```
+
+## Documentation search
+
+We use [lunr.js](https://github.com/olivernn/lunr.js) for local search
+on our documentation site. Lunr generates search indexes when the
+site is being built that we later fetch as JSON objects in runtime
+to provide users with accurate search results. This approach allows us
+to have version-specific search experience without the need to run
+a search server.
+
+Because the search index is generated in build time, it means that
+searching is not possible when running the development sever.
+Please refer to the [Building the website](#building-the-website) section
+to learn how to build the documentation site locally
+and serve it to use local search.

@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
@@ -35,9 +35,7 @@ const config: Config = {
     locales: ['en'],
   },
 
-  themes: [
-    '@elastic/eui-docusaurus-theme',
-  ],
+  themes: ['@elastic/eui-docusaurus-theme'],
 
   presets: [
     [
@@ -45,15 +43,22 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/elastic/eui/tree/main/website/',
+          editUrl: 'https://github.com/elastic/eui/tree/main/website/',
         },
         blog: {
           showReadingTime: true,
-          editUrl:
-            'https://github.com/elastic/eui/tree/main/website/',
+          editUrl: 'https://github.com/elastic/eui/tree/main/website/',
         },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      'docusaurus-lunr-search',
+      {
+        disableVersioning: true, // We don't use docusaurus docs versioning
+      },
     ],
   ],
 
@@ -78,9 +83,16 @@ const config: Config = {
           label: 'Patterns',
         },
         {
+          href: 'https://github.com/elastic/eui/tree/main/packages/eui/changelogs',
+          label: 'EUI Changelog',
+          position: 'right',
+          component: 'changelog',
+        },
+        {
           href: 'https://github.com/elastic/eui',
           label: 'GitHub',
           position: 'right',
+          component: 'github',
         },
       ],
     },
