@@ -99,7 +99,6 @@ export const EuiDatePopoverContent: FunctionComponent<
           value={value}
           onChange={onChange}
           roundUp={roundUp}
-          position={position}
           labelPrefix={labelPrefix}
           utcOffset={utcOffset}
         />

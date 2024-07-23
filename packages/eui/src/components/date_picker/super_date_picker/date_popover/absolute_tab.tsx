@@ -6,17 +6,23 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEvent, FormEvent } from 'react';
-
-import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
-
+import React, {
+  FunctionComponent,
+  ChangeEvent,
+  FormEvent,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
+import moment, { Moment, LocaleSpecifier } from 'moment';
 import dateMath from '@elastic/datemath';
 
+import { useUpdateEffect } from '../../../../services';
+import { useEuiI18n } from '../../../i18n';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
 import { EuiFlexGroup } from '../../../flex';
 import { EuiButtonIcon } from '../../../button';
 import { EuiCode } from '../../../code';
-import { EuiI18n } from '../../../i18n';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiDatePopoverContentProps } from './date_popover_content';
@@ -36,198 +42,161 @@ export interface EuiAbsoluteTabProps {
   value: string;
   onChange: EuiDatePopoverContentProps['onChange'];
   roundUp: boolean;
-  position: 'start' | 'end';
   labelPrefix: string;
   utcOffset?: number;
 }
 
-interface EuiAbsoluteTabState {
-  hasUnparsedText: boolean;
-  isTextInvalid: boolean;
-  textInputValue: string;
-  valueAsMoment: Moment | null;
-}
+export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
+  value,
+  onChange,
+  dateFormat,
+  timeFormat,
+  locale,
+  roundUp,
+  utcOffset,
+  labelPrefix,
+}) => {
+  const [valueAsMoment, setValueAsMoment] = useState<Moment | null>(() => {
+    const parsedValue = dateMath.parse(value, { roundUp });
+    return parsedValue && parsedValue.isValid() ? parsedValue : moment();
+  });
+  const handleChange: EuiDatePickerProps['onChange'] = useCallback(
+    (date: Moment | null) => {
+      if (date === null) return;
 
-export class EuiAbsoluteTab extends Component<
-  EuiAbsoluteTabProps,
-  EuiAbsoluteTabState
-> {
-  state: EuiAbsoluteTabState;
-  isParsing = false; // Store outside of state as a ref for faster/unbatched updates
+      const valueAsMoment = moment(date);
+      setValueAsMoment(valueAsMoment);
+      setTextInputValue(valueAsMoment.format(dateFormat));
+      setHasUnparsedText(false);
+      setIsTextInvalid(false);
+    },
+    [dateFormat]
+  );
 
-  constructor(props: EuiAbsoluteTabProps) {
-    super(props);
+  const [textInputValue, setTextInputValue] = useState<string>(() =>
+    valueAsMoment!.locale(locale || 'en').format(dateFormat)
+  );
+  const handleTextChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setTextInputValue(event.target.value);
+      setHasUnparsedText(true);
+      setIsTextInvalid(false);
+    },
+    []
+  );
 
-    const parsedValue = dateMath.parse(props.value, { roundUp: props.roundUp });
-    const valueAsMoment =
-      parsedValue && parsedValue.isValid() ? parsedValue : moment();
+  const submitButtonLabel = useEuiI18n(
+    'euiAbsoluteTab.dateFormatButtonLabel',
+    'Parse date'
+  );
+  const dateFormatError = useEuiI18n(
+    'euiAbsoluteTab.dateFormatError',
+    'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
+    { dateFormat: <EuiCode>{dateFormat}</EuiCode> }
+  );
+  const [hasUnparsedText, setHasUnparsedText] = useState(false);
+  const [isReadyToParse, setIsReadyToParse] = useState(false);
+  const [isTextInvalid, setIsTextInvalid] = useState(false);
 
-    const textInputValue = valueAsMoment
-      .locale(this.props.locale || 'en')
-      .format(this.props.dateFormat);
+  useEffect(() => {
+    if (isReadyToParse) {
+      if (!textInputValue) {
+        setIsTextInvalid(true);
+        setValueAsMoment(null);
+        return;
+      }
 
-    this.state = {
-      hasUnparsedText: false,
-      isTextInvalid: false,
-      textInputValue,
-      valueAsMoment,
-    };
-  }
+      // Attempt to parse with passed `dateFormat` and `locale`
+      let valueAsMoment = moment(
+        textInputValue,
+        dateFormat,
+        typeof locale === 'string' ? locale : 'en', // Narrow the union type to string
+        true
+      );
+      let dateIsValid = valueAsMoment.isValid();
 
-  handleChange: EuiDatePickerProps['onChange'] = (date) => {
-    const { onChange } = this.props;
-    if (date === null) {
-      return;
+      // If not valid, try a few other other standardized formats
+      if (!dateIsValid) {
+        valueAsMoment = moment(textInputValue, ALLOWED_USER_DATE_FORMATS, true);
+        dateIsValid = valueAsMoment.isValid();
+      }
+
+      if (dateIsValid) {
+        setTextInputValue(valueAsMoment.format(dateFormat));
+        setValueAsMoment(valueAsMoment);
+        setHasUnparsedText(false);
+        setIsTextInvalid(false);
+      } else {
+        setIsTextInvalid(true);
+        setValueAsMoment(null);
+      }
+      setIsReadyToParse(false);
     }
-    onChange(date.toISOString());
+  }, [isReadyToParse, textInputValue, dateFormat, locale]);
 
-    const valueAsMoment = moment(date);
-    this.setState({
-      valueAsMoment,
-      textInputValue: valueAsMoment.format(this.props.dateFormat),
-      hasUnparsedText: false,
-      isTextInvalid: false,
-    });
-  };
-
-  handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (this.isParsing) return;
-
-    this.setState({
-      textInputValue: event.target.value,
-      hasUnparsedText: true,
-      isTextInvalid: false,
-    });
-  };
-
-  parseUserDateInput = (textInputValue: string) => {
-    this.isParsing = true;
-    // Wait a tick for state to finish updating (whatever gets returned),
-    // and then allow `onChange` user input to continue setting state
-    requestAnimationFrame(() => {
-      this.isParsing = false;
-    });
-
-    const invalidDateState = {
-      textInputValue,
-      isTextInvalid: true,
-      valueAsMoment: null,
-    };
-    if (!textInputValue) {
-      return this.setState(invalidDateState);
-    }
-
-    const { onChange, dateFormat, locale } = this.props;
-
-    // Attempt to parse with passed `dateFormat` and `locale`
-    let valueAsMoment = moment(
-      textInputValue,
-      dateFormat,
-      typeof locale === 'string' ? locale : 'en', // Narrow the union type to string
-      true
-    );
-    let dateIsValid = valueAsMoment.isValid();
-
-    // If not valid, try a few other other standardized formats
-    if (!dateIsValid) {
-      valueAsMoment = moment(textInputValue, ALLOWED_USER_DATE_FORMATS, true);
-      dateIsValid = valueAsMoment.isValid();
-    }
-
-    if (dateIsValid) {
+  useUpdateEffect(() => {
+    if (valueAsMoment) {
       onChange(valueAsMoment.toISOString());
-      this.setState({
-        textInputValue: valueAsMoment.format(this.props.dateFormat),
-        valueAsMoment: valueAsMoment,
-        hasUnparsedText: false,
-        isTextInvalid: false,
-      });
-    } else {
-      this.setState(invalidDateState);
     }
-  };
+  }, [valueAsMoment]);
 
-  render() {
-    const { dateFormat, timeFormat, locale, utcOffset, labelPrefix } =
-      this.props;
-    const { valueAsMoment, isTextInvalid, hasUnparsedText, textInputValue } =
-      this.state;
-
-    return (
-      <>
-        <EuiDatePicker
-          inline
-          showTimeSelect
-          shadow={false}
-          selected={valueAsMoment}
-          onChange={this.handleChange}
-          dateFormat={dateFormat}
-          timeFormat={timeFormat}
-          locale={locale}
-          utcOffset={utcOffset}
-        />
-        <EuiI18n
-          tokens={[
-            'euiAbsoluteTab.dateFormatButtonLabel',
-            'euiAbsoluteTab.dateFormatError',
-          ]}
-          defaults={[
-            'Parse date',
-            'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
-          ]}
-          values={{ dateFormat: <EuiCode>{dateFormat}</EuiCode> }}
+  return (
+    <>
+      <EuiDatePicker
+        inline
+        showTimeSelect
+        shadow={false}
+        selected={valueAsMoment}
+        onChange={handleChange}
+        dateFormat={dateFormat}
+        timeFormat={timeFormat}
+        locale={locale}
+        utcOffset={utcOffset}
+      />
+      <EuiFlexGroup
+        component="form"
+        onSubmit={(e: FormEvent) => {
+          e.preventDefault(); // Prevents a page refresh/reload
+          setIsReadyToParse(true);
+        }}
+        className="euiSuperDatePicker__absoluteDateForm"
+        gutterSize="s"
+        responsive={false}
+      >
+        <EuiFormRow
+          className="euiSuperDatePicker__absoluteDateFormRow"
+          isInvalid={isTextInvalid}
+          error={isTextInvalid ? dateFormatError : undefined}
+          helpText={
+            hasUnparsedText && !isTextInvalid ? dateFormatError : undefined
+          }
         >
-          {([dateFormatButtonLabel, dateFormatError]: string[]) => (
-            <EuiFlexGroup
-              component="form"
-              onSubmit={(e: FormEvent) => {
-                e.preventDefault(); // Prevents a page refresh/reload
-                this.parseUserDateInput(textInputValue);
-              }}
-              className="euiSuperDatePicker__absoluteDateForm"
-              gutterSize="s"
-              responsive={false}
-            >
-              <EuiFormRow
-                className="euiSuperDatePicker__absoluteDateFormRow"
-                isInvalid={isTextInvalid}
-                error={isTextInvalid ? dateFormatError : undefined}
-                helpText={
-                  hasUnparsedText && !isTextInvalid
-                    ? dateFormatError
-                    : undefined
-                }
-              >
-                <EuiFieldText
-                  compressed
-                  isInvalid={isTextInvalid}
-                  value={textInputValue}
-                  onChange={this.handleTextChange}
-                  onPaste={(event) => {
-                    this.parseUserDateInput(
-                      event.clipboardData.getData('text')
-                    );
-                  }}
-                  data-test-subj="superDatePickerAbsoluteDateInput"
-                  prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
-                />
-              </EuiFormRow>
-              {hasUnparsedText && (
-                <EuiButtonIcon
-                  type="submit"
-                  className="euiSuperDatePicker__absoluteDateFormSubmit"
-                  size="s"
-                  display="base"
-                  iconType="check"
-                  aria-label={dateFormatButtonLabel}
-                  title={dateFormatButtonLabel}
-                  data-test-subj="parseAbsoluteDateFormat"
-                />
-              )}
-            </EuiFlexGroup>
-          )}
-        </EuiI18n>
-      </>
-    );
-  }
-}
+          <EuiFieldText
+            compressed
+            isInvalid={isTextInvalid}
+            value={textInputValue}
+            onChange={handleTextChange}
+            onPaste={(event) => {
+              setTextInputValue(event.clipboardData.getData('text'));
+              setIsReadyToParse(true);
+            }}
+            data-test-subj="superDatePickerAbsoluteDateInput"
+            prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+          />
+        </EuiFormRow>
+        {hasUnparsedText && (
+          <EuiButtonIcon
+            type="submit"
+            className="euiSuperDatePicker__absoluteDateFormSubmit"
+            size="s"
+            display="base"
+            iconType="check"
+            aria-label={submitButtonLabel}
+            title={submitButtonLabel}
+            data-test-subj="parseAbsoluteDateFormat"
+          />
+        )}
+      </EuiFlexGroup>
+    </>
+  );
+};
