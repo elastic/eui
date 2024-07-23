@@ -478,7 +478,7 @@ export class EuiSuperDatePickerInternal extends Component<
         isPaused={isPaused}
         recentlyUsedRanges={recentlyUsedRanges}
         refreshInterval={refreshInterval}
-        minInterval={refreshMinInterval}
+        refreshMinInterval={refreshMinInterval}
         intervalUnits={refreshIntervalUnits}
         start={start}
         timeOptions={timeOptions}
