@@ -1,13 +1,9 @@
 import React from 'react';
 import type CodeType from '@theme-init/MDXComponents/Code';
+import CodeBlock from '@theme/CodeBlock';
 import type { WrapperProps } from '@docusaurus/types';
 import { css } from '@emotion/react';
-import {
-  EuiCode,
-  EuiCodeBlock,
-  useEuiMemoizedStyles,
-  UseEuiTheme,
-} from '@elastic/eui';
+import { EuiCode, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 
 type Props = WrapperProps<typeof CodeType>;
 
@@ -33,15 +29,19 @@ const Code = ({ children, className, ...rest }: Props): JSX.Element => {
       )
     : false;
 
-  return isInlineCode ? (
-    <EuiCode {...rest} language={language} css={styles.code}>
+  if (isInlineCode) {
+    return (
+      <EuiCode {...rest} language={language} css={styles.code}>
+        {children}
+      </EuiCode>
+    );
+  }
+
+  return (
+    <CodeBlock className={className} {...rest}>
       {children}
-    </EuiCode>
-  ) : (
-    <EuiCodeBlock {...rest} fontSize="m" language={language}>
-      {children}
-    </EuiCodeBlock>
-  );
+    </CodeBlock>
+  )
 };
 
 export default Code;
