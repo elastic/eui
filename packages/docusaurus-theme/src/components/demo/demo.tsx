@@ -58,7 +58,7 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
 export const Demo = ({
   children,
   scope,
-  isSourceOpen: _isSourceOpen = true,
+  isSourceOpen: _isSourceOpen = false,
   previewPadding,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
