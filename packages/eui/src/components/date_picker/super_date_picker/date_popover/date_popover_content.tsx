@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 
+import { useEuiPaddingCSS } from '../../../../global_styling';
 import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiTabbedContent, EuiTabbedContentProps } from '../../../tabs';
 import { EuiText } from '../../../text';
@@ -126,11 +127,7 @@ export const EuiDatePopoverContent: FunctionComponent<
       id: DATE_MODES.NOW,
       name: nowLabel,
       content: (
-        <EuiText
-          size="s"
-          color="subdued"
-          className="euiDatePopoverContent__padded--large"
-        >
+        <EuiText size="s" color="subdued" css={useEuiPaddingCSS().m}>
           <p>
             <EuiI18n
               token="euiDatePopoverContent.nowTabContent"

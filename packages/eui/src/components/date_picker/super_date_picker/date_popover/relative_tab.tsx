@@ -17,6 +17,7 @@ import React, {
 import dateMath from '@elastic/datemath';
 import { LocaleSpecifier } from 'moment';
 
+import { useEuiPaddingCSS } from '../../../../global_styling';
 import { useUpdateEffect, useGeneratedHtmlId } from '../../../../services';
 import { useEuiI18n, EuiI18n } from '../../../i18n';
 import { EuiScreenReaderOnly } from '../../../accessibility';
@@ -133,7 +134,7 @@ export const EuiRelativeTab: FunctionComponent<EuiRelativeTabProps> = ({
 
   return (
     <>
-      <EuiForm className="euiDatePopoverContent__padded">
+      <EuiForm css={useEuiPaddingCSS().s}>
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
             <EuiFormRow
