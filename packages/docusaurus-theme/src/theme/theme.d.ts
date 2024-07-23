@@ -272,6 +272,15 @@ declare module '@theme-original/ColorModeToggle' {
   export default function ColorModeToggle(props: Props): JSX.Element;
 }
 
+// original: https://github.com/facebook/docusaurus/blob/026a317fc4300e6ae1817404519d229d2ca684a4/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1014
+declare module '@theme-original/Navbar/Layout' {
+  export interface Props {
+    readonly children: React.ReactNode;
+  }
+
+  export default function NavbarLayout(props: Props): JSX.Element;
+}
+
 // original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1067
 declare module '@theme-original/NavbarItem/NavbarNavLink' {
   import type { ReactNode } from 'react';
@@ -491,43 +500,4 @@ declare module '@theme-original/Logo' {
   }
 
   export default function Logo(props: Props): JSX.Element;
-}
-
-// original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1214
-declare module '@theme-original/NavbarItem' {
-  import type { ComponentProps } from 'react';
-  import type { Props as DefaultNavbarItemProps } from '@theme-original/NavbarItem/DefaultNavbarItem';
-  import type { Props as DocNavbarItemProps } from '@theme-original/NavbarItem/DocNavbarItem';
-  import type { Props as DocSidebarNavbarItemProps } from '@theme-original/NavbarItem/DocSidebarNavbarItem';
-  import type { Props as DocsVersionNavbarItemProps } from '@theme-original/NavbarItem/DocsVersionNavbarItem';
-  import type { Props as DropdownNavbarItemProps } from '@theme-original/NavbarItem/DropdownNavbarItem';
-  import type { Props as DocsVersionDropdownNavbarItemProps } from '@theme-original/NavbarItem/DocsVersionDropdownNavbarItem';
-  import type { Props as LocaleDropdownNavbarItemProps } from '@theme-original/NavbarItem/LocaleDropdownNavbarItem';
-  import type { Props as SearchNavbarItemProps } from '@theme-original/NavbarItem/SearchNavbarItem';
-  import type { Props as HtmlNavbarItemProps } from '@theme-original/NavbarItem/HtmlNavbarItem';
-
-  export type LinkLikeNavbarItemProps =
-    | ({ readonly type?: 'default' } & DefaultNavbarItemProps)
-    | ({ readonly type: 'doc' } & DocNavbarItemProps)
-    | ({ readonly type: 'docsVersion' } & DocsVersionNavbarItemProps)
-    | ({ readonly type: 'docSidebar' } & DocSidebarNavbarItemProps)
-    | ({ readonly type: 'html' } & HtmlNavbarItemProps);
-
-  export type Props = ComponentProps<'a'> & {
-    readonly position?: 'left' | 'right';
-  } & (
-      | LinkLikeNavbarItemProps
-      | ({ readonly type?: 'dropdown' } & DropdownNavbarItemProps)
-      | ({
-          readonly type: 'docsVersionDropdown';
-        } & DocsVersionDropdownNavbarItemProps)
-      | ({ readonly type: 'localeDropdown' } & LocaleDropdownNavbarItemProps)
-      | ({
-          readonly type: 'search';
-        } & SearchNavbarItemProps)
-    );
-
-  export type NavbarItemType = Props['type'];
-
-  export default function NavbarItem(props: Props): JSX.Element;
 }
