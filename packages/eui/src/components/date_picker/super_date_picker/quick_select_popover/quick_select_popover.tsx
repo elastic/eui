@@ -34,6 +34,7 @@ import {
   ApplyTime,
   QuickSelect,
   QuickSelectPanel,
+  Milliseconds,
 } from '../../types';
 
 export type CustomQuickSelectRenderOptions = {
@@ -58,6 +59,7 @@ export interface EuiQuickSelectPopoverProps {
   isPaused: boolean;
   recentlyUsedRanges: DurationRange[];
   refreshInterval: number;
+  minInterval?: Milliseconds;
   intervalUnits?: RefreshUnitsOptions;
   start: string;
   timeOptions: TimeOptions;
@@ -137,6 +139,7 @@ export const EuiQuickSelectPanels: FunctionComponent<
   customQuickSelectRender,
   isPaused,
   refreshInterval,
+  minInterval,
   intervalUnits,
   applyRefreshInterval,
   applyTime,
@@ -173,6 +176,7 @@ export const EuiQuickSelectPanels: FunctionComponent<
       onRefreshChange={applyRefreshInterval}
       isPaused={isPaused}
       refreshInterval={refreshInterval}
+      minInterval={minInterval}
       intervalUnits={intervalUnits}
     />
   );

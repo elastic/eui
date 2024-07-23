@@ -457,6 +457,7 @@ export class EuiSuperDatePickerInternal extends Component<
       onRefreshChange,
       recentlyUsedRanges,
       refreshInterval,
+      refreshMinInterval,
       refreshIntervalUnits,
       isPaused,
       isDisabled,
@@ -477,6 +478,7 @@ export class EuiSuperDatePickerInternal extends Component<
         isPaused={isPaused}
         recentlyUsedRanges={recentlyUsedRanges}
         refreshInterval={refreshInterval}
+        minInterval={refreshMinInterval}
         intervalUnits={refreshIntervalUnits}
         start={start}
         timeOptions={timeOptions}
