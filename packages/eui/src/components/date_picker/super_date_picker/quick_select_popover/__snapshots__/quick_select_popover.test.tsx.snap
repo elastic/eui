@@ -2,7 +2,7 @@
 
 exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panels 1`] = `
 <div
-  class="euiQuickSelectPopover__content"
+  class="euiQuickSelectPopover emotion-euiQuickSelectPopover"
   data-test-subj="superDatePickerQuickMenu"
 >
   <fieldset
@@ -435,13 +435,13 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
 >
   <button
     aria-label="Date quick select"
-    class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
     data-test-subj="superDatePickerToggleQuickMenuButton"
     title="Date quick select"
     type="button"
   >
     <span
-      class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton"
     >
       <span
         class="eui-textTruncate euiButtonEmpty__text"

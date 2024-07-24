@@ -15,13 +15,15 @@ import React, {
   ReactElement,
 } from 'react';
 
+import { useEuiMemoizedStyles } from '../../../../services';
+import { useEuiI18n } from '../../../i18n';
 import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
 import { EuiTitle } from '../../../title';
 import { EuiText } from '../../../text';
-import { useEuiI18n } from '../../../i18n';
 
+import { euiQuickSelectPopoverStyles } from './quick_select_popover.styles';
 import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
 import { EuiRecentlyUsed } from './recently_used';
@@ -91,10 +93,12 @@ export const EuiQuickSelectPopover: FunctionComponent<
     'Date quick select'
   );
 
+  const styles = useEuiMemoizedStyles(euiQuickSelectPopoverStyles);
+
   const quickSelectButton = (
     <EuiButtonEmpty
-      className="euiFormControlLayout__prepend"
-      contentProps={{ className: 'euiQuickSelectPopover__buttonContent' }}
+      css={styles.euiQuickSelectPopoverButton}
+      contentProps={{ css: styles.euiQuickSelectPopoverButton__content }}
       onClick={togglePopover}
       aria-label={buttonlabel}
       title={buttonlabel}
@@ -145,6 +149,8 @@ export const EuiQuickSelectPanels: FunctionComponent<
   applyTime,
   prevQuickSelect,
 }) => {
+  const styles = useEuiMemoizedStyles(euiQuickSelectPopoverStyles);
+
   const quickSelectElement = (
     <EuiQuickSelect
       applyTime={applyTime}
@@ -201,7 +207,8 @@ export const EuiQuickSelectPanels: FunctionComponent<
 
   return (
     <div
-      className="euiQuickSelectPopover__content"
+      css={styles.euiQuickSelectPopover}
+      className="euiQuickSelectPopover"
       data-test-subj="superDatePickerQuickMenu"
     >
       {customQuickSelectRender ? (
