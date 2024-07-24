@@ -176,14 +176,25 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       needsUpdating: css`
         /* Extra specificity needed to override default delimited styles */
         .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
-          --euiFormControlStateColor: ${euiTheme.colors.success};
           color: ${needsUpdatingTextColor};
           background-color: ${needsUpdatingBackgroundColor};
-          background-size: 100% 100%;
         }
 
         .euiFormControlLayoutDelimited__delimiter {
           color: inherit;
+        }
+
+        /* Focus/selection underline per-button */
+        .euiDatePopoverButton {
+          ${euiFormControlDefaultShadow(euiThemeContext)}
+          background-color: inherit;
+          box-shadow: none;
+        }
+
+        .euiDatePopoverButton:focus,
+        .euiPopover-isOpen .euiDatePopoverButton {
+          --euiFormControlStateColor: ${euiTheme.colors.success};
+          background-size: 100% 100%;
         }
       `,
     },
