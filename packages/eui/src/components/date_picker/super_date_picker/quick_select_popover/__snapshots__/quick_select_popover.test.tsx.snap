@@ -294,8 +294,8 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       </ul>
     </div>
   </fieldset>
-  <fieldset
-    class="euiQuickSelectPopover__panel"
+  <div
+    class="emotion-euiQuickSelectPanel"
   >
     <div
       class="euiFlexGroup emotion-euiFlexGroup-wrap-s-flexStart-center-row"
@@ -309,7 +309,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           <button
             aria-checked="false"
             aria-describedby="generated-id"
-            aria-labelledby="generated-id"
+            aria-label="Toggle refresh"
             class="euiSwitch__button"
             data-test-subj="superDatePickerToggleRefreshButton"
             id="generated-id"
@@ -331,12 +331,11 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiSwitch__label"
             id="generated-id"
           >
-            <legend
+            <label
               class="euiFormLabel"
-              id="generated-id"
             >
               Refresh every
-            </legend>
+            </label>
           </span>
         </div>
       </div>
@@ -351,7 +350,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiFormControlLayout__childrenWrapper"
           >
             <input
-              aria-describedby="generated-id generated-id"
+              aria-describedby="generated-id"
               aria-label="Refresh interval value"
               class="euiFieldNumber emotion-euiFieldNumber-compressed-fullWidth"
               data-test-subj="superDatePickerRefreshIntervalInput"
@@ -375,7 +374,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             class="euiFormControlLayout__childrenWrapper"
           >
             <select
-              aria-describedby="generated-id generated-id"
+              aria-describedby="generated-id"
               aria-label="Refresh interval units"
               class="euiSelect emotion-euiSelect-compressed-fullWidth"
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
@@ -407,7 +406,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
     >
       Refresh is off, interval set to 0 Seconds.
     </p>
-  </fieldset>
+  </div>
   <div
     class="emotion-euiQuickSelectPanel"
   >
