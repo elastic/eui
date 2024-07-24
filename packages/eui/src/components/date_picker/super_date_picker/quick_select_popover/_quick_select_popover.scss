@@ -1,25 +1,3 @@
-.euiQuickSelectPopover__panel {
-  &:not(:first-child) {
-    border-top: $euiBorderThin;
-    padding-top: $euiSizeM;
-    margin-top: $euiSizeM;
-  }
-
-  .euiQuickSelectPopover__panelTitle {
-    float: left;
-    margin-bottom: $euiSizeM;
-  }
-}
-
-.euiQuickSelectPopover__section {
-  @include euiScrollBar;
-  max-height: $euiSizeM * 11;
-  overflow: hidden;
-  overflow-y: auto;
-  margin: $euiSizeS 0 0;
-  clear: both;
-}
-
 .euiQuickSelectPopover__sectionItem {
   font-size: $euiFontSizeS;
   line-height: $euiFontSizeS;
