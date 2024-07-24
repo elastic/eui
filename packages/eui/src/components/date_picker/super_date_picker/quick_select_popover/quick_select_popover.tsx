@@ -20,10 +20,9 @@ import { useEuiI18n } from '../../../i18n';
 import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
-import { EuiTitle } from '../../../title';
-import { EuiText } from '../../../text';
 
 import { euiQuickSelectPopoverStyles } from './quick_select_popover.styles';
+import { EuiQuickSelectPanel } from './quick_select_panel';
 import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
 import { EuiRecentlyUsed } from './recently_used';
@@ -193,14 +192,9 @@ export const EuiQuickSelectPanels: FunctionComponent<
     }
     return customQuickSelectPanels.map(({ title, content }) => {
       return (
-        <div key={title} className="euiQuickSelectPopover__panel">
-          <EuiTitle size="xxxs">
-            <span>{title}</span>
-          </EuiTitle>
-          <EuiText size="s" className="euiQuickSelectPopover__section">
-            {React.cloneElement(content, { applyTime })}
-          </EuiText>
-        </div>
+        <EuiQuickSelectPanel key={title} title={title}>
+          {React.cloneElement(content, { applyTime })}
+        </EuiQuickSelectPanel>
       );
     });
   }, [customQuickSelectPanels, applyTime]);

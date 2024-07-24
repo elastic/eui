@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
 import {
+  euiFontSize,
   euiScrollBarStyles,
   logicalCSS,
   logicalCSSWithFallback,
@@ -41,6 +42,7 @@ export const euiQuickSelectPanelStyles = (euiThemeContext: UseEuiTheme) => {
       overflow: hidden;
       ${logicalCSSWithFallback('overflow-y', 'auto')}
       ${euiScrollBarStyles(euiThemeContext)}
+      ${euiFontSize(euiThemeContext, 's')}
     `,
   };
 };

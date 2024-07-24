@@ -236,16 +236,16 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
     </p>
   </fieldset>
   <fieldset
-    class="euiQuickSelectPopover__panel"
+    class="emotion-euiQuickSelectPanel"
   >
     <legend
-      class="euiTitle euiQuickSelectPopover__panelTitle emotion-euiTitle-xxxs"
+      class="euiTitle emotion-euiQuickSelectPanel__title-euiTitle-xxxs"
       id="generated-id"
     >
       Commonly used
     </legend>
     <div
-      class="euiQuickSelectPopover__section"
+      class="emotion-euiQuickSelectPanel__section"
     >
       <ul
         aria-labelledby="generated-id"
@@ -253,7 +253,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         style="grid-template-rows: repeat(1, 1fr);"
       >
         <li
-          class="euiFlexItem euiQuickSelectPopover__sectionItem emotion-euiFlexItem-grow-1"
+          class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <button
             class="euiLink emotion-euiLink-primary"
@@ -267,20 +267,22 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
     </div>
   </fieldset>
   <fieldset
-    class="euiQuickSelectPopover__panel"
+    class="emotion-euiQuickSelectPanel"
   >
     <legend
-      class="euiTitle euiQuickSelectPopover__panelTitle emotion-euiTitle-xxxs"
+      class="euiTitle emotion-euiQuickSelectPanel__title-euiTitle-xxxs"
       id="generated-id"
     >
       Recently used date ranges
     </legend>
     <div
-      class="euiQuickSelectPopover__section"
+      class="emotion-euiQuickSelectPanel__section"
     >
-      <ul>
+      <ul
+        class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-column"
+      >
         <li
-          class="euiQuickSelectPopover__sectionItem euiQuickSelectPopover__sectionItem--recentlyUsed"
+          class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <button
             class="euiLink emotion-euiLink-primary"
@@ -407,15 +409,15 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
     </p>
   </fieldset>
   <div
-    class="euiQuickSelectPopover__panel"
+    class="emotion-euiQuickSelectPanel"
   >
     <span
-      class="euiTitle emotion-euiTitle-xxxs"
+      class="euiTitle emotion-euiQuickSelectPanel__title-euiTitle-xxxs"
     >
       My custom panel
     </span>
     <div
-      class="euiText euiQuickSelectPopover__section emotion-euiText-s"
+      class="emotion-euiQuickSelectPanel__section"
     >
       <button
         class="euiLink emotion-euiLink-primary"
