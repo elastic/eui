@@ -81,11 +81,13 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   );
   const handleTextChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
+      if (isReadyToParse) return; // Text paste event, don't continue
+
       setTextInputValue(event.target.value);
       setHasUnparsedText(true);
       setIsTextInvalid(false);
     },
-    []
+    [isReadyToParse]
   );
 
   const submitButtonLabel = useEuiI18n(
