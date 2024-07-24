@@ -63,7 +63,7 @@ describe('EuiSuperDatePicker', () => {
     });
 
     it('has zero violations when quick select menu is open', () => {
-      cy.get('button.euiFormControlLayout__prepend').click();
+      cy.get('[data-test-subj="superDatePickerToggleQuickMenuButton"]').click();
       cy.get('div.euiPanel').contains('Quick select').should('exist');
       cy.checkAxe();
     });
