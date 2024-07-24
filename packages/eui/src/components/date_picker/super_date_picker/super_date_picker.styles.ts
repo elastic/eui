@@ -214,7 +214,8 @@ export const _buttonStyles = (euiThemeContext: UseEuiTheme) => {
     align-items: center;
 
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
     color: inherit;
     background-color: inherit;
 
