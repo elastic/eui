@@ -7907,6 +7907,28 @@ exports[`EuiIcon props type minusInCircleFilled is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type minusInSquare is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="minusInSquare"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M10.611 7H4.39c-.216 0-.39.224-.39.5s.174.5.389.5h6.222c.215 0 .389-.224.389-.5s-.174-.5-.389-.5Z"
+  />
+  <path
+    d="M1 3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3Zm2-1h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type mobile is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -8590,6 +8612,28 @@ exports[`EuiIcon props type plusInCircleFilled is rendered 1`] = `
 >
   <path
     d="M8 7V3.5a.5.5 0 0 0-1 0V7H3.5a.5.5 0 0 0 0 1H7v3.5a.5.5 0 1 0 1 0V8h3.5a.5.5 0 1 0 0-1H8Zm-.5 8a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type plusInSquare is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="plusInSquare"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M8 4.389V7h2.611c.215 0 .389.224.389.5s-.174.5-.389.5H8v2.611c0 .215-.224.389-.5.389s-.5-.174-.5-.389V8H4.389C4.174 8 4 7.776 4 7.5s.174-.5.389-.5H7V4.389C7 4.174 7.224 4 7.5 4s.5.174.5.389Z"
+  />
+  <path
+    d="M1 3a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3Zm2-1h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
