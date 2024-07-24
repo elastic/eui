@@ -76,9 +76,22 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
     [dateFormat]
   );
 
+  const submitButtonLabel = useEuiI18n(
+    'euiAbsoluteTab.dateFormatButtonLabel',
+    'Parse date'
+  );
+  const dateFormatError = useEuiI18n(
+    'euiAbsoluteTab.dateFormatError',
+    'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
+    { dateFormat: <EuiCode>{dateFormat}</EuiCode> }
+  );
   const [textInputValue, setTextInputValue] = useState<string>(() =>
     valueAsMoment!.locale(locale || 'en').format(dateFormat)
   );
+  const [hasUnparsedText, setHasUnparsedText] = useState(false);
+  const [isReadyToParse, setIsReadyToParse] = useState(false);
+  const [isTextInvalid, setIsTextInvalid] = useState(false);
+
   const handleTextChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (isReadyToParse) return; // Text paste event, don't continue
@@ -89,19 +102,6 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
     },
     [isReadyToParse]
   );
-
-  const submitButtonLabel = useEuiI18n(
-    'euiAbsoluteTab.dateFormatButtonLabel',
-    'Parse date'
-  );
-  const dateFormatError = useEuiI18n(
-    'euiAbsoluteTab.dateFormatError',
-    'Allowed formats: {dateFormat}, ISO 8601, RFC 2822, or Unix timestamp.',
-    { dateFormat: <EuiCode>{dateFormat}</EuiCode> }
-  );
-  const [hasUnparsedText, setHasUnparsedText] = useState(false);
-  const [isReadyToParse, setIsReadyToParse] = useState(false);
-  const [isTextInvalid, setIsTextInvalid] = useState(false);
 
   useEffect(() => {
     if (isReadyToParse) {
@@ -120,7 +120,7 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
       );
       let dateIsValid = valueAsMoment.isValid();
 
-      // If not valid, try a few other other standardized formats
+      // If not valid, try a few other standardized formats
       if (!dateIsValid) {
         valueAsMoment = moment(textInputValue, ALLOWED_USER_DATE_FORMATS, true);
         dateIsValid = valueAsMoment.isValid();
