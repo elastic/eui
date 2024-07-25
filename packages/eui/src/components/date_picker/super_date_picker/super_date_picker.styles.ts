@@ -125,6 +125,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
     euiSuperDatePicker__range: css`
       flex-grow: 1;
+      overflow: hidden;
     `,
     euiSuperDatePicker__rangeInput: css`
       flex-grow: 1;
@@ -133,6 +134,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiSuperDatePicker__prettyFormat: css`
       ${_buttonStyles(euiThemeContext)}
+      text-align: start;
     `,
 
     // Form states
@@ -209,12 +211,9 @@ export const _buttonStyles = (euiThemeContext: UseEuiTheme) => {
     ${logicalCSS('width', '100%')}
     ${logicalCSS('padding-horizontal', euiTheme.size.s)}
 
-    /* Align content automatically for compressed heights */
-    display: flex;
-    align-items: center;
-
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
     white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
     color: inherit;
     background-color: inherit;
