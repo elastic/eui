@@ -105,7 +105,7 @@ If it's possible to avoid a backport by performing a full release or patch relea
       * You may need to re-run yarn in order to commit changes, if the commit modified dependencies
       * Remember to continue cherry picking with `git cherry-pick --continue` until all commits have been applied
 * Start the dev server and check that the intended changes have been properly applied, you don't want to repeat this process to patch the patch - `yarn start`
-* Once everything looks correct, it's time to [release](https://github.com/elastic/eui/blob/main/scripts/release.js):
+* Once everything looks correct, it's time to [release](https://github.com/elastic/eui/blob/main/packages/eui/scripts/release.js):
   * `npm run release-backport`
 * Update Kibana's `package.json` to point at the newly-released backport, e.g. `"@elastic/eui": "90.0.0-backport.0"`
 
@@ -120,7 +120,7 @@ The prerelease process is very similar to the backport process above.
   - Otherwise, simply check out the [latest EUI release](https://github.com/elastic/eui/releases), e.g. `git checkout v83.0.0`
   - The purpose of this step (instead of releasing from latest `main`) is to reduce as much noise as possible and ensure you're *only* testing the changes you want to test. This is particularly necessary for Kibana CI testing.
 - Apply the commit(s) with the desired changes, e.g. `git cherry-pick [commit-id]`
-- Once everything looks correct, it's time to [release](https://github.com/elastic/eui/blob/main/scripts/release.js):
+- Once everything looks correct, it's time to [release](https://github.com/elastic/eui/blob/main/packages/eui/scripts/release.js):
   * `npm run release-rc`
 - Go to https://www.npmjs.com/package/@elastic/eui?activeTab=versions and confirm that your pre-release has been pushed up with the correct version and tag, e.g. `83.1.1-rc.0`
 - Update Kibana or CodeSandbox (or whatever other environment you are using to test) to point at that version

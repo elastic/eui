@@ -1,15 +1,26 @@
-import { Children, PropsWithChildren, useCallback, useState } from 'react';
+import {
+  Children,
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import { isElement } from 'react-is';
 import { LiveProvider } from 'react-live';
 import { themes as prismThemes } from 'prism-react-renderer';
-import { useEuiMemoizedStyles, copyToClipboard, UseEuiTheme } from '@elastic/eui';
+import {
+  useEuiMemoizedStyles,
+  copyToClipboard,
+  UseEuiTheme,
+} from '@elastic/eui';
 import { css } from '@emotion/react';
 import { DemoContext, DemoContextObject } from './context';
 import { DemoEditor } from './editor';
 import { DemoPreview } from './preview';
 import { DemoSource } from './source';
-import { demoScope } from './scope';
+import { demoDefaultScope } from './scope';
 import { DemoActionsBar } from './actions_bar';
+import { demoCodeTransformer } from './code_transformer';
 
 export interface DemoSourceMeta {
   code: string;
@@ -18,10 +29,18 @@ export interface DemoSourceMeta {
 }
 
 export interface DemoProps extends PropsWithChildren {
+  /**
+   * Whether the source code editor is open by default
+   */
   isSourceOpen?: boolean;
+  /**
+   * Allows to extend the default scope of the rendered demo and pass additional
+   * properties available within the demo.
+   *
+   * The default scope exposes all React and EUI exports.
+   */
+  scope?: Record<string, unknown>;
 }
-
-const transformCode = (code: string) => code;
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
   demo: css`
@@ -36,6 +55,7 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
 
 export const Demo = ({
   children,
+  scope,
   isSourceOpen: _isSourceOpen = true
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
@@ -46,9 +66,17 @@ export const Demo = ({
   // liveProviderKey restarts the demo to its initial state
   const [liveProviderKey, setLiveProviderKey] = useState<number>(0);
 
-  const addSource = useCallback<DemoContextObject['addSource']>((source: DemoSourceMeta) => {
-    setSources((sources) => ([...sources, source]));
-  }, []);
+  const finalScope = useMemo(() => ({
+    ...demoDefaultScope,
+    ...scope,
+  }), [scope]);
+
+  const addSource = useCallback<DemoContextObject['addSource']>(
+    (source: DemoSourceMeta) => {
+      setSources((sources) => ([...sources, source]));
+    },
+    [],
+  );
 
   const onClickCopyToClipboard = useCallback(() => {
     copyToClipboard(activeSource?.code || '');
@@ -69,9 +97,9 @@ export const Demo = ({
         <LiveProvider
           key={liveProviderKey}
           code={activeSource?.code || ''}
-          transformCode={transformCode}
+          transformCode={demoCodeTransformer}
           theme={prismThemes.dracula}
-          scope={demoScope}
+          scope={finalScope}
         >
           <DemoPreview />
           <DemoActionsBar

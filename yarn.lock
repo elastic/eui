@@ -9764,7 +9764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsdom@npm:^20.0.0":
+"@types/jsdom@npm:20.0.1":
   version: 20.0.1
   resolution: "@types/jsdom@npm:20.0.1"
   dependencies:
@@ -9772,6 +9772,17 @@ __metadata:
     "@types/tough-cookie": "npm:*"
     parse5: "npm:^7.0.0"
   checksum: 10c0/3d4b2a3eab145674ee6da482607c5e48977869109f0f62560bf91ae1a792c9e847ac7c6aaf243ed2e97333cb3c51aef314ffa54a19ef174b8f9592dfcb836b25
+  languageName: node
+  linkType: hard
+
+"@types/jsdom@patch:@types/jsdom@npm%3A20.0.1#~/.yarn/patches/@types-jsdom-npm-20.0.1-5bb899e006.patch":
+  version: 20.0.1
+  resolution: "@types/jsdom@patch:@types/jsdom@npm%3A20.0.1#~/.yarn/patches/@types-jsdom-npm-20.0.1-5bb899e006.patch::version=20.0.1&hash=3b81c8"
+  dependencies:
+    "@types/node": "npm:*"
+    "@types/tough-cookie": "npm:*"
+    parse5: "npm:^7.0.0"
+  checksum: 10c0/bdb44ea3ddfea29cf75e318096c0180f73c3dff9290068ef6859fa0f1c660335e754836003a4d93ac1ac627c837b566561c1f155ea68d9dc721e174dba3b30a0
   languageName: node
   linkType: hard
 

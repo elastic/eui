@@ -19,7 +19,7 @@
 
 ### i18n updates
 
-Check whether the target version upgrade range [contains i18n token changes](https://github.com/elastic/eui/blob/main/i18ntokens_changelog.json).
+Check whether the target version upgrade range [contains i18n token changes](https://github.com/elastic/eui/blob/main/packages/eui/i18ntokens_changelog.json).
 
 If changes exist:
 
@@ -41,12 +41,14 @@ If it's too much effort for the EUI team alone to handle migrating/updating depr
 
 At this point, we recommend opening a **draft** PR with your existing commits/changes against Kibana main. Unfortunately, Kibana's many tests are far too numerous to reasonably run them all locally - your machine will OOM if you even try. Kicking off a CI run is therefore the quickest way to find test failures at this point.
 
+Draft PRs in Kibana do not start CI automatically - you'll need to manually comment `/ci` in GitHub to kick off a run.
+
 ### PR template
 
 The typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157), and reviewers have begun to expect the consistency. There are two important inclusions:
 
 * Call out changes made to accommodate test failures that might not be apparent from looking at the diff.
-* Copy-paste the full changelog version range [from the latest changelog file](https://github.com/elastic/eui/blob/main/changelogs) for the upgrade.
+* Copy-paste the full changelog version range [from the latest changelog file](https://github.com/elastic/eui/tree/main/packages/eui/changelogs) for the upgrade.
 
 Labels to use:
 

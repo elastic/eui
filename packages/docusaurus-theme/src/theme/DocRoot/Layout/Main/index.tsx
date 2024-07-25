@@ -32,7 +32,7 @@ const styles = {
 export default function DocRootLayoutMain({
   hiddenSidebarContainer,
   children,
-}: any): JSX.Element {
+}: Props): JSX.Element {
   const sidebar = useDocsSidebar();
   return (
     <main

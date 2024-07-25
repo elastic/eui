@@ -12,6 +12,7 @@ import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 
+import { useEuiTheme } from '../../services';
 import { EuiLink } from '../link';
 import { EuiHealth } from '../health';
 
@@ -20,6 +21,7 @@ import type {
   EuiBasicTableColumn,
 } from './basic_table';
 import { EuiBasicTable, EuiBasicTableProps } from './basic_table';
+import { EuiIcon } from '../icon';
 
 // Set static seed so that the generated faker data is consistent between page loads
 faker.seed(8_02_2010);
@@ -148,7 +150,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
         'data-test-subj': 'action-outboundlink',
       },
       {
-        name: <>Clone</>,
+        name: 'Clone',
         description: 'Clone this user',
         icon: 'copy',
         type: 'icon',
@@ -259,6 +261,61 @@ export const ExpandedRow: Story = {
           <p>lorem ipsum dolor sit</p>
         </div>
       ),
+    },
+  },
+};
+
+const NestedTable = ({
+  hasLeadingIcon = false,
+}: {
+  hasLeadingIcon?: boolean;
+}) => {
+  const { euiTheme } = useEuiTheme();
+
+  const _items = users.slice(0, 3);
+  const _columns = hasLeadingIcon
+    ? [
+        {
+          name: '',
+          render: () => <EuiIcon type="warning" />,
+          width: euiTheme.size.xl,
+        },
+        ...columns,
+      ]
+    : columns;
+
+  return (
+    <EuiBasicTable
+      tableCaption="EuiBasicTable playground"
+      items={_items}
+      itemId="id"
+      rowHeader="firstName"
+      columns={_columns}
+    />
+  );
+};
+
+export const ExpandedNestedTable: Story = {
+  parameters: {
+    controls: {
+      include: ['columns', 'items', 'itemIdToExpandedRowMap'],
+    },
+  },
+  args: {
+    tableCaption: 'EuiBasicTable playground',
+    items: users,
+    itemId: 'id',
+    rowHeader: 'firstName',
+    columns,
+    itemIdToExpandedRowMap: {
+      1: <NestedTable />,
+      3: <NestedTable hasLeadingIcon />,
+    },
+    selection: {
+      selectable: (user) => user.online,
+      selectableMessage: (selectable) =>
+        !selectable ? 'User is currently offline' : '',
+      onSelectionChange: action('onSelectionChange'),
     },
   },
 };

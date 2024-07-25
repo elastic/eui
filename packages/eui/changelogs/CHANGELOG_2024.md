@@ -1,3 +1,16 @@
+## [`v95.4.0`](https://github.com/elastic/eui/releases/v95.4.0)
+
+- Added `anomalyChart`, `anomalySwimLane`, `changePointDetection`, `fieldStatistics`, `logPatternAnalysis`, `logRateAnalysis`  and `singleMetricViewer` glyph to `EuiIcon` ([#7873](https://github.com/elastic/eui/pull/7873))
+
+**Bug fixes**
+
+- Fixed overlapping content in  `EuiBasicTable` for expanded and selectable table rows ([#7895](https://github.com/elastic/eui/pull/7895))
+- Fixed the alignment of `EuiBasicTable` mobile actions ([#7895](https://github.com/elastic/eui/pull/7895))
+
+**Accessibility**
+
+- Improved `EuiStat`'s screen reader accessibility ([#7864](https://github.com/elastic/eui/pull/7864))
+
 ## [`v95.3.0`](https://github.com/elastic/eui/releases/v95.3.0)
 
 - Updated `EuiThemeProvider`s to allow modifying/setting custom `breakpoint`s in nested usage (as opposed to only at the top `EuiProvider` level) ([#7862](https://github.com/elastic/eui/pull/7862))
