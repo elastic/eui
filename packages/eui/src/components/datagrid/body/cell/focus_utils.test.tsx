@@ -189,14 +189,16 @@ describe('FocusTrappedChildren', () => {
       const { container } = render(<FocusTrappedChildren cellEl={cell} />);
 
       fireEvent.keyUp(cell, { key: 'Enter' });
-      waitFor(() => fireEvent.keyUp(cell, { key: 'Escape' }));
+      fireEvent.keyUp(cell, { key: 'Escape' });
 
-      expect(
-        container.querySelector('[data-focus-lock-disabled]')
-      ).toHaveAttribute('data-focus-lock-disabled', 'disabled');
+      await waitFor(() => {
+        expect(
+          container.querySelector('[data-focus-lock-disabled]')
+        ).toHaveAttribute('data-focus-lock-disabled', 'disabled');
 
-      expect(cell.querySelector('button')).toHaveAttribute('tabindex', '-1');
-      expect(cell).toHaveFocus();
+        expect(cell.querySelector('button')).toHaveAttribute('tabindex', '-1');
+        expect(cell).toHaveFocus();
+      });
     });
 
     it('does nothing if the cell is not entered', () => {
