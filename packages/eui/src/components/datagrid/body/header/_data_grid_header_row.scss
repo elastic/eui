@@ -10,15 +10,17 @@
 @include euiDataGridHeaderCell {
   @include euiFontSizeS;
 
-  font-weight: $euiFontWeightBold;
-  padding: $euiDataGridCellPaddingM;
-  flex: 0 0 auto;
   position: relative;
-  align-items: center;
   display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: $euiDataGridCellPaddingM;
+  font-weight: $euiFontWeightBold;
 
   // Workaround for focus trap
   & > [data-focus-lock-disabled] {
+    display: flex;
+    align-items: center;
     width: 100%;
   }
 
@@ -26,12 +28,6 @@
   &--hasColumnActions:focus-within,
   &--isActionsPopoverOpen {
     @include euiDataGridCellFocus;
-  }
-
-  .euiDataGridHeaderCell__innerWrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
   }
 
   .euiDataGridHeaderCell__content {

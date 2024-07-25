@@ -81,26 +81,10 @@ const raw_data = Array.from({ length: 10 }).map((_, i) => {
   };
 });
 
-// in a group this will be a single item
-// consider providing a slot for a interactive element?
-// that would result in a better AT output (2 items vs 1 item)
-const HeaderCell = (
-  <>
-    <span>Name</span>
-    <EuiToolTip content="Content">
-      <EuiButtonIcon
-        iconType="questionInCircle"
-        aria-label="Name, additional information"
-        color="primary"
-      />
-    </EuiToolTip>
-  </>
-);
-
 const columns = [
   {
     id: 'name',
-    display: HeaderCell,
+    displayAsText: 'Name',
     defaultSortDirection: 'asc' as const,
     cellActions: [
       ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
@@ -473,6 +457,64 @@ export const CustomRowHeights: Story = {
       },
       lineHeight: undefined,
       scrollAnchorRow: undefined,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+const CustomHeaderCell = (
+  <>
+    <span>Name</span>
+    <EuiToolTip content="tooltip content">
+      <EuiButtonIcon
+        iconType="questionInCircle"
+        aria-label="Additional information"
+        color="primary"
+      />
+    </EuiToolTip>
+  </>
+);
+
+export const CustomHeaderContent: Story = {
+  parameters: {
+    controls: {
+      include: ['columns', 'rowCount'],
+    },
+  },
+  args: {
+    columns: [
+      {
+        id: 'name',
+        display: CustomHeaderCell,
+        defaultSortDirection: 'asc' as const,
+        cellActions: [
+          ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
+            const data = raw_data;
+            const value = data[rowIndex].name.raw;
+            return (
+              <Component
+                onClick={() => alert(`Hi ${value}`)}
+                iconType="heart"
+                aria-label={`Say hi to ${value}!`}
+              >
+                Say hi
+              </Component>
+            );
+          },
+        ],
+      },
+      ...[...columns].slice(1),
+    ],
+    rowCount: 10,
+    renderCellValue: RenderCellValue,
+    inMemory: { level: 'sorting' },
+    toolbarVisibility: {
+      showColumnSelector: true,
+      showDisplaySelector: true,
+      showSortSelector: true,
+      showKeyboardShortcuts: true,
+      showFullScreenSelector: true,
+      additionalControls: null,
     },
   },
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
