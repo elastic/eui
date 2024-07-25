@@ -5,6 +5,7 @@ import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 import NavbarItem, {
   type Props as NavbarItemConfig,
 } from '@theme-original/NavbarItem';
@@ -19,6 +20,9 @@ import {
   euiFormVariables,
   // @ts-ignore - reusing form styles as we don't have access to the plugin component yet
 } from '@elastic/eui/lib/components/form/form.styles';
+import euiVersions from '@site/static/versions.json';
+
+import { VersionSwitcher } from '../../../components/version_switcher';
 
 const placeHolderStyles = (content: string) => `
   &::-webkit-input-placeholder { ${content} }
@@ -163,12 +167,13 @@ function NavbarContentLayout({
 }
 
 export default function NavbarContent(): JSX.Element {
+  const isBrowser = useIsBrowser();
   const mobileSidebar = useNavbarMobileSidebar();
-
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
 
   const searchBarItem = items.find((item) => item.type === 'search');
+  const versions = euiVersions?.euiVersions ?? undefined;
 
   return (
     <NavbarContentLayout
@@ -176,6 +181,7 @@ export default function NavbarContent(): JSX.Element {
         <>
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
+          {isBrowser && versions && <VersionSwitcher versions={versions} />}
           <NavbarItems items={leftItems} />
         </>
       }
