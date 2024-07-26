@@ -19,6 +19,9 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 
       --ifm-navbar-background-color: ${euiTheme.colors.body};
 
+      flex-grow: 0;
+      flex-shrink: 0;
+
       &,
       .navbar-sidebar__brand {
         border-block-end: ${euiTheme.border.thin};
