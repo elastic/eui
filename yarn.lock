@@ -5735,6 +5735,7 @@ __metadata:
     "@emotion/react": "npm:^11.11.4"
     "@mdx-js/react": "npm:^3.0.0"
     clsx: "npm:^2.0.0"
+    cross-env: "npm:^7.0.3"
     docusaurus-lunr-search: "npm:^3.4.0"
     hast-util-is-element: "npm:1.1.0"
     moment: "npm:^2.30.1"
@@ -15118,6 +15119,18 @@ __metadata:
     cross-env: src/bin/cross-env.js
     cross-env-shell: src/bin/cross-env-shell.js
   checksum: 10c0/26e5f0167ff4c3422539de4af03d01b48e57aae9353aa2a541b91f2298581332530706ca9f1ae54f3f4d7240a3cf8c0ab16dfa6902d20832d89fae5d46e81721
+  languageName: node
+  linkType: hard
+
+"cross-env@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "cross-env@npm:7.0.3"
+  dependencies:
+    cross-spawn: "npm:^7.0.1"
+  bin:
+    cross-env: src/bin/cross-env.js
+    cross-env-shell: src/bin/cross-env-shell.js
+  checksum: 10c0/f3765c25746c69fcca369655c442c6c886e54ccf3ab8c16847d5ad0e91e2f337d36eedc6599c1227904bf2a228d721e690324446876115bc8e7b32a866735ecf
   languageName: node
   linkType: hard
 
