@@ -3,11 +3,16 @@ import { LivePreview } from 'react-live';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import ErrorBoundary from '@docusaurus/ErrorBoundary';
 import { ErrorBoundaryErrorMessageFallback } from '@docusaurus/theme-common';
-import { UseEuiTheme, EuiFlexGroup, useEuiTheme } from '@elastic/eui';
+import { UseEuiTheme, useEuiTheme, EuiPaddingSize, euiPaddingSize } from '@elastic/eui';
+import { CSSProperties } from 'react';
+
+export interface DemoPreviewProps {
+  padding?: EuiPaddingSize;
+}
 
 const getPreviewStyles = (euiTheme: UseEuiTheme) => ({
   previewWrapper: css`
-    padding: ${euiTheme.euiTheme.size.l};
+    padding: var(--docs-demo-preview-padding);
     border-radius: var(--docs-demo-border-radius);
   `,
 });
@@ -21,16 +26,21 @@ const PreviewLoader = () => (
   <div>Loading...</div>
 );
 
-export const DemoPreview = () => {
+export const DemoPreview = ({ padding = 'l' }: DemoPreviewProps) => {
   const euiTheme = useEuiTheme();
   const styles = getPreviewStyles(euiTheme);
+  const paddingSize = euiPaddingSize(euiTheme, padding);
+
+  const style = {
+    '--docs-demo-preview-padding': paddingSize,
+  } as CSSProperties;
 
   return (
     <BrowserOnly fallback={<PreviewLoader />}>
       {() => (
         <>
           <ErrorBoundary fallback={(params: any) => <ErrorBoundaryErrorMessageFallback {...params} />}>
-            <div css={styles.previewWrapper}>
+            <div css={styles.previewWrapper} style={style}>
               <LivePreview />
             </div>
           </ErrorBoundary>

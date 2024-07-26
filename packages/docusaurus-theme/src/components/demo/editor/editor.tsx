@@ -8,7 +8,7 @@
 
 import { LiveEditor, LiveError } from 'react-live';
 import { css } from '@emotion/react';
-import { useEuiMemoizedStyles, useEuiTheme } from '@elastic/eui';
+import { useEuiMemoizedStyles } from '@elastic/eui';
 
 const getEditorStyles = () => ({
   editor: css`
