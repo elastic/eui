@@ -31,7 +31,12 @@ const Code = ({ children, className, ...rest }: Props): JSX.Element => {
 
   if (isInlineCode) {
     return (
-      <EuiCode {...rest} language={language} css={styles.code}>
+      <EuiCode
+        {...rest}
+        className={className}
+        language={language}
+        css={styles.code}
+      >
         {children}
       </EuiCode>
     );
