@@ -125,6 +125,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
     euiSuperDatePicker__range: css`
       flex-grow: 1;
+      overflow: hidden;
     `,
     euiSuperDatePicker__rangeInput: css`
       flex-grow: 1;
@@ -133,6 +134,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiSuperDatePicker__prettyFormat: css`
       ${_buttonStyles(euiThemeContext)}
+      text-align: start;
     `,
 
     // Form states
@@ -176,14 +178,25 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       needsUpdating: css`
         /* Extra specificity needed to override default delimited styles */
         .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
-          --euiFormControlStateColor: ${euiTheme.colors.success};
           color: ${needsUpdatingTextColor};
           background-color: ${needsUpdatingBackgroundColor};
-          background-size: 100% 100%;
         }
 
         .euiFormControlLayoutDelimited__delimiter {
           color: inherit;
+        }
+
+        /* Focus/selection underline per-button */
+        .euiDatePopoverButton {
+          ${euiFormControlDefaultShadow(euiThemeContext)}
+          background-color: inherit;
+          box-shadow: none;
+        }
+
+        .euiDatePopoverButton:focus,
+        .euiPopover-isOpen .euiDatePopoverButton {
+          --euiFormControlStateColor: ${euiTheme.colors.success};
+          background-size: 100% 100%;
         }
       `,
     },
@@ -198,12 +211,10 @@ export const _buttonStyles = (euiThemeContext: UseEuiTheme) => {
     ${logicalCSS('width', '100%')}
     ${logicalCSS('padding-horizontal', euiTheme.size.s)}
 
-    /* Align content automatically for compressed heights */
-    display: flex;
-    align-items: center;
-
     font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: inherit;
     background-color: inherit;
 
