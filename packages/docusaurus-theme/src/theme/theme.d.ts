@@ -1,3 +1,6 @@
+// Docusaurus static asset alias
+declare module '@site/*';
+
 // Prop types are declared for @theme scope in @docusaurus/theme-classic
 // but when using swizzle --eject the type import is not available.
 // we re-declare the needed types here to ensure type checking
