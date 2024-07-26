@@ -5701,11 +5701,13 @@ __metadata:
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-is": "npm:^18"
+    "@types/react-window": "npm:^1.8.8"
     clsx: "npm:^2.1.1"
     moment: "npm:^2.30.1"
     prism-react-renderer: "npm:^2.3.1"
     react-is: "npm:^18.3.1"
     react-live: "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch"
+    react-window: "npm:^1.8.10"
     typescript: "npm:~5.5.4"
   peerDependencies:
     react: ^18.0.0
