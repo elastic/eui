@@ -5,8 +5,19 @@ import NavbarColorModeToggle from '@theme-original/Navbar/ColorModeToggle';
 import NavbarLogo from '@theme-original/Navbar/Logo';
 import { EuiIcon, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
+import useIsBrowser from '@docusaurus/useIsBrowser';
+import euiVersions from '@site/static/versions.json';
+
+import { VersionSwitcher } from '../../../../components/version_switcher';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
+  sidebar: css`
+    gap: ${euiTheme.size.s};
+
+    > :first-child {
+      border-right: ${euiTheme.border.thin};
+    }
+  `,
   close: css`
     display: flex;
     align-items: center;
@@ -44,10 +55,16 @@ function CloseButton() {
 }
 
 export default function NavbarMobileSidebarHeader(): JSX.Element {
+  const isBrowser = useIsBrowser();
+  const styles = useEuiMemoizedStyles(getStyles);
+
+  const versions = euiVersions?.euiVersions ?? undefined;
+
   return (
-    <div className="navbar-sidebar__brand">
+    <div className="navbar-sidebar__brand" css={styles.sidebar}>
       <NavbarLogo />
-      <NavbarColorModeToggle className="margin-right--md" />
+      {isBrowser && versions && <VersionSwitcher versions={versions} />}
+      <NavbarColorModeToggle />
       <CloseButton />
     </div>
   );

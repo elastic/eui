@@ -21,6 +21,7 @@ import { DemoSource } from './source';
 import { demoDefaultScope } from './scope';
 import { DemoActionsBar } from './actions_bar';
 import { demoCodeTransformer } from './code_transformer';
+import { DemoPreviewProps } from './preview/preview';
 
 export interface DemoSourceMeta {
   code: string;
@@ -40,6 +41,7 @@ export interface DemoProps extends PropsWithChildren {
    * The default scope exposes all React and EUI exports.
    */
   scope?: Record<string, unknown>;
+  previewPadding?: DemoPreviewProps['padding'];
 }
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
@@ -56,12 +58,13 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
 export const Demo = ({
   children,
   scope,
-  isSourceOpen: _isSourceOpen = true
+  isSourceOpen: _isSourceOpen = false,
+  previewPadding,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
   const [sources, setSources] = useState<DemoSourceMeta[]>([]);
   const [isSourceOpen, setIsSourceOpen] = useState<boolean>(_isSourceOpen);
-  const activeSource = sources[0];
+  const activeSource = sources[0] || null;
 
   // liveProviderKey restarts the demo to its initial state
   const [liveProviderKey, setLiveProviderKey] = useState<number>(0);
@@ -101,7 +104,7 @@ export const Demo = ({
           theme={prismThemes.dracula}
           scope={finalScope}
         >
-          <DemoPreview />
+          <DemoPreview padding={previewPadding} />
           <DemoActionsBar
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
