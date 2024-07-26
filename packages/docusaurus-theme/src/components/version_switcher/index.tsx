@@ -16,6 +16,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     button: css`
       font-weight: ${euiTheme.font.weight.bold};
+      color: ${euiTheme.colors.primary};
     `,
     listItem: css`
       .euiListGroupItem__button:focus-visible {
@@ -49,7 +50,7 @@ export const VersionSwitcher = ({ versions }: Props) => {
   const button = (
     <EuiButtonEmpty
       size="s"
-      color="primary"
+      color="text"
       iconType="arrowDown"
       iconSide="right"
       css={styles.button}
@@ -96,6 +97,15 @@ export const VersionSwitcher = ({ versions }: Props) => {
               href={url}
               isActive={isCurrentVersion}
               color={isCurrentVersion ? 'primary' : 'text'}
+              extraAction={{
+                'aria-label': `View release notes for ${screenReaderVersion}`,
+                title: `View release ${version}`,
+                iconType: 'package',
+                iconSize: 's',
+                // @ts-ignore - this is valid
+                href: `https://github.com/elastic/eui/releases/tag/v${version}`,
+                target: '_blank',
+              }}
             />
           );
         }}
