@@ -67,6 +67,7 @@ export const iconTypes = [
   'copy',
   'copyClipboard',
   'cross',
+  'crossInCircle',
   'crosshairs',
   'currency',
   'cut',

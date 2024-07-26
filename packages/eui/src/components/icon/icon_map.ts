@@ -79,6 +79,7 @@ export const typeToPathMap = {
   createSingleMetricJob: 'ml_create_single_metric_job',
   cross: 'cross',
   crossClusterReplicationApp: 'app_cross_cluster_replication',
+  crossInCircle: 'crossInCircle',
   crosshairs: 'crosshairs',
   currency: 'currency',
   cut: 'cut',
