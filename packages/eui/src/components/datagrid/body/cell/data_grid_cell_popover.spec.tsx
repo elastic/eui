@@ -225,7 +225,7 @@ describe('EuiDataGridCellPopover', () => {
       openCellPopover('A');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '1px')
-        .should('have.css', 'top', '73px')
+        .should('have.css', 'top', '80px')
         .should('have.css', 'width', '112px');
     });
 
@@ -235,7 +235,7 @@ describe('EuiDataGridCellPopover', () => {
       openCellPopover('B');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '109px')
-        .should('have.css', 'top', '73px')
+        .should('have.css', 'top', '80px')
         .should('have.css', 'width', '375px');
     });
 
@@ -246,7 +246,7 @@ describe('EuiDataGridCellPopover', () => {
 
       // Matchers used due to subpixel rendering shenanigans
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'top', '73px')
+        .should('have.css', 'top', '80px')
         .should('have.css', 'left')
         .and('match', /^255[.\d]+px$/);
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')

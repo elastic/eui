@@ -439,10 +439,11 @@ describe('EuiDataGrid', () => {
 
         // Should auto-focus the actions button (over the cell itself)
         cy.focused()
-          .parent()
           .should('have.attr', 'data-gridcell-column-index', '1')
           .should('have.attr', 'data-gridcell-row-index', '-1');
 
+        // Enter focus trap
+        cy.realPress('Enter');
         // Pressing enter should toggle the actions popover
         cy.realPress('Enter');
         cy.get(
