@@ -107,7 +107,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     navbarItemsRight: css`
       gap: ${euiTheme.size.s};
     `,
-    actions: css`
+    versionSwitcher: css`
       @media (max-width: 996px) {
         display: none;
       }
@@ -168,9 +168,12 @@ function NavbarContentLayout({
 
 export default function NavbarContent(): JSX.Element {
   const isBrowser = useIsBrowser();
+
   const mobileSidebar = useNavbarMobileSidebar();
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
+
+  const styles = useEuiMemoizedStyles(getStyles);
 
   const searchBarItem = items.find((item) => item.type === 'search');
   const versions = euiVersions?.euiVersions ?? undefined;
@@ -181,7 +184,9 @@ export default function NavbarContent(): JSX.Element {
         <>
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
-          {isBrowser && versions && <VersionSwitcher versions={versions} />}
+          <div css={styles.versionSwitcher}>
+            {isBrowser && versions && <VersionSwitcher versions={versions} />}
+          </div>
           <NavbarItems items={leftItems} />
         </>
       }
