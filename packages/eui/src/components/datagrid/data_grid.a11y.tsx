@@ -235,6 +235,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('has zero violations when the column actions menu is open', () => {
+      cy.get('.euiDataGridHeaderCell').first().realHover();
       cy.get('button.euiDataGridHeaderCell__button').first().realClick();
       cy.checkAxe();
     });
@@ -253,6 +254,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('has zero violations on sort and when the columns sorting menu is open', () => {
+      cy.get('.euiDataGridHeaderCell').last().realHover();
       cy.get('button.euiDataGridHeaderCell__button').last().realClick();
       cy.get('button.euiListGroupItem__button')
         .contains('Sort Alma to Debian')
