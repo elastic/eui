@@ -14,7 +14,6 @@ export const euiDatePopoverButtonStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiDatePopoverButton: css`
       ${_buttonStyles(euiThemeContext)}
-      justify-content: center;
     `,
   };
 };

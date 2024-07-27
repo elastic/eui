@@ -14,17 +14,25 @@ import {
 } from 'react';
 import Head from '@docusaurus/Head';
 import { Props } from '@theme/Root';
-import { Global } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { _EuiThemeFontScale, useEuiTheme } from '@elastic/eui';
 import '@elastic/eui/dist/eui_theme_light.css';
 
 import { AppThemeProvider } from '../components/theme_context';
 import { getGlobalStyles } from './Root.styles';
 
+const styles = {
+  root: css`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  `,
+};
+
 const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [mounted, setMounted] = useState(false);
   const euiTheme = useEuiTheme();
-  const styles = getGlobalStyles(euiTheme);
+  const globalStyles = getGlobalStyles(euiTheme);
 
   // NOTE: This is a temp. solution
   // Emotion styles are loaded dynamically on client in contrast
@@ -46,8 +54,10 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-      <Global styles={styles} />
-      <div style={{ display: !mounted ? 'none' : undefined }}>{children}</div>
+      <Global styles={globalStyles} />
+      <div style={!mounted ? { display: 'none' } : undefined} css={styles.root}>
+        {children}
+      </div>
     </>
   );
 };
