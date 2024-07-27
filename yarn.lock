@@ -5703,7 +5703,7 @@ __metadata:
     moment: "npm:^2.30.1"
     prism-react-renderer: "npm:^2.3.1"
     react-is: "npm:^18.3.1"
-    react-live: "npm:^4.1.7"
+    react-live: "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch"
     typescript: "npm:~5.4.5"
   peerDependencies:
     react: ^18.0.0
@@ -31278,7 +31278,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-live@npm:^4.1.7":
+"react-live@npm:4.1.7":
   version: 4.1.7
   resolution: "react-live@npm:4.1.7"
   dependencies:
@@ -31289,6 +31289,20 @@ __metadata:
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
   checksum: 10c0/728a51cb0b92774076e4592f9b3cbc2af4afac1da549dbb55723728324bdc1968d3f7b268b5dd92929dcc9d3aa1fd1265f7e912b5ee6fd4fe9b5b77898b50237
+  languageName: node
+  linkType: hard
+
+"react-live@patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch":
+  version: 4.1.7
+  resolution: "react-live@patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch::version=4.1.7&hash=33c21c"
+  dependencies:
+    prism-react-renderer: "npm:^2.0.6"
+    sucrase: "npm:^3.31.0"
+    use-editable: "npm:^2.3.3"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: 10c0/f26c208a9d2e885a1c0a0a3eae8126ac6e772e37507a53d36f802bc993449f8765dff621d51cfba681c68de4da9aad5f01c2fb1c2df716d27c96ccd94cacf188
   languageName: node
   linkType: hard
 

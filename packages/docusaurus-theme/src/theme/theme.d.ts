@@ -121,6 +121,31 @@ declare module '@theme-original/EditThisPage' {
   export default function EditThisPage(props: Props): JSX.Element;
 }
 
+// original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L364
+declare module '@theme/CodeBlock' {
+  import type { ReactNode } from 'react';
+
+  export interface Props {
+    readonly children: ReactNode;
+    readonly className?: string;
+    readonly metastring?: string;
+    readonly title?: string;
+    readonly language?: string;
+    readonly showLineNumbers?: boolean;
+  }
+
+  export default function CodeBlock(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L510
+declare module '@theme/MDXComponents/Code' {
+  import type {ComponentProps} from 'react';
+
+  export interface Props extends ComponentProps<'code'> {}
+
+  export default function MDXCode(props: Props): JSX.Element;
+}
+
 // original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L563
 declare module '@theme-original/DocSidebar' {
   import type { PropSidebarItem } from '@docusaurus/plugin-content-docs';
