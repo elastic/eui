@@ -51,7 +51,10 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       [data-theme='dark']:root {
         /* EUI theme variables */
         --eui-background-color-primary: ${useEuiBackgroundColor('primary')};
-        --eui-background-color-primary-opaque: ${useEuiBackgroundColor('primary', { method: 'opaque' })};
+        --eui-background-color-primary-opaque: ${useEuiBackgroundColor(
+          'primary',
+          { method: 'opaque' }
+        )};
         --eui-background-color-success: ${useEuiBackgroundColor('success')};
         --eui-background-color-danger: ${useEuiBackgroundColor('danger')};
         --eui-background-color-warning: ${useEuiBackgroundColor('warning')};
@@ -101,6 +104,13 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-font-weight-base: ${fontBase.fontWeight};
         --ifm-line-height-base: var(--eui-line-height-base);
 
+        --ifm-h1-font-size: var(--eui-font-size-xl);
+        --ifm-h2-font-size: var(--eui-font-size-l);
+        --ifm-h3-font-size: var(--eui-font-size-m);
+        --ifm-h4-font-size: var(--eui-font-size-s);
+        --ifm-h5-font-size: var(--eui-font-size-xs);
+        --ifm-h6-font-size: var(--eui-font-size-xxs);
+
         --ifm-global-radius: ${euiTheme.border.radius.small};
       }
 
@@ -120,6 +130,14 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         color: inherit;
         border-radius: 0;
         font-size: inherit;
+      }
+
+      dd {
+        margin: 0;
+      }
+
+      figure {
+        margin: 0;
       }
 
       /* global styles */
