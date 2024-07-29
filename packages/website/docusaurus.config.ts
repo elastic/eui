@@ -84,6 +84,12 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'contentSidebar',
+          position: 'left',
+          label: 'Content',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'datavizSidebar',
           position: 'left',
           label: 'Data visualization',
