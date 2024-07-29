@@ -13,13 +13,13 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -82,13 +82,13 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -266,14 +266,14 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-disabled-isDisabled"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-disabled-isDisabled-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         disabled=""
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -338,13 +338,13 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -399,13 +399,13 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -448,13 +448,13 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -520,13 +520,13 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -589,13 +589,13 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -659,13 +659,13 @@ exports[`EuiSuperDatePicker renders 1`] = `
     >
       <button
         aria-label="Date quick select"
-        class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
         data-test-subj="superDatePickerToggleQuickMenuButton"
         title="Date quick select"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
         >
           <span
             class="eui-textTruncate euiButtonEmpty__text"
@@ -732,13 +732,13 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-euiQuickSelectPopoverButton"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonEmpty__content euiQuickSelectPopover__buttonContent emotion-euiButtonDisplayContent"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
               class="eui-textTruncate euiButtonEmpty__text"
