@@ -1,3 +1,22 @@
+## [`v95.5.0`](https://github.com/elastic/eui/releases/v95.5.0)
+
+- Added `minusInSquare` and `plusInSquare` glyphs to `EuiIcon`. ([#7875](https://github.com/elastic/eui/pull/7875))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not correctly passing `refreshMinInterval` from the quick select popover ([#7905](https://github.com/elastic/eui/pull/7905))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSuperDatePicker`'s form control to Emotion; ([#7904](https://github.com/elastic/eui/pull/7904))
+  - Removed `$euiSuperDatePickerWidth`
+  - Removed `$euiSuperDatePickerButtonWidth`
+  - Removed `$euiSuperDatePickerNeedsUpdatingBackgroundColor`
+  - Removed `$euiSuperDatePickerNeedsUpdatingTextColor`
+  - Removed `@euiSuperDatePickerText` mixin
+- Converted `EuiSuperDatePicker`'s date popover content to Emotion ([#7908](https://github.com/elastic/eui/pull/7908))
+- Converted `EuiSuperDatePicker`'s quick select to Emotion ([#7909](https://github.com/elastic/eui/pull/7909))
+
 ## [`v95.4.0`](https://github.com/elastic/eui/releases/v95.4.0)
 
 - Added `anomalyChart`, `anomalySwimLane`, `changePointDetection`, `fieldStatistics`, `logPatternAnalysis`, `logRateAnalysis`  and `singleMetricViewer` glyph to `EuiIcon` ([#7873](https://github.com/elastic/eui/pull/7873))
