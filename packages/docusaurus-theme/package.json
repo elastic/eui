@@ -34,6 +34,7 @@
     "@docusaurus/utils-validation": "^3.4.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "94.5.0",
+    "@elastic/eui-docgen": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@types/react-window": "^1.8.8",
