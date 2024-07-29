@@ -15,13 +15,14 @@
   },
   "devDependencies": {
     "@docusaurus/types": "^3.4.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@types/react-is": "^18",
-    "typescript": "~5.4.5"
+    "typescript": "~5.5.4"
   },
   "main": "lib/index.js",
   "exports": {
     "./lib/*": "./lib/*",
-    "./src/*": "./src/*",
     ".": {
       "default": "./lib/index.js"
     }
@@ -35,11 +36,13 @@
     "@elastic/eui": "94.5.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
+    "@types/react-window": "^1.8.8",
     "clsx": "^2.1.1",
     "moment": "^2.30.1",
     "prism-react-renderer": "^2.3.1",
     "react-is": "^18.3.1",
-    "react-live": "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch"
+    "react-live": "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch",
+    "react-window": "^1.8.10"
   },
   "peerDependencies": {
     "react": "^18.0.0",

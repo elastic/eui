@@ -5698,13 +5698,17 @@ __metadata:
     "@elastic/eui": "npm:94.5.0"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
+    "@types/react": "npm:^18.3.3"
+    "@types/react-dom": "npm:^18.3.0"
     "@types/react-is": "npm:^18"
+    "@types/react-window": "npm:^1.8.8"
     clsx: "npm:^2.1.1"
     moment: "npm:^2.30.1"
     prism-react-renderer: "npm:^2.3.1"
     react-is: "npm:^18.3.1"
     react-live: "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch"
-    typescript: "npm:~5.4.5"
+    react-window: "npm:^1.8.10"
+    typescript: "npm:~5.5.4"
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -5734,6 +5738,8 @@ __metadata:
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
     "@mdx-js/react": "npm:^3.0.0"
+    "@types/react": "npm:^18.3.3"
+    "@types/react-dom": "npm:^18.3.0"
     clsx: "npm:^2.0.0"
     docusaurus-lunr-search: "npm:^3.4.0"
     hast-util-is-element: "npm:1.1.0"
@@ -5741,7 +5747,7 @@ __metadata:
     prism-react-renderer: "npm:^2.3.0"
     react: "npm:^18.0.0"
     react-dom: "npm:^18.0.0"
-    typescript: "npm:~5.2.2"
+    typescript: "npm:~5.5.4"
   languageName: unknown
   linkType: soft
 
@@ -10042,6 +10048,15 @@ __metadata:
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/bd734ca04c52b3c96891a7f9c1139486807dac7a2449fb72e8f8e23018bc6eeeb87a490a105cb39d05ccb7ddf80ed7a441e5bd3e5866c6f6ae8870cd723599e8
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.3.0":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
   languageName: node
   linkType: hard
 
@@ -36273,23 +36288,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.2.2":
-  version: 5.2.2
-  resolution: "typescript@npm:5.2.2"
+"typescript@npm:~5.5.4":
+  version: 5.5.4
+  resolution: "typescript@npm:5.5.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/91ae3e6193d0ddb8656d4c418a033f0f75dec5e077ebbc2bd6d76439b93f35683936ee1bdc0e9cf94ec76863aa49f27159b5788219b50e1cd0cd6d110aa34b07
-  languageName: node
-  linkType: hard
-
-"typescript@npm:~5.4.5":
-  version: 5.4.5
-  resolution: "typescript@npm:5.4.5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/2954022ada340fd3d6a9e2b8e534f65d57c92d5f3989a263754a78aba549f7e6529acc1921913560a4b816c46dce7df4a4d29f9f11a3dc0d4213bb76d043251e
+  checksum: 10c0/422be60f89e661eab29ac488c974b6cc0a660fb2228003b297c3d10c32c90f3bcffc1009b43876a082515a3c376b1eefcce823d6e78982e6878408b9a923199c
   languageName: node
   linkType: hard
 
@@ -36303,23 +36308,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A~5.2.2#optional!builtin<compat/typescript>":
-  version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"
+"typescript@patch:typescript@npm%3A~5.5.4#optional!builtin<compat/typescript>":
+  version: 5.5.4
+  resolution: "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=b45daf"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/062c1cee1990e6b9419ce8a55162b8dc917eb87f807e4de0327dbc1c2fa4e5f61bc0dd4e034d38ff541d1ed0479b53bcee8e4de3a4075c51a1724eb6216cb6f5
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A~5.4.5#optional!builtin<compat/typescript>":
-  version: 5.4.5
-  resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/db2ad2a16ca829f50427eeb1da155e7a45e598eec7b086d8b4e8ba44e5a235f758e606d681c66992230d3fc3b8995865e5fd0b22a2c95486d0b3200f83072ec9
+  checksum: 10c0/10dd9881baba22763de859e8050d6cb6e2db854197495c6f1929b08d1eb2b2b00d0b5d9b0bcee8472f1c3f4a7ef6a5d7ebe0cfd703f853aa5ae465b8404bc1ba
   languageName: node
   linkType: hard
 
