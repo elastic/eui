@@ -30,7 +30,7 @@ describe('euiFormVariables', () => {
         "backgroundColor": "#f9fbfd",
         "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
-        "borderColor": "rgba(32,38,47,0.1)",
+        "borderColor": "rgba(38,43,53,0.5)",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -190,7 +190,7 @@ describe('euiFormControlStyles', () => {
             
           /* We use inset box-shadow instead of border to skip extra hight calculations */
           border: none;
-          box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
+          box-shadow: inset 0 0 0 1px rgba(38,43,53,0.5);
           background-color: #f9fbfd;
 
           background-repeat: no-repeat;

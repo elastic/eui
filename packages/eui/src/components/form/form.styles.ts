@@ -51,9 +51,9 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
     borderColor: transparentize(
       colorMode === 'DARK'
-        ? euiTheme.colors.ghost
-        : darken(euiTheme.border.color, 4),
-      0.1
+        ? tint(euiTheme.border.color, 0.62)
+        : darken(euiTheme.border.color, 3.85),
+      0.5
     ),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
