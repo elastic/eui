@@ -327,28 +327,24 @@ export const MarkdownPluginExample = {
         </Fragment>
       ),
       snippet: [
-        `// change what link protocols are allowed
-const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
-parsingPlugins.find(([plugin, config]) => {
-  const isValidationPlugin = plugin === euiMarkdownLinkValidator;
-  if (isValidationPlugin) {
-    config.allowProtocols = ['https:', 'mailto:'];
-  }
-  return isValidationPlugin;
-});`,
-        `// filter out the link validation plugin
-const parsingPlugins = getDefaultEuiMarkdownParsingPlugins().filter(([plugin]) => {
-  return plugin !== euiMarkdownLinkValidator;
-});`,
-        `// disable relative urls
-const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
-parsingPlugins.find(([plugin, config]) => {
-  const isValidationPlugin = plugin === euiMarkdownLinkValidator;
-  if (isValidationPlugin) {
-    config.allowRelative = false;
-  }
-  return isValidationPlugin;
-});`,
+        `// customize what link protocols are allowed
+const parsingPlugins = [
+  ...getDefaultEuiMarkdownParsingPlugins({
+    // Exclude the default validation plugin - we're configuring our own
+    exclude: ['linkValidator'],
+  }),
+  [
+    euiMarkdownLinkValidator,
+    {
+      // Customize what link protocols are allowed
+      allowProtocols: ['https:', 'mailto:'],
+    },
+  ]
+];
+
+// Pass the customized parsing plugins to your markdown component
+<EuiMarkdownFormat parsingPlugins={parsingPlugins} />
+`,
       ],
       demo: <LinkValidation />,
     },
