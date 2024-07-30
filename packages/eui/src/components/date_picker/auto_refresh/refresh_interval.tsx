@@ -11,15 +11,18 @@ import React, {
   ChangeEventHandler,
   KeyboardEventHandler,
 } from 'react';
+
+import { htmlIdGenerator } from '../../../services';
 import { EuiI18n } from '../../i18n';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
-import { htmlIdGenerator } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
+
 import {
   RenderI18nTimeOptions,
   TimeOptions,
 } from '../super_date_picker/time_options';
+import { EuiQuickSelectPanel } from '../super_date_picker/quick_select_popover/quick_select_panel';
 import {
   Milliseconds,
   RefreshUnitsOptions,
@@ -127,7 +130,6 @@ export class EuiRefreshInterval extends Component<
   };
 
   generateId = htmlIdGenerator();
-  legendId = this.generateId();
   refreshSelectionId = this.generateId();
 
   onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -247,66 +249,84 @@ export class EuiRefreshInterval extends Component<
     const { value, units, min } = this.state;
 
     return (
-      <RenderI18nTimeOptions>
-        {({ refreshUnitsOptions }) => (
-          <fieldset className="euiQuickSelectPopover__panel">
-            <EuiFlexGroup
-              alignItems="center"
-              gutterSize="s"
-              responsive={false}
-              wrap
-            >
-              <EuiFlexItem grow={false}>
-                <EuiSwitch
-                  data-test-subj="superDatePickerToggleRefreshButton"
-                  aria-describedby={this.refreshSelectionId}
-                  checked={!isPaused}
-                  onChange={this.toggleRefresh}
-                  compressed
-                  label={
-                    <EuiFormLabel type="legend" id={this.legendId}>
-                      <EuiI18n
-                        token="euiRefreshInterval.legend"
-                        default="Refresh every"
-                      />
-                    </EuiFormLabel>
-                  }
-                />
-              </EuiFlexItem>
-              <EuiFlexItem style={{ minWidth: 60 }}>
-                <EuiFieldNumber
-                  compressed
-                  fullWidth
-                  value={value}
-                  min={min}
-                  onChange={this.onValueChange}
-                  onKeyDown={this.handleKeyDown}
-                  isInvalid={!isPaused && (value === '' || value <= 0)}
-                  disabled={isPaused}
-                  aria-label="Refresh interval value"
-                  aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
-                  data-test-subj="superDatePickerRefreshIntervalInput"
-                />
-              </EuiFlexItem>
-              <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
-                <EuiSelect
-                  compressed
-                  fullWidth
-                  aria-label="Refresh interval units"
-                  aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
-                  value={units}
-                  disabled={isPaused}
-                  options={refreshUnitsOptions}
-                  onChange={this.onUnitsChange}
-                  onKeyDown={this.handleKeyDown}
-                  data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
-                />
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            {this.renderScreenReaderText(refreshUnitsOptions)}
-          </fieldset>
+      <EuiI18n
+        tokens={[
+          'euiRefreshInterval.toggleLabel',
+          'euiRefreshInterval.toggleAriaLabel',
+          'euiRefreshInterval.valueAriaLabel',
+          'euiRefreshInterval.unitsAriaLabel',
+        ]}
+        defaults={[
+          'Refresh every',
+          'Toggle refresh',
+          'Refresh interval value',
+          'Refresh interval units',
+        ]}
+      >
+        {([
+          toggleLabel,
+          toggleAriaLabel,
+          valueAriaLabel,
+          unitsAriaLabel,
+        ]: string[]) => (
+          <RenderI18nTimeOptions>
+            {({ refreshUnitsOptions }) => (
+              <EuiQuickSelectPanel>
+                <EuiFlexGroup
+                  alignItems="center"
+                  gutterSize="s"
+                  responsive={false}
+                  wrap
+                >
+                  <EuiFlexItem grow={false}>
+                    <EuiSwitch
+                      data-test-subj="superDatePickerToggleRefreshButton"
+                      checked={!isPaused}
+                      onChange={this.toggleRefresh}
+                      compressed
+                      // The IDs attached to this visible label are unused - we override with our own aria-label
+                      label={<EuiFormLabel>{toggleLabel}</EuiFormLabel>}
+                      aria-label={toggleAriaLabel}
+                      aria-labelledby={undefined}
+                      aria-describedby={this.refreshSelectionId}
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem style={{ minWidth: 60 }}>
+                    <EuiFieldNumber
+                      compressed
+                      fullWidth
+                      value={value}
+                      min={min}
+                      onChange={this.onValueChange}
+                      onKeyDown={this.handleKeyDown}
+                      isInvalid={!isPaused && (value === '' || value <= 0)}
+                      disabled={isPaused}
+                      aria-label={valueAriaLabel}
+                      aria-describedby={this.refreshSelectionId}
+                      data-test-subj="superDatePickerRefreshIntervalInput"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
+                    <EuiSelect
+                      compressed
+                      fullWidth
+                      aria-label={unitsAriaLabel}
+                      aria-describedby={this.refreshSelectionId}
+                      value={units}
+                      disabled={isPaused}
+                      options={refreshUnitsOptions}
+                      onChange={this.onUnitsChange}
+                      onKeyDown={this.handleKeyDown}
+                      data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
+                    />
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+                {this.renderScreenReaderText(refreshUnitsOptions)}
+              </EuiQuickSelectPanel>
+            )}
+          </RenderI18nTimeOptions>
         )}
-      </RenderI18nTimeOptions>
+      </EuiI18n>
     );
   }
 }
