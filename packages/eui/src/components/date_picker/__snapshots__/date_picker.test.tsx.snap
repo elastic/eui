@@ -17,16 +17,30 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
           class="react-datepicker__triangle"
         />
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          aria-label="Previous Month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          title="Previous Month"
           type="button"
         >
-          Previous Month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortLeft"
+          />
         </button>
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--next"
+          aria-label="Next month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          title="Next month"
           type="button"
         >
-          Next month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortRight"
+          />
         </button>
         <div
           class="react-datepicker__month-container"
@@ -483,16 +497,30 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
           class="react-datepicker__triangle"
         />
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          aria-label="Previous Month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          title="Previous Month"
           type="button"
         >
-          Previous Month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortLeft"
+          />
         </button>
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--next"
+          aria-label="Next month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          title="Next month"
           type="button"
         >
-          Next month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortRight"
+          />
         </button>
         <div
           class="react-datepicker__month-container"

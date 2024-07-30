@@ -26,8 +26,8 @@
   gap: $euiDatePickerGap;
   position: absolute;
   top: 0;
-  left: $euiDatePickerButtonSize + $euiDatePickerGap;
-  right: $euiDatePickerButtonSize + $euiDatePickerGap;
+  left: $euiSizeXL + $euiDatePickerGap;
+  right: $euiSizeXL + $euiDatePickerGap;
   justify-content: center;
 }
 
