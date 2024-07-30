@@ -1,7 +1,7 @@
+import { Fragment, useMemo } from 'react';
+import { EuiLink, EuiText } from '@elastic/eui';
 import { ProcessedComponent } from '@elastic/eui-docgen';
 import { extendedTypesInfo } from './extended_types_info';
-import { useMemo } from 'react';
-import { EuiLink, EuiText } from '@elastic/eui';
 
 export interface PropTableExtendedTypesProps {
   definition: ProcessedComponent;
@@ -31,12 +31,12 @@ export const PropTableExtendedTypes = ({ definition }: PropTableExtendedTypesPro
     <EuiText size="s">
       Extends{' '}
       {extendedTypes.map((type, index) => (
-          <>
+          <Fragment key={index}>
             <EuiLink href={extendedTypesInfo[type.displayName as keyof typeof extendedTypesInfo].url}>
               {type.displayName}
             </EuiLink>
             {extendedTypes.length - 1 > index && ', '}
-          </>
+          </Fragment>
         ))}
     </EuiText>
   );
