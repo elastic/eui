@@ -18,7 +18,7 @@ const buildProgram = (files: Array<string>) => {
 };
 
 const getFiles = (euiPath: string): Array<string> => (
-  glob.sync(path.join(euiPath, 'src/!(test)/**/!(*.spec|*.test).{ts,tsx}'), { absolute: true })
+  glob.sync(path.join(euiPath, 'src/!(test)/**/!(*.spec|*.test|*.stories|*.styles|*.a11y).{ts,tsx}'), { absolute: true })
 );
 
 const main = async () => {
