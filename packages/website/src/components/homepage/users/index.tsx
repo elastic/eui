@@ -126,9 +126,11 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 const getIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   regular: css`
     background-color: var(--eui-background-color-success);
+    color: ${euiTheme.colors.successText};
   `,
   alternative: css`
-    background-color: var(--eui-background-color-danger);
+    background-color: var(--eui-background-color-accent);
+    color: ${euiTheme.colors.accentText};
   `,
 });
 

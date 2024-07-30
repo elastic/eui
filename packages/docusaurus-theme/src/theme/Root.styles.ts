@@ -58,6 +58,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --eui-background-color-success: ${useEuiBackgroundColor('success')};
         --eui-background-color-danger: ${useEuiBackgroundColor('danger')};
         --eui-background-color-warning: ${useEuiBackgroundColor('warning')};
+        --eui-background-color-accent: ${useEuiBackgroundColor('accent')};
 
         --eui-color-danger-text: ${euiTheme.colors.dangerText};
 
