@@ -137,12 +137,7 @@ export const PropTable = ({
             return <EuiTextColor css={styles.required}>Required</EuiTextColor>
           }
 
-          const finalValue = (!!value && typeof value === 'object' &&
-            (value as object).hasOwnProperty('value'))
-              ? (value as { value: string; }).value
-              : '';
-
-          return !!finalValue && <EuiCode>{finalValue}</EuiCode>;
+          return value && <EuiCode>{value}</EuiCode>;
         },
       }
     ]),
