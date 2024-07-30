@@ -1,14 +1,28 @@
-import { EuiCallOut, EuiLink } from '@elastic/eui';
+import { css } from '@emotion/react';
+import {
+  EuiCallOut,
+  EuiLink,
+  EuiText,
+  useEuiMemoizedStyles,
+  UseEuiTheme,
+} from '@elastic/eui';
 import { useState } from 'react';
 
 const STORAGE_KEY = 'docs_page_welcome_notification';
 const STORAGE_VALUE_DISMISSED = 'dismissed';
 
+const getStyles = ({ euiTheme }: UseEuiTheme) => ({
+  banner: css`
+    .euiLink {
+      color: ${euiTheme.colors.warningText};
+      text-decoration: underline;
+    }
+  `,
+});
+
 export const HomepageBanner = () => {
   const [isVisible, setVisible] = useState(() => {
     const storageItem = localStorage.getItem(STORAGE_KEY);
-
-    console.log(storageItem);
 
     if (storageItem && storageItem === STORAGE_VALUE_DISMISSED) {
       return false;
@@ -16,6 +30,8 @@ export const HomepageBanner = () => {
 
     return true;
   });
+
+  const styles = useEuiMemoizedStyles(getStyles);
 
   if (!isVisible) return null;
 
@@ -25,21 +41,21 @@ export const HomepageBanner = () => {
   };
 
   return (
-    <EuiCallOut
-      iconType="cheer"
-      title="Welcome to the new EUI docs page!"
-      onDismiss={handleOnDismiss}
-    >
-      If you encounter any issues you can report them{' '}
-      <EuiLink
-        href="https://github.com/elastic/eui/issues"
-        title="EUI issues"
-        target="_blank"
-      >
-        here
-      </EuiLink>{' '}
-      or if you would still like to view the old docs page you can do so{' '}
-      <EuiLink href="https://eui.elastic.co/v95.3.0/">here</EuiLink>.
+    <EuiCallOut color="warning" onDismiss={handleOnDismiss} css={styles.banner}>
+      <EuiText color="warning" size="s">
+        This is a new EUI documentation, and we are still refining it. If you
+        noticed any problems, please{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/issues"
+          title="EUI issues"
+          target="_blank"
+        >
+          submit an issue here
+        </EuiLink>
+        {'. '}
+        If you would like to view the old docs page you can still do so{' '}
+        <EuiLink href="https://eui.elastic.co/v95.3.0/">here</EuiLink>.
+      </EuiText>
     </EuiCallOut>
   );
 };
