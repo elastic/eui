@@ -142,22 +142,33 @@ export const FocusTrappedChildren: FunctionComponent<
         isDOMNode(e.relatedTarget) &&
         isDOMNode(e.currentTarget)
       ) {
-        const active =
-          e.target === e.currentTarget ||
-          (e.currentTarget.contains(e.target) &&
-            e.currentTarget.contains(e.relatedTarget));
-
-        setActive(active);
+        if (
+          isActive &&
+          e.currentTarget.contains(e.target) &&
+          !e.currentTarget.contains(e.relatedTarget)
+        ) {
+          setActive(true);
+        }
       }
     };
 
     const onFocusOut = (e: FocusEvent) => {
-      const active =
-        isDOMNode(e.currentTarget) &&
-        e.currentTarget.contains(document.activeElement);
+      if (
+        isDOMNode(e.target) &&
+        isDOMNode(e.relatedTarget) &&
+        isDOMNode(e.currentTarget)
+      ) {
+        if (isActive && isCellEntered) {
+          if (
+            e.currentTarget.contains(e.target) &&
+            !e.currentTarget.contains(e.relatedTarget)
+          ) {
+            setActive(false);
+          }
+        }
 
-      setActive(active);
-      setExited(e.relatedTarget === e.currentTarget);
+        setExited(e.relatedTarget === e.currentTarget);
+      }
     };
 
     cellEl.addEventListener('keyup', onKeyUp);
@@ -169,7 +180,7 @@ export const FocusTrappedChildren: FunctionComponent<
       cellEl.removeEventListener('focusin', onFocusIn);
       cellEl.removeEventListener('focusout', onFocusOut);
     };
-  }, [cellEl, isActive]);
+  }, [cellEl, isActive, isCellEntered]);
 
   return (
     <EuiFocusTrap disabled={!isCellEntered} clickOutsideDisables={true}>
