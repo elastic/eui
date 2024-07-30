@@ -6,6 +6,7 @@ import {
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import { useLocation } from '@docusaurus/router';
 import NavbarItem, {
   type Props as NavbarItemConfig,
 } from '@theme-original/NavbarItem';
@@ -23,6 +24,8 @@ import {
 import euiVersions from '@site/static/versions.json';
 
 import { VersionSwitcher } from '../../../components/version_switcher';
+
+const DOCS_PATH = '/docs';
 
 const placeHolderStyles = (content: string) => `
   &::-webkit-input-placeholder { ${content} }
@@ -179,6 +182,7 @@ function NavbarContentLayout({
 export default function NavbarContent(): JSX.Element {
   const isBrowser = useIsBrowser();
   const mobileSidebar = useNavbarMobileSidebar();
+  const location = useLocation();
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
 
@@ -186,7 +190,7 @@ export default function NavbarContent(): JSX.Element {
 
   const searchBarItem = items.find((item) => item.type === 'search');
   const versions = euiVersions?.euiVersions ?? undefined;
-  const isRoot = isBrowser ? location?.pathname === '/' : false;
+  const isRoot = !location?.pathname.includes(DOCS_PATH);
 
   return (
     <>
