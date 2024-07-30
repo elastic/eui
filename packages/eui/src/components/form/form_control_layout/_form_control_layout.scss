@@ -194,7 +194,7 @@
     cursor: default;
     background: $euiFormInputGroupLabelBackground;
     border-color: transparent;
-    box-shadow: inset 0 0 0 1px $euiFormInputGroupLabelBackground;
+    box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 
     input {
       background-color: $euiFormBackgroundReadOnlyColor;
