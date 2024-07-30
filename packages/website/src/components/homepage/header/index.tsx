@@ -19,6 +19,8 @@ import {
 } from '@elastic/eui/lib/components/form/form.styles';
 
 import { HomepageContainer } from '../layout';
+import { DecorRight } from './decor_right';
+import { DecorLeft } from './decor_left';
 
 const title = 'Meet the EUI framework';
 const tagline = 'powering the Elastic stack';
@@ -31,6 +33,14 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
     hero: css`
       --ifm-hero-background-color: transparent;
       --banner-title-font-size: 3.43rem;
+
+      --hero-decor-fill-white: ${euiTheme.colors.ghost};
+      --hero-decor-fill-lightShade: ${euiTheme.colors.lightShade};
+      --hero-decor-fill-brand-primary: ${euiTheme.colors.primary};
+      --hero-decor-fill-brand-accent: ${euiTheme.colors.accent};
+      --hero-decor-fill-brand-success: ${euiTheme.colors.success};
+      --hero-decor-fill-brand-warning: ${euiTheme.colors.warning};
+      --hero-decor-fill-brand-poppy: #ff957d;
 
       position: relative;
       display: flex;
@@ -146,6 +156,37 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         border-color: ${euiTheme.colors.warning};
       }
     `,
+    decor: {
+      decor: css`
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        block-size: 100%;
+        inline-size: 15%;
+
+        > svg {
+          position: absolute;
+        }
+
+        @media (max-width: 996px) {
+          display: none;
+        }
+      `,
+      left: css`
+        left: 0;
+
+        > svg {
+          right: 0;
+        }
+      `,
+      right: css`
+        right: 0;
+
+        > svg {
+          left: 0;
+        }
+      `,
+    },
   };
 };
 
@@ -154,6 +195,12 @@ export function HomepageHeader() {
 
   return (
     <header className={clsx('hero hero--primary')} css={styles.hero}>
+      <div css={[styles.decor.decor, styles.decor.left]}>
+        <DecorLeft />
+      </div>
+      <div css={[styles.decor.decor, styles.decor.right]}>
+        <DecorRight />
+      </div>
       <HomepageContainer>
         <div css={styles.left}>
           <div css={styles.title}>
