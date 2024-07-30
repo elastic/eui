@@ -168,7 +168,7 @@ export const HomepageHighlights = () => {
         <ul aria-labelledby={headingId} css={styles.list}>
           {CONTENT_DATA &&
             CONTENT_DATA.map((item) => (
-              <li>
+              <li key={item.title}>
                 <EuiCard
                   title={item.title}
                   href={item.href}

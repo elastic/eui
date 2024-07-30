@@ -158,7 +158,7 @@ export const HomepageUsers = () => {
           <ul css={styles.list}>
             {developer &&
               developer.map((dev) => (
-                <li css={styles.listItem}>
+                <li key={dev.title} css={styles.listItem}>
                   <EuiCard
                     title={dev.title}
                     href={dev.href}
@@ -178,7 +178,7 @@ export const HomepageUsers = () => {
           <ul css={styles.list}>
             {designer &&
               designer.map((des) => (
-                <li css={styles.listItem}>
+                <li key={des.title} css={styles.listItem}>
                   <EuiCard
                     title={des.title}
                     href={des.href}
