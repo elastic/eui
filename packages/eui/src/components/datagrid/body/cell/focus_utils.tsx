@@ -83,12 +83,9 @@ export const FocusTrappedChildren: FunctionComponent<
   PropsWithChildren & { cellEl: HTMLElement }
 > = ({ cellEl, children }) => {
   const [isCellEntered, setIsCellEntered] = useState(false);
+  // active = if focus is in or on header cell
   const [isActive, setActive] = useState(false);
   const [isExited, setExited] = useState(false);
-
-  const focusCell = (cellEl: HTMLElement) => {
-    requestAnimationFrame(() => cellEl.focus()); // move focus to cell
-  };
 
   useEffect(() => {
     if (isCellEntered) {
@@ -123,13 +120,12 @@ export const FocusTrappedChildren: FunctionComponent<
             if (isCellEntered === true) {
               if (!isActive) {
                 // return active state to cell
-                // e.g.  when closing inner content
+                // e.g. when closing inner content
                 setActive(true);
               } else {
                 // exit cell content
                 setActive(false);
-                setIsCellEntered(false);
-                focusCell(cellEl);
+                requestAnimationFrame(() => cellEl.focus()); // move focus to cell
                 return false;
               }
             }
@@ -147,10 +143,11 @@ export const FocusTrappedChildren: FunctionComponent<
         isDOMNode(e.currentTarget)
       ) {
         const active =
-          (e.currentTarget as Node).contains(e.target) &&
-          e.currentTarget.contains(e.relatedTarget);
+          e.target === e.currentTarget ||
+          (e.currentTarget.contains(e.target) &&
+            e.currentTarget.contains(e.relatedTarget));
 
-        setActive(e.target === e.currentTarget || active);
+        setActive(active);
       }
     };
 
@@ -158,6 +155,7 @@ export const FocusTrappedChildren: FunctionComponent<
       const active =
         isDOMNode(e.currentTarget) &&
         e.currentTarget.contains(document.activeElement);
+
       setActive(active);
       setExited(e.relatedTarget === e.currentTarget);
     };
