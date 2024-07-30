@@ -18,13 +18,13 @@ const CONTENT_DATA = {
       title: 'Getting started',
       description: 'Install framework and make initial adjustmets',
       href: '/docs',
-      icon: 'document',
+      icon: 'keyboard',
     },
     {
       title: 'Contributing',
       description: 'Help EUI improve even faster',
       href: 'https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui',
-      icon: 'users',
+      icon: 'plusInCircle',
     },
     {
       title: 'Tokens',
@@ -38,13 +38,13 @@ const CONTENT_DATA = {
       title: 'Patterns',
       description: 'Learn best practice patterns in product UX',
       href: '/docs/patterns',
-      icon: 'heatmap',
+      icon: 'logPatternAnalysis',
     },
     {
       title: 'Writing',
       description: 'Achieve clear and consistent interface text',
       href: '/docs/content',
-      icon: 'documentEdit',
+      icon: 'pencil',
     },
     {
       title: 'Icon library',
