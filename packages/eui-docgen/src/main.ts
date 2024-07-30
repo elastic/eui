@@ -66,7 +66,7 @@ const main = async () => {
     await fs.mkdir(path.dirname(distFilePath), { recursive: true });
     await fs.writeFile(distFilePath, JSON.stringify(results, null, 2));
 
-    process.stdout.write(`Processed ${i}/${files.length} files - ${fileRelativePath}\r`);
+    process.stdout.write(`\x1b[2KProcessed ${i}/${files.length} files - ${fileRelativePath}\r`);
     i++;
   }
 
