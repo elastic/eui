@@ -25,7 +25,17 @@ const getPropId = (prop: ProcessedComponentProp, componentName: string) => (
 
 const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
   propTable: css`
-    & > h1, h2, h3, h4, h5, h6 {
+    margin-block: ${euiTheme.size.xl};
+  `,
+  header: css`
+    // Increased specificity is needed here to override default
+    // content heading styles
+    && h1,
+    && h2,
+    && h3,
+    && h4,
+    && h5,
+    && h6 {
       margin-block: 0;
     }
   `,
@@ -151,7 +161,7 @@ export const PropTable = ({
       direction="column"
       css={styles.propTable}
     >
-      <header>
+      <header css={styles.header}>
         <EuiTitle size="m">
           <HeadingLevel>{definition.displayName}</HeadingLevel>
         </EuiTitle>
