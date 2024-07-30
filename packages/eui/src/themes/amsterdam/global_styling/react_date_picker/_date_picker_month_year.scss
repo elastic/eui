@@ -42,22 +42,12 @@
   height: $euiFormControlCompressedHeight;
   font-weight: $euiFontWeightMedium;
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
 
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-  }
-
-  &--down-arrow {
-    @include datePickerCaret;
-    right: $euiSizeS;
-    height: $euiSizeM;
-    width: $euiSizeM;
-    display: inline-block;
-    background-size: cover;
   }
 
   &--selected-month,

@@ -66,13 +66,15 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__month-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__month-read-view--selected-month"
                   >
                     7월
                   </span>
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
               <div
@@ -85,13 +87,15 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__year-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__year-read-view--selected-year"
                   >
                     2019
                   </span>
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
             </div>
@@ -546,13 +550,15 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__month-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__month-read-view--selected-month"
                   >
                     juillet
                   </span>
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
               <div
@@ -565,13 +571,15 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__year-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__year-read-view--selected-year"
                   >
                     2019
                   </span>
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
             </div>
