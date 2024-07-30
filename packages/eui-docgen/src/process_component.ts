@@ -50,7 +50,7 @@ export interface ProcessedComponent {
   /**
    * Component props
    */
-  props: Record<string, any>;
+  props: Record<string, ProcessedComponentProp>;
   /**
    * A list of all types the props type is extending from
    */
