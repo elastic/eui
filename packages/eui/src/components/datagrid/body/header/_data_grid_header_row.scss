@@ -21,6 +21,7 @@
   & > [data-focus-lock-disabled] {
     display: flex;
     align-items: center;
+    gap: $euiSizeXS;
     width: 100%;
   }
 
@@ -44,7 +45,9 @@
       align-items: center;
       gap: $euiSizeXS;
       width: 100%;
-      padding: $euiSizeXS;
+      // balance out additional button target size in header height,
+      // prevents increased header cell height
+      margin: -$euiSizeXS 0;
       border-radius: $euiBorderRadiusSmall;
       color: $euiFocusRingColor;
       font-weight: $euiFontWeightBold;
@@ -78,6 +81,10 @@
     &:focus-within,
     &:hover,
     .euiPopover-isOpen {
+      .euiDataGridHeaderCell__button {
+        padding: $euiSizeXS;
+      }
+
       .euiDataGridHeaderCell__icon {
         width: $euiSize;
         opacity: 1;
