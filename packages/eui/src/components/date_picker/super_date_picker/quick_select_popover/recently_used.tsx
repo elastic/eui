@@ -7,13 +7,15 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { PrettyDuration } from '../pretty_duration';
 
-import { EuiI18n } from '../../../i18n';
 import { useGeneratedHtmlId } from '../../../../services';
-import { EuiTitle } from '../../../title';
+import { useEuiI18n } from '../../../i18n';
+import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiLink } from '../../../link';
+
 import { DurationRange, ApplyTime } from '../../types';
+import { PrettyDuration } from '../pretty_duration';
+import { EuiQuickSelectPanel } from './quick_select_panel';
 
 export interface EuiRecentlyUsedProps {
   applyTime: ApplyTime;
@@ -28,6 +30,10 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
   dateFormat,
   recentlyUsedRanges = [],
 }) => {
+  const title = useEuiI18n(
+    'euiRecentlyUsed.legend',
+    'Recently used date ranges'
+  );
   const legendId = useGeneratedHtmlId();
 
   if (recentlyUsedRanges.length === 0) {
@@ -39,10 +45,7 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
       applyTime({ start, end });
     };
     return (
-      <li
-        className="euiQuickSelectPopover__sectionItem euiQuickSelectPopover__sectionItem--recentlyUsed"
-        key={`${start}-${end}`}
-      >
+      <EuiFlexItem component="li" key={`${start}-${end}`}>
         <EuiLink onClick={applyRecentlyUsed}>
           <PrettyDuration
             timeFrom={start}
@@ -51,24 +54,16 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
             dateFormat={dateFormat}
           />
         </EuiLink>
-      </li>
+      </EuiFlexItem>
     );
   });
 
   return (
-    <fieldset className="euiQuickSelectPopover__panel">
-      <EuiTitle size="xxxs">
-        <legend id={legendId} className="euiQuickSelectPopover__panelTitle">
-          <EuiI18n
-            token="euiRecentlyUsed.legend"
-            default="Recently used date ranges"
-          />
-        </legend>
-      </EuiTitle>
-      <div className="euiQuickSelectPopover__section">
-        <ul>{links}</ul>
-      </div>
-    </fieldset>
+    <EuiQuickSelectPanel component="fieldset" titleId={legendId} title={title}>
+      <EuiFlexGroup component="ul" gutterSize="s" direction="column">
+        {links}
+      </EuiFlexGroup>
+    </EuiQuickSelectPanel>
   );
 };
 

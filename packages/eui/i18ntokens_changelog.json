@@ -1,5 +1,43 @@
 [
   {
+    "version": "95.5.0",
+    "changes": [
+      {
+        "token": "euiRefreshInterval.legend",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDatePopoverContent.nowTabContent",
+        "changeType": "modified",
+        "value": "Setting the time to \"now\" means that on every refresh this time will be set to the time of the refresh."
+      },
+      {
+        "token": "euiQuickSelect.legendText",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiRefreshInterval.toggleLabel",
+        "changeType": "added",
+        "value": "Refresh every"
+      },
+      {
+        "token": "euiRefreshInterval.toggleAriaLabel",
+        "changeType": "added",
+        "value": "Toggle refresh"
+      },
+      {
+        "token": "euiRefreshInterval.valueAriaLabel",
+        "changeType": "added",
+        "value": "Refresh interval value"
+      },
+      {
+        "token": "euiRefreshInterval.unitsAriaLabel",
+        "changeType": "added",
+        "value": "Refresh interval units"
+      }
+    ]
+  },
+  {
     "version": "95.3.0",
     "changes": [
       {
