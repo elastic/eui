@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 import Layout from '@theme/Layout';
 import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 
@@ -50,11 +51,12 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+  const isBrowser = useIsBrowser();
   const styles = useEuiMemoizedStyles(getStyles);
 
   return (
     <>
-      <HomepageBanner />
+      {isBrowser && <HomepageBanner />}
       <Layout title={siteConfig.title} description={siteConfig.tagline}>
         <main css={styles.main}>
           <HomepageHeader />
