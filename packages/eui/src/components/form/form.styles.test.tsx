@@ -31,6 +31,7 @@ describe('euiFormVariables', () => {
         "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
         "borderColor": "rgba(38,43,53,0.5)",
+        "borderDisabledColor": "rgba(38,43,53,0.2)",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -102,6 +103,7 @@ describe('euiFormControlStyles', () => {
           /* Required for Safari */
           -webkit-text-fill-color: #98A2B3;
           background-color: #eef1f7;
+          box-shadow: inset 0 0 0 1px rgba(38,43,53,0.2);
           cursor: not-allowed;
 
           
@@ -143,7 +145,7 @@ describe('euiFormControlStyles', () => {
           ",
         "inGroup": "
             block-size: 100%;
-            box-shadow: none;
+            box-shadow: none !important;
             border-radius: 0;
           ",
         "invalid": "
@@ -157,6 +159,7 @@ describe('euiFormControlStyles', () => {
 
           background-color: #FFF;
           --euiFormControlStateColor: transparent;
+          box-shadow: inset 0 0 0 1px rgba(38,43,53,0.2);
         ",
         "shared": "
             

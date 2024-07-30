@@ -55,6 +55,9 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
         : darken(euiTheme.border.color, 3.85),
       0.5
     ),
+    get borderDisabledColor() {
+      return transparentize(this.borderColor, 0.2);
+    },
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
@@ -145,7 +148,7 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
     // In group
     inGroup: `
       ${logicalCSS('height', '100%')}
-      box-shadow: none;
+      box-shadow: none !important;
       border-radius: 0;
     `,
 
@@ -231,7 +234,7 @@ export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
   return `
     /* We use inset box-shadow instead of border to skip extra hight calculations */
     border: none;
-    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
+    box-shadow: ${_borderShadow(euiThemeContext, form.borderColor)};
     background-color: ${form.backgroundColor};
 
     background-repeat: no-repeat;
@@ -280,6 +283,7 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
     /* Required for Safari */
     -webkit-text-fill-color: ${form.controlDisabledColor};
     background-color: ${form.backgroundDisabledColor};
+    box-shadow: ${_borderShadow(euiThemeContext, form.borderDisabledColor)};
     cursor: not-allowed;
 
     ${euiPlaceholderPerBrowser(`
@@ -299,6 +303,7 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
 
     background-color: ${form.backgroundReadOnlyColor};
     --euiFormControlStateColor: transparent;
+    box-shadow: ${_borderShadow(euiThemeContext, form.borderDisabledColor)};
   `;
 };
 
@@ -319,19 +324,20 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
 
   // Re-create the border, since the above webkit box shadow overrides the default border box-shadow
   // + change the border color to match states, since the underline background gradient no longer works
-  const borderColor = transparentize(euiTheme.colors.primaryText, 0.2);
-  const invalidBorder = euiTheme.colors.danger;
-  const borderShadow = (color: string) =>
-    `inset 0 0 0 ${euiTheme.border.width.thin} ${color}`;
+  const autofillBorder = _borderShadow(
+    euiThemeContext,
+    transparentize(euiTheme.colors.primaryText, 0.2)
+  );
+  const invalidBorder = _borderShadow(euiThemeContext, euiTheme.colors.danger);
 
   // These styles only apply/override Chrome/webkit browsers - Firefox does not set autofill styles
   return `
     &:-webkit-autofill {
       -webkit-text-fill-color: ${textColor};
-      -webkit-box-shadow: ${borderShadow(borderColor)}, ${backgroundShadow};
+      -webkit-box-shadow: ${autofillBorder}, ${backgroundShadow};
 
       &:invalid {
-        -webkit-box-shadow: ${borderShadow(invalidBorder)}, ${backgroundShadow};
+        -webkit-box-shadow: ${invalidBorder}, ${backgroundShadow};
       }
     }
   `;
@@ -344,3 +350,7 @@ const euiPlaceholderPerBrowser = (content: string) => `
   &:-moz-placeholder { ${content} }
   &::placeholder { ${content} }
 `;
+
+// EUI uses inset box-shadow instead of border to skip extra hight calculations
+const _borderShadow = ({ euiTheme }: UseEuiTheme, color: string) =>
+  `inset 0 0 0 ${euiTheme.border.width.thin} ${color}`;

@@ -31,7 +31,7 @@ $euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;
 $euiFormBackgroundReadOnlyColor: $euiColorEmptyShade !default;
 $euiFormBorderOpaqueColor: $euiBorderColor !default;
 $euiFormBorderColor: transparentize(shadeOrTint($euiFormBorderOpaqueColor, 82%, 62%), .5) !default;
-$euiFormBorderDisabledColor: $euiFormBorderColor !default;
+$euiFormBorderDisabledColor: transparentize($euiFormBorderColor, .3) !default;
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
 $euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 40%, 31%) !default;
 $euiFormControlDisabledColor: $euiColorMediumShade !default;

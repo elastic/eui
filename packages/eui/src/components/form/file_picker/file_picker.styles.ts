@@ -105,7 +105,11 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
           background-color ${euiTheme.animation.fast} ease-in;
       }
     `,
-    disabled: css(formStyles.disabled),
+    disabled: css`
+      --euiFormControlStateColor: ${formVariables.borderDisabledColor};
+      ${formStyles.disabled}
+      box-shadow: none;
+    `,
 
     // Skip the css() on the default height to avoid generating a className
     uncompressed: formStyles.uncompressed,
