@@ -43,18 +43,16 @@ export const HomepageBanner = () => {
   return (
     <EuiCallOut color="warning" onDismiss={handleOnDismiss} css={styles.banner}>
       <EuiText color="warning" size="s">
-        This is a new EUI documentation, and we are still refining it. If you
-        noticed any problems, please{' '}
+        Welcome to the new EUI documentation. Enjoy the fresh updates! We are
+        still refining the site, so please{' '}
         <EuiLink
-          href="https://github.com/elastic/eui/issues"
+          href="https://github.com/elastic/eui/issues/new/choose"
           title="EUI issues"
           target="_blank"
         >
-          submit an issue here
+          let us know if you find any issues
         </EuiLink>
         {'. '}
-        If you would like to view the old docs page you can still do so{' '}
-        <EuiLink href="https://eui.elastic.co/v95.3.0/">here</EuiLink>.
       </EuiText>
     </EuiCallOut>
   );
