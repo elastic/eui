@@ -17,7 +17,31 @@ import { HomepageHighlights } from '../components/homepage/highlights';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   main: css`
-    --ifm-h2-font-size: var(--eui-font-size-xxl);
+    h1 {
+      font-size: 3.43rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: var(--eui-font-size-xxl);
+      line-height: 1.2;
+    }
+
+    h3 {
+      font-size: var(--eui-font-size-m);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--eui-font-size-s);
+      line-height: 1.5;
+    }
+
+    h5,
+    h6 {
+      font-size: var(--eui-font-size-xs);
+      line-height: 1.5;
+    }
 
     margin-block-end: ${euiTheme.size.l};
   `,

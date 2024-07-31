@@ -80,10 +80,6 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
     card: css`
-      &.euiPanel {
-        border-radius: ${euiTheme.border.radius.small};
-      }
-
       .euiCard__content {
         position: relative;
         min-block-size: ${iconSize};
@@ -92,12 +88,16 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
           inline-size: calc(100% - ${iconOffset});
           margin-inline-start: ${iconOffset};
         }
+
+        > :last-child {
+          margin-block-start: ${euiTheme.size.xs};
+        }
       }
 
       .euiCard__title {
-        margin-block-end: 0;
+        margin-block: 0;
         font-size: var(--eui-font-size-m);
-        line-height: var(--eui-line-height-xl);
+        line-height: var(--eui-line-height-xxl);
         text-align: left;
 
         > a {

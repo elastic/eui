@@ -124,6 +124,10 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     .euiText {
       line-height: var(--eui-line-height-l);
     }
+
+    .euiText p {
+      margin: 0;
+    }
   `,
   image: css`
     display: flex;
@@ -131,7 +135,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
     align-items: center;
     padding: ${euiTheme.size.xxxl} ${euiTheme.size.l};
     border: ${euiTheme.border.thin};
-    border-radius: ${euiTheme.border.radius.small};
+    border-radius: ${euiTheme.border.radius.medium};
     background-color: ${euiTheme.colors.body};
   `,
   actions: css`

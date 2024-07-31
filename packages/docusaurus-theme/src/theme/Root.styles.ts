@@ -38,6 +38,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const fontSizeXS = euiFontSizeFromScale('xs', euiTheme);
   const fontSizeXXS = euiFontSizeFromScale('xxs', euiTheme);
 
+  const lineHeightXXL = '2rem';
   const lineHeightXL = '1.75rem';
   const lineHeightL = euiLineHeightFromBaseline('s', euiTheme);
   const lineHeightM = '1.5rem';
@@ -87,6 +88,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --eui-font-size-xxs: ${fontSizeXXS};
 
         --eui-line-height-base: ${lineHeightXL};
+        --eui-line-height-xxl: ${lineHeightXXL};
         --eui-line-height-xl: ${lineHeightXL};
         --eui-line-height-l: ${lineHeightL};
         --eui-line-height-m: ${lineHeightM};
@@ -131,6 +133,14 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         color: inherit;
         border-radius: 0;
         font-size: inherit;
+        font-family: inherit;
+      }
+
+      input,
+      textarea,
+      select {
+        fontSize: 1rem; // Inherit from html root
+        font-family: inherit;
       }
 
       dd {

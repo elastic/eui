@@ -71,6 +71,10 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         font-size: inherit;
         line-height: inherit;
       }
+
+      p {
+        margin: 0;
+      }
     `,
     underscore: css`
       animation: blink 1.5s step-end infinite;
@@ -222,6 +226,9 @@ export function HomepageHeader() {
             </EuiButton>
             <EuiLink href="https://github.com/elastic/eui/tree/main/packages/eui/changelogs">
               What's new?
+            </EuiLink>
+            <EuiLink href="https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui">
+              Contributing
             </EuiLink>
           </div>
         </div>
