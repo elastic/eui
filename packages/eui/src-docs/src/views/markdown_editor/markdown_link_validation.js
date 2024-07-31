@@ -6,15 +6,18 @@ import {
   EuiMarkdownFormat,
 } from '../../../../src/components';
 
-// find the validation plugin and configure it to only allow https: and mailto: links
-const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
-parsingPlugins.find(([plugin, config]) => {
-  const isValidationPlugin = plugin === euiMarkdownLinkValidator;
-  if (isValidationPlugin) {
-    config.allowProtocols = ['https:', 'mailto:'];
-  }
-  return isValidationPlugin;
-});
+const parsingPlugins = [
+  // Exclude the default validation plugin, we're configuring our own that excludes `http` as a protocol
+  ...getDefaultEuiMarkdownParsingPlugins({
+    exclude: ['linkValidator'],
+  }),
+  [
+    euiMarkdownLinkValidator,
+    {
+      allowProtocols: ['https:', 'mailto:'],
+    },
+  ],
+];
 
 const markdown = `**Standalone links**
 https://example.com

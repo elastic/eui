@@ -11,6 +11,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
+const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 
 const config: Config = {
   title: 'Elastic UI Framework',
@@ -49,6 +50,9 @@ const config: Config = {
           showReadingTime: true,
           editUrl: 'https://github.com/elastic/eui/tree/main/website/',
         },
+        googleTagManager: {
+          containerId: googleTagManagerId,
+        }
       } satisfies Preset.Options,
     ],
   ],
