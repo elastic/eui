@@ -26,6 +26,7 @@ import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
 
 import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
+import { euiReactDatePickerStyles } from './react_date_picker.styles';
 import { euiDatePickerStyles } from './date_picker.styles';
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
@@ -193,6 +194,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     inline && styles.inline,
     inline && shadow && styles.shadow,
   ];
+  const calendarStyles = useEuiMemoizedStyles(euiReactDatePickerStyles);
 
   const classes = classNames('euiDatePicker', className);
 
@@ -228,7 +230,10 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         return (
           <ReactDatePicker
             adjustDateOnChange={adjustDateOnChange}
-            calendarClassName={calendarClassName}
+            calendarClassName={classNames(
+              calendarClassName,
+              calendarStyles.euiReactDatePicker
+            )}
             className={classes}
             defaultInputProps={defaultInputProps}
             customInput={customInput}

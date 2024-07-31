@@ -2,36 +2,12 @@
 ** https://github.com/Hacker0x01/react-datepicker
 */
 
-.react-datepicker {
-  font-size: $euiFontSizeXS;
-  color: $euiTextColor;
-  display: flex;
-  border-radius: $euiBorderRadius;
-  padding: $euiDatePickerPadding;
-  justify-content: center;
-}
-
-.react-datepicker--non-interactive {
-  pointer-events: none;
-}
-
-.react-datepicker__focusTrap {
-  display: flex;
-  justify-content: center;
-}
-
 .react-datepicker__month-container {
   flex-grow: 1;
   margin-top: $euiSizeXL + $euiDatePickerGap;
 }
 
-// On small screens put the times at the bottom
 @include euiBreakpoint('xs') {
-  .react-datepicker__focusTrap,
-  .react-datepicker {
-    flex-direction: column;
-  }
-
   .react-datepicker__time-box {
     margin-top: 0;
   }

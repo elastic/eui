@@ -275,7 +275,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="react-datepicker"
+        class="react-datepicker emotion-euiReactDatePicker"
       >
         <div
           class="react-datepicker__triangle"
@@ -801,7 +801,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
         </span>
       </div>
       <div
-        class="react-datepicker"
+        class="react-datepicker emotion-euiReactDatePicker"
       >
         <div
           class="react-datepicker__triangle"
