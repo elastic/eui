@@ -62,10 +62,6 @@
   display: none;
 }
 
-.react-datepicker__screenReaderOnly {
-  @include euiScreenReaderOnly;
-}
-
 .react-datepicker__focusTrap {
   display: flex;
   justify-content: center;
@@ -74,20 +70,6 @@
 .react-datepicker__month-container {
   flex-grow: 1;
   margin-top: $euiSizeXL + $euiDatePickerGap;
-}
-
-.react-datepicker__header {
-  display: flex;
-  flex-direction: column;
-}
-
-.react-datepicker-time__header {
-  @include euiTextTruncate;
-}
-
-.react-datepicker__month {
-  text-align: center;
-  border-radius: $euiBorderRadius;
 }
 
 // On small screens put the times at the bottom
