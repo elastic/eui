@@ -11,11 +11,17 @@ import { css } from '@emotion/css';
 
 import { UseEuiTheme } from '../../services';
 import {
+  euiCanAnimate,
   euiMaxBreakpoint,
   euiFontSize,
+  euiYScroll,
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
+import {
+  euiButtonEmptyColor,
+  euiButtonFillColor,
+} from '../../themes/amsterdam/global_styling/mixins';
 
 export const euiDatePickerVariables = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -55,6 +61,7 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       .react-datepicker__focusTrap {
         display: flex;
         justify-content: center;
+        gap: ${paddingSize};
       }
 
       /* On small screens put the times at the bottom */
@@ -101,6 +108,7 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       /* Layout remaining containers to account for absolutely positioned header */
+
       .react-datepicker__month-container {
         flex-grow: 1;
         ${logicalCSS('margin-top', headerOffset)}
@@ -121,6 +129,109 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('margin-left', 0)}
         }
       }
+
+      ${_timeSelectStyles(euiThemeContext)}
     `,
   };
+};
+
+export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { gapSize } = euiDatePickerVariables(euiThemeContext);
+
+  return css`
+    .react-datepicker__time-container {
+      display: flex;
+      ${logicalCSS('width', 'auto')}
+      background-color: ${euiTheme.colors.body};
+      border-radius: ${euiTheme.border.radius.medium};
+
+      &--focus {
+        .react-datepicker__time-list-item--preselected {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .react-datepicker__time,
+    .react-datepicker__time-box {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .react-datepicker__time-list {
+      ${euiYScroll(euiThemeContext, { height: '100px' })}
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      align-items: center;
+      gap: ${gapSize};
+      ${logicalCSS('padding-vertical', euiTheme.size.xs)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.m)}
+
+      &:focus-visible {
+        outline-style: auto;
+      }
+    }
+
+    .react-datepicker__time-list-item {
+      ${logicalCSS('margin-horizontal', 'auto')};
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
+      ${logicalCSS('height', euiTheme.size.l)}
+      line-height: ${euiTheme.size.l};
+      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+      font-weight: ${euiTheme.font.weight.medium};
+      white-space: nowrap;
+      text-align: center;
+      border-radius: ${euiTheme.border.radius.small};
+
+      &:not(:disabled):hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      &--disabled {
+        cursor: not-allowed;
+        color: ${euiTheme.colors.disabledText};
+      }
+
+      &--injected {
+        ${euiButtonEmptyColor(euiThemeContext, 'success')}
+      }
+
+      &--selected {
+        ${euiButtonFillColor(euiThemeContext, 'primary')}
+      }
+
+      /* closest current time but not selected (also applied when using arrow keys to indicate focus) */
+      &--preselected {
+        background-color: ${euiTheme.focus.backgroundColor};
+      }
+
+      ${euiCanAnimate} {
+        transition: background-color ${euiTheme.animation.fast} ease-in;
+      }
+    }
+
+    /* When in time only mode we make the dropdown look more like combo box styling */
+    &.react-datepicker--time-only {
+      padding: 0;
+
+      .react-datepicker__time-container {
+        background-color: transparent;
+        margin: 0;
+      }
+
+      .react-datepicker__time-list {
+        ${logicalCSS('height', '204px')}
+      }
+
+      .react-datepicker__time-list-item {
+        ${logicalCSS('min-width', '112px')}
+        font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+        text-align: start;
+      }
+    }
+  `;
 };
