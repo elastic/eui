@@ -25,6 +25,21 @@ import { DecorLeft } from './decor_left';
 const title = 'Meet the EUI framework';
 const tagline = 'powering the Elastic stack';
 
+const DESCRIPTION_DATA = [
+  {
+    title: 'Flexible and composable',
+    text: 'Mix and match a wide range of powerful components and adapt to every situation',
+  },
+  {
+    title: 'Accessible',
+    text: 'Ensure a seamless experience for all users with accessibility at the core of the framework',
+  },
+  {
+    title: 'Well documented and tested',
+    text: 'Build your designs and code with confidence in a reliable and fully documented framework',
+  },
+];
+
 const getStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
@@ -229,40 +244,24 @@ export function HomepageHeader() {
               What's new?
             </EuiLink>
             <EuiLink href="https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui">
-              Contributing
+              Contribute
             </EuiLink>
           </div>
         </div>
 
         <div css={styles.right}>
           <EuiDescriptionList aria-label="Benefits of EUI">
-            <div css={styles.listItem}>
-              <EuiDescriptionListTitle>
-                Flexible and composable
-              </EuiDescriptionListTitle>
-              <EuiDescriptionListDescription>
-                Allows designers and developers to easily mix and match
-                components to fit various needs
-              </EuiDescriptionListDescription>
-            </div>
-
-            <div css={styles.listItem}>
-              <EuiDescriptionListTitle>Accessible</EuiDescriptionListTitle>
-              <EuiDescriptionListDescription>
-                Designed with accessibility in mind, ensures that all users have
-                a seamless experience
-              </EuiDescriptionListDescription>
-            </div>
-
-            <div css={styles.listItem}>
-              <EuiDescriptionListTitle>
-                Well documented and tested
-              </EuiDescriptionListTitle>
-              <EuiDescriptionListDescription>
-                Provides developers with reliable guidance and confidence in the
-                system’s stability
-              </EuiDescriptionListDescription>
-            </div>
+            {DESCRIPTION_DATA &&
+              DESCRIPTION_DATA.map((description) => (
+                <div css={styles.listItem}>
+                  <EuiDescriptionListTitle>
+                    {description.title}
+                  </EuiDescriptionListTitle>
+                  <EuiDescriptionListDescription>
+                    {description.text}
+                  </EuiDescriptionListDescription>
+                </div>
+              ))}
           </EuiDescriptionList>
         </div>
       </HomepageContainer>

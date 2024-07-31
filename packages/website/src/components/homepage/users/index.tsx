@@ -16,8 +16,8 @@ const CONTENT_DATA = {
   developer: [
     {
       title: 'Getting started',
-      description: 'Install framework and make initial adjustmets',
-      href: '/docs',
+      description: 'Install framework and make initial adjustments',
+      href: '/docs/guidelines/getting-started/',
       icon: 'keyboard',
     },
     {
@@ -36,19 +36,19 @@ const CONTENT_DATA = {
   designer: [
     {
       title: 'Patterns',
-      description: 'Learn best practice patterns in product UX',
-      href: '/docs/patterns',
+      description: 'Preferred solutions to specific user needs',
+      href: '/docs/patterns/',
       icon: 'logPatternAnalysis',
     },
     {
-      title: 'Writing',
-      description: 'Achieve clear and consistent interface text',
+      title: 'Content',
+      description: 'Write thoughtful and consistent in-product copy',
       href: '/docs/content',
       icon: 'pencil',
     },
     {
-      title: 'Icon library',
-      description: 'Over 500 icons to enhance your designs',
+      title: 'Icons',
+      description: 'A wide variety of icons to enhance your designs',
       href: '/docs/components/icons',
       icon: 'package',
     },

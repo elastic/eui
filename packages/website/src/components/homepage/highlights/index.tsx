@@ -19,7 +19,7 @@ import { AppThemeContext } from '@elastic/eui-docusaurus-theme/lib/components/th
 const CONTENT_DATA = [
   {
     title: 'Buttons',
-    href: '/docs/button',
+    href: '/docs/components/button',
     imageSrc: {
       light:
         'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIG9wYWNpdHk9IjAuMTgiIGQ9Ik0zMDAgMEgwVjE1MEgzMDBWMFoiIGZpbGw9IiM1QTc3QUQiLz4KPHJlY3QgeD0iMzIiIHk9IjY4LjUiIHdpZHRoPSI2MyIgaGVpZ2h0PSIxMyIgZmlsbD0iI0M0QzRDNCIvPgo8cmVjdCB4PSIzMiIgeT0iNTUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI2LjA3NTU2IiBmaWxsPSIjMDA3N0NDIi8+CjxyZWN0IHg9IjU5IiB5PSI3MSIgd2lkdGg9IjY3IiBoZWlnaHQ9IjgiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIvPgo8cmVjdCB4PSIxODQiIHk9IjY3IiB3aWR0aD0iODMiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMDA3MUMyIi8+Cjwvc3ZnPgo=',
