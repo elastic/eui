@@ -253,7 +253,7 @@ export function HomepageHeader() {
           <EuiDescriptionList aria-label="Benefits of EUI">
             {DESCRIPTION_DATA &&
               DESCRIPTION_DATA.map((description) => (
-                <div css={styles.listItem}>
+                <div key={description.title} css={styles.listItem}>
                   <EuiDescriptionListTitle>
                     {description.title}
                   </EuiDescriptionListTitle>
