@@ -1,0 +1,31 @@
+{
+  "name": "@elastic/eui-docgen",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clear": "rimraf dist/ lib/",
+    "generate": "ts-node src/main.ts",
+    "build": "tsc && yarn generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkajtoch/eui.git",
+    "directory": "packages/eui-docgen"
+  },
+  "private": true,
+  "dependencies": {
+    "glob": "^11.0.0",
+    "react-docgen-typescript": "^2.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.5.4"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "types": "./lib/index.d.ts",
+  "main": "./lib/index.d.ts"
+}
