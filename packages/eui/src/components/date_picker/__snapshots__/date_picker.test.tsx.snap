@@ -2,7 +2,7 @@
 
 exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 <span
-  class="euiDatePicker euiDatePicker--inline euiDatePicker--shadow"
+  class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
 >
   <div
     class="euiFormControlLayout euiFormControlLayoutDelimited"
@@ -481,7 +481,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 
 exports[`EuiDatePicker localization inherits locale from context 1`] = `
 <span
-  class="euiDatePicker euiDatePicker--inline euiDatePicker--shadow"
+  class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
 >
   <div
     class="euiFormControlLayout euiFormControlLayoutDelimited"
@@ -960,7 +960,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
 
 exports[`EuiDatePicker renders 1`] = `
 <span
-  class="euiDatePicker"
+  class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-euiTestCss"
 >
   <div
     class="euiFormControlLayout"
