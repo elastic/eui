@@ -49,11 +49,6 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
             class="react-datepicker__header"
           >
             <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              7월 2019
-            </div>
-            <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >
               <div
@@ -532,11 +527,6 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
           <div
             class="react-datepicker__header"
           >
-            <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              juillet 2019
-            </div>
             <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >

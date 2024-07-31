@@ -313,11 +313,6 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
             class="react-datepicker__header"
           >
             <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              January 2000
-            </div>
-            <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >
               <div
@@ -843,11 +838,6 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
           <div
             class="react-datepicker__header"
           >
-            <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              January 2000
-            </div>
             <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >

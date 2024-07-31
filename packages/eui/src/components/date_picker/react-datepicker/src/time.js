@@ -363,9 +363,6 @@ export default class Time extends React.Component {
             this.header = header;
           }}
         >
-          <div className="react-datepicker-time__header">
-            {this.props.timeCaption}
-          </div>
           <EuiScreenReaderOnly>
             <span aria-live="polite" aria-atomic="false">
               {screenReaderInstructions}

@@ -487,25 +487,6 @@ export default class Calendar extends React.Component {
     );
   };
 
-  renderCurrentMonth = (date = this.state.date) => {
-    const classes = ["react-datepicker__current-month"];
-
-    if (this.props.showYearDropdown) {
-      classes.push("react-datepicker__current-month--hasYearDropdown");
-    }
-    if (this.props.showMonthDropdown) {
-      classes.push("react-datepicker__current-month--hasMonthDropdown");
-    }
-    if (this.props.showMonthYearDropdown) {
-      classes.push("react-datepicker__current-month--hasMonthYearDropdown");
-    }
-    return (
-      <div className={classes.join(" ")}>
-        {formatDate(date, this.props.dateFormat)}
-      </div>
-    );
-  };
-
   renderYearDropdown = (overrideHide = false) => {
     if (!this.props.showYearDropdown || overrideHide) {
       return;
@@ -586,7 +567,6 @@ export default class Calendar extends React.Component {
 
   renderDefaultHeader = ({ monthDate, i }) => (
     <div className="react-datepicker__header">
-      {this.renderCurrentMonth(monthDate)}
       <div
         className={`react-datepicker__header__dropdown react-datepicker__header__dropdown--${
           this.props.dropdownMode

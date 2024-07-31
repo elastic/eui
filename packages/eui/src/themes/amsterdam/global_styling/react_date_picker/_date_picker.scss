@@ -56,12 +56,6 @@
   pointer-events: none;
 }
 
-// Hidden things that we don't want to show/use, ever
-.react-datepicker__current-month,
-.react-datepicker-time__header {
-  display: none;
-}
-
 .react-datepicker__focusTrap {
   display: flex;
   justify-content: center;
