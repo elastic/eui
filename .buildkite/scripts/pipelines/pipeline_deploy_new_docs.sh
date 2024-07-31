@@ -28,8 +28,10 @@ yarn
 
 echo "+++ :yarn: Building @elastic/eui-website and its local dependencies"
 
+analytics_vault="secret/ci/elastic-eui/analytics"
 # Pass base url to docusaurus. It must have a leading and trailing slash included.
 export DOCS_BASE_URL="/${bucket_directory}"
+export DOCS_GOOGLE_TAG_MANAGER_ID="$(retry 5 vault read -field=google_tag_manager_id "${analytics_vault}")"
 
 yarn workspaces foreach -Rpt --from @elastic/eui-website run build
 
