@@ -37,7 +37,7 @@ const CONTENT_DATA = {
     {
       title: 'Patterns',
       description: 'Preferred solutions to specific user needs',
-      href: '/docs/patterns/',
+      href: '/docs/patterns/confirmation-prompts/',
       icon: 'logPatternAnalysis',
     },
     {
