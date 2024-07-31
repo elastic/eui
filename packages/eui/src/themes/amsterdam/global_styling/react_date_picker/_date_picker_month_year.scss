@@ -19,18 +19,6 @@
  *                       --preselected
  */
 
-// Absolutely positioned across the *whole* top of the calendar
-.react-datepicker__header__dropdown {
-  padding: $euiDatePickerGap * 2;
-  display: flex;
-  gap: $euiDatePickerGap;
-  position: absolute;
-  top: 0;
-  left: $euiSizeXL + $euiDatePickerGap;
-  right: $euiSizeXL + $euiDatePickerGap;
-  justify-content: center;
-}
-
 /**
  * Make the top selectors look like select inputs
  */

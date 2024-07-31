@@ -11,9 +11,6 @@
   border-left: $euiBorderColor;
   width: auto;
   display: flex;
-  margin-top: $euiSizeXL + ($euiDatePickerGap * 2);
-  margin-left: $euiSizeS;
-  flex-grow: 1;
   background-color: $euiPageBackgroundColor;
   border-radius: $euiBorderRadius;
 
@@ -21,10 +18,6 @@
     .react-datepicker__time-list-item--preselected {
       text-decoration: underline;
     }
-  }
-
-  @include euiBreakpoint('xs') {
-    margin-top: 0;
   }
 }
 
