@@ -1,6 +1,6 @@
 export const DecorLeft = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="279" height="532" fill="none">
-    <g clip-path="url(#L_a)">
+    <g clipPath="url(#L_a)">
       <mask
         id="L_b"
         width="280"
