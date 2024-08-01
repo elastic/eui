@@ -239,7 +239,6 @@ export function HomepageHeader() {
           <div css={styles.actions}>
             <EuiButton href="/docs" fill css={styles.button}>
               Get started
-              <EuiIcon type="arrowRight" size="s" />
             </EuiButton>
             <EuiLink href="https://github.com/elastic/eui/tree/main/packages/eui/changelogs">
               What's new?

@@ -201,7 +201,7 @@ export const HomepageHighlights = () => {
         <div css={styles.actions}>
           <EuiButtonEmpty href="/docs/components/" css={styles.button}>
             All components
-            <EuiIcon type="arrowRight" size="s" css={styles.icon} />
+            <EuiIcon type="sortRight" size="s" css={styles.icon} />
           </EuiButtonEmpty>
         </div>
       </HomepageContainer>
