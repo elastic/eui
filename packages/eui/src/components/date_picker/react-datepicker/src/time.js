@@ -76,12 +76,6 @@ export default class Time extends React.Component {
     };
   }
 
-  static calcCenterPosition = (listHeight, centerLiRef) => {
-    return (
-      centerLiRef.offsetTop - (listHeight / 2 - centerLiRef.clientHeight / 2)
-    );
-  };
-
   constructor(...args) {
     super(...args);
 
@@ -124,15 +118,21 @@ export default class Time extends React.Component {
   }
 
   componentDidMount() {
-    // code to ensure selected time will always be in focus within time window when it first appears
-    const scrollParent = this.list;
+    // ensure selected time will always be in focus within time window when it first appears
+    const scrollOptions = { behavior: 'instant', block: 'center' };
 
-    scrollParent.scrollTop = Time.calcCenterPosition(
-      this.props.monthRef
-        ? this.props.monthRef.clientHeight - this.header.clientHeight
-        : this.list.clientHeight,
-      this.selectedLi || this.preselectedLi
-    );
+    // scrollIntoView is great but tends to hijack window scroll position - we need to manually restore it
+    const windowX = window.scrollX;
+    const windowY = window.scrollY;
+    const restoreWindowScroll = () => window.scroll(windowX, windowY);
+
+    if (this.selectedLi) {
+      this.selectedLi.scrollIntoView(scrollOptions);
+      restoreWindowScroll();
+    } else if (this.preselectedLi) {
+      this.preselectedLi.scrollIntoView(scrollOptions);
+      restoreWindowScroll();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -356,9 +356,6 @@ export default class Time extends React.Component {
           <div
             aria-live="polite" aria-atomic="false"
             className="react-datepicker__header react-datepicker__header--time"
-            ref={header => {
-              this.header = header;
-            }}
           >
             {screenReaderInstructions}
           </div>
@@ -373,9 +370,6 @@ export default class Time extends React.Component {
             <ul
               aria-label={this.props.timeCaption}
               className="react-datepicker__time-list"
-              ref={list => {
-                this.list = list;
-              }}
               role="listbox"
               tabIndex={this.props.accessibleMode ? 0 : -1}
             >
