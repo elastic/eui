@@ -44,7 +44,7 @@ export const euiDatePickerRangeInlineStyles = (
         display: block !important;
 
         /* Center and point the default delimiter arrow downwards */
-        & > .euiText > [data-icon-type='sortRight'] {
+        .euiFormControlLayoutDelimited__delimiter .euiIcon {
           transform: rotate(90deg);
           margin-inline: auto;
         }
