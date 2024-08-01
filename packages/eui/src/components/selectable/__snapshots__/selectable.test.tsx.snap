@@ -122,7 +122,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
   class="euiSelectable emotion-euiSelectable"
 >
   <div
-    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
+    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued-euiSelectableMessage"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
@@ -244,7 +244,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
   class="euiSelectable emotion-euiSelectable"
 >
   <div
-    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
+    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued-euiSelectableMessage"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
@@ -338,7 +338,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     />
   </div>
   <div
-    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
+    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued-euiSelectableMessage"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
