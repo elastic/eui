@@ -323,11 +323,6 @@ export default class Time extends React.Component {
   };
 
   render() {
-    let height = null;
-    if (this.props.monthRef && this.header) {
-      height = this.props.monthRef.clientHeight - this.header.clientHeight;
-    }
-
     const classNames = classnames("react-datepicker__time-container", {
       "react-datepicker__time-container--with-today-button": this.props
         .todayButton,
@@ -357,18 +352,17 @@ export default class Time extends React.Component {
 
     return (
       <div className={classNames}>
-        <div
-          className="react-datepicker__header react-datepicker__header--time"
-          ref={header => {
-            this.header = header;
-          }}
-        >
-          <EuiScreenReaderOnly>
-            <span aria-live="polite" aria-atomic="false">
-              {screenReaderInstructions}
-            </span>
-          </EuiScreenReaderOnly>
-        </div>
+        <EuiScreenReaderOnly>
+          <div
+            aria-live="polite" aria-atomic="false"
+            className="react-datepicker__header react-datepicker__header--time"
+            ref={header => {
+              this.header = header;
+            }}
+          >
+            {screenReaderInstructions}
+          </div>
+        </EuiScreenReaderOnly>
         <div className="react-datepicker__time">
           <div
             className={timeBoxClassNames}
@@ -382,7 +376,6 @@ export default class Time extends React.Component {
               ref={list => {
                 this.list = list;
               }}
-              style={height ? { height } : {}}
               role="listbox"
               tabIndex={this.props.accessibleMode ? 0 : -1}
             >

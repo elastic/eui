@@ -132,7 +132,7 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Account for vertical stacking of time select on small screens */
         ${euiMaxBreakpoint(euiThemeContext, 's')} {
-          ${logicalCSS('margin-top', paddingSize)}
+          ${logicalCSS('margin-top', gapSize)}
           ${logicalCSS('margin-left', 0)}
         }
       }
