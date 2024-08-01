@@ -2,7 +2,7 @@
 
 exports[`EuiSelectable custom options with data 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 >
   <div
     class="euiSelectableList"
@@ -119,7 +119,7 @@ exports[`EuiSelectable custom options with data 1`] = `
 
 exports[`EuiSelectable errorMessage prop can render an element as the message 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 >
   <div
     class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
@@ -135,7 +135,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
 
 exports[`EuiSelectable errorMessage prop does not render the message when not defined 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 >
   <div
     class="euiSelectableList"
@@ -241,7 +241,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
 
 exports[`EuiSelectable errorMessage prop does renders the message when defined 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 >
   <div
     class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
@@ -257,7 +257,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
 
 exports[`EuiSelectable is rendered 1`] = `
 <div
-  class="euiSelectable testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectable testClass1 testClass2 emotion-euiSelectable-euiTestCss"
   data-test-subj="test subject string"
   id="testId"
 />
@@ -265,55 +265,55 @@ exports[`EuiSelectable is rendered 1`] = `
 
 exports[`EuiSelectable props allowExclusions 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable props height can be forced 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable props height can be full 1`] = `
 <div
-  class="euiSelectable euiSelectable-fullHeight"
+  class="euiSelectable emotion-euiSelectable-fullHeight"
 />
 `;
 
 exports[`EuiSelectable props isLoading 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable props listProps 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable props renderOption 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable props searchable 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable props singleSelection 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 />
 `;
 
 exports[`EuiSelectable search value supports inheriting initialSearchValue from searchProps.defaultValue 1`] = `
 <div
-  class="euiSelectable"
+  class="euiSelectable emotion-euiSelectable"
 >
   <div
     class="emotion-euiScreenReaderOnly"
