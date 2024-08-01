@@ -50,6 +50,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       --banner-title-font-size: 3.43rem;
 
       --hero-decor-fill-white: ${euiTheme.colors.ghost};
+      --hero-decor-fill-background: ${euiTheme.colors.body};
       --hero-decor-fill-lightShade: ${euiTheme.colors.lightShade};
       --hero-decor-fill-brand-primary: ${euiTheme.colors.primary};
       --hero-decor-fill-brand-accent: ${euiTheme.colors.accent};
