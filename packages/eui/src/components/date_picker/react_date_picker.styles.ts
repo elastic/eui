@@ -22,7 +22,13 @@ import {
   euiButtonColor,
   euiButtonEmptyColor,
   euiButtonFillColor,
+  euiShadowSmall,
 } from '../../themes/amsterdam/global_styling/mixins';
+import {
+  euiFormControlStyles,
+  euiFormControlText,
+  euiFormControlDefaultShadow,
+} from '../form/form.styles';
 
 export const euiDatePickerVariables = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -131,10 +137,98 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
+      ${_monthYearDropdowns(euiThemeContext)}
       ${_dayCalendarStyles(euiThemeContext)}
       ${_timeSelectStyles(euiThemeContext)}
     `,
   };
+};
+
+export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const formStyles = euiFormControlStyles(euiThemeContext);
+
+  return css`
+    .react-datepicker__year-read-view,
+    .react-datepicker__month-read-view,
+    .react-datepicker__month-year-read-view {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      ${formStyles.compressed}
+
+      ${euiFormControlText(euiThemeContext)}
+      font-weight: ${euiTheme.font.weight.medium};
+
+      ${euiFormControlDefaultShadow(euiThemeContext)}
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    .react-datepicker__year-dropdown-container {
+      position: relative;
+      flex-grow: 1;
+    }
+
+    .react-datepicker__month-dropdown-container {
+      position: relative;
+      flex-grow: 2;
+    }
+
+    .react-datepicker__year-dropdown,
+    .react-datepicker__month-dropdown {
+      z-index: 1;
+      position: absolute;
+      ${euiYScroll(euiThemeContext, { height: 'auto' })}
+      ${logicalCSS('max-height', '250px')}
+      ${logicalCSS('width', '100%')}
+      padding: ${euiTheme.size.xs};
+      background-color: ${euiTheme.colors.emptyShade};
+      border-radius: ${euiTheme.border.radius.medium};
+      ${euiShadowSmall(euiThemeContext)}
+    }
+
+    .react-datepicker__year-dropdown {
+      ${logicalCSS('min-width', '100px')}
+    }
+
+    .react-datepicker__month-dropdown {
+      ${logicalCSS('min-width', '140px')}
+    }
+
+    .react-datepicker__year-option,
+    .react-datepicker__month-option,
+    .react-datepicker__month-year-option {
+      ${logicalCSS('margin-vertical', euiTheme.size.xs)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      ${logicalCSS('height', euiTheme.size.l)}
+      line-height: ${euiTheme.size.l};
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      border-radius: ${euiTheme.border.radius.small};
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &--preselected {
+        background-color: ${euiTheme.focus.backgroundColor};
+      }
+
+      &--selected_year,
+      &--selected_month {
+        ${euiButtonFillColor(euiThemeContext, 'primary')}
+      }
+
+      /* Hide checkmark next to selected option */
+      &--selected {
+        display: none;
+      }
+    }
+  `;
 };
 
 export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
