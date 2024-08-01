@@ -175,6 +175,27 @@ export const TimeSelectOnly: Story = {
   args: { ...TimeSelect.args, showTimeSelectOnly: true },
 };
 
+export const RestrictedDaySelect: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'minDate',
+        'maxDate',
+        'includeDates',
+        'excludeDates',
+        'filterDate',
+        'highlightDates',
+      ],
+    },
+  },
+  args: {
+    autoFocus: true, // Open the datepicker automatically for Lok VRT,
+    selected: moment('01/02/1970'),
+    maxDate: moment('01/01/1970'),
+    minDate: moment('12/31/1969'),
+  },
+};
+
 const StatefulDatePicker = ({
   selected,
   onChange,

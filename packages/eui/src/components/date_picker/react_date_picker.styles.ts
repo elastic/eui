@@ -19,6 +19,7 @@ import {
   mathWithUnits,
 } from '../../global_styling';
 import {
+  euiButtonColor,
   euiButtonEmptyColor,
   euiButtonFillColor,
 } from '../../themes/amsterdam/global_styling/mixins';
@@ -130,9 +131,139 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
+      ${_dayCalendarStyles(euiThemeContext)}
       ${_timeSelectStyles(euiThemeContext)}
     `,
   };
+};
+
+export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { gapSize } = euiDatePickerVariables(euiThemeContext);
+
+  const daySize = euiTheme.size.xl;
+  const dayMargin = mathWithUnits(gapSize, (x) => x / 2);
+  const rangeBackgroundColor = euiButtonColor(
+    euiThemeContext,
+    'primary'
+  ).backgroundColor;
+  const rangeMarginOffset = mathWithUnits(dayMargin, (x) => x * 1.5);
+
+  const animationSpeed = euiTheme.animation.fast;
+
+  return css`
+    .react-datepicker__day-names,
+    .react-datepicker__week {
+      display: flex;
+      justify-content: space-between;
+      flex-grow: 1;
+      color: ${euiTheme.colors.subduedText};
+    }
+
+    .react-datepicker__day-name,
+    .react-datepicker__day {
+      display: inline-block;
+      ${logicalCSS('width', daySize)}
+      line-height: ${daySize};
+      margin: ${dayMargin};
+      font-weight: ${euiTheme.font.weight.medium};
+      text-align: center;
+    }
+
+    .react-datepicker__day {
+      color: ${euiTheme.colors.title};
+      border-radius: ${euiTheme.border.radius.small};
+
+      ${euiCanAnimate} {
+        transition: transform ${animationSpeed} ease-in-out,
+          background-color ${animationSpeed} ease-in;
+      }
+
+      &:hover {
+        ${euiButtonColor(euiThemeContext, 'primary')}
+        text-decoration: underline;
+        cursor: pointer;
+
+        /* Setting the transform under can animate because its jarring */
+        ${euiCanAnimate} {
+          transform: scale(1.1);
+        }
+      }
+
+      &--today {
+        color: ${euiTheme.colors.primary};
+        font-weight: ${euiTheme.font.weight.bold};
+      }
+
+      &--outside-month {
+        color: ${euiTheme.colors.subduedText};
+      }
+
+      &--highlighted,
+      &--highlighted:hover {
+        ${euiButtonColor(euiThemeContext, 'success')};
+      }
+
+      &--in-range,
+      &--in-range:hover {
+        ${euiButtonColor(euiThemeContext, 'primary')};
+      }
+
+      /* Ranges use 2 side box-shadows that are the same as the button
+       * background to fill the gap between margins */
+      &--in-range:not(&--selected):not(:hover):not(&--disabled) {
+        box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
+          ${rangeMarginOffset} 0 ${rangeBackgroundColor};
+        border-radius: 0;
+
+        &:first-child {
+          box-shadow: ${rangeMarginOffset} 0 ${rangeBackgroundColor};
+        }
+
+        &:last-child {
+          box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor};
+        }
+      }
+      /* Animate smoothly on hover */
+      &--in-range:not(&--selected) {
+        ${euiCanAnimate} {
+          transition: transform ${animationSpeed} ease-in-out,
+            box-shadow ${animationSpeed} ease-in-out,
+            border-radius ${animationSpeed} ease-in-out,
+            background-color ${animationSpeed} ease-in;
+        }
+      }
+
+      &--selected,
+      &--selected:hover,
+      &--in-selecting-range,
+      &--in-selecting-range:hover {
+        ${euiButtonFillColor(euiThemeContext, 'primary')}
+      }
+
+      &--disabled,
+      &--disabled:hover {
+        ${euiButtonColor(euiThemeContext, 'disabled')}
+        cursor: not-allowed;
+        text-decoration: none;
+        transform: none;
+      }
+
+      &--disabled.react-datepicker__day--in-range:not(&--selected) {
+        &,
+        &:hover {
+          background-color: ${euiButtonEmptyColor(euiThemeContext, 'primary')
+            .backgroundColor};
+        }
+      }
+
+      &--in-selecting-range:not(&--in-range),
+      &--disabled.react-datepicker__day--selected,
+      &--disabled.react-datepicker__day--selected:hover {
+        ${euiButtonColor(euiThemeContext, 'danger')}
+      }
+    }
+  `;
 };
 
 export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
