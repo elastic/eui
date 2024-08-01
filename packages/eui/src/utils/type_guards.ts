@@ -6,6 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './prop_types';
-export * from './is_jest';
-export * from './type_guards';
+export const isDOMNode = (el: any): el is Node => el instanceof Node;

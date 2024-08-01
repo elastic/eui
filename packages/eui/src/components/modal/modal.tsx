@@ -10,6 +10,7 @@ import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
 import { keys, useEuiTheme } from '../../services';
+import { isDOMNode } from '../../utils';
 
 import { EuiButtonIcon } from '../button';
 
@@ -62,9 +63,15 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 }) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      onClose(event);
+      if (
+        isDOMNode(event.target) &&
+        (event.target === event.currentTarget ||
+          event.currentTarget.contains(event.target))
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+        onClose(event);
+      }
     }
   };
 
