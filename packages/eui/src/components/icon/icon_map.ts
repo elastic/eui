@@ -81,7 +81,7 @@ export const typeToPathMap = {
   crossClusterReplicationApp: 'app_cross_cluster_replication',
   crossInCircle: 'cross_in_circle',
   crosshairs: 'crosshairs',
-  currency: 'currencsy',
+  currency: 'currency',
   cut: 'cut',
   dashboardApp: 'app_dashboard',
   dataVisualizer: 'ml_data_visualizer',
