@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import {
   EuiModal,
   EuiModalHeader,
@@ -20,8 +20,30 @@ import {
   EuiModalProps,
 } from './index';
 import { EuiButton } from '../button';
+import { EuiPopover } from '../popover';
 
-const Modal = () => {
+const PopoverContent = () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  return (
+    <EuiPopover
+      button={
+        <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+          Show Popover
+        </EuiButton>
+      }
+      isOpen={isPopoverOpen}
+      closePopover={() => {
+        setIsPopoverOpen(false);
+      }}
+      panelPaddingSize="none"
+    >
+      Popover content
+    </EuiPopover>
+  );
+};
+
+const Modal = ({ content }: { content?: ReactNode }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const closeModal = () => setIsModalVisible(false);
   const showModal = () => setIsModalVisible(true);
@@ -29,7 +51,7 @@ const Modal = () => {
   const modalProps: EuiModalProps = {
     title: 'Do this thing',
     onClose: closeModal,
-    children: React,
+    children: null,
   };
 
   return (
@@ -42,7 +64,7 @@ const Modal = () => {
           </EuiModalHeader>
 
           <EuiModalBody>
-            <p>This is a simple modal body</p>
+            {content ?? <p>This is a simple modal body</p>}
           </EuiModalBody>
 
           <EuiModalFooter>
@@ -82,22 +104,54 @@ describe('EuiModal', () => {
       cy.get('div.euiModal').should('not.exist');
     });
 
-    it('responds to button keypresses', () => {
-      cy.realMount(<Modal />);
-      cy.realPress('Tab');
-      cy.focused().contains('Show confirm modal');
-      cy.realPress('Enter');
-      cy.focused().contains('Title of modal');
-      cy.realPress('Tab');
-      cy.realPress('Enter');
-      cy.focused().contains('Show confirm modal');
-      cy.get('div.euiModal').should('not.exist');
-      cy.realPress('Enter');
-      cy.focused().contains('Title of modal');
-      cy.repeatRealPress('Tab');
-      cy.realPress('Enter');
-      cy.focused().contains('Show confirm modal');
-      cy.get('div.euiModal').should('not.exist');
+    describe('key navigation', () => {
+      it('responds to button keypresses', () => {
+        cy.realMount(<Modal />);
+        cy.realPress('Tab');
+        cy.focused().contains('Show confirm modal');
+        cy.realPress('Enter');
+        cy.focused().contains('Title of modal');
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.focused().contains('Show confirm modal');
+        cy.get('div.euiModal').should('not.exist');
+        cy.realPress('Enter');
+        cy.focused().contains('Title of modal');
+        cy.repeatRealPress('Tab');
+        cy.realPress('Enter');
+        cy.focused().contains('Show confirm modal');
+        cy.get('div.euiModal').should('not.exist');
+      });
+
+      it('closes on Escape key press', () => {
+        cy.realMount(<Modal />);
+        cy.realPress('Tab');
+        cy.focused().contains('Show confirm modal');
+        cy.realPress('Enter');
+        cy.focused().contains('Title of modal');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.focused().contains('Close');
+        cy.realPress('Escape');
+        cy.focused().contains('Show confirm modal');
+      });
+
+      it('closes opened content before closing the modal on Escape key press', () => {
+        cy.realMount(<Modal content={<PopoverContent />} />);
+        cy.realPress('Tab');
+        cy.focused().contains('Show confirm modal');
+        cy.realPress('Enter');
+        cy.focused().contains('Title of modal');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.focused().contains('Show Popover');
+        cy.realPress('Enter');
+        cy.focused().contains('Popover content');
+        cy.realPress('Escape');
+        cy.focused().contains('Show Popover');
+        cy.realPress('Escape');
+        cy.focused().contains('Show confirm modal');
+      });
     });
   });
 });
