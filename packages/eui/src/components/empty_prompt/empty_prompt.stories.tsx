@@ -17,7 +17,6 @@ import { EuiImage } from '../image';
 import { EuiPageTemplate } from '../page_template';
 
 import { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
-import { EuiThemeProvider } from '../../services';
 
 const meta: Meta<EuiEmptyPromptProps> = {
   title: 'Display/EuiEmptyPrompt',
@@ -62,11 +61,9 @@ export const Playground: Story = {
 
 export const PageTemplate: Story = {
   render: ({ ...args }) => (
-    <EuiThemeProvider modify={{ breakpoint: { xxl: 2000 } }}>
-      <EuiPageTemplate minHeight="0">
-        <EuiPageTemplate.EmptyPrompt {...args} />
-      </EuiPageTemplate>
-    </EuiThemeProvider>
+    <EuiPageTemplate minHeight="0">
+      <EuiPageTemplate.EmptyPrompt {...args} />
+    </EuiPageTemplate>
   ),
   args: {
     title: <h2>Create your first visualization</h2>,
