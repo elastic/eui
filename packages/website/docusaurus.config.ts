@@ -50,9 +50,9 @@ const config: Config = {
           showReadingTime: true,
           editUrl: 'https://github.com/elastic/eui/tree/main/website/',
         },
-        googleTagManager: {
+        googleTagManager: googleTagManagerId && {
           containerId: googleTagManagerId,
-        }
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -103,6 +103,12 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
           component: 'github',
+        },
+        {
+          href: 'https://www.figma.com/community/file/964536385682658129',
+          label: 'Figma',
+          position: 'right',
+          component: 'figma',
         },
       ],
     },
