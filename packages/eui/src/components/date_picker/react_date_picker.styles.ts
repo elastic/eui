@@ -249,6 +249,7 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
     .react-datepicker__day-names,
     .react-datepicker__week {
       display: flex;
+      /* stylelint-disable no-extra-semicolons */
       justify-content: space-between;
       flex-grow: 1;
       color: ${euiTheme.colors.subduedText};
@@ -305,6 +306,7 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* Ranges use 2 side box-shadows that are the same as the button
        * background to fill the gap between margins */
+      /* stylelint-disable-next-line selector-not-notation */
       &--in-range:not(&--selected):not(:hover):not(&--disabled) {
         box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
           ${rangeMarginOffset} 0 ${rangeBackgroundColor};
