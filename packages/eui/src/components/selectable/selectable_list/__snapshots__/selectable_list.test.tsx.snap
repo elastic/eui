@@ -2,11 +2,11 @@
 
 exports[`EuiSelectableListItem group labels handles updating aria attrs correctly when options are changed/updated 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiSelectableList__list"
+    class="euiSelectableList__list emotion-euiSelectableList__list"
     tabindex="-1"
   >
     <ul
@@ -161,14 +161,14 @@ exports[`EuiSelectableListItem group labels handles updating aria attrs correctl
 
 exports[`EuiSelectableListItem group labels renders with correct aria-setsize and aria-posinset offsets on non-group-labels 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 208px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -334,14 +334,14 @@ exports[`EuiSelectableListItem group labels renders with correct aria-setsize an
 
 exports[`EuiSelectableListItem is rendered 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -512,14 +512,14 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 
 exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -709,14 +709,14 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
 
 exports[`EuiSelectableListItem props allowExclusions 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -923,14 +923,14 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
 
 exports[`EuiSelectableListItem props bordered 1`] = `
 <div
-  class="euiSelectableList euiSelectableList-bordered testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-bordered-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -1101,14 +1101,14 @@ exports[`EuiSelectableListItem props bordered 1`] = `
 
 exports[`EuiSelectableListItem props height is forced 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 200px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -1279,14 +1279,14 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
 
 exports[`EuiSelectableListItem props height is full 1`] = `
 <div
-  class="euiSelectableList euiSelectableList-fullHeight testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-fullHeight-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 600px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -1457,11 +1457,11 @@ exports[`EuiSelectableListItem props height is full 1`] = `
 
 exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiSelectableList__list"
+    class="euiSelectableList__list emotion-euiSelectableList__list"
     tabindex="-1"
   >
     <ul
@@ -1623,14 +1623,14 @@ exports[`EuiSelectableListItem props isVirtualized={false} renders 1`] = `
 
 exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -1801,14 +1801,14 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
 
 exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -1979,14 +1979,14 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
 
 exports[`EuiSelectableListItem props renderOption 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -2175,14 +2175,14 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
 
 exports[`EuiSelectableListItem props rowHeight 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 120px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -2353,14 +2353,14 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
 
 exports[`EuiSelectableListItem props searchable enables correct screen reader instructions 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -2565,14 +2565,14 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
 
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -2719,14 +2719,14 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 
 exports[`EuiSelectableListItem props singleSelection can be forced so that at least one must be selected 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -2896,14 +2896,14 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
 
 exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 192px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >
@@ -3073,14 +3073,14 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
 
 exports[`EuiSelectableListItem props visibleOptions 1`] = `
 <div
-  class="euiSelectableList testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectableList testClass1 testClass2 emotion-euiSelectableList-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <div
-      class="euiSelectableList__list"
+      class="euiSelectableList__list emotion-euiSelectableList__list"
       style="position: relative; height: 128px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="-1"
     >

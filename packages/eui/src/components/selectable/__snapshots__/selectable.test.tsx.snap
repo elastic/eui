@@ -5,14 +5,14 @@ exports[`EuiSelectable custom options with data 1`] = `
   class="euiSelectable emotion-euiSelectable"
 >
   <div
-    class="euiSelectableList"
+    class="euiSelectableList emotion-euiSelectableList"
     data-test-subj="euiSelectableList"
   >
     <div
       data-eui="EuiAutoSizer"
     >
       <div
-        class="euiSelectableList__list"
+        class="euiSelectableList__list emotion-euiSelectableList__list"
         style="position: relative; height: 96px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
         tabindex="-1"
       >
@@ -138,14 +138,14 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
   class="euiSelectable emotion-euiSelectable"
 >
   <div
-    class="euiSelectableList"
+    class="euiSelectableList emotion-euiSelectableList"
     data-test-subj="euiSelectableList"
   >
     <div
       data-eui="EuiAutoSizer"
     >
       <div
-        class="euiSelectableList__list"
+        class="euiSelectableList__list emotion-euiSelectableList__list"
         style="position: relative; height: 96px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
         tabindex="-1"
       >

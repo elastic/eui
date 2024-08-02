@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableList } from './selectable_list';
@@ -46,6 +47,10 @@ const selectableListRequiredProps = {
 };
 
 describe('EuiSelectableListItem', () => {
+  shouldRenderCustomStyles(
+    <EuiSelectableList options={options} {...selectableListRequiredProps} />
+  );
+
   test('is rendered', () => {
     const { container } = render(
       <EuiSelectableList options={options} {...selectableListRequiredProps} />
