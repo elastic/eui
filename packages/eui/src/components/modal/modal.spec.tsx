@@ -22,27 +22,6 @@ import {
 import { EuiButton } from '../button';
 import { EuiPopover } from '../popover';
 
-const PopoverContent = () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  return (
-    <EuiPopover
-      button={
-        <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-          Show Popover
-        </EuiButton>
-      }
-      isOpen={isPopoverOpen}
-      closePopover={() => {
-        setIsPopoverOpen(false);
-      }}
-      panelPaddingSize="none"
-    >
-      Popover content
-    </EuiPopover>
-  );
-};
-
 const Modal = ({ content }: { content?: ReactNode }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const closeModal = () => setIsModalVisible(false);
@@ -137,6 +116,27 @@ describe('EuiModal', () => {
       });
 
       it('closes opened content before closing the modal on Escape key press', () => {
+        const PopoverContent = () => {
+          const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+          return (
+            <EuiPopover
+              button={
+                <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+                  Show Popover
+                </EuiButton>
+              }
+              isOpen={isPopoverOpen}
+              closePopover={() => {
+                setIsPopoverOpen(false);
+              }}
+              panelPaddingSize="none"
+            >
+              Popover content
+            </EuiPopover>
+          );
+        };
+
         cy.realMount(<Modal content={<PopoverContent />} />);
         cy.realPress('Tab');
         cy.focused().contains('Show confirm modal');
