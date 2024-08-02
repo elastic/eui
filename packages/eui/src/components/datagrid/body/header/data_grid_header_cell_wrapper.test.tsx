@@ -96,6 +96,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
               </div>
             }
             renderFocusTrap={true}
+            shouldDisableInteractives={false}
             updateCellFocusContext={[Function]}
           >
             <FocusTrappedChildren
@@ -422,6 +423,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
             </div>
           }
           renderFocusTrap={true}
+          shouldDisableInteractives={false}
           updateCellFocusContext={[Function]}
         >
           <FocusTrappedChildren
