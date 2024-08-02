@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
 const websiteDir = path.resolve(__dirname, '../../website');
-const versionsLogFile = websiteDir + '/static/versions.json';
+const versionsLogFile = path.join(websiteDir, '/static/versions.json');
 
 /**
  * Writes to the above `versions.json` file (which is what the docs version switcher
