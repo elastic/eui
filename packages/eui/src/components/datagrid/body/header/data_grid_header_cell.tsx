@@ -18,6 +18,7 @@ import React, {
   useCallback,
   useMemo,
   memo,
+  HTMLAttributes,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import { keys, useEuiMemoizedStyles } from '../../../../services';
@@ -39,7 +40,8 @@ import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
 const CellContent: FunctionComponent<
-  PropsWithChildren & { title: string; arrow?: ReactNode }
+  PropsWithChildren &
+    HTMLAttributes<HTMLDivElement> & { title: string; arrow?: ReactNode }
 > = ({ children, title, arrow }) => {
   return (
     <>
@@ -105,7 +107,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ]);
 
       const showColumnActions = columnActions && columnActions.length > 0;
-      const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
+      // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
+      const [actionsButton, setActionsButtonEl] =
+        useState<HTMLButtonElement | null>(null);
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
 
@@ -115,6 +119,16 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           id,
           showColumnActions,
         });
+
+      const [isInteractive, setInteractive] = useState(false);
+
+      const onSetInteractive = useCallback((interactive: boolean) => {
+        setInteractive(interactive);
+      }, []);
+
+      const focusActionsButton = useCallback(() => {
+        actionsButton?.focus();
+      }, [actionsButton]);
 
       const contentAriaId = useGeneratedHtmlId({
         prefix: 'euiDataGridCellHeader',
@@ -134,6 +148,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           [`euiDataGridHeaderCell--${columnType}`]: columnType,
           'euiDataGridHeaderCell--hasColumnActions': showColumnActions,
           'euiDataGridHeaderCell--isActionsPopoverOpen': isPopoverOpen,
+          'euiDataGridHeaderCell--isInteractive': isInteractive,
         },
         displayHeaderCellProps?.className
       );
@@ -145,7 +160,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       const headerCellActionButton = (
         <button
-          ref={actionsButtonRef}
+          ref={setActionsButtonEl}
           className="euiDataGridHeaderCell__button"
           css={emptyHoverStyles.text}
           onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}
@@ -180,6 +195,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
           isActionsButtonFocused={isActionsButtonFocused}
+          actionsButton={actionsButton}
+          focusActionsButton={focusActionsButton}
+          setInteractive={onSetInteractive}
           aria-label={title}
           aria-describedby={sortingAriaId}
         >
@@ -217,9 +235,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   // We need to override the default EuiPopover `onClickOutside` since the anchor is separate from the actual button
                   onClickOutside: (event: Event) => {
                     if (
-                      actionsButtonRef.current?.contains(
-                        event.target as Node
-                      ) === false
+                      actionsButton?.contains(event.target as Node) === false
                     ) {
                       setIsPopoverOpen(false);
                     }

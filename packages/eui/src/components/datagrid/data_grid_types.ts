@@ -175,9 +175,11 @@ export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   index: number;
   width?: number | null;
   className?: string;
+  actionsButton?: HTMLButtonElement | null;
   hasActionsPopover?: boolean;
   isActionsButtonFocused?: boolean;
   focusActionsButton?: () => void;
+  setInteractive?: (interactive: boolean) => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &

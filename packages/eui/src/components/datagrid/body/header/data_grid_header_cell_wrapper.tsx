@@ -8,13 +8,14 @@
 
 import React, {
   FunctionComponent,
-  FocusEventHandler,
   useContext,
   useEffect,
   useState,
   useCallback,
+  FocusEventHandler,
 } from 'react';
 import classnames from 'classnames';
+import { focusable } from 'tabbable';
 
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
@@ -33,43 +34,79 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
+  actionsButton,
   hasActionsPopover,
   isActionsButtonFocused,
   focusActionsButton,
+  setInteractive,
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
+  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
   const updateCellFocusContext = useCallback(() => {
     setFocusedCell([index, -1]);
   }, [index, setFocusedCell]);
 
+  const updateInteractiveChildren = useCallback(
+    (headerEl: HTMLDivElement | null) => {
+      if (!headerEl) return;
+
+      // using focusable here instead of tabbable to ensure
+      // receiving children elements, as tabbable filters out
+      // tabindex="-1"
+      const focusables = headerEl ? focusable(headerEl) : [];
+      const interactives = focusables.filter(
+        (element) => !element.hasAttribute('data-focus-guard')
+      );
+      const hasInteractives =
+        actionsButton && interactives.includes(actionsButton)
+          ? interactives.length > 1
+          : interactives.length > 0;
+
+      setHasInteractiveChildren(hasInteractives);
+      setInteractive?.(hasInteractives);
+    },
+    [actionsButton, setInteractive]
+  );
+
+  // set initial interactive children state
+  useEffect(() => {
+    updateInteractiveChildren(headerEl);
+  }, [headerEl, actionsButton, updateInteractiveChildren]);
+
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
     onFocusUpdate([index, -1], (isFocused: boolean) => {
       setIsFocused(isFocused);
       if (isFocused && headerEl) {
+        updateInteractiveChildren(headerEl);
+
         // Only focus the cell if not already focused on something in the cell
         if (!headerEl.contains(document.activeElement)) {
           headerEl.focus();
         }
       }
     });
-  }, [index, onFocusUpdate, headerEl]);
+  }, [index, onFocusUpdate, headerEl, updateInteractiveChildren]);
 
   // For cell headers with actions, auto-focus into the button instead of the cell wrapper div
   // The button text is significantly more useful to screen readers (e.g. contains sort order & hints)
   const onFocus: FocusEventHandler = useCallback(
     (e) => {
-      if (hasActionsPopover && e.target === headerEl) {
+      if (
+        !hasInteractiveChildren &&
+        hasActionsPopover &&
+        e.target === headerEl
+      ) {
         focusActionsButton?.();
       }
     },
-    [hasActionsPopover, focusActionsButton, headerEl]
+    [hasActionsPopover, hasInteractiveChildren, focusActionsButton, headerEl]
   );
 
   return (
@@ -90,7 +127,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       <HandleInteractiveChildren
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap
+        renderFocusTrap={hasInteractiveChildren}
+        shouldDisableInteractives={!hasInteractiveChildren}
       >
         {children}
       </HandleInteractiveChildren>

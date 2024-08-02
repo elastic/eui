@@ -38,8 +38,6 @@
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
     .euiDataGridHeaderCell__button {
-      @include euiFocusRing;
-
       position: relative;
       display: flex;
       align-items: center;
@@ -52,6 +50,19 @@
       color: $euiFocusRingColor;
       font-weight: $euiFontWeightBold;
       outline: none;
+    }
+
+    &.euiDataGridHeaderCell--isInteractive {
+      .euiDataGridHeaderCell__button {
+        @include euiFocusRing;
+        color: $euiFocusRingColor;
+      }
+    }
+  
+    &:not(.euiDataGridHeaderCell--isInteractive) {
+      .euiDataGridHeaderCell__button:focus-visible {
+        outline: none;
+      }
     }
 
     .euiDataGridHeaderCell__content {

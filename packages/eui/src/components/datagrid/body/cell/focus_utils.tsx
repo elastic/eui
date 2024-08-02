@@ -38,20 +38,33 @@ export const HandleInteractiveChildren: FunctionComponent<
     cellEl?: HTMLElement | null;
     updateCellFocusContext: Function;
     renderFocusTrap?: boolean;
+    shouldDisableInteractives?: boolean;
   }
-> = ({ cellEl, children, updateCellFocusContext, renderFocusTrap }) => {
-  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
+> = ({
+  cellEl,
+  children,
+  updateCellFocusContext,
+  renderFocusTrap,
+  shouldDisableInteractives = true,
+}) => {
+  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(
+    !shouldDisableInteractives
+  );
+
+  useEffect(() => {
+    setHasInteractiveChildren(!shouldDisableInteractives);
+  }, [shouldDisableInteractives]);
 
   // On mount, disable all interactive children
   useEffect(() => {
-    if (cellEl) {
+    if (cellEl && shouldDisableInteractives) {
       const interactiveChildren = disableInteractives(cellEl);
 
       if (renderFocusTrap) {
         setHasInteractiveChildren(interactiveChildren!.length > 0);
       }
     }
-  }, [cellEl, renderFocusTrap]);
+  }, [cellEl, renderFocusTrap, shouldDisableInteractives]);
 
   // Ensure that any interactive children that are clicked update the latest cell focus context
   useEffect(() => {
