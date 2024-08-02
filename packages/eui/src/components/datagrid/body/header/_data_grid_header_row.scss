@@ -31,6 +31,11 @@
     @include euiDataGridCellFocus;
   }
 
+  // needed to override global style
+  &:focus:focus-visible {
+    outline: none;
+  }
+
   .euiDataGridHeaderCell__content {
     flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
   }
@@ -47,7 +52,6 @@
       // prevents increased header cell height
       margin: -$euiSizeXS 0;
       border-radius: $euiBorderRadiusSmall;
-      color: $euiFocusRingColor;
       font-weight: $euiFontWeightBold;
       outline: none;
     }
@@ -55,10 +59,11 @@
     &.euiDataGridHeaderCell--isInteractive {
       .euiDataGridHeaderCell__button {
         @include euiFocusRing;
+
         color: $euiFocusRingColor;
       }
     }
-  
+
     &:not(.euiDataGridHeaderCell--isInteractive) {
       .euiDataGridHeaderCell__button:focus-visible {
         outline: none;
