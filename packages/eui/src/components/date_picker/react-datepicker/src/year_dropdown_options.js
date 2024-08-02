@@ -49,6 +49,9 @@ function generateYears(year, noOfYear, minDate, maxDate) {
     }
   }
 
+  // EUI customization: show earlier years first
+  list.reverse();
+
   return list;
 }
 
@@ -227,8 +230,8 @@ export default class YearDropdownOptions extends React.Component {
     }
     if (selectionChange) {
       this.setState(({ preSelection }) => {
-        const maxYear = this.state.yearsList[0];
-        const minYear = this.state.yearsList[this.state.yearsList.length - 1];
+        const minYear = this.state.yearsList[0];
+        const maxYear = this.state.yearsList[this.state.yearsList.length - 1];
         let nextSelection = preSelection + selectionChange;
         if (nextSelection < minYear) nextSelection = maxYear;
         if (nextSelection > maxYear) nextSelection = minYear;

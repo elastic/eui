@@ -16,19 +16,18 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
+import type { Moment } from 'moment';
 
-import { Moment } from 'moment'; // eslint-disable-line import/named
-
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
+import { EuiI18nConsumer } from '../context';
+import { CommonProps } from '../common';
+import { PopoverAnchorPosition } from '../popover';
 import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
 
-import { useCombinedRefs } from '../../services';
-import { EuiI18nConsumer } from '../context';
-import { CommonProps } from '../common';
-
-import { PopoverAnchorPosition } from '../popover';
-
 import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
+import { euiReactDatePickerStyles } from './react_date_picker.styles';
+import { euiDatePickerStyles } from './date_picker.styles';
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
 export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
@@ -189,12 +188,15 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   utcOffset,
   ...rest
 }) => {
-  const classes = classNames('euiDatePicker', {
-    'euiDatePicker--inline': inline,
-    'euiDatePicker--shadow': inline && shadow,
-  });
+  const styles = useEuiMemoizedStyles(euiDatePickerStyles);
+  const cssStyles = [
+    styles.euiDatePicker,
+    inline && styles.inline,
+    inline && shadow && styles.shadow,
+  ];
+  const calendarStyles = useEuiMemoizedStyles(euiReactDatePickerStyles);
 
-  const datePickerClasses = classNames('euiDatePicker', className);
+  const classes = classNames('euiDatePicker', className);
 
   // Check for whether the passed `selected` moment date is valid
   const isInvalid =
@@ -228,8 +230,11 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         return (
           <ReactDatePicker
             adjustDateOnChange={adjustDateOnChange}
-            calendarClassName={calendarClassName}
-            className={datePickerClasses}
+            calendarClassName={classNames(
+              calendarClassName,
+              calendarStyles.euiReactDatePicker
+            )}
+            className={classes}
             defaultInputProps={defaultInputProps}
             customInput={customInput}
             dateFormat={fullDateFormat}
@@ -282,7 +287,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   }
 
   return (
-    <span className={classes}>
+    <span css={cssStyles} className={classes}>
       <EuiFormControlLayout
         icon={optionalIcon}
         fullWidth={!inline && fullWidth}
