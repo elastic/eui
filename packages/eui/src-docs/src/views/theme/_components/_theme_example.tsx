@@ -66,7 +66,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
         css={css`
           gap: ${euiTheme.size.xl};
 
-          ${useEuiPaddingCSS(isLargeBreakpoint ? 'vertical' : undefined).xl};
+          ${useEuiPaddingCSS().xl};
           /* padding: ${euiTheme.size.xl}; */
 
           :not(:first-child) {

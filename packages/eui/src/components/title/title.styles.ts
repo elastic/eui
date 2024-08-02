@@ -37,12 +37,12 @@ export const euiTitle = (
   const titleScaleToFontSizeScaleMap: {
     [size in EuiTitleSize]: _EuiThemeFontScale;
   } = {
-    xxxs: 'xs',
-    xxs: 's',
-    xs: 'm',
-    s: 'l',
-    m: 'xl',
-    l: 'xxl',
+    xxxs: 'xxs',
+    xxs: 'xs',
+    xs: 's',
+    s: 'm',
+    m: 'l',
+    l: 'xl',
   };
 
   return {
