@@ -28,21 +28,21 @@ exports[`EuiSelectable custom options with data 1`] = `
             aria-posinset="1"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            class="euiSelectableListItem emotion-euiSelectableListItem-s"
             id="generated-id_listbox_option-0"
             role="option"
             style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
             title="Titan"
           >
             <span
-              class="euiSelectableListItem__content"
+              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
             >
               <span
-                class="euiSelectableListItem__icon"
+                class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
               >
                 <span>
                   VI
@@ -57,21 +57,21 @@ exports[`EuiSelectable custom options with data 1`] = `
             aria-posinset="2"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            class="euiSelectableListItem emotion-euiSelectableListItem-s"
             id="generated-id_listbox_option-1"
             role="option"
             style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
             title="Enceladus"
           >
             <span
-              class="euiSelectableListItem__content"
+              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
             >
               <span
-                class="euiSelectableListItem__icon"
+                class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
               >
                 <span>
                   II
@@ -86,21 +86,21 @@ exports[`EuiSelectable custom options with data 1`] = `
             aria-posinset="3"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            class="euiSelectableListItem emotion-euiSelectableListItem-s"
             id="generated-id_listbox_option-2"
             role="option"
             style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
-              class="euiSelectableListItem__content"
+              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
             >
               <span
-                class="euiSelectableListItem__icon"
+                class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
               >
                 <span>
                   XVII
@@ -161,7 +161,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             aria-posinset="1"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            class="euiSelectableListItem emotion-euiSelectableListItem-s"
             data-test-subj="titanOption"
             id="generated-id_listbox_option-0"
             role="option"
@@ -169,14 +169,14 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             title="Titan"
           >
             <span
-              class="euiSelectableListItem__content"
+              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
             >
               <span
-                class="euiSelectableListItem__icon"
+                class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
               >
                 Titan
               </span>
@@ -187,21 +187,21 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             aria-posinset="2"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            class="euiSelectableListItem emotion-euiSelectableListItem-s"
             id="generated-id_listbox_option-1"
             role="option"
             style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
             title="Enceladus"
           >
             <span
-              class="euiSelectableListItem__content"
+              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
             >
               <span
-                class="euiSelectableListItem__icon"
+                class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
               >
                 Enceladus
               </span>
@@ -212,21 +212,21 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             aria-posinset="3"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            class="euiSelectableListItem emotion-euiSelectableListItem-s"
             id="generated-id_listbox_option-2"
             role="option"
             style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
           >
             <span
-              class="euiSelectableListItem__content"
+              class="euiSelectableListItem__content emotion-euiSelectableListItem__content"
             >
               <span
-                class="euiSelectableListItem__icon"
+                class="euiSelectableListItem__icon emotion-euiSelectableListItem__prepend"
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+                class="euiSelectableListItem__text emotion-euiSelectableListItem__text-truncate"
               >
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>

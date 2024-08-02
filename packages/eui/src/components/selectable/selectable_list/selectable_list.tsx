@@ -407,17 +407,24 @@ export class EuiSelectableList<T> extends Component<
 
     if (isGroupLabel) {
       return (
-        <li
-          role="presentation"
-          className="euiSelectableList__groupLabel"
-          style={style}
-          // @ts-ignore complex
-          {...(optionRest as HTMLAttributes<HTMLLIElement>)}
-        >
-          {prepend}
-          {label}
-          {append}
-        </li>
+        <RenderWithEuiStylesMemoizer>
+          {(stylesMemoizer) => {
+            const styles = stylesMemoizer(euiSelectableListStyles);
+            return (
+              <li
+                role="presentation"
+                css={styles.euiSelectableList__groupLabel}
+                className="euiSelectableList__groupLabel"
+                style={style}
+                {...(optionRest as HTMLAttributes<HTMLLIElement>)}
+              >
+                {prepend}
+                {label}
+                {append}
+              </li>
+            );
+          }}
+        </RenderWithEuiStylesMemoizer>
       );
     }
 
@@ -469,6 +476,7 @@ export class EuiSelectableList<T> extends Component<
         paddingSize={paddingSize}
         searchable={searchable}
         textWrap={textWrap}
+        // @ts-ignore complex
         {...(optionRest as EuiSelectableListItemProps)}
       >
         {renderOption

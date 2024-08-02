@@ -309,8 +309,8 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(
-          container.querySelector('.euiSelectableListItem__text--truncate')
-        ).not.toBeInTheDocument();
+          container.querySelector('.euiSelectableListItem__text')!.className
+        ).toContain('wrap');
       });
 
       it('does not allow wrapping text if virtualization is on', () => {
@@ -324,8 +324,8 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(
-          container.querySelector('.euiSelectableListItem__text--truncate')
-        ).toBeInTheDocument();
+          container.querySelector('.euiSelectableListItem__text')!.className
+        ).not.toContain('wrap');
       });
 
       it('allows setting `textWrap` per-option', () => {
@@ -343,7 +343,9 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(
-          container.querySelectorAll('.euiSelectableListItem__text--truncate')
+          container.querySelectorAll(
+            '[class*="euiSelectableListItem__text-truncate"]'
+          )
         ).toHaveLength(1);
       });
 
@@ -357,8 +359,8 @@ describe('EuiSelectableListItem', () => {
         );
 
         expect(
-          container.querySelector('.euiSelectableListItem__text--truncate')
-        ).toBeInTheDocument();
+          container.querySelector('.euiSelectableListItem__text')!.className
+        ).toContain('truncate');
       });
     });
 
@@ -427,8 +429,8 @@ describe('EuiSelectableListItem', () => {
         container.querySelector('.euiTextTruncate')
       ).not.toBeInTheDocument();
       expect(
-        container.querySelector('.euiSelectableListItem__text--truncate')
-      ).toBeInTheDocument();
+        container.querySelector('.euiSelectableListItem__text')!.className
+      ).toContain('truncate');
     });
 
     it('attempts to use a default optimized option width calculated from the wrapping EuiAutoSizer', () => {

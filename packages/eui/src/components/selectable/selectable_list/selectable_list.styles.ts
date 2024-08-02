@@ -12,10 +12,17 @@ import { css } from '@emotion/react';
 import { css as classNameCss } from '@emotion/css';
 
 import { UseEuiTheme } from '../../../services';
-import { euiFocusRing, euiYScrollWithShadows } from '../../../global_styling';
+import {
+  euiFocusRing,
+  euiYScrollWithShadows,
+  logicalCSS,
+} from '../../../global_styling';
+import { euiTitle } from '../../title/title.styles';
+import { euiSelectableListItemVariables } from './selectable_list_item.styles';
 
 export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const itemVars = euiSelectableListItemVariables(euiThemeContext);
 
   return {
     euiSelectableList: css`
@@ -39,6 +46,15 @@ export const euiSelectableListStyles = (euiThemeContext: UseEuiTheme) => {
       & > ul:focus {
         outline: none; /* Focus outline handled by parent .euiSelectableList */
       }
+    `,
+
+    euiSelectableList__groupLabel: css`
+      ${euiTitle(euiThemeContext, 'xxxs')}
+      display: flex;
+      align-items: center;
+      ${logicalCSS('border-bottom', itemVars.border)}
+      ${logicalCSS('padding-vertical', itemVars.paddingVertical)}
+      ${logicalCSS('padding-horizontal', itemVars.paddingHorizontal)}
     `,
   };
 };
