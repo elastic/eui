@@ -65,8 +65,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
     if (event.key === keys.ESCAPE) {
       if (
         isDOMNode(event.target) &&
-        (event.target === event.currentTarget ||
-          event.currentTarget.contains(event.target))
+        event.currentTarget.contains(event.target)
       ) {
         event.preventDefault();
         event.stopPropagation();
