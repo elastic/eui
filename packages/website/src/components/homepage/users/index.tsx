@@ -80,6 +80,16 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
     card: css`
+      &:hover [data-icon-variant='regular'] {
+        background-color: var(--eui-background-color-success);
+        color: ${euiTheme.colors.successText};
+      }
+
+      &:hover [data-icon-variant='alternative'] {
+        background-color: var(--eui-background-color-accent);
+        color: ${euiTheme.colors.accentText};
+      }
+
       .euiCard__content {
         position: relative;
         min-block-size: ${iconSize};
@@ -101,6 +111,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         text-align: left;
 
         > a {
+          color: inherit;
           line-height: inherit;
         }
       }
@@ -115,6 +126,10 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
       block-size: ${iconSize};
       inline-size: ${iconSize};
     `,
+    icon: css`
+      background-color: ${euiTheme.colors.lightestShade};
+      color: ${euiTheme.colors.subduedText};
+    `,
     text: css`
       font-size: var(--eui-font-size-m);
       line-height: var(--eui-line-height-l);
@@ -123,26 +138,20 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-const getIconStyles = ({ euiTheme }: UseEuiTheme) => ({
-  regular: css`
-    background-color: var(--eui-background-color-success);
-    color: ${euiTheme.colors.successText};
-  `,
-  alternative: css`
-    background-color: var(--eui-background-color-accent);
-    color: ${euiTheme.colors.accentText};
-  `,
-});
-
 const Icon = ({
   type,
   variant = 'regular',
   ...rest
 }: { type: IconType; variant?: 'regular' | 'alternative' } & CommonProps) => {
-  const styles = useEuiMemoizedStyles(getIconStyles);
+  const styles = useEuiMemoizedStyles(getStyles);
 
   return (
-    <span css={styles[variant]} aria-hidden="true" {...rest}>
+    <span
+      css={styles.icon}
+      data-icon-variant={variant}
+      aria-hidden="true"
+      {...rest}
+    >
       <EuiIcon type={type} size="l" />
     </span>
   );
