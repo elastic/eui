@@ -19,7 +19,6 @@ import { EuiModalBody } from './modal_body';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModal, EuiModalProps } from './modal';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import { EuiPopover } from '../popover';
 
 const meta: Meta<EuiModalProps> = {
   title: 'Layout/EuiModal/EuiModal',
@@ -121,38 +120,6 @@ export const InitialFocus: Story = {
             Save
           </EuiButton>
         </EuiModalFooter>
-      </StatefulModal>
-    );
-  },
-};
-
-export const NestedPopover: Story = {
-  render: function Render(args) {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(true);
-
-    return (
-      <StatefulModal aria-labelledby="modalTitleId" {...args}>
-        <EuiModalHeader>
-          <EuiModalHeaderTitle id="modalTitleId">
-            Modal title
-          </EuiModalHeaderTitle>
-        </EuiModalHeader>
-
-        <EuiModalBody>
-          <EuiPopover
-            button={
-              <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-                Open Popover
-              </EuiButton>
-            }
-            isOpen={isPopoverOpen}
-            closePopover={() => {
-              setIsPopoverOpen(false);
-            }}
-          >
-            Popover content
-          </EuiPopover>
-        </EuiModalBody>
       </StatefulModal>
     );
   },
