@@ -12,7 +12,7 @@ export const replaceEmotionPrefix = (selector: string) => {
   // Contains `eui[ComponentName] or `Eui[ComponentName]`.
   // Capture the component name (from above) and all variant additions until the end of the string.
   const euiMatch = selector.match(
-    /css-[\d\w]{5,}-(?<euiComponent>[eE]ui[A-Z][\d\w-]*$)/
+    /css-[\d\w]+-(?<euiComponent>[eE]ui[A-Z][\d\w-]*$)/
   );
   // Use the captured group (`euiComponent`) if available and prepend with `emotion-`,
   // otherwise use the full selector.

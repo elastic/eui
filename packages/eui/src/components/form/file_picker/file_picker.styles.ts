@@ -98,14 +98,18 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextTruncate()}
       color: ${euiTheme.colors.text};
       border: ${euiTheme.border.width.thick} dashed
-        var(--euiFormControlStateColor, ${euiTheme.colors.lightShade});
+        var(--euiFormControlStateColor, ${formVariables.borderColor});
 
       ${euiCanAnimate} {
         transition: border-color ${euiTheme.animation.fast} ease-in,
           background-color ${euiTheme.animation.fast} ease-in;
       }
     `,
-    disabled: css(formStyles.disabled),
+    disabled: css`
+      --euiFormControlStateColor: ${formVariables.borderDisabledColor};
+      ${formStyles.disabled}
+      box-shadow: none;
+    `,
 
     // Skip the css() on the default height to avoid generating a className
     uncompressed: formStyles.uncompressed,

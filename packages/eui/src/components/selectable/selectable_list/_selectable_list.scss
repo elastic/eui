@@ -13,7 +13,7 @@
 
 .euiSelectableList-bordered {
   overflow: hidden;
-  border: $euiBorderThin;
+  border: $euiBorderWidthThin solid $euiFormBorderColor;
   border-radius: $euiBorderRadius;
 }
 
