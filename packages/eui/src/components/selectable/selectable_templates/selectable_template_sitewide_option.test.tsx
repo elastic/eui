@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { renderHook } from '../../../test/rtl';
+import { render, renderHook } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { useEuiMemoizedStyles } from '../../../services';
@@ -91,20 +91,23 @@ describe('EuiSelectableTemplateSitewideOptions', () => {
 
   test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions()', () => {
     options.forEach((option) => {
-      const component = euiSelectableTemplateSitewideRenderOptions(option, '');
-
-      expect(component).toMatchSnapshot();
+      const { container } = render(
+        <>{euiSelectableTemplateSitewideRenderOptions(option, '')}</>
+      );
+      expect(container).toMatchSnapshot();
     });
   });
 
-  test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text', () => {
-    options.forEach((option) => {
-      const component = euiSelectableTemplateSitewideRenderOptions(
-        option,
-        'data'
-      );
+  it('highlights both label and meta text on search', () => {
+    const { container } = render(
+      <>
+        {euiSelectableTemplateSitewideRenderOptions(
+          { label: 'search me', meta: [{ text: 'is searched' }] },
+          'search'
+        )}
+      </>
+    );
 
-      expect(component).toMatchSnapshot();
-    });
+    expect(container).toMatchSnapshot();
   });
 });

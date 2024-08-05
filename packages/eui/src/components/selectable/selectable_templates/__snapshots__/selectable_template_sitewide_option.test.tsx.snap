@@ -118,187 +118,108 @@ exports[`EuiSelectableTemplateSitewideOptions different configurations are forma
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 1`] = `
-<React.Fragment>
-  <EuiHighlight
-    className="euiSelectableTemplateSitewide__listItemTitle"
-    search=""
+<div>
+  <span
+    class="euiSelectableTemplateSitewide__listItemTitle"
   >
     Basic data application
-  </EuiHighlight>
+  </span>
   <span
-    className="euiSelectableTemplateSitewide__optionMetasList"
+    class="euiSelectableTemplateSitewide__optionMetasList emotion-euiSelectableTemplateSitewide__optionMetasList"
   >
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--application euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta--application euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta-application"
       type="application"
     >
       Application
-    </EuiHighlight>
+    </span>
   </span>
-</React.Fragment>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 2`] = `
-<React.Fragment>
-  <EuiHighlight
-    className="euiSelectableTemplateSitewide__listItemTitle"
-    search=""
+<div>
+  <span
+    class="euiSelectableTemplateSitewide__listItemTitle"
   >
     Platform with deployment highlighted
-  </EuiHighlight>
+  </span>
   <span
-    className="euiSelectableTemplateSitewide__optionMetasList"
+    class="euiSelectableTemplateSitewide__optionMetasList emotion-euiSelectableTemplateSitewide__optionMetasList"
   >
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--platform euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta--platform euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta-platform"
       type="platform"
     >
       Account
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--deployment euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    </span>
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta--deployment euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta-deployment"
       type="deployment"
     >
       personal-databoard
-    </EuiHighlight>
+    </span>
   </span>
-</React.Fragment>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() 3`] = `
-<React.Fragment>
-  <EuiHighlight
-    className="euiSelectableTemplateSitewide__listItemTitle"
-    search=""
+<div>
+  <span
+    class="euiSelectableTemplateSitewide__listItemTitle"
   >
     Other metas
-  </EuiHighlight>
+  </span>
   <span
-    className="euiSelectableTemplateSitewide__optionMetasList"
+    class="euiSelectableTemplateSitewide__optionMetasList emotion-euiSelectableTemplateSitewide__optionMetasList"
   >
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--article euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta--article euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta-article"
       type="article"
     >
       Article
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--case euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    </span>
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta--case euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta-case"
       type="case"
     >
       Case
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    </span>
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta"
     >
       Text
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--PINK euiSelectableTemplateSitewide__optionMeta"
-      search=""
+    </span>
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta--PINK euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta"
       type="PINK"
     >
       I have a custom type
-    </EuiHighlight>
+    </span>
   </span>
-</React.Fragment>
+</div>
 `;
 
-exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 1`] = `
-<React.Fragment>
-  <EuiHighlight
-    className="euiSelectableTemplateSitewide__listItemTitle"
-    search="data"
-  >
-    Basic data application
-  </EuiHighlight>
+exports[`EuiSelectableTemplateSitewideOptions highlights both label and meta text on search 1`] = `
+<div>
   <span
-    className="euiSelectableTemplateSitewide__optionMetasList"
+    class="euiSelectableTemplateSitewide__listItemTitle"
   >
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--application euiSelectableTemplateSitewide__optionMeta"
-      search=""
-      type="application"
+    <mark
+      class="euiMark emotion-euiMark-hasScreenReaderHelpText"
     >
-      Application
-    </EuiHighlight>
+      search
+    </mark>
+     me
   </span>
-</React.Fragment>
-`;
-
-exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 2`] = `
-<React.Fragment>
-  <EuiHighlight
-    className="euiSelectableTemplateSitewide__listItemTitle"
-    search="data"
-  >
-    Platform with deployment highlighted
-  </EuiHighlight>
   <span
-    className="euiSelectableTemplateSitewide__optionMetasList"
+    class="euiSelectableTemplateSitewide__optionMetasList emotion-euiSelectableTemplateSitewide__optionMetasList"
   >
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--platform euiSelectableTemplateSitewide__optionMeta"
-      search=""
-      type="platform"
+    <span
+      class="euiSelectableTemplateSitewide__optionMeta emotion-euiSelectableTemplateSitewide__optionMeta"
     >
-      Account
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--deployment euiSelectableTemplateSitewide__optionMeta"
-      search="data"
-      type="deployment"
-    >
-      personal-databoard
-    </EuiHighlight>
+      is searched
+    </span>
   </span>
-</React.Fragment>
-`;
-
-exports[`EuiSelectableTemplateSitewideOptions different configurations are rendered with euiSelectableTemplateSitewideRenderOptions() and search text 3`] = `
-<React.Fragment>
-  <EuiHighlight
-    className="euiSelectableTemplateSitewide__listItemTitle"
-    search="data"
-  >
-    Other metas
-  </EuiHighlight>
-  <span
-    className="euiSelectableTemplateSitewide__optionMetasList"
-  >
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--article euiSelectableTemplateSitewide__optionMeta"
-      search=""
-      type="article"
-    >
-      Article
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--case euiSelectableTemplateSitewide__optionMeta"
-      search=""
-      type="case"
-    >
-      Case
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta"
-      search=""
-    >
-      Text
-    </EuiHighlight>
-    <EuiHighlight
-      className="euiSelectableTemplateSitewide__optionMeta--PINK euiSelectableTemplateSitewide__optionMeta"
-      search=""
-      type="PINK"
-    >
-      I have a custom type
-    </EuiHighlight>
-  </span>
-</React.Fragment>
+</div>
 `;
