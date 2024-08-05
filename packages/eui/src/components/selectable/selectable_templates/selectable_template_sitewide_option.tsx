@@ -9,6 +9,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { RenderWithEuiStylesMemoizer } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiIconProps, EuiIcon } from '../../icon';
 import { EuiAvatarProps, EuiAvatar } from '../../avatar';
@@ -69,7 +70,11 @@ export const euiSelectableTemplateSitewideFormatOptions = (
   return options.map((item: EuiSelectableTemplateSitewideOption) => {
     let title = item.label;
     if (item.meta && item.meta.length) {
-      title += ` •${renderOptionMeta(item.meta, '', true)}`;
+      title += ` •${renderOptionMeta({
+        meta: item.meta,
+        stringsOnly: true,
+        styles,
+      })}`;
     }
 
     return {
@@ -107,16 +112,31 @@ export const euiSelectableTemplateSitewideRenderOptions = (
       >
         {option.label}
       </EuiHighlight>
-      {renderOptionMeta(option.meta, searchValue)}
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiSelectableTemplateSitewideStyles);
+          return renderOptionMeta({
+            meta: option.meta,
+            styles,
+            searchValue,
+          }) as React.ReactElement;
+        }}
+      </RenderWithEuiStylesMemoizer>
     </>
   );
 };
 
-function renderOptionMeta(
-  meta?: EuiSelectableTemplateSitewideMetaData[],
-  searchValue: string = '',
-  stringsOnly: boolean = false
-): ReactNode {
+const renderOptionMeta = ({
+  meta,
+  styles,
+  searchValue = '',
+  stringsOnly = false,
+}: {
+  meta?: EuiSelectableTemplateSitewideMetaData[];
+  styles: ReturnType<typeof euiSelectableTemplateSitewideStyles>;
+  searchValue?: string;
+  stringsOnly?: boolean;
+}) => {
   if (!meta || meta.length < 1) return;
   const metas: ReactNode = meta.map(
     (meta: EuiSelectableTemplateSitewideMetaData) => {
@@ -139,9 +159,20 @@ function renderOptionMeta(
         );
       }
 
+      const cssStyles = [
+        styles.euiSelectableTemplateSitewide__optionMeta,
+        ...(meta.type && meta.type in styles.metaTypes
+          ? [
+              styles.metaTypes.fontWeight,
+              styles.metaTypes[meta.type as keyof typeof styles.metaTypes],
+            ]
+          : []),
+      ];
+
       return (
         <EuiHighlight
           search={highlightSearchString ? searchValue : ''}
+          css={cssStyles}
           className={metaClasses}
           key={text}
           {...rest}
@@ -155,8 +186,11 @@ function renderOptionMeta(
   return stringsOnly ? (
     metas
   ) : (
-    <span className="euiSelectableTemplateSitewide__optionMetasList">
+    <span
+      css={styles.euiSelectableTemplateSitewide__optionMetasList}
+      className="euiSelectableTemplateSitewide__optionMetasList"
+    >
       {metas}
     </span>
   );
-}
+};
