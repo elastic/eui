@@ -16,21 +16,28 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import { useCombinedRefs, useCurrentEuiBreakpoint } from '../../../services';
-import { EuiSelectable, EuiSelectableProps } from '../selectable';
+
+import {
+  useCombinedRefs,
+  useCurrentEuiBreakpoint,
+  useEuiMemoizedStyles,
+} from '../../../services';
+import { EuiBreakpointSize } from '../../../services/breakpoint';
+import { ENTER } from '../../../services/keys';
+import { useEuiI18n, EuiI18n } from '../../i18n';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
-import { useEuiI18n, EuiI18n } from '../../i18n';
-import { EuiSelectableMessage } from '../selectable_message';
 import { EuiLoadingSpinner } from '../../loading';
+import { EuiSpacer } from '../../spacer';
+
+import { EuiSelectable, EuiSelectableProps } from '../selectable';
+import { EuiSelectableMessage } from '../selectable_message';
 import {
   EuiSelectableTemplateSitewideOption,
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
-import { EuiBreakpointSize } from '../../../services/breakpoint';
-import { EuiSpacer } from '../../spacer';
-import { ENTER } from '../../../services/keys';
+import { euiSelectableTemplateSitewideStyles } from './selectable_template_sitewide.styles';
 
 export type EuiSelectableTemplateSitewideProps = Partial<
   Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
@@ -143,8 +150,9 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   };
 
   /**
-   * Classes
+   * Classes & styles
    */
+  const styles = useEuiMemoizedStyles(euiSelectableTemplateSitewideStyles);
   const classes = classNames('euiSelectableTemplateSitewide', className);
   const searchClasses = classNames(
     'euiSelectableTemplateSitewide__search',
@@ -211,6 +219,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
 
   return (
     <EuiSelectable
+      css={styles.euiSelectableTemplateSitewide}
+      className={classes}
       isLoading={isLoading}
       options={formattedOptions}
       renderOption={euiSelectableTemplateSitewideRenderOptions}
@@ -245,7 +255,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       emptyMessage={emptyMessage}
       noMatchesMessage={emptyMessage}
       {...rest}
-      className={classes}
       searchable
     >
       {(list, search) => (

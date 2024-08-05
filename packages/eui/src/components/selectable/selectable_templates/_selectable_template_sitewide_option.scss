@@ -1,7 +1,3 @@
-.euiSelectableTemplateSitewide {
-  display: block; // Override .euiSelectable flex display, which fixes the anchor positioning for mobile `popoverButton`s
-}
-
 .euiSelectableTemplateSitewide__listItem {
   .euiSelectableListItem__text {
     text-decoration: none !important; // stylelint-disable-line declaration-no-important
