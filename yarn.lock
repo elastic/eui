@@ -5639,9 +5639,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@elastic/charts@npm:^64.1.0":
-  version: 64.1.0
-  resolution: "@elastic/charts@npm:64.1.0"
+"@elastic/charts@npm:^66.1.0":
+  version: 66.1.0
+  resolution: "@elastic/charts@npm:66.1.0"
   dependencies:
     "@popperjs/core": "npm:^2.11.8"
     bezier-easing: "npm:^2.1.0"
@@ -5667,7 +5667,7 @@ __metadata:
     moment-timezone: ^0.5.32
     react: ^16.12 || ^17.0 || ^18.0
     react-dom: ^16.12 || ^17.0 || ^18.0
-  checksum: 10c0/b00cdbb900b9e26c208dd046177c1740c42274e2aa12f484e0ae7ca64032aaaae943bc0cbe5955c5dcccdec26b6fc0a2dbae017699d8271c4c0303fc3af03537
+  checksum: 10c0/83ffc0d2b5d473ad58517627f9ad35a8b9b229db485778109ec08dce0929ac56c2c2c211e1c7c6502d73fbc9a484cbe4d22986ca32772708414b87e9c377fab6
   languageName: node
   linkType: hard
 
@@ -5845,7 +5845,7 @@ __metadata:
     "@cypress/react": "npm:^7.0.3"
     "@cypress/react18": "npm:^2.0.0"
     "@cypress/webpack-dev-server": "npm:^1.7.0"
-    "@elastic/charts": "npm:^64.1.0"
+    "@elastic/charts": "npm:^66.1.0"
     "@elastic/datemath": "npm:^5.0.3"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
