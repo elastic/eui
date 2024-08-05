@@ -166,7 +166,10 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   /**
    * List options
    */
-  const formattedOptions = euiSelectableTemplateSitewideFormatOptions(options);
+  const formattedOptions = euiSelectableTemplateSitewideFormatOptions(
+    options,
+    styles
+  );
 
   const loadingMessage = (
     <EuiSelectableMessage style={{ minHeight: 300 }}>

@@ -20,5 +20,21 @@ export const euiSelectableTemplateSitewideStyles = (
       /* Override .euiSelectable flex display, which fixes the anchor positioning for mobile popoverButtons */
       display: block;
     `,
+
+    // Override EuiSelectable's default item underline
+    euiSelectableTemplateSitewide__listItem: css`
+      &:hover,
+      &.euiSelectableListItem-isFocused {
+        &:not([aria-disabled='true']) {
+          .euiSelectableListItem__text {
+            text-decoration: none;
+          }
+
+          .euiSelectableTemplateSitewide__listItemTitle {
+            text-decoration: underline;
+          }
+        }
+      }
+    `,
   };
 };

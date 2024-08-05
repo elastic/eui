@@ -8,11 +8,14 @@
 
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../../common';
-import { EuiIconProps, EuiIcon } from '../../../components/icon';
-import { EuiAvatarProps, EuiAvatar } from '../../../components/avatar/avatar';
+import { EuiIconProps, EuiIcon } from '../../icon';
+import { EuiAvatarProps, EuiAvatar } from '../../avatar';
+import { EuiHighlight } from '../../highlight';
+
 import { EuiSelectableOption } from '../selectable_option';
-import { EuiHighlight } from '../../../components/highlight';
+import { euiSelectableTemplateSitewideStyles } from './selectable_template_sitewide.styles';
 
 export interface EuiSelectableTemplateSitewideMetaData extends CommonProps {
   /**
@@ -60,7 +63,8 @@ export type EuiSelectableTemplateSitewideOption<T = { [key: string]: any }> = {
 } & EuiSelectableOption<T>;
 
 export const euiSelectableTemplateSitewideFormatOptions = (
-  options: EuiSelectableTemplateSitewideOption[]
+  options: EuiSelectableTemplateSitewideOption[],
+  styles: ReturnType<typeof euiSelectableTemplateSitewideStyles>
 ): EuiSelectableTemplateSitewideOption[] => {
   return options.map((item: EuiSelectableTemplateSitewideOption) => {
     let title = item.label;
@@ -72,6 +76,7 @@ export const euiSelectableTemplateSitewideFormatOptions = (
       key: item.label,
       title,
       ...item,
+      css: [styles.euiSelectableTemplateSitewide__listItem, item.css],
       className: classNames(
         'euiSelectableTemplateSitewide__listItem',
         item.className

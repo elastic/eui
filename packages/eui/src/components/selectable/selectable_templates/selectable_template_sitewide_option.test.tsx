@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
+import { renderHook } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { euiSelectableTemplateSitewideStyles } from './selectable_template_sitewide.styles';
 
 import {
   EuiSelectableTemplateSitewideOption,
@@ -75,10 +80,13 @@ const options: EuiSelectableTemplateSitewideOption[] = [
 ];
 
 describe('EuiSelectableTemplateSitewideOptions', () => {
-  const formattedOptions = euiSelectableTemplateSitewideFormatOptions(options);
-
   test('different configurations are formatted with euiSelectableTemplateSitewideFormatOptions()', () => {
-    expect(formattedOptions).toMatchSnapshot();
+    const { result } = renderHook(() => {
+      const styles = useEuiMemoizedStyles(euiSelectableTemplateSitewideStyles);
+      return euiSelectableTemplateSitewideFormatOptions(options, styles);
+    });
+
+    expect(result.current).toMatchSnapshot();
   });
 
   test('different configurations are rendered with euiSelectableTemplateSitewideRenderOptions()', () => {
