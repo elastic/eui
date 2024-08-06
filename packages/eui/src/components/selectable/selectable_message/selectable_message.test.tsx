@@ -8,11 +8,14 @@
 
 import React from 'react';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableMessage } from './selectable_message';
 
 describe('EuiSelectableMessage', () => {
+  shouldRenderCustomStyles(<EuiSelectableMessage />);
+
   test('is rendered', () => {
     const { container } = render(<EuiSelectableMessage {...requiredProps} />);
 

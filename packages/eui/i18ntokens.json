@@ -5567,14 +5567,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 107,
         "column": 10,
-        "index": 3007
+        "index": 3169
       },
       "end": {
-        "line": 104,
+        "line": 110,
         "column": 11,
-        "index": 3114
+        "index": 3276
       }
     },
     "filepath": "src/components/modal/modal.tsx"
