@@ -159,13 +159,15 @@ const renderOptionMeta = ({
         );
       }
 
+      const hasMetaTypeStyles = (
+        metaType: string
+      ): metaType is keyof typeof styles.metaTypes =>
+        metaType in styles.metaTypes;
+
       const cssStyles = [
         styles.euiSelectableTemplateSitewide__optionMeta,
-        ...(meta.type && meta.type in styles.metaTypes
-          ? [
-              styles.metaTypes.fontWeight,
-              styles.metaTypes[meta.type as keyof typeof styles.metaTypes],
-            ]
+        ...(meta.type && hasMetaTypeStyles(meta.type)
+          ? [styles.metaTypes.fontWeight, styles.metaTypes[meta.type]]
           : []),
       ];
 
