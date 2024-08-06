@@ -2,7 +2,7 @@
 
 exports[`EuiComboBox renders 1`] = `
 <div
-  class="euiComboBox testClass1 testClass2 emotion-euiTestCss"
+  class="euiComboBox testClass1 testClass2 emotion-euiComboBox-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -62,7 +62,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
 <body>
   <div>
     <div
-      class="euiComboBox euiComboBox-isOpen"
+      class="euiComboBox euiComboBox-isOpen emotion-euiComboBox"
       data-test-subj="alsoGetsAppliedToOptionsList"
     >
       <div
