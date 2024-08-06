@@ -8,6 +8,9 @@
 
 import React, { PropsWithChildren } from 'react';
 
+import { useEuiTheme } from '../../services';
+import { logicalStyle } from '../../global_styling';
+
 import { EuiComboBoxOptionOption } from './types';
 
 /**
@@ -17,18 +20,33 @@ export const EuiComboBoxOptionAppendPrepend = <T,>({
   children,
   option,
   classNamePrefix,
+  marginSize = 'xs',
 }: PropsWithChildren & {
   option?: EuiComboBoxOptionOption<T>;
   classNamePrefix?: string;
+  marginSize?: 's' | 'xs' | 'xxs';
 }) => {
+  const { euiTheme } = useEuiTheme();
+  const margin = euiTheme.size[marginSize];
+
   return (
     <>
       {option?.prepend && (
-        <span className={`${classNamePrefix}__prepend`}>{option.prepend}</span>
+        <span
+          className={`${classNamePrefix}__prepend`}
+          css={logicalStyle('margin-right', margin)}
+        >
+          {option.prepend}
+        </span>
       )}
       {children}
       {option?.append && (
-        <span className={`${classNamePrefix}__append`}>{option.append}</span>
+        <span
+          className={`${classNamePrefix}__append`}
+          css={logicalStyle('margin-left', margin)}
+        >
+          {option.append}
+        </span>
       )}
     </>
   );

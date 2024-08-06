@@ -18,14 +18,6 @@
     margin: ($euiSizeXS + 1px) $euiSizeXS 0 0;
   }
 
-  &__prepend {
-    margin-right: $euiSizeXS;
-  }
-
-  &__append {
-    margin-left: $euiSizeXS;
-  }
-
   /* Fix append/prepend vertical alignment */
   .euiBadge__text {
     display: flex;

@@ -340,6 +340,7 @@ export class EuiComboBoxInput<T> extends Component<
           <EuiComboBoxOptionAppendPrepend
             option={this.asPlainText ? selectedOptions?.[0] : undefined}
             classNamePrefix="euiComboBoxPlainTextSelection"
+            marginSize="xxs"
           >
             <input
               aria-activedescendant={focusedOptionId}

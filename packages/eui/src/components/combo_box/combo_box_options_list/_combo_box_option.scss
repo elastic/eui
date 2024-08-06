@@ -54,14 +54,6 @@
     margin-left: $euiSizeXS;
   }
 
-  &__prepend {
-    margin-right: $euiSizeS;
-  }
-
-  &__append {
-    margin-left: $euiSizeS;
-  }
-
   /* Fix vertical alignment of EuiIcons in prepend/append nodes */
   &__prepend,
   &__append {

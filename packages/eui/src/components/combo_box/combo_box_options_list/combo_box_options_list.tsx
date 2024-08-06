@@ -214,6 +214,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
           <EuiComboBoxOptionAppendPrepend
             option={option}
             classNamePrefix="euiComboBoxOption"
+            marginSize="s"
           >
             <span className="euiComboBoxOption__content">
               {renderOption

@@ -54,7 +54,6 @@
       &__prepend,
       &__append {
         flex-shrink: 0;
-        margin-inline: $euiSizeXS / 2;
         display: flex; /* Vertically centers any icons */
       }
 
