@@ -9,7 +9,7 @@ exports[`EuiComboBox renders 1`] = `
     class="euiPopover euiInputPopover emotion-euiPopover-block-EuiInputPopover"
   >
     <div
-      class="euiFormControlLayout emotion-euiComboBox__formControlLayout"
+      class="euiFormControlLayout emotion-euiComboBox__formControlLayout-multiSelect"
     >
       <div
         class="euiFormControlLayout__childrenWrapper"
@@ -69,7 +69,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
         class="euiPopover euiPopover-isOpen euiInputPopover emotion-euiPopover-block-EuiInputPopover"
       >
         <div
-          class="euiFormControlLayout emotion-euiComboBox__formControlLayout"
+          class="euiFormControlLayout emotion-euiComboBox__formControlLayout-multiSelect"
         >
           <div
             class="euiFormControlLayout__childrenWrapper"

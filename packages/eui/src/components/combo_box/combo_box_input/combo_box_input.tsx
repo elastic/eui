@@ -338,6 +338,12 @@ export class EuiComboBoxInput<T> extends Component<
               : undefined,
             isInGroup && styles.inGroup,
           ];
+          const formLayoutStyles = [
+            styles.formLayout.euiComboBox__formControlLayout,
+            !singleSelection && styles.formLayout.multiSelect,
+            isInGroup && !append && styles.formLayout.prependOnly,
+            isInGroup && !prepend && styles.formLayout.appendOnly,
+          ];
 
           return (
             <EuiFormControlLayout
@@ -350,7 +356,7 @@ export class EuiComboBoxInput<T> extends Component<
               fullWidth={fullWidth}
               prepend={prepend}
               append={append}
-              css={!singleSelection && styles.euiComboBox__formControlLayout}
+              css={formLayoutStyles}
             >
               <div
                 css={cssStyles}

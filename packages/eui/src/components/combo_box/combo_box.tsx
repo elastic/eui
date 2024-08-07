@@ -771,9 +771,6 @@ export class EuiComboBox<T> extends Component<
     );
 
     const classes = classNames('euiComboBox', className, {
-      'euiComboBox--compressed': compressed,
-      'euiComboBox--prepended': prepend,
-      'euiComboBox--appended': append,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isOpen': isListOpen,
