@@ -11,10 +11,12 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
+  mathWithUnits,
   euiScrollBarStyles,
   euiTextBreakWord,
   euiTextTruncate,
 } from '../../../global_styling';
+import { euiTitle } from '../../title/title.styles';
 
 export const LIST_MAX_HEIGHT = 200;
 
@@ -65,6 +67,18 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
         .euiIcon {
           display: block;
         }
+      }
+
+      .euiComboBoxTitle {
+        display: flex;
+        ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+        /* Force each title to be the same height as an option, so that the virtualized scroll logic works */
+        ${logicalCSS(
+          'padding-top',
+          mathWithUnits(euiTheme.size.s, (x) => x + 1)
+        )}
+        ${logicalCSS('padding-bottom', euiTheme.size.xs)}
+        ${euiTitle(euiThemeContext, 'xxxs')}
       }
     `,
 
