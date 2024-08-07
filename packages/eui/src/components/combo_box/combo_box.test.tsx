@@ -361,9 +361,6 @@ describe('EuiComboBox', () => {
         expect(container.innerHTML).toContain(
           'euiFormControlLayout--fullWidth'
         );
-        expect(container.innerHTML).toContain(
-          'euiComboBox__inputWrap--fullWidth'
-        );
       });
 
       test('autoFocus', () => {

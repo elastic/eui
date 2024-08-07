@@ -2,138 +2,13 @@
 // stylelint-disable max-nesting-depth
 
 .euiComboBox {
-  /**
-   * 1. Allow pills to truncate their text with an ellipsis.
-   * 2. Don't allow pills/placeholder to overlap with the caret, loading icon or clear button.
-   * 3. The height on combo can be larger than normal text inputs except for single-selection comboboxes.
-   */
-
-  &:not(.euiComboBox--appended, .euiComboBox--prepended) {
-    .euiFormControlLayout {
-      height: auto; /* 3 */
-    }
-  }
-
   .euiComboBox__inputWrap {
-    @include euiFormControlStyle($includeStates: false, $includeSizes: true);
-    @include euiFormControlSize(auto, $includeAlternates: true);
-
-    padding: $euiSizeXS $euiSizeS;
-    padding-right: var(--eui-form-control-layout-icons-padding, $euiSizeS); /* 2 */
-    display: flex; /* 1 */
-    outline: none; // Fixes an intermittent focus ring in Firefox
-
     .euiComboBoxPill {
       $inputMinWidth: $euiSize;
 
       // Ensure the input doesn't drop to the next line when the EuiBadge has a very long text
       // Overrides the default EuiBadge max-width that is 100%
       max-width: calc(100% - #{$euiSizeXS * .5} - #{$inputMinWidth});
-    }
-
-    &:not(.euiComboBox__inputWrap--noWrap) {
-      padding-top: $euiSizeXS;
-      padding-bottom: $euiSizeXS;
-      padding-left: $euiSizeXS;
-      height: auto;  /* 3 */
-      flex-wrap: wrap; /* 1 */
-      align-content: flex-start;
-      cursor: text;
-    }
-
-    &.euiComboBox__inputWrap--noWrap {
-      align-items: center;
-    }
-
-    // Match placeholder and plain text position to EuiFieldText
-    &.euiComboBox__inputWrap--plainText {
-      padding-inline-start: $euiSizeS;
-    }
-
-    .euiComboBoxPlainTextSelection {
-      &__prepend,
-      &__append {
-        flex-shrink: 0;
-        display: flex; /* Vertically centers any icons */
-      }
-
-      &__prepend {
-        margin-inline-start: $euiSizeXS;
-      }
-
-      &__append {
-        margin-inline-end: $euiSizeXS;
-      }
-    }
-  }
-
-  /**
-   * 1. Force field height to match other field heights.
-   * 2. Force input height to expand to fill this element.
-   * 3. Reset input appearance to mimic text
-   * 4. Ensure that no input states are visible on the hidden input
-   */
-  .euiComboBox__input {
-    block-size: $euiSizeL; /* 2 */
-    min-inline-size: 2px;
-    max-inline-size: 100%;
-    margin: $euiSizeXS;
-
-    /* 3 */
-    background: transparent;
-    @include euiFormControlText;
-
-    &:disabled {
-      @include euiFormControlDisabledStyle;
-    }
-
-    /* 4 */
-    // stylelint-disable declaration-no-important
-    appearance: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
-    // stylelint-enable declaration-no-important
-  }
-
-  &.euiComboBox-isOpen {
-    .euiComboBox__inputWrap {
-      @include euiFormControlFocusStyle;
-
-      &--compressed {
-        @include euiFormControlFocusStyle($borderOnly: true);
-      }
-    }
-  }
-
-  &.euiComboBox-isInvalid {
-    .euiComboBox__inputWrap {
-      @include euiFormControlInvalidStyle;
-    }
-  }
-
-  &.euiComboBox-isDisabled {
-    .euiComboBox__inputWrap {
-      // stylelint-disable property-no-vendor-prefix
-      @include euiFormControlDisabledStyle;
-      -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors
-    }
-
-    // overrides the `cursor: text;` that displays on hover for combo boxes that allow multiple pills
-    .euiComboBox__inputWrap,
-    .euiComboBoxPill {
-      cursor: not-allowed;
-    }
-  }
-
-  &.euiComboBox--compressed {
-    .euiComboBox__inputWrap {
-      line-height: $euiFormControlCompressedHeight; /* 2 */
-      padding-block: 0;
-
-      &--plainText {
-        padding-inline-start: $euiSizeXS;
-      }
     }
   }
 }
