@@ -26,7 +26,7 @@ import { keys, useCombinedRefs, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiFocusTrap } from '../focus_trap';
-import { euiFormVariables } from '../form/form.styles';
+import { euiFormMaxWidth } from '../form/form.styles';
 
 import { EuiPopover, EuiPopoverProps } from './popover';
 
@@ -83,7 +83,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 }) => {
   const classes = classnames('euiInputPopover', className);
   const euiTheme = useEuiTheme();
-  const form = euiFormVariables(euiTheme);
+  const formMaxWidth = euiFormMaxWidth(euiTheme);
 
   /**
    * Ref setup
@@ -211,7 +211,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   return (
     <EuiPopover
       className={classes}
-      css={css(fullWidth ? undefined : logicalCSS('max-width', form.maxWidth))}
+      css={css(fullWidth ? undefined : logicalCSS('max-width', formMaxWidth))}
       display={display}
       button={input}
       popoverRef={inputRef}
