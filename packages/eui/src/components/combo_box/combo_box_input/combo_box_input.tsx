@@ -320,6 +320,7 @@ export class EuiComboBoxInput<T> extends Component<
           const styles = stylesMemoizer(euiComboBoxInputStyles);
           const cssStyles = [
             styles.euiComboBoxInputWrapper,
+            !singleSelection && styles.multiSelect,
             compressed ? styles.compressed : styles.uncompressed,
             ...(this.asPlainText || showPlaceholder
               ? [

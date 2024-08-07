@@ -16,7 +16,7 @@ exports[`EuiComboBox renders 1`] = `
         style="--euiFormControlRightIconsCount: 1;"
       >
         <div
-          class="euiComboBox__inputWrap emotion-euiComboBoxInputWrapper"
+          class="euiComboBox__inputWrap emotion-euiComboBoxInputWrapper-multiSelect"
           data-test-subj="comboBoxInput"
           tabindex="-1"
         >
@@ -76,7 +76,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
             style="--euiFormControlRightIconsCount: 1;"
           >
             <div
-              class="euiComboBox__inputWrap emotion-euiComboBoxInputWrapper-open"
+              class="euiComboBox__inputWrap emotion-euiComboBoxInputWrapper-multiSelect-open"
               data-test-subj="comboBoxInput"
               tabindex="-1"
             >

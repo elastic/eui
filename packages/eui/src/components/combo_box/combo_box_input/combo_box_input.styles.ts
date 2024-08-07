@@ -25,6 +25,8 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     euiComboBoxInputWrapper: css`
       ${euiFormControlDefaultShadow(euiThemeContext)}
       display: flex;
+    `,
+    multiSelect: css`
       flex-wrap: wrap;
     `,
     uncompressed: `
