@@ -23,7 +23,7 @@ export const fontScale: _EuiThemeFontScales = {
   m: 1, // 16px
   l: 1.25, // 20px
   xl: 1.5, // 24px
-  xxl: 2.875, // 30px
+  xxl: 1.875, // 30px
 };
 
 // Families & base font settings
