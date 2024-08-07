@@ -13,6 +13,7 @@ import {
   logicalCSS,
   euiScrollBarStyles,
   euiTextBreakWord,
+  euiTextTruncate,
 } from '../../../global_styling';
 
 export const LIST_MAX_HEIGHT = 200;
@@ -31,6 +32,39 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
         disable clicks on text */
       .euiTextTruncate {
         pointer-events: none;
+      }
+
+      /* We're being lazy here about child selectors/specificity, because EuiComboBox
+       * will be rewritten to use EuiSelectable in the future anyway */
+      .euiComboBoxOption__contentWrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      .euiComboBoxOption__content {
+        flex: 1;
+        text-align: start;
+        ${euiTextTruncate()}
+      }
+
+      .euiComboBoxOption__emptyStateText {
+        flex: 1;
+        text-align: start;
+
+        /* Override EuiText's <p> styling */
+        ${logicalCSS('margin-bottom', 0)}
+      }
+
+      .euiComboBoxOption__enterBadge {
+        ${logicalCSS('margin-left', euiTheme.size.xs)}
+      }
+
+      /* Fix vertical alignment of EuiIcons in prepend/append nodes */
+      .euiComboBoxOption__prepend,
+      .euiComboBoxOption__append {
+        .euiIcon {
+          display: block;
+        }
       }
     `,
 
