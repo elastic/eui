@@ -15,19 +15,21 @@ import {
   ListChildComponentProps,
 } from 'react-window';
 
+import {
+  RenderWithEuiStylesMemoizer,
+  htmlIdGenerator,
+} from '../../../services';
+import { CommonProps } from '../../common';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
 import { EuiMark } from '../../mark';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
-import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import {
   EuiFilterSelectItem,
   FilterChecked,
 } from '../../filter_group/filter_select_item';
-import { htmlIdGenerator } from '../../../services';
-import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge';
 import { EuiTextTruncate } from '../../text_truncate';
 import { EuiInputPopoverWidthContext } from '../../popover/input_popover';
@@ -39,6 +41,11 @@ import {
   OptionHandler,
 } from '../types';
 import { EuiComboBoxOptionAppendPrepend } from '../utils';
+import { EuiComboBoxTitle } from './combo_box_title';
+import {
+  euiComboBoxOptionListStyles,
+  LIST_MAX_HEIGHT,
+} from './combo_box_options_list.styles';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   activeOptionIndex?: number;
@@ -328,7 +335,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       ...rest
     } = this.props;
 
-    let emptyStateContent;
+    let emptyStateContent: ReactNode;
 
     if (isLoading) {
       emptyStateContent = (
@@ -449,44 +456,53 @@ export class EuiComboBoxOptionsList<T> extends Component<
       );
     }
 
-    const emptyState = emptyStateContent ? (
-      <EuiText size="xs" className="euiComboBoxOptionsList__empty">
-        {emptyStateContent}
-      </EuiText>
-    ) : undefined;
-
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;
     const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
 
     // bounded by max-height of .euiComboBoxOptionsList
-    const boundedHeight = height > 200 ? 200 : height;
-
-    const optionsList = (
-      <FixedSizeList
-        className="euiComboBoxOptionsList__virtualization"
-        height={boundedHeight}
-        onScroll={onScroll}
-        itemCount={matchingOptions.length}
-        itemSize={rowHeight}
-        itemData={matchingOptions}
-        ref={this.setListRef}
-        innerElementType={this.ListInnerElement}
-        width={this.context}
-      >
-        {this.ListRow}
-      </FixedSizeList>
-    );
+    const boundedHeight = height > LIST_MAX_HEIGHT ? LIST_MAX_HEIGHT : height;
 
     return (
-      <div
-        className="euiComboBoxOptionsList"
-        data-test-subj={classNames('comboBoxOptionsList', dataTestSubj)}
-        ref={listRef}
-        {...rest}
-      >
-        {emptyState || optionsList}
-      </div>
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiComboBoxOptionListStyles);
+          return (
+            <div
+              css={styles.euiComboBoxOptionList}
+              className="euiComboBoxOptionsList"
+              data-test-subj={classNames('comboBoxOptionsList', dataTestSubj)}
+              ref={listRef}
+              {...rest}
+            >
+              {emptyStateContent ? (
+                <EuiText
+                  size="xs"
+                  css={styles.euiComboBoxOptionsList__empty}
+                  className="euiComboBoxOptionsList__empty"
+                >
+                  {emptyStateContent}
+                </EuiText>
+              ) : (
+                <FixedSizeList
+                  css={styles.euiComboBoxOptionList__virtualization}
+                  className="euiComboBoxOptionsList__virtualization"
+                  height={boundedHeight}
+                  onScroll={onScroll}
+                  itemCount={matchingOptions.length}
+                  itemSize={rowHeight}
+                  itemData={matchingOptions}
+                  ref={this.setListRef}
+                  innerElementType={this.ListInnerElement}
+                  width={this.context}
+                >
+                  {this.ListRow}
+                </FixedSizeList>
+              )}
+            </div>
+          );
+        }}
+      </RenderWithEuiStylesMemoizer>
     );
   }
 }

@@ -153,11 +153,11 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
             data-focus-lock-disabled="disabled"
           >
             <div
-              class="euiComboBoxOptionsList"
+              class="euiComboBoxOptionsList emotion-euiComboBoxOptionList"
               data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
             >
               <div
-                class="euiComboBoxOptionsList__virtualization"
+                class="euiComboBoxOptionsList__virtualization emotion-euiComboBoxOptionList__virtualization"
                 style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
               >
                 <div
