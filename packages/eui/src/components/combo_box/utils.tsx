@@ -34,7 +34,7 @@ export const EuiComboBoxOptionAppendPrepend = <T,>({
       {option?.prepend && (
         <span
           className={`${classNamePrefix}__prepend`}
-          css={logicalStyle('margin-right', margin)}
+          css={{ ...logicalStyle('margin-right', margin), ...centerIcons }}
         >
           {option.prepend}
         </span>
@@ -43,7 +43,7 @@ export const EuiComboBoxOptionAppendPrepend = <T,>({
       {option?.append && (
         <span
           className={`${classNamePrefix}__append`}
-          css={logicalStyle('margin-left', margin)}
+          css={{ ...logicalStyle('margin-left', margin), ...centerIcons }}
         >
           {option.append}
         </span>
@@ -51,3 +51,6 @@ export const EuiComboBoxOptionAppendPrepend = <T,>({
     </>
   );
 };
+
+// Fix vertical alignment of EuiIcons in prepend/append nodes
+const centerIcons = { '.euiIcon': { display: 'block' } };

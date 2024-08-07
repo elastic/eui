@@ -47,6 +47,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     plainText: {
       plainText: css`
+        align-items: center;
         cursor: text;
       `,
       compressed: `

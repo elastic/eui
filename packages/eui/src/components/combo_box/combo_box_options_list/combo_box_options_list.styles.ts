@@ -61,14 +61,6 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       }
 
-      /* Fix vertical alignment of EuiIcons in prepend/append nodes */
-      .euiComboBoxOption__prepend,
-      .euiComboBoxOption__append {
-        .euiIcon {
-          display: block;
-        }
-      }
-
       .euiComboBoxTitle {
         display: flex;
         ${logicalCSS('padding-horizontal', euiTheme.size.s)}
