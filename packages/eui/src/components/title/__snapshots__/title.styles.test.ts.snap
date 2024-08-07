@@ -3,13 +3,22 @@
 exports[`euiTitle mixin returns a static object of title font properties for each title size l 1`] = `
 {
   "color": "#1a1c21",
+  "fontSize": "2.1429rem",
+  "fontWeight": 600,
+  "lineHeight": "2.5714rem",
+}
+`;
+
+exports[`euiTitle mixin returns a static object of title font properties for each title size m 1`] = `
+{
+  "color": "#1a1c21",
   "fontSize": "1.7143rem",
   "fontWeight": 600,
   "lineHeight": "2.0000rem",
 }
 `;
 
-exports[`euiTitle mixin returns a static object of title font properties for each title size m 1`] = `
+exports[`euiTitle mixin returns a static object of title font properties for each title size s 1`] = `
 {
   "color": "#1a1c21",
   "fontSize": "1.4286rem",
@@ -18,7 +27,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 }
 `;
 
-exports[`euiTitle mixin returns a static object of title font properties for each title size s 1`] = `
+exports[`euiTitle mixin returns a static object of title font properties for each title size xs 1`] = `
 {
   "color": "#1a1c21",
   "fontSize": "1.1429rem",
@@ -27,7 +36,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 }
 `;
 
-exports[`euiTitle mixin returns a static object of title font properties for each title size xs 1`] = `
+exports[`euiTitle mixin returns a static object of title font properties for each title size xxs 1`] = `
 {
   "color": "#1a1c21",
   "fontSize": "1.0000rem",
@@ -36,19 +45,10 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 }
 `;
 
-exports[`euiTitle mixin returns a static object of title font properties for each title size xxs 1`] = `
-{
-  "color": "#1a1c21",
-  "fontSize": "0.8571rem",
-  "fontWeight": 600,
-  "lineHeight": "1.1429rem",
-}
-`;
-
 exports[`euiTitle mixin returns a static object of title font properties for each title size xxxs 1`] = `
 {
   "color": "#1a1c21",
-  "fontSize": "0.7857rem",
+  "fontSize": "0.8571rem",
   "fontWeight": 600,
   "lineHeight": "1.1429rem",
 }

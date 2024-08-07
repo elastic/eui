@@ -58,7 +58,7 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xxl 1`] = `
 {
-  "fontSize": "2.875em",
+  "fontSize": "1.875em",
   "lineHeight": "1.2495",
 }
 `;
@@ -114,8 +114,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xxl 1`] = `
 {
-  "fontSize": "46px",
-  "lineHeight": "56px",
+  "fontSize": "30px",
+  "lineHeight": "36px",
 }
 `;
 
@@ -170,8 +170,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xxl 1`] = `
 {
-  "fontSize": "3.2857rem",
-  "lineHeight": "4.0000rem",
+  "fontSize": "2.1429rem",
+  "lineHeight": "2.5714rem",
 }
 `;
 

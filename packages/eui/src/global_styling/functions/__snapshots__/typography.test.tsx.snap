@@ -10,7 +10,7 @@ exports[`euiFontSizeFromScale scale xl 1`] = `"1.7143rem"`;
 
 exports[`euiFontSizeFromScale scale xs 1`] = `"0.8571rem"`;
 
-exports[`euiFontSizeFromScale scale xxl 1`] = `"3.2857rem"`;
+exports[`euiFontSizeFromScale scale xxl 1`] = `"2.1429rem"`;
 
 exports[`euiFontSizeFromScale scale xxs 1`] = `"0.7857rem"`;
 
@@ -32,7 +32,7 @@ exports[`euiLineHeightFromBaseline scale xl 1`] = `"2.0000rem"`;
 
 exports[`euiLineHeightFromBaseline scale xs 1`] = `"1.1429rem"`;
 
-exports[`euiLineHeightFromBaseline scale xxl 1`] = `"4.0000rem"`;
+exports[`euiLineHeightFromBaseline scale xxl 1`] = `"2.5714rem"`;
 
 exports[`euiLineHeightFromBaseline scale xxs 1`] = `"1.1429rem"`;
 
