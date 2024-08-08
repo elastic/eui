@@ -6,6 +6,17 @@
  * Side Public License, v 1.
  */
 
-export type { EuiComboBoxOptionsListProps } from './combo_box_options_list';
-export { EuiComboBoxOptionsList } from './combo_box_options_list';
-export { EuiComboBoxTitle } from './combo_box_title';
+import { css } from '@emotion/react';
+
+import { logicalCSS } from '../../global_styling';
+
+export const euiComboBoxStyles = {
+  euiComboBox: css`
+    position: relative;
+    ${logicalCSS('width', '100%')}
+    ${logicalCSS('height', 'auto')}
+  `,
+  fullWidth: css`
+    ${logicalCSS('max-width', '100%')}
+  `,
+};

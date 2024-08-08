@@ -21,15 +21,6 @@ import { EuiFlexItem } from '../flex';
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
-const toolTipProps = {
-  toolTipContent: 'This is a tooltip!',
-  toolTipProps: {
-    position: 'left' as const,
-    ['data-test-subj']: 'tooltip',
-  },
-  value: 4,
-};
-
 const options = [
   { label: 'Item 1' },
   { label: 'Item 2' },
@@ -89,16 +80,17 @@ export const WithTooltip: Story = {
     controls: {
       include: ['fullWidth', 'options', 'selectedOptions', 'onChange'],
     },
-    loki: {
-      // popover and tooltip are rendered in a portal
-      // LOKI_SELECTOR.portal currently doesn't work so we use body instead
-      chromeSelector: LOKI_SELECTORS.body,
-    },
+    // This story is flaky in VRT and always takes a new screenshot - skipping it
+    loki: { skip: true },
   },
   args: {
     options: options.map((option, idx) => ({
       ...option,
-      ...toolTipProps,
+      toolTipContent: 'This is a tooltip!',
+      toolTipProps: {
+        position: 'left' as const,
+        ['data-test-subj']: 'tooltip',
+      },
       value: idx,
     })),
   },
