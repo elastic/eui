@@ -223,16 +223,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 offset={7}
                 anchorPosition="downRight"
                 css={{ marginInlineStart: 'auto' }} // Align to right
-                focusTrapProps={{
-                  // We need to override the default EuiPopover `onClickOutside` since the anchor is separate from the actual button
-                  onClickOutside: (event: Event) => {
-                    if (
-                      actionsButton?.contains(event.target as Node) === false
-                    ) {
-                      setIsPopoverOpen(false);
-                    }
-                  },
-                }}
                 button={headerCellActionButton}
                 isOpen={isPopoverOpen}
                 closePopover={() => setIsPopoverOpen(false)}
