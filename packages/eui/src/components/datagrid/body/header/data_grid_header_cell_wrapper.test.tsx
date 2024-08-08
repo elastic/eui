@@ -95,6 +95,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                 />
               </div>
             }
+            onInteractiveChildrenFound={[Function]}
             renderFocusTrap={true}
             shouldDisableInteractives={false}
             updateCellFocusContext={[Function]}
@@ -141,6 +142,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
               <EuiFocusTrap
                 clickOutsideDisables={true}
                 disabled={true}
+                onDeactivation={[Function]}
               >
                 <EuiFocusTrapClass
                   clickOutsideDisables={true}
@@ -148,6 +150,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                   disabled={true}
                   gapMode="padding"
                   noIsolation={true}
+                  onDeactivation={[Function]}
                   returnFocus={true}
                   scrollLock={false}
                 >
@@ -156,6 +159,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                     enabled={false}
                     noIsolation={true}
                     onClickOutside={[Function]}
+                    onDeactivation={[Function]}
                     returnFocus={true}
                     scrollLock={false}
                   >
@@ -164,6 +168,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                       enabled={false}
                       noIsolation={true}
                       onClickOutside={[Function]}
+                      onDeactivation={[Function]}
                       returnFocus={true}
                       scrollLock={false}
                       sideCar={[Function]}
@@ -422,6 +427,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
               />
             </div>
           }
+          onInteractiveChildrenFound={[Function]}
           renderFocusTrap={true}
           shouldDisableInteractives={false}
           updateCellFocusContext={[Function]}
@@ -470,6 +476,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
             <EuiFocusTrap
               clickOutsideDisables={true}
               disabled={true}
+              onDeactivation={[Function]}
             >
               <EuiFocusTrapClass
                 clickOutsideDisables={true}
@@ -477,6 +484,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                 disabled={true}
                 gapMode="padding"
                 noIsolation={true}
+                onDeactivation={[Function]}
                 returnFocus={true}
                 scrollLock={false}
               >
@@ -485,6 +493,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                   enabled={false}
                   noIsolation={true}
                   onClickOutside={[Function]}
+                  onDeactivation={[Function]}
                   returnFocus={true}
                   scrollLock={false}
                 >
@@ -493,6 +502,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
                     enabled={false}
                     noIsolation={true}
                     onClickOutside={[Function]}
+                    onDeactivation={[Function]}
                     returnFocus={true}
                     scrollLock={false}
                     sideCar={[Function]}
