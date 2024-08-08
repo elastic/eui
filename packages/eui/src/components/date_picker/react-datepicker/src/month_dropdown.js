@@ -25,6 +25,9 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+
+import { EuiIcon } from "../../../icon";
+
 import MonthDropdownOptions from "./month_dropdown_options";
 import * as utils from "./date_utils";
 
@@ -146,10 +149,15 @@ export default class MonthDropdown extends React.Component {
         monthNames[this.props.month]
       } is currently selected.`}
     >
-      <span className="react-datepicker__month-read-view--down-arrow" />
       <span className="react-datepicker__month-read-view--selected-month">
         {monthNames[this.props.month]}
       </span>
+      <EuiIcon
+        type="arrowDown"
+        size="s"
+        color="subdued"
+        className="react-datepicker__month-read-view--down-arrow"
+      />
     </div>
   );
 

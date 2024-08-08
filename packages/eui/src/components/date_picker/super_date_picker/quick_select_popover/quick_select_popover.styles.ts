@@ -10,15 +10,15 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
 import { logicalCSS } from '../../../../global_styling';
-import { euiFormVariables } from '../../../form/form.styles';
+import { euiFormMaxWidth } from '../../../form/form.styles';
 
 export const euiQuickSelectPopoverStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { maxWidth } = euiFormVariables(euiThemeContext);
+  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
 
   return {
     euiQuickSelectPopover: css`
-      ${logicalCSS('width', maxWidth)}
+      ${logicalCSS('width', formMaxWidth)}
       ${logicalCSS('max-width', '100%')}
     `,
     euiQuickSelectPopoverButton: css`

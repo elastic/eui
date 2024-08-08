@@ -4490,7 +4490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-react@npm:^7.22.5":
+"@babel/preset-react@npm:^7.22.5, @babel/preset-react@npm:^7.24.7":
   version: 7.24.7
   resolution: "@babel/preset-react@npm:7.24.7"
   dependencies:
@@ -5749,6 +5749,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-website@workspace:packages/website"
   dependencies:
+    "@babel/preset-react": "npm:^7.24.7"
     "@docusaurus/core": "npm:3.4.0"
     "@docusaurus/module-type-aliases": "npm:3.4.0"
     "@docusaurus/preset-classic": "npm:3.4.0"

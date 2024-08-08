@@ -275,22 +275,36 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="react-datepicker"
+        class="react-datepicker emotion-euiReactDatePicker"
       >
         <div
           class="react-datepicker__triangle"
         />
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          aria-label="Previous Month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          title="Previous Month"
           type="button"
         >
-          Previous Month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortLeft"
+          />
         </button>
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--next"
+          aria-label="Next month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          title="Next month"
           type="button"
         >
-          Next month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortRight"
+          />
         </button>
         <div
           class="react-datepicker__month-container"
@@ -298,11 +312,6 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
           <div
             class="react-datepicker__header"
           >
-            <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              January 2000
-            </div>
             <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >
@@ -316,13 +325,15 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__month-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__month-read-view--selected-month"
                   >
                     January
                   </span>
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
               <div
@@ -335,13 +346,15 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__year-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__year-read-view--selected-year"
                   >
                     2000
                   </span>
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
             </div>
@@ -788,22 +801,36 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
         </span>
       </div>
       <div
-        class="react-datepicker"
+        class="react-datepicker emotion-euiReactDatePicker"
       >
         <div
           class="react-datepicker__triangle"
         />
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          aria-label="Previous Month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          title="Previous Month"
           type="button"
         >
-          Previous Month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortLeft"
+          />
         </button>
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--next"
+          aria-label="Next month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          title="Next month"
           type="button"
         >
-          Next month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortRight"
+          />
         </button>
         <div
           class="react-datepicker__month-container"
@@ -811,11 +838,6 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
           <div
             class="react-datepicker__header"
           >
-            <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              January 2000
-            </div>
             <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >
@@ -829,13 +851,15 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__month-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__month-read-view--selected-month"
                   >
                     January
                   </span>
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
               <div
@@ -848,13 +872,15 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__year-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__year-read-view--selected-year"
                   >
                     2000
                   </span>
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
             </div>

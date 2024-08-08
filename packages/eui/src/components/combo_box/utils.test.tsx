@@ -25,7 +25,7 @@ describe('EuiComboBoxOptionAppendPrepend', () => {
     ).toMatchInlineSnapshot(`
       <div>
         <span
-          class="testA__prepend"
+          class="testA__prepend emotion-EuiComboBoxOptionAppendPrepend"
         >
           Hello
         </span>
@@ -46,7 +46,7 @@ describe('EuiComboBoxOptionAppendPrepend', () => {
       <div>
         Hello world
         <span
-          class="testB__append"
+          class="testB__append emotion-EuiComboBoxOptionAppendPrepend"
         >
           world
         </span>
@@ -65,13 +65,13 @@ describe('EuiComboBoxOptionAppendPrepend', () => {
     ).toMatchInlineSnapshot(`
       <div>
         <span
-          class="testC__prepend"
+          class="testC__prepend emotion-EuiComboBoxOptionAppendPrepend"
         >
           Hello
         </span>
         Hello world
         <span
-          class="testC__append"
+          class="testC__append emotion-EuiComboBoxOptionAppendPrepend"
         >
           world
         </span>

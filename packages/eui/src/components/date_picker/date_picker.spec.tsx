@@ -21,10 +21,7 @@ describe('EuiDatePicker', () => {
     it('renders a calendar inline', () => {
       cy.realMount(<EuiDatePicker inline />);
 
-      cy.get('.euiDatePicker--inline').should(
-        'have.class',
-        'euiDatePicker--shadow'
-      );
+      cy.get('[class*="euiDatePicker-inline-shadow"').should('exist');
       cy.get('.react-datepicker').should('exist');
 
       cy.realPress('Tab');
@@ -37,10 +34,8 @@ describe('EuiDatePicker', () => {
     it('renders without a shadow', () => {
       cy.realMount(<EuiDatePicker inline shadow={false} />);
 
-      cy.get('.euiDatePicker--inline').should(
-        'not.have.class',
-        'euiDatePicker--shadow'
-      );
+      cy.get('[class*="euiDatePicker-inline"').should('exist');
+      cy.get('[class*="euiDatePicker-inline-shadow"').should('not.exist');
     });
 
     it('renders form control icons below the date picker', () => {
