@@ -16,12 +16,10 @@ import React, {
 import { FocusableElement, tabbable } from 'tabbable';
 
 import { keys } from '../../../../services';
+import { isDOMNode } from '../../../../utils';
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
-
-// DOM Node type guard
-const isDOMNode = (el: any): el is Node => el instanceof Node;
 
 /**
  * This internal utility component is used by all cells, both header and body/footer cells.
