@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import moment from 'moment';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import {
@@ -35,7 +36,6 @@ const meta: Meta<EuiDatePickerRangeProps> = {
     prepend: '',
   },
 };
-enableFunctionToggleControls(meta, ['onFocus', 'onBlur']);
 
 export default meta;
 type Story = StoryObj<EuiDatePickerRangeProps>;
@@ -52,27 +52,82 @@ export const Playground: Story = {
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
+enableFunctionToggleControls(Playground, ['onFocus', 'onBlur']);
+
+export const Inline: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'inline',
+        'shadow',
+        'disabled',
+        'readOnly',
+        'isInvalid',
+        'isLoading',
+      ],
+    },
+  },
+  args: {
+    startDateControl: (
+      <EuiDatePicker showTimeSelect={true} selected={moment('01/01/1970')} />
+    ),
+    endDateControl: (
+      <EuiDatePicker showTimeSelect={true} selected={moment('01/07/1970')} />
+    ),
+    inline: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
+
+export const RestrictedSelection: Story = {
+  parameters: {
+    controls: {
+      include: [],
+    },
+  },
+  args: {
+    startDateControl: (
+      <EuiDatePicker
+        selected={moment('01/01/1970')}
+        maxDate={moment('01/04/1970')}
+        highlightDates={[moment('12/30/1969')]}
+      />
+    ),
+    endDateControl: (
+      <EuiDatePicker
+        selected={moment('01/07/1970')}
+        maxDate={moment('01/04/1970')}
+      />
+    ),
+    inline: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
 
 const StatefulPlayground = ({
   startDateControl,
   endDateControl,
   ...rest
 }: EuiDatePickerRangeProps) => {
-  const [selectedStartDate, setSelectedStartDate] = useState<
-    moment.Moment | null | undefined
-  >();
-  const [selectedEndDate, setSelectedEndDate] = useState<
-    moment.Moment | null | undefined
-  >();
+  const [selectedStartDate, setSelectedStartDate] = useState<moment.Moment>(
+    startDateControl.props.selected
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<moment.Moment>(
+    endDateControl.props.selected
+  );
 
   const startControl = React.cloneElement(startDateControl, {
     selected: selectedStartDate,
     onChange: setSelectedStartDate,
+    startDate: selectedStartDate,
+    endDate: selectedEndDate,
   });
 
   const endControl = React.cloneElement(endDateControl, {
     selected: selectedEndDate,
     onChange: setSelectedEndDate,
+    startDate: selectedStartDate,
+    endDate: selectedEndDate,
   });
 
   return (

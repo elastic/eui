@@ -3,14 +3,14 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
-const versionsLogFile =
-  rootDir + '/src-docs/src/components/guide_page/versions.json';
+const websiteDir = path.resolve(__dirname, '../../website');
+const versionsLogFile = path.join(websiteDir, '/static/versions.json');
 
 /**
  * Writes to the above `versions.json` file (which is what the docs version switcher
  * uses to generate its list of versions) with the latest release
  *
- * To test locally, run `node -e "require('./scripts/update-versions-log')('vX.Y.Z')"`
+ * To test locally, run `node -e "require('./scripts/update-versions-log').updateDocsVersionSwitcher('vX.Y.Z')"`
  */
 const updateDocsVersionSwitcher = (versionToAdd, file = versionsLogFile) => {
   if (!versionToAdd) {

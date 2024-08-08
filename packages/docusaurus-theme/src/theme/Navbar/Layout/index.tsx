@@ -14,6 +14,8 @@ import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 const getStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     navbar: css`
+      --ifm-navbar-padding-horizontal: ${euiTheme.size.m};
+      --ifm-navbar-padding-vertical: ${euiTheme.size.s};
       --ifm-navbar-item-padding-horizontal: 0;
       --ifm-navbar-item-padding-vertical: 0;
 

@@ -22,6 +22,12 @@ import {
 } from '../../global_styling';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
+// There are multiple components that only need the form max-width size &
+// don't need the extra overhead/color computing expense of every form var.
+// For microperf, we're making this its own util
+export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
+  mathWithUnits(euiTheme.size.base, (x) => x * 25);
+
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const isColorDark = colorMode === 'DARK';
@@ -33,7 +39,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const controlCompressedHeight = euiTheme.size.xl;
 
   const sizes = {
-    maxWidth: mathWithUnits(euiTheme.size.base, (x) => x * 25),
+    maxWidth: euiFormMaxWidth(euiThemeContext),
     controlHeight: controlHeight,
     controlCompressedHeight: controlCompressedHeight,
     controlPadding: euiTheme.size.m,
