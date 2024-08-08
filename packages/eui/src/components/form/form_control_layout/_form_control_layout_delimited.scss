@@ -35,7 +35,7 @@
   }
 
   // Target when the euiFormControlLayout is readOnly without specifying the full class name in case it ever changes
-  &[class*='--readOnly'] {
+  &[class*='-readOnly'] {
     @include euiFormControlReadOnlyStyle;
 
     .euiFormControlLayout__childrenWrapper {

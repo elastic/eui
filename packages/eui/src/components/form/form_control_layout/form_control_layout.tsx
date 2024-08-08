@@ -101,9 +101,9 @@ export const EuiFormControlLayout: FunctionComponent<
   const classes = classNames(
     'euiFormControlLayout',
     {
-      'euiFormControlLayout--readOnly': readOnly,
       'euiFormControlLayout--group': prepend || append,
       'euiFormControlLayout-isDisabled': isDisabled,
+      'euiFormControlLayout-readOnly': readOnly,
     },
     className
   );

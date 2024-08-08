@@ -139,16 +139,4 @@
       }
     }
   }
-
-  // ReadOnly alterations
-  &.euiFormControlLayout--readOnly {
-    cursor: default;
-    background: $euiFormInputGroupLabelBackground;
-    border-color: transparent;
-    box-shadow: inset 0 0 0 1px $euiFormInputGroupLabelBackground;
-
-    input {
-      background-color: $euiFormBackgroundReadOnlyColor;
-    }
-  }
 }

@@ -418,7 +418,7 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
 
 exports[`EuiFormControlLayout props readOnly is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--readOnly emotion-euiFormControlLayout"
+  class="euiFormControlLayout euiFormControlLayout-readOnly emotion-euiFormControlLayout"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
