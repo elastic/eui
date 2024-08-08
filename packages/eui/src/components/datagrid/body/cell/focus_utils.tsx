@@ -13,7 +13,7 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import { tabbable } from 'tabbable';
+import { FocusableElement, tabbable } from 'tabbable';
 
 import { keys } from '../../../../services';
 import { EuiFocusTrap } from '../../../focus_trap';
@@ -39,6 +39,9 @@ export const HandleInteractiveChildren: FunctionComponent<
     updateCellFocusContext: Function;
     renderFocusTrap?: boolean;
     shouldDisableInteractives?: boolean;
+    onInteractiveChildrenFound?: (
+      interavticeChildren: FocusableElement[]
+    ) => void;
   }
 > = ({
   cellEl,
@@ -46,19 +49,18 @@ export const HandleInteractiveChildren: FunctionComponent<
   updateCellFocusContext,
   renderFocusTrap,
   shouldDisableInteractives = true,
+  onInteractiveChildrenFound,
 }) => {
-  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(
-    !shouldDisableInteractives
-  );
+  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   useEffect(() => {
     setHasInteractiveChildren(!shouldDisableInteractives);
   }, [shouldDisableInteractives]);
-
   // On mount, disable all interactive children
   useEffect(() => {
     if (cellEl && shouldDisableInteractives) {
       const interactiveChildren = disableInteractives(cellEl);
+      onInteractiveChildrenFound?.(interactiveChildren);
 
       if (renderFocusTrap) {
         setHasInteractiveChildren(interactiveChildren!.length > 0);

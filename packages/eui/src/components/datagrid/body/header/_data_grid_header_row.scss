@@ -48,26 +48,18 @@
       align-items: center;
       gap: $euiSizeXS;
       width: 100%;
-      // balance out additional button target size in header height,
-      // prevents increased header cell height
-      margin: -$euiSizeXS 0;
       border-radius: $euiBorderRadiusSmall;
       font-weight: $euiFontWeightBold;
       outline: none;
-    }
 
-    &.euiDataGridHeaderCell--isInteractive {
-      .euiDataGridHeaderCell__button {
-        @include euiFocusRing;
-
-        color: $euiFocusRingColor;
-      }
-    }
-
-    &:not(.euiDataGridHeaderCell--isInteractive) {
-      .euiDataGridHeaderCell__button:focus-visible {
+      &:focus-visible {
         outline: none;
       }
+    }
+
+    [data-focus-lock-disabled="false"] .euiDataGridHeaderCell__button {
+      @include euiFocusRing;
+      color: $euiFocusRingColor;
     }
 
     .euiDataGridHeaderCell__content {

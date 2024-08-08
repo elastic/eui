@@ -120,12 +120,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           showColumnActions,
         });
 
-      const [isInteractive, setInteractive] = useState(false);
-
-      const onSetInteractive = useCallback((interactive: boolean) => {
-        setInteractive(interactive);
-      }, []);
-
       const focusActionsButton = useCallback(() => {
         actionsButton?.focus();
       }, [actionsButton]);
@@ -148,7 +142,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           [`euiDataGridHeaderCell--${columnType}`]: columnType,
           'euiDataGridHeaderCell--hasColumnActions': showColumnActions,
           'euiDataGridHeaderCell--isActionsPopoverOpen': isPopoverOpen,
-          'euiDataGridHeaderCell--isInteractive': isInteractive,
         },
         displayHeaderCellProps?.className
       );
@@ -197,7 +190,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           isActionsButtonFocused={isActionsButtonFocused}
           actionsButton={actionsButton}
           focusActionsButton={focusActionsButton}
-          setInteractive={onSetInteractive}
           aria-label={title}
           aria-describedby={sortingAriaId}
         >
