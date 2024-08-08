@@ -11,9 +11,10 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
-import { euiFormVariables } from '../form.styles';
+import { euiFormControlDefaultShadow, euiFormVariables } from '../form.styles';
 
 export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   return {
@@ -34,6 +35,38 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '100%')}
       ${logicalCSS('width', '100%')}
     `,
+
+    group: {
+      group: css`
+        display: flex;
+        align-items: stretch;
+
+        /* Account for inner box-shadow style border */
+        padding: ${euiTheme.border.width.thin};
+        ${euiFormControlDefaultShadow(euiThemeContext, {
+          withBackground: false,
+        })}
+        background-color: ${form.backgroundColor};
+        /* Keep backgrounds inside border radius */
+        overflow: hidden;
+
+        /* Force the stretch of any children so they expand the full height of the control */
+        > *,
+        .euiButtonEmpty,
+        .euiText,
+        .euiFormLabel,
+        .euiButtonIcon {
+          ${logicalCSS('height', '100%')}
+        }
+      `,
+      // Skipping css`` to avoid repeated compressed/uncompressed classNames
+      uncompressed: `
+        border-radius: ${form.controlBorderRadius};
+      `,
+      compressed: `
+        border-radius: ${form.controlCompressedBorderRadius};
+      `,
+    },
 
     children: {
       euiFormControlLayout__childrenWrapper: css`

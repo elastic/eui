@@ -98,10 +98,12 @@ export const EuiFormControlLayout: FunctionComponent<
     ...rest
   } = props;
 
+  const isGroup = !!(prepend || append);
+
   const classes = classNames(
     'euiFormControlLayout',
     {
-      'euiFormControlLayout--group': prepend || append,
+      'euiFormControlLayout--group': isGroup,
       'euiFormControlLayout-isDisabled': isDisabled,
       'euiFormControlLayout-readOnly': readOnly,
     },
@@ -114,11 +116,17 @@ export const EuiFormControlLayout: FunctionComponent<
     styles.euiFormControlLayout,
     compressed ? styles.compressed : styles.uncompressed,
     fullWidth ? styles.fullWidth : styles.formWidth,
+    ...(isGroup
+      ? [
+          styles.group.group,
+          compressed ? styles.group.compressed : styles.group.uncompressed,
+        ]
+      : []),
   ];
 
   const childrenWrapperStyles = [
     styles.children.euiFormControlLayout__childrenWrapper,
-    (prepend || append) && styles.children.inGroup,
+    isGroup && styles.children.inGroup,
   ];
 
   const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;

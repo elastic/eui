@@ -188,11 +188,12 @@ describe('euiFormControlStyles', () => {
 
         
             
-          /* We use inset box-shadow instead of border to skip extra hight calculations */
+          
           border: none;
           box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
+        
+          
           background-color: #f9fbfd;
-
           background-repeat: no-repeat;
           background-size: 0% 100%;
           background-image: linear-gradient(to top,
@@ -204,7 +205,6 @@ describe('euiFormControlStyles', () => {
 
           @media screen and (prefers-reduced-motion: no-preference) {
             transition:
-              box-shadow 150ms ease-in,
               background-image 150ms ease-in,
               background-size 150ms ease-in,
               background-color 150ms ease-in;

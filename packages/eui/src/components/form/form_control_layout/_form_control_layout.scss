@@ -1,26 +1,7 @@
 // TODO: Address nesting during Emotion conversion, if possible
 // stylelint-disable max-nesting-depth
 
-/**
- * 1. Account for inner box-shadow style border
- */
-
 .euiFormControlLayout--group {
-  // Match just the regular drop shadow of inputs
-  @include euiFormControlDefaultShadow;
-  display: flex;
-  align-items: stretch;
-  padding: 1px; /* 1 */
-
-  // Force the stretch of any children so they expand the full height of the control
-  > *,
-  .euiButtonEmpty,
-  .euiText,
-  .euiFormLabel,
-  .euiButtonIcon {
-    height: 100%;
-  }
-
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
     @include euiTextTruncate;
@@ -116,10 +97,6 @@
   // Compressed alterations
 
   &.euiFormControlLayout--compressed {
-    @include euiFormControlDefaultShadow($borderOnly: true);
-    border-radius: $euiBorderRadius / 2;
-    overflow: hidden; // Keeps backgrounds inside border radius
-
     // Padding
     .euiFormLabel,
     .euiText:not(.euiFormControlLayoutDelimited__delimiter) {
