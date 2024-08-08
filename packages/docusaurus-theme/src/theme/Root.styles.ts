@@ -38,6 +38,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const fontSizeXS = euiFontSizeFromScale('xs', euiTheme);
   const fontSizeXXS = euiFontSizeFromScale('xxs', euiTheme);
 
+  const lineHeightXXL = '2rem';
   const lineHeightXL = '1.75rem';
   const lineHeightL = euiLineHeightFromBaseline('s', euiTheme);
   const lineHeightM = '1.5rem';
@@ -51,10 +52,14 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       [data-theme='dark']:root {
         /* EUI theme variables */
         --eui-background-color-primary: ${useEuiBackgroundColor('primary')};
-        --eui-background-color-primary-opaque: ${useEuiBackgroundColor('primary', { method: 'opaque' })};
+        --eui-background-color-primary-opaque: ${useEuiBackgroundColor(
+          'primary',
+          { method: 'opaque' }
+        )};
         --eui-background-color-success: ${useEuiBackgroundColor('success')};
         --eui-background-color-danger: ${useEuiBackgroundColor('danger')};
         --eui-background-color-warning: ${useEuiBackgroundColor('warning')};
+        --eui-background-color-accent: ${useEuiBackgroundColor('accent')};
 
         --eui-color-danger-text: ${euiTheme.colors.dangerText};
 
@@ -83,6 +88,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --eui-font-size-xxs: ${fontSizeXXS};
 
         --eui-line-height-base: ${lineHeightXL};
+        --eui-line-height-xxl: ${lineHeightXXL};
         --eui-line-height-xl: ${lineHeightXL};
         --eui-line-height-l: ${lineHeightL};
         --eui-line-height-m: ${lineHeightM};
@@ -100,6 +106,13 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-font-size-base: var(--eui-font-size-base);
         --ifm-font-weight-base: ${fontBase.fontWeight};
         --ifm-line-height-base: var(--eui-line-height-base);
+
+        --ifm-h1-font-size: var(--eui-font-size-xl);
+        --ifm-h2-font-size: var(--eui-font-size-l);
+        --ifm-h3-font-size: var(--eui-font-size-m);
+        --ifm-h4-font-size: var(--eui-font-size-s);
+        --ifm-h5-font-size: var(--eui-font-size-xs);
+        --ifm-h6-font-size: var(--eui-font-size-xxs);
 
         --ifm-global-radius: ${euiTheme.border.radius.small};
       }
@@ -120,6 +133,22 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         color: inherit;
         border-radius: 0;
         font-size: inherit;
+        font-family: inherit;
+      }
+
+      input,
+      textarea,
+      select {
+        fontSize: 1rem; // Inherit from html root
+        font-family: inherit;
+      }
+
+      dd {
+        margin: 0;
+      }
+
+      figure {
+        margin: 0;
       }
 
       /* global styles */

@@ -16,7 +16,6 @@ const getFooterStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     root: css`
       background: #1c1e23; // Color not available in EUI
-      border-radius: ${euiTheme.size.s} ${euiTheme.size.s} 0 0;
       padding: ${euiTheme.size.l};
       text-align: center;
     `,

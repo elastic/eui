@@ -34,8 +34,8 @@ const sharedProps = {
     },
   ],
 };
-const firstExpectedLevel = /^0px 255[.0-9]+px$/;
-const secondExpectedLevel = /^71[.0-9]+px 0px$/;
+const firstExpectedLevel = /^0px 256[.0-9]+px$/;
+const secondExpectedLevel = /^72[.0-9]+px 0px$/;
 
 describe('EuiRange', () => {
   const props = {
@@ -59,7 +59,7 @@ describe('EuiRange', () => {
     cy.get('.euiRangeTick')
       .last()
       .should('have.css', 'inset-inline-start')
-      .and('match', /^319[.0-9]+px$/);
+      .and('match', /^320[.0-9]+px$/);
 
     // Levels - present in both EuiRangeLevels and EuiHighlight
     cy.get('.euiRangeLevel')
@@ -84,12 +84,12 @@ describe('EuiRange', () => {
     cy.get('.euiRangeHighlight > div')
       .should('have.css', 'margin-inline-start', '0px')
       .should('have.css', 'inline-size')
-      .and('match', /^163[.0-9]+px$/);
+      .and('match', /^164[.0-9]+px$/);
 
     // Tooltip
     cy.get('.euiRangeTooltip > output')
       .should('have.css', 'inset-inline-start')
-      .and('match', /^155[.0-9]+px$/);
+      .and('match', /^156[.0-9]+px$/);
   };
 
   it('renders ticks, levels, highlights, and tooltips in their correct positions', () => {

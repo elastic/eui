@@ -25,6 +25,9 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+
+import { EuiIcon } from "../../../icon";
+
 import MonthYearDropdownOptions from "./month_year_dropdown_options";
 import {
   addMonths,
@@ -147,10 +150,15 @@ export default class MonthYearDropdown extends React.Component {
         tabIndex={this.props.accessibleMode ? "0" : undefined}
         aria-label={`Button. Open the month selector. ${yearMonth} is currently selected.`}
       >
-        <span className="react-datepicker__month-year-read-view--down-arrow" />
         <span className="react-datepicker__month-year-read-view--selected-month-year">
           {yearMonth}
         </span>
+        <EuiIcon
+          type="arrowDown"
+          size="s"
+          color="subdued"
+          className="react-datepicker__month-year-read-view--down-arrow"
+        />
       </div>
     );
   };
