@@ -2,11 +2,15 @@
 
 set -euo pipefail
 
+buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
+
 DOCKER_OPTIONS=(
   -i --rm
   --env GIT_COMMITTER_NAME=test
   --env GIT_COMMITTER_EMAIL=test
   --env HOME=/tmp
+  --env BUILDKITE_REPORTER_CYPRESS_TOKEN="$(retry 5 vault read -field=cypress_token "${buildkite_analytics_vault}")"
+  --env BUILDKITE_REPORTER_JEST_TOKEN="$(retry 5 vault read -field=jest_token "${buildkite_analytics_vault}")"
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
