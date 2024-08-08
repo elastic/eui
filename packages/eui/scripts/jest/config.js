@@ -17,6 +17,10 @@ const isBuildkiteTestReporterAvailable =
   typeof buildkiteTestReporterToken === 'string' &&
   buildkiteTestReporterToken !== '';
 
+if (isBuildkiteTestReporterAvailable) {
+  console.log('Buildkite Test Analytics reporter available');
+}
+
 console.log(`Running tests on React v${reactVersion}`);
 
 /** @type {import('jest').Config} */

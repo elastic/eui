@@ -10,6 +10,10 @@ const isBuildkiteReporterAvailable =
   typeof process.env.BUILDKITE_ANALYTICS_CYPRESS_TOKEN === 'string' &&
   process.env.BUILDKITE_ANALYTICS_CYPRESS_TOKEN !== '';
 
+if (isBuildkiteReporterAvailable) {
+  console.log('Buildkite Test Analytics reporter available');
+}
+
 export default defineConfig({
   retries: {
     runMode: 2,
