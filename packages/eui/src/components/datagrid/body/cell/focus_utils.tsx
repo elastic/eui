@@ -66,7 +66,7 @@ export const HandleInteractiveChildren: FunctionComponent<
         setHasInteractiveChildren(interactiveChildren!.length > 0);
       }
     }
-  }, [cellEl, renderFocusTrap, shouldDisableInteractives]);
+  }, [cellEl, renderFocusTrap]);
 
   // Ensure that any interactive children that are clicked update the latest cell focus context
   useEffect(() => {
@@ -98,8 +98,6 @@ export const FocusTrappedChildren: FunctionComponent<
   PropsWithChildren & { cellEl: HTMLElement }
 > = ({ cellEl, children }) => {
   const [isCellEntered, setIsCellEntered] = useState(false);
-  // active = if focus is in or on header cell
-  const [isActive, setActive] = useState(false);
   const [isExited, setExited] = useState(false);
 
   useEffect(() => {
@@ -116,33 +114,25 @@ export const FocusTrappedChildren: FunctionComponent<
         case keys.ENTER:
         case keys.F2:
           event.preventDefault();
-          setIsCellEntered((isCellEntered) => {
-            if (!isCellEntered) {
-              // set cell to active for initial ENTER
-              if (!isActive) {
-                setActive(true);
-              }
-              return true;
-            }
-
-            return isCellEntered;
-          });
+          setIsCellEntered(true);
           break;
 
         case keys.ESCAPE:
           event.preventDefault();
           setIsCellEntered((isCellEntered) => {
             if (isCellEntered === true) {
-              if (!isActive) {
-                // return active state to cell
-                // e.g. when closing inner content
-                setActive(true);
-              } else {
-                // exit cell content
-                setActive(false);
-                requestAnimationFrame(() => cellEl.focus()); // move focus to cell
-                return false;
-              }
+              setExited(true);
+              requestAnimationFrame(() => cellEl.focus()); // move focus to cell
+              return false;
+            } else if (
+              // when opened content is closed, we don't want Escape to return to the cell
+              // immediately but instead return focus to a trigger as expected
+              isCellEntered === false &&
+              isDOMNode(event.target) &&
+              isDOMNode(event.currentTarget) &&
+              event.currentTarget.contains(event.target)
+            ) {
+              return true;
             }
 
             return isCellEntered;
@@ -151,54 +141,24 @@ export const FocusTrappedChildren: FunctionComponent<
       }
     };
 
-    const onFocusIn = (e: FocusEvent) => {
-      if (
-        isDOMNode(e.target) &&
-        isDOMNode(e.relatedTarget) &&
-        isDOMNode(e.currentTarget)
-      ) {
-        if (
-          isActive &&
-          e.currentTarget.contains(e.target) &&
-          !e.currentTarget.contains(e.relatedTarget)
-        ) {
-          setActive(true);
-        }
-      }
-    };
-
-    const onFocusOut = (e: FocusEvent) => {
-      if (
-        isDOMNode(e.target) &&
-        isDOMNode(e.relatedTarget) &&
-        isDOMNode(e.currentTarget)
-      ) {
-        if (isActive && isCellEntered) {
-          if (
-            e.currentTarget.contains(e.target) &&
-            !e.currentTarget.contains(e.relatedTarget)
-          ) {
-            setActive(false);
-          }
-        }
-
-        setExited(e.relatedTarget === e.currentTarget);
-      }
-    };
+    // ensures the SR text is reset when navigating to a different cell
+    const onBlur = () => setExited(false);
 
     cellEl.addEventListener('keyup', onKeyUp);
-    cellEl.addEventListener('focusin', onFocusIn);
-    cellEl.addEventListener('focusout', onFocusOut);
+    cellEl.addEventListener('blur', onBlur);
 
     return () => {
       cellEl.removeEventListener('keyup', onKeyUp);
-      cellEl.removeEventListener('focusin', onFocusIn);
-      cellEl.removeEventListener('focusout', onFocusOut);
+      cellEl.removeEventListener('blur', onBlur);
     };
-  }, [cellEl, isActive, isCellEntered]);
+  }, [cellEl]);
 
   return (
-    <EuiFocusTrap disabled={!isCellEntered} clickOutsideDisables={true}>
+    <EuiFocusTrap
+      disabled={!isCellEntered}
+      clickOutsideDisables={true}
+      onDeactivation={() => setIsCellEntered(false)}
+    >
       {children}
 
       <EuiScreenReaderOnly>
@@ -239,7 +199,8 @@ const enableAndFocusInteractives = (cell: HTMLElement) => {
   const interactives = cell.querySelectorAll('[data-euigrid-tab-managed]');
   interactives.forEach((element, i) => {
     element.setAttribute('tabIndex', '0');
-    if (i === 0) {
+    // focus the first element only if we're on the cell and not inside of it
+    if (i === 0 && !cell.contains(document.activeElement)) {
       (element as HTMLElement).focus();
     }
   });
