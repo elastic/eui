@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# include utils
+source .buildkite/scripts/common/utils.sh
+
 buildkite_analytics_vault="secret/ci/elastic-eui/buildkite-test-analytics"
 
 DOCKER_OPTIONS=(
