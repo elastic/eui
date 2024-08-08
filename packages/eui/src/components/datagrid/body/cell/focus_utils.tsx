@@ -64,7 +64,12 @@ export const HandleInteractiveChildren: FunctionComponent<
         setHasInteractiveChildren(interactiveChildren!.length > 0);
       }
     }
-  }, [cellEl, renderFocusTrap]);
+  }, [
+    cellEl,
+    renderFocusTrap,
+    shouldDisableInteractives,
+    onInteractiveChildrenFound,
+  ]);
 
   // Ensure that any interactive children that are clicked update the latest cell focus context
   useEffect(() => {

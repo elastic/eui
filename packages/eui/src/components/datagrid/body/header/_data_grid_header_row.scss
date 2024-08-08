@@ -57,7 +57,7 @@
       }
     }
 
-    [data-focus-lock-disabled="false"] .euiDataGridHeaderCell__button {
+    [data-focus-lock-disabled='false'] .euiDataGridHeaderCell__button {
       @include euiFocusRing;
       color: $euiFocusRingColor;
     }
