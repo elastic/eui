@@ -336,7 +336,7 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
     2
   </span>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
 </div>
 `;
@@ -381,7 +381,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
     1
   </span>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
 </div>
 `;
@@ -396,7 +396,7 @@ exports[`EuiFormControlLayout props one prepend node is rendered with className 
     1
   </span>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
 </div>
 `;
@@ -411,7 +411,7 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
     1
   </label>
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
 </div>
 `;

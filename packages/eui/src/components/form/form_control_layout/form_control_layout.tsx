@@ -127,6 +127,8 @@ export const EuiFormControlLayout: FunctionComponent<
   const childrenWrapperStyles = [
     styles.children.euiFormControlLayout__childrenWrapper,
     isGroup && styles.children.inGroup,
+    isGroup && !append && styles.children.prependOnly,
+    isGroup && !prepend && styles.children.appendOnly,
   ];
 
   const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;

@@ -7,7 +7,6 @@
     @include euiTextTruncate;
     flex-shrink: 0;
     height: 100%;
-    border-radius: 0;
 
     // ICONS
 
@@ -15,7 +14,6 @@
     .euiIcon {
       padding: 0 $euiSizeS;
       width: $euiSizeXL;
-      border-radius: 0;
       background-color: $euiFormInputGroupLabelBackground;
     }
 
@@ -37,7 +35,6 @@
   .euiButtonIcon {
     padding: 0 $euiSizeS;
     width: $euiSizeXL;
-    border-radius: 0;
 
     &:not(:focus) {
       background-color: $euiFormInputGroupLabelBackground;
@@ -54,7 +51,6 @@
     background-color: $euiFormInputGroupLabelBackground;
     padding: 0 $euiSizeS;
     width: $euiSizeXL;
-    border-radius: 0;
   }
 
   > .euiFormControlLayout__prepend,

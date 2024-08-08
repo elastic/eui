@@ -76,6 +76,14 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
         flex-grow: 1;
         overflow: hidden; /* Ensure truncation works in children elements */
       `,
+      prependOnly: css`
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+      `,
+      appendOnly: `
+        ${logicalCSS('border-top-left-radius', 'inherit')}
+        ${logicalCSS('border-bottom-left-radius', 'inherit')}
+      `,
     },
   };
 };
