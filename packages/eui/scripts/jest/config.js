@@ -12,7 +12,7 @@ const reactVersion = process.env.REACT_VERSION;
  * Buildkite reporter requires a token to be set and this token is only
  * available when jest is running in our CI pipeline.
  */
-const buildkiteTestReporterToken = process.env.BUILDKITE_REPORTER_JEST_TOKEN;
+const buildkiteTestReporterToken = process.env.BUILDKITE_ANALYTICS_JEST_TOKEN;
 const isBuildkiteTestReporterAvailable =
   typeof buildkiteTestReporterToken === 'string' &&
   buildkiteTestReporterToken !== '';

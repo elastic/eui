@@ -9,8 +9,8 @@ DOCKER_OPTIONS=(
   --env GIT_COMMITTER_NAME=test
   --env GIT_COMMITTER_EMAIL=test
   --env HOME=/tmp
-  --env BUILDKITE_REPORTER_CYPRESS_TOKEN="$(retry 5 vault read -field=cypress_token "${buildkite_analytics_vault}")"
-  --env BUILDKITE_REPORTER_JEST_TOKEN="$(retry 5 vault read -field=jest_token "${buildkite_analytics_vault}")"
+  --env BUILDKITE_ANALYTICS_CYPRESS_TOKEN="$(retry 5 vault read -field=cypress_token "${buildkite_analytics_vault}")"
+  --env BUILDKITE_ANALYTICS_JEST_TOKEN="$(retry 5 vault read -field=jest_token "${buildkite_analytics_vault}")"
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
