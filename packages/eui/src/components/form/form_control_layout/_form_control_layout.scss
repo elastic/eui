@@ -4,32 +4,6 @@
 .euiFormControlLayout {
   // Let the height expand as needed
   @include euiFormControlSize($includeAlternates: true);
-
-  // TODO: Remove this once all form controls are on Emotion/setting padding via CSS variables
-  $iconSize: map-get($euiFormControlIconSizes, 'medium');
-  $iconPadding: $euiFormControlPadding;
-  $marginBetweenIcons: $euiFormControlPadding / 2;
-
-  // The `.euiFormControlLayout-{num}icons` selector string is also declared in `src/components/form/form_control_layout/_num_icons.test.ts`.
-  // It is the same for all form controls so as to lessen the total classes exported,
-  // we use a form control layout class on all form controls.
-  @for $i from 1 through 5 {
-    &--#{$i}icons {
-      $paddingOffset: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
-
-      --eui-form-control-layout-icons-padding: #{$paddingOffset}; // Set this for flexible usage, e.g. components that need extra specificity
-      padding-right: $paddingOffset;
-
-      &[class*='compressed'] {
-        $iconSizeCompressed: map-get($euiFormControlIconSizes, 'small');
-        $iconPaddingCompressed: $euiFormControlCompressedPadding;
-        $paddingOffset: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIcons) * $i;
-
-        --eui-form-control-layout-icons-padding: #{$paddingOffset};
-        padding-right: $paddingOffset;
-      }
-    }
-  }
 }
 
 .euiFormControlLayout__childrenWrapper {
