@@ -10,12 +10,15 @@ import React from 'react';
 import moment from 'moment';
 import { fireEvent } from '@testing-library/react';
 import { render, waitForEuiPopoverOpen } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
 import { EuiDatePicker } from './date_picker';
 import { EuiContext } from '../context';
 
 describe('EuiDatePicker', () => {
+  shouldRenderCustomStyles(<EuiDatePicker />, { skip: { style: true } }); // style is spread to another element than className
+
   it('renders', () => {
     const { container } = render(<EuiDatePicker {...requiredProps} />);
 

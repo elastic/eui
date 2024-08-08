@@ -357,12 +357,9 @@ describe('EuiComboBox', () => {
           />
         );
 
+        expect(container.firstElementChild!.className).toContain('-fullWidth');
         expect(container.innerHTML).toContain(
           'euiFormControlLayout--fullWidth'
-        );
-        expect(container.innerHTML).toContain('euiComboBox--fullWidth');
-        expect(container.innerHTML).toContain(
-          'euiComboBox__inputWrap--fullWidth'
         );
       });
 

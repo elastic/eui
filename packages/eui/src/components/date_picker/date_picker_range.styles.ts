@@ -44,7 +44,7 @@ export const euiDatePickerRangeInlineStyles = (
         display: block !important;
 
         /* Center and point the default delimiter arrow downwards */
-        & > .euiText > [data-icon-type='sortRight'] {
+        .euiFormControlLayoutDelimited__delimiter .euiIcon {
           transform: rotate(90deg);
           margin-inline: auto;
         }
@@ -87,21 +87,16 @@ export const euiDatePickerRangeInlineStyles = (
         }
       }
 
-      /* Make sure the inline date picker sets is absolute positioning based off the correct parent */
+      /* Make sure the inline date picker sets its absolute positioning based off the correct parent */
       .react-datepicker {
         position: relative;
-      }
-
-      /* The time list creates some weird spacing when inline. Remove its padding to make it less horizontally unbalanced */
-      .react-datepicker__time-list {
-        padding: 0;
       }
     `,
     responsive: css`
       ${containerQuery(268)}
     `,
     responsiveWithTimeSelect: css`
-      ${containerQuery(350)}
+      ${containerQuery(374)}
     `,
     shadow: css`
       .euiFormControlLayoutDelimited {

@@ -23,7 +23,7 @@ export const euiDatePopoverContentStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('max-width', '100%')}
 
       ${euiMaxBreakpoint(euiThemeContext, 's')} {
-          ${logicalCSS('width', '284px')}/* TODO: $euiDatePickerCalendarWidth */
+          ${logicalCSS('width', '284px')}
         }
       }
     `,
