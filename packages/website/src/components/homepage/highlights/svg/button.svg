@@ -1,0 +1,22 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="200" fill="var(--svg-fill-background)" />
+    <path d="M50 56C50 55.4477 50.4477 55 51 55H144C144.552 55 145 55.4477 145 56V75H50V56Z"
+        fill="var(--svg-fill-primary-background)" />
+    <rect x="65" y="62" width="65" height="6" rx="1" fill="var(--svg-fill-primary-text)" />
+    <rect x="50" y="125" width="95" height="20" rx="1" fill="var(--svg-fill-accent-background)" />
+    <rect x="65" y="132" width="45" height="6" rx="1" fill="var(--svg-fill-accent)" />
+    <rect x="115" y="132" width="15" height="6" rx="1" fill="var(--svg-fill-accent)" />
+    <rect x="155" y="55" width="95" height="20" rx="1" fill="var(--svg-fill-primary-text)" />
+    <path d="M169 61V65M169 69L169 65M169 65H165M169 65H173" stroke="var(--svg-fill-background)" stroke-linecap="round" />
+    <rect x="183" y="62" width="52" height="6" rx="1" fill="var(--svg-fill-background)" />
+    <rect x="50" y="90" width="95" height="20" rx="1" fill="var(--svg-fill-lightShade)" />
+    <path d="M130 98L134 102L138 98" stroke="var(--svg-fill-mediumShade)" stroke-linecap="round" />
+    <rect x="65" y="97" width="44" height="6" rx="1" fill="var(--svg-fill-mediumShade)" />
+    <path d="M123 90V110" stroke="var(--svg-fill-background)" stroke-width="2" stroke-linecap="round" />
+    <rect x="155" y="90" width="95" height="20" rx="1" fill="var(--svg-fill-mediumShade)" />
+    <rect x="200" y="97" width="35" height="6" rx="1" fill="var(--svg-fill-lightShade)" />
+    <rect x="170" y="97" width="25" height="6" rx="1" fill="var(--svg-fill-lightShade)" />
+    <rect x="155" y="125" width="95" height="20" rx="1" fill="var(--svg-fill-accent)" />
+    <rect x="170" y="132" width="50" height="6" rx="1" fill="var(--svg-fill-background)" />
+    <path d="M236 139L240 135M240 135L236 131M240 135L230 135" stroke="var(--svg-fill-background)" stroke-linecap="round" />
+</svg>

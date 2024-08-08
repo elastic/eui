@@ -1,0 +1,86 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="200" fill="var(--svg-fill-background)" />
+    <g clipPath="url(#clip0_1377_21534)">
+        <rect x="40" y="72" width="22" height="22" rx="1" fill="var(--svg-fill-primary-background)" />
+        <mask id="path-3-outside-1_1377_21534" maskUnits="userSpaceOnUse" x="40" y="92" width="22"
+            height="24" fill="var(--svg-fill-background)">
+            <rect fill="white" x="40" y="92" width="22" height="24" />
+            <path d="M40 94H62V116H40V94Z" />
+        </mask>
+        <path d="M40 94H62V116H40V94Z" fill="var(--svg-fill-lightestShade)" />
+        <path d="M40 96H62V92H40V96Z" fill="var(--svg-fill-background)" mask="url(#path-3-outside-1_1377_21534)" />
+        <path
+            d="M40 117C40 116.448 40.4477 116 41 116H61C61.5523 116 62 116.448 62 117V137C62 137.552 61.5523 138 61 138H41C40.4477 138 40 137.552 40 137V117Z"
+            fill="var(--svg-fill-lightShade)" />
+        <path
+            d="M40 117C40 115.895 40.8954 115 42 115H60C61.1046 115 62 115.895 62 117C62 117 61.5523 117 61 117H41C40.4477 117 40 117 40 117ZM62 137C62 138.105 61.1046 139 60 139H42C40.8954 139 40 138.105 40 137C40 137 40.4477 137 41 137H61C61.5523 137 62 137 62 137ZM40 138V116V138ZM62 116V138V116Z"
+            fill="var(--svg-fill-background)" />
+        <mask id="path-7-outside-2_1377_21534" maskUnits="userSpaceOnUse" x="40" y="136" width="22"
+            height="24" fill="var(--svg-fill-background)">
+            <rect fill="white" x="40" y="136" width="22" height="24" />
+            <path d="M40 138H62V160H40V138Z" />
+        </mask>
+        <path d="M40 138H62V160H40V138Z" fill="var(--svg-fill-lightestShade)" />
+        <path d="M40 140H62V136H40V140Z" fill="var(--svg-fill-background)" mask="url(#path-7-outside-2_1377_21534)" />
+    </g>
+    <g clipPath="url(#clip1_1377_21534)">
+        <mask id="path-9-inside-3_1377_21534" fill="white">
+            <path d="M62 72H200V160H62V72Z" />
+        </mask>
+        <rect x="62" y="72" width="138" height="22" rx="1" fill="var(--svg-fill-primary-background)" />
+        <mask id="path-12-outside-4_1377_21534" maskUnits="userSpaceOnUse" x="62" y="92" width="138"
+            height="24" fill="var(--svg-fill-background)">
+            <rect fill="white" x="62" y="92" width="138" height="24" />
+            <path d="M62 94H200V116H62V94Z" />
+        </mask>
+        <path d="M62 94H200V116H62V94Z" fill="var(--svg-fill-lightestShade)" />
+        <path d="M62 96H200V92H62V96Z" fill="var(--svg-fill-background)" mask="url(#path-12-outside-4_1377_21534)" />
+        <path
+            d="M62 117C62 116.448 62.4477 116 63 116H199C199.552 116 200 116.448 200 117V137C200 137.552 199.552 138 199 138H63C62.4477 138 62 137.552 62 137V117Z"
+            fill="var(--svg-fill-lightShade)" />
+        <path
+            d="M62 117C62 115.895 62.8954 115 64 115H198C199.105 115 200 115.895 200 117C200 117 199.552 117 199 117H63C62.4477 117 62 117 62 117ZM200 137C200 138.105 199.105 139 198 139H64C62.8954 139 62 138.105 62 137C62 137 62.4477 137 63 137H199C199.552 137 200 137 200 137ZM62 138V116V138ZM200 116V138V116Z"
+            fill="var(--svg-fill-background)" />
+        <mask id="path-16-outside-5_1377_21534" maskUnits="userSpaceOnUse" x="62" y="136"
+            width="138" height="24" fill="var(--svg-fill-background)">
+            <rect fill="white" x="62" y="136" width="138" height="24" />
+            <path d="M62 138H200V160H62V138Z" />
+        </mask>
+        <path d="M62 138H200V160H62V138Z" fill="var(--svg-fill-lightestShade)" />
+        <path d="M62 140H200V136H62V140Z" fill="var(--svg-fill-background)" mask="url(#path-16-outside-5_1377_21534)" />
+    </g>
+    <path d="M64 160V72H60V160H64Z" fill="var(--svg-fill-background)" mask="url(#path-9-inside-3_1377_21534)" />
+    <g clipPath="url(#clip2_1377_21534)">
+        <mask id="path-18-inside-6_1377_21534" fill="white">
+            <path d="M200 72H260V160H200V72Z" />
+        </mask>
+        <rect x="200" y="72" width="60" height="22" rx="1" fill="var(--svg-fill-primary-background)" />
+        <mask id="path-21-outside-7_1377_21534" maskUnits="userSpaceOnUse" x="200" y="92" width="60"
+            height="24" fill="var(--svg-fill-background)">
+            <rect fill="white" x="200" y="92" width="60" height="24" />
+            <path d="M200 94H260V116H200V94Z" />
+        </mask>
+        <path d="M200 94H260V116H200V94Z" fill="var(--svg-fill-lightestShade)" />
+        <path d="M200 96H260V92H200V96Z" fill="var(--svg-fill-background)" mask="url(#path-21-outside-7_1377_21534)" />
+        <path
+            d="M200 117C200 116.448 200.448 116 201 116H259C259.552 116 260 116.448 260 117V137C260 137.552 259.552 138 259 138H201C200.448 138 200 137.552 200 137V117Z"
+            fill="var(--svg-fill-lightShade)" />
+        <path
+            d="M200 117C200 115.895 200.895 115 202 115H258C259.105 115 260 115.895 260 117C260 117 259.552 117 259 117H201C200.448 117 200 117 200 117ZM260 137C260 138.105 259.105 139 258 139H202C200.895 139 200 138.105 200 137C200 137 200.448 137 201 137H259C259.552 137 260 137 260 137ZM200 138V116V138ZM260 116V138V116Z"
+            fill="var(--svg-fill-background)" />
+        <mask id="path-25-outside-8_1377_21534" maskUnits="userSpaceOnUse" x="200" y="136"
+            width="60" height="24" fill="var(--svg-fill-background)">
+            <rect fill="white" x="200" y="136" width="60" height="24" />
+            <path d="M200 138H260V160H200V138Z" />
+        </mask>
+        <path d="M200 138H260V160H200V138Z" fill="var(--svg-fill-lightestShade)" />
+        <path d="M200 140H260V136H200V140Z" fill="var(--svg-fill-background)" mask="url(#path-25-outside-8_1377_21534)" />
+    </g>
+    <path d="M202 160V72H198V160H202Z" fill="var(--svg-fill-background)" mask="url(#path-18-inside-6_1377_21534)" />
+    <rect x="200" y="40" width="60" height="20" rx="1" fill="var(--svg-fill-primary-text)" />
+    <rect x="215" y="47" width="30" height="6" rx="1" fill="var(--svg-fill-background)" />
+    <rect x="40" y="40" width="150" height="20" rx="1" fill="var(--svg-fill-lightShade)" />
+    <rect x="60" y="47" width="88" height="6" rx="1" fill="var(--svg-fill-mediumShade)" />
+    <path d="M175 48L179 52L183 48" stroke="var(--svg-fill-mediumShade)" stroke-linecap="round" />
+    <path d="M168 40V60" stroke="var(--svg-fill-background)" stroke-width="2" stroke-linecap="round" />
+</svg>
