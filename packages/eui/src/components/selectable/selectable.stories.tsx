@@ -102,13 +102,26 @@ export const Playground: Story = {
     loadingMessage: '',
     noMatchesMessage: '',
     selectableScreenReaderText: '',
+    listProps: {
+      bordered: true,
+    },
+    searchable: false, // required for typing
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
+
+export const WithSearch: Story = {
+  args: {
+    options,
+    searchable: true,
+    // setting up for easier testing/QA
     searchProps: {
       'data-test-subj': 'selectableSearchHere',
     },
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
-enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
 
 export const WithTooltip: Story = {
   parameters: {

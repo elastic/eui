@@ -11,6 +11,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
+const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 
 const config: Config = {
   title: 'Elastic UI Framework',
@@ -48,6 +49,9 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           editUrl: 'https://github.com/elastic/eui/tree/main/website/',
+        },
+        googleTagManager: googleTagManagerId && {
+          containerId: googleTagManagerId,
         },
       } satisfies Preset.Options,
     ],
@@ -89,6 +93,12 @@ const config: Config = {
           label: 'Content',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'datavizSidebar',
+          position: 'left',
+          label: 'Data visualization',
+        },
+        {
           href: 'https://github.com/elastic/eui/tree/main/packages/eui/changelogs',
           label: 'EUI Changelog',
           position: 'right',
@@ -99,6 +109,12 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
           component: 'github',
+        },
+        {
+          href: 'https://www.figma.com/community/file/964536385682658129',
+          label: 'Figma',
+          position: 'right',
+          component: 'figma',
         },
       ],
     },

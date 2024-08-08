@@ -131,3 +131,22 @@ export const withEuiStylesMemoizer = <T extends {} = {}>(
 
   return WithEuiStylesMemoizer;
 };
+
+/**
+ * Render prop alternative for complex class components
+ * Most useful for scenarios where a HOC may interfere with typing
+ */
+export const RenderWithEuiStylesMemoizer = ({
+  children,
+}: {
+  children: (stylesMemoizer: typeof useEuiMemoizedStyles) => React.ReactElement;
+}) => {
+  const memoizedStyles = useContext(EuiThemeMemoizedStylesContext);
+  const euiThemeContext = useEuiTheme();
+  const stylesMemoizer = useCallback(
+    (stylesGenerator: Function) =>
+      getMemoizedStyles(stylesGenerator, memoizedStyles, euiThemeContext),
+    [memoizedStyles, euiThemeContext]
+  );
+  return children(stylesMemoizer);
+};

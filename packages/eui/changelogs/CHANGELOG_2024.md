@@ -1,3 +1,28 @@
+## [`v95.6.0`](https://github.com/elastic/eui/releases/v95.6.0)
+
+- Updated `EuiIcon` with a new `crossInCircle` glyph ([#7924](https://github.com/elastic/eui/pull/7924))
+
+**Bug fixes**
+
+- Fixed `EuiEmptyPrompt` to correctly collapse and expand responsively when used with custom breakpoints larger than the default `xl` breakpoint ([#7935](https://github.com/elastic/eui/pull/7935))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDatePicker` to Emotion ([#7937](https://github.com/elastic/eui/pull/7937))
+  - Removed `$euiDatePickerCalendarWidth`
+  - Removed `$euiDatePickerPadding`
+  - Removed `$euiDatePickerGap`
+  - Removed `$euiDatePickerCalendarColumns`
+  - Removed `$euiDatePickerButtonSize`
+  - Removed `$euiDatePickerMinControlWidth`
+  - Removed `$euiDatePickerMaxControlWidth`
+  - Removed `@mixin datePickerCaret`
+  - Removed `@mixin datePickerArrow`
+
+**Accessibility**
+
+- Improved the experience of `EuiModal` by ensuring nested `EuiPopover` closes on `Escape` keypress instead of the modal ([#7939](https://github.com/elastic/eui/pull/7939))
+
 ## [`v95.5.0`](https://github.com/elastic/eui/releases/v95.5.0)
 
 - Added `minusInSquare` and `plusInSquare` glyphs to `EuiIcon`. ([#7875](https://github.com/elastic/eui/pull/7875))
