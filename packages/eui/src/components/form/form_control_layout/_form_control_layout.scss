@@ -6,13 +6,8 @@
   @include euiFormControlSize($includeAlternates: true);
 }
 
-.euiFormControlLayout__childrenWrapper {
-  position: relative;
-}
-
 /**
  * 1. Account for inner box-shadow style border
- * 2. Ensure truncation works in children elements
  */
 
 .euiFormControlLayout--group {
@@ -29,11 +24,6 @@
   .euiFormLabel,
   .euiButtonIcon {
     height: 100%;
-  }
-
-  .euiFormControlLayout__childrenWrapper {
-    flex-grow: 1;
-    overflow: hidden; /* 2 */
   }
 
   .euiFormControlLayout__prepend,
@@ -126,14 +116,6 @@
 
   .euiButtonEmpty {
     border-right: $euiFormInputGroupBorder;
-  }
-
-  // Any buttons after the children wrapper or inside any elements after the children wrapper
-  // Need to swap border sides
-  .euiFormControlLayout__childrenWrapper ~ .euiButtonEmpty,
-  .euiFormControlLayout__childrenWrapper ~ * .euiButtonEmpty {
-    border-right: none;
-    border-left: $euiFormInputGroupBorder;
   }
 
   // Compressed alterations

@@ -17,14 +17,17 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+
+import { EuiFormLabel } from '../form_label';
+import { useFormContext } from '../eui_form_context';
 import { getIconAffordanceStyles, isRightSideIcon } from './_num_icons';
 import {
   EuiFormControlLayoutIcons,
   EuiFormControlLayoutIconsProps,
 } from './form_control_layout_icons';
-import { CommonProps } from '../../common';
-import { EuiFormLabel } from '../form_label';
-import { useFormContext } from '../eui_form_context';
+import { euiFormControlLayoutStyles } from './form_control_layout.styles';
 
 type StringOrReactElement = string | ReactElement;
 type PrependAppendType = StringOrReactElement | StringOrReactElement[];
@@ -107,6 +110,13 @@ export const EuiFormControlLayout: FunctionComponent<
     className
   );
 
+  const styles = useEuiMemoizedStyles(euiFormControlLayoutStyles);
+
+  const childrenWrapperStyles = [
+    styles.children.euiFormControlLayout__childrenWrapper,
+    (prepend || append) && styles.children.inGroup,
+  ];
+
   const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;
   const hasRightIcon = isRightSideIcon(icon);
   const hasLeftIcon = icon && !hasRightIcon;
@@ -134,6 +144,7 @@ export const EuiFormControlLayout: FunctionComponent<
       />
       <div
         className="euiFormControlLayout__childrenWrapper"
+        css={childrenWrapperStyles}
         style={iconAffordanceStyles}
       >
         {hasLeftIcon && (
