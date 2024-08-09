@@ -37,7 +37,6 @@ export const HomeView = () => (
             <h1>Elastic UI</h1>
           </EuiTitle>
           <EuiSpacer />
-          <EuiSpacer />
           <EuiTitle size="s">
             <h2>The framework powering the Elastic Stack</h2>
           </EuiTitle>

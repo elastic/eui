@@ -97,11 +97,11 @@ export type _EuiThemeFontWeights = {
   light: CSSProperties['fontWeight'];
   /** - Default value: 400 */
   regular: CSSProperties['fontWeight'];
-  /** - Default value: 500 */
+  /** - Default value: 450 */
   medium: CSSProperties['fontWeight'];
-  /** - Default value: 600 */
+  /** - Default value: 500 */
   semiBold: CSSProperties['fontWeight'];
-  /** - Default value: 700 */
+  /** - Default value: 600 */
   bold: CSSProperties['fontWeight'];
 };
 
