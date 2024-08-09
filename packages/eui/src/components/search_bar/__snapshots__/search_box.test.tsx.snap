@@ -2,10 +2,10 @@
 
 exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
@@ -35,10 +35,10 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
 
 exports[`EuiSearchBox render - no config 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div

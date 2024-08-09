@@ -2,10 +2,10 @@
 
 exports[`EuiTextArea is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--euiTextArea emotion-euiTextArea"
+  class="euiFormControlLayout euiFormControlLayout--euiTextArea emotion-euiFormControlLayout-euiTextArea"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
   >
     <textarea
       aria-label="aria-label"

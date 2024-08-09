@@ -3,11 +3,11 @@
 exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2 emotion-euiFormControlLayout-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
   >
     <span
       class="euiFormControlLayoutDelimited__input"
@@ -34,10 +34,10 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
 
 exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayoutDelimited"
+  class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
   >
     <span
       class="euiFormControlLayoutDelimited__input"
@@ -62,10 +62,10 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
 
 exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayoutDelimited"
+  class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
   >
     <span
       class="euiFormControlLayoutDelimited__input"

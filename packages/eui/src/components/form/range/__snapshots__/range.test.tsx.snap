@@ -249,10 +249,10 @@ exports[`EuiRange props input should render 1`] = `
     class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
   />
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         aria-label="aria-label"
@@ -344,10 +344,10 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
   class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-block-EuiInputPopover"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlRightIconsCount: 1;"
     >
       <input
@@ -414,10 +414,10 @@ exports[`EuiRange props slider should display in popover 1`] = `
       class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-block-EuiInputPopover"
     >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout emotion-euiFormControlLayout"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"

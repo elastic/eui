@@ -65,10 +65,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             style="--euiFormControlRightIconsCount: 1;"
           >
             <select
@@ -107,10 +107,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
             <input
               aria-describedby="generated-id generated-id"
@@ -127,10 +127,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             style="--euiFormControlRightIconsCount: 1;"
           >
             <select
@@ -282,10 +282,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             style="--euiFormControlRightIconsCount: 1;"
           >
             <select
@@ -324,10 +324,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
             <input
               aria-describedby="generated-id generated-id"
@@ -344,10 +344,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             style="--euiFormControlRightIconsCount: 1;"
           >
             <select

@@ -20,10 +20,10 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
@@ -110,10 +110,10 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
@@ -198,16 +198,20 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group"
           >
-            <label
-              class="euiFormLabel euiFormControlLayout__prepend"
-              for="generated-id"
-            >
-              Prepend Example
-            </label>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+            >
+              <label
+                class="euiFormLabel"
+                for="generated-id"
+              >
+                Prepend Example
+              </label>
+            </div>
+            <div
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
@@ -292,10 +296,10 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
@@ -380,10 +384,10 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
               style="--euiFormControlRightIconsCount: 1;"
             >
               <input
@@ -478,10 +482,10 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
               style="--euiFormControlRightIconsCount: 1;"
             >
               <input
@@ -591,10 +595,10 @@ exports[`EuiInlineEditForm edit mode placeholder 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"
@@ -680,10 +684,10 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
           class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
                 aria-describedby="inlineEdit_generated-id"

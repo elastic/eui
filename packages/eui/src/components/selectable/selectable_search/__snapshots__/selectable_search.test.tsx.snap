@@ -2,10 +2,10 @@
 
 exports[`EuiSelectableSearch is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
@@ -36,10 +36,10 @@ exports[`EuiSelectableSearch is rendered 1`] = `
 
 exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
@@ -75,10 +75,10 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
 
 exports[`EuiSelectableSearch renders placeholder, value, name, and other remaining EuiFieldSearch props 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
   >
     <div
