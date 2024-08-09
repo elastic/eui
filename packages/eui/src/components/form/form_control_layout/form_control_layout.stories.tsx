@@ -68,10 +68,19 @@ export default meta;
 type Story = StoryObj<EuiFormControlLayoutProps>;
 
 export const Playground: Story = {
-  args: {
-    children: (
-      <EuiFieldText controlOnly aria-label="EuiFormControlLayout demo" />
-    ),
+  // Several props need to be manually applied to the child EuiFieldText as well to render correctly
+  render: ({ children, ...args }) => {
+    const { readOnly, isDisabled, fullWidth, compressed } = args;
+    const childProps = { readOnly, isDisabled, fullWidth, compressed };
+    return (
+      <EuiFormControlLayout {...args}>
+        <EuiFieldText
+          aria-label="EuiFormControlLayout demo"
+          controlOnly
+          {...childProps}
+        />
+      </EuiFormControlLayout>
+    );
   },
 };
 
