@@ -7,8 +7,8 @@ import webpackConfig from './cypress/webpack.config';
  * available when cypress is running in our CI pipeline.
  */
 const isBuildkiteReporterAvailable =
-  typeof process.env.BUILDKITE_ANALYTICS_CYPRESS_TOKEN === 'string' &&
-  process.env.BUILDKITE_ANALYTICS_CYPRESS_TOKEN !== '';
+  typeof process.env.BUILDKITE_ANALYTICS_TOKEN === 'string' &&
+  process.env.BUILDKITE_ANALYTICS_TOKEN !== '';
 
 if (isBuildkiteReporterAvailable) {
   console.log('Buildkite Test Analytics reporter available');
@@ -67,6 +67,6 @@ export default defineConfig({
     ? 'buildkite-test-collector/cypress/reporter'
     : undefined,
   reporterOptions: {
-    token_name: 'BUILDKITE_ANALYTICS_CYPRESS_TOKEN',
+    token_name: 'BUILDKITE_ANALYTICS_TOKEN',
   },
 });
