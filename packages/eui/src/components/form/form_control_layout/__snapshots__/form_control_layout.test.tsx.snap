@@ -306,18 +306,18 @@ exports[`EuiFormControlLayout props multiple appends are rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-appendOnly"
   />
-  <span
-    class="euiFormControlLayout__append"
+  <div
+    class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
   >
-    1
-  </span>
-  <span
-    class="euiFormControlLayout__append"
-  >
-    2
-  </span>
+    <span>
+      1
+    </span>
+    <span>
+      2
+    </span>
+  </div>
 </div>
 `;
 
@@ -325,16 +325,16 @@ exports[`EuiFormControlLayout props multiple prepends are rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
-  <span
-    class="euiFormControlLayout__prepend"
+  <div
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
   >
-    1
-  </span>
-  <span
-    class="euiFormControlLayout__prepend"
-  >
-    2
-  </span>
+    <span>
+      1
+    </span>
+    <span>
+      2
+    </span>
+  </div>
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
@@ -346,13 +346,15 @@ exports[`EuiFormControlLayout props one append node is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-appendOnly"
   />
-  <span
-    class="euiFormControlLayout__append"
+  <div
+    class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
   >
-    1
-  </span>
+    <span>
+      1
+    </span>
+  </div>
 </div>
 `;
 
@@ -361,13 +363,17 @@ exports[`EuiFormControlLayout props one append string is rendered 1`] = `
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-appendOnly"
   />
-  <label
-    class="euiFormLabel euiFormControlLayout__append"
+  <div
+    class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
   >
-    1
-  </label>
+    <label
+      class="euiFormLabel"
+    >
+      1
+    </label>
+  </div>
 </div>
 `;
 
@@ -375,11 +381,13 @@ exports[`EuiFormControlLayout props one prepend node is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
-  <span
-    class="euiFormControlLayout__prepend"
+  <div
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
   >
-    1
-  </span>
+    <span>
+      1
+    </span>
+  </div>
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
@@ -390,11 +398,15 @@ exports[`EuiFormControlLayout props one prepend node is rendered with className 
 <div
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
-  <span
-    class="euiFormControlLayout__prepend myClass"
+  <div
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
   >
-    1
-  </span>
+    <span
+      class="myClass"
+    >
+      1
+    </span>
+  </div>
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />
@@ -405,11 +417,15 @@ exports[`EuiFormControlLayout props one prepend string is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
 >
-  <label
-    class="euiFormLabel euiFormControlLayout__prepend"
+  <div
+    class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
   >
-    1
-  </label>
+    <label
+      class="euiFormLabel"
+    >
+      1
+    </label>
+  </div>
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
   />

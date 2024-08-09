@@ -1,5 +1,0 @@
-.euiFormControlLayout--group {
-  [class*='euiButton']:focus {
-    @include euiFocusRing(null, 'inner');
-  }
-}

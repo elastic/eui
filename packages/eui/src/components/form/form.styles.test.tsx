@@ -27,6 +27,7 @@ describe('euiFormVariables', () => {
     expect(result.current).toMatchInlineSnapshot(`
       {
         "animationTiming": "150ms ease-in",
+        "appendPrependBackground": "#e9edf3",
         "backgroundColor": "#f9fbfd",
         "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
@@ -54,8 +55,6 @@ describe('euiFormVariables', () => {
         "customControlDisabledIconColor": "#cacfd8",
         "iconAffordance": "24px",
         "iconCompressedAffordance": "18px",
-        "inputGroupBorder": "none",
-        "inputGroupLabelBackground": "#e9edf3",
         "maxWidth": "400px",
         "textColor": "#343741",
       }
@@ -69,7 +68,6 @@ describe('euiFormVariables', () => {
     // Check custom dark-mode logic
     expect(result.current.backgroundColor).toEqual('#16171c');
     expect(result.current.controlPlaceholderText).toEqual('#878b95');
-    expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
     expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
     expect(result.current.customControlBorderColor).toEqual('#16171c');
   });

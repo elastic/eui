@@ -66,10 +66,9 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
-    inputGroupLabelBackground: isColorDark
+    appendPrependBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
-    inputGroupBorder: 'none',
   };
 
   // Colors - specific to checkboxes, radios, switches, and range thumbs
