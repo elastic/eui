@@ -91,24 +91,8 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     formLayout: {
       euiComboBox__formControlLayout: css``,
       // Allow the form control to expand to any height to accommodate multiple rows of pills
-      // TODO: Remove && specificity override once EuiFormControlLayout is on Emotion
       multiSelect: css`
-        && {
-          ${logicalCSS('height', 'auto')}
-        }
-      `,
-      // Fix overflowing input wrapper background
-      prependOnly: css`
-        .euiFormControlLayout__childrenWrapper {
-          ${logicalCSS('border-top-right-radius', 'inherit')}
-          ${logicalCSS('border-bottom-right-radius', 'inherit')}
-        }
-      `,
-      appendOnly: css`
-        .euiFormControlLayout__childrenWrapper {
-          ${logicalCSS('border-top-left-radius', 'inherit')}
-          ${logicalCSS('border-bottom-left-radius', 'inherit')}
-        }
+        ${logicalCSS('height', 'auto')}
       `,
     },
   };

@@ -83,10 +83,7 @@ export const euiTextAreaStyles = (euiThemeContext: UseEuiTheme) => {
     // EuiFormControlLayout styles
     formControlLayout: {
       euiTextArea: css`
-        /* TODO: Remove extra && specificity override once EuiFormControlLayout is converted to Emotion */
-        && {
-          ${logicalCSS('height', 'auto')}
-        }
+        ${logicalCSS('height', 'auto')}
 
         .euiFormControlLayoutIcons {
           ${logicalCSS('top', 'auto')}
