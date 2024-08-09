@@ -108,4 +108,3 @@ steps:
       ephemeralStorage: '20G'
       cpu: '4000m'
       memory: '8G'
-    if: build.branch != "main"
