@@ -114,7 +114,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       <HandleInteractiveChildren
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap={true}
+        renderFocusTrap={hasInteractiveChildren}
         onInteractiveChildrenFound={handleOnInteractiveChildrenFound}
       >
         {children}
