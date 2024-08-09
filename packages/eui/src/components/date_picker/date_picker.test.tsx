@@ -50,7 +50,7 @@ describe('EuiDatePicker', () => {
   test('compressed', () => {
     const { container } = render(<EuiDatePicker compressed />);
     // TODO: Should probably be a visual snapshot test
-    expect(container.innerHTML).toContain('--compressed');
+    expect(container.innerHTML).toContain('-compressed');
   });
 
   // TODO: These tests/snapshots don't really do anything in Jest without

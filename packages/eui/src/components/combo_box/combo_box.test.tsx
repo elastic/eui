@@ -358,9 +358,9 @@ describe('EuiComboBox', () => {
         );
 
         expect(container.firstElementChild!.className).toContain('-fullWidth');
-        expect(container.innerHTML).toContain(
-          'euiFormControlLayout--fullWidth'
-        );
+        expect(
+          container.querySelector('.euiFormControlLayout')!.className
+        ).toContain('-fullWidth');
       });
 
       test('autoFocus', () => {
