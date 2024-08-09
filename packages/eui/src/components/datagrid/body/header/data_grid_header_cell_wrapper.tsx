@@ -51,19 +51,22 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     setFocusedCell([index, -1]);
   }, [index, setFocusedCell]);
 
-  const handleOnInteractiveChildrenFound = (
-    interactiveChildren: FocusableElement[]
-  ) => {
-    const interactives = interactiveChildren.filter(
-      (element) => !element.hasAttribute('data-focus-guard')
-    );
-    const hasInteractives =
-      actionsButton && interactives.includes(actionsButton)
-        ? interactives.length > 1
-        : interactives.length > 0;
+  const handleOnInteractiveChildrenFound = useCallback(
+    (interactiveChildren: FocusableElement[]) => {
+      const interactives = interactiveChildren
+        ? interactiveChildren.filter(
+            (element) => !element.hasAttribute('data-focus-guard')
+          )
+        : [];
+      const hasInteractives =
+        actionsButton && interactives.includes(actionsButton)
+          ? interactives.length > 1
+          : interactives.length > 0;
 
-    setHasInteractiveChildren(hasInteractives);
-  };
+      setHasInteractiveChildren(hasInteractives);
+    },
+    [actionsButton]
+  );
 
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
@@ -111,8 +114,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       <HandleInteractiveChildren
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap={hasInteractiveChildren}
-        shouldDisableInteractives={!hasInteractiveChildren}
+        renderFocusTrap={true}
         onInteractiveChildrenFound={handleOnInteractiveChildrenFound}
       >
         {children}

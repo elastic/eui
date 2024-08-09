@@ -97,7 +97,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
             }
             onInteractiveChildrenFound={[Function]}
             renderFocusTrap={true}
-            shouldDisableInteractives={false}
             updateCellFocusContext={[Function]}
           >
             <FocusTrappedChildren
@@ -429,7 +428,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           }
           onInteractiveChildrenFound={[Function]}
           renderFocusTrap={true}
-          shouldDisableInteractives={false}
           updateCellFocusContext={[Function]}
         >
           <FocusTrappedChildren
