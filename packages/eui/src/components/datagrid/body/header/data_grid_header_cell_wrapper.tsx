@@ -6,15 +6,16 @@
  * Side Public License, v 1.
  */
 
-import classnames from 'classnames';
 import React, {
   FunctionComponent,
-  FocusEventHandler,
   useContext,
   useEffect,
   useState,
   useCallback,
+  FocusEventHandler,
 } from 'react';
+import classnames from 'classnames';
+import { FocusableElement } from 'tabbable';
 
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
@@ -33,6 +34,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
+  actionsButton,
   hasActionsPopover,
   isActionsButtonFocused,
   focusActionsButton,
@@ -42,11 +44,29 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
+  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
   const updateCellFocusContext = useCallback(() => {
     setFocusedCell([index, -1]);
   }, [index, setFocusedCell]);
+
+  const handleOnInteractiveChildrenFound = useCallback(
+    (interactiveChildren: FocusableElement[]) => {
+      const interactives = interactiveChildren
+        ? interactiveChildren.filter(
+            (element) => !element.hasAttribute('data-focus-guard')
+          )
+        : [];
+      const hasInteractives =
+        actionsButton && interactives.includes(actionsButton)
+          ? interactives.length > 1
+          : interactives.length > 0;
+
+      setHasInteractiveChildren(hasInteractives);
+    },
+    [actionsButton]
+  );
 
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
@@ -65,11 +85,15 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   // The button text is significantly more useful to screen readers (e.g. contains sort order & hints)
   const onFocus: FocusEventHandler = useCallback(
     (e) => {
-      if (hasActionsPopover && e.target === headerEl) {
+      if (
+        !hasInteractiveChildren &&
+        hasActionsPopover &&
+        e.target === headerEl
+      ) {
         focusActionsButton?.();
       }
     },
-    [hasActionsPopover, focusActionsButton, headerEl]
+    [hasActionsPopover, hasInteractiveChildren, focusActionsButton, headerEl]
   );
 
   return (
@@ -90,7 +114,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       <HandleInteractiveChildren
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap={!hasActionsPopover}
+        renderFocusTrap={hasInteractiveChildren}
+        onInteractiveChildrenFound={handleOnInteractiveChildrenFound}
       >
         {children}
       </HandleInteractiveChildren>

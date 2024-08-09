@@ -14,6 +14,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       role="row"
     >
       <div
+        aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+        aria-label="columnA"
         class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions"
         data-gridcell-column-id="columnA"
         data-gridcell-column-index="0"
@@ -29,21 +31,22 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           data-test-subj="dataGridColumnResizer"
           style="margin-right: 0px;"
         />
-        <button
-          aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-          class="euiDataGridHeaderCell__button"
-          data-euigrid-tab-managed="true"
-          data-test-subj="dataGridHeaderCellActionButton-columnA"
-          tabindex="-1"
+        <div
+          class="euiDataGridHeaderCell__content"
+          title="columnA"
         >
-          <div
-            class="euiDataGridHeaderCell__content"
-            title="columnA"
-          >
-            columnA
-          </div>
-          <div
-            class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+          columnA
+        </div>
+        <div
+          class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+        >
+          <button
+            aria-hidden="true"
+            aria-labelledby="euiDataGridCellHeader_generated-id_content euiDataGridCellHeader_generated-id_actions"
+            class="euiDataGridHeaderCell__button css-wvewty"
+            data-euigrid-tab-managed="true"
+            data-test-subj="dataGridHeaderCellActionButton-columnA"
+            tabindex="-1"
           >
             <div
               class="euiDataGridHeaderCell__icon"
@@ -53,20 +56,29 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
                 data-euiicon-type="boxesVertical"
               />
             </div>
-          </div>
-        </button>
+            <p
+              hidden=""
+              id="euiDataGridCellHeader_generated-id_content"
+            >
+              columnA
+              ,
+            </p>
+            <p
+              hidden=""
+              id="euiDataGridCellHeader_generated-id_actions"
+            >
+              Click to view column header actions
+            </p>
+          </button>
+        </div>
         <p
           hidden=""
           id="euiDataGridCellHeader_generated-id_sorting"
         />
-        <p
-          hidden=""
-          id="euiDataGridCellHeader_generated-id_actions"
-        >
-          Click to view column header actions
-        </p>
       </div>
       <div
+        aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+        aria-label="columnB"
         class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
         data-gridcell-column-id="columnB"
         data-gridcell-column-index="1"
@@ -82,21 +94,22 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           data-test-subj="dataGridColumnResizer"
           style="margin-right: 0px;"
         />
-        <button
-          aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
-          class="euiDataGridHeaderCell__button"
-          data-euigrid-tab-managed="true"
-          data-test-subj="dataGridHeaderCellActionButton-columnB"
-          tabindex="-1"
+        <div
+          class="euiDataGridHeaderCell__content"
+          title="columnB"
         >
-          <div
-            class="euiDataGridHeaderCell__content"
-            title="columnB"
-          >
-            columnB
-          </div>
-          <div
-            class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+          columnB
+        </div>
+        <div
+          class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+        >
+          <button
+            aria-hidden="true"
+            aria-labelledby="euiDataGridCellHeader_generated-id_content euiDataGridCellHeader_generated-id_actions"
+            class="euiDataGridHeaderCell__button css-wvewty"
+            data-euigrid-tab-managed="true"
+            data-test-subj="dataGridHeaderCellActionButton-columnB"
+            tabindex="-1"
           >
             <div
               class="euiDataGridHeaderCell__icon"
@@ -106,18 +119,25 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
                 data-euiicon-type="boxesVertical"
               />
             </div>
-          </div>
-        </button>
+            <p
+              hidden=""
+              id="euiDataGridCellHeader_generated-id_content"
+            >
+              columnB
+              ,
+            </p>
+            <p
+              hidden=""
+              id="euiDataGridCellHeader_generated-id_actions"
+            >
+              Click to view column header actions
+            </p>
+          </button>
+        </div>
         <p
           hidden=""
           id="euiDataGridCellHeader_generated-id_sorting"
         />
-        <p
-          hidden=""
-          id="euiDataGridCellHeader_generated-id_actions"
-        >
-          Click to view column header actions
-        </p>
       </div>
     </div>
     <div

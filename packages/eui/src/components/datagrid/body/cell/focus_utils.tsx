@@ -12,10 +12,12 @@ import React, {
   useEffect,
   useState,
   useMemo,
+  useRef,
 } from 'react';
-import { tabbable } from 'tabbable';
+import { FocusableElement, tabbable } from 'tabbable';
 
 import { keys } from '../../../../services';
+import { isDOMNode } from '../../../../utils';
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
@@ -35,20 +37,41 @@ export const HandleInteractiveChildren: FunctionComponent<
     cellEl?: HTMLElement | null;
     updateCellFocusContext: Function;
     renderFocusTrap?: boolean;
+    shouldDisableInteractives?: boolean;
+    onInteractiveChildrenFound?: (
+      interavticeChildren: FocusableElement[]
+    ) => void;
   }
-> = ({ cellEl, children, updateCellFocusContext, renderFocusTrap }) => {
+> = ({
+  cellEl,
+  children,
+  updateCellFocusContext,
+  renderFocusTrap,
+  onInteractiveChildrenFound,
+}) => {
+  const interactiveChildren = useRef<FocusableElement[]>([]);
   const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   // On mount, disable all interactive children
   useEffect(() => {
     if (cellEl) {
-      const interactiveChildren = disableInteractives(cellEl);
+      const disabledInteractives = disableInteractives(cellEl);
+      const focusTrapInteractives =
+        disabledInteractives.length > 0
+          ? disabledInteractives
+          : interactiveChildren.current;
+      const interactives = renderFocusTrap
+        ? focusTrapInteractives
+        : disabledInteractives;
+
+      interactiveChildren.current = interactives;
+      onInteractiveChildrenFound?.(interactives);
 
       if (renderFocusTrap) {
-        setHasInteractiveChildren(interactiveChildren!.length > 0);
+        setHasInteractiveChildren(interactives.length > 0);
       }
     }
-  }, [cellEl, renderFocusTrap]);
+  }, [cellEl, renderFocusTrap, onInteractiveChildrenFound]);
 
   // Ensure that any interactive children that are clicked update the latest cell focus context
   useEffect(() => {
@@ -80,6 +103,8 @@ export const FocusTrappedChildren: FunctionComponent<
   PropsWithChildren & { cellEl: HTMLElement }
 > = ({ cellEl, children }) => {
   const [isCellEntered, setIsCellEntered] = useState(false);
+  const [isExited, setExited] = useState(false);
+
   useEffect(() => {
     if (isCellEntered) {
       enableAndFocusInteractives(cellEl);
@@ -101,36 +126,61 @@ export const FocusTrappedChildren: FunctionComponent<
           event.preventDefault();
           setIsCellEntered((isCellEntered) => {
             if (isCellEntered === true) {
+              setExited(true);
               requestAnimationFrame(() => cellEl.focus()); // move focus to cell
               return false;
+            } else if (
+              // when opened content is closed, we don't want Escape to return to the cell
+              // immediately but instead return focus to a trigger as expected
+              isCellEntered === false &&
+              isDOMNode(event.target) &&
+              isDOMNode(event.currentTarget) &&
+              event.currentTarget.contains(event.target)
+            ) {
+              return true;
             }
+
             return isCellEntered;
           });
           break;
       }
     };
+
+    // ensures the SR text is reset when navigating to a different cell
+    const onBlur = () => setExited(false);
+
     cellEl.addEventListener('keyup', onKeyUp);
+    cellEl.addEventListener('blur', onBlur);
+
     return () => {
       cellEl.removeEventListener('keyup', onKeyUp);
+      cellEl.removeEventListener('blur', onBlur);
     };
   }, [cellEl]);
 
   return (
     <EuiFocusTrap
       disabled={!isCellEntered}
-      onDeactivation={() => setIsCellEntered(false)}
       clickOutsideDisables={true}
+      onDeactivation={() => setIsCellEntered(false)}
     >
       {children}
 
       <EuiScreenReaderOnly>
-        <p>
-          {' - '}
-          <EuiI18n
-            // eslint-disable-next-line local/i18n
-            token="euiDataGridCell.focusTrapEnterPrompt"
-            default="Press the Enter key to interact with this cell's contents."
-          />
+        <p aria-live="assertive">
+          {isExited ? (
+            <EuiI18n
+              // eslint-disable-next-line local/i18n
+              token="euiDataGridCell.focusTrapExitPrompt"
+              default="Exited cell content."
+            />
+          ) : (
+            <EuiI18n
+              // eslint-disable-next-line local/i18n
+              token="euiDataGridCell.focusTrapEnterPrompt"
+              default="Press the Enter key to interact with this cell's contents."
+            />
+          )}
         </p>
       </EuiScreenReaderOnly>
     </EuiFocusTrap>
@@ -154,7 +204,8 @@ const enableAndFocusInteractives = (cell: HTMLElement) => {
   const interactives = cell.querySelectorAll('[data-euigrid-tab-managed]');
   interactives.forEach((element, i) => {
     element.setAttribute('tabIndex', '0');
-    if (i === 0) {
+    // focus the first element only if we're on the cell and not inside of it
+    if (i === 0 && !cell.contains(document.activeElement)) {
       (element as HTMLElement).focus();
     }
   });

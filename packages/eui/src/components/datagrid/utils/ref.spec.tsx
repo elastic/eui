@@ -113,6 +113,7 @@ describe('useImperativeGridRef', () => {
 
     it('should correctly find the specified rowIndex when sorted', () => {
       cy.get('[data-test-subj="dataGridHeaderCell-A"]').click();
+      cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').click();
       cy.contains('Sort High-Low').click();
       cy.then(() => {
         ref.current!.setFocusedCell({ rowIndex: 95, colIndex: 0 });
@@ -163,6 +164,7 @@ describe('useImperativeGridRef', () => {
 
     it('should correctly find the specified rowIndex when sorted', () => {
       cy.get('[data-test-subj="dataGridHeaderCell-A"]').click();
+      cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').click();
       cy.contains('Sort High-Low').click();
       cy.then(() => {
         ref.current!.openCellPopover({ rowIndex: 98, colIndex: 1 });
