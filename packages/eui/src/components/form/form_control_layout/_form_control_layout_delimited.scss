@@ -1,12 +1,3 @@
-.euiFormControlLayoutDelimited {
-  // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes
-  &[class*='-fullWidth'] .euiFormControlLayout__childrenWrapper,
-  &[class*='-fullWidth'] .euiFormControlLayout__childrenWrapper > *:not(.euiFormControlLayoutDelimited__delimiter):not(.euiFormControlLayoutIcons) {
-    width: 100%;
-    max-width: none;
-  }
-}
-
 .euiFormControlLayoutDelimited__input {
   // stylelint-disable declaration-no-important
   box-shadow: none !important;

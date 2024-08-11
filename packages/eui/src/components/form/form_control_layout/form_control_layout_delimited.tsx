@@ -19,6 +19,7 @@ import { useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 
+import { FormContext, useFormContext } from '../eui_form_context';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -45,7 +46,17 @@ export type EuiFormControlLayoutDelimitedProps =
 
 export const EuiFormControlLayoutDelimited: FunctionComponent<
   EuiFormControlLayoutDelimitedProps
-> = ({ startControl, endControl, delimiter, className, ...rest }) => {
+> = ({
+  startControl,
+  endControl,
+  delimiter,
+  className,
+  fullWidth: _fullWidth,
+  ...rest
+}) => {
+  const { defaultFullWidth } = useFormContext();
+  const fullWidth = _fullWidth ?? defaultFullWidth;
+
   const { isInvalid, isDisabled, readOnly } = rest;
   const showInvalidState = isInvalid && !isDisabled && !readOnly;
 
@@ -71,14 +82,17 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
       wrapperProps={{ css: wrapperStyles }}
       className={classes}
       iconsPosition="static"
+      fullWidth={fullWidth}
       {...rest}
     >
-      {addClassesToControl(startControl)}
-      <EuiFormControlDelimiter
-        delimiter={delimiter}
-        isInvalid={showInvalidState}
-      />
-      {addClassesToControl(endControl)}
+      <FormContext.Provider value={{ defaultFullWidth: fullWidth }}>
+        {addClassesToControl(startControl)}
+        <EuiFormControlDelimiter
+          delimiter={delimiter}
+          isInvalid={showInvalidState}
+        />
+        {addClassesToControl(endControl)}
+      </FormContext.Provider>
     </EuiFormControlLayout>
   );
 };

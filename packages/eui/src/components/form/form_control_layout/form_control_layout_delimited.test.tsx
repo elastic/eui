@@ -57,4 +57,22 @@ describe('EuiFormControlLayoutDelimited', () => {
       });
     });
   });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const { baseElement } = render(
+        <EuiForm fullWidth>
+          <EuiFormControlLayoutDelimited
+            startControl={<span>start</span>}
+            endControl={<span>end</span>}
+          />
+        </EuiForm>
+      );
+
+      const layout = baseElement.querySelector(
+        '.euiFormControlLayoutDelimited'
+      );
+      expect(layout!.className).toContain('fullWidth');
+    });
+  });
 });
