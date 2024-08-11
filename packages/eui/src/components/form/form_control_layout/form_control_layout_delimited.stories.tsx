@@ -8,12 +8,14 @@
 
 import React, { FunctionComponent } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
+
+import { useIsWithinMinBreakpoint } from '../../../services';
 import { EuiIcon } from '../../icon';
+import { EuiForm } from '../form';
 import { EuiFieldNumber } from '../field_number';
 
 import {
@@ -113,5 +115,78 @@ export const Playground: Story = {
         aria-label="EuiFormControlLayoutDelimited demo - end control"
       />
     ),
+  },
+};
+
+export const KitchenSink: Story = {
+  tags: ['vrt-only'],
+  render: function Render() {
+    const isDesktop = useIsWithinMinBreakpoint('xl');
+    return (
+      <EuiForm
+        fullWidth={isDesktop}
+        css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+      >
+        <EuiFormControlLayoutDelimited
+          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          compressed
+          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          append="px"
+          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          icon="vector"
+          startControl={<EuiFieldNumber placeholder="0" controlOnly />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          clear={{ onClick: () => {} }}
+          isLoading
+          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          prepend="Add"
+          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          delimiter="+"
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          prepend="Merge"
+          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          delimiter={<EuiIcon type="merge" />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" />}
+        />
+        <EuiFormControlLayoutDelimited
+          readOnly
+          prepend="Read only"
+          startControl={<EuiFieldNumber controlOnly placeholder="0" readOnly />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" readOnly />}
+        />
+        <EuiFormControlLayoutDelimited
+          isDisabled
+          prepend="Disabled"
+          startControl={<EuiFieldNumber controlOnly placeholder="0" disabled />}
+          endControl={<EuiFieldNumber controlOnly placeholder="100" disabled />}
+        />
+        <EuiFormControlLayoutDelimited
+          isInvalid
+          prepend="Invalid"
+          startControl={
+            <EuiFieldNumber isInvalid controlOnly placeholder="0" />
+          }
+          endControl={
+            <EuiFieldNumber isInvalid controlOnly placeholder="100" />
+          }
+        />
+      </EuiForm>
+    );
   },
 };
