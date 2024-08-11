@@ -72,17 +72,18 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
   const wrapperStyles = [
     styles.childrenWrapper.delimited,
     showInvalidState && styles.childrenWrapper.invalid,
+    rest.wrapperProps?.css,
   ];
 
   return (
     <EuiFormControlLayout
       isDelimited
       css={cssStyles}
-      wrapperProps={{ css: wrapperStyles }}
       className={classes}
       iconsPosition="static"
       fullWidth={fullWidth}
       {...rest}
+      wrapperProps={{ ...rest.wrapperProps, css: wrapperStyles }}
     >
       <FormContext.Provider value={{ defaultFullWidth: fullWidth }}>
         {addClassesToControl(startControl)}

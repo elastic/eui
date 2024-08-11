@@ -8,12 +8,23 @@
 
 import React from 'react';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';
 import { EuiIcon } from '../../icon';
+import { EuiForm } from '../form';
+
+import { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';
 
 describe('EuiFormControlLayoutDelimited', () => {
+  shouldRenderCustomStyles(
+    <EuiFormControlLayoutDelimited
+      startControl={<span>start</span>}
+      endControl={<span>end</span>}
+    />,
+    { childProps: ['wrapperProps'] }
+  );
+
   test('is rendered', () => {
     const { container } = render(
       <EuiFormControlLayoutDelimited
