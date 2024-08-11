@@ -37,3 +37,12 @@ export const euiFormControlLayoutDelimitedStyles = (
     },
   };
 };
+
+export const euiFormControlLayoutDelimited__delimiter = css`
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1; /* Override EuiText line-height */
+`;
+

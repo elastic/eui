@@ -24,7 +24,10 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from './form_control_layout';
-import { euiFormControlLayoutDelimitedStyles } from './form_control_layout_delimited.styles';
+import {
+  euiFormControlLayoutDelimitedStyles,
+  euiFormControlLayoutDelimited__delimiter,
+} from './form_control_layout_delimited.styles';
 
 export type EuiFormControlLayoutDelimitedProps =
   Partial<EuiFormControlLayoutProps> & {
@@ -120,6 +123,7 @@ const EuiFormControlDelimiter = ({
 
   return (
     <EuiText
+      css={euiFormControlLayoutDelimited__delimiter}
       className="euiFormControlLayoutDelimited__delimiter"
       size="s"
       color={isInvalid ? 'danger' : 'subdued'}
