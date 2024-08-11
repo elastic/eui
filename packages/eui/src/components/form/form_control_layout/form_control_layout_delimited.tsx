@@ -52,7 +52,12 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
   });
 
   return (
-    <EuiFormControlLayout className={classes} iconsPosition="static" {...rest}>
+    <EuiFormControlLayout
+      isDelimited
+      className={classes}
+      iconsPosition="static"
+      {...rest}
+    >
       {addClassesToControl(startControl)}
       <EuiFormControlDelimiter
         delimiter={delimiter}

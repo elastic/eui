@@ -1,21 +1,9 @@
 .euiFormControlLayoutDelimited {
-  // Match just the regular drop shadow of inputs
-  @include euiFormControlDefaultShadow;
-  display: flex;
-  align-items: stretch;
-  padding: 1px; /* 1 */
-
   > .euiFormControlLayout__childrenWrapper {
     display: flex;
     align-items: center;
     width: 100%;
     background-color: $euiFormBackgroundColor;
-  }
-
-  // Target when the euiFormControlLayout is compressed without specifying the full class name in case it ever changes
-  &[class*='-compressed'] {
-    @include euiFormControlDefaultShadow($borderOnly: true);
-    border-radius: $euiBorderRadius / 2;
   }
 
   // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes

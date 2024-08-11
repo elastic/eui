@@ -77,7 +77,10 @@ export type EuiFormControlLayoutProps = CommonProps &
   };
 
 export const EuiFormControlLayout: FunctionComponent<
-  EuiFormControlLayoutProps
+  EuiFormControlLayoutProps & {
+    // Internal prop used by EuiFormControlLayoutDelimited
+    isDelimited?: boolean;
+  }
 > = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
@@ -95,16 +98,17 @@ export const EuiFormControlLayout: FunctionComponent<
     compressed,
     prepend,
     append,
+    isDelimited,
     fullWidth = defaultFullWidth,
     ...rest
   } = props;
 
-  const isGroup = !!(prepend || append);
+  const isGroup = !!(prepend || append || isDelimited);
 
   const classes = classNames(
     'euiFormControlLayout',
     {
-      'euiFormControlLayout--group': isGroup,
+      'euiFormControlLayout--group': isGroup && !isDelimited,
       'euiFormControlLayout-isDisabled': isDisabled,
       'euiFormControlLayout-readOnly': readOnly,
     },
