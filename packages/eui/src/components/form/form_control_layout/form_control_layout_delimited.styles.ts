@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
+import { logicalCSS } from '../../../global_styling';
 import {
   euiFormControlDisabledStyles,
   euiFormControlReadOnlyStyles,
@@ -46,3 +47,9 @@ export const euiFormControlLayoutDelimited__delimiter = css`
   line-height: 1; /* Override EuiText line-height */
 `;
 
+export const euiFormControlLayoutDelimited__input = css`
+  box-shadow: none;
+  border-radius: 0;
+  text-align: center;
+  ${logicalCSS('height', '100%')}
+`;

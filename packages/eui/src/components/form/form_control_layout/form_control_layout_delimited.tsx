@@ -6,15 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  ReactElement,
-  cloneElement,
-  ReactNode,
-} from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
@@ -27,6 +22,7 @@ import {
 import {
   euiFormControlLayoutDelimitedStyles,
   euiFormControlLayoutDelimited__delimiter,
+  euiFormControlLayoutDelimited__input,
 } from './form_control_layout_delimited.styles';
 
 export type EuiFormControlLayoutDelimitedProps =
@@ -101,7 +97,8 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
 };
 
 const addClassesToControl = (control: ReactElement) => {
-  return cloneElement(control, {
+  return cloneElementWithCss(control, {
+    css: euiFormControlLayoutDelimited__input,
     className: classNames(
       control.props.className,
       'euiFormControlLayoutDelimited__input'

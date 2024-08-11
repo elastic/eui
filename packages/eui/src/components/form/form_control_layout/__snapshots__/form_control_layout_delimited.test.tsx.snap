@@ -10,7 +10,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
   >
     <span
-      class="euiFormControlLayoutDelimited__input"
+      class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
     >
       start
     </span>
@@ -24,7 +24,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       </span>
     </div>
     <span
-      class="euiFormControlLayoutDelimited__input"
+      class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
     >
       end
     </span>
@@ -40,7 +40,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
   >
     <span
-      class="euiFormControlLayoutDelimited__input"
+      class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
     >
       start
     </span>
@@ -52,7 +52,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       />
     </div>
     <span
-      class="euiFormControlLayoutDelimited__input"
+      class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
     >
       end
     </span>
@@ -68,7 +68,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
   >
     <span
-      class="euiFormControlLayoutDelimited__input"
+      class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
     >
       start
     </span>
@@ -78,7 +78,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
       +
     </div>
     <span
-      class="euiFormControlLayoutDelimited__input"
+      class="euiFormControlLayoutDelimited__input emotion-euiFormControlLayoutDelimited__input"
     >
       end
     </span>

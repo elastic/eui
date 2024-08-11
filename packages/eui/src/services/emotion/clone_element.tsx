@@ -22,7 +22,7 @@ export const cloneElementWithCss = (
     element.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ || element.type; // EMOTION_TYPE handles non-React elements (native JSX/HTML nodes)
 
   const clonedProps = {
-    key: element.key,
+    ...(element.key ? { key: element.key } : {}),
     ref: element.ref,
     ...element.props,
     ...props,
