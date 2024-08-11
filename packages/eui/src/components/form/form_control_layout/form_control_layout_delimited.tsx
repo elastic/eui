@@ -61,6 +61,7 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
   ];
   const wrapperStyles = [
     styles.childrenWrapper.delimited,
+    showInvalidState && styles.childrenWrapper.invalid,
   ];
 
   return (

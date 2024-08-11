@@ -231,7 +231,10 @@ export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
 
 export const euiFormControlDefaultShadow = (
   euiThemeContext: UseEuiTheme,
-  { withBackground = true }: { withBackground?: boolean } = {}
+  {
+    withBorder = true,
+    withBackground = true,
+  }: { withBorder?: boolean; withBackground?: boolean } = {}
 ) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
@@ -261,7 +264,7 @@ export const euiFormControlDefaultShadow = (
     }`;
 
   return `
-    ${border}
+    ${withBorder ? border : ''}
     ${withBackground ? backgroundGradient : ''}
   `;
 };

@@ -30,6 +30,10 @@ export const euiFormControlLayoutDelimitedStyles = (
       delimited: css`
         display: flex;
       `,
+      invalid: css(
+        euiFormControlDefaultShadow(euiThemeContext, { withBorder: false }),
+        euiFormControlInvalidStyles(euiThemeContext)
+      ),
     },
   };
 };
