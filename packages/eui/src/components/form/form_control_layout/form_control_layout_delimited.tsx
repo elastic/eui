@@ -59,11 +59,15 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
     rest.isDisabled && styles.disabled,
     rest.readOnly && styles.readOnly,
   ];
+  const wrapperStyles = [
+    styles.childrenWrapper.delimited,
+  ];
 
   return (
     <EuiFormControlLayout
       isDelimited
       css={cssStyles}
+      wrapperProps={{ css: wrapperStyles }}
       className={classes}
       iconsPosition="static"
       {...rest}

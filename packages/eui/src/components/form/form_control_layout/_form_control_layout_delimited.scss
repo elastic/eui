@@ -1,11 +1,4 @@
 .euiFormControlLayoutDelimited {
-  > .euiFormControlLayout__childrenWrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    background-color: $euiFormBackgroundColor;
-  }
-
   // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes
   &[class*='-fullWidth'] .euiFormControlLayout__childrenWrapper,
   &[class*='-fullWidth'] .euiFormControlLayout__childrenWrapper > *:not(.euiFormControlLayoutDelimited__delimiter):not(.euiFormControlLayoutIcons) {

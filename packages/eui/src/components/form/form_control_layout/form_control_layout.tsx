@@ -74,6 +74,10 @@ export type EuiFormControlLayoutProps = CommonProps &
      * Connects the prepend and append labels to the input
      */
     inputId?: string;
+    /**
+     * Allows passing optional additional props to `.euiFormControlLayout__childrenWrapper`
+     */
+    wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   };
 
 export const EuiFormControlLayout: FunctionComponent<
@@ -99,6 +103,7 @@ export const EuiFormControlLayout: FunctionComponent<
     prepend,
     append,
     isDelimited,
+    wrapperProps,
     fullWidth = defaultFullWidth,
     ...rest
   } = props;
@@ -134,6 +139,7 @@ export const EuiFormControlLayout: FunctionComponent<
     isGroup && styles.children.inGroup,
     isGroup && !append && styles.children.prependOnly,
     isGroup && !prepend && styles.children.appendOnly,
+    wrapperProps?.css,
   ];
 
   const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;
@@ -163,9 +169,13 @@ export const EuiFormControlLayout: FunctionComponent<
         compressed={compressed}
       />
       <div
-        className="euiFormControlLayout__childrenWrapper"
+        {...wrapperProps}
         css={childrenWrapperStyles}
-        style={iconAffordanceStyles}
+        className={classNames(
+          'euiFormControlLayout__childrenWrapper',
+          wrapperProps?.className
+        )}
+        style={{ ...iconAffordanceStyles, ...wrapperProps?.style }}
       >
         {hasLeftIcon && (
           <EuiFormControlLayoutIcons

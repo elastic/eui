@@ -12,6 +12,8 @@ import { UseEuiTheme } from '../../../services';
 import {
   euiFormControlDisabledStyles,
   euiFormControlReadOnlyStyles,
+  euiFormControlDefaultShadow,
+  euiFormControlInvalidStyles,
 } from '../form.styles';
 
 export const euiFormControlLayoutDelimitedStyles = (
@@ -22,5 +24,12 @@ export const euiFormControlLayoutDelimitedStyles = (
     delimited: css``,
     disabled: css(euiFormControlDisabledStyles(euiThemeContext)),
     readOnly: css(euiFormControlReadOnlyStyles(euiThemeContext)),
+
+    // Appended onto existing `euiFormControlLayout__childrenWrapper` styles
+    childrenWrapper: {
+      delimited: css`
+        display: flex;
+      `,
+    },
   };
 };
