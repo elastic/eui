@@ -14,6 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
@@ -22,6 +23,7 @@ import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from './form_control_layout';
+import { euiFormControlLayoutDelimitedStyles } from './form_control_layout_delimited.styles';
 
 export type EuiFormControlLayoutDelimitedProps =
   Partial<EuiFormControlLayoutProps> & {
@@ -51,9 +53,17 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
     'euiFormControlLayoutDelimited--isInvalid': showInvalidState,
   });
 
+  const styles = useEuiMemoizedStyles(euiFormControlLayoutDelimitedStyles);
+  const cssStyles = [
+    styles.delimited,
+    rest.isDisabled && styles.disabled,
+    rest.readOnly && styles.readOnly,
+  ];
+
   return (
     <EuiFormControlLayout
       isDelimited
+      css={cssStyles}
       className={classes}
       iconsPosition="static"
       {...rest}

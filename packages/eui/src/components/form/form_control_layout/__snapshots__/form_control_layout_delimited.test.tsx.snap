@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2 emotion-euiFormControlLayout-group-euiTestCss"
+  class="euiFormControlLayout euiFormControlLayoutDelimited testClass1 testClass2 emotion-euiFormControlLayout-group-delimited-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -34,7 +34,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
 
 exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group"
+  class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
@@ -62,7 +62,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
 
 exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group"
+  class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited"
 >
   <div
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"

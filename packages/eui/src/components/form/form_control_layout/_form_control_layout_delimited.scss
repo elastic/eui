@@ -13,24 +13,6 @@
     max-width: none;
   }
 
-  // Target when the euiFormControlLayout is disabled without specifying the full class name in case it ever changes
-  &[class*='-isDisabled'] {
-    @include euiFormControlDisabledStyle;
-
-    .euiFormControlLayout__childrenWrapper {
-      background-color: $euiFormBackgroundDisabledColor;
-    }
-  }
-
-  // Target when the euiFormControlLayout is readOnly without specifying the full class name in case it ever changes
-  &[class*='-readOnly'] {
-    @include euiFormControlReadOnlyStyle;
-
-    .euiFormControlLayout__childrenWrapper {
-      background-color: $euiFormBackgroundReadOnlyColor;
-    }
-  }
-
   &--isInvalid .euiFormControlLayout__childrenWrapper {
     @include euiFormControlInvalidStyle;
   }
