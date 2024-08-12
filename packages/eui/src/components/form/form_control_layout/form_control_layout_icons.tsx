@@ -7,7 +7,6 @@
  */
 
 import React, { Component } from 'react';
-import classNames from 'classnames';
 
 import { RenderWithEuiStylesMemoizer } from '../../../services';
 import { DistributiveOmit } from '../../common';
@@ -67,12 +66,6 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     const invalidIcon = this.renderInvalidIcon();
     const dropdownIcon = this.renderDropdownIcon();
 
-    const classes = classNames(
-      'euiFormControlLayoutIcons',
-      `euiFormControlLayoutIcons--${side}`,
-      `euiFormControlLayoutIcons--${iconsPosition}`
-    );
-
     return (
       <RenderWithEuiStylesMemoizer>
         {(stylesMemoizer) => {
@@ -80,9 +73,22 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
           const cssStyles = [
             styles.euiFormControlLayoutIcons,
             compressed ? styles.compressed : styles.uncompressed,
+            ...(iconsPosition === 'absolute'
+              ? [
+                  styles.position.absolute.absolute,
+                  compressed
+                    ? styles.position.absolute.compressed[side]
+                    : styles.position.absolute.uncompressed[side],
+                ]
+              : [
+                  styles.position.static.static,
+                  compressed
+                    ? styles.position.static.compressed
+                    : styles.position.static.uncompressed,
+                ]),
           ];
           return (
-            <div css={cssStyles} className={classes}>
+            <div css={cssStyles} className="euiFormControlLayoutIcons">
               {clearButton}
               {loadingSpinner}
               {invalidIcon}

@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { mathWithUnits } from '../../../global_styling';
+import { logicalCSS, mathWithUnits } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 
 export const euiFormControlLayoutIconsStyles = (
@@ -30,5 +30,43 @@ export const euiFormControlLayoutIconsStyles = (
     compressed: css`
       gap: ${mathWithUnits(controlCompressedPadding, (x) => x / 2)};
     `,
+
+    position: {
+      absolute: {
+        absolute: css`
+          position: absolute;
+          ${logicalCSS('vertical', 0)}
+        `,
+        uncompressed: {
+          left: css`
+            z-index: 1; /* Ensure the icon is visible above sibling inputs */
+            ${logicalCSS('left', controlPadding)}
+          `,
+          right: css`
+            ${logicalCSS('right', controlPadding)}
+          `,
+        },
+        compressed: {
+          left: css`
+            z-index: 1; /* Ensure the icon is visible above sibling inputs */
+            ${logicalCSS('left', controlCompressedPadding)}
+          `,
+          right: css`
+            ${logicalCSS('right', controlCompressedPadding)}
+          `,
+        },
+      },
+      static: {
+        static: css`
+          position: static;
+          ${logicalCSS('height', '100%')}
+          align-self: stretch;
+          flex-grow: 0;
+          ${logicalCSS('padding-horizontal', '100%')}
+        `,
+        uncompressed: logicalCSS('padding-horizontal', controlPadding),
+        compressed: logicalCSS('padding-horizontal', controlCompressedPadding),
+      },
+    },
   };
 };
