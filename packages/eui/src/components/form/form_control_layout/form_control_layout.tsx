@@ -169,6 +169,7 @@ export const EuiFormControlLayout: FunctionComponent<
             icon={icon}
             iconsPosition={iconsPosition}
             compressed={compressed}
+            isDisabled={isDisabled}
           />
         )}
 
@@ -184,6 +185,7 @@ export const EuiFormControlLayout: FunctionComponent<
             isLoading={isLoading}
             isInvalid={isInvalid}
             isDropdown={hasDropdownIcon}
+            isDisabled={isDisabled}
           />
         )}
       </div>

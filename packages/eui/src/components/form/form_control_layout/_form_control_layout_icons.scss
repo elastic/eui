@@ -1,6 +1,0 @@
-
-// If the control is disabled, change the color of the icons
-*:disabled + .euiFormControlLayoutIcons {
-  cursor: not-allowed;
-  color: $euiFormControlDisabledColor;
-}

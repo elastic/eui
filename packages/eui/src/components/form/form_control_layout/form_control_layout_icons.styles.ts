@@ -15,7 +15,7 @@ import { euiFormVariables } from '../form.styles';
 export const euiFormControlLayoutIconsStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { controlPadding, controlCompressedPadding } =
+  const { controlPadding, controlCompressedPadding, controlDisabledColor } =
     euiFormVariables(euiThemeContext);
 
   return {
@@ -29,6 +29,11 @@ export const euiFormControlLayoutIconsStyles = (
     `,
     compressed: css`
       gap: ${mathWithUnits(controlCompressedPadding, (x) => x / 2)};
+    `,
+    disabled: css`
+      cursor: not-allowed;
+      /* If the control is disabled, change the color of the icons */
+      color: ${controlDisabledColor};
     `,
 
     position: {
