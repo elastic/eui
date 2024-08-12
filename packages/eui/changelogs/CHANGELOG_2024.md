@@ -1,3 +1,16 @@
+## [`v95.7.0`](https://github.com/elastic/eui/releases/v95.7.0)
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSelectable` to Emotion ([#7940](https://github.com/elastic/eui/pull/7940))
+  - Removed `$euiSelectableListItemBorder`
+  - Removed `$euiSelectableListItemPadding`
+- Converted `EuiSelectableTemplateSitewide` to Emotion ([#7944](https://github.com/elastic/eui/pull/7944))
+  - Removed `$euiSelectableTemplateFocusBackgroundLight`
+  - Removed `$euiSelectableTemplateFocusBackgroundDark`
+  - Removed `$euiSelectableTemplateSitewideTypes`
+- Converted `EuiComboBox` to Emotion ([#7950](https://github.com/elastic/eui/pull/7950))
+
 ## [`v95.6.0`](https://github.com/elastic/eui/releases/v95.6.0)
 
 - Updated `EuiIcon` with a new `crossInCircle` glyph ([#7924](https://github.com/elastic/eui/pull/7924))
