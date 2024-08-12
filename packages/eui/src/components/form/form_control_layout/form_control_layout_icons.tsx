@@ -9,7 +9,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
+import { RenderWithEuiStylesMemoizer } from '../../../services';
+import { DistributiveOmit } from '../../common';
+import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
+
 import {
   EuiFormControlLayoutClearButton,
   EuiFormControlLayoutClearButtonProps,
@@ -18,8 +22,7 @@ import {
   EuiFormControlLayoutCustomIcon,
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
-import { EuiIcon, IconColor, IconType } from '../../icon';
-import { DistributiveOmit } from '../../common';
+import { euiFormControlLayoutIconsStyles } from './form_control_layout_icons.styles';
 
 export const ICON_SIDES = ['left', 'right'] as const;
 
@@ -52,7 +55,11 @@ export interface EuiFormControlLayoutIconsProps {
 
 export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIconsProps> {
   render() {
-    const { side = 'left', iconsPosition = 'absolute' } = this.props;
+    const {
+      side = 'left',
+      iconsPosition = 'absolute',
+      compressed,
+    } = this.props;
 
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
@@ -67,13 +74,24 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     );
 
     return (
-      <div className={classes}>
-        {clearButton}
-        {loadingSpinner}
-        {invalidIcon}
-        {customIcon}
-        {dropdownIcon}
-      </div>
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiFormControlLayoutIconsStyles);
+          const cssStyles = [
+            styles.euiFormControlLayoutIcons,
+            compressed ? styles.compressed : styles.uncompressed,
+          ];
+          return (
+            <div css={cssStyles} className={classes}>
+              {clearButton}
+              {loadingSpinner}
+              {invalidIcon}
+              {customIcon}
+              {dropdownIcon}
+            </div>
+          );
+        }}
+      </RenderWithEuiStylesMemoizer>
     );
   }
 
