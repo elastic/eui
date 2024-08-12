@@ -806,7 +806,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-delimited"
       >
         <div
-          class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiSuperDatePicker__rangeInput-euiFormControlLayoutDelimited__input"
+          class="euiPopover euiPopover-isOpen euiSuperDatePicker__startPopoverButton euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiFormControlLayoutDelimited__input-euiSuperDatePicker__rangeInput"
         >
           <button
             class="euiDatePopoverButton euiDatePopoverButton--start euiDatePopoverButton-isSelected emotion-euiDatePopoverButton"
@@ -827,7 +827,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           </span>
         </div>
         <div
-          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiSuperDatePicker__rangeInput-euiFormControlLayoutDelimited__input"
+          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiFormControlLayoutDelimited__input-euiSuperDatePicker__rangeInput"
         >
           <button
             class="euiDatePopoverButton euiDatePopoverButton--end emotion-euiDatePopoverButton"

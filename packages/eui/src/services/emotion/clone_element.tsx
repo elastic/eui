@@ -16,7 +16,9 @@ import { jsx } from '@emotion/react';
  */
 export const cloneElementWithCss = (
   element: any,
-  props: any
+  props: any,
+  // The order affects the className(s) that Emotion outputs
+  cssOrder: 'before' | 'after' = 'after'
 ): React.ReactElement => {
   const clonedElement =
     element.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ || element.type; // EMOTION_TYPE handles non-React elements (native JSX/HTML nodes)
@@ -29,7 +31,10 @@ export const cloneElementWithCss = (
   };
 
   if (props.css || element.props.css) {
-    clonedProps.css = [element.props.css, props.css];
+    clonedProps.css =
+      cssOrder === 'before'
+        ? [props.css, element.props.css]
+        : [element.props.css, props.css];
   }
 
   return jsx(clonedElement, clonedProps);

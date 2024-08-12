@@ -98,13 +98,17 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
 };
 
 const addClassesToControl = (control: ReactElement) => {
-  return cloneElementWithCss(control, {
-    css: euiFormControlLayoutDelimited__input,
-    className: classNames(
-      control.props.className,
-      'euiFormControlLayoutDelimited__input'
-    ),
-  });
+  return cloneElementWithCss(
+    control,
+    {
+      css: euiFormControlLayoutDelimited__input,
+      className: classNames(
+        control.props.className,
+        'euiFormControlLayoutDelimited__input'
+      ),
+    },
+    'before'
+  );
 };
 
 const EuiFormControlDelimiter = ({
