@@ -15,7 +15,8 @@ import peg from 'pegjs-inline-precompile'; // eslint-disable-line import/no-unre
 
 const parser = peg`
 {
-  const { AST, Exp, unescapeValue, unescapePhraseValue, resolveFieldValue } = options;
+  const { AST, Exp, unescapeValue, unescapePhraseValue, resolveFieldValue, recognizedFields } = options;
+  const hasRecognizedFields = recognizedFields && recognizedFields.length > 0;
   const ctx = Object.assign({ error }, options );
 }
 
@@ -108,8 +109,9 @@ FieldLTEValue
 flagName "flag name"
   = identifier
 
+// If recognizedFields was given in options, the identifier must match an allowed field
 fieldName "field name"
-  = identifier
+  = id:identifier &{ return !hasRecognizedFields || recognizedFields.includes(id); } { return id; }
 
 identifier
   = identifierChar+ { return unescapeValue(text()); }
@@ -257,6 +259,7 @@ interface ValueExpression {
 export interface ParseOptions {
   dateFormat?: any;
   schema?: any;
+  recognizedFields?: string[];
   escapeValue?: (value: any) => string;
 }
 
@@ -493,6 +496,7 @@ export const defaultSyntax: Syntax = Object.freeze({
     const dateFormat = options.dateFormat || defaultDateFormat;
     const parseDate = dateValueParser(dateFormat);
     const schema = options.schema || {};
+    const recognizedFields = options.recognizedFields;
     const clauses = parser.parse(query, {
       AST,
       Exp,
@@ -502,6 +506,7 @@ export const defaultSyntax: Syntax = Object.freeze({
       resolveFieldValue,
       validateFlag,
       schema: { strict: false, flags: [], fields: {}, ...schema },
+      recognizedFields,
     });
     return AST.create(clauses);
   },
