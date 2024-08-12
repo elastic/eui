@@ -342,8 +342,6 @@ export class EuiComboBoxInput<T> extends Component<
           const formLayoutStyles = [
             styles.formLayout.euiComboBox__formControlLayout,
             !singleSelection && styles.formLayout.multiSelect,
-            isInGroup && !append && styles.formLayout.prependOnly,
-            isInGroup && !prepend && styles.formLayout.appendOnly,
           ];
 
           return (

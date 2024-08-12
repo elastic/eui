@@ -9,10 +9,10 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
     class="euiPopover emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
@@ -80,10 +80,10 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
     class="euiPopover emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
@@ -131,10 +131,10 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
     class="euiPopover customPopoverClass emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
@@ -182,10 +182,10 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
     class="euiPopover emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div

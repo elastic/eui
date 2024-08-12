@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
-  getFormControlClassNameForIconCount,
-  isRightSideIcon,
-  getIconAffordanceStyles,
-} from './_num_icons';
+import { isRightSideIcon, getIconAffordanceStyles } from './_num_icons';
 
 describe('getIconAffordanceStyles', () => {
   const noIcons = {
@@ -68,46 +64,6 @@ describe('getIconAffordanceStyles', () => {
         "--euiFormControlLeftIconsCount": 1,
       }
     `);
-  });
-});
-
-describe('getFormControlClassNameForIconCount', () => {
-  it('should return undefined if object is empty', () => {
-    const numberClass = getFormControlClassNameForIconCount({});
-    expect(numberClass).toEqual(undefined);
-  });
-
-  it('should return undefined if all are false', () => {
-    const numberClass = getFormControlClassNameForIconCount({
-      icon: false,
-      clear: false,
-      isLoading: false,
-      isInvalid: false,
-      isDropdown: false,
-    });
-    expect(numberClass).toEqual(undefined);
-  });
-
-  it('should return 2 if 2 are true', () => {
-    const numberClass = getFormControlClassNameForIconCount({
-      icon: false,
-      clear: true,
-      isLoading: true,
-      isInvalid: false,
-      isDropdown: false,
-    });
-    expect(numberClass).toEqual('euiFormControlLayout--2icons');
-  });
-
-  it('should return 5 if all are true', () => {
-    const numberClass = getFormControlClassNameForIconCount({
-      icon: true,
-      clear: true,
-      isLoading: true,
-      isInvalid: true,
-      isDropdown: true,
-    });
-    expect(numberClass).toEqual('euiFormControlLayout--5icons');
   });
 });
 

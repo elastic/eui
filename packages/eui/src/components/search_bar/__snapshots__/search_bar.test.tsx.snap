@@ -8,10 +8,10 @@ exports[`SearchBar render - box 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
@@ -49,10 +49,10 @@ exports[`SearchBar render - no config, no query 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
@@ -89,10 +89,10 @@ exports[`SearchBar render - provided query, filters 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
       >
         <div
@@ -200,10 +200,10 @@ exports[`SearchBar render - tools 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div

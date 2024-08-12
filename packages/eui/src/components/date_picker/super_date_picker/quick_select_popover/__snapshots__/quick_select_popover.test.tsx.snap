@@ -69,10 +69,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--compressed"
+            class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
               style="--euiFormControlRightIconsCount: 1;"
             >
               <select
@@ -111,10 +111,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--compressed"
+            class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
                 aria-describedby="generated-id generated-id"
@@ -131,10 +131,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           class="euiFlexItem emotion-euiFlexItem-grow-1"
         >
           <div
-            class="euiFormControlLayout euiFormControlLayout--compressed"
+            class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
           >
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
               style="--euiFormControlRightIconsCount: 1;"
             >
               <select
@@ -328,10 +328,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         style="min-width: 60px;"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed-fullWidth"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
             <input
               aria-describedby="generated-id"
@@ -352,10 +352,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         style="min-width: 100px;"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed euiFormControlLayout-isDisabled"
+          class="euiFormControlLayout euiFormControlLayout-isDisabled emotion-euiFormControlLayout-compressed-fullWidth"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
             <select
               aria-describedby="generated-id"

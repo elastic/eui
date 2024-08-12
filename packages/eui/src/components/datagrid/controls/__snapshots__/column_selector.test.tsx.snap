@@ -62,10 +62,10 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
       class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
     >
       <div
-        class="euiFormControlLayout euiFormControlLayout--compressed"
+        class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="Search columns"
@@ -354,10 +354,10 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
       class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
     >
       <div
-        class="euiFormControlLayout euiFormControlLayout--compressed"
+        class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="Search columns"
@@ -646,10 +646,10 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
       class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
     >
       <div
-        class="euiFormControlLayout euiFormControlLayout--compressed"
+        class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="Search columns"

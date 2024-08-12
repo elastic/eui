@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-
-import { findTestSubject, requiredProps } from '../../../test';
+import { fireEvent } from '@testing-library/react';
+import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
@@ -22,6 +22,8 @@ jest.mock('../../', () => ({
 }));
 
 describe('EuiFormControlLayout', () => {
+  shouldRenderCustomStyles(<EuiFormControlLayout />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiFormControlLayout {...requiredProps}>
@@ -77,11 +79,12 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'myIcon',
           };
 
-          const component = mount(<EuiFormControlLayout icon={icon} />);
+          const { getByTestSubject } = render(
+            <EuiFormControlLayout icon={icon} />
+          );
 
-          const closeButton = findTestSubject(component, 'myIcon');
-          closeButton.simulate('click');
-          expect(icon.onClick).toBeCalled();
+          fireEvent.click(getByTestSubject('myIcon'));
+          expect(icon.onClick).toHaveBeenCalled();
         });
       });
     });
@@ -106,11 +109,12 @@ describe('EuiFormControlLayout', () => {
             'data-test-subj': 'clearButton',
           };
 
-          const component = mount(<EuiFormControlLayout clear={clear} />);
+          const { getByTestSubject } = render(
+            <EuiFormControlLayout clear={clear} />
+          );
 
-          const closeButton = findTestSubject(component, 'clearButton');
-          closeButton.simulate('click');
-          expect(clear.onClick).toBeCalled();
+          fireEvent.click(getByTestSubject('clearButton'));
+          expect(clear.onClick).toHaveBeenCalled();
         });
       });
     });
@@ -238,7 +242,7 @@ describe('EuiFormControlLayout', () => {
       const layout = baseElement.querySelector('.euiFormControlLayout');
 
       expect(layout).toBeDefined();
-      expect(layout).toHaveClass('euiFormControlLayout--fullWidth');
+      expect(layout!.className).toContain('fullWidth');
     });
   });
 });

@@ -5,10 +5,10 @@ exports[`EuiColorPicker color empty string 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -57,10 +57,10 @@ exports[`EuiColorPicker color null 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -109,10 +109,10 @@ exports[`EuiColorPicker color valid string 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -160,10 +160,10 @@ exports[`EuiColorPicker compressed 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--compressed"
+    class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -211,10 +211,10 @@ exports[`EuiColorPicker disabled 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout-isDisabled"
+    class="euiFormControlLayout euiFormControlLayout-isDisabled emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
@@ -250,10 +250,10 @@ exports[`EuiColorPicker fullWidth 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -451,10 +451,10 @@ exports[`EuiColorPicker isClearable 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 2;"
     >
       <div
@@ -512,10 +512,10 @@ exports[`EuiColorPicker placeholder 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -564,15 +564,19 @@ exports[`EuiColorPicker prepend and append 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
   >
-    <label
-      class="euiFormLabel euiFormControlLayout__prepend"
-    >
-      prepend
-    </label>
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    >
+      <label
+        class="euiFormLabel"
+      >
+        prepend
+      </label>
+    </div>
+    <div
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -611,11 +615,15 @@ exports[`EuiColorPicker prepend and append 1`] = `
         </span>
       </div>
     </div>
-    <label
-      class="euiFormLabel euiFormControlLayout__append"
+    <div
+      class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
     >
-      append
-    </label>
+      <label
+        class="euiFormLabel"
+      >
+        append
+      </label>
+    </div>
   </div>
 </div>
 `;
@@ -625,10 +633,10 @@ exports[`EuiColorPicker readOnly 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--readOnly"
+    class="euiFormControlLayout euiFormControlLayout-readOnly emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
@@ -664,10 +672,10 @@ exports[`EuiColorPicker renders 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
@@ -715,10 +723,10 @@ exports[`EuiColorPicker showAlpha 1`] = `
   class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover-block"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div

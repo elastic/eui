@@ -7,24 +7,28 @@
  */
 
 import React, {
-  cloneElement,
   FunctionComponent,
   HTMLAttributes,
   ReactElement,
   ReactNode,
-  useCallback,
   useMemo,
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+
+import { EuiFormLabel } from '../form_label';
+import { useFormContext } from '../eui_form_context';
 import { getIconAffordanceStyles, isRightSideIcon } from './_num_icons';
 import {
   EuiFormControlLayoutIcons,
   EuiFormControlLayoutIconsProps,
 } from './form_control_layout_icons';
-import { CommonProps } from '../../common';
-import { EuiFormLabel } from '../form_label';
-import { useFormContext } from '../eui_form_context';
+import {
+  euiFormControlLayoutStyles,
+  euiFormControlLayoutSideNodeStyles,
+} from './form_control_layout.styles';
 
 type StringOrReactElement = string | ReactElement;
 type PrependAppendType = StringOrReactElement | StringOrReactElement[];
@@ -95,17 +99,38 @@ export const EuiFormControlLayout: FunctionComponent<
     ...rest
   } = props;
 
+  const isGroup = !!(prepend || append);
+
   const classes = classNames(
     'euiFormControlLayout',
     {
-      'euiFormControlLayout--fullWidth': fullWidth,
-      'euiFormControlLayout--compressed': compressed,
-      'euiFormControlLayout--readOnly': readOnly,
-      'euiFormControlLayout--group': prepend || append,
+      'euiFormControlLayout--group': isGroup,
       'euiFormControlLayout-isDisabled': isDisabled,
+      'euiFormControlLayout-readOnly': readOnly,
     },
     className
   );
+
+  const styles = useEuiMemoizedStyles(euiFormControlLayoutStyles);
+
+  const cssStyles = [
+    styles.euiFormControlLayout,
+    compressed ? styles.compressed : styles.uncompressed,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+    ...(isGroup
+      ? [
+          styles.group.group,
+          compressed ? styles.group.compressed : styles.group.uncompressed,
+        ]
+      : []),
+  ];
+
+  const childrenWrapperStyles = [
+    styles.children.euiFormControlLayout__childrenWrapper,
+    isGroup && styles.children.inGroup,
+    isGroup && !append && styles.children.prependOnly,
+    isGroup && !prepend && styles.children.appendOnly,
+  ];
 
   const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;
   const hasRightIcon = isRightSideIcon(icon);
@@ -126,14 +151,16 @@ export const EuiFormControlLayout: FunctionComponent<
   }, [iconsPosition, icon, clear, isInvalid, isLoading, hasDropdownIcon]);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       <EuiFormControlLayoutSideNodes
         side="prepend"
         nodes={prepend}
         inputId={inputId}
+        compressed={compressed}
       />
       <div
         className="euiFormControlLayout__childrenWrapper"
+        css={childrenWrapperStyles}
         style={iconAffordanceStyles}
       >
         {hasLeftIcon && (
@@ -164,6 +191,7 @@ export const EuiFormControlLayout: FunctionComponent<
         side="append"
         nodes={append}
         inputId={inputId}
+        compressed={compressed}
       />
     </div>
   );
@@ -176,30 +204,27 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   side: 'append' | 'prepend';
   nodes?: PrependAppendType; // For some bizarre reason if you make this the `children` prop instead, React doesn't properly override cloned keys :|
   inputId?: string;
-}> = ({ side, nodes, inputId }) => {
+  compressed?: boolean;
+}> = ({ side, nodes, inputId, compressed }) => {
   const className = `euiFormControlLayout__${side}`;
-
-  const renderFormLabel = useCallback(
-    (label: string) => (
-      <EuiFormLabel htmlFor={inputId} className={className}>
-        {label}
-      </EuiFormLabel>
-    ),
-    [inputId, className]
-  );
+  const styles = useEuiMemoizedStyles(euiFormControlLayoutSideNodeStyles);
+  const cssStyles = [
+    styles.euiFormControlLayout__side,
+    styles[side],
+    compressed ? styles.compressed : styles.uncompressed,
+  ];
 
   if (!nodes) return null;
 
   return (
-    <>
-      {React.Children.map(nodes, (node, index) =>
-        typeof node === 'string'
-          ? renderFormLabel(node)
-          : cloneElement(node, {
-              className: classNames(className, node.props.className),
-              key: index,
-            })
+    <div css={cssStyles} className={className}>
+      {React.Children.map(nodes, (node) =>
+        typeof node === 'string' ? (
+          <EuiFormLabel htmlFor={inputId}>{node}</EuiFormLabel>
+        ) : (
+          node
+        )
       )}
-    </>
+    </div>
   );
 };

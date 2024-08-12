@@ -60,7 +60,7 @@ describe('EuiDatePicker', () => {
     it('renders as readonly', () => {
       cy.realMount(<EuiDatePicker inline readOnly />);
 
-      cy.get('.euiFormControlLayout--readOnly').should('exist');
+      cy.get('.euiFormControlLayout-readOnly').should('exist');
 
       cy.realPress('Tab');
       cy.focused().should('not.exist');

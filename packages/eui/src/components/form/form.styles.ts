@@ -66,10 +66,9 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
-    inputGroupLabelBackground: isColorDark
+    appendPrependBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
-    inputGroupBorder: 'none',
   };
 
   // Colors - specific to checkboxes, radios, switches, and range thumbs
@@ -230,16 +229,21 @@ export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
+export const euiFormControlDefaultShadow = (
+  euiThemeContext: UseEuiTheme,
+  { withBackground = true }: { withBackground?: boolean } = {}
+) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
-  return `
-    /* We use inset box-shadow instead of border to skip extra hight calculations */
+  // We use inset box-shadow instead of border to skip extra height calculations
+  const border = `
     border: none;
     box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
-    background-color: ${form.backgroundColor};
+  `;
 
+  const backgroundGradient = `
+    background-color: ${form.backgroundColor};
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
@@ -251,11 +255,14 @@ export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
 
     ${euiCanAnimate} {
       transition:
-        box-shadow ${form.animationTiming},
         background-image ${form.animationTiming},
         background-size ${form.animationTiming},
         background-color ${form.animationTiming};
-    }
+    }`;
+
+  return `
+    ${border}
+    ${withBackground ? backgroundGradient : ''}
   `;
 };
 

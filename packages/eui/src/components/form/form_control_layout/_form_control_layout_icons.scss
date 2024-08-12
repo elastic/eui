@@ -13,7 +13,7 @@
     bottom: 0;
     left: $euiFormControlPadding;
 
-    .euiFormControlLayout--compressed & {
+    [class*='euiFormControlLayout-compressed'] & {
       left: $euiFormControlCompressedPadding;
     }
   }
@@ -27,7 +27,7 @@
     flex-grow: 0;
     padding-inline: $euiFormControlPadding;
 
-    .euiFormControlLayout--compressed & {
+    [class*='euiFormControlLayout-compressed'] & {
       padding-inline: $euiFormControlCompressedPadding;
     }
   }
@@ -41,7 +41,7 @@
   left: auto;
   right: $euiFormControlPadding;
 
-  .euiFormControlLayout--compressed & {
+  [class*='euiFormControlLayout-compressed'] & {
     left: auto;
     right: $euiFormControlCompressedPadding;
   }
