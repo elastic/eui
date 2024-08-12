@@ -104,8 +104,6 @@ export const euiFormControlLayoutSideNodeStyles = (
   );
 
   const buttons = '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon)';
-  // Note: `> *` selectors below account for buttons inside popover & tooltip wrappers
-
   const text = '*:is(.euiFormLabel, .euiText)';
 
   return {
@@ -136,6 +134,7 @@ export const euiFormControlLayoutSideNodeStyles = (
       }
 
       /* Account for button padding when spacing children */
+      /* Second > * selector accounts for buttons inside popover & tooltip wrappers */
 
       &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
         ${logicalCSS('padding-left', euiTheme.size.s)}
@@ -144,44 +143,14 @@ export const euiFormControlLayoutSideNodeStyles = (
       &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
         ${logicalCSS('padding-right', euiTheme.size.s)}
       }
-
-      ${text}:where(:has(+ ${buttons}, + * > ${buttons})) {
-        ${logicalCSS('margin-right', `-${euiTheme.size.s}`)}
-      }
-
-      ${text}:where(${buttons} + ${text}, *:has(${buttons}) + ${text}) {
-        ${logicalCSS('margin-left', `-${euiTheme.size.s}`)}
-      }
     `,
     append: css`
       ${logicalCSS('border-top-right-radius', 'inherit')}
       ${logicalCSS('border-bottom-right-radius', 'inherit')}
-
-      & > ${buttons}, & > * > ${buttons} {
-        ${logicalCSS('border-top-left-radius', 0)}
-        ${logicalCSS('border-bottom-left-radius', 0)}
-      }
-
-      & > ${buttons}:not(:last-child),
-      & > *:not(:last-child) > ${buttons} {
-        ${logicalCSS('border-top-right-radius', 0)}
-        ${logicalCSS('border-bottom-right-radius', 0)}
-      }
     `,
     prepend: css`
       ${logicalCSS('border-top-left-radius', 'inherit')}
       ${logicalCSS('border-bottom-left-radius', 'inherit')}
-
-      & > ${buttons}, & > * > ${buttons} {
-        ${logicalCSS('border-top-right-radius', 0)}
-        ${logicalCSS('border-bottom-right-radius', 0)}
-      }
-
-      & > ${buttons}:not(:first-child),
-      & > *:not(:first-child) > ${buttons} {
-        ${logicalCSS('border-top-left-radius', 0)}
-        ${logicalCSS('border-bottom-left-radius', 0)}
-      }
     `,
     uncompressed: `
       ${text} {
