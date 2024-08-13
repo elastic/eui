@@ -13,10 +13,10 @@ exports[`EuiDatePickerRange is rendered 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -78,10 +78,10 @@ exports[`EuiDatePickerRange props compressed 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -143,10 +143,11 @@ exports[`EuiDatePickerRange props disabled 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static-disabled"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
+          disabled=""
         >
           <span
             aria-hidden="true"
@@ -210,10 +211,10 @@ exports[`EuiDatePickerRange props fullWidth 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -1333,10 +1334,10 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -1385,7 +1386,7 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
         </div>
       </div>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
           color="danger"
@@ -1408,10 +1409,10 @@ exports[`EuiDatePickerRange props isLoading 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -1458,7 +1459,7 @@ exports[`EuiDatePickerRange props isLoading 1`] = `
         </div>
       </div>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
           aria-label="Loading"
@@ -1482,10 +1483,10 @@ exports[`EuiDatePickerRange props readOnly 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -1551,10 +1552,10 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
       class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"

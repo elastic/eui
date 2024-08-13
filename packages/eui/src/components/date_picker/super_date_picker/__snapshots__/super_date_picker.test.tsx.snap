@@ -208,7 +208,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
     class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-block-EuiInputPopover"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
+      class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-isDisabled euiFormControlLayout-readOnly emotion-euiFormControlLayout-group"
     >
       <div
         class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
@@ -274,8 +274,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
   class="euiSuperDatePicker emotion-euiSuperDatePicker-restricted"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-disabled"
-    disabled=""
+    class="euiFormControlLayout euiFormControlLayout--group euiFormControlLayout-isDisabled emotion-euiFormControlLayout-fullWidth-group-euiSuperDatePicker__formControlLayout-disabled"
   >
     <div
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
