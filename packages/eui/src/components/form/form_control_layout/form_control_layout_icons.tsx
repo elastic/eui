@@ -130,7 +130,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
   }
 
   renderDropdownIcon() {
-    const { isDropdown, compressed } = this.props;
+    const { isDropdown, compressed, isDisabled } = this.props;
 
     if (!isDropdown) {
       return null;
@@ -139,6 +139,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     return (
       <EuiFormControlLayoutCustomIcon
         size={compressed ? 's' : 'm'}
+        disabled={isDisabled}
         type="arrowDown"
       />
     );
@@ -155,7 +156,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
   }
 
   renderClearButton() {
-    const { clear, compressed } = this.props;
+    const { clear, compressed, isDisabled } = this.props;
     if (!clear) {
       return null;
     }
@@ -163,6 +164,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     return (
       <EuiFormControlLayoutClearButton
         size={compressed ? 's' : 'm'}
+        disabled={isDisabled}
         {...clear}
       />
     );

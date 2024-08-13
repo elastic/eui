@@ -222,7 +222,6 @@ exports[`EuiColorPicker disabled 1`] = `
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
-          disabled=""
         >
           <span
             aria-hidden="true"

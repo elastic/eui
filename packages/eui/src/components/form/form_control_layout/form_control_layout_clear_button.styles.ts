@@ -24,7 +24,13 @@ export const EuiFormControlLayoutClearButtonStyles = ({
       background-color: ${backgroundColor};
       border-radius: 50%;
       line-height: 0; /* ensures the icon stays vertically centered */
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: ${euiTheme.colors.disabled};
+      }
     `,
+
     euiFormControlLayoutClearButton__icon: css`
       transform: scale(0.5);
       fill: ${euiTheme.colors.emptyShade};

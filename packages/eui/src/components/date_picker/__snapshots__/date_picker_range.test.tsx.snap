@@ -147,7 +147,6 @@ exports[`EuiDatePickerRange props disabled 1`] = `
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
-          disabled=""
         >
           <span
             aria-hidden="true"
