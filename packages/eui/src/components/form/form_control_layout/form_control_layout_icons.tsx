@@ -105,7 +105,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
   }
 
   renderCustomIcon() {
-    const { icon, compressed } = this.props;
+    const { icon, compressed, isDisabled } = this.props;
 
     if (!icon) {
       return null;
@@ -122,6 +122,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     return (
       <EuiFormControlLayoutCustomIcon
         size={compressed ? 's' : 'm'}
+        disabled={isDisabled}
         iconRef={iconRef}
         {...iconRest}
       />

@@ -30,7 +30,7 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
 
 export const EuiFormControlLayoutCustomIcon: FunctionComponent<
   EuiFormControlLayoutCustomIconProps
-> = ({ className, onClick, type, iconRef, size, color, ...rest }) => {
+> = ({ className, onClick, type, iconRef, size, color, disabled, ...rest }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
     'euiFormControlLayoutCustomIcon--clickable': onClick,
   });
@@ -40,6 +40,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<
       <button
         type="button"
         onClick={onClick}
+        disabled={disabled}
         className={classes}
         ref={iconRef}
         {...rest}
