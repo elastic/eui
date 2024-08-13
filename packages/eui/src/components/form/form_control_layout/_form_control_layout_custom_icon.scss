@@ -4,18 +4,7 @@
 }
 
 .euiFormControlLayoutCustomIcon--clickable {
-  @include size($euiSize);
-
   pointer-events: all;
-
-  .euiFormControlLayoutCustomIcon__icon {
-    vertical-align: baseline;
-    transform: none;
-  }
-
-  &:focus {
-    @include euiFocusRing;
-  }
 
   &:disabled {
     cursor: not-allowed;
