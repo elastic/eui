@@ -41,10 +41,9 @@ describe('EuiDatePicker', () => {
     it('renders form control icons below the date picker', () => {
       cy.realMount(<EuiDatePicker inline isLoading isInvalid />);
 
-      cy.get('.euiFormControlLayoutIcons').should(
-        'have.class',
-        'euiFormControlLayoutIcons--static'
-      );
+      cy.get('.euiFormControlLayoutIcons')
+        .invoke('attr', 'class')
+        .should('contain', 'euiFormControlLayoutIcons-static');
       cy.get('.euiFormControlLayoutDelimited--isInvalid').should('exist');
     });
 
