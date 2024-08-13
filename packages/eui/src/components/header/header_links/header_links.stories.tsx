@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../';
 
@@ -21,7 +22,11 @@ const meta: Meta<EuiHeaderLinksProps> = {
     // Component defaults
     gutterSize: 's',
     popoverBreakpoints: ['xs', 's'],
+    // VRT
+    popoverProps: { isOpen: true },
   },
+  // Required to capture mobile popover
+  parameters: { loki: { chromeSelector: LOKI_SELECTORS.body } },
 };
 
 export default meta;
@@ -33,9 +38,13 @@ export const Playground: Story = {
       <EuiHeaderSection>
         <EuiHeaderSectionItem>
           <EuiHeaderLinks {...args}>
-            <EuiHeaderLink isActive>Docs</EuiHeaderLink>
-            <EuiHeaderLink>Code</EuiHeaderLink>
-            <EuiHeaderLink iconType="help"> Help</EuiHeaderLink>
+            <EuiHeaderLink size="s" isActive>
+              Docs
+            </EuiHeaderLink>
+            <EuiHeaderLink size="s">Code</EuiHeaderLink>
+            <EuiHeaderLink size="s" iconType="help">
+              Help
+            </EuiHeaderLink>
           </EuiHeaderLinks>
         </EuiHeaderSectionItem>
       </EuiHeaderSection>
