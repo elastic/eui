@@ -53,6 +53,7 @@ export interface FieldValueSelectionFilterConfigType {
   available?: () => boolean;
   autoClose?: boolean;
   operator?: OperatorType;
+  autoSortOptions?: boolean;
 }
 
 export interface FieldValueSelectionFilterProps {
@@ -67,6 +68,7 @@ const defaults = {
     multiSelect: true,
     filterWith: 'prefix',
     searchThreshold: 10,
+    autoSortOptions: true,
   },
 };
 
@@ -132,10 +134,12 @@ export class FieldValueSelectionFilter extends Component<
           on: FieldValueOptionType[];
           off: FieldValueOptionType[];
           rest: FieldValueOptionType[];
+          all: FieldValueOptionType[];
         } = {
           on: [],
           off: [],
           rest: [],
+          all: [],
         };
 
         const { query, config } = this.props;
@@ -158,17 +162,25 @@ export class FieldValueSelectionFilter extends Component<
               } else {
                 items.off.push(op);
               }
+              items.all.push(op);
             }
             return;
           });
         }
+
+        const autoSortOptions =
+          this.props.config.autoSortOptions === undefined
+            ? defaults.config.autoSortOptions
+            : this.props.config.autoSortOptions;
 
         this.setState({
           error: null,
           activeItems: items.on,
           options: {
             all: options,
-            shown: [...items.on, ...items.off, ...items.rest],
+            shown: autoSortOptions
+              ? [...items.on, ...items.off, ...items.rest]
+              : [...items.all],
           },
         });
       })

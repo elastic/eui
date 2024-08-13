@@ -291,6 +291,12 @@ export const propsInfo = {
           defaultValue: { value: 'eq' },
           type: { name: 'eq | exact | gt | gte | lt | lte' },
         },
+        autoSortOptions: {
+          description: 'Should the dropdown auto sort selections to the top.',
+          required: false,
+          defaultValue: { value: 'true' },
+          type: { name: 'boolean' },
+        },
       },
     },
   },

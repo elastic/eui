@@ -453,4 +453,85 @@ describe('FieldValueSelectionFilter', () => {
       .eq(0)
       .should('have.attr', 'title', 'Bug');
   });
+
+  it('sorts selected options to the top by default', () => {
+    const props: FieldValueSelectionFilterProps = {
+      ...requiredProps,
+      index: 0,
+      onChange: () => {},
+      query: Query.parse('tag_3:bug'),
+      config: {
+        type: 'field_value_selection',
+        name: 'Tag',
+        options: [
+          {
+            field: 'tag',
+            value: 'feature',
+          },
+          {
+            field: 'tag_2',
+            value: 'test',
+            name: 'Text',
+          },
+          {
+            field: 'tag_3',
+            value: 'bug',
+            name: 'Bug',
+            view: <div>bug</div>,
+          },
+        ],
+      },
+    };
+
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+
+    cy.get('button').click();
+    cy.get('.euiNotificationBadge').should('not.be.undefined');
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(0)
+      .should('have.attr', 'title', 'Bug');
+  });
+
+  it('does not sort selected options to the top when disabled via config', () => {
+    const props: FieldValueSelectionFilterProps = {
+      ...requiredProps,
+      index: 0,
+      onChange: () => {},
+      query: Query.parse('tag_3:bug'),
+      config: {
+        type: 'field_value_selection',
+        name: 'Tag',
+        options: [
+          {
+            field: 'tag',
+            value: 'feature',
+            name: 'Feature',
+          },
+          {
+            field: 'tag_2',
+            value: 'test',
+            name: 'Text',
+          },
+          {
+            field: 'tag_3',
+            value: 'bug',
+            name: 'Bug',
+            view: <div>bug</div>,
+          },
+        ],
+        autoSortOptions: false,
+      },
+    };
+
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+
+    cy.get('button').click();
+    cy.get('.euiNotificationBadge').should('not.be.undefined');
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(0)
+      .should('have.attr', 'title', 'Feature');
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(2)
+      .should('have.attr', 'title', 'Bug');
+  });
 });
