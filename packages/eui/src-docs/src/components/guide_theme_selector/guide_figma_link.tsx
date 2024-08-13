@@ -1,14 +1,16 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 
-import { EuiButtonEmpty } from '../../../../src/components/button';
 import { useIsWithinBreakpoints } from '../../../../src/services';
-
-import { ThemeContext } from '../with_theme';
-import { EuiHeaderSectionItemButton } from '../../../../src/components/header';
+import {
+  EuiHeaderLink,
+  EuiHeaderSectionItemButton,
+} from '../../../../src/components/header';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiIcon } from '../../../../src/components/icon';
 import logoFigma from '../../images/logo-figma.svg';
+
+import { ThemeContext } from '../with_theme';
 
 type GuideFigmaLinkProps = {
   context?: any;
@@ -34,9 +36,9 @@ const GuideFigmaLinkComponent: React.FunctionComponent<
   const label = 'EUI Figma Design Library';
 
   return isMobileSize ? (
-    <EuiButtonEmpty size="s" flush="both" iconType={logoFigma} href={href}>
+    <EuiHeaderLink size="s" color="primary" iconType={logoFigma} href={href}>
       {label}
-    </EuiButtonEmpty>
+    </EuiHeaderLink>
   ) : (
     <EuiToolTip
       title={label}

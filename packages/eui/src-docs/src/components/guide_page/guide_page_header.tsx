@@ -1,15 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import {
   EuiBadge,
-  EuiButtonEmpty,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiHeader,
+  EuiHeaderLink,
+  EuiHeaderLinks,
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
   EuiIcon,
-  EuiPopover,
   EuiToolTip,
 } from '../../../../src/components';
 import { useIsWithinBreakpoints } from '../../../../src/services';
@@ -69,14 +67,14 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   const github = useMemo(() => {
     const label = 'EUI GitHub repo';
     return isMobileSize ? (
-      <EuiButtonEmpty
+      <EuiHeaderLink
         size="s"
-        flush="both"
+        color="primary"
         iconType="logoGithub"
         href={GITHUB_URL}
       >
         {label}
-      </EuiButtonEmpty>
+      </EuiHeaderLink>
     ) : (
       <EuiToolTip content="Github">
         <EuiHeaderSectionItemButton aria-label={label} href={GITHUB_URL}>
@@ -90,9 +88,9 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     const label = 'Codesandbox';
     return isMobileSize ? (
       <CodeSandboxLink type="tsx">
-        <EuiButtonEmpty size="s" flush="both" iconType="logoCodesandbox">
+        <EuiHeaderLink size="s" color="primary" iconType="logoCodesandbox">
           {label}
-        </EuiButtonEmpty>
+        </EuiHeaderLink>
       </CodeSandboxLink>
     ) : (
       <EuiToolTip content="Codesandbox" key="codesandbox">
@@ -105,39 +103,18 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     );
   }, [isMobileSize]);
 
-  const [mobilePopoverIsOpen, setMobilePopoverIsOpen] = useState(false);
-
   const mobileMenu = useMemo(() => {
-    const button = (
-      <EuiHeaderSectionItemButton
-        aria-label="Open EUI options menu"
-        onClick={() => setMobilePopoverIsOpen((isOpen) => !isOpen)}
-      >
-        <EuiIcon type="apps" aria-hidden="true" />
-      </EuiHeaderSectionItemButton>
-    );
-
     return (
-      <EuiPopover
-        button={button}
-        isOpen={mobilePopoverIsOpen}
-        closePopover={() => setMobilePopoverIsOpen(false)}
+      <EuiHeaderLinks
+        popoverButtonProps={{ 'aria-label': 'Open EUI options menu' }}
+        popoverBreakpoints="all"
       >
-        <EuiFlexGroup
-          direction="column"
-          alignItems="flexStart"
-          gutterSize="none"
-          responsive={false}
-        >
-          <EuiFlexItem>{github}</EuiFlexItem>
-          <EuiFlexItem>
-            <GuideFigmaLink />
-          </EuiFlexItem>
-          <EuiFlexItem>{codesandbox}</EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiPopover>
+        {github}
+        <GuideFigmaLink />
+        {codesandbox}
+      </EuiHeaderLinks>
     );
-  }, [mobilePopoverIsOpen, codesandbox, github]);
+  }, [codesandbox, github]);
 
   const rightSideItems = isMobileSize
     ? [
