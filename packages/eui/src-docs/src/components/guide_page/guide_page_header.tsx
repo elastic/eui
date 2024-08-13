@@ -67,12 +67,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   const github = useMemo(() => {
     const label = 'EUI GitHub repo';
     return isMobileSize ? (
-      <EuiHeaderLink
-        size="s"
-        color="primary"
-        iconType="logoGithub"
-        href={GITHUB_URL}
-      >
+      <EuiHeaderLink color="primary" iconType="logoGithub" href={GITHUB_URL}>
         {label}
       </EuiHeaderLink>
     ) : (
@@ -88,7 +83,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     const label = 'Codesandbox';
     return isMobileSize ? (
       <CodeSandboxLink type="tsx">
-        <EuiHeaderLink size="s" color="primary" iconType="logoCodesandbox">
+        <EuiHeaderLink color="primary" iconType="logoCodesandbox">
           {label}
         </EuiHeaderLink>
       </CodeSandboxLink>

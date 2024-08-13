@@ -36,7 +36,7 @@ const GuideFigmaLinkComponent: React.FunctionComponent<
   const label = 'EUI Figma Design Library';
 
   return isMobileSize ? (
-    <EuiHeaderLink size="s" color="primary" iconType={logoFigma} href={href}>
+    <EuiHeaderLink color="primary" iconType={logoFigma} href={href}>
       {label}
     </EuiHeaderLink>
   ) : (

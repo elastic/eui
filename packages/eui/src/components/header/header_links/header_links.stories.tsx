@@ -38,13 +38,9 @@ export const Playground: Story = {
       <EuiHeaderSection>
         <EuiHeaderSectionItem>
           <EuiHeaderLinks {...args}>
-            <EuiHeaderLink size="s" isActive>
-              Docs
-            </EuiHeaderLink>
-            <EuiHeaderLink size="s">Code</EuiHeaderLink>
-            <EuiHeaderLink size="s" iconType="help">
-              Help
-            </EuiHeaderLink>
+            <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+            <EuiHeaderLink>Code</EuiHeaderLink>
+            <EuiHeaderLink iconType="help">Help</EuiHeaderLink>
           </EuiHeaderLinks>
         </EuiHeaderSectionItem>
       </EuiHeaderSection>
