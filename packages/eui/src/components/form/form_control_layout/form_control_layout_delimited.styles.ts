@@ -21,8 +21,15 @@ export const euiFormControlLayoutDelimitedStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   return {
-    // Appended onto existing  `euiFormControlLayout` styles
-    delimited: css``,
+    // Appended onto existing `euiFormControlLayout` styles
+    delimited: css(
+      // Transition smoothly between disabled/readOnly background color changes
+      euiFormControlDefaultShadow(euiThemeContext, {
+        withBorder: false,
+        withBackground: false,
+        withBackgroundAnimation: true,
+      })
+    ),
     disabled: css(euiFormControlDisabledStyles(euiThemeContext)),
     readOnly: css(euiFormControlReadOnlyStyles(euiThemeContext)),
 
@@ -32,7 +39,11 @@ export const euiFormControlLayoutDelimitedStyles = (
         display: flex;
       `,
       invalid: css(
-        euiFormControlDefaultShadow(euiThemeContext, { withBorder: false }),
+        euiFormControlDefaultShadow(euiThemeContext, {
+          withBorder: false,
+          withBackgroundColor: false,
+          withBackgroundAnimation: false,
+        }),
         euiFormControlInvalidStyles(euiThemeContext)
       ),
     },

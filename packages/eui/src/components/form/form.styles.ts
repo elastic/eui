@@ -234,7 +234,14 @@ export const euiFormControlDefaultShadow = (
   {
     withBorder = true,
     withBackground = true,
-  }: { withBorder?: boolean; withBackground?: boolean } = {}
+    withBackgroundColor = withBackground,
+    withBackgroundAnimation = withBackground,
+  }: {
+    withBorder?: boolean;
+    withBackground?: boolean;
+    withBackgroundColor?: boolean;
+    withBackgroundAnimation?: boolean;
+  } = {}
 ) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
@@ -243,10 +250,13 @@ export const euiFormControlDefaultShadow = (
   const border = `
     border: none;
     box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
-  `;
+  `.trim();
+
+  const backgroundColor = `
+    background-color: ${form.backgroundColor};
+  `.trim();
 
   const backgroundGradient = `
-    background-color: ${form.backgroundColor};
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
@@ -255,17 +265,22 @@ export const euiFormControlDefaultShadow = (
       transparent ${euiTheme.border.width.thick},
       transparent 100%
     );
+  `.trim();
 
+  const backgroundAnimation = `
     ${euiCanAnimate} {
       transition:
         background-image ${form.animationTiming},
         background-size ${form.animationTiming},
         background-color ${form.animationTiming};
-    }`;
+    }
+  `.trim();
 
   return `
     ${withBorder ? border : ''}
+    ${withBackgroundColor ? backgroundColor : ''}
     ${withBackground ? backgroundGradient : ''}
+    ${withBackgroundAnimation ? backgroundAnimation : ''}
   `;
 };
 
@@ -297,6 +312,7 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
     -webkit-text-fill-color: ${form.controlDisabledColor};
     background-color: ${form.backgroundDisabledColor};
     cursor: not-allowed;
+    --euiFormControlStateColor: transparent;
 
     ${euiPlaceholderPerBrowser(`
       color: ${form.controlDisabledColor};
