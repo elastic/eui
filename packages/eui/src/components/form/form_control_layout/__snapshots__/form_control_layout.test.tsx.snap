@@ -27,12 +27,12 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
     >
       <button
         aria-label="Clear input"
-        class="euiFormControlLayoutClearButton customClass"
+        class="euiFormControlLayoutClearButton customClass emotion-euiFormControlLayoutClearButton"
         data-test-subj="clearButton"
         type="button"
       >
         <span
-          class="euiFormControlLayoutClearButton__icon"
+          class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
           data-euiicon-type="cross"
         />
       </button>
@@ -67,11 +67,11 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
     >
       <button
         aria-label="Clear input"
-        class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+        class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
         type="button"
       >
         <span
-          class="euiFormControlLayoutClearButton__icon"
+          class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-s"
           data-euiicon-type="cross"
         />
       </button>
