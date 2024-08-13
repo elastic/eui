@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, cloneElement } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   hideStorybookControls,
@@ -115,6 +115,17 @@ export const Playground: Story = {
         aria-label="EuiFormControlLayoutDelimited demo - end control"
       />
     ),
+  },
+  render: ({ startControl, endControl, ...args }) => {
+    const { isInvalid, isDisabled, readOnly } = args;
+    const clonedControlProps = { isInvalid, disabled: isDisabled, readOnly };
+    return (
+      <EuiFormControlLayoutDelimited
+        {...args}
+        startControl={cloneElement(startControl, clonedControlProps)}
+        endControl={cloneElement(endControl, clonedControlProps)}
+      />
+    );
   },
 };
 
