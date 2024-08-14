@@ -98,6 +98,10 @@ export const EuiDescribedFormGroup: FunctionComponent<
     styles.euiDescribedFormGroup__descriptionColumn,
     descriptionFlexItemProps?.css,
   ];
+  const fieldColumnStyles = [
+    styles.euiDescribedFormGroup__fields,
+    fieldFlexItemProps?.css,
+  ];
 
   const classes = classNames('euiDescribedFormGroup', className);
 
@@ -168,6 +172,7 @@ export const EuiDescribedFormGroup: FunctionComponent<
       <EuiFlexItem
         grow={fieldGrowth}
         {...fieldFlexItemProps}
+        css={fieldColumnStyles}
         className={fieldClasses}
       >
         {children}

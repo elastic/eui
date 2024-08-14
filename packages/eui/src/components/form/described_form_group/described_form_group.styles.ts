@@ -40,5 +40,23 @@ export const euiDescribedFormGroupStyles = (euiThemeContext: UseEuiTheme) => {
     euiDescribedFormGroup__description: css`
       ${logicalCSS('padding-top', euiTheme.size.s)}
     `,
+
+    euiDescribedFormGroup__fields: css`
+      /* Needed to support flex shrinking appropriately with viewport (prevents x-axis content overflow) */
+      ${logicalCSS('min-width', 0)}
+
+      /* Implicit titles */
+      & > .euiFormRow:first-child:not(.euiFormRow--hasLabel) {
+        /* This fakes out flex into thinking there's text before the input and therefor aligns properly to the baseline */
+        &::before {
+          content: '';
+        }
+      }
+
+      /* Remove the forced margin */
+      & > .euiFormRow--hasEmptyLabelSpace:first-child {
+        ${logicalCSS('margin-top', 0)}
+      }
+    `,
   };
 };

@@ -15,7 +15,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     </h3>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow"
@@ -55,7 +55,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow euiFormRow--fullWidth"
@@ -95,7 +95,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow"
@@ -135,7 +135,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
     </div>
   </div>
   <section
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow"
@@ -175,7 +175,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-2"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-2-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow euiFormRow--fullWidth"
@@ -215,7 +215,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow"
@@ -257,7 +257,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow"
@@ -297,7 +297,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
     </div>
   </div>
   <div
-    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
       class="euiFormRow euiFormRow--hasLabel"
