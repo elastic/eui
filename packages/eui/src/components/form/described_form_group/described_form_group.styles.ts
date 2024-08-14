@@ -33,5 +33,12 @@ export const euiDescribedFormGroupStyles = (euiThemeContext: UseEuiTheme) => {
     fullWidth: css`
       ${logicalCSS('max-width', '100%')}
     `,
+
+    euiDescribedFormGroup__descriptionColumn: css`
+      ${logicalCSS('min-width', 'min(20rem, 50%)')}
+    `,
+    euiDescribedFormGroup__description: css`
+      ${logicalCSS('padding-top', euiTheme.size.s)}
+    `,
   };
 };

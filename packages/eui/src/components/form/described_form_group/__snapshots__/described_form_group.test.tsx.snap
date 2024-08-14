@@ -6,7 +6,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -39,7 +39,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -47,7 +47,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description
@@ -79,7 +79,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -87,7 +87,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description
@@ -119,7 +119,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-2"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-2-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -127,7 +127,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description
@@ -159,7 +159,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -167,7 +167,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description
@@ -199,7 +199,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-l"
@@ -207,7 +207,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description
@@ -241,7 +241,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -249,7 +249,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description
@@ -281,7 +281,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
   role="group"
 >
   <div
-    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
   >
     <h3
       class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
@@ -289,7 +289,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
       Title
     </h3>
     <div
-      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
     >
       <p>
         Test description

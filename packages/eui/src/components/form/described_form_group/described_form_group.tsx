@@ -94,6 +94,10 @@ export const EuiDescribedFormGroup: FunctionComponent<
     styles.euiDescribedFormGroup,
     fullWidth ? styles.fullWidth : styles.formWidth,
   ];
+  const descriptionColumnStyles = [
+    styles.euiDescribedFormGroup__descriptionColumn,
+    descriptionFlexItemProps?.css,
+  ];
 
   const classes = classNames('euiDescribedFormGroup', className);
 
@@ -109,6 +113,7 @@ export const EuiDescribedFormGroup: FunctionComponent<
       <EuiText
         size="s"
         color="subdued"
+        css={styles.euiDescribedFormGroup__description}
         className="euiDescribedFormGroup__description"
       >
         {
@@ -147,6 +152,7 @@ export const EuiDescribedFormGroup: FunctionComponent<
       <EuiFlexItem
         grow={1}
         {...descriptionFlexItemProps}
+        css={descriptionColumnStyles}
         className={classNames(
           'euiDescribedFormGroup__descriptionColumn',
           descriptionFlexItemProps?.className

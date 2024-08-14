@@ -1,8 +1,4 @@
 .euiDescribedFormGroup {
-  .euiDescribedFormGroup__description {
-    padding-top: $euiSizeS;
-  }
-
   .euiDescribedFormGroup__fields {
     min-width: 0; // Needed to support shrinking appropriately with viewport (prevents x-axis content overflow)
   }
@@ -19,6 +15,3 @@
   }
 }
 
-.euiDescribedFormGroup__descriptionColumn {
-  min-width: MIN(20rem, 50%);
-}
