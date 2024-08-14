@@ -21,10 +21,10 @@ exports[`EuiSuperSelect props compressed 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -59,10 +59,10 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -106,10 +106,10 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -157,10 +157,10 @@ exports[`EuiSuperSelect renders 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
           >
             <span
-              class="euiFormControlLayoutCustomIcon"
+              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
             >
               <span
                 aria-hidden="true"

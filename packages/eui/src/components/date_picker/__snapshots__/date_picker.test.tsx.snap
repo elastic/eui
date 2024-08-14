@@ -970,10 +970,10 @@ exports[`EuiDatePicker renders 1`] = `
       style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"

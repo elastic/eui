@@ -88,10 +88,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
               </option>
             </select>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
+                class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
               >
                 <span
                   aria-hidden="true"
@@ -175,10 +175,10 @@ exports[`EuiQuickSelect is rendered 1`] = `
               </option>
             </select>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
+                class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
               >
                 <span
                   aria-hidden="true"
@@ -305,10 +305,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
               </option>
             </select>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
+                class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
               >
                 <span
                   aria-hidden="true"
@@ -392,10 +392,10 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
               </option>
             </select>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
+                class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
               >
                 <span
                   aria-hidden="true"

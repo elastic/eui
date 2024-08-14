@@ -92,10 +92,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 </option>
               </select>
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
               >
                 <span
-                  class="euiFormControlLayoutCustomIcon"
+                  class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
                 >
                   <span
                     aria-hidden="true"
@@ -179,10 +179,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 </option>
               </select>
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
               >
                 <span
-                  class="euiFormControlLayoutCustomIcon"
+                  class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
                 >
                   <span
                     aria-hidden="true"
@@ -328,7 +328,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         style="min-width: 60px;"
       >
         <div
-          class="euiFormControlLayout emotion-euiFormControlLayout-compressed-fullWidth"
+          class="euiFormControlLayout euiFormControlLayout-isDisabled emotion-euiFormControlLayout-compressed-fullWidth"
         >
           <div
             class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"

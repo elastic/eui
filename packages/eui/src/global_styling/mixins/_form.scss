@@ -26,34 +26,6 @@
   }
 }
 
-@mixin euiFormControlLayoutClearIcon($iconClass, $size: 'm') {
-  $clearSize: $euiSize;
-  $clearIconStroke: 2px;
-
-  @if ($size == 's') {
-    $clearSize: $euiSizeM;
-    $clearIconStroke: $euiSizeXS;
-  }
-
-  @include size($clearSize);
-  pointer-events: all;
-  background-color: lightOrDarkTheme($euiColorMediumShade, $euiColorDarkShade);
-  border-radius: $clearSize;
-  line-height: 0; // ensures the icon stays vertically centered
-
-  &:focus {
-    @include euiFocusRing;
-  }
-
-  #{$iconClass} {
-    @include size($clearSize / 2);
-    fill: $euiColorEmptyShade;
-    // increase thickness of icon at such a small size
-    stroke: $euiColorEmptyShade;
-    stroke-width: $clearIconStroke;
-  }
-}
-
 @mixin euiPlaceholderPerBrowser {
   // stylelint-disable selector-no-vendor-prefix
   // Each prefix must be its own content block

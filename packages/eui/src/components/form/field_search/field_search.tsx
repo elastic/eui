@@ -216,6 +216,7 @@ export class EuiFieldSearchClass extends Component<
       name,
       placeholder,
       isInvalid,
+      disabled,
       fullWidth = defaultFullWidth,
       isLoading,
       inputRef,
@@ -233,7 +234,7 @@ export class EuiFieldSearchClass extends Component<
 
     // Set actual value of isClearable if value exists as well
     const isClearable = Boolean(
-      _isClearable && value && !rest.readOnly && !rest.disabled
+      _isClearable && value && !rest.readOnly && !disabled
     );
 
     const classes = classNames(
@@ -260,6 +261,7 @@ export class EuiFieldSearchClass extends Component<
         fullWidth={fullWidth}
         isLoading={isLoading}
         isInvalid={isInvalid}
+        isDisabled={disabled}
         clear={
           isClearable
             ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
@@ -278,6 +280,7 @@ export class EuiFieldSearchClass extends Component<
             className={classes}
             css={cssStyles}
             onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
+            disabled={disabled}
             ref={this.setRef}
             {...rest}
           />

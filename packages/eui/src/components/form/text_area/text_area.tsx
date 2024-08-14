@@ -119,6 +119,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
+      isDisabled={rest.disabled}
       clear={clear}
       icon={icon}
       className="euiFormControlLayout--euiTextArea"
