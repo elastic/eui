@@ -203,8 +203,9 @@ export const useDataGridDisplaySelector = (
     }
 
     const { onChange, ...currentGridStyles } = gridStyles;
-    initialStyles?.onChange?.(currentGridStyles);
-  }, [userGridStyles, allowResetButton]);
+    initialStyles?.onChange?.(currentGridStyles); 
+    console.log("SUCCED Display Selector");
+  }, [userGridStyles, allowResetButton, gridStyles]);
 
   useUpdateEffect(() => {
     if (allowResetButton) {

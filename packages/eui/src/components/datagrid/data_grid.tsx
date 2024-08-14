@@ -110,7 +110,7 @@ const cellPaddingsToClassMap: {
 const emptyVirtualizationOptions = {};
 
 export const EuiDataGrid = memo(
-  forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props, ref) => {
+  forwardRef<EuiDataGridRefProps, EuiDataGridProps>((props: { [x: string]: any; leadingControlColumns?: any; trailingControlColumns?: any; columns?: any; columnVisibility?: any; schemaDetectors?: any; rowCount?: any; renderCellValue?: any; cellContext?: any; renderCellPopover?: any; renderFooterCellValue?: any; className?: any; gridStyle?: any; toolbarVisibility?: any; pagination?: any; sorting?: any; inMemory?: any; onColumnResize?: any; minSizeForControls?: any; height?: any; width?: any; rowHeightsOptions?: any; virtualizationOptions?: any; renderCustomGridBody?: any; renderCustomToolbar?: any; }, ref: any) => {
     const {
       leadingControlColumns = emptyControlColumns,
       trailingControlColumns = emptyControlColumns,
