@@ -136,31 +136,36 @@ export const EuiDescribedFormGroup: FunctionComponent<
   }
 
   return (
-    <div role="group" css={cssStyles} className={classes} {...rest}>
-      <EuiFlexGroup alignItems="baseline" gutterSize={gutterSize}>
-        <EuiFlexItem
-          grow={1}
-          {...descriptionFlexItemProps}
-          className={classNames(
-            'euiDescribedFormGroup__descriptionColumn',
-            descriptionFlexItemProps?.className
-          )}
-        >
-          <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
-            {title}
-          </EuiTitle>
+    <EuiFlexGroup
+      role="group"
+      {...rest}
+      css={cssStyles}
+      className={classes}
+      alignItems="baseline"
+      gutterSize={gutterSize}
+    >
+      <EuiFlexItem
+        grow={1}
+        {...descriptionFlexItemProps}
+        className={classNames(
+          'euiDescribedFormGroup__descriptionColumn',
+          descriptionFlexItemProps?.className
+        )}
+      >
+        <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
+          {title}
+        </EuiTitle>
 
-          {renderedDescription}
-        </EuiFlexItem>
+        {renderedDescription}
+      </EuiFlexItem>
 
-        <EuiFlexItem
-          grow={fieldGrowth}
-          {...fieldFlexItemProps}
-          className={fieldClasses}
-        >
-          {children}
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </div>
+      <EuiFlexItem
+        grow={fieldGrowth}
+        {...fieldFlexItemProps}
+        className={fieldClasses}
+      >
+        {children}
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 };
