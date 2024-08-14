@@ -15,7 +15,7 @@ import {
   mathWithUnits,
 } from '../../../global_styling';
 
-import { euiFormControlDefaultShadow, euiFormVariables } from '../form.styles';
+import { euiFormVariables } from '../form.styles';
 
 export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -45,14 +45,9 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         align-items: stretch;
 
-        /* Account for inner box-shadow style border */
-        padding: ${euiTheme.border.width.thin};
-        ${euiFormControlDefaultShadow(euiThemeContext, {
-          withBackground: false,
-        })}
+        border: ${euiTheme.border.width.thin} solid ${form.borderColor};
         background-color: ${form.backgroundColor};
-        /* Keep backgrounds inside border radius */
-        overflow: hidden;
+        overflow: hidden; /* Keep backgrounds inside border radius */
 
         /* Force the stretch of any children so they expand the full height of the control */
         > * {
@@ -144,14 +139,8 @@ export const euiFormControlLayoutSideNodeStyles = (
         ${logicalCSS('padding-right', euiTheme.size.s)}
       }
     `,
-    append: css`
-      ${logicalCSS('border-top-right-radius', 'inherit')}
-      ${logicalCSS('border-bottom-right-radius', 'inherit')}
-    `,
-    prepend: css`
-      ${logicalCSS('border-top-left-radius', 'inherit')}
-      ${logicalCSS('border-bottom-left-radius', 'inherit')}
-    `,
+    append: css``,
+    prepend: css``,
     uncompressed: `
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}

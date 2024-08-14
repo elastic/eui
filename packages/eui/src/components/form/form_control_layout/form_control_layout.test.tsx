@@ -22,7 +22,9 @@ jest.mock('../../', () => ({
 }));
 
 describe('EuiFormControlLayout', () => {
-  shouldRenderCustomStyles(<EuiFormControlLayout />);
+  shouldRenderCustomStyles(<EuiFormControlLayout />, {
+    childProps: ['wrapperProps'],
+  });
 
   test('is rendered', () => {
     const { container } = render(

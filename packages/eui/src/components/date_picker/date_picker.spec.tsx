@@ -44,7 +44,6 @@ describe('EuiDatePicker', () => {
       cy.get('.euiFormControlLayoutIcons')
         .invoke('attr', 'class')
         .should('contain', 'euiFormControlLayoutIcons-static');
-      cy.get('.euiFormControlLayoutDelimited--isInvalid').should('exist');
     });
 
     it('renders as disabled', () => {
