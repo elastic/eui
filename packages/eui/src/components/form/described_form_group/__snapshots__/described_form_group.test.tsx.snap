@@ -2,7 +2,7 @@
 
 exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup"
   role="group"
 >
   <div
@@ -39,7 +39,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
 
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup euiDescribedFormGroup--fullWidth"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup-fullWidth"
   role="group"
 >
   <div
@@ -83,7 +83,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup"
   role="group"
 >
   <div
@@ -127,7 +127,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props props for the flex item containers are passed down 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup"
   role="group"
 >
   <div
@@ -171,7 +171,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
 
 exports[`EuiDescribedFormGroup props third is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup"
   role="group"
 >
   <div
@@ -215,7 +215,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup"
   role="group"
 >
   <div
@@ -260,7 +260,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 exports[`EuiDescribedFormGroup renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiDescribedFormGroup testClass1 testClass2 emotion-euiTestCss"
+  class="euiDescribedFormGroup testClass1 testClass2 emotion-euiDescribedFormGroup-euiTestCss"
   data-test-subj="test subject string"
   role="group"
 >
@@ -305,7 +305,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
 
 exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiDescribedFormGroup emotion-euiDescribedFormGroup"
   role="group"
 >
   <div

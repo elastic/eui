@@ -1,14 +1,4 @@
 .euiDescribedFormGroup {
-  max-width: $euiFormMaxWidth * 2;
-
-  + * {
-    margin-top: $euiSizeL;
-  }
-
-  &.euiDescribedFormGroup--fullWidth {
-    max-width: 100%;
-  }
-
   .euiDescribedFormGroup__description {
     padding-top: $euiSizeS;
   }
