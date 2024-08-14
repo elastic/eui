@@ -108,8 +108,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       const showColumnActions = columnActions && columnActions.length > 0;
       const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
-      const focusActionsButton = useCallback(() => {
-        actionsButtonRef.current?.focus();
+      const clickActionsButton = useCallback(() => {
+        actionsButtonRef.current?.click();
       }, []);
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
@@ -184,8 +184,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           width={width}
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
-          isActionsButtonFocused={isActionsButtonFocused}
-          focusActionsButton={focusActionsButton}
+          openActionsPopover={clickActionsButton}
           aria-label={title}
           aria-describedby={sortingAriaId}
         >

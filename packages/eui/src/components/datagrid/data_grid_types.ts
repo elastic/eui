@@ -176,8 +176,7 @@ export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   width?: number | null;
   className?: string;
   hasActionsPopover?: boolean;
-  isActionsButtonFocused?: boolean;
-  focusActionsButton?: () => void;
+  openActionsPopover?: () => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &

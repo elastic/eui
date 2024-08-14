@@ -12,11 +12,12 @@ import React, {
   useEffect,
   useState,
   useCallback,
-  FocusEventHandler,
+  KeyboardEventHandler,
 } from 'react';
 import classnames from 'classnames';
 import { FocusableElement } from 'tabbable';
 
+import { keys } from '../../../../services';
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
 import { HandleInteractiveChildren } from '../cell/focus_utils';
@@ -35,8 +36,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   className,
   children,
   hasActionsPopover,
-  isActionsButtonFocused,
-  focusActionsButton,
+  openActionsPopover,
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
@@ -72,27 +72,27 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     });
   }, [index, onFocusUpdate, headerEl]);
 
-  // For cell headers with actions, auto-focus into the button instead of the cell wrapper div
-  // The button text is significantly more useful to screen readers (e.g. contains sort order & hints)
-  const onFocus: FocusEventHandler = useCallback(
+  // For cell headers with only actions, auto-open the actions popover on enter keypress
+  const onKeyDown: KeyboardEventHandler = useCallback(
     (e) => {
       if (
-        !hasInteractiveChildren &&
+        e.key === keys.ENTER &&
         hasActionsPopover &&
+        !hasInteractiveChildren &&
         e.target === headerEl
       ) {
-        focusActionsButton?.();
+        openActionsPopover?.();
       }
     },
-    [hasActionsPopover, hasInteractiveChildren, focusActionsButton, headerEl]
+    [hasActionsPopover, hasInteractiveChildren, openActionsPopover, headerEl]
   );
 
   return (
     <div
       role="columnheader"
       ref={setHeaderEl}
-      tabIndex={isFocused && !isActionsButtonFocused ? 0 : -1}
-      onFocus={onFocus}
+      tabIndex={isFocused ? 0 : -1}
+      onKeyDown={onKeyDown}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       data-gridcell-column-id={id}
