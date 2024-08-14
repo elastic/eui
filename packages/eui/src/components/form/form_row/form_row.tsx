@@ -8,23 +8,24 @@
 
 import React, {
   cloneElement,
-  Component,
+  FunctionComponent,
   Children,
   HTMLAttributes,
   ReactElement,
   ReactNode,
+  useState,
+  useCallback,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
 
-import { get } from '../../../services/objects';
+import { useGeneratedHtmlId } from '../../../services';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
-import { FormContext, FormContextValue } from '../eui_form_context';
-
-import { htmlIdGenerator } from '../../../services/accessibility';
+import { useFormContext } from '../eui_form_context';
 
 const displayToClassNameMap = {
   row: null,
@@ -39,11 +40,6 @@ const displayToClassNameMap = {
 export const DISPLAYS = keysOf(displayToClassNameMap);
 
 export type EuiFormRowDisplayKeys = keyof typeof displayToClassNameMap;
-
-interface EuiFormRowState {
-  isFocused: boolean;
-  id: string;
-}
 
 type EuiFormRowCommonProps = CommonProps & {
   /**
@@ -111,225 +107,149 @@ type LegendProps = {
 
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
-export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
-  static contextType = FormContext;
+export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
+  className,
+  children,
+  helpText,
+  isInvalid,
+  error,
+  label,
+  labelType = 'label',
+  labelAppend,
+  hasEmptyLabelSpace = false,
+  fullWidth: _fullWidth,
+  describedByIds,
+  display = 'row',
+  hasChildLabel = true,
+  id: propsId,
+  isDisabled,
+  ...rest
+}) => {
+  const { defaultFullWidth } = useFormContext();
+  const fullWidth = _fullWidth ?? defaultFullWidth;
+  const id = useGeneratedHtmlId({ conditionalId: propsId });
+  const hasLabel = label || labelAppend;
 
-  static defaultProps: Partial<EuiFormRowProps> = {
-    display: 'row',
-    hasEmptyLabelSpace: false,
-    describedByIds: [],
-    labelType: 'label',
-    hasChildLabel: true,
-  };
+  const [isFocused, setIsFocused] = useState(false);
+  const onFocusWithin = useCallback(() => setIsFocused(true), []);
+  const onBlurWithin = useCallback(() => setIsFocused(false), []);
 
-  state: EuiFormRowState = {
-    isFocused: false,
-    id: this.props.id || htmlIdGenerator()(),
-  };
+  const classes = classNames(
+    'euiFormRow',
+    {
+      'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
+      'euiFormRow--fullWidth': fullWidth,
+      'euiFormRow--hasLabel': hasLabel,
+    },
+    displayToClassNameMap[display],
+    className
+  );
 
-  onFocus = (...args: any[]) => {
-    // Doing this to allow onFocus to be called correctly from the child input element as this component overrides it
-    const onChildFocus = get(this.props, 'children.props.onFocus');
-    if (onChildFocus) {
-      onChildFocus(...args);
-    }
+  const optionalHelpTexts = useMemo(() => {
+    if (!helpText) return;
+    const helpTexts = Array.isArray(helpText) ? helpText : [helpText];
 
-    this.setState(({ isFocused }) => {
-      if (!isFocused) {
-        return {
-          isFocused: true,
-        };
-      } else {
-        return null;
-      }
+    return helpTexts.map((helpText, i) => {
+      const key = typeof helpText === 'string' ? helpText : i;
+      return (
+        <EuiFormHelpText
+          key={key}
+          id={`${id}-help-${i}`}
+          className="euiFormRow__text"
+        >
+          {helpText}
+        </EuiFormHelpText>
+      );
     });
-  };
+  }, [helpText, id]);
 
-  onBlur = (...args: any[]) => {
-    // Doing this to allow onBlur to be called correctly from the child input element as this component overrides it
-    const onChildBlur = get(this.props, 'children.props.onBlur');
-    if (onChildBlur) {
-      onChildBlur(...args);
-    }
+  const optionalErrors = useMemo(() => {
+    if (!(error && isInvalid)) return;
+    const errorTexts = Array.isArray(error) ? error : [error];
 
-    this.setState({
-      isFocused: false,
+    return errorTexts.map((error, i) => {
+      const key = typeof error === 'string' ? error : i;
+      return (
+        <EuiFormErrorText
+          key={key}
+          id={`${id}-error-${i}`}
+          className="euiFormRow__text"
+        >
+          {error}
+        </EuiFormErrorText>
+      );
     });
-  };
+  }, [error, isInvalid, id]);
 
-  render() {
-    const { defaultFullWidth } = this.context as FormContextValue;
+  const ariaDescribedBy = useMemo(() => {
+    const describingIds = [...(describedByIds || [])];
 
-    const {
-      children,
-      helpText,
-      isInvalid,
-      error,
-      label,
-      labelType,
-      labelAppend,
-      hasEmptyLabelSpace,
-      fullWidth = defaultFullWidth,
-      className,
-      describedByIds,
-      display,
-      hasChildLabel,
-      id: propsId,
-      isDisabled,
-      ...rest
-    } = this.props;
-
-    const { id } = this.state;
-    const hasLabel = label || labelAppend;
-
-    const classes = classNames(
-      'euiFormRow',
-      {
-        'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
-        'euiFormRow--fullWidth': fullWidth,
-        'euiFormRow--hasLabel': hasLabel,
-      },
-      displayToClassNameMap[display!], // Safe use of ! as default prop is 'row'
-      className
-    );
-
-    let optionalHelpTexts;
-
-    if (helpText) {
-      const helpTexts = Array.isArray(helpText) ? helpText : [helpText];
-      optionalHelpTexts = helpTexts.map((helpText, i) => {
-        const key = typeof helpText === 'string' ? helpText : i;
-        return (
-          <EuiFormHelpText
-            key={key}
-            id={`${id}-help-${i}`}
-            className="euiFormRow__text"
-          >
-            {helpText}
-          </EuiFormHelpText>
-        );
-      });
+    if (optionalHelpTexts?.length) {
+      optionalHelpTexts.forEach((optionalHelpText) =>
+        describingIds.push(optionalHelpText.props.id)
+      );
     }
-
-    let optionalErrors;
-
-    if (error && isInvalid) {
-      const errorTexts = Array.isArray(error) ? error : [error];
-      optionalErrors = errorTexts.map((error, i) => {
-        const key = typeof error === 'string' ? error : i;
-        return (
-          <EuiFormErrorText
-            key={key}
-            id={`${id}-error-${i}`}
-            className="euiFormRow__text"
-          >
-            {error}
-          </EuiFormErrorText>
-        );
-      });
+    if (optionalErrors?.length) {
+      optionalErrors.forEach((error) => describingIds.push(error.props.id));
     }
+    if (describingIds.length) {
+      return describingIds.join(' ');
+    }
+  }, [describedByIds, optionalHelpTexts, optionalErrors]);
 
-    let optionalLabel;
-    const isLegend = label && labelType === 'legend' ? true : false;
-    const labelId = `${id}-label`;
+  const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
+    euiFormRow__fieldWrapperDisplayOnly: display.startsWith('center'),
+  });
+  const field = useMemo(() => {
+    const child = Children.only(children);
+    return cloneElement(child, {
+      id,
+      // Allow the child's disabled or isDisabled prop to supercede the `isDisabled`
+      disabled: child.props.disabled ?? child.props.isDisabled ?? isDisabled,
+      'aria-describedby': ariaDescribedBy,
+    });
+  }, [children, id, isDisabled, ariaDescribedBy]);
 
-    if (hasLabel) {
-      let labelProps = {};
-      if (isLegend) {
-        labelProps = {
-          type: labelType,
-        };
-      } else {
-        labelProps = {
-          htmlFor: hasChildLabel ? id : undefined,
-          ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
-          type: labelType,
-        };
-      }
+  const Element = labelType === 'legend' ? 'fieldset' : 'div';
 
-      optionalLabel = (
+  return (
+    <Element
+      className={classes}
+      id={`${id}-row`}
+      {...(rest as HTMLAttributes<HTMLElement>)}
+    >
+      {hasLabel && (
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
             className="euiFormRow__label"
+            aria-invalid={isInvalid}
             isInvalid={isInvalid}
             isDisabled={isDisabled}
-            aria-invalid={isInvalid}
-            id={labelId}
-            {...labelProps}
+            isFocused={isFocused && !isDisabled}
+            id={`${id}-label`}
+            // ExclusiveUnion shenanigans
+            {...(labelType === 'legend'
+              ? { type: labelType }
+              : {
+                  type: labelType,
+                  htmlFor: hasChildLabel ? id : undefined,
+                })}
           >
             {label}
           </EuiFormLabel>
           {labelAppend && ' '}
           {labelAppend}
         </div>
-      );
-    }
-
-    const optionalProps: React.AriaAttributes = {};
-    /**
-     * Safe use of ! as default prop is []
-     */
-    const describingIds = [...describedByIds!];
-
-    if (optionalHelpTexts) {
-      optionalHelpTexts.forEach((optionalHelpText) =>
-        describingIds.push(optionalHelpText.props.id)
-      );
-    }
-
-    if (optionalErrors) {
-      optionalErrors.forEach((error) => describingIds.push(error.props.id));
-    }
-
-    if (describingIds.length > 0) {
-      optionalProps['aria-describedby'] = describingIds.join(' ');
-    }
-
-    const child = Children.only(children);
-    const field = cloneElement(child, {
-      id,
-      // Allow the child's disabled or isDisabled prop to supercede the `isDisabled`
-      disabled: child.props.disabled ?? child.props.isDisabled ?? isDisabled,
-      onFocus: this.onFocus,
-      onBlur: this.onBlur,
-      ...optionalProps,
-    });
-
-    const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
-      euiFormRow__fieldWrapperDisplayOnly:
-        /**
-         * Safe use of ! as default prop is 'row'
-         */
-        display!.startsWith('center'),
-    });
-
-    const sharedProps = {
-      className: classes,
-      id: `${id}-row`,
-    };
-
-    const contents = (
-      <React.Fragment>
-        {optionalLabel}
-        <div className={fieldWrapperClasses}>
-          {field}
-          {optionalErrors}
-          {optionalHelpTexts}
-        </div>
-      </React.Fragment>
-    );
-
-    return labelType === 'legend' ? (
-      <fieldset
-        {...sharedProps}
-        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}
+      )}
+      <div
+        className={fieldWrapperClasses}
+        onFocus={onFocusWithin}
+        onBlur={onBlurWithin}
       >
-        {contents}
-      </fieldset>
-    ) : (
-      <div {...sharedProps} {...(rest as HTMLAttributes<HTMLDivElement>)}>
-        {contents}
+        {field}
+        {optionalErrors}
+        {optionalHelpTexts}
       </div>
-    );
-  }
-}
+    </Element>
+  );
+};
