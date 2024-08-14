@@ -12,7 +12,6 @@ import React, {
   useEffect,
   useState,
   useMemo,
-  useRef,
 } from 'react';
 import { FocusableElement, tabbable } from 'tabbable';
 
@@ -37,9 +36,8 @@ export const HandleInteractiveChildren: FunctionComponent<
     cellEl?: HTMLElement | null;
     updateCellFocusContext: Function;
     renderFocusTrap?: boolean;
-    shouldDisableInteractives?: boolean;
     onInteractiveChildrenFound?: (
-      interavticeChildren: FocusableElement[]
+      interactiveChildren: FocusableElement[]
     ) => void;
   }
 > = ({
@@ -49,29 +47,16 @@ export const HandleInteractiveChildren: FunctionComponent<
   renderFocusTrap,
   onInteractiveChildrenFound,
 }) => {
-  const interactiveChildren = useRef<FocusableElement[]>([]);
   const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   // On mount, disable all interactive children
   useEffect(() => {
     if (cellEl) {
-      const disabledInteractives = disableInteractives(cellEl);
-      const focusTrapInteractives =
-        disabledInteractives.length > 0
-          ? disabledInteractives
-          : interactiveChildren.current;
-      const interactives = renderFocusTrap
-        ? focusTrapInteractives
-        : disabledInteractives;
-
-      interactiveChildren.current = interactives;
+      const interactives = disableInteractives(cellEl);
       onInteractiveChildrenFound?.(interactives);
-
-      if (renderFocusTrap) {
-        setHasInteractiveChildren(interactives.length > 0);
-      }
+      setHasInteractiveChildren(interactives.length > 0);
     }
-  }, [cellEl, renderFocusTrap, onInteractiveChildrenFound]);
+  }, [cellEl, onInteractiveChildrenFound]);
 
   // Ensure that any interactive children that are clicked update the latest cell focus context
   useEffect(() => {

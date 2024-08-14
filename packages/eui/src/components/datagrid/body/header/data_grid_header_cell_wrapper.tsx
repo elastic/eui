@@ -34,7 +34,6 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
-  actionsButton,
   hasActionsPopover,
   isActionsButtonFocused,
   focusActionsButton,
@@ -45,28 +44,20 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
   const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
+  const [interactiveChildren, setInteractiveChildren] = useState<
+    FocusableElement[]
+  >([]);
+  useEffect(() => {
+    // We're checking for interactive children outside of the default actions button
+    setHasInteractiveChildren(
+      interactiveChildren.length > (hasActionsPopover ? 1 : 0)
+    );
+  }, [hasActionsPopover, interactiveChildren]);
 
   const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
   const updateCellFocusContext = useCallback(() => {
     setFocusedCell([index, -1]);
   }, [index, setFocusedCell]);
-
-  const handleOnInteractiveChildrenFound = useCallback(
-    (interactiveChildren: FocusableElement[]) => {
-      const interactives = interactiveChildren
-        ? interactiveChildren.filter(
-            (element) => !element.hasAttribute('data-focus-guard')
-          )
-        : [];
-      const hasInteractives =
-        actionsButton && interactives.includes(actionsButton)
-          ? interactives.length > 1
-          : interactives.length > 0;
-
-      setHasInteractiveChildren(hasInteractives);
-    },
-    [actionsButton]
-  );
 
   const [isFocused, setIsFocused] = useState(false);
   useEffect(() => {
@@ -115,7 +106,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
         renderFocusTrap={hasInteractiveChildren}
-        onInteractiveChildrenFound={handleOnInteractiveChildrenFound}
+        onInteractiveChildrenFound={setInteractiveChildren}
       >
         {children}
       </HandleInteractiveChildren>

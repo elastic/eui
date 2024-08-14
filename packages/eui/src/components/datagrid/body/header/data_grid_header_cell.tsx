@@ -107,9 +107,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ]);
 
       const showColumnActions = columnActions && columnActions.length > 0;
-      // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
-      const [actionsButton, setActionsButtonEl] =
-        useState<HTMLButtonElement | null>(null);
+      const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
+      const focusActionsButton = useCallback(() => {
+        actionsButtonRef.current?.focus();
+      }, []);
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
 
@@ -119,10 +120,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           id,
           showColumnActions,
         });
-
-      const focusActionsButton = useCallback(() => {
-        actionsButton?.focus();
-      }, [actionsButton]);
 
       const contentAriaId = useGeneratedHtmlId({
         prefix: 'euiDataGridCellHeader',
@@ -153,7 +150,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       const headerCellActionButton = (
         <button
-          ref={setActionsButtonEl}
+          ref={actionsButtonRef}
           className="euiDataGridHeaderCell__button"
           css={emptyHoverStyles.text}
           onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}
@@ -188,7 +185,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
           isActionsButtonFocused={isActionsButtonFocused}
-          actionsButton={actionsButton}
           focusActionsButton={focusActionsButton}
           aria-label={title}
           aria-describedby={sortingAriaId}
