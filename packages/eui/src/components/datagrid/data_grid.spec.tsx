@@ -438,10 +438,8 @@ describe('EuiDataGrid', () => {
         cy.repeatRealPress('Tab', 5);
         cy.realPress('{rightarrow}');
 
-        // Should auto-focus the actions button (over the cell itself)
+        // Should focus cell itself
         cy.focused()
-          .parent()
-          .parent()
           .should('have.attr', 'data-gridcell-column-index', '1')
           .should('have.attr', 'data-gridcell-row-index', '-1');
 

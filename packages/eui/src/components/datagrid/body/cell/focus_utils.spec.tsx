@@ -214,8 +214,6 @@ describe('Cell focus utils', () => {
 
       cy.repeatRealPress('Tab', 4);
       cy.focused()
-        .parent()
-        .parent()
         .should('have.attr', 'data-gridcell-row-index', '-1')
         .should('have.attr', 'data-gridcell-column-index', '0');
 
@@ -244,7 +242,7 @@ describe('Cell focus utils', () => {
       cy.focused().should(
         'have.attr',
         'data-test-subj',
-        'dataGridHeaderCellActionButton-column'
+        'dataGridHeaderCell-column'
       );
       cy.get('[data-test-subj="dataGridHeaderCell-column"]')
         .should('have.attr', 'data-gridcell-row-index', '-1')
