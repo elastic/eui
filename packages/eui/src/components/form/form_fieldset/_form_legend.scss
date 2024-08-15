@@ -1,6 +1,4 @@
 .euiFormLegend {
-  @include euiFormLabel;
-
   &:not(.euiFormLegend-isHidden) {
     margin-bottom: $euiSizeS;
 

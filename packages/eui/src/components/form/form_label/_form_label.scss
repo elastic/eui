@@ -3,7 +3,6 @@
  * 2. Disabled state overrides pointer.
  */
 .euiFormLabel {
-  @include euiFormLabel;
   display: inline-block;
   transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
 
