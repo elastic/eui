@@ -204,7 +204,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
               class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
             >
               <label
-                class="euiFormLabel"
+                class="euiFormLabel emotion-euiFormLabel"
                 for="generated-id"
               >
                 Prepend Example

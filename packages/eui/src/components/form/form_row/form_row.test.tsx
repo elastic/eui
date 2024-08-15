@@ -243,7 +243,9 @@ describe('EuiFormRow', () => {
 
         // Ensure the focus event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
+        expect(component.find('label').getDOMNode()).toHaveClass(
+          'euiFormLabel-isFocused'
+        );
       });
 
       test('works in parent even if not in child', () => {
@@ -257,7 +259,9 @@ describe('EuiFormRow', () => {
 
         // Ensure the focus event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
+        expect(component.find('label').getDOMNode()).toHaveClass(
+          'euiFormLabel-isFocused'
+        );
       });
     });
 
@@ -277,7 +281,9 @@ describe('EuiFormRow', () => {
 
         // Ensure the blur event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
+        expect(component.find('label').getDOMNode()).not.toHaveClass(
+          'euiFormLabel-isFocused'
+        );
       });
 
       test('works in parent even if not in child', () => {
@@ -291,7 +297,9 @@ describe('EuiFormRow', () => {
 
         // Ensure the blur event is properly fired on the parent
         // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
+        expect(component.find('label').getDOMNode()).not.toHaveClass(
+          'euiFormLabel-isFocused'
+        );
       });
     });
   });

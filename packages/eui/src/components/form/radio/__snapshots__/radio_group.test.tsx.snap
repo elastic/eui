@@ -59,7 +59,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
   class="euiRadioGroup emotion-euiRadioGroup"
 >
   <legend
-    class="euiFormLegend"
+    class="euiFormLegend emotion-euiFormLegend"
   >
     A legend
   </legend>

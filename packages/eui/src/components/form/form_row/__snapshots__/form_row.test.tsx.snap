@@ -1,209 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiFormRow behavior onBlur is called in child 1`] = `
-<EuiFormRow
-  describedByIds={[]}
-  display="row"
-  hasChildLabel={true}
-  hasEmptyLabelSpace={false}
-  label={
-    <span>
-      Label
-    </span>
-  }
-  labelType="label"
->
-  <div
-    className="euiFormRow euiFormRow--hasLabel"
-    id="generated-id-row"
-  >
-    <div
-      className="euiFormRow__labelWrapper"
-    >
-      <EuiFormLabel
-        className="euiFormRow__label"
-        htmlFor="generated-id"
-        id="generated-id-label"
-        isFocused={false}
-        type="label"
-      >
-        <label
-          className="euiFormLabel euiFormRow__label"
-          htmlFor="generated-id"
-          id="generated-id-label"
-        >
-          <span>
-            Label
-          </span>
-        </label>
-      </EuiFormLabel>
-    </div>
-    <div
-      className="euiFormRow__fieldWrapper"
-    >
-      <input
-        id="generated-id"
-        onBlur={[Function]}
-        onFocus={[Function]}
-      />
-    </div>
-  </div>
-</EuiFormRow>
-`;
-
-exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
-<EuiFormRow
-  describedByIds={[]}
-  display="row"
-  hasChildLabel={true}
-  hasEmptyLabelSpace={false}
-  label={
-    <span>
-      Label
-    </span>
-  }
-  labelType="label"
->
-  <div
-    className="euiFormRow euiFormRow--hasLabel"
-    id="generated-id-row"
-  >
-    <div
-      className="euiFormRow__labelWrapper"
-    >
-      <EuiFormLabel
-        className="euiFormRow__label"
-        htmlFor="generated-id"
-        id="generated-id-label"
-        isFocused={false}
-        type="label"
-      >
-        <label
-          className="euiFormLabel euiFormRow__label"
-          htmlFor="generated-id"
-          id="generated-id-label"
-        >
-          <span>
-            Label
-          </span>
-        </label>
-      </EuiFormLabel>
-    </div>
-    <div
-      className="euiFormRow__fieldWrapper"
-    >
-      <input
-        id="generated-id"
-        onBlur={[Function]}
-        onFocus={[Function]}
-      />
-    </div>
-  </div>
-</EuiFormRow>
-`;
-
-exports[`EuiFormRow behavior onFocus is called in child 1`] = `
-<EuiFormRow
-  describedByIds={[]}
-  display="row"
-  hasChildLabel={true}
-  hasEmptyLabelSpace={false}
-  label={
-    <span>
-      Label
-    </span>
-  }
-  labelType="label"
->
-  <div
-    className="euiFormRow euiFormRow--hasLabel"
-    id="generated-id-row"
-  >
-    <div
-      className="euiFormRow__labelWrapper"
-    >
-      <EuiFormLabel
-        className="euiFormRow__label"
-        htmlFor="generated-id"
-        id="generated-id-label"
-        isFocused={true}
-        type="label"
-      >
-        <label
-          className="euiFormLabel euiFormRow__label euiFormLabel-isFocused"
-          htmlFor="generated-id"
-          id="generated-id-label"
-        >
-          <span>
-            Label
-          </span>
-        </label>
-      </EuiFormLabel>
-    </div>
-    <div
-      className="euiFormRow__fieldWrapper"
-    >
-      <input
-        id="generated-id"
-        onBlur={[Function]}
-        onFocus={[Function]}
-      />
-    </div>
-  </div>
-</EuiFormRow>
-`;
-
-exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = `
-<EuiFormRow
-  describedByIds={[]}
-  display="row"
-  hasChildLabel={true}
-  hasEmptyLabelSpace={false}
-  label={
-    <span>
-      Label
-    </span>
-  }
-  labelType="label"
->
-  <div
-    className="euiFormRow euiFormRow--hasLabel"
-    id="generated-id-row"
-  >
-    <div
-      className="euiFormRow__labelWrapper"
-    >
-      <EuiFormLabel
-        className="euiFormRow__label"
-        htmlFor="generated-id"
-        id="generated-id-label"
-        isFocused={true}
-        type="label"
-      >
-        <label
-          className="euiFormLabel euiFormRow__label euiFormLabel-isFocused"
-          htmlFor="generated-id"
-          id="generated-id-label"
-        >
-          <span>
-            Label
-          </span>
-        </label>
-      </EuiFormLabel>
-    </div>
-    <div
-      className="euiFormRow__fieldWrapper"
-    >
-      <input
-        id="generated-id"
-        onBlur={[Function]}
-        onFocus={[Function]}
-      />
-    </div>
-  </div>
-</EuiFormRow>
-`;
-
 exports[`EuiFormRow is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -521,7 +317,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
   >
     <label
       aria-invalid="true"
-      class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
+      class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid emotion-euiFormLabel-invalid"
       for="generated-id"
       id="generated-id-label"
     >
@@ -547,7 +343,7 @@ exports[`EuiFormRow props label append is rendered 1`] = `
     class="euiFormRow__labelWrapper"
   >
     <label
-      class="euiFormLabel euiFormRow__label"
+      class="euiFormLabel euiFormRow__label emotion-euiFormLabel"
       for="generated-id"
       id="generated-id-label"
     >
@@ -575,7 +371,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
     class="euiFormRow__labelWrapper"
   >
     <label
-      class="euiFormLabel euiFormRow__label"
+      class="euiFormLabel euiFormRow__label emotion-euiFormLabel"
       for="generated-id"
       id="generated-id-label"
     >
@@ -601,7 +397,7 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
     class="euiFormRow__labelWrapper"
   >
     <legend
-      class="euiFormLabel euiFormRow__label"
+      class="euiFormLabel euiFormRow__label emotion-euiFormLabel"
       id="generated-id-label"
     >
       label

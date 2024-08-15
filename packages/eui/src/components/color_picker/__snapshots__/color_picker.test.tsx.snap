@@ -570,7 +570,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
     >
       <label
-        class="euiFormLabel"
+        class="euiFormLabel emotion-euiFormLabel"
       >
         prepend
       </label>
@@ -619,7 +619,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
     >
       <label
-        class="euiFormLabel"
+        class="euiFormLabel emotion-euiFormLabel"
       >
         append
       </label>
