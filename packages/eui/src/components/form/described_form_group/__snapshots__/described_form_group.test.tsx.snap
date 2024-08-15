@@ -355,20 +355,20 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
           />
           <div
             aria-live="polite"
-            class="euiFormErrorText euiFormRow__text"
+            class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
             id="generated-id-error-0"
           >
             Error one
           </div>
           <div
             aria-live="polite"
-            class="euiFormErrorText euiFormRow__text"
+            class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
             id="generated-id-error-1"
           >
             Error two
           </div>
           <div
-            class="euiFormHelpText euiFormRow__text"
+            class="euiFormHelpText euiFormRow__text emotion-euiFormHelpText"
             id="generated-id-help-0"
           >
             Help text

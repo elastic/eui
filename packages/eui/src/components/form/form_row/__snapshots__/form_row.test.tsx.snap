@@ -341,14 +341,14 @@ exports[`EuiFormRow props error as array is rendered 1`] = `
     />
     <div
       aria-live="polite"
-      class="euiFormErrorText euiFormRow__text"
+      class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
       id="generated-id-error-0"
     >
       Error
     </div>
     <div
       aria-live="polite"
-      class="euiFormErrorText euiFormRow__text"
+      class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
       id="generated-id-error-1"
     >
       Error2
@@ -371,7 +371,7 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
     />
     <div
       aria-live="polite"
-      class="euiFormErrorText euiFormRow__text"
+      class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
       id="generated-id-error-0"
     >
       Error
@@ -438,7 +438,7 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
       id="generated-id"
     />
     <div
-      class="euiFormHelpText euiFormRow__text"
+      class="euiFormHelpText euiFormRow__text emotion-euiFormHelpText"
       id="generated-id-help-0"
     >
       <span>
