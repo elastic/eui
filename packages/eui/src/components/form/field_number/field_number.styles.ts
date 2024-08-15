@@ -12,14 +12,18 @@ import { UseEuiTheme } from '../../../services';
 import { euiFormControlStyles } from '../form.styles';
 
 export const euiFieldNumberStyles = (euiThemeContext: UseEuiTheme) => {
+  const { colorMode } = euiThemeContext;
   const formStyles = euiFormControlStyles(euiThemeContext);
 
   return {
     euiFieldNumber: css`
       ${formStyles.shared}
 
+      /* Force the browser number stepper UI to follow EUI's light/dark mode */
+      color-scheme: ${colorMode === 'DARK' ? 'dark' : 'light'};
+
       /* Account for native validity detection as well via [aria-invalid="true"] */
-      &:is(:invalid, [aria-invalid="true"]) {
+      &:is(:invalid, [aria-invalid='true']) {
         ${formStyles.invalid}
       }
 

@@ -101,6 +101,7 @@ describe('euiFormControlStyles', () => {
           -webkit-text-fill-color: #98A2B3;
           background-color: #eef1f7;
           cursor: not-allowed;
+          --euiFormControlStateColor: transparent;
 
           
         &::-webkit-input-placeholder { 
@@ -186,11 +187,8 @@ describe('euiFormControlStyles', () => {
 
         
             
-          
           border: none;
           box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
-        
-          
           background-color: #f9fbfd;
           background-repeat: no-repeat;
           background-size: 0% 100%;
@@ -200,7 +198,6 @@ describe('euiFormControlStyles', () => {
             transparent 2px,
             transparent 100%
           );
-
           @media screen and (prefers-reduced-motion: no-preference) {
             transition:
               background-image 150ms ease-in,

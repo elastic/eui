@@ -20,6 +20,7 @@ const meta: Meta<EuiHeaderLinkProps> = {
   // Component defaults
   args: {
     isActive: false,
+    size: 's',
   },
 };
 moveStorybookControlsToCategory(

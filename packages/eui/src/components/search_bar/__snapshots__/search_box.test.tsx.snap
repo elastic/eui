@@ -9,10 +9,10 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
     >
       <span
-        class="euiFormControlLayoutCustomIcon"
+        class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
       >
         <span
           aria-hidden="true"
@@ -42,10 +42,10 @@ exports[`EuiSearchBox render - no config 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
     >
       <span
-        class="euiFormControlLayoutCustomIcon"
+        class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
       >
         <span
           aria-hidden="true"
