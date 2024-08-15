@@ -38,14 +38,14 @@ export const EuiFormLegend: FunctionComponent<EuiFormLegendProps> = ({
   const isLegendHidden = display === 'hidden';
 
   const styles = useEuiMemoizedStyles(euiFormLegendStyles);
-  const cssStyles = [styles.euiFormLegend];
+  const cssStyles = [
+    styles.euiFormLegend,
+    !isLegendHidden && (compressed ? styles.compressed : styles.uncompressed),
+  ];
 
   const classes = classNames(
     'euiFormLegend',
-    {
-      'euiFormLegend-isHidden': isLegendHidden,
-      'euiFormLegend--compressed': compressed,
-    },
+    { 'euiFormLegend-isHidden': isLegendHidden },
     className
   );
 
