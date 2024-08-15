@@ -15,6 +15,11 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../services';
+import { isNewTheme } from '../../themes/flags';
+import {
+  getColorMatrixValue,
+  type _ColorMatrix,
+} from '../../themes/new_theme/global_styling/variables/_color_matrix';
 
 export const BACKGROUND_COLORS = [
   'transparent',
@@ -57,6 +62,17 @@ export const euiBackgroundColor = (
       return transparentize(euiTheme.colors[color], 0.1);
     }
   } else {
+    if (isNewTheme()) {
+      switch (color) {
+        case 'plain':
+          return euiTheme.colors.emptyShade;
+        default:
+          return colorMode === 'DARK'
+            ? getMatrixBackgroundColor(color, 13)
+            : getMatrixBackgroundColor(color, 1);
+      }
+    }
+
     function tintOrShade(color: string) {
       return colorMode === 'DARK' ? shade(color, 0.8) : tint(color, 0.9);
     }
@@ -70,6 +86,23 @@ export const euiBackgroundColor = (
         return tintOrShade(euiTheme.colors[color]);
     }
   }
+};
+
+const BACKGROUND_COLOR_TO_MATRIX_COLOR_MAP: Record<string, keyof _ColorMatrix> =
+  {
+    primary: 'blue',
+    accent: 'pink',
+    success: 'teal',
+    warning: 'yellow',
+    danger: 'red',
+    subdued: 'neutralGrey',
+  };
+
+const getMatrixBackgroundColor = (color: string, shade: number) => {
+  return getColorMatrixValue(
+    BACKGROUND_COLOR_TO_MATRIX_COLOR_MAP[color],
+    shade
+  );
 };
 
 /**

@@ -74,7 +74,13 @@ export default () => {
             },
           },
         ]
-      : [];
+      : [
+          {
+            colors: {
+              vizColors: paletteData.euiPaletteColorBlind(),
+            },
+          },
+        ];
 
   return (
     <>

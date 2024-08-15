@@ -41,6 +41,9 @@ import {
   EuiThemeSystem,
   EuiThemeModifications,
 } from './types';
+import { EuiGlobal } from '../global';
+
+const euiGlobal = EuiGlobal.getInstance();
 
 export interface EuiThemeProviderProps<T> extends PropsWithChildren {
   theme?: EuiThemeSystem<T>;
@@ -119,12 +122,17 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   useEffect(() => {
     const newSystem = _system || parentSystem;
+
     if (prevSystemKey.current !== newSystem.key) {
       setSystem(newSystem);
       prevSystemKey.current = newSystem.key;
       isParentTheme.current = false;
     }
   }, [_system, parentSystem]);
+
+  useEffect(() => {
+    euiGlobal.theme = system.key;
+  }, [system]);
 
   useEffect(() => {
     const newModifications = mergeDeep(parentModifications, _modifications);

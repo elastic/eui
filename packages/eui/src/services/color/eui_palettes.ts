@@ -64,16 +64,16 @@ export const euiPaletteColorBlind = ({
   let colors: string[] = [];
 
   let base = [
-    '#54B399', // 0 green
-    '#6092C0', // 1 blue
-    '#D36086', // 2 dark pink
-    '#9170B8', // 3 purple
-    '#CA8EAE', // 4 light pink
-    '#D6BF57', // 5 yellow
-    '#B9A888', // 6 tan
-    '#DA8B45', // 7 orange
-    '#AA6556', // 8 brown
-    '#E7664C', // 9 red
+    '#00BEB8', // 0 green
+    '#93E5E0', // 1 light green
+    '#599DFF', // 2 blue
+    '#B4D5FF', // 3 light blue
+    '#ED6BA2', // 4 dark pink
+    '#FFBED5', // 5 light pink
+    '#F66D64', // 6 red
+    '#FFC0B8', // 7 tan
+    '#C79700', // 8 brown
+    '#E8D297', // 9 yellow
   ];
 
   if (sortBy === 'natural') {
@@ -134,18 +134,18 @@ export const euiPaletteColorBlindBehindText = (
 };
 
 export const euiPaletteForLightBackground = function (): EuiPalette {
-  return ['#006BB4', '#017D73', '#F5A700', '#BD271E', '#DD0A73'];
+  return ['#007775', '#004FC7', '#A6005E', '#AF000E', '#854D00'];
 };
 
 export const euiPaletteForDarkBackground = function (): EuiPalette {
-  return ['#1BA9F5', '#7DE2D1', '#F990C0', '#F66', '#FFCE7A'];
+  return ['#00BEB8', '#599DFF', '#ED6BA2', '#F66D64', '#C79700'];
 };
 
-const greenColor: HEX = '#209280';
-const redColor: HEX = '#CC5642';
-const lightRedColor: HEX = euiPaletteColorBlind()[9];
-const coolArray: HEX[] = [euiPaletteColorBlind()[1], '#6092C0'];
-const warmArray: HEX[] = [euiPaletteColorBlind()[7], euiPaletteColorBlind()[9]];
+const greenColor: HEX = '#007775';
+const redColor: HEX = '#AF000E';
+const lightRedColor: HEX = euiPaletteColorBlind()[6];
+const coolArray: HEX[] = [euiPaletteColorBlind()[2], '#599DFF'];
+const warmArray: HEX[] = [euiPaletteColorBlind()[7], euiPaletteColorBlind()[6]];
 
 export const euiPaletteForStatus = function (steps: number): EuiPalette {
   if (steps === 1) {
@@ -162,7 +162,7 @@ export const euiPaletteForStatus = function (steps: number): EuiPalette {
     [
       greenColor,
       euiPaletteColorBlind()[0],
-      euiPaletteColorBlind()[5],
+      euiPaletteColorBlind()[9],
       lightRedColor,
       redColor,
     ],
@@ -172,8 +172,8 @@ export const euiPaletteForStatus = function (steps: number): EuiPalette {
 };
 
 export const euiPaletteForTemperature = function (steps: number): EuiPalette {
-  const cools = colorPalette([...coolArray.slice().reverse(), '#EBEFF5'], 3);
-  const warms = colorPalette(['#F4F3DB', ...warmArray], 3);
+  const cools = colorPalette([...coolArray.slice().reverse(), '#F1F9FF'], 3);
+  const warms = colorPalette(['#FFF4F1', ...warmArray], 3);
 
   if (steps === 1) {
     return [cools[0]];
@@ -186,11 +186,11 @@ export const euiPaletteForTemperature = function (steps: number): EuiPalette {
 
 export const euiPaletteComplementary = function (steps: number): EuiPalette {
   if (steps === 1) {
-    return [euiPaletteColorBlind()[1]];
+    return [euiPaletteColorBlind()[2]];
   }
 
   return euiPalette(
-    [euiPaletteColorBlind()[1], euiPaletteColorBlind()[7]],
+    [euiPaletteColorBlind()[2], euiPaletteColorBlind()[8]],
     steps,
     true
   );
@@ -225,16 +225,16 @@ export const euiPaletteWarm = function (steps: number): EuiPalette {
     return [lightRedColor];
   }
 
-  return euiPalette(['#FBFBDC', ...warmArray], steps);
+  return euiPalette(['#FFF4F1', ...warmArray], steps);
 };
 
 export const euiPaletteGray = function (steps: number): EuiPalette {
   if (steps === 1) {
-    return ['#98a2b3'];
+    return ['#B1C3DE'];
   }
 
   return euiPalette(
-    ['white', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
+    ['white', '#F5F9FF', '#DEE7F4', '#C7D5E9', '#B1C3DE', '#9CB1D3', '#86A0C8'],
     steps,
     false
   );
