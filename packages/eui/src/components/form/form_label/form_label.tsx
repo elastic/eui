@@ -59,7 +59,12 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   ...rest
 }: EuiFormLabelProps) => {
   const styles = useEuiMemoizedStyles(euiFormLabelStyles);
-  const cssStyles = [styles.euiFormLabel];
+  const cssStyles = [
+    styles.euiFormLabel,
+    !isDisabled && styles.notDisabled,
+    isInvalid && styles.invalid,
+    isFocused && styles.focused,
+  ];
 
   const classes = classNames('euiFormLabel', className, {
     'euiFormLabel-isFocused': isFocused,

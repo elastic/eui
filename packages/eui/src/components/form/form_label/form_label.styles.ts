@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { serializeStyles, type CSSObject } from '@emotion/serialize';
 
 import { UseEuiTheme } from '../../../services';
-import { euiTextBreakWord } from '../../../global_styling';
+import { euiCanAnimate, euiTextBreakWord } from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
 
 export const euiFormLabel = (euiThemeContext: UseEuiTheme) => {
@@ -29,9 +29,31 @@ export const euiFormLabel = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormLabelStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
   return {
     euiFormLabel: css`
       ${euiFormLabel(euiThemeContext)}
+      display: inline-block;
+
+      ${euiCanAnimate} {
+        transition: color ${euiTheme.animation.fast}
+          ${euiTheme.animation.resistance};
+      }
+    `,
+    // Skip css`` to avoid generating an extra Emotion className
+    // Use :where to reduce specificity & make the CSS easier to override by prepend/append nodes
+    notDisabled: `
+      &:where([for]) {
+        cursor: pointer;
+      }
+    `,
+    invalid: css`
+      color: ${euiTheme.colors.danger};
+    `,
+    // Focused state should override invalid state
+    focused: css`
+      color: ${euiTheme.colors.primary};
     `,
   };
 };
