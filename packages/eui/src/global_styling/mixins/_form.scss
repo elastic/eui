@@ -1,11 +1,3 @@
-// Labels
-@mixin euiFormLabel {
-  @include euiFontSizeXS;
-  @include euiTextBreakWord;
-  color: $euiTitleColor;
-  font-weight: $euiFontWeightSemiBold;
-}
-
 @mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
   $iconSize: $euiSize;
   $iconPadding: $euiFormControlPadding;

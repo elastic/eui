@@ -125,7 +125,7 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       ${text} {
         /* Override .euiFormLabel CSS */
-        cursor: default !important; /* stylelint-disable-line declaration-no-important */
+        cursor: default;
       }
 
       /* Account for button padding when spacing children */

@@ -308,7 +308,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
       >
         <label
           aria-invalid="true"
-          class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
+          class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid emotion-euiFormLabel-invalid"
           for="generated-id"
           id="generated-id-label"
         >

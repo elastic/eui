@@ -52,7 +52,7 @@ exports[`EuiCheckboxGroup (mocked checkbox) legend is rendered 1`] = `
   class="euiCheckboxGroup emotion-euiCheckboxGroup"
 >
   <legend
-    class="euiFormLegend"
+    class="euiFormLegend emotion-euiFormLegend"
   >
     A legend
   </legend>
