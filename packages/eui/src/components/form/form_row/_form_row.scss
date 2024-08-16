@@ -1,22 +1,6 @@
 /**
- * 1. Coerce inline form elements to behave as block-level elements.
  * 2. For inline forms, we need to add margin if the label doesn't exist.
  */
-.euiFormRow {
-  display: flex; /* 1 */
-  flex-direction: column; /* 1 */
-  max-width: $euiFormMaxWidth;
-
-  + .euiFormRow,
-  + .euiButton {
-    margin-top: $euiSize;
-  }
-}
-
-.euiFormRow--fullWidth {
-  max-width: 100%;
-}
-
 .euiFormRow--hasEmptyLabelSpace {
   margin-top: $euiSize + $euiSizeXS; /* 2 */
   // the following ensure that contents that aren't inherently the same height

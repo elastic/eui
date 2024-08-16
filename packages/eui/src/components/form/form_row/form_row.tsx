@@ -18,14 +18,15 @@ import React, {
   useMemo,
 } from 'react';
 import classNames from 'classnames';
-import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
 
-import { useGeneratedHtmlId } from '../../../services';
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../../services';
+import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
 import { useFormContext } from '../eui_form_context';
+import { euiFormRowStyles } from './form_row.styles';
 
 const displayToClassNameMap = {
   row: null,
@@ -138,12 +139,17 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
     'euiFormRow',
     {
       'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
-      'euiFormRow--fullWidth': fullWidth,
       'euiFormRow--hasLabel': hasLabel,
     },
     displayToClassNameMap[display],
     className
   );
+
+  const styles = useEuiMemoizedStyles(euiFormRowStyles);
+  const cssStyles = [
+    styles.euiFormRow,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+  ];
 
   const optionalHelpTexts = useMemo(() => {
     if (!helpText) return;
@@ -214,6 +220,7 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
 
   return (
     <Element
+      css={cssStyles}
       className={classes}
       id={`${id}-row`}
       {...(rest as HTMLAttributes<HTMLElement>)}

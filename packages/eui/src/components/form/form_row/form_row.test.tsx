@@ -267,7 +267,7 @@ describe('EuiFormRow', () => {
       );
 
       const row = container.querySelector('.euiFormRow');
-      expect(row).toHaveClass('euiFormRow--fullWidth');
+      expect(row!.className).toContain('fullWidth');
     });
   });
 });
