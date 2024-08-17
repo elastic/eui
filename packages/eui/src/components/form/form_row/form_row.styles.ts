@@ -73,7 +73,27 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
       + .euiFormRow {
         ${logicalCSS('margin-top', euiTheme.size.s)}
       }
+
+      /* Increase spacing for switches */
+      &:has(.euiSwitch) {
+        &:not(:first-child) {
+          ${logicalCSS('margin-top', euiTheme.size.m)}
+        }
+
+        &:not(:last-child) {
+          ${logicalCSS('margin-bottom', euiTheme.size.m)}
+        }
+
+        .euiFormRow__labelWrapper {
+          line-height: ${euiTheme.size.base};
+        }
+      }
     `,
+    // Handled by :has CSS now rather than a separate modifier/prop
+    // TODO: Deprecate prop
+    get columnCompressedSwitch() {
+      return this.columnCompressed;
+    },
 
     centerDisplayCss: (compressed: boolean) => `
       .euiFormRow__fieldWrapperDisplayOnly {
