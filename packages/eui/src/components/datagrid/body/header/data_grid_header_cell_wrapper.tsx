@@ -43,13 +43,13 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
-  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
+  const [renderFocusTrap, setRenderFocusTrap] = useState(false);
   const [interactiveChildren, setInteractiveChildren] = useState<
     FocusableElement[]
   >([]);
   useEffect(() => {
     // We're checking for interactive children outside of the default actions button
-    setHasInteractiveChildren(
+    setRenderFocusTrap(
       interactiveChildren.length > (hasActionsPopover ? 1 : 0)
     );
   }, [hasActionsPopover, interactiveChildren]);
@@ -78,13 +78,13 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       if (
         e.key === keys.ENTER &&
         hasActionsPopover &&
-        !hasInteractiveChildren &&
+        !renderFocusTrap &&
         e.target === headerEl
       ) {
         openActionsPopover?.();
       }
     },
-    [hasActionsPopover, hasInteractiveChildren, openActionsPopover, headerEl]
+    [hasActionsPopover, openActionsPopover, renderFocusTrap, headerEl]
   );
 
   return (
@@ -105,10 +105,10 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       <HandleInteractiveChildren
         cellEl={headerEl}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap={hasInteractiveChildren}
+        renderFocusTrap={renderFocusTrap}
         onInteractiveChildrenFound={setInteractiveChildren}
       >
-        {children}
+        {typeof children === 'function' ? children(renderFocusTrap) : children}
       </HandleInteractiveChildren>
     </div>
   );

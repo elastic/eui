@@ -17,7 +17,6 @@ import {
   MutableRefObject,
   Ref,
   Component,
-  PropsWithChildren,
   ComponentClass,
 } from 'react';
 import {
@@ -170,7 +169,8 @@ export interface EuiDataGridControlHeaderCellProps {
   controlColumn: EuiDataGridControlColumn;
 }
 
-export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
+export interface EuiDataGridHeaderCellWrapperProps {
+  children: ReactNode | ((renderFocusTrap: boolean) => ReactNode);
   id: string;
   index: number;
   width?: number | null;
