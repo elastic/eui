@@ -20,7 +20,7 @@ import React, {
 import classNames from 'classnames';
 
 import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../../services';
-import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
+import { ExclusiveUnion, CommonProps } from '../../common';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
@@ -28,29 +28,29 @@ import { EuiFormLabel } from '../form_label';
 import { useFormContext } from '../eui_form_context';
 import { euiFormRowStyles } from './form_row.styles';
 
-const displayToClassNameMap = {
-  row: null,
-  rowCompressed: 'euiFormRow--compressed',
-  columnCompressed: 'euiFormRow--compressed euiFormRow--horizontal',
-  center: null,
-  centerCompressed: 'euiFormRow--compressed',
-  columnCompressedSwitch:
-    'euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch',
-};
+export const DISPLAYS = [
+  'row',
+  'columnCompressed',
+  'center',
+  'centerCompressed',
+  /**
+   * @deprecated
+   */
+  'columnCompressedSwitch',
+  /**
+   * @deprecated
+   */
+  'rowCompressed',
+] as const;
 
-export const DISPLAYS = keysOf(displayToClassNameMap);
-
-export type EuiFormRowDisplayKeys = keyof typeof displayToClassNameMap;
+export type EuiFormRowDisplayKeys = (typeof DISPLAYS)[number];
 
 type EuiFormRowCommonProps = CommonProps & {
   /**
-   * When `rowCompressed`, just tightens up the spacing;
-   * Set to `columnCompressed` if compressed
-   * and horizontal layout is needed.
-   * Set to `center` or `centerCompressed` to align non-input
-   * content better with inline rows.
-   * Set to `columnCompressedSwitch` if the form control being passed
-   * as the child is a switch.
+   * - `columnCompressed` creates a compressed and horizontal layout
+   * - `columnCompressedSwitch` - **deprecated**, use `columnCompressed` instead
+   * - `center`/`centerCompressed` helps align non-input content better with inline form layouts
+   * - `rowCompressed` - **deprecated**, does not currently affect styling
    */
   display?: EuiFormRowDisplayKeys;
   hasEmptyLabelSpace?: boolean;
@@ -141,7 +141,6 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
       'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
       'euiFormRow--hasLabel': hasLabel,
     },
-    displayToClassNameMap[display],
     className
   );
 
@@ -149,6 +148,7 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
   const cssStyles = [
     styles.euiFormRow,
     fullWidth ? styles.fullWidth : styles.formWidth,
+    styles[display],
   ];
 
   const optionalHelpTexts = useMemo(() => {

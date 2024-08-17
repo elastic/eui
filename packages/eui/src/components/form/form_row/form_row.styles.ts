@@ -49,6 +49,11 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-top', euiTheme.size.base)}
       }
     `,
+    // No difference from the uncompressed row for this current theme AFAICT
+    // TODO: Deprecate prop
+    get rowCompressed() {
+      return this.row;
+    },
 
     columnCompressed: css`
       flex-direction: row;

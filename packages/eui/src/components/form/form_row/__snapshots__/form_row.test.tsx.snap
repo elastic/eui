@@ -35,7 +35,7 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
 
 exports[`EuiFormRow props display type center is rendered 1`] = `
 <div
-  class="euiFormRow emotion-euiFormRow"
+  class="euiFormRow emotion-euiFormRow-center"
   id="generated-id-row"
 >
   <div
@@ -50,7 +50,7 @@ exports[`EuiFormRow props display type center is rendered 1`] = `
 
 exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed emotion-euiFormRow"
+  class="euiFormRow emotion-euiFormRow-centerCompressed"
   id="generated-id-row"
 >
   <div
@@ -65,7 +65,7 @@ exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
 
 exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal emotion-euiFormRow"
+  class="euiFormRow emotion-euiFormRow-columnCompressed"
   id="generated-id-row"
 >
   <div
@@ -80,7 +80,7 @@ exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 
 exports[`EuiFormRow props display type columnCompressedSwitch is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch emotion-euiFormRow"
+  class="euiFormRow emotion-euiFormRow-columnCompressed"
   id="generated-id-row"
 >
   <div
@@ -110,7 +110,7 @@ exports[`EuiFormRow props display type row is rendered 1`] = `
 
 exports[`EuiFormRow props display type rowCompressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed emotion-euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
