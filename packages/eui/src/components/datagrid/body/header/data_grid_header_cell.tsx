@@ -23,8 +23,7 @@ import React, {
 import { tabbable, FocusableElement } from 'tabbable';
 import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';
-import { EuiScreenReaderOnly } from '../../../accessibility';
-import { EuiI18n } from '../../../i18n';
+import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
@@ -42,10 +41,10 @@ import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 const CellContent: FunctionComponent<
   PropsWithChildren &
     HTMLAttributes<HTMLDivElement> & { title: string; arrow?: ReactNode }
-> = ({ children, title, arrow }) => {
+> = ({ children, title, arrow, ...rest }) => {
   return (
     <>
-      <div title={title} className="euiDataGridHeaderCell__content">
+      <div {...rest} title={title} className="euiDataGridHeaderCell__content">
         {children}
       </div>
       {arrow}
@@ -76,6 +75,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         useContext(DataGridFocusContext);
 
       const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      const togglePopover = useCallback(() => {
+        setIsPopoverOpen((isOpen) => !isOpen);
+      }, []);
+      const closePopover = useCallback(() => setIsPopoverOpen(false), []);
       const popoverArrowNavigationProps = usePopoverArrowNavigation();
 
       const columnActions = useMemo(() => {
@@ -111,8 +114,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const clickActionsButton = useCallback(() => {
         actionsButtonRef.current?.click();
       }, []);
-      const [isActionsButtonFocused, setIsActionsButtonFocused] =
-        useState(false);
 
       const { sortingArrow, ariaSort, sortingScreenReaderText } =
         useSortingUtils({
@@ -129,10 +130,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         prefix: 'euiDataGridCellHeader',
         suffix: 'sorting',
       });
-      const actionsAriaId = useGeneratedHtmlId({
-        prefix: 'euiDataGridCellHeader',
-        suffix: 'actions',
-      });
 
       const classes = classnames(
         {
@@ -148,31 +145,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const title = displayAsText || id;
       const children = display || displayAsText || id;
 
-      const headerCellActionButton = (
-        <button
-          ref={actionsButtonRef}
-          className="euiDataGridHeaderCell__button"
-          css={emptyHoverStyles.text}
-          onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}
-          onFocus={() => setIsActionsButtonFocused(true)}
-          onBlur={() => setIsActionsButtonFocused(false)}
-          aria-labelledby={`${contentAriaId} ${actionsAriaId}`}
-          aria-hidden={isActionsButtonFocused ? 'false' : 'true'} // prevent button being read on header cell focus
-          data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-        >
-          <div className="euiDataGridHeaderCell__icon">
-            <EuiIcon type="boxesVertical" size="s" color="text" />
-          </div>
-          <p id={contentAriaId} hidden>
-            {title},
-          </p>
-          <p id={actionsAriaId} hidden>
-            <EuiI18n
-              token="euiDataGridHeaderCell.headerActions"
-              default="Click to view column header actions"
-            />
-          </p>
-        </button>
+      const actionsButtonAriaLabel = useEuiI18n(
+        'euiDataGridHeaderCell.actionsButtonAriaLabel',
+        '{title}. Click to view column header actions.',
+        { title }
+      );
+      const actionsEnterKeyInstructions = useEuiI18n(
+        'euiDataGridHeaderCell.actionsEnterKeyInstructions',
+        "Press the Enter key to view this column's actions"
       );
 
       return (
@@ -185,54 +165,68 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
           openActionsPopover={clickActionsButton}
-          aria-label={title}
+          aria-labelledby={contentAriaId}
           aria-describedby={sortingAriaId}
         >
-          {column.isResizable !== false && width != null ? (
-            <EuiDataGridColumnResizer
-              columnId={id}
-              columnWidth={width}
-              setColumnWidth={setColumnWidth}
-            />
-          ) : null}
-
-          {!showColumnActions ? (
+          {(hasFocusTrap) => (
             <>
-              <CellContent title={title} arrow={sortingArrow}>
-                {children}
-              </CellContent>
-              {sortingScreenReaderText && (
-                <EuiScreenReaderOnly>
-                  <p>{sortingScreenReaderText}</p>
-                </EuiScreenReaderOnly>
-              )}
-            </>
-          ) : (
-            <>
-              <CellContent title={title} arrow={sortingArrow}>
-                {children}
-              </CellContent>
-              <EuiPopover
-                display="block"
-                panelPaddingSize="none"
-                offset={7}
-                anchorPosition="downRight"
-                css={{ marginInlineStart: 'auto' }} // Align to right
-                button={headerCellActionButton}
-                isOpen={isPopoverOpen}
-                closePopover={() => setIsPopoverOpen(false)}
-                {...popoverArrowNavigationProps}
-              >
-                <EuiListGroup
-                  listItems={columnActions}
-                  gutterSize="none"
-                  data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+              {column.isResizable !== false && width != null ? (
+                <EuiDataGridColumnResizer
+                  columnId={id}
+                  columnWidth={width}
+                  setColumnWidth={setColumnWidth}
                 />
-              </EuiPopover>
+              ) : null}
+
+              <CellContent
+                title={title}
+                arrow={sortingArrow}
+                id={contentAriaId}
+                aria-hidden // VO reads out the content twice without this :T
+              >
+                {children}
+              </CellContent>
 
               <p id={sortingAriaId} hidden>
                 {sortingScreenReaderText}
               </p>
+
+              {showColumnActions && (
+                <EuiPopover
+                  display="block"
+                  panelPaddingSize="none"
+                  offset={7}
+                  anchorPosition="downRight"
+                  css={{ marginInlineStart: 'auto' }} // Align to right
+                  button={
+                    <button
+                      ref={actionsButtonRef}
+                      className="euiDataGridHeaderCell__button"
+                      css={emptyHoverStyles.text}
+                      onClick={togglePopover}
+                      aria-label={
+                        hasFocusTrap
+                          ? actionsButtonAriaLabel
+                          : actionsEnterKeyInstructions
+                      }
+                      data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                    >
+                      <div className="euiDataGridHeaderCell__icon">
+                        <EuiIcon type="boxesVertical" size="s" color="text" />
+                      </div>
+                    </button>
+                  }
+                  isOpen={isPopoverOpen}
+                  closePopover={closePopover}
+                  {...popoverArrowNavigationProps}
+                >
+                  <EuiListGroup
+                    listItems={columnActions}
+                    gutterSize="none"
+                    data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+                  />
+                </EuiPopover>
+              )}
             </>
           )}
         </EuiDataGridHeaderCellWrapper>

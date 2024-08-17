@@ -11,7 +11,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   >
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-      aria-label="columnA"
+      aria-labelledby="euiDataGridCellHeader_generated-id_content"
       class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
@@ -28,17 +28,22 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         style="margin-right: 0px;"
       />
       <div
+        aria-hidden="true"
         class="euiDataGridHeaderCell__content"
+        id="euiDataGridCellHeader_generated-id_content"
         title="columnA"
       >
         columnA
       </div>
+      <p
+        hidden=""
+        id="euiDataGridCellHeader_generated-id_sorting"
+      />
       <div
         class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
       >
         <button
-          aria-hidden="true"
-          aria-labelledby="euiDataGridCellHeader_generated-id_content euiDataGridCellHeader_generated-id_actions"
+          aria-label="Press the Enter key to view this column's actions"
           class="euiDataGridHeaderCell__button css-wvewty"
           data-euigrid-tab-managed="true"
           data-test-subj="dataGridHeaderCellActionButton-columnA"
@@ -52,29 +57,12 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
               data-euiicon-type="boxesVertical"
             />
           </div>
-          <p
-            hidden=""
-            id="euiDataGridCellHeader_generated-id_content"
-          >
-            columnA
-            ,
-          </p>
-          <p
-            hidden=""
-            id="euiDataGridCellHeader_generated-id_actions"
-          >
-            Click to view column header actions
-          </p>
         </button>
       </div>
-      <p
-        hidden=""
-        id="euiDataGridCellHeader_generated-id_sorting"
-      />
     </div>
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-      aria-label="columnB"
+      aria-labelledby="euiDataGridCellHeader_generated-id_content"
       class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
@@ -91,17 +79,22 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
         style="margin-right: 0px;"
       />
       <div
+        aria-hidden="true"
         class="euiDataGridHeaderCell__content"
+        id="euiDataGridCellHeader_generated-id_content"
         title="columnB"
       >
         columnB
       </div>
+      <p
+        hidden=""
+        id="euiDataGridCellHeader_generated-id_sorting"
+      />
       <div
         class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
       >
         <button
-          aria-hidden="true"
-          aria-labelledby="euiDataGridCellHeader_generated-id_content euiDataGridCellHeader_generated-id_actions"
+          aria-label="Press the Enter key to view this column's actions"
           class="euiDataGridHeaderCell__button css-wvewty"
           data-euigrid-tab-managed="true"
           data-test-subj="dataGridHeaderCellActionButton-columnB"
@@ -115,25 +108,8 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
               data-euiicon-type="boxesVertical"
             />
           </div>
-          <p
-            hidden=""
-            id="euiDataGridCellHeader_generated-id_content"
-          >
-            columnB
-            ,
-          </p>
-          <p
-            hidden=""
-            id="euiDataGridCellHeader_generated-id_actions"
-          >
-            Click to view column header actions
-          </p>
         </button>
       </div>
-      <p
-        hidden=""
-        id="euiDataGridCellHeader_generated-id_sorting"
-      />
     </div>
   </div>
   <div
