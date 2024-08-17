@@ -14,13 +14,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: $euiSizeXS;
 }
 
 .euiFormRow--horizontal {
-  flex-direction: row;
-  align-items: stretch;
-
   .euiFormRow__label {
     hyphens: auto;
   }
@@ -35,10 +31,6 @@
 
   .euiFormRow__fieldWrapper {
     width: 67%;
-  }
-
-  + .euiFormRow--horizontal {
-    margin-top: $euiSizeS;
   }
 
   + .euiFormRow--horizontal.euiFormRow--hasSwitch {

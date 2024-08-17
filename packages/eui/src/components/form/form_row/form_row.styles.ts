@@ -21,7 +21,6 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
       /* Coerce inline form elements to behave as block-level elements */
       display: flex;
 
-      + .euiFormRow,
       + .euiButton {
         ${logicalCSS('margin-top', euiTheme.size.base)}
       }
@@ -32,6 +31,26 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     fullWidth: css`
       ${logicalCSS('max-width', '100%')}
+    `,
+
+    // Skip css`` to avoid generating an extra className
+    row: `
+      flex-direction: column;
+      row-gap: ${euiTheme.size.xs};
+
+      + .euiFormRow {
+        ${logicalCSS('margin-top', euiTheme.size.base)}
+      }
+    `,
+
+    columnCompressed: css`
+      flex-direction: row;
+      align-items: stretch;
+      column-gap: ${euiTheme.size.s};
+
+      + .euiFormRow {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
     `,
   };
 };
