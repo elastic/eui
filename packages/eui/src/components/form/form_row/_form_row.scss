@@ -10,29 +10,7 @@
   justify-content: center;
 }
 
-.euiFormRow__labelWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .euiFormRow--horizontal {
-  .euiFormRow__label {
-    hyphens: auto;
-  }
-
-  .euiFormRow__labelWrapper {
-    display: block;
-    line-height: $euiFormControlCompressedHeight - 1px; // The 1px less helps the alignment of the text baseline
-    width: calc(33% - #{$euiSizeS});
-    margin-right: $euiSizeS;
-    margin-bottom: 0;
-  }
-
-  .euiFormRow__fieldWrapper {
-    width: 67%;
-  }
-
   + .euiFormRow--horizontal.euiFormRow--hasSwitch {
     margin-top: $euiSizeM; // More spacing since we reduced the height to match that of the switch
   }

@@ -14,7 +14,8 @@ import { euiFormVariables } from '../form.styles';
 
 export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { maxWidth } = euiFormVariables(euiThemeContext);
+  const { maxWidth, controlCompressedHeight } =
+    euiFormVariables(euiThemeContext);
 
   return {
     euiFormRow: css`
@@ -38,6 +39,12 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
       flex-direction: column;
       row-gap: ${euiTheme.size.xs};
 
+      .euiFormRow__labelWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
       + .euiFormRow {
         ${logicalCSS('margin-top', euiTheme.size.base)}
       }
@@ -47,6 +54,21 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
       flex-direction: row;
       align-items: stretch;
       column-gap: ${euiTheme.size.s};
+
+      .euiFormRow__label {
+        hyphens: auto;
+      }
+
+      .euiFormRow__labelWrapper {
+        flex-basis: calc(33% - ${euiTheme.size.s}); /* Account for gap */
+        ${logicalCSS('min-width', 0)}
+        line-height: ${controlCompressedHeight};
+      }
+
+      .euiFormRow__fieldWrapper {
+        flex-basis: 67%;
+        ${logicalCSS('min-width', 0)}
+      }
 
       + .euiFormRow {
         ${logicalCSS('margin-top', euiTheme.size.s)}
