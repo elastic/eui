@@ -100,8 +100,11 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
       return this.columnCompressed;
     },
 
+    // Center display is primarily for inline form rows, which may have have
+    // field content that is shorter than form controls (e.g. switches, text),
+    // and should vertically center said content
     centerDisplayCss: (compressed: boolean) => `
-      .euiFormRow__fieldWrapperDisplayOnly {
+      .euiFormRow__fieldWrapper {
         display: flex;
         align-items: center;
         ${logicalCSS(
@@ -112,13 +115,11 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     get center() {
       return css`
-        ${this.row}
         ${this.centerDisplayCss(false)}
       `;
     },
     get centerCompressed() {
       return css`
-        ${this.row}
         ${this.centerDisplayCss(true)}
       `;
     },

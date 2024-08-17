@@ -21,6 +21,7 @@ import classNames from 'classnames';
 
 import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../../services';
 import { ExclusiveUnion, CommonProps } from '../../common';
+import { EuiSpacer } from '../../spacer';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
@@ -53,6 +54,10 @@ type EuiFormRowCommonProps = CommonProps & {
    * - `rowCompressed` - **deprecated**, does not currently affect styling
    */
   display?: EuiFormRowDisplayKeys;
+  /**
+   * Useful for inline form layouts, primarily for content that
+   * needs to be aligned with inputs but does not need a label
+   */
   hasEmptyLabelSpace?: boolean;
   /**
    * Expand to fill 100% of the parent.
@@ -130,6 +135,8 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
   const fullWidth = _fullWidth ?? defaultFullWidth;
   const id = useGeneratedHtmlId({ conditionalId: propsId });
   const hasLabel = label || labelAppend;
+  const isCenterDisplay = display.startsWith('center');
+  const shouldCenterFieldContent = isCenterDisplay || hasEmptyLabelSpace;
 
   const [isFocused, setIsFocused] = useState(false);
   const onFocusWithin = useCallback(() => setIsFocused(true), []);
@@ -148,7 +155,11 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
   const cssStyles = [
     styles.euiFormRow,
     fullWidth ? styles.fullWidth : styles.formWidth,
-    styles[display],
+    isCenterDisplay ? styles.row : styles[display],
+    shouldCenterFieldContent &&
+      (display.includes('Compressed')
+        ? styles.centerCompressed
+        : styles.center),
   ];
 
   const optionalHelpTexts = useMemo(() => {
@@ -203,9 +214,6 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
     }
   }, [describedByIds, optionalHelpTexts, optionalErrors]);
 
-  const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
-    euiFormRow__fieldWrapperDisplayOnly: display.startsWith('center'),
-  });
   const field = useMemo(() => {
     const child = Children.only(children);
     return cloneElement(child, {
@@ -225,7 +233,7 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
       id={`${id}-row`}
       {...(rest as HTMLAttributes<HTMLElement>)}
     >
-      {hasLabel && (
+      {hasLabel ? (
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
             className="euiFormRow__label"
@@ -247,9 +255,13 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
           {labelAppend && ' '}
           {labelAppend}
         </div>
+      ) : (
+        hasEmptyLabelSpace && (
+          <EuiSpacer size="m" className="euiFormRow__labelWrapper" />
+        )
       )}
       <div
-        className={fieldWrapperClasses}
+        className="euiFormRow__fieldWrapper"
         onFocus={onFocusWithin}
         onBlur={onBlurWithin}
       >

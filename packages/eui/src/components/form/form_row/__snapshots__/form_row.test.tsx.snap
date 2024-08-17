@@ -39,7 +39,7 @@ exports[`EuiFormRow props display type center is rendered 1`] = `
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+    class="euiFormRow__fieldWrapper"
   >
     <input
       id="generated-id"
@@ -54,7 +54,7 @@ exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+    class="euiFormRow__fieldWrapper"
   >
     <input
       id="generated-id"
@@ -208,7 +208,7 @@ exports[`EuiFormRow props fullWidth is rendered 1`] = `
 
 exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--hasEmptyLabelSpace emotion-euiFormRow"
+  class="euiFormRow euiFormRow--hasEmptyLabelSpace emotion-euiFormRow-center"
   id="generated-id-row"
 >
   <div
