@@ -39,18 +39,8 @@
   // stylelint-enable max-nesting-depth
 }
 
-.euiFormRow__fieldWrapperDisplayOnly {
-  min-height: $euiFormControlHeight;
-  display: flex;
-  align-items: center;
-}
-
 .euiFormRow--compressed {
   &.euiFormRow--hasEmptyLabelSpace {
-    min-height: $euiFormControlCompressedHeight;
-  }
-
-  .euiFormRow__fieldWrapperDisplayOnly {
     min-height: $euiFormControlCompressedHeight;
   }
 }

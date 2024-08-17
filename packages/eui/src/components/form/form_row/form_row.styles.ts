@@ -14,7 +14,7 @@ import { euiFormVariables } from '../form.styles';
 
 export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { maxWidth, controlCompressedHeight } =
+  const { maxWidth, controlHeight, controlCompressedHeight } =
     euiFormVariables(euiThemeContext);
 
   return {
@@ -74,5 +74,28 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-top', euiTheme.size.s)}
       }
     `,
+
+    centerDisplayCss: (compressed: boolean) => `
+      .euiFormRow__fieldWrapperDisplayOnly {
+        display: flex;
+        align-items: center;
+        ${logicalCSS(
+          'min-height',
+          compressed ? controlCompressedHeight : controlHeight
+        )}
+      }
+    `,
+    get center() {
+      return css`
+        ${this.row}
+        ${this.centerDisplayCss(false)}
+      `;
+    },
+    get centerCompressed() {
+      return css`
+        ${this.row}
+        ${this.centerDisplayCss(true)}
+      `;
+    },
   };
 };
