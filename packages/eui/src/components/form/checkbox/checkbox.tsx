@@ -46,6 +46,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   onChange,
   type,
   disabled = false,
+  readOnly = false,
   indeterminate = false,
   inputRef,
   labelProps,
@@ -63,12 +64,14 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
       : checked || indeterminate
       ? styles.input.enabled.selected
       : styles.input.enabled.unselected,
+    readOnly && styles.input.readOnly,
   ];
 
   const labelClasses = classNames('euiCheckbox__label', labelProps?.className);
   const labelStyles = [
     styles.label.euiCheckbox__label,
     disabled ? styles.label.disabled : styles.label.enabled,
+    readOnly && styles.label.readOnly,
     labelProps?.css,
   ];
 
@@ -101,6 +104,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
           checked={checked}
           onChange={onChange}
           disabled={disabled}
+          readOnly={readOnly}
           ref={refs}
           {...rest}
         />

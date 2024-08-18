@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCheckbox is rendered 1`] = `
+exports[`EuiCheckbox renders 1`] = `
 <div
   class="euiCheckbox testClass1 testClass2 emotion-euiCheckbox-euiTestCss"
 >
@@ -22,7 +22,7 @@ exports[`EuiCheckbox is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckbox props check is rendered 1`] = `
+exports[`EuiCheckbox renders props: checked 1`] = `
 <div
   class="euiCheckbox emotion-euiCheckbox"
 >
@@ -43,7 +43,7 @@ exports[`EuiCheckbox props check is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckbox props disabled disabled is rendered 1`] = `
+exports[`EuiCheckbox renders props: disabled 1`] = `
 <div
   class="euiCheckbox emotion-euiCheckbox"
 >
@@ -64,7 +64,7 @@ exports[`EuiCheckbox props disabled disabled is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckbox props label is rendered 1`] = `
+exports[`EuiCheckbox renders props: label 1`] = `
 <div
   class="euiCheckbox emotion-euiCheckbox"
 >
@@ -92,7 +92,7 @@ exports[`EuiCheckbox props label is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCheckbox props labelProps is rendered 1`] = `
+exports[`EuiCheckbox renders props: labelProps 1`] = `
 <div
   class="euiCheckbox emotion-euiCheckbox"
 >
@@ -113,6 +113,33 @@ exports[`EuiCheckbox props labelProps is rendered 1`] = `
     aria-label="aria-label"
     class="euiCheckbox__label testClass1 testClass2 emotion-euiCheckbox__label-euiTestCss"
     data-test-subj="test subject string"
+    for="id"
+  >
+    Label
+  </label>
+</div>
+`;
+
+exports[`EuiCheckbox renders props: readOnly 1`] = `
+<div
+  class="euiCheckbox emotion-euiCheckbox"
+>
+  <div
+    class="euiCheckbox__square emotion-euiCheckbox__square-unselected-readOnly"
+  >
+    <span
+      class="emotion-euiCheckbox__icon-check"
+      data-euiicon-type="empty"
+    />
+    <input
+      class="euiCheckbox__input emotion-euiCheckbox__input"
+      id="id"
+      readonly=""
+      type="checkbox"
+    />
+  </div>
+  <label
+    class="euiCheckbox__label emotion-euiCheckbox__label-readOnly"
     for="id"
   >
     Label

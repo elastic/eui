@@ -9,11 +9,17 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { euiFormCustomControlStyles } from '../form.styles';
+import {
+  euiFormCustomControlStyles,
+  euiFormCustomControlVariables,
+} from '../form.styles';
 
 export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const controlStyles = euiFormCustomControlStyles(euiThemeContext);
+  const {
+    colors: { unselectedBorder },
+  } = euiFormCustomControlVariables(euiThemeContext);
 
   return {
     euiCheckbox: css(controlStyles.wrapper),
@@ -31,6 +37,17 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
         selected: css(controlStyles.input.disabled.selected),
         unselected: css(controlStyles.input.disabled.unselected),
       },
+      // Readonly checkboxes are used by EuiMarkdownEditor
+      // Maintain the initial color to enforce that clicks are not doing anything
+      readOnly: css`
+        &:has(input:focus-visible) {
+          outline: ${euiTheme.focus.width} solid ${unselectedBorder};
+        }
+
+        &:has(input:focus) {
+          border-color: ${unselectedBorder};
+        }
+      `,
 
       icon: {
         euiCheckbox__icon: css``,
@@ -43,13 +60,22 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
         `,
       },
 
-      euiCheckbox__input: css(controlStyles.input.hiddenInput),
+      euiCheckbox__input: css`
+        ${controlStyles.input.hiddenInput}
+
+        &[readonly] {
+          cursor: default;
+        }
+      `,
     },
 
     label: {
       euiCheckbox__label: css(controlStyles.label.label),
       enabled: controlStyles.label.enabled,
       disabled: css(controlStyles.label.disabled),
+      readOnly: css`
+        cursor: default;
+      `,
     },
   };
 };
