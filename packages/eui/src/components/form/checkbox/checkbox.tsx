@@ -89,20 +89,19 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
 
   return (
     <div css={cssStyles} className={classes}>
-      <input
-        className="euiCheckbox__input"
-        type="checkbox"
-        id={id}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        ref={refs}
-        {...rest}
-      />
-
       <div className="euiCheckbox__square">
         <EuiIcon
           type={indeterminate ? 'stopFilled' : checked ? 'check' : 'empty'}
+        />
+        <input
+          className="euiCheckbox__input"
+          type="checkbox"
+          id={id}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+          ref={refs}
+          {...rest}
         />
       </div>
 

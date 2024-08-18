@@ -162,45 +162,6 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCustomControl = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    type?: 'round' | 'square';
-    size?: string;
-  } = {}
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const form = euiFormVariables(euiThemeContext);
-  const { type, size = euiTheme.size.base } = options;
-
-  let padddingStyle = '';
-  let borderRadiusStyle = '';
-
-  if (size) {
-    const borderSize = parseFloat(String(euiTheme.border.width.thin));
-    const paddingSize = mathWithUnits(size, (x) => (x - borderSize * 2) / 2);
-    padddingStyle = `padding: ${paddingSize};`;
-  }
-
-  if (type === 'round') {
-    borderRadiusStyle = `border-radius: ${size};`;
-  } else if (type === 'square') {
-    borderRadiusStyle = `border-radius: ${form.controlCompressedBorderRadius};`;
-  }
-
-  return `
-    ${padddingStyle}
-    ${borderRadiusStyle}
-    border: ${euiTheme.border.width.thin} solid ${form.customControlBorderColor};
-    background: ${euiTheme.colors.emptyShade} no-repeat center;
-
-    ${euiCanAnimate} {
-      transition: background-color ${form.animationTiming},
-        border-color ${form.animationTiming};
-    }
-  `;
-};
-
 export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { fontSize } = euiFontSize(euiThemeContext, 's');
@@ -401,5 +362,107 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
     sizes,
     colors,
     animation,
+  };
+};
+
+export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const controlVars = euiFormCustomControlVariables(euiThemeContext);
+
+  const centerWithLabel = mathWithUnits(
+    [controlVars.sizes.lineHeight, controlVars.sizes.control],
+    (x, y) => (x - y) / 2
+  );
+
+  return {
+    wrapper: `
+      display: flex;
+      align-items: flex-start;
+    `,
+    input: {
+      fauxInput: `
+        position: relative;
+        ${logicalCSS('height', controlVars.sizes.control)}
+        ${logicalCSS('width', controlVars.sizes.control)}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:has(+ label) {
+          ${logicalCSS('margin-top', centerWithLabel)}
+        }
+
+        &:has(input:focus-visible) {
+          outline-style: auto;
+          outline-offset: ${euiTheme.focus.width};
+        }
+
+        ${euiCanAnimate} {
+          transition-property: background-color, color;
+          transition-duration: ${controlVars.animation.speed};
+          transition-timing-function: ${controlVars.animation.easing};
+        }
+      `,
+      enabled: {
+        selected: `
+          color: ${controlVars.colors.selectedIcon};
+          background-color: ${controlVars.colors.selected};
+        `,
+        unselected: `
+          color: transparent;
+          background-color: ${controlVars.colors.unselected};
+          border: ${euiTheme.border.width.thin} solid ${controlVars.colors.unselectedBorder};
+
+          &:has(input:focus) {
+            border-color: ${controlVars.colors.selected};
+          }
+        `,
+      },
+      disabled: {
+        selected: `
+          label: disabled;
+          color: ${controlVars.colors.disabledIcon};
+          background-color: ${controlVars.colors.disabled};
+        `,
+        unselected: `
+          label: disabled;
+          color: ${controlVars.colors.disabled};
+          background-color: ${controlVars.colors.disabled};
+          cursor: not-allowed;
+        `,
+      },
+
+      // Looks better centered at different zoom levels than just <EuiIcon size="s" />
+      icon: `
+        transform: scale(0.75);
+      `,
+
+      // Hidden input sits on top of the visible element
+      hiddenInput: `
+        position: absolute;
+        inset: 0;
+        opacity: 0 !important;
+        cursor: pointer;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      `,
+    },
+    label: {
+      label: `
+        /* Needs to use padding and not flex gap for extra mouse click area */
+        ${logicalCSS('padding-left', controlVars.sizes.labelGap)}
+        line-height: ${controlVars.sizes.lineHeight};
+        font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      `,
+      enabled: `
+        cursor: pointer;
+      `,
+      disabled: `
+        cursor: not-allowed;
+        color: ${controlVars.colors.disabledLabel};
+      `,
+    },
   };
 };

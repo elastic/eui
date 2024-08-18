@@ -14,7 +14,7 @@ import { EuiProvider } from '../provider';
 import {
   euiFormVariables,
   euiFormControlStyles,
-  euiCustomControl,
+  euiFormCustomControlStyles,
 } from './form.styles';
 
 const darkModeWrapper: FunctionComponent<PropsWithChildren> = ({
@@ -214,97 +214,99 @@ describe('euiFormControlStyles', () => {
   });
 });
 
-describe('euiCustomControl', () => {
-  it('returns CSS styles for padding, borders, backgrounds', () => {
-    const { result } = renderHook(() => euiCustomControl(useEuiTheme()));
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 7px;
-          
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
-
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
-
-  it('allows passing custom padding size', () => {
+describe('euiFormCustomControlStyles', () => {
+  it('outputs an object of styles and child element styles', () => {
     const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { size: '32px' })
+      euiFormCustomControlStyles(useEuiTheme())
     );
     expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 15px;
-          
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
+      {
+        "input": {
+          "disabled": {
+            "selected": "
+                label: disabled;
+                color: #69707D;
+                background-color: #D3DAE6;
+              ",
+            "unselected": "
+                label: disabled;
+                color: #D3DAE6;
+                background-color: #D3DAE6;
+                cursor: not-allowed;
+              ",
+          },
+          "enabled": {
+            "selected": "
+                color: #FFF;
+                background-color: #07C;
+              ",
+            "unselected": "
+                color: transparent;
+                background-color: #FFF;
+                border: 1px solid #919296;
 
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
+                &:has(input:focus) {
+                  border-color: #07C;
+                }
+              ",
+          },
+          "fauxInput": "
+              position: relative;
+              block-size: 16px;
+              inline-size: 16px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
-  test('type.round', () => {
-    const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { type: 'round' })
-    );
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 7px;
-          border-radius: 16px;
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
+              &:has(+ label) {
+                margin-block-start: 4px;
+              }
 
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
+              &:has(input:focus-visible) {
+                outline-style: auto;
+                outline-offset: 2px;
+              }
 
-  test('size and type.round changes both padding and border-radius', () => {
-    const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { size: '6px', type: 'round' })
-    );
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 2px;
-          border-radius: 6px;
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
+              @media screen and (prefers-reduced-motion: no-preference) {
+                transition-property: background-color, color;
+                transition-duration: 150ms;
+                transition-timing-function: ease-in;
+              }
+            ",
+          "hiddenInput": "
+              position: absolute;
+              inset: 0;
+              opacity: 0 !important;
+              cursor: pointer;
 
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
-
-  test('type.square', () => {
-    const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { type: 'square' })
-    );
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 7px;
-          border-radius: 4px;
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
-
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
+              &:disabled {
+                cursor: not-allowed;
+              }
+            ",
+          "icon": "
+              transform: scale(0.75);
+            ",
+        },
+        "label": {
+          "disabled": "
+              cursor: not-allowed;
+              color: #a2abba;
+            ",
+          "enabled": "
+              cursor: pointer;
+            ",
+          "label": "
+              /* Needs to use padding and not flex gap for extra mouse click area */
+              padding-inline-start: 8px;
+              line-height: 24px;
+              font-size: 1.0000rem;
+            ",
+        },
+        "wrapper": "
+            display: flex;
+            align-items: flex-start;
+          ",
+      }
     `);
   });
 });

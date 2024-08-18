@@ -77,19 +77,19 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      <input
-        className="euiRadio__input"
-        type="radio"
-        id={id}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        autoFocus={autoFocus}
-      />
       <div className="euiRadio__circle">
         <EuiIcon type="dot" />
+        <input
+          className="euiRadio__input"
+          type="radio"
+          id={id}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+          autoFocus={autoFocus}
+        />
       </div>
 
       {optionalLabel}
