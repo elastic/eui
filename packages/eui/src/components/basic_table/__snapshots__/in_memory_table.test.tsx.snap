@@ -7,19 +7,24 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
   <div
     class="euiCheckbox emotion-euiCheckbox"
   >
-    <input
-      aria-label="Select all rows"
-      class="euiCheckbox__input"
-      data-test-subj="checkboxSelectAll"
-      id="_selection_column-checkbox_generated-id"
-      title="Select all rows"
-      type="checkbox"
-    />
     <div
-      class="euiCheckbox__square"
-    />
+      class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+      />
+      <input
+        aria-label="Select all rows"
+        class="euiCheckbox__input emotion-euiCheckbox__input"
+        data-test-subj="checkboxSelectAll"
+        id="_selection_column-checkbox_generated-id"
+        title="Select all rows"
+        type="checkbox"
+      />
+    </div>
     <label
-      class="euiCheckbox__label"
+      class="euiCheckbox__label emotion-euiCheckbox__label"
       for="_selection_column-checkbox_generated-id"
     >
       Select all rows
