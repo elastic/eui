@@ -203,7 +203,8 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
       border-radius: 50%;
 
       ${euiCanAnimate} {
-        transition-property: transform, background-color, border-color;
+        transition-property: inset-inline-start, transform, background-color,
+          border-color;
         transition-duration: ${animation.speed};
         transition-timing-function: ${animation.easing};
       }
@@ -211,9 +212,25 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
     off: css`
       ${logicalCSS('left', 0)}
     `,
-    on: css`
-      ${logicalCSS('right', 0)}
-    `,
+    get on() {
+      // right: 0 works but doesn't transition/animate, so we need to
+      // manually calculate the left position per switch size
+      const _calculateLeft = (bodyWidth: string, thumbWidth: string) => {
+        const leftPosition = mathWithUnits(
+          [bodyWidth, thumbWidth],
+          (x, y) => x - y
+        );
+        return css`
+          label: on;
+          ${logicalCSS('left', leftPosition)}
+        `;
+      };
+      return {
+        uncompressed: _calculateLeft(uncompressed.width, uncompressed.height),
+        compressed: _calculateLeft(compressed.width, compressed.height),
+        mini: _calculateLeft(mini.width, mini.height),
+      };
+    },
 
     enabled: {
       enabled: `

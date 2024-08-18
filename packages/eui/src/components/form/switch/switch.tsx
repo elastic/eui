@@ -116,7 +116,7 @@ export const EuiSwitch: FunctionComponent<
   ];
   const thumbStyles = [
     styles.thumb.euiSwitch__thumb,
-    checked ? styles.thumb.on : styles.thumb.off,
+    checked ? styles.thumb.on[size] : styles.thumb.off,
     ...(disabled
       ? [styles.thumb.disabled.disabled, styles.thumb.disabled[size]]
       : [styles.thumb.enabled.enabled, styles.thumb.enabled[size]]),
