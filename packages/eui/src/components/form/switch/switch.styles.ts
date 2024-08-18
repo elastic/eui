@@ -9,7 +9,13 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { mathWithUnits } from '../../../global_styling';
+import {
+  euiFocusRing,
+  euiFontSize,
+  logicalCSS,
+  logicalSizeCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
@@ -75,7 +81,63 @@ export const euiSwitchStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: not-allowed;
     `,
 
+    button: buttonStyles(euiThemeContext, switchVars),
+    // The track body must be separate from the button wrapper, because the
+    // icons have their overflow hidden outside the button, but the thumb doesn't
+    body: bodyStyles(euiThemeContext, switchVars),
     label: labelStyles(euiThemeContext, switchVars),
+  };
+};
+
+const buttonStyles = (
+  euiThemeContext: UseEuiTheme,
+  switchVars: EuiSwitchVars
+) => {
+  const {
+    sizes: { uncompressed, compressed, mini },
+  } = switchVars;
+
+  return {
+    euiSwitch__button: css`
+      flex-shrink: 0; /* ensures the button doesn't lose width because of a long label */
+      line-height: 0; /* ensures button takes height of switch inside */
+      position: relative;
+      cursor: inherit;
+      ${euiFocusRing(euiThemeContext, 'outset')}
+    `,
+    // Skip css`` to avoid generating an Emotion className
+    uncompressed: `
+      ${logicalSizeCSS(uncompressed.width, uncompressed.height)}
+      border-radius: ${uncompressed.height};
+    `,
+    compressed: css`
+      ${logicalSizeCSS(compressed.width, compressed.height)}
+      border-radius: ${compressed.height};
+    `,
+    mini: css`
+      ${logicalSizeCSS(mini.width, mini.height)}
+      border-radius: ${mini.height};
+    `,
+  };
+};
+
+const bodyStyles = (_: UseEuiTheme, { colors }: EuiSwitchVars) => {
+  return {
+    euiSwitch__body: css`
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: inherit;
+    `,
+    on: css`
+      background-color: ${colors.on};
+    `,
+    off: css`
+      background-color: ${colors.off};
+    `,
+    disabled: css`
+      background-color: ${colors.disabled};
+    `,
   };
 };
 

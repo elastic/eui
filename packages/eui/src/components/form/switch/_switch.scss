@@ -2,19 +2,6 @@
 // stylelint-disable max-nesting-depth
 
 .euiSwitch {
-  .euiSwitch__button {
-    flex-shrink: 0; // ensures the button doesn't lose width because of a long label
-    line-height: 0; // ensures button takes height of switch inside
-
-    &:focus .euiSwitch__track {
-      @include euiCustomControlFocused;
-    }
-
-    &[aria-checked='false'] {
-      .euiSwitch__body {
-        background-color: $euiSwitchOffColor;
-      }
-
       // When input is not checked, we shift around the positioning of the thumb and the icon
       .euiSwitch__thumb { // move the thumb left
         left: 0;
@@ -31,10 +18,6 @@
     }
 
     &:disabled {
-      .euiSwitch__body {
-        background-color: $euiSwitchOffDisabledColor;
-      }
-
       .euiSwitch__thumb {
         background-color: rgba(0,0,0,0);
         border-color: $euiSwitchDisabledThumbColor;
@@ -45,17 +28,6 @@
         fill: $euiColorDarkShade;
       }
     }
-  }
-
-  .euiSwitch__body {
-    pointer-events: none;
-    width: $euiSwitchWidth;
-    height: $euiSwitchHeight;
-    background-color: $euiColorPrimary;
-    display: inline-block;
-    position: relative;
-    border-radius: $euiSwitchHeight;
-    vertical-align: middle;
   }
 
   .euiSwitch__thumb {
@@ -106,12 +78,6 @@
 
   // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
   &.euiSwitch--compressed {
-    .euiSwitch__body {
-      width: $euiSwitchWidthCompressed;
-      height: $euiSwitchHeightCompressed;
-      border-radius: $euiSwitchHeightCompressed;
-    }
-
     .euiSwitch__thumb {
       @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeCompressed) - 2px);
 
@@ -127,12 +93,6 @@
 
   // Mini styling is similar to compressed, but even smaller. It's undocumented because it has very specific uses.
   &.euiSwitch--mini {
-    .euiSwitch__body {
-      width: $euiSwitchWidthMini;
-      height: $euiSwitchHeightMini;
-      border-radius: $euiSwitchHeightMini;
-    }
-
     .euiSwitch__thumb {
       @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeMini) - 2px);
 

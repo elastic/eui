@@ -105,6 +105,15 @@ export const EuiSwitch: FunctionComponent<
     styles.euiSwitch,
     disabled ? styles.disabled : styles.enabled,
   ];
+  const buttonStyles = [styles.button.euiSwitch__button, styles.button[size]];
+  const bodyStyles = [
+    styles.body.euiSwitch__body,
+    disabled
+      ? styles.body.disabled
+      : checked
+      ? styles.body.on
+      : styles.body.off,
+  ];
   const labelStyles = [
     styles.label.euiSwitch__label,
     styles.label[size],
@@ -117,6 +126,7 @@ export const EuiSwitch: FunctionComponent<
       <button
         id={switchId}
         aria-checked={checked || false}
+        css={buttonStyles}
         className="euiSwitch__button"
         role="switch"
         type={type}
@@ -126,7 +136,7 @@ export const EuiSwitch: FunctionComponent<
         aria-labelledby={showLabel ? labelId : undefined}
         {...rest}
       >
-        <span className="euiSwitch__body">
+        <span css={bodyStyles} className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
             {!(compressed || mini) && (

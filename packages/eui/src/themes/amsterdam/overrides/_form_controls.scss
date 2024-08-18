@@ -1,7 +1,0 @@
-.euiSwitch .euiSwitch__button:focus {
-  @include euiFocusRing(null, 'outer');
-
-  .euiSwitch__track {
-    outline: none;
-  }
-}
