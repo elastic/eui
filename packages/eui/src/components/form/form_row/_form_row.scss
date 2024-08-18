@@ -65,7 +65,7 @@
   // stylelint-disable max-nesting-depth
   &.euiFormRow--hasSwitch {
     .euiFormRow__labelWrapper {
-      line-height: $euiSwitchHeight - 1px; // The 1px less helps the alignment of the text baseline
+      // line-height: $euiSwitchHeight - 1px; // The 1px less helps the alignment of the text baseline
       width: auto;
       min-width: calc(33% - #{$euiSizeS});
     }
