@@ -2,9 +2,6 @@
 // stylelint-disable max-nesting-depth
 
 .euiSwitch {
-  $euiSwitchOffDisabledColor: lightOrDarkTheme(transparentize($euiColorLightShade, .5), transparentize($euiColorDarkShade, .4));
-  $euiSwitchDisabledThumbColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .5), $euiColorDarkShade);
-
   position: relative;
   display: inline-flex;
   align-items: flex-start;

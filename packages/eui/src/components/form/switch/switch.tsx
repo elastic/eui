@@ -41,6 +41,9 @@ export type EuiSwitchProps = CommonProps &
     checked: boolean;
     onChange: (event: EuiSwitchEvent) => void;
     disabled?: boolean;
+    /**
+     * Compressed switches are smaller and contain no icon signifiers
+     */
     compressed?: boolean;
     /**
      * Object of props passed to the label's `<span />`
@@ -48,12 +51,21 @@ export type EuiSwitchProps = CommonProps &
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
-export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
+export const EuiSwitch: FunctionComponent<
+  EuiSwitchProps & {
+    /**
+     * Mini styling is similar to compressed, but even smaller.
+     * It's undocumented because it has very specific uses.
+     */
+    mini?: boolean;
+  }
+> = ({
   label,
   id,
   checked,
   disabled,
   compressed,
+  mini,
   onChange,
   className,
   css: customCss,
@@ -112,7 +124,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
-            {!compressed && (
+            {!(compressed || mini) && (
               <React.Fragment>
                 <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
