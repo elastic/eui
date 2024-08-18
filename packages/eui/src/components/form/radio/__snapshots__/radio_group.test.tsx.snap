@@ -13,39 +13,49 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
   class="euiRadioGroup emotion-euiRadioGroup"
 >
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      checked=""
-      class="euiRadio__input"
-      id="1"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-selected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        checked=""
+        class="euiRadio__input emotion-euiRadio__input"
+        id="1"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="1"
     >
       Option #1
     </label>
   </div>
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="2"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="2"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="2"
     >
       Option #2
@@ -64,38 +74,48 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
     A legend
   </legend>
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="1"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="1"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="1"
     >
       Option #1
     </label>
   </div>
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="2"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="2"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="2"
     >
       Option #2
@@ -109,40 +129,50 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
   class="euiRadioGroup emotion-euiRadioGroup"
 >
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="1"
-      name="radiogroupname"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="1"
+        name="radiogroupname"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="1"
     >
       Option #1
     </label>
   </div>
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="2"
-      name="radiogroupname"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="2"
+        name="radiogroupname"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="2"
     >
       Option #2
@@ -156,39 +186,49 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
   class="euiRadioGroup emotion-euiRadioGroup"
 >
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="1"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="1"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="1"
     >
       Option #1
     </label>
   </div>
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      disabled=""
-      id="2"
-      type="radio"
-      value=""
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-disabled-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        disabled=""
+        id="2"
+        type="radio"
+        value=""
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label-disabled"
       for="2"
     >
       Option #2
@@ -202,40 +242,50 @@ exports[`EuiRadioGroup props value is propagated to radios 1`] = `
   class="euiRadioGroup emotion-euiRadioGroup"
 >
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="1"
-      name="radiogroupname"
-      type="radio"
-      value="Value #1"
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="1"
+        name="radiogroupname"
+        type="radio"
+        value="Value #1"
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="1"
     >
       Option #1
     </label>
   </div>
   <div
-    class="euiRadio euiRadioGroup__item"
+    class="euiRadio euiRadioGroup__item emotion-euiRadio"
   >
-    <input
-      class="euiRadio__input"
-      id="2"
-      name="radiogroupname"
-      type="radio"
-      value="Value #2"
-    />
     <div
-      class="euiRadio__circle"
-    />
+      class="euiRadio__circle emotion-euiRadio__circle-unselected"
+    >
+      <span
+        class="emotion-euiRadio__icon"
+        data-euiicon-type="dot"
+      />
+      <input
+        class="euiRadio__input emotion-euiRadio__input"
+        id="2"
+        name="radiogroupname"
+        type="radio"
+        value="Value #2"
+      />
+    </div>
     <label
-      class="euiRadio__label"
+      class="euiRadio__label emotion-euiRadio__label"
       for="2"
     >
       Option #2
