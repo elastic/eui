@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, tint } from '../../../services';
 import {
   euiFocusRing,
   euiFontSize,
@@ -121,7 +121,18 @@ const buttonStyles = (
   };
 };
 
-const bodyStyles = (_: UseEuiTheme, { colors }: EuiSwitchVars) => {
+const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
+  // This is probably very extra, but the visual weight of the default
+  // disabled custom control feels different in light mode depending
+  // on the size of the switch, so I'm tinting it based on that.
+  // Gotta justify my stupidly expensive art degree!
+  const _calculateDisabledColor = (tintAmount: number) => css`
+    label: disabled;
+    background-color: ${colorMode === 'DARK'
+      ? colors.disabled
+      : tint(colors.disabled, tintAmount)};
+  `;
+
   return {
     euiSwitch__body: css`
       position: absolute;
@@ -135,9 +146,11 @@ const bodyStyles = (_: UseEuiTheme, { colors }: EuiSwitchVars) => {
     off: css`
       background-color: ${colors.off};
     `,
-    disabled: css`
-      background-color: ${colors.disabled};
-    `,
+    disabled: {
+      uncompressed: _calculateDisabledColor(0.5),
+      compressed: _calculateDisabledColor(0.25),
+      mini: _calculateDisabledColor(0),
+    },
   };
 };
 

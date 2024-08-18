@@ -109,7 +109,7 @@ export const EuiSwitch: FunctionComponent<
   const bodyStyles = [
     styles.body.euiSwitch__body,
     disabled
-      ? styles.body.disabled
+      ? styles.body.disabled[size]
       : checked
       ? styles.body.on
       : styles.body.off,
