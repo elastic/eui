@@ -71,16 +71,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       : tint(euiTheme.colors.lightShade, 0.5),
   };
 
-  // Colors - specific to checkboxes, radios, switches, and range thumbs
-  const customControlColors = {
-    customControlDisabledIconColor: isColorDark
-      ? shade(euiTheme.colors.mediumShade, 0.38)
-      : tint(euiTheme.colors.mediumShade, 0.485),
-    customControlBorderColor: isColorDark
-      ? shade(euiTheme.colors.lightestShade, 0.4)
-      : tint(euiTheme.colors.lightestShade, 0.31),
-  };
-
   const controlLayout = {
     controlLayoutGroupInputHeight: mathWithUnits(controlHeight, (x) => x - 2),
     controlLayoutGroupInputCompressedHeight: mathWithUnits(
@@ -103,7 +93,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     ...sizes,
     ...colors,
-    ...customControlColors,
     ...iconSizes,
     ...controlLayout,
     animationTiming: `${euiTheme.animation.fast} ease-in`,
@@ -376,3 +365,41 @@ const euiPlaceholderPerBrowser = (content: string) => `
   &:-moz-placeholder { ${content} }
   &::placeholder { ${content} }
 `;
+
+/**
+ * Selection custom controls - checkboxes, radios, and switches
+ */
+
+export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  const sizes = {
+    control: euiTheme.size.base,
+    lineHeight: euiTheme.size.l,
+    labelGap: euiTheme.size.s,
+  };
+
+  const colors = {
+    unselected: euiTheme.colors.emptyShade,
+    unselectedBorder:
+      colorMode === 'DARK'
+        ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
+        : shade(euiTheme.colors.lightestShade, 0.4),
+    selected: euiTheme.colors.primary,
+    selectedIcon: euiTheme.colors.emptyShade,
+    disabled: euiTheme.colors.lightShade,
+    disabledIcon: euiTheme.colors.darkShade,
+    disabledLabel: euiTheme.colors.disabledText, // Lighter than formVars.disabledColor because it typically doesn't have as dark a background
+  };
+
+  const animation = {
+    speed: euiTheme.animation.fast,
+    easing: 'ease-in',
+  };
+
+  return {
+    sizes,
+    colors,
+    animation,
+  };
+};

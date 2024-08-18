@@ -7,10 +7,6 @@ $euiFormControlCompressedPadding: $euiSizeS !default;
 $euiFormControlBorderRadius: $euiBorderRadius !default;
 $euiFormControlCompressedBorderRadius: $euiBorderRadiusSmall !default;
 
-$euiRadioSize: $euiSize !default;
-$euiCheckBoxSize: $euiSize !default;
-$euiCheckboxBorderRadius: $euiBorderRadiusSmall !default;
-
 // Switch
 $euiSwitchHeight: $euiSize * 1.25 !default;
 $euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS !default;
@@ -32,8 +28,6 @@ $euiFormBackgroundReadOnlyColor: $euiColorEmptyShade !default;
 $euiFormBorderOpaqueColor: shadeOrTint(desaturate(adjust-hue($euiColorPrimary, 22), 22.95), 26%, 100%) !default;
 $euiFormBorderColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
-$euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
-$euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 40%, 31%) !default;
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 0 transparent !default;
 $euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $euiFormBackgroundColor) !default;

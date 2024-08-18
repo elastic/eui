@@ -51,8 +51,6 @@ describe('euiFormVariables', () => {
         "controlLayoutGroupInputHeight": "38px",
         "controlPadding": "12px",
         "controlPlaceholderText": "#646a77",
-        "customControlBorderColor": "#f5f7fc",
-        "customControlDisabledIconColor": "#cacfd8",
         "iconAffordance": "24px",
         "iconCompressedAffordance": "18px",
         "maxWidth": "400px",
@@ -68,8 +66,6 @@ describe('euiFormVariables', () => {
     // Check custom dark-mode logic
     expect(result.current.backgroundColor).toEqual('#16171c');
     expect(result.current.controlPlaceholderText).toEqual('#878b95');
-    expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
-    expect(result.current.customControlBorderColor).toEqual('#16171c');
   });
 });
 
