@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
+
 import { UseEuiTheme } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
 import { euiFormCustomControlVariables } from '../form.styles';
@@ -56,3 +58,53 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
   return { sizes, colors, animation, label };
 };
 type EuiSwitchVars = ReturnType<typeof euiSwitchVars>;
+
+export const euiSwitchStyles = (euiThemeContext: UseEuiTheme) => {
+  const switchVars = euiSwitchVars(euiThemeContext);
+  return {
+    euiSwitch: css`
+      position: relative;
+      display: inline-flex;
+      align-items: flex-start;
+    `,
+    // Skip css`` to avoid generating an extra Emotion className
+    enabled: `
+      cursor: pointer;
+    `,
+    disabled: css`
+      cursor: not-allowed;
+    `,
+
+    label: labelStyles(euiThemeContext, switchVars),
+  };
+};
+
+const labelStyles = (
+  euiThemeContext: UseEuiTheme,
+  { sizes, label }: EuiSwitchVars
+) => {
+  const { uncompressed, compressed, mini } = sizes;
+
+  return {
+    euiSwitch__label: css`
+      /* Needs to use padding and not flex gap for extra mouse click area */
+      ${logicalCSS('padding-left', label.gap)}
+    `,
+    // Skip css`` to avoid generating an Emotion className
+    uncompressed: `
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      line-height: ${uncompressed.height};
+    `,
+    compressed: css`
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      line-height: ${compressed.height};
+    `,
+    mini: css`
+      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+      line-height: ${mini.height};
+    `,
+    disabled: css`
+      color: ${label.disabled};
+    `,
+  };
+};

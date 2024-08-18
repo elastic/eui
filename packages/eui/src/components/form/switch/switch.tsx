@@ -13,12 +13,13 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
-import { useGeneratedHtmlId } from '../../../services/accessibility';
 import { EuiIcon } from '../../icon';
+
+import { euiSwitchStyles } from './switch.styles';
 
 export type EuiSwitchEvent = React.BaseSyntheticEvent<
   React.MouseEvent<HTMLButtonElement>,
@@ -68,7 +69,6 @@ export const EuiSwitch: FunctionComponent<
   mini,
   onChange,
   className,
-  css: customCss,
   showLabel = true,
   type = 'button',
   labelProps,
@@ -90,13 +90,7 @@ export const EuiSwitch: FunctionComponent<
     [checked, disabled, onChange]
   );
 
-  const classes = classNames(
-    'euiSwitch',
-    {
-      'euiSwitch--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiSwitch', className);
   const labelClasses = classNames('euiSwitch__label', labelProps?.className);
   if (showLabel === false && typeof label !== 'string') {
     console.warn(
@@ -104,8 +98,19 @@ export const EuiSwitch: FunctionComponent<
     );
   }
 
-  const styles = { euiSwitch: css`` }; // TODO: Emotion conversion
-  const cssStyles = [styles.euiSwitch, customCss];
+  const size = mini ? 'mini' : compressed ? 'compressed' : 'uncompressed';
+
+  const styles = useEuiMemoizedStyles(euiSwitchStyles);
+  const cssStyles = [
+    styles.euiSwitch,
+    disabled ? styles.disabled : styles.enabled,
+  ];
+  const labelStyles = [
+    styles.label.euiSwitch__label,
+    styles.label[size],
+    disabled && styles.label.disabled,
+    labelProps?.css,
+  ];
 
   return (
     <div css={cssStyles} className={classes}>
@@ -145,6 +150,7 @@ export const EuiSwitch: FunctionComponent<
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
         <span
           {...labelProps}
+          css={labelStyles}
           className={labelClasses}
           id={labelId}
           onClick={onClick}

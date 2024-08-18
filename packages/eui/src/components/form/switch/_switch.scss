@@ -2,20 +2,6 @@
 // stylelint-disable max-nesting-depth
 
 .euiSwitch {
-  position: relative;
-  display: inline-flex;
-  align-items: flex-start;
-  min-height: $euiSwitchHeight;
-
-  .euiSwitch__label {
-    cursor: pointer;
-    padding-left: $euiSizeS;
-    line-height: $euiSwitchHeight;
-    font-size: $euiFontSizeS;
-    vertical-align: middle;
-    display: inline-block;
-  }
-
   .euiSwitch__button {
     flex-shrink: 0; // ensures the button doesn't lose width because of a long label
     line-height: 0; // ensures button takes height of switch inside
@@ -45,11 +31,6 @@
     }
 
     &:disabled {
-      &:hover,
-      ~ .euiSwitch__label:hover {
-        cursor: not-allowed;
-      }
-
       .euiSwitch__body {
         background-color: $euiSwitchOffDisabledColor;
       }
@@ -62,10 +43,6 @@
 
       .euiSwitch__icon {
         fill: $euiColorDarkShade;
-      }
-
-      + .euiSwitch__label {
-        color: $euiFormControlDisabledColor;
       }
     }
   }
@@ -129,12 +106,6 @@
 
   // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
   &.euiSwitch--compressed {
-    min-height: $euiSwitchHeightCompressed;
-
-    .euiSwitch__label {
-      line-height: $euiSwitchHeightCompressed;
-    }
-
     .euiSwitch__body {
       width: $euiSwitchWidthCompressed;
       height: $euiSwitchHeightCompressed;
@@ -156,13 +127,6 @@
 
   // Mini styling is similar to compressed, but even smaller. It's undocumented because it has very specific uses.
   &.euiSwitch--mini {
-    min-height: $euiSwitchHeightMini;
-
-    .euiSwitch__label {
-      line-height: $euiSwitchHeightMini;
-      font-size: $euiFontSizeXS;
-    }
-
     .euiSwitch__body {
       width: $euiSwitchWidthMini;
       height: $euiSwitchHeightMini;
