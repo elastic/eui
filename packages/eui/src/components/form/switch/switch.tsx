@@ -114,6 +114,11 @@ export const EuiSwitch: FunctionComponent<
       ? styles.body.on
       : styles.body.off,
   ];
+  const iconsStyles = [
+    styles.icons.euiSwitch__icons,
+    checked ? styles.icons.on : styles.icons.off,
+    disabled ? styles.icons.disabled : styles.icons.enabled,
+  ];
   const thumbStyles = [
     styles.thumb.euiSwitch__thumb,
     checked ? styles.thumb.on[size] : styles.thumb.off,
@@ -144,19 +149,12 @@ export const EuiSwitch: FunctionComponent<
         {...rest}
       >
         <span css={bodyStyles} className="euiSwitch__body">
-          <span className="euiSwitch__track">
-            {!(compressed || mini) && (
-              <React.Fragment>
-                <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
-
-                <EuiIcon
-                  type="check"
-                  size="m"
-                  className="euiSwitch__icon euiSwitch__icon--checked"
-                />
-              </React.Fragment>
-            )}
-          </span>
+          {!(compressed || mini) && (
+            <span css={iconsStyles} className="euiSwitch__icons">
+              <EuiIcon type="check" size="m" />
+              <EuiIcon type="cross" size="m" />
+            </span>
+          )}
         </span>
         <span css={thumbStyles} className="euiSwitch__thumb" />
       </button>

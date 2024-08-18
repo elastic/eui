@@ -101,6 +101,7 @@ export const euiSwitchStyles = (euiThemeContext: UseEuiTheme) => {
     // The track body must be separate from the button wrapper, because the
     // icons have their overflow hidden outside the button, but the thumb doesn't
     body: bodyStyles(euiThemeContext, switchVars),
+    icons: iconStyles(euiThemeContext, switchVars),
     thumb: thumbStyles(euiThemeContext, switchVars),
     label: labelStyles(euiThemeContext, switchVars),
   };
@@ -168,6 +169,43 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       compressed: _calculateDisabledColor(0.25),
       mini: _calculateDisabledColor(0),
     },
+  };
+};
+
+const iconStyles = (
+  { euiTheme }: UseEuiTheme,
+  { colors, animation }: EuiSwitchVars
+) => {
+  return {
+    euiSwitch__icons: css`
+      position: absolute;
+      ${logicalCSS('vertical', 0)}
+      ${logicalCSS('left', '-50%')}
+      ${logicalCSS('width', '200%')}
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      /* Adjust horizontal offset of icons */
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+
+      ${euiCanAnimate} {
+        transition-property: inset-inline-start;
+        transition-duration: ${animation.speed};
+        transition-timing-function: ${animation.easing};
+      }
+    `,
+    on: css`
+      ${logicalCSS('left', '-25%')}
+    `,
+    off: css`
+      ${logicalCSS('left', '-75%')}
+    `,
+    enabled: css`
+      color: ${colors.thumb};
+    `,
+    disabled: css`
+      color: ${colors.thumbBorderDisabled};
+    `,
   };
 };
 
