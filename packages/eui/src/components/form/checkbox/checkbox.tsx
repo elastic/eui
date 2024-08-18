@@ -20,6 +20,7 @@ import classNames from 'classnames';
 
 import { useCombinedRefs } from '../../../services';
 import { CommonProps } from '../../common';
+import { EuiIcon } from '../../icon';
 
 export interface EuiCheckboxProps
   extends CommonProps,
@@ -99,7 +100,11 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
         {...rest}
       />
 
-      <div className="euiCheckbox__square" />
+      <div className="euiCheckbox__square">
+        <EuiIcon
+          type={indeterminate ? 'stopFilled' : checked ? 'check' : 'empty'}
+        />
+      </div>
 
       {optionalLabel}
     </div>

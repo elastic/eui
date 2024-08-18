@@ -275,19 +275,12 @@
 @mixin euiCustomControlSelected($type: null) {
   border-color: $euiColorPrimary;
   background-color: $euiColorPrimary;
-
-  @if $type != null {
-    @include euiIconBackground($type, $euiColorEmptyShade);
-  }
 }
 
 @mixin euiCustomControlDisabled($type: null) {
   border-color: $euiColorLightShade;
   background-color: $euiColorLightShade;
   box-shadow: none;
-  @if $type != null {
-    @include euiIconBackground($type, $euiFormCustomControlDisabledIconColor);
-  }
 }
 
 @mixin euiCustomControlFocused($amsterdamSelector: null) {

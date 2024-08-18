@@ -14,7 +14,9 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps, ExclusiveUnion } from '../../common';
+import { EuiIcon } from '../../icon';
 
 export interface RadioProps {
   autoFocus?: boolean;
@@ -86,7 +88,9 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
         disabled={disabled}
         autoFocus={autoFocus}
       />
-      <div className="euiRadio__circle" />
+      <div className="euiRadio__circle">
+        <EuiIcon type="dot" />
+      </div>
 
       {optionalLabel}
     </div>
