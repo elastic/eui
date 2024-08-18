@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme, tint } from '../../../services';
 import {
+  euiCanAnimate,
   euiFocusRing,
   euiFontSize,
   logicalCSS,
@@ -38,15 +39,30 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
         [euiTheme.size.xxl, euiTheme.size.xs],
         (x, y) => x + y
       ),
+      thumbScales: {
+        default: 1,
+        hover: 1.05,
+        active: 0.9,
+      },
     },
     compressed: {
       height: euiTheme.size.base,
       width: mathWithUnits(euiTheme.size.base, (x) => x * 1.75),
+      thumbScales: {
+        default: 0.9,
+        hover: 0.95,
+        active: 0.8,
+      },
     },
     get mini() {
       return {
         height: mathWithUnits(this.uncompressed.height, (x) => x / 2),
         width: mathWithUnits(this.uncompressed.width, (x) => x / 2),
+        thumbScales: {
+          default: 0.8,
+          hover: undefined,
+          active: undefined,
+        },
       };
     },
   };
@@ -85,6 +101,7 @@ export const euiSwitchStyles = (euiThemeContext: UseEuiTheme) => {
     // The track body must be separate from the button wrapper, because the
     // icons have their overflow hidden outside the button, but the thumb doesn't
     body: bodyStyles(euiThemeContext, switchVars),
+    thumb: thumbStyles(euiThemeContext, switchVars),
     label: labelStyles(euiThemeContext, switchVars),
   };
 };
@@ -150,6 +167,73 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       uncompressed: _calculateDisabledColor(0.5),
       compressed: _calculateDisabledColor(0.25),
       mini: _calculateDisabledColor(0),
+    },
+  };
+};
+
+const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
+  const { sizes, colors, animation } = switchVars;
+  const { uncompressed, compressed, mini } = sizes;
+
+  const _calculateScale = (
+    size: keyof typeof sizes,
+    hoverActiveStates: boolean
+  ) => {
+    const baseScale = `transform: scale(${sizes[size].thumbScales.default});`;
+    const states = hoverActiveStates
+      ? `
+      .euiSwitch:hover & {
+        transform: scale(${sizes[size].thumbScales.hover});
+      }
+      .euiSwitch:active & {
+        transform: scale(${sizes[size].thumbScales.active});
+      }`
+      : '';
+    return `${baseScale}${states}`;
+  };
+
+  return {
+    euiSwitch__thumb: css`
+      position: absolute;
+      ${logicalCSS('vertical', 0)}
+      aspect-ratio: 1;
+      /* width+height needed by Safari - aspect-ratio is enough in FF/Chrome */
+      ${logicalCSS('width', 'fit-content')}
+      ${logicalCSS('height', '100%')}
+      border-radius: 50%;
+
+      ${euiCanAnimate} {
+        transition-property: transform, background-color, border-color;
+        transition-duration: ${animation.speed};
+        transition-timing-function: ${animation.easing};
+      }
+    `,
+    off: css`
+      ${logicalCSS('left', 0)}
+    `,
+    on: css`
+      ${logicalCSS('right', 0)}
+    `,
+
+    enabled: {
+      enabled: `
+        background-color: ${colors.thumb};
+        border: ${euiTheme.border.width.thin} solid ${colors.thumbBorder};
+      `,
+      uncompressed: _calculateScale('uncompressed', true),
+      compressed: _calculateScale('compressed', true),
+      mini: _calculateScale('mini', false),
+    },
+
+    disabled: {
+      disabled: css`
+        background-color: transparent;
+        border: ${euiTheme.border.width.thin} solid
+          ${colors.thumbBorderDisabled};
+      `,
+      uncompressed: _calculateScale('uncompressed', false),
+      compressed: _calculateScale('compressed', false),
+      mini: _calculateScale('mini', false),
     },
   };
 };

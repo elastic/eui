@@ -114,6 +114,13 @@ export const EuiSwitch: FunctionComponent<
       ? styles.body.on
       : styles.body.off,
   ];
+  const thumbStyles = [
+    styles.thumb.euiSwitch__thumb,
+    checked ? styles.thumb.on : styles.thumb.off,
+    ...(disabled
+      ? [styles.thumb.disabled.disabled, styles.thumb.disabled[size]]
+      : [styles.thumb.enabled.enabled, styles.thumb.enabled[size]]),
+  ];
   const labelStyles = [
     styles.label.euiSwitch__label,
     styles.label[size],
@@ -137,7 +144,6 @@ export const EuiSwitch: FunctionComponent<
         {...rest}
       >
         <span css={bodyStyles} className="euiSwitch__body">
-          <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
             {!(compressed || mini) && (
               <React.Fragment>
@@ -152,6 +158,7 @@ export const EuiSwitch: FunctionComponent<
             )}
           </span>
         </span>
+        <span css={thumbStyles} className="euiSwitch__thumb" />
       </button>
 
       {showLabel && (

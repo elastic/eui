@@ -2,11 +2,6 @@
 // stylelint-disable max-nesting-depth
 
 .euiSwitch {
-      // When input is not checked, we shift around the positioning of the thumb and the icon
-      .euiSwitch__thumb { // move the thumb left
-        left: 0;
-      }
-
       .euiSwitch__icon { // move the icon right
         right: -$euiSizeS;
 
@@ -18,25 +13,10 @@
     }
 
     &:disabled {
-      .euiSwitch__thumb {
-        background-color: rgba(0,0,0,0);
-        border-color: $euiSwitchDisabledThumbColor;
-        box-shadow: none;
-      }
-
       .euiSwitch__icon {
         fill: $euiColorDarkShade;
       }
     }
-  }
-
-  .euiSwitch__thumb {
-    @include euiCustomControl($type: 'round', $size: $euiSwitchThumbSize);
-
-    position: absolute;
-    display: inline-block;
-    left: $euiSwitchWidth - $euiSwitchThumbSize;
-    transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
   }
 
   .euiSwitch__track {
@@ -66,26 +46,8 @@
     fill: $euiColorEmptyShade;
   }
 
-  &:hover .euiSwitch__button {
-    &:not(:disabled) .euiSwitch__thumb {
-      transform: scale(1.05);
-    }
-
-    &:active .euiSwitch__thumb {
-      transform: scale(.95);
-    }
-  }
-
   // Compressed switches operate very similar to the normal versions, but are smaller, contain no icon signifiers
   &.euiSwitch--compressed {
-    .euiSwitch__thumb {
-      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeCompressed) - 2px);
-
-      left: ($euiSwitchWidthCompressed) - (($euiSwitchThumbSizeCompressed) - 2px) - 1px;
-      top: 1px;
-      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
-    }
-
     .euiSwitch__track {
       border-radius: $euiSwitchHeightCompressed;
     }
@@ -93,41 +55,8 @@
 
   // Mini styling is similar to compressed, but even smaller. It's undocumented because it has very specific uses.
   &.euiSwitch--mini {
-    .euiSwitch__thumb {
-      @include euiCustomControl($type: 'round', $size: ($euiSwitchThumbSizeMini) - 2px);
-
-      left: ($euiSwitchWidthMini) - (($euiSwitchThumbSizeMini) - 2px) - 1px;
-      top: 1px;
-      transition: border-color $euiAnimSpeedNormal $euiAnimSlightBounce, background-color $euiAnimSpeedNormal $euiAnimSlightBounce, left $euiAnimSpeedNormal $euiAnimSlightBounce, transform $euiAnimSpeedNormal $euiAnimSlightBounce;
-    }
-
     .euiSwitch__track {
       border-radius: $euiSwitchHeightMini;
     }
   }
 
-  // Compressed and mini switches have some style overlap
-  &.euiSwitch--compressed,
-  &.euiSwitch--mini {
-    .euiSwitch__button[aria-checked='false'] {
-      .euiSwitch__thumb {
-        left: 1px;
-      }
-    }
-
-    // Compressed and mini switches need slightly darker borders since they don't have icons
-    .euiSwitch__button[aria-checked='false'],
-    .euiSwitch__button[aria-checked='true']:disabled {
-      .euiSwitch__thumb {
-        border-color: $euiSwitchDisabledThumbColor;
-      }
-    }
-
-    // Similar additional treatment needed while checked
-    .euiSwitch__button[aria-checked='true'] {
-      .euiSwitch__thumb {
-        border-color: $euiColorPrimary;
-      }
-    }
-  }
-}
