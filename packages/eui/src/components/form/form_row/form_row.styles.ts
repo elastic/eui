@@ -115,11 +115,13 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     get center() {
       return css`
+        ${this.row}
         ${this.centerDisplayCss(false)}
       `;
     },
     get centerCompressed() {
       return css`
+        ${this.row}
         ${this.centerDisplayCss(true)}
       `;
     },

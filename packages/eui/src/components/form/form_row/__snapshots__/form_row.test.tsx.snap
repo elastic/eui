@@ -208,7 +208,7 @@ exports[`EuiFormRow props fullWidth is rendered 1`] = `
 
 exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--hasEmptyLabelSpace emotion-euiFormRow-center"
+  class="euiFormRow euiFormRow--hasEmptyLabelSpace emotion-euiFormRow"
   id="generated-id-row"
 >
   <div

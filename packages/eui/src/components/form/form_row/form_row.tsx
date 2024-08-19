@@ -135,8 +135,6 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
   const fullWidth = _fullWidth ?? defaultFullWidth;
   const id = useGeneratedHtmlId({ conditionalId: propsId });
   const hasLabel = label || labelAppend;
-  const isCenterDisplay = display.startsWith('center');
-  const shouldCenterFieldContent = isCenterDisplay || hasEmptyLabelSpace;
 
   const [isFocused, setIsFocused] = useState(false);
   const onFocusWithin = useCallback(() => setIsFocused(true), []);
@@ -155,11 +153,7 @@ export const EuiFormRow: FunctionComponent<EuiFormRowProps> = ({
   const cssStyles = [
     styles.euiFormRow,
     fullWidth ? styles.fullWidth : styles.formWidth,
-    isCenterDisplay ? styles.row : styles[display],
-    shouldCenterFieldContent &&
-      (display.includes('Compressed')
-        ? styles.centerCompressed
-        : styles.center),
+    styles[display],
   ];
 
   const optionalHelpTexts = useMemo(() => {
