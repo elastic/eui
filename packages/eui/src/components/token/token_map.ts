@@ -255,6 +255,10 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'euiColorVis5',
   },
+  tokenSemanticText: {
+    shape: 'square',
+    color: 'euiColorVis0',
+  },
   tokenShape: {
     shape: 'circle',
     color: 'euiColorVis8',
