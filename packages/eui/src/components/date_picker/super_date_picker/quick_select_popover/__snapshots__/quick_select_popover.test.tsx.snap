@@ -92,10 +92,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 </option>
               </select>
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
               >
                 <span
-                  class="euiFormControlLayoutCustomIcon"
+                  class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
                 >
                   <span
                     aria-hidden="true"
@@ -179,10 +179,10 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 </option>
               </select>
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
               >
                 <span
-                  class="euiFormControlLayoutCustomIcon"
+                  class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
                 >
                   <span
                     aria-hidden="true"
@@ -288,35 +288,31 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiSwitch euiSwitch--compressed emotion-euiSwitch"
+          class="euiSwitch emotion-euiSwitch"
         >
           <button
             aria-checked="false"
             aria-describedby="generated-id"
             aria-label="Toggle refresh"
-            class="euiSwitch__button"
+            class="euiSwitch__button emotion-euiSwitch__button-compressed"
             data-test-subj="superDatePickerToggleRefreshButton"
             id="generated-id"
             role="switch"
             type="button"
           >
             <span
-              class="euiSwitch__body"
-            >
-              <span
-                class="euiSwitch__thumb"
-              />
-              <span
-                class="euiSwitch__track"
-              />
-            </span>
+              class="euiSwitch__body emotion-euiSwitch__body-off"
+            />
+            <span
+              class="euiSwitch__thumb emotion-euiSwitch__thumb-off"
+            />
           </button>
           <span
-            class="euiSwitch__label"
+            class="euiSwitch__label emotion-euiSwitch__label-compressed"
             id="generated-id"
           >
             <label
-              class="euiFormLabel"
+              class="euiFormLabel emotion-euiFormLabel"
             >
               Refresh every
             </label>
@@ -328,7 +324,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
         style="min-width: 60px;"
       >
         <div
-          class="euiFormControlLayout emotion-euiFormControlLayout-compressed-fullWidth"
+          class="euiFormControlLayout euiFormControlLayout-isDisabled emotion-euiFormControlLayout-compressed-fullWidth"
         >
           <div
             class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"

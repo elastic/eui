@@ -13,7 +13,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -26,7 +26,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
               class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
@@ -102,7 +101,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         data-test-subj="customErrorText"
         id="generated-id-row"
       >
@@ -116,7 +115,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
               class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
@@ -191,7 +189,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -204,7 +202,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
               class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
             >
               <label
-                class="euiFormLabel"
+                class="euiFormLabel emotion-euiFormLabel"
                 for="generated-id"
               >
                 Prepend Example
@@ -214,7 +212,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
               class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth-inGroup"
                 data-test-subj="customInput"
@@ -289,7 +286,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -302,7 +299,6 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
               class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
@@ -377,7 +373,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -391,7 +387,6 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
               style="--euiFormControlRightIconsCount: 1;"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-invalid="true"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth"
@@ -401,7 +396,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
                 value="Hello World!"
               />
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
               >
                 <span
                   color="danger"
@@ -475,7 +470,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -489,7 +484,6 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
               style="--euiFormControlRightIconsCount: 1;"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText euiFieldText-isLoading emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
@@ -498,7 +492,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
                 value="Hello World!"
               />
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
               >
                 <span
                   aria-label="Loading"
@@ -588,7 +582,7 @@ exports[`EuiInlineEditForm edit mode placeholder 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -601,7 +595,6 @@ exports[`EuiInlineEditForm edit mode placeholder 1`] = `
               class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"
@@ -677,7 +670,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
+        class="euiFormRow emotion-euiFormRow-fullWidth"
         id="generated-id-row"
       >
         <div
@@ -690,7 +683,6 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
               class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
             >
               <input
-                aria-describedby="inlineEdit_generated-id"
                 aria-label="Edit inline"
                 class="euiFieldText emotion-euiFieldText-fullWidth"
                 data-test-subj="euiInlineEditModeInput"

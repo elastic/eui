@@ -74,10 +74,17 @@ export type EuiFormControlLayoutProps = CommonProps &
      * Connects the prepend and append labels to the input
      */
     inputId?: string;
+    /**
+     * Allows passing optional additional props to `.euiFormControlLayout__childrenWrapper`
+     */
+    wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   };
 
 export const EuiFormControlLayout: FunctionComponent<
-  EuiFormControlLayoutProps
+  EuiFormControlLayoutProps & {
+    // Internal prop used by EuiFormControlLayoutDelimited
+    isDelimited?: boolean;
+  }
 > = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
@@ -95,16 +102,18 @@ export const EuiFormControlLayout: FunctionComponent<
     compressed,
     prepend,
     append,
+    isDelimited,
+    wrapperProps,
     fullWidth = defaultFullWidth,
     ...rest
   } = props;
 
-  const isGroup = !!(prepend || append);
+  const isGroup = !!(prepend || append || isDelimited);
 
   const classes = classNames(
     'euiFormControlLayout',
     {
-      'euiFormControlLayout--group': isGroup,
+      'euiFormControlLayout--group': isGroup && !isDelimited,
       'euiFormControlLayout-isDisabled': isDisabled,
       'euiFormControlLayout-readOnly': readOnly,
     },
@@ -130,6 +139,7 @@ export const EuiFormControlLayout: FunctionComponent<
     isGroup && styles.children.inGroup,
     isGroup && !append && styles.children.prependOnly,
     isGroup && !prepend && styles.children.appendOnly,
+    wrapperProps?.css,
   ];
 
   const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;
@@ -159,9 +169,13 @@ export const EuiFormControlLayout: FunctionComponent<
         compressed={compressed}
       />
       <div
-        className="euiFormControlLayout__childrenWrapper"
+        {...wrapperProps}
         css={childrenWrapperStyles}
-        style={iconAffordanceStyles}
+        className={classNames(
+          'euiFormControlLayout__childrenWrapper',
+          wrapperProps?.className
+        )}
+        style={{ ...iconAffordanceStyles, ...wrapperProps?.style }}
       >
         {hasLeftIcon && (
           <EuiFormControlLayoutIcons
@@ -169,6 +183,7 @@ export const EuiFormControlLayout: FunctionComponent<
             icon={icon}
             iconsPosition={iconsPosition}
             compressed={compressed}
+            isDisabled={isDisabled}
           />
         )}
 
@@ -184,6 +199,7 @@ export const EuiFormControlLayout: FunctionComponent<
             isLoading={isLoading}
             isInvalid={isInvalid}
             isDropdown={hasDropdownIcon}
+            isDisabled={isDisabled}
           />
         )}
       </div>

@@ -3,38 +3,38 @@
 exports[`EuiFormLabel is rendered 1`] = `
 <label
   aria-label="aria-label"
-  class="euiFormLabel testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormLabel testClass1 testClass2 emotion-euiFormLabel-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiFormLabel props isDisabled is rendered 1`] = `
 <label
-  class="euiFormLabel euiFormLabel-isDisabled"
+  class="euiFormLabel euiFormLabel-isDisabled emotion-euiFormLabel"
 />
 `;
 
 exports[`EuiFormLabel props isDisabled is still disabled with for attribute 1`] = `
 <label
-  class="euiFormLabel euiFormLabel-isDisabled"
+  class="euiFormLabel euiFormLabel-isDisabled emotion-euiFormLabel"
   for=""
 />
 `;
 
 exports[`EuiFormLabel props isFocused is rendered 1`] = `
 <label
-  class="euiFormLabel euiFormLabel-isFocused"
+  class="euiFormLabel euiFormLabel-isFocused emotion-euiFormLabel-focused"
 />
 `;
 
 exports[`EuiFormLabel props isInvalid is rendered 1`] = `
 <label
-  class="euiFormLabel euiFormLabel-isInvalid"
+  class="euiFormLabel euiFormLabel-isInvalid emotion-euiFormLabel-invalid"
 />
 `;
 
 exports[`EuiFormLabel props type can be changed to legend 1`] = `
 <legend
-  class="euiFormLabel"
+  class="euiFormLabel emotion-euiFormLabel"
 />
 `;

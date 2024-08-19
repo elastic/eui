@@ -11,10 +11,11 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
 } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 
-import { EuiIcon, EuiIconProps, IconType } from '../../icon';
 import { CommonProps, ExclusiveUnion } from '../../common';
+import { EuiIcon, EuiIconProps, IconType } from '../../icon';
 
 export type EuiFormControlLayoutCustomIconProps = CommonProps &
   ExclusiveUnion<
@@ -30,16 +31,20 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
 
 export const EuiFormControlLayoutCustomIcon: FunctionComponent<
   EuiFormControlLayoutCustomIconProps
-> = ({ className, onClick, type, iconRef, size, color, ...rest }) => {
-  const classes = classNames('euiFormControlLayoutCustomIcon', className, {
-    'euiFormControlLayoutCustomIcon--clickable': onClick,
-  });
+> = ({ className, onClick, type, iconRef, size, color, disabled, ...rest }) => {
+  const classes = classNames('euiFormControlLayoutCustomIcon', className);
+  const cssStyles = [
+    styles.euiFormControlLayoutCustomIcon,
+    onClick ? styles.clickable : styles.unclickable,
+  ];
 
   if (onClick) {
     return (
       <button
         type="button"
         onClick={onClick}
+        disabled={disabled}
+        css={cssStyles}
         className={classes}
         ref={iconRef}
         {...rest}
@@ -56,7 +61,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<
   }
 
   return (
-    <span className={classes} ref={iconRef} {...rest}>
+    <span css={cssStyles} className={classes} ref={iconRef} {...rest}>
       <EuiIcon
         className="euiFormControlLayoutCustomIcon__icon"
         aria-hidden="true"
@@ -66,4 +71,22 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<
       />
     </span>
   );
+};
+
+const styles = {
+  euiFormControlLayoutCustomIcon: css`
+    font-size: 0; /* Ensures the icon stays vertically centered */
+  `,
+  // Skip css`` here to avoid generating an Emotion className
+  unclickable: `
+    pointer-events: none;
+  `,
+  clickable: css`
+    pointer-events: all;
+
+    &:disabled {
+      cursor: not-allowed;
+      color: currentColor; /* Should inherit disabled form color from euiFormControlLayoutIcons */
+    }
+  `,
 };
