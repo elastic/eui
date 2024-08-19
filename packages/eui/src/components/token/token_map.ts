@@ -54,6 +54,7 @@ export type EuiTokenMapType =
   | 'tokenRankFeatures'
   | 'tokenRepo'
   | 'tokenSearchType'
+  | 'tokenSemanticText'
   | 'tokenShape'
   | 'tokenString'
   | 'tokenStruct'
